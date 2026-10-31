@@ -257,5 +257,32 @@
     "same_latent_P_policy_as": "conditional_backward_loan_followup",
     "scope": "Same one recorded loan and seven periods; partial PMT-producing programme remains unspecified.",
     "fixed_before_search": true
+  },
+  "RATE_single_step_followup": {
+    "motivation": "231 mismatching RATE cases have no mismatching external FV companion; only1 of60 one-period RATE answers is the correctly rounded exact linear root. Test a one-period Newton consumer of the genuine FV publication at the recorded guess, rather than infer an internal trace.",
+    "role": "implementer",
+    "sites": [
+      "PV+timing*payment derivative",
+      "future_target-FV(guess) residual",
+      "residual/derivative",
+      "guess-step"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "programs": 625,
+    "scope": "Explicit finite numeric nper=1, nonzero linear derivative, captured numeric FV-at-guess and RATE outcome.",
+    "sources": [
+      "IEEE rounding",
+      "annuity/Newton mathematics",
+      "genuine Excel FV and RATE outputs",
+      "Microsoft public RATE functional documentation: iteration,20attempts and1e-7successive-result contract; does not specify Newton"
+    ],
+    "limitation": "External FV output is a constrained function call, never an installed answer constant. Exactly one step is a hypothesis; no internal evaluation, derivative or stopping rule is presumed.",
+    "fixed_before_search": true
   }
 }

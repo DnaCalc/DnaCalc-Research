@@ -336,11 +336,126 @@ def homogeneity(trace_dir,out):
     print(json.dumps({fn:x['counts']for fn,x in result.items()}))
 
 
+def rate_structure(trace_dir,relationships_path,out):
+    """External evaluator coverage and the exact one-period linear identity.
+
+    Algebraic roots are diagnostics, never replacement Excel observations.
+    No internal residual, stopping tolerance or solver iteration is inferred.
+    """
+    from intervals import B64
+    rel=json.loads(relationships_path.read_text());counts=C.Counter()
+    for row in rel['RATE_FV_companions']:
+        fs=row['companions'];tag='any_external_FV_error'if any(x['FV_error']for x in fs)else'all_external_FV_matched'if fs else'no_external_FV_coverage'
+        counts[('RATE_mismatched'if row['RATE_error']else'RATE_matched')+':'+tag]+=1
+    rows=list(lines(trace_dir/'RATE.jsonl'));linear=[];controls=C.Counter();guess_groups=C.defaultdict(list)
+    for row in rows:
+        a=[num(x)for x in row['args']]
+        if not a or a[0]!=1.0:controls['not_one_period']+=1;continue
+        if len(a)<5 or any(x is None or not math.isfinite(x)for x in a[:5]):controls['one_period_typed_or_nonfinite']+=1;continue
+        _,p,pv,fv,t=a[:5];timing=int(math.trunc(t)!=0)
+        denominator=Q(pv)+timing*Q(p);numerator=-(Q(pv)+Q(p)+Q(fv))
+        if denominator==0:
+            controls['one_period_degenerate_every_rate'if numerator==0 else'one_period_no_linear_root']+=1;continue
+        root=numerator/denominator;rounded=B64.rn(root)
+        expected=num(row['expected']);actual=num(row['actual'])
+        rec=dict(witness=row,exact_algebraic_root=[str(root.numerator),str(root.denominator)],
+            diagnostic_RN53=bits(float(rounded))if rounded is not None else'overflow',
+            root_above_minus_one=root>-1,expected_is_RN53_root=expected is not None and rounded is not None and Q(expected)==rounded,
+            current_is_RN53_root=actual is not None and rounded is not None and Q(actual)==rounded)
+        if expected is not None and math.isfinite(expected)and rounded is not None:
+            def order(x):
+                b=int(bits(x)[2:],16);return(~b)&((1<<64)-1)if b>>63 else b|(1<<63)
+            rec['recorded_to_RN53_ULP_distance']=abs(order(expected)-order(float(rounded)))
+            rec['exact_recorded_equation_residual']=[str((numerator-denominator*Q(expected)).numerator),str((numerator-denominator*Q(expected)).denominator)]
+        linear.append(rec)
+        k=(json.dumps(row['args'][:5],sort_keys=True),json.dumps(row['reading'],sort_keys=True),row['source'])
+        guess_groups[k].append(row)
+    comparisons=[]
+    for (a,e,s),rs in guess_groups.items():
+        guesses={json.dumps(r['args'][5:]if len(r['args'])>5 else['omitted'],sort_keys=True)for r in rs}
+        if len(guesses)<2:continue
+        comparisons.append(dict(arguments_without_guess=json.loads(a),environment=json.loads(e),source=s,
+            rows=len(rs),distinct_guesses=len(guesses),distinct_recorded_outcomes=len({r['expected']for r in rs}),witnesses=rs))
+    summary=dict(external_FV_cooccurrence=dict(counts),one_period_rows=len(linear),controls=dict(controls),
+        recorded_exact_RN53_linear_roots=sum(x['expected_is_RN53_root']for x in linear),
+        current_exact_RN53_linear_roots=sum(x['current_is_RN53_root']for x in linear),
+        largest_recorded_RN53_ULP_distance=max((x.get('recorded_to_RN53_ULP_distance',0)for x in linear),default=0),
+        one_period_guess_groups=len(comparisons),guess_groups_with_different_outcomes=sum(x['distinct_recorded_outcomes']>1 for x in comparisons),
+        trace_sha256=hashlib.sha256((trace_dir/'RATE.jsonl').read_bytes()).hexdigest(),relationships_sha256=hashlib.sha256(relationships_path.read_bytes()).hexdigest(),
+        limitations=['FV companions are external observations, not internal RATE calls or a trace of its visited points.',
+            'An exact one-period linear root is a mathematical diagnostic; RATE need not publish its correctly rounded value. It is never imported as an Excel answer.',
+            'Guess-dependent outcomes constrain an analytic guess-independent branch only in the nondegenerate one-period scope; they do not identify a solver or its stopping tolerance.'])
+    (out/'RATE-linear-diagnostics.json').write_text(json.dumps(linear,indent=2)+'\n')
+    (out/'RATE-one-period-guess-groups.json').write_text(json.dumps(comparisons,indent=2)+'\n')
+    (out/'RATE-structure-summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary))
+
+
+def rate_newton(trace_dir,out):
+    """Exact one-period Newton consumers of genuinely observed FV(guess).
+
+    A four-site bounded family, not a claim that Excel uses Newton or one step.
+    FV remains a function call; its observed output is a constraint on that call,
+    never a constant installed into a proposed implementation.
+    """
+    from intervals import B64
+    from intersect import rnd
+    fv=C.defaultdict(list)
+    for row in lines(trace_dir/'FV.jsonl'):
+        fv[(json.dumps(row['args'],sort_keys=True),json.dumps(row['reading'],sort_keys=True))].append(row)
+    cases=[];excluded=C.Counter()
+    for row in lines(trace_dir/'RATE.jsonl'):
+        a=[num(x)for x in row['args']]
+        if len(a)!=6 or a[0]!=1.0 or any(x is None or not math.isfinite(x)for x in a)or num(row['expected'])is None:
+            excluded['outside_explicit_numeric_one_period_scope']+=1;continue
+        timing=int(math.trunc(a[4])!=0)
+        if Q(a[2])+timing*Q(a[1])==0:excluded['zero_linear_derivative']+=1;continue
+        args=[row['args'][5],row['args'][0],row['args'][1],row['args'][2],row['args'][4]]
+        companions=fv.get((json.dumps(args,sort_keys=True),json.dumps(row['reading'],sort_keys=True)),[])
+        if not companions:excluded['missing_external_FV_at_guess']+=1;continue
+        assert len({x['expected']for x in companions})==1,'conflicting original observations need a separate provenance investigation'
+        if num(companions[0]['expected'])is None:excluded['nonnumeric_external_FV_at_guess']+=1;continue
+        cases.append(dict(RATE=row,FV=companions[0]))
+    out.mkdir(parents=True,exist_ok=False)
+    (out/'observations.json').write_text(json.dumps(cases,indent=2)+'\n')
+    grammar=dict(programs=625,sites=['derivative PV+timing*payment','residual target_FV-observed_FV(guess)','residual/derivative','guess-step'],
+        models=['strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53'],
+        layout='little-endian base5 site code',scope='Explicit finite numeric nper=1, nonzero exact linear derivative, original finite FV-at-guess observation and RATE answer.',
+        limitation='One-step Newton only; external FV publication is the constrained function-call leaf. No statement about the actual internal evaluator, derivative, iteration count or stopping rule.',
+        source=['IEEE nearest-even','annuity linear equation and Newton method mathematics','genuine Excel RATE and FV observations'])
+    (out/'grammar.json').write_text(json.dumps(grammar,indent=2)+'\n')
+    def op(x,y,kind,m):
+        if m==0:x,y=B64.rn(x),B64.rn(y)
+        assert x is not None and y is not None
+        return rnd(x+y if kind=='add'else x-y if kind=='sub'else x/y,m)
+    alive=set(range(625));kills=[];statistics=[];evaluations=0
+    for idx,case in enumerate(cases):
+        row,fr=case['RATE'],case['FV'];a=list(map(num,row['args']));timing=int(math.trunc(a[4])!=0)
+        before=len(alive)
+        for code in sorted(alive):
+            ms=[(code//(5**i))%5 for i in range(4)]
+            d=op(Q(a[2]),timing*Q(a[1]),'add',ms[0]);r=op(Q(a[3]),Q(num(fr['expected'])),'sub',ms[1]);q=op(r,d,'div',ms[2]);y=op(Q(a[5]),q,'sub',ms[3]);published=B64.rn(y);evaluations+=1
+            got=bits(float(published))if published is not None else'nonfinite'
+            if got!=row['expected']:
+                alive.remove(code)
+                kills.append(dict(program=code,models=ms,case=idx,original=case,got=got,expected=row['expected'],
+                    exact_intermediates={k:[str(x.numerator),str(x.denominator)]for k,x in [('derivative',d),('residual',r),('step',q),('next',y)]}))
+        statistics.append(dict(case=idx,killed=before-len(alive),remaining=len(alive)))
+    (out/'first-kills.jsonl').write_text(''.join(json.dumps(x,separators=(',',':'))+'\n'for x in kills))
+    (out/'witness-kills.json').write_text(json.dumps(statistics,indent=2)+'\n')
+    (out/'survivors.json').write_text(json.dumps(sorted(alive))+'\n')
+    summary=dict(programs=625,survivors=len(alive),cases=len(cases),excluded=dict(excluded),evaluations=evaluations,
+        first_kill_statistics=[x for x in statistics if x['killed']],complete=True,
+        claim='Exact elimination of the specified one-step Newton consumer, constrained jointly by original RATE and FV(guess). Other solver/evaluator programmes remain open.')
+    (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary))
+
+
 if __name__ == '__main__':
     out=Path(sys.argv[-1]);out.mkdir(exist_ok=True,parents=True)
     if sys.argv[1]=='gaps':
         print(json.dumps(gap_clusters(Path(sys.argv[2]),Path(sys.argv[3]),out)))
     elif sys.argv[1]=='relationships':relationships(Path(sys.argv[2]),out)
     elif sys.argv[1]=='homogeneity':homogeneity(Path(sys.argv[2]),out)
+    elif sys.argv[1]=='rate':rate_structure(Path(sys.argv[2]),Path(sys.argv[3]),out)
+    elif sys.argv[1]=='rate-newton':rate_newton(Path(sys.argv[2]),out)
     else:
         discover(Path(sys.argv[1]),out)
