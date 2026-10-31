@@ -1,0 +1,958 @@
+{
+  "id": "dc-j9k-round8",
+  "status": "No identified full annuity or Poisson programme; no product kernel promotion",
+  "artifact_directory": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8",
+  "application_numeric_revision": "c62ffca1e48b61989e7b481f9243a44fb6576b50",
+  "application_check_revision": "9f3cee99216fa07605a0a3c59e06f203b6f0c1c6",
+  "evidence_revision": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+  "program_source_commits": [
+    "a4b7e1b180dfef8fcfc96bb49ef8a0a181a11dbf",
+    "fc14027112ea72444b43c720218e05503a07d555",
+    "8d3f986f7840339b01959ba2e56ef23965985162",
+    "0ebc75b7a0f582dda122b0fbee93537bcc9d2bca",
+    "079ff052e73db78ebbf40b2aae6fe31cd8b5ea2d",
+    "b0e41d8038641b9ec6622e59e30885ae70d5c16b",
+    "a04558f366367590e01eacddf13c7121ad4d93e3",
+    "ba827e3400bfb9ec447894f137c1b50529dc8c3a",
+    "74c4ca8ab8f650c1039afefe18848abc6c137666",
+    "ee31588be51c2698cb353cd402286257f4146fa0",
+    "c54a5af3c6e12f19747b7370b9e677e0e92926da",
+    "5f9fc341c02baadd8b9b65951b3988b82987cc8d",
+    "548c268b1a8f99f2ba4e37ae3049c56153728c7b"
+  ],
+  "sources": {
+    "role": "implementer",
+    "tier1": [
+      "IEEE nearest/even rounding",
+      "annuity algebra",
+      "recorded Excel outputs",
+      "https://dlmf.nist.gov/4.6.E6",
+      "Intel public SDM FYL2XP1/F2XM1/FSCALE/FRNDINT/ROM constants",
+      "Microsoft public RATE functional contract (documentation only)"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc Fpu/numeric operations",
+      "OxFunc MIT racer05196c394f5400eb329c79b01b4a8d2bac7c228b arithmetic subset already adapted",
+      "libm permissive dependency calls"
+    ],
+    "restricted_source_read": false
+  },
+  "poisson_blind": {
+    "scored_at_utc": "2026-10-31T18:53:41.988175+00:00",
+    "hypotheses": 52908,
+    "question_count": 38,
+    "score_histogram": {
+      "6": 208,
+      "8": 916,
+      "10": 3096,
+      "12": 12256,
+      "14": 23388,
+      "16": 11132,
+      "18": 308,
+      "20": 208,
+      "22": 28,
+      "24": 596,
+      "26": 456,
+      "28": 120,
+      "30": 196
+    },
+    "per_hypothesis_file": "poisson-blind/per-hypothesis-blind-scores.csv",
+    "frozen_packet_manifest_sha256": "b4a30b5d3583e66d1bbe0cd28bd70bbe26648a153432d1c8962a372447e9519e"
+  },
+  "poisson_elimination": {
+    "stage": "exact elimination after blind scoring",
+    "eliminated_at_utc": "2026-10-31T18:53:52.307792+00:00",
+    "blind_summary_sha256": "ebac29c294deb43a1ff951be6109158471322c885bbce60a9fc32c242486a00b",
+    "initial": 52908,
+    "survivors": 0,
+    "killed": 52908,
+    "questions": [
+      {
+        "id": "r7-poisson-final-k1-00-bool",
+        "killed": 0,
+        "remaining": 52908
+      },
+      {
+        "id": "r7-poisson-final-k1-00-number",
+        "killed": 0,
+        "remaining": 52908
+      },
+      {
+        "id": "r7-poisson-final-k1-01-bool",
+        "killed": 0,
+        "remaining": 52908
+      },
+      {
+        "id": "r7-poisson-final-k1-01-number",
+        "killed": 0,
+        "remaining": 52908
+      },
+      {
+        "id": "r7-poisson-final-k1-02-bool",
+        "killed": 52908,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-02-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-03-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-03-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-04-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-04-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-05-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-05-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-06-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-06-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-07-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-07-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-08-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-08-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-09-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-09-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-10-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-10-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-11-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-11-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-12-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-12-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-13-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-13-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-14-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-14-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-15-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-15-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-16-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-16-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-17-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-17-number",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-18-bool",
+        "killed": 0,
+        "remaining": 0
+      },
+      {
+        "id": "r7-poisson-final-k1-18-number",
+        "killed": 0,
+        "remaining": 0
+      }
+    ],
+    "claim": "Scoped finite-family elimination only; no algorithm identification or product promotion."
+  },
+  "structure": {
+    "conditioned_summary": "structure-conditioned/structure-summary.json",
+    "gap_clusters": "structure/gap-clusters.json",
+    "relationships": "structure-conditioned/family-relationships.json",
+    "homogeneity": "structure-conditioned/scale-homogeneity.json",
+    "original_trace_totals": {
+      "PV": {
+        "rows": 1278,
+        "matched": 1130,
+        "mismatched": 148,
+        "fail": 148,
+        "pass_rate_decoded": 0.8841940532081377,
+        "trace_sha256": "fab42e22b8ac544ec236d47f0347d6f0519964da1c0bf39c069cdb880586dc9f"
+      },
+      "FV": {
+        "rows": 2531,
+        "matched": 2249,
+        "mismatched": 282,
+        "fail": 282,
+        "pass_rate_decoded": 0.8885815883050178,
+        "trace_sha256": "6eee1b2d77669692e054fd391e994262ff9f3b2e692eb966be4a39b2c033f5af"
+      },
+      "NPER": {
+        "rows": 2501,
+        "matched": 2501,
+        "unavailable_coordinates": 476,
+        "fail": 0,
+        "pass_rate_decoded": 1.0,
+        "trace_sha256": "c209afc38f82d763ed54bf47dce161505717fc80fcc9bf1e9cb32ea9afb2a1b9"
+      },
+      "PMT": {
+        "rows": 291851,
+        "matched": 222784,
+        "mismatched": 69067,
+        "fail": 69067,
+        "pass_rate_decoded": 0.7633484209408226,
+        "trace_sha256": "68b9221a4aac4631ed6446b3b1cc695e065bfce5d18affcac71764267ebf9932"
+      },
+      "IPMT": {
+        "rows": 31,
+        "matched": 19,
+        "mismatched": 12,
+        "fail": 12,
+        "pass_rate_decoded": 0.6129032258064516,
+        "trace_sha256": "1d63c5730a043f1e56dffc2f22dfe61f667244e2137d288bfc8533bc1c3e68e1"
+      },
+      "PPMT": {
+        "rows": 7,
+        "mismatched": 7,
+        "fail": 7,
+        "pass_rate_decoded": 0.0,
+        "trace_sha256": "21ce7902befbefadf4f69b4c69d624c277be5903ad520223ba01230b11a0e552"
+      },
+      "RATE": {
+        "rows": 361,
+        "mismatched": 356,
+        "matched": 5,
+        "unavailable_coordinates": 13,
+        "fail": 356,
+        "pass_rate_decoded": 0.013850415512465374,
+        "trace_sha256": "c25d528a8f9d2a14f78d4365c215724d49330467dea0316d64827a2a849f6d33"
+      }
+    }
+  },
+  "growth": {
+    "original_FV_isolations": 235,
+    "PV_isolations": 0,
+    "preimages": "growth-preimages-corrected",
+    "diagnostics": [
+      "growth-comparison-corrected-native",
+      "growth-comparison-corrected-software"
+    ],
+    "compatible_conditional_profiles": 6,
+    "limitation": "Only named applicable growth diagnostics and explicit final roots; not global identification."
+  },
+  "PV_FV": {
+    "integer_native": {
+      "complete": true,
+      "evaluations": 16898586,
+      "limitation": "Integer nonnegative period positive-base PV/FV family only. A surviving finite program is a scoped hypothesis, not identification.",
+      "programs": 354294,
+      "scoped_rows": 1321,
+      "survivors": 7164
+    },
+    "integer_software": {
+      "complete": true,
+      "evaluations": 16898586,
+      "limitation": "Integer nonnegative period positive-base PV/FV family only. A surviving finite program is a scoped hypothesis, not identification.",
+      "programs": 354294,
+      "scoped_rows": 1321,
+      "survivors": 7164
+    },
+    "fractional_native": {
+      "claim": "Exact refinement on all recorded positive-base nonzero-rate PV/FV observations, including fractional and negative periods; no algorithm identification or application promotion.",
+      "complete": true,
+      "evaluations": 52216568,
+      "programs": 93132,
+      "scoped_rows": 3785,
+      "survivors": 1824
+    },
+    "fractional_software": {
+      "claim": "Exact refinement on all recorded positive-base nonzero-rate PV/FV observations, including fractional and negative periods; no algorithm identification or application promotion.",
+      "complete": true,
+      "evaluations": 52216568,
+      "programs": 93132,
+      "scoped_rows": 3785,
+      "survivors": 1824
+    },
+    "larger_factorizations": {
+      "bits-factorized": "172186884 joint profiles ->610200",
+      "bits-shared-growth": "774840978 ->1769508",
+      "bits-wide-scalar": "697356880200 logical joint profiles,3542940 projected per function ->28312128 joint survivors"
+    },
+    "scope": "Positive-base,nonzero-rate original PV/FV numeric finite arguments; zero-rate/nonpositive-base controls separate.",
+    "question_packet": {
+      "published_at_utc": "2026-10-31T19:37:21.008125+00:00",
+      "destination": "/home/ubuntu/codex-runs/fresh-questions-r8",
+      "manifest_sha256": "a2cad800de92657d53f16a5cd4f9bf9d6cdf4c8d7f4ef4475655a66c9aa3dfce",
+      "copied_byte_identical": true,
+      "questions": 30,
+      "new_typed_inputs": 26,
+      "old_rechecks": 4,
+      "source_commit": "fc14027112ea72444b43c720218e05503a07d555",
+      "read_only_review": "review/independent-question-packet-review.json",
+      "answers_read": 0
+    },
+    "question_generator": {
+      "source_commit": "fc14027112ea72444b43c720218e05503a07d555",
+      "rebuilt_at_utc": "2026-10-31T19:43:06.789529+00:00",
+      "expected_sha256": "7c31c299479a4bc60ca996ff66906d67c8bf05ed5b9d1b8d9031bc1222921cdb",
+      "actual_sha256": "7c31c299479a4bc60ca996ff66906d67c8bf05ed5b9d1b8d9031bc1222921cdb",
+      "byte_identical": true,
+      "working_source_bytes_restored": true
+    }
+  },
+  "PMT_finite": {
+    "pmt-growth-hard": {
+      "claim": "Exact early-numerator structure test jointly constrained by PV/FV integer growth; no fitted parameters, no application promotion.",
+      "complete": true,
+      "component_programs": 5773680,
+      "component_survivors": 0,
+      "evaluations": 5773680,
+      "joint_programs_with_PV_FV": 10340660880,
+      "joint_survivors": 0,
+      "scoped_rows": 236892
+    },
+    "pmt-growth-soft": {
+      "claim": "Exact early-numerator structure test jointly constrained by PV/FV integer growth; no fitted parameters, no application promotion.",
+      "complete": true,
+      "component_programs": 5773680,
+      "component_survivors": 0,
+      "evaluations": 5773680,
+      "joint_programs_with_PV_FV": 10340660880,
+      "joint_survivors": 0,
+      "scoped_rows": 236892
+    },
+    "pmt-early-hard": {
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "evaluations": 58966534,
+      "programs": 36085500,
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "pmt-early-soft": {
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "evaluations": 58966534,
+      "programs": 36085500,
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "pmt-interest-hard": {
+      "claim": "Exact NPER/PMT interest-product joint constraint and FV=0 decomposition search, not identification or a product pass count",
+      "complete": true,
+      "evaluations": 1665000,
+      "programs": 1603800,
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "pmt-interest-soft": {
+      "claim": "Exact NPER/PMT interest-product joint constraint and FV=0 decomposition search, not identification or a product pass count",
+      "complete": true,
+      "evaluations": 1665000,
+      "programs": 1603800,
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "direct-native": {
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "evaluations": 10341474,
+      "programs": 5314410,
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "direct-hybrid": {
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "evaluations": 10341474,
+      "programs": 5314410,
+      "scoped_rows": 220888,
+      "survivors": 0
+    }
+  },
+  "exact_projections": {
+    "three_model": "structure-projections",
+    "five_model": "five-model-projections",
+    "per_build": [
+      "20131",
+      "20228"
+    ],
+    "original_four_leaf": {
+      "profiles": 37500,
+      "build20131_nonunit_timing": {
+        "certified_real_empty_exclusions": 37500,
+        "survivors": 0,
+        "complete": true,
+        "review_summary": "review/independent-five-model-original-combine-20131-nonunit-timing-complete-review.json",
+        "superseded_partial_review": "review/independent-five-model-original-combine-20131-nonunit-timing-partial-review.json",
+        "proof_components": [
+          30880,
+          6108,
+          200,
+          312
+        ],
+        "chronology_policy": "Independent exact sufficient subsets. The stopped sequential run does not supply a full original first-kill order."
+      },
+      "build20228": "All four cohorts complete0 survivors; timing has37498 real-empty and2 Ext80-lattice-only exclusions; other cohorts all real-empty.",
+      "build20131_completed_all_and_nonunit_and_timing": "Complete real-empty sufficient-subset exclusions, timing independent adaptive closure; no original chronology claim."
+    },
+    "interest_family_counts": {
+      "shared_I_NPER_conditioned": 2500,
+      "shared_I_unshared_precision": 3125,
+      "PV_div_helper_plus_I": 2500,
+      "PV_mul_helper_plus_I": 2500,
+      "FMA_division": 125,
+      "FMA_multiplication": 125
+    },
+    "interest_result": "All six five-model families excluded independently on both builds and all four cohorts, all real-empty.",
+    "limitation": "Only the fixed root/precision programmes with one helper independent of PV; arbitrary other programmes and amount-dependent earlier work remain open."
+  },
+  "single_factor_projection": "single-factor-projection/summary.json",
+  "loan": {
+    "negative_growth_projection": {
+      "loans": 1,
+      "ppmt_rows": 7,
+      "ipmt_rows": 7,
+      "growth_providers": 22,
+      "ppmt_profiles": 110,
+      "ppmt_real_compatible": 0,
+      "ppmt_ext80_compatible": 0,
+      "joint_profiles_tested": 0,
+      "joint_ext80_compatible": 0,
+      "grammar": "D=growth(rate,-(nper-period+1)); PPMT=P*D; IPMT=P*(1-D); each arithmetic node has a fixed one-of-five nearest/even model; one latent P shared across every period and constrained by original PMT publications.",
+      "prepared_sha256": "0eef5a28aa863afd27b2a8a128898296158592efa73d7c899eb18e029bd9908a",
+      "diagnostics_sha256": "edcc87856e074e1dafec4e8a078557cec1c789e069811b60594e1cf70bb0eff0",
+      "limitation": "Conditional helper/root projection for one loan, not a PMT implementation or whole-family identification. No observed PMT value is installed as a program constant."
+    },
+    "backward_native": {
+      "IPMT_first_kill_counts": [
+        2339424,
+        0,
+        30168,
+        224892,
+        0,
+        91404,
+        13032
+      ],
+      "PPMT_first_kill_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "claim": "Exact conditional joint partial-program constraints; no fitted PMT and no identified full application programme",
+      "complete": true,
+      "components": 899640,
+      "evaluations": 29700576,
+      "latent_P_values": 2049,
+      "programs": 2698920,
+      "scope": "One recorded loan, all7 IPMT/PPMT periods and PMT publication, same latent PMT across every period",
+      "survivors": 0
+    },
+    "backward_hybrid": {
+      "IPMT_first_kill_counts": [
+        2339424,
+        0,
+        30168,
+        224892,
+        0,
+        91404,
+        13032
+      ],
+      "PPMT_first_kill_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "claim": "Exact conditional joint partial-program constraints; no fitted PMT and no identified full application programme",
+      "complete": true,
+      "components": 899640,
+      "evaluations": 29700576,
+      "latent_P_values": 2049,
+      "programs": 2698920,
+      "scope": "One recorded loan, all7 IPMT/PPMT periods and PMT publication, same latent PMT across every period",
+      "survivors": 0
+    },
+    "PVFV_transfer_native": {
+      "IPMT_first_kill_counts": [
+        1512,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PPMT_first_kill_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "claim": "Exact conditional joint partial-program constraints; no fitted PMT and no identified full application programme",
+      "complete": true,
+      "components": 504,
+      "evaluations": 6048,
+      "joint_PV_FV_hypotheses": 1824,
+      "joint_growth_ids": [
+        2,
+        8
+      ],
+      "joint_partial_programs": 1378944,
+      "latent_P_values": 2049,
+      "programs": 1512,
+      "scope": "One recorded loan, all7 IPMT/PPMT periods and PMT publication, same latent PMT across every period",
+      "survivors": 0
+    },
+    "PVFV_transfer_hybrid": {
+      "IPMT_first_kill_counts": [
+        1512,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PPMT_first_kill_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "claim": "Exact conditional joint partial-program constraints; no fitted PMT and no identified full application programme",
+      "complete": true,
+      "components": 504,
+      "evaluations": 6048,
+      "joint_PV_FV_hypotheses": 1824,
+      "joint_growth_ids": [
+        2,
+        8
+      ],
+      "joint_partial_programs": 1378944,
+      "latent_P_values": 2049,
+      "programs": 1512,
+      "scope": "One recorded loan, all7 IPMT/PPMT periods and PMT publication, same latent PMT across every period",
+      "survivors": 0
+    },
+    "limitation": "One loan only. PMT-producing programme is unspecified; latent P values are publication constraints, never fitted programme constants. IPMT rejects all backward/transfer profiles before PPMT is reached. Standalone1824 PV/FV hypotheses remain."
+  },
+  "NPER": "nper-product-five.json",
+  "RATE": "External FV companions only:361 RATE rows,2501 links,3 recorded-result residuals; no internal Excel solver trace or stopping tolerance inferred.",
+  "corrections": {
+    "decimal_input": "input-normalization-correction.json",
+    "publication": "growth-publication-correction.json",
+    "early_wording": "early-metadata-errata.json",
+    "software_PC53": "review/independent-pc53-underflow-probe-review.json",
+    "all_period_coverage_label": "all-period-coverage-label-correction.json",
+    "PV_RATE_metadata": "rate-present-metadata-erratum.json"
+  },
+  "invalidated_runs": [
+    "annuity-joint-hard",
+    "annuity-joint-soft",
+    "factorized-* without bits prefix",
+    "shared-growth-* without bits prefix",
+    "wide-scalar-* without bits prefix",
+    "growth-preimages without corrected suffix",
+    "growth-comparison without corrected suffix"
+  ],
+  "transport": "Uniform known default-serde decimal normalization rejected by36850 conflicting observations within original contexts. Diagnostic only; no observation changed and no legacy transport mechanism asserted.",
+  "application": {
+    "product_changes": false,
+    "evidence_pin_changes": false,
+    "corpus_before": "corpus-before/summary.json",
+    "corpus_after": "corpus-after/summary.json",
+    "corpus_counts": {
+      "total": 20030,
+      "pass": 18752,
+      "fail": 1191,
+      "mismatched": 1184,
+      "refused": 6,
+      "failed_or_missing": 1,
+      "external_links": 73,
+      "circular_rule": 14
+    },
+    "check_all": {
+      "log": "check-all-final-followups.log",
+      "platform": "Linux x86_64",
+      "passed": 1321,
+      "failed": 0,
+      "ignored": 3,
+      "not_run": 3,
+      "harnesses": 74,
+      "packages": 18,
+      "Windows_not_run": true,
+      "browsers_not_run": true
+    },
+    "corpus_measurement_revisions": {
+      "before": "c62ffca1e48b61989e7b481f9243a44fb6576b50",
+      "after": "3ce28499b22e10244d26546a8f505ef384f84d64",
+      "final": "a2b5f2b",
+      "committed": "03d5360e8cbf33a9d990717ac6ab8cad106f3bdd",
+      "pushed": "e9cb28536058ec50b037f189fc910ef23824f7cf",
+      "final_pushed": "9f3cee99216fa07605a0a3c59e06f203b6f0c1c6"
+    },
+    "corpus_final": "corpus-final-pushed/summary.json",
+    "corpus_to_merge_identity": "corpus-to-merged-source-identity.json",
+    "documentation_commits": [
+      "03d5360e8cbf33a9d990717ac6ab8cad106f3bdd",
+      "9f3cee99216fa07605a0a3c59e06f203b6f0c1c6"
+    ],
+    "push_receipt": "push-final-followups.log",
+    "final_corpus_review": "review/independent-final-followups-corpus-review.json"
+  },
+  "process_deviations": [
+    "An initial br ready was mistakenly run before applying the user no-ACFS restriction; no further ACFS commands.",
+    "An early overlapping cargo request waited on the target lock and was stopped before it compiled; see concurrency-note.json."
+  ],
+  "review": "One independent read-only agent; review/ contains sufficient-row, programme, packet, source and report checks.",
+  "open": [
+    "Score frozen PV/FV questions blind when actual answers arrive, before exact elimination.",
+    "Identify the missing earlier PMT/IPMT structure; no finite zero result identifies a replacement.",
+    "Investigate extended-exponent PC53 software underflow in its own implementation unit."
+  ],
+  "RATE_structure": {
+    "external_FV_cooccurrence": {
+      "RATE_mismatched:all_external_FV_matched": 231,
+      "RATE_mismatched:any_external_FV_error": 125,
+      "RATE_matched:all_external_FV_matched": 2,
+      "RATE_matched:any_external_FV_error": 3
+    },
+    "one_period_rows": 60,
+    "controls": {
+      "not_one_period": 301
+    },
+    "recorded_exact_RN53_linear_roots": 1,
+    "current_exact_RN53_linear_roots": 1,
+    "largest_recorded_RN53_ULP_distance": 1785166,
+    "one_period_guess_groups": 0,
+    "guess_groups_with_different_outcomes": 0,
+    "trace_sha256": "c25d528a8f9d2a14f78d4365c215724d49330467dea0316d64827a2a849f6d33",
+    "relationships_sha256": "ab932b0976e9e7508a234b39ab1d2ba16e5f61e54d4ed5a8e90db6d0e2af36d7",
+    "limitations": [
+      "FV companions are external observations, not internal RATE calls or a trace of its visited points.",
+      "An exact one-period linear root is a mathematical diagnostic; RATE need not publish its correctly rounded value. It is never imported as an Excel answer.",
+      "Guess-dependent outcomes constrain an analytic guess-independent branch only in the nondegenerate one-period scope; they do not identify a solver or its stopping tolerance."
+    ]
+  },
+  "RATE_single_step": {
+    "programs": 625,
+    "survivors": 0,
+    "cases": 60,
+    "excluded": {
+      "outside_explicit_numeric_one_period_scope": 301
+    },
+    "evaluations": 625,
+    "first_kill_statistics": [
+      {
+        "case": 0,
+        "killed": 625,
+        "remaining": 0
+      }
+    ],
+    "complete": true,
+    "claim": "Exact elimination of the specified one-step Newton consumer, constrained jointly by original RATE and FV(guess). Other solver/evaluator programmes remain open."
+  },
+  "RATE_internal": {
+    "rate-internal-native": {
+      "cases": 60,
+      "checked_original_FV_calls": 109440,
+      "claim": "Exact joint PV/FV and bounded one-step RATE consumer constraints; standalone PV/FV hypotheses are not eliminated by a failed transfer.",
+      "complete": true,
+      "evaluations": 22800000,
+      "programs": 22800000,
+      "survivors": 0
+    },
+    "rate-internal-software": {
+      "cases": 60,
+      "checked_original_FV_calls": 109440,
+      "claim": "Exact joint PV/FV and bounded one-step RATE consumer constraints; standalone PV/FV hypotheses are not eliminated by a failed transfer.",
+      "complete": true,
+      "evaluations": 22800000,
+      "programs": 22800000,
+      "survivors": 0
+    },
+    "count_policy": "22800000 logical parameter assignments include inactive-site duplicates in residual forms0/1; no global equivalence deduplication claim."
+  },
+  "final_rebuild": {
+    "unit": "annuity-r8-rebuild-unit.json",
+    "guard_expected_refusal": "frozen-source-guard-final.log",
+    "build": "final-rebuild.log",
+    "self_test": "final-rebuild-self-test.log",
+    "precision_controls": "final-rebuild-precision.log",
+    "executable_sha256": "98083375130624fd56dee636b70d4ced9caead6df7235add193a35f0c52faee8",
+    "executable": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/symbolic-racer-final-rebuild-ee31588",
+    "old_run_executables_replaced": false,
+    "new_Excel_answers": false,
+    "source_commit": "ee31588be51c2698cb353cd402286257f4146fa0"
+  },
+  "RATE_present_value": {
+    "rate-present-native": {
+      "cases": 60,
+      "checked_original_FV_calls": 109440,
+      "claim": "Exact joint PV/FV and bounded one-step RATE consumer constraints; standalone PV/FV hypotheses are not eliminated by a failed transfer.",
+      "complete": true,
+      "evaluations": 22800000,
+      "present_value_residual": true,
+      "programs": 22800000,
+      "survivors": 0
+    },
+    "rate-present-software": {
+      "cases": 60,
+      "checked_original_FV_calls": 109440,
+      "claim": "Exact joint PV/FV and bounded one-step RATE consumer constraints; standalone PV/FV hypotheses are not eliminated by a failed transfer.",
+      "complete": true,
+      "evaluations": 22800000,
+      "present_value_residual": true,
+      "programs": 22800000,
+      "survivors": 0
+    }
+  },
+  "PMT_earlier_interest_times_growth": {
+    "pmt-prefix-native": {
+      "FYL2XP1_policy": "Native measured leaf in both arithmetic backends; not a pure software replay of that instruction",
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "direct_F2XM1": false,
+      "earlier_interest_prefix": true,
+      "evaluations": 52299792,
+      "first_kill_rows": [
+        {
+          "case": 0,
+          "id": "pmt-tf-order-0118-t1",
+          "killed": 43928208,
+          "remaining": 4185792
+        },
+        {
+          "case": 1,
+          "id": "pmt-tf-order-0119-t1",
+          "killed": 4185792,
+          "remaining": 0
+        }
+      ],
+      "programs": 48114000,
+      "scope_counts": {
+        "FV_nonzero_control": 13070,
+        "outside_FYL2XP1_safe_domain": 3822,
+        "outside_small_exponent_arm": 12950,
+        "scoped": 220888
+      },
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "pmt-prefix-hybrid": {
+      "FYL2XP1_policy": "Native measured leaf in both arithmetic backends; not a pure software replay of that instruction",
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "direct_F2XM1": false,
+      "earlier_interest_prefix": true,
+      "evaluations": 52299792,
+      "first_kill_rows": [
+        {
+          "case": 0,
+          "id": "pmt-tf-order-0118-t1",
+          "killed": 43928208,
+          "remaining": 4185792
+        },
+        {
+          "case": 1,
+          "id": "pmt-tf-order-0119-t1",
+          "killed": 4185792,
+          "remaining": 0
+        }
+      ],
+      "programs": 48114000,
+      "scope_counts": {
+        "FV_nonzero_control": 13070,
+        "outside_FYL2XP1_safe_domain": 3822,
+        "outside_small_exponent_arm": 12950,
+        "scoped": 220888
+      },
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "pmt-prefix-direct-native": {
+      "FYL2XP1_policy": "Native measured leaf in both arithmetic backends; not a pure software replay of that instruction",
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "direct_F2XM1": true,
+      "earlier_interest_prefix": true,
+      "evaluations": 7584952,
+      "first_kill_rows": [
+        {
+          "case": 0,
+          "id": "pmt-tf-order-0118-t1",
+          "killed": 6586808,
+          "remaining": 499072
+        },
+        {
+          "case": 1,
+          "id": "pmt-tf-order-0119-t1",
+          "killed": 499072,
+          "remaining": 0
+        }
+      ],
+      "programs": 7085880,
+      "scope_counts": {
+        "FV_nonzero_control": 13070,
+        "outside_FYL2XP1_safe_domain": 3822,
+        "outside_small_exponent_arm": 12950,
+        "scoped": 220888
+      },
+      "scoped_rows": 220888,
+      "survivors": 0
+    },
+    "pmt-prefix-direct-hybrid": {
+      "FYL2XP1_policy": "Native measured leaf in both arithmetic backends; not a pure software replay of that instruction",
+      "claim": "Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification",
+      "complete": true,
+      "direct_F2XM1": true,
+      "earlier_interest_prefix": true,
+      "evaluations": 7584952,
+      "first_kill_rows": [
+        {
+          "case": 0,
+          "id": "pmt-tf-order-0118-t1",
+          "killed": 6586808,
+          "remaining": 499072
+        },
+        {
+          "case": 1,
+          "id": "pmt-tf-order-0119-t1",
+          "killed": 499072,
+          "remaining": 0
+        }
+      ],
+      "programs": 7085880,
+      "scope_counts": {
+        "FV_nonzero_control": 13070,
+        "outside_FYL2XP1_safe_domain": 3822,
+        "outside_small_exponent_arm": 12950,
+        "scoped": 220888
+      },
+      "scoped_rows": 220888,
+      "survivors": 0
+    }
+  },
+  "final_research_source": {
+    "source_commit": "548c268b1a8f99f2ba4e37ae3049c56153728c7b",
+    "build": "final-research-source-build.log",
+    "executable_sha256": "a809f6387e1ba5f271656c49498cf2b30c58f32b0c7650fa2a93d6220ff2ce81",
+    "note": "Only active PV metadata labels changed since the frozen prefix executable; no numerical result or frozen packet regenerated.",
+    "executable": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/symbolic-racer-final-source-548c268"
+  },
+  "final_scientific_reviews": [
+    "review/independent-pv-residual-rate-review-v2.json",
+    "review/independent-earlier-I-prefix-review.json",
+    "review/independent-five-model-original-combine-20131-nonunit-timing-complete-review.json"
+  ],
+  "final_question_integrity": "final-question-immutability-audit.json"
+}
