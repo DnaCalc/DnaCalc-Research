@@ -209,7 +209,38 @@ pub fn direct_controls(input: &str, out: &str) {
     );
 }
 
-pub fn run<F: Fpu>(input: &str, out: &str, direct: bool) {
+fn prefix_value<F: Fpu>(
+    row: &Row,
+    g: Val,
+    em: Val,
+    association: usize,
+    mut code: usize,
+    interest_model: EvalModel,
+) -> Val {
+    let ms: [EvalModel; 4] = std::array::from_fn(|_| {
+        let m = MODELS[code % 3];
+        code /= 3;
+        m
+    });
+    let [rate, pv, _, timing, _] = row.args();
+    let interest = binop::<F>(Op::Mul(0, 1), interest_model, Val::f64(pv), Val::f64(rate));
+    let n = binop::<F>(Op::Mul(0, 1), ms[0], interest, g);
+    let tf = if timing == 0.0 {
+        Val::f64(1.0)
+    } else {
+        binop::<F>(Op::Add(0, 1), ms[1], Val::f64(1.0), Val::f64(rate))
+    };
+    let d = |a, b, m| binop::<F>(Op::Div(0, 1), m, a, b);
+    let result = match association {
+        0 => d(d(n, em, ms[2]), tf, ms[3]),
+        1 => d(n, binop::<F>(Op::Mul(0, 1), ms[2], em, tf), ms[3]),
+        2 => d(d(n, tf, ms[2]), em, ms[3]),
+        _ => unreachable!(),
+    };
+    boundary::neg(result)
+}
+
+pub fn run<F: Fpu>(input: &str, out: &str, direct: bool, prefix_precondition: Option<&str>) {
     fs::create_dir_all(out).unwrap();
     let root = Path::new(out);
     let hs = if direct { vec![] } else { boundary::helpers() };
@@ -217,7 +248,16 @@ pub fn run<F: Fpu>(input: &str, out: &str, direct: bool) {
     let (rows, counts) = scoped_rows(input, root);
     let selectors = if direct { 9 } else { 5 };
     let log_count = 5;
-    let per_helper = selectors * 3 * 243;
+    let precondition = prefix_precondition
+        .map(|p| serde_json::from_slice::<serde_json::Value>(&fs::read(p).unwrap()).unwrap());
+    let interest_models: Vec<EvalModel> = if let Some(ref p) = precondition {
+        assert_eq!(p["baseline_application_trace_matches"], 2501);
+        serde_json::from_value(p["allowed_models"].clone()).unwrap()
+    } else {
+        vec![EvalModel::Strict]
+    };
+    let root_profiles = if precondition.is_some() { 81 } else { 243 };
+    let per_helper = selectors * interest_models.len() * 3 * root_profiles;
     let count = log_count * helper_count * per_helper;
     if direct {
         json_write(
@@ -250,6 +290,25 @@ pub fn run<F: Fpu>(input: &str, out: &str, direct: bool) {
         "claim":"Tests continuous-log and coupled growth/annuity structure on PMT only; no claim that its growth helper is shared with the independently constrained PV/FV program"}),
         );
     }
+    if let Some(ref condition) = precondition {
+        let path = root.join("grammar.json");
+        let mut grammar: serde_json::Value =
+            serde_json::from_slice(&fs::read(&path).unwrap()).unwrap();
+        grammar["earlier_interest_prefix"] = json!(true);
+        grammar["NPER_precondition"] = condition.clone();
+        grammar["interest_product_models"] = json!(interest_models);
+        grammar["sites"] = json!(["I*growth", "tf addition", "root op1", "root op2"]);
+        grammar["combines"] = json!(["((I*G)/em)/tf", "(I*G)/(em*tf)", "((I*G)/tf)/em"]);
+        grammar["sharing"] = json!(
+            "I=PV*rate is formed before G; its model is jointly constrained by the registered NPER graph. This is distinct from the I+I/em programme."
+        );
+        grammar["layout"] = json!(
+            "id=((((log_provider*helper_count+helper)*growth_selectors+selector)*interest_model_count+interest_model_index)*3+combine)*81+little_endian_base3_root_code"
+        );
+        grammar["programs"] = json!(count);
+        grammar["root_profiles"] = json!(81);
+        json_write(path, &grammar);
+    }
     let mut alive: Vec<usize> = (0..count).collect();
     let mut evaluations = 0u64;
     let mut kills = BufWriter::new(fs::File::create(root.join("first-kills.jsonl")).unwrap());
@@ -276,9 +335,10 @@ pub fn run<F: Fpu>(input: &str, out: &str, direct: bool) {
                 })
                 .collect();
             alive.retain(|&id| {
-                let code = id % 243;
-                let combine = (id / 243) % 3;
-                let selector = (id / (243 * 3)) % selectors;
+                let code = id % root_profiles;
+                let combine = (id / root_profiles) % 3;
+                let im = (id / (root_profiles * 3)) % interest_models.len();
+                let selector = (id / (root_profiles * 3 * interest_models.len())) % selectors;
                 let helper = (id / per_helper) % helper_count;
                 let lp = id / (per_helper * helper_count);
                 let (a, u, em) = components[lp][helper];
@@ -301,9 +361,11 @@ pub fn run<F: Fpu>(input: &str, out: &str, direct: bool) {
                         _ => unreachable!(),
                     }
                 };
-                let got = outcome::<F>(crate::annuity::pmt_growth_value::<F>(
-                    row, g, em, combine, code,
-                ));
+                let got = outcome::<F>(if precondition.is_some() {
+                    prefix_value::<F>(row, g, em, combine, code, interest_models[im])
+                } else {
+                    crate::annuity::pmt_growth_value::<F>(row, g, em, combine, code)
+                });
                 evaluations += 1;
                 if got == row.expected() {
                     true
@@ -328,7 +390,7 @@ pub fn run<F: Fpu>(input: &str, out: &str, direct: bool) {
         }
     }
     json_write(root.join("survivors.json"), &alive);
-    let summary = json!({"programs":count,"survivors":alive.len(),"scoped_rows":rows.len(),"scope_counts":counts,"evaluations":evaluations,"first_kill_rows":killing,"direct_F2XM1":direct,"complete":true,"claim":"Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification","FYL2XP1_policy":"Native measured leaf in both arithmetic backends; not a pure software replay of that instruction"});
+    let summary = json!({"programs":count,"survivors":alive.len(),"scoped_rows":rows.len(),"scope_counts":counts,"evaluations":evaluations,"first_kill_rows":killing,"direct_F2XM1":direct,"earlier_interest_prefix":precondition.is_some(),"complete":true,"claim":"Exact continuous-log/coupled-growth PMT exclusions or scoped survivors, not product matches or identification","FYL2XP1_policy":"Native measured leaf in both arithmetic backends; not a pure software replay of that instruction"});
     json_write(root.join("summary.json"), &summary);
     println!("{summary}");
 }

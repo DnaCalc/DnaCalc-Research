@@ -379,12 +379,26 @@ fn main() {
             _ => annuity_early::loan_backward::<Hard>(&a[2], &a[4], Some(&a[3])),
         },
         Some("annuity-direct") => match a.get(4).map(String::as_str) {
-            Some("soft") => annuity_early::run::<Soft>(&a[2], &a[3], true),
-            _ => annuity_early::run::<Hard>(&a[2], &a[3], true),
+            Some("soft") => annuity_early::run::<Soft>(&a[2], &a[3], true, None),
+            _ => annuity_early::run::<Hard>(&a[2], &a[3], true, None),
         },
         Some("annuity-early") => match a.get(4).map(String::as_str) {
-            Some("soft") => annuity_early::run::<Soft>(&a[2], &a[3], false),
-            _ => annuity_early::run::<Hard>(&a[2], &a[3], false),
+            Some("soft") => annuity_early::run::<Soft>(&a[2], &a[3], false, None),
+            _ => annuity_early::run::<Hard>(&a[2], &a[3], false, None),
+        },
+        Some("pmt-prefix") => match a.get(5).map(String::as_str) {
+            Some("soft") => annuity_early::run::<Soft>(
+                &a[2],
+                &a[4],
+                a.get(6).is_some_and(|s| s == "direct"),
+                Some(&a[3]),
+            ),
+            _ => annuity_early::run::<Hard>(
+                &a[2],
+                &a[4],
+                a.get(6).is_some_and(|s| s == "direct"),
+                Some(&a[3]),
+            ),
         },
         Some("annuity-questions") => annuity::questions(&a[2], &a[3], &a[4]),
         Some("pmt-positive-growth") => match a.get(5).map(String::as_str) {

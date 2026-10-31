@@ -1,0 +1,64 @@
+{
+  "id": "dc-j9k-earlier-interest-times-growth-r8",
+  "role": "implementer",
+  "application_revision": "e9cb28536058ec50b037f189fc910ef23824f7cf",
+  "inherits_grammar_and_source_policy_from": "annuity-r8-unit.json",
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "motivation": "NPER weighted cashflows motivate I=PV*rate before growth is consumed. The previous coupled-G families form PV*G first, while previous interest decomposition uses I+I/em. Neither covers I*G/em.",
+  "grammar": {
+    "interest_models_from": "nper-product-five.json allowed_models; all2501 registered NPER records fixed other sites",
+    "log_providers": 5,
+    "difference_correction_helpers": 1980,
+    "direct_F2XM1_helpers": 162,
+    "growth_selectors": {
+      "difference_correction": 5,
+      "direct_F2XM1": 9
+    },
+    "interest_models": 4,
+    "root_profiles": 81,
+    "root_forms": 3,
+    "roots": [
+      "((I*G)/em)/tf",
+      "(I*G)/(em*tf)",
+      "((I*G)/tf)/em"
+    ],
+    "sites": [
+      "I*G",
+      "tf addition",
+      "op1",
+      "op2"
+    ],
+    "root_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "difference_correction_programs": 48114000,
+    "direct_programs": 7085880,
+    "total_programs": 55199880
+  },
+  "scope": "Same220888 FV0 bounded positive-rate original PMT rows. Other rows retained as controls.",
+  "sources": [
+    "IEEE rounding",
+    "annuity algebra",
+    "registered NPER weighted-cashflow observations",
+    "DLMF4.6.E6",
+    "Intel public FYL2XP1/F2XM1 ISA"
+  ],
+  "instruction_policy": "FYL2XP1 is measured native in both modes; all other operations including F2XM1 follow declared backend.",
+  "fixed_before_search": true,
+  "budget": {
+    "numerical_stop_utc": "2026-10-31T22:15:00Z",
+    "workers": 2,
+    "memory_bytes": 4294967296
+  }
+}
