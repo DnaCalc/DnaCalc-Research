@@ -204,5 +204,38 @@
     "scope": "FV=0,0<rate<=1/4,0<n*frozen_binary64_log1p<1; original excluded rows retained",
     "instruction_policy": "FYL2XP1 measured natively in both replays; every other operation including F2XM1 follows the declared native/software backend.",
     "fixed_before_search": true
+  },
+  "conditional_backward_loan_followup": {
+    "motivation": "First-period IPMT rejects direct-PV interest, while PPMT=PMT*remaining-discount rejects all22 named growth providers. Test backwards annuity balance and PPMT subtraction jointly, including the first period rather than assuming a direct-interest branch.",
+    "role": "implementer",
+    "sources": [
+      "IEEE nearest/even monotonic rounding",
+      "annuity algebra",
+      "Intel FYL2XP1 public ISA",
+      "DLMF4.6.E6",
+      "recorded PMT/IPMT/PPMT observations"
+    ],
+    "components": 899640,
+    "programs": 2698920,
+    "logs": 5,
+    "helpers": 2142,
+    "IPMT_root_profiles": 84,
+    "PPMT_subtraction_models": 3,
+    "IPMT_roots": [
+      "-(((P*em)/rate)*rate)",
+      "-((P*(em/rate))*rate)",
+      "-(((P*rate)*em)/rate)",
+      "-(P*em)"
+    ],
+    "PPMT_root": "P-IPMT_internal; independent final publication for both functions",
+    "latent_P_policy": "Every canonical Ext80 value in the exact RN53 preimage of the single observed PMT. Same unknown P for all seven periods; no numerical P is fitted or installed as a programme constant.",
+    "scope": "One original .0075/360/125000/FV0/type0 loan, all seven recorded IPMT+PPMT periods; other loans are outside scope.",
+    "proof": "Monotone exact ordered Ext80 binary search for IPMT preimages, then exhaustive exact checks of every remaining latent P against PPMT. Full tagged components and publication predictions retained.",
+    "fixed_before_search": true,
+    "limitation": "Conditional partial programme; producing PMT programme remains unknown. Survivors cannot predict a new loan without that programme.",
+    "helper_families": {
+      "difference_correction": 1980,
+      "direct_F2XM1": 162
+    }
   }
 }

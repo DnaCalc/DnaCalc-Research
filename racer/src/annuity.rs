@@ -27,7 +27,7 @@ fn div<F: Fpu>(a: Val, b: Val, m: EvalModel) -> Val {
 fn one() -> Val {
     Val::f64(1.0)
 }
-fn number(v: &Value) -> f64 {
+pub(crate) fn number(v: &Value) -> f64 {
     let d = calc_verdict::decode_argument(v, "annuity diagnostic arg").unwrap();
     match d.core() {
         crate::value::CoreValue::Number(x) => *x,
