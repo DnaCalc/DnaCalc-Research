@@ -1,0 +1,269 @@
+{
+  "function": "PMT",
+  "surface": "registered PMT scalar call",
+  "aliases": [
+    "PMT"
+  ],
+  "selected_element": null,
+  "claim_strength": "published fallback; conditional bounded family exclusions",
+  "identified_excel_program": false,
+  "domain": {
+    "executable_membership": "racer/src/main.rs::prepare, pinned by source SHA256 in execution freeze",
+    "scope_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+    "description": "Original250730 finite discount observations in R6/R7 frozen/scoped.jsonl; normal finite nonzero targets for inverse certificates. FV0 grouped projection237660 rows with5735 exact rate/nper/environment groups. Other arms outside the claim.",
+    "certificate_targets": "normal finite nonzero binary64; zero sign, infinity and NaN cases outside inverse certificates"
+  },
+  "profile": {
+    "excel_builds": [
+      "20131",
+      "20228",
+      null
+    ],
+    "architecture": "recorded bitness/CPU per witness; unknowns preserved",
+    "compatibility_version": null,
+    "calculation_settings": null,
+    "linux_replay_cpu": "AMD family23/model1 under KVM; native x87 and current software Fpu",
+    "scoped_rows_by_build": {
+      "20131": 248653,
+      "20228": 2076,
+      "unknown": 1
+    },
+    "FV0_rows_by_build": {
+      "20131": 235583,
+      "20228": 2076,
+      "unknown": 1
+    },
+    "unknown_build_row": "p0; trace_index0; work/w109/G6-solvers/answers-ipmt-pmt.json; not used by the new first kills"
+  },
+  "transport": {
+    "requested_bits": "original calc-verdict typed hex arguments, omissions and selected result metadata retained",
+    "submitted_representation": null,
+    "read_back_bits": null,
+    "effective_excel_inputs": "not directly observed for legacy readings",
+    "coercion": "Current registered argument admission and numeric timing truncation; killing witnesses use canonical numeric0/1",
+    "publication": "PMT Site::number: binary64 final conversion, zero normalized, finite subnormal refused, nonfinite mapped toNUM"
+  },
+  "program": {
+    "product_mapping": "existing calc-func::invoke PMT -> financial_time_value_family::pmt; no research graph installed",
+    "product_file_sha256": "912466cadd95ea46bb5134e011822a1b867f0cb300588ae187efe713a897ccbb",
+    "research_program": null
+  },
+  "hashes": {
+    "application_revision": "69c345885bc5ab6cea8115603e6b3c59e64c8b36",
+    "unit_sha256": "a78b89982ac02eddc24230b5c7d2c3f9f4d72faebf010e14ae90b01e065ad8a8",
+    "numeric_source_sha256": {
+      "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+      "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+      "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+      "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+      "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+      "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+      "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+      "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+    },
+    "evidence_revision": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+    "original_scoped_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+    "association_grammar_fnv1a64": "fnv1a64:05aadf14695ca2e7",
+    "association_programs_jsonl_sha256": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+    "association_full_first_kills_sha256": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a",
+    "independent_checker_sha256": {
+      "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "checker/check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+    },
+    "research_code_revision": "3c238e8b18cb8f53c420fd48c2ef003eed0f7dfc"
+  },
+  "bounds_and_coverage": {
+    "original_quotient_lattice_rows": 250730,
+    "quotient_gaps": 734,
+    "three_model_shared_helper_profiles": 4860,
+    "three_model_cohorts": [
+      "all",
+      "nonunit_timing"
+    ],
+    "five_model_profiles_per_build": 37500,
+    "five_model_builds": [
+      "20131",
+      "20228"
+    ],
+    "five_model_additional_cohort": "build20228 timing,37498 real-empty plus2 lattice-empty",
+    "ordinary_association_programs": 212139,
+    "ordinary_association_survivors": 0,
+    "all_excel_programs_covered": false
+  },
+  "helper_dependencies": [
+    {
+      "name": "log1p/expm1",
+      "version": "current cleared numeric sources frozen in unit",
+      "representation": "binary64 leaves",
+      "status": "conditional hypothesis; not identified as Excel helper"
+    },
+    {
+      "name": "shared latent expm1",
+      "version": "one finite common Ext80 value per rate/nper/environment; optional canonical timing",
+      "status": "infeasible for every declared four-leaf profile; real-empty certificates also exclude arbitrary reals"
+    }
+  ],
+  "constant_and_algorithm_provenance": [
+    "Only exact0/1 constants and annuity algebra; no fitted coefficient, cutoff, residual switch or answer lookup",
+    "Independent checker: own integer-coordinate lattice and rational midpoint derivation; no racer/numeric imports"
+  ],
+  "alternatives": {
+    "ordinary_association_survivors": [],
+    "global_equivalence": "not asserted",
+    "zero_survivors": "Conjunction of grammar, helper, semantics, observation/profile and surface assumptions is false; no row-specific candidate or causation inferred"
+  },
+  "quotient_store_reconciliation": {
+    "retained_commit": "17e42ce3066ce5a342345fe2fda5e96e85070b7a",
+    "actual_change": "initial quotient store only on growth arm",
+    "certificate_scope": "discount final shell RN53(RN64(q*r)) for ANY binary64q immediately before final multiply",
+    "decision": "No direct scope conflict with17e42ce. Certificate refutes universal binary64 quotient plus that discount final shell; upstream helper changes cannot rescue it. Growth-arm store remains conditional, not an identified Excel program."
+  },
+  "exposure": {
+    "discovery": "all existing observations previously inspected; first8 prior-gap rows eliminate the association grammar",
+    "fresh_validation_rows": 0,
+    "heldout_independent_excel_validation": "not performed"
+  },
+  "questions": {
+    "count": 0,
+    "requests": null,
+    "predictions": null,
+    "reason": "No surviving combine programs to distinguish; no refuted program promoted to generate misleading questions."
+  },
+  "evidence": {
+    "quotient": "quotient-stable-summary.json",
+    "groups": [
+      "groups-r7-stable-summary.json",
+      "groups-r8-20131-stable-summary.json",
+      "groups-r8-20228-stable-summary.json"
+    ],
+    "association_runs": [
+      "associations-native/summary.json",
+      "associations-software/summary.json"
+    ],
+    "independent_reference": "arithmetic-controls-stable-summary.json",
+    "route": "current-route-identity.json",
+    "association_independent_check": "check-associations-final-summary.json",
+    "quotient_observation_identity": "quotient-observation-identity.json",
+    "application_before_after": "application-before-after.json",
+    "corpus_before_after": "corpus-before-after.json"
+  },
+  "validation": {
+    "application_PMT": {
+      "total": 291851,
+      "pass_count": 222784,
+      "fail_count": 69067,
+      "unread": 0
+    },
+    "corpus": {
+      "total": 20030,
+      "pass_count": 18752,
+      "fail_count": 1191,
+      "external_links": 73,
+      "circular_rule": 14
+    },
+    "new_application_matches": 0,
+    "linux_workspace_check": {
+      "command": "cargo xtask check --all",
+      "passed": 1332,
+      "failed": 0,
+      "ignored": 3,
+      "not_run": 3,
+      "harnesses": 74,
+      "packages": 18,
+      "revision": "69c345885bc5ab6cea8115603e6b3c59e64c8b36"
+    },
+    "Windows_and_browsers": "not run in this Linux session",
+    "application_before_after": {
+      "byte_identical": true,
+      "before_sha256": "68b9221a4aac4631ed6446b3b1cc695e065bfce5d18affcac71764267ebf9932",
+      "after_sha256": "68b9221a4aac4631ed6446b3b1cc695e065bfce5d18affcac71764267ebf9932",
+      "rows": 291851,
+      "pass_count": 222784,
+      "fail_count": 69067,
+      "unread": 0,
+      "pass_rate": "76.33%"
+    },
+    "corpus_before_after": {
+      "complete": true,
+      "evaluation_arrays_compared": 21,
+      "evaluation_array_rows": 20016,
+      "all_evaluation_arrays_identical": true,
+      "all_root_cause_counts_identical": true,
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 14,
+        "external_links": 73,
+        "fail": 1191,
+        "failed_or_missing": 1,
+        "failed_or_missing_by_verdict": {
+          "not_run": 1
+        },
+        "formula_cells": 20030,
+        "mismatched": 1184,
+        "pass": 18752,
+        "pass_rate": 0.9361957064403394,
+        "refused": 6
+      },
+      "pass_rate_display_from_tool": "93.61%",
+      "pass_rate_rule": "exact pass/formula_cells; display truncates to integer basis points in corpus_summary::rate",
+      "summary_sha256": {
+        "before": "e8e8e34b2f1ebc78b955f209cfa4ff71264907d15472f64087a773e5e62f7f75",
+        "after": "3224e3b0a1f514f13055edefba54a7b59d4f74c82d08d0c2bf0bb599f1b54484"
+      }
+    },
+    "later_upstream_pull": "5a19c12 adds calculation-probe fixtures/scripts and tracker notes; no Rust/Cargo/numeric-source changes from69c3458",
+    "committed_documentation_check": {
+      "command": "cargo xtask check",
+      "revision": "15e4335914de854aa2ea6c9bdf2a9dca40ea4fbe",
+      "passed": true,
+      "touched_packages": 0,
+      "tests_run": 0,
+      "log": "check-committed.log",
+      "source_note": "No Rust/Cargo/numeric source change in the later upstream fixture-only pull."
+    }
+  },
+  "assumption_audit": [
+    {
+      "axis": "grammar",
+      "finding": "Ordinary omitted associations explicitly enumerated; other structures/branches/solvers remain unsearched.",
+      "next_experiment": "Use a different independently justified sketch, with an exact shared-helper projection before broad enumeration."
+    },
+    {
+      "axis": "helpers",
+      "finding": "Frozen binary64 helper cannot coexist with any declared surviving combine because that set is empty; arbitrary shared-helper projection is also infeasible.",
+      "next_experiment": "Investigate additional amount-dependent operations or a different mathematical decomposition; preserve helper representation alternatives."
+    },
+    {
+      "axis": "substrate/evaluator",
+      "finding": "70 deliberate backend/reference comparisons; full-width first-kill verification separately recorded. Known PC53 extended-underflow discrepancy remains open.",
+      "next_experiment": "Do not reuse PC53 extended-underflow semantics without an independent reference for that boundary."
+    },
+    {
+      "axis": "observations/profile/transport",
+      "finding": "Original typed records unchanged; requested-versus-admitted legacy inputs, calculation settings and Compatibility Version unavailable.",
+      "next_experiment": "If new Windows questions are justified, capture submitted/read-back bits and repeat grouped controls in one known session."
+    },
+    {
+      "axis": "surface/publication",
+      "finding": "Current registered PMT route exactly reproduces all250730 scoped baseline calculations; nonzero normal killing targets avoid zero/subnormal publication ambiguity.",
+      "next_experiment": "Keep excluded arms and special/publication controls separate from any proposed new model."
+    }
+  ],
+  "provenance": {
+    "tier1": [
+      "IEEE nearest/even and rational algebra",
+      "annuity identities",
+      "genuine recorded Excel outputs",
+      "owner-supplied Pro advice"
+    ],
+    "tier2": [
+      "current cleared Fpu",
+      "existing MIT OxFunc05196c39 racer arithmetic subset already adapted"
+    ],
+    "banned": [
+      "all tier3/4 sources",
+      "deleted or restricted distribution code/history",
+      "other engine clone"
+    ]
+  }
+}

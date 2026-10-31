@@ -241,3 +241,48 @@ structure from PV*G first or I+I/em. The present-value RATE residual also reject
 explicit active-field erratum, and later source labels select the active mode.
 These late followups pin e9cb285 in their source units; earlier units and the
 separate8311ace rebuild validation keep their own original source boundaries.
+
+Round 9 adopts the Pro review's first milestone. checker/exact.py is an independent
+integer-coordinate/rational nearest-even implementation, with no racer or Fpu
+imports. It checks inverse-rounding cells, open/tie endpoints, lattice absence,
+original observation identities and full-width arithmetic traces. Checker receipts
+freeze source hashes at startup and refuse success if the source changes mid-run.
+Run its deliberate controls with:
+  python3 -m unittest discover -s checker -v
+
+The original 734 quotient gaps are reproduced over 250,730 rows, with 249,996 constructive
+reachable quotients and every original quotient/product calculation checked. The
+54-bit result is lattice reachability only. 17e42ce changed the growth arm's initial
+quotient store; the gaps concern the discount final shell RN53(RN64(q*r)). They
+refute that binary64-quotient shell universally, not the separate growth hypothesis.
+The independently checked 4,860 shared-helper combines and the 37,500 five-model
+profiles per build have no survivors. Even arbitrary common helpers cannot rescue
+those declared families; neither the frozen helper nor Excel's source is identified.
+
+The one widened axis is ordinary association: 4 numerators x 8 combines x 3^8 plus
+the shorter (FV+(PV+FV)/em)*(r/tf) with 3^7 assignments, 212,139 programs in total.
+Both backends reject every program within 8 existing rows. Programs and every
+full-width first-kill trace are byte-identical between backends; the separate
+checker verifies 2,967,759 node values. No programs survive to justify questions.
+The concrete function claim and assumption audit are pmt-r9-claim.json; the frozen
+unit is pmt-r9-unit.json and the result index is round9-result.json.
+
+Replace R3/R7 below with the original outside-repository artifact directories and
+R9 with a new output directory to reproduce the quotient and grouped checks:
+  python3 checker/check.py quotient R3/logs/dna-round3-pmt-quotient-lattice-raw.tsv R3/pmt-quotient-gap-certificates.jsonl R9/quotient.json
+  python3 checker/check.py groups R7/frozen/scoped.jsonl R7/wide-native R9/groups.json R7/shared-group-wide-first-kill/all-first-kills.jsonl R7/shared-group-wide-first-kill/nonunit_timing-first-kills.jsonl --count 4860
+
+Build the frozen unit, then use the same evaluator and witness loader as before:
+  DNA_RESEARCH_UNIT=pmt-r9-unit.json cargo build --release --offline -p symbolic-racer
+  target/release/symbolic-racer arithmetic-reference-controls R9/controls.jsonl
+  python3 checker/check.py controls R9/controls.jsonl R9/controls-summary.json
+  target/release/symbolic-racer associations R7/frozen/scoped.jsonl R9/native hard
+  target/release/symbolic-racer associations R7/frozen/scoped.jsonl R9/software soft
+  python3 checker/check.py graphs R7/frozen/scoped.jsonl R9/native/programs.jsonl R9/native/first-kills.jsonl R9/checked-graphs.json
+
+Format only research files, using rustfmt with skip_children=true; cargo fmt --all
+traverses the path dependencies into DnaCalc. The source guard rejected that
+unintended format diff; it was backed up and reversed before any numerical run.
+All receipts, supersession notes, source/executable freezes and review are under
+/home/ubuntu/codex-runs/dna-firehorse-20261101-round9/. No product code, recorded
+Excel answer, evidence pin or application pass changed. PMT remains unidentified.

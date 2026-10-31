@@ -1,0 +1,467 @@
+{
+  "round": 9,
+  "work_package": "dc-j9k",
+  "outcome": "PMT remains unidentified. All 734 original quotient gaps reproduced independently; declared common-helper families infeasible; 212139 ordinary-association programs excluded. No product change; no questions to distinguish survivors were generated.",
+  "main_revision": "69c345885bc5ab6cea8115603e6b3c59e64c8b36",
+  "research_base_revision": "40c70e96acb95d7097a2201d3573ab793ad2faab",
+  "evidence_revision": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+  "claim_record": "pmt-r9-claim.json",
+  "unit": "pmt-r9-unit.json",
+  "external_artifact_root": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round9",
+  "checked_results": {
+    "quotient-stable-summary.json": {
+      "complete": true,
+      "counts": {
+        "rows": 250730,
+        "original_quotient_product_replays": 250730,
+        "old_match_controls": 192215,
+        "reachable_by_binary64_quotient": 249996,
+        "unreachable_by_binary64_quotient": 734,
+        "reachable_by_54_bit_quotient_diagnostic": 734,
+        "also_unreachable_by_single_binary64_product": 733
+      },
+      "seconds": 92.29712113016285,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round3/logs/dna-round3-pmt-quotient-lattice-raw.tsv": "e7d85874d0ecb31bf53e131570957fd0f3138d1bd37186e9546b17c0b324db8d",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round3/pmt-quotient-gap-certificates.jsonl": "fd4f6271c34bebbf3447af58a96405ff377db4ba6acd2f44ef090987aeb73275"
+      },
+      "claim": "Independent exact rational verification of the original final shell RN53(RN64(q*r)), quantifying over every finite binary64 q, including signed rates by reflection. Reachability is not an Excel match or an executable quotient producer.",
+      "limits": "Normal nonzero targets only; no assertion about other shells, growth arm, helper programs or Excel precision. Original observation transport remains an assumption.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "groups-r7-stable-summary.json": {
+      "complete": true,
+      "results": [
+        {
+          "certificates": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7/shared-group-wide-first-kill/all-first-kills.jsonl",
+          "sha256": "56d86f5c2559d41e0fb316fc81a8f226cbe0062787f649fceb9f3555ade9e034",
+          "checked_profiles": 4860,
+          "reasons": {
+            "empty_real_intersection": 4860
+          },
+          "sufficient_witness_sets": 20,
+          "survivors": 0,
+          "sufficient_subsets_spanning_multiple_sources": 0
+        },
+        {
+          "certificates": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7/shared-group-wide-first-kill/nonunit_timing-first-kills.jsonl",
+          "sha256": "531556f8fbb85973d99c7ccfb4d6b250c3c441638908b97185b85ac68c64ecd3",
+          "checked_profiles": 4860,
+          "reasons": {
+            "empty_real_intersection": 4860
+          },
+          "sufficient_witness_sets": 34,
+          "survivors": 0,
+          "sufficient_subsets_spanning_multiple_sources": 0
+        }
+      ],
+      "seconds": 43.35671765799634,
+      "original_FV0_scope_rows": 237660,
+      "exact_rate_nper_environment_groups": 5735,
+      "frozen_binary64_helper_inconsistent_groups": 0,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7/frozen/scoped.jsonl": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7/wide-native/expressions.json": "8512ac504fe68287a941b13b05834b56c297974e6b1f15371dea566bc0118734",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7/wide-native/combines.json": "c27f01794b9c9061057325c8014a0335330b2d31843d7382508d98c00c189885"
+      },
+      "claim": "Every declared combine profile has an independently checked sufficient original group with no common finite Ext80 helper; each also excludes the frozen binary64 helper. Real-empty intersections additionally exclude arbitrary real helpers.",
+      "limits": "FV=0 projection, specified multiply/divide trees and stores, normal killing targets; does not exclude amount-dependent helpers, other operations/branches or publication semantics. Frozen helper sharing is checked as research data, not asserted as Excel fact.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "groups-r8-20131-stable-summary.json": {
+      "complete": true,
+      "results": [
+        {
+          "certificates": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine-20131/all-first-kills.jsonl",
+          "sha256": "167ea83cdb698718ae437c5cb06329dbce4cb806df2180f20527bc8806ff856f",
+          "checked_profiles": 37500,
+          "reasons": {
+            "empty_real_intersection": 37500
+          },
+          "sufficient_witness_sets": 18,
+          "survivors": 0,
+          "sufficient_subsets_spanning_multiple_sources": 0
+        }
+      ],
+      "seconds": 69.42203884199262,
+      "original_FV0_scope_rows": 235583,
+      "exact_rate_nper_environment_groups": 4946,
+      "frozen_binary64_helper_inconsistent_groups": 0,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/structure-projections/PMT-build-20131.jsonl": "109a5b542c20a22c05913df1b13caea21c47fdfb3e6c33e1f41a8f3423272dc9",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine/expressions.json": "8512ac504fe68287a941b13b05834b56c297974e6b1f15371dea566bc0118734",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine/combines.json": "1024264bc0e557a366e98f65d16208299ad9fdeaa0b547becc0a052821595938"
+      },
+      "claim": "Every declared combine profile has an independently checked sufficient original group with no common finite Ext80 helper; each also excludes the frozen binary64 helper. Real-empty intersections additionally exclude arbitrary real helpers.",
+      "limits": "FV=0 projection, specified multiply/divide trees and stores, normal killing targets; does not exclude amount-dependent helpers, other operations/branches or publication semantics. Frozen helper sharing is checked as research data, not asserted as Excel fact.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "groups-r8-20228-stable-summary.json": {
+      "complete": true,
+      "results": [
+        {
+          "certificates": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine-20228/all-first-kills.jsonl",
+          "sha256": "688e1f9109f30ce51202f912be519289cbec4c1d251d381497671b4ad3905431",
+          "checked_profiles": 37500,
+          "reasons": {
+            "empty_real_intersection": 37500
+          },
+          "sufficient_witness_sets": 20,
+          "survivors": 0,
+          "sufficient_subsets_spanning_multiple_sources": 0
+        },
+        {
+          "certificates": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine-20228/timing-first-kills.jsonl",
+          "sha256": "c77a8d16aa512929f90949df3a7956531f8757846842982fcce15911113d85a8",
+          "checked_profiles": 37500,
+          "reasons": {
+            "empty_real_intersection": 37498,
+            "empty_ext80_lattice": 2
+          },
+          "sufficient_witness_sets": 59,
+          "survivors": 0,
+          "sufficient_subsets_spanning_multiple_sources": 0
+        }
+      ],
+      "seconds": 113.45944769005291,
+      "original_FV0_scope_rows": 2076,
+      "exact_rate_nper_environment_groups": 788,
+      "frozen_binary64_helper_inconsistent_groups": 0,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/structure-projections/PMT-build-20228.jsonl": "bf3bc3c1176d1c2e83a9565af15082772883896dce49dff0677f47d531887edd",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine/expressions.json": "8512ac504fe68287a941b13b05834b56c297974e6b1f15371dea566bc0118734",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round8/five-model-projections/original-combine/combines.json": "1024264bc0e557a366e98f65d16208299ad9fdeaa0b547becc0a052821595938"
+      },
+      "claim": "Every declared combine profile has an independently checked sufficient original group with no common finite Ext80 helper; each also excludes the frozen binary64 helper. Real-empty intersections additionally exclude arbitrary real helpers.",
+      "limits": "FV=0 projection, specified multiply/divide trees and stores, normal killing targets; does not exclude amount-dependent helpers, other operations/branches or publication semantics. Frozen helper sharing is checked as research data, not asserted as Excel fact.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "check-associations-final-summary.json": {
+      "complete": true,
+      "grammar_programs": 212139,
+      "checked_first_kills": 212139,
+      "checked_full_width_nodes": 2967759,
+      "witness_counts": {
+        "pmt-tf-order-0118-t1": 140787,
+        "pmt-tf-order-0119-t1": 36936,
+        "pmt-tf-order-0155-t1": 30870,
+        "pmt-tf-order-0020-t1": 3546
+      },
+      "seconds": 178.79176711593755,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7/frozen/scoped.jsonl": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round9/associations-native/programs.jsonl": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round9/associations-native/first-kills.jsonl": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a"
+      },
+      "claim": "Every annotated ordinary-association program is contradicted by a trusted original witness; every stored/resident operation in its first-kill trace is independently checked as an exact rational.",
+      "limits": "This bounded grammar only, frozen binary64 helper leaves. Intermediate zero signs are retained in traces but rational checking ignores them; no zero divisor occurs in the checked traces and PMT normalizes published zero. No conclusion about Excel internals or other arms.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "arithmetic-controls-stable-summary.json": {
+      "complete": true,
+      "reference_comparisons": 70,
+      "controls": {
+        "double-rounding-add": 5,
+        "resident-operand-cancellation": 5,
+        "binary64-spill-cancellation": 5,
+        "wide-exponent-add": 5,
+        "wide-exponent-continuation": 5,
+        "tie-underflow-binary64": 5,
+        "negative-division": 5
+      },
+      "input_sha256": "6ef0514386946cd1271d56af1cdc9abb3297f532a75cc66f048b6d570b0e8948",
+      "claim": "Both numeric backends validated against deliberate independent exact rational controls for double rounding, input stores, resident cancellation, spills, extended exponent range, binary64 underflow ties and negative division.",
+      "limits": "Finite suite; zero signs ignored by rational comparison. No global backend equivalence or transcendental equivalence claim. Does not cover the known PC53 extended-exponent underflow discrepancy.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "association-backend-identity.json": {
+      "programs.jsonl": {
+        "sha256": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+        "byte_identical": true
+      },
+      "first-kills.jsonl": {
+        "sha256": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a",
+        "byte_identical": true
+      },
+      "survivors.json": {
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "byte_identical": true
+      }
+    },
+    "current-route-identity.json": {
+      "original_scoped_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+      "current_route_scoped_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+      "byte_identical": true,
+      "baseline_route_replays": 250730
+    },
+    "quotient-observation-identity.json": {
+      "complete": true,
+      "legacy_certificates_joined_to_current_registered_observations": 734,
+      "build_counts": {
+        "20228": 65,
+        "20131": 669
+      },
+      "canonical_timing_counts": {
+        "4607182418800017408": 734
+      },
+      "distinct_sources": 3,
+      "fields_checked": [
+        "id uniqueness",
+        "raw rate bits",
+        "raw expected bits",
+        "registered current actual bits"
+      ],
+      "current_scoped_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095"
+    }
+  },
+  "artifact_sha256": {
+    "quotient-stable-summary.json": "66b6aab61d410d231985f75d22489e328240dcc1e8b8e4534a19804db267f3af",
+    "groups-r7-stable-summary.json": "3370969b2278fa7c894365fde8a4dc5052a52b67a745deae053f4cbaffa88f83",
+    "groups-r8-20131-stable-summary.json": "8aaaf5cabe410b2127a3cf26bfa7f0b9051c5df9ac4fbabdb367d32c9304016c",
+    "groups-r8-20228-stable-summary.json": "46a5272af74c5e96e77ae4289b088405bd622315f6702e272aa3adb7d33f5606",
+    "check-associations-final-summary.json": "87c7b09858a14e70f4f1dab891d19c6f51ba446b2631fa29ba5e7d3598bf0dcc",
+    "arithmetic-controls-stable-summary.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37",
+    "association-backend-identity.json": "861ca19ebfc2878ed0b563517c8fec30e2d74ca9a117d337f3789f0a4c822e6e",
+    "current-route-identity.json": "987db704d09f3025bc7dd2fa52dd6ff1547b685eae2e0e7fefc664a1f90b6d46",
+    "quotient-observation-identity.json": "1cc2ce6ef2696f0cdc91ea68d2ecb3497a7cfaf5cd0595368d8b186bbb15c0cd",
+    "application-before-after.json": "574ea2d458ae9e1aba11bdf2fdfab5621b4256583a5191eaf225c4698e8ebdb0",
+    "corpus-before-after.json": "18dc60e2fc868c78fcdd59fbc69258a713c7b261a8b2a6693f0eb64b4c4950ad",
+    "independent-review.json": "e6cfe92e4f062a45a5ef664e44919185157e92cf2931f327d66869bc07cd1274",
+    "reviewer-reference-probe.py": "fa0153b301594bab5db12249dd72f46a142324cd60575a215265f1a5d41bcab7",
+    "check-all-final.log": "bb82af11c92443ffdbc9179eefd77e6d13e521a5c5189d8a0b7a05d504632814",
+    "ubs-stable.log": "2c05c4ea9fb2b669f8ff7918e799afe05571f24659f5a03f75d489a1dfe9d560",
+    "check-committed.log": "007a8f4e70bffae5cac6821cc71174020db51abb92e519c4a8e47f4601a0523f"
+  },
+  "native_search": {
+    "backend": "symbolic_racer::ported::excel_numeric::Hard",
+    "complete": true,
+    "coverage": "4 numerators x 8 combines x 3^8 plus one 7-site rearrangement x 3^7. All annotations; root duplicates retained. No claim of all possible PMT programs.",
+    "exact_evaluations": 335637,
+    "first_kill_counts": [
+      {
+        "id": "pmt-tf-order-0118-t1",
+        "killed": 140787,
+        "order": 0,
+        "remaining": 71352,
+        "trace_index": 594
+      },
+      {
+        "id": "pmt-tf-order-0119-t1",
+        "killed": 36936,
+        "order": 1,
+        "remaining": 34416,
+        "trace_index": 596
+      },
+      {
+        "id": "pmt-tf-order-0155-t1",
+        "killed": 30870,
+        "order": 2,
+        "remaining": 3546,
+        "trace_index": 636
+      },
+      {
+        "id": "pmt-tf-order-0020-t1",
+        "killed": 3546,
+        "order": 7,
+        "remaining": 0,
+        "trace_index": 766
+      }
+    ],
+    "fresh_validation_rows": 0,
+    "grammar_hash": "fnv1a64:05aadf14695ca2e7",
+    "programs": 212139,
+    "questions": "Only nonempty survivor sets justify distinguishing questions; requests would be frozen separately from predictions",
+    "rows_visited": 8,
+    "scope": "Original finite discount scope; frozen binary64 log1p/expm1 are conditional hypotheses",
+    "scoped_rows_available": 250730,
+    "selection": "First exact contradiction; no match-count ranking, closeness beam, fitted constants or guards",
+    "survivors": 0
+  },
+  "software_search": {
+    "backend": "symbolic_racer::ported::excel_numeric::Soft",
+    "complete": true,
+    "coverage": "4 numerators x 8 combines x 3^8 plus one 7-site rearrangement x 3^7. All annotations; root duplicates retained. No claim of all possible PMT programs.",
+    "exact_evaluations": 335637,
+    "first_kill_counts": [
+      {
+        "id": "pmt-tf-order-0118-t1",
+        "killed": 140787,
+        "order": 0,
+        "remaining": 71352,
+        "trace_index": 594
+      },
+      {
+        "id": "pmt-tf-order-0119-t1",
+        "killed": 36936,
+        "order": 1,
+        "remaining": 34416,
+        "trace_index": 596
+      },
+      {
+        "id": "pmt-tf-order-0155-t1",
+        "killed": 30870,
+        "order": 2,
+        "remaining": 3546,
+        "trace_index": 636
+      },
+      {
+        "id": "pmt-tf-order-0020-t1",
+        "killed": 3546,
+        "order": 7,
+        "remaining": 0,
+        "trace_index": 766
+      }
+    ],
+    "fresh_validation_rows": 0,
+    "grammar_hash": "fnv1a64:05aadf14695ca2e7",
+    "programs": 212139,
+    "questions": "Only nonempty survivor sets justify distinguishing questions; requests would be frozen separately from predictions",
+    "rows_visited": 8,
+    "scope": "Original finite discount scope; frozen binary64 log1p/expm1 are conditional hypotheses",
+    "scoped_rows_available": 250730,
+    "selection": "First exact contradiction; no match-count ranking, closeness beam, fitted constants or guards",
+    "survivors": 0
+  },
+  "unit_tests": {
+    "passed": 7,
+    "failed": 0,
+    "log": "checker-tests-stable.log"
+  },
+  "review": {
+    "read_only": true,
+    "arithmetic_blockers": 0,
+    "lattice_preimage_memberships": 1170790,
+    "mixed_inverse_memberships": 178164,
+    "raw_leaf_mutations_rejected": 16,
+    "legacy_gap_endpoints_and_brackets_checked": 734
+  },
+  "limitations": [
+    "No independent fresh Excel validation",
+    "No global equivalence or recovered Excel historical source claim",
+    "Legacy requested/submitted/read-back transport and Compatibility Version unavailable",
+    "Rational certificates target finite nonzero normal values; intermediate zero signs not checked",
+    "Known PC53 extended-underflow discrepancy outside reference claims"
+  ],
+  "supersession": "supersession-notes.json preserves invalid parser attempt, reversed formatting diff and corrected executable receipt. Only stable checker receipts support the final results.",
+  "rust_search_source_executable_freeze": {
+    "source_sha256": {
+      "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "checker/check.py": "3d69c3fe7e63f57f98a7bef3e0211592d4a3642190ce8b92e685bd6fa4669a7c",
+      "checker/test_exact.py": "f66b6080e99b647084ed678f09d89a110202416f436ab35ef73fed85804b3290",
+      "racer/src/scheduler.rs": "166fa785977a38184becd418336913757f772f439745764f71713973de1d8ef0",
+      "racer/src/dsl.rs": "2825cb9481b58df0dbdbd449d29a2016d8b699cdf54567ba84d90d2de192739f",
+      "racer/src/identity.rs": "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5",
+      "racer/src/eval.rs": "b57d87a2803dbc8ace099eaf7a95073d017ef868086e8f890c258c2fc3c66086",
+      "racer/src/saddle.rs": "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287",
+      "racer/src/annuity.rs": "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299",
+      "racer/src/poisson.rs": "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f",
+      "racer/src/enumerate.rs": "429d4d6d1b6bdfeef780af6981f1f28fa163568d7d1726fc7cb6d187768c358b",
+      "racer/src/main.rs": "5e5b327785ece7e9eea9d569fda9fcd3774bab987f7ab89ab1692156d5ec7d28",
+      "racer/src/boundary.rs": "5dd9de27cad6ee5564a5354b0f0a3ee5b912a650b28a4f39ab9e903ff3d1e20c",
+      "racer/src/annuity_early.rs": "28daf235e60681d723bfdef825f88a75c3d0eabf70fec2e1e8325a9c806cd8e9",
+      "pmt-r9-unit.json": "a78b89982ac02eddc24230b5c7d2c3f9f4d72faebf010e14ae90b01e065ad8a8",
+      "racer/build.rs": "484de046f65db8550d261bc0acd2a1115ff01c3bff21b5eca94a7f9e9e07a1f0",
+      "Cargo.lock": "b39718507f9f8315a3abd80b038971ab6ff5aadefd637cfa36a4f0a3a9a54650"
+    },
+    "executable_sha256": "e3ae004a38af9f19012bc006d0127a1042c5861977debb65efdfcbb0d42e57df",
+    "rustc": "rustc 1.94.1 (e408947bf 2026-03-25)\nbinary: rustc\ncommit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1\ncommit-date: 2026-03-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.94.1\nLLVM version: 21.1.8\n",
+    "native_profile": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  16\nOn-line CPU(s) list:                     0-15\nVendor ID:                               AuthenticAMD\nModel name:                              AMD EPYC Processor (with IBPB)\nCPU family:                              23\nModel:                                   1\nThread(s) per core:                      1\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                2\nBogoMIPS:                                5589.49\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl xtopology cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext ssbd ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec xgetbv1 arat\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               512 KiB (16 instances)\nL1i cache:                               1 MiB (16 instances)\nL2 cache:                                8 MiB (16 instances)\nL3 cache:                                8 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-15\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Mitigation; untrained return thunk; SMT disabled\nVulnerability Spec rstack overflow:      Mitigation; SMT disabled\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected\n",
+    "semantic_limit": "Known PC53 extended-exponent underflow discrepancy remains outside ordinary-range reference claims.",
+    "evidence_revision": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+    "supersedes": "The executable field in associations-source-freeze.json was read while the final build was still running. Source hashes are unchanged. This post-build receipt supplies the executable used for every R9 run."
+  },
+  "rust_search_freeze_note": "Rust search source/binary freeze at build time. Its checker snapshot is historical; final independent checker is pinned by stable receipts and pmt-r9-claim.hashes.independent_checker_sha256.",
+  "research_code_revision": "3c238e8b18cb8f53c420fd48c2ef003eed0f7dfc",
+  "validation": {
+    "linux_workspace_check": {
+      "command": "cargo xtask check --all",
+      "passed": 1332,
+      "failed": 0,
+      "ignored": 3,
+      "not_run": 3,
+      "harnesses": 74,
+      "packages": 18,
+      "log": "check-all-final.log",
+      "revision": "69c345885bc5ab6cea8115603e6b3c59e64c8b36"
+    },
+    "windows_and_browsers": "not run",
+    "UBS": {
+      "files": 7,
+      "critical": 1,
+      "warning": 325,
+      "critical_triage": "pre-existing fail-closed CLI usage panic; no new defect",
+      "log": "ubs-stable.log",
+      "cargo_phases": "not evaluated by this static scan"
+    },
+    "review_recipe": "reviewer-reference-probe.py",
+    "review_summary": "independent-review.json",
+    "application_before_after": {
+      "byte_identical": true,
+      "before_sha256": "68b9221a4aac4631ed6446b3b1cc695e065bfce5d18affcac71764267ebf9932",
+      "after_sha256": "68b9221a4aac4631ed6446b3b1cc695e065bfce5d18affcac71764267ebf9932",
+      "rows": 291851,
+      "pass_count": 222784,
+      "fail_count": 69067,
+      "unread": 0,
+      "pass_rate": "76.33%"
+    },
+    "corpus_before_after": {
+      "complete": true,
+      "evaluation_arrays_compared": 21,
+      "evaluation_array_rows": 20016,
+      "all_evaluation_arrays_identical": true,
+      "all_root_cause_counts_identical": true,
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 14,
+        "external_links": 73,
+        "fail": 1191,
+        "failed_or_missing": 1,
+        "failed_or_missing_by_verdict": {
+          "not_run": 1
+        },
+        "formula_cells": 20030,
+        "mismatched": 1184,
+        "pass": 18752,
+        "pass_rate": 0.9361957064403394,
+        "refused": 6
+      },
+      "pass_rate_display_from_tool": "93.61%",
+      "pass_rate_rule": "exact pass/formula_cells; display truncates to integer basis points in corpus_summary::rate",
+      "summary_sha256": {
+        "before": "e8e8e34b2f1ebc78b955f209cfa4ff71264907d15472f64087a773e5e62f7f75",
+        "after": "3224e3b0a1f514f13055edefba54a7b59d4f74c82d08d0c2bf0bb599f1b54484"
+      }
+    },
+    "committed_documentation_check": {
+      "command": "cargo xtask check",
+      "revision": "15e4335914de854aa2ea6c9bdf2a9dca40ea4fbe",
+      "passed": true,
+      "touched_packages": 0,
+      "tests_run": 0,
+      "log": "check-committed.log",
+      "source_note": "No Rust/Cargo/numeric source change in the later upstream fixture-only pull."
+    }
+  },
+  "main_documentation_commit": "15e4335914de854aa2ea6c9bdf2a9dca40ea4fbe",
+  "main_later_upstream_revision": "5a19c12",
+  "main_later_upstream_scope": "Fixture/script/tracker additions only; frozen numeric source remains unchanged."
+}
