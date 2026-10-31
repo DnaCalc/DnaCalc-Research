@@ -55,20 +55,20 @@ def pair(q):
     return [str(q.numerator), str(q.denominator)]
 
 
-def publication(text):
+def publication(text, allow_subnormal=False):
     q = exact_root(text)
     if q is None:
         return 'error:Num'
     rounded = B64.rn(q)
     if rounded is None:
         return 'error:Num'
-    if rounded and abs(rounded) < Fraction(sys.float_info.min):
+    if not allow_subnormal and rounded and abs(rounded) < Fraction(sys.float_info.min):
         return 'fault:NotImplemented'
     bits = struct.unpack('>Q', struct.pack('>d', float(rounded)))[0] if rounded else 0
     return f'0x{bits:016x}'
 
 
-def certify(directory):
+def certify(directory, allow_subnormal=False):
     root = Path(directory)
     counts = collections.Counter()
     records = []
@@ -79,7 +79,7 @@ def certify(directory):
             target = number(expected[2:]) if expected.startswith('0x') else None
             normal = target is not None and math.isfinite(target) and abs(target) >= sys.float_info.min
             if not normal:
-                outputs = sorted(set(publication(text) for text in record['raw_roots']))
+                outputs = sorted(set(publication(text, allow_subnormal) for text in record['raw_roots']))
                 assert expected not in outputs, (record['order'], expected, outputs)
                 counts['certified_unreachable_answers'] += 1
                 counts['exact_roots_checked'] += len(record['raw_roots'])
@@ -124,11 +124,12 @@ def certify(directory):
         for r in sorted(records, key=lambda r: r["order"]):
             f.write(json.dumps(r, separators=(",", ":")) + "\n")
     result = {"counts": dict(counts), "arithmetic": "exact rational; no approximate inverse or join window",
-              "claim": f"Every enumerated final tagged value is outside the recorded target's RN53 preimage. The enumeration covers precisely the frozen {summary['programs']}-program family, not all possible programs.",
+              "claim": f"Every enumerated root rejects its recorded target under exact RN53 and the declared application publication policy. The enumeration covers precisely the frozen {summary['programs']}-program family, not all possible programs.",
+              "publication_policy": "Poisson out_with_subnormal: preserve finite subnormals" if allow_subnormal else "PMT Site::number: refuse subnormals",
               "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     (root / "rounding-interval-summary.json").write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result))
 
 
 if __name__ == "__main__":
-    certify(sys.argv[1])
+    certify(sys.argv[1], len(sys.argv)>2 and sys.argv[2]=='poisson')

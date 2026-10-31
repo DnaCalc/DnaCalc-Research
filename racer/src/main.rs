@@ -6,14 +6,14 @@ pub use calc_func::value;
 mod ported {
     include!(concat!(env!("OUT_DIR"), "/bridge.rs"));
 }
+mod boundary;
 mod dsl;
 mod enumerate;
 mod eval;
-mod scheduler;
-mod boundary;
 mod identity;
 mod poisson;
 mod saddle;
+mod scheduler;
 
 use ported::excel_numeric::{Fpu, Hard, Soft};
 use serde::{Deserialize, Serialize};
@@ -55,6 +55,42 @@ fn lines<T: for<'de> Deserialize<'de>>(path: impl AsRef<Path>) -> Vec<T> {
 }
 fn count(c: &mut std::collections::BTreeMap<String, usize>, key: &str) {
     *c.entry(key.into()).or_default() += 1;
+}
+struct Given(Vec<value::CalcValue>);
+impl calc_func::PreparedArguments for Given {
+    fn count(&self) -> usize {
+        self.0.len()
+    }
+    fn argument(&mut self, index: usize) -> value::CalcValue {
+        self.0[index].clone()
+    }
+}
+fn invoke_control(function: &str, args: Vec<value::CalcValue>) -> (String, Option<f64>) {
+    let target = calc_func::catalogue()
+        .resolve_surface(calc_func::Notation::Call, function)
+        .unwrap();
+    let mode = value::NumericMode::Fast;
+    match calc_func::invoke(
+        target,
+        &mut Given(args),
+        &mut calc_func::EvalServices::new(&mode),
+        &mut calc_func::FunctionCallScratch::new(),
+    ) {
+        Ok(v) => {
+            let n = match v.core() {
+                value::CoreValue::Number(n) => Some(*n),
+                _ => None,
+            };
+            (calc_verdict::encode_result(&v).unwrap(), n)
+        }
+        Err(f) => {
+            let s = format!("{f:?}");
+            (
+                format!("fault:{}", s.split([' ', '{', '(']).next().unwrap()),
+                None,
+            )
+        }
+    }
 }
 
 fn prepare(trace: &str, gaps: &str, out: &str) {
@@ -185,15 +221,6 @@ fn prepare(trace: &str, gaps: &str, out: &str) {
 fn self_test(rows: &[Row]) {
     use dsl::{MODELS, Op};
     use eval::{Val, binop};
-    struct Given(Vec<value::CalcValue>);
-    impl calc_func::PreparedArguments for Given {
-        fn count(&self) -> usize {
-            self.0.len()
-        }
-        fn argument(&mut self, index: usize) -> value::CalcValue {
-            self.0[index].clone()
-        }
-    }
     let target = calc_func::catalogue()
         .resolve_surface(calc_func::Notation::Call, "PMT")
         .unwrap();
@@ -322,40 +349,96 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
-        Some("count-one-refined") => {
-            let rows=lines::<poisson::MassRow>(&a[2]);
-            match a.get(5).map(String::as_str) {Some("soft")=>saddle::run_refined::<Soft>(&rows,&a[3],&a[4]),_=>saddle::run_refined::<Hard>(&rows,&a[3],&a[4])}
+        Some("poisson-publication-test") => poisson::publication_controls(),
+        Some("normalizer-matrix") => {
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {
+                Some("soft") => saddle::normalizer_matrix::<Soft>(&rows, &a[3], &a[4]),
+                _ => saddle::normalizer_matrix::<Hard>(&rows, &a[3], &a[4]),
+            }
         }
-        Some("count-one-refined-test") => saddle::test_refined(&lines::<poisson::MassRow>(&a[2]),&a[3]),
+        Some("questions") => saddle::questions(
+            &lines::<poisson::MassRow>(&a[2]),
+            &a[3],
+            &a[4],
+            &a[5],
+            &a[6],
+        ),
+        Some("count-one-builds") => {
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {
+                Some("soft") => saddle::build_cohorts::<Soft>(&rows, &a[3], &a[4]),
+                _ => saddle::build_cohorts::<Hard>(&rows, &a[3], &a[4]),
+            }
+        }
+        Some("precision-test") => eval::precision_controls(),
+        Some("count-one-full") => {
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {
+                Some("soft") => saddle::run_full::<Soft>(&rows, &a[3], &a[4]),
+                _ => saddle::run_full::<Hard>(&rows, &a[3], &a[4]),
+            }
+        }
+        Some("count-one-full-test") => saddle::test_full(&lines::<poisson::MassRow>(&a[2]), &a[3]),
+        Some("count-one-refined") => {
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {
+                Some("soft") => saddle::run_refined::<Soft>(&rows, &a[3], &a[4]),
+                _ => saddle::run_refined::<Hard>(&rows, &a[3], &a[4]),
+            }
+        }
+        Some("count-one-refined-test") => {
+            saddle::test_refined(&lines::<poisson::MassRow>(&a[2]), &a[3])
+        }
         Some("boundary-wide") => {
-            let rows=lines::<Row>(&a[2]);
-            match a.get(4).map(String::as_str) {Some("soft")=>boundary::run_wide::<Soft>(&rows,&a[3]),_=>boundary::run_wide::<Hard>(&rows,&a[3])}
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::run_wide::<Soft>(&rows, &a[3]),
+                _ => boundary::run_wide::<Hard>(&rows, &a[3]),
+            }
         }
         Some("boundary-wide-test") => boundary::test_wide(&lines::<Row>(&a[2])),
         Some("count-one-expanded") => {
-            let rows=lines::<poisson::MassRow>(&a[2]);
-            match a.get(5).map(String::as_str) {Some("soft")=>saddle::run_expanded::<Soft>(&rows,&a[3],&a[4]),_=>saddle::run_expanded::<Hard>(&rows,&a[3],&a[4])}
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {
+                Some("soft") => saddle::run_expanded::<Soft>(&rows, &a[3], &a[4]),
+                _ => saddle::run_expanded::<Hard>(&rows, &a[3], &a[4]),
+            }
         }
-        Some("count-one-expanded-test") => saddle::test_expanded(&lines::<poisson::MassRow>(&a[2]),&a[3]),
+        Some("count-one-expanded-test") => {
+            saddle::test_expanded(&lines::<poisson::MassRow>(&a[2]), &a[3])
+        }
         Some("count-one") => {
-            let rows=lines::<poisson::MassRow>(&a[2]);
-            match a.get(5).map(String::as_str) {Some("soft")=>saddle::run::<Soft>(&rows,&a[3],&a[4]),_=>saddle::run::<Hard>(&rows,&a[3],&a[4])}
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {
+                Some("soft") => saddle::run::<Soft>(&rows, &a[3], &a[4]),
+                _ => saddle::run::<Hard>(&rows, &a[3], &a[4]),
+            }
         }
-        Some("count-one-test") => saddle::self_test(&lines::<poisson::MassRow>(&a[2]),&a[3]),
-        Some("inverse-controls") => boundary::inverse_controls(&lines::<Row>(&a[2]),&a[3]),
-        Some("mass-prepare") => poisson::prepare(&a[2],&a[3]),
+        Some("count-one-test") => saddle::self_test(&lines::<poisson::MassRow>(&a[2]), &a[3]),
+        Some("inverse-controls") => boundary::inverse_controls(&lines::<Row>(&a[2]), &a[3]),
+        Some("mass-prepare") => poisson::prepare(&a[2], &a[3]),
         Some("mass-test") => poisson::self_test(&lines::<poisson::MassRow>(&a[2])),
         Some("mass") => {
-            let rows=lines::<poisson::MassRow>(&a[2]);
-            match a.get(4).map(String::as_str) {Some("soft")=>poisson::run::<Soft>(&rows,&a[3]),_=>poisson::run::<Hard>(&rows,&a[3])}
+            let rows = lines::<poisson::MassRow>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => poisson::run::<Soft>(&rows, &a[3]),
+                _ => poisson::run::<Hard>(&rows, &a[3]),
+            }
         }
         Some("identity") => {
-            let rows=lines::<Row>(&a[2]);
-            match a.get(4).map(String::as_str) { Some("soft")=>identity::run::<Soft>(&rows,&a[3]),_=>identity::run::<Hard>(&rows,&a[3]) }
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => identity::run::<Soft>(&rows, &a[3]),
+                _ => identity::run::<Hard>(&rows, &a[3]),
+            }
         }
         Some("boundary") => {
-            let rows=lines::<Row>(&a[2]);
-            match a.get(4).map(String::as_str) { Some("soft")=>boundary::run::<Soft>(&rows,&a[3]),_=>boundary::run::<Hard>(&rows,&a[3]) }
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::run::<Soft>(&rows, &a[3]),
+                _ => boundary::run::<Hard>(&rows, &a[3]),
+            }
         }
         Some("boundary-test") => boundary::self_test(&lines::<Row>(&a[2])),
         Some("prepare") => prepare(&a[2], &a[3], &a[4]),

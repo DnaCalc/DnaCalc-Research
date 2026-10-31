@@ -3,17 +3,26 @@ use serde::{Deserialize, Serialize};
 
 pub type NodeId = usize;
 
-#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum EvalModel {
     Strict,
     StoredPc64,
     ResidentPc64,
+    StoredPc53,
+    ResidentPc53,
 }
 pub const MODELS: [EvalModel; 3] = [
     EvalModel::Strict,
     EvalModel::StoredPc64,
     EvalModel::ResidentPc64,
+];
+pub const WIDE_MODELS: [EvalModel; 5] = [
+    EvalModel::Strict,
+    EvalModel::StoredPc64,
+    EvalModel::ResidentPc64,
+    EvalModel::StoredPc53,
+    EvalModel::ResidentPc53,
 ];
 
 #[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]

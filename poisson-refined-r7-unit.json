@@ -93,10 +93,9 @@
     ],
     "branch_semantics": "The actual scaled value selects the branch and is reused in the regular result. Arithmetic site sets of scaled, fallback and normalize subtrees are disjoint; generic root-set propagation preserves this correlation. Models of inactive branch sites remain part of complete candidate descriptions. All unary arguments/constants/providers are explicit in typed AST.",
     "additional_log_forms": "Every direct ln(mean) leaf additionally admits -ln(1/mean), with the reciprocal computed in strict/stored-PC64/resident-PC64 arithmetic; logarithm receives its full tagged value when the provider supports extended entry.",
-    "additional_normalizers": "Every sqrt(2*pi) constant leaf additionally admits runtime sqrt(TAU), TAU loaded as certified RN53 or RN64 and sqrt in strict binary64, stored PC64 or resident PC64. Only serialized-equal graphs are deduplicated; equal finite predictions are not equivalence claims.",
-    "constants_sha256": "021e78ca103b882337fa861d2ce88c8328ad402e292ad2294638b68d1bdba80b"
+    "additional_normalizers": "Every sqrt(2*pi) constant leaf additionally admits runtime sqrt(TAU), TAU loaded as certified RN53 or RN64 and sqrt in strict binary64, stored PC64 or resident PC64. Only serialized-equal graphs are deduplicated; equal finite predictions are not equivalence claims."
   },
-  "discovery_order": "all 734 prior gap IDs first, then original trace index; first 32 are discovery; no fresh validation bank",
+  "discovery_order": "Original POISSON.DIST xtask trace order; scoped mass/count-one subsets preserve that order. Build cohorts are selected by recorded build identity, not answer disagreements. No fresh validation bank.",
   "budget": {
     "workers": 8,
     "memory_bytes": 4294967296,
@@ -117,10 +116,15 @@
   "no_new_excel_readings": true,
   "application_promotion": "Only a program exact on all scoped records may be considered; no count-based selection. Product guards and other branches remain outside this bounded family.",
   "artifact_directory": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7",
-  "preexisting_evidence": "Round 6 frozen/scoped.jsonl, original witness loader records; not fresh validation",
+  "preexisting_evidence": "round7/poisson-application-before.jsonl via the existing xtask witness loader; recorded OxFunc-Evidence0df452ec. Four unread source rows remain failures in full application totals.",
   "function": "POISSON.DIST",
   "source_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm",
   "choice": "Second function from dc-ymjf.4; defining mass/factorial and recurrence avoid PMT shared log1p/expm1 uncertainty.",
-  "scope": "All 4232 positive finite normal-mean count-one mass witnesses, a mathematical branch condition; not an answer-error region.",
-  "constants_sha256": "56f92d64f7e365f059339f740c15715306f18c2c51b1a944e1b9652fc0797ad6"
+  "scope": "All4232 count-one mass rows in the mixed recorded bank; any build-only cohort is separately declared and never a runtime selector.",
+  "constant_certificate_used": {
+    "path": "poisson-r7-wide-constants.json",
+    "sha256": "021e78ca103b882337fa861d2ce88c8328ad402e292ad2294638b68d1bdba80b",
+    "role": "Actual file supplied to this family; C/S/G values are identical in both certificates; wide file adds certified TAU for runtime sqrt prefixes."
+  },
+  "publication": "Poisson catalogue out_with_subnormal preserves finite binary64 subnormals; nonfinite maps NUM and zero is canonical. Candidate arithmetic does not silently flush subnormals."
 }

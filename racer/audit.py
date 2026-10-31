@@ -8,6 +8,91 @@ import collections
 import hashlib
 import json
 import sys
+import gzip
+
+
+def sha(path):
+    h=hashlib.sha256()
+    with path.open('rb')as f:
+        for block in iter(lambda:f.read(1024*1024),b''):h.update(block)
+    return h.hexdigest()
+
+
+def stream(path):
+    opener=gzip.open if path.suffix=='.gz' else open
+    with opener(path,'rt')as f:
+        for line in f:yield json.loads(line)
+
+
+def kill_audit(path,rows,programs,statistics):
+    seen=bytearray(programs);counts=collections.Counter();n=0
+    for k in stream(path):
+        i=k['candidate_id'];assert 0<=i<programs and not seen[i],i;seen[i]=1;n+=1
+        r=rows[k['order']]
+        assert k['trace_index']==r['trace_index']
+        assert k['expected']==r['raw']['expected']!=k['got']
+        if 'witness'in k:assert k['witness']==r['raw']
+        counts[k['order']]+=1
+    assert n==programs and all(seen),(n,programs)
+    remaining=programs;stats_count=0;zeros=0
+    for stat in stream(statistics):
+        order=stat['order'];r=rows[order]
+        assert stat['trace_index']==r['trace_index']and stat['id']==r['raw']['id']
+        assert stat['killed']==counts[order]
+        remaining-=stat['killed'];assert remaining==stat['remaining']
+        zeros+=stat['killed']==0;stats_count+=1
+    assert stats_count==len(rows)and remaining==0
+    return dict(programs_killed_once=n,zero_kill_witnesses=zeros,
+        kills_by_order={str(k):v for k,v in counts.items()if v})
+
+
+def audit_r7(directory,native_name,software_name,kind):
+    root=Path(directory);native=root/native_name;software=root/software_name
+    ns=json.loads((native/'summary.json').read_text());ss=json.loads((software/'summary.json').read_text())
+    assert ns['programs']==ss['programs']and ns['grammar_hash']==ss['grammar_hash']
+    if kind=='boundary':
+        rows=[r for r in stream(root/'frozen/scoped.jsonl')if r['leaves'][2]in(0,1<<63)]
+        kill='all-fv0-first-kills.jsonl';stats='all-fv0-witness-kills.jsonl'
+    else:
+        rows=list(stream(root/'poisson-frozen/scoped.jsonl'))
+        if kind=='count-one':rows=[r for r in rows if r['count']==1]
+        kill='first-kills.jsonl';stats='witness-kills.jsonl'
+    def hashes_match(name):return sha(native/name)==sha(software/name)
+    elimination=kill_audit(native/kill,rows,ns['programs'],native/stats)
+    same_kills=hashes_match(kill)
+    if not same_kills:kill_audit(software/kill,rows,ss['programs'],software/stats)
+    n=collected(native,'reachability-*.jsonl');s=collected(software,'reachability-*.jsonl')
+    assert set(n)==set(s)==set(range(len(rows)))
+    nr=collected(native,'unreachable-roots-*.jsonl');sr=collected(software,'unreachable-roots-*.jsonl')
+    assert len(nr)==ns['whole_family_unreachable'];assert len(sr)==ss['whole_family_unreachable']
+    output_diffs=[];reach_diffs=[];root_diffs=[];by_source=collections.defaultdict(collections.Counter)
+    destination=root/f'audit-{native_name}';destination.mkdir(exist_ok=True)
+    with (destination/'unreachable-witnesses.jsonl').open('x')as gaps:
+        for i,r in enumerate(rows):
+            a,b=n[i],s[i]
+            for result in [a,b]:
+                assert result['trace_index']==r['trace_index']and result['id']==r['raw']['id']
+                assert result['expected']==r['raw']['expected']
+                assert result['reachable']==(result['expected']in result['outputs'])
+            if a['outputs']!=b['outputs']:output_diffs.append(dict(order=i,witness=r['raw'],native=a['outputs'],software=b['outputs']))
+            if a['reachable']!=b['reachable']:reach_diffs.append(i)
+            if i in nr and i in sr and set(nr[i]['raw_roots'])!=set(sr[i]['raw_roots']):root_diffs.append(i)
+            by_source[r['raw']['source']]['rows']+=1
+            by_source[r['raw']['source']]['native_unreachable']+=not a['reachable']
+            by_source[r['raw']['source']]['software_unreachable']+=not b['reachable']
+            if not a['reachable']:
+                assert i in nr
+                gaps.write(json.dumps(dict(order=i,trace_index=r['trace_index'],witness=r['raw'],outputs=a['outputs']),separators=(',',':'))+'\n')
+    with(destination/'backend-output-differences.jsonl').open('x')as f:
+        for d in output_diffs:f.write(json.dumps(d,separators=(',',':'))+'\n')
+    summary=dict(rows=len(rows),programs=ns['programs'],native_unreachable=len(nr),software_unreachable=len(sr),
+        first_kill_files_equal=same_kills,witness_kill_files_equal=hashes_match(stats),elimination=elimination,
+        published_output_set_differences=len(output_diffs),reachability_class_differences=reach_diffs,
+        unreachable_identity_symmetric_difference=sorted(set(nr)^set(sr)),
+        unreachable_root_set_differences=root_diffs,unreachable_by_source=by_source,
+        claim='Finite family sets/first kills only. Individually reachable targets are constraints, never calculated Excel passes.',
+        fresh_validation_rows=0)
+    (destination/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary))
 
 
 def read(path):
@@ -91,4 +176,5 @@ def audit(directory):
 
 
 if __name__ == "__main__":
-    audit(sys.argv[1])
+    if len(sys.argv)>2:audit_r7(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
+    else:audit(sys.argv[1])

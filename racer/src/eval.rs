@@ -19,6 +19,15 @@ impl PartialEq for Val {
         }
     }
 }
+impl Eq for Val {}
+impl std::hash::Hash for Val {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        match self {
+            Self::F64(b) => std::hash::Hash::hash(&(0u8, *b), state),
+            Self::Ext(e) => std::hash::Hash::hash(&(1u8, e.0), state),
+        }
+    }
+}
 impl Val {
     pub fn f64(x: f64) -> Self {
         Self::F64(x.to_bits())
@@ -60,17 +69,87 @@ pub fn binop<F: Fpu>(op: Op, model: EvalModel, a: Val, b: Val) -> Val {
     }
     let a = a.to_ext();
     let b = b.to_ext();
+    let cw = if matches!(model, EvalModel::StoredPc53 | EvalModel::ResidentPc53) {
+        (CW & !0x0300) | 0x0200
+    } else {
+        CW
+    };
     let x = match op {
-        Op::Add(..) => F::add(&a, &b, CW),
-        Op::Mul(..) => F::mul(&a, &b, CW),
-        Op::Div(..) => F::div(&a, &b, CW),
+        Op::Add(..) => F::add(&a, &b, cw),
+        Op::Mul(..) => F::mul(&a, &b, cw),
+        Op::Div(..) => F::div(&a, &b, cw),
         _ => unreachable!(),
     };
-    if model == EvalModel::StoredPc64 {
+    if matches!(model, EvalModel::StoredPc64 | EvalModel::StoredPc53) {
         Val::f64(F::store(&x, CW))
     } else {
         Val::Ext(x)
     }
+}
+
+pub fn precision_controls() {
+    use crate::ported::excel_numeric::{Hard, Soft};
+    let epsilon = Val::f64(f64::from_bits(((1023 - 63) as u64) << 52));
+    let a = binop::<Hard>(
+        Op::Add(0, 1),
+        EvalModel::ResidentPc64,
+        Val::f64(1.0),
+        epsilon,
+    );
+    let minus_one = Val::f64(-1.0);
+    assert_eq!(
+        binop::<Hard>(Op::Add(0, 1), EvalModel::Strict, a, minus_one).to_f64::<Hard>(),
+        0.0
+    );
+    for model in [EvalModel::StoredPc53, EvalModel::ResidentPc53] {
+        let v = binop::<Hard>(Op::Add(0, 1), model, a, minus_one);
+        assert_eq!(
+            v.to_f64::<Hard>().to_bits(),
+            epsilon.to_f64::<Hard>().to_bits()
+        );
+        assert_eq!(
+            v.exact_encoding(),
+            binop::<Soft>(Op::Add(0, 1), model, a, minus_one).exact_encoding()
+        );
+    }
+    let mut state = 0x504335335f5237u64;
+    let mut next = || {
+        state ^= state << 13;
+        state ^= state >> 7;
+        state ^= state << 17;
+        state
+    };
+    let mut checks = 0;
+    for _ in 0..20000 {
+        let ab = (next() & 0x800fffffffffffff) | (((next() % 2046) + 1) << 52);
+        let bb = (next() & 0x800fffffffffffff) | (((next() % 2046) + 1) << 52);
+        let mut a = Val::F64(ab).to_ext();
+        let mut b = Val::F64(bb).to_ext();
+        // Add precision below the binary64 significand without changing the
+        // exponent or explicit integer bit. These are raw arithmetic controls.
+        a.0[0] = next() as u8;
+        b.0[0] = next() as u8;
+        for op in [Op::Add(0, 1), Op::Mul(0, 1), Op::Div(0, 1)] {
+            for model in [EvalModel::StoredPc53, EvalModel::ResidentPc53] {
+                let h = binop::<Hard>(op, model, Val::Ext(a), Val::Ext(b));
+                let s = binop::<Soft>(op, model, Val::Ext(a), Val::Ext(b));
+                assert_eq!(h.exact_encoding(), s.exact_encoding());
+                checks += 1;
+                for continuation in MODELS {
+                    assert_eq!(
+                        binop::<Hard>(Op::Mul(0, 1), continuation, h, Val::f64(0.75))
+                            .exact_encoding(),
+                        binop::<Soft>(Op::Mul(0, 1), continuation, s, Val::f64(0.75))
+                            .exact_encoding()
+                    );
+                    checks += 1;
+                }
+            }
+        }
+    }
+    println!(
+        "PC53 controls: {checks} native/software arithmetic/continuation checks; full-operand cancellation preserved"
+    );
 }
 
 pub fn eval_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Val {

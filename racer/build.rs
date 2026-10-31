@@ -43,8 +43,13 @@ fn main() {
             let chain = fs::read_to_string(&path).unwrap();
             println!("cargo:rerun-if-changed={}", path.display());
             path = output.join("chains-research.rs");
-            fs::write(&path, chain.replace("fn exp_ext<", "pub(super) fn exp_ext<")
-                .replace("fn pow2<", "pub(super) fn pow2<")).unwrap();
+            fs::write(
+                &path,
+                chain
+                    .replace("fn exp_ext<", "pub(super) fn exp_ext<")
+                    .replace("fn pow2<", "pub(super) fn pow2<"),
+            )
+            .unwrap();
         }
         text = text.replace(
             &format!("mod {module};"),

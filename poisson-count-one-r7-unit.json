@@ -85,7 +85,7 @@
     "canonicalization": "No redundant final binary64 store before final publication; binary64-only elementary providers have one entry-store form.",
     "constant_certificate": "constants.py uses exact Machin/alternating-series pi bounds and correctly rounded Decimal ln/sqrt widened by one decimal ULP; both rational endpoints force the same RN53/RN64 constant. No Excel answers are inputs."
   },
-  "discovery_order": "all 734 prior gap IDs first, then original trace index; first 32 are discovery; no fresh validation bank",
+  "discovery_order": "Original POISSON.DIST xtask trace order; scoped mass/count-one subsets preserve that order. Build cohorts are selected by recorded build identity, not answer disagreements. No fresh validation bank.",
   "budget": {
     "workers": 8,
     "memory_bytes": 4294967296,
@@ -106,10 +106,15 @@
   "no_new_excel_readings": true,
   "application_promotion": "Only a program exact on all scoped records may be considered; no count-based selection. Product guards and other branches remain outside this bounded family.",
   "artifact_directory": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7",
-  "preexisting_evidence": "Round 6 frozen/scoped.jsonl, original witness loader records; not fresh validation",
+  "preexisting_evidence": "round7/poisson-application-before.jsonl via the existing xtask witness loader; recorded OxFunc-Evidence0df452ec. Four unread source rows remain failures in full application totals.",
   "function": "POISSON.DIST",
   "source_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm",
   "choice": "Second function from dc-ymjf.4; defining mass/factorial and recurrence avoid PMT shared log1p/expm1 uncertainty.",
-  "scope": "All 4232 positive finite normal-mean count-one mass witnesses, a mathematical branch condition; not an answer-error region.",
-  "constants_sha256": "56f92d64f7e365f059339f740c15715306f18c2c51b1a944e1b9652fc0797ad6"
+  "scope": "All4232 count-one mass rows in the mixed recorded bank; any build-only cohort is separately declared and never a runtime selector.",
+  "constant_certificate_used": {
+    "path": "poisson-r7-constants.json",
+    "sha256": "56f92d64f7e365f059339f740c15715306f18c2c51b1a944e1b9652fc0797ad6",
+    "role": "Actual file supplied to this family; C/S/G values are identical in both certificates; wide file adds certified TAU for runtime sqrt prefixes."
+  },
+  "publication": "Poisson catalogue out_with_subnormal preserves finite binary64 subnormals; nonfinite maps NUM and zero is canonical. Candidate arithmetic does not silently flush subnormals."
 }

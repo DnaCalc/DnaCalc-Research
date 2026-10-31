@@ -81,3 +81,47 @@ Complete external artifacts, checksums and work report:
   /home/ubuntu/codex-runs/dna-firehorse-20261031-round6/
   /home/ubuntu/codex-runs/work-report-6.md
 Compact outcome/provenance is retained in pmt-r6-result.json and on dc-j9k.
+
+Round 7 extends the same evaluator and exact interval code. PMT's final bounded
+family has1980 helpers, all60 four-leaf multiplication/division trees and81
+three-model combines per tree:9622800 programs, zero survivors. The independent
+shared-helper projection rejects all4860 combine profiles even with nonunit
+periods and timing fixed. The full cross-matrix attempts are retained as partial
+diagnostics; the complete first-kill group proof is a separate result.
+
+Poisson work starts from the defining PMF and uses typed count-one ASTs, exact
+constant-load certificates, scalar/Gamma forms, reciprocal logs, normalization
+loads, underflow guards and five arithmetic/store models. The largest mixed-build
+family has26043360 programs and no survivor. Build20527's88 tiny-mean readings
+alone leave52908 programs in the1585920-program refinement; this is a scoped
+hypothesis set and does not identify a full Excel program or confirm build drift.
+Questions use the existing xtask witness read --inputs schema; predictions stay
+separate and are never ingested as answers. No application kernel changes.
+
+From this directory, with R7 as the outside-repository round7 artifact directory:
+  target/release/symbolic-racer boundary-wide R7/frozen/scoped.jsonl OUT hard
+  python3 racer/group_eliminate.py R7/frozen/scoped.jsonl OUT PROOF
+  target/release/symbolic-racer precision-test
+  target/release/symbolic-racer mass R7/poisson-frozen/scoped.jsonl OUT hard
+  target/release/symbolic-racer count-one-full R7/poisson-frozen/scoped.jsonl poisson-r7-wide-constants.json OUT hard
+  target/release/symbolic-racer count-one-full-test R7/poisson-frozen/scoped.jsonl poisson-r7-wide-constants.json
+  target/release/symbolic-racer count-one-builds R7/poisson-frozen/scoped.jsonl poisson-r7-wide-constants.json OUT hard
+  target/release/symbolic-racer normalizer-matrix R7/poisson-frozen/scoped.jsonl poisson-r7-wide-constants.json OUT hard
+  python3 racer/normalizer_intersect.py OUT PROOF
+
+Use soft instead of hard for software replay. DNA_RESEARCH_WORKERS controls1..8
+reachability workers. Exact per-input/backend tagged-request memoization preserves
+the physical program description; uncached reference checks audit that optimization.
+The numerator projection never selects its unknown denominator as a constant.
+Canonical unit descriptions distinguish original frozen metadata from later prose
+corrections, and name the actual three-constant or wide-TAU certificate used.
+Full artifacts/report: /home/ubuntu/codex-runs/dna-firehorse-20261031-round7/
+and /home/ubuntu/codex-runs/work-report-7.md.
+
+Round7 publication correction: Poisson aliases use out_with_subnormal and preserve
+finite subnormals. PMT keeps its distinct refusal policy. Initial Poisson output
+sets and question-draft are superseded; final runs are poisson-final-*, mass-final-*
+and builds-final-* in the artifact directory. Run certify.py DIR poisson for those
+runs. Four actual invoke alias/false-flag controls exercise numeric subnormals.
+Final questions add a count-one mean720 domain-control pair and use distinct final
+IDs; requests contain no answers. Program predictions are separate files.
