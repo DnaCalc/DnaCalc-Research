@@ -1,0 +1,13 @@
+[workspace]
+members = ["racer"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+publish = false
+
+[profile.release]
+opt-level = 3
+debug = 0

@@ -1,0 +1,93 @@
+{
+  "backend": "symbolic_racer::ported::excel_numeric::Hard",
+  "complete": true,
+  "exact_elimination_evaluations": 50706,
+  "fresh_validation_rows": 0,
+  "grammar_hash": "fnv1a64:1002269c92fdce24",
+  "nonzero_kill_witnesses": [
+    {
+      "id": "pmt-tf-order-0118-t1",
+      "killed": 30942,
+      "order": 0,
+      "prior_gap": true,
+      "reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "remaining": 8424,
+      "source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "trace_index": 594
+    },
+    {
+      "id": "pmt-tf-order-0119-t1",
+      "killed": 5508,
+      "order": 1,
+      "prior_gap": true,
+      "reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "remaining": 2916,
+      "source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "trace_index": 596
+    },
+    {
+      "id": "pmt-tf-order-0155-t1",
+      "killed": 2916,
+      "order": 2,
+      "prior_gap": true,
+      "reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "remaining": 0,
+      "source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "trace_index": 636
+    }
+  ],
+  "prior_gap_unreachable": 168,
+  "programs": 39366,
+  "published_outcomes_enumerated": 368801,
+  "reachability_seconds": 0.611683069,
+  "scoped_recorded_rows": 250730,
+  "selection": "first exact contradiction; no tolerance, rankings, coefficients or fitted switches",
+  "survivors": 0,
+  "whole_family_reachable": 212298,
+  "whole_family_unreachable": 38432,
+  "workers": 8,
+  "status": "family_rejected",
+  "function_identified": false,
+  "application_revision": "dbcc7913312407c18d223a078dde81ccbc5e2f1d",
+  "evidence_revision": "0df452ec63a8adcb0bf8a9a248dab11c49379136",
+  "research_unit": "pmt-r6-unit.json",
+  "artifact_directory": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round6",
+  "native_software_prediction_differences": 0,
+  "native_software_raw_root_differences": 0,
+  "rounding_interval_certificates": 38432,
+  "exact_unreachable_roots_certified": 234065,
+  "questions_written": 0,
+  "application_kernel_changed": false,
+  "provenance": "Implementer; tier1 IEEE 754, annuity arithmetic, recorded Excel answers via existing witness loader; tier2 MIT OxFunc racer 05196c39 arithmetic subset and current cleared DnaCalc Fpu. Codex GPT-6.1-Sol xhigh; dna-firehorse Linux x86_64 AMD family23/model1 KVM. No new Excel readings, fitted coefficients/bounds/cutoffs, error-based switches or restricted-source readings.",
+  "next_search": "Search the frozen expm1 precision/store boundary with exact rational joins; first three killers have FV=0 so both numerator trees coincide. Keep nper=1 identity as a separate mathematical/domain hypothesis and growth-arm controls separate. No rounded inverse or learned answer correction.",
+  "artifacts_sha256": {
+    "frozen/coverage.json": "bbd2fcb1efc664edb1580e910694349ba98d6c34c1e9111fef2a302ba36a53d9",
+    "frozen/scoped.jsonl": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+    "native-final/programs.jsonl": "3b5b78451717533e188974afdf2831cb85a0364281425b1d6b8bc5b003fd4e6f",
+    "native-final/first-kills.jsonl": "7687c6e5a45c85e663d8871be7a9a318af727f9024c12dc175c5938c6d555c12",
+    "native-final/witness-kills.jsonl": "d5ac66e9b222cf80e5edf8d2e71ddc9feeb6a104bd052d8015ec7f7a0b9823a0",
+    "native/rounding-interval-certificates.jsonl": "9444c1986960514d6820498c46f8bbf7cbfbfd3f508b55992db8d1ecb580116c",
+    "unreachable-witnesses.jsonl": "0b1299b959a084c30a73b41ab39fbec98fbb23c6966baeda78a1c48ffaede348",
+    "audit-summary.json": "f8c6388140594407ace34dbc6bfe62603357d15b27f13887333a628c0f330ac8",
+    "final-rerun-audit.json": "46db60a241965dfe00560675989da605419a49448d8c7e31f8363e6142847ace",
+    "execution-freeze.json": "ff8c4977a8a6c513fd9b74ceb610b7aac53f0290492fdb645dbc97e1b6227380",
+    "execution-freeze-final.json": "0295194d42e0d4aef5fcc55248dddecdc3e6344db97be062477844243d3fb8f7",
+    "self-test-corrected.log": "d4db53cf342a78f10868543f3a9aa21afb2b7342a16760f966d6295450f04b85",
+    "corpus-comparison.json": "931464fcad5d30512ea627ab5f4199f1d1bd4399463e1258fd65471c3410b0c8"
+  }
+}
