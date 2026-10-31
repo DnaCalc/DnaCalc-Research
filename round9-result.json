@@ -248,7 +248,15 @@
     "reviewer-reference-probe.py": "fa0153b301594bab5db12249dd72f46a142324cd60575a215265f1a5d41bcab7",
     "check-all-final.log": "bb82af11c92443ffdbc9179eefd77e6d13e521a5c5189d8a0b7a05d504632814",
     "ubs-stable.log": "2c05c4ea9fb2b669f8ff7918e799afe05571f24659f5a03f75d489a1dfe9d560",
-    "check-committed.log": "007a8f4e70bffae5cac6821cc71174020db51abb92e519c4a8e47f4601a0523f"
+    "check-committed.log": "007a8f4e70bffae5cac6821cc71174020db51abb92e519c4a8e47f4601a0523f",
+    "rebuild-validation.json": "a0c40913f754a4357a2dfd82b718c6b7072cbb507d401493e82d6fbeff7df04f",
+    "rebuild-source-freeze.json": "efc8667fcdebf5be59d9a155887596180e28fecf20a6033f8ebae95e8b48c662",
+    "rebuild-validation-build.log": "ac723f6f65d19f10c74e236984457e5d2c922c3d25e0e9afda9dce3e07a46b59",
+    "rebuild-arithmetic-controls-summary.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37",
+    "check-merge-all.log": "87ab0a7c5032d4da4e310796cfa92dc06311abaf66d8304e64395c3838900d57",
+    "check-catchup2-precommit.log": "65f0066d20727e734a6eee621dd0025d90f692a237fe36fc506d61da51988827",
+    "check-catchup2-committed.log": "a9cddc74cdc1ba388d88b9de0f7eb55aaaec32467664964285a3c8b29564cd6f",
+    "main-push-catchup2.log": "649bc3ea74629c5a902c46f6a4a7bfc4b228e412e488ff9f2a649212e10854c7"
   },
   "native_search": {
     "backend": "symbolic_racer::ported::excel_numeric::Hard",
@@ -459,9 +467,80 @@
       "tests_run": 0,
       "log": "check-committed.log",
       "source_note": "No Rust/Cargo/numeric source change in the later upstream fixture-only pull."
+    },
+    "post_pull_rebuild": {
+      "complete": true,
+      "files": {
+        "native/programs.jsonl": {
+          "original_sha256": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+          "rebuild_sha256": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+          "byte_identical": true
+        },
+        "native/first-kills.jsonl": {
+          "original_sha256": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a",
+          "rebuild_sha256": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a",
+          "byte_identical": true
+        },
+        "native/survivors.json": {
+          "original_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "rebuild_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "byte_identical": true
+        },
+        "software/programs.jsonl": {
+          "original_sha256": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+          "rebuild_sha256": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+          "byte_identical": true
+        },
+        "software/first-kills.jsonl": {
+          "original_sha256": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a",
+          "rebuild_sha256": "52fefd760d8775f287ad76c8f9ebdab9442d164088f434b02c23efa8d219063a",
+          "byte_identical": true
+        },
+        "software/survivors.json": {
+          "original_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "rebuild_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "byte_identical": true
+        }
+      },
+      "reference_comparisons": 70,
+      "rebuild_source": {
+        "executable_sha256": "71d55eb7d6f8a6be018b242510aa19e54c33b235fee73e94127d074795d3e7cc",
+        "unit_sha256": "820375727e2b1cd3ac5193ed979fa1bc5ab8fbaba10eb074638e150d53f3e849",
+        "application_revision": "065687a3cd276f1d5f78fe0358e8e22ded354d11",
+        "original_measurement_unit_unchanged": true,
+        "original_measurements_superseded": false
+      },
+      "limits": "Rebuild replay of original frozen observations and helpers, not new discovery or fresh validation; original measurements/unit/binary remain unchanged."
+    },
+    "later_merged_workspace_check": {
+      "command": "cargo xtask check --all",
+      "passed": 1332,
+      "failed": 0,
+      "ignored": 3,
+      "not_run": 3,
+      "harnesses": 79,
+      "packages": 20,
+      "log": "check-merge-all.log",
+      "platform": "Linux",
+      "revision": "eac433cf6df3f5f61a639bd75882f305206933a2"
+    },
+    "final_main_catchup": {
+      "command": "cargo xtask check",
+      "revision": "30f947c94af47d385e33cb2bc97e7e13b5b89b7c",
+      "passed": 347,
+      "failed": 0,
+      "not_run": 1,
+      "harnesses": 32,
+      "packages": 7,
+      "log": "check-catchup2-precommit.log",
+      "committed_check": "check-catchup2-committed.log",
+      "push": "main-push-catchup2.log"
     }
   },
   "main_documentation_commit": "15e4335914de854aa2ea6c9bdf2a9dca40ea4fbe",
   "main_later_upstream_revision": "5a19c12",
-  "main_later_upstream_scope": "Fixture/script/tracker additions only; frozen numeric source remains unchanged."
+  "main_later_upstream_scope": "Fixture/script/tracker additions only; frozen numeric source remains unchanged.",
+  "post_pull_rebuild_unit": "pmt-r9-rebuild-unit.json",
+  "later_main_merge_commit": "eac433cf6df3f5f61a639bd75882f305206933a2",
+  "published_main_commit": "30f947c94af47d385e33cb2bc97e7e13b5b89b7c"
 }

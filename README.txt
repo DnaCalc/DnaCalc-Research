@@ -286,3 +286,11 @@ unintended format diff; it was backed up and reversed before any numerical run.
 All receipts, supersession notes, source/executable freezes and review are under
 /home/ubuntu/codex-runs/dna-firehorse-20261101-round9/. No product code, recorded
 Excel answer, evidence pin or application pass changed. PMT remains unidentified.
+
+The later upstream UI split at 065687a adds unrelated clipboard/axis helpers in
+calc-value/src/lib.rs. The original unit's source guard remains intact; select
+DNA_RESEARCH_UNIT=pmt-r9-rebuild-unit.json to rebuild against that source instead.
+All eight numeric source hashes are unchanged. Both rebuilt backend runs have
+byte-identical programs, full first-kill traces and survivors; the 70 independent
+reference comparisons pass. Original measurement units/binaries stay unchanged;
+this rebuild is not fresh Excel validation and supersedes no recorded result.
