@@ -363,8 +363,12 @@ fn main() {
         Some("annuity-early-controls") => annuity_early::controls(&a[2], &a[3]),
         Some("annuity-direct-controls") => annuity_early::direct_controls(&a[2], &a[3]),
         Some("loan-backward") => match a.get(4).map(String::as_str) {
-            Some("soft") => annuity_early::loan_backward::<Soft>(&a[2], &a[3]),
-            _ => annuity_early::loan_backward::<Hard>(&a[2], &a[3]),
+            Some("soft") => annuity_early::loan_backward::<Soft>(&a[2], &a[3], None),
+            _ => annuity_early::loan_backward::<Hard>(&a[2], &a[3], None),
+        },
+        Some("loan-pv-fv") => match a.get(5).map(String::as_str) {
+            Some("soft") => annuity_early::loan_backward::<Soft>(&a[2], &a[4], Some(&a[3])),
+            _ => annuity_early::loan_backward::<Hard>(&a[2], &a[4], Some(&a[3])),
         },
         Some("annuity-direct") => match a.get(4).map(String::as_str) {
             Some("soft") => annuity_early::run::<Soft>(&a[2], &a[3], true),

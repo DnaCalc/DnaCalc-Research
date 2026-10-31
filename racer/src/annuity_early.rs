@@ -365,7 +365,7 @@ fn backward_interest<F: Fpu>(p: Val, em: Val, rate: Val, shape: usize, code: usi
     boundary::neg(value)
 }
 
-pub fn loan_backward<F: Fpu>(input: &str, out: &str) {
+pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) {
     let original: Vec<serde_json::Value> =
         serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
     assert_eq!(
@@ -420,21 +420,39 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str) {
         u64::from_le_bytes(p[0].to_ext().0[..8].try_into().unwrap())
             > u64::from_le_bytes(p[1].to_ext().0[..8].try_into().unwrap())
     }));
+    let prior =
+        joint_pv_fv.map(|p| serde_json::from_slice::<Vec<usize>>(&fs::read(p).unwrap()).unwrap());
+    let growth_ids: Vec<usize> = prior
+        .as_ref()
+        .map(|ps| {
+            ps.iter()
+                .map(|&p| (p / 13) / (3 * 6561))
+                .collect::<std::collections::BTreeSet<_>>()
+                .into_iter()
+                .collect()
+        })
+        .unwrap_or_default();
+    if prior.is_some() {
+        assert!(!growth_ids.is_empty());
+    }
+    let log_count = if prior.is_some() { growth_ids.len() } else { 5 };
     let hs = boundary::helpers();
     let ls = logs::<F>(rate, excel_log1p(rate).to_bits());
-    let helper_count = hs.len() + 162;
-    let components: Vec<Vec<Vec<Val>>> = ls
-        .iter()
-        .map(|&l| {
+    let helper_count = if prior.is_some() { 3 } else { hs.len() + 162 };
+    let components: Vec<Vec<Vec<Val>>> = (0..log_count)
+        .map(|lp| {
             (0..helper_count)
                 .map(|h| {
                     periods
                         .iter()
                         .map(|&n| {
-                            if h < hs.len() {
-                                boundary::helper_components::<F>(&hs[h], n, l).2
+                            if prior.is_some() {
+                                let g = crate::annuity::loan_growth::<F>(growth_ids[lp], rate, -n);
+                                binop::<F>(Op::Add(0, 1), MODELS[h], g, Val::f64(-1.0))
+                            } else if h < hs.len() {
+                                boundary::helper_components::<F>(&hs[h], n, ls[lp]).2
                             } else {
-                                direct_components::<F>(h - hs.len(), -n, l).2
+                                direct_components::<F>(h - hs.len(), -n, ls[lp]).2
                             }
                         })
                         .collect()
@@ -456,14 +474,16 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str) {
     json_write(root.join("observations.json"), &original);
     json_write(
         root.join("grammar.json"),
-        &json!({"role":"implementer","logs":5,"helpers":hs,"root_profiles":profiles,
+        &json!({"role":"implementer","log_producer_count":log_count,"helpers":hs,"root_profiles":profiles,
         "IPMT_roots":["-(((P*em)/rate)*rate)","-((P*(em/rate))*rate)","-(((P*rate)*em)/rate)","-(P*em)"],
         "PPMT_root":"P-IPMT_internal, each of three models; IPMT publication occurs independently and does not overwrite its internal result",
         "models":MODELS,"latent_P_values":latent.iter().map(|p|p.exact_encoding()).collect::<Vec<_>>(),
         "helper":"same log provider and negative-exponent helper for every period; em=expm1(-remaining*log1p(rate))",
         "helper_ids":"0..1979 are the serialized difference/correction helpers;1980..2141 are the162 direct F2XM1 helpers defined by direct_components, with negative remaining periods",
-        "component_layout":"(log_provider*2142+helper)*84+root_profile_index","program_layout":"component*3+PPMT_subtraction_model",
-        "component_count":5*2142*84,"program_count":5*2142*84*3,
+        "component_layout":"(producer*helper_count+helper)*84+root_profile_index","helper_count":helper_count,"program_layout":"component*3+PPMT_subtraction_model",
+        "component_count":log_count*helper_count*84,"program_count":log_count*helper_count*84*3,
+        "joint_PV_FV_hypotheses":prior,"joint_growth_ids":growth_ids,
+        "joint_growth_policy":"When prior is present, producer selects its integer growth ID, helper selects one of three G-1 models, and the frozen PV/FV negative-integer growth programme supplies G. No log/expm1 helper is used. Other helper descriptions apply only when prior is absent.",
         "proof":"IPMT root is monotone increasing in finite P: rounding is monotone and the constant negative em plus final negation give positive slope. Exact ordered Ext80 binary searches intersect all seven published IPMT targets. Every remaining P is then checked exactly against all seven PPMT targets.",
         "scope":"One original rate=.0075,nper=360,PV=125000,FV=0,type=0 loan. Unknown internal PMT is any finite Ext80 value publishing to the recorded PMT, shared across every period.",
         "limitation":"Conditional partial programme only: the PMT-producing programme is unspecified, and latent values are constraints, never fitted constants or predictions for a new loan.",
@@ -477,7 +497,7 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str) {
     let mut ip_kills = [0usize; 7];
     let mut pp_kills = [0usize; 7];
     let mut surviving_programs = 0;
-    for lp in 0..5 {
+    for lp in 0..log_count {
         for h in 0..helper_count {
             for (ri, &(shape, code)) in profiles.iter().enumerate() {
                 let component = (lp * helper_count + h) * 84 + ri;
@@ -606,12 +626,13 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str) {
             }
         }
     }
-    assert_eq!(component_count, 899640);
+    assert_eq!(component_count, log_count * helper_count * 84);
     assert_eq!(
         component_count * 3,
         ip_kills.iter().sum::<usize>() + pp_kills.iter().sum::<usize>() + surviving_programs
     );
     let summary = json!({"components":component_count,"programs":component_count*3,"survivors":surviving_programs,
+        "joint_PV_FV_hypotheses":prior.as_ref().map(Vec::len),"joint_partial_programs":prior.as_ref().map(|p|p.len()*helper_count*84*3),"joint_growth_ids":growth_ids,
         "latent_P_values":latent.len(),"evaluations":evals,"IPMT_first_kill_counts":ip_kills,"PPMT_first_kill_counts":pp_kills,
         "complete":true,"scope":"One recorded loan, all7 IPMT/PPMT periods and PMT publication, same latent PMT across every period",
         "claim":"Exact conditional joint partial-program constraints; no fitted PMT and no identified full application programme"});

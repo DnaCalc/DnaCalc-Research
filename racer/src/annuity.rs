@@ -406,6 +406,11 @@ fn fractional_growth<F: Fpu>(h: &Growth, r: f64, n: f64, provider: usize) -> Val
     store::<F>(v, h.store)
 }
 
+pub(crate) fn loan_growth<F: Fpu>(growth_id: usize, rate: f64, periods: f64) -> Val {
+    assert!(periods < 0.0 && periods.fract() == 0.0 && periods.abs() < u32::MAX as f64);
+    fractional_growth::<F>(&growths()[growth_id], rate, periods, 0)
+}
+
 pub fn refine_fractional<F: Fpu>(input: &str, prior: &str, out: &str) {
     fs::create_dir_all(out).unwrap();
     let rows = crate::lines::<AnnuityCase>(input);

@@ -237,5 +237,25 @@
       "difference_correction": 1980,
       "direct_F2XM1": 162
     }
+  },
+  "shared_PV_FV_backward_loan_followup": {
+    "motivation": "Test transfer of the independently constrained PV/FV integer growth programme into IPMT backward balance and PPMT subtraction. All1824 frozen fractional-family survivors have growth ID2 or8. Negative integer remaining periods use the same stored-positive-growth/stored-reciprocal path already constrained by recorded PV/FV data.",
+    "role": "implementer",
+    "source": "Existing PV/FV survivor programme grammar, annuity algebra, exact IEEE rounding and original PMT/IPMT/PPMT observations",
+    "PV_FV_hypotheses": 1824,
+    "growth_ids": [
+      2,
+      8
+    ],
+    "difference_models": 3,
+    "IPMT_root_profiles": 84,
+    "PPMT_subtraction_models": 3,
+    "components": 504,
+    "loan_programs": 1512,
+    "joint_partial_programs": 1378944,
+    "helper": "G=(1+rate)^(-remaining) from frozen PV/FV programme; em=G-1 with the declared one-of-three model; no new log/expm1 producer.",
+    "same_latent_P_policy_as": "conditional_backward_loan_followup",
+    "scope": "Same one recorded loan and seven periods; partial PMT-producing programme remains unspecified.",
+    "fixed_before_search": true
   }
 }
