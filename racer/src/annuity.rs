@@ -917,14 +917,34 @@ pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str, pv_mode: 
     ];
     let forms = 4;
     let count = prior.len() * forms * 3125;
+    let residual_forms = if pv_mode {
+        [
+            "PVtarget+store53((FVtarget+paid)/G)",
+            "PVtarget+(FVtarget+paid)/G",
+            "(PVtarget+FVtarget/G)+paid/G",
+            "(PVtarget+timed_payment)+C/G, C=FVtarget+untimed_payment",
+        ]
+    } else {
+        [
+            "FVtarget+store53(BG+paid)",
+            "FVtarget+(BG+paid)",
+            "(FVtarget+BG)+paid",
+            "(FVtarget+paid)+BG",
+        ]
+    };
+    let derivative_site = if pv_mode {
+        "PV derivative block -C/(G*G)"
+    } else {
+        "FV derivative PV+canonical_type*payment"
+    };
     json_write(
         root.join("grammar.json"),
         &json!({"PV_FV_programs":prior,"programs":count,"present_value_residual":pv_mode,
-        "residual_forms":["FVtarget+store53(BG+paid)","FVtarget+(BG+paid)","(FVtarget+BG)+paid","(FVtarget+paid)+BG"],
+        "residual_forms":residual_forms,
         "PV_mode_forms":["PVtarget+store53((FVtarget+paid)/G)","PVtarget+(FVtarget+paid)/G","(PVtarget+FVtarget/G)+paid/G","(PVtarget+timed_payment)+C/G, C=FVtarget+untimed_payment"],
         "PV_mode_derivative":"-C/(G*G); C addition,G square and division all use derivative-site model. Form3 shares the same C; its division/final-add share second-site model. Generic PV quotients use selected PV-programme m7.",
         "shared_core":"BG=PV*G, paid=payment*annuity_term, and BG+paid use the selected frozen PV/FV programme and retain its tagged internal values. Every published FV(guess) is rechecked against the original observation.",
-        "sites":["residual first addition","residual second addition (inactive in forms0/1)","derivative PV+canonical_type*payment","residual/derivative","guess-step"],
+        "sites":["residual first addition","residual second addition (inactive in forms0/1)",derivative_site,"residual/derivative","guess-step"],
         "models":arithmetic,"layout":"id=(PVFV_hypothesis_index*4+residual_form)*3125+little_endian_base5_site_code",
         "scope":"60 finite explicit-guess nper1 RATE/FV pairs. Exactly one analytic-derivative Newton step; no claim of Excel iteration count, derivative, internal evaluator or stopping rule.",
         "sources":["IEEE rounding","annuity/Newton mathematics","recorded RATE/FV outputs","prior PV/FV hypotheses"]}),

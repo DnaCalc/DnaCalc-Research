@@ -189,7 +189,7 @@ extended exponent boundary; no global native/software parity claim follows from
 ordinary-range controls or the matching recorded-input exclusions.
 
 Use R8=/home/ubuntu/codex-runs/dna-firehorse-20261031-round8. Build this round with:
-  DNA_RESEARCH_UNIT=annuity-r8-rebuild-unit.json CARGO_TARGET_DIR=target cargo build --release --offline -p symbolic-racer
+  DNA_RESEARCH_UNIT=pmt-prefix-r8-unit.json CARGO_TARGET_DIR=target cargo build --release --offline -p symbolic-racer
 Source units, complete grammars, commands/resource logs, exact first kills,
 survivors, supersession notes and independent reviews are retained there.
 The compact final index is round8-result.json; the report is:
@@ -232,3 +232,12 @@ R8 unit correctly refuses a fresh build there. annuity-r8-rebuild-unit.json pins
 that revision explicitly for rebuild validation; all eight numerical source hashes
 remain unchanged. Original units, run executables and the question generator retain
 their frozen revisions and hashes. No measurement or packet is regenerated.
+
+The late NPER-constrained I*G family forms I=PV*rate before consuming G. Its
+48,114,000 difference/correction and 7,085,880 direct-F2XM1 profiles both reject
+on the same 220,888 rows, on native/hybrid backends. This is a separate earlier
+structure from PV*G first or I+I/em. The present-value RATE residual also rejects
+22,800,000 bounded one-step logical assignments; original PV-mode metadata has an
+explicit active-field erratum, and later source labels select the active mode.
+These late followups pin e9cb285 in their source units; earlier units and the
+separate8311ace rebuild validation keep their own original source boundaries.
