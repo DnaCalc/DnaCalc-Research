@@ -116,6 +116,7 @@ class Format:
 
 B64 = Format(53, -1022, 1023)
 E64 = Format(64, -16382, 16383)
+E53 = Format(53, -16382, 16383)
 
 
 @dataclass(frozen=True)
@@ -167,8 +168,12 @@ def rounding_inverse(i, model):
         return B64.preimage(i)
     if model == 1:
         return E64.preimage(B64.preimage(i))
-    assert model == 2
-    return E64.preimage(i)
+    if model == 2:
+        return E64.preimage(i)
+    if model == 3:
+        return E53.preimage(B64.preimage(i))
+    assert model == 4
+    return E53.preimage(i)
 
 
 def inverse_op(i, model, op, c, variable_left):
@@ -185,6 +190,21 @@ def inverse_op(i, model, op, c, variable_left):
         i = i.affine(c)
     else:
         i = i.reciprocal(c)
+    return B64.preimage(i) if model == 0 else i
+
+
+def inverse_add(i, model, constant):
+    """Invert x+constant, including strict operand stores and nearest-even."""
+    if i is None:
+        return None
+    i = rounding_inverse(i, model)
+    if i is None:
+        return None
+    if model == 0:
+        constant = B64.rn(constant)
+    if constant is None:
+        raise ArithmeticError('nonfinite additive constant')
+    i = i.affine(Q(1), -constant)
     return B64.preimage(i) if model == 0 else i
 
 

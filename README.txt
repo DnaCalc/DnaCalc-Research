@@ -134,3 +134,64 @@ this unit against the sibling DnaCalc at ec05eaeb3a30a56e492361d1c76fa17d0e649ea
 (or the original frozen revision with identical guarded source bytes). No numeric
 source changed in the final upstream pull. The complete compiled binaries and
 source hashes are in the external artifact directory.
+
+Round 8 first scores the immutable Round7 predictions against the38 new Excel
+answers. Every one of52,908 hypotheses has a separate exact pass/fail row in
+R8/poisson-blind/per-hypothesis-blind-scores.csv. None scores38/38; the highest
+score is30/38 (196 hypotheses). Only after this blind result is frozen does exact
+elimination reject all52,908, at the mean1e-6 boolean-FALSE question. The corresponding
+numeric-zero flag gives the same recorded answer. No Poisson program is promoted.
+
+Annuity structure discovery precedes the new searches. It retains exact typed
+rate/nper/environment groups, conditioned kind-transition brackets, the original
+38,432/11,932 gap identities, and isolated growth-factor preimages. NPER/RATE
+output-derived coordinates are separate projections; no internal RATE solver
+trace is inferred from externally evaluated FV observations.
+
+On235 isolated FV growth observations, only the named binary-squaring diagnostics
+remain compatible with every applicable exact preimage. This motivates joint
+PV/FV programs rather than a new PMT combine ranking. The354,294-program compact
+integer family has7,164 survivors on1,321 original rows. Its13-provider fractional
+refinement has1,824 survivors on all3,785 recorded positive-base/nonzero-rate
+PV/FV rows (including negative and fractional periods). Zero-rate/nonpositive-base
+controls remain outside that grammar. Larger separately factored families constrain
+the same four integer-growth IDs but remain broader hypotheses, not confirmations.
+
+The immutable30-question packet is at:
+  /home/ubuntu/codex-runs/fresh-questions-r8/
+It has16 PV and14 FV requests,26 new typed identities and4 intentional rechecks.
+Requests contain no answers; native/software predictions and all1,824 physical
+program descriptions are separate. Question source is fc14027112ea72444b43c720218e05503a07d555.
+The matching executable is retained outside this repository. Use on Windows:
+  cargo xtask witness read --func PV --inputs requests-PV.json
+  cargo xtask witness read --func FV --inputs requests-FV.json
+Do not pass --new-only. Score these frozen predictions before any later elimination.
+
+Three PMT-specific followups have zero survivors: positive shared PV/FV growth
+(5,773,680 components), five independently specified log producers with coupled
+growth/expm1 (36,085,500), and the shared interest/amortization decomposition
+constrained by NPER (1,603,800). Exact per-build reverse projections also test
+arbitrary common helpers, alternative numerator/division/multiplication forms,
+binary64 FMA and five arithmetic models. Their completed sufficient-row certificates
+are reviewed independently. These exclude specified structures, never all annuity
+programs. The hardware FYL2XP1 leaf is measured natively in BOTH replays; the second
+run is hybrid, not a software implementation of that instruction. The log series
+is DLMF4.6.E6, summed with PC64 until its value stops changing; no correct-rounding
+claim is made. Sources: https://dlmf.nist.gov/4.6.E6 and Intel's public SDM.
+
+Input preservation correction: an early research-only decimal f64 JSON path changed
+150 arguments in142 integer cases. All such joint runs are invalidated; only the
+bits-* reruns and later u64-backed runs count. Excel observations were not changed.
+Resident growth preimages also now include final RN53 publication; only corrected
+growth-preimage/comparison directories count. The frozen packet uses both fixes.
+The independent PC53 audit found a software-backend underflow discrepancy at the
+extended exponent boundary; no global native/software parity claim follows from
+ordinary-range controls or the matching recorded-input exclusions.
+
+Use R8=/home/ubuntu/codex-runs/dna-firehorse-20261031-round8. Build this round with:
+  DNA_RESEARCH_UNIT=annuity-r8-unit.json CARGO_TARGET_DIR=target cargo build --release --offline -p symbolic-racer
+Source units, complete grammars, commands/resource logs, exact first kills,
+survivors, supersession notes and independent reviews are retained there.
+The compact final index is round8-result.json; the report is:
+  /home/ubuntu/codex-runs/work-report-8.md
+No application kernel, evidence pin or recorded Excel answer changes.

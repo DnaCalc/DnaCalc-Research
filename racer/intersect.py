@@ -12,13 +12,20 @@ import hashlib
 import json
 import sys
 import time
-from intervals import B64, E64, Interval, inverse_op, number, stored
+from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, number, stored
 
-MODELS = dict(strict=0, stored_pc64=1, resident_pc64=2)
+MODELS = dict(strict=0, stored_pc64=1, resident_pc64=2, stored_pc53=3, resident_pc53=4)
 
 
 def rnd(x, model):
-    return B64.rn(x) if model == 0 else stored(x) if model == 1 else E64.rn(x)
+    if model==0:return B64.rn(x)
+    if model==1:return stored(x)
+    if model==2:return E64.rn(x)
+    if model==3:
+        y=E53.rn(x)
+        return B64.rn(y)if y is not None else None
+    assert model==4
+    return E53.rn(x)
 
 
 def compile_expr(expr, models, site):
@@ -66,6 +73,8 @@ def inverse_expr(expr, args, interval):
 
 def row_preimage(row, profile):
     c, expr, models = profile
+    if c.get('family') == 'shared_interest':
+        return interest_preimage(row, models, c)
     rate, pv, _, timing, _ = [Q(number(f'{b:016x}')) for b in row['leaves']]
     tf = rnd(1 + rate*timing, models[0])
     target = row['raw']['expected']
@@ -78,6 +87,38 @@ def row_preimage(row, profile):
         raise ArithmeticError('zero/nonfinite constant')
     target = B64.preimage(Interval(Q(value), Q(value)))
     return inverse_expr(expr, [pv, rate, None, tf], target)
+
+
+def interest_preimage(row, models, programme=None):
+    """I=PV*rate; A=I/em; output=-(I+A)/tf, one shared unknown em."""
+    rate,pv,_,timing,_=[Q(number(f'{b:016x}'))for b in row['leaves']]
+    target=row['raw']['expected']
+    if not target.startswith('0x'):
+        raise ArithmeticError('nonnumeric interest target')
+    value=number(target)
+    if value==0 or not(-float('inf')<value<float('inf')):
+        raise ArithmeticError('nonfinite/zero interest target')
+    programme=programme or {}
+    interest=rnd(pv*rate,models[0])
+    tf=rnd(1+rate*timing,models[1])
+    needs_interest=programme.get('sum_kind')!='fma' or programme.get('amortization_numerator')!='pv'
+    if (needs_interest and (interest is None or interest==0)) or tf is None or tf==0 or pv==0:
+        raise ArithmeticError('zero/nonfinite interest constant')
+    # Final publication is always RN53, including resident final division.
+    interval=B64.preimage(Interval(Q(-value),Q(-value)))
+    interval=inverse_op(interval,models[4],'div',tf,True)
+    if programme.get('sum_kind')=='fma':
+        # IEEE binary64 fma(PV,rate,A): exact product/add, one RN53;
+        # the A operand is explicitly stored to binary64 before the FMA.
+        interval=B64.preimage(interval) if interval else None
+        interval=interval.affine(Q(1),-pv*rate) if interval else None
+        interval=B64.preimage(interval) if interval else None
+    else:
+        interval=inverse_add(interval,models[3],interest)
+    if interval is None:
+        return None
+    constant=pv if programme.get('amortization_numerator')=='pv'else interest
+    return inverse_op(interval,models[2],programme.get('amortization_operation','div'),constant,False)
 
 
 def key(row):

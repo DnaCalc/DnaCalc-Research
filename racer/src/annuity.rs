@@ -174,6 +174,95 @@ pub fn audit_decimal_inputs(input: &str, out: &str) {
     );
 }
 
+pub fn transport_collisions(input: &str, old_decimal: &str, out: &str) {
+    use std::io::BufRead;
+    let transform =
+        |x: f64| serde_json::from_str::<f64>(&serde_json::to_string(&x).unwrap()).unwrap();
+    let mut controls = 0usize;
+    let mut changed_controls = 0usize;
+    for row in crate::lines::<Value>(old_decimal) {
+        for j in 0..5 {
+            let original = number(&row["raw"]["args"][j]);
+            let t = transform(original);
+            let observed = row["args"][j].as_f64().unwrap();
+            assert_eq!(
+                t.to_bits(),
+                observed.to_bits(),
+                "transport control matches the actual earlier normalization"
+            );
+            controls += 1;
+            changed_controls += (t.to_bits() != original.to_bits()) as usize;
+        }
+    }
+    let mut seen = [
+        std::collections::HashMap::<String, (String, usize)>::new(),
+        std::collections::HashMap::<String, (String, usize)>::new(),
+    ];
+    let mut stats =
+        std::collections::BTreeMap::<String, std::collections::BTreeMap<String, usize>>::new();
+    let mut conflicts = vec![];
+    for (idx, line) in std::io::BufReader::new(fs::File::open(input).unwrap())
+        .lines()
+        .enumerate()
+    {
+        let row: Value = serde_json::from_str(&line.unwrap()).unwrap();
+        let source = row["source"].as_str().unwrap();
+        let c = stats.entry(source.into()).or_default();
+        *c.entry("rows".into()).or_default() += 1;
+        let mut args = row["args"].clone();
+        let mut changed = 0usize;
+        let mut unsupported = false;
+        for arg in args.as_array_mut().unwrap() {
+            if let Some(text) = arg
+                .as_str()
+                .filter(|s| s.starts_with("0x") && s.len() == 18)
+            {
+                let value = f64::from_bits(u64::from_str_radix(&text[2..], 16).unwrap());
+                if !value.is_finite() {
+                    unsupported = true;
+                    break;
+                }
+                let result = transform(value);
+                changed += (result.to_bits() != value.to_bits()) as usize;
+                *arg = json!(format!("0x{:016x}", result.to_bits()));
+            }
+        }
+        if unsupported {
+            *c.entry("nonfinite_transport_control".into()).or_default() += 1;
+            continue;
+        }
+        *c.entry("changed_arguments".into()).or_default() += changed;
+        *c.entry("changed_rows".into()).or_default() += (changed != 0) as usize;
+        let expected = row["expected"].as_str().unwrap();
+        for mode in 0..2 {
+            let encoded = if mode == 0 { &row["args"] } else { &args };
+            let key = format!(
+                "{}|{}|{}|{}|{}",
+                row["function"], source, row["reading"], encoded, row["result_index"]
+            );
+            if let Some((old, first)) = seen[mode].get(&key) {
+                *c.entry(format!("mode{mode}_merged_inputs")).or_default() += 1;
+                if old != expected {
+                    *c.entry(format!("mode{mode}_conflicting_observations"))
+                        .or_default() += 1;
+                    if conflicts.len() < 40 {
+                        conflicts.push(json!({"mode":mode,"first_trace_index":first,"new_trace_index":idx,"first_expected":old,"new_expected":expected,"new_original_witness":row,"candidate_actual_input_args":encoded}));
+                    }
+                }
+            } else {
+                seen[mode].insert(key, (expected.into(), idx));
+            }
+        }
+    }
+    let result = json!({"transport_control_fields":controls,"changed_control_fields":changed_controls,"models":["identity","serde_json shortest-decimal serialization then default f64deserialization"],"source_statistics":stats,"conflict_examples":conflicts,
+        "policy":"These are measurement-pipeline hypotheses, not modified Excel answers or a proposed worksheet kernel. Input transformation is uniform across every numeric argument and never chosen by disagreement. A same-source/context input collision with different outcomes contradicts a deterministic composition under that transport model.","limitation":"The legacy capture implementation is not inferred from this diagnostic; no source or build correction is applied to the evidence."});
+    json_write(out, &result);
+    println!(
+        "{}",
+        json!({"controls":controls,"changed_controls":changed_controls,"source_statistics":stats,"conflict_examples":conflicts.len()})
+    );
+}
+
 pub fn prepare(pv: &str, fv: &str, out: &str, all_periods: bool) {
     fs::create_dir_all(out).unwrap();
     let mut rows = vec![];
@@ -1123,7 +1212,7 @@ pub fn factorized<F: Fpu>(input: &str, out: &str, family: u8) {
     println!("{summary}");
 }
 
-fn pmt_growth_value<F: Fpu>(
+pub(crate) fn pmt_growth_value<F: Fpu>(
     r: &crate::Row,
     g: Val,
     em: Val,

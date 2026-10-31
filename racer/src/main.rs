@@ -7,6 +7,7 @@ mod ported {
     include!(concat!(env!("OUT_DIR"), "/bridge.rs"));
 }
 mod annuity;
+mod annuity_early;
 mod boundary;
 mod dsl;
 mod enumerate;
@@ -350,6 +351,20 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("transport-collisions") => annuity::transport_collisions(&a[2], &a[3], &a[4]),
+        Some("nper-product-profiles") => annuity_early::nper_product_profiles(&a[2], &a[3], false),
+        Some("nper-product-profiles-five") => {
+            annuity_early::nper_product_profiles(&a[2], &a[3], true)
+        }
+        Some("pmt-interest") => match a.get(5).map(String::as_str) {
+            Some("soft") => annuity_early::interest_search::<Soft>(&a[2], &a[3], &a[4]),
+            _ => annuity_early::interest_search::<Hard>(&a[2], &a[3], &a[4]),
+        },
+        Some("annuity-early-controls") => annuity_early::controls(&a[2], &a[3]),
+        Some("annuity-early") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity_early::run::<Soft>(&a[2], &a[3]),
+            _ => annuity_early::run::<Hard>(&a[2], &a[3]),
+        },
         Some("annuity-questions") => annuity::questions(&a[2], &a[3], &a[4]),
         Some("pmt-positive-growth") => match a.get(5).map(String::as_str) {
             Some("soft") => annuity::pmt_growth_search::<Soft>(&a[2], &a[3], &a[4]),

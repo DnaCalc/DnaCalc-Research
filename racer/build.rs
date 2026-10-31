@@ -70,6 +70,7 @@ fn main() {
     text.push_str("\npub(crate) fn research_log<F: Fpu>(x: &Extended) -> Extended { F::fyl2x(&ext_ln2(), x, CW) }\n");
     text.push_str("\npub(crate) fn research_pow<F: Fpu>(b: f64, e: f64) -> Extended { x87_chains::pow2::<F>(&F::fyl2x(&load(e), &load(b), CW)) }\n");
     text.push_str("\npub(crate) fn research_pow2<F: Fpu>(t: &Extended) -> Extended { x87_chains::pow2::<F>(t) }\n");
+    text.push_str("\npub(crate) fn research_ln2() -> Extended { ext_ln2() }\n");
     println!("cargo:rerun-if-changed={}", source.join("mod.rs").display());
     fs::write(output.join("numeric.rs"), text).unwrap();
     fs::write(

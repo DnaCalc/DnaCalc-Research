@@ -24,7 +24,9 @@
     "tier1": [
       "IEEE 754 rounding",
       "recorded Excel outputs via existing xtask witness trace",
-      "annuity algebra"
+      "annuity algebra",
+      "https://dlmf.nist.gov/4.6.E6",
+      "Intel public SDM FYL2XP1 instruction and documented domain"
     ],
     "tier2": [
       "MIT OxFunc racer sources named above",
@@ -102,5 +104,74 @@
     "scope": "r>-1, r!=0, 0<=nper<u32::MAX integer; typed/nonfinite/other branches retained separately"
   },
   "frozen_questions_r7_scoring_evidence": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
-  "precision_correction": "Initial growth model2 preimages omitted final binary64 publication; corrected outputs are growth-preimages-corrected and growth-comparison-corrected-{native,software}. Other models and all forward searches unchanged. Independent review detected this."
+  "precision_correction": "Initial growth model2 preimages omitted final binary64 publication; corrected outputs are growth-preimages-corrected and growth-comparison-corrected-{native,software}. Other models and all forward searches unchanged. Independent review detected this.",
+  "followup_structure_projections": {
+    "builds_separate": [
+      "20131",
+      "20228"
+    ],
+    "arithmetic_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "precision_formats": {
+      "binary64": [
+        53,
+        -1022,
+        1023
+      ],
+      "Ext80_PC64": [
+        64,
+        -16382,
+        16383
+      ],
+      "Ext80_PC53": [
+        53,
+        -16382,
+        16383
+      ]
+    },
+    "NPER_registered_graph_product_models": {
+      "original_rows": 2501,
+      "allowed_model_indices": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "rejected_model_indices": [
+        2
+      ],
+      "conditional_on_other_sites": "stored_pc64"
+    },
+    "programmes": {
+      "original_four_leaf": 37500,
+      "shared_interest_nper_conditioned": 2500,
+      "shared_interest_unshared_precision": 3125,
+      "PV_div_helper_plus_interest": 2500,
+      "PV_mul_helper_plus_interest": 2500,
+      "binary64_fma_PV_div_helper": 125,
+      "binary64_fma_PV_mul_helper": 125
+    },
+    "scope": "Original FV=0 finite-discount scope, and bounded positive-rate scope for interest programmes; exact scope/filter counts in each run. One helper per rate/nper/full environment, optionally canonical timing; no helper may vary by PV.",
+    "method": "Exact rational nearest/even reverse intervals with open/closed endpoints and sufficient-row certificates; real-empty and no-Ext80-lattice-value exclusions recorded separately.",
+    "backend_limitation": "Independent native audit found Soft PC53 extended-exponent subnormal underflow discrepancy. Exact E53 rational model follows native control; no global Soft/Hard parity asserted."
+  },
+  "followup_loan_projection": {
+    "recorded_loan_count": 1,
+    "PPMT_rows": 7,
+    "matched_IPMT_rows": 7,
+    "helpers": 22,
+    "multiply_models": 5,
+    "profiles_per_backend": 110,
+    "formula": "PPMT=P*D, D=growth(rate,-(nper-period+1)); P is an unknown internal PMT constrained by every original PMT publication; not a fitted constant.",
+    "result": "All110 real-empty; conditional IPMT=P*(1-D) stage not reached."
+  },
+  "superseded_results": {
+    "decimal_f64_input_runs": "All pre-bits joint/factorized/shared/wide-scalar runs invalid;150 altered argument bits in142 rows. Original observations untouched.",
+    "growth_preimages": "Only growth-preimages-corrected and growth-comparison-corrected-{native,software} count; resident operation final RN53 now included."
+  }
 }

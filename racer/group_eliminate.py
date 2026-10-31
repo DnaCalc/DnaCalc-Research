@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 import sys
 import time
+import math
 import intersect as engine
 from intervals import E64, Interval, number
 
@@ -34,22 +35,48 @@ def verify(record, profile, rows):
         witnesses=[dict(trace_index=rows[idx]['trace_index'],witness=rows[idx]['raw'])for idx in ids])
 
 
-def run(input_path,catalogue,output):
+def run(input_path,catalogue,output,interest=False):
     start=time.monotonic()
     rows=[]
     groups=collections.defaultdict(list)
+    selection_counts=collections.Counter()
     for line in open(input_path):
         r=json.loads(line)
-        if number(f'{r["leaves"][2]:016x}')==0:
-            idx=len(rows);rows.append(r);groups[engine.key(r)].append(idx)
+        if number(f'{r["leaves"][2]:016x}')!=0:
+            selection_counts['FV_nonzero_control']+=1;continue
+        if interest:
+            rate=number(f'{r["leaves"][0]:016x}')
+            tau=number(r['raw']['args'][1])*number(f'{r["log1p"]:016x}')
+            if not(0<rate<=0.25 and 0<tau<1):
+                selection_counts['outside_interest_research_scope']+=1;continue
+        idx=len(rows);rows.append(r);groups[engine.key(r)].append(idx)
+        selection_counts['scoped']+=1
     engine.ROWS=rows
-    es=json.loads((catalogue/'expressions.json').read_text())
-    cs=json.loads((catalogue/'combines.json').read_text())
+    if interest:
+        precondition=json.loads(catalogue.read_text())
+        allowed=precondition['allowed_model_indices']
+        descriptor={k:precondition.get(k,default)for k,default in [('sum_kind','add'),('amortization_numerator','interest'),('amortization_operation','div')]}
+        es=[dict(family='shared_interest',**descriptor,programme='I=PV*rate; amort=(I or PV) op helper; output=-(I+amort)/tf or -fma(PV,rate,amort)/tf; descriptor and all five site models are explicit')]
+        names=precondition.get('arithmetic_models',['strict','stored_pc64','resident_pc64'])
+        radix=len(names)
+        cs=[]
+        for code in range(radix**5):
+            digits=[];n=code
+            for _ in range(5):digits.append(n%radix);n//=radix
+            if digits[0]not in allowed:continue
+            if descriptor['sum_kind']=='fma'and digits[3]!=0:continue
+            if descriptor['sum_kind']=='fma'and descriptor['amortization_numerator']=='pv'and digits[0]!=0:continue
+            cs.append(dict(id=code,family='shared_interest',expression=0,models=[names[i]for i in digits],**descriptor))
+    else:
+        es=json.loads((catalogue/'expressions.json').read_text())
+        cs=json.loads((catalogue/'combines.json').read_text())
     profiles=[]
     for c in cs:
         ms=[engine.MODELS[m] for m in c['models']]
-        expr,end=engine.compile_expr(es[c['expression']],ms,1)
-        assert end==4
+        if interest:expr=es[0]
+        else:
+            expr,end=engine.compile_expr(es[c['expression']],ms,1)
+            assert end==4
         profiles.append((c,expr,ms))
     output.mkdir(parents=True,exist_ok=True)
     result={}
@@ -99,6 +126,8 @@ def run(input_path,catalogue,output):
             real_intersection_kills=real_kills,ext80_lattice_kills=lattice_kills,
             first_kill_statistics=killers,computed_group_profile_counts=counts,complete=True)
     summary=dict(cohorts=result,seconds=time.monotonic()-start,
+        family='shared_interest'if interest else'original_four_leaf_combine',selection_counts=selection_counts,
+        programme_descriptor=descriptor if interest else None,
         input_sha256=hashlib.sha256(Path(input_path).read_bytes()).hexdigest(),
         claim='Each killed fixed combine profile has a rate/nper/environment group with no common finite binary64 or Ext80 expm1 value. Real-empty certificates also exclude arbitrary real em. Nonunit cohorts exclude a one-period-identity rescue; timing cohorts permit the helper to depend on canonical payment timing. Nonfinite/zero helper values cannot produce the finite nonzero killing targets.',
         limitation='This excludes only the killed specified combines/precision programs with a helper shared independently of PV (and independently of timing in cohorts without timing in their name). Surviving profiles would be constraints, not identified expm1 programs. It does not exclude PV-dependent arithmetic, additional operations/branches or other programs.',
@@ -108,4 +137,4 @@ def run(input_path,catalogue,output):
 
 
 if __name__=='__main__':
-    run(sys.argv[1],Path(sys.argv[2]),Path(sys.argv[3]))
+    run(sys.argv[1],Path(sys.argv[2]),Path(sys.argv[3]),interest='--interest'in sys.argv[4:])

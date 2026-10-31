@@ -94,15 +94,18 @@ fn less_one<F: Fpu>(v: Val) -> bool {
 }
 pub fn helper<F: Fpu>(h: &Helper, rate: f64, n: f64, log: f64) -> Val {
     let _ = rate; // Rate's frozen log1p is an explicit leaf, never refitted.
-    let t = neg(binop::<F>(Op::Mul(0, 1), h.t, Val::f64(n), Val::f64(log)));
+    helper_components::<F>(h, n, Val::f64(log)).2
+}
+pub fn helper_components<F: Fpu>(h: &Helper, n: f64, log: Val) -> (Val, Val, Val) {
+    let t = neg(binop::<F>(Op::Mul(0, 1), h.t, Val::f64(n), log));
     let u = store::<F>(Val::Ext(research_exp::<F>(&t.to_ext())), h.exp_store);
     let one = Val::f64(1.0);
     if u.to_ext().0 == one.to_ext().0 {
-        return store::<F>(t, h.em_store);
+        return (t, u, store::<F>(t, h.em_store));
     }
     let d = binop::<F>(Op::Add(0, 1), h.difference, u, neg(one));
     if !h.correction || !less_one::<F>(t) {
-        return store::<F>(d, h.em_store);
+        return (t, u, store::<F>(d, h.em_store));
     }
     let logu = store::<F>(Val::Ext(research_log::<F>(&u.to_ext())), h.log_store);
     let [a, b] = h.arithmetic;
@@ -112,7 +115,7 @@ pub fn helper<F: Fpu>(h: &Helper, rate: f64, n: f64, log: f64) -> Val {
         2 => binop::<F>(Op::Mul(0, 1), b, binop::<F>(Op::Div(0, 1), a, d, logu), t),
         _ => unreachable!(),
     };
-    store::<F>(e, h.em_store)
+    (t, u, store::<F>(e, h.em_store))
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
