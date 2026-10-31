@@ -175,6 +175,51 @@ def audit(directory):
     print(json.dumps(summary))
 
 
+def audit_questions(directory, packet_name):
+    root=Path(directory);packet=root/packet_name
+    requests=json.loads((packet/'requests.json').read_text())
+    assert set(requests)=={'function','witnesses'} and requests['function']=='POISSON.DIST'
+    questions=requests['witnesses'];assert 0<len(questions)<=64
+    ids=[q['id']for q in questions];assert len(set(ids))==len(ids)
+    keys=[]
+    for q in questions:
+        assert set(q)=={'id','args'} and len(q['args'])==3
+        assert q['args'][0]=='0x3ff0000000000000'
+        assert q['args'][2] is False or q['args'][2]=='0x0000000000000000'
+        keys.append(json.dumps(q['args'],separators=(',',':')))
+    assert len(set(keys))==len(keys)
+    old={json.dumps(r['args'],separators=(',',':'))for r in stream(root/'poisson-application-before.jsonl')}
+    candidates=set(json.loads((packet/'hypotheses.json').read_text())['candidate_ids'])
+    predictions=[]
+    for backend in ['native','software']:
+        records=list(stream(packet/f'predictions-{backend}.jsonl'))
+        assert [r['id']for r in records]==ids
+        encoded=[]
+        for record in records:
+            assert record['source_build_cohort']=='20527'
+            outcomes={}
+            for part in record['partitions']:
+                assert part['candidate_ids']
+                for c in part['candidate_ids']:
+                    assert c not in outcomes;outcomes[c]=part['outcome']
+            assert set(outcomes)==candidates
+            encoded.append(outcomes)
+        predictions.append(encoded)
+    differences=sum(a[c]!=b[c]for a,b in zip(*predictions)for c in candidates)
+    controls=json.loads((packet/'selection.json').read_text())['control_ids']
+    assert len(controls)==10 and set(controls)<=set(ids)
+    assert any(q['args'][1]=='0x4086800000000000'for q in questions) #720 exactly
+    report=dict(requests=len(questions),means=len({q['args'][1]for q in questions}),answers_in_requests=0,
+        new_typed_inputs_vs_decoded_trace=sum(k not in old for k in keys),rechecks_vs_decoded_trace=sum(k in old for k in keys),
+        newness_scope='Against49674 decoded original inputs; four unread source records remain unresolved failures.',
+        candidate_programs=len(candidates),prediction_partition_records=2*len(questions),
+        candidate_prediction_backend_differences=differences,source_build_cohort='20527',
+        global_family_survived=False,version_drift_confirmed=False,calculation_kernel_changed=False,
+        request_sha256=sha(packet/'requests.json'))
+    (packet/'validation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
+
+
 if __name__ == "__main__":
-    if len(sys.argv)>2:audit_r7(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
+    if sys.argv[1]=="questions":audit_questions(sys.argv[2],sys.argv[3])
+    elif len(sys.argv)>2:audit_r7(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
     else:audit(sys.argv[1])

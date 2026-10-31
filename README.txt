@@ -125,3 +125,12 @@ and builds-final-* in the artifact directory. Run certify.py DIR poisson for tho
 runs. Four actual invoke alias/false-flag controls exercise numeric subnormals.
 Final questions add a count-one mean720 domain-control pair and use distinct final
 IDs; requests contain no answers. Program predictions are separate files.
+
+Final upstream master e663103 adds WorksheetErrorCode::excel_spelling, an unused
+additive method in the guarded calc-value source directory. A fresh research build
+correctly refuses that delta; the frozen-source guard was retained. The numerical
+executables and question generator were built at ec05eae before that pull. Rebuild
+this unit against the sibling DnaCalc at ec05eaeb3a30a56e492361d1c76fa17d0e649eaa
+(or the original frozen revision with identical guarded source bytes). No numeric
+source changed in the final upstream pull. The complete compiled binaries and
+source hashes are in the external artifact directory.
