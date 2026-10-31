@@ -872,11 +872,10 @@ fn models(mut code: usize) -> [EvalModel; 8] {
         m
     })
 }
-fn evaluate<F: Fpu>(row: &AnnuityCase, g: Val, association: usize, m: [EvalModel; 8]) -> Val {
-    let [rate, _, payment, balance, timing] = row.numbers();
+fn annuity_paid<F: Fpu>(row: &AnnuityCase, g: Val, association: usize, m: [EvalModel; 8]) -> Val {
+    let [rate, _, payment, _, timing] = row.numbers();
     let r = Val::f64(rate);
     let p = Val::f64(payment);
-    let b = Val::f64(balance);
     let tf = if timing.trunc() == 0.0 {
         one()
     } else {
@@ -889,12 +888,139 @@ fn evaluate<F: Fpu>(row: &AnnuityCase, g: Val, association: usize, m: [EvalModel
         2 => mul::<F>(div::<F>(tf, r, m[2]), d, m[3]),
         _ => unreachable!(),
     };
-    let paid = mul::<F>(p, term, m[4]);
+    mul::<F>(p, term, m[4])
+}
+fn evaluate<F: Fpu>(row: &AnnuityCase, g: Val, association: usize, m: [EvalModel; 8]) -> Val {
+    let b = Val::F64(row.args[3]);
+    let paid = annuity_paid::<F>(row, g, association, m);
     if row.raw["function"] == "FV" {
         neg(add::<F>(mul::<F>(b, g, m[5]), paid, m[6]))
     } else {
         neg(div::<F>(add::<F>(b, paid, m[6]), g, m[7]))
     }
+}
+
+pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
+    let cases: Vec<Value> = serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    let prior: Vec<usize> = serde_json::from_slice(&fs::read(prior_path).unwrap()).unwrap();
+    assert_eq!(cases.len(), 60);
+    assert_eq!(prior.len(), 1824);
+    fs::create_dir_all(out).unwrap();
+    let root = Path::new(out);
+    let gs = growths();
+    let arithmetic = [
+        EvalModel::Strict,
+        EvalModel::StoredPc64,
+        EvalModel::ResidentPc64,
+        EvalModel::StoredPc53,
+        EvalModel::ResidentPc53,
+    ];
+    let forms = 4;
+    let count = prior.len() * forms * 3125;
+    json_write(
+        root.join("grammar.json"),
+        &json!({"PV_FV_programs":prior,"programs":count,
+        "residual_forms":["FVtarget+store53(BG+paid)","FVtarget+(BG+paid)","(FVtarget+BG)+paid","(FVtarget+paid)+BG"],
+        "shared_core":"BG=PV*G, paid=payment*annuity_term, and BG+paid use the selected frozen PV/FV programme and retain its tagged internal values. Every published FV(guess) is rechecked against the original observation.",
+        "sites":["residual first addition","residual second addition (inactive in forms0/1)","derivative PV+canonical_type*payment","residual/derivative","guess-step"],
+        "models":arithmetic,"layout":"id=(PVFV_hypothesis_index*4+residual_form)*3125+little_endian_base5_site_code",
+        "scope":"60 finite explicit-guess nper1 RATE/FV pairs. Exactly one analytic-derivative Newton step; no claim of Excel iteration count, derivative, internal evaluator or stopping rule.",
+        "sources":["IEEE rounding","annuity/Newton mathematics","recorded RATE/FV outputs","prior PV/FV hypotheses"]}),
+    );
+    json_write(root.join("observations.json"), &cases);
+    let mut alive: Vec<u32> = (0..count as u32).collect();
+    let mut evaluations = 0u64;
+    let mut checked_fv = 0;
+    let mut kills = BufWriter::new(fs::File::create(root.join("first-kills.jsonl")).unwrap());
+    let mut stats = vec![];
+    for (idx, case) in cases.iter().enumerate() {
+        let raw = &case["RATE"];
+        let fv = &case["FV"];
+        let args: [u64; 5] = std::array::from_fn(|j| number(&fv["args"][j]).to_bits());
+        let row = AnnuityCase {
+            trace_index: idx,
+            raw: fv.clone(),
+            args,
+        };
+        let a = row.numbers();
+        assert_eq!(a[1], 1.0);
+        let future = Val::f64(number(&raw["args"][3]));
+        let guess = Val::F64(args[0]);
+        let timed_payment = Val::f64(if a[4].trunc() == 0.0 { 0.0 } else { a[2] });
+        let derivatives: Vec<Val> = arithmetic
+            .iter()
+            .map(|&m| add::<F>(Val::F64(args[3]), timed_payment, m))
+            .collect();
+        let cores: Vec<_> = prior
+            .iter()
+            .map(|&hyp| {
+                let id = hyp / 13;
+                let ms = models(id % PROFILES);
+                let g = fractional_growth::<F>(&gs[id / (3 * PROFILES)], a[0], a[1], hyp % 13);
+                let paid = annuity_paid::<F>(&row, g, (id / PROFILES) % 3, ms);
+                let bg = mul::<F>(Val::F64(args[3]), g, ms[5]);
+                let sum = add::<F>(bg, paid, ms[6]);
+                assert_eq!(outcome::<F>(neg(sum)), fv["expected"].as_str().unwrap());
+                checked_fv += 1;
+                (bg, paid, sum)
+            })
+            .collect();
+        let before = alive.len();
+        let mut rejected = std::collections::BTreeMap::<String, Vec<u32>>::new();
+        alive.retain(|&pid| {
+            let id = pid as usize;
+            let mut code = id % 3125;
+            let mut m = [0usize; 5];
+            for d in &mut m {
+                *d = code % 5;
+                code /= 5;
+            }
+            let form = (id / 3125) % forms;
+            let pi = id / (3125 * forms);
+            let (bg, paid, sum) = cores[pi];
+            let r = match form {
+                0 => add::<F>(future, Val::f64(sum.to_f64::<F>()), arithmetic[m[0]]),
+                1 => add::<F>(future, sum, arithmetic[m[0]]),
+                2 => add::<F>(
+                    add::<F>(future, bg, arithmetic[m[0]]),
+                    paid,
+                    arithmetic[m[1]],
+                ),
+                3 => add::<F>(
+                    add::<F>(future, paid, arithmetic[m[0]]),
+                    bg,
+                    arithmetic[m[1]],
+                ),
+                _ => unreachable!(),
+            };
+            let step = div::<F>(r, derivatives[m[2]], arithmetic[m[3]]);
+            let got = outcome::<F>(add::<F>(guess, neg(step), arithmetic[m[4]]));
+            evaluations += 1;
+            if got == raw["expected"].as_str().unwrap() {
+                true
+            } else {
+                rejected.entry(got).or_default().push(pid);
+                false
+            }
+        });
+        for (got, ids) in rejected {
+            serde_json::to_writer(&mut kills,&json!({"candidate_ids":ids,"case":idx,"original":case,"expected":raw["expected"],"got":got})).unwrap();
+            writeln!(kills).unwrap();
+        }
+        let rec =
+            json!({"case":idx,"id":raw["id"],"killed":before-alive.len(),"remaining":alive.len()});
+        if before != alive.len() {
+            println!("{rec}");
+            kills.flush().unwrap();
+        }
+        stats.push(rec);
+    }
+    json_write(root.join("survivors.json"), &alive);
+    json_write(root.join("witness-kills.json"), &stats);
+    let summary = json!({"programs":count,"survivors":alive.len(),"cases":cases.len(),"checked_original_FV_calls":checked_fv,"evaluations":evaluations,"complete":true,
+        "claim":"Exact joint PV/FV and bounded one-step RATE consumer constraints; standalone PV/FV hypotheses are not eliminated by a failed transfer."});
+    json_write(root.join("summary.json"), &summary);
+    println!("{summary}");
 }
 
 pub fn joint_integer<F: Fpu>(input: &str, out: &str) {

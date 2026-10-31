@@ -284,5 +284,42 @@
     ],
     "limitation": "External FV output is a constrained function call, never an installed answer constant. Exactly one step is a hypothesis; no internal evaluation, derivative or stopping rule is presumed.",
     "fixed_before_search": true
+  },
+  "RATE_internal_FV_followup": {
+    "motivation": "The625 one-step consumers of published FV(guess) reject firstRATEcase. Test actual shared PV/FV internal BG,paid,sum values and different residual associations before publication, while requiring every externalFV(guess) output to remain exact.",
+    "role": "implementer",
+    "PV_FV_hypotheses": 1824,
+    "residual_forms": 4,
+    "five_model_site_profiles": 3125,
+    "programs": 22800000,
+    "residual_forms_spec": [
+      "FVtarget+store53(BG+paid)",
+      "FVtarget+(BG+paid)",
+      "(FVtarget+BG)+paid",
+      "(FVtarget+paid)+BG"
+    ],
+    "sites": [
+      "residual first addition",
+      "residual second addition, inactive forms0/1",
+      "PV+timing*payment derivative",
+      "residual/derivative",
+      "guess-step"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "scope": "All60 explicitly numeric nper1 RATE/FV-at-guess pairs; exactly one analytic-derivative Newton step is the programme hypothesis.",
+    "sources": [
+      "IEEE rounding",
+      "annuity/Newton mathematics",
+      "prior1824PVFV hypotheses",
+      "genuine RATE/FV observations"
+    ],
+    "limitation": "No Excel internal trace or actual stopping rule presumed; failing this transfer does not reject standalonePV/FV hypotheses.",
+    "fixed_before_search": true
   }
 }

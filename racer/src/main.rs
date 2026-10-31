@@ -352,6 +352,10 @@ fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
         Some("transport-collisions") => annuity::transport_collisions(&a[2], &a[3], &a[4]),
+        Some("rate-internal") => match a.get(5).map(String::as_str) {
+            Some("soft") => annuity::rate_internal::<Soft>(&a[2], &a[3], &a[4]),
+            _ => annuity::rate_internal::<Hard>(&a[2], &a[3], &a[4]),
+        },
         Some("nper-product-profiles") => annuity_early::nper_product_profiles(&a[2], &a[3], false),
         Some("nper-product-profiles-five") => {
             annuity_early::nper_product_profiles(&a[2], &a[3], true)
