@@ -89,5 +89,10 @@
     "execution-freeze-final.json": "0295194d42e0d4aef5fcc55248dddecdc3e6344db97be062477844243d3fb8f7",
     "self-test-corrected.log": "d4db53cf342a78f10868543f3a9aa21afb2b7342a16760f966d6295450f04b85",
     "corpus-comparison.json": "931464fcad5d30512ea627ab5f4199f1d1bd4399463e1258fd65471c3410b0c8"
-  }
+  },
+  "whole_family_published_output_set_rows_compared": 250730,
+  "whole_family_complete_tagged_root_set_rows_compared": 38432,
+  "complete_tagged_root_set_comparison_scope": "All unreachable rows; plus complete serialized-graph equality controls on 64 sampled scope rows. No claim of individual program predictions on every scoped row.",
+  "final_rerun_peak_rss_kib": 671224,
+  "round_search_peak_rss_kib": 671284
 }
