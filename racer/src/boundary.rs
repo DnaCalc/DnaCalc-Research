@@ -148,12 +148,14 @@ pub fn expressions() -> Vec<Expr> {
     ]
 }
 pub fn all_expressions() -> Vec<Expr> {
-    let out=expressions_with_powers([1,1,-1,-1]);
-    assert_eq!(out.len(),60);
-    for e in expressions(){assert!(out.contains(&e))}
+    let out = expressions_with_powers([1, 1, -1, -1]);
+    assert_eq!(out.len(), 60);
+    for e in expressions() {
+        assert!(out.contains(&e))
+    }
     out
 }
-pub fn expressions_with_powers(target:[i8;4]) -> Vec<Expr> {
+pub fn expressions_with_powers(target: [i8; 4]) -> Vec<Expr> {
     fn generate(mask: u8) -> Vec<(Expr, [i8; 4])> {
         if mask.count_ones() == 1 {
             let i = mask.trailing_zeros() as usize;

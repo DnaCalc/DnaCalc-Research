@@ -5,7 +5,9 @@ fn main() {
     // own source revision before any research build uses it.
     println!("cargo:rerun-if-env-changed=DNA_RESEARCH_UNIT");
     let unit_name = env::var("DNA_RESEARCH_UNIT").unwrap_or_else(|_| "pmt-r6-unit.json".into());
-    let unit_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("..").join(unit_name);
+    let unit_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("..")
+        .join(unit_name);
     let unit: serde_json::Value = serde_json::from_slice(&fs::read(&unit_path).unwrap()).unwrap();
     let revision = unit["application_revision"].as_str().unwrap();
     let checkout = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../DnaCalc");
