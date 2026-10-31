@@ -900,7 +900,7 @@ fn evaluate<F: Fpu>(row: &AnnuityCase, g: Val, association: usize, m: [EvalModel
     }
 }
 
-pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
+pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str, pv_mode: bool) {
     let cases: Vec<Value> = serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
     let prior: Vec<usize> = serde_json::from_slice(&fs::read(prior_path).unwrap()).unwrap();
     assert_eq!(cases.len(), 60);
@@ -919,8 +919,10 @@ pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
     let count = prior.len() * forms * 3125;
     json_write(
         root.join("grammar.json"),
-        &json!({"PV_FV_programs":prior,"programs":count,
+        &json!({"PV_FV_programs":prior,"programs":count,"present_value_residual":pv_mode,
         "residual_forms":["FVtarget+store53(BG+paid)","FVtarget+(BG+paid)","(FVtarget+BG)+paid","(FVtarget+paid)+BG"],
+        "PV_mode_forms":["PVtarget+store53((FVtarget+paid)/G)","PVtarget+(FVtarget+paid)/G","(PVtarget+FVtarget/G)+paid/G","(PVtarget+timed_payment)+C/G, C=FVtarget+untimed_payment"],
+        "PV_mode_derivative":"-C/(G*G); C addition,G square and division all use derivative-site model. Form3 shares the same C; its division/final-add share second-site model. Generic PV quotients use selected PV-programme m7.",
         "shared_core":"BG=PV*G, paid=payment*annuity_term, and BG+paid use the selected frozen PV/FV programme and retain its tagged internal values. Every published FV(guess) is rechecked against the original observation.",
         "sites":["residual first addition","residual second addition (inactive in forms0/1)","derivative PV+canonical_type*payment","residual/derivative","guess-step"],
         "models":arithmetic,"layout":"id=(PVFV_hypothesis_index*4+residual_form)*3125+little_endian_base5_site_code",
@@ -947,6 +949,7 @@ pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
         let future = Val::f64(number(&raw["args"][3]));
         let guess = Val::F64(args[0]);
         let timed_payment = Val::f64(if a[4].trunc() == 0.0 { 0.0 } else { a[2] });
+        let untimed_payment = Val::f64(if a[4].trunc() == 0.0 { a[2] } else { 0.0 });
         let derivatives: Vec<Val> = arithmetic
             .iter()
             .map(|&m| add::<F>(Val::F64(args[3]), timed_payment, m))
@@ -962,7 +965,25 @@ pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
                 let sum = add::<F>(bg, paid, ms[6]);
                 assert_eq!(outcome::<F>(neg(sum)), fv["expected"].as_str().unwrap());
                 checked_fv += 1;
-                (bg, paid, sum)
+                let mut pv_q = one();
+                let mut fv_q = one();
+                let mut paid_q = one();
+                let mut cs = [one(); 5];
+                let mut ds = [one(); 5];
+                if pv_mode {
+                    pv_q = div::<F>(add::<F>(future, paid, ms[6]), g, ms[7]);
+                    fv_q = div::<F>(future, g, ms[7]);
+                    paid_q = div::<F>(paid, g, ms[7]);
+                    for k in 0..5 {
+                        cs[k] = add::<F>(future, untimed_payment, arithmetic[k]);
+                        ds[k] = neg(div::<F>(
+                            cs[k],
+                            mul::<F>(g, g, arithmetic[k]),
+                            arithmetic[k],
+                        ));
+                    }
+                }
+                (bg, paid, sum, g, pv_q, fv_q, paid_q, cs, ds)
             })
             .collect();
         let before = alive.len();
@@ -977,23 +998,49 @@ pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
             }
             let form = (id / 3125) % forms;
             let pi = id / (3125 * forms);
-            let (bg, paid, sum) = cores[pi];
-            let r = match form {
-                0 => add::<F>(future, Val::f64(sum.to_f64::<F>()), arithmetic[m[0]]),
-                1 => add::<F>(future, sum, arithmetic[m[0]]),
-                2 => add::<F>(
-                    add::<F>(future, bg, arithmetic[m[0]]),
-                    paid,
-                    arithmetic[m[1]],
-                ),
-                3 => add::<F>(
-                    add::<F>(future, paid, arithmetic[m[0]]),
-                    bg,
-                    arithmetic[m[1]],
-                ),
-                _ => unreachable!(),
+            let (bg, paid, sum, g, pv_q, fv_q, paid_q, cs, ds) = cores[pi];
+            let r = if pv_mode {
+                match form {
+                    0 => add::<F>(
+                        Val::F64(args[3]),
+                        Val::f64(pv_q.to_f64::<F>()),
+                        arithmetic[m[0]],
+                    ),
+                    1 => add::<F>(Val::F64(args[3]), pv_q, arithmetic[m[0]]),
+                    2 => add::<F>(
+                        add::<F>(Val::F64(args[3]), fv_q, arithmetic[m[0]]),
+                        paid_q,
+                        arithmetic[m[1]],
+                    ),
+                    3 => add::<F>(
+                        add::<F>(Val::F64(args[3]), timed_payment, arithmetic[m[0]]),
+                        div::<F>(cs[m[2]], g, arithmetic[m[1]]),
+                        arithmetic[m[1]],
+                    ),
+                    _ => unreachable!(),
+                }
+            } else {
+                match form {
+                    0 => add::<F>(future, Val::f64(sum.to_f64::<F>()), arithmetic[m[0]]),
+                    1 => add::<F>(future, sum, arithmetic[m[0]]),
+                    2 => add::<F>(
+                        add::<F>(future, bg, arithmetic[m[0]]),
+                        paid,
+                        arithmetic[m[1]],
+                    ),
+                    3 => add::<F>(
+                        add::<F>(future, paid, arithmetic[m[0]]),
+                        bg,
+                        arithmetic[m[1]],
+                    ),
+                    _ => unreachable!(),
+                }
             };
-            let step = div::<F>(r, derivatives[m[2]], arithmetic[m[3]]);
+            let step = div::<F>(
+                r,
+                if pv_mode { ds[m[2]] } else { derivatives[m[2]] },
+                arithmetic[m[3]],
+            );
             let got = outcome::<F>(add::<F>(guess, neg(step), arithmetic[m[4]]));
             evaluations += 1;
             if got == raw["expected"].as_str().unwrap() {
@@ -1017,7 +1064,7 @@ pub fn rate_internal<F: Fpu>(input: &str, prior_path: &str, out: &str) {
     }
     json_write(root.join("survivors.json"), &alive);
     json_write(root.join("witness-kills.json"), &stats);
-    let summary = json!({"programs":count,"survivors":alive.len(),"cases":cases.len(),"checked_original_FV_calls":checked_fv,"evaluations":evaluations,"complete":true,
+    let summary = json!({"programs":count,"survivors":alive.len(),"cases":cases.len(),"checked_original_FV_calls":checked_fv,"evaluations":evaluations,"present_value_residual":pv_mode,"complete":true,
         "claim":"Exact joint PV/FV and bounded one-step RATE consumer constraints; standalone PV/FV hypotheses are not eliminated by a failed transfer."});
     json_write(root.join("summary.json"), &summary);
     println!("{summary}");

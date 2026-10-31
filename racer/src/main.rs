@@ -353,8 +353,12 @@ fn main() {
     match a.get(1).map(String::as_str) {
         Some("transport-collisions") => annuity::transport_collisions(&a[2], &a[3], &a[4]),
         Some("rate-internal") => match a.get(5).map(String::as_str) {
-            Some("soft") => annuity::rate_internal::<Soft>(&a[2], &a[3], &a[4]),
-            _ => annuity::rate_internal::<Hard>(&a[2], &a[3], &a[4]),
+            Some("soft") => annuity::rate_internal::<Soft>(&a[2], &a[3], &a[4], false),
+            _ => annuity::rate_internal::<Hard>(&a[2], &a[3], &a[4], false),
+        },
+        Some("rate-present") => match a.get(5).map(String::as_str) {
+            Some("soft") => annuity::rate_internal::<Soft>(&a[2], &a[3], &a[4], true),
+            _ => annuity::rate_internal::<Hard>(&a[2], &a[3], &a[4], true),
         },
         Some("nper-product-profiles") => annuity_early::nper_product_profiles(&a[2], &a[3], false),
         Some("nper-product-profiles-five") => {

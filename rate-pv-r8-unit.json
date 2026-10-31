@@ -1,0 +1,53 @@
+{
+  "id": "dc-j9k-RATE-PV-residual-r8",
+  "role": "implementer",
+  "application_revision": "e9cb28536058ec50b037f189fc910ef23824f7cf",
+  "inherits_grammar_and_source_policy_from": "annuity-r8-unit.json",
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "budget": {
+    "wall_deadline_utc": "2026-10-31T22:15:00Z",
+    "workers": 2,
+    "memory_bytes": 4294967296
+  },
+  "motivation": "FV-publication and internal-FV Newton consumers are excluded. Test the mathematically independent present-value residual and its analytic one-period derivative, still sharing the frozen PV/FV programme.",
+  "programme": {
+    "prior_PV_FV_hypotheses": 1824,
+    "residual_forms": 4,
+    "five_model_site_profiles": 3125,
+    "logical_assignments": 22800000,
+    "scope": "The same60 explicit numeric nper1 RATE/FV-at-guess pairs; exactly one step is the hypothesis.",
+    "residuals": [
+      "PVtarget+store53(PV_quotient)",
+      "PVtarget+PV_quotient",
+      "(PVtarget+FVtarget/G)+paid/G",
+      "(PVtarget+timed_payment)+C/G"
+    ],
+    "PV_quotient": "(FVtarget+paid)/G using original PV programme sum/division models",
+    "C": "FVtarget+untimed_payment",
+    "derivative": "-C/(G*G), three operations use the derivative-site model; C shared with form3",
+    "consumer_sites": [
+      "residual first addition",
+      "second addition; form3 division/final-add share this model",
+      "derivative block",
+      "residual/derivative",
+      "guess-step"
+    ]
+  },
+  "sources": [
+    "IEEE rounding",
+    "annuity/PV/Newton mathematics",
+    "frozen PV/FV hypotheses",
+    "genuine RATE and FV observations"
+  ],
+  "limitation": "No PV-at-guess observations invented. All original FV publications remain checked; present-value internal calls are programme predictions. No internal Excel trace, stopping rule or actual derivative asserted.",
+  "fixed_before_search": true
+}
