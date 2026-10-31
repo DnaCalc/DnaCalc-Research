@@ -1,0 +1,23 @@
+{
+  "id": "dc-j9k-r8-final-rebuild-only",
+  "role": "implementer",
+  "application_revision": "8311ace47c7cfe50b7184d0138be340e999c0147",
+  "measurement_application_revision": "c62ffca1e48b61989e7b481f9243a44fb6576b50",
+  "inherits_grammar_and_source_policy_from": "annuity-r8-unit.json",
+  "purpose": "Fresh rebuild validation only. Every numerical run, frozen packet and executable keeps its original unit/source hash; no old source guard is weakened.",
+  "guarded_source_delta": [
+    "crates/calc-func/src/udf.rs"
+  ],
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "guard_negative_control": "frozen-source-guard-final.log: expected101 because udf.rs changed",
+  "new_measurements": false
+}

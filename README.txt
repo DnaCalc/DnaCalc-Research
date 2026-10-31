@@ -135,11 +135,11 @@ this unit against the sibling DnaCalc at ec05eaeb3a30a56e492361d1c76fa17d0e649ea
 source changed in the final upstream pull. The complete compiled binaries and
 source hashes are in the external artifact directory.
 
-Round 8 first scores the immutable Round7 predictions against the38 new Excel
-answers. Every one of52,908 hypotheses has a separate exact pass/fail row in
-R8/poisson-blind/per-hypothesis-blind-scores.csv. None scores38/38; the highest
-score is30/38 (196 hypotheses). Only after this blind result is frozen does exact
-elimination reject all52,908, at the mean1e-6 boolean-FALSE question. The corresponding
+Round 8 first scores the immutable Round7 predictions against the 38 new Excel
+answers. Every one of 52,908 hypotheses has a separate exact pass/fail row in
+R8/poisson-blind/per-hypothesis-blind-scores.csv. None scores 38/38; the highest
+score is 30/38 (196 hypotheses). Only after this blind result is frozen does exact
+elimination reject all 52,908, at the mean 1e-6 boolean-FALSE question. The corresponding
 numeric-zero flag gives the same recorded answer. No Poisson program is promoted.
 
 Annuity structure discovery precedes the new searches. It retains exact typed
@@ -148,19 +148,19 @@ rate/nper/environment groups, conditioned kind-transition brackets, the original
 output-derived coordinates are separate projections; no internal RATE solver
 trace is inferred from externally evaluated FV observations.
 
-On235 isolated FV growth observations, only the named binary-squaring diagnostics
+On 235 isolated FV growth observations, only the named binary-squaring diagnostics
 remain compatible with every applicable exact preimage. This motivates joint
-PV/FV programs rather than a new PMT combine ranking. The354,294-program compact
-integer family has7,164 survivors on1,321 original rows. Its13-provider fractional
-refinement has1,824 survivors on all3,785 recorded positive-base/nonzero-rate
+PV/FV programs rather than a new PMT combine ranking. The 354,294-program compact
+integer family has 7,164 survivors on 1,321 original rows. Its 13-provider fractional
+refinement has 1,824 survivors on all 3,785 recorded positive-base/nonzero-rate
 PV/FV rows (including negative and fractional periods). Zero-rate/nonpositive-base
 controls remain outside that grammar. Larger separately factored families constrain
 the same four integer-growth IDs but remain broader hypotheses, not confirmations.
 
-The immutable30-question packet is at:
+The immutable 30-question packet is at:
   /home/ubuntu/codex-runs/fresh-questions-r8/
-It has16 PV and14 FV requests,26 new typed identities and4 intentional rechecks.
-Requests contain no answers; native/software predictions and all1,824 physical
+It has 16 PV and 14 FV requests, 26 new typed identities and 4 intentional rechecks.
+Requests contain no answers; native/software predictions and all 1,824 physical
 program descriptions are separate. Question source is fc14027112ea72444b43c720218e05503a07d555.
 The matching executable is retained outside this repository. Use on Windows:
   cargo xtask witness read --func PV --inputs requests-PV.json
@@ -176,11 +176,11 @@ binary64 FMA and five arithmetic models. Their completed sufficient-row certific
 are reviewed independently. These exclude specified structures, never all annuity
 programs. The hardware FYL2XP1 leaf is measured natively in BOTH replays; the second
 run is hybrid, not a software implementation of that instruction. The log series
-is DLMF4.6.E6, summed with PC64 until its value stops changing; no correct-rounding
+is DLMF 4.6.E6, summed with PC64 until its value stops changing; no correct-rounding
 claim is made. Sources: https://dlmf.nist.gov/4.6.E6 and Intel's public SDM.
 
 Input preservation correction: an early research-only decimal f64 JSON path changed
-150 arguments in142 integer cases. All such joint runs are invalidated; only the
+150 arguments in 142 integer cases. All such joint runs are invalidated; only the
 bits-* reruns and later u64-backed runs count. Excel observations were not changed.
 Resident growth preimages also now include final RN53 publication; only corrected
 growth-preimage/comparison directories count. The frozen packet uses both fixes.
@@ -189,9 +189,46 @@ extended exponent boundary; no global native/software parity claim follows from
 ordinary-range controls or the matching recorded-input exclusions.
 
 Use R8=/home/ubuntu/codex-runs/dna-firehorse-20261031-round8. Build this round with:
-  DNA_RESEARCH_UNIT=annuity-r8-unit.json CARGO_TARGET_DIR=target cargo build --release --offline -p symbolic-racer
+  DNA_RESEARCH_UNIT=annuity-r8-rebuild-unit.json CARGO_TARGET_DIR=target cargo build --release --offline -p symbolic-racer
 Source units, complete grammars, commands/resource logs, exact first kills,
 survivors, supersession notes and independent reviews are retained there.
 The compact final index is round8-result.json; the report is:
   /home/ubuntu/codex-runs/work-report-8.md
 No application kernel, evidence pin or recorded Excel answer changes.
+
+Later R8 structure checks keep the whole-function constraints separate. A single
+shared annuity factor with one PV multiply and one PMT divide is rejected by all
+25 five-model profiles on paired build20131 observations; this does not exclude
+more complex consumers of a shared helper. Direct F2XM1 expm1 with coupled growth
+rejects all 5,314,410 PMT programs on 220,888 bounded rows. Its raw native/software
+components sometimes differ even though the first kills agree.
+
+The one-loan backward balance check treats internal PMT as every one of the 2,049
+Ext80 values publishing to its observed value, with the same unknown PMT across
+seven periods. All 899,640 components / 2,698,920 partial programs reject in IPMT;
+PPMT is not reached. Transferring the frozen PV/FV growth into that same balance
+rejects 504 components / 1,378,944 joint partial assignments. This leaves the 1,824
+standalone PV/FV hypotheses intact and does not fit or install a latent payment.
+
+Five-model arbitrary-helper proofs reject the original 37,500 four-leaf profiles
+separately on both builds for all/nonunit/timing cohorts. The stronger nonunit plus
+timing build20131 proof also excludes all 37,500: an original singleton group
+rejects the remaining 312 after the retained 37,188-profile partial passes.
+The stopped sequential run and
+the independent sufficient-subset closure have distinct provenance and order.
+
+RATE discovery has 231 mismatching cases whose recorded external FV companions
+all match. Only one of 60 one-period RATE answers is the RN53 exact linear root;
+that is a mathematical diagnostic and supplies no internal stopping tolerance.
+All 625 five-model one-step Newton consumers of published FV(guess) are rejected.
+Transferring the actual PV/FV internal BG/paid/sum into four residual forms rejects
+22,800,000 logical assignments on both backends; inactive site choices are retained
+as duplicates. All 109,440 original FV publications are checked per backend across
+the 60 cases. This rejects bounded one-step consumers, not all RATE algorithms,
+and leaves the standalone PV/FV hypotheses intact.
+
+The final upstream8311ace pull changes udf.rs in the guarded source tree. The old
+R8 unit correctly refuses a fresh build there. annuity-r8-rebuild-unit.json pins
+that revision explicitly for rebuild validation; all eight numerical source hashes
+remain unchanged. Original units, run executables and the question generator retain
+their frozen revisions and hashes. No measurement or packet is regenerated.
