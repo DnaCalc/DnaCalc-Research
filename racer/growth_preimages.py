@@ -12,6 +12,7 @@ from pathlib import Path
 import sys
 from intervals import B64, E64, E53, Interval, inverse_op, number, stored
 from certify import exact_root
+import itertools
 
 
 def key(raw):
@@ -208,8 +209,81 @@ def loan_compare(prepared,diagnostics,out):
     (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary))
 
 
+def factor_projection(traces,out):
+    """Single-cashflow shared-factor constraints, before choosing its algorithm.
+
+    FV=-PV*G or -payment*A_FV; PV=-FV/G or -payment*A_PV;
+    PMT=-PV/A_PV or -FV/A_FV. Helpers include canonical payment timing.
+    Every program has one fixed final arithmetic model per function.
+    """
+    from functools import lru_cache
+    out.mkdir(parents=True,exist_ok=False)
+    groups=defaultdict(list);excluded=Counter();input_hashes={}
+    functions={'growth':('PV','FV'),'present_annuity':('PV','PMT'),'future_annuity':('FV','PMT')}
+    for fn in ['PV','FV','PMT']:
+        p=traces/(fn+'.jsonl');input_hashes[fn]=hashlib.sha256(p.read_bytes()).hexdigest()
+        for idx,raw in enumerate(map(json.loads,open(p))):
+            try:
+                a=list(map(number,raw['args']));y=number(raw['expected'])
+            except (ValueError,TypeError,AttributeError,OverflowError):excluded[fn+':typed_control']+=1;continue
+            if len(a)!=5 or not all(map(math.isfinite,a+[y]))or y==0 or a[0]<=-1 or a[0]==0:
+                excluded[fn+':domain_zero_nonfinite_control']+=1;continue
+            if (a[2]==0)==(a[3]==0):excluded[fn+':not_single_cashflow']+=1;continue
+            if fn=='FV':factor,op,c=('growth','mul',-a[3])if a[2]==0 else('future_annuity','mul',-a[2])
+            elif fn=='PV':factor,op,c=('growth','div',-a[3])if a[2]==0 else('present_annuity','mul',-a[2])
+            else:factor,op,c=('present_annuity','div',-a[2])if a[3]==0 else('future_annuity','div',-a[3])
+            timing=None if factor=='growth'else int(a[4]!=0)
+            k=(factor,raw['args'][0],raw['args'][1],timing,json.dumps(raw['reading'],sort_keys=True))
+            groups[k].append(dict(function=fn,trace_index=idx,raw=raw,op=op,constant=Q(c)))
+    @lru_cache(maxsize=4096)
+    def pi(fn,idx,m):
+        row=lookup[(fn,idx)];y=Q(number(row['raw']['expected']))
+        return inverse_op(B64.preimage(Interval(y,y)),m,row['op'],row['constant'],False)
+    lookup={(r['function'],r['trace_index']):r for rows in groups.values()for r in rows}
+    summaries=[]
+    builds=sorted({json.loads(k[4]).get('excel_build')or'unknown'for k in groups})
+    with (out/'first-kills.jsonl').open('x')as killfile:
+        for build,factor,joint in itertools.product(builds,functions,[False,True]):
+            fs=functions[factor];alive=set(itertools.product(range(5),repeat=2));kills=Counter();considered=0;support_count=0
+            for k,rows in groups.items():
+                if k[0]!=factor or(json.loads(k[4]).get('excel_build')or'unknown')!=build:continue
+                if len(rows)<2 or(joint and not all(any(r['function']==f for r in rows)for f in fs)):continue
+                considered+=1;support_count+=len(rows)
+                for ms in sorted(alive):
+                    current=None;first=True;low=high=None;certificate=None
+                    for row in rows:
+                        rid=(row['function'],row['trace_index']);i=pi(*rid,ms[fs.index(row['function'])])
+                        nxt=i if first else current.intersect(i)if current is not None and i else None
+                        if nxt is None:
+                            certificate=dict(reason='empty_real_intersection',rows=sorted(set([rid]+([]if first else[low,high]))));break
+                        if first or nxt.lo!=current.lo or nxt.lc!=current.lc:low=rid
+                        if first or nxt.hi!=current.hi or nxt.hc!=current.hc:high=rid
+                        current=nxt;first=False
+                    if certificate is None and E64.preimage(current)is None:
+                        certificate=dict(reason='empty_ext80_lattice',rows=sorted(set([low,high])))
+                    if certificate:
+                        cur=None;first=True
+                        for fn,idx in certificate['rows']:
+                            i=pi(fn,idx,ms[fs.index(fn)]);cur=i if first else cur.intersect(i)if cur is not None and i else None;first=False
+                        assert cur is None or E64.preimage(cur)is None
+                        proof=dict(build=build,factor=factor,joint_functions_required=joint,functions=fs,models=ms,
+                            rate=k[1],nper=k[2],canonical_timing=k[3],environment=json.loads(k[4]),
+                            reason=certificate['reason'],remaining_interval=cur.json()if cur else None,
+                            sufficient_original_rows=[lookup[r]['raw']for r in certificate['rows']])
+                        killfile.write(json.dumps(proof,separators=(',',':'))+'\n');alive.remove(ms);kills[certificate['reason']]+=1
+            summaries.append(dict(build=build,factor=factor,joint_functions_required=joint,profiles=25,
+                constraining_groups=considered,original_rows_in_groups=support_count,survivors=[list(x)for x in sorted(alive)],
+                exclusions=dict(kills),coverage='No constraint'if considered==0 else'Exact first-contradiction elimination; later groups with no live profile do not count as passes'))
+    result=dict(grammar='Single shared factor per rate/nper/full environment/canonical timing; each function has a fixed one-of-five final multiply/divide model plus RN53 publication.',
+        functions=functions,summaries=summaries,excluded=dict(excluded),trace_sha256=input_hashes,
+        limitation='Conditional minimal final-root projection only. The arbitrary factor is a constrained unknown, never a fitted function or implementation constant. No claim outside selected single-cashflow observations.')
+    (out/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps(dict(configurations=len(summaries),constrained=sum(x['constraining_groups']>0 for x in summaries),fully_rejected=sum(not x['survivors']for x in summaries))))
+
+
 if __name__=='__main__':
     if sys.argv[1]=='loan-prepare':loan_prepare(Path(sys.argv[2]),Path(sys.argv[3]))
     elif sys.argv[1]=='loan-compare':loan_compare(Path(sys.argv[2]),Path(sys.argv[3]),Path(sys.argv[4]))
+    elif sys.argv[1]=='factor-projection':factor_projection(Path(sys.argv[2]),Path(sys.argv[3]))
     elif sys.argv[1]=='compare':compare(Path(sys.argv[2]),Path(sys.argv[3]),Path(sys.argv[4]))
     else:run(Path(sys.argv[1]),Path(sys.argv[2]))

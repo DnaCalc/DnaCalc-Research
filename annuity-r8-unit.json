@@ -173,5 +173,36 @@
   "superseded_results": {
     "decimal_f64_input_runs": "All pre-bits joint/factorized/shared/wide-scalar runs invalid;150 altered argument bits in142 rows. Original observations untouched.",
     "growth_preimages": "Only growth-preimages-corrected and growth-comparison-corrected-{native,software} count; resident operation final RN53 now included."
+  },
+  "direct_expm1_followup": {
+    "motivation": "NPER and PV/FV observations constrain earlier structures separately; matched PV/PMT factor preimages at the same rate/nper/timing are disjoint. Earlier coupled positive-growth search formed exp first. Test direct F2XM1 expm1 with growth sharing its fractional component. Existing arbitrary-helper interval proofs already exclude the discount-only root.",
+    "role": "implementer",
+    "source": "Intel SDM public ISA F2XM1,FRNDINT,FSCALE,FLDL2E; DLMF4.6.E6; IEEE rounding; annuity algebra",
+    "programs": 5314410,
+    "logs": 5,
+    "helpers": 162,
+    "growth_selectors": 9,
+    "combines": 3,
+    "root_model_assignments": 243,
+    "helper": "t=n*log1p; x=t*ROMlog2e; k=nearest_integer(x); f=F2XM1(x-k); em=scale(f,k)+(scale(1,k)-1)",
+    "helper_sites": [
+      "t product",
+      "x product",
+      "fraction subtraction",
+      "em sum"
+    ],
+    "helper_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "f2xm1_store": [
+      false,
+      true
+    ],
+    "growth": "scale(model(1+f),k), three models plus final-store boolean; or model(1+em), three models",
+    "scope": "FV=0,0<rate<=1/4,0<n*frozen_binary64_log1p<1; original excluded rows retained",
+    "instruction_policy": "FYL2XP1 measured natively in both replays; every other operation including F2XM1 follows the declared native/software backend.",
+    "fixed_before_search": true
   }
 }
