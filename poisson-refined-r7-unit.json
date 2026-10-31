@@ -1,0 +1,126 @@
+{
+  "id": "dc-j9k-poisson-count-one-reciprocal-normalizer-r7",
+  "role": "implementer",
+  "research_home": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+  "application_revision": "db37b36cb77613c6cd34110d2e8ba7743586330f",
+  "evidence_revision": "0df452ec63a8adcb0bf8a9a248dab11c49379136",
+  "legacy": {
+    "repo": "OxFunc",
+    "revision": "05196c394f5400eb329c79b01b4a8d2bac7c228b",
+    "arithmetic_subset_adapted_from": [
+      "smart-fuzzer/tools/calc_graph_racer/src/dsl.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/enumerate.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/eval.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/scheduler.rs"
+    ],
+    "blobs": {
+      "smart-fuzzer/tools/calc_graph_racer/src/dsl.rs": "c1a848561b5367bc10b5c9582c319771ca216987",
+      "smart-fuzzer/tools/calc_graph_racer/src/enumerate.rs": "8bd98c984b0543a4a34e48cfb4a65d02fe727d62",
+      "smart-fuzzer/tools/calc_graph_racer/src/eval.rs": "8ded9f5199de5b0ba0ac71c6c8e4582ea88e0eb6",
+      "smart-fuzzer/tools/calc_graph_racer/src/scheduler.rs": "b1703ed75e319c24ec7820ebfe3d4ca2019e69be"
+    }
+  },
+  "allowed_sources": {
+    "tier1": [
+      "NIST e-Handbook defining Poisson PMF, 1.3.6.6.19",
+      "IEEE 754 nearest/even",
+      "recorded Excel answers via existing witness loader"
+    ],
+    "tier2": [
+      "current cleared DnaCalc Fpu and elementary functions",
+      "Rust libm (permissive fdlibm), already a dependency"
+    ]
+  },
+  "banned_paths": [
+    "OxFunc/smart-fuzzer/work third-party source",
+    "OxFunc/crates/oxfunc_core/src/excel_numeric/x87.rs and its history",
+    "R nmath",
+    "glibc libm",
+    "Numerical Recipes",
+    "Microsoft source, disassembly or decompilation",
+    "DnaCalc/crates/calc-func/src/ported/discrete_dist.rs and its history",
+    "OxFunc discrete_dist_family.rs and its history",
+    "round-3 mass-worker/discrete_instrumented.rs"
+  ],
+  "grammar": {
+    "programs": 1585920,
+    "templates": 20048,
+    "models_per_template": "3^arity, 1 to5 independent arithmetic sites",
+    "deviance": [
+      "(mean-1)-ln(mean)",
+      "mean-(1+ln(mean))",
+      "(mean-ln(mean))-1"
+    ],
+    "constants": {
+      "C": "ln(2*pi)/2",
+      "S": "1-C, exact count-one Stirling remainder",
+      "G": "sqrt(2*pi)"
+    },
+    "constant_loads": [
+      "RN53 binary64",
+      "RN64 Ext80"
+    ],
+    "normalizations": [
+      "exp(-(S+d))/G",
+      "exp(-(S+d)-C)",
+      "(exp(-d)*exp(-S))/G",
+      "exp(-d)/(G*exp(S))",
+      "exp(-d)*exp(-(S+C))"
+    ],
+    "log_providers": [
+      "x87 stored",
+      "x87 continuous",
+      "cleared CRT",
+      "fdlibm libm"
+    ],
+    "exp_providers": [
+      "x87 stored",
+      "x87 continuous",
+      "Arm portable",
+      "fdlibm libm",
+      "cleared CRT"
+    ],
+    "exp_entry_store": "optional binary64 entry store for x87 only; other providers require binary64 entry by definition",
+    "sites": "Four independent strict/stored-PC64/resident-PC64 arithmetic sites per template. Each site occurs exactly once; root set propagation is an exact Cartesian union.",
+    "canonicalization": "No redundant final binary64 store before final publication; binary64-only elementary providers have one entry-store form.",
+    "constant_certificate": "constants.py uses exact Machin/alternating-series pi bounds and correctly rounded Decimal ln/sqrt widened by one decimal ULP; both rational endpoints force the same RN53/RN64 constant. No Excel answers are inputs.",
+    "additional_forms": [
+      "Gamma-prefactor exp(2*ln(mean)-mean)/mean and reciprocal order",
+      "Three cancellations of 2*ln(mean)-mean-ln(mean) before exp",
+      "Split exp(ln(mean))*exp(-mean)",
+      "General x87/CRT/fdlibm power(mean,1/-1/2) followed by exp(-mean) and multiplication/division",
+      "Explicit branch: when scaled exponential is exactly zero, evaluate exp(ln(mean)-mean) to avoid intermediate underflow; otherwise divide/multiply by mean. No empirical cutoff."
+    ],
+    "branch_semantics": "The actual scaled value selects the branch and is reused in the regular result. Arithmetic site sets of scaled, fallback and normalize subtrees are disjoint; generic root-set propagation preserves this correlation. Models of inactive branch sites remain part of complete candidate descriptions. All unary arguments/constants/providers are explicit in typed AST.",
+    "additional_log_forms": "Every direct ln(mean) leaf additionally admits -ln(1/mean), with the reciprocal computed in strict/stored-PC64/resident-PC64 arithmetic; logarithm receives its full tagged value when the provider supports extended entry.",
+    "additional_normalizers": "Every sqrt(2*pi) constant leaf additionally admits runtime sqrt(TAU), TAU loaded as certified RN53 or RN64 and sqrt in strict binary64, stored PC64 or resident PC64. Only serialized-equal graphs are deduplicated; equal finite predictions are not equivalence claims.",
+    "constants_sha256": "021e78ca103b882337fa861d2ce88c8328ad402e292ad2294638b68d1bdba80b"
+  },
+  "discovery_order": "all 734 prior gap IDs first, then original trace index; first 32 are discovery; no fresh validation bank",
+  "budget": {
+    "workers": 8,
+    "memory_bytes": 4294967296,
+    "wall_hours": 4
+  },
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "model": "Codex GPT-6",
+  "machine": "dna-firehorse Linux x86_64 AMD family 23 model 1 KVM",
+  "no_new_excel_readings": true,
+  "application_promotion": "Only a program exact on all scoped records may be considered; no count-based selection. Product guards and other branches remain outside this bounded family.",
+  "artifact_directory": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7",
+  "preexisting_evidence": "Round 6 frozen/scoped.jsonl, original witness loader records; not fresh validation",
+  "function": "POISSON.DIST",
+  "source_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm",
+  "choice": "Second function from dc-ymjf.4; defining mass/factorial and recurrence avoid PMT shared log1p/expm1 uncertainty.",
+  "scope": "All 4232 positive finite normal-mean count-one mass witnesses, a mathematical branch condition; not an answer-error region.",
+  "constants_sha256": "56f92d64f7e365f059339f740c15715306f18c2c51b1a944e1b9652fc0797ad6"
+}

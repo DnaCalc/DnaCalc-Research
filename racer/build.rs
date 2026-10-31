@@ -28,6 +28,7 @@ fn main() {
         .canonicalize()
         .expect("DnaCalc sibling checkout");
     let mut text = fs::read_to_string(source.join("mod.rs")).unwrap();
+    let output = PathBuf::from(env::var_os("OUT_DIR").unwrap());
     for module in [
         "tables",
         "x87",
@@ -37,7 +38,14 @@ fn main() {
         "crt_libm",
         "gammaln",
     ] {
-        let path = source.join(format!("{module}.rs"));
+        let mut path = source.join(format!("{module}.rs"));
+        if module == "x87_chains" {
+            let chain = fs::read_to_string(&path).unwrap();
+            println!("cargo:rerun-if-changed={}", path.display());
+            path = output.join("chains-research.rs");
+            fs::write(&path, chain.replace("fn exp_ext<", "pub(super) fn exp_ext<")
+                .replace("fn pow2<", "pub(super) fn pow2<")).unwrap();
+        }
         text = text.replace(
             &format!("mod {module};"),
             &format!("#[path = {:?}] mod {module};", path),
@@ -47,8 +55,10 @@ fn main() {
     // Only visibility and module locations change; all numeric operations are the
     // current cleared DnaCalc sources, compiled as research without editing them.
     text.push_str("\npub(crate) use soft87::{Ext80 as Extended, ext_from_f64 as research_load};\n");
+    text.push_str("\npub(crate) fn research_exp<F: Fpu>(x: &Extended) -> Extended { x87_chains::exp_ext::<F>(x) }\n");
+    text.push_str("\npub(crate) fn research_log<F: Fpu>(x: &Extended) -> Extended { F::fyl2x(&ext_ln2(), x, CW) }\n");
+    text.push_str("\npub(crate) fn research_pow<F: Fpu>(b: f64, e: f64) -> Extended { x87_chains::pow2::<F>(&F::fyl2x(&load(e), &load(b), CW)) }\n");
     println!("cargo:rerun-if-changed={}", source.join("mod.rs").display());
-    let output = PathBuf::from(env::var_os("OUT_DIR").unwrap());
     fs::write(output.join("numeric.rs"), text).unwrap();
     fs::write(
         output.join("bridge.rs"),

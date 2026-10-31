@@ -1,0 +1,108 @@
+{
+  "id": "dc-j9k-poisson-programs-r7",
+  "role": "implementer",
+  "research_home": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+  "application_revision": "db37b36cb77613c6cd34110d2e8ba7743586330f",
+  "evidence_revision": "0df452ec63a8adcb0bf8a9a248dab11c49379136",
+  "legacy": {
+    "repo": "OxFunc",
+    "revision": "05196c394f5400eb329c79b01b4a8d2bac7c228b",
+    "arithmetic_subset_adapted_from": [
+      "smart-fuzzer/tools/calc_graph_racer/src/dsl.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/enumerate.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/eval.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/scheduler.rs"
+    ],
+    "blobs": {
+      "smart-fuzzer/tools/calc_graph_racer/src/dsl.rs": "c1a848561b5367bc10b5c9582c319771ca216987",
+      "smart-fuzzer/tools/calc_graph_racer/src/enumerate.rs": "8bd98c984b0543a4a34e48cfb4a65d02fe727d62",
+      "smart-fuzzer/tools/calc_graph_racer/src/eval.rs": "8ded9f5199de5b0ba0ac71c6c8e4582ea88e0eb6",
+      "smart-fuzzer/tools/calc_graph_racer/src/scheduler.rs": "b1703ed75e319c24ec7820ebfe3d4ca2019e69be"
+    }
+  },
+  "allowed_sources": {
+    "tier1": [
+      "NIST e-Handbook defining Poisson PMF, 1.3.6.6.19",
+      "IEEE 754 nearest/even",
+      "recorded Excel answers via existing witness loader"
+    ],
+    "tier2": [
+      "current cleared DnaCalc Fpu and elementary functions",
+      "Rust libm (permissive fdlibm), already a dependency"
+    ]
+  },
+  "banned_paths": [
+    "OxFunc/smart-fuzzer/work third-party source",
+    "OxFunc/crates/oxfunc_core/src/excel_numeric/x87.rs and its history",
+    "R nmath",
+    "glibc libm",
+    "Numerical Recipes",
+    "Microsoft source, disassembly or decompilation",
+    "DnaCalc/crates/calc-func/src/ported/discrete_dist.rs and its history",
+    "OxFunc discrete_dist_family.rs and its history",
+    "round-3 mass-worker/discrete_instrumented.rs"
+  ],
+  "grammar": {
+    "scope": "numeric mass inputs, 1<=trunc(count)<=170, positive normal finite mean; original count, argument types, expected kinds and environment preserved",
+    "scope_reason": "170! is the largest factorial finite in binary64, an independently mathematical search bound; not a product cutoff. CDF/domain/count-zero/large-count/input-refusal controls remain separate.",
+    "families": [
+      "three forward recurrence associations (one fixed model per loop arithmetic site)",
+      "linear-power/factorial followed by three associations",
+      "binary-power/factorial followed by three associations",
+      "two associations of exp(k*log(mean)-mean-sum(log(i)))"
+    ],
+    "arithmetic_models": [
+      "strict binary64",
+      "stored PC64 RN",
+      "resident PC64 RN"
+    ],
+    "exp_providers": [
+      "current cleared x87 chain stored",
+      "current cleared x87 chain continuous Ext80",
+      "current Arm portable exp",
+      "fdlibm libm exp",
+      "cleared CRT exp"
+    ],
+    "log_providers": [
+      "current cleared x87 chain stored",
+      "current cleared x87 chain continuous Ext80",
+      "cleared CRT log",
+      "fdlibm libm log"
+    ],
+    "constants": "only exact integer loop indices and 0/1; all factorial/log-factorial data are computed folds, no answer tables or fitted constants",
+    "programs": 11610,
+    "counts_by_family": {
+      "recurrence": 270,
+      "linear_factorial": 2430,
+      "binary_factorial": 2430,
+      "log_factorial": 6480
+    },
+    "selection": "first exact kind/bit contradiction; no ranking or ULP tolerance",
+    "prior_studies": "Round-3 endpoint/central recurrence and finite log-factorial diagnostics are known rejected methods. This unit does not claim a new method: it extends them with explicit continuous store programs, complete bounded Cartesian enumeration, exact first kills and whole-family reachability."
+  },
+  "discovery_order": "all 734 prior gap IDs first, then original trace index; first 32 are discovery; no fresh validation bank",
+  "budget": {
+    "workers": 8,
+    "memory_bytes": 4294967296,
+    "wall_hours": 4
+  },
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "model": "Codex GPT-6",
+  "machine": "dna-firehorse Linux x86_64 AMD family 23 model 1 KVM",
+  "no_new_excel_readings": true,
+  "application_promotion": "Only a program exact on all scoped records may be considered; no count-based selection. Product guards and other branches remain outside this bounded family.",
+  "artifact_directory": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round7",
+  "preexisting_evidence": "Round 6 frozen/scoped.jsonl, original witness loader records; not fresh validation",
+  "function": "POISSON.DIST",
+  "source_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm",
+  "choice": "Second function from dc-ymjf.4; defining mass/factorial and recurrence avoid PMT shared log1p/expm1 uncertainty."
+}

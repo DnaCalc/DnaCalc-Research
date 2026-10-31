@@ -10,6 +10,10 @@ mod dsl;
 mod enumerate;
 mod eval;
 mod scheduler;
+mod boundary;
+mod identity;
+mod poisson;
+mod saddle;
 
 use ported::excel_numeric::{Fpu, Hard, Soft};
 use serde::{Deserialize, Serialize};
@@ -318,6 +322,42 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("count-one-refined") => {
+            let rows=lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {Some("soft")=>saddle::run_refined::<Soft>(&rows,&a[3],&a[4]),_=>saddle::run_refined::<Hard>(&rows,&a[3],&a[4])}
+        }
+        Some("count-one-refined-test") => saddle::test_refined(&lines::<poisson::MassRow>(&a[2]),&a[3]),
+        Some("boundary-wide") => {
+            let rows=lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {Some("soft")=>boundary::run_wide::<Soft>(&rows,&a[3]),_=>boundary::run_wide::<Hard>(&rows,&a[3])}
+        }
+        Some("boundary-wide-test") => boundary::test_wide(&lines::<Row>(&a[2])),
+        Some("count-one-expanded") => {
+            let rows=lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {Some("soft")=>saddle::run_expanded::<Soft>(&rows,&a[3],&a[4]),_=>saddle::run_expanded::<Hard>(&rows,&a[3],&a[4])}
+        }
+        Some("count-one-expanded-test") => saddle::test_expanded(&lines::<poisson::MassRow>(&a[2]),&a[3]),
+        Some("count-one") => {
+            let rows=lines::<poisson::MassRow>(&a[2]);
+            match a.get(5).map(String::as_str) {Some("soft")=>saddle::run::<Soft>(&rows,&a[3],&a[4]),_=>saddle::run::<Hard>(&rows,&a[3],&a[4])}
+        }
+        Some("count-one-test") => saddle::self_test(&lines::<poisson::MassRow>(&a[2]),&a[3]),
+        Some("inverse-controls") => boundary::inverse_controls(&lines::<Row>(&a[2]),&a[3]),
+        Some("mass-prepare") => poisson::prepare(&a[2],&a[3]),
+        Some("mass-test") => poisson::self_test(&lines::<poisson::MassRow>(&a[2])),
+        Some("mass") => {
+            let rows=lines::<poisson::MassRow>(&a[2]);
+            match a.get(4).map(String::as_str) {Some("soft")=>poisson::run::<Soft>(&rows,&a[3]),_=>poisson::run::<Hard>(&rows,&a[3])}
+        }
+        Some("identity") => {
+            let rows=lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) { Some("soft")=>identity::run::<Soft>(&rows,&a[3]),_=>identity::run::<Hard>(&rows,&a[3]) }
+        }
+        Some("boundary") => {
+            let rows=lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) { Some("soft")=>boundary::run::<Soft>(&rows,&a[3]),_=>boundary::run::<Hard>(&rows,&a[3]) }
+        }
+        Some("boundary-test") => boundary::self_test(&lines::<Row>(&a[2])),
         Some("prepare") => prepare(&a[2], &a[3], &a[4]),
         Some("self-test") => self_test(&lines::<Row>(&a[2])),
         Some("run") => {
