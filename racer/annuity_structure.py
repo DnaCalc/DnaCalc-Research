@@ -450,7 +450,8 @@ def rate_newton(trace_dir,out):
 
 
 if __name__ == '__main__':
-    out=Path(sys.argv[-1]);out.mkdir(exist_ok=True,parents=True)
+    out=Path(sys.argv[-1])
+    if sys.argv[1]!='rate-newton':out.mkdir(exist_ok=True,parents=True)
     if sys.argv[1]=='gaps':
         print(json.dumps(gap_clusters(Path(sys.argv[2]),Path(sys.argv[3]),out)))
     elif sys.argv[1]=='relationships':relationships(Path(sys.argv[2]),out)
