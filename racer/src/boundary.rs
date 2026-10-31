@@ -148,6 +148,12 @@ pub fn expressions() -> Vec<Expr> {
     ]
 }
 pub fn all_expressions() -> Vec<Expr> {
+    let out=expressions_with_powers([1,1,-1,-1]);
+    assert_eq!(out.len(),60);
+    for e in expressions(){assert!(out.contains(&e))}
+    out
+}
+pub fn expressions_with_powers(target:[i8;4]) -> Vec<Expr> {
     fn generate(mask: u8) -> Vec<(Expr, [i8; 4])> {
         if mask.count_ones() == 1 {
             let i = mask.trailing_zeros() as usize;
@@ -177,15 +183,11 @@ pub fn all_expressions() -> Vec<Expr> {
     }
     let mut out: Vec<_> = generate(15)
         .into_iter()
-        .filter_map(|(e, p)| (p == [1, 1, -1, -1]).then_some(e))
+        .filter_map(|(e, p)| (p == target).then_some(e))
         .collect();
     out.sort_by_cached_key(|e| serde_json::to_string(e).unwrap());
-    assert_eq!(out.len(), 60);
     for (i, e) in out.iter().enumerate() {
         assert!(!out[..i].contains(e))
-    }
-    for e in expressions() {
-        assert!(out.contains(&e))
     }
     out
 }
@@ -216,7 +218,7 @@ fn combines_for(count: usize) -> Vec<Combine> {
     }
     out
 }
-fn eval_expr<F: Fpu>(
+pub(crate) fn eval_expr<F: Fpu>(
     expr: &Expr,
     args: &[Val; 4],
     models: &[EvalModel; 4],

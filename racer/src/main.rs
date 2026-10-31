@@ -13,6 +13,7 @@ mod eval;
 mod identity;
 mod poisson;
 mod saddle;
+mod annuity;
 mod scheduler;
 
 use ported::excel_numeric::{Fpu, Hard, Soft};
@@ -349,6 +350,32 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("pmt-positive-growth") => match a.get(5).map(String::as_str) {
+            Some("soft") => annuity::pmt_growth_search::<Soft>(&a[2],&a[3],&a[4]),
+            _ => annuity::pmt_growth_search::<Hard>(&a[2],&a[3],&a[4]),
+        },
+        Some("annuity-audit-decimal-inputs") => annuity::audit_decimal_inputs(&a[2],&a[3]),
+        Some("annuity-factorized") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity::factorized::<Soft>(&a[2], &a[3],0),
+            _ => annuity::factorized::<Hard>(&a[2], &a[3],0),
+        },
+        Some("annuity-shared-growth") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity::factorized::<Soft>(&a[2], &a[3],1),
+            _ => annuity::factorized::<Hard>(&a[2], &a[3],1),
+        },
+        Some("annuity-shared-growth-wide") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity::factorized::<Soft>(&a[2], &a[3],2),
+            _ => annuity::factorized::<Hard>(&a[2], &a[3],2),
+        },
+        Some("annuity-prepare") => annuity::prepare(&a[2], &a[3], &a[4]),
+        Some("annuity-joint-integer") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity::joint_integer::<Soft>(&a[2], &a[3]),
+            _ => annuity::joint_integer::<Hard>(&a[2], &a[3]),
+        },
+        Some("growth-diagnostics") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity::growth_diagnostics::<Soft>(&a[2], &a[3]),
+            _ => annuity::growth_diagnostics::<Hard>(&a[2], &a[3]),
+        },
         Some("poisson-publication-test") => poisson::publication_controls(),
         Some("normalizer-matrix") => {
             let rows = lines::<poisson::MassRow>(&a[2]);

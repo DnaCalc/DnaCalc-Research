@@ -1,7 +1,11 @@
 use std::{env, fs, path::PathBuf};
 
 fn main() {
-    let unit_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../pmt-r6-unit.json");
+    // Old units keep their original guard; a new unit explicitly freezes its
+    // own source revision before any research build uses it.
+    println!("cargo:rerun-if-env-changed=DNA_RESEARCH_UNIT");
+    let unit_name = env::var("DNA_RESEARCH_UNIT").unwrap_or_else(|_| "pmt-r6-unit.json".into());
+    let unit_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("..").join(unit_name);
     let unit: serde_json::Value = serde_json::from_slice(&fs::read(&unit_path).unwrap()).unwrap();
     let revision = unit["application_revision"].as_str().unwrap();
     let checkout = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../DnaCalc");
@@ -63,6 +67,7 @@ fn main() {
     text.push_str("\npub(crate) fn research_exp<F: Fpu>(x: &Extended) -> Extended { x87_chains::exp_ext::<F>(x) }\n");
     text.push_str("\npub(crate) fn research_log<F: Fpu>(x: &Extended) -> Extended { F::fyl2x(&ext_ln2(), x, CW) }\n");
     text.push_str("\npub(crate) fn research_pow<F: Fpu>(b: f64, e: f64) -> Extended { x87_chains::pow2::<F>(&F::fyl2x(&load(e), &load(b), CW)) }\n");
+    text.push_str("\npub(crate) fn research_pow2<F: Fpu>(t: &Extended) -> Extended { x87_chains::pow2::<F>(t) }\n");
     println!("cargo:rerun-if-changed={}", source.join("mod.rs").display());
     fs::write(output.join("numeric.rs"), text).unwrap();
     fs::write(

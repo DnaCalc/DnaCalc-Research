@@ -1,0 +1,106 @@
+{
+  "id": "dc-j9k-annuity-structure-r8",
+  "role": "implementer",
+  "research_home": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+  "application_revision": "c62ffca1e48b61989e7b481f9243a44fb6576b50",
+  "evidence_revision": "3f02122438aea2f0d44959f8a989a045a8453fea",
+  "legacy": {
+    "repo": "OxFunc",
+    "revision": "05196c394f5400eb329c79b01b4a8d2bac7c228b",
+    "arithmetic_subset_adapted_from": [
+      "smart-fuzzer/tools/calc_graph_racer/src/dsl.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/enumerate.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/eval.rs",
+      "smart-fuzzer/tools/calc_graph_racer/src/scheduler.rs"
+    ],
+    "blobs": {
+      "smart-fuzzer/tools/calc_graph_racer/src/dsl.rs": "c1a848561b5367bc10b5c9582c319771ca216987",
+      "smart-fuzzer/tools/calc_graph_racer/src/enumerate.rs": "8bd98c984b0543a4a34e48cfb4a65d02fe727d62",
+      "smart-fuzzer/tools/calc_graph_racer/src/eval.rs": "8ded9f5199de5b0ba0ac71c6c8e4582ea88e0eb6",
+      "smart-fuzzer/tools/calc_graph_racer/src/scheduler.rs": "b1703ed75e319c24ec7820ebfe3d4ca2019e69be"
+    }
+  },
+  "allowed_sources": {
+    "tier1": [
+      "IEEE 754 rounding",
+      "recorded Excel outputs via existing xtask witness trace",
+      "annuity algebra"
+    ],
+    "tier2": [
+      "MIT OxFunc racer sources named above",
+      "current cleared DnaCalc numeric/Fpu operations",
+      "libm crate (permissive dependency, calls only)"
+    ]
+  },
+  "banned_paths": [
+    "OxFunc/smart-fuzzer/work third-party source",
+    "OxFunc/crates/oxfunc_core/src/excel_numeric/x87.rs and its history",
+    "R nmath",
+    "glibc libm",
+    "Numerical Recipes",
+    "Microsoft source, disassembly or decompilation",
+    "OxFunc/crates/oxfunc_core/src/functions/discrete_dist_family.rs and its history"
+  ],
+  "budget": {
+    "workers": 8,
+    "memory_bytes": 4294967296,
+    "wall_hours": 4
+  },
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "model": "Codex GPT-6.1-Sol (xhigh)",
+  "machine": "dna-firehorse Linux x86_64 AMD family 23 model 1 KVM",
+  "no_new_excel_readings": false,
+  "application_promotion": "Only a program exact on all scoped records may be considered; no count-based selection. Product guards and other branches remain outside this bounded family.",
+  "question_limit": 64,
+  "scope": "Structure discovery first across PV,FV,NPER,PMT,IPMT,PPMT,RATE; exact preimages and error co-occurrence; choose a joint helper grammar only after discovery. Frozen R7 Poisson predictions scored before elimination.",
+  "prior_units": [
+    "pmt-r6-unit.json",
+    "pmt-r7-unit.json",
+    "pmt-wide-r7-unit.json",
+    "poisson-refined-r7-unit.json"
+  ],
+  "discovery_result_before_search": {
+    "FV_growth_isolation_rows": 235,
+    "all_applicable_exact_preimage_compatible": [
+      "binary_squaring_Strict with strict/stored/resident final multiply",
+      "binary_squaring_StoredPc64 with strict/stored/resident final multiply"
+    ],
+    "PV_FV_error_group_counts": {
+      "both_all_matched": 50,
+      "both_has_error": 13
+    },
+    "no_general_pow_or_sequential_multiply_diagnostic_is_compatible_on_all": true
+  },
+  "grammar": {
+    "name": "shared PV/FV integer growth",
+    "growths": 18,
+    "term_associations": 3,
+    "three_model_site_profiles": 6561,
+    "programs": 354294,
+    "layout": "(growth*3+term_association)*6561+little_endian_base3_site_code",
+    "sites": [
+      "tf addition",
+      "growth-1",
+      "term op1",
+      "term op2",
+      "payment*term",
+      "FV balance*growth",
+      "balance sum",
+      "PV final /growth"
+    ],
+    "growth": "binary squaring; base and product independently strict/stored-PC64/resident-PC64, final store boolean",
+    "sources": "235 FV isolated growth measurements and PV/FV joint error structure, annuity algebra, cleared Fpu",
+    "scope": "r>-1, r!=0, 0<=nper<u32::MAX integer; typed/nonfinite/other branches retained separately"
+  },
+  "frozen_questions_r7_scoring_evidence": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+  "precision_correction": "Initial growth model2 preimages omitted final binary64 publication; corrected outputs are growth-preimages-corrected and growth-comparison-corrected-{native,software}. Other models and all forward searches unchanged. Independent review detected this."
+}
