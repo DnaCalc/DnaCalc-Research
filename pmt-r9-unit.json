@@ -1,0 +1,72 @@
+{
+  "id": "dc-j9k-independent-certificates-and-associations-r9",
+  "role": "implementer",
+  "application_revision": "69c345885bc5ab6cea8115603e6b3c59e64c8b36",
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "scope": "Original250730 finite discount observations in R6/R7 frozen/scoped.jsonl; normal finite nonzero targets for inverse certificates. FV0 grouped projection237660 rows with5735 exact rate/nper/environment groups. Other arms outside the claim.",
+  "evidence": "Original frozen trace via existing xtask loader; preserve raw typed args, omitted args, selected elements, source and environment. No new importer, capturer or answer.",
+  "helper_hypotheses": "Frozen binary64 log1p, neg_log and expm1; arbitrary common Ext80 helper projection checked independently. Neither assumed to be Excel internals.",
+  "grammar": {
+    "numerators": [
+      "PV+FV*(1+em)",
+      "(PV+FV)+FV*em",
+      "PV+(FV+FV*em)",
+      "(PV+FV*em)+FV"
+    ],
+    "combines": [
+      "((N/em)/tf)*r",
+      "(N*r)/(em*tf)",
+      "(N/tf)*(r/em)",
+      "((N*r)/em)/tf",
+      "((N/em)*r)/tf",
+      "(N/em)*(r/tf)",
+      "N*(r/(em*tf))",
+      "(N/(em*tf))*r"
+    ],
+    "rearranged": "(FV+(PV+FV)/em)*(r/tf)",
+    "timing": "tf=1+r*canonical_timing; exact0/1 after registered coercion",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "programs": 212139,
+    "old_six_skeleton_subset": 39366,
+    "added": 172773,
+    "annotation_policy": "Every3^8 assignment for32 templates and every3^7 assignment for shorter rearrangement; duplicates at final publication retained."
+  },
+  "rationale": "The Pro review supplied ordinary omitted associations and a cancellation discriminator; this widens only arithmetic structure, with helper providers, constants0/1 and three models unchanged.",
+  "sources": {
+    "tier1": [
+      "IEEE nearest/even and rational algebra",
+      "annuity identities",
+      "genuine recorded Excel outputs",
+      "owner-supplied Pro advice"
+    ],
+    "tier2": [
+      "current cleared Fpu",
+      "existing MIT OxFunc05196c39 racer arithmetic subset already adapted"
+    ],
+    "banned": [
+      "all tier3/4 sources",
+      "deleted or restricted distribution code/history",
+      "other engine clone"
+    ]
+  },
+  "budget": {
+    "deadline_utc": "2026-11-01T02:57:29Z",
+    "workers": 2,
+    "memory_bytes": 4294967296,
+    "questions_max": 64
+  },
+  "fixed_before_search": true
+}

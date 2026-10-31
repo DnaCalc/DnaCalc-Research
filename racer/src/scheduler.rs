@@ -128,3 +128,94 @@ pub fn run<F: Fpu + 'static>(rows: &[Row], output: &str) {
     json_write(out.join("summary.json"), &summary);
     println!("{summary}");
 }
+
+/// One declared structural extension. This streams first contradictions and
+/// does not build a prediction matrix or rank contradicted candidates.
+pub fn associations<F: Fpu>(rows: &[Row], output: &str) {
+    let out = Path::new(output);
+    fs::create_dir(out).unwrap(); // never overwrite a previous experiment
+    let candidates = enumerate::association_family();
+    let mut programs = BufWriter::new(
+        fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(out.join("programs.jsonl"))
+            .unwrap(),
+    );
+    let mut buckets = std::collections::HashMap::<String, Vec<&Graph>>::new();
+    for c in &candidates {
+        let hash = hash_bytes(&serde_json::to_vec(&c.graph).unwrap());
+        let bucket = buckets.entry(hash).or_default();
+        assert!(!bucket.contains(&&c.graph), "duplicate serialized graph");
+        bucket.push(&c.graph);
+        serde_json::to_writer(&mut programs, c).unwrap();
+        writeln!(programs).unwrap();
+    }
+    programs.flush().unwrap();
+    let grammar = hash_bytes(&serde_json::to_vec(&candidates).unwrap());
+    let mut alive: Vec<_> = (0..candidates.len()).collect();
+    let mut kills = BufWriter::new(
+        fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(out.join("first-kills.jsonl"))
+            .unwrap(),
+    );
+    let mut kill_summary = Vec::new();
+    let mut total_evaluations = 0usize;
+    let mut visited = 0usize;
+    for (order, row) in rows.iter().enumerate() {
+        if alive.is_empty() {
+            break;
+        }
+        let before = alive.len();
+        let mut next = Vec::new();
+        for id in alive {
+            let c = &candidates[id];
+            let root = eval_graph::<F>(&c.graph, &row.args());
+            let got = outcome::<F>(root);
+            total_evaluations += 1;
+            if got == row.expected() {
+                next.push(id);
+            } else {
+                // Each first kill retains every operation's full-width value.
+                let trace = crate::eval::trace_graph::<F>(&c.graph, &row.args());
+                serde_json::to_writer(
+                    &mut kills,
+                    &json!({"candidate_id":id,"order":order,
+                    "trace_index":row.trace_index,"witness":row.raw,"expected":row.expected(),
+                    "got":got,"root":root.exact_encoding(),"trace":trace}),
+                )
+                .unwrap();
+                writeln!(kills).unwrap();
+            }
+        }
+        alive = next;
+        visited = order + 1;
+        if before != alive.len() {
+            let stats = json!({"order":order,"trace_index":row.trace_index,"id":row.raw["id"],
+                "killed":before-alive.len(),"remaining":alive.len()});
+            println!("association kill {stats}");
+            kill_summary.push(stats);
+        }
+        kills.flush().unwrap();
+        json_write(
+            out.join("checkpoint.json"),
+            &json!({"next_order":visited,
+            "alive_ids":alive,"grammar_hash":grammar,"complete":alive.is_empty() || visited==rows.len()}),
+        );
+    }
+    kills.flush().unwrap();
+    let survivors: Vec<_> = alive.iter().map(|id| &candidates[*id]).collect();
+    json_write(out.join("survivors.json"), &survivors);
+    let summary = json!({"complete":true,"programs":candidates.len(),"survivors":survivors.len(),
+        "grammar_hash":grammar,"scoped_rows_available":rows.len(),"rows_visited":visited,
+        "exact_evaluations":total_evaluations,"first_kill_counts":kill_summary,
+        "backend":std::any::type_name::<F>(),"fresh_validation_rows":0,
+        "scope":"Original finite discount scope; frozen binary64 log1p/expm1 are conditional hypotheses",
+        "coverage":"4 numerators x 8 combines x 3^8 plus one 7-site rearrangement x 3^7. All annotations; root duplicates retained. No claim of all possible PMT programs.",
+        "selection":"First exact contradiction; no match-count ranking, closeness beam, fitted constants or guards",
+        "questions":"Only nonempty survivor sets justify distinguishing questions; requests would be frozen separately from predictions"});
+    json_write(out.join("summary.json"), &summary);
+    println!("{summary}");
+}

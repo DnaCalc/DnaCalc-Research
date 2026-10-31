@@ -168,6 +168,98 @@ pub fn eval_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Val {
     values[g.output]
 }
 
+pub fn trace_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Vec<String> {
+    let mut values = Vec::with_capacity(g.nodes.len());
+    for (i, n) in g.nodes.iter().enumerate() {
+        let value = match n.op {
+            Op::Arg(a) => Val::f64(args[a]),
+            Op::Const { bits } => Val::F64(bits),
+            Op::Add(a, b) | Op::Mul(a, b) | Op::Div(a, b) => {
+                assert!(a < i && b < i);
+                binop::<F>(n.op, n.model, values[a], values[b])
+            }
+        };
+        values.push(value);
+    }
+    assert_eq!(values[g.output], eval_graph::<F>(g, args));
+    values.into_iter().map(Val::exact_encoding).collect()
+}
+
+/// Export constructed controls for an independent rational checker. These are
+/// mathematical controls, not observations of Excel or helper instructions.
+pub fn reference_controls(output: &str) {
+    use crate::ported::excel_numeric::{Hard, Soft};
+    use std::io::Write;
+    let mut resident = research_load(1.0);
+    resident.0[0] = 8; // exact 1+2^-60, with all64 significand bits retained
+    let mut wide = research_load(f64::from_bits(0x7fe0000000000000));
+    wide.0[8] = 0xff;
+    wide.0[9] = 0x43; // exact 2^1024 in canonical Ext80
+    let cases = [
+        (
+            "double-rounding-add",
+            Op::Add(0, 1),
+            Val::f64(1.0),
+            Val::F64(0x3ca0010000000000),
+        ),
+        (
+            "resident-operand-cancellation",
+            Op::Add(0, 1),
+            Val::Ext(resident),
+            Val::f64(-1.0),
+        ),
+        (
+            "binary64-spill-cancellation",
+            Op::Add(0, 1),
+            Val::f64(1.0),
+            Val::f64(-1.0),
+        ),
+        (
+            "wide-exponent-add",
+            Op::Add(0, 1),
+            Val::F64(0x7fe0000000000000),
+            Val::F64(0x7fe0000000000000),
+        ),
+        (
+            "wide-exponent-continuation",
+            Op::Div(0, 1),
+            Val::Ext(wide),
+            Val::f64(2.0),
+        ),
+        (
+            "tie-underflow-binary64",
+            Op::Mul(0, 1),
+            Val::F64(1),
+            Val::f64(0.5),
+        ),
+        (
+            "negative-division",
+            Op::Div(0, 1),
+            Val::f64(-1.0),
+            Val::f64(3.0),
+        ),
+    ];
+    let mut out = std::io::BufWriter::new(
+        std::fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(output)
+            .unwrap(),
+    );
+    for (name, op, a, b) in cases {
+        for model in WIDE_MODELS {
+            let hard = binop::<Hard>(op, model, a, b);
+            let soft = binop::<Soft>(op, model, a, b);
+            let record = serde_json::json!({"id":name,"model":model,"op":op,
+                "a":a.exact_encoding(),"b":b.exact_encoding(),
+                "hard":hard.exact_encoding(),"soft":soft.exact_encoding()});
+            serde_json::to_writer(&mut out, &record).unwrap();
+            writeln!(out).unwrap();
+        }
+    }
+    out.flush().unwrap();
+}
+
 pub fn outcome<F: Fpu>(x: Val) -> String {
     let x = x.to_f64::<F>();
     if !x.is_finite() {

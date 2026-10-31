@@ -455,6 +455,7 @@ fn main() {
             }
         }
         Some("precision-test") => eval::precision_controls(),
+        Some("arithmetic-reference-controls") => eval::reference_controls(&a[2]),
         Some("count-one-full") => {
             let rows = lines::<poisson::MassRow>(&a[2]);
             match a.get(5).map(String::as_str) {
@@ -526,6 +527,13 @@ fn main() {
         Some("boundary-test") => boundary::self_test(&lines::<Row>(&a[2])),
         Some("prepare") => prepare(&a[2], &a[3], &a[4]),
         Some("self-test") => self_test(&lines::<Row>(&a[2])),
+        Some("associations") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => scheduler::associations::<Soft>(&rows, &a[3]),
+                _ => scheduler::associations::<Hard>(&rows, &a[3]),
+            }
+        }
         Some("run") => {
             let rows = lines::<Row>(&a[2]);
             let output = &a[3];
