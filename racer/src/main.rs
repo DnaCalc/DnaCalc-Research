@@ -607,22 +607,30 @@ fn main() {
         Some("timing-helpers") => {
             let rows = lines::<Row>(&a[2]);
             match a.get(4).map(String::as_str) {
-                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], false, false),
-                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], false, false),
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], false, false, false),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], false, false, false),
             }
         }
         Some("timing-helper-logs") => {
             let rows = lines::<Row>(&a[2]);
             match a.get(4).map(String::as_str) {
-                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, false),
-                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, false),
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, false, false),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, false, false),
             }
         }
         Some("timing-direct-helper-logs") => {
             let rows = lines::<Row>(&a[2]);
             match a.get(4).map(String::as_str) {
-                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, true),
-                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, true),
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, true, false),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, true, false),
+            }
+        }
+        Some("timing-helper-pc53") | Some("timing-direct-pc53") => {
+            let rows = lines::<Row>(&a[2]);
+            let direct = a[1] == "timing-direct-pc53";
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, direct, true),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, direct, true),
             }
         }
         Some("boundary-test") => boundary::self_test(&lines::<Row>(&a[2])),

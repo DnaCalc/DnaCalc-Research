@@ -1,0 +1,210 @@
+{
+  "id": "dc-j9k-r12-PC53-consumer-exclusions",
+  "unit": {
+    "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/pc53-final-r12-unit.json",
+    "sha256": "26a9b38f28862fc74658f5072edd5490a92aa1ba6585a9b6c4f907c8e17184c2"
+  },
+  "source_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-final-source.tar.gz",
+    "sha256": "4432d7f20a2dc1e79662d45f1ef2b7d06c9cfe797c006455ab2eccb662e9705c"
+  },
+  "prior_claim": {
+    "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/annuity-r12-claim.json",
+    "sha256": "c8d06ae323e3c71d954613711503f7c36fe65b0effd242f6f0a4a1f36e33844f"
+  },
+  "canonical_basis": [
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan-checked.json",
+      "sha256": "6b1e38546c4946de708812896622b187f6bb540a5ea70c08b2709e55e3f39e5b",
+      "receipt": {
+        "complete": true,
+        "direct": false,
+        "consumer_models": [
+          "strict",
+          "stored_pc64",
+          "resident_pc64",
+          "stored_pc53"
+        ],
+        "programs": 81100800,
+        "eliminated": 81100800,
+        "survivors": 0,
+        "checked_consumer_groups": 377600,
+        "checked_consumer_nodes": 6796800,
+        "checked_helper_program_rows": 29700,
+        "elementary_input_constraints": 19,
+        "original_rows": 3,
+        "seconds": 460.8781278759707,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "5ddbbedfe420278dce20f4880c70096ae06db088ae1f4df34c190b06e9c227d7"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/consumers.json": "04bec100a85121d396f399e13314b07814b51f55d009843bb57cf71307b7c99c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/first-kills.jsonl": "71717026841dc5aa088f219155d096862243285277fdf1826301c17afc1eacc1",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/helper-profiles.json": "b88f66771dd065820748a66449eb0fbb784d95d9ef3b552eb420e953ea757072",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/helper-values.jsonl": "f68f57e1bd4f0492f147e4942f4dc709e55859fe7956ce29c1f650b51e9300b1",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/helpers.json": "27e010900220cb9c066455ede368b03a506a09ec8155755d6c9a86783de14f5e",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/statistics.json": "cfc2f7c7d8af7db2d1e62540d817aa12db8421757d612c78dbc808091f85bcfd",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/summary.json": "54b8ba4b005d0525a4903035aef448bdbbc5ce4867b94b6b040e57d8a0b1a6c0",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "All declared helper/consumer IDs are accounted for exactly once. Every grouped contradiction has exact helper arithmetic and full-width consumer nodes; only identical tagged helper values share a trace.",
+        "limits": "Conditional on the declared log providers and current cleared raw exp/log calls, whose raw operands are retained and must agree on repeated inputs. Hardware FYL2XP1 is a shared measured native leaf on both backend runs; no software emulation claim. The resident DLMF series and stores are independently checked. No proof these are Excel helpers, no selected or fitted intermediate, no complete PMT implementation. FV0 positive-rate/period normal nonzero balance/target scope; multiple-log mode requires rate<=0.25."
+      }
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct-checked.json",
+      "sha256": "f4e743609057abc79280983b2b8e4740f1fce30559b69a6999a1311c82bd451c",
+      "receipt": {
+        "complete": true,
+        "direct": true,
+        "consumer_models": [
+          "strict",
+          "stored_pc64",
+          "resident_pc64",
+          "stored_pc53"
+        ],
+        "programs": 6635520,
+        "eliminated": 6635520,
+        "survivors": 0,
+        "checked_consumer_groups": 72256,
+        "checked_consumer_nodes": 1300608,
+        "checked_helper_program_rows": 2430,
+        "elementary_input_constraints": 17,
+        "original_rows": 3,
+        "seconds": 82.94201524090022,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "5ddbbedfe420278dce20f4880c70096ae06db088ae1f4df34c190b06e9c227d7"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/constants.json": "c4a8e9dbcb28cdb1b60f86055185a7afc00ca91783bded7596daca24baf451fb",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/consumers.json": "04bec100a85121d396f399e13314b07814b51f55d009843bb57cf71307b7c99c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/first-kills.jsonl": "55abb681eb3e9b7adaef61533aaa24f2bf7f8db3d4a19e4aa46678176d73795d",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/helper-profiles.json": "43b2361bd5f4e03d801937edaba5b1502c5077b61ec45370ee60d4e59a5fd51c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/helper-values.jsonl": "8b0f66a9ab7bf30c5d5a3a7211277165d67f6c6bbbfab96753fc7ab4fc1ae9cf",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/helpers.json": "2689904b23ebdbfc1d61ddfb51dd621a38d3fcb3d1a19ea82d8bc405d73251c8",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/statistics.json": "194c4f77154511f5bb71c43242f4c00d5708f2eb5cbe822bf047b3de7da8c4b3",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/summary.json": "6330b16ea621f662e86b617d43a8bb56e0b03162800ee1cd679ac23453228eb0",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "All declared helper/consumer IDs are accounted for exactly once. Every grouped contradiction has exact helper arithmetic and full-width consumer nodes; only identical tagged helper values share a trace.",
+        "limits": "Conditional on the declared log providers and current cleared raw F2XM1 calls, whose raw operands are retained and must agree on repeated inputs. Hardware FYL2XP1 is a shared measured native leaf on both backend runs; no software emulation claim. The resident DLMF series and stores are independently checked. No proof these are Excel helpers, no selected or fitted intermediate, no complete PMT implementation. FV0 positive-rate/period normal nonzero balance/target scope; multiple-log mode requires rate<=0.25."
+      }
+    }
+  ],
+  "five_model_equivalence": [
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-kahan-equivalence-final.json",
+      "sha256": "f9a9bbfef82e0d78bff525f3dea341bf6b8652470a1fe73780e4d5aea72e2919",
+      "receipt": {
+        "complete": true,
+        "canonical_profiles": 81100800,
+        "expanded_profiles": 309375000,
+        "canonical_consumers": 8192,
+        "expanded_consumers": 31250,
+        "helper_profiles": 9900,
+        "checked_groups": 377600,
+        "checked_nonzero_lossless_pc53_nodes": 567744,
+        "seconds": 77.58138618106022,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "b4a8e534ef3ad32b8a70a1cacb4d1935f142ff4367475fe9447002c42b288525"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan-checked.json": "6b1e38546c4946de708812896622b187f6bb540a5ea70c08b2709e55e3f39e5b",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-publication-source.tar.gz": "bb98b07a185f72327e3c1a78c5d8ad442cca01e3ad8e90d34aa3b82409e84720"
+        },
+        "basis_proof_inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/consumers.json": "04bec100a85121d396f399e13314b07814b51f55d009843bb57cf71307b7c99c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/first-kills.jsonl": "71717026841dc5aa088f219155d096862243285277fdf1826301c17afc1eacc1",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/helper-profiles.json": "b88f66771dd065820748a66449eb0fbb784d95d9ef3b552eb420e953ea757072",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/helper-values.jsonl": "f68f57e1bd4f0492f147e4942f4dc709e55859fe7956ce29c1f650b51e9300b1",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/helpers.json": "27e010900220cb9c066455ede368b03a506a09ec8155755d6c9a86783de14f5e",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/statistics.json": "cfc2f7c7d8af7db2d1e62540d817aa12db8421757d612c78dbc808091f85bcfd",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/summary.json": "54b8ba4b005d0525a4903035aef448bdbbc5ce4867b94b6b040e57d8a0b1a6c0",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-kahan/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "Each completed canonical first kill also contradicts every labeling obtained by replacing any subset of its StoredPc53 sites with ResidentPc53. Exact nonzero spill equality propagates through this fixed DAG. All five-model assignments have one canonical image and weighted coverage is complete.",
+        "limits": "A superset of the canonical four-model exclusions, never an additional count to sum. Consumer-only on the certified counterexamples and unchanged helper/log hypotheses. No global spill equivalence; finite nonzero equality guards exclude signed-zero and underflow/extended-exponent differences. No fitted value, identified Excel kernel or product gain."
+      }
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-direct-equivalence-final.json",
+      "sha256": "dea29064255a7408cfad89d96e68a8bb2ad9222baa04d09082b9d7ce320d15f9",
+      "receipt": {
+        "complete": true,
+        "canonical_profiles": 6635520,
+        "expanded_profiles": 25312500,
+        "canonical_consumers": 8192,
+        "expanded_consumers": 31250,
+        "helper_profiles": 810,
+        "checked_groups": 72256,
+        "checked_nonzero_lossless_pc53_nodes": 108848,
+        "seconds": 11.643312063068151,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "b4a8e534ef3ad32b8a70a1cacb4d1935f142ff4367475fe9447002c42b288525"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct-checked.json": "f4e743609057abc79280983b2b8e4740f1fce30559b69a6999a1311c82bd451c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-publication-source.tar.gz": "bb98b07a185f72327e3c1a78c5d8ad442cca01e3ad8e90d34aa3b82409e84720"
+        },
+        "basis_proof_inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/constants.json": "c4a8e9dbcb28cdb1b60f86055185a7afc00ca91783bded7596daca24baf451fb",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/consumers.json": "04bec100a85121d396f399e13314b07814b51f55d009843bb57cf71307b7c99c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/first-kills.jsonl": "55abb681eb3e9b7adaef61533aaa24f2bf7f8db3d4a19e4aa46678176d73795d",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/helper-profiles.json": "43b2361bd5f4e03d801937edaba5b1502c5077b61ec45370ee60d4e59a5fd51c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/helper-values.jsonl": "8b0f66a9ab7bf30c5d5a3a7211277165d67f6c6bbbfab96753fc7ab4fc1ae9cf",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/helpers.json": "2689904b23ebdbfc1d61ddfb51dd621a38d3fcb3d1a19ea82d8bc405d73251c8",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/statistics.json": "194c4f77154511f5bb71c43242f4c00d5708f2eb5cbe822bf047b3de7da8c4b3",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/summary.json": "6330b16ea621f662e86b617d43a8bb56e0b03162800ee1cd679ac23453228eb0",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-native-direct/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "Each completed canonical first kill also contradicts every labeling obtained by replacing any subset of its StoredPc53 sites with ResidentPc53. Exact nonzero spill equality propagates through this fixed DAG. All five-model assignments have one canonical image and weighted coverage is complete.",
+        "limits": "A superset of the canonical four-model exclusions, never an additional count to sum. Consumer-only on the certified counterexamples and unchanged helper/log hypotheses. No global spill equivalence; finite nonzero equality guards exclude signed-zero and underflow/extended-exponent differences. No fitted value, identified Excel kernel or product gain."
+      }
+    }
+  ],
+  "backend_comparison": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-backend-comparison.json",
+    "sha256": "05211f96c729888beae7b513cd1742e90c6234a499461e93f4796c15391fb61e"
+  },
+  "validation": {
+    "Rust_tests": 69,
+    "Rust_ignored": 2,
+    "checker_controls": 18,
+    "small_lattice_cases": 1504,
+    "Rust_log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-rust-tests.log",
+      "sha256": "6306c6e72c798c95b924fddff5b27e1b1c0bc9c62f3f50b13ab801763b7cb339"
+    },
+    "checker_log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-equivalence-controls.log",
+      "sha256": "5525eaf4829ac78e7abfe032b90364acf7f7a26b8435dbe0ab3db57b35360502"
+    },
+    "UBS": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/ubs-pc53-triage.json",
+      "sha256": "6686ffa8e54d39bbb8e1c911f2b97e7f8c17fde16b5a11be0f0b69e3ad0511fd"
+    },
+    "main_check": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-main-check.log",
+      "sha256": "a942343ef790363b95392745127d6aa1d51cc18a98096b4c6898d56b883dde11"
+    }
+  },
+  "claim": "All 81100800 Kahan/difference and 6635520 direct-F2XM1 four-model consumer crosses reject. Exact nonzero spill equality extends those same counterexamples to all 309375000 and 25312500 five-model assignments. These are supersets, never summed as additional exclusions or product gains.",
+  "limits": [
+    "The same three certified current R10 counterexamples reject all declared programs; no new Excel answers or independent validation.",
+    "Scope: FV=0, positive rate <=0.25 and period, finite normal nonzero balance/target; helper and log algorithms are fixed as declared. Both backends share the measured native FYL2XP1 leaf.",
+    "Stored/Resident-PC53 equivalence is checked only at the counterexample nodes, with finite nonzero binary64 guards, not globally over exponents or signed zeros.",
+    "No fitted intermediate, tolerance, constant or selector. No identified Excel kernel, annuity implementation or corpus gain. All 409 annuity mismatches remain."
+  ]
+}

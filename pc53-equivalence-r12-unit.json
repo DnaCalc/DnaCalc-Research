@@ -1,0 +1,31 @@
+{
+  "id": "dc-j9k-r12-PC53-spill-equivalence",
+  "role": "implementer",
+  "application_revision": "a84d1ce9",
+  "basis_unit": "pc53-publication-r12-unit.json",
+  "basis_unit_sha256": "e55cdc997e6cdb3b9be766c873205d20b129b905237ec51ced28cc35eaedb7d9",
+  "basis_source_archive": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/pc53-publication-source.tar.gz",
+  "basis_source_archive_sha256": "bb98b07a185f72327e3c1a78c5d8ad442cca01e3ad8e90d34aa3b82409e84720",
+  "source_policy": "Same cleared arithmetic, IEEE754 and original canonical observations; no tier3/4 material or forbidden checkout.",
+  "lemma": "Map ResidentPc53 to StoredPc53 at each of the six varied consumer sites. A canonical descriptor with k StoredPc53 sites has2^k distinct five-model labelings. For each first-kill group require every such node is a recorded binary64 finite nonzero value and equals exact ResidentPc53 arithmetic before the store. Numeric equality then propagates through every later operation in this fixed DAG; nonzero guards exclude rational signed-zero ambiguity.",
+  "coverage": {
+    "canonical_consumer_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53"
+    ],
+    "expanded_consumer_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "canonical_consumers": 8192,
+    "expanded_consumers": 31250,
+    "Kahan_expanded_profiles": 309375000,
+    "direct_expanded_profiles": 25312500
+  },
+  "limits": "Consumer-only equivalence on the certified counterexamples, conditional on unchanged helper/log elementary hypotheses. No global StoredPc53/ResidentPc53 equality, no extended-exponent/underflow equivalence, no selected intermediate or product gain. Counts are supersets, never summed as additional independent programs."
+}

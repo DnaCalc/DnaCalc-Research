@@ -31,6 +31,24 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_lossless_pc53_equivalence_guards_signed_zero_and_exponent_spills(self):
+        from timing import lossless_pc53_nodes
+        def encoded(x):return 'binary64:'+struct.pack('>d',float(x)).hex()
+        graph=dict(nodes=[dict(op={'arg':0},model='strict'),dict(op={'arg':1},model='strict'),
+            dict(op={'add':[0,1]},model='stored_pc53')],output=2)
+        nodes=[extended_control(1+two(-60)),encoded(-1),encoded(two(-60))]
+        self.assertEqual(lossless_pc53_nodes(graph,nodes),1)
+        wrong=nodes.copy();wrong[2]=extended_control(two(-60))
+        with self.assertRaises(ValueError):lossless_pc53_nodes(graph,wrong)
+        zero=[encoded(1),encoded(-1),encoded(0)]
+        with self.assertRaisesRegex(ValueError,'zero sign'):lossless_pc53_nodes(graph,zero)
+        graph['nodes'][2]['op']={'div':[0,1]}
+        for divisor in (R(3),two(100)):
+            raw=operation(two(-1022),divisor,'div','resident_pc53');stored=B.round(raw)
+            self.assertNotEqual(raw,stored)
+            nodes=[encoded(two(-1022)),encoded(divisor),encoded(stored)]
+            with self.assertRaises(ValueError):lossless_pc53_nodes(graph,nodes)
+
     def test_timing_and_factor_preimages_contain_generated_helper(self):
         from timing import preimage
         def bits(x):

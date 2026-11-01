@@ -178,7 +178,72 @@ def direct_component(h,component,n,log,elementary):
     return em
 
 
-def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False):
+def lossless_pc53_nodes(graph,encoded_nodes):
+    """Check the local premise for a Stored/Resident-PC53 labeling change."""
+    require(len(encoded_nodes)==len(graph['nodes']),'equivalence trace length differs')
+    count=0;values={}
+    def value(index):
+        if index not in values:values[index]=tagged_value(encoded_nodes[index])
+        return values[index]
+    for i,node in enumerate(graph['nodes']):
+        if node['model']!='stored_pc53':continue
+        require(encoded_nodes[i].startswith('binary64:'),'PC53 store is not recorded as binary64')
+        stored=value(i)
+        require(stored!=0,'zero sign outside this bounded equivalence proof')
+        kind,args=next(iter(node['op'].items()))
+        require(kind in ('add','mul','div')and len(args)==2,'PC53 annotation outside binary arithmetic')
+        resident=operation(*(value(a)for a in args),kind,'resident_pc53')
+        require(resident==stored,'PC53 spill loses a resident value')
+        count+=1
+    return count
+
+
+def pc53_equivalence(basis_path,directory,archive_path,output):
+    """Compose a checked four-model proof with exact PC53 spill equalities."""
+    import hashlib
+    import tarfile
+    start=time.monotonic();basis=json.loads(basis_path.read_text())
+    require(basis['complete']and basis['eliminated']==basis['programs']and basis['survivors']==0,'basis is not a complete exclusion')
+    require(basis['consumer_models']==list(MODELS+('stored_pc53',)),'wrong canonical model family')
+    for name in ('exact.py','check.py'):
+        require(basis['checker_sha256'][name]==source_hashes()[name],'basis arithmetic/checker library differs')
+    with tarfile.open(archive_path,'r:gz')as archive:
+        member=archive.extractfile('research/checker/timing.py')
+        require(member is not None,'missing basis checker source')
+        require(hashlib.sha256(member.read()).hexdigest()==basis['checker_sha256']['timing.py'],'basis checker archive differs')
+    for path,wanted in basis['inputs'].items():
+        require(digest(Path(path))==wanted,'basis proof input changed') # ubs:ignore — public file identities, not secrets or authentication
+    for name in ('consumers.json','first-kills.jsonl','helper-profiles.json'):
+        require(str(directory/name)in basis['inputs'],'basis does not bind this equivalence input')
+    cs=json.loads((directory/'consumers.json').read_text())
+    helper_count=len(json.loads((directory/'helper-profiles.json').read_text()))
+    require(len(cs)==2*4**6 and helper_count==(810 if basis['direct']else 9900),'wrong canonical cross dimensions')
+    require(basis['programs']==len(cs)*helper_count,'basis profile count differs')
+    seen=bytearray(basis['programs']);canonical=expanded=groups=equalities=0
+    for kill in records(directory/'first-kills.jsonl'):
+        cid=kill['consumer'];require(type(cid)is int and 0<=cid<len(cs),'consumer ID outside equivalence family')
+        c=cs[cid];k=c['models'].count('stored_pc53')
+        require(lossless_pc53_nodes(c['graph'],kill['nodes'])==k,'PC53 site count differs')
+        for hid in kill['helpers']:
+            require(type(hid)is int and 0<=hid<helper_count,'helper ID outside equivalence family')
+            identity=cid*helper_count+hid;require(not seen[identity],'duplicate canonical first kill')
+            seen[identity]=1;canonical+=1
+        expanded+=len(kill['helpers'])*(1<<k);groups+=1;equalities+=k
+    require(canonical==basis['programs']and all(seen),'canonical coverage incomplete')
+    require(expanded==2*5**6*helper_count,'five-model weighted coverage incomplete')
+    require(LOADED_SOURCE=={**source_hashes(),'timing.py':digest(Path(__file__))},'equivalence checker sources changed')
+    receipt=dict(complete=True,canonical_profiles=canonical,expanded_profiles=expanded,
+        canonical_consumers=len(cs),expanded_consumers=2*5**6,helper_profiles=helper_count,
+        checked_groups=groups,checked_nonzero_lossless_pc53_nodes=equalities,
+        seconds=time.monotonic()-start,checker_sha256=LOADED_SOURCE,
+        inputs={str(p):digest(p)for p in (basis_path,archive_path)},basis_proof_inputs=basis['inputs'],
+        claim='Each completed canonical first kill also contradicts every labeling obtained by replacing any subset of its StoredPc53 sites with ResidentPc53. Exact nonzero spill equality propagates through this fixed DAG. All five-model assignments have one canonical image and weighted coverage is complete.',
+        limits='A superset of the canonical four-model exclusions, never an additional count to sum. Consumer-only on the certified counterexamples and unchanged helper/log hypotheses. No global spill equivalence; finite nonzero equality guards exclude signed-zero and underflow/extended-exponent differences. No fitted value, identified Excel kernel or product gain.')
+    with output.open('x')as f:json.dump(receipt,f,indent=2);f.write('\n')
+    print(json.dumps(receipt))
+
+
+def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False,pc53=False):
     """Check grouped first kills of the complete finite helper/consumer cross."""
     import itertools
     start=time.monotonic()
@@ -207,10 +272,12 @@ def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False):
     profile_path=directory/'helper-profiles.json'
     if profile_path.exists():require(json.loads(profile_path.read_text())==profiles,'log/helper Cartesian coverage differs')
     else:require(not multiple_logs,'missing declared helper profiles')
-    require(len(cs)==1458,'consumer coverage differs')
+    consumer_models=MODELS+('stored_pc53',)if pc53 else MODELS
+    model_count=len(consumer_models)**6
+    require(len(cs)==2*model_count,'consumer coverage differs')
     for cid,c in enumerate(cs):
-        form=cid//729;code=cid%729;models=[]
-        for _ in range(6):models.append(MODELS[code%3]);code//=3
+        form=cid//model_count;code=cid%model_count;models=[]
+        for _ in range(6):models.append(consumer_models[code%len(consumer_models)]);code//=len(consumer_models)
         require(c['id']==cid and c['numerator']==0 and c['combine']==9+form and c['models']==models,'consumer identity differs')
         graph=c['graph'];require(graph_shape(graph,True)==expected_shape(0,9+form),'consumer shape differs')
         ops=[{'arg':i}for i in range(5)]+[{'const':{'bits':0x3ff0000000000000}},
@@ -288,7 +355,7 @@ def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False):
     require(eliminated+len(survivor_ids)==total,'incomplete profile accounting')
     require(LOADED_SOURCE=={**source_hashes(),'timing.py':digest(Path(__file__))},'checker sources changed')
     elementary_kind='raw F2XM1 calls'if direct else'raw exp/log calls'
-    receipt=dict(complete=True,direct=direct,programs=total,eliminated=eliminated,survivors=len(survivor_ids),
+    receipt=dict(complete=True,direct=direct,consumer_models=consumer_models,programs=total,eliminated=eliminated,survivors=len(survivor_ids),
         checked_consumer_groups=groups,checked_consumer_nodes=node_count,checked_helper_program_rows=component_count,
         elementary_input_constraints=len(elementary),original_rows=len(rows),seconds=time.monotonic()-start,
         checker_sha256=LOADED_SOURCE,inputs={str(p):digest(p)for p in [scoped,*sorted(directory.glob('*.json*'))]},
@@ -366,5 +433,6 @@ def run(scoped, directory, output, factor=False, due=False):
 
 if __name__=='__main__':
     if sys.argv[1]=='product-shells':product_shells(*(Path(p)for p in sys.argv[2:5]))
-    elif sys.argv[1]=='timing-helpers':timing_helpers(*(Path(p)for p in sys.argv[2:5]),multiple_logs='--logs'in sys.argv[5:],direct='--direct'in sys.argv[5:])
+    elif sys.argv[1]=='pc53-equivalence':pc53_equivalence(*(Path(p)for p in sys.argv[2:6]))
+    elif sys.argv[1]=='timing-helpers':timing_helpers(*(Path(p)for p in sys.argv[2:5]),multiple_logs='--logs'in sys.argv[5:],direct='--direct'in sys.argv[5:],pc53='--pc53'in sys.argv[5:])
     else:run(*(Path(p)for p in sys.argv[1:4]),factor='--factor'in sys.argv[4:],due='--due-rate-factor'in sys.argv[4:])

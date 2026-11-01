@@ -321,7 +321,13 @@ pub fn run<F: Fpu + 'static>(all: &[Row], output: &str) {
 /// canonical timing multiplication is exact too. The six remaining stores are
 /// independently annotated. Equal helper values share a consumer execution,
 /// while every original helper/program ID remains in the first-kill records.
-pub fn timing_helpers<F: Fpu>(all: &[Row], output: &str, multiple_logs: bool, direct: bool) {
+pub fn timing_helpers<F: Fpu>(
+    all: &[Row],
+    output: &str,
+    multiple_logs: bool,
+    direct: bool,
+    pc53: bool,
+) {
     use crate::enumerate::{AssociationCandidate, timing_template};
     let start = Instant::now();
     fs::create_dir(output).unwrap();
@@ -335,18 +341,22 @@ pub fn timing_helpers<F: Fpu>(all: &[Row], output: &str, multiple_logs: bool, di
         })
         .collect();
     let mut cs = vec![];
+    // PC53 consumes full resident operands before rounding its result. This
+    // is distinct from Strict, whose operands are first stored to binary64.
+    let consumer_models: &[EvalModel] = if pc53 { &WIDE_MODELS[..4] } else { &MODELS };
+    let model_count = consumer_models.len().pow(6);
     for form in 0..2 {
         let sites = if form == 0 {
             [10, 11, 12, 13, 16, 17]
         } else {
             [10, 11, 12, 13, 14, 17]
         };
-        for mut code in 0..729 {
+        for mut code in 0..model_count {
             let mut graph = timing_template(0, form);
             let mut models = vec![];
             for site in sites {
-                let model = MODELS[code % 3];
-                code /= 3;
+                let model = consumer_models[code % consumer_models.len()];
+                code /= consumer_models.len();
                 graph.nodes[site].model = model;
                 models.push(model);
             }
@@ -359,7 +369,7 @@ pub fn timing_helpers<F: Fpu>(all: &[Row], output: &str, multiple_logs: bool, di
             });
         }
     }
-    assert_eq!(cs.len(), 1458);
+    assert_eq!(cs.len(), 2 * model_count);
     if direct {
         let descriptors: Vec<_> = (0..162)
             .map(|id| {
@@ -502,7 +512,7 @@ pub fn timing_helpers<F: Fpu>(all: &[Row], output: &str, multiple_logs: bool, di
     json_write(
         out.join("summary.json"),
         &json!({"complete":true,"consumers":cs.len(),
-        "programs":total,"helpers":helper_count,"direct":direct,"helper_profiles":profiles.len(),"log_providers":if multiple_logs{5}else{1},"survivors":remaining,"consumer_group_evaluations":evaluations,
+        "programs":total,"helpers":helper_count,"direct":direct,"consumer_models":consumer_models,"helper_profiles":profiles.len(),"log_providers":if multiple_logs{5}else{1},"survivors":remaining,"consumer_group_evaluations":evaluations,
         "source_rows":all.len(),"scoped_rows":rows.len(),"rows_visited":statistics.len(),
         "seconds":start.elapsed().as_secs_f64(),"backend":std::any::type_name::<F>(),
         "scope":"FV0,positive rate/periods,normal nonzero balance/targets. Multiple-log mode additionally requires rate<=0.25. Existing helper programs and declared log providers; two correlated timing corrections, six independently annotated sites. Native FYL2XP1 remains a measured hardware leaf in both backend runs. Discovery only; no fitted helper or chosen survivor."}),
