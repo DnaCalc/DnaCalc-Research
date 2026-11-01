@@ -1,0 +1,77 @@
+{
+  "recorded_at_utc": "2026-11-01T04:04:44.712445+00:00",
+  "reason": "The canonical witness trace retains build/bitness but omits available source capture-provenance fields. Inspecting the original immutable source metadata recovers these declarations; no new answers imported or changed.",
+  "records": [
+    {
+      "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json.gz",
+      "compressed_sha256": "b9d0f4f1c4435d98233ef862be5f62fb1b86fcedf7599580820e72501a8d9c8b",
+      "capture_provenance": {
+        "schema_version": "w109-capture-provenance-v1",
+        "captured_utc": "2026-08-09T09:10:07.2452037Z",
+        "environment": {
+          "excel_version": "16.0",
+          "excel_build": "20228",
+          "excel_bitness": "64-bit",
+          "workbook_compatibility": "2",
+          "excel_operating_system": "Windows (64-bit) NT 10.00",
+          "excel_input_plumbing": "cell_value2_bulk"
+        },
+        "oracle_cache": {
+          "mode": "no_cache",
+          "root": null,
+          "hits": 0,
+          "misses": 0
+        },
+        "runner": {
+          "name": "Run-W109BulkBatch.ps1",
+          "version": "w109-bulk-batch-v2",
+          "script_last_write_utc": "2026-08-09T05:40:43.4959354Z",
+          "powershell_version": "7.6.3"
+        }
+      }
+    },
+    {
+      "source": "work/w109/G6-cumprinc/answers-pmt-cumprinc-companion-20260809.json.gz",
+      "compressed_sha256": "dfe6908356b1e689117a620e75a5c775a138fe650f205589318d07aa1ac3fdb0",
+      "capture_provenance": {
+        "schema_version": "w109-capture-provenance-v1",
+        "captured_utc": "2026-08-09T09:09:15.6487821Z",
+        "environment": {
+          "excel_version": "16.0",
+          "excel_build": "20228",
+          "excel_bitness": "64-bit",
+          "workbook_compatibility": "2",
+          "excel_operating_system": "Windows (64-bit) NT 10.00",
+          "excel_input_plumbing": "cell_value2_bulk"
+        },
+        "oracle_cache": {
+          "mode": "no_cache",
+          "root": null,
+          "hits": 0,
+          "misses": 0
+        },
+        "runner": {
+          "name": "Run-W109BulkBatch.ps1",
+          "version": "w109-bulk-batch-v2",
+          "script_last_write_utc": "2026-08-09T05:40:43.4959354Z",
+          "powershell_version": "7.6.3"
+        }
+      }
+    }
+  ],
+  "declared_facts": {
+    "input_plumbing": "cell_value2_bulk",
+    "workbook_compatibility": "2",
+    "runner": "Run-W109BulkBatch.ps1, w109-bulk-batch-v2",
+    "PMT_captured_utc": "2026-08-09T09:09:15.6487821Z",
+    "CUMPRINC_captured_utc": "2026-08-09T09:10:07.2452037Z"
+  },
+  "still_unknown": [
+    "requested/submitted/read-back equality in historical run",
+    "effective callee inputs",
+    "CPU",
+    "numeric settings and locale except declared compatibility",
+    "current-build CUMPRINC reproduction"
+  ],
+  "limits": "Declared transport provenance is not a verified input audit. Original units/packets stay immutable; claims relying on unknown transport are qualified by this recovered declaration."
+}

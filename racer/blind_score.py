@@ -251,6 +251,75 @@ def score_round10(packet, evidence, out):
     print(json.dumps({k:v for k,v in summary.items()if k not in ('frozen_prediction_hashes','answer_source_hashes')}))
 
 
+def score_routes(packet,trace,out):
+    """Score all frozen route predictions from the existing canonical judge trace.
+
+    Missing and unread requests fail. Kind-only boundary obligations are scored
+    separately and never become exact numerical matches. No search/elimination.
+    """
+    import math
+    import struct
+    scorer_hash=sha(Path(__file__))
+    manifest=json.loads((packet/'manifest.json').read_text())
+    for name,digest in manifest['files_sha256'].items():
+        assert sha(packet/name)==digest,('frozen packet changed',name)
+    requests={};predictions={}
+    for name in manifest['files_sha256']:
+        if name.startswith('requests-'):
+            doc=json.loads((packet/name).read_text());fn=doc['function']
+            for q in doc['witnesses']:
+                assert q['id']not in requests and q['input_transport']=='cell_value2_bulk'
+                requests[q['id']]=dict(function=fn,**q)
+        if name.startswith(('application-predictions-','registered-predictions-')):
+            for line in (packet/name).read_text().splitlines():
+                p=json.loads(line);assert p['id']not in predictions;predictions[p['id']]=p
+    assert len(requests)==manifest['calls']and requests.keys()==predictions.keys()
+    for qid,q in requests.items():assert predictions[qid]['args']==q['args']
+    answers={};source_hash=sha(trace)
+    with trace.open()as f:
+        for index,line in enumerate(f):
+            row=json.loads(line);qid=row.get('id')
+            if qid not in requests:continue
+            q=requests[qid]
+            assert row['function']==q['function']and row['args']==q['args']and row.get('result_index')==q.get('result_index'),('input binding differs',qid)
+            assert row['reading'].get('excel_build')and row['source']
+            assert not row.get('not_excel_evidence'),('synthetic trace is not an answer',qid)
+            if qid in answers:assert answers[qid]['expected']==row['expected'],('conflicting readings',qid)
+            answers[qid]=dict(trace_index=index,**row)
+    totals=C.defaultdict(C.Counter);details=[]
+    for qid,q in requests.items():
+        p=predictions[qid]['calc_func_prediction'];answer=answers.get(qid)
+        if answer is None:status='missing'
+        elif p.startswith('fault:'):status='refused'
+        elif p==answer['expected']:status='matched'
+        else:status='mismatched'
+        c=totals[q['function']];c[status]+=1;c['total']+=1;c['pass']+=status=='matched';c['fail']+=status!='matched'
+        details.append(dict(request=q,prediction=p,status=status,answer=answer))
+    boundary=[];boundary_counts=C.Counter()
+    path=packet/'boundary-hypotheses.json'
+    if path.name in manifest['files_sha256']:
+        for h in json.loads(path.read_text()):
+            qid=h['id'];answer=answers.get(qid);wanted=h['kind_only_boundary_hypothesis']
+            observed=answer['expected']if answer else None
+            finite=(isinstance(observed,str)and observed.startswith('0x')and len(observed)==18 and
+                math.isfinite(struct.unpack('>d',bytes.fromhex(observed[2:]))[0]))
+            passed=observed is not None and (finite if wanted.startswith('finite number')else observed==wanted)
+            boundary.append(dict(hypothesis=h,observed=observed,passed=passed));boundary_counts['total']+=1;boundary_counts['pass']+=passed;boundary_counts['fail']+=not passed
+    assert sha(trace)==source_hash  # ubs:ignore — public evidence identity, no secret comparison
+    assert sha(Path(__file__))==scorer_hash  # ubs:ignore — public source identity, no secret comparison
+    out.mkdir(parents=True,exist_ok=False)
+    summary=dict(stage='blind route scoring only; no search or elimination',
+        scored_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),scorer_sha256=scorer_hash,
+        packet_manifest_sha256=sha(packet/'manifest.json'),trace_sha256=source_hash,
+        calls=len(requests),available_readings=len(answers),functions=dict(totals),
+        boundary_kind_obligations=boundary_counts,
+        limits='Canonical existing judge trace only. Missing/unread obligations fail. Kind-only outcomes remain separate from exact value scores. No effective-callee-input observation is inferred. Evaluate frozen coupled relations only after retaining this blind score.')
+    (out/'blind-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+    (out/'per-question.json').write_text(json.dumps(details,indent=2)+'\n')
+    (out/'boundary-kind-obligations.json').write_text(json.dumps(boundary,indent=2)+'\n')
+    print(json.dumps(summary))
+
+
 if __name__=='__main__':
     action,packet,source,out=sys.argv[1:]
-    {'score':score,'eliminate':eliminate,'score-round10':score_round10}[action](Path(packet),Path(source),Path(out))
+    {'score':score,'eliminate':eliminate,'score-round10':score_round10,'score-routes':score_routes}[action](Path(packet),Path(source),Path(out))

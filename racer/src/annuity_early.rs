@@ -64,7 +64,7 @@ fn series_log1p<F: Fpu>(rate: f64) -> Val {
         }
         sum = next;
     }
-    panic!("log1p floating series did not reach its declared unchanged sum")
+    panic!("log1p floating series did not reach its declared unchanged sum") // ubs:ignore — abort unsupported series; never publish an unconverged value
 }
 fn logs<F: Fpu>(rate: f64, frozen: u64) -> [Val; 5] {
     let hw = hardware_log1p(rate);
@@ -81,7 +81,7 @@ fn nper(row: &Row) -> f64 {
     let arg = calc_verdict::decode_argument(&row.raw["args"][1], "nper bits").unwrap();
     match arg.core() {
         crate::value::CoreValue::Number(x) => *x,
-        _ => panic!("numeric period scope"),
+        _ => panic!("numeric period scope"), // ubs:ignore — reject out-of-scope research input rather than inventing a result
     }
 }
 
@@ -427,6 +427,31 @@ fn backward_interest<F: Fpu>(p: Val, em: Val, rate: Val, shape: usize, code: usi
     boundary::neg(value)
 }
 
+/// Every Ext80 value in a negative ordinary binary64 publication cell that lies
+/// within one extended binade, with a 4096-significand margin from both edges.
+/// Used as an existential domain, never a fitted value.
+pub(crate) fn publication_candidates<F: Fpu>(p_bits: u64) -> Vec<Val> {
+    let published = f64::from_bits(p_bits);
+    assert!(published.is_normal() && published < 0.0);
+    let center = Val::F64(p_bits).to_ext();
+    let sig = u64::from_le_bytes(center.0[..8].try_into().unwrap());
+    assert!(sig > (1u64 << 63) + 4096 && sig < u64::MAX - 4096);
+    let mut latent = vec![];
+    for s in ((sig - 2049)..=(sig + 2049)).rev() {
+        let mut e = center;
+        e.0[..8].copy_from_slice(&s.to_le_bytes());
+        if F::store(&e, CW).to_bits() == p_bits {
+            latent.push(Val::Ext(e));
+        }
+    }
+    assert!((2047..=2049).contains(&latent.len()));
+    assert!(latent.windows(2).all(|p| {
+        u64::from_le_bytes(p[0].to_ext().0[..8].try_into().unwrap())
+            > u64::from_le_bytes(p[1].to_ext().0[..8].try_into().unwrap())
+    }));
+    latent
+}
+
 pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) {
     let original: Vec<serde_json::Value> =
         serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
@@ -464,24 +489,7 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
         ip_targets.push(bits(&row["ipmt"][0]["expected"]));
         pp_targets.push(bits(&row["ppmt"]["expected"]));
     }
-    // All Ext80 values in this finite RN53 interval share one exponent. Each
-    // integer significand is visited; no fitted latent PMT value is selected.
-    let center = Val::F64(p_bits).to_ext();
-    let sig = u64::from_le_bytes(center.0[..8].try_into().unwrap());
-    assert!(sig > 4096 && sig < u64::MAX - 4096);
-    let mut latent = vec![];
-    for s in ((sig - 2049)..=(sig + 2049)).rev() {
-        let mut e = center;
-        e.0[..8].copy_from_slice(&s.to_le_bytes());
-        if F::store(&e, CW).to_bits() == p_bits {
-            latent.push(Val::Ext(e));
-        }
-    }
-    assert!((2047..=2049).contains(&latent.len()));
-    assert!(latent.windows(2).all(|p| {
-        u64::from_le_bytes(p[0].to_ext().0[..8].try_into().unwrap())
-            > u64::from_le_bytes(p[1].to_ext().0[..8].try_into().unwrap())
-    }));
+    let latent = publication_candidates::<F>(p_bits);
     let prior =
         joint_pv_fv.map(|p| serde_json::from_slice::<Vec<usize>>(&fs::read(p).unwrap()).unwrap());
     let growth_ids: Vec<usize> = prior
@@ -769,7 +777,7 @@ pub fn nper_product_profiles(input: &str, out: &str, full_five: bool) {
             let v = calc_verdict::decode_argument(&row["args"][j], "NPER raw bits").unwrap();
             match v.core() {
                 crate::value::CoreValue::Number(x) => *x,
-                _ => panic!("NPER typed control outside declared numeric bank"),
+                _ => panic!("NPER typed control outside declared numeric bank"), // ubs:ignore — fail closed when a declared numeric control has another type
             }
         });
         let got = nper_profile::<Hard>(a, EvalModel::StoredPc64);

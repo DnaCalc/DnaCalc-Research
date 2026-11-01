@@ -1,0 +1,94 @@
+{
+  "id": "dc-ymjf.4-r11-cumulative-interest-free",
+  "role": "implementer",
+  "application_revision": "16b00e66fd0d8e8f7c9e0a9dfc1a6a36542a1e34",
+  "function": "CUMPRINC",
+  "surface": "registered scalar CUMPRINC, six original numeric arguments, no result selection",
+  "domain": "All540original numeric CUMPRINC observations and60same-build PMT companions, positive rate/PV, integer periods<=512, timing0/1; each negative normal PMT publication cell lies within one Ext80 binade.",
+  "rationale": "Largest named function in1184-cell corpus mismatch census:157cells;540existing bank calls,214application passes and326failures. Every old bank row is discovery.",
+  "sources": {
+    "tier1": [
+      "ordinary finite geometric-series and amortization identities",
+      "IEEE754 nearest-even",
+      "existing canonical Excel witness-reader exports"
+    ],
+    "tier2": [
+      "current cleared Fpu through existing racer bridge"
+    ],
+    "banned": [
+      "all tier3/4",
+      "deleted sources and histories",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "profiles": 7500,
+    "balance_updates": [
+      "balance+principal",
+      "balance*(1+rate)+payment"
+    ],
+    "payment_boundary": [
+      "retain original latent Ext80",
+      "explicit binary64 store"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "precision_regions": [
+      "interest product",
+      "payment-plus-interest principal",
+      "balance update and q=1+rate",
+      "accumulation"
+    ],
+    "sum_order": [
+      "forward",
+      "reverse",
+      "pairwise"
+    ],
+    "latent_payment": "Complete Ext80 lattice of the exact first-singleton inverse, shared across all nine intervals per loan. No external PMT-publication condition. All values retained until exact elimination; no chosen/fitted payment or payment-producing program.",
+    "elimination": "Exact monotone lattice interval constraints; positive-coefficient recurrence graph is structurally nondecreasing in latent payment; full-width boundary traces certify every interval cut.",
+    "survivor_policy": "Every logical profile and every surviving per-loan lattice interval retained, never ranked by closeness.",
+    "accumulation": "Accumulate the interest products for selected periods; add the period count times one common latent payment. Principal-model precision applies to the count product and final addition. No extra numeric coefficients.",
+    "initial_domain": "Complete inverse of the declared first singleton, including count-product and interest-sum rounding. Sum order enters the first-shell key."
+  },
+  "observations": {
+    "loader": "cargo xtask witness judge --bank full --trace",
+    "source": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/application-CUMPRINC-before-complete.jsonl",
+    "sha256": "404fcd8a79801aa015f4a92d396bf083b03e331e524b555d8bd1f9d5ae109820",
+    "rows": 540,
+    "build": "20228",
+    "bitness": "64-bit",
+    "cpu": null,
+    "transport": null,
+    "compatibility_version": null,
+    "settings": null,
+    "all_discovery": true,
+    "declared_transport": "cell_value2_bulk",
+    "declared_compatibility_version": "2",
+    "historical_input_audit": null
+  },
+  "budget": {
+    "deadline_utc": "2026-11-01T06:57:00Z",
+    "workers": 2,
+    "memory_bytes_per_worker": 4294967296,
+    "per_backend_max_seconds": 5400
+  },
+  "strength": "Necessary unrestricted shared-latent balance consumer constraints, not a complete identified program",
+  "frozen_at_utc": "2026-11-01T04:17:17.931503+00:00",
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  },
+  "rebuild_scope": "Unrelated upstream calc-value grid/cache additions changed the guarded tree. Original units, executables, observations and packets remain unchanged. Numerical sources are separately byte-identical; rebuilding supplies no fresh Excel validation.",
+  "basis": "The unrestricted-payment principal-summing balance family rejects by the31/76period prefixes. Independently test the algebraic factorization count*payment+sum(interest), preserving the same positive-coefficient balance recurrences."
+}

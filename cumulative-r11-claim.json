@@ -16,7 +16,11 @@
     "input_transport": null,
     "publication": "exact binary64 worksheet outcome",
     "new_round10_build": "20527",
-    "round10_compatibility_version": 2
+    "round10_compatibility_version": 2,
+    "declared_compatibility_version": "2",
+    "declared_input_transport": "cell_value2_bulk",
+    "historical_input_audit": null,
+    "provenance_erratum": "cumulative-r11-provenance-erratum.json"
   },
   "structure": {
     "corpus_mismatches_at_selection": 157,
@@ -26,7 +30,7 @@
     "loan_groups": 60,
     "calls_per_loan": 9,
     "matching_build_and_bitness": true,
-    "historical_settings_and_transport": null,
+    "historical_settings_and_transport": "Original capture metadata declares Value2 bulk and compatibility 2; no submitted/readback input audit. Earlier unknown declarations preserved in original units; see provenance erratum.",
     "beginning_first_principal_equal_to_companion_PMT": {
       "matched": 30,
       "total": 30
@@ -81,7 +85,13 @@
     "cumulative-native-final-checked.json": "10b767f3ebd9c41543c577fb5e18831129458055a2629bf185c75a2ad832358b",
     "cumulative-principal-projection-final-checked.json": "9695631becde66de467461935e1b4dccd7d798fbce7f422a9fc9a328e4b7914d",
     "cumulative-payment-projection-final-checked.json": "d58c5d2197eda07ff83c782bc3a8fd992fe850ace905713457dda958a9f2f2db",
-    "arithmetic-controls-checked.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37"
+    "arithmetic-controls-checked.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37",
+    "cumulative-balance-native-checked.json": "24eecd12026093feec6e5742307b0ab756ed7e68f3ce9f82f913e85977ac25a1",
+    "arithmetic-controls-typed-checked.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37",
+    "typed-interpreter-rebuild-comparison.json": "58f727267b23c1bd71d81ea9935f5f9d97139cc250f18675eccb66d03d2fff1d",
+    "cumulative-balance-publication-checked.json": "ba662e7abf573cc26614579704e9e7f89c89217cc90188531d1d7e8cd94503ba",
+    "cumulative-balance-free-publication-checked.json": "f803797a5e1b4749539f573c40eb708043e3f3cacf3fa5d9a3f0a74d10511dee",
+    "cumulative-interest-free-publication-checked.json": "a65c63e9bd337e7aaeedca6c605c6670c30ac7ffbd858b01156b2d308fa098d4"
   },
   "exposure": {
     "all_old_banks_and_corpus": "discovery",
@@ -136,8 +146,10 @@
     "Concrete integer-growth/payment prefix rejected at first singleton; accumulation remains unidentified.",
     "Arbitrary shared initial principal cannot rescue the50specified fixed-growth/multiply consumers.",
     "A payment constrained by its original external PMT publication cannot rescue the50specified fixed-growth/divide consumers.",
-    "Other balance recurrences, growth helpers, precision regions and publication boundaries remain unsearched.",
-    "Current-build CUMPRINC paired readings and standalone PPMT/CUMIPMT comparisons are frozen next questions."
+    "Two balance recurrences, two payment boundaries and five models for each declared region cannot satisfy the external-PMT publication assumption at the first end-timing singleton. Other payment-publication relationships and helper boundaries remain open.",
+    "Current-build CUMPRINC paired readings and standalone PPMT/CUMIPMT comparisons are frozen next questions.",
+    "Relaxing external PMT equality still excludes both specified balance updates under principal accumulation at31/76period prefixes.",
+    "The separate count*payment+accumulated-positive-interest family also rejects at31periods. A single common payment cannot rescue these declared consumers; other helper/state boundaries and execution semantics remain open."
   ],
   "provenance": "Implementer; original annuity algebra, IEEE754, existing canonical Excel observations, and cleared Fpu. No tier3/4 source, fitted coefficients, residual cutoffs or answer component.",
   "source_annotation_record": {
@@ -162,5 +174,108 @@
   "ubs": {
     "critical_after_triage": 0,
     "reason": "Public integrity-hash equality and finite one-shot file-iterator lifetimes are explicitly justified; malformed JSON fails closed. Original sources retained; no arithmetic changed."
+  },
+  "balance_consumer_projection": {
+    "unit": "cumulative-balance-r11-unit.json",
+    "profiles": 7500,
+    "survivors": 0,
+    "first_killing_original_row": 0,
+    "publication_lattices_verified": 60,
+    "nodes_checked": 65000,
+    "boundary_traces_checked": 7500,
+    "direct_inverse_checks": 7500,
+    "native_software_artifacts": "all six proof files byte-identical",
+    "limitations": "Necessary consumer constraints assuming CUMPRINC internal payment publishes to its external PMT companion. All reject at the first singleton: no accumulation order identified. No latent payment chosen, fitted or installed.",
+    "receipt": "cumulative-balance-publication-checked.json"
+  },
+  "typed_interpreter_rebuild": {
+    "application_revision": "16b00e66fd0d8e8f7c9e0a9dfc1a6a36542a1e34",
+    "artifact": "typed-interpreter-rebuild-comparison.json",
+    "prior_90000_program_results": "both backends reproduce all programs, traces, first kills and survivors byte-identically",
+    "arithmetic_reference_comparisons": 70,
+    "checker_unit_tests": 11
+  },
+  "free_payment_balance_consumers": [
+    {
+      "unit": "cumulative-balance-free-r11-unit.json",
+      "receipt": "cumulative-balance-free-publication-checked.json",
+      "profiles": 7500,
+      "survivors": 0,
+      "first_singleton_domains_independently_checked": 15000,
+      "monotone_graphs_checked": 15310,
+      "interval_cuts_checked": 15310,
+      "nodes_checked": 1399485,
+      "first_kill_histogram": {
+        "2": 7190,
+        "4": 310
+      },
+      "initial_domain": "complete first-singleton inverse; no external PMT constraint",
+      "interest_sum": false,
+      "limitations": "Necessary consumers with one arbitrary Ext80 payment shared across the original intervals; no external PMT constraint. First-singleton inverse domains and all later cuts are independently verified. No complete payment producer, CUMPRINC kernel or global backend equivalence identified. Historical read-back audits unavailable."
+    },
+    {
+      "unit": "cumulative-interest-free-r11-unit.json",
+      "receipt": "cumulative-interest-free-publication-checked.json",
+      "profiles": 7500,
+      "survivors": 0,
+      "first_singleton_domains_independently_checked": 45000,
+      "monotone_graphs_checked": 15000,
+      "interval_cuts_checked": 15000,
+      "nodes_checked": 1275000,
+      "first_kill_histogram": {
+        "2": 7500
+      },
+      "initial_domain": "complete first-singleton inverse; no external PMT constraint",
+      "interest_sum": true,
+      "limitations": "Necessary consumers with one arbitrary Ext80 payment shared across the original intervals; no external PMT constraint. First-singleton inverse domains and all later cuts are independently verified. No complete payment producer, CUMPRINC kernel or global backend equivalence identified. Historical read-back audits unavailable."
+    }
+  ],
+  "latest_verified_application_revision": "b914ece0a6eea76659b4ec2d38b9b87a78c7602f",
+  "build_source_scope": {
+    "frozen_guard_revision": "16b00e66fd0d8e8f7c9e0a9dfc1a6a36542a1e34",
+    "latest_repository_revision": "b914ece0a6eea76659b4ec2d38b9b87a78c7602f",
+    "calc_func_calc_value_calc_fml_calc_verdict_and_witness_loader_unchanged": true,
+    "latest_research_executable_sha256": "a5cce0785313cb868ee86f97c5abef8a507024898e98a3a4db942349c8629769"
+  },
+  "receipt_source_snapshots": {
+    "cumulative-balance-native-checked.json": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/balance-publication-sources/checker/cumulative_balance.py",
+    "cumulative-balance-free-native-checked-final.json": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/balance-free-sources/checker/cumulative_balance.py",
+    "cumulative-interest-free-native-checked.json": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/interest-free-sources/checker/cumulative_balance.py",
+    "publication_checked_receipts": "Current checker with dependency guards and explicit direct/pairwise Ext80 equality. Earlier interrupted/partial attempts are not accepted receipts."
+  },
+  "bank_latest_replay": {
+    "common_rows_byte_identical": 3874776,
+    "refreshed_representatives": 40,
+    "all_baseline_rows_accounted": 3874816,
+    "old_bank_pass": 3230348,
+    "old_bank_fail": 644584,
+    "old_bank_gains": 0,
+    "old_bank_losses": 0,
+    "new_semantic_observations": 72,
+    "new_semantic_pass": 22,
+    "new_semantic_fail": 50,
+    "final_rows_including_unread": 3874964,
+    "final_pass": 3230357,
+    "final_fail": 644607,
+    "unread": 116,
+    "explanation": "The canonical bank chooses new current-build representatives for40old exact typed-input/outcome groups. Original observations remain in their immutable sources. Every refreshed representative has identical inputs, expected outcome and actual output; all other3,874,776canonical rows are byte-identical. The earlier all-trace-hash and old-source-location assumptions failed due changed provenance/membership, not changed product outputs; those failed audit logs are retained.",
+    "comparison_sha256": "d988a23abaefe2e4e22abd07ebce7a990a76c1c4b0cc21238c70dca1338b6932"
+  },
+  "frozen_route_scorer": {
+    "command": "python3 racer/blind_score.py score-routes PACKET CANONICAL_TRACE OUT",
+    "source_sha256": "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45",
+    "synthetic_adversarial_controls": 8,
+    "control_receipt_sha256": "1b7e9722161124db1abd8d7eae867d2d500bc83dcc3fa75a6ff28d7b27533a45",
+    "old_round10_scorer_functions": "AST-identical to reviewed preserved source; no original prediction/scoring output amended"
+  },
+  "research_source_sha256": {
+    "racer/src/cumulative_balance.rs": "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/annuity_early.rs": "4cf902aa1a57ae4b447433e605d31357a1afc8148038474e35444e1658a7609a",
+    "racer/cumulative_projection.py": "a52913ef444f09a62220a532d56a684e0e2cf344c71abd8cfd9649a27f0a166c",
+    "checker/cumulative_balance.py": "2b5efdf75d3367095eeb9694d94f47ad1f49ff49e8136442b1087e6acbe20153",
+    "checker/cumulative.py": "5b2ad4e12809b8a826777eaaa22ff3067ed71f33720c844e81829c181e246cf2",
+    "racer/blind_score.py": "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45"
   }
 }

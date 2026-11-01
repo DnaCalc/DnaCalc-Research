@@ -402,7 +402,52 @@ Use the v2 directory for BESSELI, BESSELJ, CONCATENATE and CONCAT, with each
 function's requests-<function>.json. These are boundary/route audits; their
 kind-only hypotheses are never exact numerical function matches.
 
-Upstream engine/value-model work at application16b00e66 changes the guarded
+Upstream engine/value-model work at application 16b00e66 changes the guarded
 source tree. The numerical source hashes remain unchanged. The original unit
 still pins e8a15f90; cumulative-r11-rebuild-unit.json explicitly pins the later
 tree for rebuilds, without replacing any measurement, packet or original unit.
+
+The separate bounded balance-consumer audit uses cumulative-balance-r11-unit.json:
+  target/release/symbolic-racer cumulative-balance CUMPRINC.jsonl structure.json OUT hard
+  python3 checker/cumulative_balance.py CUMPRINC.jsonl structure.json OUT receipt.json
+Use soft for a separate software replay. All 7,500 profiles reject the first
+singleton even allowing every Ext80 payment compatible with the external PMT
+publication. The independent checker verifies all 60 publication lattices,
+monotonicity of 7,500 instantiated DAGs, full-width boundaries and a separate
+inverse-rounding proof. This tests a conditional consumer assumption; it does
+not discover a payment producer or accumulation order. The earlier 90,000-profile
+results remain byte-identical after the shared interpreter/summation refactor.
+
+Recovered original metadata declares Value2 bulk transport and compatibility 2
+for both old CUMPRINC and PMT captures. cumulative-r11-provenance-erratum.json
+retains that source metadata and hashes. No historical submitted/readback audit
+was recovered. Original frozen units and question manifests remain unchanged.
+The merged application 16b00e66 passes cargo xtask check --all: 1,408 tests, 0 failures;
+its corpus remains 18,811/20,030 with 59 gains and zero losses from the baseline.
+
+The unrestricted-payment continuation removes the external-PMT equality:
+  python3 racer/cumulative_projection.py balance-domains CUM.jsonl structure.json domains.json
+  target/release/symbolic-racer cumulative-balance-free CUM.jsonl structure.json domains.json OUT hard
+  python3 checker/cumulative_balance.py CUM.jsonl structure.json OUT receipt.json
+Append interest to both generation and racer commands for the separate
+count*payment+accumulated-positive-interest family. Use soft for backend replay.
+All 7,500 principal accumulation profiles reject at prefixes of 31 or 76 periods;
+all 7,500 interest accumulation profiles reject at the 31-period prefix. Each initial Ext80 domain is complete and remains
+an existential set; no payment is selected or fitted. The final independent
+receipts bind the cumulative helper source and explicitly check direct/pairwise
+singleton lattice equality, whose continuous real preimages can differ.
+
+After fresh canonical judge readings arrive, score every immutable route first:
+  python3 racer/blind_score.py score-routes packets/round11 TRACE BLIND_OUT
+  python3 racer/blind_score.py score-routes packets/structural-r11-v2 TRACE STRUCT_OUT
+Missing calls fail; conflicting answers and changed arguments reject. Kind-only
+boundary obligations stay separate from exact function-value scores. The eight
+adversarial controls are labelled SYNTHETIC and never enter the Excel banks.
+
+The later application b914ece0 has unchanged guarded numeric/invoke sources;
+cargo xtask check --all passes 1,417 tests and its corpus remains 18,811/20,030.
+The latest canonical bank refreshes 40 representatives with identical values and
+adds 32 unique input/outcome groups through 72 R10 semantic calls. All baseline
+outputs remain unchanged; the later set has 3,230,357 matches / 3,874,964 counted rows,
+644,607 failures including 116 unread. Failed membership assumptions and earlier
+interrupted checker attempts are retained; only complete guarded receipts count.

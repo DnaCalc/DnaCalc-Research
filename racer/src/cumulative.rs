@@ -115,17 +115,6 @@ impl Builder<'_> {
         self.powers.insert(n, value);
         value
     }
-    fn pairwise(&mut self, terms: &[usize]) -> usize {
-        match terms.len() {
-            0 => self.zero,
-            1 => terms[0],
-            n => {
-                let a = self.pairwise(&terms[..n / 2]);
-                let b = self.pairwise(&terms[n / 2..]);
-                self.add(a, b, self.p.sum_model)
-            }
-        }
-    }
 }
 
 pub fn graph(p: &Program, periods: usize, start: usize, end: usize, beginning: bool) -> Graph {
@@ -234,18 +223,7 @@ pub fn graph(p: &Program, periods: usize, start: usize, end: usize, beginning: b
         }
         previous = principal;
     }
-    let output = match p.sum_order {
-        0 | 1 => {
-            if p.sum_order == 1 {
-                terms.reverse();
-            }
-            terms
-                .into_iter()
-                .fold(zero, |total, term| b.add(total, term, p.sum_model))
-        }
-        2 => b.pairwise(&terms),
-        _ => unreachable!(),
-    };
+    let output = sum_graph(&mut b.g, &terms, p.sum_order, p.sum_model, zero);
     b.g.finish(output)
 }
 

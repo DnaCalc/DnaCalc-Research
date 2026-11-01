@@ -90,3 +90,35 @@ impl GraphBuilder {
         }
     }
 }
+
+/// Declared accumulation trees, shared by the cumulative research sketches.
+pub fn sum_graph(
+    g: &mut GraphBuilder,
+    terms: &[NodeId],
+    order: usize,
+    model: EvalModel,
+    zero: NodeId,
+) -> NodeId {
+    fn paired(g: &mut GraphBuilder, terms: &[NodeId], model: EvalModel, zero: NodeId) -> NodeId {
+        match terms.len() {
+            0 => zero,
+            1 => terms[0],
+            n => {
+                let a = paired(g, &terms[..n / 2], model, zero);
+                let b = paired(g, &terms[n / 2..], model, zero);
+                g.push(Op::Add(a, b), model)
+            }
+        }
+    }
+    match order {
+        0 => terms
+            .iter()
+            .fold(zero, |a, &b| g.push(Op::Add(a, b), model)),
+        1 => terms
+            .iter()
+            .rev()
+            .fold(zero, |a, &b| g.push(Op::Add(a, b), model)),
+        2 => paired(g, terms, model, zero),
+        _ => panic!("undeclared accumulation order"), // ubs:ignore — fail closed on an out-of-grammar research profile
+    }
+}

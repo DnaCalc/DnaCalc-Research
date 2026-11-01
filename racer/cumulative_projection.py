@@ -165,6 +165,61 @@ cargo xtask witness read --func CUMIPMT --inputs requests-CUMIPMT.json
     print(json.dumps({k:len(v)for k,v in batches.items()}))
 
 
+def balance_domains(trace,structure,out,variant=None):
+    """Complete first-singleton preimages; no published-PMT assumption."""
+    from intervals import inverse_add,log2floor,E53
+    assert variant in (None,'interest');interest_sum=variant=='interest'
+    rows=[json.loads(line)for line in Path(trace).read_text().splitlines()]
+    groups=json.loads(Path(structure).read_text())['groups'];domains=[]
+    def encoding(x):
+        assert x<0
+        e=log2floor(-x);m=(-x)/pow2(e-63)
+        assert m.denominator==1 and 1<<63<=m<1<<64 and -16382<=e<=16383
+        return 'ext80-le:'+(int(m).to_bytes(8,'little')+(e+16383+32768).to_bytes(2,'little')).hex()
+    def rounded(x,model):
+        if model==0:return B64.rn(x)
+        y=(E64 if model in (1,2)else E53).rn(x)
+        return B64.rn(y)if model in (1,3)else y
+    for loan,group in enumerate(groups):
+        index=group['row_indices'][0];row=rows[index];a=list(map(lambda x:Q(number(x)),row['args']))
+        assert a[3]==a[4]==1
+        for store,im,pm,sm,order in itertools.product((False,True),range(5),range(5),range(5),range(3)if interest_sum else(0,)):
+            y=Q(number(row['expected']));required=B64.preimage(Interval(y,y))
+            # For this finite bank, the +0 and direct pairwise paths have equal
+            # applicable Ext80 lattices; their continuous real preimages can
+            # differ. The independent checker explicitly verifies lattice equality.
+            interest=rounded(a[0]*a[2],im)
+            if interest_sum:
+                interest=Q(0)if a[5]else interest
+                if order!=2:interest=rounded(interest,sm)
+                required=inverse_add(required,pm,interest)
+                required=inverse_op(required,pm,'mul',Q(1),True)
+            else:
+                required=inverse_add(required,sm,Q(0))
+                if a[5]==0:required=inverse_add(required,pm,interest)
+            if store:required=B64.preimage(required)
+            lo=E64.ceil(required.lo)if required else None;hi=E64.floor(required.hi)if required else None
+            if lo is not None and lo==required.lo and not required.lc:lo=E64.next(lo)
+            if hi is not None and hi==required.hi and not required.hc:hi=E64.prev(hi)
+            empty=lo is None or hi is None or lo>hi
+            if not empty:
+                assert lo<=hi<0 and log2floor(-lo)==log2floor(-hi),'domain crosses an Ext80 binade'
+                step=pow2(log2floor(-lo)-63);count=(hi-lo)/step+1
+                assert count.denominator==1 and 1<=count<=100000
+            else:count=0
+            domains.append(dict(loan_index=loan,row_index=index,payment_store=store,interest_model=MODELS[im],
+                principal_model=MODELS[pm],sum_model=MODELS[sm],required=required.json()if required else None,
+                lower=encoding(lo)if not empty else None,upper=encoding(hi)if not empty else None,count=int(count)))
+            if interest_sum:domains[-1]['sum_order']=order
+    doc=dict(kind='complete first-singleton Ext80 domains; external PMT not a constraint',domains=domains,
+        trace_sha256=hashlib.sha256(Path(trace).read_bytes()).hexdigest(),
+        structure_sha256=hashlib.sha256(Path(structure).read_bytes()).hexdigest())
+    if interest_sum:doc['interest_sum']=True
+    with Path(out).open('x')as f:json.dump(doc,f,separators=(',',':'));f.write('\n')
+    print(json.dumps(dict(domains=len(domains),minimum=min(d['count']for d in domains),maximum=max(d['count']for d in domains))))
+
+
 if __name__=='__main__':
     if sys.argv[1]=='questions':questions(*sys.argv[2:])
+    elif sys.argv[1]=='balance-domains':balance_domains(*sys.argv[2:])
     else:run(*sys.argv[1:])

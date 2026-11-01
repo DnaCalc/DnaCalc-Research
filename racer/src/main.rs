@@ -10,6 +10,7 @@ mod annuity;
 mod annuity_early;
 mod boundary;
 mod cumulative;
+mod cumulative_balance;
 mod dsl;
 mod enumerate;
 mod eval;
@@ -353,6 +354,14 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("cumulative-balance-free") => match a.get(6).map(String::as_str) {
+            Some("soft") => cumulative_balance::run_variant::<Soft>(&a[2], &a[3], &a[5], Some(&a[4]),a.get(7).map(String::as_str)==Some("interest")),
+            _ => cumulative_balance::run_variant::<Hard>(&a[2], &a[3], &a[5], Some(&a[4]),a.get(7).map(String::as_str)==Some("interest")),
+        },
+        Some("cumulative-balance") => match a.get(5).map(String::as_str) {
+            Some("soft") => cumulative_balance::run::<Soft>(&a[2], &a[3], &a[4]),
+            _ => cumulative_balance::run::<Hard>(&a[2], &a[3], &a[4]),
+        },
         Some("cumulative-growth") => match a.get(4).map(String::as_str) {
             Some("soft") => cumulative::growth_tables::<Soft>(&a[2], &a[3]),
             _ => cumulative::growth_tables::<Hard>(&a[2], &a[3]),
