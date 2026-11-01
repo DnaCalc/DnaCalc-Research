@@ -1,0 +1,20 @@
+Run separately from the Excel readings, on the SAME physical Windows CPU:
+  .\RUN-NATIVE-PROBE.ps1
+Requires the x86_64 Rust toolchain (the product already uses Rust). This compiles
+one standalone file with no product dependency and executes only the requested
+FYL2X, FYL2XP1, F2XM1 and ROM-load instructions. Every word is PC53 or PC64, RN.
+It restores the caller's control word and refuses to overwrite an output file.
+The executable and results go in sibling excel-results-r13-native/ by default;
+the frozen packet is unchanged. Override with -OutputDirectory if needed.
+No source in either product repository is changed. Never use DnaCalc-engine.
+
+Return native-results-<timestamp>.tsv and its console CPU/OS line. The request
+file contains only IDs, instruction names, words and exact input operands. The
+reference file is a Linux EPYC instruction measurement, not an Excel answer.
+On any machine with Python, compare complete inputs and results with:
+  python compare-native-probe.py native-leaf-requests.tsv predictions/native-leaf-reference.tsv native-results-<timestamp>.tsv native-comparison.json
+Changed inputs, duplicate/missing rows or reordered IDs reject the comparison.
+Any changed leaf keeps the corresponding Linux exclusion conditional on EPYC;
+re-run the programs on the Windows CPU before transferring that exclusion.
+Equal leaves support only this finite certificate, never general CPU parity.
+Do not put either native output or a model prediction into an Excel bank.

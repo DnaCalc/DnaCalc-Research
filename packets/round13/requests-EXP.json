@@ -1,0 +1,90 @@
+{
+  "function": "EXP",
+  "selection": "R13 instruction-boundary and original-gap audit; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r13-exp-000",
+      "args": [
+        "0x3e4149806ad5133c"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-001",
+      "args": [
+        "0xbe4149806ad5133c"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-002",
+      "args": [
+        "0x3edb5f2c86067c92"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-003",
+      "args": [
+        "0xbedb5f2c86067c92"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-004",
+      "args": [
+        "0x3ec4f8b530ed6b56"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-005",
+      "args": [
+        "0xbec4f8b530ed6b56"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-006",
+      "args": [
+        "0x3f4d7dbc625490e0"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-007",
+      "args": [
+        "0xbf4d7dbc625490e0"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-008",
+      "args": [
+        "0x3f0e49eed3c660ed"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-009",
+      "args": [
+        "0xbf0e49eed3c660ed"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-010",
+      "args": [
+        "0x3fc61eaaaf9065da"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-exp-011",
+      "args": [
+        "0xbfc61eaaaf9065da"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "dc-j9k-r13-instruction-chains",
+  "role": "implementer",
+  "application_checkout_policy": "Read only, after git pull --no-rebase. No product commit or push; any product fix and failing-first test must be exported to ~/codex-runs/r13-patches/.",
+  "banned": ["DnaCalc-engine", "tier3 and tier4 sources", "deleted restricted histories", "fitted coefficients or intermediates", "row-dependent program selection"],
+  "sources": [
+    "Intel SDM volume 1, chapter 8: https://cdrdv2-public.intel.com/671436/253665-sdm-vol-1.pdf",
+    "Intel instruction reference through https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+    "IEEE754 nearest/even arithmetic and annuity algebra",
+    "Existing R10 Excel readings reproduced in R12; all are discovery evidence",
+    "Existing cleared research interpreter and independent rational checker"
+  ],
+  "motivation": "Earlier PC64 chains and PC53 consumer extensions do not exhaust internal elementary-chain stores or PC53 chain arithmetic. Run native ISA instructions, never substitute a correctly rounded mathematical library for microcode.",
+  "arithmetic": {
+    "helper_control_words": ["0x123f", "0x133f"],
+    "reconstruction_control_words": ["0x123f", "0x133f"],
+    "consumer_control_words": ["0x123f", "0x133f"],
+    "final_operation_control_words": ["0x123f", "0x133f"],
+    "rounding": "nearest/even; masked exceptions",
+    "precision": "PC53 or PC64 arithmetic consumes full 80-bit operands. Preparation/log-exponent arithmetic, pow2 reconstruction, consumer body, and final consumer arithmetic each choose a fixed word independently (16 combinations, including both uniform settings). Kahan correction returns to the preparation word. A resident PC64 quotient can feed a PC53 final product. Precision control does not reduce FYL2X/FYL2XP1/F2XM1 outputs. Execute those instructions with the declared word.",
+    "stores": "Enumerate resident or FSTP binary64/reload after every nontrivial helper/consumer operation, except integer reduction, exact sign changes, ROM/input loads and the mandatory final publication. Tbyte instrumentation preserves all ten bytes and is not a binary64 program store.",
+    "hardware_scope": "Native AMD CPU identified in environment.json; no cross-CPU microcode equivalence claim. Windows questions retain CPU/build/transport provenance."
+  },
+  "grammar": {
+    "log_paths": ["FYL2X(n,1+r)", "FYL2X(1,1+r) then multiply n", "FYL2X(ln2,1+r) then multiply n and log2(e)", "FYL2XP1(1,r) then multiply n", "FYL2XP1(ln2,r) then multiply n and log2(e)", "FYL2XP1(n,r) with period multiplication inside the instruction"],
+    "exponents": ["positive", "negative"],
+    "reconstruction": ["FRNDINT, subtract, F2XM1, add 1, FSCALE", "positive reconstruction then reciprocal for a negative exponent", "FSCALE(F2XM1(f),k) + (FSCALE(1,k)-1)", "Kahan difference correction (u-1)*x/log2(u) in all three associations", "Kahan difference correction (u-1)*(x*ln2)/ln(u) in all three associations"],
+    "correction_scope": "Finite nonunit u and nonzero logarithm. The independent checker verifies these conditions on every sufficient counterexample used; no fitted branch, cutoff or selected value is introduced.",
+    "consumers": "Growth and discount annuity identities, two numerator associations, all60 ordered four-factor multiplication/division trees with degrees (N:+1,r:+1,em:-1,tf:-1), and8 fixed subtractive/complement/distributed-denominator/discount-rate identities. The last arithmetic instruction independently chooses PC53 or PC64. Timing uses the original rate and canonical timing. All constants are 0, 1, FLDLN2 and FLDL2E.",
+    "enumeration": "Program IDs are template ID, phase control words and complete store mask. The exact generated template list and all masks define the bounded family. Counts include declared dead/redundant site choices, never additional product gains. The initial23,592,960, expanded448,266,240, phase896,532,480 and five-path25,700,597,760 assignments are prior subsets, not counts to add. Their sources, receipts and packet snapshot remain archived."
+  },
+  "certificate": "Every excluded helper/consumer assignment has a first counterexample. Helper values are shared only on exact ten-byte equality for that witness. Independent rational replay checks ordinary arithmetic, stores, reductions and publication; native instruction replay checks each microcode leaf. Coverage checker reconstructs the entire Cartesian family and rejects duplicates, omissions and changed source/evidence.",
+  "limits": "Exclusion is limited to this finite instruction grammar on recorded effective-input assumptions. No surviving row-specific value is a fitted helper or complete function. The 409 annuity corpus mismatches and 24 PMT gaps remain open without a complete identified kernel."
+}

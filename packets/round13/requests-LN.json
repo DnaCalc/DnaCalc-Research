@@ -1,0 +1,48 @@
+{
+  "function": "LN",
+  "selection": "R13 instruction-boundary and original-gap audit; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r13-ln-000",
+      "args": [
+        "0x3ff000000229300e"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-ln-001",
+      "args": [
+        "0x3ff000002f5884a4"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-ln-002",
+      "args": [
+        "0x3ff000008637bd06"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-ln-003",
+      "args": [
+        "0x3ff00003254e6e22"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-ln-004",
+      "args": [
+        "0x3ff000050c534480"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-ln-005",
+      "args": [
+        "0x3ff00593c8ec048f"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "frozen_utc": "2026-11-01T10:45:34.850683+00:00",
+  "new_excel_answers": 0,
+  "calls": 234,
+  "origin_calls": {
+    "round11": 64,
+    "structural-r11-v2": 52,
+    "round12-pmt-groups": 64,
+    "r13": 54
+  },
+  "batches": 13,
+  "prior_packets": {
+    "round11": {
+      "manifest_sha256": "d6d3a464a1f9c257e62a23393934d4cda9093eff695711eb6f846963701bea40",
+      "calls": 64
+    },
+    "structural-r11-v2": {
+      "manifest_sha256": "58d03b1b6c8e8bb5a8cee046593a986bacb72a75a9c355ff54fc4c854d7263c7",
+      "calls": 52
+    },
+    "round12-pmt-groups": {
+      "manifest_sha256": "db9ed0319d7c1a432be01ce34a912719f43a001b4b5d6643095187520f694829",
+      "calls": 64
+    }
+  },
+  "generator_sha256": "c1a20702b9732ceb0039741085d53e072828a2af598cf9ca7a43d867492ca63c",
+  "trace_sha256": "7659737df84ec045aef5f671e7acdb3334f9032d58a05f5bbc31188eb7360eed",
+  "original_gap_ids_sha256": "6a5e054276d34c9e2bb2a05127a0aae0886818b577a7eb67833b127968851484",
+  "native_library_sha256": "dfcd1fa356a319ce50e292e697c32b5892bff4e47d377e86760285625b339cf8",
+  "files_sha256": {
+    "NATIVE-PROBE.txt": "4ea1c78bef239fed037820389904653fdf4222ccaa838baf3e7929d61901fcfd",
+    "READING-LIST.tsv": "680f7c3eb825c66a82397d33ed6da3a74b1a6603385ee73712e8f1e4dc0c11a7",
+    "RUN-NATIVE-PROBE.ps1": "12c53eacaa64c005849c9129853299a0654fcaa8aabc9ce950c683678d345a3e",
+    "RUN-R13.ps1": "1fd3fc21697b2aab624543d660e6ec00b86fd74edd16f98417a7db50beddac38",
+    "RUN-R13.txt": "548546d9ac4cc3b6d23055a03983770f215702af7e0d430a9d592763b587f158",
+    "batches.json": "0de5c028850b462a879a04e7e5c5e536f566390190daf097783495d2121445b1",
+    "compare-native-probe.py": "065ecb8a99c566914d0017bff7fd60e1474c32b53acd5d24c268989049001085",
+    "native-leaf-requests.tsv": "5b0dc0ab503c9c1bb35d6872699c97d237fc093cfac18b95a33191b344cf24e7",
+    "native-reference-environment.json": "ae36f26670c7aabc7be40952e1e457b692fb2cf7791d7f286f7e877b83bf780f",
+    "predictions/native-elementary.jsonl": "e48a64f29623ac0cd9d6e7bbec12329ac8812d52b000b15d423808aad3b3db61",
+    "predictions/native-leaf-reference.tsv": "beb870ed899b1aa4d96fdb863442a43d6e966f18991b2e8afa890719a2971874",
+    "prior/round11/RUN-ROUND11.txt": "068df55373ab1c0ba74ef9de7d42148fe37844520844a6f2e807c9ec2d77db77",
+    "prior/round11/application-predictions-CUMIPMT.jsonl": "7382be376f9b6c7f0eb246187613e8b3a4cdafb4608379ff5013e2aaebefdc63",
+    "prior/round11/application-predictions-CUMPRINC.jsonl": "02f21dce7a06ff21a81f02bc6954927bdece5a2d9db3c2a7c8658a9e7f8d130e",
+    "prior/round11/application-predictions-PMT.jsonl": "2ab3055e5b027d2f724aaeb21a5d59b23d0ae47c8a1bd45721d01a67fe5a5a73",
+    "prior/round11/application-predictions-PPMT.jsonl": "3e392134e156dd3d0e472ec746cd19ada2ad6a4b2a337d44d5e74961f0ae42d0",
+    "prior/round11/conditional-relations.json": "1ef571bbae7614093420e567e79d0967433847f3f9e2bc302449b7b385fad798",
+    "prior/round11/manifest.json": "d6d3a464a1f9c257e62a23393934d4cda9093eff695711eb6f846963701bea40",
+    "prior/round11/requests-CUMIPMT.json": "d1c9491a351ba0db5d75597e0533869f05d8236bdc8af6a3bf6eaca655b5da5c",
+    "prior/round11/requests-CUMPRINC.json": "e8be2306315a876d16577b6353f4caccac1ab08350ae599c1dd3c53bd4cf94b6",
+    "prior/round11/requests-PMT.json": "3407f594fa60d9b6e42d676fd47355b3531822637c025129f69669014e758d8c",
+    "prior/round11/requests-PPMT.json": "eb87711f4ebfbfb623fac51f99f1b74bf7f4523fe87ce6cfb7e1d1d8a85c62f5",
+    "prior/round11/selection.json": "dac378d4d506b97668675732bea18c8a300ce6c1ebe77e691e68461f20371586",
+    "prior/round12-pmt-groups/README.txt": "4f62de637c8bedfd21a7fcde48f2193147dc4e1acd85bed2112292ca78e6acf9",
+    "prior/round12-pmt-groups/historical-observations.jsonl": "9eb76dff57da4427c9c645d4beb04bee06b34e9b5a12a66ec3f2d10c04bb0f0f",
+    "prior/round12-pmt-groups/manifest.json": "db9ed0319d7c1a432be01ce34a912719f43a001b4b5d6643095187520f694829",
+    "prior/round12-pmt-groups/prediction-audit.json": "484690aacb375b17004f320f5aa510509a6a705376a955431b369a30fdeb0c32",
+    "prior/round12-pmt-groups/predictions-native.jsonl": "3e52fcef2e00162abc6193174efe4053a8393a04d7201d0b3567373e904fbd89",
+    "prior/round12-pmt-groups/predictions-software.jsonl": "3e52fcef2e00162abc6193174efe4053a8393a04d7201d0b3567373e904fbd89",
+    "prior/round12-pmt-groups/requests-PMT.json": "33b72bbb09921a611d6c53780bae7f1a4148cc4d1a9e3a8b90e9c4dc2f35df6f",
+    "prior/round12-pmt-groups/selection.json": "651f48dbef1b06507a76befd75f504b1324856b6c19f5593c87496c204ce3246",
+    "prior/structural-r11-v2/RUN-STRUCTURAL-R11.txt": "04b32116328b03cbcb5263f99dd7bcacfe8a6c2913fe38141f91a54fb14dd825",
+    "prior/structural-r11-v2/boundary-hypotheses.json": "10786c5ee117a3dfbd684ec628ff41079a2af0703df06af9452841f7c8973240",
+    "prior/structural-r11-v2/manifest.json": "58d03b1b6c8e8bb5a8cee046593a986bacb72a75a9c355ff54fc4c854d7263c7",
+    "prior/structural-r11-v2/registered-predictions-BESSELI.jsonl": "2f067eef3a796c75302fbb22d080cacdedd30cc49da7f12e6e4df4a2c0e7aba8",
+    "prior/structural-r11-v2/registered-predictions-BESSELJ.jsonl": "759920f6b6472a6b868efbb317e6c8e8656fa64b6f2b85920455b7419d621ec6",
+    "prior/structural-r11-v2/registered-predictions-CONCAT.jsonl": "a5b98f80b2a02101c076f1c047134e6d3f20c1773ed4c5a93b3c96dffbdc798b",
+    "prior/structural-r11-v2/registered-predictions-CONCATENATE.jsonl": "38122af37d3a6490608e41fc8d5ba7acb32a8ac900b6ba5518ca069cc032c925",
+    "prior/structural-r11-v2/requests-BESSELI.json": "042f402d4c801fccc0f3ca649e7c04d212994c244d8a2043e06b2d94e189f2ab",
+    "prior/structural-r11-v2/requests-BESSELJ.json": "df094ebb059f3db443fe8046d90585530798c1ceb9d54344d5d42778aea0e754",
+    "prior/structural-r11-v2/requests-CONCAT.json": "1616c068aa1314703293224d358730caab17cd99c2eb51ec3faffc8280d71330",
+    "prior/structural-r11-v2/requests-CONCATENATE.json": "6a005ad670f03632ef08ea745fbe05b72d08ae9670eb0c99abeb0239d4aff54a",
+    "prior/structural-r11-v2/selection.json": "3cd8eaa43d58a07ca80c6926a2116a007e9275fc18a4e731e1d88f97af19fc10",
+    "raw-x87-probe.rs": "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e",
+    "requests-EXP.json": "c134b714d612f060ca0d875ca9a43c00ce17e159ad3fcd61bd837f7566860d5d",
+    "requests-LN.json": "4b9c6661d7d99fb76876d5080904bb3537f2b5e2bbc2e9dd81a029c92efdabbd",
+    "requests-PMT.json": "578b75b285fbae30f930d2d5dc8c9d33d65776686e58c427f2a8a49755ed714e",
+    "requests-POWER.json": "ccecc39bdb1c2c19dd19dd8087588c863bd6796ea8b2284977d18e7b24f44629",
+    "selection-r13.json": "099f67b2c71eb2c8c16b2f3b784475486118163251aa4925361b70632d391c85"
+  },
+  "purpose": "One reading list preserving all180 unanswered obligations plus fixed instruction-boundary audits. No fitted helper or surviving complete PMT program.",
+  "evidence_policy": "Requests only enter Excel. Immutable predictions are scored first and never ingested as answers. CPU microcode outputs remain separate from Excel observations."
+}

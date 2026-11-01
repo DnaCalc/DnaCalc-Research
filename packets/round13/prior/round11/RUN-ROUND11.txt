@@ -1,0 +1,16 @@
+Round 11: 64 coupled annuity observations. No new Excel answers have been read.
+Requests contain IDs/arguments/transport only. Application predictions and
+conditional diagnostic relations are separate research files, never answers.
+The 90,000 complete programs and both 50-profile singleton projections have no
+survivors. These questions audit helper/surface/transport assumptions; they
+are not discriminators for surviving complete programs or fresh validation of one.
+Use all four batches below on Windows; do not use --new-only (old controls repeat).
+Score the immutable application predictions first when answers arrive, then
+evaluate the frozen coupled relations. Keep requested/submitted/read-back inputs,
+argument types, settings, raw results and failed obligations. No predictions are
+to be installed into an evidence bank.
+
+cargo xtask witness read --func CUMPRINC --inputs requests-CUMPRINC.json
+cargo xtask witness read --func PMT --inputs requests-PMT.json
+cargo xtask witness read --func PPMT --inputs requests-PPMT.json
+cargo xtask witness read --func CUMIPMT --inputs requests-CUMIPMT.json

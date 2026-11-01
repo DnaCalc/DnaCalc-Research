@@ -1,0 +1,102 @@
+{
+  "function": "POWER",
+  "selection": "R13 instruction-boundary and original-gap audit; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r13-power-000",
+      "args": [
+        "0x3ff000000229300e",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-001",
+      "args": [
+        "0x3ff000000229300e",
+        "0xbff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-002",
+      "args": [
+        "0x3ff000002f5884a4",
+        "0x4042800000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-003",
+      "args": [
+        "0x3ff000002f5884a4",
+        "0xc042800000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-004",
+      "args": [
+        "0x3ff000008637bd06",
+        "0x4014000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-005",
+      "args": [
+        "0x3ff000008637bd06",
+        "0xc014000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-006",
+      "args": [
+        "0x3ff00003254e6e22",
+        "0x4072c00000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-007",
+      "args": [
+        "0x3ff00003254e6e22",
+        "0xc072c00000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-008",
+      "args": [
+        "0x3ff000050c534480",
+        "0x4028000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-009",
+      "args": [
+        "0x3ff000050c534480",
+        "0xc028000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-010",
+      "args": [
+        "0x3ff00593c8ec048f",
+        "0x405fc00000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r13-power-011",
+      "args": [
+        "0x3ff00593c8ec048f",
+        "0xc05fc00000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

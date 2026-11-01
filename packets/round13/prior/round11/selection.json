@@ -1,0 +1,606 @@
+[
+  {
+    "id": "r11-pmt-00",
+    "function": "PMT",
+    "role": "loan0 timing0: shared-payment publication",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-00",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [
+      {
+        "trace_index": 0,
+        "witness": {
+          "actual": "0xbff97b28185054af",
+          "args": [
+            "0x3f564f23b0123bb2",
+            "0x405fc00000000000",
+            "0x406b9446d200b345",
+            "0x3ff0000000000000",
+            "0x3ff0000000000000",
+            "0x0000000000000000"
+          ],
+          "expected": "0xbff97b28185054b1",
+          "function": "CUMPRINC",
+          "id": "cumx-c03-t0-singleton_first-v04",
+          "reading": {
+            "bitness": "64-bit",
+            "cpu": null,
+            "excel_build": "20228",
+            "platform": "Windows"
+          },
+          "result_index": null,
+          "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+        }
+      }
+    ],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-01",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-02",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-03",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [
+      {
+        "trace_index": 16,
+        "witness": {
+          "actual": "0xbffe3f265c984e89",
+          "args": [
+            "0x3f564f23b0123bb2",
+            "0x405fc00000000000",
+            "0x406b9446d200b345",
+            "0x405fc00000000000",
+            "0x405fc00000000000",
+            "0x0000000000000000"
+          ],
+          "expected": "0xbffe3f265c984e89",
+          "function": "CUMPRINC",
+          "id": "cumx-c03-t0-singleton_last-v04",
+          "reading": {
+            "bitness": "64-bit",
+            "cpu": null,
+            "excel_build": "20228",
+            "platform": "Windows"
+          },
+          "result_index": null,
+          "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+        }
+      }
+    ],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-04",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-05",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-06",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [
+      {
+        "trace_index": 6,
+        "witness": {
+          "actual": "0xc06b9446d200b349",
+          "args": [
+            "0x3f564f23b0123bb2",
+            "0x405fc00000000000",
+            "0x406b9446d200b345",
+            "0x3ff0000000000000",
+            "0x405fc00000000000",
+            "0x0000000000000000"
+          ],
+          "expected": "0xc06b9446d200b345",
+          "function": "CUMPRINC",
+          "id": "cumx-c03-t0-full-v04",
+          "reading": {
+            "bitness": "64-bit",
+            "cpu": null,
+            "excel_build": "20228",
+            "platform": "Windows"
+          },
+          "result_index": null,
+          "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+        }
+      }
+    ],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-07",
+    "function": "CUMPRINC",
+    "role": "loan0 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-00",
+    "function": "PPMT",
+    "role": "loan0 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-01",
+    "function": "PPMT",
+    "role": "loan0 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-02",
+    "function": "PPMT",
+    "role": "loan0 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-03",
+    "function": "PPMT",
+    "role": "loan0 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-00",
+    "function": "CUMIPMT",
+    "role": "loan0 timing0: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-01",
+    "function": "CUMIPMT",
+    "role": "loan0 timing0: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-02",
+    "function": "CUMIPMT",
+    "role": "loan0 timing0: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-pmt-01",
+    "function": "PMT",
+    "role": "loan0 timing1: shared-payment publication",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-08",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [
+      {
+        "trace_index": 1,
+        "witness": {
+          "actual": "0xbffe3f265c984e89",
+          "args": [
+            "0x3f564f23b0123bb2",
+            "0x405fc00000000000",
+            "0x406b9446d200b345",
+            "0x3ff0000000000000",
+            "0x3ff0000000000000",
+            "0x3ff0000000000000"
+          ],
+          "expected": "0xbffe3f265c984e88",
+          "function": "CUMPRINC",
+          "id": "cumx-c03-t1-singleton_first-v04",
+          "reading": {
+            "bitness": "64-bit",
+            "cpu": null,
+            "excel_build": "20228",
+            "platform": "Windows"
+          },
+          "result_index": null,
+          "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+        }
+      }
+    ],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-09",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-10",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-11",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [
+      {
+        "trace_index": 17,
+        "witness": {
+          "actual": "0xbffe349eec2b13fc",
+          "args": [
+            "0x3f564f23b0123bb2",
+            "0x405fc00000000000",
+            "0x406b9446d200b345",
+            "0x405fc00000000000",
+            "0x405fc00000000000",
+            "0x3ff0000000000000"
+          ],
+          "expected": "0xbffe349eec2b13fc",
+          "function": "CUMPRINC",
+          "id": "cumx-c03-t1-singleton_last-v04",
+          "reading": {
+            "bitness": "64-bit",
+            "cpu": null,
+            "excel_build": "20228",
+            "platform": "Windows"
+          },
+          "result_index": null,
+          "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+        }
+      }
+    ],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-12",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-13",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-14",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [
+      {
+        "trace_index": 7,
+        "witness": {
+          "actual": "0xc06b9446d200b349",
+          "args": [
+            "0x3f564f23b0123bb2",
+            "0x405fc00000000000",
+            "0x406b9446d200b345",
+            "0x3ff0000000000000",
+            "0x405fc00000000000",
+            "0x3ff0000000000000"
+          ],
+          "expected": "0xc06b9446d200b346",
+          "function": "CUMPRINC",
+          "id": "cumx-c03-t1-full-v04",
+          "reading": {
+            "bitness": "64-bit",
+            "cpu": null,
+            "excel_build": "20228",
+            "platform": "Windows"
+          },
+          "result_index": null,
+          "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+        }
+      }
+    ],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-15",
+    "function": "CUMPRINC",
+    "role": "loan0 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-04",
+    "function": "PPMT",
+    "role": "loan0 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-05",
+    "function": "PPMT",
+    "role": "loan0 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-06",
+    "function": "PPMT",
+    "role": "loan0 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-07",
+    "function": "PPMT",
+    "role": "loan0 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-03",
+    "function": "CUMIPMT",
+    "role": "loan0 timing1: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-04",
+    "function": "CUMIPMT",
+    "role": "loan0 timing1: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-05",
+    "function": "CUMIPMT",
+    "role": "loan0 timing1: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-pmt-02",
+    "function": "PMT",
+    "role": "loan1 timing0: shared-payment publication",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-16",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-17",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-18",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-19",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-20",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-21",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-22",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-23",
+    "function": "CUMPRINC",
+    "role": "loan1 timing0: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-08",
+    "function": "PPMT",
+    "role": "loan1 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-09",
+    "function": "PPMT",
+    "role": "loan1 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-10",
+    "function": "PPMT",
+    "role": "loan1 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-11",
+    "function": "PPMT",
+    "role": "loan1 timing0: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-06",
+    "function": "CUMIPMT",
+    "role": "loan1 timing0: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-07",
+    "function": "CUMIPMT",
+    "role": "loan1 timing0: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-08",
+    "function": "CUMIPMT",
+    "role": "loan1 timing0: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-pmt-03",
+    "function": "PMT",
+    "role": "loan1 timing1: shared-payment publication",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-24",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-25",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-26",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-27",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-28",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-29",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-30",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumprinc-31",
+    "function": "CUMPRINC",
+    "role": "loan1 timing1: singleton, prefix, tail or whole interval",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-12",
+    "function": "PPMT",
+    "role": "loan1 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-13",
+    "function": "PPMT",
+    "role": "loan1 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-14",
+    "function": "PPMT",
+    "role": "loan1 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-ppmt-15",
+    "function": "PPMT",
+    "role": "loan1 timing1: corresponding independently published principal",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-09",
+    "function": "CUMIPMT",
+    "role": "loan1 timing1: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-10",
+    "function": "CUMIPMT",
+    "role": "loan1 timing1: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  },
+  {
+    "id": "r11-cumipmt-11",
+    "function": "CUMIPMT",
+    "role": "loan1 timing1: payments less principal relation",
+    "known_bank_readings": [],
+    "validation_exposure": "all old banks and corpus are discovery; no frozen complete candidate exists"
+  }
+]

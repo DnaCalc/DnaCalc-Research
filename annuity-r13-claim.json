@@ -1,0 +1,165 @@
+{
+  "id": "dc-j9k-r13-native-instruction-exclusions",
+  "role": "implementer",
+  "research_parent_revision": "fccdfae101c6a8a845eb55179a3a439f97305e45",
+  "unit": {
+    "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/x87-r13-unit.json",
+    "sha256": "4b0c8a6a2356973aa0cf80cdbd895e7b1f77b3d97996fecbad78954654422434"
+  },
+  "source_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/r13-six-path-source.tar.gz",
+    "sha256": "ee71cda86317dce43ccecbb4433c542f157c0db59861edc8a9019ca80494b387"
+  },
+  "source_manifest": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/r13-six-path-source-manifest.json",
+    "sha256": "76fbd831abd783e130508a148990114807e72cf72523e9862b3e0f1fc1f6dd93"
+  },
+  "environment": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/environment.json",
+    "sha256": "ae36f26670c7aabc7be40952e1e457b692fb2cf7791d7f286f7e877b83bf780f"
+  },
+  "build_metadata": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/build-metadata.json",
+    "sha256": "97dc23857a8c14707af248f5bf5b09380b50f6a25e618d56df091ed42db17e2f"
+  },
+  "family": {
+    "helper_templates": 102,
+    "helper_profiles": 817152,
+    "consumer_templates": 272,
+    "consumer_profiles": 66048,
+    "compatible_labelled_assignments": 26985627648,
+    "surviving_assignments": 0,
+    "counterexamples": 14,
+    "original_observations": 32,
+    "scoped_observations": 30,
+    "domain_exclusions": 2,
+    "control_words": [
+      "0x123f",
+      "0x133f"
+    ],
+    "independent_control_regions": 4,
+    "precision_combinations": 16,
+    "helper_paths": 6,
+    "fused_period_FYL2XP1_included": true
+  },
+  "native_summary": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/instruction-search-six-path/summary.json",
+    "sha256": "1099b74218eb9cf693e31f9d7282ff7924595cde1a5bfe8a334c2c004895ab7a"
+  },
+  "independent_receipt": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/instruction-six-path-checked.json",
+    "sha256": "ef67654013aa78c945caba5778cc186684ddff131da63814f452b7529369d9ff"
+  },
+  "checked": {
+    "helper_executions": 11440128,
+    "consumer_executions": 50130432,
+    "first_kill_boxes": 2125,
+    "rows": 14
+  },
+  "superset_binding": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/fused-extension-binding.json",
+    "sha256": "3ade3cc8f68ba58d2d1cee8e0fa70cf5a3c5ba20c19035f35a1a99aeb1a31132"
+  },
+  "no_double_counting": "Final count is a superset of all earlier R13 checkpoints and includes redundant/dead physical labels. Never sum earlier counts or infer distinct kernels/product gains.",
+  "final_product_shells": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/final-product-shells-portable.json",
+    "sha256": "483e5b2f0910357d0f4f42156c25122ca27b757d117b3b905747ddb8e3b77278"
+  },
+  "shell_finding": "All24 original gaps exclude every binary64 quotient under both final precision settings; minimum54-bit operand lattices reach every target. Only intervals/counts/brackets are retained, never a selected quotient or executable producer.",
+  "questions": {
+    "external_directory": "/home/ubuntu/codex-runs/excel-questions-r13",
+    "repository_directory": "packets/round13",
+    "manifest": {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/packets/round13/manifest.json",
+      "sha256": "27a0fe5139ada3bcb408290f8f7223b53eb230fcfe5cf4867147d0dc0396cc4f"
+    },
+    "calls": 234,
+    "prior_calls": 180,
+    "prior_origin_calls": {
+      "round11": 64,
+      "structural-r11-v2": 52,
+      "round12-pmt-groups": 64,
+      "r13": 54
+    },
+    "r13_calls_by_function": {
+      "PMT": 24,
+      "POWER": 12,
+      "LN": 6,
+      "EXP": 12
+    },
+    "native_cpu_queries": 1553,
+    "new_excel_answers": 0,
+    "external_checker": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/questions-six-path-checked.json",
+      "sha256": "43f98dbe72c4e77903ff250d1afc5a5c36c1d688c2089f88fdeb4dc62142da9e"
+    },
+    "repository_checker": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/questions-six-path-repository-copy-checked.json",
+      "sha256": "3ad8bf7e5754247f1c7c53a79b0d3de159083b8b2946aecb5d9a7ddd9ea83ba1"
+    },
+    "copy_and_final_leaf_binding": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/packet-copy-and-leaf-binding-six-path.json",
+      "sha256": "39a60aea22f12aad2a13de46154b3eb3316c7b6faa0aa058a09b3e564a2ac72c"
+    },
+    "purpose": "Unanswered reading obligations and fixed instruction/transport boundary audits; no surviving PMT program or fresh validation claimed."
+  },
+  "native_probe_linux_comparison": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/probe-linux-six-path-comparison.json",
+    "sha256": "36ebe90d6db6de6a3edf319f4bd4e050fbcb132d3b3b166687be5b1850e54ff5"
+  },
+  "cpu_transfer": "Linux EPYC exclusions remain conditional for the Windows Ryzen until all1553 raw instruction inputs/results are reproduced. Equal leaves support this finite certificate only; any difference requires a new CPU-specific run, never replacement of Excel answers.",
+  "tests": {
+    "unit_tests_passed": 40,
+    "failed": 0,
+    "small_lattice_cases": 1504,
+    "unit_log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/six-path-checker-tests.log",
+      "sha256": "0cb251ebfb6561f2f30fe090c9bbf4dc766c57ae23e1fd476cbff354217db209"
+    },
+    "adversarial_proof_packet_controls": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/adversarial-six-path-controls/controls.json",
+      "sha256": "0bc913967428c873717e6ddf19fb7ed13a7b62ed120f76b785835f8e0dfecf49"
+    },
+    "standalone_probe_controls": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/probe-controls/controls.json",
+      "sha256": "a61b58b4461af0838d697f24fbd45d0754e06457189ead9755873f74a6bd986e"
+    },
+    "ubs_scan": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/ubs-final-staged.json",
+      "sha256": "49f9425f399d46e43426803438d4f752c17c9a914e6fbc0e92881e601732683b"
+    },
+    "ubs_critical": 0,
+    "ubs_warnings_reviewed": 35,
+    "ubs_triage": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/ubs-final-triage.json",
+      "sha256": "1e47e8214c1a95908344c603902b6928848700385c9e7794db8d9ebdd0b91022"
+    },
+    "read_only_review": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/read-only-review.txt",
+      "sha256": "03e8a3a9a49dd632e341f1867ccb5bc7c50508d2257a918a12ad946200677843"
+    }
+  },
+  "product": {
+    "read_only_revision": "4159470ff1121ca530507d118299c4bfe57005d3",
+    "status_clean": true,
+    "source_edits": 0,
+    "commits": 0,
+    "pushes": 0,
+    "fix_identified": false,
+    "patches_written": 0,
+    "annuity_mismatches_remaining_from_R12_census": 409,
+    "certified_PMT_gaps_remaining": 24,
+    "new_product_corpus_or_bank_measurement": false,
+    "engine_source_read_or_modified": false
+  },
+  "limits": [
+    "This finite instruction grammar is excluded on discovery observations, with original historical effective-input assumptions retained. It does not exclude all x87/annuity algorithms or identify Excel internals.",
+    "No mathematical correctly-rounded substitute is used for microcode. Hardware leaves are native measurements, not Excel readings or software-x87 parity.",
+    "No fitted coefficient, selector, threshold, chosen intermediate, expected-answer change, evidence pin or product kernel was introduced.",
+    "The native Windows and Excel sessions remain unanswered. PowerShell scripts were reviewed; only the standalone probe was executed on Linux."
+  ],
+  "closed_checkpoint_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round13/closed-five-path-archive.json",
+    "sha256": "000008c2c60659d85ff89ff74b67fdba272fccbdf27c11799137963df9fd8f5e"
+  }
+}

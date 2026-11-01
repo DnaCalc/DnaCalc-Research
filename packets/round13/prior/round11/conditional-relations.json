@@ -1,0 +1,290 @@
+[
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-00",
+    "PPMT": "r11-ppmt-00",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-01",
+    "PPMT": "r11-ppmt-01",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-02",
+    "PPMT": "r11-ppmt-02",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-03",
+    "PPMT": "r11-ppmt-03",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-04",
+    "CUMIPMT": "r11-cumipmt-00",
+    "PMT": "r11-pmt-00",
+    "count": 63,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-05",
+    "CUMIPMT": "r11-cumipmt-01",
+    "PMT": "r11-pmt-00",
+    "count": 64,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-06",
+    "CUMIPMT": "r11-cumipmt-02",
+    "PMT": "r11-pmt-00",
+    "count": 127,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-08",
+    "PPMT": "r11-ppmt-04",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-09",
+    "PPMT": "r11-ppmt-05",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-10",
+    "PPMT": "r11-ppmt-06",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-11",
+    "PPMT": "r11-ppmt-07",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "first beginning-timing principal/payment control",
+    "CUMPRINC": "r11-cumprinc-08",
+    "PMT": "r11-pmt-01",
+    "question": "Do the publications coincide, as in all30old paired loans?"
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-12",
+    "CUMIPMT": "r11-cumipmt-03",
+    "PMT": "r11-pmt-01",
+    "count": 63,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-13",
+    "CUMIPMT": "r11-cumipmt-04",
+    "PMT": "r11-pmt-01",
+    "count": 64,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-14",
+    "CUMIPMT": "r11-cumipmt-05",
+    "PMT": "r11-pmt-01",
+    "count": 127,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-16",
+    "PPMT": "r11-ppmt-08",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-17",
+    "PPMT": "r11-ppmt-09",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-18",
+    "PPMT": "r11-ppmt-10",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-19",
+    "PPMT": "r11-ppmt-11",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-20",
+    "CUMIPMT": "r11-cumipmt-06",
+    "PMT": "r11-pmt-02",
+    "count": 180,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-21",
+    "CUMIPMT": "r11-cumipmt-07",
+    "PMT": "r11-pmt-02",
+    "count": 180,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-22",
+    "CUMIPMT": "r11-cumipmt-08",
+    "PMT": "r11-pmt-02",
+    "count": 360,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-24",
+    "PPMT": "r11-ppmt-12",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-25",
+    "PPMT": "r11-ppmt-13",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-26",
+    "PPMT": "r11-ppmt-14",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "singleton CUMPRINC versus standalone PPMT",
+    "CUMPRINC": "r11-cumprinc-27",
+    "PPMT": "r11-ppmt-15",
+    "question": "Do their publications coincide? Different results reject a simple sum of standalone published PPMT; equal results do not identify internal sharing."
+  },
+  {
+    "kind": "first beginning-timing principal/payment control",
+    "CUMPRINC": "r11-cumprinc-24",
+    "PMT": "r11-pmt-03",
+    "question": "Do the publications coincide, as in all30old paired loans?"
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-28",
+    "CUMIPMT": "r11-cumipmt-09",
+    "PMT": "r11-pmt-03",
+    "count": 180,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-29",
+    "CUMIPMT": "r11-cumipmt-10",
+    "PMT": "r11-pmt-03",
+    "count": 180,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  },
+  {
+    "kind": "conditional arithmetic relation, not a whole-function prediction",
+    "CUMPRINC": "r11-cumprinc-30",
+    "CUMIPMT": "r11-cumipmt-11",
+    "PMT": "r11-pmt-03",
+    "count": 360,
+    "rule": "For each of25fixed product/subtraction model pairs, intersect publication preimages of one shared Ext80 payment and principal with interest=RN53(subtract_model(product_model(count*payment),principal)). No coefficient is selected or fitted.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ]
+  }
+]

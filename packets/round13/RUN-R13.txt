@@ -1,0 +1,34 @@
+Round 13 consolidated Excel reading list. No answers have been read.
+Run in Windows PowerShell from a copy of this complete directory:
+  .\RUN-R13.ps1 -DnaCalcCheckout C:\Work\DnaCalc\DnaCalc
+The script only invokes the existing cargo xtask witness read --func F --inputs FILE
+interface. It performs no git operation. Use the Windows lane's approved product
+checkout; respect the current product history-rewrite freeze. This packet does
+not authorize a product commit/push or any DnaCalc-engine access.
+
+READING-LIST.tsv is the complete list; batches.json supplies the reading order.
+Read all original 64 R11 cumulative, 52 R11 structural-v2 and 64 R12 group calls,
+then the R13 calls. Original batches and prediction files are byte-identical in
+prior/. Separate batches preserve repeated controls: merging by function would
+violate the reader's duplicate-call rule. Do not use --new-only. The superseded
+original structural-r11 packet is deliberately excluded.
+
+Keep each entire raw worker directory, request.json, result.json, input_audits,
+requested/submitted/read-back typed arguments, formulas, raw outcomes, errors,
+and the reader's frozen application predictions. Record actual Excel build,
+CPU/bitness, Compatibility Version and calculation settings. Retain every failed
+or changed-input obligation; never normalize it into a same-input match. A failed
+read is a failure and must remain separately visible even if later retried.
+
+Score the immutable prior/ prediction files before subsequent elimination.
+The R13 PMT calls repeat all 24 original gaps. POWER/LN/EXP calls observe explicit
+worksheet boundaries, using original inputs or fixed native-ISA calculations.
+selection-r13.json records every derivation, including duplicate derivations.
+predictions/native-elementary.jsonl is model output only: every store mask of
+the declared standalone hypotheses, never an Excel answer or surviving PMT code.
+Worksheet elementary outputs do not reveal PMT's internal extended operands.
+No request contains an expected answer. Do not ingest a prediction as evidence.
+
+Native CPU follow-up: if raw-x87-probe.rs and native-leaf-requests.tsv are present,
+run the separate probe commands in NATIVE-PROBE.txt. Its results are CPU instruction
+measurements, not Excel readings. Keep those two result sets separate.

@@ -1,0 +1,22 @@
+{
+  "frozen_utc": "2026-11-01T05:56:36.714733+00:00",
+  "calls": 64,
+  "new_excel_answers": 0,
+  "function": "PMT",
+  "source_trace_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+  "proof_sha256": {
+    "timing-complement/all-first-kills.jsonl": "f9d9b7c23e43c59c8d87b960c113e93dc07516eb4ae3b7362bcc8eed577eb155",
+    "timing-complement/nonunit-first-kills.jsonl": "90c78471ae7b0ab69a002951e198f3de7447723e5f17f8d570283271341cfbba",
+    "timing-complement/nonunit_timing-first-kills.jsonl": "8443b048bb9029cbef95f1086e711b7bcd65aaf88f3e557e3679433c64863b2c",
+    "timing-complement/timing-first-kills.jsonl": "32f2bb7261e3389d708ad1d8d379f2e45357e84c72cc4850ec0410991eba0783",
+    "annuity-factor/nonunit_timing-first-kills.jsonl": "6f2b052c872bb2e2badd8ebccd278b048e9d6d9aef42fff791e0045e25b3dc18",
+    "annuity-factor/timing-first-kills.jsonl": "9dcb30c8410d761b8f45abfac3b16302fad67b989167e97cd2125fd8a16674ff"
+  },
+  "files_sha256": {
+    "README.txt": "4f62de637c8bedfd21a7fcde48f2193147dc4e1acd85bed2112292ca78e6acf9",
+    "historical-observations.jsonl": "9eb76dff57da4427c9c645d4beb04bee06b34e9b5a12a66ec3f2d10c04bb0f0f",
+    "requests-PMT.json": "33b72bbb09921a611d6c53780bae7f1a4148cc4d1a9e3a8b90e9c4dc2f35df6f",
+    "selection.json": "651f48dbef1b06507a76befd75f504b1324856b6c19f5593c87496c204ce3246"
+  },
+  "limitations": "Observation/transport audit only; no surviving candidate is claimed. Historical effective inputs remain unknown."
+}

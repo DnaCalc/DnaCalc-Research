@@ -451,3 +451,62 @@ adds 32 unique input/outcome groups through 72 R10 semantic calls. All baseline
 outputs remain unchanged; the later set has 3,230,357 matches / 3,874,964 counted rows,
 644,607 failures including 116 unread. Failed membership assumptions and earlier
 interrupted checker attempts are retained; only complete guarded receipts count.
+
+Round 13 works only in this research repository during the product history freeze.
+The standalone x87 interpreter in racer/x87_native.c links no numeric library or
+product code. It executes FADD/FSUB/FMUL/FDIV, FYL2X/FYL2XP1, FRNDINT, F2XM1,
+FSCALE and ROM loads, retaining ten-byte values until an explicit binary64 store.
+Preparation, power reconstruction, consumer arithmetic and its final arithmetic
+instruction independently choose PC53 or PC64 (16 combinations). PC53 consumes
+full resident operands; it does not first round them to binary64. Transcendental
+instructions retain their hardware precision under both settings (Intel SDM
+vol.1 ch.8: https://cdrdv2-public.intel.com/671436/253665-sdm-vol-1.pdf).
+
+The finite grammar has102 helper templates, including direct power, natural/base2
+log paths, FYL2XP1, signed/reciprocal reconstruction, direct expm1 and three
+associations of Kahan correction in each log unit. Both a separate period multiply
+and direct FYL2XP1(n,r) are included. Its272 consumer templates use
+both annuity signs, two numerator associations, all60 ordered four-factor trees,
+and8 timing/complement/distributed-denominator identities. Explicit store masks
+give817,152 helper profiles and66,048 consumer profiles. Compatible sign pairs
+give26,985,627,648 labelled assignments. This count includes redundant or dead
+store choices and earlier R13 subsets; it is never a count of distinct kernels
+or product gains. The native run rejects them all within14 existing observations.
+
+checker/x87.py derives the grammar independently, uses exact rational arithmetic
+for ordinary operations, stores, integer reduction and scaling, and replays raw
+microcode through checker/x87_isa.c. First-kill boxes cover the entire compatible
+Cartesian family; full80-bit representative traces accompany every box. Deliberate
+corruptions must fail without a success receipt. Original32 observations and24
+gap IDs are retained in evidence/round13 for reproduction, with original fields.
+Thirty rows are inside the FYL2XP1 domain; the other two are explicitly excluded.
+
+Set R13 to a fresh outside-repository artifact directory on x86_64 Linux:
+  python3 racer/x87_programs.py build "$R13/x87-native.so"
+  cc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC checker/x87_isa.c -o "$R13/x87-checker.so"
+  python3 racer/x87_programs.py run evidence/round13/pmt-canonical.jsonl "$R13/search" "$R13/x87-native.so"
+  python3 checker/x87.py "$R13/search" evidence/round13/pmt-canonical.jsonl "$R13/x87-checker.so" "$R13/checked.json" --leaves "$R13/leaves"
+  python3 checker/x87_shells.py evidence/round13/pmt-canonical.jsonl evidence/round13/pmt-gap-ids.jsonl "$R13/shells.json"
+  python3 -m unittest discover -s checker -v
+
+The separate shell proof excludes every binary64 quotient for all24 gaps under
+either final product setting, while54-bit operands can reach every target.
+Only exact intervals and lattice counts are retained: no quotient is selected,
+fitted or installed. Reachability supplies no helper producer or function match.
+
+The consolidated Windows packet is packets/round13, also copied to:
+ /home/ubuntu/codex-runs/excel-questions-r13/
+Its234 calls preserve the unanswered64+52 R11 and64 R12 calls byte for byte,
+and add54 R13 audits (24 PMT,12 POWER,6 LN,12 EXP). RUN-R13.ps1 invokes the existing
+witness reader on13 separate batches; it performs no git operation or --new-only
+filtering. Separate batches preserve repeated controls without violating the
+reader's duplicate-call rule. All predictions remain separate from requests.
+The standalone raw-x87-probe.rs replays the certificate's native leaves on the
+Windows CPU, writing results outside the immutable packet. The earlier Excel
+captures name a Ryzen; the Linux host is an EPYC. Linux exclusions remain CPU
+conditional until the Windows leaf comparison, and do not identify Excel code.
+
+All409 annuity corpus mismatches and the24 PMT gaps remain open. No product source,
+answer, evidence pin or tracker is changed. Exact receipts, source archives and
+superseded attempts are under /home/ubuntu/codex-runs/dna-firehorse-20261101-round13/;
+annuity-r13-claim.json and round13-result.json index the final evidence.

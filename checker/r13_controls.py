@@ -1,0 +1,72 @@
+"""Deliberately corrupted R13 proofs/packets must never receive a receipt."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import shutil
+
+from x87 import check
+from questions_r13 import check as check_questions
+
+
+def shadow(source,destination,replaced):
+    destination.mkdir(parents=True,exist_ok=False)
+    for src in source.rglob('*'):
+        relative=src.relative_to(source);dst=destination/relative
+        if src.is_dir():dst.mkdir(exist_ok=True)
+        elif relative.as_posix()not in replaced:dst.symlink_to(src.resolve())
+
+
+def run(proof,packet,trace,gaps,library,output):
+    proof,packet,output=map(Path,(proof,packet,output))
+    output.mkdir(parents=True,exist_ok=False)
+    results=[]
+    def rejected(label,function,message,receipt):
+        try:function()
+        except ValueError as error:
+            if message not in str(error):raise
+            if receipt.exists():raise ValueError('failed control wrote a successful receipt')
+            results.append(dict(control=label,rejected=True,error=str(error),success_receipt_exists=False))
+        else:raise ValueError('corrupted control was accepted: '+label)
+    bad=output/'bad-helper-output';shadow(proof,bad,{'rows/000.json'})
+    with (proof/'rows/000.json').open('rb')as src,(bad/'rows/000.json').open('xb')as dst:
+        first=src.read(1<<20);marker=b'"values": "';at=first.index(marker)+len(marker)
+        first=first[:at]+(b'A'if first[at:at+1]!=b'A'else b'B')+first[at+1:]
+        dst.write(first);shutil.copyfileobj(src,dst)
+    receipt=output/'bad-helper-receipt.json'
+    rejected('changed one native helper output byte',lambda:check(bad,trace,library,receipt),
+             'helper instruction/store output differs',receipt)
+    bad=output/'missing-first-kill';shadow(proof,bad,{'first-kills.jsonl'})
+    with (proof/'first-kills.jsonl').open()as src,(bad/'first-kills.jsonl').open('x')as dst:
+        next(src);shutil.copyfileobj(src,dst)
+    receipt=output/'missing-kill-receipt.json'
+    rejected('omitted one first-kill record',lambda:check(bad,trace,library,receipt),
+             'missing representative first-kill trace',receipt)
+    bad=output/'wrong-function-graph';shutil.copytree(packet,bad)
+    path=bad/'predictions/native-elementary.jsonl'
+    rows=[json.loads(line)for line in path.read_text().splitlines()]
+    first=rows[0];first['graph']=dict(nodes=[dict(op='input',a=0)],outputs=[0,0],sites=0)
+    request=next(r for r in json.loads((bad/'requests-LN.json').read_text())['witnesses']if r['id']==first['id'])
+    first['predictions_by_store_mask']=[request['args'][0]]
+    path.write_text(''.join(json.dumps(row)+'\n'for row in rows))
+    manifest=json.loads((bad/'manifest.json').read_text())
+    manifest['files_sha256']['predictions/native-elementary.jsonl']=hashlib.sha256(path.read_bytes()).hexdigest()
+    (bad/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    receipt=output/'wrong-function-receipt.json'
+    rejected('self-consistent wrong function graph with updated checksum',
+             lambda:check_questions(bad,trace,gaps,library,receipt),
+             'standalone function graph differs',receipt)
+    result=dict(complete=True,controls=results,all_rejected=True,
+                checker_source_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in (
+                    Path(__file__),Path(__file__).with_name('x87.py'),Path(__file__).with_name('questions_r13.py'),Path(__file__).with_name('exact.py'))},
+                input_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in (
+                    proof/'summary.json',packet/'manifest.json',Path(trace),Path(gaps),Path(library))},
+                limits='Constructed corruptions, never Excel observations. Original proof and packet bytes are unchanged; shadow copies/symlinks retain failures.')
+    (output/'controls.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps(result));return result
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__)
+    for key in ('proof','packet','trace','gaps','library','output'):p.add_argument(key)
+    a=p.parse_args();run(a.proof,a.packet,a.trace,a.gaps,a.library,a.output)
