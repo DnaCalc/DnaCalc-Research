@@ -132,9 +132,31 @@ pub fn run<F: Fpu + 'static>(rows: &[Row], output: &str) {
 /// One declared structural extension. This streams first contradictions and
 /// does not build a prediction matrix or rank contradicted candidates.
 pub fn associations<F: Fpu>(rows: &[Row], output: &str) {
+    association_programs::<F>(
+        rows,
+        output,
+        enumerate::association_family(),
+        "4 numerators x 8 combines x 3^8 plus one 7-site rearrangement x 3^7. All annotations; root duplicates retained. No claim of all possible PMT programs.",
+    );
+}
+
+pub fn timing_corrections<F: Fpu>(rows: &[Row], output: &str) {
+    association_programs::<F>(
+        rows,
+        output,
+        enumerate::timing_family(),
+        "4 numerators x 3 subtractive timing corrections x 3^10. All arithmetic annotations; exact negations remain resident PC64. Frozen binary64 helper, not a claim about other helpers or all PMT programs.",
+    );
+}
+
+fn association_programs<F: Fpu>(
+    rows: &[Row],
+    output: &str,
+    candidates: Vec<enumerate::AssociationCandidate>,
+    coverage: &str,
+) {
     let out = Path::new(output);
     fs::create_dir(out).unwrap(); // never overwrite a previous experiment
-    let candidates = enumerate::association_family();
     let mut programs = BufWriter::new(
         fs::OpenOptions::new()
             .write(true)
@@ -213,7 +235,7 @@ pub fn associations<F: Fpu>(rows: &[Row], output: &str) {
         "exact_evaluations":total_evaluations,"first_kill_counts":kill_summary,
         "backend":std::any::type_name::<F>(),"fresh_validation_rows":0,
         "scope":"Original finite discount scope; frozen binary64 log1p/expm1 are conditional hypotheses",
-        "coverage":"4 numerators x 8 combines x 3^8 plus one 7-site rearrangement x 3^7. All annotations; root duplicates retained. No claim of all possible PMT programs.",
+        "coverage":coverage,
         "selection":"First exact contradiction; no match-count ranking, closeness beam, fitted constants or guards",
         "questions":"Only nonempty survivor sets justify distinguishing questions; requests would be frozen separately from predictions"});
     json_write(out.join("summary.json"), &summary);

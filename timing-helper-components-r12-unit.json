@@ -1,0 +1,101 @@
+{
+  "id": "dc-j9k-r12-correlated-timing-helper-component-audit",
+  "role": "implementer",
+  "application_revision": "65adc720d0f0d5eb909d2e6396f891723898dcd1",
+  "route_audit": true,
+  "scope": "Existing1980 R7 helper programs crossed with two correlated timing identities on positive-rate/period FV0 R10 rechecks. Complete six-site annotations; only identical full-width helper values share an execution. No fitted intermediate or selected helper. Retain actual helper t/u/em and raw exp/log operands so the independent rational checker can verify the helper arithmetic, with those elementary calls explicitly conditional.",
+  "sources": {
+    "tier1": [
+      "original Excel readings and capture records",
+      "IEEE754 arithmetic",
+      "annuity algebra"
+    ],
+    "tier2": [
+      "current cleared DnaCalc implementation",
+      "Apache POI number conversion (Apache-2.0), inspected as a candidate only"
+    ],
+    "banned": [
+      "tier3 and tier4 sources",
+      "DnaCalc-engine checkout",
+      "deleted restricted sources and histories"
+    ]
+  },
+  "constraints": [
+    "no fitted constants, selectors, tolerances or answers",
+    "preserve original capture and witness fields",
+    "historical prediction denotes a recorded Excel answer, not an old executable",
+    "trace actual workbook and registered routes before new annuity enumeration"
+  ],
+  "exposure": "Existing corpus, R10 answers and all old banks are discovery, not independent validation.",
+  "original_route_unit_sha256": "51d0d6fa60bb88ee29039815e439d59bd09b194fd43bd8a72e21583d485d9f04",
+  "original_measurements_unchanged": true,
+  "grammar": {
+    "helpers": 1980,
+    "helper_source": "pmt-r7-unit.json",
+    "forms": [
+      "(q-q*d)*r",
+      "(q*r)-(q*r)*d"
+    ],
+    "q": "PV/em",
+    "d": "r*canonical_timing/(1+r*canonical_timing)",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "sites": 6,
+    "consumers": 1458,
+    "programs": 2886840,
+    "reduction": "FV0 makes all numerator expressions PV exactly for the scoped normal nonzero balances and finite helper values; canonical timing multiplication is exact. Original graph retained with these neutral sites strict."
+  },
+  "rationale": "Route audit reproduces all 24 numeric misses inside the actual arithmetic body, with adapters and authored bits unchanged. Those old final quotient/multiply gaps require a structural change; ordinary subtractive timing identities are not in the R9 association grammar. All existing evidence remains discovery.",
+  "source_sha256": {
+    "Cargo.lock": "21c5453b5f1a8522310063163dc870b6839c651a81465bacb877c0173f448069",
+    "checker/check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+    "checker/cumulative.py": "5b2ad4e12809b8a826777eaaa22ff3067ed71f33720c844e81829c181e246cf2",
+    "checker/cumulative_balance.py": "2b5efdf75d3367095eeb9694d94f47ad1f49ff49e8136442b1087e6acbe20153",
+    "checker/cumulative_projection.py": "66444943bd0d8d504ed58f24d4ba8aa05389dda12c075a9d0f138d0f6ed9f977",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+    "checker/test_exact.py": "782994ab89dafe45ad64df563a17d436a78d35fe2ffac1097e7985dcbd835cec",
+    "checker/timing.py": "8aeffe7081e19569666bf72548699851580e9fa29cca0afe5d82fa6220dd72ee",
+    "racer/Cargo.toml": "5c9f409baadfb19c99d1ce5766eaceaf301b37606ac31d5316febe18d9b3493f",
+    "racer/annuity_structure.py": "a0ccacc0ff13a9191906891111ddf73ebd9e4cd82d226701e0e7f4ec4c69d5a3",
+    "racer/audit.py": "7f700134ea057ba48d1113d674e64a58a062ec3b9b104b1e96c5f7ee51f4dee6",
+    "racer/blind_score.py": "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45",
+    "racer/build.rs": "8d283f945a5e71e2b55961b39252a3b11197393d00390c69f18059638e6a009b",
+    "racer/certify.py": "400f8752f53b0a1e6341b858683313b89723e295bc65fcc52b86079974fe0f17",
+    "racer/constants.py": "2816623ef0cbf5a20443d49cf1ffe35415c951f7c8f6e4ca5d6532e9cf347062",
+    "racer/cumulative_projection.py": "a52913ef444f09a62220a532d56a684e0e2cf344c71abd8cfd9649a27f0a166c",
+    "racer/group_eliminate.py": "4ef85ace52fb6126e1c30ece7bdd266ac9b000cedbfc38e6a793a574a8baf557",
+    "racer/growth_preimages.py": "4aae4906580750a2c69c939899cc6d198001dee6119c8c57e8adb0db050a3526",
+    "racer/intersect.py": "213fdcabe5fe24de5dfa7bce6f40cd83ddbf046e5b9e467bf0dd8f4fb721441c",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "racer/normalizer_intersect.py": "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb",
+    "racer/number_conversion.py": "b2a31bcd72f7eab4582d7fcc3427cbf958e7d66397ac55138e20dae2ae6febe7",
+    "racer/record.py": "1f48e0d691b227e279273d9e9d75fc1ec85638c9a6972f7d602feddf82811261",
+    "racer/src/annuity.rs": "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299",
+    "racer/src/annuity_early.rs": "4cf902aa1a57ae4b447433e605d31357a1afc8148038474e35444e1658a7609a",
+    "racer/src/boundary.rs": "c1308260490feb83d26090dcec4894a5e51a81f6740625b5017ae3519e22e404",
+    "racer/src/cumulative.rs": "cb33d43aa22afcb0cc84ba1a86b43d6f9ca5b6abef1193c532db0cec6fc8ff88",
+    "racer/src/cumulative_balance.rs": "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/enumerate.rs": "9492a9c06cbf222c975acfbac9c64bd35f0591420880a984cb225bae066a612f",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/identity.rs": "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5",
+    "racer/src/main.rs": "3df6b7a4e48b73ebf456b50232b5abb6db45733030ed4e6c6a568641bdb6ee2b",
+    "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+    "racer/src/poisson.rs": "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f",
+    "racer/src/route_audit.rs": "7d9ceb826b6c390e50cc7e842b7b82e70ea779c64a193915593bf56a9eb2f8c0",
+    "racer/src/saddle.rs": "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287",
+    "racer/src/scheduler.rs": "2894790a9d8093f79d5e59145dd334c21bd04bdac0d8e3d4d4f502c248d40d8e",
+    "racer/verify_inverse.py": "099a546fc850e09b9e04a3cb4b17cbc7a6d83f0517429644bb03b558b5bd4d0d"
+  },
+  "parent_unit_sha256": "f46c44134a8e682e7b5accb9acbad45041e15993c708427f14ad9c5e077a7efb",
+  "source_changes": "Formatting and an additional workbook numeric-operand audit; no numeric primitive or candidate arithmetic changed. Original source snapshot retained outside the repository.",
+  "metadata_corrections": {
+    "due-rate-r12-unit.json": "Inherited one-operation limitation is incorrect for this family. The three declared single-use-helper forms have6,6,5 arithmetic sites. The old unit is retained unchanged.",
+    "due-rate-cached-r12-unit.json": "Same inherited limitation correction; memoization reuses only identical exact factors/preimages. No selected helper or arithmetic store changed."
+  }
+}

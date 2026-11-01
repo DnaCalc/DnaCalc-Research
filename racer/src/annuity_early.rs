@@ -66,7 +66,7 @@ fn series_log1p<F: Fpu>(rate: f64) -> Val {
     }
     panic!("log1p floating series did not reach its declared unchanged sum") // ubs:ignore — abort unsupported series; never publish an unconverged value
 }
-fn logs<F: Fpu>(rate: f64, frozen: u64) -> [Val; 5] {
+pub(crate) fn logs<F: Fpu>(rate: f64, frozen: u64) -> [Val; 5] {
     let hw = hardware_log1p(rate);
     let series = series_log1p::<F>(rate);
     [
@@ -144,6 +144,11 @@ fn scoped_rows(input: &str, root: &Path) -> (Vec<Row>, std::collections::BTreeMa
     (rows, counts)
 }
 fn direct_components<F: Fpu>(id: usize, n: f64, log: Val) -> (Val, Val, Val) {
+    let v = direct_component_details::<F>(id, n, log);
+    (v[5], v[2], v[9])
+}
+
+pub(crate) fn direct_component_details<F: Fpu>(id: usize, n: f64, log: Val) -> [Val; 10] {
     let mut code = id / 2;
     let mut next = || {
         let m = MODELS[code % 3];
@@ -157,7 +162,8 @@ fn direct_components<F: Fpu>(id: usize, n: f64, log: Val) -> (Val, Val, Val) {
     // Intel's F2XM1 argument interval is [-1,1]; nearest integer reduction
     // confines this fractional argument to [-1/2,1/2]. No answer-derived cut.
     assert!(fraction.to_f64::<F>().abs() <= 0.5);
-    let f = store::<F>(Val::Ext(F::f2xm1(&fraction.to_ext(), CW)), id % 2 != 0);
+    let raw_f = Val::Ext(F::f2xm1(&fraction.to_ext(), CW));
+    let f = store::<F>(raw_f, id % 2 != 0);
     let scaled = Val::Ext(F::scale(&f.to_ext(), &k.to_ext(), CW));
     let two_k = Val::Ext(F::scale(&Val::f64(1.0).to_ext(), &k.to_ext(), CW));
     let integer_part = binop::<F>(
@@ -168,7 +174,7 @@ fn direct_components<F: Fpu>(id: usize, n: f64, log: Val) -> (Val, Val, Val) {
     );
     let em = binop::<F>(Op::Add(0, 1), next(), scaled, integer_part);
     assert_eq!(code, 0);
-    (f, k, em)
+    [t, x, k, fraction, raw_f, f, scaled, two_k, integer_part, em]
 }
 
 pub fn direct_controls(input: &str, out: &str) {

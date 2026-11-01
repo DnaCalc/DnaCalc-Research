@@ -1,0 +1,50 @@
+{
+  "id": "dc-j9k-r12-due-rate-coefficient-projection",
+  "role": "implementer",
+  "application_revision": "e5999cfbbc17b8c723e3b37f073fc408990212d6",
+  "parent_unit_sha256": "53823f122ec4e774d5c638f022c6dae83fdfa402c824f5df493d70a0be2e876e",
+  "input": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round6/frozen/scoped.jsonl",
+  "grammar": {
+    "forms": [
+      "(PV/em)*(r-r*(r*timing)/(1+r*timing))",
+      "(PV/em)*(r*(1-(r*timing)/(1+r*timing)))",
+      "(PV/em)*(1/(1/r+timing))"
+    ],
+    "site_counts": [
+      6,
+      6,
+      5
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "profiles": 1701,
+    "helper": "One arbitrary real or finite Ext80 em per exact rate,nper,environment; timing cohorts also permit timing dependence. Independent of PV."
+  },
+  "exposure": "All old observations are discovery. Necessary consumer constraints, not calculated passes or recovered helper values.",
+  "sources": {
+    "tier1": [
+      "annuity algebra",
+      "IEEE754 nearest/even",
+      "original canonical witness trace"
+    ],
+    "tier2": [
+      "existing cleared research interval machinery"
+    ],
+    "banned": [
+      "all tier3/4 sources",
+      "DnaCalc-engine checkout",
+      "deleted restricted sources and histories"
+    ]
+  },
+  "limits": "Necessary scalar FV0 one-operation consumer constraint only. No complete kernel or helper identified.",
+  "hashes": {
+    "racer/intersect.py": "ec06990765d73bba8890b271c75fd410d7aeb8fcf90fbbbca06c87b1a3174cca",
+    "racer/group_eliminate.py": "61436422d78b7c2082a137e27b288d0aedbb32171016882d4f27cf2d5c87ab84",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010"
+  },
+  "input_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+  "rationale": "Test ordinary algebraic rate-factor rearrangements after the original workbook/registered/body route agreement. Complete fixed families; no coefficients, helpers or precisions are recovered or selected."
+}

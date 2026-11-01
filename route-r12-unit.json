@@ -1,0 +1,14 @@
+{
+  "id": "dc-j9k-r12-application-route-audit",
+  "role": "implementer",
+  "application_revision": "07ceeed010ee9cfb926577bbb3a898f98e061851",
+  "route_audit": true,
+  "scope": "R10 PMT numeric/logical readings and the 35 remaining structural/text/capture corpus differences, followed by bounded arithmetic structure discovery.",
+  "sources": {
+    "tier1": ["original Excel readings and capture records", "IEEE754 arithmetic", "annuity algebra"],
+    "tier2": ["current cleared DnaCalc implementation", "Apache POI number conversion (Apache-2.0), inspected as a candidate only"],
+    "banned": ["tier3 and tier4 sources", "DnaCalc-engine checkout", "deleted restricted sources and histories"]
+  },
+  "constraints": ["no fitted constants, selectors, tolerances or answers", "preserve original capture and witness fields", "historical prediction denotes a recorded Excel answer, not an old executable", "trace actual workbook and registered routes before new annuity enumeration"],
+  "exposure": "Existing corpus, R10 answers and all old banks are discovery, not independent validation."
+}

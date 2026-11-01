@@ -1,0 +1,472 @@
+{
+  "id": "dc-j9k-r12",
+  "application_code_revision": "0feddb858584ac52ac6d119789913382d32302e7",
+  "research_parent_revision": "2f483cda02a2096ecedc5cbf34ff7ecb8e005b73",
+  "unit": "publication-v2-r12-unit.json",
+  "unit_sha256": "79fa1df9b078fbcd69f52087ce9c252bd39e3e3388b6157f950f57fa44d4977a",
+  "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "artifact_root": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12",
+  "new_Excel_observations": 0,
+  "product": {
+    "fix_commit": "19b799bd",
+    "behavior": "Ratio-scaled reciprocal fixes IMSEC(4+3i) text through the actual workbook route, retaining existing subnormal component handling. Two tested reciprocal structures survive the limited comparison; no unique Excel graph is claimed.",
+    "corpus": {
+      "awaiting_capture": 0,
+      "circular_rule": 14,
+      "external_links": 73,
+      "fail": 1131,
+      "failed_or_missing": 1,
+      "failed_or_missing_by_verdict": {
+        "not_run": 1
+      },
+      "formula_cells": 20030,
+      "mismatched": 1124,
+      "pass": 18812,
+      "pass_rate": 0.9391912131802297,
+      "refused": 6
+    },
+    "corpus_delta": {
+      "corpus-before": {
+        "formula_cells": 20030,
+        "gains": 1,
+        "losses": 0,
+        "verdict_changes": 1,
+        "byte_identical_evaluation_files": 20,
+        "workbooks": 21
+      },
+      "corpus-after-imsec": {
+        "formula_cells": 20030,
+        "gains": 0,
+        "losses": 0,
+        "verdict_changes": 0,
+        "byte_identical_evaluation_files": 21,
+        "workbooks": 21
+      }
+    },
+    "full_bank": {
+      "decoded_rows": 3874848,
+      "unchanged_identities_and_answers": 3874848,
+      "identity_changes": 0,
+      "before_matches": 3230357,
+      "after_matches": 3230357,
+      "gains": 0,
+      "losses": 0,
+      "changed_outputs": 0,
+      "uncompressed_sha256": "01e5bc94a07828f54b68be443fa4483c754325b26ea3af14ad79572ff78bf72a",
+      "exit_code": 0
+    },
+    "full_bank_denominator": 3874964,
+    "full_bank_failed_including_unread": 644607,
+    "unread": 116
+  },
+  "route_audit": {
+    "calls": 48,
+    "cohorts_matches_failures": {
+      "logical_timing": [
+        0,
+        8
+      ],
+      "numeric": [
+        8,
+        24
+      ],
+      "text_rate": [
+        1,
+        7
+      ]
+    },
+    "finding": "For these original inputs the typed adapter and worksheet references do not explain the mismatch. The current cleared arithmetic body already returns the differing bits. Text rates use the workbook locale here.",
+    "historical_route": "historical predictions are recorded Excel readings; no historical application executable was supplied",
+    "limitations": "This is a route audit on existing observations, not identification of Excel's internal operations.",
+    "matches_excel": 9,
+    "save_reopen_preserves_inputs_and_calculated_results": 48,
+    "unchanged_literal_echoes": 48,
+    "worksheet_registered_direct_agreement": 48
+  },
+  "literal_audit": {
+    "application_literal_reference_agreement": 16,
+    "limits": "Original literal audits only; no changed-input output counts as a same-input semantic match.",
+    "matching_echoes": 16,
+    "new_excel_answers": 0,
+    "raw_literal_output_coincidences": 7,
+    "rows": 16
+  },
+  "number_operand_audit": {
+    "changed_operands": 0,
+    "matches_original_text": 183,
+    "rows": 192,
+    "scope": "Existing conversion observations, inspected through actual workbook calculation; no new Excel reading.",
+    "unchanged_numeric_operands": 192
+  },
+  "conversion_family": {
+    "rows": 192,
+    "excluded_second_rounding": 12,
+    "declared_programs": 540,
+    "survivors": 0,
+    "exposure": "Original workbook/capture constraints and audited application operands; no fresh Excel operand read-back is claimed. No POI code was ported or complete POI execution claimed."
+  },
+  "bounded_proofs": {
+    "ordinary-r10-checked.json": {
+      "sha256": "54dad2e239fdb2dae7e41d8d0d5387f5e039d3c1ae2879e143989ec9d0c4fa84",
+      "receipt": {
+        "complete": true,
+        "grammar_programs": 212139,
+        "checked_first_kills": 212139,
+        "checked_full_width_nodes": 2967759,
+        "witness_counts": {
+          "r10-pmt-22": 145962,
+          "r10-pmt-20": 20295,
+          "r10-pmt-02": 45882
+        },
+        "seconds": 214.66974044195376,
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/ordinary-r10-native/programs.jsonl": "89d88662d51cf92b648bd02abe6c8ed2f9ff3e172e69ed964a8b219b4cf9932b",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/ordinary-r10-native/first-kills.jsonl": "1f71fd1ed9d2b4e9789abc7eb015456068c02409b069dab68a980fef28aa41e6"
+        },
+        "family": "ordinary",
+        "claim": "Every annotated program in the declared association family is contradicted by a trusted original witness; every stored/resident operation in its first-kill trace is independently checked as an exact rational.",
+        "limits": "This bounded grammar only, frozen binary64 helper leaves. Intermediate zero signs are retained in traces but rational checking ignores them; no zero divisor occurs in the checked traces and PMT normalizes published zero. No conclusion about Excel internals or other arms.",
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302"
+        }
+      }
+    },
+    "timing-native-checked.json": {
+      "sha256": "da35e58db3e3227df0662cac55e50bc57abf350fafc0be5b965caf9923e72727",
+      "receipt": {
+        "complete": true,
+        "grammar_programs": 708588,
+        "checked_first_kills": 708588,
+        "checked_full_width_nodes": 12754584,
+        "witness_counts": {
+          "r10-pmt-22": 661932,
+          "r10-pmt-20": 46656
+        },
+        "seconds": 828.1045322769787,
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-native/programs.jsonl": "4b05dee6848beebb41aa10984efbe5eadd7a6846f407684bcf747f2f3c180e7b",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-native/first-kills.jsonl": "88e388218a5e99a648ec0e6216394e48683b9c294d0a04e45a64783f2aba069c"
+        },
+        "family": "timing",
+        "claim": "Every annotated program in the declared association family is contradicted by a trusted original witness; every stored/resident operation in its first-kill trace is independently checked as an exact rational.",
+        "limits": "This bounded grammar only, frozen binary64 helper leaves. Intermediate zero signs are retained in traces but rational checking ignores them; no zero divisor occurs in the checked traces and PMT normalizes published zero. No conclusion about Excel internals or other arms.",
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302"
+        }
+      }
+    },
+    "timing-complement-source-complete-checked.json": {
+      "sha256": "7600559cf8aa0643c046a9e075754c35b149d4ae2eb69a11f43b59b164d8b354",
+      "receipt": {
+        "complete": true,
+        "cohorts": {
+          "all": {
+            "checked_profiles": 729,
+            "reasons": {
+              "empty_real_intersection": 729
+            },
+            "checked_witness_constraints": 909,
+            "certificates_sha256": "f9d9b7c23e43c59c8d87b960c113e93dc07516eb4ae3b7362bcc8eed577eb155"
+          },
+          "nonunit": {
+            "checked_profiles": 729,
+            "reasons": {
+              "empty_real_intersection": 729
+            },
+            "checked_witness_constraints": 909,
+            "certificates_sha256": "90c78471ae7b0ab69a002951e198f3de7447723e5f17f8d570283271341cfbba"
+          },
+          "timing": {
+            "checked_profiles": 729,
+            "reasons": {
+              "empty_real_intersection": 729
+            },
+            "checked_witness_constraints": 909,
+            "certificates_sha256": "32f2bb7261e3389d708ad1d8d379f2e45357e84c72cc4850ec0410991eba0783"
+          },
+          "nonunit_timing": {
+            "checked_profiles": 729,
+            "reasons": {
+              "empty_real_intersection": 729
+            },
+            "checked_witness_constraints": 909,
+            "certificates_sha256": "8443b048bb9029cbef95f1086e711b7bcd65aaf88f3e557e3679433c64863b2c"
+          }
+        },
+        "original_killing_rows": 13,
+        "input_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "6b97fdffe7ef7e0f33c7d4d0c99688aa0c4653efab4c97dd5d82308deab5bc34"
+        },
+        "seconds": 4.637062991037965,
+        "family": "timing_complement",
+        "claim": "Each of the 729 declared profiles has a verified original observation group with no shared finite Ext80 helper in every declared cohort. Real-empty intersections also exclude arbitrary real helpers under the specified arithmetic stores.",
+        "limits": "FV0 and the specified single-use-helper expressions only, conditional on original recorded inputs; historical read-back inputs are unavailable. No chosen or fitted helper, no new calculation pass, no conclusion about repeated-q corrections or other PMT structures."
+      }
+    },
+    "annuity-factor-source-complete-checked.json": {
+      "sha256": "fd17425d440d1ff0fc0e4ed748c667aa932bd259ebecef2cfcfcd2df50a44cd2",
+      "receipt": {
+        "complete": true,
+        "cohorts": {
+          "timing": {
+            "checked_profiles": 6,
+            "reasons": {
+              "empty_real_intersection": 6
+            },
+            "checked_witness_constraints": 16,
+            "certificates_sha256": "9dcb30c8410d761b8f45abfac3b16302fad67b989167e97cd2125fd8a16674ff"
+          },
+          "nonunit_timing": {
+            "checked_profiles": 6,
+            "reasons": {
+              "empty_real_intersection": 6
+            },
+            "checked_witness_constraints": 16,
+            "certificates_sha256": "6f2b052c872bb2e2badd8ebccd278b048e9d6d9aef42fff791e0045e25b3dc18"
+          }
+        },
+        "original_killing_rows": 8,
+        "input_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "6b97fdffe7ef7e0f33c7d4d0c99688aa0c4653efab4c97dd5d82308deab5bc34"
+        },
+        "seconds": 1.8933235029689968,
+        "family": "annuity_factor",
+        "claim": "Each of the 6 declared profiles has a verified original observation group with no shared finite Ext80 helper in every declared cohort. Real-empty intersections also exclude arbitrary real helpers under the specified arithmetic stores.",
+        "limits": "FV0 and the specified single-use-helper expressions only, conditional on original recorded inputs; historical read-back inputs are unavailable. No chosen or fitted helper, no new calculation pass, no conclusion about repeated-q corrections or other PMT structures."
+      }
+    },
+    "due-rate-source-complete-checked.json": {
+      "sha256": "278cc9495c30ecd4d3e8d3786de6bf3553b37a8f94fb86351c6c5ed09bf3cdbb",
+      "receipt": {
+        "complete": true,
+        "cohorts": {
+          "all": {
+            "checked_profiles": 1701,
+            "reasons": {
+              "empty_real_intersection": 1701
+            },
+            "checked_witness_constraints": 3313,
+            "certificates_sha256": "9a5a542a215a8afd36a55f35d566688343dc8ae6e862a88296b975e2b8ed0151"
+          },
+          "nonunit": {
+            "checked_profiles": 1701,
+            "reasons": {
+              "empty_real_intersection": 1701
+            },
+            "checked_witness_constraints": 3170,
+            "certificates_sha256": "f82b0707293445802ece35dfd960d92836d5348d48d1d12739bbd963ebc40a9b"
+          },
+          "timing": {
+            "checked_profiles": 1701,
+            "reasons": {
+              "empty_real_intersection": 1701
+            },
+            "checked_witness_constraints": 2733,
+            "certificates_sha256": "7fa599d71f79a2205153e7497d0429d0a6d475aeabdbe8080067c0bcc4e771e0"
+          },
+          "nonunit_timing": {
+            "checked_profiles": 1701,
+            "reasons": {
+              "empty_real_intersection": 1701
+            },
+            "checked_witness_constraints": 2790,
+            "certificates_sha256": "318d3d36693ae0ec8ff74088a3736b36b5275490740feb643346bf67d9196eb9"
+          }
+        },
+        "original_killing_rows": 29,
+        "input_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095",
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "6b97fdffe7ef7e0f33c7d4d0c99688aa0c4653efab4c97dd5d82308deab5bc34"
+        },
+        "seconds": 13.165666757151484,
+        "family": "due_rate_factor",
+        "claim": "Each of the 1701 declared profiles has a verified original observation group with no shared finite Ext80 helper in every declared cohort. Real-empty intersections also exclude arbitrary real helpers under the specified arithmetic stores.",
+        "limits": "FV0 and the specified single-use-helper expressions only, conditional on original recorded inputs; historical read-back inputs are unavailable. No chosen or fitted helper, no new calculation pass, no conclusion about repeated-q corrections or other PMT structures."
+      }
+    },
+    "helper-source-complete-checked.json": {
+      "sha256": "c4ab1de61687811901367dd8f98429a50cd0a15d9808628071deb5299c5634e3",
+      "receipt": {
+        "complete": true,
+        "direct": false,
+        "programs": 2886840,
+        "eliminated": 2886840,
+        "survivors": 0,
+        "checked_consumer_groups": 46494,
+        "checked_consumer_nodes": 836892,
+        "checked_helper_program_rows": 5940,
+        "elementary_input_constraints": 11,
+        "original_rows": 3,
+        "seconds": 65.80507525405847,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "6b97fdffe7ef7e0f33c7d4d0c99688aa0c4653efab4c97dd5d82308deab5bc34"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/consumers.json": "5061084ff28ba89c32d53b83a16a505e33c2b847469b3d9f3b4c02d00b6f838c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/first-kills.jsonl": "3058ab817cadcbd61b06d1c49daff5a59a5434d2c9720746e65741921f42b9fd",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/helper-profiles.json": "198298d5ce8569b3a747a64454a57b29724bfa461d2ae65b9a805a2943cad6ed",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/helper-values.jsonl": "482ec0429ed92c6bae1a03c3f58af2e298ba02d8ad5825ef6e9a0f98b651b0ef",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/helpers.json": "27e010900220cb9c066455ede368b03a506a09ec8155755d6c9a86783de14f5e",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/statistics.json": "58989a6fbaa157f8d7bd9f722d7530200beb645146ab9635e110d35c50fb7dad",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/summary.json": "88e9fdd11908ac4038cdd260b4e1758dd5a716f1ce3fc3fe775304b770a89416",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "All declared helper/consumer IDs are accounted for exactly once. Every grouped contradiction has exact helper arithmetic and full-width consumer nodes; only identical tagged helper values share a trace.",
+        "limits": "Conditional on the declared log providers and current cleared raw exp/log calls, whose raw operands are retained and must agree on repeated inputs. Hardware FYL2XP1 is a shared measured native leaf on both backend runs; no software emulation claim. The resident DLMF series and stores are independently checked. No proof these are Excel helpers, no selected or fitted intermediate, no complete PMT implementation. FV0 positive-rate/period normal nonzero balance/target scope; multiple-log mode requires rate<=0.25."
+      }
+    },
+    "helper-logs-source-complete-checked.json": {
+      "sha256": "f82049361e997a3386ed4eabebc6a7db2ac83f1fc7b1569a593970832842bbf7",
+      "receipt": {
+        "complete": true,
+        "direct": false,
+        "programs": 14434200,
+        "eliminated": 14434200,
+        "survivors": 0,
+        "checked_consumer_groups": 66852,
+        "checked_consumer_nodes": 1203336,
+        "checked_helper_program_rows": 29700,
+        "elementary_input_constraints": 19,
+        "original_rows": 3,
+        "seconds": 101.4506950690411,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "6b97fdffe7ef7e0f33c7d4d0c99688aa0c4653efab4c97dd5d82308deab5bc34"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/consumers.json": "5061084ff28ba89c32d53b83a16a505e33c2b847469b3d9f3b4c02d00b6f838c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/first-kills.jsonl": "17b70a0cc3bfd3139600d39e42f804885fdc26373b4c5ec1de7e455ca3d5b7d7",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/helper-profiles.json": "b88f66771dd065820748a66449eb0fbb784d95d9ef3b552eb420e953ea757072",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/helper-values.jsonl": "f68f57e1bd4f0492f147e4942f4dc709e55859fe7956ce29c1f650b51e9300b1",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/helpers.json": "27e010900220cb9c066455ede368b03a506a09ec8155755d6c9a86783de14f5e",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/statistics.json": "141b4bdf89ddd7ab369d599cb6d9fea2d85e5134dcb3da34877bc35e1457900e",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/summary.json": "5ce30c153bf8e5e78f45fd6740522acdac272f7f3922222458a361e2675e306f",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-helper-logs/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "All declared helper/consumer IDs are accounted for exactly once. Every grouped contradiction has exact helper arithmetic and full-width consumer nodes; only identical tagged helper values share a trace.",
+        "limits": "Conditional on the declared log providers and current cleared raw exp/log calls, whose raw operands are retained and must agree on repeated inputs. Hardware FYL2XP1 is a shared measured native leaf on both backend runs; no software emulation claim. The resident DLMF series and stores are independently checked. No proof these are Excel helpers, no selected or fitted intermediate, no complete PMT implementation. FV0 positive-rate/period normal nonzero balance/target scope; multiple-log mode requires rate<=0.25."
+      }
+    },
+    "direct-source-complete-checked.json": {
+      "sha256": "32901778bc1b2ff002bf24994b363e6df3d512fbeab07a79f4e7219bdaf0cf43",
+      "receipt": {
+        "complete": true,
+        "direct": true,
+        "programs": 1180980,
+        "eliminated": 1180980,
+        "survivors": 0,
+        "checked_consumer_groups": 12744,
+        "checked_consumer_nodes": 229392,
+        "checked_helper_program_rows": 2430,
+        "elementary_input_constraints": 17,
+        "original_rows": 3,
+        "seconds": 15.729074941948056,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "cca1a35253f111524d34e9935a2a976558d913f378bba662441705b96b074302",
+          "timing.py": "6b97fdffe7ef7e0f33c7d4d0c99688aa0c4653efab4c97dd5d82308deab5bc34"
+        },
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/constants.json": "c4a8e9dbcb28cdb1b60f86055185a7afc00ca91783bded7596daca24baf451fb",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/consumers.json": "5061084ff28ba89c32d53b83a16a505e33c2b847469b3d9f3b4c02d00b6f838c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/first-kills.jsonl": "eabbdae2f4b75d3235d5be68237e859af87a39577f387fde7c9c40e1029fba08",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/helper-profiles.json": "43b2361bd5f4e03d801937edaba5b1502c5077b61ec45370ee60d4e59a5fd51c",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/helper-values.jsonl": "8b0f66a9ab7bf30c5d5a3a7211277165d67f6c6bbbfab96753fc7ab4fc1ae9cf",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/helpers.json": "2689904b23ebdbfc1d61ddfb51dd621a38d3fcb3d1a19ea82d8bc405d73251c8",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/statistics.json": "22f59b7fcacde942e29f2abe54f28b41bc47d4212de44be66270ee7392bca3b3",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/summary.json": "840e42c759072671a536724cf5bd5e928b075599be5844cc4eec8d15b8a9be93",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-direct/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "claim": "All declared helper/consumer IDs are accounted for exactly once. Every grouped contradiction has exact helper arithmetic and full-width consumer nodes; only identical tagged helper values share a trace.",
+        "limits": "Conditional on the declared log providers and current cleared raw F2XM1 calls, whose raw operands are retained and must agree on repeated inputs. Hardware FYL2XP1 is a shared measured native leaf on both backend runs; no software emulation claim. The resident DLMF series and stores are independently checked. No proof these are Excel helpers, no selected or fitted intermediate, no complete PMT implementation. FV0 positive-rate/period normal nonzero balance/target scope; multiple-log mode requires rate<=0.25."
+      }
+    }
+  },
+  "backend_comparison": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-backend-comparison.json",
+    "sha256": "8f6f6632821502d34f0c4d6d251fa5b056f32599707722722c9379a00e9432d5",
+    "differences": 0,
+    "scope": "Every non-summary route/operand/proof file is byte-identical across final native and software builds. Summaries contain backend/time metadata. Hardware FYL2XP1 is a shared measured native leaf; no software instruction emulation claim."
+  },
+  "proof_replay": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/graph-proof-final-replay.json",
+    "sha256": "2ed805f56a74cd6e4ac2185fc6a834da57484a5ba7076a57c942e549283777d3",
+    "meaning": "All eight ordinary/timing graph proof input/coverage files reproduce the independently checked inputs; the same rational proof applies to both final builds."
+  },
+  "remaining": {
+    "structural": 22,
+    "text": 9,
+    "capture_failures": 3,
+    "annuity_corpus_mismatches": 409,
+    "status": "No general rank, Bessel admission or decimal conversion program identified. Application already returns Num for the three capture disagreements. No fitted threshold, tie exception, selected latent helper, evidence pin or expected-answer change."
+  },
+  "packet": {
+    "path": "packets/round12-pmt-groups",
+    "commit": "2f483cd",
+    "calls": 64,
+    "original_rechecks": 13,
+    "new_Excel_answers": 0,
+    "request_sha256": "33b72bbb09921a611d6c53780bae7f1a4148cc4d1a9e3a8b90e9c4dc2f35df6f",
+    "purpose": "Recheck original amount/timing group assumptions; application predictions remain separate from observations."
+  },
+  "validation": {
+    "research_Rust": {
+      "passed": 69,
+      "failed": 0,
+      "ignored": 2,
+      "log_sha256": "5a2d912670d9ce5190d88a5fde666a78a9573cfd009da3efe74865fc9eedd3ea"
+    },
+    "checker_controls": {
+      "passed": 17,
+      "failed": 0,
+      "small_lattice_cases": 1504,
+      "log_sha256": "0e0e0aecef5aec12696b9c275823dedd7f7c897cc1ab9a94747336641a480cb6"
+    },
+    "UBS": {
+      "critical": 0,
+      "triage": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/ubs-research-triage.json",
+      "triage_sha256": "1b3ad9dd140122fc2aea154a8afd05990d9c5632744f8950df7c88658fd39614",
+      "warning_free": false
+    },
+    "review": "One read-only reviewer checked product changes, route bindings, arithmetic/stores, finite domains, grouped first-kill coverage and claim limits.",
+    "main_native_all": {
+      "passed": 1452,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "harnesses": 89,
+      "packages": 25,
+      "source_revision": "0feddb858584ac52ac6d119789913382d32302e7",
+      "log_sha256": "f83ff412fbc030ace447789a762c0fe6fb38f5f7c466b5812cb5845655f3c3e8"
+    }
+  },
+  "limits": [
+    "No complete Excel PMT or annuity kernel identified; no annuity corpus gain.",
+    "Shared-helper projections assume original recorded operands/environments; historical effective-input/context audits are unavailable.",
+    "Helper crosses condition on specified frozen/native/series logs and current cleared elementary calls; raw operands and all IDs are retained. No helper value is recovered from a target or installed.",
+    "No Windows Excel session or browser sweep ran. R11 structural and cumulative packets remain unanswered.",
+    "Earlier interrupted builds/checkers, the incomplete6521-cell corpus comparison and superseded units/receipts remain distinct. Only complete receipts and the20030-cell final comparison support published claims."
+  ],
+  "source_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/publication-source-v2.tar.gz",
+    "sha256": "db0b701d39fa57b4f47fa5c673127652a8fc912679e6980916f7f098af284a8b"
+  }
+}

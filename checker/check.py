@@ -330,7 +330,7 @@ def tagged_value(text):
     return (-1 if se >> 15 else 1)*significand*two((exponent-16383 if exponent else -16382)-63)
 
 
-def graph_shape(graph):
+def graph_shape(graph, allow_negative_one=False):
     nodes = []
     for index, node in enumerate(graph['nodes']):
         op = node['op']
@@ -340,8 +340,9 @@ def graph_shape(graph):
             require(operands in range(5), 'unknown argument')
             shape = ('arg', operands)
         elif kind == 'const':
-            require(binary64(operands['bits']) == 1, 'undeclared constant')
-            shape = ('one',)
+            number = binary64(operands['bits'])
+            require(number == 1 or (allow_negative_one and number == -1), 'undeclared constant')
+            shape = ('one',) if number == 1 else ('minus_one',)
         else:
             require(kind in ('add', 'mul', 'div') and len(operands) == 2 and
                     all(0 <= n < index for n in operands), 'invalid graph references')
@@ -362,6 +363,14 @@ def expected_shape(numerator, combine):
         return mul(add(fv, div(add(pv, fv), em)), div(r, tf))
     n = [add(pv, mul(fv, add(one, em))), add(add(pv, fv), mul(fv, em)),
          add(pv, add(fv, mul(fv, em))), add(add(pv, mul(fv, em)), fv)][numerator]
+    if combine in (9, 10, 11):
+        q = div(n, em)
+        ratio = div(mul(r, timing), tf)
+        negative = lambda a: mul(('minus_one',), a)
+        paid = mul(q, r)
+        return [mul(add(q, negative(mul(q, ratio))), r),
+                add(paid, negative(mul(paid, ratio))),
+                mul(mul(q, add(one, negative(ratio))), r)][combine-9]
     return [mul(div(div(n, em), tf), r), div(mul(n, r), mul(em, tf)),
             mul(div(n, tf), div(r, em)), div(div(mul(n, r), em), tf),
             div(mul(div(n, em), r), tf), mul(div(n, em), div(r, tf)),
@@ -382,11 +391,13 @@ def graph_trace(graph, args):
     return values
 
 
-def graphs(scoped, programs, kills, output):
+def graphs(scoped, programs, kills, output, family='ordinary'):
     """Validate grammar coverage and every full-width first-kill trace."""
     start = time.monotonic()
     locations, seen, shapes = [], set(), {}
     models = ('strict', 'stored_pc64', 'resident_pc64')
+    timing = family == 'timing'
+    require(family in ('ordinary', 'timing'), 'unknown association family')
     with open(programs, 'rb') as source:
         while True:
             location = source.tell()
@@ -398,21 +409,36 @@ def graphs(scoped, programs, kills, output):
             graph = c['graph']
             template_key = (c['numerator'], c['combine'])
             shape = shapes.setdefault(template_key, expected_shape(*template_key))
-            require(graph_shape(graph) == shape, 'graph differs from declared association')
-            require(c['models'] == [n['model'] for n in graph['nodes']
-                if next(iter(n['op'])) in ('add', 'mul', 'div')], 'model metadata mismatch')
-            expected_sites = 7 if c['numerator'] is None else 8
+            require(graph_shape(graph, timing) == shape, 'graph differs from declared association')
+            sites = []
+            exact_negations = 0
+            for node in graph['nodes']:
+                kind, args = next(iter(node['op'].items()))
+                if kind not in ('add', 'mul', 'div'): continue
+                negation = timing and kind == 'mul' and any(
+                    graph['nodes'][a]['op'].get('const', {}).get('bits') == 0xbff0000000000000 for a in args)
+                if negation:
+                    require(node['model'] == 'resident_pc64', 'sign change inserted a store')
+                    exact_negations += 1
+                else:
+                    sites.append(node['model'])
+            require(exact_negations == int(timing), 'incorrect exact negation count')
+            require(c['models'] == sites, 'model metadata mismatch')
+            expected_sites = 10 if timing else 7 if c['numerator'] is None else 8
             require(len(c['models']) == expected_sites and all(m in models for m in c['models']),
                     'invalid arithmetic annotation')
             key = (*template_key, tuple(c['models']))
             require(key not in seen, 'duplicate annotated template')
             seen.add(key)
             locations.append(location)
-    require(len(shapes) == 33 and len(seen) == 32*3**8+3**7 == len(locations), 'grammar coverage incomplete')
+    required_templates = {(n, f) for n in range(4) for f in range(9,12)} if timing else (
+        {(n,f) for n in range(4) for f in range(8)} | {(None,8)})
+    require(set(shapes) == required_templates, 'template coverage incomplete')
+    require(len(seen) == (12*3**10 if timing else 32*3**8+3**7) == len(locations), 'grammar coverage incomplete')
     # Every template has exactly its full Cartesian model assignments.
     for template_key in shapes:
         actual = {key[2] for key in seen if key[:2] == template_key}
-        require(len(actual) == 3**(7 if template_key[0] is None else 8), 'annotation coverage incomplete')
+        require(len(actual) == 3**(10 if timing else 7 if template_key[0] is None else 8), 'annotation coverage incomplete')
     del seen
     needed = {c['trace_index'] for c in records(kills)}
     rows = {}
@@ -460,7 +486,8 @@ def graphs(scoped, programs, kills, output):
     write_result(output, dict(complete=True, grammar_programs=len(locations), checked_first_kills=len(checked),
         checked_full_width_nodes=node_count, witness_counts=witness_counts, seconds=time.monotonic()-start,
         inputs={str(p): digest(p) for p in (scoped, programs, kills)},
-        claim='Every annotated ordinary-association program is contradicted by a trusted original witness; '
+        family=family,
+        claim='Every annotated program in the declared association family is contradicted by a trusted original witness; '
               'every stored/resident operation in its first-kill trace is independently checked as an exact rational.',
         limits='This bounded grammar only, frozen binary64 helper leaves. Intermediate zero signs are '
                'retained in traces but rational checking ignores them; no zero divisor occurs in the checked '
@@ -509,6 +536,7 @@ def main():
     t = sub.add_parser('graphs')
     for name in ('scoped', 'programs', 'kills', 'output'):
         t.add_argument(name, type=Path)
+    t.add_argument('--family', choices=('ordinary','timing'), default='ordinary')
     c = sub.add_parser('controls')
     c.add_argument('input', type=Path)
     c.add_argument('output', type=Path)
@@ -518,7 +546,7 @@ def main():
     elif a.command == 'groups':
         groups(a.scoped, a.catalogue, a.certificates, a.output, a.count)
     elif a.command == 'graphs':
-        graphs(a.scoped, a.programs, a.kills, a.output)
+        graphs(a.scoped, a.programs, a.kills, a.output, a.family)
     else:
         controls(a.input, a.output)
 

@@ -15,10 +15,93 @@ from unittest.mock import patch
 
 from exact import (BINARY64 as B, EXTENDED64 as E, EXTENDED53 as P53,
                    Lattice, Span, binary64, inverse, operation, two)
-from check import validate_row, quotient, product_preimage, write_result
+from check import validate_row, quotient, product_preimage, write_result, graph_shape, graph_trace
+
+
+def extended_control(q):
+    """Encode a normal, exactly representable constructed Ext80 control."""
+    sign=q<0;q=abs(q)
+    if not q:return 'ext80-le:00000000000000000000'
+    exponent=q.numerator.bit_length()-q.denominator.bit_length()
+    if q<two(exponent):exponent-=1
+    significand=q*two(63-exponent)
+    if significand.denominator!=1:raise ValueError('control is not representable in Ext80')
+    return 'ext80-le:'+(int(significand).to_bytes(8,'little')+
+        (exponent+16383+(int(sign)<<15)).to_bytes(2,'little')).hex()
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_timing_and_factor_preimages_contain_generated_helper(self):
+        from timing import preimage
+        def bits(x):
+            return struct.unpack('>Q',struct.pack('>d',float(x)))[0]
+        rate,pv,timing,helper=R(1,8),R(7,4),R(1),-R(7,32)
+        for models in itertools.product(('strict','stored_pc64','resident_pc64'),repeat=6):
+            tf=operation(R(1),rate*timing,'add',models[0])
+            ratio=operation(rate*timing,tf,'div',models[1])
+            factor=operation(R(1),-ratio,'add',models[2])
+            q=operation(pv,helper,'div',models[3])
+            output=B.round(operation(operation(q,factor,'mul',models[4]),rate,'mul',models[5]))
+            row=dict(leaves=list(map(bits,(rate,pv,0,timing,0))),raw=dict(expected=f'0x{bits(output):016x}'))
+            self.assertTrue(preimage(row,models).contains(helper),models)
+        for model,op in itertools.product(('strict','stored_pc64','resident_pc64'),('mul','div')):
+            output=B.round(operation(pv,helper,op,model))
+            row['raw']['expected']=f'0x{bits(output):016x}'
+            interval=preimage(row,[model],op)
+            self.assertTrue(interval.contains(helper),(model,op))
+            wrong=helper+R(1,100)
+            self.assertFalse(interval.contains(wrong),(model,op))
+
+    def test_due_coefficient_preimages_and_exact_cache(self):
+        from timing import preimage
+        import sys
+        sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'racer'))
+        import intersect as consumer
+        from intervals import number, Interval
+        def bits(x):return struct.unpack('>Q',struct.pack('>d',float(x)))[0]
+        rate=R.from_float(0.03125);pv=R.from_float(1234.56789)
+        helper=E.round(-R(7,31));names=('strict','stored_pc64','resident_pc64')
+        for form,sites in enumerate((6,6,5)):
+            for models in itertools.product(names,repeat=sites):
+                timing=R(1);rt=rate*timing
+                if form==0:
+                    tf=operation(R(1),rt,'add',models[0])
+                    correction=operation(operation(rate,rt,'mul',models[1]),tf,'div',models[2])
+                    factor=operation(rate,-correction,'add',models[3])
+                elif form==1:
+                    tf=operation(R(1),rt,'add',models[0])
+                    ratio=operation(rt,tf,'div',models[1])
+                    factor=operation(rate,operation(R(1),-ratio,'add',models[2]),'mul',models[3])
+                else:
+                    denominator=operation(operation(R(1),rate,'div',models[0]),timing,'add',models[1])
+                    factor=operation(R(1),denominator,'div',models[2])
+                q=operation(pv,helper,'div',models[-2])
+                output=B.round(operation(q,factor,'mul',models[-1]))
+                row=dict(leaves=list(map(bits,(rate,pv,0,timing,0))),raw=dict(expected=f'0x{bits(output):016x}'))
+                checked=preimage(row,models,due_form=form)
+                self.assertTrue(checked.contains(helper),(form,models))
+                ids=[consumer.MODELS[m]for m in models]
+                expr=consumer.due_rate_expr(form,ids)
+                generic=consumer.inverse_expr(expr,[pv,rate,None,None,timing,R(1),R(-1)],
+                    consumer.B64.preimage(Interval(output,output)))
+                cached=consumer.row_preimage(row,({'family':'due_rate_factor'},expr,ids))
+                self.assertEqual(generic,cached,(form,models))
+                self.assertEqual(checked.json(),cached.json(),(form,models))
+
+    def test_resident_sign_change_preserves_low_bits_and_has_no_free_constant(self):
+        graph = dict(nodes=[
+            dict(op={'arg':0}, model='strict'),
+            dict(op={'const':{'bits':0xbff0000000000000}}, model='strict'),
+            dict(op={'mul':[1,0]}, model='resident_pc64')], output=2)
+        value = 1+two(-60)
+        self.assertEqual(graph_trace(graph,[value])[-1],-value)
+        stored = copy.deepcopy(graph);stored['nodes'][2]['model']='strict'
+        self.assertEqual(graph_trace(stored,[value])[-1],-1)
+        with self.assertRaises(ValueError): graph_shape(graph)
+        self.assertEqual(graph_shape(graph,True),('mul',('minus_one',),('arg',0)))
+        altered=copy.deepcopy(graph);altered['nodes'][1]['op']['const']['bits']=0x4000000000000000
+        with self.assertRaises(ValueError): graph_shape(altered,True)
+
     def test_exhaustive_small_lattices(self):
         checks = 0
         for fmt in (Lattice(2, -2, 3), Lattice(3, -3, 4), Lattice(4, -2, 2)):
@@ -163,6 +246,76 @@ class ExactArithmetic(unittest.TestCase):
             result = json.loads((base/'result.json').read_text())
             self.assertEqual(result['counts']['unreachable_by_binary64_quotient'], 1)
             self.assertEqual(result['counts']['original_quotient_product_replays'], 1)
+
+    def test_current_product_shell_binds_routes_and_rejects_changed_inputs(self):
+        from timing import product_shells
+        args=['0x3ff8000000000000','0x4000000000000000','0x3ff0000000000000',
+              '0x0000000000000000','0x0000000000000000']
+        raw=dict(id='SYNTHETIC-shell-gap',function='PMT',result_index=None,args=args,
+            expected='0x3ff8000000000001')
+        row=dict(raw=raw,leaves=[int(args[0],16),int(args[2],16),0,0,0xbff0000000000000],
+            neg_log=0xbff0000000000000)
+        route=dict(id=raw['id'],args=args,expected=raw['expected'],authored_echoes=args,
+            **{k:'0x3ff8000000000000'for k in ('workbook','registered','direct_body','saved_reopened')})
+        with tempfile.TemporaryDirectory()as temp:
+            base=Path(temp);scoped=base/'scoped.jsonl';routes=base/'routes.json'
+            scoped.write_text(json.dumps(row)+'\n');routes.write_text(json.dumps([route]))
+            with contextlib.redirect_stdout(io.StringIO()):product_shells(scoped,routes,base/'receipt.json')
+            result=json.loads((base/'receipt.json').read_text())
+            self.assertEqual(result['counts'],dict(rows=1,application_matches=0,strict_unreachable=1,stored_pc64_unreachable=1))
+            for field in ('args','authored_echoes','direct_body'):
+                altered=copy.deepcopy(route)
+                if isinstance(altered[field],list):altered[field][0]='0x3ff0000000000000'
+                else:altered[field]='0x3ff0000000000000'
+                routes.write_text(json.dumps([altered]));output=base/(field+'.json')
+                with self.assertRaises(ValueError):product_shells(scoped,routes,output)
+                self.assertFalse(output.exists())
+
+    def test_helper_component_preserves_resident_bits_and_binds_stores(self):
+        from timing import helper_component
+        extended=extended_control
+        eps=two(-60);low=-R(1,4)+eps
+        h=dict(t='resident_pc64',exp_store=False,difference='resident_pc64',
+            correction=True,log_store=True,association=0,
+            arithmetic=['resident_pc64','resident_pc64'],em_store=False)
+        base=dict(t=extended(-R(1,4)),u=extended(R(3,4)+eps),em=extended(low),
+            exp_raw=extended(R(3,4)+eps),log_raw=extended(low))
+        self.assertEqual(helper_component(h,base,R(2),R(1,8),{}),low)
+        # Five distinct stores remove the retained low bits in this constructed
+        # control. The elementary values are deliberate inputs, not Excel data.
+        for change in ({'exp_store':True},{'difference':'strict'},{'em_store':True},
+                       {'log_store':False},{'arithmetic':['strict','resident_pc64']}):
+            selected={**h,**change};comp=copy.deepcopy(base);comp['em']=extended(-R(1,4))
+            if change.get('exp_store'):comp['u']='binary64:3fe8000000000000'
+            self.assertEqual(helper_component(selected,comp,R(2),R(1,8),{}),-R(1,4),change)
+        for field in ('t','u','em'):
+            altered=copy.deepcopy(base);altered[field]=extended(R(1,2))
+            with self.assertRaises(ValueError):helper_component(h,altered,R(2),R(1,8),{})
+        elementary={};helper_component(h,base,R(2),R(1,8),elementary)
+        altered=copy.deepcopy(base);altered['exp_raw']=extended(R(3,4))
+        with self.assertRaises(ValueError):helper_component(h,altered,R(2),R(1,8),elementary)
+
+    def test_direct_helper_reduction_scaling_stores_and_tampering(self):
+        from timing import direct_component,series_log1p
+        self.assertEqual(series_log1p(two(-80)),two(-80))
+        for bad in (R(0),R(-1,8),R(1,2)):
+            with self.assertRaises(ValueError):series_log1p(bad)
+        eps=two(-60);raw=-R(1,8)+eps;rom=R(0xb8aa3b295c17f0bc,1<<63)
+        h=dict(models=['resident_pc64']*4,f2xm1_store=False)
+        for n,log,k in ((R(2),R(1,8),R(0)),(R(1),R(1),R(-1))):
+            t=-n*log;x=E.round(t*rom);reduced=E.round(x-k)
+            power=two(int(k));scaled=raw*power;integer=power-1;em=scaled+integer
+            values=[t,x,k,reduced,raw,raw,scaled,power,integer,em]
+            comp=dict(nodes=list(map(extended_control,values)),em=extended_control(em))
+            self.assertEqual(direct_component(h,comp,n,log,{}),em)
+            for index in (0,2,3,6,7,9):
+                altered=copy.deepcopy(comp);altered['nodes'][index]=extended_control(values[index]+R(1,2))
+                with self.assertRaises(ValueError):direct_component(h,altered,n,log,{})
+        # F2XM1 store loses the explicit resident low bits before reconstruction.
+        selected={**h,'f2xm1_store':True};values[5]=B.round(raw)
+        values[6]=values[5]*power;values[9]=values[6]+integer
+        comp=dict(nodes=list(map(extended_control,values)),em=extended_control(values[9]))
+        self.assertEqual(direct_component(selected,comp,n,log,{}),values[9])
 
     def test_source_drift_refuses_a_success_receipt(self):
         with tempfile.TemporaryDirectory() as temp:

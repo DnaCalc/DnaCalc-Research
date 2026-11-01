@@ -12,9 +12,22 @@ import hashlib
 import json
 import sys
 import time
+from functools import lru_cache
 from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, number, stored
 
 MODELS = dict(strict=0, stored_pc64=1, resident_pc64=2, stored_pc53=3, resident_pc53=4)
+
+
+@lru_cache(maxsize=65536)
+def closed_due_factor(expression, rate, timing):
+    return const_value(expression,(None,rate,None,None,timing,Q(1),Q(-1)))
+
+
+@lru_cache(maxsize=65536)
+def due_preimage(target,pv,factor,quotient_model,final_model):
+    interval=B64.preimage(Interval(target,target))
+    interval=inverse_op(interval,final_model,'mul',factor,True)
+    return inverse_op(interval,quotient_model,'div',pv,False)
 
 
 def rnd(x, model):
@@ -51,7 +64,11 @@ def const_value(expr, args):
         a, b = B64.rn(a), B64.rn(b)
     if a is None or b is None or (op == 'div' and b == 0):
         raise ArithmeticError('nonfinite/zero constant subtree')
-    result = rnd(a*b if op == 'mul' else a/b, model)
+    if op == 'mul': value=a*b
+    elif op == 'div': value=a/b
+    elif op == 'add': value=a+b
+    else: raise ArithmeticError('unknown closed expression operation')
+    result = rnd(value, model)
     if result is None:
         raise ArithmeticError('nonfinite constant subtree')
     return result
@@ -75,6 +92,20 @@ def row_preimage(row, profile):
     c, expr, models = profile
     if c.get('family') == 'shared_interest':
         return interest_preimage(row, models, c)
+    if c.get('family') in ('timing_complement','annuity_factor','due_rate_factor'):
+        rate,pv,_,timing,_=[Q(number(f'{b:016x}')) for b in row['leaves']]
+        encoded=row['raw']['expected']
+        if not encoded.startswith('0x'):
+            raise ArithmeticError('nonnumeric target outside helper projection')
+        value=number(encoded)
+        if value==0 or not(-float('inf')<value<float('inf'))or not pv:
+            raise ArithmeticError('zero/nonfinite target or balance outside helper projection')
+        target=Q(value)
+        if c.get('family')=='due_rate_factor':
+            factor=closed_due_factor(expr[2],rate,timing)
+            return due_preimage(target,pv,factor,expr[1][3],expr[3])
+        interval=B64.preimage(Interval(target,target))
+        return inverse_expr(expr,[pv,rate,None,None,timing,Q(1),Q(-1)],interval)
     rate, pv, _, timing, _ = [Q(number(f'{b:016x}')) for b in row['leaves']]
     tf = rnd(1 + rate*timing, models[0])
     target = row['raw']['expected']
@@ -124,6 +155,41 @@ def interest_preimage(row, models, programme=None):
 def key(row):
     raw = row['raw']
     return (row['leaves'][0], raw['args'][1], json.dumps(raw['reading'], sort_keys=True))
+
+
+def timing_complement_expr(models):
+    """(PV/em)*(1-(r*timing)/(1+r*timing))*r, with six declared stores.
+
+    Canonical timing multiplication is exact; negation stays resident, so
+    neither is an additional rounded site. Leaf2 is the sole unknown helper.
+    """
+    tf,ratio,complement,quotient,product,final=models
+    rt=('mul',1,4,2)
+    factor=('add',5,('mul',6,('div',rt,('add',5,rt,tf),ratio),2),complement)
+    return ('mul',('mul',('div',0,2,quotient),factor,product),1,final)
+
+
+def due_rate_expr(form, models):
+    """PV/em times an ordinary rearrangement of r/(1+r*timing).
+
+    The helper occurs once. All constants are exact 0,1,-1 and canonical
+    timing. These identities change intermediate stores, not mathematics.
+    """
+    rt=('mul',1,4,2)
+    negative=lambda expr:('mul',6,expr,2)
+    if form==0:
+        tf,product,ratio,difference,quotient,final=models
+        correction=('div',('mul',1,rt,product),('add',5,rt,tf),ratio)
+        factor=('add',1,negative(correction),difference)
+    elif form==1:
+        tf,ratio,complement,product,quotient,final=models
+        ratio_expr=('div',rt,('add',5,rt,tf),ratio)
+        factor=('mul',1,('add',5,negative(ratio_expr),complement),product)
+    else:
+        assert form==2
+        reciprocal,timing,coefficient,quotient,final=models
+        factor=('div',5,('add',('div',5,1,reciprocal),4,timing),coefficient)
+    return ('mul',('div',0,2,quotient),factor,final)
 
 
 ROWS = None
@@ -202,15 +268,16 @@ def main():
     # needed by rational arithmetic; this keeps the eight-worker budget small.
     ROWS = []
     environments = {}
-    for line in open(a.input):
-        r = json.loads(line)
-        if number(f'{r["leaves"][2]:016x}') != 0:
-            continue
-        raw = r['raw']
-        env = json.dumps(raw['reading'], sort_keys=True)
-        environment = environments.setdefault(env, raw['reading'])
-        ROWS.append(dict(leaves=r['leaves'], trace_index=r['trace_index'],
-            raw=dict(args=[None, raw['args'][1]], expected=raw['expected'], reading=environment)))
+    with open(a.input)as source:
+        for line in source:
+            r = json.loads(line)
+            if number(f'{r["leaves"][2]:016x}') != 0:
+                continue
+            raw = r['raw']
+            env = json.dumps(raw['reading'], sort_keys=True)
+            environment = environments.setdefault(env, raw['reading'])
+            ROWS.append(dict(leaves=r['leaves'], trace_index=r['trace_index'],
+                raw=dict(args=[None, raw['args'][1]], expected=raw['expected'], reading=environment)))
     groups = collections.defaultdict(list)
     for idx, r in enumerate(ROWS):
         groups[key(r)].append(idx)

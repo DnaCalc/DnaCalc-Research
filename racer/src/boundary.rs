@@ -305,7 +305,7 @@ pub fn nper(r: &Row) -> f64 {
     let v = calc_verdict::decode_argument(a, "args[1]").unwrap();
     match v.core() {
         crate::value::CoreValue::Number(n) => *n,
-        _ => panic!("not numeric nper"),
+        _ => panic!("not numeric nper"), // ubs:ignore — reject a control outside the declared numeric research scope
     }
 }
 fn fv0(r: &Row) -> bool {
@@ -314,6 +314,199 @@ fn fv0(r: &Row) -> bool {
 
 pub fn run<F: Fpu + 'static>(all: &[Row], output: &str) {
     run_inner::<F>(all, output, false)
+}
+
+/// Existing helper programs crossed with two correlated timing identities.
+/// FV0 makes numerator=N=PV exact for finite helpers and nonzero normal PV;
+/// canonical timing multiplication is exact too. The six remaining stores are
+/// independently annotated. Equal helper values share a consumer execution,
+/// while every original helper/program ID remains in the first-kill records.
+pub fn timing_helpers<F: Fpu>(all: &[Row], output: &str, multiple_logs: bool, direct: bool) {
+    use crate::enumerate::{AssociationCandidate, timing_template};
+    let start = Instant::now();
+    fs::create_dir(output).unwrap();
+    let out = Path::new(output);
+    let hs = helpers();
+    let helper_count = if direct { 162 } else { hs.len() };
+    let profiles: Vec<_> = (0..if multiple_logs { 5 } else { 1 })
+        .flat_map(|lp| {
+            (0..helper_count)
+                .map(move |h| json!({"id":lp*helper_count+h,"log_provider":lp,"helper":h}))
+        })
+        .collect();
+    let mut cs = vec![];
+    for form in 0..2 {
+        let sites = if form == 0 {
+            [10, 11, 12, 13, 16, 17]
+        } else {
+            [10, 11, 12, 13, 14, 17]
+        };
+        for mut code in 0..729 {
+            let mut graph = timing_template(0, form);
+            let mut models = vec![];
+            for site in sites {
+                let model = MODELS[code % 3];
+                code /= 3;
+                graph.nodes[site].model = model;
+                models.push(model);
+            }
+            cs.push(AssociationCandidate {
+                id: cs.len(),
+                numerator: Some(0),
+                combine: 9 + form,
+                models,
+                graph,
+            });
+        }
+    }
+    assert_eq!(cs.len(), 1458);
+    if direct {
+        let descriptors: Vec<_> = (0..162)
+            .map(|id| {
+                let mut code = id / 2;
+                let mut models = vec![];
+                for _ in 0..4 {
+                    models.push(MODELS[code % 3]);
+                    code /= 3;
+                }
+                json!({"id":id,"models":models,"f2xm1_store":id%2!=0})
+            })
+            .collect();
+        json_write(out.join("helpers.json"), &descriptors);
+        json_write(
+            out.join("constants.json"),
+            &json!({"ROM_log2e":Val::Ext(research_l2e()).exact_encoding()}),
+        );
+    } else {
+        json_write(out.join("helpers.json"), &hs);
+    }
+    json_write(out.join("helper-profiles.json"), &profiles);
+    json_write(out.join("consumers.json"), &cs);
+    let rows: Vec<_> = all
+        .iter()
+        .filter(|r| {
+            let a = r.args();
+            a[0] > 0.0
+                && (!multiple_logs || a[0] <= 0.25)
+                && nper(r) > 0.0
+                && a[2] == 0.0
+                && a[1].is_normal()
+                && calc_verdict::decode_result(r.expected())
+                    .ok()
+                    .is_some_and(|v| v.as_number().is_some_and(f64::is_normal))
+        })
+        .collect();
+    let mut alive = vec![vec![true; profiles.len()]; cs.len()];
+    let total = profiles.len() * cs.len();
+    let mut remaining = total;
+    let mut evaluations = 0usize;
+    let mut kills = BufWriter::new(fs::File::create(out.join("first-kills.jsonl")).unwrap());
+    let mut helper_rows =
+        BufWriter::new(fs::File::create(out.join("helper-values.jsonl")).unwrap());
+    let mut statistics = vec![];
+    for (order, r) in rows.iter().enumerate() {
+        if remaining == 0 {
+            break;
+        }
+        let mut values = vec![];
+        let mut components = vec![];
+        let log_inputs = if multiple_logs {
+            crate::annuity_early::logs::<F>(r.args()[0], r.log1p).to_vec()
+        } else {
+            vec![Val::F64(r.log1p)]
+        };
+        for profile in &profiles {
+            let h_index = profile["helper"].as_u64().unwrap() as usize;
+            let log = log_inputs[profile["log_provider"].as_u64().unwrap() as usize];
+            if direct {
+                let v = crate::annuity_early::direct_component_details::<F>(h_index, -nper(r), log);
+                values.push(v[9]);
+                components
+                    .push(json!({"nodes":v.map(Val::exact_encoding),"em":v[9].exact_encoding()}));
+                continue;
+            }
+            let h = &hs[h_index];
+            let (t, u, em) = helper_components::<F>(h, nper(r), log);
+            let exp_raw = Val::Ext(research_exp::<F>(&t.to_ext()));
+            let log_raw =
+                if h.correction && less_one::<F>(t) && u.to_ext().0 != research_load(1.0).0 {
+                    Some(Val::Ext(research_log::<F>(&u.to_ext())).exact_encoding())
+                } else {
+                    None
+                };
+            values.push(em);
+            components.push(json!({"t":t.exact_encoding(),"u":u.exact_encoding(),
+                "em":em.exact_encoding(),"exp_raw":exp_raw.exact_encoding(),"log_raw":log_raw}));
+        }
+        // Values are records of the declared helper programs, never latent
+        // values recovered from the target. Preserve full-width operands.
+        serde_json::to_writer(&mut helper_rows,&json!({"order":order,"witness":r.raw,
+            "trace_index":r.trace_index,"values":values.iter().map(|v|v.exact_encoding()).collect::<Vec<_>>(),
+            "components":components,"log_inputs":log_inputs.iter().map(|v|v.exact_encoding()).collect::<Vec<_>>()})).unwrap();
+        writeln!(helper_rows).unwrap();
+        let mut groups: HashMap<Val, Vec<usize>> = HashMap::new();
+        for (h, v) in values.iter().enumerate() {
+            groups.entry(*v).or_default().push(h);
+        }
+        // Stable ordering makes both backend certificates directly comparable.
+        let mut groups: Vec<_> = groups.into_iter().collect();
+        groups.sort_by_key(|(_, ids)| ids[0]);
+        let before = remaining;
+        for c in &cs {
+            for (em, ids) in &groups {
+                let active: Vec<_> = ids.iter().copied().filter(|&h| alive[c.id][h]).collect();
+                if active.is_empty() {
+                    continue;
+                }
+                let mut args = r.args().map(Val::f64);
+                args[4] = *em;
+                let trace = graph_values_typed::<F>(&c.graph, &args);
+                let got = outcome::<F>(trace[c.graph.output]);
+                evaluations += 1;
+                if got != r.expected() {
+                    for &h in &active {
+                        alive[c.id][h] = false;
+                        remaining -= 1;
+                    }
+                    serde_json::to_writer(
+                        &mut kills,
+                        &json!({"consumer":c.id,"helpers":active,
+                        "order":order,"trace_index":r.trace_index,"witness":r.raw,
+                        "helper_value":em.exact_encoding(),"expected":r.expected(),"got":got,
+                        "nodes":trace.iter().map(|v|v.exact_encoding()).collect::<Vec<_>>()}),
+                    )
+                    .unwrap();
+                    writeln!(kills).unwrap();
+                }
+            }
+        }
+        let stat = json!({"order":order,"trace_index":r.trace_index,"id":r.raw["id"],
+            "killed":before-remaining,"remaining":remaining,"distinct_helper_values":groups.len()});
+        println!("timing/helper {stat}");
+        statistics.push(stat);
+        kills.flush().unwrap();
+        helper_rows.flush().unwrap();
+    }
+    let survivors: Vec<_> = alive
+        .iter()
+        .enumerate()
+        .flat_map(|(c, hs)| {
+            hs.iter()
+                .enumerate()
+                .filter_map(move |(h, &yes)| yes.then_some(json!({"consumer":c,"helper":h})))
+        })
+        .collect();
+    assert_eq!(survivors.len(), remaining);
+    json_write(out.join("survivors.json"), &survivors);
+    json_write(out.join("statistics.json"), &statistics);
+    json_write(
+        out.join("summary.json"),
+        &json!({"complete":true,"consumers":cs.len(),
+        "programs":total,"helpers":helper_count,"direct":direct,"helper_profiles":profiles.len(),"log_providers":if multiple_logs{5}else{1},"survivors":remaining,"consumer_group_evaluations":evaluations,
+        "source_rows":all.len(),"scoped_rows":rows.len(),"rows_visited":statistics.len(),
+        "seconds":start.elapsed().as_secs_f64(),"backend":std::any::type_name::<F>(),
+        "scope":"FV0,positive rate/periods,normal nonzero balance/targets. Multiple-log mode additionally requires rate<=0.25. Existing helper programs and declared log providers; two correlated timing corrections, six independently annotated sites. Native FYL2XP1 remains a measured hardware leaf in both backend runs. Discovery only; no fitted helper or chosen survivor."}),
+    );
 }
 pub fn run_wide<F: Fpu + 'static>(all: &[Row], output: &str) {
     run_inner::<F>(all, output, true)

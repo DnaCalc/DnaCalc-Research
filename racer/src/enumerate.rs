@@ -157,6 +157,105 @@ pub fn association_family() -> Vec<AssociationCandidate> {
     out
 }
 
+/// Beginning-payment correction expressed by subtraction, rather than the
+/// product's timing division. Only annuity algebra and exact constants occur.
+/// The three forms retain correlated uses of the same quotient or payment.
+pub fn timing_template(numerator: usize, form: usize) -> Graph {
+    let mut graph = template(numerator, 0);
+    // Reuse the existing leaves/numerator/timing/initial-quotient sketch.
+    // r=0, pv=1, fv=2, timing=3, em=4, one=5, N=8, rt=9, tf=10, q=11.
+    graph.nodes.truncate(12);
+    let mut push = |op, model| {
+        graph.nodes.push(Node { op, model });
+        graph.nodes.len() - 1
+    };
+    let output = match form {
+        0 => {
+            let ratio = push(Op::Div(9, 10), EvalModel::Strict);
+            let correction = push(Op::Mul(11, ratio), EvalModel::Strict);
+            let minus_one = push(
+                Op::Const {
+                    bits: (-1f64).to_bits(),
+                },
+                EvalModel::Strict,
+            );
+            // Sign change is exact, including resident intermediates. A strict
+            // multiply here would silently insert a binary64 store.
+            let negative = push(Op::Mul(minus_one, correction), EvalModel::ResidentPc64);
+            let adjusted = push(Op::Add(11, negative), EvalModel::Strict);
+            push(Op::Mul(adjusted, 0), EvalModel::Strict)
+        }
+        1 => {
+            let payment = push(Op::Mul(11, 0), EvalModel::Strict);
+            let ratio = push(Op::Div(9, 10), EvalModel::Strict);
+            let correction = push(Op::Mul(payment, ratio), EvalModel::Strict);
+            let minus_one = push(
+                Op::Const {
+                    bits: (-1f64).to_bits(),
+                },
+                EvalModel::Strict,
+            );
+            let negative = push(Op::Mul(minus_one, correction), EvalModel::ResidentPc64);
+            push(Op::Add(payment, negative), EvalModel::Strict)
+        }
+        2 => {
+            let ratio = push(Op::Div(9, 10), EvalModel::Strict);
+            let minus_one = push(
+                Op::Const {
+                    bits: (-1f64).to_bits(),
+                },
+                EvalModel::Strict,
+            );
+            let negative = push(Op::Mul(minus_one, ratio), EvalModel::ResidentPc64);
+            let factor = push(Op::Add(5, negative), EvalModel::Strict);
+            let adjusted = push(Op::Mul(11, factor), EvalModel::Strict);
+            push(Op::Mul(adjusted, 0), EvalModel::Strict)
+        }
+        _ => unreachable!(),
+    };
+    graph.output = output;
+    graph
+}
+
+pub fn timing_family() -> Vec<AssociationCandidate> {
+    let mut result = Vec::new();
+    for numerator in 0..4 {
+        for form in 0..3 {
+            let template = timing_template(numerator, form);
+            let sites: Vec<_> = template
+                .nodes
+                .iter()
+                .enumerate()
+                .filter_map(|(i, n)| {
+                    (n.model == EvalModel::Strict
+                        && matches!(n.op, Op::Add(..) | Op::Mul(..) | Op::Div(..)))
+                    .then_some(i)
+                })
+                .collect();
+            assert_eq!(sites.len(), 10);
+            for mut code in 0..3usize.pow(10) {
+                let mut graph = template.clone();
+                let mut models = Vec::new();
+                for &site in &sites {
+                    let m = MODELS[code % 3];
+                    code /= 3;
+                    graph.nodes[site].model = m;
+                    models.push(m);
+                }
+                result.push(AssociationCandidate {
+                    id: result.len(),
+                    numerator: Some(numerator),
+                    combine: 9 + form,
+                    models,
+                    graph,
+                });
+            }
+        }
+    }
+    assert_eq!(result.len(), 12 * 3usize.pow(10));
+    result
+}
+
 pub fn model_variants(g: &Graph) -> Vec<([EvalModel; 8], Graph)> {
     let ids: Vec<_> = g
         .nodes

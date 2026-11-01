@@ -1,0 +1,58 @@
+{
+  "id": "dc-j9k-r12-unknown-helper-timing-complement",
+  "role": "implementer",
+  "application_revision": "e5999cfbbc17b8c723e3b37f073fc408990212d6",
+  "parent_unit_sha256": "e8d8ab1e66b361843a243c16710564cb0f6d0ecd59d5236258b2d7209f3b6b20",
+  "input": "/home/ubuntu/codex-runs/dna-firehorse-20261031-round6/frozen/scoped.jsonl",
+  "grammar": {
+    "formula": "(PV/em)*(1-(r*canonical_timing)/(1+r*canonical_timing))*r",
+    "unknown": "one arbitrary finite Ext80 em shared per exact rate/nper/environment and optional timing, independently of PV",
+    "sites": [
+      "tf add",
+      "timing ratio",
+      "one minus ratio",
+      "PV/em",
+      "quotient times factor",
+      "final rate product"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "profiles": 729,
+    "cohorts": [
+      "all",
+      "nonunit",
+      "timing",
+      "nonunit_timing"
+    ],
+    "exact_sites": [
+      "canonical timing multiply",
+      "resident multiplication by minus one"
+    ]
+  },
+  "exposure": "All old observations are discovery. Necessary consumer constraints, not calculated passes or recovered helper values.",
+  "sources": {
+    "tier1": [
+      "annuity algebra",
+      "IEEE754 nearest/even",
+      "original canonical witness trace"
+    ],
+    "tier2": [
+      "existing cleared research interval machinery"
+    ],
+    "banned": [
+      "all tier3/4 sources",
+      "DnaCalc-engine checkout",
+      "deleted restricted sources and histories"
+    ]
+  },
+  "limits": "Only this specified single-use-helper complement family. Repeated-q corrections, other decompositions and amount-dependent helpers remain outside the claim.",
+  "hashes": {
+    "racer/intersect.py": "9495f262f10f9f5b62f995a55ee3d20111a6eaa511de8c5d99cc26ee58612731",
+    "racer/group_eliminate.py": "e84e2d8a9d440584d4062e3d4ea00885100c12ec4bd9e86caa17c5da087ac7b6",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010"
+  },
+  "input_sha256": "6600cb27dc188669b9202b2120aab30f28b53238eb05fcbb68c7040244a9b095"
+}

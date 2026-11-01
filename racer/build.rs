@@ -11,18 +11,30 @@ fn main() {
     let unit: serde_json::Value = serde_json::from_slice(&fs::read(&unit_path).unwrap()).unwrap();
     let revision = unit["application_revision"].as_str().unwrap();
     let checkout = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../DnaCalc");
+    let mut guarded_paths = vec![
+        "crates/calc-func/src",
+        "crates/calc-value/src",
+        "tools/calc-verdict/src",
+    ];
+    if unit["route_audit"].as_bool() == Some(true) {
+        guarded_paths.extend([
+            "apps/dna-calc-worker/src",
+            "apps/dna-calc-model/src",
+            "apps/dna-calc-protocol/src",
+            "apps/dna-formula-ui/src",
+            "apps/dna-strand/src",
+            "crates/calc-host/src",
+            "crates/calc-engine/src",
+            "crates/calc-fml/src",
+            "crates/calc-doc/src",
+            "crates/calc-doc-model/src",
+        ]);
+    }
     assert!(
         std::process::Command::new("git")
             .current_dir(&checkout)
-            .args([
-                "diff",
-                "--quiet",
-                revision,
-                "--",
-                "crates/calc-func/src",
-                "crates/calc-value/src",
-                "tools/calc-verdict/src"
-            ])
+            .args(["diff", "--quiet", revision, "--"])
+            .args(guarded_paths)
             .status()
             .unwrap()
             .success(),
@@ -63,6 +75,23 @@ fn main() {
         );
         println!("cargo:rerun-if-changed={}", path.display());
     }
+    // Keep the existing numeric module's tests usable from this generated
+    // location too. These replacements change paths, never test assertions.
+    let cpu_tests = source
+        .join("../../../tests/f1_support/x87_cpu.rs")
+        .canonicalize()
+        .unwrap();
+    text = text.replace(
+        "#[path = \"../../../tests/f1_support/x87_cpu.rs\"]",
+        &format!("#[path = {:?}]", cpu_tests),
+    );
+    let ground = source.join("x87_excel_ground_truth.tsv");
+    text = text.replace(
+        "include_str!(\"x87_excel_ground_truth.tsv\")",
+        &format!("include_str!({:?})", ground),
+    );
+    println!("cargo:rerun-if-changed={}", cpu_tests.display());
+    println!("cargo:rerun-if-changed={}", ground.display());
     // Only visibility and module locations change; all numeric operations are the
     // current cleared DnaCalc sources, compiled as research without editing them.
     text.push_str("\npub(crate) use soft87::{Ext80 as Extended, ext_from_f64 as research_load};\n");
@@ -82,4 +111,28 @@ fn main() {
         ),
     )
     .unwrap();
+    // Audit the current cleared bodies without changing their calculations.
+    // Old units retain their original bridge; no historical executable is inferred.
+    if unit["route_audit"].as_bool() == Some(true) {
+        use std::io::Write;
+        let mut bridge = fs::OpenOptions::new()
+            .append(true)
+            .open(output.join("bridge.rs"))
+            .unwrap();
+        for module in [
+            "power_fn",
+            "financial_time_value_family",
+            "real_policy",
+            "exp_fn",
+            "complex_decimal",
+            "complex_family",
+            "bessel",
+        ] {
+            let path = source.parent().unwrap().join(format!("{module}.rs"));
+            println!("cargo:rerun-if-changed={}", path.display());
+            writeln!(bridge, "#[path = {:?}] pub mod {module};", path).unwrap();
+        }
+        println!("cargo:rustc-cfg=route_audit");
+    }
+    println!("cargo:rustc-check-cfg=cfg(route_audit)");
 }

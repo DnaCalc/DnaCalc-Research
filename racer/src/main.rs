@@ -17,6 +17,8 @@ mod eval;
 mod identity;
 mod normal;
 mod poisson;
+#[cfg(route_audit)]
+mod route_audit;
 mod saddle;
 mod scheduler;
 
@@ -205,7 +207,7 @@ fn prepare(trace: &str, gaps: &str, out: &str) {
     rows.sort_by_key(|r| (!r.prior_gap, r.trace_index));
     assert_eq!(
         rows.iter().filter(|r| r.prior_gap).count(),
-        734,
+        gaps.len(),
         "all prior gaps must be covered"
     );
     let mut f = BufWriter::new(fs::File::create(Path::new(out).join("scoped.jsonl")).unwrap());
@@ -216,8 +218,8 @@ fn prepare(trace: &str, gaps: &str, out: &str) {
     counts.insert("baseline_exact_route_replays".into(), rows.len());
     json_write(
         Path::new(out).join("coverage.json"),
-        &json!({"counts":counts,"prior_gaps_first":734,
-        "discovery_rows":32,"order":"prior-gap boolean then original trace index; first 32 are discovery, all are previously inspected evidence",
+        &json!({"counts":counts,"prior_gaps_first":gaps.len(),
+        "discovery_rows":rows.len().min(32),"order":"prior-gap boolean then original trace index; first 32 are discovery, all are previously inspected evidence",
         "unsupported_or_unread_are_passes":false,"fresh_validation_rows":0}),
     );
     println!("{}", json!(counts));
@@ -355,8 +357,20 @@ fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
         Some("cumulative-balance-free") => match a.get(6).map(String::as_str) {
-            Some("soft") => cumulative_balance::run_variant::<Soft>(&a[2], &a[3], &a[5], Some(&a[4]),a.get(7).map(String::as_str)==Some("interest")),
-            _ => cumulative_balance::run_variant::<Hard>(&a[2], &a[3], &a[5], Some(&a[4]),a.get(7).map(String::as_str)==Some("interest")),
+            Some("soft") => cumulative_balance::run_variant::<Soft>(
+                &a[2],
+                &a[3],
+                &a[5],
+                Some(&a[4]),
+                a.get(7).map(String::as_str) == Some("interest"),
+            ),
+            _ => cumulative_balance::run_variant::<Hard>(
+                &a[2],
+                &a[3],
+                &a[5],
+                Some(&a[4]),
+                a.get(7).map(String::as_str) == Some("interest"),
+            ),
         },
         Some("cumulative-balance") => match a.get(5).map(String::as_str) {
             Some("soft") => cumulative_balance::run::<Soft>(&a[2], &a[3], &a[4]),
@@ -507,6 +521,21 @@ fn main() {
                     "transport_assumption":"registered typed arguments; literal parsing may change inputs","not_excel_evidence":true})).unwrap();
             }
         }
+        #[cfg(route_audit)]
+        Some("route-audit") => route_audit::run(&a[2], &a[3]),
+        #[cfg(route_audit)]
+        Some("literal-input-audit") => route_audit::literal_inputs(&a[2], &a[3], &a[4]),
+        #[cfg(route_audit)]
+        Some("number-input-audit") => route_audit::number_inputs(&a[2], &a[3]),
+        #[cfg(route_audit)]
+        Some("complex-reciprocals") => route_audit::complex_reciprocals(&a[2], &a[3]),
+        Some("timing-corrections") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => scheduler::timing_corrections::<Soft>(&rows, &a[3]),
+                _ => scheduler::timing_corrections::<Hard>(&rows, &a[3]),
+            }
+        }
         Some("count-one-full") => {
             let rows = lines::<poisson::MassRow>(&a[2]);
             match a.get(5).map(String::as_str) {
@@ -573,6 +602,27 @@ fn main() {
             match a.get(4).map(String::as_str) {
                 Some("soft") => boundary::run::<Soft>(&rows, &a[3]),
                 _ => boundary::run::<Hard>(&rows, &a[3]),
+            }
+        }
+        Some("timing-helpers") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], false, false),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], false, false),
+            }
+        }
+        Some("timing-helper-logs") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, false),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, false),
+            }
+        }
+        Some("timing-direct-helper-logs") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, true),
+                _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, true),
             }
         }
         Some("boundary-test") => boundary::self_test(&lines::<Row>(&a[2])),
