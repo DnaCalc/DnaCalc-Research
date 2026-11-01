@@ -173,5 +173,51 @@ class ExactArithmetic(unittest.TestCase):
             self.assertFalse(output.exists())
 
 
+class NormalReferenceTests(unittest.TestCase):
+    def test_complement_lattice_discriminator(self):
+        from normal import complement_sets
+        p,w=two(-54),two(-66)
+        exactly=complement_sets(Span(p,p))
+        self.assertEqual(exactly[:3],[['0x3ff0000000000000']]*3)
+        self.assertEqual(exactly[3:],[['0x3fefffffffffffff','0x3ff0000000000000']]*2)
+        above=complement_sets(Span(p,p+w,False,True))
+        self.assertEqual(above,[['0x3fefffffffffffff'],['0x3ff0000000000000'],['0x3ff0000000000000'],['0x3fefffffffffffff'],['0x3fefffffffffffff']])
+
+    def test_root_midpoints_and_extended_root_store(self):
+        from normal import sqrt_round, encoding
+        middle = R(1)+two(-53)
+        self.assertEqual(sqrt_round(middle*middle, 'resident_pc64'), middle)
+        self.assertEqual(sqrt_round(middle*middle, 'stored_pc64'), R(1))
+        for model in ('strict','resident_pc64','resident_pc53'):
+            root = sqrt_round(R(2), model)
+            fmt = B if model == 'strict' else E if model.endswith('pc64') else P53
+            k = fmt.floor_coordinate(root)
+            lower, upper = (fmt.value(k-1)+root)/2, (root+fmt.value(k+1))/2
+            self.assertLess(lower*lower,R(2))
+            self.assertGreater(upper*upper,R(2))
+        self.assertEqual(encoding(two(-1023)), '0x0000000000000000')
+        self.assertEqual(encoding(two(-1022)), '0x0010000000000000')
+
+    def test_concrete_transcendental_bindings_reject_altered_input_or_result(self):
+        from normal import Replay
+        nodes = [dict(op='input',bits='0000000000000000',value='binary64:0000000000000000'),
+                 dict(op='exp',args=[0],provider=3,concrete_leaf='3:binary64:0000000000000000',value='binary64:3ff0000000000000')]
+        helper = {'3:binary64:0000000000000000':dict(provider=3,input='binary64:0000000000000000',output='binary64:3ff0000000000000')}
+        m = Replay(nodes,{},helper);m.node('input',R(0),bits='0000000000000000');m.exp(0,3)
+        for key,value in [('input','binary64:0000000000000001'),('output','binary64:3ff0000000000001'),('provider',2)]:
+            altered = copy.deepcopy(helper);altered[next(iter(altered))][key] = value
+            m = Replay(nodes,{},altered);m.node('input',R(0),bits='0000000000000000')
+            with self.assertRaises(ValueError):m.exp(0,3)
+
+    def test_directed_mathematical_reference_uses_two_precisions(self):
+        from reference import normal_bounds
+        self.assertEqual(normal_bounds('0000000000000000')['rounded_binary64'],'0x3fe0000000000000')
+        for bits in ('3ff0000000000000','bff0000000000000','bfe537a6f4de9bd4','c042c00000000000'):
+            a,b = normal_bounds(bits,192),normal_bounds(bits,384)
+            self.assertEqual(a['rounded_binary64'],b['rounded_binary64'])
+            self.assertLessEqual(R(*map(int,a['lower'])),R(*map(int,b['lower'])))
+            self.assertGreaterEqual(R(*map(int,a['upper'])),R(*map(int,b['upper'])))
+
+
 if __name__ == '__main__':
     unittest.main()

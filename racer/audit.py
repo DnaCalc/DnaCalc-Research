@@ -219,7 +219,111 @@ def audit_questions(directory, packet_name):
     (packet/'validation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 
 
+def pmt_observation_questions(trace, certificates, destination):
+    """Freeze stratified rechecks; no historical value enters the request file."""
+    import datetime
+    import struct
+    from collections import defaultdict, Counter
+    rows = list(stream(Path(trace)))
+    gaps = {r['id']: r for r in stream(Path(certificates))}
+    assert len(gaps) == 734
+    def number(s): return struct.unpack('>d', bytes.fromhex(s[2:]))[0]
+    def stratum(r):
+        a = list(map(number, r['args']))
+        return (r['source'], a[1] == 1, a[3] != 0,
+                'tiny' if a[0] < 1e-6 else 'small' if a[0] < .01 else 'ordinary',
+                a[4] != 0, a[1].is_integer(), a[2] < 0)
+    def choose(pool, count):
+        cells = defaultdict(list)
+        for r in pool:
+            cells[stratum(r)].append(r)
+        for values in cells.values():
+            values.sort(key=lambda r: hashlib.sha256(json.dumps(r, sort_keys=True).encode()).hexdigest())
+        chosen = []
+        for index in range(count):
+            available = [k for k, v in cells.items() if v]
+            key = min(available, key=lambda k: (sum(stratum(r) == k for r in chosen), str(k)))
+            chosen.append(cells[key].pop(0))
+        return chosen
+    selected = []
+    for build, quota in [('20131', 16), ('20228', 8)]:
+        pool = [r for r in rows if r['id'] in gaps and r['reading']['excel_build'] == build]
+        for r in pool:
+            g = gaps[r['id']]
+            assert r['args'][0][2:].lower() == g['rate_bits'].lower()
+            assert r['expected'][2:].lower() == g['target_bits'].lower()
+        selected += [(r, 'certified_gap') for r in choose(pool, quota)]
+    for build in ['20131', '20228']:
+        pool = [r for r in rows if r['id'] not in gaps and r['actual'] == r['expected']
+                and r['reading']['excel_build'] == build and len(r['args']) == 5
+                and all(isinstance(a, str) and a.startswith('0x') for a in r['args'])
+                and number(r['args'][0]) > 0 and number(r['args'][1]) > 0
+                and number(r['args'][4]) in (0, 1)]
+        selected += [(r, 'passing_control') for r in choose(pool, 4)]
+    out = Path(destination)
+    assert not (out/'requests-PMT.json').exists()
+    out.mkdir(parents=True, exist_ok=True)
+    questions, selection, predictions = [], [], []
+    def add(index, kind):
+        old, role = selected[index]
+        args = old['args'].copy()
+        transport = 'cell_value2_bulk'
+        if kind == 'literal': transport = 'formula_literals'
+        elif kind == 'logical_timing': args[4] = number(args[4]) != 0
+        elif kind == 'text_rate': args[0] = format(number(args[0]), '.17g')
+        q = dict(id=f'r10-pmt-{len(questions):02d}', args=args, input_transport=transport)
+        questions.append(q)
+        selection.append(dict(id=q['id'], original_id=old['id'], original_source=old['source'],
+            original_reading=old['reading'], sample_role=role, variant=kind,
+            paired_numeric_id=f'r10-pmt-{index:02d}', stratum=list(stratum(old)),
+            argument_types=['logical' if isinstance(a, bool) else 'binary64' if a.startswith('0x') else 'text' for a in args],
+            requested=args, submitted='typed Value2 cells' if transport == 'cell_value2_bulk' else
+            '17-decimal-place scientific literals in PMT and echo cells; adapter emits exact strings',
+            read_back=None, effective_callee_inputs='not directly observable'))
+        predictions.append(dict(id=q['id'], hypothesis='build-invariant PMT and transparent transport/coercion',
+            predicted=old['expected'], historical_observation=old,
+            status='conditional prediction, not a new Excel answer; coercion variants have no historical observation of those types'))
+    for index in range(32): add(index, 'numeric')
+    # Equal build quotas; include both historic sources and passing controls.
+    for index in list(range(0, 8)) + list(range(16, 20)) + [24, 25, 28, 29]: add(index, 'literal')
+    for index in [0, 2, 4, 6, 16, 18, 20, 22]: add(index, 'logical_timing')
+    for index in [1, 3, 5, 7, 17, 19, 21, 23]: add(index, 'text_rate')
+    assert len(questions) == len({q['id'] for q in questions}) == 64
+    request = dict(function='PMT', selection='R10 observation audit; intentional rechecks, do not use --new-only', witnesses=questions)
+    (out/'requests-PMT.json').write_text(json.dumps(request, indent=2)+'\n')
+    (out/'PMT-selection.json').write_text(json.dumps(dict(method='deterministic balanced round-robin strata, hash order within each stratum; no numeric fitting',
+        unique_historical_rows=32, gaps=24, passing_controls=8, numeric_build_counts={'20131':20,'20228':12},
+        legacy_transport='not recorded; not presumed Value2', target_build='20527; actual build must be recorded and compared', questions=selection), indent=2)+'\n')
+    (out/'PMT-predictions-historical.jsonl').write_text(''.join(json.dumps(p, sort_keys=True)+'\n' for p in predictions))
+    (out/'README.txt').write_text("""Round 10: PMT observation audit (64 calls, zero new answers).
+From the updated DnaCalc master on Windows:
+ cargo xtask witness read --func PMT --inputs <packet>/requests-PMT.json
+Do not pass --new-only. These are intentional rechecks and transport pairs.
+Run once, retain the frozen predictions, readings file and entire worker directory.
+Compare all 32 numeric rows with PMT-predictions-historical.jsonl by ID.
+Then compare paired literals/logical timing/text-rate results with their numeric row.
+Only unchanged read-back inputs support same-input build comparisons. Literal echo
+cells expose the decimal parser, not effective callee internals. Changed inputs and
+unread results remain failed audit obligations, never semantic contradictions.
+The adapter retains input_audits even for changed/refused rows. Preserve its raw
+request.json/result.json. Record actual build, CPU/bitness and settings; do not
+silently attribute build/CPU/surface differences to any one cause. No old observation
+is overwritten. Historical transport and Compatibility Version are unknown.
+32 numeric calls: 24 certified gaps (16 build20131,8 build20228),8 exact passing
+controls (4 per build). Plus16 literal pairs,8 logical-timing,8 text-rate pairs.
+Only requests-PMT.json is submitted. Predictions and old answers are separate.
+This audit cannot claim build20527 reproduction until Windows returns readings.
+""")
+    files = [out/name for name in ['requests-PMT.json', 'PMT-selection.json', 'PMT-predictions-historical.jsonl', 'README.txt']]
+    manifest = dict(frozen_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(), function='PMT',
+        calls=64, new_excel_answers=0, input_trace_sha256=sha(Path(trace)), certificate_sha256=sha(Path(certificates)),
+        files_sha256={p.name:sha(p) for p in files}, assumptions='conditional legacy transport/build invariance; not confirmed')
+    (out/'PMT-manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
+    print(json.dumps(manifest))
+
+
 if __name__ == "__main__":
-    if sys.argv[1]=="questions":audit_questions(sys.argv[2],sys.argv[3])
+    if sys.argv[1]=="pmt-observation-questions":pmt_observation_questions(*sys.argv[2:])
+    elif sys.argv[1]=="questions":audit_questions(sys.argv[2],sys.argv[3])
     elif len(sys.argv)>2:audit_r7(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
     else:audit(sys.argv[1])

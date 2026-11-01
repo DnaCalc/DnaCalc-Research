@@ -178,6 +178,8 @@ def rounding_inverse(i, model):
 
 def inverse_op(i, model, op, c, variable_left):
     """Invert a single arithmetic node, including strict input stores."""
+    if op not in ('mul', 'div'):
+        raise ValueError('inverse_op supports mul/div only; use inverse_add for addition')
     i = rounding_inverse(i, model)
     if i is None:
         return None
@@ -232,7 +234,15 @@ def self_test():
         n += 1
     # Exact absence between adjacent representables, with each endpoint open.
     assert B64.preimage(Interval(Q(1), Q(1) + pow2(-52), False, False)) is None
-    print({'rounding_preimage_controls': n, 'arithmetic': 'exact Fraction, ties and endpoint flags'})
+    for model in range(5):
+        assert inverse_add(B64.preimage(Interval(Q(1,2),Q(1,2))),model,Q(3,8)).contains(Q(1,8))
+    try:
+        inverse_op(Interval(Q(1,2),Q(1,2)),0,'add',Q(1),True)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('an addition must not enter the multiply/divide inverse')
+    print({'rounding_preimage_controls': n, 'addition_inverse_controls':5,'unsupported_inverse_operation_rejected':True,'arithmetic': 'exact Fraction, ties and endpoint flags'})
 
 
 if __name__ == '__main__':

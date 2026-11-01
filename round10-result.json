@@ -1,0 +1,909 @@
+{
+  "round": 10,
+  "work_packages": [
+    "dc-j9k",
+    "dc-ymjf.4"
+  ],
+  "outcome": "64 PMT observation audits frozen first. NORM.S.DIST CDF chosen for simpler scalar structure and 13716 remaining failures. No complete numerical program survives; five conditional sign/reconstruction relations remain, with 24 frozen normal questions. No fit, numeric kernel, evidence pin or Excel answer change.",
+  "main_revision": "3a6507dae1e50e0fc37929673710c87ed3b0f6e1",
+  "research_base_revision": "8887bae4ba6172398b6ad5bf6fb0822c3dfecf3b",
+  "evidence_revision": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+  "claim_record": "normal-cdf-r10-claim.json",
+  "external_artifact_root": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10",
+  "frozen_questions_root": "/home/ubuntu/codex-runs/fresh-questions-r10",
+  "checked_numerical_results": [
+    {
+      "family": "original",
+      "build": "20131",
+      "receipt": "final-v2-original-20131.json",
+      "sha256": "eaf311b2bff51ccc6341f4d031cd283da7eaa24c748ef4b8e73f365194d725d2",
+      "programs": 18000,
+      "trace_groups": 18000,
+      "exact_contradictions": 18000,
+      "nodes_checked": 1260000,
+      "conditional_helper_uses": 36000,
+      "inputs": {
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20131-native/programs.jsonl": "e64ef9555ea82fe8440708ae5fc0145fece67b3a8792865ae8cd1cec88146286",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20131-native/first-kills.jsonl": "ef6e178e27be6e806d5d6a037bfd0523b94d3b20399a46f1394f54460171e62c",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20131-native/concrete-helpers.json": "aafd64bc0adaa75baacba1fdd35cd187034e9d77b24d8a1cf8c107bfe8638c37"
+      }
+    },
+    {
+      "family": "original",
+      "build": "20430",
+      "receipt": "final-v2-original-20430.json",
+      "sha256": "d12d32fd086b2f27b07da7fa0812294ddb07cbb0c05759ff5c445db3f72b6cc2",
+      "programs": 18000,
+      "trace_groups": 18000,
+      "exact_contradictions": 18000,
+      "nodes_checked": 1296000,
+      "conditional_helper_uses": 36000,
+      "inputs": {
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20430-native/programs.jsonl": "e64ef9555ea82fe8440708ae5fc0145fece67b3a8792865ae8cd1cec88146286",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20430-native/first-kills.jsonl": "5d2da8faed755597990e1b0071e8834013027ffc8bcd20a83b77234889d2be55",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20430-native/concrete-helpers.json": "e61b6c2d714561d9767469a0ffc77aa86a65445314833f6371c286c1d02711f4"
+      }
+    },
+    {
+      "family": "wrappers",
+      "build": "20131",
+      "receipt": "final-v2-wrappers-20131.json",
+      "sha256": "adc634a4903ed9990592c14b407a650214c3718689efb93061e6125c747d456a",
+      "programs": 72000,
+      "trace_groups": 72000,
+      "exact_contradictions": 72000,
+      "nodes_checked": 5310000,
+      "conditional_helper_uses": 144000,
+      "inputs": {
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20131-current-native/programs.jsonl": "1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20131-current-native/first-kills.jsonl": "fe28cb8a16f4d60636ae010dbcda52afb8c1aab10b6fa0dcda5b1680697e0d29",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20131-current-native/concrete-helpers.json": "325f6900ca03baea994cd23a663ff141e2c972303db292a8ccba442fb0fbb794"
+      }
+    },
+    {
+      "family": "wrappers",
+      "build": "20430",
+      "receipt": "final-v2-wrappers-20430.json",
+      "sha256": "82732e64fcc5b94d78b0ecf25c6c28f79fde2e199528787f186f8808a0001967",
+      "programs": 72000,
+      "trace_groups": 72000,
+      "exact_contradictions": 72000,
+      "nodes_checked": 5454000,
+      "conditional_helper_uses": 144000,
+      "inputs": {
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20430-current-native/programs.jsonl": "1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20430-current-native/first-kills.jsonl": "d97725f6793df018e7fcee2dc36272085bdcff9fa56cbcaf1dc4cad8fb967d9b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20430-current-native/concrete-helpers.json": "e61b6c2d714561d9767469a0ffc77aa86a65445314833f6371c286c1d02711f4"
+      }
+    },
+    {
+      "family": "hart",
+      "build": "20131",
+      "receipt": "final-v2-hart-20131.json",
+      "sha256": "67db985c94b4576961430289bf1fc542914694a88de0d732997b2f60309fd3f3",
+      "programs": 7200,
+      "trace_groups": 7200,
+      "exact_contradictions": 7200,
+      "nodes_checked": 459000,
+      "conditional_helper_uses": 14400,
+      "inputs": {
+        "normal-cdf-hart-r10-constants.json": "7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20131-native/programs.jsonl": "477e37e5d780f71d6c88221928bde69b82c103f19e8bc44b7d6a65512c85af67",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20131-native/first-kills.jsonl": "ede33837807f38cfd38c32ca3e44567c86fa3a51dcf25596260319602de36805",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20131-native/concrete-helpers.json": "2e1932064f2090e13e33e1b2cfa8889ca4650ca8c5114194c9e96f5be95b20de"
+      }
+    },
+    {
+      "family": "hart",
+      "build": "20430",
+      "receipt": "final-v2-hart-20430.json",
+      "sha256": "9ede55a138e202e20e87b5d243fc723c2a53c8c8a28621b22976be11cd36458b",
+      "programs": 7200,
+      "trace_groups": 7200,
+      "exact_contradictions": 7200,
+      "nodes_checked": 473400,
+      "conditional_helper_uses": 14400,
+      "inputs": {
+        "normal-cdf-hart-r10-constants.json": "7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20430-native/programs.jsonl": "477e37e5d780f71d6c88221928bde69b82c103f19e8bc44b7d6a65512c85af67",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20430-native/first-kills.jsonl": "f236277d33343ff3a4dfd700553d702efbefd03e17f4c61eb66356e666cf1aed",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20430-native/concrete-helpers.json": "9d5729ce76373efcde4132cfe09c0777ad2a75f9a731df8b62c746eb507f3e33"
+      }
+    },
+    {
+      "family": "central",
+      "build": "20131",
+      "receipt": "final-v2-central-20131.json",
+      "sha256": "c12f01d8110f9326777306aff79f0797211ffc8220e964dc4be37718602a8807",
+      "programs": 18000,
+      "trace_groups": 16350,
+      "exact_contradictions": 18000,
+      "nodes_checked": 593550,
+      "conditional_helper_uses": 0,
+      "inputs": {
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20131-native/programs.jsonl": "e8d5bb283cd7b50909376399891b5e362b9c98847d5409100dcc7cca941e1533",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20131-native/first-kills.jsonl": "f8cd0cb8f3ff30ebc4f04023d4c42762006ea44ea375ad694a1f55e4588b8028",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20131-native/concrete-helpers.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+      }
+    },
+    {
+      "family": "central",
+      "build": "20430",
+      "receipt": "final-v2-central-20430.json",
+      "sha256": "cbd03bb298bf3b2333616ac43427e25f10dce8791d19fd04f0dd277a809f9426",
+      "programs": 18000,
+      "trace_groups": 16350,
+      "exact_contradictions": 18000,
+      "nodes_checked": 577200,
+      "conditional_helper_uses": 0,
+      "inputs": {
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20430-native/programs.jsonl": "e8d5bb283cd7b50909376399891b5e362b9c98847d5409100dcc7cca941e1533",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20430-native/first-kills.jsonl": "27a1612b2b83621084f62c3316a667ea0c6aea2c7f826f34c2e3326271ca0661",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20430-native/concrete-helpers.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+      }
+    }
+  ],
+  "nodes_checked": 15423150,
+  "count_limit": "Families overlap and original Cody is a subset of the reconstruction extension; do not sum into a count of distinct programs. Checks are separate per build. Concrete exponential leaves remain conditional.",
+  "checked_constraints": {
+    "linear": {
+      "complete": true,
+      "profiles_checked": 275,
+      "reasons": {
+        "empty_real_intersection": 275
+      },
+      "builds": [
+        "20430"
+      ],
+      "seconds": 0.6769757801666856,
+      "normal_checker_sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-linear-projection-corrected/profiles.json": "05f6a29602bc9f621e0c469fcc355a47fe23b0fee1cb81e92736fe166945f731",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-linear-projection-corrected/certificates.jsonl": "442b7e38642d3ab3b8871be3b9f398943d69c4ec767cd9c11fd5eb2788385a11"
+      },
+      "claim": "Independent exact shared-coefficient exclusion, with full typed original witness binding; no coefficient value selected and no transcendental leaf assumption.",
+      "limits": "Only three declared linear forms, fixed tiny domain, five arithmetic models and shared coefficient within a reading/source/flag group; no general normal-program or build20527 claim.",
+      "new_excel_answers": 0,
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "symmetry": {
+      "complete": true,
+      "profiles": 660,
+      "excluded": 655,
+      "surviving_constraint_profiles": 5,
+      "original_pairs": 167,
+      "survivor_constraints": 835,
+      "normal_checker_sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "seconds": 1.339877001941204,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/profiles.json": "3987eb6885925c562d56b5fddb12679fd7da4f2b3f29a4f9be84865cdde845dc",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/pairs.json": "681a076054b920026a51826a7e56ba6b572ac592a413d4ddd7cd3e737a617fc3",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/certificates.jsonl": "680a25ec97addcfa6ad890064a2a11da21d1c03bd00b175d78c659e2e84b5055",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/survivors.json": "fef0b6a84a3077ef0cec435a6a13a411a36b6024d7951b6862cec4b647e621c1",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/survivor-constraints.jsonl": "20b6658a2f0da18393f1ed256491e7c52612ca910abc68fced19fc7574ac5a4e"
+      },
+      "claim": "Independent exact sign/reconstruction exclusions and feasible shared-latent constraints, with original paired observations bound by exact arguments/environment/source. Surviving relations are necessary constraints, not complete normal CDF programs.",
+      "new_excel_answers": 0,
+      "fresh_validation": 0,
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    }
+  },
+  "questions": {
+    "PMT_count": 64,
+    "normal_count": 24,
+    "new_excel_answers": 0,
+    "complete_numeric_survivors": 0,
+    "surviving_constraint_relations": 5,
+    "independent_normal_validation": {
+      "complete": true,
+      "normal_questions": 24,
+      "PMT_questions": 64,
+      "new_excel_answers": 0,
+      "independent_conditional_set_comparisons": 55,
+      "exact_above_midpoint_discriminator": true,
+      "complete_normal_programs": 0,
+      "normal_checker_sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "claim": "Frozen requests contain no answers; all conditional output sets and open/closed probability cases checked independently. Mathematical proposal values are not treated as target helper outputs.",
+      "limitations": "Profile/build and negative-anchor prerequisites remain unobserved on20527; the five survivors are reconstruction constraints, not full CDF programs.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+      }
+    },
+    "files_sha256": {
+      "NORM-independent-validation.json": "53de066c6613e6f55b850e605dee09e5e0c0afe0ba9e9f6b1f5eda47df7337f0",
+      "NORM-lattice-manifest.json": "26f63b2de53cc2491d01b573056239114e82483846f75d5989a198f32797e6c8",
+      "NORM-lattice-predictions.json": "2c8aaad4e17090e3a7705abd8b6d39a3d63cb6001e6326799752bcb729c072e7",
+      "NORM-manifest.json": "daa9bd17094e8fd4fe95df2039327c864a984c684ef5408e61b5b27a7309b30f",
+      "NORM-predictions-application.jsonl": "abe8bc4b4c0e975fee3ae2925ff8cae0812221134904689ef251e68ef1a9118c",
+      "NORM-predictions.jsonl": "360678b8f777229154bff5d29d6b23bcd1679716c680944cf7a8c6098c9496ee",
+      "NORM-selection.json": "41083c0ed3e6c9844cdecca982a2b7973b702c390c9a13ab91c1c1a2df4fb7d3",
+      "PMT-manifest.json": "748875e6e1803a2c67eeb67f382e1301f41a46f47f1ef01a6040c76ab501ea19",
+      "PMT-predictions-application.jsonl": "e47304fdc29672bc5fdd5242920952b88cae5573c0518b14299340ea2cd70b45",
+      "PMT-predictions-historical.jsonl": "106c80db19ae5cbef45712d73983c1cc72c67876552f83fb3b124676c4cf0870",
+      "PMT-selection.json": "b1384effd6ac7e1f71c601a59fba8508461219d2b66b43648891c0a08130640a",
+      "PMT-validation.json": "4e20d33f2b29cc7bc44f804363aa44ecd4efd613f445fcda0d6203c9728f33ed",
+      "README-NORM.S.DIST.txt": "f581c6d9918bdac14fdd967ad5eb46e188ad5c7edee7d3b1b86e39e49ef82680",
+      "README.txt": "079ea3eb58e4b9f50978d26f54dcdf9484f1c317d641fabf832628062e3dfb5e",
+      "RUN-ROUND10.txt": "2650179f41eb518a90bc4b70067a073da290245b0fd93d780b9583425e4523a7",
+      "reader-provenance.json": "a0111755a4d7c4ff5815fad2cd48fb12669fa3d5595aab4786b0c6cda37e8007",
+      "requests-NORM.S.DIST-all.json": "8e10bf3c19cbd9f62151c719f6df0e9561bda66d3dbf8c86f20ec8ee875abf41",
+      "requests-NORM.S.DIST-lattice.json": "335e2be0f9c5a5c52aec39732b7c08bb221b473f345096c4d15608196084668f",
+      "requests-NORM.S.DIST.json": "1c13c0a16c1bdba4f12e32ea94481a85105ce9bf3afdb56d1f4d6f2e96c8be9d",
+      "requests-PMT.json": "c57fa4f196c2285909a43c894cda5af6dd0a89b20cad7c8f1d868ae73e1ffe50"
+    }
+  },
+  "source_sha256": {
+    "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+    "racer/src/main.rs": "e1470775e1b7dc8ef407b70f96f073aa2a5b9e9e5b83906fed67b30eac5e5790",
+    "racer/constants.py": "2816623ef0cbf5a20443d49cf1ffe35415c951f7c8f6e4ca5d6532e9cf347062",
+    "racer/normalizer_intersect.py": "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "racer/audit.py": "eb19417991cba7ae62e936bd993a0eeb4a0803374abdebec595432654c1ea19b",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f",
+    "checker/test_exact.py": "1d936ff73c85bc12e638d0e85258a5a081c382860ca7059980984ed40ffb9f3a",
+    "normal-cdf-r10-claim.json": "0634fc95331a1a744a6d7dfeae335e9824f5dce5e4d27e038bf14af8b1c528d8",
+    "README.txt": "1494d58f9593e94bc71bb446b9e17fc108510c3d13d2dc8c080c1c921cc419c6",
+    "normal-cdf-central-r10-unit.json": "84dbfb118496b3506ae1bc604608f415e06f8882488ace914ee83edb2741d1e3",
+    "normal-cdf-hart-r10-constants.json": "7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052",
+    "normal-cdf-hart-r10-unit.json": "401251e4863d54b95dd67192d127ffde6c3c572cc5e987925a8b7f01369c2494",
+    "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+    "normal-cdf-r10-unit.json": "b6a0bb50b7944d4a5a2e64b362f051f031b9c344248d104191357e414ebee5db",
+    "normal-cdf-relations-r10-unit.json": "c25535266b8beab1b27227af08fd27ed6fcde93010dfdaf972b04f565ca5df5a",
+    "normal-cdf-wrappers-r10-unit.json": "74ea7a692161c66c7a51aa6f246c21446d5d09040dac0e496fe235b8060e2840",
+    "notices/SciPy-cdflib.txt": "b5d8e922d9487e1049b50cfe0d9dc6739f8e4957807b10d6f9bc19d68c9830a5"
+  },
+  "external_evidence": {
+    "final-checker-matrix.json": {
+      "sha256": "fdb49cba861a318cc583fc239512225b7c03e4a9bba52cf9792b6ae9ffd3d3c8",
+      "result": [
+        {
+          "case": "final-check-original-20131",
+          "returncode": 0,
+          "tail": "l-20131-native\", \"normal-cdf-r10-constants.json\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-original-20131.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 18000, \"exact_contradictions\": 18000, \"trace_groups\": 18000, \"nodes_checked\": 1260000, \"conditional_concrete_helper_uses\": 36000, \"seconds\": 90.49812965001911, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-r10-constants.json\": \"9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20131-native/programs.jsonl\": \"e64ef9555ea82fe8440708ae5fc0145fece67b3a8792865ae8cd1cec88146286\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20131-native/first-kills.jsonl\": \"ef6e178e27be6e806d5d6a037bfd0523b94d3b20399a46f1394f54460171e62c\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20131-native/concrete-helpers.json\": \"aafd64bc0adaa75baacba1fdd35cd187034e9d77b24d8a1cf8c107bfe8638c37\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-original-20430",
+          "returncode": 0,
+          "tail": "l-20430-native\", \"normal-cdf-r10-constants.json\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-original-20430.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 18000, \"exact_contradictions\": 18000, \"trace_groups\": 18000, \"nodes_checked\": 1296000, \"conditional_concrete_helper_uses\": 36000, \"seconds\": 91.08256605593488, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-r10-constants.json\": \"9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20430-native/programs.jsonl\": \"e64ef9555ea82fe8440708ae5fc0145fece67b3a8792865ae8cd1cec88146286\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20430-native/first-kills.jsonl\": \"5d2da8faed755597990e1b0071e8834013027ffc8bcd20a83b77234889d2be55\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-20430-native/concrete-helpers.json\": \"e61b6c2d714561d9767469a0ffc77aa86a65445314833f6371c286c1d02711f4\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-wrappers-20131",
+          "returncode": 0,
+          "tail": "home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-wrappers-20131.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 72000, \"exact_contradictions\": 72000, \"trace_groups\": 72000, \"nodes_checked\": 5310000, \"conditional_concrete_helper_uses\": 144000, \"seconds\": 370.1797125050798, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-r10-constants.json\": \"9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20131-current-native/programs.jsonl\": \"1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20131-current-native/first-kills.jsonl\": \"fe28cb8a16f4d60636ae010dbcda52afb8c1aab10b6fa0dcda5b1680697e0d29\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20131-current-native/concrete-helpers.json\": \"325f6900ca03baea994cd23a663ff141e2c972303db292a8ccba442fb0fbb794\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-wrappers-20430",
+          "returncode": 0,
+          "tail": "home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-wrappers-20430.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 72000, \"exact_contradictions\": 72000, \"trace_groups\": 72000, \"nodes_checked\": 5454000, \"conditional_concrete_helper_uses\": 144000, \"seconds\": 370.1520670140162, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-r10-constants.json\": \"9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20430-current-native/programs.jsonl\": \"1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20430-current-native/first-kills.jsonl\": \"d97725f6793df018e7fcee2dc36272085bdcff9fa56cbcaf1dc4cad8fb967d9b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-wrappers-20430-current-native/concrete-helpers.json\": \"e61b6c2d714561d9767469a0ffc77aa86a65445314833f6371c286c1d02711f4\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-hart-20131",
+          "returncode": 0,
+          "tail": "normal-cdf-hart-r10-constants.json\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-hart-20131.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 7200, \"exact_contradictions\": 7200, \"trace_groups\": 7200, \"nodes_checked\": 459000, \"conditional_concrete_helper_uses\": 14400, \"seconds\": 30.396912513067946, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-hart-r10-constants.json\": \"7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20131-native/programs.jsonl\": \"477e37e5d780f71d6c88221928bde69b82c103f19e8bc44b7d6a65512c85af67\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20131-native/first-kills.jsonl\": \"ede33837807f38cfd38c32ca3e44567c86fa3a51dcf25596260319602de36805\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20131-native/concrete-helpers.json\": \"2e1932064f2090e13e33e1b2cfa8889ca4650ca8c5114194c9e96f5be95b20de\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-hart-20430",
+          "returncode": 0,
+          "tail": "normal-cdf-hart-r10-constants.json\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-hart-20430.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 7200, \"exact_contradictions\": 7200, \"trace_groups\": 7200, \"nodes_checked\": 473400, \"conditional_concrete_helper_uses\": 14400, \"seconds\": 29.942836769856513, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-hart-r10-constants.json\": \"7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20430-native/programs.jsonl\": \"477e37e5d780f71d6c88221928bde69b82c103f19e8bc44b7d6a65512c85af67\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20430-native/first-kills.jsonl\": \"f236277d33343ff3a4dfd700553d702efbefd03e17f4c61eb66356e666cf1aed\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-hart-20430-native/concrete-helpers.json\": \"9d5729ce76373efcde4132cfe09c0777ad2a75f9a731df8b62c746eb507f3e33\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-central-20131",
+          "returncode": 0,
+          "tail": "ormal-cdf-r10-constants.json\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-central-20131.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 18000, \"exact_contradictions\": 18000, \"trace_groups\": 16350, \"nodes_checked\": 593550, \"conditional_concrete_helper_uses\": 0, \"seconds\": 38.699865728849545, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-r10-constants.json\": \"9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20131-native/programs.jsonl\": \"e8d5bb283cd7b50909376399891b5e362b9c98847d5409100dcc7cca941e1533\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20131-native/first-kills.jsonl\": \"f8cd0cb8f3ff30ebc4f04023d4c42762006ea44ea375ad694a1f55e4588b8028\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20131-native/concrete-helpers.json\": \"ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        },
+        {
+          "case": "final-check-central-20430",
+          "returncode": 0,
+          "tail": "ormal-cdf-r10-constants.json\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-check-central-20430.json\"], \"executable_sha256\": \"efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e\"}\n{\"complete\": true, \"programs\": 18000, \"exact_contradictions\": 18000, \"trace_groups\": 16350, \"nodes_checked\": 577200, \"conditional_concrete_helper_uses\": 0, \"seconds\": 40.071621045004576, \"normal_checker_sha256\": \"2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b\", \"inputs\": {\"normal-cdf-r10-constants.json\": \"9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl\": \"dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20430-native/programs.jsonl\": \"e8d5bb283cd7b50909376399891b5e362b9c98847d5409100dcc7cca941e1533\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20430-native/first-kills.jsonl\": \"27a1612b2b83621084f62c3316a667ea0c6aea2c7f826f34c2e3326271ca0661\", \"/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-central-20430-native/concrete-helpers.json\": \"ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356\"}, \"claim\": \"Independent exact arithmetic, full-width traces, original witness binding and complete finite grammar; transcendental leaves remain conditional, not proved target helpers.\", \"global_equivalence\": false, \"fresh_excel_validation\": 0, \"checker_sha256\": {\"exact.py\": \"842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f\", \"check.py\": \"af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f\"}}\n"
+        }
+      ],
+      "superseded_for_final_source": "final-v2-checker-matrix.json"
+    },
+    "final-check-linear.json": {
+      "sha256": "d92767dbb4073840a1b33550a900d296a532e878ddeaa36b0cb2f03f19bb3a48",
+      "result": {
+        "complete": true,
+        "profiles_checked": 275,
+        "reasons": {
+          "empty_real_intersection": 275
+        },
+        "builds": [
+          "20430"
+        ],
+        "seconds": 0.6939967509824783,
+        "normal_checker_sha256": "2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b",
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-linear-projection-corrected/profiles.json": "05f6a29602bc9f621e0c469fcc355a47fe23b0fee1cb81e92736fe166945f731",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-linear-projection-corrected/certificates.jsonl": "442b7e38642d3ab3b8871be3b9f398943d69c4ec767cd9c11fd5eb2788385a11"
+        },
+        "claim": "Independent exact shared-coefficient exclusion, with full typed original witness binding; no coefficient value selected and no transcendental leaf assumption.",
+        "limits": "Only three declared linear forms, fixed tiny domain, five arithmetic models and shared coefficient within a reading/source/flag group; no general normal-program or build20527 claim.",
+        "new_excel_answers": 0,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+        }
+      }
+    },
+    "final-check-symmetry.json": {
+      "sha256": "7530741f510ff864de1db7e83025920fd2391dbe3783bcd6e873b9fad785ea69",
+      "result": {
+        "complete": true,
+        "profiles": 660,
+        "excluded": 655,
+        "surviving_constraint_profiles": 5,
+        "original_pairs": 167,
+        "survivor_constraints": 835,
+        "normal_checker_sha256": "2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b",
+        "seconds": 1.0793578119482845,
+        "inputs": {
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/application-NORM.S.DIST-before.jsonl": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/profiles.json": "3987eb6885925c562d56b5fddb12679fd7da4f2b3f29a4f9be84865cdde845dc",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/pairs.json": "681a076054b920026a51826a7e56ba6b572ac592a413d4ddd7cd3e737a617fc3",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/certificates.jsonl": "680a25ec97addcfa6ad890064a2a11da21d1c03bd00b175d78c659e2e84b5055",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/survivors.json": "fef0b6a84a3077ef0cec435a6a13a411a36b6024d7951b6862cec4b647e621c1",
+          "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/normal-symmetry-complete/survivor-constraints.jsonl": "20b6658a2f0da18393f1ed256491e7c52612ca910abc68fced19fc7574ac5a4e"
+        },
+        "claim": "Independent exact sign/reconstruction exclusions and feasible shared-latent constraints, with original paired observations bound by exact arguments/environment/source. Surviving relations are necessary constraints, not complete normal CDF programs.",
+        "new_excel_answers": 0,
+        "fresh_validation": 0,
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+        }
+      }
+    },
+    "check-arithmetic-controls.json": {
+      "sha256": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37",
+      "result": {
+        "complete": true,
+        "reference_comparisons": 70,
+        "controls": {
+          "double-rounding-add": 5,
+          "resident-operand-cancellation": 5,
+          "binary64-spill-cancellation": 5,
+          "wide-exponent-add": 5,
+          "wide-exponent-continuation": 5,
+          "tie-underflow-binary64": 5,
+          "negative-division": 5
+        },
+        "input_sha256": "6ef0514386946cd1271d56af1cdc9abb3297f532a75cc66f048b6d570b0e8948",
+        "claim": "Both numeric backends validated against deliberate independent exact rational controls for double rounding, input stores, resident cancellation, spills, extended exponent range, binary64 underflow ties and negative division.",
+        "limits": "Finite suite; zero signs ignored by rational comparison. No global backend equivalence or transcendental equivalence claim. Does not cover the known PC53 extended-exponent underflow discrepancy.",
+        "checker_sha256": {
+          "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+          "check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f"
+        }
+      }
+    },
+    "normal-application-before-after.json": {
+      "sha256": "4a7724e0f97858e856ee8ca0af890e0c37b92398639c1b33e0c8a4433de947e1",
+      "result": {
+        "before_sha256": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "after_sha256": "dbed16a93d7d16d36607bd0fd4c397a9a752a030de4ad32eb043d1360b963f26",
+        "byte_identical": true,
+        "rows": 27473,
+        "pass_count": 13757,
+        "fail_count": 13716,
+        "unread": 0,
+        "numeric_kernel_changed": false
+      }
+    },
+    "function-selection-structure.json": {
+      "sha256": "cef6833766154c83172c1fff61c1d642388a488fa0314223d415846b9e0c97f1",
+      "result": {
+        "measurements": {
+          "NORM.S.DIST": [
+            {
+              "build": "20430",
+              "region": "central",
+              "rows": 1155,
+              "pass": 1138,
+              "fail": 17
+            },
+            {
+              "build": "20430",
+              "region": "middle",
+              "rows": 326,
+              "pass": 196,
+              "fail": 130
+            },
+            {
+              "build": "20430",
+              "region": "tail",
+              "rows": 3834,
+              "pass": 3429,
+              "fail": 405
+            },
+            {
+              "build": "20131",
+              "region": "central",
+              "rows": 1410,
+              "pass": 1056,
+              "fail": 354
+            },
+            {
+              "build": "20131",
+              "region": "middle",
+              "rows": 8370,
+              "pass": 2178,
+              "fail": 6192
+            },
+            {
+              "build": "20131",
+              "region": "tail",
+              "rows": 6715,
+              "fail": 6618,
+              "pass": 97
+            }
+          ],
+          "GAMMA.DIST": [
+            {
+              "build": "20430",
+              "region": "all",
+              "rows": 194,
+              "pass": 194
+            },
+            {
+              "build": "20131",
+              "region": "all",
+              "rows": 72903,
+              "pass": 22469,
+              "fail": 50434
+            },
+            {
+              "build": "20527",
+              "region": "all",
+              "rows": 128,
+              "fail": 128
+            }
+          ]
+        },
+        "choice": "NORM.S.DIST CDF: one scalar and published rational regions; more compact structure than gamma shape/scale/iteration",
+        "diagnostic_only": true,
+        "branches_not_discovered": true,
+        "source_role": "implementer; own math and recorded outcomes"
+      }
+    },
+    "superseded-attempts.json": {
+      "sha256": "7d32fda4bc2c6b362bbdb4b9687893cee5737d5c46d55904485481bea20821e3",
+      "result": {
+        "rejected": [
+          "normal-wrappers-build.log",
+          "normal-wrappers-20131-native.log",
+          "normal-linear-projection/summary.json",
+          "normal-symmetry.log"
+        ],
+        "reasons": [
+          "upstream interface source guard refused build; stale binary rejected unknown command; no search result",
+          "independent checker rejected use of multiply/divide inverse for addition; corrected certificates are under normal-linear-projection-corrected",
+          "symmetry first attempt stopped on an empty inverse; no completed result"
+        ],
+        "accepted_replacements": [
+          "normal-wrappers-current-source-freeze.json",
+          "check-normal-linear-corrected.json",
+          "check-normal-symmetry.json"
+        ],
+        "no_failed_attempt_is_evidence": true
+      }
+    },
+    "normal-original-backend-parity.json": {
+      "sha256": "9fd274ca55bba561741dc09720c5fd315b783e59c090227c4aa7e59e07f703c6",
+      "result": {
+        "20131": {
+          "programs.jsonl": true,
+          "first-kills.jsonl": true,
+          "concrete-helpers.json": true,
+          "survivors.json": true
+        },
+        "20430": {
+          "programs.jsonl": true,
+          "first-kills.jsonl": true,
+          "concrete-helpers.json": true,
+          "survivors.json": true
+        }
+      }
+    },
+    "normal-wrappers-backend-parity.json": {
+      "sha256": "96dc9257fa1ac1529504d8443a08e148aae13c6322f0d07f065d520f40796373",
+      "result": {
+        "20131": {
+          "programs.jsonl": {
+            "native": "1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b",
+            "software": "1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b",
+            "identical": true
+          },
+          "first-kills.jsonl": {
+            "native": "fe28cb8a16f4d60636ae010dbcda52afb8c1aab10b6fa0dcda5b1680697e0d29",
+            "software": "fe28cb8a16f4d60636ae010dbcda52afb8c1aab10b6fa0dcda5b1680697e0d29",
+            "identical": true
+          },
+          "concrete-helpers.json": {
+            "native": "325f6900ca03baea994cd23a663ff141e2c972303db292a8ccba442fb0fbb794",
+            "software": "325f6900ca03baea994cd23a663ff141e2c972303db292a8ccba442fb0fbb794",
+            "identical": true
+          },
+          "survivors.json": {
+            "native": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+            "software": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+            "identical": true
+          }
+        },
+        "20430": {
+          "programs.jsonl": {
+            "native": "1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b",
+            "software": "1eb921ba11062267ca3c87cb77428661f380e895a53ccb254a305873b3f2811b",
+            "identical": true
+          },
+          "first-kills.jsonl": {
+            "native": "d97725f6793df018e7fcee2dc36272085bdcff9fa56cbcaf1dc4cad8fb967d9b",
+            "software": "d97725f6793df018e7fcee2dc36272085bdcff9fa56cbcaf1dc4cad8fb967d9b",
+            "identical": true
+          },
+          "concrete-helpers.json": {
+            "native": "e61b6c2d714561d9767469a0ffc77aa86a65445314833f6371c286c1d02711f4",
+            "software": "e61b6c2d714561d9767469a0ffc77aa86a65445314833f6371c286c1d02711f4",
+            "identical": true
+          },
+          "survivors.json": {
+            "native": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+            "software": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+            "identical": true
+          }
+        }
+      }
+    },
+    "final-research-source-freeze.json": {
+      "sha256": "a422f7946a9c39779aa4c15baa9b8eeb579caf9645c0d57890f091c3aa97685b",
+      "result": {
+        "racer/src/normal.rs": "e8702e0633b7af9c764cc72bdf07b291343f4cf21e89b19a93eb53643f4cb212",
+        "racer/src/main.rs": "65d32bc49165f0a442fdb172ff9df0ec83a00a18e58662263a1b654796deef20",
+        "racer/constants.py": "2816623ef0cbf5a20443d49cf1ffe35415c951f7c8f6e4ca5d6532e9cf347062",
+        "racer/normalizer_intersect.py": "207a7516f00d8122d30208edcc2985f70e24799bc5286a50f02d6a438708ae9b",
+        "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+        "racer/audit.py": "eb19417991cba7ae62e936bd993a0eeb4a0803374abdebec595432654c1ea19b",
+        "checker/normal.py": "2712ada899b1cb294b87f2e0f073c74986d60a6e4595576c262fc785e081569b",
+        "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+        "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "checker/check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f",
+        "checker/test_exact.py": "1d936ff73c85bc12e638d0e85258a5a081c382860ca7059980984ed40ffb9f3a",
+        "normal-cdf-r10-claim.json": "202b30d8bc5fdffbe579ecabd6bad716b4bf95847c8742f3b2be2f109c407dff",
+        "README.txt": "76de171ab729c975ca876a3a7471cc75b78ab9c5e2a7f0ad684c61988718b87e",
+        "normal-cdf-central-r10-unit.json": "84dbfb118496b3506ae1bc604608f415e06f8882488ace914ee83edb2741d1e3",
+        "normal-cdf-hart-r10-constants.json": "7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052",
+        "normal-cdf-hart-r10-unit.json": "401251e4863d54b95dd67192d127ffde6c3c572cc5e987925a8b7f01369c2494",
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "normal-cdf-r10-unit.json": "b6a0bb50b7944d4a5a2e64b362f051f031b9c344248d104191357e414ebee5db",
+        "normal-cdf-relations-r10-unit.json": "c25535266b8beab1b27227af08fd27ed6fcde93010dfdaf972b04f565ca5df5a",
+        "normal-cdf-wrappers-r10-unit.json": "74ea7a692161c66c7a51aa6f246c21446d5d09040dac0e496fe235b8060e2840",
+        "notices/SciPy-cdflib.txt": "b5d8e922d9487e1049b50cfe0d9dc6739f8e4957807b10d6f9bc19d68c9830a5"
+      },
+      "superseded_for_final_source": "final-research-source-freeze-v2.json"
+    },
+    "normal-source-freeze.json": {
+      "sha256": "878a2183b86c49b96a00f6b47f50652c61932b4271e74adf94e13189ab3b2b83",
+      "result": {
+        "source_sha256": {
+          "racer/src/normal.rs": "0bf97ea7d0b49e82d65753eaf0c873fb0503f9a65e8a613c21c1107316ad070f",
+          "racer/src/main.rs": "f4c0b4e84ee11b7d0c24069b02c8871900f65334d164b8852952a347a6db2ed7",
+          "racer/build.rs": "484de046f65db8550d261bc0acd2a1115ff01c3bff21b5eca94a7f9e9e07a1f0",
+          "racer/constants.py": "16765f936795d69a354de4be1f2cc35c80e87ab5617c1ae803cd3f69ec8c9558",
+          "normal-cdf-r10-unit.json": "b6a0bb50b7944d4a5a2e64b362f051f031b9c344248d104191357e414ebee5db",
+          "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+          "Cargo.lock": "b39718507f9f8315a3abd80b038971ab6ff5aadefd637cfa36a4f0a3a9a54650"
+        },
+        "executable_sha256": "a5a4215147b0f9e13b8422b983ffe08d86938706cca1787c864ddaa948528d5f",
+        "rustc": "rustc 1.94.1 (e408947bf 2026-03-25)\nbinary: rustc\ncommit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1\ncommit-date: 2026-03-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.94.1\nLLVM version: 21.1.8\n",
+        "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  16\nOn-line CPU(s) list:                     0-15\nVendor ID:                               AuthenticAMD\nModel name:                              AMD EPYC Processor (with IBPB)\nCPU family:                              23\nModel:                                   1\nThread(s) per core:                      1\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                2\nBogoMIPS:                                5589.49\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl xtopology cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext ssbd ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec xgetbv1 arat\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               512 KiB (16 instances)\nL1i cache:                               1 MiB (16 instances)\nL2 cache:                                8 MiB (16 instances)\nL3 cache:                                8 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-15\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Mitigation; untrained return thunk; SMT disabled\nVulnerability Spec rstack overflow:      Mitigation; SMT disabled\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected\n"
+      }
+    },
+    "normal-wrappers-current-source-freeze.json": {
+      "sha256": "706f9f1aa8589d0897664c30f605bdebd857e713e461059a22bd407614f9d6b9",
+      "result": {
+        "source_sha256": {
+          "racer/src/normal.rs": "02baedddf83161e661fb65ba4013a8bb89bcc81b2fe0cd797a339fd664bedea9",
+          "racer/src/main.rs": "2fca811bb4f3c2de2ea4983a6d34be1956ae3c18c50d730c21d13677941891f5",
+          "normal-cdf-wrappers-r10-unit.json": "74ea7a692161c66c7a51aa6f246c21446d5d09040dac0e496fe235b8060e2840",
+          "checker/normal.py": "6ac7b258989515a945c9ac49976732fb539eed2f31735447f61d9e0e645fdd48"
+        },
+        "executable_sha256": "9d173545036c4d02c26a4127a1cab7caad40519752bc66bd44f085b82f90cd85",
+        "superseded_failed_attempts": [
+          "normal-wrappers-build.log",
+          "normal-wrappers-20131-native.log",
+          "normal-wrappers-source-freeze.json"
+        ],
+        "note": "Guarded rebuild after interface-only upstream e195437; unchanged numeric sources; failed attempts made no measurements"
+      }
+    },
+    "normal-hart-source-freeze.json": {
+      "sha256": "c5c462ca4b889b9736a13bace6f15ce89150d624ba38ae8b18b658e7d7dd0c6b",
+      "result": {
+        "source_sha256": {
+          "racer/src/normal.rs": "8e636f275e59749024e99b559c741f2f1018758f3accc12edd7b1b5d69eb2714",
+          "racer/src/main.rs": "175a0d2b153412a21fcc8179a31c1bd7340c81fa14ae3bb1120cd7816eb8a65f",
+          "normal-cdf-hart-r10-unit.json": "401251e4863d54b95dd67192d127ffde6c3c572cc5e987925a8b7f01369c2494",
+          "normal-cdf-hart-r10-constants.json": "7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052"
+        },
+        "executable_sha256": "3f1c13e75080c24e1bc8db35fe57186552671f1f8a4f54ffaf872029c8d32173"
+      }
+    },
+    "normal-central-source-freeze.json": {
+      "sha256": "3922d9f67559c543303d87a61bbe119f5764053936c4ae79768798b6db976fed",
+      "result": {
+        "source_sha256": {
+          "racer/src/normal.rs": "3d65530c14c3c1b111734034fc5a36dc6bda9d1b6c733439c08c77daef490483",
+          "racer/src/main.rs": "65d32bc49165f0a442fdb172ff9df0ec83a00a18e58662263a1b654796deef20",
+          "normal-cdf-central-r10-unit.json": "84dbfb118496b3506ae1bc604608f415e06f8882488ace914ee83edb2741d1e3"
+        },
+        "executable_sha256": "c3767097eda5c0c95c938c0f2fa97374d467bee3062165b33b3723ce8f33ad67"
+      }
+    },
+    "main-final-state.json": {
+      "sha256": "ec82857941a6d9661076cf708e01b465f0dc587682266ad233b557ff9b616140",
+      "result": {
+        "revision": "3a6507dae1e50e0fc37929673710c87ed3b0f6e1",
+        "status": "",
+        "numeric_source_changes": {}
+      }
+    },
+    "final-generator-reproduction.json": {
+      "sha256": "f0c26e9c7e3424addb4f2b9b74457b1b05fc5e6d8e0802439f0b02d6c015310c",
+      "result": {
+        "all_core_bytes_identical": true,
+        "comparisons": {
+          "repro-linear/profiles.json": true,
+          "repro-linear/certificates.jsonl": true,
+          "repro-linear/survivors.json": true,
+          "repro-symmetry/profiles.json": true,
+          "repro-symmetry/pairs.json": true,
+          "repro-symmetry/certificates.jsonl": true,
+          "repro-symmetry/survivors.json": true,
+          "repro-symmetry/survivor-constraints.jsonl": true,
+          "questions/requests-NORM.S.DIST.json": true,
+          "questions/requests-NORM.S.DIST-lattice.json": true,
+          "questions/requests-NORM.S.DIST-all.json": true,
+          "questions/NORM-predictions.jsonl": true,
+          "questions/NORM-lattice-predictions.json": true,
+          "questions/NORM-selection.json": true,
+          "questions/README-NORM.S.DIST.txt": true,
+          "questions/RUN-ROUND10.txt": true
+        },
+        "limit": "Manifests retain original freeze times/source hashes; no original request or prediction was rewritten."
+      }
+    },
+    "review-precommit-record.json": {
+      "sha256": "1be5b03e94158667ff018f80dae6f50b0c4945c27f488742df3141c6c4db9366",
+      "result": {
+        "review_agent": "/root/r10_review",
+        "read_only": true,
+        "findings_and_actions": [
+          {
+            "finding": "Literal transport observations could contaminate semantic bank",
+            "action": "Main1cd4e51 separates counted audit records; loader regression passed; reviewer approved."
+          },
+          {
+            "finding": "Locale settings missing",
+            "action": "Read-only separator getters added; reviewer approved; Windows COM execution pending."
+          },
+          {
+            "finding": "Timing claim about incidental nonadmitted search previews contradicted tool history",
+            "action": "Removed chronology; source audit records previews seen and not used/saved."
+          },
+          {
+            "finding": "Nodes count includes inputs/constants/conditional leaves",
+            "action": "Changed claim/README/report to full-width trace node values; exponential qualification retained."
+          }
+        ],
+        "independent_review_rechecks": {
+          "PMT_base_bindings": 32,
+          "PMT_gap_rows": 24,
+          "PMT_pass_rows": 8,
+          "total_answer_free_requests": 88,
+          "normal_historical_sign_pairs": 167,
+          "new_positive_companions": 8,
+          "eight_final_v1_receipts_complete": true,
+          "nodes_checked": 15423150
+        },
+        "conclusion": "No other material scope/algorithm defect reported. Final-v2 checker comments and stream-close patch are being validated; final report pending resolved commit/corpus fields."
+      }
+    },
+    "final-v2-checker-matrix.json": {
+      "sha256": "5c7c089cfdde7efb2bf3f6394929c6a3bfc5029cc32a1a902f0431d5edbcda00",
+      "result": [
+        {
+          "case": "final-v2-original-20131",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-original-20430",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-wrappers-20131",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-wrappers-20430",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-hart-20131",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-hart-20430",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-central-20131",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-central-20430",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-linear",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-symmetry",
+          "returncode": 0
+        },
+        {
+          "case": "final-v2-questions",
+          "returncode": 0
+        }
+      ]
+    },
+    "final-research-source-freeze-v2.json": {
+      "sha256": "7ef14f1ffa3bc0f93d5d1ac72ea7f8cb947678d9600042c869a2c03314f2fef9",
+      "result": {
+        "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+        "racer/src/main.rs": "e1470775e1b7dc8ef407b70f96f073aa2a5b9e9e5b83906fed67b30eac5e5790",
+        "racer/constants.py": "2816623ef0cbf5a20443d49cf1ffe35415c951f7c8f6e4ca5d6532e9cf347062",
+        "racer/normalizer_intersect.py": "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb",
+        "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+        "racer/audit.py": "eb19417991cba7ae62e936bd993a0eeb4a0803374abdebec595432654c1ea19b",
+        "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+        "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+        "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "checker/check.py": "af6b1144e7c53bd505dff6de3da89c588c154a30537128bbee576a4a71c1b69f",
+        "checker/test_exact.py": "1d936ff73c85bc12e638d0e85258a5a081c382860ca7059980984ed40ffb9f3a",
+        "normal-cdf-r10-claim.json": "0634fc95331a1a744a6d7dfeae335e9824f5dce5e4d27e038bf14af8b1c528d8",
+        "README.txt": "1494d58f9593e94bc71bb446b9e17fc108510c3d13d2dc8c080c1c921cc419c6",
+        "normal-cdf-central-r10-unit.json": "84dbfb118496b3506ae1bc604608f415e06f8882488ace914ee83edb2741d1e3",
+        "normal-cdf-hart-r10-constants.json": "7160cd558815c221e45717d9f812528d5f14b7a44404c68a462a498ed8cd9052",
+        "normal-cdf-hart-r10-unit.json": "401251e4863d54b95dd67192d127ffde6c3c572cc5e987925a8b7f01369c2494",
+        "normal-cdf-r10-constants.json": "9b3919fabf80abe83d074583074b89f410bb91672cd2e0507b3f42e8d28b538b",
+        "normal-cdf-r10-unit.json": "b6a0bb50b7944d4a5a2e64b362f051f031b9c344248d104191357e414ebee5db",
+        "normal-cdf-relations-r10-unit.json": "c25535266b8beab1b27227af08fd27ed6fcde93010dfdaf972b04f565ca5df5a",
+        "normal-cdf-wrappers-r10-unit.json": "74ea7a692161c66c7a51aa6f246c21446d5d09040dac0e496fe235b8060e2840",
+        "notices/SciPy-cdflib.txt": "b5d8e922d9487e1049b50cfe0d9dc6739f8e4957807b10d6f9bc19d68c9830a5"
+      }
+    }
+  },
+  "validation": {
+    "checker_tests": 11,
+    "preimage_controls": 2007,
+    "reference_comparisons": 70,
+    "main_check": {
+      "platform": "Linux",
+      "result": "153 passed,0 failed,2 Windows-only not run; before push",
+      "resource": {
+        "returncode": 0,
+        "seconds": 135.58811088395305,
+        "child_peak_rss_kib": 1890304,
+        "log": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/main-final-loop-1-check.log",
+        "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"
+      }
+    },
+    "research_build": {
+      "returncode": 0,
+      "seconds": 16.971911730943248,
+      "child_peak_rss_kib": 604160,
+      "log": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/research-build-annotated.log",
+      "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"
+    },
+    "corpus_before_research_commit": {
+      "compared": 21,
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 14,
+        "external_links": 73,
+        "fail": 1191,
+        "failed_or_missing": 1,
+        "failed_or_missing_by_verdict": {
+          "not_run": 1
+        },
+        "formula_cells": 20030,
+        "mismatched": 1184,
+        "pass": 18752,
+        "pass_rate": 0.9361957064403394,
+        "refused": 6
+      },
+      "not_compared": 0,
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 2.2088106890000003,
+        "judge": 0.084763744,
+        "open": 0.10140781699999997,
+        "project": 0.015407343,
+        "recalculation": 1.115064988
+      },
+      "whole_run_failed": 0,
+      "workbooks": 21
+    },
+    "corpus_limit": "This baseline is at the already-pushed observation-reader revision, not a historical pre-reader baseline. No capture; Windows/COM/current20527 reproduction pending.",
+    "checker_tests_log": "checker-tests-annotated.log",
+    "UBS": {
+      "exit_code": 0,
+      "critical": 0,
+      "warnings": 372,
+      "annotation_reason": "Only public digest/numerical comparisons and inherited CLI usage panic suppressed; three new streams now use a context-managed iterator.",
+      "warning_categories": {
+        "py.parsing.json-loads-no-try": 29,
+        "py.perf.io-in-loop": 7,
+        "py.io.open-missing-with": 2
+      },
+      "disposition": {
+        "json_parse_and_open": "Fail closed on malformed trusted research files; no successful receipt on exception. UTF8/ASCII JSON inputs are frozen; outputs are separate new paths.",
+        "indexing_unwrap_assert": "Trusted bounded research grammar and frozen typed trace; independent checker validates bounds and original witness identity. Panics stop research run, never enter application.",
+        "float_comparisons": "Exact binary64 identity/control tests, not approximate numerical acceptance. Exact rational checker independently validates certificates.",
+        "loops_clones_io": "Intentional streaming trace/hash loops and serialized first-kill capture; finite bounded grammar, no network/user input execution.",
+        "ruff_style_and_imports": "Existing compact research style, no numerical semantics; unused aliases and nested helpers do not change accepted certificate scope."
+      },
+      "logs": [
+        "research-ubs-final.log",
+        "research-ubs-annotated.log"
+      ]
+    },
+    "final_checker_source": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round10/final-checker-source-v2"
+  },
+  "supersession": {
+    "rejected": [
+      "normal-wrappers-build.log",
+      "normal-wrappers-20131-native.log",
+      "normal-linear-projection/summary.json",
+      "normal-symmetry.log"
+    ],
+    "reasons": [
+      "upstream interface source guard refused build; stale binary rejected unknown command; no search result",
+      "independent checker rejected use of multiply/divide inverse for addition; corrected certificates are under normal-linear-projection-corrected",
+      "symmetry first attempt stopped on an empty inverse; no completed result"
+    ],
+    "accepted_replacements": [
+      "normal-wrappers-current-source-freeze.json",
+      "check-normal-linear-corrected.json",
+      "check-normal-symmetry.json"
+    ],
+    "no_failed_attempt_is_evidence": true
+  }
+}

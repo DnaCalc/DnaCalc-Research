@@ -294,3 +294,60 @@ All eight numeric source hashes are unchanged. Both rebuilt backend runs have
 byte-identical programs, full first-kill traces and survivors; the 70 independent
 reference comparisons pass. Original measurement units/binaries stay unchanged;
 this rebuild is not fresh Excel validation and supersedes no recorded result.
+
+Round 10 first freezes 64 PMT observation questions: 24 certified gaps and eight
+passing controls re-read numerically, plus 16 literal, eight logical-timing and
+eight text-rate audits. Requests have no answers; historical/application
+predictions remain separate. The reader records requested/submitted/read-back
+inputs and settings. Literal observations stay in counted transport audits
+outside semantic banks. No build 20527 answers exist yet. Use the two commands in
+/home/ubuntu/codex-runs/fresh-questions-r10/RUN-ROUND10.txt on Windows.
+
+The next function is NORM.S.DIST CDF: 13,716 failures in 21,810 calls, one scalar
+argument and published rational regions. GAMMA.DIST CDF has 50,562 failures but
+also shape, scale and iterative structure. Published Cody/SPECFUN and BSD3
+SciPy CDFLIB constants supply fixed sketches; the separate Hart body uses only
+the shorter West 2004 Figure 2 table. Full-Hart higher precision tables remain
+unsearched. No coefficient or helper value is fitted.
+
+The original 18,000 Cody programs and its 72,000 reconstruction extension have
+zero survivors separately on builds 20131 and 20430; the original is a subset,
+not an extra distinct family count. The 7,200 Hart-body profiles and 18,000
+central projections also reject. Central checks use no exponential leaves.
+Eight final independent integer/rational checks verify 15,423,150 full-width
+trace node values. Concrete exponential leaves remain conditional, never identified Excel
+helpers. Native/software traces agree for the original and extended Cody families.
+
+All 275 declared tiny-linear profiles reject even with an arbitrary common Ext80
+coefficient per observation group. Of 660 sign/reconstruction relations, 655
+reject and five remain feasible on 167 old sign pairs. These are necessary
+constraints with an arbitrary latent value per pair, not complete numerical
+programs. The 24 frozen normal questions include eight new positive companions
+to historical negative anchors, and four new mathematical lattice sign pairs.
+Exact conditional outcome sets and a fixed three-case probability interval table
+are recorded separately from requests. MPFR supplies mathematical proposals,
+never Excel answers or private helpers.
+
+The claim, bounds and source audit are normal-cdf-r10-claim.json; receipts and
+source hashes are indexed by round10-result.json. Superseded failed attempts
+remain in the external artifact root, including an invalid add inverse rejected
+by the checker and corrected with the existing inverse_add implementation.
+No numeric kernel, evidence pin or recorded Excel answer changes. All 27,473
+application trace rows are byte-identical before/after: 13,757 pass, 13,716 fail.
+
+For reproduction, set R10 to the outside-repository round10 artifact directory.
+Build against the guarded source revision in the selected unit, then use:
+  DNA_RESEARCH_UNIT=normal-cdf-central-r10-unit.json cargo build --release --offline -p symbolic-racer
+  target/release/symbolic-racer normal-cdf R10/application-NORM.S.DIST-before.jsonl normal-cdf-r10-constants.json R10/new-original 20131 hard
+  python3 checker/normal.py R10/new-original normal-cdf-r10-constants.json R10/application-NORM.S.DIST-before.jsonl R10/new-original-checked.json
+  python3 checker/normal.py linear R10/application-NORM.S.DIST-before.jsonl R10/normal-linear-projection-corrected R10/new-linear-checked.json
+  python3 checker/normal.py symmetry R10/application-NORM.S.DIST-before.jsonl R10/normal-symmetry-complete R10/new-sign-checked.json
+  python3 checker/normal.py questions R10/application-NORM.S.DIST-before.jsonl /home/ubuntu/codex-runs/fresh-questions-r10 R10/new-questions-checked.json
+  python3 -m unittest discover -s checker -v
+
+Primary numerical sources:
+  https://netlib.org/specfun/erf
+  https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/special/cdflib.c
+  https://s2.smu.edu/~aleskovs/emis/sqc2/accuratecumnorm.pdf
+SciPy's BSD3 notice is retained in notices/SciPy-cdflib.txt. The source audit
+records incidental nonadmitted search previews that were not used or saved.

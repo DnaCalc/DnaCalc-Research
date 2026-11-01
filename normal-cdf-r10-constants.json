@@ -1,0 +1,431 @@
+{
+  "provenance": "Published Cody1969/SPECFUN CALERF and SciPy1.14.1 CDFLIB cumnor tables; round each stated decimal once. sqrt2 and reciprocal derived at100decimal digits, never tuned.",
+  "sources": {
+    "cdflib.c": "36582cdcb44d677d17ec403b16110ed4bb737bde37e8ff5e2c69363d8233fd29",
+    "calerf.f": "7de11d2fe801e2d1a011e941f2717a09b553f8e7f3a66260767e5f78dc8ba9a3"
+  },
+  "tables": {
+    "direct_a": [
+      {
+        "decimal": "2.2352520354606839287e00",
+        "binary64": "4001e1cbd1b4f7f3",
+        "ext80_le": "699bbfa78d5e0e8f0040"
+      },
+      {
+        "decimal": "1.6102823106855587881e02",
+        "binary64": "406420e744d785b7",
+        "ext80_le": "ecba2dbc263a07a10640"
+      },
+      {
+        "decimal": "1.0676894854603709582e03",
+        "binary64": "4090aec20879fd71",
+        "ext80_le": "6c8bebcf431076850940"
+      },
+      {
+        "decimal": "1.8154981253343561249e04",
+        "binary64": "40d1babeccdad2ec",
+        "ext80_le": "585f97d666f6d58d0d40"
+      },
+      {
+        "decimal": "6.5682337918207449113e-2",
+        "binary64": "3fb0d08ec54894e1",
+        "ext80_le": "ae08a7442a768486fb3f"
+      }
+    ],
+    "direct_b": [
+      {
+        "decimal": "4.7202581904688241870e01",
+        "binary64": "404799ee342fb2de",
+        "ext80_le": "dbec967da171cfbc0440"
+      },
+      {
+        "decimal": "9.7609855173777669322e02",
+        "binary64": "408e80c9d57e55b8",
+        "ext80_le": "5ac0adf2ab4e06f40840"
+      },
+      {
+        "decimal": "1.0260932208618978205e04",
+        "binary64": "40c40a77529cadc8",
+        "ext80_le": "2c3e6ee594ba53a00c40"
+      },
+      {
+        "decimal": "4.5507789335026729956e04",
+        "binary64": "40e63879423b87ad",
+        "ext80_le": "77643ddc11cac3b10e40"
+      }
+    ],
+    "direct_c": [
+      {
+        "decimal": "3.9894151208813466764e-1",
+        "binary64": "3fd98841fadbdc66",
+        "ext80_le": "7930e3ded60f42ccfd3f"
+      },
+      {
+        "decimal": "8.8831497943883759412e00",
+        "binary64": "4021c42c35b8bc02",
+        "ext80_le": "0c0ce0c5ad61218e0240"
+      },
+      {
+        "decimal": "9.3506656132177855979e01",
+        "binary64": "4057606d0dd78164",
+        "ext80_le": "1f220bbc6e6803bb0540"
+      },
+      {
+        "decimal": "5.9727027639480026226e02",
+        "binary64": "4082aa2986aba462",
+        "ext80_le": "f910235d354c51950840"
+      },
+      {
+        "decimal": "2.4945375852903726711e03",
+        "binary64": "40a37d133e6111ec",
+        "ext80_le": "6d618f08f399e89b0a40"
+      },
+      {
+        "decimal": "6.8481904505362823326e03",
+        "binary64": "40bac030c15dc8d7",
+        "ext80_le": "ccb446ee0a8601d60b40"
+      },
+      {
+        "decimal": "1.1602651437647350124e04",
+        "binary64": "40c6a953624f0f60",
+        "ext80_le": "03027b78129b4ab50c40"
+      },
+      {
+        "decimal": "9.8427148383839780218e03",
+        "binary64": "40c3395b7fd2fc8e",
+        "ext80_le": "c371e497fedbca990c40"
+      },
+      {
+        "decimal": "1.0765576773720192317e-8",
+        "binary64": "3e471e703c5f5815",
+        "ext80_le": "f7aac0fae281f3b8e43f"
+      }
+    ],
+    "direct_d": [
+      {
+        "decimal": "2.2266688044328115691e01",
+        "binary64": "40364445aaec9f9b",
+        "ext80_le": "13d6fc64572d22b20340"
+      },
+      {
+        "decimal": "2.3538790178262499861e02",
+        "binary64": "406d6c69b0ffcde7",
+        "ext80_le": "6e396ffe874d63eb0640"
+      },
+      {
+        "decimal": "1.5193775994075548050e03",
+        "binary64": "4097bd82a96b49bf",
+        "ext80_le": "c8fa4d5a4b15ecbd0940"
+      },
+      {
+        "decimal": "6.4855582982667607550e03",
+        "binary64": "40b9558eeca29d27",
+        "ext80_le": "1935e9146577acca0b40"
+      },
+      {
+        "decimal": "1.8615571640885098091e04",
+        "binary64": "40d22de495c3a6a3",
+        "ext80_le": "081b351dae246f910d40"
+      },
+      {
+        "decimal": "3.4900952721145977266e04",
+        "binary64": "40e10a9e7cb10e86",
+        "ext80_le": "142e7488e5f354880e40"
+      },
+      {
+        "decimal": "3.8912003286093271411e04",
+        "binary64": "40e300001aeb6fe4",
+        "ext80_le": "df217f5bd70000980e40"
+      },
+      {
+        "decimal": "1.9685429676859990727e04",
+        "binary64": "40d3395b7fd35f61",
+        "ext80_le": "2b04fb9afedbca990d40"
+      }
+    ],
+    "direct_p": [
+      {
+        "decimal": "2.1589853405795699e-01",
+        "binary64": "3fcba2902b84421c",
+        "ext80_le": "26dc10225c8114ddfc3f"
+      },
+      {
+        "decimal": "1.274011611602473639e-01",
+        "binary64": "3fc04eae6653ed94",
+        "ext80_le": "4ca26c9f32737582fc3f"
+      },
+      {
+        "decimal": "2.2235277870649807e-02",
+        "binary64": "3f96c4d83d16707a",
+        "ext80_le": "29d083b3e8c126b6f93f"
+      },
+      {
+        "decimal": "1.421619193227893466e-03",
+        "binary64": "3f574ab3fc4e4f8b",
+        "ext80_le": "755b7c72e29f55baf53f"
+      },
+      {
+        "decimal": "2.9112874951168792e-05",
+        "binary64": "3efe86ed886dc483",
+        "ext80_le": "3615246e436c37f4ef3f"
+      },
+      {
+        "decimal": "2.307344176494017303e-02",
+        "binary64": "3f97a090772574da",
+        "ext80_le": "3ecea62bb98304bdf93f"
+      }
+    ],
+    "direct_q": [
+      {
+        "decimal": "1.28426009614491121e00",
+        "binary64": "3ff48c54508800db",
+        "ext80_le": "efdb064084a262a4ff3f"
+      },
+      {
+        "decimal": "4.68238212480865118e-01",
+        "binary64": "3fddf79d6855f0ad",
+        "ext80_le": "cb6885af42ebbceffd3f"
+      },
+      {
+        "decimal": "6.59881378689285515e-02",
+        "binary64": "3fb0e4993e122c39",
+        "ext80_le": "31c56191f0c92487fb3f"
+      },
+      {
+        "decimal": "3.78239633202758244e-03",
+        "binary64": "3f6efc42917d7de7",
+        "ext80_le": "e137efeb8b14e2f7f63f"
+      },
+      {
+        "decimal": "7.29751555083966205e-05",
+        "binary64": "3f132147a014bad1",
+        "ext80_le": "9d89d6a5003d0a99f13f"
+      }
+    ],
+    "erfc_a": [
+      {
+        "decimal": "3.16112374387056560e00",
+        "binary64": "400949fb3ed443e9",
+        "ext80_le": "e6491fa2f6d94fca0040"
+      },
+      {
+        "decimal": "1.13864154151050156e02",
+        "binary64": "405c774e4d365da3",
+        "ext80_le": "bc16edb26972bae30540"
+      },
+      {
+        "decimal": "3.77485237685302021e02",
+        "binary64": "407797c38897528b",
+        "ext80_le": "7e5794ba441cbebc0740"
+      },
+      {
+        "decimal": "3.20937758913846947e03",
+        "binary64": "40a912c1535d121a",
+        "ext80_le": "acd190e89a0a96c80a40"
+      },
+      {
+        "decimal": "1.85777706184603153e-1",
+        "binary64": "3fc7c7905a31c322",
+        "ext80_le": "0010198ed1823cbefc3f"
+      }
+    ],
+    "erfc_b": [
+      {
+        "decimal": "2.36012909523441209e01",
+        "binary64": "403799ee342fb2de",
+        "ext80_le": "c7ec967da171cfbc0340"
+      },
+      {
+        "decimal": "2.44024637934444173e02",
+        "binary64": "406e80c9d57e55b8",
+        "ext80_le": "44c0adf2ab4e06f40640"
+      },
+      {
+        "decimal": "1.28261652607737228e03",
+        "binary64": "40940a77529cadc8",
+        "ext80_le": "543e6ee594ba53a00940"
+      },
+      {
+        "decimal": "2.84423683343917062e03",
+        "binary64": "40a63879423b87ad",
+        "ext80_le": "6d643ddc11cac3b10a40"
+      }
+    ],
+    "erfc_c": [
+      {
+        "decimal": "5.64188496988670089e-1",
+        "binary64": "3fe20dd508eb103e",
+        "ext80_le": "14ed815847a86e90fe3f"
+      },
+      {
+        "decimal": "8.88314979438837594e0",
+        "binary64": "4021c42c35b8bc02",
+        "ext80_le": "0b0ce0c5ad61218e0240"
+      },
+      {
+        "decimal": "6.61191906371416295e01",
+        "binary64": "405087a0d1c420d0",
+        "ext80_le": "d48006218e063d840540"
+      },
+      {
+        "decimal": "2.98635138197400131e02",
+        "binary64": "4072aa2986aba462",
+        "ext80_le": "f410235d354c51950740"
+      },
+      {
+        "decimal": "8.81952221241769090e02",
+        "binary64": "408b8f9e262b9fa3",
+        "ext80_le": "a31afd5c31f17cdc0840"
+      },
+      {
+        "decimal": "1.71204761263407058e03",
+        "binary64": "409ac030c15dc8d7",
+        "ext80_le": "b0b446ee0a8601d60940"
+      },
+      {
+        "decimal": "2.05107837782607147e03",
+        "binary64": "40a0062821236f6b",
+        "ext80_le": "2e567b1b094131800a40"
+      },
+      {
+        "decimal": "1.23033935479799725e03",
+        "binary64": "4093395b7fd2fc8e",
+        "ext80_le": "aa71e497fedbca990940"
+      },
+      {
+        "decimal": "2.15311535474403846e-8",
+        "binary64": "3e571e703c5f5815",
+        "ext80_le": "e2aac0fae281f3b8e53f"
+      }
+    ],
+    "erfc_d": [
+      {
+        "decimal": "1.57449261107098347e01",
+        "binary64": "402f7d66f486ded5",
+        "ext80_le": "68a4f636a437ebfb0240"
+      },
+      {
+        "decimal": "1.17693950891312499e02",
+        "binary64": "405d6c69b0ffcde7",
+        "ext80_le": "42396ffe874d63eb0540"
+      },
+      {
+        "decimal": "5.37181101862009858e02",
+        "binary64": "4080c972e588749e",
+        "ext80_le": "4eeea4432c974b860840"
+      },
+      {
+        "decimal": "1.62138957456669019e03",
+        "binary64": "4099558eeca29d27",
+        "ext80_le": "2435e9146577acca0940"
+      },
+      {
+        "decimal": "3.29079923573345963e03",
+        "binary64": "40a9b599356d1202",
+        "ext80_le": "170f9068abc9accd0a40"
+      },
+      {
+        "decimal": "4.36261909014324716e03",
+        "binary64": "40b10a9e7cb10e86",
+        "ext80_le": "182e7488e5f354880b40"
+      },
+      {
+        "decimal": "3.43936767414372164e03",
+        "binary64": "40aadebc3fc90dbd",
+        "ext80_le": "70e86d48fee1f5d60a40"
+      },
+      {
+        "decimal": "1.23033935480374942e03",
+        "binary64": "4093395b7fd35f61",
+        "ext80_le": "2704fb9afedbca990940"
+      }
+    ],
+    "erfc_p": [
+      {
+        "decimal": "3.05326634961232344e-1",
+        "binary64": "3fd38a78b9f065f6",
+        "ext80_le": "1bae2f83cfc5539cfd3f"
+      },
+      {
+        "decimal": "3.60344899949804439e-1",
+        "binary64": "3fd70fe40e2425b8",
+        "ext80_le": "e5bd2d2171207fb8fd3f"
+      },
+      {
+        "decimal": "1.25781726111229246e-1",
+        "binary64": "3fc0199d980a842f",
+        "ext80_le": "6e742154c0eccc80fc3f"
+      },
+      {
+        "decimal": "1.60837851487422766e-2",
+        "binary64": "3f9078448cd6c5b5",
+        "ext80_le": "41ab2db66624c283f93f"
+      },
+      {
+        "decimal": "6.58749161529837803e-4",
+        "binary64": "3f4595fd0d71e33c",
+        "ext80_le": "8dde198f6be8afacf43f"
+      },
+      {
+        "decimal": "1.63153871373020978e-2",
+        "binary64": "3f90b4fb18b485c7",
+        "ext80_le": "e4382ea4c5d8a785f93f"
+      }
+    ],
+    "erfc_q": [
+      {
+        "decimal": "2.56852019228982242e00",
+        "binary64": "40048c54508800db",
+        "ext80_le": "efdb064084a262a40040"
+      },
+      {
+        "decimal": "1.87295284992346047e00",
+        "binary64": "3ffdf79d6855f0ad",
+        "ext80_le": "b96885af42ebbcefff3f"
+      },
+      {
+        "decimal": "5.27905102951428412e-1",
+        "binary64": "3fe0e4993e122c39",
+        "ext80_le": "31c56191f0c92487fe3f"
+      },
+      {
+        "decimal": "6.05183413124413191e-2",
+        "binary64": "3faefc42917d7de7",
+        "ext80_le": "f237efeb8b14e2f7fa3f"
+      },
+      {
+        "decimal": "2.33520497626869185e-3",
+        "binary64": "3f632147a014bad1",
+        "ext80_le": "8189d6a5003d0a99f63f"
+      }
+    ],
+    "direct_sqrpi": [
+      {
+        "decimal": "3.9894228040143267794e-1",
+        "binary64": "3fd9884533d43651",
+        "ext80_le": "6884b2a19e2942ccfd3f"
+      }
+    ],
+    "erfc_sqrpi": [
+      {
+        "decimal": "5.6418958354775628695e-1",
+        "binary64": "3fe20dd750429b6d",
+        "ext80_le": "8d68db1482ba6e90fe3f"
+      }
+    ],
+    "sqrt2": [
+      {
+        "decimal": "1.414213562373095048801688724209698078569671875376948073176679737990732478462107038850387534327641573",
+        "binary64": "3ff6a09e667f3bcd",
+        "ext80_le": "8464def933f304b5ff3f"
+      }
+    ],
+    "invsqrt2": [
+      {
+        "decimal": "0.7071067811865475244008443621048490392848359376884740365883398689953662392310535194251937671638207862",
+        "binary64": "3fe6a09e667f3bcd",
+        "ext80_le": "8464def933f304b5fe3f"
+      }
+    ]
+  }
+}

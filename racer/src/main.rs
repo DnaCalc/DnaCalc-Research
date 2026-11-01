@@ -13,6 +13,7 @@ mod dsl;
 mod enumerate;
 mod eval;
 mod identity;
+mod normal;
 mod poisson;
 mod saddle;
 mod scheduler;
@@ -456,6 +457,33 @@ fn main() {
         }
         Some("precision-test") => eval::precision_controls(),
         Some("arithmetic-reference-controls") => eval::reference_controls(&a[2]),
+        Some("normal-cdf") => match a.get(6).map(String::as_str) {
+            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],false,false,false),
+            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],false,false,false),
+        },
+        Some("normal-cdf-wrappers") => match a.get(6).map(String::as_str) {
+            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],true,false,false),
+            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],true,false,false),
+        },
+        Some("normal-cdf-hart") => match a.get(6).map(String::as_str) {
+            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],true,true,false),
+            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],true,true,false),
+        },
+        Some("normal-cdf-central") => match a.get(6).map(String::as_str) {
+            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],false,false,true),
+            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],false,false,true),
+        },
+        Some("invoke-inputs") => {
+            let doc:Value=serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
+            let name=doc["function"].as_str().unwrap();
+            let mut output=BufWriter::new(fs::File::create(&a[3]).unwrap());
+            for r in doc["witnesses"].as_array().unwrap() {
+                let args=r["args"].as_array().unwrap().iter().map(|v|calc_verdict::decode_argument(v,"arg").unwrap()).collect();
+                let (got,_)=invoke_control(name,args);
+                writeln!(output,"{}",json!({"id":r["id"],"args":r["args"],"calc_func_prediction":got,
+                    "transport_assumption":"registered typed arguments; literal parsing may change inputs","not_excel_evidence":true})).unwrap();
+            }
+        },
         Some("count-one-full") => {
             let rows = lines::<poisson::MassRow>(&a[2]);
             match a.get(5).map(String::as_str) {
@@ -542,6 +570,6 @@ fn main() {
                 _ => scheduler::run::<Hard>(&rows, output),
             }
         }
-        _ => panic!("prepare TRACE GAPS OUT | self-test SCOPED | run SCOPED OUT [hard|soft]"),
+        _ => panic!("prepare TRACE GAPS OUT | self-test SCOPED | run SCOPED OUT [hard|soft]"), // ubs:ignore — inherited CLI usage failure exits the research process
     }
 }
