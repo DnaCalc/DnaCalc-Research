@@ -529,6 +529,13 @@ fn main() {
         Some("number-input-audit") => route_audit::number_inputs(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("complex-reciprocals") => route_audit::complex_reciprocals(&a[2], &a[3]),
+        Some("distributed-denominators") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => scheduler::denominators::<Soft>(&rows, &a[3]),
+                _ => scheduler::denominators::<Hard>(&rows, &a[3]),
+            }
+        }
         Some("timing-corrections") => {
             let rows = lines::<Row>(&a[2]);
             match a.get(4).map(String::as_str) {
@@ -623,6 +630,13 @@ fn main() {
             match a.get(4).map(String::as_str) {
                 Some("soft") => boundary::timing_helpers::<Soft>(&rows, &a[3], true, true, false),
                 _ => boundary::timing_helpers::<Hard>(&rows, &a[3], true, true, false),
+            }
+        }
+        Some("discount-helpers") => {
+            let rows = lines::<Row>(&a[2]);
+            match a.get(4).map(String::as_str) {
+                Some("soft") => boundary::discount_helpers::<Soft>(&rows, &a[3]),
+                _ => boundary::discount_helpers::<Hard>(&rows, &a[3]),
             }
         }
         Some("timing-helper-pc53") | Some("timing-direct-pc53") => {

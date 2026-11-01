@@ -1,0 +1,93 @@
+{
+  "id": "dc-j9k-r12-final-route-test-publication",
+  "role": "implementer",
+  "application_revision": "48d2c3789599f1477349df973306efcf3b4d62fd",
+  "sources": {
+    "tier1": [
+      "annuity algebra: d=r/(1+r), log(1-d)=-log(1+r)",
+      "IEEE754"
+    ],
+    "tier2": [
+      "current cleared excel_log1p and existing1980 R7 expm1 programs"
+    ],
+    "banned": [
+      "DnaCalc-engine",
+      "tier3 and tier4 sources"
+    ]
+  },
+  "grammar": {
+    "rate_factor_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "discount_division_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "quotient_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "final_multiply_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "helper_programs": 1980,
+    "compatible_profiles": 160380,
+    "consumer": "(PV/em)*d",
+    "helper": "Existing R7 Kahan/difference em with L=-cleared_log1p(-RN53(d)), exponent -n*L. Exactly the same d operation/model feeds log argument and final multiplier; no independently chosen rate."
+  },
+  "scope": "FV0, canonical timing1, positive period and0<rate<=1, normal nonzero balance/target. Research domain d<=1/2 follows the declared real algebra boundary; no product cutoff is proposed. All current R10 observations remain discovery.",
+  "policy": "The18 stored-q discount shells all reject, so test resident quotient alternatives with an explicit correlated producer. First exact contradiction; no fitting, ranking, selected helper or product implementation.",
+  "source_sha256": {
+    "Cargo.lock": "21c5453b5f1a8522310063163dc870b6839c651a81465bacb877c0173f448069",
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "checker/cumulative.py": "5b2ad4e12809b8a826777eaaa22ff3067ed71f33720c844e81829c181e246cf2",
+    "checker/cumulative_balance.py": "2b5efdf75d3367095eeb9694d94f47ad1f49ff49e8136442b1087e6acbe20153",
+    "checker/cumulative_projection.py": "66444943bd0d8d504ed58f24d4ba8aa05389dda12c075a9d0f138d0f6ed9f977",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+    "checker/test_exact.py": "d1decbcca277dc726bbeac904a33bde6507a4d2c2b037d656bc474062af59851",
+    "checker/timing.py": "933747df666ad1d2d4731aaf41c6b4d5dc3ee00bf2294d63313ac91c1672e140",
+    "racer/NumberTextProbe.java": "fd3e4d701156b07227c105ec9ca3750426d26d987e1783d4312d3e8788538c73",
+    "racer/annuity_structure.py": "a0ccacc0ff13a9191906891111ddf73ebd9e4cd82d226701e0e7f4ec4c69d5a3",
+    "racer/audit.py": "7f700134ea057ba48d1113d674e64a58a062ec3b9b104b1e96c5f7ee51f4dee6",
+    "racer/blind_score.py": "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45",
+    "racer/build.rs": "8d283f945a5e71e2b55961b39252a3b11197393d00390c69f18059638e6a009b",
+    "racer/certify.py": "400f8752f53b0a1e6341b858683313b89723e295bc65fcc52b86079974fe0f17",
+    "racer/constants.py": "2816623ef0cbf5a20443d49cf1ffe35415c951f7c8f6e4ca5d6532e9cf347062",
+    "racer/cumulative_projection.py": "a52913ef444f09a62220a532d56a684e0e2cf344c71abd8cfd9649a27f0a166c",
+    "racer/group_eliminate.py": "4ef85ace52fb6126e1c30ece7bdd266ac9b000cedbfc38e6a793a574a8baf557",
+    "racer/growth_preimages.py": "4aae4906580750a2c69c939899cc6d198001dee6119c8c57e8adb0db050a3526",
+    "racer/intersect.py": "213fdcabe5fe24de5dfa7bce6f40cd83ddbf046e5b9e467bf0dd8f4fb721441c",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "racer/normalizer_intersect.py": "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb",
+    "racer/number_conversion.py": "f151488e3efcdcb3fe21d5b5b8507a63bbae3e56d6390d8121e29d3d0b2c9163",
+    "racer/record.py": "1f48e0d691b227e279273d9e9d75fc1ec85638c9a6972f7d602feddf82811261",
+    "racer/src/annuity.rs": "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299",
+    "racer/src/annuity_early.rs": "7f71e407778ac5384d351de284d340f25b7176776bdf4dbcf9b55c03a000e176",
+    "racer/src/boundary.rs": "6062c9eefd8421c118f1e89ef54d8af135ea228dcdafd5b4b92e0b9fa43d60ef",
+    "racer/src/cumulative.rs": "cb33d43aa22afcb0cc84ba1a86b43d6f9ca5b6abef1193c532db0cec6fc8ff88",
+    "racer/src/cumulative_balance.rs": "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/enumerate.rs": "d155883c18e29accf6b5393f8f944ba39940eccc2a0744dfc6548d7f3634fbdd",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/identity.rs": "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5",
+    "racer/src/main.rs": "3e2cc8a60571c633e51ab394df9e1bb8430cbf960e1edc6d390a40c44de4a2b1",
+    "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+    "racer/src/poisson.rs": "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f",
+    "racer/src/route_audit.rs": "7d9ceb826b6c390e50cc7e842b7b82e70ea779c64a193915593bf56a9eb2f8c0",
+    "racer/src/saddle.rs": "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287",
+    "racer/src/scheduler.rs": "2907befcd01e35d36d38ffb7d07d8da3cb736801d2503a715bdf50f4deaf2223",
+    "racer/verify_inverse.py": "099a546fc850e09b9e04a3cb4b17cbc7a6d83f0517429644bb03b558b5bd4d0d"
+  },
+  "parent_unit_sha256": "0a0ae83c0c568966f65a85cc44fe05777321258a88b5b517e56c3afbe7265b63",
+  "source_note": "Rust producer unchanged after its original frozen build; add an independent checker sharing the existing canonical R7 descriptor builder. Current cleared log1p is a recorded shared leaf in both backends; no independent software-log implementation is claimed. All18 stored-q shells reject over the full32 observations; only8 reject within this narrower FV0/timing1 subset, so no resident-only necessity is asserted for this subset.",
+  "route_audit": true,
+  "publication_note": "Same source hashes and completed arithmetic proof. Enable the existing route-audit bridge for the final69-test library/route build; the numeric-only configurations run22 tests. No arithmetic, source or observation changed."
+}

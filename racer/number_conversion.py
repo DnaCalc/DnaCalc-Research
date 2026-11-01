@@ -137,4 +137,132 @@ def run(main, out, stage='nearest'):
     print(json.dumps({k:v for k,v in result.items() if k not in ['programs','inputs']}))
 
 
-if __name__ == '__main__': run(*sys.argv[1:])
+def chunked_evaluate(x, precision, scale, power, chunk_width, scale_round, digit_round, ties):
+    """Decimal positional extraction in fixed chunks, with explicit rounding."""
+    lattice = Lattice(precision, -20000, 20000)
+    trace = []
+    def rounded(value, mode):
+        result = lattice.round(value) if mode == 'nearest' else lattice.value(lattice.floor_coordinate(value))
+        trace.append(dict(exact=str(value), rounded=str(result), mode=mode))
+        return result
+    exponent = decade(x)
+    shift = exponent + 1
+    exact_power = ten(-shift if scale == 'multiply' else shift)
+    p = exact_power if power == 'exact' else rounded(exact_power, 'nearest' if power == 'nearest' else 'truncated')
+    y = rounded(x*p if scale == 'multiply' else x/p, scale_round)
+    coefficient = 0
+    remaining = 15
+    while remaining:
+        take = min(chunk_width, remaining)
+        base = 10**take
+        y = rounded(y*base, digit_round)
+        digits = y // 1
+        coefficient = coefficient*base + digits
+        y = rounded(y-digits, digit_round)
+        remaining -= take
+    up = y > Q(1,2) or (y == Q(1,2) and (ties == 'away' or (ties == 'even' and coefficient % 2)))
+    return (coefficient+up)*ten(exponent-14), trace
+
+
+def chunked_run(main, output):
+    import hashlib
+    rows = observations(Path(main))
+    scoped = [row for row in rows if abs(decade(row['exact_input'])) < 99]
+    programs = []
+    for precision, scale, power, width, scale_round, digit_round, ties in itertools.product(
+            (53,64,96), ('multiply','divide'), ('exact','nearest','truncated'), range(1,16),
+            ('nearest','truncated'), ('nearest','truncated'), ('away','down','even')):
+        program = dict(precision=precision, scale=scale, power=power, chunk_width=width,
+                       scale_round=scale_round, digit_round=digit_round, ties=ties)
+        first_kill = None
+        for order, row in enumerate(scoped):
+            got, trace = chunked_evaluate(row['exact_input'], **program)
+            if got != row['expected_decimal']:
+                first_kill = dict(order=order, observation={k:v for k,v in row.items()
+                    if k not in ['exact_input','expected_decimal']}, exact_input=str(row['exact_input']),
+                    expected_decimal=str(row['expected_decimal']), prediction=str(got), trace=trace)
+                break
+        programs.append(dict(id=len(programs), program=program, first_kill=first_kill))
+    assert len(programs) == 3240
+    result = dict(complete=True, programs=len(programs), survivors=sum(p['first_kill'] is None for p in programs),
+        scoped_rows=len(scoped), excluded_second_rounding=len(rows)-len(scoped), profiles=programs,
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        arithmetic_sha256=hashlib.sha256((Path(__file__).resolve().parents[1]/'checker/exact.py').read_bytes()).hexdigest(),
+        limits='Fixed declared positional extraction family only, original authored operand bits and recorded text. Existing observations are discovery. No fitted switch, selected intermediate, full Excel conversion algorithm or independent validation.')
+    with Path(output).open('x') as sink:
+        json.dump(result, sink, indent=2)
+        sink.write('\n')
+    print(json.dumps({k:v for k,v in result.items() if k != 'profiles'}))
+
+
+def published_poi(main, out, jdk_bin, poi_source, application_records):
+    """Execute the complete published converter without translating its arithmetic."""
+    import hashlib
+    import struct
+    import subprocess
+    out, jdk_bin, poi_source = map(Path, (out, jdk_bin, poi_source))
+    manifest_path = poi_source / 'source-manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    package = poi_source / 'org/apache/poi/ss/util'
+    for name, identity in manifest['files'].items():
+        source = package / name if name.endswith('.java') else poi_source / name
+        if hashlib.sha256(source.read_bytes()).hexdigest() != identity['sha256']:
+            raise ValueError('Published source changed: ' + name)
+    wrapper = Path(__file__).with_name('NumberTextProbe.java')
+    classes = out / 'classes'
+    out.mkdir()
+    classes.mkdir()
+    compile_command = [str(jdk_bin/'javac'), '-d', str(classes), str(wrapper),
+                       *(str(p) for p in sorted(package.glob('*.java')))]
+    compiled = subprocess.run(compile_command, capture_output=True, text=True)  # ubs:ignore — explicitly chosen local compiler; argv only, no shell
+    (out/'compile.log').write_text(compiled.stdout + compiled.stderr)
+    compiled.check_returncode()
+    rows = observations(Path(main))
+    bits = [struct.pack('>d', float.fromhex(row['input'])).hex() for row in rows]
+    command = [str(jdk_bin/'java'), '-cp', str(classes), 'NumberTextProbe']
+    result = subprocess.run(command, input='\n'.join(bits)+'\n', capture_output=True,  # ubs:ignore — explicitly chosen local JVM; argv only, no shell
+                            text=True, check=True)
+    (out/'output.tsv').write_text(result.stdout)
+    (out/'stderr.log').write_text(result.stderr)
+    lines = result.stdout.splitlines()
+    if len(lines) != len(rows):
+        raise ValueError('Published converter row count differs')
+    records = []
+    for row, tag, line in zip(rows, bits, lines):
+        echoed, got = line.split('\t')
+        if echoed != tag:
+            raise ValueError('Published converter operand echo differs')
+        records.append({**{k:v for k,v in row.items() if k not in ['exact_input','expected_decimal']},
+                        'bits':tag, 'POI':got, 'matched':got == row['expected_text']})
+    key = lambda row: (row['case'], row['sheet'], row['row'], row['column'])
+    indexed = {key(row):row for row in records}
+    application_path = Path(application_records)
+    application = json.loads(application_path.read_text())
+    delta = []
+    for actual in application:
+        original = actual['source']
+        predicted = indexed[key(original)]
+        if predicted['bits'] != actual['admitted_bits'] or predicted['expected_text'] != original['expected_text']:
+            raise ValueError('Application binding changed')
+        delta.append(dict(source=original, application=actual['calculated_text'], POI=predicted['POI'],
+                          application_match=actual['matches_original_text'], POI_match=predicted['matched']))
+    summary = dict(rows=len(records), matches=sum(row['matched'] for row in records),
+        failures=sum(not row['matched'] for row in records),
+        audited_overlap=dict(rows=len(delta), application_matches=sum(row['application_match'] for row in delta),
+            POI_matches=sum(row['POI_match'] for row in delta),
+            gains=sum(not row['application_match'] and row['POI_match'] for row in delta),
+            losses=sum(row['application_match'] and not row['POI_match'] for row in delta)),
+        inputs={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in
+                (Path(__file__), wrapper, manifest_path, application_path)},
+        commands=[compile_command, command], records=records, application_delta=delta,
+        limits='Unmodified Apache POI sources on original authored operand bits. Existing captures are discovery; effective Excel input readback is unavailable. No tuned rule or product implementation.')
+    with (out/'result.json').open('x') as output:
+        json.dump(summary, output, indent=2)
+        output.write('\n')
+    print(json.dumps({k:v for k,v in summary.items() if k not in ['records','application_delta']}))
+
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'published-poi': published_poi(*sys.argv[2:])
+    elif sys.argv[1] == 'chunked': chunked_run(*sys.argv[2:])
+    else: run(*sys.argv[1:])

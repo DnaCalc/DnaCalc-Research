@@ -149,6 +149,15 @@ pub fn timing_corrections<F: Fpu>(rows: &[Row], output: &str) {
     );
 }
 
+pub fn denominators<F: Fpu>(rows: &[Row], output: &str) {
+    association_programs::<F>(
+        rows,
+        output,
+        enumerate::denominator_family(),
+        "4 numerator forms x (4 distributed timing denominators with8 sites and2 inverse-rate denominators with7 sites), three arithmetic models at every site:122472 programs. Frozen helper; repeated em remains correlated. Bounded algebraic family only.",
+    );
+}
+
 fn association_programs<F: Fpu>(
     rows: &[Row],
     output: &str,

@@ -1,0 +1,117 @@
+{
+  "round": 12,
+  "status": "partial; requested bug families remain open",
+  "started_utc": "2026-11-01 04:57:54 UTC",
+  "application_revision": "48d2c3789599f1477349df973306efcf3b4d62fd",
+  "product_commit": "19b799bd",
+  "published_research_commits": [
+    "2f483cd",
+    "addf26f",
+    "dc53968"
+  ],
+  "product": {
+    "fixed": "IMSEC complex reciprocal text",
+    "red_before_green_after": true,
+    "corpus_gain": 1,
+    "corpus_losses": 0
+  },
+  "corpus": {
+    "pass_count": 18812,
+    "formula_cells": 20030,
+    "pass_rate": 0.9391912131802297,
+    "fail": 1131,
+    "mismatched": 1124,
+    "refused": 6,
+    "missing": 1,
+    "external_links": 73,
+    "circular_rules": 14,
+    "latest_replay": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/corpus-vba-merged-comparison.json",
+      "sha256": "0712475832b69640d32c73e7a53d1c8ebc74af278682b7e4a899fd7b8694fc1f"
+    }
+  },
+  "bank": {
+    "matched": 3230357,
+    "total": 3874964,
+    "pass_rate": 0.8336482609902957,
+    "failed": 644607,
+    "unread_failures": 116,
+    "decoded_unchanged": 3874848,
+    "gains": 0,
+    "losses": 0,
+    "latest_replay": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/bank-vba-merged/banks-imsec-comparison.json",
+      "sha256": "dbd563dd34ae507d980e5889e9db180df3f79b07f4d402025835a0a96997f6ec"
+    }
+  },
+  "remaining": {
+    "structural": 22,
+    "text": 9,
+    "capture_failures": 3,
+    "annuity_corpus_mismatches": 409,
+    "CUMPRINC": 157
+  },
+  "claims": [
+    {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/annuity-r12-claim.json",
+      "sha256": "c8d06ae323e3c71d954613711503f7c36fe65b0effd242f6f0a4a1f36e33844f"
+    },
+    {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/pc53-r12-claim.json",
+      "sha256": "4d659873931b9728599c982ac585eb7e9099eb93ac6f1f915714a1d20c54a48d"
+    },
+    {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/supplement-r12-claim.json",
+      "sha256": "b9efde004d5501c0788b7e7fb92de19b13367923319581974c5c0e53649cd6ed"
+    }
+  ],
+  "historical_label_audit": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/historical-label-audit.json",
+    "sha256": "dd16217bd08ab65de77f1f2814122c96f39e7ff1835507c8f79c441342e064e8"
+  },
+  "main_full_check": {
+    "passed": 1457,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "packages": 25,
+    "log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/check-vba-merged-all.log",
+      "sha256": "1acb9ceba06b7d8de6a2c1099e9df3b8cafc3989a09f0be9e7d43a7b28d9642e"
+    }
+  },
+  "limits": [
+    "No further product change: distributed denominator programs and chunked conversion programs all reject. No numerical threshold, helper intermediate, rounding selector or answer fitted or installed.",
+    "Denominator exclusions use specified arithmetic models and conditional frozen binary64 helper leaves on original R10 inputs; they do not identify Excel internals or cover every PMT program.",
+    "Chunk exclusions concern first-rounding decimal magnitude on192 existing authored operands. Effective historical Excel operands are unavailable; no full rendering or fresh Excel validation claim.",
+    "The POI converter ran unmodified under its recorded source hashes. Its nine gains are outweighed by133 losses on the audited overlap, so it is not ported.",
+    "The earlier PC53 counts are supersets of earlier crosses, not additional independent programs or gains. Their original basis archives/checkers remain authoritative.",
+    "No Windows capture or browser sweep; the application already returns Num at the three original NaN/reopen capture disagreements. No capture evidence or expected answer changed.",
+    "First formatting/source-guard refusal, initial checker import failure, scanner false positives, prior partial/superseded comparisons and units remain retained as distinct attempts. Main formatter changes were restored; two unrelated research formatting changes remain in a named recoverable stash.",
+    "All18 stored-quotient shells reject over the full32 R10 rows; only8 reject within the narrower FV0/timing1 subset. No resident-only necessity is asserted for that subset. The160380 correlated producer programs include all three quotient models. Current cleared log1p is a shared recorded leaf in both backends, not an independent software-log replay."
+  ],
+  "parent_bead": "dc-j9k remains in_progress",
+  "forbidden_checkout_touched": false,
+  "final_main_merge": "4159470f",
+  "renderer_merge_source_binding": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/renderer-merge-numeric-and-route-source-binding.json",
+    "sha256": "0510e677e6b84f7165ea72feaf2c258bac9ab8a8a94c18ab77c62ea3b8274cf7"
+  },
+  "tracker_merge_preservation": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/tracker-merge-preservation.json",
+    "sha256": "15ba1e02743dde202cd8d9185c2b2f5604601fa6ea08c622d698ae149fd0467d"
+  },
+  "publication": "Final transport status and commit heads are recorded in /home/ubuntu/codex-runs/work-report-12.md. This source/result commit does not embed its own hash.",
+  "final_main_full_check": {
+    "passed": 1457,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "packages": 25,
+    "revision": "4159470f",
+    "log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/check-renderer-merged-all.log",
+      "sha256": "31ac89ef067c09dacaf2d5a309069bc47fad763374f95597dacf8196d7d1b6fa"
+    }
+  }
+}

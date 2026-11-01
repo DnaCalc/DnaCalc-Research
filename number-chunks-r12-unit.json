@@ -1,0 +1,72 @@
+{
+  "id": "dc-j9k-r12-chunked-number-conversion",
+  "role": "implementer",
+  "application_revision": "a84d1ce9",
+  "sources": {
+    "tier1": [
+      "IEEE754",
+      "decimal positional notation"
+    ],
+    "tier2": [
+      "Unmodified Apache POI converter already excluded by9 gains/133losses on audited overlap"
+    ],
+    "banned": [
+      "DnaCalc-engine",
+      "tier3 and tier4 sources"
+    ]
+  },
+  "hypothesis": "Instead of single decimal digit extraction, normalize magnitude into[0.1,1) and extract fixed-size decimal chunks until15 digits are consumed. Natural chunk widths1..15, final shorter chunk, no value-dependent switch. The unknown implementation is not asserted to use a surviving program.",
+  "grammar": {
+    "precision": [
+      53,
+      64,
+      96
+    ],
+    "scale": [
+      "multiply",
+      "divide"
+    ],
+    "power": [
+      "exact",
+      "nearest",
+      "truncated"
+    ],
+    "chunk_width": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "scale_round": [
+      "nearest",
+      "truncated"
+    ],
+    "digit_round": [
+      "nearest",
+      "truncated"
+    ],
+    "ties": [
+      "away",
+      "down",
+      "even"
+    ],
+    "programs": 3240
+  },
+  "scope": "Same192 original conversion observations with abs(decimal exponent)<99; twelve second-rounding cases remain outside this necessary first-rounding constraint. Every modeled operand equals the independently audited current workbook operand; effective Excel input readback is unavailable.",
+  "constraints": [
+    "no fitted constants, tolerances, selectors or exceptions",
+    "first contradiction; never rescue or rank a killed program",
+    "old outputs and observations unchanged"
+  ]
+}

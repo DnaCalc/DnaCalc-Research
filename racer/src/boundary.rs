@@ -328,13 +328,35 @@ pub fn timing_helpers<F: Fpu>(
     direct: bool,
     pc53: bool,
 ) {
+    helper_consumers::<F>(all, output, multiple_logs, direct, pc53, false)
+}
+
+/// Keep the actuarial discount-rate operation correlated with its log input.
+pub fn discount_helpers<F: Fpu>(all: &[Row], output: &str) {
+    helper_consumers::<F>(all, output, false, false, false, true)
+}
+
+fn helper_consumers<F: Fpu>(
+    all: &[Row],
+    output: &str,
+    multiple_logs: bool,
+    direct: bool,
+    pc53: bool,
+    discount: bool,
+) {
     use crate::enumerate::{AssociationCandidate, timing_template};
     let start = Instant::now();
     fs::create_dir(output).unwrap();
     let out = Path::new(output);
     let hs = helpers();
     let helper_count = if direct { 162 } else { hs.len() };
-    let profiles: Vec<_> = (0..if multiple_logs { 5 } else { 1 })
+    let profiles: Vec<_> = (0..if discount {
+        9
+    } else if multiple_logs {
+        5
+    } else {
+        1
+    })
         .flat_map(|lp| {
             (0..helper_count)
                 .map(move |h| json!({"id":lp*helper_count+h,"log_provider":lp,"helper":h}))
@@ -344,17 +366,26 @@ pub fn timing_helpers<F: Fpu>(
     // PC53 consumes full resident operands before rounding its result. This
     // is distinct from Strict, whose operands are first stored to binary64.
     let consumer_models: &[EvalModel] = if pc53 { &WIDE_MODELS[..4] } else { &MODELS };
-    let model_count = consumer_models.len().pow(6);
-    for form in 0..2 {
+    let model_count = consumer_models.len().pow(if discount { 4 } else { 6 });
+    for form in 0..if discount { 1 } else { 2 } {
         let sites = if form == 0 {
             [10, 11, 12, 13, 16, 17]
         } else {
             [10, 11, 12, 13, 14, 17]
         };
         for mut code in 0..model_count {
-            let mut graph = timing_template(0, form);
+            let mut graph = if discount {
+                crate::enumerate::template(0, 5)
+            } else {
+                timing_template(0, form)
+            };
             let mut models = vec![];
-            for site in sites {
+            let active_sites = if discount {
+                vec![10, 11, 12, 13]
+            } else {
+                sites.to_vec()
+            };
+            for site in active_sites {
                 let model = consumer_models[code % consumer_models.len()];
                 code /= consumer_models.len();
                 graph.nodes[site].model = model;
@@ -363,13 +394,20 @@ pub fn timing_helpers<F: Fpu>(
             cs.push(AssociationCandidate {
                 id: cs.len(),
                 numerator: Some(0),
-                combine: 9 + form,
+                combine: if discount { 5 } else { 9 + form },
                 models,
                 graph,
             });
         }
     }
-    assert_eq!(cs.len(), 2 * model_count);
+    assert_eq!(
+        cs.len(),
+        if discount {
+            model_count
+        } else {
+            2 * model_count
+        }
+    );
     if direct {
         let descriptors: Vec<_> = (0..162)
             .map(|id| {
@@ -392,11 +430,25 @@ pub fn timing_helpers<F: Fpu>(
     }
     json_write(out.join("helper-profiles.json"), &profiles);
     json_write(out.join("consumers.json"), &cs);
+    let rate_programs: Vec<usize> = cs
+        .iter()
+        .map(|c| {
+            if !discount {
+                return 0;
+            }
+            let index = |m| MODELS.iter().position(|&v| v == m).unwrap();
+            index(c.models[0]) * 3 + index(c.models[2])
+        })
+        .collect();
+    if discount {
+        json_write(out.join("rate-programs.json"), &rate_programs);
+    }
     let rows: Vec<_> = all
         .iter()
         .filter(|r| {
             let a = r.args();
             a[0] > 0.0
+                && (!discount || (a[0] <= 1.0 && a[3] == 1.0))
                 && (!multiple_logs || a[0] <= 0.25)
                 && nper(r) > 0.0
                 && a[2] == 0.0
@@ -406,8 +458,21 @@ pub fn timing_helpers<F: Fpu>(
                     .is_some_and(|v| v.as_number().is_some_and(f64::is_normal))
         })
         .collect();
-    let mut alive = vec![vec![true; profiles.len()]; cs.len()];
-    let total = profiles.len() * cs.len();
+    let mut alive: Vec<Vec<bool>> = cs
+        .iter()
+        .map(|c| {
+            profiles
+                .iter()
+                .map(|p| {
+                    !discount || p["log_provider"].as_u64().unwrap() as usize == rate_programs[c.id]
+                })
+                .collect()
+        })
+        .collect();
+    let total = alive.iter().flatten().filter(|&&v| v).count();
+    if discount {
+        assert_eq!(total, 160380);
+    }
     let mut remaining = total;
     let mut evaluations = 0usize;
     let mut kills = BufWriter::new(fs::File::create(out.join("first-kills.jsonl")).unwrap());
@@ -420,7 +485,28 @@ pub fn timing_helpers<F: Fpu>(
         }
         let mut values = vec![];
         let mut components = vec![];
-        let log_inputs = if multiple_logs {
+        let mut rate_values = vec![];
+        let log_inputs = if discount {
+            let mut logs = vec![];
+            for tf_model in MODELS {
+                let tf = binop::<F>(
+                    Op::Add(0, 1),
+                    tf_model,
+                    Val::f64(1.0),
+                    Val::f64(r.args()[0]),
+                );
+                for d_model in MODELS {
+                    let d = binop::<F>(Op::Div(0, 1), d_model, Val::f64(r.args()[0]), tf);
+                    let argument = -d.to_f64::<F>();
+                    let raw_log = excel_log1p(argument);
+                    assert!(raw_log.is_finite() && raw_log < 0.0);
+                    logs.push(Val::f64(-raw_log));
+                    rate_values.push(json!({"tf":tf.exact_encoding(),"d":d.exact_encoding(),
+                        "argument":Val::f64(argument).exact_encoding(),"raw_log":Val::f64(raw_log).exact_encoding()}));
+                }
+            }
+            logs
+        } else if multiple_logs {
             crate::annuity_early::logs::<F>(r.args()[0], r.log1p).to_vec()
         } else {
             vec![Val::F64(r.log1p)]
@@ -450,9 +536,13 @@ pub fn timing_helpers<F: Fpu>(
         }
         // Values are records of the declared helper programs, never latent
         // values recovered from the target. Preserve full-width operands.
-        serde_json::to_writer(&mut helper_rows,&json!({"order":order,"witness":r.raw,
+        let mut helper_record = json!({"order":order,"witness":r.raw,
             "trace_index":r.trace_index,"values":values.iter().map(|v|v.exact_encoding()).collect::<Vec<_>>(),
-            "components":components,"log_inputs":log_inputs.iter().map(|v|v.exact_encoding()).collect::<Vec<_>>()})).unwrap();
+            "components":components,"log_inputs":log_inputs.iter().map(|v|v.exact_encoding()).collect::<Vec<_>>()});
+        if discount {
+            helper_record["rate_values"] = json!(rate_values);
+        }
+        serde_json::to_writer(&mut helper_rows, &helper_record).unwrap();
         writeln!(helper_rows).unwrap();
         let mut groups: HashMap<Val, Vec<usize>> = HashMap::new();
         for (h, v) in values.iter().enumerate() {
@@ -512,10 +602,10 @@ pub fn timing_helpers<F: Fpu>(
     json_write(
         out.join("summary.json"),
         &json!({"complete":true,"consumers":cs.len(),
-        "programs":total,"helpers":helper_count,"direct":direct,"consumer_models":consumer_models,"helper_profiles":profiles.len(),"log_providers":if multiple_logs{5}else{1},"survivors":remaining,"consumer_group_evaluations":evaluations,
+        "programs":total,"helpers":helper_count,"direct":direct,"discount":discount,"consumer_models":consumer_models,"helper_profiles":profiles.len(),"log_providers":if discount{9}else if multiple_logs{5}else{1},"survivors":remaining,"consumer_group_evaluations":evaluations,
         "source_rows":all.len(),"scoped_rows":rows.len(),"rows_visited":statistics.len(),
         "seconds":start.elapsed().as_secs_f64(),"backend":std::any::type_name::<F>(),
-        "scope":"FV0,positive rate/periods,normal nonzero balance/targets. Multiple-log mode additionally requires rate<=0.25. Existing helper programs and declared log providers; two correlated timing corrections, six independently annotated sites. Native FYL2XP1 remains a measured hardware leaf in both backend runs. Discovery only; no fitted helper or chosen survivor."}),
+        "scope":if discount { "FV0,canonical timing1,positive period,0<rate<=1,normal nonzero balance/target.81 four-site consumer assignments, each correlated with its own rate-factor/division log input and1980 existing helpers:160380 compatible programs. Cleared log1p/exp/log calls remain recorded conditional leaves. Discovery only; no fitted helper or chosen survivor." } else { "FV0,positive rate/periods,normal nonzero balance/targets. Multiple-log mode additionally requires rate<=0.25. Existing helper programs and declared log providers; two correlated timing corrections, six independently annotated sites. Native FYL2XP1 remains a measured hardware leaf in both backend runs. Discovery only; no fitted helper or chosen survivor." }}),
     );
 }
 pub fn run_wide<F: Fpu + 'static>(all: &[Row], output: &str) {

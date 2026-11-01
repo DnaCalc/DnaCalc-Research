@@ -1,0 +1,41 @@
+{
+  "id": "dc-j9k-r12-discount-rate-product-shell",
+  "role": "implementer",
+  "application_revision": "48d2c3789599f1477349df973306efcf3b4d62fd",
+  "sources": {
+    "tier1": [
+      "annuity algebra: actuarial discount rate d=r/(1+r)",
+      "IEEE754",
+      "original R10 readings"
+    ],
+    "banned": [
+      "DnaCalc-engine",
+      "tier3 and tier4 sources"
+    ]
+  },
+  "rationale": "All24 current numeric gaps have canonical timing1. The existing product uses original rate and a stored quotient. Test the ordinary alternative final multiplier d=r/(1+r) at timing1, with original r at timing0, before any new helper/producer search.",
+  "grammar": {
+    "timing_factor_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "discount_division_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "final_product_models": [
+      "strict",
+      "stored_pc64"
+    ],
+    "profiles": 18,
+    "quotient_domain": "Every finite binary64 quotient, not a selected value"
+  },
+  "scope": "All32 original R10 numeric rows, bound to current actual workbook/registered/direct/save routes. A reachable shell is a necessary condition only, never an identified program or function pass.",
+  "constraints": [
+    "no fitted parameter or target-derived multiplier",
+    "no quotient is selected or installed",
+    "unchanged existing observations and product implementation"
+  ]
+}

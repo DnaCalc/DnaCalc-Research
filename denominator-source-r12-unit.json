@@ -1,0 +1,94 @@
+{
+  "id": "dc-j9k-r12-distributed-annuity-denominator-source",
+  "role": "implementer",
+  "application_revision": "a84d1ce9eadecda43688571c069adf88f9562c49",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "annuity algebra",
+      "IEEE754",
+      "original R10 Excel answers"
+    ],
+    "tier2": [
+      "current cleared DnaCalc numeric operations"
+    ],
+    "banned": [
+      "DnaCalc-engine",
+      "tier3 and tier4 sources"
+    ]
+  },
+  "premise": "Actual route stores its quotient before multiplying by rate; all24 timing1 R10 gaps are outside every binary64 quotient product shell. Explore ordinary distributive denominator identities before the quotient, without changing the frozen helper.",
+  "grammar": {
+    "numerators": "Same four existing three-site numerator forms",
+    "denominators": [
+      "em+(em*r)*timing",
+      "em+em*(r*timing)",
+      "em/r+em*timing",
+      "em*(1/r+timing)"
+    ],
+    "combines": "First two denominators: (N/D)*r and (N*r)/D; last two: N/D.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64"
+    ],
+    "sites": [
+      8,
+      8,
+      8,
+      8,
+      7,
+      7
+    ],
+    "profiles": 122472
+  },
+  "scope": "All32 original finite R10 numeric rows, unchanged raw fields and conditional frozen binary64 log1p/expm1 leaves. No helper identification, fresh validation, fitted parameter, target-derived intermediate or product implementation.",
+  "input": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl",
+    "sha256": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104"
+  },
+  "source_sha256": {
+    "Cargo.lock": "21c5453b5f1a8522310063163dc870b6839c651a81465bacb877c0173f448069",
+    "checker/check.py": "5fccd373beb42c7b69882770e35faaf562d64977dc4a0eaca0efdd19554b9f22",
+    "checker/cumulative.py": "5b2ad4e12809b8a826777eaaa22ff3067ed71f33720c844e81829c181e246cf2",
+    "checker/cumulative_balance.py": "2b5efdf75d3367095eeb9694d94f47ad1f49ff49e8136442b1087e6acbe20153",
+    "checker/cumulative_projection.py": "66444943bd0d8d504ed58f24d4ba8aa05389dda12c075a9d0f138d0f6ed9f977",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+    "checker/test_exact.py": "d1decbcca277dc726bbeac904a33bde6507a4d2c2b037d656bc474062af59851",
+    "checker/timing.py": "b4a8e534ef3ad32b8a70a1cacb4d1935f142ff4367475fe9447002c42b288525",
+    "racer/annuity_structure.py": "a0ccacc0ff13a9191906891111ddf73ebd9e4cd82d226701e0e7f4ec4c69d5a3",
+    "racer/audit.py": "7f700134ea057ba48d1113d674e64a58a062ec3b9b104b1e96c5f7ee51f4dee6",
+    "racer/blind_score.py": "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45",
+    "racer/build.rs": "8d283f945a5e71e2b55961b39252a3b11197393d00390c69f18059638e6a009b",
+    "racer/certify.py": "400f8752f53b0a1e6341b858683313b89723e295bc65fcc52b86079974fe0f17",
+    "racer/constants.py": "2816623ef0cbf5a20443d49cf1ffe35415c951f7c8f6e4ca5d6532e9cf347062",
+    "racer/cumulative_projection.py": "a52913ef444f09a62220a532d56a684e0e2cf344c71abd8cfd9649a27f0a166c",
+    "racer/group_eliminate.py": "4ef85ace52fb6126e1c30ece7bdd266ac9b000cedbfc38e6a793a574a8baf557",
+    "racer/growth_preimages.py": "4aae4906580750a2c69c939899cc6d198001dee6119c8c57e8adb0db050a3526",
+    "racer/intersect.py": "213fdcabe5fe24de5dfa7bce6f40cd83ddbf046e5b9e467bf0dd8f4fb721441c",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "racer/normalizer_intersect.py": "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb",
+    "racer/number_conversion.py": "d43e2bc81fe913fcce55205b808f48a6d11128a6a52d629843ca9157750e1be5",
+    "racer/record.py": "1f48e0d691b227e279273d9e9d75fc1ec85638c9a6972f7d602feddf82811261",
+    "racer/src/annuity.rs": "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299",
+    "racer/src/annuity_early.rs": "7f71e407778ac5384d351de284d340f25b7176776bdf4dbcf9b55c03a000e176",
+    "racer/src/boundary.rs": "cf0c0d71703334c84c886b22996ec3b1fd5198362b32f43c197bb8a84f2f72f8",
+    "racer/src/cumulative.rs": "cb33d43aa22afcb0cc84ba1a86b43d6f9ca5b6abef1193c532db0cec6fc8ff88",
+    "racer/src/cumulative_balance.rs": "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/enumerate.rs": "d155883c18e29accf6b5393f8f944ba39940eccc2a0744dfc6548d7f3634fbdd",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/identity.rs": "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5",
+    "racer/src/main.rs": "a0e234321134ac7716892b184f7f5daf30ca3c41d3ae737191d2bdb59d883d85",
+    "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+    "racer/src/poisson.rs": "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f",
+    "racer/src/route_audit.rs": "7d9ceb826b6c390e50cc7e842b7b82e70ea779c64a193915593bf56a9eb2f8c0",
+    "racer/src/saddle.rs": "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287",
+    "racer/src/scheduler.rs": "2907befcd01e35d36d38ffb7d07d8da3cb736801d2503a715bdf50f4deaf2223",
+    "racer/verify_inverse.py": "099a546fc850e09b9e04a3cb4b17cbc7a6d83f0517429644bb03b558b5bd4d0d"
+  },
+  "parent_unit_sha256": "c48d3c4c260905bf0c326affac4a201c7e04b008168bc61373dafd2036a6e61a",
+  "note": "First build correctly refused unintended dependency formatting before any experiment. Formatter-only main changes restored with saved patch; unrelated research formatter changes preserved in a named stash after dcg rejected discard. Old unit/archive/log retained."
+}

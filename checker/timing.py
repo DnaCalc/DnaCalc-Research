@@ -59,7 +59,7 @@ def preimage(row, models, factor_operation=None, due_form=None):
     return inverse(result,pv,'div',False,models[3])
 
 
-def product_shells(scoped, route_path, output):
+def product_shells(scoped, route_path, output, discount=False):
     """Bind the existing final-product exclusion to the current route audit.
 
     Quantify over every finite binary64 quotient. No helper or quotient is
@@ -80,25 +80,41 @@ def product_shells(scoped, route_path, output):
         require(r and y>=B.value(B.half),'normal nonzero target/rate required')
         counts['rows']+=1
         counts['application_matches']+=route['workbook']==raw['expected']
+        multipliers=[('',r)]
+        if discount:
+            timing=binary64(row['leaves'][3]);require(timing in (0,1),'noncanonical timing')
+            multipliers=[]
+            for factor_model in MODELS:
+                factor=operation(Q(1),r*timing,'add',factor_model)
+                for division_model in MODELS:
+                    d=operation(r,factor,'div',division_model)
+                    multipliers.append((factor_model+'/'+division_model+'/',d))
         shells={}
-        for model,span in (('strict',B.pullback(Span(y,y))),('stored_pc64',product_preimage(y))):
-            interval=span.linear(1/r);exists=B.coordinates(interval)is not None
-            counts[model+'_unreachable']+=not exists
-            neighbors=None
-            if not exists:
-                k=B.floor_coordinate(interval.low)
-                low,high=B.value(k),B.value(k+1)
-                require(low<=interval.low<=interval.high<=high,'incorrect gap bracket')
-                require(not interval.contains(low)and not interval.contains(high),'a quotient reaches the target')
-                require(round_model(low*r,model)!=y and round_model(high*r,model)!=y,'neighbor replay contradicts gap')
-                neighbors=[[str(q.numerator),str(q.denominator)]for q in (low,high)]
-            shells[model]=dict(finite_binary64_quotient_exists=exists,quotient_magnitude_interval=interval.json(),adjacent_magnitudes=neighbors)
+        for label,multiplier in multipliers:
+            for model,span in (('strict',B.pullback(Span(y,y))),('stored_pc64',product_preimage(y))):
+                effective=B.round(multiplier)if model=='strict'else multiplier
+                interval=span.linear(1/effective);exists=B.coordinates(interval)is not None
+                counts[label+model+'_unreachable']+=not exists
+                neighbors=None
+                if not exists:
+                    k=B.floor_coordinate(interval.low)
+                    low,high=B.value(k),B.value(k+1)
+                    require(low<=interval.low<=interval.high<=high,'incorrect gap bracket')
+                    require(not interval.contains(low)and not interval.contains(high),'a quotient reaches the target')
+                    require(round_model(low*effective,model)!=y and round_model(high*effective,model)!=y,'neighbor replay contradicts gap')
+                    neighbors=[[str(q.numerator),str(q.denominator)]for q in (low,high)]
+                shells[label+model]=dict(finite_binary64_quotient_exists=exists,quotient_magnitude_interval=interval.json(),adjacent_magnitudes=neighbors)
+                if discount:shells[label+model]['effective_multiplier']=[str(effective.numerator),str(effective.denominator)]
         proofs.append(dict(witness=raw,route=route,shells=shells))
     require(LOADED_SOURCE=={**source_hashes(),'timing.py':digest(Path(__file__))},'checker sources changed')
     receipt=dict(complete=True,counts=counts,proofs=proofs,seconds=time.monotonic()-start,
         inputs={str(p):digest(p)for p in (scoped,route_path)},checker_sha256=LOADED_SOURCE,
         claim='Every excluded normal target lies outside the final RN53(q*r) and RN53(RN64(q*r)) shells for every finite binary64 q. The original current-build observations and unchanged application routes are bound explicitly.',
         limits='This identifies a necessary structural difference at or before the final product. It does not identify an executable quotient/helper producer, prove a particular Excel precision, or score reachability as a match.')
+    if discount:
+        receipt.update(profiles=18,all_rows_reachable_profiles=[key[:-12]for key,count in counts.items()if key.endswith('_unreachable')and not count],
+            claim='Exact product preimages quantify over every finite binary64 q for the18 declared final actuarial-discount-rate shells. The multiplier is calculated solely from rate/timing and fixed arithmetic models, never from an answer.',
+            limits='A nonempty shell is only a necessary reachability condition, not an executable quotient/helper or a matched function. No fitted or selected intermediate, product change or claim about other multipliers/precision programs.')
     with output.open('x')as f:json.dump(receipt,f,indent=2);f.write('\n')
     print(json.dumps({k:v for k,v in receipt.items()if k!='proofs'}))
 
@@ -243,12 +259,8 @@ def pc53_equivalence(basis_path,directory,archive_path,output):
     print(json.dumps(receipt))
 
 
-def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False,pc53=False):
-    """Check grouped first kills of the complete finite helper/consumer cross."""
+def canonical_kahan_helpers():
     import itertools
-    start=time.monotonic()
-    hs=json.loads((directory/'helpers.json').read_text())
-    cs=json.loads((directory/'consumers.json').read_text())
     expected=[]
     for t,exp_store,difference,correction in itertools.product(MODELS,(True,False),MODELS,(True,False)):
         for log_store in ((True,False)if correction else(True,)):
@@ -257,6 +269,99 @@ def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False,pc53
                     for em_store in (True,False):
                         expected.append(dict(id=len(expected),t=t,exp_store=exp_store,difference=difference,
                             log_store=log_store,association=association,arithmetic=[a,b],em_store=em_store,correction=correction))
+    return expected
+
+
+def discount_helpers(scoped,directory,output):
+    """Check the correlated actuarial log and resident-quotient cross."""
+    start=time.monotonic()
+    hs=json.loads((directory/'helpers.json').read_text())
+    require(hs==canonical_kahan_helpers(),'discount helper grammar differs')
+    profiles=[dict(id=dp*1980+h,log_provider=dp,helper=h)for dp in range(9)for h in range(1980)]
+    require(json.loads((directory/'helper-profiles.json').read_text())==profiles,'discount helper profiles differ')
+    cs=json.loads((directory/'consumers.json').read_text())
+    require(len(cs)==81,'discount consumer count differs')
+    rate_programs=[]
+    ops=[{'arg':i}for i in range(5)]+[{'const':{'bits':0x3ff0000000000000}},
+         {'add':[5,4]},{'mul':[2,6]},{'add':[1,7]},{'mul':[0,3]},
+         {'add':[5,9]},{'div':[8,4]},{'div':[0,10]},{'mul':[11,12]}]
+    for cid,c in enumerate(cs):
+        code=cid;models=[]
+        for _ in range(4):models.append(MODELS[code%3]);code//=3
+        require(c['id']==cid and c['numerator']==0 and c['combine']==5 and c['models']==models,
+                'discount consumer identity differs')
+        g=c['graph'];require(len(g['nodes'])==14 and g['output']==13,'discount graph layout differs')
+        require([n['op']for n in g['nodes']]==ops and graph_shape(g)==expected_shape(0,5),'discount graph shape differs')
+        for i,node in enumerate(g['nodes']):
+            require(node['model']==(models[i-10]if i>=10 else'strict'),'discount site annotation differs')
+        rate_programs.append(MODELS.index(models[0])*3+MODELS.index(models[2]))
+    require(json.loads((directory/'rate-programs.json').read_text())==rate_programs,'rate/consumer correlation differs')
+    originals={r['trace_index']:r for r in records(scoped)}
+    rows={};elementary={};components=0
+    for entry in records(directory/'helper-values.jsonl'):
+        row=originals[entry['trace_index']];validate_row(row)
+        r,pv,fv,timing,_=map(binary64,row['leaves']);n=binary64(row['raw']['args'][1])
+        require(0<r<=1 and pv and fv==0 and timing==1 and n>0,'outside discount producer scope')
+        require(row['raw']==entry['witness']and entry['order']not in rows,'changed/duplicate discount helper row')
+        logs=list(map(tagged_value,entry['log_inputs']));require(len(logs)==len(entry['rate_values'])==9,'discount rate coverage differs')
+        for dp,value in enumerate(entry['rate_values']):
+            tf=operation(Q(1),r,'add',MODELS[dp//3]);d=operation(r,tf,'div',MODELS[dp%3])
+            argument=-B.round(d);raw_log=tagged_value(value['raw_log'])
+            require(tagged_value(value['tf'])==tf and tagged_value(value['d'])==d,'discount rate arithmetic differs')
+            require(value['argument'].startswith('binary64:')and tagged_value(value['argument'])==argument,
+                    'discount logarithm argument changed')
+            require(value['raw_log'].startswith('binary64:')and raw_log<0 and logs[dp]==-raw_log,
+                    'discount logarithm result/sign differs')
+            key=('cleared_log1p',argument)
+            require(key not in elementary or elementary[key]==raw_log,'repeated log1p input has different values')
+            elementary[key]=raw_log
+        require(len(entry['components'])==len(entry['values'])==len(profiles),'discount helper row incomplete')
+        for p,comp,value in zip(profiles,entry['components'],entry['values']):
+            em=helper_component(hs[p['helper']],comp,n,logs[p['log_provider']],elementary)
+            require(comp['em']==value and B.round(em)is not None,'discount helper publication differs')
+            for model in MODELS:require(B.round(operation(Q(1),em,'add',model))is not None,'neutral numerator overflows')
+            components+=1
+        rows[entry['order']]=(row,entry)
+    seen=set();groups=nodes=0
+    for kill in records(directory/'first-kills.jsonl'):
+        row,entry=rows[kill['order']];cid=kill['consumer']
+        require(type(cid)is int and 0<=cid<81,'discount consumer ID outside grammar')
+        require(kill['trace_index']==row['trace_index']and kill['witness']==row['raw'],'discount witness changed')
+        require(kill['expected']==row['raw']['expected']and kill['got']!=kill['expected'],'discount kill is not a contradiction')
+        require(kill['helpers'],'empty discount helper group')
+        for hid in kill['helpers']:
+            require(type(hid)is int and 0<=hid<len(profiles)and (cid,hid)not in seen,'duplicate/invalid discount profile')
+            require(profiles[hid]['log_provider']==rate_programs[cid],'uncorrelated log/final discount rate')
+            require(entry['values'][hid]==kill['helper_value'],'grouped discount helpers differ')
+            seen.add((cid,hid))
+        args=list(map(binary64,row['leaves']));args[4]=tagged_value(kill['helper_value'])
+        graph=cs[cid]['graph'];trace=graph_trace(graph,args)
+        require(list(map(tagged_value,kill['nodes']))==trace,'discount consumer trace differs')
+        require(trace[8]==args[1]and trace[12]==tagged_value(entry['rate_values'][rate_programs[cid]]['d']),
+                'neutral numerator or correlated multiplier differs')
+        require(B.round(trace[13])==binary64(kill['got']),'discount consumer publication differs')
+        groups+=1;nodes+=len(trace)
+    require(len(seen)==160380,'discount compatible profile coverage incomplete')
+    require(json.loads((directory/'survivors.json').read_text())==[],'discount survivors remain')
+    require(LOADED_SOURCE=={**source_hashes(),'timing.py':digest(Path(__file__))},'discount checker source changed')
+    inputs=[scoped,*[directory/n for n in ('helpers.json','helper-profiles.json','consumers.json','rate-programs.json','helper-values.jsonl','first-kills.jsonl','survivors.json','summary.json')]]
+    receipt=dict(complete=True,programs=160380,eliminated=len(seen),survivors=0,
+        checked_helper_program_rows=components,checked_consumer_groups=groups,checked_consumer_nodes=nodes,
+        original_rows=len(rows),elementary_constraints=len(elementary),seconds=time.monotonic()-start,
+        checker_sha256=LOADED_SOURCE,inputs={str(p):digest(p)for p in inputs},
+        claim='All160380 compatible actuarial-discount producer/consumer programs contradict original R10 observations. The same rate-factor/division operations determine the cleared log1p argument and final multiplier. Every helper arithmetic/store and grouped consumer trace is checked exactly.',
+        limits='FV0,timing1,0<rate<=1,positive period/normal targets; existing R7 helpers and three arithmetic models only. Cleared log1p/exp/log values are recorded conditional leaves with repeated-operand consistency, not identified Excel helpers. No fitted value, selected survivor or product gain.')
+    with output.open('x')as sink:json.dump(receipt,sink,indent=2);sink.write('\n')
+    print(json.dumps(receipt))
+
+
+def timing_helpers(scoped,directory,output,multiple_logs=False,direct=False,pc53=False):
+    """Check grouped first kills of the complete finite helper/consumer cross."""
+    import itertools
+    start=time.monotonic()
+    hs=json.loads((directory/'helpers.json').read_text())
+    cs=json.loads((directory/'consumers.json').read_text())
+    expected=canonical_kahan_helpers()
     if direct:
         expected=[]
         for hid in range(162):
@@ -433,6 +538,8 @@ def run(scoped, directory, output, factor=False, due=False):
 
 if __name__=='__main__':
     if sys.argv[1]=='product-shells':product_shells(*(Path(p)for p in sys.argv[2:5]))
+    elif sys.argv[1]=='discount-shells':product_shells(*(Path(p)for p in sys.argv[2:5]),discount=True)
+    elif sys.argv[1]=='discount-helpers':discount_helpers(*(Path(p)for p in sys.argv[2:5]))
     elif sys.argv[1]=='pc53-equivalence':pc53_equivalence(*(Path(p)for p in sys.argv[2:6]))
     elif sys.argv[1]=='timing-helpers':timing_helpers(*(Path(p)for p in sys.argv[2:5]),multiple_logs='--logs'in sys.argv[5:],direct='--direct'in sys.argv[5:],pc53='--pc53'in sys.argv[5:])
     else:run(*(Path(p)for p in sys.argv[1:4]),factor='--factor'in sys.argv[4:],due='--due-rate-factor'in sys.argv[4:])

@@ -256,6 +256,91 @@ pub fn timing_family() -> Vec<AssociationCandidate> {
     result
 }
 
+/// Distribute the timing factor into the annuity denominator before division.
+/// Every form is the same real-valued annuity identity; repeated em is shared.
+pub fn denominator_template(numerator: usize, form: usize) -> Graph {
+    let mut graph = template(numerator, 0);
+    graph.nodes.truncate(9); // retain the existing leaves and numerator only
+    let mut push = |op| {
+        graph.nodes.push(Node {
+            op,
+            model: EvalModel::Strict,
+        });
+        graph.nodes.len() - 1
+    };
+    let output = match form {
+        0..=3 => {
+            let adjustment = if form < 2 {
+                let er = push(Op::Mul(4, 0));
+                push(Op::Mul(er, 3))
+            } else {
+                let rt = push(Op::Mul(0, 3));
+                push(Op::Mul(4, rt))
+            };
+            let denominator = push(Op::Add(4, adjustment));
+            if form % 2 == 0 {
+                let quotient = push(Op::Div(8, denominator));
+                push(Op::Mul(quotient, 0))
+            } else {
+                let product = push(Op::Mul(8, 0));
+                push(Op::Div(product, denominator))
+            }
+        }
+        4 => {
+            let er = push(Op::Div(4, 0));
+            let et = push(Op::Mul(4, 3));
+            let denominator = push(Op::Add(er, et));
+            push(Op::Div(8, denominator))
+        }
+        5 => {
+            let inverse_rate = push(Op::Div(5, 0));
+            let term = push(Op::Add(inverse_rate, 3));
+            let denominator = push(Op::Mul(4, term));
+            push(Op::Div(8, denominator))
+        }
+        _ => unreachable!(),
+    };
+    graph.output = output;
+    graph
+}
+
+pub fn denominator_family() -> Vec<AssociationCandidate> {
+    let mut result = Vec::new();
+    for numerator in 0..4 {
+        for form in 0..6 {
+            let template = denominator_template(numerator, form);
+            let sites: Vec<_> = template
+                .nodes
+                .iter()
+                .enumerate()
+                .filter_map(|(i, n)| {
+                    matches!(n.op, Op::Add(..) | Op::Mul(..) | Op::Div(..)).then_some(i)
+                })
+                .collect();
+            assert_eq!(sites.len(), if form < 4 { 8 } else { 7 });
+            for mut code in 0..3usize.pow(sites.len() as u32) {
+                let mut graph = template.clone();
+                let mut models = Vec::new();
+                for &site in &sites {
+                    let model = MODELS[code % 3];
+                    code /= 3;
+                    graph.nodes[site].model = model;
+                    models.push(model);
+                }
+                result.push(AssociationCandidate {
+                    id: result.len(),
+                    numerator: Some(numerator),
+                    combine: 12 + form,
+                    models,
+                    graph,
+                });
+            }
+        }
+    }
+    assert_eq!(result.len(), 122472);
+    result
+}
+
 pub fn model_variants(g: &Graph) -> Vec<([EvalModel; 8], Graph)> {
     let ids: Vec<_> = g
         .nodes

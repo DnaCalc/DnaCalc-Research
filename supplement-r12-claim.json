@@ -1,0 +1,233 @@
+{
+  "id": "dc-j9k-r12-final-supplement",
+  "application_revision": "48d2c3789599f1477349df973306efcf3b4d62fd",
+  "unit": {
+    "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/discount-route-r12-unit.json",
+    "sha256": "77342ab00fcc9d6b05edb30a27a8d0737a044a1d2f79c4094fa54c75dadbbaa0"
+  },
+  "source_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/round12-publication-source.tar.gz",
+    "sha256": "b0da5f6973d08d89edf63602eda8c7308a25b52aa575a5f298b62bdb74e4df45"
+  },
+  "prior_claims": [
+    {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/annuity-r12-claim.json",
+      "sha256": "c8d06ae323e3c71d954613711503f7c36fe65b0effd242f6f0a4a1f36e33844f"
+    },
+    {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/pc53-r12-claim.json",
+      "sha256": "4d659873931b9728599c982ac585eb7e9099eb93ac6f1f915714a1d20c54a48d"
+    }
+  ],
+  "historical_label_audit": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/historical-label-audit.json",
+    "sha256": "dd16217bd08ab65de77f1f2814122c96f39e7ff1835507c8f79c441342e064e8"
+  },
+  "historical_conclusion": "All32 historical labels are copied older Excel answers and all32 are reproduced by the R10 Excel rereadings. Frozen research actuals and current workbook outputs agree32/32 and both score8/32. All48 current semantic workbook/registered/direct/save routes agree. No historical working application executable or demonstrated route regression is identified.",
+  "distributed_denominator": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/denominator-published-checked.json",
+    "sha256": "32463d6b188b7564073af571f953eef65ca3a7d411754b7464c761bfa104011f",
+    "receipt": {
+      "complete": true,
+      "grammar_programs": 122472,
+      "checked_first_kills": 122472,
+      "checked_full_width_nodes": 1697112,
+      "witness_counts": {
+        "r10-pmt-22": 58968,
+        "r10-pmt-20": 6372,
+        "r10-pmt-02": 57132
+      },
+      "seconds": 137.36616376088932,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/denominator-native/programs.jsonl": "d80c3983f57e35f36c44b07e965ec7867e00d7397633d976ce4893c2459c45af",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/denominator-native/first-kills.jsonl": "6d9c64388cd807bcae2c5b13925c78732879775ba936c96a10bd6c6214553de0"
+      },
+      "family": "denominator",
+      "claim": "Every annotated program in the declared association family is contradicted by a trusted original witness; every stored/resident operation in its first-kill trace is independently checked as an exact rational.",
+      "limits": "This bounded grammar only, frozen binary64 helper leaves. Intermediate zero signs are retained in traces but rational checking ignores them; no zero divisor occurs in the checked traces and PMT normalizes published zero. No conclusion about Excel internals or other arms.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+      }
+    }
+  },
+  "number_chunks": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/number-chunks-published-checked.json",
+    "sha256": "d146cfc0e5d4709301691c888fd1a5d0b1e5a8a50a6c238122b96f1889668093",
+    "receipt": {
+      "complete": true,
+      "programs": 3240,
+      "survivors": 0,
+      "checked_rounding_nodes": 29592,
+      "observations": 192,
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/number-inputs.json": "cac6df9f114510cd60ca068d56d37b24defb02e14ab09d9f16f9397b5a432a13",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-number/records.json": "c7809f55bc5613baf7c250d1d5839f430bf777015b18510abf52abdb66a9fc1f",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/number-chunks.json": "c862b8f22b183580ba6097bd4617bf86b76743a98ae10d4832f9a694010b43b8",
+        "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/number_conversion.py": "f151488e3efcdcb3fe21d5b5b8507a63bbae3e56d6390d8121e29d3d0b2c9163"
+      },
+      "claim": "Every declared chunk profile has an exact contradiction; all trace nodes are checked using separate integer quotient/remainder rounding, without calling the search evaluator or its Lattice rounder.",
+      "limits": "First-rounding decimal magnitude on192 existing authored operands only, conditional on effective Excel operands matching those authored values. No full rendering, fresh Excel validation, fitted rule or product gain.",
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+      }
+    }
+  },
+  "corruption_control": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/number-chunks-corruption-final-control.json",
+    "sha256": "dba57107453ffc80b4f0ebe14fac039e542d289c4cdc29e3ca4fb7152b72f63c"
+  },
+  "published_POI": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/poi-final-replay/result.json",
+    "sha256": "d24615e242570373d6a7c91e725ca834a97056a1b1890a3dbb72f2a92beedca1"
+  },
+  "POI_counts": {
+    "all_rows": 204,
+    "matches": 71,
+    "failures": 133,
+    "audited_overlap_rows": 192,
+    "application_matches": 183,
+    "POI_matches": 59,
+    "gains": 9,
+    "losses": 133,
+    "ported": false
+  },
+  "backend_comparison": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/vba-backend-comparison.json",
+    "sha256": "6b7e1f9259971c9ce9095ecb6df9d57a2784f1898314b7abf10cbdc6db0673c8"
+  },
+  "main_full_check": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/check-vba-merged-all.log",
+    "sha256": "1acb9ceba06b7d8de6a2c1099e9df3b8cafc3989a09f0be9e7d43a7b28d9642e"
+  },
+  "validation": {
+    "main_native_passed": 1457,
+    "main_native_failed": 0,
+    "main_native_ignored": 5,
+    "main_native_not_run": 3,
+    "main_native_packages": 25,
+    "research_Rust_passed": 69,
+    "research_Rust_ignored": 2,
+    "research_Rust_log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/publication-route-native-tests.log",
+      "sha256": "06c43b791915f6e00a0edbc943f956b9cea117b774f58de91aec9d5b3c438a14"
+    },
+    "checker_controls": 18,
+    "small_lattice_cases": 1504,
+    "checker_log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-final-checker-controls.log",
+      "sha256": "34be04bf020754cddf6862e914f56dde125c480c26ea44626c4895b4e7e84aa4"
+    },
+    "UBS": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/ubs-discount-triage.json",
+      "sha256": "d69f5629fc6f793f6a8beacef50ac0c0477afaf88ebbc9fc88dfb9bc7ccde7b8"
+    },
+    "research_software_Rust_passed": 22,
+    "research_software_Rust_ignored": 2,
+    "research_software_Rust_log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-final-rust-tests.log",
+      "sha256": "7daa1ad3ef7c0139e1ae6316db3e6d30340e58ce38562f9477a2279342513e93"
+    },
+    "final_main_native_all": {
+      "passed": 1457,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 25,
+      "revision": "4159470f",
+      "log": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/check-renderer-merged-all.log",
+        "sha256": "31ac89ef067c09dacaf2d5a309069bc47fad763374f95597dacf8196d7d1b6fa"
+      }
+    }
+  },
+  "remaining": {
+    "structural": 22,
+    "text": 9,
+    "capture_failures": 3,
+    "annuity_corpus_mismatches": 409,
+    "CUMPRINC": 157
+  },
+  "limits": [
+    "No further product change: distributed denominator programs and chunked conversion programs all reject. No numerical threshold, helper intermediate, rounding selector or answer fitted or installed.",
+    "Denominator exclusions use specified arithmetic models and conditional frozen binary64 helper leaves on original R10 inputs; they do not identify Excel internals or cover every PMT program.",
+    "Chunk exclusions concern first-rounding decimal magnitude on192 existing authored operands. Effective historical Excel operands are unavailable; no full rendering or fresh Excel validation claim.",
+    "The POI converter ran unmodified under its recorded source hashes. Its nine gains are outweighed by133 losses on the audited overlap, so it is not ported.",
+    "The earlier PC53 counts are supersets of earlier crosses, not additional independent programs or gains. Their original basis archives/checkers remain authoritative.",
+    "No Windows capture or browser sweep; the application already returns Num at the three original NaN/reopen capture disagreements. No capture evidence or expected answer changed.",
+    "First formatting/source-guard refusal, initial checker import failure, scanner false positives, prior partial/superseded comparisons and units remain retained as distinct attempts. Main formatter changes were restored; two unrelated research formatting changes remain in a named recoverable stash."
+  ],
+  "previous_source_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/vba-merged-r12-source.tar.gz",
+    "sha256": "ea7e0aa1755f7e679ddd8c7fb078b06ccd9b1a89e11cf6ffa37463fb88a69310"
+  },
+  "discount_producer": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-independent-checked.json",
+    "sha256": "c5f80159bf6aed30727b06fa2b35177d9eed0ec49717c2d900a3fe9963e71e98",
+    "receipt": {
+      "complete": true,
+      "programs": 160380,
+      "eliminated": 160380,
+      "survivors": 0,
+      "checked_helper_program_rows": 53460,
+      "checked_consumer_groups": 2963,
+      "checked_consumer_nodes": 41482,
+      "original_rows": 3,
+      "elementary_constraints": 19,
+      "seconds": 52.22310640080832,
+      "checker_sha256": {
+        "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+        "check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+        "timing.py": "933747df666ad1d2d4731aaf41c6b4d5dc3ee00bf2294d63313ac91c1672e140"
+      },
+      "inputs": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/timing-frozen/scoped.jsonl": "07db6557c5c2652b138090ba144669ed1683ec9cb62d03b393f6e66f8cce1104",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/helpers.json": "27e010900220cb9c066455ede368b03a506a09ec8155755d6c9a86783de14f5e",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/helper-profiles.json": "c67212ff23c1b5bee15b83e846465a2aa616007f4589bde70750bca687e7878e",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/consumers.json": "78ea86e1397d75117441b7696a86942336de27934163ace44b1b4b5e1be67a8d",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/rate-programs.json": "5a8bdc5d921721af98e4b41e9a470af882a968b6a52454f42d9b5b87ea0840d5",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/helper-values.jsonl": "ace696d9199292c5a3df881a96756d96b0f1a0d5d0b84da435cb3960b7c7fd2f",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/first-kills.jsonl": "7f1ba9f7994073c286a011b3b365566512acd2605095e9365c0ad9b0eef3c097",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-producer-native/summary.json": "9656a66c7ba411d33fd0aa076f043f977a1a1c1ea6feb51716ae86a278d73d86"
+      },
+      "claim": "All160380 compatible actuarial-discount producer/consumer programs contradict original R10 observations. The same rate-factor/division operations determine the cleared log1p argument and final multiplier. Every helper arithmetic/store and grouped consumer trace is checked exactly.",
+      "limits": "FV0,timing1,0<rate<=1,positive period/normal targets; existing R7 helpers and three arithmetic models only. Cleared log1p/exp/log values are recorded conditional leaves with repeated-operand consistency, not identified Excel helpers. No fitted value, selected survivor or product gain."
+    }
+  },
+  "discount_shells": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-rate-shells.json",
+    "sha256": "764b93b3c21be7e3183da0d713cca1846d2c899d6d0d92df4af5987f755f69df"
+  },
+  "discount_backend_and_regression_replay": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-backend-and-regression-comparison.json",
+    "sha256": "ca8f41f64c7f17ce03b02703ca665d8fa6f058cf60f4102df22d448ef53ba4b1"
+  },
+  "discount_limits": "All18 stored-quotient shells reject over the full32 R10 rows; only8 reject within the narrower FV0/timing1 subset. No resident-only necessity is asserted for that subset. The160380 correlated producer programs include all three quotient models. Current cleared log1p is a shared recorded leaf in both backends, not an independent software-log replay.",
+  "current_corpus": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/corpus-vba-merged-comparison.json",
+    "sha256": "0712475832b69640d32c73e7a53d1c8ebc74af278682b7e4a899fd7b8694fc1f"
+  },
+  "current_bank": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/bank-vba-merged/banks-imsec-comparison.json",
+    "sha256": "dbd563dd34ae507d980e5889e9db180df3f79b07f4d402025835a0a96997f6ec"
+  },
+  "discount_phase_source_archive": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/discount-final-source.tar.gz",
+    "sha256": "78a762ecb772d899e98b7f1df5df2bc4eab6b4b8ac0f073085d88fdf4665f99e"
+  },
+  "vba_phase_source_and_prior_route_replay": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/vba-source-and-route-bindings.json",
+    "sha256": "bfdff6ac4ad18a8f36057ce068709feeb32f7c0d69b2c0374efad2a123244be7"
+  },
+  "renderer_merge_source_binding": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/renderer-merge-numeric-and-route-source-binding.json",
+    "sha256": "0510e677e6b84f7165ea72feaf2c258bac9ab8a8a94c18ab77c62ea3b8274cf7"
+  },
+  "final_publication_source_bindings": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/final-publication-source-bindings.json",
+    "sha256": "be1c045e665c91012343f5a4c11033cee3404e01d1337ff032ca02d2c5d9c214"
+  }
+}

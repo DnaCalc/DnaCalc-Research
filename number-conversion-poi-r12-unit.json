@@ -1,0 +1,33 @@
+{
+  "id": "dc-j9k-r12-published-POI-conversion-publication",
+  "role": "implementer",
+  "source_tier": 2,
+  "source": "Apache POI trunk public Apache-2.0 number conversion sources",
+  "files": [
+    "NumberToTextConverter.java",
+    "NormalisedDecimal.java",
+    "MutableFPNumber.java",
+    "ExpandedDouble.java",
+    "IEEEDouble.java"
+  ],
+  "policy": "Execute the published converter unchanged if a Java compiler/runtime can be used; no tuning or exceptions. Only current recorded192 corpus observations are discovery, not fresh validation. Retain source hashes and license. No main product change until red-first and all evidence no-loss checks.",
+  "banned": [
+    "DnaCalc-engine",
+    "tier3 and tier4 sources"
+  ],
+  "application_revision": "a84d1ce9",
+  "original_unit_sha256": "29ce27cb33d6b8eb5bad72b80a3b23b1ffa3b1e97eaf549c6f9be49f84650cc2",
+  "metadata_note": "Original planned192 observations are the application-audited overlap; executing the complete converter also includes all12 previously excluded high-exponent cases, for204 records. Neither earlier unit nor readings changed.",
+  "source_manifest": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/poi-source/source-manifest.json",
+    "sha256": "ebea6322e553ab927ff4a8296d68b5625e550f21bba64e9e02a700c9c0319370"
+  },
+  "source_sha256": {
+    "racer/number_conversion.py": "d43e2bc81fe913fcce55205b808f48a6d11128a6a52d629843ca9157750e1be5",
+    "racer/NumberTextProbe.java": "fd3e4d701156b07227c105ec9ca3750426d26d987e1783d4312d3e8788538c73"
+  },
+  "input": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round12/merged-native-number/records.json",
+    "sha256": "c7809f55bc5613baf7c250d1d5839f430bf777015b18510abf52abdb66a9fc1f"
+  }
+}

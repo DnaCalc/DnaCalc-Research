@@ -363,6 +363,16 @@ def expected_shape(numerator, combine):
         return mul(add(fv, div(add(pv, fv), em)), div(r, tf))
     n = [add(pv, mul(fv, add(one, em))), add(add(pv, fv), mul(fv, em)),
          add(pv, add(fv, mul(fv, em))), add(add(pv, mul(fv, em)), fv)][numerator]
+    if 12 <= combine <= 17:
+        denominators = [add(em, mul(mul(em, r), timing)),
+                        add(em, mul(em, mul(r, timing))),
+                        add(div(em, r), mul(em, timing)),
+                        mul(em, add(div(one, r), timing))]
+        form = combine - 12
+        if form < 4:
+            denominator = denominators[form // 2]
+            return mul(div(n, denominator), r) if form % 2 == 0 else div(mul(n, r), denominator)
+        return div(n, denominators[form - 2])
     if combine in (9, 10, 11):
         q = div(n, em)
         ratio = div(mul(r, timing), tf)
@@ -397,7 +407,11 @@ def graphs(scoped, programs, kills, output, family='ordinary'):
     locations, seen, shapes = [], set(), {}
     models = ('strict', 'stored_pc64', 'resident_pc64')
     timing = family == 'timing'
-    require(family in ('ordinary', 'timing'), 'unknown association family')
+    denominator = family == 'denominator'
+    require(family in ('ordinary', 'timing', 'denominator'), 'unknown association family')
+    def site_count(numerator, combine):
+        if denominator: return 8 if combine < 16 else 7
+        return 10 if timing else 7 if numerator is None else 8
     with open(programs, 'rb') as source:
         while True:
             location = source.tell()
@@ -424,21 +438,21 @@ def graphs(scoped, programs, kills, output, family='ordinary'):
                     sites.append(node['model'])
             require(exact_negations == int(timing), 'incorrect exact negation count')
             require(c['models'] == sites, 'model metadata mismatch')
-            expected_sites = 10 if timing else 7 if c['numerator'] is None else 8
+            expected_sites = site_count(*template_key)
             require(len(c['models']) == expected_sites and all(m in models for m in c['models']),
                     'invalid arithmetic annotation')
             key = (*template_key, tuple(c['models']))
             require(key not in seen, 'duplicate annotated template')
             seen.add(key)
             locations.append(location)
-    required_templates = {(n, f) for n in range(4) for f in range(9,12)} if timing else (
+    required_templates = {(n, f) for n in range(4) for f in range(12,18)} if denominator else {(n, f) for n in range(4) for f in range(9,12)} if timing else (
         {(n,f) for n in range(4) for f in range(8)} | {(None,8)})
     require(set(shapes) == required_templates, 'template coverage incomplete')
-    require(len(seen) == (12*3**10 if timing else 32*3**8+3**7) == len(locations), 'grammar coverage incomplete')
+    require(len(seen) == (122472 if denominator else 12*3**10 if timing else 32*3**8+3**7) == len(locations), 'grammar coverage incomplete')
     # Every template has exactly its full Cartesian model assignments.
     for template_key in shapes:
         actual = {key[2] for key in seen if key[:2] == template_key}
-        require(len(actual) == 3**(10 if timing else 7 if template_key[0] is None else 8), 'annotation coverage incomplete')
+        require(len(actual) == 3**site_count(*template_key), 'annotation coverage incomplete')
     del seen
     needed = {c['trace_index'] for c in records(kills)}
     rows = {}
@@ -494,6 +508,92 @@ def graphs(scoped, programs, kills, output, family='ordinary'):
                'traces and PMT normalizes published zero. No conclusion about Excel internals or other arms.'))
 
 
+def number_chunks(rows_path, application_path, search_path, output):
+    """Check positional-conversion first kills using separate integer rounding."""
+    from decimal import Decimal
+    rows = json.loads(rows_path.read_text())
+    application = json.loads(application_path.read_text())
+    search = json.loads(search_path.read_text())
+    require(search['complete'] and search['programs'] == 3240 and search['survivors'] == 0,
+            'incomplete chunk exclusion')
+    require(len(rows) == len(application) == search['scoped_rows'] == 192,
+            'wrong chunk observation scope')
+    for row, actual in zip(rows, application):
+        require(row == actual['source'] and actual['input_kept'] and
+                actual['admitted_bits'] == row['input_bits'], 'unaudited application operand')
+    domains = ((53,64,96), ('multiply','divide'), ('exact','nearest','truncated'), range(1,16),
+               ('nearest','truncated'), ('nearest','truncated'), ('away','down','even'))
+    fields = ('precision','scale','power','chunk_width','scale_round','digit_round','ties')
+    expected_profiles = set(itertools.product(*domains))
+    seen = set()
+    node_count = 0
+    def power10(e):
+        return Rat(10**e) if e >= 0 else Rat(1,10**-e)
+    def rounded(q, precision, mode):
+        require(q >= 0, 'negative chunk magnitude intermediate')
+        if q == 0: return Rat(0)
+        e = q.numerator.bit_length() - q.denominator.bit_length()
+        if q < two(e): e -= 1
+        quantum = two(e-precision+1)
+        scaled = q/quantum
+        integral, remainder = divmod(scaled.numerator, scaled.denominator)
+        if mode == 'nearest' and (2*remainder > scaled.denominator or
+                (2*remainder == scaled.denominator and integral % 2)):
+            integral += 1
+        return integral*quantum
+    for identity, profile in enumerate(search['profiles']):
+        require(profile['id'] == identity, 'noncanonical chunk profile ID')
+        p = profile['program']
+        key = tuple(p[f] for f in fields)
+        require(key in expected_profiles and key not in seen, 'unknown/duplicate chunk profile')
+        seen.add(key)
+        kill = profile['first_kill']
+        require(kill is not None and 0 <= kill['order'] < len(rows), 'missing chunk first kill')
+        row = rows[kill['order']]
+        require(kill['observation'] == {k:v for k,v in row.items() if k != 'input_bits'},
+                'changed original chunk observation')
+        x = abs(binary64(row['input_bits']))
+        require(Rat(kill['exact_input']) == x, 'wrong exact chunk input')
+        target = abs(Rat(Decimal(row['expected_text'])))
+        require(Rat(kill['expected_decimal']) == target, 'changed chunk target magnitude')
+        e = len(str(x.numerator))-len(str(x.denominator))
+        if x < power10(e): e -= 1
+        require(abs(e) < 99, 'second-rounding case in chunk scope')
+        trace = []
+        def step(q, mode):
+            result = rounded(q, p['precision'], mode)
+            trace.append(dict(exact=str(q), rounded=str(result), mode=mode))
+            return result
+        scale = power10(-(e+1) if p['scale'] == 'multiply' else e+1)
+        if p['power'] != 'exact': scale = step(scale, 'nearest' if p['power'] == 'nearest' else 'truncated')
+        remainder = step(x*scale if p['scale'] == 'multiply' else x/scale, p['scale_round'])
+        coefficient = 0
+        for begin in range(0,15,p['chunk_width']):
+            count = min(p['chunk_width'],15-begin)
+            scaled = step(remainder*10**count, p['digit_round'])
+            whole = scaled.numerator//scaled.denominator
+            coefficient = coefficient*10**count + whole
+            remainder = step(scaled-whole, p['digit_round'])
+        if remainder > Rat(1,2) or (remainder == Rat(1,2) and
+                (p['ties'] == 'away' or (p['ties'] == 'even' and coefficient % 2))):
+            coefficient += 1
+        prediction = coefficient*power10(e-14)
+        require(trace == kill['trace'], 'chunk arithmetic trace differs')
+        require(prediction == Rat(kill['prediction']) and prediction != target,
+                'chunk certificate is not a contradiction')
+        node_count += len(trace)
+    require(seen == expected_profiles, 'chunk grammar coverage incomplete')
+    source = Path(__file__).resolve().parents[1]/'racer/number_conversion.py'
+    require(digest(source) == search['source_sha256'], 'chunk search source changed')  # ubs:ignore — public source identities, no authentication secret
+    require(digest(Path(__file__).parent/'exact.py') == search['arithmetic_sha256'],  # ubs:ignore — public source identities, no authentication secret
+            'chunk producer arithmetic source changed')
+    write_result(output, dict(complete=True, programs=len(seen), survivors=0,
+        checked_rounding_nodes=node_count, observations=len(rows),
+        inputs={str(p):digest(p) for p in (rows_path,application_path,search_path,source)},
+        claim='Every declared chunk profile has an exact contradiction; all trace nodes are checked using separate integer quotient/remainder rounding, without calling the search evaluator or its Lattice rounder.',
+        limits='First-rounding decimal magnitude on192 existing authored operands only, conditional on effective Excel operands matching those authored values. No full rendering, fresh Excel validation, fitted rule or product gain.'))
+
+
 def controls(path, output):
     count, cases = 0, Counter()
     for control in records(path):
@@ -536,10 +636,13 @@ def main():
     t = sub.add_parser('graphs')
     for name in ('scoped', 'programs', 'kills', 'output'):
         t.add_argument(name, type=Path)
-    t.add_argument('--family', choices=('ordinary','timing'), default='ordinary')
+    t.add_argument('--family', choices=('ordinary','timing','denominator'), default='ordinary')
     c = sub.add_parser('controls')
     c.add_argument('input', type=Path)
     c.add_argument('output', type=Path)
+    n = sub.add_parser('number-chunks')
+    for name in ('rows','application','search','output'):
+        n.add_argument(name, type=Path)
     a = parser.parse_args()
     if a.command == 'quotient':
         quotient(a.raw, a.certificates, a.output)
@@ -547,6 +650,8 @@ def main():
         groups(a.scoped, a.catalogue, a.certificates, a.output, a.count)
     elif a.command == 'graphs':
         graphs(a.scoped, a.programs, a.kills, a.output, a.family)
+    elif a.command == 'number-chunks':
+        number_chunks(a.rows, a.application, a.search, a.output)
     else:
         controls(a.input, a.output)
 
