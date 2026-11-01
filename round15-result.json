@@ -1,0 +1,58 @@
+{
+  "round": 15,
+  "complete": true,
+  "application_revision": "7ceaf2b48669883b30b2f633500c926301a9bb18",
+  "numeric_product_changes": 0,
+  "r13_readings": 234,
+  "matched": 90,
+  "failed": 144,
+  "annuity_program_adopted": false,
+  "claim": {
+    "path": "annuity-r15-claim.json",
+    "sha256": "7a67e382bdeeb37978d6fceed9389c5408539c7ba9fd2290e513da8df7bf710b"
+  },
+  "evidence_revision": "0891b67e71a5871372ef9e6b735d9fcc392c9f81",
+  "research_implementation_revision": "75873b224ce568735843f05c07ee393b36e11368",
+  "next_packet": "packets/round15-annuity",
+  "limits": "Only declared finite families were eliminated. Standalone PV/FV hypotheses and four necessary cumulative relations remain; no complete annuity implementation was identified.",
+  "role": "implementer",
+  "publication_metadata_revision": "8e9384ee30e9a7e6f21665f49a3103143dd25daa",
+  "new_recorded_r13_observations": 234,
+  "next_packet_new_excel_answers": 0,
+  "annuity_corpus_mismatches_remaining": 412,
+  "certified_PMT_gaps_remaining": 24,
+  "next_excel_calls": 236,
+  "next_native_queries": 933,
+  "next_native_queries_not_in_R13": 450,
+  "report": "/home/ubuntu/codex-runs/work-report-15.md",
+  "artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed",
+  "corpus": {
+    "matched": 18812,
+    "formula_cells": 20030,
+    "nonpasses": 1218,
+    "unchanged_evaluation_files": 21
+  },
+  "bank": {
+    "matched": 3230427,
+    "total": 3875128,
+    "failed": 644701,
+    "unread": 116,
+    "shared_gains": 0,
+    "shared_losses": 0
+  },
+  "independent_source_bindings": 14,
+  "checks": {
+    "cargo_xtask_check": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/check-final.log",
+      "sha256": "3633a9b9279e011bf230b32a49bcad945a49fe5fbf827b5d180a1f03f00fbc61"
+    },
+    "read_only_review": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/read-only-review.json",
+      "sha256": "55c658e64f8cf9052d544525862db04ec9bb54f2329f6fe2e85ba36f946ffe95"
+    },
+    "python_tests": 48,
+    "small_lattice_cases": 1504,
+    "rust_passed": 69,
+    "rust_ignored": 2
+  }
+}

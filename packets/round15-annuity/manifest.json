@@ -24,9 +24,11 @@
   "files_sha256": {
     "application-predictions-CUMPRINC.jsonl": "7679e2750b82a69cf22464320a075f9fe42a41317bce48b257d9c7a9d4ccd0d0",
     "requests-PPMT.json": "e0d711e6c6ffa11b9fc30b2c38aa3e8b65820011d5225e8d7f575871fc7d8a23",
+    "RUN-NATIVE-PROBE.ps1": "5e0c7f843fd48cc6ea7e6239463b736a4572839467fc2fc36872d3d1fa8cb933",
     "application-predictions-RATE.jsonl": "9ebe0bc1e1e7d6487f18ec4f0177b9ce43ea3190f8a5053ba3b5f2fd253bb27e",
     "requests-CUMPRINC.json": "fd096b6345561c58470dee01d912e77e0af752aaba63637b7efa329404bd1ed2",
     "requests-PV.json": "5678f6e6b8697be17f146b99790a1a6931ae5ed7a76ad8209e3ac18219977c26",
+    "raw-x87-probe.rs": "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e",
     "application-predictions-PMT.jsonl": "2afca05f8b3a039d869e889250b39f69779fd507fa993c0991a4e9ae1ec69653",
     "requests-RATE.json": "cab7452d0f50c132b1daa670df6cdc753b87ac226f96208a28d589c425d7817b",
     "application-predictions-PV.jsonl": "65f694cda3e72789bae79f879b25668c6f2e68b83b34098f96294d7d54c43c44",
@@ -38,13 +40,86 @@
     "requests-FV.json": "8f58dda9b56b13fb1869837246737572e9235d66e994fcb80bafb738db583b26",
     "batches.json": "1923ada3377e6466f4a2e3261cb70f680cbe132c338016dd89d3c1227c5aa038",
     "RUN-R15.txt": "b9caef20a001227412f62214c9a38e342c4294276612b440d011efe94c4d8df7",
+    "native-leaf-requests.tsv": "f79660157c0067b5756878ecbb2b985c57534524150a71b3a8b0dfab12816ccc",
     "application-predictions-PPMT.jsonl": "82bb27e9c2b1f5691b4b466cf7d39301c4fab1e268fc995b0855e57e32654a5e",
     "conditional-relations.json": "5dbc24e2c8a9eefae8f656e8917ea11a166a567e6221aded6dbddcfed1fa7982",
+    "NATIVE-PROBE.txt": "f18292b97cdf413bde3d8c33e68ebbf09f618d0ce02831b78fe14bdb9763e5c0",
     "requests-CUMIPMT.json": "7ed21b6503ed648bae13ef1e6d6452fc64b6e0d56a9494acba0a1d4695fb75de",
     "application-predictions-FV.jsonl": "eb497060bec3b70a22be00097e6642064bbc26b1a09fb8530d576a0541a38408",
+    "compare-native-probe.py": "065ecb8a99c566914d0017bff7fd60e1474c32b53acd5d24c268989049001085",
+    "native-reference-environment.json": "d3bc6a74794a1df372cc869170bac0642e6ddec6f81f79581956ed5f8400b301",
     "selection.json": "3826a150a0b75fc17f0477442583f966e7aff88986fd6baa7a40ea2088fc5f8a",
     "requests-NPER.json": "0253095226fd1b94fd1abd3798fe9dd3c8bcf12a6043c3ea41b9d47894ad2ff7",
-    "application-predictions-CUMIPMT.jsonl": "e2946fb0a311e363f69c3e517accba22e147ab0596fc2f3bbd243ab5ff54116b"
+    "application-predictions-CUMIPMT.jsonl": "e2946fb0a311e363f69c3e517accba22e147ab0596fc2f3bbd243ab5ff54116b",
+    "predictions/native-linux-comparison.json": "6029a103184bd3c3832c7a5a55c3e660efbff7678a120d6f51ba12817cdb5566",
+    "predictions/native-leaf-reference.tsv": "d4bf2f7e8a4db87e9ff64bb69ea50d0505bf063476f0800c6baa8592a321dcc5"
   },
-  "limitation": "Unanswered structural questions; no complete candidate, selected helper or fresh validation claim."
+  "limitation": "Unanswered structural questions; no complete candidate, selected helper or fresh validation claim.",
+  "native_probe_status": "Unanswered Windows transfer check; Linux reference is independently verified. CPU measurements are not Excel answers.",
+  "reused_probe_sources": {
+    "raw-x87-probe.rs": {
+      "original": "packets/round13/raw-x87-probe.rs",
+      "sha256": "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e",
+      "purpose": "Byte-identical existing probe in a standalone Windows packet"
+    },
+    "compare-native-probe.py": {
+      "original": "packets/round13/compare-native-probe.py",
+      "sha256": "065ecb8a99c566914d0017bff7fd60e1474c32b53acd5d24c268989049001085",
+      "purpose": "Byte-identical existing probe in a standalone Windows packet"
+    }
+  },
+  "application_prediction_replay": {
+    "complete": true,
+    "calls": 236,
+    "application_revision": "7ceaf2b48669883b30b2f633500c926301a9bb18",
+    "executable_sha256": "e6efe367c12dc39498a260521765e951f4e987ea7991bd91add3083594c6cf36",
+    "all_prediction_files_unchanged": true,
+    "files": [
+      {
+        "path": "application-predictions-PMT.jsonl",
+        "sha256": "2afca05f8b3a039d869e889250b39f69779fd507fa993c0991a4e9ae1ec69653"
+      },
+      {
+        "path": "application-predictions-IPMT.jsonl",
+        "sha256": "c6883b6e76a5f7334cd5280094987d02cdb956d4c33436cbeed9a80808907afc"
+      },
+      {
+        "path": "application-predictions-PPMT.jsonl",
+        "sha256": "82bb27e9c2b1f5691b4b466cf7d39301c4fab1e268fc995b0855e57e32654a5e"
+      },
+      {
+        "path": "application-predictions-CUMPRINC.jsonl",
+        "sha256": "7679e2750b82a69cf22464320a075f9fe42a41317bce48b257d9c7a9d4ccd0d0"
+      },
+      {
+        "path": "application-predictions-CUMIPMT.jsonl",
+        "sha256": "e2946fb0a311e363f69c3e517accba22e147ab0596fc2f3bbd243ab5ff54116b"
+      },
+      {
+        "path": "application-predictions-FV.jsonl",
+        "sha256": "eb497060bec3b70a22be00097e6642064bbc26b1a09fb8530d576a0541a38408"
+      },
+      {
+        "path": "application-predictions-PV.jsonl",
+        "sha256": "65f694cda3e72789bae79f879b25668c6f2e68b83b34098f96294d7d54c43c44"
+      },
+      {
+        "path": "application-predictions-NPER.jsonl",
+        "sha256": "24441b25d08fcf215c79d216684f56e7032ff5758ed0376e5d9075b7b8539192"
+      },
+      {
+        "path": "application-predictions-RATE.jsonl",
+        "sha256": "9ebe0bc1e1e7d6487f18ec4f0177b9ce43ea3190f8a5053ba3b5f2fd253bb27e"
+      }
+    ],
+    "limits": "Application prediction replay only; no Excel answers or kernel validation."
+  },
+  "native_cpu_queries": 933,
+  "native_input_overlap_with_R13": {
+    "shared": 483,
+    "new_inputs": 450,
+    "prior_inputs": 1553
+  },
+  "native_certificate_sha256": "dcf3697442142e6ca98ea35e94b6e05c0ced4151f88fc0b23d712153c26634d7",
+  "native_probe_linux_comparison_sha256": "6029a103184bd3c3832c7a5a55c3e660efbff7678a120d6f51ba12817cdb5566"
 }

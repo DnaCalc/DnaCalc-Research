@@ -1,0 +1,14 @@
+R15 native CPU transfer check, separate from all 236 Excel calls.
+RUN-NATIVE-PROBE.ps1 compiles the unchanged R13 standalone raw-x87-probe.rs
+and replays exactly native-leaf-requests.tsv. Return the resulting TSV and
+its console transcript with the Excel result files. Preserve a failed or
+partial result as a failed native obligation, never an Excel answer.
+The request/reference hashes and query count are recorded in manifest.json.
+Reference CPU/environment is native-reference-environment.json; reference
+instruction results are under predictions/native-leaf-reference.tsv.
+Equal results support only the finite instruction leaves of this R15 proof.
+They do not establish arbitrary CPU equivalence, correctly rounded libraries,
+Excel internal helper values or whole-function parity. No security settings change.
+This packet includes byte-identical copies of the existing R13 probe and
+comparison tool so the Windows lane can run it as one standalone directory;
+there is no new probe implementation or alternative evidence importer.

@@ -1,0 +1,382 @@
+{
+  "id": "dc-j9k-r15-annuity",
+  "complete": true,
+  "status": "Exact studies, independent replays and read-only review complete. No complete annuity program identified or adopted.",
+  "role": "implementer",
+  "unit": "annuity-r15-unit.json",
+  "application_revision": "6b0e3122780ea7d2a9b7cc572257cbbe4d790fa1",
+  "product_numeric_changes": 0,
+  "intake": {
+    "observations": 234,
+    "batches": 13,
+    "verification": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/intake-publication-verified.json",
+      "sha256": "e6595d0c9cd574e9bc1dc6e97092f33a2d6c6deca6a56b7e5df9d4dba9d3ffed"
+    },
+    "current_score": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/merged-current-packet/summary.json",
+      "sha256": "add12cac33af15a593ab8eef0f3618b59b0caded7c0e1f8969896e830881f898"
+    },
+    "current_matches": 90,
+    "current_failures": 144,
+    "numeric_workbook_route": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/numeric-route-summary.json",
+      "sha256": "7c7dfcfe886be6bad114c4a27a732d10e377d0a83f2b87fc81b1b14535e84a15"
+    },
+    "native_r13_comparison": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/windows-native-checked.json",
+      "sha256": "154c0e649ef924a978c2d189bb38fe2c3d21915046b9fb9f7649568b56706a51"
+    },
+    "limits": "The R13 native probe transfers only its 1,553 measured leaves; 450 R15 leaf queries were not in it and await Windows. Value2 read-back does not expose effective callee inputs.",
+    "current_pass_rate": 0.38461538461538464
+  },
+  "corpus": {
+    "before_matches": 18812,
+    "after_matches": 18812,
+    "formula_cells": 20030,
+    "strict_nonpasses": 1218,
+    "mismatched_refused_missing": 1131,
+    "external": 73,
+    "circular_rule": 14,
+    "delta": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/corpus-delta.json",
+      "sha256": "472f701723037effdd1fd420598cf7ff97dffdae7ffd902c7b491cce54f81802"
+    },
+    "pass_rate": 0.9391912131802297
+  },
+  "bank": {
+    "before_matches": 3230394,
+    "before_total": 3875072,
+    "after_matches": 3230427,
+    "after_total": 3875128,
+    "after_failures": 644701,
+    "unread": 116,
+    "shared_decoded": 3874956,
+    "changed_outputs": 0,
+    "changed_expected": 0,
+    "shared_gains": 0,
+    "shared_losses": 0,
+    "added_inputs": 56,
+    "added_matched": 33,
+    "added_failed": 23,
+    "delta": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/bank-delta.json",
+      "sha256": "bedf6bd828a0580e0fef07a5651b5c4f82897842d551433ba824d23d8acc016f"
+    },
+    "limits": "New matched inputs are coverage, not product gains. Repeated captures remain observations and are deduplicated by the existing bank harness.",
+    "before_pass_rate": 0.8336345750478958,
+    "after_pass_rate": 0.8336310439293876
+  },
+  "finite_families": {
+    "native_PMT": {
+      "assignments": 26985627648,
+      "survivors": 0,
+      "scoped_rows": 90,
+      "excluded_rows": 2,
+      "discovery_summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/native-search/summary.json",
+        "sha256": "6ff19cf665b02f5347bff303129191c715750f658e8a371cef9208d79e8958f3"
+      },
+      "focused_summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/native-focused/summary.json",
+        "sha256": "ae6e03c33ad04ec03dbd52da24c55772d908b4785e5aedc88b44d0aac7a876c9"
+      },
+      "independent_receipt": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/native-focused-checked.json",
+        "sha256": "dcf3697442142e6ca98ea35e94b6e05c0ced4151f88fc0b23d712153c26634d7"
+      },
+      "independently_checked": {
+        "helper_executions": 11440128,
+        "consumer_executions": 138238464,
+        "first_kill_boxes": 5130,
+        "sufficient_rows": 14
+      },
+      "resource_receipt": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/native-focused-checked.log.resource.json",
+        "sha256": "d9c70f97e2b8cda19aa0845398e348e3d4253a6bc52b81dcdfeab2cfc35c80d0"
+      }
+    },
+    "timing_PC53": {
+      "assignments": 81100800,
+      "survivors": 0,
+      "receipt": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/timing-helper-pc53-checked.json",
+        "sha256": "fcfa57f656b66a671f7aa50b843c2f9144f0faa3e02b77dd7e0c32b081dc7765"
+      }
+    },
+    "cumulative_principal": {
+      "programs": 90000,
+      "survivors": 0,
+      "receipt": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/cumulative-native-checked.json",
+        "sha256": "af05d4fb4a0824e732bdfae7f6753eb61cde6152d42ec11ddcd45d55afa2779d"
+      }
+    },
+    "PMT_continuous_direct": {
+      "programs": 5314410,
+      "survivors": 0,
+      "native_summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/annuity-direct/summary.json",
+        "sha256": "49366a8507f088b9a1f99aa67ae06e5cfdacaac5f164a67dd4a82cef87ce9869"
+      },
+      "software_summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/annuity-direct-software/summary.json",
+        "sha256": "49366a8507f088b9a1f99aa67ae06e5cfdacaac5f164a67dd4a82cef87ce9869"
+      },
+      "independent_arithmetic_receipt": false
+    },
+    "NPER_PMT_interest": {
+      "programs": 1603800,
+      "survivors": 0,
+      "summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/pmt-interest/summary.json",
+        "sha256": "0f8c101bc2b2d90af8ae2991d30836d98a36df569172e9519d59376ad3749982"
+      },
+      "independent_arithmetic_receipt": false
+    },
+    "RATE_published_FV_one_step": {
+      "programs": 625,
+      "survivors": 0,
+      "receipt": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/rate-newton-publication-checked.json",
+        "sha256": "09dd6fcbf62e2f6ac6f06b300d43169715888036e8eb4a928de5719b9323a3ed"
+      }
+    },
+    "RATE_internal_PVFV_one_step": {
+      "programs": 22800000,
+      "survivors": 0,
+      "summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/rate-internal/summary.json",
+        "sha256": "2aaffbc800cdd917ca0aa27d4be3866a2621f6ffe97e31660aac965915a37ad1"
+      },
+      "independent_arithmetic_receipt": false
+    },
+    "PMT_PVFV_shared_integer_growth": {
+      "component_programs": 5773680,
+      "joint_labelled_assignments": 10340660880,
+      "component_survivors": 0,
+      "joint_survivors": 0,
+      "native_summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/pmt-pvfv-growth/summary.json",
+        "sha256": "3482736e90e0750b70d14a56218e52a0880d0a89fa6a169b00b96f693ec2d6f5"
+      },
+      "software_summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/pmt-pvfv-growth-software/summary.json",
+        "sha256": "3482736e90e0750b70d14a56218e52a0880d0a89fa6a169b00b96f693ec2d6f5"
+      },
+      "independent_arithmetic_receipt": false
+    }
+  },
+  "remaining_hypotheses": {
+    "PV_FV": {
+      "integer_survivors": 7164,
+      "refined_survivors": 1824,
+      "refined_scoped_rows": 3785,
+      "summary": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/pvfv-fractional/summary.json",
+        "sha256": "fc4210ce2c4b6884fbab6cc3345a0a46bd9a2877b7c128041bc149e48069bee5"
+      }
+    },
+    "NPER": {
+      "recorded_rows": 2501,
+      "matching_current_application": 2501,
+      "surviving_cash_product_models": [
+        "strict",
+        "stored_pc64",
+        "stored_pc53",
+        "resident_pc53"
+      ],
+      "result": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/NPER-profiles-five.json",
+        "sha256": "4783015588f64343e46e3a8696a09843302711350a50b2fa6d8d953895f21509"
+      }
+    },
+    "cumulative_relation": {
+      "profiles": 25,
+      "necessary_survivor_ids": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "stored_payment_survivor_ids": [],
+      "singleton_pairs": 16,
+      "singleton_different": 14,
+      "first_beginning_controls_equal": 2,
+      "receipt": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/coupled-publication-checked.json",
+        "sha256": "be33aba37ba6808b5db3db64b15bec744457949b3519e598d9a84e9b8846eb86"
+      }
+    }
+  },
+  "structural_findings": [
+    "Under the declared original-rate final-product shells, all 24 newly repeated PMT gaps exclude every finite binary64 quotient at both PC53/PC64 final precision. Reachable 54-bit/Ext80 domains are not producers.",
+    "14 of 16 paired singleton CUMPRINC answers differ from published standalone PPMT. A cumulative sum of those published PPMT values is excluded.",
+    "Among 25 fixed product/subtraction relations, no stored binary64 PMT publication works as the shared payment for all four loans. Four arbitrary Ext80-payment necessary relations remain; none supplies a producer.",
+    "1,824 standalone PV/FV hypotheses remain. Bounded one-step RATE consumer failures do not invalidate those standalone functions or identify Excel solver steps."
+  ],
+  "product_shell_receipt": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/rechecked-product-shells.json",
+    "sha256": "7f92f2d5479d5972c05cac425b6e008d587456c2e6a2b1e2fac56537bd597143"
+  },
+  "next_questions": {
+    "calls": 236,
+    "functions": 9,
+    "repository_path": "packets/round15-annuity",
+    "external_path": "/home/ubuntu/codex-runs/excel-questions-r15-annuity",
+    "request_checker": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/questions-final-checked.json",
+      "sha256": "8226fa125cd30bc18593034579989bb43031ae6b7cb79edb5a0626279bfaa5c7"
+    },
+    "native_probe": {
+      "queries": 933,
+      "overlap_with_R13": 483,
+      "not_in_R13": 450,
+      "linux_matches": 933,
+      "windows_answers": 0,
+      "linux_comparison": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/native-probe-linux-checked.json",
+        "sha256": "6029a103184bd3c3832c7a5a55c3e660efbff7678a120d6f51ba12817cdb5566"
+      },
+      "limits": "Raw native instruction measurements are separate from the 236 Excel calls and never enter the Excel evidence bank."
+    },
+    "packet_binding": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/packet-final-binding.json",
+      "sha256": "742dbf59fad6cea50266c05e7666cafe58fa2c83fbe1daada8c971f9573a2819"
+    },
+    "archive": {
+      "path": "/home/ubuntu/codex-runs/excel-questions-r15-annuity.zip",
+      "sha256": "31434fe37049357c25e62a90306612376a43ee71cc02d0654c79fc0144d12825"
+    }
+  },
+  "tests": {
+    "python_tests": 48,
+    "small_lattice_cases": 1504,
+    "rust_tests": 69,
+    "rust_ignored": 2,
+    "intake_adversarial_controls": 4,
+    "packet_relation_adversarial_controls": 2,
+    "selected_result_control": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/numeric-selected-control.json",
+      "sha256": "5697af0a1f803f2cb4d639fefafea0c65205842a14a6095c22d71222c5cb5d94"
+    },
+    "main_check": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/check-final.log",
+      "sha256": "3633a9b9279e011bf230b32a49bcad945a49fe5fbf827b5d180a1f03f00fbc61"
+    },
+    "read_only_review": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/read-only-review.json",
+      "sha256": "55c658e64f8cf9052d544525862db04ec9bb54f2329f6fe2e85ba36f946ffe95"
+    },
+    "declared_scope_controls": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/scope-controls.json",
+      "sha256": "68abddba7e664e0be9a3bd89d0b78c8e651c08c2e935684207dea9fb811ea8bd"
+    },
+    "main_check_first": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/check-first.log",
+      "sha256": "ea08aa50dbd0f3b5907eb0da1b77373008c22e7e60a3ae01b1c7d46b0c67c211"
+    },
+    "main_check_postpull": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/check-postpull.log",
+      "sha256": "13ec585df564ffd4b7f0c12bb8e05123c61ed79da9093362e06215d2e9638ad1"
+    },
+    "ubs_triage": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/ubs-triage.json",
+      "sha256": "016e3cdb2dea5a9bab37fe19503af1305b7cade195a1ecd6ec0d3b78fd66c258"
+    },
+    "native_packet_ubs": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/ubs-native-packet-triage.json",
+      "sha256": "b8dfb1701c334a8c2d6b2a7e08959f1fc8f6569006d730dd76f510fb75a7f600"
+    },
+    "main_merged_check": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/check-merged.log",
+      "sha256": "d9df381ce52ce9759ede5f16a7585c2b0790ad6511a738353c4ec3234ca0d8b3"
+    },
+    "ubs_main_metadata": "No supported code languages in the final tracker/TSV-only diff; UBS exit3 reported zero files and no findings.",
+    "research_final_publication_ubs": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/ubs-final-publication.json",
+      "sha256": "e5fddb531f73643fc77346083e42709e81683e09fccc25adbba61a4bd8119dd2"
+    }
+  },
+  "limits": [
+    "These are separate finite grammars/projections, not a sum of distinct Excel kernels. Repeated native/software/focused runs do not add programs.",
+    "All observations are discovery. A scoped survivor or nonempty inverse domain is not a complete annuity program, validation pass or fitted constant.",
+    "No annuity/product numerical body, pin or saved Excel answer was changed. No whole annuity implementation is identified.",
+    "The failed decimal-literal route and superseded preparation metadata are retained separately; neither is a successful numeric-input audit."
+  ],
+  "publication_application_revision": "7ceaf2b48669883b30b2f633500c926301a9bb18",
+  "postpull_unit": "annuity-r15-postpull-unit.json",
+  "postpull": {
+    "numeric_sources_unchanged": true,
+    "corpus": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/merged-corpus-delta.json",
+      "sha256": "3750e0a827c685c124d03f800e242bee155d7379686dacb654ed59bbce3dbad7"
+    },
+    "bank": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/merged-bank-delta.json",
+      "sha256": "43b73aa8d7d66444c1f4ec694e4f6be4aed72c867ceeeec5bbfb5c62a4066a15"
+    },
+    "current_score": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/merged-current-packet/summary.json",
+      "sha256": "add12cac33af15a593ab8eef0f3618b59b0caded7c0e1f8969896e830881f898"
+    },
+    "routes": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/numeric-routes-merged.jsonl",
+      "sha256": "eddce550c65488364b67064828115f6eb15eba96cf99c2b5a9e6bd5c02d4f28d"
+    },
+    "previous_publication_revision": "85ca219e7fdc2951efe07d945c543e9ebc7ea7c6",
+    "application_revision": "7ceaf2b48669883b30b2f633500c926301a9bb18"
+  },
+  "backend_comparison": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/annuity-backend-comparison.json",
+    "sha256": "f6cdb4bbe75d27da1add24e744d2c914231b3298f6ea241764bc847c92044d8f"
+  },
+  "census": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/annuity-corpus-census.json",
+    "sha256": "7e8d168e6a27a701372f880d282a86fe9d787a54af2de9535eaf812eadcd99ac"
+  },
+  "source_snapshots": [
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/reviewed-pre-ubs-source.tar.gz",
+      "sha256": "83eec5eae004752e88765a497ec1c54e8ba4aee035c91bec1f29ff6f71597fb8"
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/r15-implementation-source.tar.gz",
+      "sha256": "0b6bfbe4cbced6198f399c9865473d1c2954865694e21f722ea1fe64c1dbb29b"
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/postpull-source.tar.gz",
+      "sha256": "33dc12608deb590fc1e8a67337241bcf0c87d1e11ec5ef6e8c8635932642a7cc"
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/merged-source.tar.gz",
+      "sha256": "353131d9558a0bb1f8a1cb1d32a138914666fabc2518034a2eac84269e5f8856"
+    }
+  ],
+  "receipt_source_binding": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/receipt-source-binding-final.json",
+    "sha256": "900dac5a8299466b71f31f4cae90481e9f92bc38194b7c107a26d86b64f6bd02"
+  },
+  "focus_order_binding": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/focus-binding-verified.json",
+    "sha256": "ae41d60de24904adccb46dd51c61ea4b3b48f6b993ed8ab6d41c2199be167d88"
+  },
+  "published_checkpoints": {
+    "evidence": "0891b67e71a5871372ef9e6b735d9fcc392c9f81",
+    "research": "75873b224ce568735843f05c07ee393b36e11368",
+    "main_measurement_commit": "8e9384ee30e9a7e6f21665f49a3103143dd25daa",
+    "main_source_revision_pushed": "7ceaf2b48669883b30b2f633500c926301a9bb18"
+  },
+  "source_guard_verification": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/final-source-verified.json",
+    "sha256": "5a1f69a534d3e9b9c071d3c4c8262c93ba097097bb7d8bcbd36f0ab32c0845a8"
+  },
+  "publication_metadata_only": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/publication-metadata-only.json",
+    "sha256": "fa08118611895dcf684f7826f3193867c92b70a1bcacb49305ff32da6896d339"
+  },
+  "arithmetic_input_integrity": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round15/resumed/arithmetic-inputs-final-verified.json",
+    "sha256": "b4f1c9c994915579b114a2563477bfdc98e6d7389c19838113f7a96ca3ef77db"
+  }
+}
