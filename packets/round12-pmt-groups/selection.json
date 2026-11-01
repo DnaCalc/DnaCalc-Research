@@ -1,0 +1,1863 @@
+{
+  "method": "Sufficient first-contradiction rows, fixed amount/timing variant priority; no ranking by prediction or fit.",
+  "original_rows": 13,
+  "calls": 64,
+  "bindings": [
+    {
+      "id": "r12-pmt-group-00",
+      "variant": "original",
+      "source_trace_index": 581,
+      "original_id": "pmt-tf-order-0112-t0",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-01",
+      "variant": "original",
+      "source_trace_index": 582,
+      "original_id": "pmt-tf-order-0112-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-02",
+      "variant": "original",
+      "source_trace_index": 584,
+      "original_id": "pmt-tf-order-0113-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-03",
+      "variant": "original",
+      "source_trace_index": 594,
+      "original_id": "pmt-tf-order-0118-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-04",
+      "variant": "original",
+      "source_trace_index": 596,
+      "original_id": "pmt-tf-order-0119-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-05",
+      "variant": "original",
+      "source_trace_index": 626,
+      "original_id": "pmt-tf-order-0150-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-06",
+      "variant": "original",
+      "source_trace_index": 630,
+      "original_id": "pmt-tf-order-0152-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-07",
+      "variant": "original",
+      "source_trace_index": 634,
+      "original_id": "pmt-tf-order-0154-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-08",
+      "variant": "original",
+      "source_trace_index": 636,
+      "original_id": "pmt-tf-order-0155-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-09",
+      "variant": "original",
+      "source_trace_index": 694,
+      "original_id": "pmt-tf-order-0208-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-10",
+      "variant": "original",
+      "source_trace_index": 698,
+      "original_id": "pmt-tf-order-0210-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-11",
+      "variant": "original",
+      "source_trace_index": 702,
+      "original_id": "pmt-tf-order-0212-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-12",
+      "variant": "original",
+      "source_trace_index": 716,
+      "original_id": "pmt-tf-order-0219-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-13",
+      "variant": "opposite_timing",
+      "source_trace_index": 584,
+      "original_id": "pmt-tf-order-0113-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-14",
+      "variant": "opposite_timing",
+      "source_trace_index": 594,
+      "original_id": "pmt-tf-order-0118-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-15",
+      "variant": "opposite_timing",
+      "source_trace_index": 596,
+      "original_id": "pmt-tf-order-0119-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-16",
+      "variant": "opposite_timing",
+      "source_trace_index": 626,
+      "original_id": "pmt-tf-order-0150-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-17",
+      "variant": "opposite_timing",
+      "source_trace_index": 630,
+      "original_id": "pmt-tf-order-0152-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-18",
+      "variant": "opposite_timing",
+      "source_trace_index": 634,
+      "original_id": "pmt-tf-order-0154-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-19",
+      "variant": "opposite_timing",
+      "source_trace_index": 636,
+      "original_id": "pmt-tf-order-0155-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-20",
+      "variant": "opposite_timing",
+      "source_trace_index": 694,
+      "original_id": "pmt-tf-order-0208-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-21",
+      "variant": "opposite_timing",
+      "source_trace_index": 698,
+      "original_id": "pmt-tf-order-0210-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-22",
+      "variant": "opposite_timing",
+      "source_trace_index": 702,
+      "original_id": "pmt-tf-order-0212-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-23",
+      "variant": "opposite_timing",
+      "source_trace_index": 716,
+      "original_id": "pmt-tf-order-0219-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-24",
+      "variant": "previous_amount",
+      "source_trace_index": 581,
+      "original_id": "pmt-tf-order-0112-t0",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e2",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-25",
+      "variant": "previous_amount",
+      "source_trace_index": 582,
+      "original_id": "pmt-tf-order-0112-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e2",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-26",
+      "variant": "previous_amount",
+      "source_trace_index": 594,
+      "original_id": "pmt-tf-order-0118-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-27",
+      "variant": "previous_amount",
+      "source_trace_index": 626,
+      "original_id": "pmt-tf-order-0150-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-28",
+      "variant": "previous_amount",
+      "source_trace_index": 630,
+      "original_id": "pmt-tf-order-0152-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-29",
+      "variant": "previous_amount",
+      "source_trace_index": 634,
+      "original_id": "pmt-tf-order-0154-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfc",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-30",
+      "variant": "previous_amount",
+      "source_trace_index": 694,
+      "original_id": "pmt-tf-order-0208-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a7",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-31",
+      "variant": "previous_amount",
+      "source_trace_index": 698,
+      "original_id": "pmt-tf-order-0210-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-32",
+      "variant": "previous_amount",
+      "source_trace_index": 702,
+      "original_id": "pmt-tf-order-0212-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ab",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-33",
+      "variant": "previous_amount",
+      "source_trace_index": 716,
+      "original_id": "pmt-tf-order-0219-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b2",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-34",
+      "variant": "next_amount",
+      "source_trace_index": 584,
+      "original_id": "pmt-tf-order-0113-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e5",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-35",
+      "variant": "next_amount",
+      "source_trace_index": 596,
+      "original_id": "pmt-tf-order-0119-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210eb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-36",
+      "variant": "next_amount",
+      "source_trace_index": 636,
+      "original_id": "pmt-tf-order-0155-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dff",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-37",
+      "variant": "next_amount",
+      "source_trace_index": 702,
+      "original_id": "pmt-tf-order-0212-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ad",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-38",
+      "variant": "next_amount",
+      "source_trace_index": 716,
+      "original_id": "pmt-tf-order-0219-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-39",
+      "variant": "half_amount",
+      "source_trace_index": 581,
+      "original_id": "pmt-tf-order-0112-t0",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fdfcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-40",
+      "variant": "half_amount",
+      "source_trace_index": 582,
+      "original_id": "pmt-tf-order-0112-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fdfcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-41",
+      "variant": "half_amount",
+      "source_trace_index": 584,
+      "original_id": "pmt-tf-order-0113-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fdfcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-42",
+      "variant": "half_amount",
+      "source_trace_index": 594,
+      "original_id": "pmt-tf-order-0118-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fdfcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-43",
+      "variant": "half_amount",
+      "source_trace_index": 596,
+      "original_id": "pmt-tf-order-0119-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fdfcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-44",
+      "variant": "half_amount",
+      "source_trace_index": 626,
+      "original_id": "pmt-tf-order-0150-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3f9a950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-45",
+      "variant": "half_amount",
+      "source_trace_index": 630,
+      "original_id": "pmt-tf-order-0152-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3f9a950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-46",
+      "variant": "half_amount",
+      "source_trace_index": 634,
+      "original_id": "pmt-tf-order-0154-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3f9a950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-47",
+      "variant": "half_amount",
+      "source_trace_index": 636,
+      "original_id": "pmt-tf-order-0155-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3f9a950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-48",
+      "variant": "half_amount",
+      "source_trace_index": 694,
+      "original_id": "pmt-tf-order-0208-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40413615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-49",
+      "variant": "half_amount",
+      "source_trace_index": 698,
+      "original_id": "pmt-tf-order-0210-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40413615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-50",
+      "variant": "half_amount",
+      "source_trace_index": 702,
+      "original_id": "pmt-tf-order-0212-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40413615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-51",
+      "variant": "half_amount",
+      "source_trace_index": 716,
+      "original_id": "pmt-tf-order-0219-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40413615c79128b3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-52",
+      "variant": "double_amount",
+      "source_trace_index": 581,
+      "original_id": "pmt-tf-order-0112-t0",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fffcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-53",
+      "variant": "double_amount",
+      "source_trace_index": 582,
+      "original_id": "pmt-tf-order-0112-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fffcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-54",
+      "variant": "double_amount",
+      "source_trace_index": 584,
+      "original_id": "pmt-tf-order-0113-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fffcf6de32210e4",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-55",
+      "variant": "double_amount",
+      "source_trace_index": 594,
+      "original_id": "pmt-tf-order-0118-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fffcf6de32210e9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-56",
+      "variant": "double_amount",
+      "source_trace_index": 596,
+      "original_id": "pmt-tf-order-0119-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fefcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e40b25c74007082",
+        "0x4076800000000000",
+        "0x3fffcf6de32210ea",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-57",
+      "variant": "double_amount",
+      "source_trace_index": 626,
+      "original_id": "pmt-tf-order-0150-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3fba950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-58",
+      "variant": "double_amount",
+      "source_trace_index": 630,
+      "original_id": "pmt-tf-order-0152-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3fba950ab2586dfb",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-59",
+      "variant": "double_amount",
+      "source_trace_index": 634,
+      "original_id": "pmt-tf-order-0154-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3fba950ab2586dfd",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-60",
+      "variant": "double_amount",
+      "source_trace_index": 636,
+      "original_id": "pmt-tf-order-0155-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3fba950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-61",
+      "variant": "double_amount",
+      "source_trace_index": 694,
+      "original_id": "pmt-tf-order-0208-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40613615c79128a8",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-62",
+      "variant": "double_amount",
+      "source_trace_index": 698,
+      "original_id": "pmt-tf-order-0210-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40613615c79128aa",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    },
+    {
+      "id": "r12-pmt-group-63",
+      "variant": "double_amount",
+      "source_trace_index": 702,
+      "original_id": "pmt-tf-order-0212-t1",
+      "original_source": "work/w109/G6-solvers/answers-pmt-tf-order-discriminator-20260809.json",
+      "original_reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20228",
+        "platform": "Windows"
+      },
+      "source_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40513615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "requested_arguments": [
+        "0x3e54710b05ffd604",
+        "0x4008000000000000",
+        "0x40613615c79128ac",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "source_input_readback": null,
+      "effective_callee_inputs": "not directly observable"
+    }
+  ]
+}

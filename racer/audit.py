@@ -322,6 +322,91 @@ This audit cannot claim build20527 reproduction until Windows returns readings.
     print(json.dumps(manifest))
 
 
+def pmt_group_questions(scoped, certificates, destination):
+    """Recheck sufficient contradiction rows and neighboring amount/timing inputs.
+
+    These are observation audits. No candidate survives the source constraints,
+    and no old answer is supplied to the Excel request.
+    """
+    import datetime
+    import math
+    import struct
+    root=Path(certificates)
+    selected={}
+    proof_files=[]
+    for family in ('timing-complement','annuity-factor'):
+        for path in sorted((root/family).glob('*-first-kills.jsonl')):
+            proof_files.append(path)
+            for certificate in stream(path):
+                for witness in certificate['proof']['witnesses']:
+                    index=witness['trace_index'];raw=witness['witness']
+                    assert index not in selected or selected[index]==raw
+                    selected[index]=raw
+    assert selected and len(selected)<=16
+    originals={}
+    for row in stream(Path(scoped)):
+        if row['trace_index']in selected:
+            assert row['raw']==selected[row['trace_index']]
+            originals[row['trace_index']]=row
+    assert originals.keys()==selected.keys()
+    out=Path(destination);out.mkdir(parents=True,exist_ok=False)
+    def number(bits):return struct.unpack('>d',bytes.fromhex(bits[2:]))[0]
+    def encoded(x):return '0x'+struct.pack('>d',x).hex()
+    questions=[];bindings=[];historical=[];seen=set()
+    # The priority is fixed before predictions: every sufficient original row,
+    # each opposite timing, then adjacent values, then binary scalings.
+    for variant in ('original','opposite_timing','previous_amount','next_amount','half_amount','double_amount'):
+        for index,raw in sorted(selected.items()):
+            args=raw['args'].copy();pv=number(args[2])
+            if variant=='opposite_timing':args[4]=encoded(float(number(args[4])==0))
+            elif variant=='previous_amount':args[2]=encoded(math.nextafter(pv,-math.inf))
+            elif variant=='next_amount':args[2]=encoded(math.nextafter(pv,math.inf))
+            elif variant=='half_amount':args[2]=encoded(pv/2)
+            elif variant=='double_amount':args[2]=encoded(pv*2)
+            key=tuple(args)
+            if key in seen or len(questions)==64:continue
+            seen.add(key);ident=f'r12-pmt-group-{len(questions):02d}'
+            questions.append(dict(id=ident,args=args,input_transport='cell_value2_bulk'))
+            bindings.append(dict(id=ident,variant=variant,source_trace_index=index,
+                original_id=raw['id'],original_source=raw['source'],original_reading=raw['reading'],
+                source_arguments=raw['args'],requested_arguments=args,
+                source_input_readback=None,effective_callee_inputs='not directly observable'))
+            if variant=='original':historical.append(dict(id=ident,historical_observation=raw,
+                status='Original recorded observation only; verify current read-back inputs before semantic comparison.'))
+    assert len(questions)==64 and len(historical)==len(selected)
+    request=dict(function='PMT',selection='R12 shared-helper observation audit; intentional rechecks, do not use --new-only',witnesses=questions)
+    with(out/'requests-PMT.json').open('x')as f:json.dump(request,f,indent=2);f.write('\n')
+    with(out/'selection.json').open('x')as f:json.dump(dict(method='Sufficient first-contradiction rows, fixed amount/timing variant priority; no ranking by prediction or fit.',
+        original_rows=len(selected),calls=len(questions),bindings=bindings),f,indent=2);f.write('\n')
+    with(out/'historical-observations.jsonl').open('x')as f:
+        for row in historical:f.write(json.dumps(row,sort_keys=True)+'\n')
+    with(out/'README.txt').open('x')as f:f.write('''Round12 PMT shared-helper input audit:64 calls, zero new answers.
+On current DnaCalc master on Windows:
+ cargo xtask witness read --func PMT --inputs <packet>/requests-PMT.json
+Do not pass --new-only. Preserve the readings and entire raw worker directory,
+including input_audits, request.json and result.json. Submit only requests-PMT.json.
+The13 original rows establish exact contradictions for the earlier shared-helper
+projections, conditional on their recorded inputs. Older callee inputs were not
+read back. Compare original rows with historical-observations.jsonl only after
+verifying the new Value2 read-back. Opposite timings, adjacent amounts and binary
+scalings audit amount dependence and transport; their outputs have no Excel label
+until this capture. Predictions remain separate and never count as observations.
+Record actual build, CPU/bitness, calculation settings and Compatibility Version.
+Neither a changed input nor a failed read may be normalized into a semantic match.
+No version drift, transport defect, helper or complete PMT program is established
+by preparing this packet. The older R11 structural and cumulative packets remain
+unanswered and unchanged.
+''')
+    files=sorted(p for p in out.iterdir()if p.is_file())
+    manifest=dict(frozen_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),calls=64,
+        new_excel_answers=0,function='PMT',source_trace_sha256=sha(Path(scoped)),
+        proof_sha256={str(p.relative_to(root)):sha(p)for p in proof_files},
+        files_sha256={p.name:sha(p)for p in files},
+        limitations='Observation/transport audit only; no surviving candidate is claimed. Historical effective inputs remain unknown.')
+    with(out/'manifest.json').open('x')as f:json.dump(manifest,f,indent=2);f.write('\n')
+    print(json.dumps(manifest))
+
+
 def structural_questions(out):
     """R11 domain-boundary and conversion-route observations, not fitted bodies."""
     import math
@@ -378,6 +463,7 @@ no numerical body or coefficient is selected from their results.
 
 if __name__ == "__main__":
     if sys.argv[1]=="structural-questions":structural_questions(sys.argv[2])
+    elif sys.argv[1]=="pmt-group-questions":pmt_group_questions(*sys.argv[2:])
     elif sys.argv[1]=="pmt-observation-questions":pmt_observation_questions(*sys.argv[2:])
     elif sys.argv[1]=="questions":audit_questions(sys.argv[2],sys.argv[3])
     elif len(sys.argv)>2:audit_r7(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
