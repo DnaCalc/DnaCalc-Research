@@ -147,4 +147,82 @@ def check(trace,growth,directory,output,companions=None):
         limitations='Only the declared singleton consumers and conditional growth programs. A shared latent is an existential constraint, never an implemented component. Companion source/build/bitness are preserved; historical CPU, transport and settings are unavailable. No full-function identification or fresh-validation claim.'))
 
 
-if __name__=='__main__':check(*sys.argv[1:])
+def coupled(packet, trace, directory, output):
+    """Independently exhaust finite publication cells for the frozen R11 relation."""
+    packet, trace, directory = map(Path, (packet, trace, directory))
+    frozen={str(p):digest(p)for p in (trace,packet/'conditional-relations.json',
+        directory/'relations.json',directory/'identities.json',directory/'summary.json')}
+    rows=list(records(trace));byid={r['id']:r for r in rows}
+    require(len(rows)==234 and len(byid)==234,'incomplete packet observations')
+    relations=json.loads((packet/'conditional-relations.json').read_text())
+    groups=defaultdict(list);identities=[]
+    for relation in relations:
+        c=byid[relation['CUMPRINC']];a=c['args']
+        require(c['function']=='CUMPRINC','wrong cumulative function')
+        if 'PPMT'in relation:
+            p=byid[relation['PPMT']];b=p['args']
+            require(p['function']=='PPMT'and a[3]==a[4]==b[1]and a[:3]==[b[0],b[2],b[3]]
+                and binary64(b[4])==0 and a[5]==b[5]and c['reading']==p['reading'],'singleton input/environment differs')
+        else:
+            p=byid[relation['PMT']];b=p['args']
+            require(p['function']=='PMT'and a[:3]==b[:3]and binary64(b[3])==0
+                and a[5]==b[4]and c['reading']==p['reading'],'payment input/environment differs')
+            if 'CUMIPMT'in relation:
+                i=byid[relation['CUMIPMT']]
+                require(i['function']=='CUMIPMT'and i['args']==a and i['reading']==c['reading'],
+                    'interest input/environment differs')
+                require(relation['count']==binary64(a[4])-binary64(a[3])+1,'wrong payment count')
+                groups[p['id']].append((relation,c,i));continue
+            require(list(map(binary64,a[3:6]))==[1,1,1],'wrong first beginning control')
+        identities.append(dict(relation=relation,equal=c['expected']==p['expected'],cumulative=c,standalone=p))
+    require(len(groups)==4 and sum(map(len,groups.values()))==12 and len(identities)==18,'missing frozen relation')
+    require(json.loads((directory/'identities.json').read_text())==identities,'identity result differs')
+    proofs=json.loads((directory/'relations.json').read_text());require(len(proofs)==100,'missing profile/loan result')
+    survivors=[];stored_survivors=[];position=0;checks=0
+    for pid,(pm,sm)in enumerate(itertools.product(MODELS,repeat=2)):
+        alive=True;stored_alive=True
+        for qid,triplets in sorted(groups.items()):
+            p=byid[qid];y=binary64(p['expected']);require(y<0,'nonnegative payment outside scope')
+            bounds=E.coordinates(B.pullback(Span(y,y)));require(bounds is not None,'empty payment publication')
+            low,high=bounds;require(high-low<4096,'payment cell outside finite bound')
+            admitted=[]
+            for k in range(low,high+1):
+                payment=E.value(k);possible=True
+                for relation,c,i in triplets:
+                    product=operation(Fraction(relation['count']),payment,'mul',pm)
+                    interest=binary64(i['expected']);principal=binary64(c['expected'])
+                    require(interest<0 and principal<0,'nonnegative cumulative result outside scope')
+                    wanted=inverse(B.pullback(Span(interest,interest)),product,'add',False,sm)
+                    wanted=wanted.linear(Fraction(-1))if wanted else None
+                    overlap=B.pullback(Span(principal,principal)).meet(wanted)
+                    checks+=1
+                    if E.coordinates(overlap)is None:possible=False;break
+                admitted.append(possible)
+            expected=dict(profile_id=pid,product_model=pm,subtraction_model=sm,payment=p,
+                relations=[r[0]for r in triplets],domain_count=high-low+1,
+                admissible_payment_count=sum(admitted),admission_sha256=hashlib.sha256(bytes(admitted)).hexdigest())
+            require(proofs[position]==expected,'publication-cell constraint result differs');position+=1
+            alive &= any(admitted)
+            stored_coordinate=E.floor_coordinate(y)
+            require(E.value(stored_coordinate)==y and low<=stored_coordinate<=high,
+                'stored publication is outside its own payment cell')
+            stored_alive &= admitted[stored_coordinate-low]
+        if alive:survivors.append(pid)
+        if stored_alive:stored_survivors.append(pid)
+    summary=json.loads((directory/'summary.json').read_text())
+    require(summary['complete']is True and summary['profiles']==25 and summary['survivors']==survivors,
+        'coupled survivor result differs')
+    require(frozen=={p:digest(p)for p in frozen}and digest(Path(__file__))==SOURCE,'proof/source changed')  # ubs:ignore — public evidence/source hashes, no secret or authentication comparison
+    write_result(output,dict(complete=True,profiles=25,survivors=survivors,loans=4,intervals=12,
+        stored_payment_survivors=stored_survivors,
+        singleton_pairs=16,singleton_equal=sum(r['equal']for r in identities if 'PPMT'in r['relation']),
+        first_beginning_equal=sum(r['equal']for r in identities if 'PPMT'not in r['relation']),
+        exact_constraints_checked=checks,input_sha256=frozen,projection_checker_sha256=SOURCE,
+        limits='Independent exact arithmetic/preimages over every Ext80 payment in its publication '
+               'cell. Remaining profiles are necessary relations, not producers or whole functions. '
+               'No latent coefficient chosen; original effective-callee-input limitation remains.'))
+
+
+if __name__=='__main__':
+    if sys.argv[1]=='coupled':coupled(*sys.argv[2:])
+    else:check(*sys.argv[1:])

@@ -128,51 +128,138 @@ fn encoded(value: &CalcValue) -> String {
 /// This extends the existing audit; it never supplies replacement Excel answers.
 pub fn function_routes(input: &str, out: &str) {
     use std::io::Write;
-    let mut output = std::io::BufWriter::new(fs::OpenOptions::new().write(true).create_new(true).open(out).unwrap());
+    let mut output = std::io::BufWriter::new(
+        fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(out)
+            .unwrap(),
+    );
     let rows = crate::lines::<Value>(input);
     for raw in &rows {
         let mut book = Workbook::new_blank();
         let sheet = book.sheets()[0].id;
         let at = |row, column| CellKey::new(sheet, row, column).unwrap();
         let mut echoes = vec![];
-        for (index, source) in raw["argument_sources"].as_array().unwrap().iter().enumerate() {
-            let argument = calc_verdict::decode_argument(&raw["args"][index], "original argument").unwrap();
-            let top = 2 + 40 * index as u32;
-            assert!(book.enter(at(top, 1), &format!("={}", source.as_str().unwrap())).accepted());
-            if let Some(array) = argument.as_array() {
-                for r in 0..array.shape().rows {
-                    for c in 0..array.shape().cols {
-                        let cell = book.cell(at(top+r as u32, 1+c as u32)).unwrap();
-                        let ProjectedValue::Calculated { value, .. } = cell.value() else {
-                            panic!("argument echo was not calculated") // ubs:ignore — fail closed on a missing parser observation
-                        };
-                        let wanted = encoded(array.get(r, c).unwrap());
-                        assert_eq!(encoded(value), wanted, "operand changed: {}", raw["id"]);
-                        echoes.push(wanted);
-                    }
-                }
-            } else {
-                let cell = book.cell(at(top, 1)).unwrap();
-                let ProjectedValue::Calculated { value, .. } = cell.value() else {
-                    panic!("scalar echo was not calculated") // ubs:ignore — cached values cannot establish parser parity
+        let numeric_cells = raw["numeric_cell_inputs"].as_bool() == Some(true);
+        let formula;
+        if numeric_cells {
+            assert!(
+                raw["result_index"].is_null(),
+                "numeric cell audit requires a scalar result"
+            );
+            let arguments = raw["args"].as_array().unwrap();
+            let mut references = vec![];
+            for (index, encoded_argument) in arguments.iter().enumerate() {
+                let argument =
+                    calc_verdict::decode_argument(encoded_argument, "numeric cell input").unwrap();
+                assert!(
+                    matches!(argument.core_ref(), CoreRef::Number(_)),
+                    "explicit numeric cells required"
+                );
+                let row = 2 + 40 * index as u32;
+                assert!(
+                    book.dispatch(SkinIntent::Edit {
+                        edits: vec![CellEdit::Set {
+                            at: at(row, 1),
+                            input: literal(&argument),
+                        }]
+                    })
+                    .accepted()
+                );
+                let cell = book.cell(at(row, 1)).unwrap();
+                let ProjectedValue::Literal(value) = cell.value() else {
+                    panic!("authored numeric input changed kind") // ubs:ignore — changed inputs cannot establish a calculation-route comparison
                 };
-                assert_eq!(encoded(value), encoded(&argument), "operand changed: {}", raw["id"]);
+                assert_eq!(
+                    encoded(value),
+                    encoded(&argument),
+                    "numeric cell input changed"
+                );
                 echoes.push(encoded(value));
+                references.push(format!("A{row}"));
+            }
+            formula = format!(
+                "={}({})",
+                raw["function"].as_str().unwrap(),
+                references.join(",")
+            );
+        } else {
+            formula = raw["formula"].as_str().unwrap().to_owned();
+            for (index, source) in raw["argument_sources"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .enumerate()
+            {
+                let argument =
+                    calc_verdict::decode_argument(&raw["args"][index], "original argument")
+                        .unwrap();
+                let top = 2 + 40 * index as u32;
+                assert!(
+                    book.enter(at(top, 1), &format!("={}", source.as_str().unwrap()))
+                        .accepted()
+                );
+                if let Some(array) = argument.as_array() {
+                    for r in 0..array.shape().rows {
+                        for c in 0..array.shape().cols {
+                            let cell = book.cell(at(top + r as u32, 1 + c as u32)).unwrap();
+                            let ProjectedValue::Calculated { value, .. } = cell.value() else {
+                                panic!("argument echo was not calculated") // ubs:ignore — fail closed on a missing parser observation
+                            };
+                            let wanted = encoded(array.get(r, c).unwrap());
+                            assert_eq!(encoded(value), wanted, "operand changed: {}", raw["id"]);
+                            echoes.push(wanted);
+                        }
+                    }
+                } else {
+                    let cell = book.cell(at(top, 1)).unwrap();
+                    let ProjectedValue::Calculated { value, .. } = cell.value() else {
+                        panic!("scalar echo was not calculated") // ubs:ignore — cached values cannot establish parser parity
+                    };
+                    assert_eq!(
+                        encoded(value),
+                        encoded(&argument),
+                        "operand changed: {}",
+                        raw["id"]
+                    );
+                    echoes.push(encoded(value));
+                }
             }
         }
-        let args = raw["args"].as_array().unwrap().iter().map(|a| calc_verdict::decode_argument(a, "original argument").unwrap()).collect();
-        let selection = raw["result_index"].as_array().map(|v| (v[0].as_u64().unwrap() as usize, v[1].as_u64().unwrap() as usize));
-        let (registered, _) = crate::invoke_selected_control(raw["function"].as_str().unwrap(), args, selection);
+        let args = raw["args"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|a| calc_verdict::decode_argument(a, "original argument").unwrap())
+            .collect();
+        let selection = raw["result_index"].as_array().map(|v| {
+            (
+                v[0].as_u64().unwrap() as usize,
+                v[1].as_u64().unwrap() as usize,
+            )
+        });
+        let (registered, _) =
+            crate::invoke_selected_control(raw["function"].as_str().unwrap(), args, selection);
         let result = at(1, 30);
-        assert!(book.enter(result, raw["formula"].as_str().unwrap()).accepted());
+        assert!(book.enter(result, &formula).accepted());
         let cell = book.cell(result).unwrap();
         let ProjectedValue::Calculated { value, .. } = cell.value() else {
             panic!("function call was not calculated") // ubs:ignore — failed route cannot count as a semantic observation
         };
         let workbook = encoded(value);
-        assert_eq!(workbook, registered, "workbook/registered discrepancy: {}", raw["id"]);
-        assert_eq!(workbook, raw["actual"], "current/frozen product discrepancy: {}", raw["id"]);
-        writeln!(output, "{}", json!({"raw":raw,"workbook":workbook,"registered":registered,
+        assert_eq!(
+            workbook, registered,
+            "workbook/registered discrepancy: {}",
+            raw["id"]
+        );
+        assert_eq!(
+            workbook, raw["actual"],
+            "current/frozen product discrepancy: {}",
+            raw["id"]
+        );
+        writeln!(output, "{}", json!({"raw":raw,"workbook":workbook,"registered":registered,"formula":formula,
+            "argument_transport":if numeric_cells {"authored numeric cells"}else {"formula literals"},
             "echoes":echoes,"new_excel_readings":0,
             "limit":"Checks the current application's literal and typed routes. Original Excel effective-input transport remains an assumption."})).unwrap();
     }

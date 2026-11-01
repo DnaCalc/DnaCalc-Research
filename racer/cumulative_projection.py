@@ -14,7 +14,7 @@ import time
 import datetime
 import struct
 
-from intervals import B64, E64, Interval, inverse_op, number, pow2
+from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, log2floor, number, pow2
 
 MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
 
@@ -165,6 +165,88 @@ cargo xtask witness read --func CUMIPMT --inputs requests-CUMIPMT.json
     print(json.dumps({k:len(v)for k,v in batches.items()}))
 
 
+def coupled(packet, trace, out):
+    """Apply the frozen R11 payment/principal/interest relation, without a producer."""
+    packet, trace, out = map(Path, (packet, trace, out))
+    out.mkdir(parents=True, exist_ok=False)
+    rows = {r['id']:r for r in map(json.loads, trace.read_text().splitlines())}
+    relations = json.loads((packet/'conditional-relations.json').read_text())
+    loans = defaultdict(list); identities = []
+    for relation in relations:
+        c = rows[relation['CUMPRINC']]
+        assert c['function'] == 'CUMPRINC'
+        if 'PPMT' in relation:
+            p = rows[relation['PPMT']]
+            a, b = c['args'], p['args']
+            assert p['function'] == 'PPMT' and a[3] == a[4] == b[1]
+            assert a[:3] == [b[0], b[2], b[3]] and b[4] == '0x0000000000000000' and a[5] == b[5]
+            assert c['reading'] == p['reading']
+            identities.append(dict(relation=relation, equal=c['expected']==p['expected'],
+                                   cumulative=c, standalone=p))
+        elif 'CUMIPMT' in relation:
+            p, i = rows[relation['PMT']], rows[relation['CUMIPMT']]
+            assert p['function']=='PMT' and i['function']=='CUMIPMT'
+            assert c['args']==i['args'] and c['args'][:3]==p['args'][:3]
+            assert p['args'][3]=='0x0000000000000000' and c['args'][5]==p['args'][4]
+            assert c['reading']==i['reading']==p['reading']
+            assert relation['count']==int(number(c['args'][4])-number(c['args'][3])+1)
+            loans[p['id']].append((relation,p,c,i))
+        else:
+            p=rows[relation['PMT']]
+            assert c['args'][3:6]==['0x3ff0000000000000']*3 and c['args'][:3]==p['args'][:3]
+            assert c['reading']==p['reading']
+            identities.append(dict(relation=relation,equal=c['expected']==p['expected'],
+                                   cumulative=c,standalone=p))
+    assert len(loans)==4 and sum(map(len,loans.values()))==12 and len(identities)==18
+    def rounded(x,m):
+        if m==0:return B64.rn(x)
+        z=(E64 if m in (1,2) else E53).rn(x)
+        return B64.rn(z) if m in (1,3) else z
+    results=[];survivors=[]
+    for pid,(pm,sm) in enumerate(itertools.product(range(5),repeat=2)):
+        feasible=True
+        for loan, triplets in sorted(loans.items()):
+            payment=triplets[0][1];y=Q(number(payment['expected']));cell=B64.preimage(Interval(y,y))
+            low,high=E64.ceil(cell.lo),E64.floor(cell.hi)
+            if low==cell.lo and not cell.lc:low=E64.next(low)
+            if high==cell.hi and not cell.hc:high=E64.prev(high)
+            assert low<=high<0 and log2floor(-low)==log2floor(-high)
+            step=pow2(log2floor(-low)-63);count=int((high-low)/step)+1
+            assert 1<=count<=4096 and low+(count-1)*step==high
+            admitted=[]
+            for k in range(count):
+                latent=low+k*step;possible=True
+                for relation,p,c,i in triplets:
+                    product=rounded(relation['count']*(B64.rn(latent)if pm==0 else latent),pm)
+                    principal=Q(number(c['expected']));interest=Q(number(i['expected']))
+                    required=inverse_add(B64.preimage(Interval(interest,interest)),sm,product)
+                    required=required.affine(Q(-1))if required else None
+                    wanted=B64.preimage(Interval(principal,principal))
+                    overlap=wanted.intersect(required) if required else None
+                    if overlap is None:possible=False;break
+                    first,last=E64.ceil(overlap.lo),E64.floor(overlap.hi)
+                    if first==overlap.lo and not overlap.lc:first=E64.next(first)
+                    if last==overlap.hi and not overlap.hc:last=E64.prev(last)
+                    if first is None or last is None or first>last:possible=False;break
+                admitted.append(possible)
+            feasible &= any(admitted)
+            results.append(dict(profile_id=pid,product_model=MODELS[pm],subtraction_model=MODELS[sm],
+                payment=payment,relations=[r[0]for r in triplets],domain_count=count,
+                admissible_payment_count=sum(admitted),
+                admission_sha256=hashlib.sha256(bytes(admitted)).hexdigest()))
+        if feasible:survivors.append(pid)
+    (out/'relations.json').write_text(json.dumps(results,indent=2)+'\n')
+    (out/'identities.json').write_text(json.dumps(identities,indent=2)+'\n')
+    summary=dict(complete=True,profiles=25,survivors=survivors,loans=4,intervals=12,
+        singleton_pairs=16,singleton_equal=sum(r['equal']for r in identities if 'PPMT'in r['relation']),
+        first_beginning_equal=sum(r['equal']for r in identities if 'PPMT'not in r['relation']),
+        inputs={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in (trace,packet/'conditional-relations.json',Path(__file__))},
+        limits='Frozen necessary relation only: one shared Ext80 payment per loan, and independent '
+               'Ext80 principal per interval, constrained by all three publications. No latent '
+               'value is selected or installed; nonempty domains do not identify a complete program.')
+    (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps(summary))
+
+
 def balance_domains(trace,structure,out,variant=None):
     """Complete first-singleton preimages; no published-PMT assumption."""
     from intervals import inverse_add,log2floor,E53
@@ -219,7 +301,126 @@ def balance_domains(trace,structure,out,variant=None):
     print(json.dumps(dict(domains=len(domains),minimum=min(d['count']for d in domains),maximum=max(d['count']for d in domains))))
 
 
+def questions_r15(trace, executable, out):
+    """Extend the coupled audit to all nine annuity surfaces using fixed anchors."""
+    import subprocess
+    trace, executable, out = Path(trace), Path(executable).resolve(), Path(out)
+    out.mkdir(parents=True,exist_ok=False)
+    observations=list(map(json.loads,trace.read_text().splitlines()))
+    byid={r['id']:r for r in observations}
+    anchors=('r11-pmt-00','r11-pmt-02','r12-pmt-group-00','r12-pmt-group-05')
+    bits=lambda x:'0x'+struct.pack('>d',x).hex()
+    zero,one,minusone=bits(0.0),bits(1.0),bits(-1.0)
+    functions=('PMT','IPMT','PPMT','CUMPRINC','CUMIPMT','FV','PV','NPER','RATE')
+    batches={f:[]for f in functions};seen={f:{}for f in functions};selection=[];relations=[]
+    def add(f,args,anchor,timing,role,**metadata):
+        key=tuple(args)
+        if key not in seen[f]:
+            qid=f'r15-{f.lower()}-{len(batches[f]):03d}'
+            seen[f][key]=qid
+            batches[f].append(dict(id=qid,args=args,input_transport='cell_value2_bulk'))
+        qid=seen[f][key]
+        selection.append(dict(id=qid,function=f,anchor_id=anchor,timing=timing,role=role,**metadata))
+        return qid
+    for anchor in anchors:
+        source=byid[anchor];r,n,pv,fv,_=source['args'];periods=int(number(n))
+        assert source['function']=='PMT'and number(fv)==0 and periods>=1
+        selected=sorted(set(k for k in (1,2,periods//2,periods)if 1<=k<=periods))
+        intervals=sorted(set([(k,k)for k in (1,2,periods)if k<=periods]+[(1,periods)]+
+            ([(1,periods//2),(periods//2+1,periods)]if periods>1 else[])))
+        for t in (0,1):
+            tb=bits(float(t));matches=[x for x in observations if x['function']=='PMT'and x['args']==[r,n,pv,zero,tb]]
+            assert matches and len({x['expected']for x in matches})==1
+            payment=matches[0];p=payment['expected'];assert number(p)<0
+            ids={}
+            for scale in (1,2,-1):
+                ids[scale]=add('PMT',[r,n,bits(number(pv)*scale),zero,tb],anchor,t,
+                               'cashflow scaling control',scale=scale)
+            for k in selected:
+                args=[r,bits(float(k)),n,pv,zero,tb]
+                i=add('IPMT',args,anchor,t,'standalone interest',period=k)
+                q=add('PPMT',args,anchor,t,'standalone principal',period=k)
+                relations.append(dict(kind='published payment partition audit',PMT=ids[1],IPMT=i,PPMT=q,
+                    limitation='A failed publication identity does not exclude a shared unrounded component.'))
+            for a,b in intervals:
+                args=[r,n,pv,bits(float(a)),bits(float(b)),tb]
+                c=add('CUMPRINC',args,anchor,t,'cumulative principal',start=a,end=b)
+                i=add('CUMIPMT',args,anchor,t,'cumulative interest',start=a,end=b)
+                relations.append(dict(kind='coupled payment/principal/interest preimages',PMT=ids[1],
+                    CUMPRINC=c,CUMIPMT=i,count=b-a+1,
+                    limitation='Compare fixed store/precision profiles with one shared latent payment, never fit it.'))
+                if a==b:
+                    pp=seen['PPMT'][tuple([r,bits(float(a)),n,pv,zero,tb])]
+                    ip=seen['IPMT'][tuple([r,bits(float(a)),n,pv,zero,tb])]
+                    relations.append(dict(kind='singleton surface audit',CUMPRINC=c,PPMT=pp,CUMIPMT=i,IPMT=ip))
+            for f in ('FV','PV'):
+                add(f,[r,n,zero,minusone,tb],anchor,t,'unit growth or discount control')
+                add(f,[r,n,minusone,zero,tb],anchor,t,'unit annuity control')
+                add(f,[r,n,p,pv if f=='FV'else zero,tb],anchor,t,'published-payment cross function control',
+                    payment_source_id=payment['id'])
+                if periods>1:
+                    add(f,[r,bits(float(periods-1)),zero,minusone,tb],anchor,t,'adjacent period growth control')
+            add('NPER',[r,p,pv,zero,tb],anchor,t,'inverse with original published payment',payment_source_id=payment['id'])
+            for guess in (r,bits(0.1)):
+                add('RATE',[n,p,pv,zero,tb,guess],anchor,t,'explicit guess sensitivity control',
+                    payment_source_id=payment['id'],guess='original rate'if guess==r else'mathematical 0.1')
+    batchlist=[]
+    for f in functions:
+        request=out/f'requests-{f}.json'
+        request.write_text(json.dumps(dict(function=f,witnesses=batches[f]),indent=2)+'\n')
+        prediction=out/f'application-predictions-{f}.jsonl'
+        subprocess.run([str(executable),'invoke-inputs',str(request),str(prediction)],check=True,
+                       timeout=300)  # ubs:ignore — explicit local executable/argv, no shell; manifest binds executable hash
+        batchlist.append(dict(function=f,path=request.name,calls=len(batches[f])))
+    (out/'batches.json').write_text(json.dumps(batchlist,indent=2)+'\n')
+    (out/'selection.json').write_text(json.dumps(selection,indent=2)+'\n')
+    (out/'conditional-relations.json').write_text(json.dumps(relations,indent=2)+'\n')
+    (out/'RUN-R15.ps1').write_text('''param([Parameter(Mandatory=$true)][string]$DnaCalcCheckout)
+$ErrorActionPreference = 'Stop'
+$packet = $PSScriptRoot
+$manifest = Get-Content -LiteralPath (Join-Path $packet 'manifest.json') -Raw | ConvertFrom-Json
+foreach ($entry in $manifest.files_sha256.PSObject.Properties) {
+    $got = (Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $packet $entry.Name)).Hash.ToLowerInvariant()
+    if ($got -ne $entry.Value) { throw "Packet hash differs: $($entry.Name)" }
+}
+Push-Location $DnaCalcCheckout
+try {
+    $batches = Get-Content -LiteralPath (Join-Path $packet 'batches.json') -Raw | ConvertFrom-Json
+    foreach ($batch in $batches) {
+        & cargo xtask witness read --func $batch.function --inputs (Join-Path $packet $batch.path)
+        if ($LASTEXITCODE -ne 0) { throw "Reading failed: $($batch.path). Preserve the raw worker output." }
+    }
+} finally { Pop-Location }
+''')
+    (out/'RUN-R15.txt').write_text('''R15 annuity structural audit; nine witness-reader batches.
+Run RUN-R15.ps1 -DnaCalcCheckout <your master checkout>. Use the existing witness reader;
+retain requested/submitted/read-back inputs, calculation settings, environment, raw
+outputs and failed/unread obligations. Do not use --new-only: repeated controls matter.
+Requests contain arguments only. Score immutable application predictions first;
+they are never Excel answers. Then check conditional-relations.json.
+The four anchor loans were fixed before this packet: two ordinary R11 loans and
+the first tiny-rate 360-period and one-period R12 groups. Cashflow scalings are
+exact factors 1, 2 and -1. Inverse-call payment arguments are original recorded
+PMT publications, with their source IDs retained; no private helper is inferred.
+Questions compare singleton cumulative/standalone surfaces, common unrounded
+cashflows, unit growth/annuity calls, and explicit RATE guesses. A nonempty
+necessary domain or equal component result never identifies a complete program.
+All prior observations are discovery. There is no surviving complete candidate
+to validate and no new Excel answer in this packet. Preserve the original R13/R14 packets.
+''')
+    manifest=dict(calls=sum(map(len,batches.values())),new_excel_answers=0,
+        calls_by_function={f:len(batches[f])for f in functions},anchors=anchors,
+        source_trace_sha256=hashlib.sha256(trace.read_bytes()).hexdigest(),
+        generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        application_executable_sha256=hashlib.sha256(executable.read_bytes()).hexdigest(),
+        files_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in out.iterdir()if p.is_file()},
+        limitation='Unanswered structural questions; no complete candidate, selected helper or fresh validation claim.')
+    (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps(manifest))
+
+
 if __name__=='__main__':
     if sys.argv[1]=='questions':questions(*sys.argv[2:])
+    elif sys.argv[1]=='questions-r15':questions_r15(*sys.argv[2:])
+    elif sys.argv[1]=='coupled':coupled(*sys.argv[2:])
     elif sys.argv[1]=='balance-domains':balance_domains(*sys.argv[2:])
     else:run(*sys.argv[1:])

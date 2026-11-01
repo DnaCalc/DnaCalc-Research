@@ -1,0 +1,93 @@
+{
+  "function": "NPER",
+  "witnesses": [
+    {
+      "id": "r15-nper-000",
+      "args": [
+        "0x3f564f23b0123bb2",
+        "0xbffe49b178993c71",
+        "0x406b9446d200b345",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-001",
+      "args": [
+        "0x3f564f23b0123bb2",
+        "0xbffe3f265c984e88",
+        "0x406b9446d200b345",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-002",
+      "args": [
+        "0x3f71111111111111",
+        "0xc090c692af15f63a",
+        "0x41086a0000000000",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-003",
+      "args": [
+        "0x3f71111111111111",
+        "0xc090b4c0d059daa6",
+        "0x41086a0000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-004",
+      "args": [
+        "0x3e40b25c74007082",
+        "0xbf669ee422356844",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-005",
+      "args": [
+        "0x3e40b25c74007082",
+        "0xbf669ee41f420675",
+        "0x3fefcf6de32210e3",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-006",
+      "args": [
+        "0x3e4149806bffeb65",
+        "0xbfaa950ab5ef7d10",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r15-nper-007",
+      "args": [
+        "0x3e4149806bffeb65",
+        "0xbfaa950ab2586df9",
+        "0x3faa950ab2586df9",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

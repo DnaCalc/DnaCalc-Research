@@ -1,0 +1,784 @@
+{
+  "capture_provenance": {
+    "automation_security_after": 1,
+    "automation_security_before": 1,
+    "calculation_settings": {
+      "CompatibilityVersion": 2,
+      "Date1904": false,
+      "DecimalSeparator": ".",
+      "PrecisionAsDisplayed": false,
+      "ThousandsSeparator": " ",
+      "UseSystemSeparators": true,
+      "calculation": -4135,
+      "compatibility_version": null,
+      "unavailable": []
+    },
+    "captured_utc": "2026-11-01T11:50:00Z",
+    "environment": {
+      "cpu_id": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+      "excel_bitness": "64-bit",
+      "excel_build": "20527",
+      "excel_file_version": "16.0.20527.20088",
+      "excel_input_plumbing": "cell_value2_bulk",
+      "excel_operating_system": "Microsoft Windows NT 10.0.26200.0",
+      "excel_version": "16.0",
+      "platform": "Windows"
+    },
+    "frozen_model_predictions": {
+      "calc_func_commit": "baf27cdec01dbb40c19039e2234d613f5fee6f0f",
+      "formula_literal_ids": [],
+      "frozen_path": "C:\\Work\\DnaCalc\\DnaCalc-win\\target/witness/frozen\\BESSELI-20261101T114952Z.json",
+      "frozen_sha256": "131dd141e6e0be342679cd3da55a03590fd0d7175ce90074e4eb4c0e63762a25",
+      "inputs_path": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\prior\\structural-r11-v2\\requests-BESSELI.json",
+      "inputs_sha256": "042f402d4c801fccc0f3ca649e7c04d212994c244d8a2043e06b2d94e189f2ab",
+      "novelty": null,
+      "selection": null
+    },
+    "inputs": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\prior\\structural-r11-v2\\requests-BESSELI.json",
+    "reader": "calc-oracle-excel 0.1.0; worker results 1; worker sha256:599032d018da3b9889269e0ca46c2c1c7f2f21572fb378bc1781a73b9cd93d25; witness worker sha256:9a2341b3c938f27cc1e3f9de44e4ed5e9f3727e3bfdfd85007b2f421cb2fb804",
+    "schema_version": "dnacalc-witness-reading/1"
+  },
+  "function": "BESSELI",
+  "input_audits": [
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-00",
+      "observed_raw": {
+        "number": "7f8c3d51558ee1ba"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-01",
+      "observed_raw": {
+        "number": "7f8c3d51558ee541"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-02",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-03",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-04",
+      "observed_raw": {
+        "number": "7f8c383994e04545"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-05",
+      "observed_raw": {
+        "number": "7f8c383994e048cc"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-06",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-07",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d9999999999"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-08",
+      "observed_raw": {
+        "number": "7f8c3732e70ce373"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d999999999a"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-09",
+      "observed_raw": {
+        "number": "7f8c3732e70ce6f9"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d999999999b"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-10",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "40862d9999a70593"
+          },
+          {
+            "number": "4000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-11",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "c0862d9999999999"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "c0862d9999999999"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "c0862d9999999999"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-12",
+      "observed_raw": {
+        "number": "7f8c3d51558ee1ba"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "c0862d999999999a"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "c0862d999999999a"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "c0862d999999999a"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-13",
+      "observed_raw": {
+        "number": "7f8c3d51558ee541"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "c0862d999999999b"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "c0862d999999999b"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "c0862d999999999b"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-14",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=BESSELI(RC[1],RC[2])",
+        "read_back": [
+          {
+            "number": "c0862d9999a70593"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "c0862d9999a70593"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "c0862d9999a70593"
+          },
+          {
+            "number": "0000000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-besseli-15",
+      "observed_raw": {
+        "error_code": 2036
+      },
+      "reading_failure": null
+    }
+  ],
+  "transport_audit_readings": [],
+  "unread": [],
+  "witnesses": [
+    {
+      "args": [
+        "0x40862d9999999999",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d51558ee1ba",
+      "expected_bits": "0x7f8c3d51558ee1ba",
+      "id": "r11-struct-besseli-00"
+    },
+    {
+      "args": [
+        "0x40862d999999999a",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d51558ee541",
+      "expected_bits": "0x7f8c3d51558ee541",
+      "id": "r11-struct-besseli-01"
+    },
+    {
+      "args": [
+        "0x40862d999999999b",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d51558ee8c7",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-02"
+    },
+    {
+      "args": [
+        "0x40862d9999a70593",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d5184e7205d",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-03"
+    },
+    {
+      "args": [
+        "0x40862d9999999999",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c383994e04545",
+      "expected_bits": "0x7f8c383994e04545",
+      "id": "r11-struct-besseli-04"
+    },
+    {
+      "args": [
+        "0x40862d999999999a",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c383994e048cc",
+      "expected_bits": "0x7f8c383994e048cc",
+      "id": "r11-struct-besseli-05"
+    },
+    {
+      "args": [
+        "0x40862d999999999b",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c383994e04c51",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-06"
+    },
+    {
+      "args": [
+        "0x40862d9999a70593",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3839c42ffd33",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-07"
+    },
+    {
+      "args": [
+        "0x40862d9999999999",
+        "0x4000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c28f5d197af23",
+      "expected_bits": "0x7f8c3732e70ce373",
+      "id": "r11-struct-besseli-08"
+    },
+    {
+      "args": [
+        "0x40862d999999999a",
+        "0x4000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c28f5d197b2a8",
+      "expected_bits": "0x7f8c3732e70ce6f9",
+      "id": "r11-struct-besseli-09"
+    },
+    {
+      "args": [
+        "0x40862d999999999b",
+        "0x4000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c28f5d197b62e",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-10"
+    },
+    {
+      "args": [
+        "0x40862d9999a70593",
+        "0x4000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c28f600cdd6c0",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-11"
+    },
+    {
+      "args": [
+        "0xc0862d9999999999",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d51558ee1ba",
+      "expected_bits": "0x7f8c3d51558ee1ba",
+      "id": "r11-struct-besseli-12"
+    },
+    {
+      "args": [
+        "0xc0862d999999999a",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d51558ee541",
+      "expected_bits": "0x7f8c3d51558ee541",
+      "id": "r11-struct-besseli-13"
+    },
+    {
+      "args": [
+        "0xc0862d999999999b",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d51558ee8c7",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-14"
+    },
+    {
+      "args": [
+        "0xc0862d9999a70593",
+        "0x0000000000000000"
+      ],
+      "calc_func_prediction": "0x7f8c3d5184e7205d",
+      "expected_bits": "error:Num",
+      "id": "r11-struct-besseli-15"
+    }
+  ]
+}

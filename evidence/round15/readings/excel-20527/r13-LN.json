@@ -1,0 +1,264 @@
+{
+  "capture_provenance": {
+    "automation_security_after": 1,
+    "automation_security_before": 1,
+    "calculation_settings": {
+      "CompatibilityVersion": 2,
+      "Date1904": false,
+      "DecimalSeparator": ".",
+      "PrecisionAsDisplayed": false,
+      "ThousandsSeparator": " ",
+      "UseSystemSeparators": true,
+      "calculation": -4135,
+      "compatibility_version": null,
+      "unavailable": []
+    },
+    "captured_utc": "2026-11-01T11:51:11Z",
+    "environment": {
+      "cpu_id": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+      "excel_bitness": "64-bit",
+      "excel_build": "20527",
+      "excel_file_version": "16.0.20527.20088",
+      "excel_input_plumbing": "cell_value2_bulk",
+      "excel_operating_system": "Microsoft Windows NT 10.0.26200.0",
+      "excel_version": "16.0",
+      "platform": "Windows"
+    },
+    "frozen_model_predictions": {
+      "calc_func_commit": "baf27cdec01dbb40c19039e2234d613f5fee6f0f",
+      "formula_literal_ids": [],
+      "frozen_path": "C:\\Work\\DnaCalc\\DnaCalc-win\\target/witness/frozen\\LN-20261101T115102Z.json",
+      "frozen_sha256": "6da22eafe874e7f117a7d01178c241de7c8b581a522598986de5691d4798f0bb",
+      "inputs_path": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\requests-LN.json",
+      "inputs_sha256": "4b9c6661d7d99fb76876d5080904bb3537f2b5e2bbc2e9dd81a029c92efdabbd",
+      "novelty": null,
+      "selection": "R13 instruction-boundary and original-gap audit; intentional rechecks, no --new-only"
+    },
+    "inputs": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\requests-LN.json",
+    "reader": "calc-oracle-excel 0.1.0; worker results 1; worker sha256:599032d018da3b9889269e0ca46c2c1c7f2f21572fb378bc1781a73b9cd93d25; witness worker sha256:9a2341b3c938f27cc1e3f9de44e4ed5e9f3727e3bfdfd85007b2f421cb2fb804",
+    "schema_version": "dnacalc-witness-reading/1"
+  },
+  "function": "LN",
+  "input_audits": [
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=LN(RC[1])",
+        "read_back": [
+          {
+            "number": "3ff000000229300e"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ff000000229300e"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ff000000229300e"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-ln-000",
+      "observed_raw": {
+        "number": "3e4149806ed527d7"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=LN(RC[1])",
+        "read_back": [
+          {
+            "number": "3ff000002f5884a4"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ff000002f5884a4"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ff000002f5884a4"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-ln-001",
+      "observed_raw": {
+        "number": "3e87ac422ef98306"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=LN(RC[1])",
+        "read_back": [
+          {
+            "number": "3ff000008637bd06"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ff000008637bd06"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ff000008637bd06"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-ln-002",
+      "observed_raw": {
+        "number": "3ea0c6f75a619b84"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=LN(RC[1])",
+        "read_back": [
+          {
+            "number": "3ff00003254e6e22"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ff00003254e6e22"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ff00003254e6e22"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-ln-003",
+      "observed_raw": {
+        "number": "3ec92a70f7bebcd8"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=LN(RC[1])",
+        "read_back": [
+          {
+            "number": "3ff000050c534480"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ff000050c534480"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ff000050c534480"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-ln-004",
+      "observed_raw": {
+        "number": "3ed43149e28598b7"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=LN(RC[1])",
+        "read_back": [
+          {
+            "number": "3ff00593c8ec048f"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ff00593c8ec048f"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ff00593c8ec048f"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-ln-005",
+      "observed_raw": {
+        "number": "3f564b4131f44ec4"
+      },
+      "reading_failure": null
+    }
+  ],
+  "transport_audit_readings": [],
+  "unread": [],
+  "witnesses": [
+    {
+      "args": [
+        "0x3ff000000229300e"
+      ],
+      "calc_func_prediction": "0x3e4149806ed527d7",
+      "expected_bits": "0x3e4149806ed527d7",
+      "id": "r13-ln-000"
+    },
+    {
+      "args": [
+        "0x3ff000002f5884a4"
+      ],
+      "calc_func_prediction": "0x3e87ac422ef98306",
+      "expected_bits": "0x3e87ac422ef98306",
+      "id": "r13-ln-001"
+    },
+    {
+      "args": [
+        "0x3ff000008637bd06"
+      ],
+      "calc_func_prediction": "0x3ea0c6f75a619b84",
+      "expected_bits": "0x3ea0c6f75a619b84",
+      "id": "r13-ln-002"
+    },
+    {
+      "args": [
+        "0x3ff00003254e6e22"
+      ],
+      "calc_func_prediction": "0x3ec92a70f7bebcd8",
+      "expected_bits": "0x3ec92a70f7bebcd8",
+      "id": "r13-ln-003"
+    },
+    {
+      "args": [
+        "0x3ff000050c534480"
+      ],
+      "calc_func_prediction": "0x3ed43149e28598b7",
+      "expected_bits": "0x3ed43149e28598b7",
+      "id": "r13-ln-004"
+    },
+    {
+      "args": [
+        "0x3ff00593c8ec048f"
+      ],
+      "calc_func_prediction": "0x3f564b4131f44ec4",
+      "expected_bits": "0x3f564b4131f44ec4",
+      "id": "r13-ln-005"
+    }
+  ]
+}

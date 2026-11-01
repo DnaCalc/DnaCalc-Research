@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "instructions": 1553,
+  "matches": 1553,
+  "mismatches": 0,
+  "mismatches_by_kind": {},
+  "differences": [],
+  "all_certificate_leaves_reproduced": true,
+  "input_sha256": {
+    "packets/round13/native-leaf-requests.tsv": "5b0dc0ab503c9c1bb35d6872699c97d237fc093cfac18b95a33191b344cf24e7",
+    "packets/round13/predictions/native-leaf-reference.tsv": "beb870ed899b1aa4d96fdb863442a43d6e966f18991b2e8afa890719a2971874",
+    "/home/ubuntu/codex-runs/excel-results-r13-native/native-results-20261101-135142.tsv": "beb870ed899b1aa4d96fdb863442a43d6e966f18991b2e8afa890719a2971874"
+  },
+  "checker_sha256": "065ecb8a99c566914d0017bff7fd60e1474c32b53acd5d24c268989049001085",
+  "limits": "Native CPU instruction comparison only. Equal leaves support transfer of this finite certificate on these operands; no general CPU equivalence or Excel-function match. Changed leaves require a new run and new certificates on that CPU, never replacement of Excel answers."
+}

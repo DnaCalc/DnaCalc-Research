@@ -102,9 +102,10 @@ def expression(serialized, n, first, last, beginning):
     return total
 
 
-def check(trace, directory, output):
+def check(trace, directory, output, expected_rows=540):
     started=time.monotonic();directory=Path(directory)
-    original=list(records(trace));require(len(original)==540,'incomplete discovery observations')
+    expected_rows=int(expected_rows)
+    original=list(records(trace));require(expected_rows>0 and len(original)==expected_rows,'incomplete declared discovery observations')
     cases=[coordinates(row)for row in original]
     programs=list(records(directory/'programs.jsonl'));declared=list(program_catalogue())
     require(programs==declared and len(programs)==90000,'grammar bounds/order differ')
@@ -162,9 +163,10 @@ def check(trace, directory, output):
     survivors=json.loads((directory/'survivors.json').read_text())
     require(not survivors and set(killed)==set(range(90000)),'nonzero/unverified survivors')
     declared_summary=json.loads((directory/'summary.json').read_text())
+    require(declared_summary['original_rows']==expected_rows,'declared observation count differs')
     require(declared_summary['first_kill_histogram']=={str(k):v for k,v in sorted(histogram.items())},'kill counts differ')
     require(digest(Path(__file__))==SOURCE,'checker changed during execution')  # ubs:ignore — public source hashes, no secret comparison
-    write_result(output,dict(complete=True,programs=90000,survivors=0,original_available_rows=540,
+    write_result(output,dict(complete=True,programs=90000,survivors=0,original_available_rows=expected_rows,
         **counts,first_kill_histogram=histogram,seconds=time.monotonic()-started,
         cumulative_checker_sha256=SOURCE,inputs={str(p):digest(p)for p in (Path(trace),directory/'programs.jsonl',directory/'first-kills.jsonl',directory/'traces.jsonl')},
         claim='Every declared program is independently bound to its exact original arguments, full arithmetic trace and first exact contradiction. No fitted coefficient, answer component, approximate equality or unsearched beam.',

@@ -31,6 +31,28 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_bank_delta_orders_function_prefixes_and_counts_real_losses(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('r15_audit',Path(__file__).resolve().parents[1]/'racer/audit.py')
+        audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit)
+        def row(function,arg,actual='one',source='old'):
+            return dict(function=function,id=source,args=[arg],result_index=None,
+                        expected='one',actual=actual,source=source)
+        before=[row('ACCRINT','a'),row('ACCRINTM','a')]
+        after=[row('ACCRINT','a',source='new capture'),row('ACCRINT','b'),row('ACCRINTM','a',actual='different')]
+        with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):
+            root=Path(scratch)
+            for name,rows in [('before',before),('after',after)]:
+                (root/name).write_text(''.join(json.dumps(r)+'\n'for r in rows))
+            result=audit.bank_delta(root/'before',root/'after',root/'result.json')['counts']
+            self.assertEqual(result['shared_inputs'],2);self.assertEqual(result['added_inputs'],1)
+            self.assertEqual(result['changed_outputs'],1);self.assertEqual(result['shared_losses'],1)
+            self.assertEqual(result['representative_metadata_changes'],1)
+            (root/'bad').write_text(''.join(json.dumps(r)+'\n'for r in reversed(before)))
+            with self.assertRaisesRegex(ValueError,'order/uniqueness'):
+                audit.bank_delta(root/'bad',root/'after',root/'must-not-exist.json')
+            self.assertFalse((root/'must-not-exist.json').exists())
+
     def test_racer_empty_scope_is_rejected_with_python_optimization(self):
         import subprocess
         import sys

@@ -1,0 +1,102 @@
+{
+  "complete": true,
+  "observations": 234,
+  "batches": 13,
+  "entries": [
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/CUMIPMT.json",
+      "destination": "readings/excel-20527/r13-CUMIPMT.json",
+      "sha256": "778c903c10ddd7e5bdade262b3c72ba8aaddd25f41ace083bcb3e01019ea856d",
+      "function": "CUMIPMT",
+      "calls": 12
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/CUMPRINC.json",
+      "destination": "readings/excel-20527/r13-CUMPRINC.json",
+      "sha256": "3cc15249cbabf20aa51f4224c6812183d069fc333b7ca0af2914d27036116650",
+      "function": "CUMPRINC",
+      "calls": 32
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/PMT.json",
+      "destination": "readings/excel-20527/r13-PMT.json",
+      "sha256": "4b675fcc3864dfe1efae42ebf84833827ef5dab5c3f22a0136cbeca69b2ec13a",
+      "function": "PMT",
+      "calls": 4
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/PPMT.json",
+      "destination": "readings/excel-20527/r13-PPMT.json",
+      "sha256": "6512058d55bfb6ca10500ef382948f537f3c9456b32bee62d92b362e75a72caa",
+      "function": "PPMT",
+      "calls": 16
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/BESSELI.json",
+      "destination": "readings/excel-20527/r13-BESSELI.json",
+      "sha256": "98a5759480a18205832a12387ee581f2480a669e8b10cffd003184fe0abbcbd7",
+      "function": "BESSELI",
+      "calls": 16
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/BESSELJ.json",
+      "destination": "readings/excel-20527/r13-BESSELJ.json",
+      "sha256": "9c6329161277f0513dc977ef6da20c8c126236f1ddfb1870a403d21345ea689c",
+      "function": "BESSELJ",
+      "calls": 16
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/CONCAT.json",
+      "destination": "readings/excel-20527/r13-CONCAT.json",
+      "sha256": "bd8b8d534075005e835083ad017188ae26f087e75526d444de56d3b3e8131e9f",
+      "function": "CONCAT",
+      "calls": 10
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/CONCATENATE.json",
+      "destination": "readings/excel-20527/r13-CONCATENATE.json",
+      "sha256": "dfea6f57d3c7eef200530ac26a84713251f66b7697cfbdd7ddfa7aeb29690bad",
+      "function": "CONCATENATE",
+      "calls": 10
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/PMT-2.json",
+      "destination": "readings/excel-20527/r13-PMT-2.json",
+      "sha256": "f0aabeb57b4c3ef8887cbd8914b35cedcabc613886ed7df300e0a8b51c3f0e7a",
+      "function": "PMT",
+      "calls": 64
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/PMT-3.json",
+      "destination": "readings/excel-20527/r13-PMT-3.json",
+      "sha256": "d183b8a9008818113bfa9d39d1b57633551a1ebca51c9026b61f21c96ddc0484",
+      "function": "PMT",
+      "calls": 24
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/POWER.json",
+      "destination": "readings/excel-20527/r13-POWER.json",
+      "sha256": "75eeb5beb6f19298ea1f0bcf6e3af2af560689e01248f70b802ac775dfd9bf14",
+      "function": "POWER",
+      "calls": 12
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/LN.json",
+      "destination": "readings/excel-20527/r13-LN.json",
+      "sha256": "cb97e4fe48dccad69ff609266079e496211a81d32376b8e1e6f3ec885fc05972",
+      "function": "LN",
+      "calls": 6
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/EXP.json",
+      "destination": "readings/excel-20527/r13-EXP.json",
+      "sha256": "f591e4ebabb1dee5949e53bfd3f56f7379a32f74ee8e5151d413b1ad84df89c9",
+      "function": "EXP",
+      "calls": 12
+    }
+  ],
+  "packet_manifest_sha256": "27a0fe5139ada3bcb408290f8f7223b53eb230fcfe5cf4867147d0dc0396cc4f",
+  "source_results": "/home/ubuntu/codex-runs/excel-results-r13",
+  "evidence_revision_before": "84d08d3398be4e486ab5339a3becfc10055cd657",
+  "limits": "Reader WitnessSets copied byte for byte; predictions and CPU measurements are not answer banks. Raw worker results and transport/settings audits retained under probes/2026-11-01-r13. Every observation is discovery, including repeated inputs. No existing capture, pin or expected answer altered."
+}

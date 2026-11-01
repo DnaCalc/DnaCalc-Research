@@ -1,0 +1,1872 @@
+{
+  "capture_provenance": {
+    "automation_security_after": 1,
+    "automation_security_before": 1,
+    "calculation_settings": {
+      "CompatibilityVersion": 2,
+      "Date1904": false,
+      "DecimalSeparator": ".",
+      "PrecisionAsDisplayed": false,
+      "ThousandsSeparator": " ",
+      "UseSystemSeparators": true,
+      "calculation": -4135,
+      "compatibility_version": null,
+      "unavailable": []
+    },
+    "captured_utc": "2026-11-01T11:50:51Z",
+    "environment": {
+      "cpu_id": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+      "excel_bitness": "64-bit",
+      "excel_build": "20527",
+      "excel_file_version": "16.0.20527.20088",
+      "excel_input_plumbing": "cell_value2_bulk",
+      "excel_operating_system": "Microsoft Windows NT 10.0.26200.0",
+      "excel_version": "16.0",
+      "platform": "Windows"
+    },
+    "frozen_model_predictions": {
+      "calc_func_commit": "baf27cdec01dbb40c19039e2234d613f5fee6f0f",
+      "formula_literal_ids": [],
+      "frozen_path": "C:\\Work\\DnaCalc\\DnaCalc-win\\target/witness/frozen\\PMT-20261101T115042Z.json",
+      "frozen_sha256": "9b3f42cdb30a669363aff7c97a023f487c83d77c2f88827680ac688092a5d931",
+      "inputs_path": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\requests-PMT.json",
+      "inputs_sha256": "578b75b285fbae30f930d2d5dc8c9d33d65776686e58c427f2a8a49755ed714e",
+      "novelty": null,
+      "selection": "R13 instruction-boundary and original-gap audit; intentional rechecks, no --new-only"
+    },
+    "inputs": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\requests-PMT.json",
+    "reader": "calc-oracle-excel 0.1.0; worker results 1; worker sha256:599032d018da3b9889269e0ca46c2c1c7f2f21572fb378bc1781a73b9cd93d25; witness worker sha256:9a2341b3c938f27cc1e3f9de44e4ed5e9f3727e3bfdfd85007b2f421cb2fb804",
+    "schema_version": "dnacalc-witness-reading/1"
+  },
+  "function": "PMT",
+  "input_audits": [
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3e4149806bffeb65"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3faa950ab2586dfe"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3e4149806bffeb65"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3faa950ab2586dfe"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3e4149806bffeb65"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3faa950ab2586dfe"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-000",
+      "observed_raw": {
+        "number": "bfaa950ab2586dfe"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3e87ac4251bffd77"
+          },
+          {
+            "number": "4042800000000000"
+          },
+          {
+            "number": "3fdbd3233bd73f51"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3e87ac4251bffd77"
+          },
+          {
+            "number": "4042800000000000"
+          },
+          {
+            "number": "3fdbd3233bd73f51"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3e87ac4251bffd77"
+          },
+          {
+            "number": "4042800000000000"
+          },
+          {
+            "number": "3fdbd3233bd73f51"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-001",
+      "observed_raw": {
+        "number": "bf8810922e9dbb0a"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3ea0c6f7a0b5ed8d"
+          },
+          {
+            "number": "4014000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ea0c6f7a0b5ed8d"
+          },
+          {
+            "number": "4014000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ea0c6f7a0b5ed8d"
+          },
+          {
+            "number": "4014000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-002",
+      "observed_raw": {
+        "number": "c0690001a36e2eb3"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3ec92a737110e454"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ec92a737110e454"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ec92a737110e454"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-003",
+      "observed_raw": {
+        "number": "408f400624dbf9de"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3ec92a737110e454"
+          },
+          {
+            "number": "4072c00000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ec92a737110e454"
+          },
+          {
+            "number": "4072c00000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ec92a737110e454"
+          },
+          {
+            "number": "4072c00000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-004",
+      "observed_raw": {
+        "number": "400ab3df73be1c8a"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3ed4314d11fea7e7"
+          },
+          {
+            "number": "4028000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ed4314d11fea7e7"
+          },
+          {
+            "number": "4028000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ed4314d11fea7e7"
+          },
+          {
+            "number": "4028000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-005",
+      "observed_raw": {
+        "number": "bfb5557a5a704167"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3ee3a82c836effea"
+          },
+          {
+            "number": "4000000000000000"
+          },
+          {
+            "number": "4048a864ef0098a0"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ee3a82c836effea"
+          },
+          {
+            "number": "4000000000000000"
+          },
+          {
+            "number": "4048a864ef0098a0"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ee3a82c836effea"
+          },
+          {
+            "number": "4000000000000000"
+          },
+          {
+            "number": "4048a864ef0098a0"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-006",
+      "observed_raw": {
+        "number": "c038a86c81c76b77"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3efef358f9a5b2a5"
+          },
+          {
+            "number": "4040000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3efef358f9a5b2a5"
+          },
+          {
+            "number": "4040000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3efef358f9a5b2a5"
+          },
+          {
+            "number": "4040000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-007",
+      "observed_raw": {
+        "number": "403f3419d05241b8"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f564f23b0123bb2"
+          },
+          {
+            "number": "405fc00000000000"
+          },
+          {
+            "number": "407b9446d200b345"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f564f23b0123bb2"
+          },
+          {
+            "number": "405fc00000000000"
+          },
+          {
+            "number": "407b9446d200b345"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f564f23b0123bb2"
+          },
+          {
+            "number": "405fc00000000000"
+          },
+          {
+            "number": "407b9446d200b345"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-008",
+      "observed_raw": {
+        "number": "c00e3f265c984e88"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f6ca9762334e132"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f6ca9762334e132"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f6ca9762334e132"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-009",
+      "observed_raw": {
+        "number": "bff0000000000000"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f6ca9762334e132"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f6ca9762334e132"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f6ca9762334e132"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-010",
+      "observed_raw": {
+        "number": "c08f2c1b7e48e4f0"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f71db4c9882da2e"
+          },
+          {
+            "number": "4050c00000000000"
+          },
+          {
+            "number": "40ea4c4d5274941a"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f71db4c9882da2e"
+          },
+          {
+            "number": "4050c00000000000"
+          },
+          {
+            "number": "40ea4c4d5274941a"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f71db4c9882da2e"
+          },
+          {
+            "number": "4050c00000000000"
+          },
+          {
+            "number": "40ea4c4d5274941a"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-011",
+      "observed_raw": {
+        "number": "c08ce55c75fb2ede"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f7240315a81bb2c"
+          },
+          {
+            "number": "4018000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f7240315a81bb2c"
+          },
+          {
+            "number": "4018000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f7240315a81bb2c"
+          },
+          {
+            "number": "4018000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-012",
+      "observed_raw": {
+        "number": "bfc59236a4c29f4a"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f869869647a63ee"
+          },
+          {
+            "number": "4048000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f869869647a63ee"
+          },
+          {
+            "number": "4048000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f869869647a63ee"
+          },
+          {
+            "number": "4048000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-013",
+      "observed_raw": {
+        "number": "402f6d36082df694"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f9376fe2939c029"
+          },
+          {
+            "number": "4008000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f9376fe2939c029"
+          },
+          {
+            "number": "4008000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f9376fe2939c029"
+          },
+          {
+            "number": "4008000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-014",
+      "observed_raw": {
+        "number": "bfd5bc7cec9a9104"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f947ae147ae147b"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f947ae147ae147b"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f947ae147ae147b"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-015",
+      "observed_raw": {
+        "number": "408fdcdcdcdcdcdd"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f947ae147ae147b"
+          },
+          {
+            "number": "4040000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f947ae147ae147b"
+          },
+          {
+            "number": "4040000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f947ae147ae147b"
+          },
+          {
+            "number": "4040000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-016",
+      "observed_raw": {
+        "number": "c0363583763b4526"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3f9755b519d39c12"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3f9755b519d39c12"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3f9755b519d39c12"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "c08f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-017",
+      "observed_raw": {
+        "number": "408e85c2378d9a98"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3fa55ab66dbdb6ed"
+          },
+          {
+            "number": "4030000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3fa55ab66dbdb6ed"
+          },
+          {
+            "number": "4030000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3fa55ab66dbdb6ed"
+          },
+          {
+            "number": "4030000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-018",
+      "observed_raw": {
+        "number": "bfb55b59ee3acb5e"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3fa70a3d70a3d70a"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3fa70a3d70a3d70a"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3fa70a3d70a3d70a"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-019",
+      "observed_raw": {
+        "number": "c08f3fffffffffff"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3fb09fcfade4447f"
+          },
+          {
+            "number": "4031000000000000"
+          },
+          {
+            "number": "40987ee5254f7339"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3fb09fcfade4447f"
+          },
+          {
+            "number": "4031000000000000"
+          },
+          {
+            "number": "40987ee5254f7339"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3fb09fcfade4447f"
+          },
+          {
+            "number": "4031000000000000"
+          },
+          {
+            "number": "40987ee5254f7339"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-020",
+      "observed_raw": {
+        "number": "c0623142e15a6fe3"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3fc5364bdd3509ec"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3fcf3897970e9902"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3fc5364bdd3509ec"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3fcf3897970e9902"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3fc5364bdd3509ec"
+          },
+          {
+            "number": "3ff0000000000000"
+          },
+          {
+            "number": "3fcf3897970e9902"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-021",
+      "observed_raw": {
+        "number": "bfcf3897970e9906"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3fd28f5c28f5c28f"
+          },
+          {
+            "number": "4038000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3fd28f5c28f5c28f"
+          },
+          {
+            "number": "4038000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3fd28f5c28f5c28f"
+          },
+          {
+            "number": "4038000000000000"
+          },
+          {
+            "number": "c09f400000000000"
+          },
+          {
+            "number": "408f400000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-022",
+      "observed_raw": {
+        "number": "407c21cac00361c7"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=PMT(RC[1],RC[2],RC[3],RC[4],RC[5])",
+        "read_back": [
+          {
+            "number": "3fddf73a90875477"
+          },
+          {
+            "number": "4018000000000000"
+          },
+          {
+            "number": "40168d9b60c3a72a"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3fddf73a90875477"
+          },
+          {
+            "number": "4018000000000000"
+          },
+          {
+            "number": "40168d9b60c3a72a"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3fddf73a90875477"
+          },
+          {
+            "number": "4018000000000000"
+          },
+          {
+            "number": "40168d9b60c3a72a"
+          },
+          {
+            "number": "0000000000000000"
+          },
+          {
+            "number": "3ff0000000000000"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r13-pmt-023",
+      "observed_raw": {
+        "number": "bffff599d76393d6"
+      },
+      "reading_failure": null
+    }
+  ],
+  "transport_audit_readings": [],
+  "unread": [],
+  "witnesses": [
+    {
+      "args": [
+        "0x3e4149806bffeb65",
+        "0x3ff0000000000000",
+        "0x3faa950ab2586dfe",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfaa950ab2586dfd",
+      "expected_bits": "0xbfaa950ab2586dfe",
+      "id": "r13-pmt-000"
+    },
+    {
+      "args": [
+        "0x3e87ac4251bffd77",
+        "0x4042800000000000",
+        "0x3fdbd3233bd73f51",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbf8810922e9dbb09",
+      "expected_bits": "0xbf8810922e9dbb0a",
+      "id": "r13-pmt-001"
+    },
+    {
+      "args": [
+        "0x3ea0c6f7a0b5ed8d",
+        "0x4014000000000000",
+        "0x408f400000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc0690001a36e2eb1",
+      "expected_bits": "0xc0690001a36e2eb3",
+      "id": "r13-pmt-002"
+    },
+    {
+      "args": [
+        "0x3ec92a737110e454",
+        "0x3ff0000000000000",
+        "0xc09f400000000000",
+        "0x408f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x408f400624dbf9df",
+      "expected_bits": "0x408f400624dbf9de",
+      "id": "r13-pmt-003"
+    },
+    {
+      "args": [
+        "0x3ec92a737110e454",
+        "0x4072c00000000000",
+        "0xc09f400000000000",
+        "0x408f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x400ab3df73be1c89",
+      "expected_bits": "0x400ab3df73be1c8a",
+      "id": "r13-pmt-004"
+    },
+    {
+      "args": [
+        "0x3ed4314d11fea7e7",
+        "0x4028000000000000",
+        "0x3ff0000000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfb5557a5a704168",
+      "expected_bits": "0xbfb5557a5a704167",
+      "id": "r13-pmt-005"
+    },
+    {
+      "args": [
+        "0x3ee3a82c836effea",
+        "0x4000000000000000",
+        "0x4048a864ef0098a0",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc038a86c81c76b78",
+      "expected_bits": "0xc038a86c81c76b77",
+      "id": "r13-pmt-006"
+    },
+    {
+      "args": [
+        "0x3efef358f9a5b2a5",
+        "0x4040000000000000",
+        "0x3ff0000000000000",
+        "0xc08f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x403f3419d05241b7",
+      "expected_bits": "0x403f3419d05241b8",
+      "id": "r13-pmt-007"
+    },
+    {
+      "args": [
+        "0x3f564f23b0123bb2",
+        "0x405fc00000000000",
+        "0x407b9446d200b345",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc00e3f265c984e89",
+      "expected_bits": "0xc00e3f265c984e88",
+      "id": "r13-pmt-008"
+    },
+    {
+      "args": [
+        "0x3f6ca9762334e132",
+        "0x3ff0000000000000",
+        "0x3ff0000000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfefffffffffffff",
+      "expected_bits": "0xbff0000000000000",
+      "id": "r13-pmt-009"
+    },
+    {
+      "args": [
+        "0x3f6ca9762334e132",
+        "0x3ff0000000000000",
+        "0x3ff0000000000000",
+        "0x408f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc08f2c1b7e48e4ef",
+      "expected_bits": "0xc08f2c1b7e48e4f0",
+      "id": "r13-pmt-010"
+    },
+    {
+      "args": [
+        "0x3f71db4c9882da2e",
+        "0x4050c00000000000",
+        "0x40ea4c4d5274941a",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc08ce55c75fb2edf",
+      "expected_bits": "0xc08ce55c75fb2ede",
+      "id": "r13-pmt-011"
+    },
+    {
+      "args": [
+        "0x3f7240315a81bb2c",
+        "0x4018000000000000",
+        "0x3ff0000000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfc59236a4c29f4b",
+      "expected_bits": "0xbfc59236a4c29f4a",
+      "id": "r13-pmt-012"
+    },
+    {
+      "args": [
+        "0x3f869869647a63ee",
+        "0x4048000000000000",
+        "0x3ff0000000000000",
+        "0xc08f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x402f6d36082df695",
+      "expected_bits": "0x402f6d36082df694",
+      "id": "r13-pmt-013"
+    },
+    {
+      "args": [
+        "0x3f9376fe2939c029",
+        "0x4008000000000000",
+        "0x3ff0000000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfd5bc7cec9a9105",
+      "expected_bits": "0xbfd5bc7cec9a9104",
+      "id": "r13-pmt-014"
+    },
+    {
+      "args": [
+        "0x3f947ae147ae147b",
+        "0x3ff0000000000000",
+        "0xc09f400000000000",
+        "0x408f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x408fdcdcdcdcdcdc",
+      "expected_bits": "0x408fdcdcdcdcdcdd",
+      "id": "r13-pmt-015"
+    },
+    {
+      "args": [
+        "0x3f947ae147ae147b",
+        "0x4040000000000000",
+        "0x3ff0000000000000",
+        "0x408f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc0363583763b4524",
+      "expected_bits": "0xc0363583763b4526",
+      "id": "r13-pmt-016"
+    },
+    {
+      "args": [
+        "0x3f9755b519d39c12",
+        "0x3ff0000000000000",
+        "0x3ff0000000000000",
+        "0xc08f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x408e85c2378d9a9a",
+      "expected_bits": "0x408e85c2378d9a98",
+      "id": "r13-pmt-017"
+    },
+    {
+      "args": [
+        "0x3fa55ab66dbdb6ed",
+        "0x4030000000000000",
+        "0x3ff0000000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfb55b59ee3acb5f",
+      "expected_bits": "0xbfb55b59ee3acb5e",
+      "id": "r13-pmt-018"
+    },
+    {
+      "args": [
+        "0x3fa70a3d70a3d70a",
+        "0x3ff0000000000000",
+        "0x408f400000000000",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc08f400000000001",
+      "expected_bits": "0xc08f3fffffffffff",
+      "id": "r13-pmt-019"
+    },
+    {
+      "args": [
+        "0x3fb09fcfade4447f",
+        "0x4031000000000000",
+        "0x40987ee5254f7339",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xc0623142e15a6fe4",
+      "expected_bits": "0xc0623142e15a6fe3",
+      "id": "r13-pmt-020"
+    },
+    {
+      "args": [
+        "0x3fc5364bdd3509ec",
+        "0x3ff0000000000000",
+        "0x3fcf3897970e9902",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbfcf3897970e9901",
+      "expected_bits": "0xbfcf3897970e9906",
+      "id": "r13-pmt-021"
+    },
+    {
+      "args": [
+        "0x3fd28f5c28f5c28f",
+        "0x4038000000000000",
+        "0xc09f400000000000",
+        "0x408f400000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0x407c21cac00361c9",
+      "expected_bits": "0x407c21cac00361c7",
+      "id": "r13-pmt-022"
+    },
+    {
+      "args": [
+        "0x3fddf73a90875477",
+        "0x4018000000000000",
+        "0x40168d9b60c3a72a",
+        "0x0000000000000000",
+        "0x3ff0000000000000"
+      ],
+      "calc_func_prediction": "0xbffff599d76393d5",
+      "expected_bits": "0xbffff599d76393d6",
+      "id": "r13-pmt-023"
+    }
+  ]
+}

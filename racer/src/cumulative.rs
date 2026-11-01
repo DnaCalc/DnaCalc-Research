@@ -249,9 +249,13 @@ fn line(writer: &mut impl Write, value: &impl Serialize) {
     writeln!(writer).unwrap();
 }
 
-pub fn run<F: Fpu>(input: &str, out: &str) {
+pub fn run<F: Fpu>(input: &str, out: &str, expected_rows: usize) {
     let rows = crate::lines::<Value>(input);
-    assert_eq!(rows.len(), 540);
+    assert!(
+        expected_rows > 0,
+        "a declared nonempty observation scope is required"
+    );
+    assert_eq!(rows.len(), expected_rows);
     let cases: Vec<_> = rows.iter().map(arguments).collect();
     fs::create_dir_all(out).unwrap();
     let dir = Path::new(out);
@@ -305,7 +309,7 @@ pub fn run<F: Fpu>(input: &str, out: &str) {
     kf.flush().unwrap();
     tf.flush().unwrap();
     crate::json_write(dir.join("survivors.json"), &survivors);
-    let summary = json!({"programs":90000,"original_rows":540,"unique_instantiated_graphs":evaluations,
+    let summary = json!({"programs":90000,"original_rows":expected_rows,"unique_instantiated_graphs":evaluations,
         "survivors":survivors.len(),"first_kill_histogram":histogram,
         "constants":[0,1,-1],"growth":"integer sequential or binary-squaring; all arithmetic explicit",
         "claim":"Exact finite-family elimination; no ranking, fitted constants, answer components or identified Excel program. Logical alternatives with inactive choices are preserved."});

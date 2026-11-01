@@ -1,0 +1,15 @@
+R15 annuity structural audit; nine witness-reader batches.
+Run RUN-R15.ps1 -DnaCalcCheckout <your master checkout>. Use the existing witness reader;
+retain requested/submitted/read-back inputs, calculation settings, environment, raw
+outputs and failed/unread obligations. Do not use --new-only: repeated controls matter.
+Requests contain arguments only. Score immutable application predictions first;
+they are never Excel answers. Then check conditional-relations.json.
+The four anchor loans were fixed before this packet: two ordinary R11 loans and
+the first tiny-rate 360-period and one-period R12 groups. Cashflow scalings are
+exact factors 1, 2 and -1. Inverse-call payment arguments are original recorded
+PMT publications, with their source IDs retained; no private helper is inferred.
+Questions compare singleton cumulative/standalone surfaces, common unrounded
+cashflows, unit growth/annuity calls, and explicit RATE guesses. A nonempty
+necessary domain or equal component result never identifies a complete program.
+All prior observations are discovery. There is no surviving complete candidate
+to validate and no new Excel answer in this packet. Preserve the original R13/R14 packets.

@@ -1,0 +1,50 @@
+{
+  "calls": 236,
+  "new_excel_answers": 0,
+  "calls_by_function": {
+    "PMT": 24,
+    "IPMT": 26,
+    "PPMT": 26,
+    "CUMPRINC": 38,
+    "CUMIPMT": 38,
+    "FV": 30,
+    "PV": 30,
+    "NPER": 8,
+    "RATE": 16
+  },
+  "anchors": [
+    "r11-pmt-00",
+    "r11-pmt-02",
+    "r12-pmt-group-00",
+    "r12-pmt-group-05"
+  ],
+  "source_trace_sha256": "d85d3c99bda19c88289cc69eab41804973ec4ccb29752c5daea3039597b573ba",
+  "generator_sha256": "53eb15fcee724c87b1061a23b5054ced7758cfe53be1b5452baf89c199987fa6",
+  "application_executable_sha256": "1a169cadb4a18cba119040b387922aa793658a5e55efb21c4773c69c35585d21",
+  "files_sha256": {
+    "application-predictions-CUMPRINC.jsonl": "7679e2750b82a69cf22464320a075f9fe42a41317bce48b257d9c7a9d4ccd0d0",
+    "requests-PPMT.json": "e0d711e6c6ffa11b9fc30b2c38aa3e8b65820011d5225e8d7f575871fc7d8a23",
+    "application-predictions-RATE.jsonl": "9ebe0bc1e1e7d6487f18ec4f0177b9ce43ea3190f8a5053ba3b5f2fd253bb27e",
+    "requests-CUMPRINC.json": "fd096b6345561c58470dee01d912e77e0af752aaba63637b7efa329404bd1ed2",
+    "requests-PV.json": "5678f6e6b8697be17f146b99790a1a6931ae5ed7a76ad8209e3ac18219977c26",
+    "application-predictions-PMT.jsonl": "2afca05f8b3a039d869e889250b39f69779fd507fa993c0991a4e9ae1ec69653",
+    "requests-RATE.json": "cab7452d0f50c132b1daa670df6cdc753b87ac226f96208a28d589c425d7817b",
+    "application-predictions-PV.jsonl": "65f694cda3e72789bae79f879b25668c6f2e68b83b34098f96294d7d54c43c44",
+    "requests-PMT.json": "2f344206757d3367f1d06b73955b2f52471ef57196f505b14ca79f70e3e700f8",
+    "RUN-R15.ps1": "9bf4d21a9d66a216794041c7867183d281bf7c5521ebbdcc46e7bfe138b7a10a",
+    "application-predictions-NPER.jsonl": "24441b25d08fcf215c79d216684f56e7032ff5758ed0376e5d9075b7b8539192",
+    "application-predictions-IPMT.jsonl": "c6883b6e76a5f7334cd5280094987d02cdb956d4c33436cbeed9a80808907afc",
+    "requests-IPMT.json": "48f9774d4a11a03f2a959c857b5e06872548590407fb1c1263631fbd191ca259",
+    "requests-FV.json": "8f58dda9b56b13fb1869837246737572e9235d66e994fcb80bafb738db583b26",
+    "batches.json": "1923ada3377e6466f4a2e3261cb70f680cbe132c338016dd89d3c1227c5aa038",
+    "RUN-R15.txt": "b9caef20a001227412f62214c9a38e342c4294276612b440d011efe94c4d8df7",
+    "application-predictions-PPMT.jsonl": "82bb27e9c2b1f5691b4b466cf7d39301c4fab1e268fc995b0855e57e32654a5e",
+    "conditional-relations.json": "5dbc24e2c8a9eefae8f656e8917ea11a166a567e6221aded6dbddcfed1fa7982",
+    "requests-CUMIPMT.json": "7ed21b6503ed648bae13ef1e6d6452fc64b6e0d56a9494acba0a1d4695fb75de",
+    "application-predictions-FV.jsonl": "eb497060bec3b70a22be00097e6642064bbc26b1a09fb8530d576a0541a38408",
+    "selection.json": "3826a150a0b75fc17f0477442583f966e7aff88986fd6baa7a40ea2088fc5f8a",
+    "requests-NPER.json": "0253095226fd1b94fd1abd3798fe9dd3c8bcf12a6043c3ea41b9d47894ad2ff7",
+    "application-predictions-CUMIPMT.jsonl": "e2946fb0a311e363f69c3e517accba22e147ab0596fc2f3bbd243ab5ff54116b"
+  },
+  "limitation": "Unanswered structural questions; no complete candidate, selected helper or fresh validation claim."
+}

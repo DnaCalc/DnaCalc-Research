@@ -1,0 +1,47 @@
+[
+  {
+    "function": "PMT",
+    "path": "requests-PMT.json",
+    "calls": 24
+  },
+  {
+    "function": "IPMT",
+    "path": "requests-IPMT.json",
+    "calls": 26
+  },
+  {
+    "function": "PPMT",
+    "path": "requests-PPMT.json",
+    "calls": 26
+  },
+  {
+    "function": "CUMPRINC",
+    "path": "requests-CUMPRINC.json",
+    "calls": 38
+  },
+  {
+    "function": "CUMIPMT",
+    "path": "requests-CUMIPMT.json",
+    "calls": 38
+  },
+  {
+    "function": "FV",
+    "path": "requests-FV.json",
+    "calls": 30
+  },
+  {
+    "function": "PV",
+    "path": "requests-PV.json",
+    "calls": 30
+  },
+  {
+    "function": "NPER",
+    "path": "requests-NPER.json",
+    "calls": 8
+  },
+  {
+    "function": "RATE",
+    "path": "requests-RATE.json",
+    "calls": 16
+  }
+]

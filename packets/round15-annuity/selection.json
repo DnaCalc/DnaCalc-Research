@@ -1,0 +1,1938 @@
+[
+  {
+    "id": "r15-pmt-000",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-001",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-002",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-000",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-000",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-ipmt-001",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 2
+  },
+  {
+    "id": "r15-ppmt-001",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 2
+  },
+  {
+    "id": "r15-ipmt-002",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 63
+  },
+  {
+    "id": "r15-ppmt-002",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 63
+  },
+  {
+    "id": "r15-ipmt-003",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 127
+  },
+  {
+    "id": "r15-ppmt-003",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 127
+  },
+  {
+    "id": "r15-cumprinc-000",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-000",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumprinc-001",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 63
+  },
+  {
+    "id": "r15-cumipmt-001",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 63
+  },
+  {
+    "id": "r15-cumprinc-002",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 127
+  },
+  {
+    "id": "r15-cumipmt-002",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 127
+  },
+  {
+    "id": "r15-cumprinc-003",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumipmt-003",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumprinc-004",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 64,
+    "end": 127
+  },
+  {
+    "id": "r15-cumipmt-004",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 64,
+    "end": 127
+  },
+  {
+    "id": "r15-cumprinc-005",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 127,
+    "end": 127
+  },
+  {
+    "id": "r15-cumipmt-005",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 127,
+    "end": 127
+  },
+  {
+    "id": "r15-fv-000",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-001",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-002",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-00"
+  },
+  {
+    "id": "r15-fv-003",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-pv-000",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-001",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-002",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-00"
+  },
+  {
+    "id": "r15-pv-003",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-nper-000",
+    "function": "NPER",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r11-pmt-00"
+  },
+  {
+    "id": "r15-rate-000",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-00",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-001",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-00",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-00",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-003",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-004",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-005",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-004",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-004",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-ipmt-005",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 2
+  },
+  {
+    "id": "r15-ppmt-005",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 2
+  },
+  {
+    "id": "r15-ipmt-006",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 63
+  },
+  {
+    "id": "r15-ppmt-006",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 63
+  },
+  {
+    "id": "r15-ipmt-007",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 127
+  },
+  {
+    "id": "r15-ppmt-007",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 127
+  },
+  {
+    "id": "r15-cumprinc-006",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-006",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumprinc-007",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 63
+  },
+  {
+    "id": "r15-cumipmt-007",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 63
+  },
+  {
+    "id": "r15-cumprinc-008",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 127
+  },
+  {
+    "id": "r15-cumipmt-008",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 127
+  },
+  {
+    "id": "r15-cumprinc-009",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumipmt-009",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumprinc-010",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 64,
+    "end": 127
+  },
+  {
+    "id": "r15-cumipmt-010",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 64,
+    "end": 127
+  },
+  {
+    "id": "r15-cumprinc-011",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 127,
+    "end": 127
+  },
+  {
+    "id": "r15-cumipmt-011",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 127,
+    "end": 127
+  },
+  {
+    "id": "r15-fv-004",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-005",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-006",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-01"
+  },
+  {
+    "id": "r15-fv-007",
+    "function": "FV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-pv-004",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-005",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-006",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-01"
+  },
+  {
+    "id": "r15-pv-007",
+    "function": "PV",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-nper-001",
+    "function": "NPER",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r11-pmt-01"
+  },
+  {
+    "id": "r15-rate-002",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-01",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-003",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-00",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-01",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-006",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-007",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-008",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-008",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-008",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-ipmt-009",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 2
+  },
+  {
+    "id": "r15-ppmt-009",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 2
+  },
+  {
+    "id": "r15-ipmt-010",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 180
+  },
+  {
+    "id": "r15-ppmt-010",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 180
+  },
+  {
+    "id": "r15-ipmt-011",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 360
+  },
+  {
+    "id": "r15-ppmt-011",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 360
+  },
+  {
+    "id": "r15-cumprinc-012",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-012",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumprinc-013",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumipmt-013",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumprinc-014",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-014",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-015",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumipmt-015",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumprinc-016",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-016",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-017",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-017",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-fv-008",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-009",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-010",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-02"
+  },
+  {
+    "id": "r15-fv-011",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-pv-008",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-009",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-010",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-02"
+  },
+  {
+    "id": "r15-pv-011",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-nper-002",
+    "function": "NPER",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r11-pmt-02"
+  },
+  {
+    "id": "r15-rate-004",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-02",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-005",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-02",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-02",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-009",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-010",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-011",
+    "function": "PMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-012",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-012",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-ipmt-013",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 2
+  },
+  {
+    "id": "r15-ppmt-013",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 2
+  },
+  {
+    "id": "r15-ipmt-014",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 180
+  },
+  {
+    "id": "r15-ppmt-014",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 180
+  },
+  {
+    "id": "r15-ipmt-015",
+    "function": "IPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 360
+  },
+  {
+    "id": "r15-ppmt-015",
+    "function": "PPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 360
+  },
+  {
+    "id": "r15-cumprinc-018",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-018",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumprinc-019",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumipmt-019",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumprinc-020",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-020",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-021",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumipmt-021",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumprinc-022",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-022",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-023",
+    "function": "CUMPRINC",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-023",
+    "function": "CUMIPMT",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-fv-012",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-013",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-014",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-03"
+  },
+  {
+    "id": "r15-fv-015",
+    "function": "FV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-pv-012",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-013",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-014",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r11-pmt-03"
+  },
+  {
+    "id": "r15-pv-015",
+    "function": "PV",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-nper-003",
+    "function": "NPER",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r11-pmt-03"
+  },
+  {
+    "id": "r15-rate-006",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-03",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-007",
+    "function": "RATE",
+    "anchor_id": "r11-pmt-02",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r11-pmt-03",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-012",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-013",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-014",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-016",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-016",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-ipmt-017",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 2
+  },
+  {
+    "id": "r15-ppmt-017",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 2
+  },
+  {
+    "id": "r15-ipmt-018",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 180
+  },
+  {
+    "id": "r15-ppmt-018",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 180
+  },
+  {
+    "id": "r15-ipmt-019",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 360
+  },
+  {
+    "id": "r15-ppmt-019",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 360
+  },
+  {
+    "id": "r15-cumprinc-024",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-024",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumprinc-025",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumipmt-025",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumprinc-026",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-026",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-027",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumipmt-027",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumprinc-028",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-028",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-029",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-029",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-fv-016",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-017",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-018",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-00"
+  },
+  {
+    "id": "r15-fv-019",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-pv-016",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-017",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-018",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-00"
+  },
+  {
+    "id": "r15-pv-019",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-nper-004",
+    "function": "NPER",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r12-pmt-group-00"
+  },
+  {
+    "id": "r15-rate-008",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-00",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-009",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-00",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-015",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-016",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-017",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-020",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-020",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-ipmt-021",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 2
+  },
+  {
+    "id": "r15-ppmt-021",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 2
+  },
+  {
+    "id": "r15-ipmt-022",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 180
+  },
+  {
+    "id": "r15-ppmt-022",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 180
+  },
+  {
+    "id": "r15-ipmt-023",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 360
+  },
+  {
+    "id": "r15-ppmt-023",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 360
+  },
+  {
+    "id": "r15-cumprinc-030",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-030",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumprinc-031",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumipmt-031",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 180
+  },
+  {
+    "id": "r15-cumprinc-032",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-032",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-033",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumipmt-033",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 2,
+    "end": 2
+  },
+  {
+    "id": "r15-cumprinc-034",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-034",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 181,
+    "end": 360
+  },
+  {
+    "id": "r15-cumprinc-035",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-cumipmt-035",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 360,
+    "end": 360
+  },
+  {
+    "id": "r15-fv-020",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-021",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-022",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-01"
+  },
+  {
+    "id": "r15-fv-023",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-pv-020",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-021",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-022",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-01"
+  },
+  {
+    "id": "r15-pv-023",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "adjacent period growth control"
+  },
+  {
+    "id": "r15-nper-005",
+    "function": "NPER",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r12-pmt-group-01"
+  },
+  {
+    "id": "r15-rate-010",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-01",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-011",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-00",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-01",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-018",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-019",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-020",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-024",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-024",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-cumprinc-036",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-036",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-fv-024",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-025",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-026",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-16"
+  },
+  {
+    "id": "r15-pv-024",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-025",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-026",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-16"
+  },
+  {
+    "id": "r15-nper-006",
+    "function": "NPER",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r12-pmt-group-16"
+  },
+  {
+    "id": "r15-rate-012",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-16",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-013",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 0,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-16",
+    "guess": "mathematical 0.1"
+  },
+  {
+    "id": "r15-pmt-021",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 1
+  },
+  {
+    "id": "r15-pmt-022",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": 2
+  },
+  {
+    "id": "r15-pmt-023",
+    "function": "PMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "cashflow scaling control",
+    "scale": -1
+  },
+  {
+    "id": "r15-ipmt-025",
+    "function": "IPMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "standalone interest",
+    "period": 1
+  },
+  {
+    "id": "r15-ppmt-025",
+    "function": "PPMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "standalone principal",
+    "period": 1
+  },
+  {
+    "id": "r15-cumprinc-037",
+    "function": "CUMPRINC",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "cumulative principal",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-cumipmt-037",
+    "function": "CUMIPMT",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "cumulative interest",
+    "start": 1,
+    "end": 1
+  },
+  {
+    "id": "r15-fv-027",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-fv-028",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-fv-029",
+    "function": "FV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-05"
+  },
+  {
+    "id": "r15-pv-027",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "unit growth or discount control"
+  },
+  {
+    "id": "r15-pv-028",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "unit annuity control"
+  },
+  {
+    "id": "r15-pv-029",
+    "function": "PV",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "published-payment cross function control",
+    "payment_source_id": "r12-pmt-group-05"
+  },
+  {
+    "id": "r15-nper-007",
+    "function": "NPER",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "inverse with original published payment",
+    "payment_source_id": "r12-pmt-group-05"
+  },
+  {
+    "id": "r15-rate-014",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-05",
+    "guess": "original rate"
+  },
+  {
+    "id": "r15-rate-015",
+    "function": "RATE",
+    "anchor_id": "r12-pmt-group-05",
+    "timing": 1,
+    "role": "explicit guess sensitivity control",
+    "payment_source_id": "r12-pmt-group-05",
+    "guess": "mathematical 0.1"
+  }
+]

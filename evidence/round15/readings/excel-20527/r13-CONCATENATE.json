@@ -1,0 +1,408 @@
+{
+  "capture_provenance": {
+    "automation_security_after": 1,
+    "automation_security_before": 1,
+    "calculation_settings": {
+      "CompatibilityVersion": 2,
+      "Date1904": false,
+      "DecimalSeparator": ".",
+      "PrecisionAsDisplayed": false,
+      "ThousandsSeparator": " ",
+      "UseSystemSeparators": true,
+      "calculation": -4135,
+      "compatibility_version": null,
+      "unavailable": []
+    },
+    "captured_utc": "2026-11-01T11:50:30Z",
+    "environment": {
+      "cpu_id": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+      "excel_bitness": "64-bit",
+      "excel_build": "20527",
+      "excel_file_version": "16.0.20527.20088",
+      "excel_input_plumbing": "cell_value2_bulk",
+      "excel_operating_system": "Microsoft Windows NT 10.0.26200.0",
+      "excel_version": "16.0",
+      "platform": "Windows"
+    },
+    "frozen_model_predictions": {
+      "calc_func_commit": "baf27cdec01dbb40c19039e2234d613f5fee6f0f",
+      "formula_literal_ids": [],
+      "frozen_path": "C:\\Work\\DnaCalc\\DnaCalc-win\\target/witness/frozen\\CONCATENATE-20261101T115021Z.json",
+      "frozen_sha256": "c4b2fea4b17b7161c65e78dd34eaa71fd91bb0052e1d9a771473258ed15de710",
+      "inputs_path": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\prior\\structural-r11-v2\\requests-CONCATENATE.json",
+      "inputs_sha256": "6a005ad670f03632ef08ea745fbe05b72d08ae9670eb0c99abeb0239d4aff54a",
+      "novelty": null,
+      "selection": null
+    },
+    "inputs": "C:\\Work\\DnaCalc\\codex-runs\\excel-results-r13\\packet\\prior\\structural-r11-v2\\requests-CONCATENATE.json",
+    "reader": "calc-oracle-excel 0.1.0; worker results 1; worker sha256:599032d018da3b9889269e0ca46c2c1c7f2f21572fb378bc1781a73b9cd93d25; witness worker sha256:9a2341b3c938f27cc1e3f9de44e4ed5e9f3727e3bfdfd85007b2f421cb2fb804",
+    "schema_version": "dnacalc-witness-reading/1"
+  },
+  "function": "CONCATENATE",
+  "input_audits": [
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "4294f2e4625bed80"
+          }
+        ],
+        "requested": [
+          {
+            "number": "4294f2e4625bed80"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "4294f2e4625bed80"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-00",
+      "observed_raw": {
+        "text": "0035003700350038003300360031003500370033003100310035002e00330038"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "42fda21018b91418"
+          }
+        ],
+        "requested": [
+          {
+            "number": "42fda21018b91418"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "42fda21018b91418"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-01",
+      "observed_raw": {
+        "text": "003500320031003300310030003200370031003400310030003400390038"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "c296d752c3df9780"
+          }
+        ],
+        "requested": [
+          {
+            "number": "c296d752c3df9780"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "c296d752c3df9780"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-02",
+      "observed_raw": {
+        "text": "002d0036003200370038003500310035003500380037003000340035002e00380038"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "425f9e7fea050400"
+          }
+        ],
+        "requested": [
+          {
+            "number": "425f9e7fea050400"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "425f9e7fea050400"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-03",
+      "observed_raw": {
+        "text": "003500340033003200310032003600370037003100340030002e003000360033"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "3ed6038e11b5d39f"
+          }
+        ],
+        "requested": [
+          {
+            "number": "3ed6038e11b5d39f"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "3ed6038e11b5d39f"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-04",
+      "observed_raw": {
+        "text": "0035002e003200340038003500310039003500350032003600320036003700370045002d00300036"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "429a32086160ed80"
+          }
+        ],
+        "requested": [
+          {
+            "number": "429a32086160ed80"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "429a32086160ed80"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-05",
+      "observed_raw": {
+        "text": "0037003200300030003500340037003800320031003600320037002e00330037"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "430c6bf52633fffc"
+          }
+        ],
+        "requested": [
+          {
+            "number": "430c6bf52633fffc"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "430c6bf52633fffc"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-06",
+      "observed_raw": {
+        "text": "003900390039003900390039003900390039003900390039003900390039"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "43118b54f22aeafc"
+          }
+        ],
+        "requested": [
+          {
+            "number": "43118b54f22aeafc"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "43118b54f22aeafc"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-07",
+      "observed_raw": {
+        "text": "0031003200330034003500360037003800390030003100320033003400350030"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "42dc12218377de60"
+          }
+        ],
+        "requested": [
+          {
+            "number": "42dc12218377de60"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "42dc12218377de60"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-08",
+      "observed_raw": {
+        "text": "003100320033003400350036003700380039003000310032003300340035"
+      },
+      "reading_failure": null
+    },
+    {
+      "audit": {
+        "argument_literals": null,
+        "effective_callee_inputs": "not directly observable",
+        "formula": "=CONCATENATE(RC[1])",
+        "read_back": [
+          {
+            "number": "414ecd9af7cd46a5"
+          }
+        ],
+        "requested": [
+          {
+            "number": "414ecd9af7cd46a5"
+          }
+        ],
+        "submitted_value2": [
+          {
+            "number": "414ecd9af7cd46a5"
+          }
+        ],
+        "transport": "cell_value2_bulk"
+      },
+      "id": "r11-struct-concatenate-09",
+      "observed_raw": {
+        "text": "0034003000330037003400320039002e00390033003500390035003200300032"
+      },
+      "reading_failure": null
+    }
+  ],
+  "transport_audit_readings": [],
+  "unread": [],
+  "witnesses": [
+    {
+      "args": [
+        "0x4294f2e4625bed80"
+      ],
+      "calc_func_prediction": "text:5758361573115.37",
+      "expected_bits": "text:5758361573115.38",
+      "id": "r11-struct-concatenate-00"
+    },
+    {
+      "args": [
+        "0x42fda21018b91418"
+      ],
+      "calc_func_prediction": "text:521310271410497",
+      "expected_bits": "text:521310271410498",
+      "id": "r11-struct-concatenate-01"
+    },
+    {
+      "args": [
+        "0xc296d752c3df9780"
+      ],
+      "calc_func_prediction": "text:-6278515587045.87",
+      "expected_bits": "text:-6278515587045.88",
+      "id": "r11-struct-concatenate-02"
+    },
+    {
+      "args": [
+        "0x425f9e7fea050400"
+      ],
+      "calc_func_prediction": "text:543212677140.062",
+      "expected_bits": "text:543212677140.063",
+      "id": "r11-struct-concatenate-03"
+    },
+    {
+      "args": [
+        "0x3ed6038e11b5d39f"
+      ],
+      "calc_func_prediction": "text:5.24851955262676E-06",
+      "expected_bits": "text:5.24851955262677E-06",
+      "id": "r11-struct-concatenate-04"
+    },
+    {
+      "args": [
+        "0x429a32086160ed80"
+      ],
+      "calc_func_prediction": "text:7200547821627.37",
+      "expected_bits": "text:7200547821627.37",
+      "id": "r11-struct-concatenate-05"
+    },
+    {
+      "args": [
+        "0x430c6bf52633fffc"
+      ],
+      "calc_func_prediction": "text:999999999999999",
+      "expected_bits": "text:999999999999999",
+      "id": "r11-struct-concatenate-06"
+    },
+    {
+      "args": [
+        "0x43118b54f22aeafc"
+      ],
+      "calc_func_prediction": "text:1234567890123450",
+      "expected_bits": "text:1234567890123450",
+      "id": "r11-struct-concatenate-07"
+    },
+    {
+      "args": [
+        "0x42dc12218377de60"
+      ],
+      "calc_func_prediction": "text:123456789012345",
+      "expected_bits": "text:123456789012345",
+      "id": "r11-struct-concatenate-08"
+    },
+    {
+      "args": [
+        "0x414ecd9af7cd46a5"
+      ],
+      "calc_func_prediction": "text:4037429.93595202",
+      "expected_bits": "text:4037429.93595202",
+      "id": "r11-struct-concatenate-09"
+    }
+  ]
+}

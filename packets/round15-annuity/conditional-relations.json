@@ -1,0 +1,628 @@
+[
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-000",
+    "IPMT": "r15-ipmt-000",
+    "PPMT": "r15-ppmt-000",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-000",
+    "IPMT": "r15-ipmt-001",
+    "PPMT": "r15-ppmt-001",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-000",
+    "IPMT": "r15-ipmt-002",
+    "PPMT": "r15-ppmt-002",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-000",
+    "IPMT": "r15-ipmt-003",
+    "PPMT": "r15-ppmt-003",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-000",
+    "CUMPRINC": "r15-cumprinc-000",
+    "CUMIPMT": "r15-cumipmt-000",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-000",
+    "PPMT": "r15-ppmt-000",
+    "CUMIPMT": "r15-cumipmt-000",
+    "IPMT": "r15-ipmt-000"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-000",
+    "CUMPRINC": "r15-cumprinc-001",
+    "CUMIPMT": "r15-cumipmt-001",
+    "count": 63,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-000",
+    "CUMPRINC": "r15-cumprinc-002",
+    "CUMIPMT": "r15-cumipmt-002",
+    "count": 127,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-000",
+    "CUMPRINC": "r15-cumprinc-003",
+    "CUMIPMT": "r15-cumipmt-003",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-003",
+    "PPMT": "r15-ppmt-001",
+    "CUMIPMT": "r15-cumipmt-003",
+    "IPMT": "r15-ipmt-001"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-000",
+    "CUMPRINC": "r15-cumprinc-004",
+    "CUMIPMT": "r15-cumipmt-004",
+    "count": 64,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-000",
+    "CUMPRINC": "r15-cumprinc-005",
+    "CUMIPMT": "r15-cumipmt-005",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-005",
+    "PPMT": "r15-ppmt-003",
+    "CUMIPMT": "r15-cumipmt-005",
+    "IPMT": "r15-ipmt-003"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-003",
+    "IPMT": "r15-ipmt-004",
+    "PPMT": "r15-ppmt-004",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-003",
+    "IPMT": "r15-ipmt-005",
+    "PPMT": "r15-ppmt-005",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-003",
+    "IPMT": "r15-ipmt-006",
+    "PPMT": "r15-ppmt-006",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-003",
+    "IPMT": "r15-ipmt-007",
+    "PPMT": "r15-ppmt-007",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-003",
+    "CUMPRINC": "r15-cumprinc-006",
+    "CUMIPMT": "r15-cumipmt-006",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-006",
+    "PPMT": "r15-ppmt-004",
+    "CUMIPMT": "r15-cumipmt-006",
+    "IPMT": "r15-ipmt-004"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-003",
+    "CUMPRINC": "r15-cumprinc-007",
+    "CUMIPMT": "r15-cumipmt-007",
+    "count": 63,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-003",
+    "CUMPRINC": "r15-cumprinc-008",
+    "CUMIPMT": "r15-cumipmt-008",
+    "count": 127,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-003",
+    "CUMPRINC": "r15-cumprinc-009",
+    "CUMIPMT": "r15-cumipmt-009",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-009",
+    "PPMT": "r15-ppmt-005",
+    "CUMIPMT": "r15-cumipmt-009",
+    "IPMT": "r15-ipmt-005"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-003",
+    "CUMPRINC": "r15-cumprinc-010",
+    "CUMIPMT": "r15-cumipmt-010",
+    "count": 64,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-003",
+    "CUMPRINC": "r15-cumprinc-011",
+    "CUMIPMT": "r15-cumipmt-011",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-011",
+    "PPMT": "r15-ppmt-007",
+    "CUMIPMT": "r15-cumipmt-011",
+    "IPMT": "r15-ipmt-007"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-006",
+    "IPMT": "r15-ipmt-008",
+    "PPMT": "r15-ppmt-008",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-006",
+    "IPMT": "r15-ipmt-009",
+    "PPMT": "r15-ppmt-009",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-006",
+    "IPMT": "r15-ipmt-010",
+    "PPMT": "r15-ppmt-010",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-006",
+    "IPMT": "r15-ipmt-011",
+    "PPMT": "r15-ppmt-011",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-006",
+    "CUMPRINC": "r15-cumprinc-012",
+    "CUMIPMT": "r15-cumipmt-012",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-012",
+    "PPMT": "r15-ppmt-008",
+    "CUMIPMT": "r15-cumipmt-012",
+    "IPMT": "r15-ipmt-008"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-006",
+    "CUMPRINC": "r15-cumprinc-013",
+    "CUMIPMT": "r15-cumipmt-013",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-006",
+    "CUMPRINC": "r15-cumprinc-014",
+    "CUMIPMT": "r15-cumipmt-014",
+    "count": 360,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-006",
+    "CUMPRINC": "r15-cumprinc-015",
+    "CUMIPMT": "r15-cumipmt-015",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-015",
+    "PPMT": "r15-ppmt-009",
+    "CUMIPMT": "r15-cumipmt-015",
+    "IPMT": "r15-ipmt-009"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-006",
+    "CUMPRINC": "r15-cumprinc-016",
+    "CUMIPMT": "r15-cumipmt-016",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-006",
+    "CUMPRINC": "r15-cumprinc-017",
+    "CUMIPMT": "r15-cumipmt-017",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-017",
+    "PPMT": "r15-ppmt-011",
+    "CUMIPMT": "r15-cumipmt-017",
+    "IPMT": "r15-ipmt-011"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-009",
+    "IPMT": "r15-ipmt-012",
+    "PPMT": "r15-ppmt-012",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-009",
+    "IPMT": "r15-ipmt-013",
+    "PPMT": "r15-ppmt-013",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-009",
+    "IPMT": "r15-ipmt-014",
+    "PPMT": "r15-ppmt-014",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-009",
+    "IPMT": "r15-ipmt-015",
+    "PPMT": "r15-ppmt-015",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-009",
+    "CUMPRINC": "r15-cumprinc-018",
+    "CUMIPMT": "r15-cumipmt-018",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-018",
+    "PPMT": "r15-ppmt-012",
+    "CUMIPMT": "r15-cumipmt-018",
+    "IPMT": "r15-ipmt-012"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-009",
+    "CUMPRINC": "r15-cumprinc-019",
+    "CUMIPMT": "r15-cumipmt-019",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-009",
+    "CUMPRINC": "r15-cumprinc-020",
+    "CUMIPMT": "r15-cumipmt-020",
+    "count": 360,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-009",
+    "CUMPRINC": "r15-cumprinc-021",
+    "CUMIPMT": "r15-cumipmt-021",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-021",
+    "PPMT": "r15-ppmt-013",
+    "CUMIPMT": "r15-cumipmt-021",
+    "IPMT": "r15-ipmt-013"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-009",
+    "CUMPRINC": "r15-cumprinc-022",
+    "CUMIPMT": "r15-cumipmt-022",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-009",
+    "CUMPRINC": "r15-cumprinc-023",
+    "CUMIPMT": "r15-cumipmt-023",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-023",
+    "PPMT": "r15-ppmt-015",
+    "CUMIPMT": "r15-cumipmt-023",
+    "IPMT": "r15-ipmt-015"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-012",
+    "IPMT": "r15-ipmt-016",
+    "PPMT": "r15-ppmt-016",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-012",
+    "IPMT": "r15-ipmt-017",
+    "PPMT": "r15-ppmt-017",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-012",
+    "IPMT": "r15-ipmt-018",
+    "PPMT": "r15-ppmt-018",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-012",
+    "IPMT": "r15-ipmt-019",
+    "PPMT": "r15-ppmt-019",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-012",
+    "CUMPRINC": "r15-cumprinc-024",
+    "CUMIPMT": "r15-cumipmt-024",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-024",
+    "PPMT": "r15-ppmt-016",
+    "CUMIPMT": "r15-cumipmt-024",
+    "IPMT": "r15-ipmt-016"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-012",
+    "CUMPRINC": "r15-cumprinc-025",
+    "CUMIPMT": "r15-cumipmt-025",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-012",
+    "CUMPRINC": "r15-cumprinc-026",
+    "CUMIPMT": "r15-cumipmt-026",
+    "count": 360,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-012",
+    "CUMPRINC": "r15-cumprinc-027",
+    "CUMIPMT": "r15-cumipmt-027",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-027",
+    "PPMT": "r15-ppmt-017",
+    "CUMIPMT": "r15-cumipmt-027",
+    "IPMT": "r15-ipmt-017"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-012",
+    "CUMPRINC": "r15-cumprinc-028",
+    "CUMIPMT": "r15-cumipmt-028",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-012",
+    "CUMPRINC": "r15-cumprinc-029",
+    "CUMIPMT": "r15-cumipmt-029",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-029",
+    "PPMT": "r15-ppmt-019",
+    "CUMIPMT": "r15-cumipmt-029",
+    "IPMT": "r15-ipmt-019"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-015",
+    "IPMT": "r15-ipmt-020",
+    "PPMT": "r15-ppmt-020",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-015",
+    "IPMT": "r15-ipmt-021",
+    "PPMT": "r15-ppmt-021",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-015",
+    "IPMT": "r15-ipmt-022",
+    "PPMT": "r15-ppmt-022",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-015",
+    "IPMT": "r15-ipmt-023",
+    "PPMT": "r15-ppmt-023",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-015",
+    "CUMPRINC": "r15-cumprinc-030",
+    "CUMIPMT": "r15-cumipmt-030",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-030",
+    "PPMT": "r15-ppmt-020",
+    "CUMIPMT": "r15-cumipmt-030",
+    "IPMT": "r15-ipmt-020"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-015",
+    "CUMPRINC": "r15-cumprinc-031",
+    "CUMIPMT": "r15-cumipmt-031",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-015",
+    "CUMPRINC": "r15-cumprinc-032",
+    "CUMIPMT": "r15-cumipmt-032",
+    "count": 360,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-015",
+    "CUMPRINC": "r15-cumprinc-033",
+    "CUMIPMT": "r15-cumipmt-033",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-033",
+    "PPMT": "r15-ppmt-021",
+    "CUMIPMT": "r15-cumipmt-033",
+    "IPMT": "r15-ipmt-021"
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-015",
+    "CUMPRINC": "r15-cumprinc-034",
+    "CUMIPMT": "r15-cumipmt-034",
+    "count": 180,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-015",
+    "CUMPRINC": "r15-cumprinc-035",
+    "CUMIPMT": "r15-cumipmt-035",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-035",
+    "PPMT": "r15-ppmt-023",
+    "CUMIPMT": "r15-cumipmt-035",
+    "IPMT": "r15-ipmt-023"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-018",
+    "IPMT": "r15-ipmt-024",
+    "PPMT": "r15-ppmt-024",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-018",
+    "CUMPRINC": "r15-cumprinc-036",
+    "CUMIPMT": "r15-cumipmt-036",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-036",
+    "PPMT": "r15-ppmt-024",
+    "CUMIPMT": "r15-cumipmt-036",
+    "IPMT": "r15-ipmt-024"
+  },
+  {
+    "kind": "published payment partition audit",
+    "PMT": "r15-pmt-021",
+    "IPMT": "r15-ipmt-025",
+    "PPMT": "r15-ppmt-025",
+    "limitation": "A failed publication identity does not exclude a shared unrounded component."
+  },
+  {
+    "kind": "coupled payment/principal/interest preimages",
+    "PMT": "r15-pmt-021",
+    "CUMPRINC": "r15-cumprinc-037",
+    "CUMIPMT": "r15-cumipmt-037",
+    "count": 1,
+    "limitation": "Compare fixed store/precision profiles with one shared latent payment, never fit it."
+  },
+  {
+    "kind": "singleton surface audit",
+    "CUMPRINC": "r15-cumprinc-037",
+    "PPMT": "r15-ppmt-025",
+    "CUMIPMT": "r15-cumipmt-037",
+    "IPMT": "r15-ipmt-025"
+  }
+]

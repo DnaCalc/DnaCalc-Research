@@ -461,7 +461,51 @@ no numerical body or coefficient is selected from their results.
     print(json.dumps({f:len(rows)for f,rows in batches.items()}))
 
 
+def bank_delta(before, after, output):
+    """Compare sorted canonical witness identities while retaining new coverage."""
+    before,after,output=map(Path,(before,after,output))
+    frozen={str(p):sha(p)for p in (before,after,Path(__file__))}
+    def key(row):
+        selection=row.get('result_index')
+        suffix=''if selection is None else f'@{selection[0]},{selection[1]}'
+        return row['function'],json.dumps(row['args'],ensure_ascii=False,sort_keys=True,separators=(',',':'))+suffix
+    def ordered(path):
+        previous=None
+        for row in stream(path):
+            current=key(row)
+            if previous is not None and previous>=current:
+                raise ValueError(f'canonical witness order/uniqueness differs: {previous[:300]!r} >= {current[:300]!r}')
+            previous=current;yield current,row
+    a,b=iter(ordered(before)),iter(ordered(after));old,new=next(a,None),next(b,None)
+    counts=collections.Counter();examples=[]
+    while old is not None or new is not None:
+        if old is None or new is not None and new[0]<old[0]:
+            counts['added_inputs']+=1;counts['added_matched']+=new[1]['expected']==new[1]['actual']
+            counts['added_failed']+=new[1]['expected']!=new[1]['actual'];new=next(b,None);continue
+        if new is None or old[0]<new[0]:
+            counts['removed_inputs']+=1;old=next(a,None);continue
+        x,y=old[1],new[1];counts['shared_inputs']+=1
+        counts['unchanged_outputs']+=x['actual']==y['actual']
+        counts['changed_outputs']+=x['actual']!=y['actual']
+        counts['changed_expected']+=x['expected']!=y['expected']
+        counts['representative_metadata_changes']+={k:v for k,v in x.items()if k not in ('actual','expected')}!={k:v for k,v in y.items()if k not in ('actual','expected')}
+        mx,my=x['actual']==x['expected'],y['actual']==y['expected']
+        counts['shared_before_matches']+=mx;counts['shared_after_matches']+=my
+        counts['shared_gains']+=my and not mx;counts['shared_losses']+=mx and not my
+        if (x['actual']!=y['actual']or x['expected']!=y['expected'])and len(examples)<20:
+            examples.append(dict(before=x,after=y))
+        old,new=next(a,None),next(b,None)
+    if frozen!={p:sha(Path(p))for p in frozen}:raise ValueError('bank/source changed during comparison')
+    result=dict(complete=True,counts=dict(counts),examples=examples,input_sha256=frozen,
+        limits='Counts distinguish input coverage from gains/losses on shared inputs. Metadata '
+               'changes retain the selected capture source. Unread rows have no trace and '
+               'still fail in each original judge summary; no calculated-only pass rate.')
+    with output.open('x')as f:json.dump(result,f,indent=2);f.write('\n')
+    print(json.dumps(result));return result
+
+
 if __name__ == "__main__":
+    if sys.argv[1]=="bank-delta":bank_delta(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="structural-questions":structural_questions(sys.argv[2])
     elif sys.argv[1]=="pmt-group-questions":pmt_group_questions(*sys.argv[2:])
     elif sys.argv[1]=="pmt-observation-questions":pmt_observation_questions(*sys.argv[2:])

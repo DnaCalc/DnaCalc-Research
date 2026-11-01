@@ -76,7 +76,11 @@ impl calc_func::PreparedArguments for Given {
 fn invoke_control(function: &str, args: Vec<value::CalcValue>) -> (String, Option<f64>) {
     invoke_selected_control(function, args, None)
 }
-fn invoke_selected_control(function: &str, args: Vec<value::CalcValue>, index: Option<(usize, usize)>) -> (String, Option<f64>) {
+fn invoke_selected_control(
+    function: &str,
+    args: Vec<value::CalcValue>,
+    index: Option<(usize, usize)>,
+) -> (String, Option<f64>) {
     let target = calc_func::catalogue()
         .resolve_surface(calc_func::Notation::Call, function)
         .unwrap();
@@ -392,8 +396,12 @@ fn main() {
             _ => cumulative::growth_tables::<Hard>(&a[2], &a[3]),
         },
         Some("cumulative") => match a.get(4).map(String::as_str) {
-            Some("soft") => cumulative::run::<Soft>(&a[2], &a[3]),
-            _ => cumulative::run::<Hard>(&a[2], &a[3]),
+            Some("soft") => {
+                cumulative::run::<Soft>(&a[2], &a[3], a.get(5).map_or(540, |s| s.parse().unwrap()))
+            }
+            _ => {
+                cumulative::run::<Hard>(&a[2], &a[3], a.get(5).map_or(540, |s| s.parse().unwrap()))
+            }
         },
         Some("transport-collisions") => annuity::transport_collisions(&a[2], &a[3], &a[4]),
         Some("rate-internal") => match a.get(5).map(String::as_str) {
