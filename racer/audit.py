@@ -322,8 +322,63 @@ This audit cannot claim build20527 reproduction until Windows returns readings.
     print(json.dumps(manifest))
 
 
+def structural_questions(out):
+    """R11 domain-boundary and conversion-route observations, not fitted bodies."""
+    import math
+    import struct
+    import datetime
+    out=Path(out);out.mkdir(parents=True,exist_ok=False)
+    bits=lambda x:'0x'+struct.pack('>d',x).hex()
+    batches={f:[]for f in ('BESSELI','BESSELJ','CONCATENATE','CONCAT')}
+    hypotheses=[];selection=[]
+    def add(function,args,role,hypothesis=None):
+        qid=f'r11-struct-{function.lower()}-{len(batches[function]):02}'
+        batches[function].append(dict(id=qid,args=args,input_transport='cell_value2_bulk'))
+        selection.append(dict(id=qid,role=role,exposure='all previously inspected banks and corpus are discovery; this is a route/domain audit, not validation of a complete numeric candidate'))
+        if hypothesis is not None:hypotheses.append(dict(id=qid,kind_only_boundary_hypothesis=hypothesis,not_a_complete_value_prediction=True))
+    limits={'BESSELI':709.7,'BESSELJ':float(2**27)}
+    for function,limit in limits.items():
+        extra=709.7000001 if function=='BESSELI' else 134217727.5
+        xs=[math.nextafter(limit,0.0),limit,math.nextafter(limit,math.inf),extra]
+        for order in (0,1,2):
+            for x in xs:
+                refused=abs(x)>limit if function=='BESSELI'else abs(x)>=limit
+                add(function,[bits(x),bits(float(order))],
+                    'adjacent binary64 boundary/control; orders distinguish a common argument bound from a body-specific failure',
+                    'error:Num'if refused else'finite number; exact bits unspecified')
+        for x in xs:
+            refused=abs(x)>limit if function=='BESSELI'else abs(x)>=limit
+            add(function,[bits(-x),bits(0.0)],'negative-argument boundary/control',
+                'error:Num'if refused else'finite number; exact bits unspecified')
+    values=[5758361573115.375,521310271410497.5,-6278515587045.875,
+        543212677140.0625,5.248519552626765e-6,7200547821627.375,
+        999999999999999.5,1234567890123455.0,123456789012345.5,4037429.935952025]
+    for function in ('CONCATENATE','CONCAT'):
+        for i,x in enumerate(values):
+            add(function,[bits(x),''],('known ampersand discrepancy'if i<5 else'known conversion control')+
+                '; compare the actual function route with the existing ampersand capture, without changing rounding rules')
+    for function,rows in batches.items():
+        (out/f'requests-{function}.json').write_text(json.dumps(dict(function=function,witnesses=rows),indent=2)+'\n')
+    (out/'selection.json').write_text(json.dumps(selection,indent=2)+'\n')
+    (out/'boundary-hypotheses.json').write_text(json.dumps(hypotheses,indent=2)+'\n')
+    (out/'RUN-STRUCTURAL-R11.txt').write_text('''Round 11 structural/number-text audit: 52 calls, no new answers.
+From the updated DnaCalc master on Windows, substitute this packet's path:
+ cargo xtask witness read --func BESSELI --inputs <packet>/requests-BESSELI.json
+ cargo xtask witness read --func BESSELJ --inputs <packet>/requests-BESSELJ.json
+ cargo xtask witness read --func CONCATENATE --inputs <packet>/requests-CONCATENATE.json
+ cargo xtask witness read --func CONCAT --inputs <packet>/requests-CONCAT.json
+Do not use --new-only. Preserve every raw result and input audit. Score immutable
+registered-route predictions first. Boundary hypotheses predict kind only and
+must never be reported as exact function matches. They ask whether an argument
+admission rule has an independently distinguishable adjacent-input transition;
+no numerical body or coefficient is selected from their results.
+''')
+    print(json.dumps({f:len(rows)for f,rows in batches.items()}))
+
+
 if __name__ == "__main__":
-    if sys.argv[1]=="pmt-observation-questions":pmt_observation_questions(*sys.argv[2:])
+    if sys.argv[1]=="structural-questions":structural_questions(sys.argv[2])
+    elif sys.argv[1]=="pmt-observation-questions":pmt_observation_questions(*sys.argv[2:])
     elif sys.argv[1]=="questions":audit_questions(sys.argv[2],sys.argv[3])
     elif len(sys.argv)>2:audit_r7(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
     else:audit(sys.argv[1])

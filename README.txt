@@ -351,3 +351,45 @@ Primary numerical sources:
   https://s2.smu.edu/~aleskovs/emis/sqc2/accuratecumnorm.pdf
 SciPy's BSD3 notice is retained in notices/SciPy-cdflib.txt. The source audit
 records incidental nonadmitted search previews that were not used or saved.
+
+Round 11 prioritizes the workbook cells. The census accounts for all 1,184
+baseline mismatches; its formulas/XML and classifications are retained in
+/home/ubuntu/codex-runs/corpus-mismatch-r11.md and the round 11 artifact directory.
+Original N, FILTERXML and exact-proportional-regression fixes in application
+commit 4326fc06 (published through e8a15f90) give 59 corpus gains and zero losses.
+All 3,874,816 decoded bank outputs remain byte-identical; 116 unread rows still fail.
+
+The Round 10 answers in evidence 51bed087 were scored against frozen predictions
+before the new search. PMT numeric rechecks reproduce 32/32 historical outcomes,
+including 24 certified gaps; application predictions match 8/32. All 8 logical controls
+reproduce their paired numeric answers. Fourteen of 16 literal calls change echo
+inputs and remain failed transport audits. All 8 normal anchors reproduce, and
+two of the five necessary sign relations pass all 12 pairs; no complete CDF follows.
+The reviewed blind-v2 score and subsequent elimination are separate artifacts.
+
+CUMPRINC has 157 corpus mismatches. Its 540 bank observations provide 60 loans, each
+with 9 intervals and an independently recorded PMT companion on the same build.
+The 90,000 logical integer-growth/payment/recurrence assignments all fail the first
+singleton. There are 18,000 instantiated graphs, with 1,509,000 independently checked
+node values; this supplies no evidence for an accumulation order. Both backends
+have identical complete traces, kills and growth tables. Two separate 50-profile
+singleton projections exclude their specified growth consumers even with an
+arbitrary shared principal or an internal payment constrained by external PMT.
+No coefficient is fitted. Numerical research changes no annuity or approximation
+body or saved answer; the separate structural fixes above change the product.
+
+Use cumulative-r11-unit.json for the guarded build. The claim, original bounds,
+receipt/source hashes and remaining assumptions are cumulative-r11-claim.json;
+round11-result.json indexes the measured outcomes. The 64 frozen coupled questions
+are versioned in packets/round11 and outside the repository in fresh-questions-r11.
+Requests and predictions remain separate. The exposure erratum adds the two
+known PMT controls omitted from the frozen selection's partial exposure listing.
+The external packet and its original generator snapshot remain immutable.
+
+From the DnaCalc checkout on Windows after pulling both repositories:
+  $packet = (Resolve-Path '..\DnaCalc-Research\packets\round11').Path
+  cargo xtask witness read --func CUMPRINC --inputs "$packet\requests-CUMPRINC.json"
+  cargo xtask witness read --func PMT --inputs "$packet\requests-PMT.json"
+  cargo xtask witness read --func PPMT --inputs "$packet\requests-PPMT.json"
+  cargo xtask witness read --func CUMIPMT --inputs "$packet\requests-CUMIPMT.json"
+Do not use --new-only. Score every immutable prediction first when answers arrive.

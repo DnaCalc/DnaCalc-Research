@@ -1,0 +1,104 @@
+{
+  "id": "dc-ymjf.4-r11-cumulative-principal",
+  "role": "implementer",
+  "application_revision": "e8a15f90dc8232d1329b3497dc842af33015bd1f",
+  "function": "CUMPRINC",
+  "surface": "registered scalar CUMPRINC, six original numeric arguments, no result selection",
+  "domain": "positive normal rate/PV; integer nper and start/end,1<=start<=end<=nper<=512; timing0/1",
+  "rationale": "Largest named function in1184-cell corpus mismatch census:157cells;540existing bank calls,214application passes and326failures. Every old bank row is discovery.",
+  "sources": {
+    "tier1": [
+      "ordinary finite geometric-series and amortization identities",
+      "IEEE754 nearest-even",
+      "existing canonical Excel witness-reader exports"
+    ],
+    "tier2": [
+      "current cleared Fpu through existing racer bridge"
+    ],
+    "banned": [
+      "all tier3/4",
+      "deleted sources and histories",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "power": [
+      "sequential product",
+      "binary squaring"
+    ],
+    "payment": [
+      "(-PV*r)*G/(G-1)",
+      "(-PV*r)/(1-1/G)",
+      "(-PV)*(r/(1-1/G))"
+    ],
+    "payment_timing": "divide by1+r for beginning timing",
+    "payment_publication": [
+      "resident",
+      "explicit binary64 store"
+    ],
+    "principal": [
+      "payment/power(remaining)",
+      "initial-principal forward recurrence",
+      "balance+=principal",
+      "balance=balance*(1+r)+payment"
+    ],
+    "accumulation": [
+      "forward fold from zero",
+      "reverse fold from zero",
+      "balanced pairwise, singleton returned directly"
+    ],
+    "precision_regions": [
+      "base and growth",
+      "payment",
+      "principal/balance",
+      "accumulation"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "constants": [
+      0,
+      1,
+      -1
+    ],
+    "programs": 90000,
+    "branches": "integer exponent bits, interval indices and beginning timing only",
+    "policy": "exact first contradiction; all logical assignments retained, including inactive choices; no coefficients fitted or candidates ranked",
+    "publication": "one final binary64 publication; ordinary finite normal cash amounts; no helper leaf assumed"
+  },
+  "observations": {
+    "loader": "cargo xtask witness judge --bank full --trace",
+    "source": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/application-CUMPRINC-before-complete.jsonl",
+    "sha256": "404fcd8a79801aa015f4a92d396bf083b03e331e524b555d8bd1f9d5ae109820",
+    "rows": 540,
+    "build": "20228",
+    "bitness": "64-bit",
+    "cpu": null,
+    "transport": null,
+    "compatibility_version": null,
+    "settings": null,
+    "all_discovery": true
+  },
+  "budget": {
+    "deadline_utc": "2026-11-01T06:57:00Z",
+    "workers": 1,
+    "memory_bytes": 4294967296,
+    "questions_max": 64
+  },
+  "strength": "bounded research grammar; no identified or promoted product program",
+  "frozen_at_utc": "2026-11-01T03:19:16.864347+00:00",
+  "numeric_source_sha256": {
+    "crates/calc-func/src/ported/excel_numeric/mod.rs": "bdbefb6844ef4538d42ec0c2fcdaccdc655a5092c3d1263eef2b0986524474cd",
+    "crates/calc-func/src/ported/excel_numeric/x87.rs": "744741e76e7ee971429d6c557ce0c35124bec8da449684c2eb7cc8b6bfdc0b6c",
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "51283cb36aeb4b2c4174731f9054f282656700590be3afd13d08303118f2c71c",
+    "crates/calc-func/src/ported/excel_numeric/crt_libm.rs": "ede96d91f724c7cdee90c59826f9739eaaa10fe14c0e793a023e462b4ef02e22",
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "c02894e5d3ecdc8222a71963daf8e1331823468815310b03d4356f30a93580ed",
+    "crates/calc-func/src/ported/excel_numeric/crt_pow.rs": "6492086a47317814404819baae06f4c825ecfa8ba544b92c9ce7906c3226641d",
+    "crates/calc-func/src/ported/excel_numeric/soft87.rs": "697cc413c1244170dbad69e60922683a8963512b3b46a845c08afb24244369f2",
+    "crates/calc-func/src/ported/excel_numeric/tables.rs": "d556bec6f9c0123ce7ad688f64e27474cfa8bc6d25f47caf4a4bcdcd66f12810"
+  }
+}

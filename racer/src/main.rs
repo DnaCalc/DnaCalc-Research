@@ -9,6 +9,7 @@ mod ported {
 mod annuity;
 mod annuity_early;
 mod boundary;
+mod cumulative;
 mod dsl;
 mod enumerate;
 mod eval;
@@ -352,6 +353,14 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("cumulative-growth") => match a.get(4).map(String::as_str) {
+            Some("soft") => cumulative::growth_tables::<Soft>(&a[2], &a[3]),
+            _ => cumulative::growth_tables::<Hard>(&a[2], &a[3]),
+        },
+        Some("cumulative") => match a.get(4).map(String::as_str) {
+            Some("soft") => cumulative::run::<Soft>(&a[2], &a[3]),
+            _ => cumulative::run::<Hard>(&a[2], &a[3]),
+        },
         Some("transport-collisions") => annuity::transport_collisions(&a[2], &a[3], &a[4]),
         Some("rate-internal") => match a.get(5).map(String::as_str) {
             Some("soft") => annuity::rate_internal::<Soft>(&a[2], &a[3], &a[4], false),
@@ -458,32 +467,37 @@ fn main() {
         Some("precision-test") => eval::precision_controls(),
         Some("arithmetic-reference-controls") => eval::reference_controls(&a[2]),
         Some("normal-cdf") => match a.get(6).map(String::as_str) {
-            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],false,false,false),
-            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],false,false,false),
+            Some("soft") => normal::run::<Soft>(&a[2], &a[3], &a[4], &a[5], false, false, false),
+            _ => normal::run::<Hard>(&a[2], &a[3], &a[4], &a[5], false, false, false),
         },
         Some("normal-cdf-wrappers") => match a.get(6).map(String::as_str) {
-            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],true,false,false),
-            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],true,false,false),
+            Some("soft") => normal::run::<Soft>(&a[2], &a[3], &a[4], &a[5], true, false, false),
+            _ => normal::run::<Hard>(&a[2], &a[3], &a[4], &a[5], true, false, false),
         },
         Some("normal-cdf-hart") => match a.get(6).map(String::as_str) {
-            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],true,true,false),
-            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],true,true,false),
+            Some("soft") => normal::run::<Soft>(&a[2], &a[3], &a[4], &a[5], true, true, false),
+            _ => normal::run::<Hard>(&a[2], &a[3], &a[4], &a[5], true, true, false),
         },
         Some("normal-cdf-central") => match a.get(6).map(String::as_str) {
-            Some("soft") => normal::run::<Soft>(&a[2],&a[3],&a[4],&a[5],false,false,true),
-            _ => normal::run::<Hard>(&a[2],&a[3],&a[4],&a[5],false,false,true),
+            Some("soft") => normal::run::<Soft>(&a[2], &a[3], &a[4], &a[5], false, false, true),
+            _ => normal::run::<Hard>(&a[2], &a[3], &a[4], &a[5], false, false, true),
         },
         Some("invoke-inputs") => {
-            let doc:Value=serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
-            let name=doc["function"].as_str().unwrap();
-            let mut output=BufWriter::new(fs::File::create(&a[3]).unwrap());
+            let doc: Value = serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
+            let name = doc["function"].as_str().unwrap();
+            let mut output = BufWriter::new(fs::File::create(&a[3]).unwrap());
             for r in doc["witnesses"].as_array().unwrap() {
-                let args=r["args"].as_array().unwrap().iter().map(|v|calc_verdict::decode_argument(v,"arg").unwrap()).collect();
-                let (got,_)=invoke_control(name,args);
+                let args = r["args"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .map(|v| calc_verdict::decode_argument(v, "arg").unwrap())
+                    .collect();
+                let (got, _) = invoke_control(name, args);
                 writeln!(output,"{}",json!({"id":r["id"],"args":r["args"],"calc_func_prediction":got,
                     "transport_assumption":"registered typed arguments; literal parsing may change inputs","not_excel_evidence":true})).unwrap();
             }
-        },
+        }
         Some("count-one-full") => {
             let rows = lines::<poisson::MassRow>(&a[2]);
             match a.get(5).map(String::as_str) {

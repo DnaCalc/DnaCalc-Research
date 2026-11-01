@@ -1,0 +1,511 @@
+{
+  "recorded_at_utc": "2026-11-01T03:37:14.354492+00:00",
+  "packet_manifest_sha256": "d6d3a464a1f9c257e62a23393934d4cda9093eff695711eb6f846963701bea40",
+  "reason": "Frozen selection.json searched only the CUMPRINC trace. Its known_bank_readings entries are partial exposure metadata; empty does not establish novelty. This external erratum adds exact typed joins to every available matching-function trace, without modifying the packet. All old banks and corpus remain discovery; no fresh validation of a complete program is claimed.",
+  "counts": {
+    "CUMPRINC": {
+      "requests": 32,
+      "known_exact_typed_bank_identities": 6
+    },
+    "PMT": {
+      "requests": 4,
+      "known_exact_typed_bank_identities": 2
+    },
+    "PPMT": {
+      "requests": 16,
+      "known_exact_typed_bank_identities": 0
+    },
+    "CUMIPMT": {
+      "requests": 12,
+      "known_exact_typed_bank_identities": 0
+    }
+  },
+  "questions": [
+    {
+      "id": "r11-cumprinc-00",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": {
+        "actual": "0xbff97b28185054af",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0xbff97b28185054b1",
+        "function": "CUMPRINC",
+        "id": "cumx-c03-t0-singleton_first-v04",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+      }
+    },
+    {
+      "id": "r11-cumprinc-01",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-02",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-03",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": {
+        "actual": "0xbffe3f265c984e89",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0xbffe3f265c984e89",
+        "function": "CUMPRINC",
+        "id": "cumx-c03-t0-singleton_last-v04",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+      }
+    },
+    {
+      "id": "r11-cumprinc-04",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-05",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-06",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": {
+        "actual": "0xc06b9446d200b349",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x405fc00000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0xc06b9446d200b345",
+        "function": "CUMPRINC",
+        "id": "cumx-c03-t0-full-v04",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+      }
+    },
+    {
+      "id": "r11-cumprinc-07",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-08",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": {
+        "actual": "0xbffe3f265c984e89",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "expected": "0xbffe3f265c984e88",
+        "function": "CUMPRINC",
+        "id": "cumx-c03-t1-singleton_first-v04",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+      }
+    },
+    {
+      "id": "r11-cumprinc-09",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-10",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-11",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": {
+        "actual": "0xbffe349eec2b13fc",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x3ff0000000000000"
+        ],
+        "expected": "0xbffe349eec2b13fc",
+        "function": "CUMPRINC",
+        "id": "cumx-c03-t1-singleton_last-v04",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+      }
+    },
+    {
+      "id": "r11-cumprinc-12",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-13",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-14",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": {
+        "actual": "0xc06b9446d200b349",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x405fc00000000000",
+          "0x3ff0000000000000"
+        ],
+        "expected": "0xc06b9446d200b346",
+        "function": "CUMPRINC",
+        "id": "cumx-c03-t1-full-v04",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-cumprinc-exact-discriminator-20260809.json"
+      }
+    },
+    {
+      "id": "r11-cumprinc-15",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-16",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-17",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-18",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-19",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-20",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-21",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-22",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-23",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-24",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-25",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-26",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-27",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-28",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-29",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-30",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumprinc-31",
+      "function": "CUMPRINC",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-pmt-00",
+      "function": "PMT",
+      "known_original_bank_observation": {
+        "actual": "0xbffe49b178993c72",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0xbffe49b178993c71",
+        "function": "PMT",
+        "id": "cumx-c03-t0-v04-pmt",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-pmt-cumprinc-companion-20260809.json"
+      }
+    },
+    {
+      "id": "r11-pmt-01",
+      "function": "PMT",
+      "known_original_bank_observation": {
+        "actual": "0xbffe3f265c984e89",
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "expected": "0xbffe3f265c984e88",
+        "function": "PMT",
+        "id": "cumx-c03-t1-v04-pmt",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20228",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "work/w109/G6-cumprinc/answers-pmt-cumprinc-companion-20260809.json"
+      }
+    },
+    {
+      "id": "r11-pmt-02",
+      "function": "PMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-pmt-03",
+      "function": "PMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-00",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-01",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-02",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-03",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-04",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-05",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-06",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-07",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-08",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-09",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-10",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-11",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-12",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-13",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-14",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-ppmt-15",
+      "function": "PPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-00",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-01",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-02",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-03",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-04",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-05",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-06",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-07",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-08",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-09",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-10",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    },
+    {
+      "id": "r11-cumipmt-11",
+      "function": "CUMIPMT",
+      "known_original_bank_observation": null
+    }
+  ]
+}

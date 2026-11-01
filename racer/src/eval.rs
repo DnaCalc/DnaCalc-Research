@@ -152,23 +152,7 @@ pub fn precision_controls() {
     );
 }
 
-pub fn eval_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Val {
-    let mut values = [Val::F64(0); 14];
-    assert!(g.nodes.len() <= values.len());
-    for (i, n) in g.nodes.iter().enumerate() {
-        values[i] = match n.op {
-            Op::Arg(a) => Val::f64(args[a]),
-            Op::Const { bits } => Val::F64(bits),
-            Op::Add(a, b) | Op::Mul(a, b) | Op::Div(a, b) => {
-                assert!(a < i && b < i);
-                binop::<F>(n.op, n.model, values[a], values[b])
-            }
-        };
-    }
-    values[g.output]
-}
-
-pub fn trace_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Vec<String> {
+fn graph_values<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Vec<Val> {
     let mut values = Vec::with_capacity(g.nodes.len());
     for (i, n) in g.nodes.iter().enumerate() {
         let value = match n.op {
@@ -181,7 +165,15 @@ pub fn trace_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Vec<String> {
         };
         values.push(value);
     }
-    assert_eq!(values[g.output], eval_graph::<F>(g, args));
+    values
+}
+
+pub fn eval_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Val {
+    graph_values::<F>(g, args)[g.output]
+}
+
+pub fn trace_graph<F: Fpu>(g: &Graph, args: &[f64; 5]) -> Vec<String> {
+    let values = graph_values::<F>(g, args);
     values.into_iter().map(Val::exact_encoding).collect()
 }
 

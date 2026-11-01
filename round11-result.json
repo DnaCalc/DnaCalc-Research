@@ -1,0 +1,55 @@
+{
+  "round": 11,
+  "application_revision": "e8a15f90dc8232d1329b3497dc842af33015bd1f",
+  "outcome": "59 structural corpus gains without loss; frozen round-10 predictions scored before new research; largest corpus function CUMPRINC has bounded exact exclusions and 64 unanswered coupled questions. A separate 52-call domain/text audit is frozen. Numerical research changes no annuity/approximation body or saved Excel answer; the separate structural fixes change product handling.",
+  "claim_record": "cumulative-r11-claim.json",
+  "unit": "cumulative-r11-unit.json",
+  "artifact_root": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11",
+  "corpus_before": {
+    "pass": 18752,
+    "formula_cells": 20030,
+    "mismatched": 1184,
+    "refused": 6,
+    "missing": 1
+  },
+  "corpus_after": {
+    "pass": 18811,
+    "formula_cells": 20030,
+    "mismatched": 1125,
+    "refused": 6,
+    "missing": 1
+  },
+  "bank_comparison": {
+    "decoded_rows": 3874816,
+    "all_rows_including_unread": 3874932,
+    "pass": 3230348,
+    "fail": 644584,
+    "unread": 116,
+    "changed_outputs": 0,
+    "gains": 0,
+    "losses": 0,
+    "uncompressed_sha256": "f07073d1ea6ddd76b99db1b1c00957f27bed0ff08762bc5bf70a9cbd9d124182"
+  },
+  "checks": {
+    "cargo_xtask_check": {
+      "passed": 1151,
+      "failed": 0,
+      "ignored": 3,
+      "not_run": 1,
+      "packages": 12
+    },
+    "independent_receipts": {
+      "cumulative-native-final-checked.json": "10b767f3ebd9c41543c577fb5e18831129458055a2629bf185c75a2ad832358b",
+      "cumulative-principal-projection-final-checked.json": "9695631becde66de467461935e1b4dccd7d798fbce7f422a9fc9a328e4b7914d",
+      "cumulative-payment-projection-final-checked.json": "d58c5d2197eda07ff83c782bc3a8fd992fe850ace905713457dda958a9f2f2db",
+      "arithmetic-controls-checked.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37"
+    }
+  },
+  "frozen_questions": "packets/round11/manifest.json",
+  "limitations": [
+    "22 structural, ten format/text, 1090 numeric and three capture-failure mismatches remain after the fixes; no complete numeric program identified.",
+    "No Windows/browser sweep run on Linux.",
+    "Round10initial literal aggregate counters superseded by v2; first principal-projection format rejected and replaced by v2, originals retained."
+  ],
+  "structural_questions": "packets/structural-r11/manifest.json"
+}

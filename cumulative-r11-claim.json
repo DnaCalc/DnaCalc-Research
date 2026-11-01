@@ -1,0 +1,165 @@
+{
+  "id": "dc-ymjf.4-r11-cumulative",
+  "function": "CUMPRINC",
+  "surface_and_domain": "positive normal rate/PV; integer nper and start/end,1<=start<=end<=nper<=512; timing0/1",
+  "application_revision": "e8a15f90dc8232d1329b3497dc842af33015bd1f",
+  "evidence_revisions": {
+    "bank_before_after": "cba2fac2636c2cb6fd58e85e44f682d93dd387dd",
+    "new_round10_readings": "51bed087"
+  },
+  "strength": "Bounded complete-program exclusion plus necessary shared-latent singleton exclusions; no numerical program selected or promoted.",
+  "environment": {
+    "historical_build": "20228",
+    "bitness": "64-bit",
+    "CPU": null,
+    "compatibility_version": null,
+    "input_transport": null,
+    "publication": "exact binary64 worksheet outcome",
+    "new_round10_build": "20527",
+    "round10_compatibility_version": 2
+  },
+  "structure": {
+    "corpus_mismatches_at_selection": 157,
+    "original_CUMPRINC_calls": 540,
+    "application_pass": 214,
+    "application_fail": 326,
+    "loan_groups": 60,
+    "calls_per_loan": 9,
+    "matching_build_and_bitness": true,
+    "historical_settings_and_transport": null,
+    "beginning_first_principal_equal_to_companion_PMT": {
+      "matched": 30,
+      "total": 30
+    },
+    "standalone_PPMT_companions": 0,
+    "exact_PMT_companions": 60
+  },
+  "complete_program_grammar": {
+    "unit": "cumulative-r11-unit.json",
+    "logical_assignments": 90000,
+    "unique_instantiated_graphs": 18000,
+    "survivors": 0,
+    "first_killing_original_row": 0,
+    "available_original_rows": 540,
+    "rows_evaluated_per_complete_program": 1,
+    "independently_checked_node_values": 1509000,
+    "important_scope_limit": "The first singleton rejects every program before accumulation order can distinguish them. This is not evidence for a particular summation order. payment_store=false retains whatever representation the chosen payment model produces; strict and stored models already produce binary64."
+  },
+  "singleton_projections": [
+    {
+      "kind": "arbitrary common initial principal",
+      "profiles": 50,
+      "survivors": 0,
+      "available_singletons": 120,
+      "loan_groups": 30,
+      "actual_constraints_in_certificates": 108
+    },
+    {
+      "kind": "arbitrary common internal payment constrained by independent PMT publication",
+      "profiles": 50,
+      "survivors": 0,
+      "available_singletons": 240,
+      "loan_groups": 60,
+      "actual_constraints_in_certificates": 50
+    }
+  ],
+  "numeric_substrate": {
+    "backends": [
+      "native x87",
+      "existing software x87"
+    ],
+    "complete_program_traces": "byte-identical",
+    "growth_tables": "byte-identical",
+    "growth_profiles": 10,
+    "distinct_rate_nper_environment_groups": 5,
+    "growth_table_records": 50,
+    "growth_node_values_checked": 24785,
+    "independent_arithmetic_controls": 70,
+    "limitations": "Finite controls and original-input agreement, not global backend equivalence; known PC53 extended-exponent subnormal issue remains outside this ordinary normal-valued scope."
+  },
+  "receipt_sha256": {
+    "cumulative-native-final-checked.json": "10b767f3ebd9c41543c577fb5e18831129458055a2629bf185c75a2ad832358b",
+    "cumulative-principal-projection-final-checked.json": "9695631becde66de467461935e1b4dccd7d798fbce7f422a9fc9a328e4b7914d",
+    "cumulative-payment-projection-final-checked.json": "d58c5d2197eda07ff83c782bc3a8fd992fe850ace905713457dda958a9f2f2db",
+    "arithmetic-controls-checked.json": "4bf04f3e81b524c1a02457cf75badae8699cd8b8c3d47d0c27ab3d7891c47c37"
+  },
+  "exposure": {
+    "all_old_banks_and_corpus": "discovery",
+    "independent_complete_program_validation": null,
+    "frozen_packet": "packets/round11",
+    "external_frozen_packet": "/home/ubuntu/codex-runs/fresh-questions-r11",
+    "packet_calls": 64,
+    "new_answers_to_round11": 0,
+    "exposure_erratum": "cumulative-r11-exposure-erratum.json"
+  },
+  "round10_blind_scoring": {
+    "summary": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/round10-blind-v2/blind-summary.json",
+    "summary_sha256": "b179d2bc5e0067b6b1db911eee6cd513ae2f323b150d72c6ca550d3b55fac385",
+    "PMT_numeric_historical": {
+      "pass": 32,
+      "fail": 0
+    },
+    "PMT_numeric_application": {
+      "pass": 8,
+      "fail": 24
+    },
+    "PMT_logical_historical": {
+      "pass": 8,
+      "fail": 0
+    },
+    "PMT_text_historical": {
+      "pass": 3,
+      "fail": 5
+    },
+    "literal_audits": {
+      "calls": 16,
+      "changed_input_failures": 14,
+      "historical_admitted_raw_coincidences": 2,
+      "application_admitted_raw_coincidences": 0,
+      "semantic_matches": 0
+    },
+    "normal_anchor_rechecks": {
+      "pass": 8,
+      "fail": 0
+    },
+    "normal_conditional_relations": {
+      "surviving_profiles": [
+        1,
+        2
+      ],
+      "score_per_survivor": "12/12 conditional pairs",
+      "other_profiles": "0,3,4 reject on frozen lattice probes"
+    },
+    "limits": "No whole-function numerical kernel identified; literal raw coincidences are separate from semantic matches; effective callee inputs unavailable."
+  },
+  "assumption_audit": [
+    "Concrete integer-growth/payment prefix rejected at first singleton; accumulation remains unidentified.",
+    "Arbitrary shared initial principal cannot rescue the50specified fixed-growth/multiply consumers.",
+    "A payment constrained by its original external PMT publication cannot rescue the50specified fixed-growth/divide consumers.",
+    "Other balance recurrences, growth helpers, precision regions and publication boundaries remain unsearched.",
+    "Current-build CUMPRINC paired readings and standalone PPMT/CUMIPMT comparisons are frozen next questions."
+  ],
+  "provenance": "Implementer; original annuity algebra, IEEE754, existing canonical Excel observations, and cleared Fpu. No tier3/4 source, fitted coefficients, residual cutoffs or answer component.",
+  "source_annotation_record": {
+    "recorded_at_utc": "2026-11-01T03:43:25.559694+00:00",
+    "original_question_generator": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round11/python-sources-before-ubs-comments/racer/cumulative_projection.py",
+    "original_generator_sha256": "e286b3d3e772b07c3d95c8de14233ef40a5e4b9d6793e4cc18c129bdb04e4c06",
+    "reason": "Only justified UBS comments added after packet freeze; original sources retained and packet bytes unchanged. Receipts rerun against annotated checkers. No arithmetic, request or prediction changes."
+  },
+  "structural_questions": {
+    "frozen_packet": "packets/structural-r11",
+    "calls": 52,
+    "functions": {
+      "BESSELI": 16,
+      "BESSELJ": 16,
+      "CONCATENATE": 10,
+      "CONCAT": 10
+    },
+    "limits": "Domain-kind hypotheses are incomplete; no numerical-body identification. Registered-route predictions remain separate and immutable.",
+    "generator_sha256": "34d63319218caa0f91312ebe38ac25da0fbd63c2fd6d837a20daeb9d7ff2d37f"
+  },
+  "ubs": {
+    "critical_after_triage": 0,
+    "reason": "Public integrity-hash equality and finite one-shot file-iterator lifetimes are explicitly justified; malformed JSON fails closed. Original sources retained; no arithmetic changed."
+  }
+}
