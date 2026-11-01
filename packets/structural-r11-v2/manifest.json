@@ -1,0 +1,23 @@
+{
+  "frozen_utc": "2026-11-01T03:51:42.857848+00:00",
+  "calls": 52,
+  "new_answers": 0,
+  "generator_sha256": "a0c4fdfff9682e95c22097b39ecffb02292c5568864abb2d50e849a468a357e7",
+  "application_revision": "e8a15f90dc8232d1329b3497dc842af33015bd1f",
+  "executable_sha256": "385f952553b446763367463d440a51dd442c52834eb19a13ed9c70f73e5e7c6b",
+  "files_sha256": {
+    "RUN-STRUCTURAL-R11.txt": "04b32116328b03cbcb5263f99dd7bcacfe8a6c2913fe38141f91a54fb14dd825",
+    "boundary-hypotheses.json": "10786c5ee117a3dfbd684ec628ff41079a2af0703df06af9452841f7c8973240",
+    "registered-predictions-BESSELI.jsonl": "2f067eef3a796c75302fbb22d080cacdedd30cc49da7f12e6e4df4a2c0e7aba8",
+    "registered-predictions-BESSELJ.jsonl": "759920f6b6472a6b868efbb317e6c8e8656fa64b6f2b85920455b7419d621ec6",
+    "registered-predictions-CONCAT.jsonl": "a5b98f80b2a02101c076f1c047134e6d3f20c1773ed4c5a93b3c96dffbdc798b",
+    "registered-predictions-CONCATENATE.jsonl": "38122af37d3a6490608e41fc8d5ba7acb32a8ac900b6ba5518ca069cc032c925",
+    "requests-BESSELI.json": "042f402d4c801fccc0f3ca649e7c04d212994c244d8a2043e06b2d94e189f2ab",
+    "requests-BESSELJ.json": "df094ebb059f3db443fe8046d90585530798c1ceb9d54344d5d42778aea0e754",
+    "requests-CONCAT.json": "1616c068aa1314703293224d358730caab17cd99c2eb51ec3faffc8280d71330",
+    "requests-CONCATENATE.json": "6a005ad670f03632ef08ea745fbe05b72d08ae9670eb0c99abeb0239d4aff54a",
+    "selection.json": "3cd8eaa43d58a07ca80c6926a2116a007e9275fc18a4e731e1d88f97af19fc10"
+  },
+  "supersedes": "../structural-r11: use one numeric argument for conversion calls, avoiding empty-string Value2 admission ambiguity; original packet preserved. No answer has been used to revise predictions.",
+  "limits": "Domain-kind hypotheses are incomplete, never exact numeric function matches."
+}

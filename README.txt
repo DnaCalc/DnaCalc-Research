@@ -393,3 +393,16 @@ From the DnaCalc checkout on Windows after pulling both repositories:
   cargo xtask witness read --func PPMT --inputs "$packet\requests-PPMT.json"
   cargo xtask witness read --func CUMIPMT --inputs "$packet\requests-CUMIPMT.json"
 Do not use --new-only. Score every immutable prediction first when answers arrive.
+
+The separate admission/text audit uses packets/structural-r11-v2 (52 calls).
+Its numeric-only CONCAT/CONCATENATE requests replace the original packet's
+unnecessary empty second argument, whose Value2 read-back might be blank.
+The original packet is preserved; no returned answer motivated this revision.
+Use the v2 directory for BESSELI, BESSELJ, CONCATENATE and CONCAT, with each
+function's requests-<function>.json. These are boundary/route audits; their
+kind-only hypotheses are never exact numerical function matches.
+
+Upstream engine/value-model work at application16b00e66 changes the guarded
+source tree. The numerical source hashes remain unchanged. The original unit
+still pins e8a15f90; cumulative-r11-rebuild-unit.json explicitly pins the later
+tree for rebuilds, without replacing any measurement, packet or original unit.

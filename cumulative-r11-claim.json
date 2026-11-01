@@ -147,7 +147,7 @@
     "reason": "Only justified UBS comments added after packet freeze; original sources retained and packet bytes unchanged. Receipts rerun against annotated checkers. No arithmetic, request or prediction changes."
   },
   "structural_questions": {
-    "frozen_packet": "packets/structural-r11",
+    "frozen_packet": "packets/structural-r11-v2",
     "calls": 52,
     "functions": {
       "BESSELI": 16,
@@ -156,7 +156,8 @@
       "CONCAT": 10
     },
     "limits": "Domain-kind hypotheses are incomplete; no numerical-body identification. Registered-route predictions remain separate and immutable.",
-    "generator_sha256": "34d63319218caa0f91312ebe38ac25da0fbd63c2fd6d837a20daeb9d7ff2d37f"
+    "generator_sha256": "a0c4fdfff9682e95c22097b39ecffb02292c5568864abb2d50e849a468a357e7",
+    "supersession": "../structural-r11: use one numeric argument for conversion calls, avoiding empty-string Value2 admission ambiguity; original packet preserved. No answer has been used to revise predictions."
   },
   "ubs": {
     "critical_after_triage": 0,

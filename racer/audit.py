@@ -355,7 +355,7 @@ def structural_questions(out):
         999999999999999.5,1234567890123455.0,123456789012345.5,4037429.935952025]
     for function in ('CONCATENATE','CONCAT'):
         for i,x in enumerate(values):
-            add(function,[bits(x),''],('known ampersand discrepancy'if i<5 else'known conversion control')+
+            add(function,[bits(x)],('known ampersand discrepancy'if i<5 else'known conversion control')+
                 '; compare the actual function route with the existing ampersand capture, without changing rounding rules')
     for function,rows in batches.items():
         (out/f'requests-{function}.json').write_text(json.dumps(dict(function=function,witnesses=rows),indent=2)+'\n')

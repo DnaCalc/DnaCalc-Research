@@ -1,0 +1,11 @@
+Round 11 structural/number-text audit: 52 calls, no new answers.
+From the updated DnaCalc master on Windows, substitute this packet's path:
+ cargo xtask witness read --func BESSELI --inputs <packet>/requests-BESSELI.json
+ cargo xtask witness read --func BESSELJ --inputs <packet>/requests-BESSELJ.json
+ cargo xtask witness read --func CONCATENATE --inputs <packet>/requests-CONCATENATE.json
+ cargo xtask witness read --func CONCAT --inputs <packet>/requests-CONCAT.json
+Do not use --new-only. Preserve every raw result and input audit. Score immutable
+registered-route predictions first. Boundary hypotheses predict kind only and
+must never be reported as exact function matches. They ask whether an argument
+admission rule has an independently distinguishable adjacent-input transition;
+no numerical body or coefficient is selected from their results.
