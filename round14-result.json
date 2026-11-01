@@ -1,0 +1,607 @@
+{
+  "round": 14,
+  "complete": true,
+  "role": "implementer",
+  "provenance": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/provenance.json",
+    "sha256": "74af61aa9c781be05d268733745a1664cc3616f3bffe493478d67b5e2497fd1e"
+  },
+  "claim": "Bounded non-annuity arithmetic exclusions and ordinary-cause audits. No product numerical patch, fitted program or new Excel answer.",
+  "artifact_root": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14",
+  "report": "/home/ubuntu/codex-runs/work-report-14.md",
+  "product_numeric_changes": 0,
+  "new_excel_answers": 0,
+  "priorities_by_mismatching_corpus_cells": [
+    {
+      "family": "VAR/STDEV",
+      "cells": 232
+    },
+    {
+      "family": "Bessel",
+      "cells": 223
+    },
+    {
+      "family": "binomial",
+      "cells": 75
+    },
+    {
+      "family": "regression",
+      "cells": 45
+    },
+    {
+      "family": "GEOMEAN",
+      "cells": 39
+    }
+  ],
+  "corpus": {
+    "matches": 18812,
+    "formula_cells": 20030,
+    "pass_rate": 0.9391912131802297,
+    "fail": 1131,
+    "mismatched": 1124,
+    "refused": 6,
+    "failed_or_missing": 1,
+    "external_links": 73,
+    "circular_rule": 14,
+    "evaluated_records": 20016,
+    "gains": 0,
+    "losses": 0,
+    "before_after": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/corpus-before-after.json",
+      "sha256": "db05051bc0ee0aa54e2135b4401813f47225237a6527f2110e22b572fc581078"
+    },
+    "postpull": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/corpus-late-comparison-v2.json",
+      "sha256": "b84e67f7ccaf6024b2ccf678216c26d98f5914e88616a514656dc39427dcbe9f"
+    },
+    "scope": "21 committed oracle workbooks; no external workbook collection"
+  },
+  "bank": {
+    "matches": 3230357,
+    "counted_rows": 3874964,
+    "pass_rate": 0.8336482609902957,
+    "fail": 644607,
+    "unread_failures": 116,
+    "decoded_rows": 3874848,
+    "gains": 0,
+    "losses": 0,
+    "changed_outputs": 0,
+    "comparison": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/bank-late/banks-imsec-comparison.json",
+      "sha256": "bf9203e95afc067e85a962534e7ac02999b7f6e527713351ed222d20e3a7c81f"
+    },
+    "log": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/bank-late/banks-after-imsec.log",
+      "sha256": "09c1286a4a3372ef71e426402471e1736b82812ef1191a4c9d20133f7222a710"
+    },
+    "harness": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late-harness.json",
+      "sha256": "c11f97090458128c45fa3de8de25462bbf5fde1e3f6a370f38cf37173d9bf470"
+    },
+    "naming": "The reused bank recorder retains imsec filenames; this is the full bank, not an IMSEC-only subset."
+  },
+  "ordinary_audits": {
+    "triage": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/ordinary-product-triage.json",
+      "sha256": "2f65981f27048bf96112e05f85b4f430dd7748fa453b2f168c41832045bd5fc5"
+    },
+    "specific_geomean_reference_audit": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/geomean-reference-audit.json",
+      "sha256": "7a11fcdaf78167c7e9526dc427cb45f04dc977a0e6d3c08a3d549e0853335d72"
+    },
+    "limits": "Numeric/logical selected inputs and exact stored outputs rule out the stated coercion/error-argument/display causes only within their audited scope. Two Bessel domain boundaries and numerical regression rank policy remain open. No universal ordinary-bug exclusion."
+  },
+  "studies": {
+    "coherent_variance": {
+      "functions": 12,
+      "labels_per_function": 153125,
+      "survivors_per_function": 0,
+      "scoped_observations": 13139,
+      "limits": "49 templates times5^5 coherent regions; dead/redundant labels retained, no private alias-body identity. Native/software are repeated measurements, never extra programs."
+    },
+    "bessel_consumer": {
+      "labels_per_function": 500,
+      "necessary_survivors": {
+        "BESSELJ": 0,
+        "BESSELI": 0,
+        "BESSELY": 345,
+        "BESSELK": 345
+      },
+      "limits": "Arbitrary shared order0/1 Ext80 seeds constrained by original publications; Y/K survivors are necessary conditions, not seed producers."
+    },
+    "binomial_recurrence": {
+      "labels": 18750,
+      "cohorts": 13,
+      "survivors": 0,
+      "limits": "Specified mass updates from arbitrary initial Ext80 values constrained by P0 publication; no initial mass is selected."
+    },
+    "single_predictor_linest": {
+      "labels": 84375,
+      "scoped": 70,
+      "survivors": 0,
+      "limits": "Coefficient/intercept algebra only; no QR, multipredictor, LOGEST or rank-policy identification."
+    },
+    "geomean": {
+      "labels": 12288,
+      "scoped": 224,
+      "survivors": 0,
+      "full_width_instruction_values": 294708,
+      "limits": "Declared native x87 program family on the recorded Linux CPU only; no correctly-rounded-library or Windows equivalence."
+    },
+    "cdf_prefix": {
+      "labels_per_function": 30,
+      "functions": 4,
+      "complete_prefix_cohorts": 1275,
+      "checked_boxes": 7440,
+      "survivors_per_function": 0,
+      "limits": "Positive-normal PMF prefix and original same-context/shared-publication assumptions; no PMF/CDF producer identified."
+    },
+    "cody_j0": {
+      "variants": 6,
+      "observations": 7,
+      "checked_boxes": 42,
+      "necessary_survivors": 0,
+      "limits": "Specified published rational variants and RN53/RN64 coefficient loads, all five arithmetic models per node; no other Bessel program excluded."
+    },
+    "as_j01": {
+      "variants_per_order": 24,
+      "observations_per_order": 4,
+      "checked_boxes": 192,
+      "arithmetic_nodes": 3696,
+      "coefficient_load_nodes": 1408,
+      "necessary_survivors_per_order": 0,
+      "limits": "Fixed A&S9.4.1/9.4.4 polynomials on positive x in[1/4,3]. No analytic remainder selected or fitted."
+    },
+    "two_pass_closures": {
+      "corpus_observations": 26,
+      "plain_unreachable": 21,
+      "corrected_unreachable": 21,
+      "bank_observations": 148,
+      "bank_plain_unreachable": 20,
+      "bank_corrected_unreachable": 21,
+      "bank_corrected_matched_controls_excluded": 1,
+      "limits": "Corrected roots drop dependencies conservatively. The matched control excludes an algorithm, not another product result. Reachability is not a reusable producer."
+    },
+    "online_closures": {
+      "corpus": {
+        "welford_state_pairs": 13728,
+        "youngs_cramer_state_pairs": 6879,
+        "welford_roots": 4705,
+        "welford_unreachable": 17,
+        "youngs_cramer_roots": 2675,
+        "youngs_cramer_unreachable": 16,
+        "observations": 26
+      },
+      "bank": {
+        "welford_state_pairs": 78303,
+        "youngs_cramer_state_pairs": 33708,
+        "welford_roots": 23670,
+        "welford_unreachable": 27,
+        "youngs_cramer_roots": 10942,
+        "youngs_cramer_unreachable": 22,
+        "observations": 148
+      },
+      "bank_partition": {
+        "welford_matched_control_unreachable": 5,
+        "youngs_cramer_matched_control_unreachable": 6,
+        "welford_current_mismatch_unreachable": 22,
+        "youngs_cramer_current_mismatch_unreachable": 16
+      },
+      "limits": "All6 index permutations and independent five-model annotations at every unrolled site. Correlated mean/Q or sum/Q states retained. Per-observation reachability is not a reusable program or product gain."
+    }
+  },
+  "independent_receipts": [
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-VAR.S-checked.json",
+      "sha256": "52b898c67943be41cfd63112e2cc27c7852492dec87bcf947aaa3030d072bb08",
+      "counts": {
+        "program_executions": 161225,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-VAR.P-checked.json",
+      "sha256": "548ec964610147baab48b411661c8ed01bea6eb31e6ad41a8db582467dc0a084",
+      "counts": {
+        "program_executions": 153125,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-STDEV.S-checked.json",
+      "sha256": "ad20445fded860c42683d3f08ed52eb579ceac2ab172ad9e3b0985c4e66c760d",
+      "counts": {
+        "program_executions": 188938,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-STDEV.P-checked.json",
+      "sha256": "8b373fa26d9c83f69f230f4f9d7e0e231b9b45962d1adb06bf248546602b2776",
+      "counts": {
+        "program_executions": 176750,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-VAR-checked.json",
+      "sha256": "74a39b3b23cb213f413c6f68e49c6e0c8c19b91a4af17e14c71b7f72f97461c1",
+      "counts": {
+        "program_executions": 153125,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-VARP-checked.json",
+      "sha256": "d834e3d39850f57fa8aef0c6e7b9b5190ef336b755f86ea30f05e9b772713098",
+      "counts": {
+        "program_executions": 367790,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-VARA-checked.json",
+      "sha256": "e78ca5e0aab5dea68247ef1d1e0db1dcc41f4b0898a9092d5f66bfad150cbc07",
+      "counts": {
+        "program_executions": 440238,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-VARPA-checked.json",
+      "sha256": "bde8207c24e190911f7a45f0f3759aaafeb3873c50a7b8ea070c8a8c3ff318a6",
+      "counts": {
+        "program_executions": 153125,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-STDEV-checked.json",
+      "sha256": "93d772c83f2248bfca8b47e3e353656eb7dc777feaf40f2060102d46d4b933b1",
+      "counts": {
+        "program_executions": 181955,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-STDEVP-checked.json",
+      "sha256": "fe3caf4b4a598bc766d3732a7d0506db147e64e9b4f3f497dd31d3153cda86c0",
+      "counts": {
+        "program_executions": 385396,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-STDEVA-checked.json",
+      "sha256": "208b2b3679abc166784c4b9d1feb6423926a1959b0b86cfcec554367bacff0a1",
+      "counts": {
+        "program_executions": 189134,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-STDEVPA-checked.json",
+      "sha256": "e891c8de724549c146904c737e4255b315f38afed983732828026574b2b7a954",
+      "counts": {
+        "program_executions": 790093,
+        "certified_first_kills": 153125
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/bessel-recurrence-checked.json",
+      "sha256": "98e581b2eb4b7118ea49340ab1c6b314e872330bb4527654e5420098af8d3266",
+      "counts": {
+        "independently_checked_seed_box_exclusions": 1310,
+        "independently_checked_seed_boxes": 12130,
+        "full_width_corner_results": 24260
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/binomial-recurrence-checked.json",
+      "sha256": "cc12c16dd7d2e0c854766b882a1d11ecf390914311ed83025a0a55d1e8054a41",
+      "counts": {
+        "certified_first_kills": 18750
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/regression-coefficients-checked.json",
+      "sha256": "9e251dd7d6cc121db5c96d3e23599ec81c99e8a0271d787a48989b99a205a4a9",
+      "counts": {
+        "certified_first_kills": 84375
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/geomean-checked.json",
+      "sha256": "c6a6b102912eb856cb5fe630e7d0574060abafa57f63b4929a1f81418fc73f3b",
+      "counts": {
+        "full_width_instruction_values": 294708,
+        "certified_first_kills": 12288
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/variance-closure-checked.json",
+      "sha256": "ea362ef0fcbb7cdcad069337157f42ca386e011cd577b2552a404eb03e7e2663",
+      "counts": {
+        "plain_unreachable": 21,
+        "corrected_unreachable": 21,
+        "mean_values": 74,
+        "plain_root_values": 7136,
+        "corrected_root_values": 7141,
+        "observations": 26
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/discrete-cdf-checked.json",
+      "sha256": "da3eb7ea37e659cb29a13eb59d85ffcb72826f497e96060d0b8f586b41b5fb43",
+      "counts": null,
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/variance-closure-bank-final-checked.json",
+      "sha256": "0f54d652c7b469d395d55176be08ce3be2d2663d2d0402abaca0c3c571001f51",
+      "counts": {
+        "plain_unreachable": 20,
+        "corrected_unreachable": 21,
+        "mean_values": 512,
+        "plain_root_values": 26502,
+        "corrected_root_values": 26769,
+        "observations": 148
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late/cody-seeds-checked.json",
+      "sha256": "73d3f8b032dc7a973d59823dc8c9b15abd9127273b02956022c8197ba4978f35",
+      "counts": {
+        "arithmetic_box_nodes": 1190,
+        "coefficient_load_nodes": 574,
+        "excluded_boxes": 42,
+        "boxes": 42
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late/as-seeds-checked.json",
+      "sha256": "ae002b3d78df2efd998d05f7dfa3632a70fa176e25d86a2bfbf87e58b387b917",
+      "counts": {
+        "arithmetic_box_nodes": 3696,
+        "coefficient_load_nodes": 1408,
+        "excluded_boxes": 192,
+        "boxes": 192
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/online-controls-checked.json",
+      "sha256": "321ba9b84d30b577ec781563286c0d8ae1e91e14ac3c18b18613d2d3548c1e43",
+      "counts": {
+        "welford_state_pairs": 24,
+        "youngs_cramer_state_pairs": 24,
+        "welford_roots": 3,
+        "welford_unreachable": 0,
+        "youngs_cramer_roots": 3,
+        "youngs_cramer_unreachable": 0,
+        "observations": 2
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/online-corpus-checked.json",
+      "sha256": "b5a1c6223980837546922f5915ad4dbf564b0b0f53aad5d96843dcabeaca5679",
+      "counts": {
+        "welford_state_pairs": 13728,
+        "youngs_cramer_state_pairs": 6879,
+        "welford_roots": 4705,
+        "welford_unreachable": 17,
+        "youngs_cramer_roots": 2675,
+        "youngs_cramer_unreachable": 16,
+        "observations": 26
+      },
+      "source_and_input_bindings_verified": true
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/online-bank-checked.json",
+      "sha256": "7be5fa0245f8ead772c22d532eb5d30504b7321dfa79a09d9d02943164fa1fff",
+      "counts": {
+        "welford_state_pairs": 78303,
+        "youngs_cramer_state_pairs": 33708,
+        "welford_roots": 23670,
+        "welford_unreachable": 27,
+        "youngs_cramer_roots": 10942,
+        "youngs_cramer_unreachable": 22,
+        "observations": 148
+      },
+      "source_and_input_bindings_verified": true
+    }
+  ],
+  "source_binding": {
+    "publication_unit": {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/round14-late-pull-unit.json",
+      "sha256": "140ec2e25e005855b653acb574be3c813339de5786b2d8fbd0259cac8ef54b93"
+    },
+    "prior_publication_unit": {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/round14-publication-unit.json",
+      "sha256": "14566d99c3a432bc4a1ffa4610c8458c6ac5557e9ceba507d2294c5fed49ae95"
+    },
+    "publication_manifest": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late/source-manifest.json",
+      "sha256": "7726914562f2cca1e4677941fe08e3b2d1618446d0b45be73e555dc20f3a2c86"
+    },
+    "publication_binary": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late/binary.json",
+      "sha256": "866f4c1dc03187cf187a45d90506894468da47f61f8ff5a0f36345be728d918a"
+    },
+    "archived_sources": [
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-final-v2.tar.gz",
+        "sha256": "51a2b0b2e64793888a58da81c1c30ecd1c0bfe3fee860db588ac26618ece6e7f"
+      },
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-postpull.tar.gz",
+        "sha256": "c14eb1d3e757c71d49f2244faeb55e66b6dbf417270ca27e9499a97fab0e1589"
+      },
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-publication-v2.tar.gz",
+        "sha256": "4fec394221491a5b2c6cc2ab5901f6169b4e34e8f31c13818436f91653e6821a"
+      },
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-late-pull.tar.gz",
+        "sha256": "331b4c50b1283f7506cb77409b458071170c79a013866f50ddce56c8517573df"
+      }
+    ],
+    "initial_unit": {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/round14-final-unit.json",
+      "sha256": "02892ec77df493b6ed02b873d3632abac6927d34bd418c0cc498b1a072ceea77"
+    },
+    "postpull_unit": {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/round14-postpull-unit.json",
+      "sha256": "1d950dd064381d25e39eaa496ea0994df1f787fd7eaaebdb286500747314c2aa"
+    },
+    "original_replay": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/replay-complete.json",
+      "sha256": "27e178b98303bf4545c73925dfe772cf58f0cf4b44a1a043d735746e6fd01c5f"
+    },
+    "postpull_replay": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/postpull/replay-complete.json",
+      "sha256": "60e74eb38f389ecacec0b4f98852c919dfc218e9292940f437549e2a76a29526"
+    },
+    "late_replay": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late/replay-complete.json",
+      "sha256": "2c26032e9d7506cd8a89be75430ed0a8ad3b1e8c609be3eb495c1cee530fb4c5"
+    },
+    "backend_parity": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/final/backend-parity.json",
+      "sha256": "6ce1c74daca138134fbaa6ee2c4b45beb92b9a3d615a7ae190f07744e7cdee7f"
+    },
+    "old_two_pass_function_parity": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/two-pass-function-parity.json",
+      "sha256": "25dcbb037198a00d84839bda146e49faec2fce1fe1fdf70fdb619e2d1f230a49"
+    },
+    "application_source_archives": [
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/product-baf-guarded-source.tar.gz",
+        "sha256": "448276473d3f21cb901717f896eeb5c9fb0ed5bd51554cf1b9e88ebd42a3bc78"
+      },
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/product-6e8-guarded-source.tar.gz",
+        "sha256": "9e422a1f96be5516bc141d5eb740f364a63f072009b9f221002260a2be27bb38"
+      }
+    ],
+    "application_delta": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late-source-delta.json",
+      "sha256": "5f5775b634eebbb868a3b24a2be85c0840e71b51083d1816c64ebd8b467773db"
+    },
+    "expected_original_guard_refusal": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/original-guard-after-pull.json",
+      "sha256": "76c6ce5887f6a060971bb41a396688ebe143dfd735b71e0ac0601d4abb897a94"
+    },
+    "status": "Historical design units define their grammar; early draft source hashes are never used as production bindings. variance-r14-unit.json is a superseded pre-build draft. Complete checker receipts are bound to the archived source versions verified above. The prior publication executable is byte-identical to the postpull executable; the late-pull executable independently replays the same proof/control/route outputs."
+  },
+  "checks": {
+    "application_all": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/check-late.log",
+      "sha256": "a144c15be359f79eada2f899ff8c7a870847576dd4c82f3dd3a762f43bc5cf36"
+    },
+    "application_final": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/check-late.log",
+      "sha256": "a144c15be359f79eada2f899ff8c7a870847576dd4c82f3dd3a762f43bc5cf36"
+    },
+    "research_tests": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/online-extension-tests.log",
+      "sha256": "2a0dc913df89665f82e850c603a09f0d7450144e1b244d2fa3b1ac16242c94cf"
+    },
+    "passed_research_tests": 47,
+    "small_lattice_checks": 1504,
+    "corrupted_proof_or_input_controls_rejected": 12,
+    "negative_controls": [
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/negative-controls/result.json",
+        "sha256": "672f1544ff6c624f9a133f57ca9073f3c950f013d4938d47ce7c420f5af54364"
+      },
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/as-negative-controls/result.json",
+        "sha256": "f93a95e456110b398289c70477f80a39409949453e3a14f265056ea61a5ab65c"
+      },
+      {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/online-negative-controls/result.json",
+        "sha256": "19cc4d46b8139121b80c9f4878c985aa4ac8426df3acef8b282be8c86e5da955"
+      }
+    ],
+    "optimized_scope_fix": {
+      "failing_before": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/empty-control-before.json",
+        "sha256": "31d3c5a324451ca0764fa5fa854eb9fb7bf93e847f58c22aa74a535389a7715f"
+      },
+      "passing_after": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/empty-control-after.json",
+        "sha256": "4a91d21aee4d6d0bea71741a3580a4c91db254f4fba81927450e81491d0e97f0"
+      }
+    },
+    "ubs": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/ubs-late.log",
+      "sha256": "0ac9f0914d3d8d76259c9f606d303808127d2f05a96d232c7f9c8b05840d9d79"
+    },
+    "ubs_triage": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/late/ubs-triage.json",
+      "sha256": "688da8bd72769b46e57014954f9bbe84f17c68cd8e6ed6dbf015dddeac8f8d81"
+    },
+    "main_ubs": {
+      "log": {
+        "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/ubs-main.log",
+        "sha256": "081778f93e1a9b219fbc118f57275b72125a0df2df9bc107efe0ad97d4b19056"
+      },
+      "status": "No supported source language in the three staged documentation/provenance/tracker files; exit3 is not a scan or pass. Manual diff review and xtask word/provenance/build/tests apply."
+    },
+    "read_only_review": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/read-only-review.md",
+      "sha256": "0842e56e9790156b9efdf399fabbacfb221e289fa81007e98a3af4255bcc4cb4"
+    }
+  },
+  "packet": {
+    "path": "packets/round14-variance",
+    "requests": 44,
+    "new_excel_answers": 0,
+    "manifest": {
+      "path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/packets/round14-variance/publication-manifest.json",
+      "sha256": "62346a6f9f6b7b3c2a0a8c162384d94f10ed817fb10f9746b68f24381a1c3883"
+    },
+    "preservation": {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/packet-preservation-late.json",
+      "sha256": "d4e603a91458a2349d67034e7a0eb6198eff0d98842525f011f99369639a805f"
+    },
+    "mirror": "/home/ubuntu/codex-runs/excel-questions-r14-variance",
+    "limits": "Original inputs are discovery. Direct numeric requests differ from original array surfaces; compatibility/settings may also differ. Predictions and mathematical controls are separate. No surviving complete producer or blind-validation claim."
+  },
+  "superseded_attempts": [
+    "Initial partial Bessel route audit used serialized error casing; complete v2 and final route replays replace it.",
+    "Initial Python test import collision is preserved in checker-tests.log; qualified imports pass.",
+    "Initial bank two-pass closure was interrupted after source-guard changes; only bank-final complete receipt counts.",
+    "Initial final replay driver used a nonexistent comparison filename; resumed driver compares the correct original and completes.",
+    "First postpull bank selected a nonexistent harness; debug v2 was deliberately stopped and is partial. Only release v3 counts.",
+    "Source-unit metadata clarifications preserve initial archives; they change no arithmetic or expected answer.",
+    "Late summary analysis initially read the wrong JSON path; v2 uses totals.counts with unchanged tool outputs."
+  ],
+  "still_open": [
+    "Annuity awaits the unchanged R13 Windows packet; no new annuity search.",
+    "Two Bessel admission boundaries; no guessed cutoff.",
+    "Regression numerical rank policy and remaining coefficient/statistic gaps.",
+    "All remaining corpus and bank mismatches/refusals/unread obligations; none of these bounded exclusions is a replacement kernel."
+  ]
+}

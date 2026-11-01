@@ -1,0 +1,19 @@
+{
+  "format": "dnacalc-prediction-replay/1",
+  "application_revision": "60afd379",
+  "producer_executable_sha256": "ebb419e7f17f2b7a54d7f59628f1d775319a6e01d5f1d4838ae2582c821d5eab",
+  "identical_predictions": 44,
+  "files": {
+    "application-predictions-VAR.S.jsonl": "11b801d3a1d96b9ae3e60c2ca05e7550b6303e47e7c3d6f848dce3a46aa29ad0",
+    "application-predictions-VAR.P.jsonl": "41fb696ae0940a61c45da26c065e7dc7a1fe63e7872e0eb34c29d0d82d061105",
+    "application-predictions-STDEV.S.jsonl": "4ff12fccdb2508e89d4b27d6673b9a8727c1065cd58b3e7f6198e7184c213657",
+    "application-predictions-STDEV.P.jsonl": "5672b27e34c49bbeb9be1634f0f6d184a782f9601451762c5219542f41c41136",
+    "application-predictions-DEVSQ.jsonl": "e6fa52d79ca45da39f475e738c1b011fc8245e97efcc811dc7b46f5c18ee5f92",
+    "application-predictions-AVERAGE.jsonl": "a5ac7e5a6391a40e24403a6d42a261597b69bac521ac06df85b651362a205124"
+  },
+  "original_manifest_sha256": "88b757593352544b718d7ec984a2aecd5ffc2f0716269a6610a10fcdf7a6086d",
+  "postpull_replay_sha256": "60e74eb38f389ecacec0b4f98852c919dfc218e9292940f437549e2a76a29526",
+  "is_excel_evidence": false,
+  "limits": "The publication executable is byte-identical to the postpull executable. Requests, original predictions and all prior packets remain unchanged. No new Excel answer or surviving complete producer.",
+  "publication_binary_receipt_sha256": "1b1a65b35130f60cadad4caf3fcab7c840354b1cc33967d5c5cd4b4c4eeb8d53"
+}

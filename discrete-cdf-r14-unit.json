@@ -1,0 +1,48 @@
+{
+  "id": "dc-j9k-r14-discrete-cdf-prefix",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "Defining finite sum of probability masses for a discrete CDF",
+      "NIST/SEMATECH e-Handbook binomial distribution definition, https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm",
+      "IEEE754 nearest/even arithmetic",
+      "Original corpus/full-bank Excel readings"
+    ],
+    "banned": [
+      "Tier3/tier4 code",
+      "Removed sources/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "scope": "BINOM.DIST, POISSON.DIST, HYPGEOM.DIST and NEGBINOM.DIST original same-source/environment PMF/CDF cohorts with complete positive-normal PMF prefixes from count0 through k<=64. Other decoded calls are counted outside this grammar.",
+  "grammar": {
+    "seed_domains": "Every Ext80 mass publishing to each independently observed PMF; no mass is chosen",
+    "sum_orders": [
+      "forward from0",
+      "reverse from0",
+      "balanced contiguous halves"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "clipping": [
+      "none",
+      "min(sum,1)"
+    ],
+    "labelled_profiles_per_function": 30
+  },
+  "claim": "Monotone corner bounds are necessary shared-PMF consumer constraints, not a full CDF or joint latent-mass producer.",
+  "exposure": "Discovery only. No new Excel readings, fitted coefficients, selector, kernel or product gain.",
+  "input_sha256": "638821e4c84ae30a45a4e8f2d5c26bd8be06b963e360376494a9d9514ea63ea5",
+  "source_sha256": {
+    "racer/binomial.py": "5a5ec44e642297b9c4311617ddd8df8cc9ff28e9181ec67f1484e03762e18942",
+    "racer/bessel.py": "516a9afb1218c3a154ef3fc1b3cb62a4777267ba32b7423632680afd38b22913",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/binomial.py": "6dca04e9a29be86c58012b503b6e6ce21de2afea88b98abaec8beff0ab98de42",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  }
+}

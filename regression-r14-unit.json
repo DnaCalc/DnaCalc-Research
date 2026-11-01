@@ -1,0 +1,60 @@
+{
+  "id": "dc-j9k-r14-regression-coefficients",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "Ordinary least-squares normal equations and centered covariance identities, independently derived",
+      "IEEE754 nearest/even arithmetic",
+      "Original Excel corpus captures"
+    ],
+    "banned": [
+      "Tier3 and tier4 code",
+      "Removed code and history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "algorithms": [
+      "Centered two-pass covariance/variance",
+      "Raw moments: (Sxy-Sx*mean_y)/(Sxx-Sx*mean_x)",
+      "Scaled raw moments: (n*Sxy-Sx*Sy)/(n*Sxx-Sx*Sx)"
+    ],
+    "intercept": "mean_y-b*mean_x with a resident-or-stored b, or exact zero when const is false",
+    "orders": [
+      "forward",
+      "reverse",
+      "balanced contiguous halves"
+    ],
+    "regions": [
+      "linear sums",
+      "means and centered residuals",
+      "products",
+      "quadratic sums",
+      "subtraction/division reconstruction"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "programs": 84375
+  },
+  "scope": "LINEST selected coefficient/intercept only, two explicit numeric single-predictor vectors, 2..32 pairs, exact full rank; nonzero input magnitudes 2^-100..2^100. Other outputs remain outside the grammar.",
+  "exposure": "Discovery corpus only; no new Excel readings or validation claim.",
+  "limits": [
+    "No multiple-predictor or QR body",
+    "No rank threshold or fitted coefficient",
+    "No LOGEST or standard errors/statistics",
+    "No product change unless separately justified, failing regression and corpus/full-bank zero-loss check"
+  ],
+  "input_sha256": "6a12bbdd1fa83bed7b69385f56ba6a021c70e8192bfbd41c3d8d412e3055b798",
+  "source_sha256": {
+    "racer/regression.py": "6ab098aa0a69c4d4fda6cc9d651872facd46fa820f4bb4d83d46e6f99184b445",
+    "racer/bessel.py": "7beb746c41fa2d879a9e2ac0e13c9f8819bf8ad40aa1e94fd2a0193d9f451f90",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/regression.py": "73dbec1bbe425e51eafc51be18bd4d7a1cc2bd77dc0fa4c807ce199c1a1f3a78",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  }
+}

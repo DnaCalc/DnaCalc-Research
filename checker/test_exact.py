@@ -31,6 +31,83 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_racer_empty_scope_is_rejected_with_python_optimization(self):
+        import subprocess
+        import sys
+        root=Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as scratch:
+            path=Path(scratch);source=path/'empty.jsonl';source.write_text('')
+            result=subprocess.run([sys.executable,'-O',str(root/'racer/bessel.py'),str(source),str(path/'out')],
+                                  capture_output=True,text=True,cwd=root,check=False,timeout=30)
+            self.assertNotEqual(result.returncode,0)
+            self.assertIn('empty recurrence cohort',result.stderr)
+            self.assertFalse((path/'out/summary.json').exists())
+
+    def test_bessel_consumer_forms_and_seed_publication_bounds(self):
+        from checker.bessel import calculate, seed_bounds
+        for bits in ('0x3ff0000000000000','0x3ff0000000000001','0xbfe0000000000000'):
+            target=binary64(bits)
+            lo,hi=seed_bounds(target)
+            self.assertEqual(B.round(lo),target)
+            self.assertEqual(B.round(hi),target)
+            self.assertLessEqual(lo,target)
+            self.assertGreaterEqual(hi,target)
+        for form,model in itertools.product(range(4),('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')):
+            profile=dict(shape=form,models=[model]*3)
+            for function,expected in [('BESSELJ',R(1)),('BESSELY',R(1)),('BESSELI',R(-1)),('BESSELK',R(3))]:
+                self.assertEqual(calculate(profile,function,R(2),R(1),R(2)),expected)
+
+    def test_binomial_consumers_obey_exact_dyadic_mass_ratios(self):
+        from checker.binomial import step
+        for form,model in itertools.product(range(6),('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')):
+            profile=dict(shape=form,models=[model]*5)
+            middle=step(profile,R(1,4),R(2),R(1),R(1,2),R(1,2))
+            self.assertEqual(middle,R(1,2))
+            self.assertEqual(step(profile,middle,R(1),R(2),R(1,2),R(1,2)),R(1,4))
+
+    def test_cdf_prefix_boxes_cover_exact_sums_and_exclude_other_targets(self):
+        from checker.binomial import cdf_bounds
+        rows=[dict(expected='0x3fd0000000000000'),dict(expected='0x3fe0000000000000'),
+              dict(expected='0x3fe8000000000000')]
+        group=dict(masses=[0,1],target=2)
+        for order,model,clip in itertools.product(range(3),('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53'),(False,True)):
+            profile=dict(order=order,model=model,clip=clip)
+            self.assertFalse(cdf_bounds(rows,group,profile)['excluded'])
+            wrong=copy.deepcopy(rows);wrong[2]['expected']='0x3feccccccccccccd'
+            self.assertTrue(cdf_bounds(wrong,group,profile)['excluded'])
+
+    def test_regression_coefficients_recover_exact_lines(self):
+        from checker.regression import evaluate
+        for algorithm,linear,squared,model in itertools.product(range(3),range(3),range(3),('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')):
+            profile=dict(algorithm=algorithm,linear_order=linear,square_order=squared,models=[model]*5)
+            x=list(map(R,(1,2,3)))
+            self.assertEqual(evaluate(profile,(x,list(map(R,(3,5,7))),True),1),(R(2),'0x4000000000000000'))
+            self.assertEqual(evaluate(profile,(x,list(map(R,(3,5,7))),True),2),(R(1),'0x3ff0000000000000'))
+            self.assertEqual(evaluate(profile,(x,list(map(R,(2,4,6))),False),2),(R(0),'0x0000000000000000'))
+
+    def test_variance_published_identities_and_grammar(self):
+        from checker.variance import profiles, evaluate, outcome
+        ps = list(profiles())
+        self.assertEqual(len(ps), 153125)
+        self.assertEqual({p['id'] for p in ps}, set(range(153125)))
+        # Exact symmetric controls exercise every algorithm/order with all
+        # five coherent models, including the two different online updates.
+        for p in ps:
+            if len(set(p['models'])) != 1:
+                continue
+            self.assertEqual(evaluate(p, [R(1),R(2),R(3)], 'VAR.S'), R(1))
+            self.assertEqual(outcome(evaluate(p, [R(0),R(2),R(4)], 'STDEV.S')), '0x4000000000000000')
+            self.assertEqual(outcome(evaluate(p, [R(2),R(4),R(6)], 'VAR.P')), '0x4005555555555555')
+
+    def test_variance_rejects_changed_input_and_full_width_root(self):
+        from checker.variance import decode_scoped, verify_root
+        row = dict(values_bits=[0,0], raw=dict(args=['0x0000000000000000','0x3ff0000000000000'],
+                   result_index=None, expected='0x3fe0000000000000'))
+        with self.assertRaisesRegex(ValueError,'input bits'):
+            decode_scoped(row)
+        with self.assertRaisesRegex(ValueError,'full-width root'):
+            verify_root(R(1)+two(-60), 'ext80-le:0000000000000080ff3f', 'resident_pc64')
+
     def test_lossless_pc53_equivalence_guards_signed_zero_and_exponent_spills(self):
         from timing import lossless_pc53_nodes
         def encoded(x):return 'binary64:'+struct.pack('>d',float(x)).hex()

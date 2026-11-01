@@ -1,0 +1,19 @@
+W. J. Cody, SPECFUN CALJY0, Argonne National Laboratory.
+Primary source: https://www.netlib.org/specfun/j0y0
+The inspected source identifies its latest modification as June 2, 1989.
+SHA256: 26b19c95ee8cf1c7161ed8d50cfef5a61f0a3fac958b1f9c558e7710661ecb93
+
+This research transcribes published numerical coefficient literals and rational
+polynomial identities. It copies no program text. The independent interval
+implementation and certificate checker are original MIT-licensed work.
+SPECFUN is an admitted source under DnaCalc/docs/plan/RESEARCH_SOURCES.md.
+
+Additional published Bessel polynomial facts:
+Abramowitz and Stegun, Handbook of Mathematical Functions, pages369/370,
+equations9.4.1 and9.4.4 (J0 and J1/x). Scans:
+https://personal.math.ubc.ca/~cbm/aands/page_369.jpg
+https://personal.math.ubc.ca/~cbm/aands/page_370.jpg
+This US government mathematical reference is a tier1 source. Only fixed
+coefficient facts and identities enter the original interval implementation.
+The printed approximation remainders are not fitted or evaluated as free terms.
+Primary scan hashes are in bessel-as-r14-constants.json and the result index.

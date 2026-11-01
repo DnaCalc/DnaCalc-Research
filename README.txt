@@ -510,3 +510,43 @@ All409 annuity corpus mismatches and the24 PMT gaps remain open. No product sour
 answer, evidence pin or tracker is changed. Exact receipts, source archives and
 superseded attempts are under /home/ubuntu/codex-runs/dna-firehorse-20261101-round13/;
 annuity-r13-claim.json and round13-result.json index the final evidence.
+
+Round 14 leaves the annuity family open for the R13 Windows packet and searches
+non-annuity corpus families in count order. Current product outputs are unchanged:
+18,812/20,030 corpus matches and 3,230,357/3,874,964 full-bank matches, with 116 unread
+rows still counted as failures. No numeric body, pin or recorded Excel answer changes.
+
+The finite variance, binomial recurrence, single-predictor regression and native
+GEOMEAN families have zero survivors. Bessel J/I consumer projections reject;
+Y/K retain necessary conditions, not seed producers. Arbitrary-site three-input
+variance closures and published Cody J0 rational boxes strengthen the exclusions.
+Fixed A&S J0/J1 polynomial variants also reject in 192 independently checked boxes;
+no analytic error term is chosen as a correction.
+Discrete CDF prefix bounds reject their specified shared-PMF sum consumers.
+All scopes, dependencies, original transport assumptions and redundant labels are
+explicit; no fitted constant, selector, rank tolerance or cutoff is installed.
+
+Source/build provenance and complete replay receipts are indexed by
+round14-result.json; each named unit preserves its own frozen source revision. The original frozen unit retains its guard; after the upstream pull, use:
+  DNA_RESEARCH_UNIT=round14-late-pull-unit.json CARGO_TARGET_DIR=target cargo build --release --offline --locked -p symbolic-racer
+Use the existing recorder for new output paths, and the corresponding independent
+checker after each research command. The final command/resource logs give exact
+arguments. Original and interrupted attempts remain separately preserved.
+
+packets/round14-variance contains 44 unrun variance/component requests and separate
+application predictions and mathematical controls. Its surface with three direct numbers
+is explicitly distinguished from the original array surface. No new Excel answer
+or complete-program validation is claimed. Original R13 requests remain unchanged.
+
+The publication unit binds the final source, including A&S and online variance,
+and the updated application revision. The postpull unit preserves the prior replay. The original final-unit source/receipts remain in
+their preserved archive. The original guard correctly refuses the updated tree.
+
+Online variance closures retain joint mean/Q and sum/Q states under independent
+per-site rounding. Over26 corpus cases they exclude17 Welford and16 Youngs-Cramer
+targets. Bank exclusions include already-matched controls and reject algorithms;
+they never increase product failures. The exact partitions are in the result index.
+
+The last upstream pull adds shared-formula storage and calc-syntax. The late-pull
+unit and executable bind that application revision; the source guard also covers
+the new syntax crate. Prior units, archives and measurements remain preserved.

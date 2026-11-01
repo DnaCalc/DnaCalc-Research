@@ -124,6 +124,61 @@ fn encoded(value: &CalcValue) -> String {
     calc_verdict::encode_result(value).expect("scalar audit value")
 }
 
+/// Check literal operands and whole calls through the ordinary workbook route.
+/// This extends the existing audit; it never supplies replacement Excel answers.
+pub fn function_routes(input: &str, out: &str) {
+    use std::io::Write;
+    let mut output = std::io::BufWriter::new(fs::OpenOptions::new().write(true).create_new(true).open(out).unwrap());
+    let rows = crate::lines::<Value>(input);
+    for raw in &rows {
+        let mut book = Workbook::new_blank();
+        let sheet = book.sheets()[0].id;
+        let at = |row, column| CellKey::new(sheet, row, column).unwrap();
+        let mut echoes = vec![];
+        for (index, source) in raw["argument_sources"].as_array().unwrap().iter().enumerate() {
+            let argument = calc_verdict::decode_argument(&raw["args"][index], "original argument").unwrap();
+            let top = 2 + 40 * index as u32;
+            assert!(book.enter(at(top, 1), &format!("={}", source.as_str().unwrap())).accepted());
+            if let Some(array) = argument.as_array() {
+                for r in 0..array.shape().rows {
+                    for c in 0..array.shape().cols {
+                        let cell = book.cell(at(top+r as u32, 1+c as u32)).unwrap();
+                        let ProjectedValue::Calculated { value, .. } = cell.value() else {
+                            panic!("argument echo was not calculated") // ubs:ignore — fail closed on a missing parser observation
+                        };
+                        let wanted = encoded(array.get(r, c).unwrap());
+                        assert_eq!(encoded(value), wanted, "operand changed: {}", raw["id"]);
+                        echoes.push(wanted);
+                    }
+                }
+            } else {
+                let cell = book.cell(at(top, 1)).unwrap();
+                let ProjectedValue::Calculated { value, .. } = cell.value() else {
+                    panic!("scalar echo was not calculated") // ubs:ignore — cached values cannot establish parser parity
+                };
+                assert_eq!(encoded(value), encoded(&argument), "operand changed: {}", raw["id"]);
+                echoes.push(encoded(value));
+            }
+        }
+        let args = raw["args"].as_array().unwrap().iter().map(|a| calc_verdict::decode_argument(a, "original argument").unwrap()).collect();
+        let selection = raw["result_index"].as_array().map(|v| (v[0].as_u64().unwrap() as usize, v[1].as_u64().unwrap() as usize));
+        let (registered, _) = crate::invoke_selected_control(raw["function"].as_str().unwrap(), args, selection);
+        let result = at(1, 30);
+        assert!(book.enter(result, raw["formula"].as_str().unwrap()).accepted());
+        let cell = book.cell(result).unwrap();
+        let ProjectedValue::Calculated { value, .. } = cell.value() else {
+            panic!("function call was not calculated") // ubs:ignore — failed route cannot count as a semantic observation
+        };
+        let workbook = encoded(value);
+        assert_eq!(workbook, registered, "workbook/registered discrepancy: {}", raw["id"]);
+        assert_eq!(workbook, raw["actual"], "current/frozen product discrepancy: {}", raw["id"]);
+        writeln!(output, "{}", json!({"raw":raw,"workbook":workbook,"registered":registered,
+            "echoes":echoes,"new_excel_readings":0,
+            "limit":"Checks the current application's literal and typed routes. Original Excel effective-input transport remains an assumption."})).unwrap();
+    }
+    println!("{} complete function-route and operand audits", rows.len());
+}
+
 /// Verify the numeric operand of each conversion observation through the
 /// workbook, before using it as a digit-extraction constraint.
 pub fn number_inputs(input: &str, out: &str) {

@@ -28,6 +28,7 @@ fn main() {
             "crates/calc-fml/src",
             "crates/calc-doc/src",
             "crates/calc-doc-model/src",
+            "crates/calc-syntax/src",
         ]);
     }
     assert!(

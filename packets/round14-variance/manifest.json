@@ -1,0 +1,35 @@
+{
+  "format": "dnacalc-research-questions-r14-variance/1",
+  "requests": 44,
+  "counts": {
+    "VAR.S": 10,
+    "VAR.P": 6,
+    "STDEV.S": 6,
+    "STDEV.P": 6,
+    "DEVSQ": 10,
+    "AVERAGE": 6
+  },
+  "input_sha256": "3dc2495b17f69e988039fb1e5311f6d909f687056b7bd5cd2c9e9509b121e3b5",
+  "files": {
+    "mathematical-controls.json": "920d9a664338faef319f34afcac06678c2d4d852b0fd75c5546c8bc93335e587",
+    "requests-AVERAGE.json": "cc21960f8766691bf2edb05ec3c1aecf36f3858015b8870acd23765ccf87d876",
+    "requests-DEVSQ.json": "a66665714909a3d5ed010c8d06934b581303a2781ed3820ab7697bbb697ea2fe",
+    "requests-STDEV.P.json": "c870fb1fad557baa743d9d72e8f20c62ac7129c76ec00124f0955ccea61a9989",
+    "requests-STDEV.S.json": "ba1cb4ed7ea6179f72734376395f990449ad7544c53ca736afce7bde3b2ff34b",
+    "requests-VAR.P.json": "b5152fa06e4c367933fb12292a027c61bda78849077ab4018964216352292b8f",
+    "requests-VAR.S.json": "a0808a396370eff02f5d0f0c2a43f23fe02dd33bca53042a6405c1b1f1ca7a75",
+    "selection.json": "368803aa79b8d96e7de743b0b45be63033abd0effb60d904b8d54ae51785457d"
+  },
+  "new_excel_readings": 0,
+  "purpose": "Distinguish direct numeric transport from the original array surface and observe mean/DEVSQ companions. No complete numerical program is validated.",
+  "predictions": "Application predictions are separate files, not recorded Excel answers. Exact rational mathematical controls are also separate.",
+  "commands": [
+    "cargo xtask witness read --func VAR.S --inputs requests-VAR.S.json",
+    "cargo xtask witness read --func VAR.P --inputs requests-VAR.P.json",
+    "cargo xtask witness read --func STDEV.S --inputs requests-STDEV.S.json",
+    "cargo xtask witness read --func STDEV.P --inputs requests-STDEV.P.json",
+    "cargo xtask witness read --func DEVSQ --inputs requests-DEVSQ.json",
+    "cargo xtask witness read --func AVERAGE --inputs requests-AVERAGE.json"
+  ],
+  "limits": "Do not use --new-only. This is a mixed recheck/adjacent-input packet. Refused, missing or changed-input responses remain failed obligations. No annuity request is added."
+}

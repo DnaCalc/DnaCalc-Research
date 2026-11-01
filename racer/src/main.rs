@@ -21,6 +21,7 @@ mod poisson;
 mod route_audit;
 mod saddle;
 mod scheduler;
+mod variance;
 
 use ported::excel_numeric::{Fpu, Hard, Soft};
 use serde::{Deserialize, Serialize};
@@ -73,6 +74,9 @@ impl calc_func::PreparedArguments for Given {
     }
 }
 fn invoke_control(function: &str, args: Vec<value::CalcValue>) -> (String, Option<f64>) {
+    invoke_selected_control(function, args, None)
+}
+fn invoke_selected_control(function: &str, args: Vec<value::CalcValue>, index: Option<(usize, usize)>) -> (String, Option<f64>) {
     let target = calc_func::catalogue()
         .resolve_surface(calc_func::Notation::Call, function)
         .unwrap();
@@ -83,7 +87,8 @@ fn invoke_control(function: &str, args: Vec<value::CalcValue>) -> (String, Optio
         &mut calc_func::EvalServices::new(&mode),
         &mut calc_func::FunctionCallScratch::new(),
     ) {
-        Ok(v) => {
+        Ok(value) => {
+            let v = calc_verdict::select_result(&value, index).expect("a recorded selected result");
             let n = match v.core() {
                 value::CoreValue::Number(n) => Some(*n),
                 _ => None,
@@ -356,6 +361,12 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("variance-prepare") => variance::prepare(&a[2], &a[3]),
+        Some("variance-controls") => variance::controls(&a[2], &a[3]),
+        Some("variance") => match a.get(5).map(String::as_str) {
+            Some("soft") => variance::run::<Soft>(&a[2], &a[3], &a[4]),
+            _ => variance::run::<Hard>(&a[2], &a[3], &a[4]),
+        },
         Some("cumulative-balance-free") => match a.get(6).map(String::as_str) {
             Some("soft") => cumulative_balance::run_variant::<Soft>(
                 &a[2],
@@ -523,6 +534,8 @@ fn main() {
         }
         #[cfg(route_audit)]
         Some("route-audit") => route_audit::run(&a[2], &a[3]),
+        #[cfg(route_audit)]
+        Some("function-routes") => route_audit::function_routes(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("literal-input-audit") => route_audit::literal_inputs(&a[2], &a[3], &a[4]),
         #[cfg(route_audit)]

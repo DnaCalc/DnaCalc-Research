@@ -1,0 +1,50 @@
+{
+  "id": "dc-j9k-r14-three-input-VAR.S-bank-final-closures",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "Defining plain/corrected two-pass variance identities",
+      "IEEE754 nearest/even arithmetic",
+      "Original bounded three-input VAR.S full-bank calls, including matched controls and current failures"
+    ],
+    "banned": [
+      "Tier3/tier4 code",
+      "Removed implementation/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "scope": "All148 three-input VAR.S decoded full-bank calls with numeric expected outcomes and bounded numeric inputs, in original trace order. Includes76 matched controls and72 current failures. No selection by error or residual.",
+  "grammar": {
+    "mean": "Every full binary addition tree and input permutation; every site independently has one of five arithmetic/store models; divide by3 with every model. One common mean per evaluation.",
+    "squares": "Every subtraction and square independently has every model; every sum tree/permutation of the squared leaves has every model.",
+    "corrected": "Also every sum tree/permutation of residuals, square/divide correction, subtraction and final variance divide, each with arbitrary five-model sites. Correlations between the two sums are deliberately dropped, giving a conservative superset.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "publication": "RN53, with exact open/closed ties; zero signs do not affect squares or positive-integer divisors."
+  },
+  "proof": "Search subset closures are recomputed by an independent explicit permutation/two-tree enumerator with separate rational rounding code. Every intermediate set and root is verified. No expected output produces an intermediate.",
+  "limits": [
+    "Three inputs and the declared two-pass/corrected identities only",
+    "Corrected reachability is conservative, not a consistent program",
+    "No coefficient, selector, threshold or method switch",
+    "No product change or Excel kernel identified"
+  ],
+  "input_sha256": "ff73c575aca63a3df8a0925fd7cc0e3c76afa8bdb56af397eae85ea387f1ab8e",
+  "source_sha256": {
+    "racer/variance_closure.py": "a4b900ea378661a15f0faa164570371e9020d09a9fb820b6f876dad6f2811571",
+    "racer/bessel.py": "516a9afb1218c3a154ef3fc1b3cb62a4777267ba32b7423632680afd38b22913",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/variance_closure.py": "685aa8ee4199c75a37f2986b2921c8c5bb01e18fa04990ee5ca6d0b6b44e001a",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+  },
+  "parent_sha256": "37f02d4169693c583e105c137fc2ef8f6140b3e093fdf736fbe6fbcf9391b82d",
+  "supersedes_interrupted_attempt": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/variance-closure-bank",
+  "parent_scope_sha256": "a293a0282f1fa5a2fa4eca6730bb47418fe1740ba5ee1d88aab0be45fd492a2c",
+  "metadata_correction": "The inherited corpus-only source label is corrected to the actual148 full-bank calls:76 matched controls and72 current failures. Scope, inputs, arithmetic and source hashes are unchanged."
+}

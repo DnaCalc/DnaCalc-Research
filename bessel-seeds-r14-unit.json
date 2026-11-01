@@ -1,0 +1,56 @@
+{
+  "id": "dc-j9k-r14-cody-j0-seed-boxes",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "IEEE754 nearest/even arithmetic",
+      "Rational polynomial/Horner and factorization identities",
+      "Original Excel J0 readings"
+    ],
+    "tier2": [
+      "Cody SPECFUN CALJY0 published coefficient tables and split-root facts, https://www.netlib.org/specfun/j0y0; SHA256 26b19c95ee8cf1c7161ed8d50cfef5a61f0a3fac958b1f9c558e7710661ecb93"
+    ],
+    "banned": [
+      "Tier3/tier4 code",
+      "Deleted implementations/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "source_branch": "J0, abs(x)<=4, published PJ0/QJ0 rational with split first root",
+    "coefficients": "Each independently loads the stated published decimal as RN53 or RN64; no changed literal",
+    "site_models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "root_factorizations": [
+      "((x-XJ01/256)-XJ02)*(x+XJ0)",
+      "(x-XJ0)*(x+XJ0)",
+      "x*x-XJ0*XJ0"
+    ],
+    "final_associations": [
+      "(product*numerator)/denominator",
+      "product*(numerator/denominator)"
+    ],
+    "variants": 6,
+    "enclosure": "Every arithmetic node admits every site model and interval corner. Dependencies are discarded conservatively."
+  },
+  "scope": "Original numeric BESSELJ order-zero observations with1/4<=abs(x)<=4. The quarter bound is a declared research scope, not an Excel branch or product cutoff.",
+  "exposure": "Discovery only. No new Excel answers, fitted coefficients, threshold or complete private kernel.",
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/bessel-input.jsonl": "5461d75536ad99c696cffbe6611531764c8af40d3be3a9d673551073ee73a757",
+    "bessel-j0-r14-constants.json": "18af603784848353b57921a5ec3d0be1001ef4915698801b4bb5c3739209a849",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/sources/j0y0.f": "26b19c95ee8cf1c7161ed8d50cfef5a61f0a3fac958b1f9c558e7710661ecb93"
+  },
+  "source_sha256": {
+    "racer/bessel_seeds.py": "d693fae78c7c40f36d54baa402f68bb7d4d14a374c49b2fc35f8e48d89765559",
+    "racer/constants.py": "c8e4557babbd75c6bef56deb149b5fca1852379644dd8ce8cc1a7338c7c8d9e7",
+    "racer/bessel.py": "516a9afb1218c3a154ef3fc1b3cb62a4777267ba32b7423632680afd38b22913",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/bessel_seeds.py": "9dd5212c1444232d81809f9c8d979692ca4c25e62f6fe7590428a3f251387245",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  }
+}

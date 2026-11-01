@@ -1,0 +1,90 @@
+{
+  "provenance": "A&S Handbook pages369/370 equations9.4.1 and9.4.4; coefficient facts only, no approximation remainder or target-derived value.",
+  "source_sha256": {
+    "AS-page369.jpg": "5124c275e034a08d97c384b74ceb1aa6577bfcc60d6b22a62fa46689a6205be7",
+    "AS-page370.jpg": "8b689f4e3967e72feb8164b44710dab1a56004ed6dd1a07194c4ad729db216cb"
+  },
+  "tables": {
+    "AS_J0": [
+      {
+        "decimal": "1",
+        "binary64": "3ff0000000000000",
+        "ext80_le": "0000000000000080ff3f"
+      },
+      {
+        "decimal": "-2.2499997",
+        "binary64": "c001ffffd7bc1418",
+        "ext80_le": "28bfa0e0bdfeff8f00c0"
+      },
+      {
+        "decimal": "1.2656208",
+        "binary64": "3ff43ffb9892329d",
+        "ext80_le": "5ae89491c4dcffa1ff3f"
+      },
+      {
+        "decimal": "-0.3163866",
+        "binary64": "bfd43fad94f920e9",
+        "ext80_le": "6f4507c9a76cfda1fdbf"
+      },
+      {
+        "decimal": "0.0444479",
+        "binary64": "3fa6c1e009c07322",
+        "ext80_le": "b41199034e000fb6fa3f"
+      },
+      {
+        "decimal": "-0.0039444",
+        "binary64": "bf702800d009982f",
+        "ext80_le": "b279c14c80064081f7bf"
+      },
+      {
+        "decimal": "0.0002100",
+        "binary64": "3f2b866e43aa79bc",
+        "ext80_le": "6eddcd531d7233dcf23f"
+      }
+    ],
+    "AS_J1": [
+      {
+        "decimal": "0.5",
+        "binary64": "3fe0000000000000",
+        "ext80_le": "0000000000000080fe3f"
+      },
+      {
+        "decimal": "-0.56249985",
+        "binary64": "bfe1ffffaf782830",
+        "ext80_le": "507e41c17bfdff8ffebf"
+      },
+      {
+        "decimal": "0.21093573",
+        "binary64": "3fcafff126f4359c",
+        "ext80_le": "78e3aca13789ffd7fc3f"
+      },
+      {
+        "decimal": "-0.03954289",
+        "binary64": "bfa43ef736adbc10",
+        "ext80_le": "3883e06db5b9f7a1fabf"
+      },
+      {
+        "decimal": "0.00443319",
+        "binary64": "3f72288961123e9c",
+        "ext80_le": "90dff491084b4491f73f"
+      },
+      {
+        "decimal": "-0.00031761",
+        "binary64": "bf34d09c9019124b",
+        "ext80_le": "835592c880e484a6f3bf"
+      },
+      {
+        "decimal": "0.00001109",
+        "binary64": "3ee741e5fe7713de",
+        "ext80_le": "6bed9eb8f32f0fbaee3f"
+      }
+    ]
+  },
+  "constants": {
+    "ONE_NINTH": {
+      "decimal": "1/9",
+      "binary64": "3fbc71c71c71c71c",
+      "ext80_le": "8ee3388ee3388ee3fb3f"
+    }
+  }
+}

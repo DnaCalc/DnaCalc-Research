@@ -1,0 +1,183 @@
+{
+  "id": "dc-j9k-r14-publication-source-and-build",
+  "role": "implementer",
+  "application_revision": "60afd37989dd5ec311df2087fe235d70e1b650c1",
+  "route_audit": true,
+  "scope": "Final publication source for all R14 studies. Earlier complete proof receipts retain their archived source versions; current online proofs and the final build are separately bound here.",
+  "sources": {
+    "tier1": [
+      "Original Excel corpus captures and full-bank judge observations",
+      "IEEE754 nearest/even arithmetic",
+      "Published variance/update and least-squares identities; DLMF Bessel recurrences; NIST binomial/CDF definitions",
+      "Intel public ISA instruction definitions; native microcode is separately measured",
+      "A&S Handbook pages369/370 equations9.4.1/9.4.4, fixed coefficient facts independently checked against scans"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc implementation and existing original research evaluator",
+      "Published Cody SPECFUN coefficient literals and rational identities, with primary source byte hashes; no program text copied"
+    ],
+    "banned": [
+      "Tier3 and tier4 source code",
+      "Deleted source and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "note": "The final source manifest binds all individual finite grammars. Their candidate labels are not summed as distinct kernels, and native/software replays are not additional programs."
+  },
+  "exposure": "All old corpus and bank observations are discovery. The 44 variance packet requests are unanswered; original array and direct numeric surfaces, compatibility and settings remain distinct.",
+  "limits": [
+    "Each individual grammar and receipt governs its own scope; a source manifest does not enlarge any numerical claim.",
+    "All-site closures and seed boxes are conservative supersets where stated; reachability does not identify a reusable producer.",
+    "Native microcode is measured on this Linux CPU; no correctly-rounded substitution, general CPU equivalence or Windows validation is claimed.",
+    "Earlier design-unit source hashes belong to the preserved initial snapshots; final code/replays use this final source manifest.",
+    "No new Excel answers, fitted constants/selectors, private helper estimates, rank thresholds, Bessel cutoffs or product gain."
+  ],
+  "source_sha256": {
+    "Cargo.lock": "69190561f2049cd62f3b7eb13476fee8786a1dda1f597066ec15f81e3647a4bb",
+    "Cargo.toml": "48c9d13c0f8371cb98e37059855afb6f7182255e3e6dc42e31eedc6a81a1c85e",
+    "checker/bessel.py": "f58f5841e5ebec86596f719f37ac51353c71c63d5f83998a8fbc12468995e2b3",
+    "checker/bessel_seeds.py": "d7759d1b589aabb289d3c30a6a88c711c40312489ffb6c9c39d370f73156547d",
+    "checker/binomial.py": "6dca04e9a29be86c58012b503b6e6ce21de2afea88b98abaec8beff0ab98de42",
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "checker/compare_x87_probe.py": "065ecb8a99c566914d0017bff7fd60e1474c32b53acd5d24c268989049001085",
+    "checker/cumulative.py": "5b2ad4e12809b8a826777eaaa22ff3067ed71f33720c844e81829c181e246cf2",
+    "checker/cumulative_balance.py": "2b5efdf75d3367095eeb9694d94f47ad1f49ff49e8136442b1087e6acbe20153",
+    "checker/cumulative_projection.py": "66444943bd0d8d504ed58f24d4ba8aa05389dda12c075a9d0f138d0f6ed9f977",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/geomean.py": "bb16196b09b93d988ca85a84aac8f2a000497b53c5e9d12c3d3513caa0ecdb02",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "checker/questions_r13.py": "2b8923cb8ee3f9ba2d5b917c0580529b9a1d744e00d7f171f589c0edafc3b654",
+    "checker/r13_controls.py": "c2ddf9ded92f15da402a228d5e1a7ab4ecae4a0a5781d3f69453c9efbf33f74d",
+    "checker/reference.py": "381868f3e84cc9218ca898fa9feae9c6bdcba618b2cc138b56fae5ff236f1df0",
+    "checker/regression.py": "18f603aae95e5d31630545579ee9703471f02e1c5b718cf14cb504af4a8d6aa3",
+    "checker/test_exact.py": "2e831cda914e6cda96d4ee251da6bc7b091458d16854897c955aa6b04c0f9626",
+    "checker/test_x87.py": "893aa98eaebb5141f09443ef904138b5411e9cffb7fbc43777c06bfd4df8fff0",
+    "checker/timing.py": "933747df666ad1d2d4731aaf41c6b4d5dc3ee00bf2294d63313ac91c1672e140",
+    "checker/variance.py": "f1afc6ab2de028bfe2561cd24e42700a223728a58908d777e1e387645d1717cd",
+    "checker/variance_closure.py": "43427e87d00935b1c327a7b86308f18917a32200c411129be0fc761def60d660",
+    "checker/x87.py": "ae47c2094fe98f481f084f18e3a01352a1790eac52d9d6c2d355ca842c1810d4",
+    "checker/x87_consumer_grammar.py": "5b54016f694d635fc02c0cf0d7174f2a653abc111088ddc1f9abf80db1617d51",
+    "checker/x87_isa.c": "00bbe78af4f827f11bddbb59c7a004d9ff1b0ab5ff17eee10759887e568d2a83",
+    "checker/x87_shells.py": "e68b2d90eacc345f4a0b7dcbfcd8f04cb093ca825e7f07126865d336157b4064",
+    "racer/Cargo.toml": "5c9f409baadfb19c99d1ce5766eaceaf301b37606ac31d5316febe18d9b3493f",
+    "racer/NumberTextProbe.java": "fd3e4d701156b07227c105ec9ca3750426d26d987e1783d4312d3e8788538c73",
+    "racer/annuity_structure.py": "a0ccacc0ff13a9191906891111ddf73ebd9e4cd82d226701e0e7f4ec4c69d5a3",
+    "racer/audit.py": "7f700134ea057ba48d1113d674e64a58a062ec3b9b104b1e96c5f7ee51f4dee6",
+    "racer/bessel.py": "516a9afb1218c3a154ef3fc1b3cb62a4777267ba32b7423632680afd38b22913",
+    "racer/bessel_seeds.py": "36a29a0865f2a810026928db7f1869ddb0a716b7130379bfd8a8654314309fa8",
+    "racer/binomial.py": "5a5ec44e642297b9c4311617ddd8df8cc9ff28e9181ec67f1484e03762e18942",
+    "racer/blind_score.py": "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45",
+    "racer/build.rs": "8d283f945a5e71e2b55961b39252a3b11197393d00390c69f18059638e6a009b",
+    "racer/certify.py": "400f8752f53b0a1e6341b858683313b89723e295bc65fcc52b86079974fe0f17",
+    "racer/constants.py": "66dd9ec194e1e353ff3c71e4927a7b2c6c2cceb18b3f287efff1ddaf10871e88",
+    "racer/corpus_cases.py": "853ae0a8fc9fb928f094efba25a2248650c44d5c4f6f0365c7a0b25f26661191",
+    "racer/cumulative_projection.py": "a52913ef444f09a62220a532d56a684e0e2cf344c71abd8cfd9649a27f0a166c",
+    "racer/geomean.py": "1bcecd0fe0b68570cf0b43e2112ebbe52be4d91de288040a9468e965f37b6cb1",
+    "racer/group_eliminate.py": "4ef85ace52fb6126e1c30ece7bdd266ac9b000cedbfc38e6a793a574a8baf557",
+    "racer/growth_preimages.py": "4aae4906580750a2c69c939899cc6d198001dee6119c8c57e8adb0db050a3526",
+    "racer/intersect.py": "213fdcabe5fe24de5dfa7bce6f40cd83ddbf046e5b9e467bf0dd8f4fb721441c",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "racer/normalizer_intersect.py": "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb",
+    "racer/number_conversion.py": "f151488e3efcdcb3fe21d5b5b8507a63bbae3e56d6390d8121e29d3d0b2c9163",
+    "racer/questions_r13.py": "c1a20702b9732ceb0039741085d53e072828a2af598cf9ca7a43d867492ca63c",
+    "racer/record.py": "1f48e0d691b227e279273d9e9d75fc1ec85638c9a6972f7d602feddf82811261",
+    "racer/regression.py": "2f552e6bdbb2a112a3e7b7139960e2fa1c6a538e7bb5ad510ec54536774ceb9a",
+    "racer/src/annuity.rs": "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299",
+    "racer/src/annuity_early.rs": "7f71e407778ac5384d351de284d340f25b7176776bdf4dbcf9b55c03a000e176",
+    "racer/src/boundary.rs": "6062c9eefd8421c118f1e89ef54d8af135ea228dcdafd5b4b92e0b9fa43d60ef",
+    "racer/src/cumulative.rs": "cb33d43aa22afcb0cc84ba1a86b43d6f9ca5b6abef1193c532db0cec6fc8ff88",
+    "racer/src/cumulative_balance.rs": "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/enumerate.rs": "d155883c18e29accf6b5393f8f944ba39940eccc2a0744dfc6548d7f3634fbdd",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/identity.rs": "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5",
+    "racer/src/main.rs": "00d38cacb3d2b493f970de19dc818e988347acdcc49171d18f1c0eff3fc5c818",
+    "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+    "racer/src/poisson.rs": "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f",
+    "racer/src/route_audit.rs": "9b8ff1e53a78f9e4573d6a039a5c0da7d2270426c3bc074d4286ac696cb245f6",
+    "racer/src/saddle.rs": "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287",
+    "racer/src/scheduler.rs": "2907befcd01e35d36d38ffb7d07d8da3cb736801d2503a715bdf50f4deaf2223",
+    "racer/src/variance.rs": "5c5e5c60f3e69325f84d63485eec7bd669b687bd26fc0d5092d681ee4fa71d95",
+    "racer/variance_closure.py": "a04fd86670d07e3e85a5665027480fc8ac29738ec1596177ecbc5243d3023a51",
+    "racer/verify_inverse.py": "099a546fc850e09b9e04a3cb4b17cbc7a6d83f0517429644bb03b558b5bd4d0d",
+    "racer/x87_consumers.py": "ff8e6508b30174c324c27fc8886cb3c0e4d47cb52d1630aa12483623e1257e70",
+    "racer/x87_native.c": "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1",
+    "racer/x87_probe.rs": "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e",
+    "racer/x87_programs.py": "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7"
+  },
+  "design_units": {
+    "bessel-r14-unit.json": "55dc2c4dc826537e8169afd5fecd12ffe9081c82b47eacb7cfc0628a03626df5",
+    "bessel-seeds-r14-unit.json": "4dd9595145721f913ea6984a23a2cd9f113072210e79ba751f1562579b801f1e",
+    "binomial-r14-unit.json": "5b3505ae855279ab23c8678cbef4b078935992b13b29a144e9effa2b6e149e67",
+    "discrete-cdf-r14-unit.json": "e4f624a1f5120ed17f3d2adf2ec36666b01192f1ee1a96d80247432b1cb08a7f",
+    "geomean-r14-unit.json": "e8b384102eb248ffd0c8bad8f90331b8911a370bec07900b07de6366dc82bded",
+    "regression-r14-unit.json": "ca2210056512c446f3255117ad74fac5c961b6f20ac304d9d829fa23be0fe2ef",
+    "variance-closure-bank-r14-final-unit.json": "8002228cec8d505ece148b4929f4e8160ea275d4c13791a58b3c93b047d6cdf9",
+    "variance-closure-bank-r14-unit.json": "a293a0282f1fa5a2fa4eca6730bb47418fe1740ba5ee1d88aab0be45fd492a2c",
+    "variance-closure-r14-unit.json": "37f02d4169693c583e105c137fc2ef8f6140b3e093fdf736fbe6fbcf9391b82d",
+    "variance-r14-unit.json": "815e6014ff4d3bc99a70f7d14ac59c19cbca0abff368d3f6a7ed42ccbac1b4b1",
+    "bessel-as-r14-unit.json": "107a49afcc507e3adbf054648f1ecf02e26fa9f5264ba185ffac5b603e28ad28",
+    "variance-online-r14-unit.json": "05d755af4548649c94a0097a3e053352ae2f094af568b906829827a919a07f11"
+  },
+  "design_unit_status": "These record their original scope and discovery provenance. Source hashes in earlier design units belong to preserved initial snapshots; this final unit and the final archive bind the publication build and replays. variance-r14-unit.json is a superseded pre-build draft, never the final source claim.",
+  "source_snapshots": {
+    "pre_ubs_archive": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-pre-ubs.tar.gz",
+    "pre_ubs_archive_sha256": "7a195c82ead36be81df998c9306913b915dfabb86e9564e3327a9ea49adcff2d",
+    "final_archive": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-publication-v2.tar.gz",
+    "hash_location": "round14-result.json; no self-referential archive hash is placed in this unit",
+    "original_final_archive": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-final-v2.tar.gz",
+    "postpull_archive": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/source-postpull.tar.gz"
+  },
+  "constraints": [
+    "no new annuity search",
+    "no product numeric body, pin or recorded Excel answer change",
+    "no fitted coefficients, selectors, internal values, rank thresholds or Bessel cutoffs",
+    "discovery observations only; no blind or complete-kernel validation claim",
+    "the two Bessel admission mismatches remain open",
+    "Additional seed and online grammars retain archived prior receipts. Unchanged older arithmetic/function bodies are separately checked; the published-literal encoder was factored without changing its outputs."
+  ],
+  "unread_obligations": "The full-bank baseline has116 unread rows; they remain failed obligations without decoded trace rows. Research scope exclusions are not Excel passes.",
+  "superseded_attempts": {
+    "initial_bessel_route": "bessel-routes.jsonl is a partial serialization-case audit; use bessel-routes-v2.jsonl and final replay",
+    "initial_bank_closure": "variance-closure-bank interrupted after source-guard hardening; only variance-closure-bank-final may supply a complete bank receipt",
+    "python_guard": "empty-control-before intentionally demonstrates stripped asserts under python-O; empty-control-after and its regression reject empty scope"
+  },
+  "prior_unit_sha256": "1d950dd064381d25e39eaa496ea0994df1f787fd7eaaebdb286500747314c2aa",
+  "tables_sha256": {
+    "bessel-j0-r14-constants.json": "18af603784848353b57921a5ec3d0be1001ef4915698801b4bb5c3739209a849",
+    "bessel-as-r14-constants.json": "218b0765bd3fcb8e10124c16b850924864abeac7edca4489de9139f2de78061d"
+  },
+  "postpull": "The original product-source guard correctly refused the upstream tree. The postpull/current units pin60afd379. Numeric/catalogue/value product sources remain unchanged; Python seed and online-closure extensions are original mathematics, without an annuity search or product numerical patch.",
+  "provenance": {
+    "agent": "Codex",
+    "model": "GPT-6 family, as identified in the session instructions; exact runtime model identifier not exposed",
+    "role": "implementer; tier3/4 not read",
+    "machine": "dna-firehorse",
+    "os": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "architecture": "x86_64",
+    "cpu": {
+      "vendor_id": "AuthenticAMD",
+      "cpu family": "23",
+      "model": "1",
+      "model name": "AMD EPYC Processor (with IBPB)",
+      "stepping": "2",
+      "microcode": "0x1000065"
+    },
+    "python": "3.13.7 (main, Mar  3 2026, 12:19:54) [GCC 15.2.0]",
+    "logical_cpus": 16,
+    "sources_by_tier": "Each design unit declares tier1/2 sources and banned paths; round14-result.json binds all units. No DnaCalc-engine source or deleted reference history was used.",
+    "native_limit": "Recorded Linux CPU only; no Windows equivalence claimed."
+  },
+  "original_final_unit_sha256": "02892ec77df493b6ed02b873d3632abac6927d34bd418c0cc498b1a072ceea77",
+  "changed_from_postpull_freeze": {
+    "checker/variance_closure.py": {
+      "before": "685aa8ee4199c75a37f2986b2921c8c5bb01e18fa04990ee5ca6d0b6b44e001a",
+      "after": "43427e87d00935b1c327a7b86308f18917a32200c411129be0fc761def60d660"
+    },
+    "racer/variance_closure.py": {
+      "before": "a4b900ea378661a15f0faa164570371e9020d09a9fb820b6f876dad6f2811571",
+      "after": "a04fd86670d07e3e85a5665027480fc8ac29738ec1596177ecbc5243d3023a51"
+    }
+  }
+}

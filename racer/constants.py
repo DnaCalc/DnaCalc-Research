@@ -120,8 +120,51 @@ def hart_constants(source_dir):
     return out
 
 
+def published_literal(literal):
+    """Round an explicitly stated rational/decimal once; never inspect targets."""
+    a,b=B64.rn(Q(literal)),E64.rn(Q(literal));magnitude=abs(b)
+    if not magnitude:raw=bytes(10)
+    else:
+        e=log2floor(magnitude);significand=int(magnitude/pow2(e-63))
+        raw=significand.to_bytes(8,'little')+(e+16383+(0x8000 if b<0 else 0)).to_bytes(2,'little')
+    return dict(decimal=literal,binary64=struct.pack('>d',float(a)).hex(),ext80_le=raw.hex())
+
+
+def as_j01_constants(page369,page370):
+    """A&S9.4.1/9.4.4 facts, independently checked against the scanned pages."""
+    import hashlib
+    values=dict(AS_J0=['1','-2.2499997','1.2656208','-0.3163866','0.0444479','-0.0039444','0.0002100'],
+                AS_J1=['0.5','-0.56249985','0.21093573','-0.03954289','0.00443319','-0.00031761','0.00001109'])
+    return dict(provenance='A&S Handbook pages369/370 equations9.4.1 and9.4.4; coefficient facts only, no approximation remainder or target-derived value.',
+                source_sha256={Path(p).name:hashlib.sha256(Path(p).read_bytes()).hexdigest()for p in (page369,page370)},
+                tables={k:[published_literal(x)for x in xs]for k,xs in values.items()},
+                constants={'ONE_NINTH':published_literal('1/9')})
+
+
+def cody_j0_constants(source_path):
+    """Cody SPECFUN's stated decimal coefficient facts, never Excel-derived."""
+    import hashlib,re
+    source_path=Path(source_path);source=source_path.read_text()
+    code=''.join(line[6:]for line in source.splitlines()if line.startswith('CD'))
+    def table(name):
+        match=re.search(r'\bDATA\s+'+name+r'/([^/]+)/',code)
+        if match is None:raise ValueError('missing published table '+name)
+        return [x.strip().replace('D','e')for x in match[1].split(',')]
+    def constant(name):
+        match=re.search(r'\b'+name+r'/([^/]+)/',code)
+        if match is None:raise ValueError('missing published root literal '+name)
+        return match[1].strip().replace('D','e')
+    tables={name:table(name)for name in ('PJ0','QJ0')}
+    if {k:len(v)for k,v in tables.items()}!={'PJ0':7,'QJ0':5}:raise ValueError('wrong published table length')
+    return dict(provenance='Cody SPECFUN CALJY0 small-argument rational coefficient literals and split-root facts only; no program text copied and no Excel-derived coefficient.',
+                source_url='https://www.netlib.org/specfun/j0y0',source_sha256=hashlib.sha256(source_path.read_bytes()).hexdigest(),
+                tables={name:[published_literal(x)for x in values]for name,values in tables.items()},
+                constants={name:published_literal(constant(name))for name in ('XJ0','XJ01','XJ02')})
+
+
 if __name__=='__main__':
     import sys
-    out=hart_constants(sys.argv[2]) if len(sys.argv)>3 and sys.argv[3]=='hart' else normal_constants(sys.argv[2]) if len(sys.argv)>2 else generate()
+    if len(sys.argv)>2 and sys.argv[2]=='as-j01':out=as_j01_constants(*sys.argv[3:])
+    else:out=cody_j0_constants(sys.argv[2]) if len(sys.argv)>3 and sys.argv[3]=='cody-j0' else hart_constants(sys.argv[2]) if len(sys.argv)>3 and sys.argv[3]=='hart' else normal_constants(sys.argv[2]) if len(sys.argv)>2 else generate()
     with Path(sys.argv[1]).open('x') as f:json.dump(out,f,indent=2)
     print(json.dumps({k:{p:v for p,v in c.items()if p not in ['lower','upper']}for k,c in out.get('constants',{}).items()}))

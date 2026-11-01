@@ -1,0 +1,67 @@
+{
+  "id": "dc-j9k-r14-online-variance-closures",
+  "role": "implementer",
+  "scope": "Every original numeric three-input corpus VAR-family mismatch in the existing frozen input (26 rows), |nonzero input| in[2^-100,2^100]. All6 index permutations, independent five-model choice at each unrolled site.",
+  "sources": {
+    "tier1": [
+      "Welford updated mean/centered second moment identity",
+      "Youngs-Cramer running-sum/second-moment identity",
+      "IEEE754 nearest/even arithmetic and original Excel discovery observations"
+    ],
+    "tier2": [
+      "Current cleared original exact arithmetic substrate"
+    ],
+    "banned": [
+      "tier3/4 code",
+      "deleted reference history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "initial_state": {
+      "welford": "mean=x0, Q=0",
+      "youngs_cramer": "S=x0, Q=0"
+    },
+    "welford_step": [
+      "d=R(x-mean)",
+      "v=R(d/k)",
+      "mean_new=R(mean+v)",
+      "e=R(x-mean_new)",
+      "t=R(d*e)",
+      "Q_new=R(Q+t)"
+    ],
+    "youngs_cramer_step": [
+      "S_new=R(S+x)",
+      "u=R(k*x)",
+      "v=R(u-S_new)",
+      "w=R(v*v)",
+      "t=R(w/(k*(k-1)))",
+      "Q_new=R(Q+t)"
+    ],
+    "counts": "k=2 then3, exact integer counts/divisors; Q/divisor is separately rounded before final RN53 publication.",
+    "models": [
+      "strict",
+      "storedPC64",
+      "residentPC64",
+      "storedPC53",
+      "residentPC53"
+    ],
+    "sharing": "Each step retains exact correlated (mean,Q) or(S,Q) states, including the shared d and updated mean/sum. Per-site choices are independent across the unrolled steps; no private shared compiler annotation is assumed."
+  },
+  "limits": [
+    "State reachability is not a reusable producer or product match.",
+    "Deduplicated reachable state sets do not count as distinct programs.",
+    "No target is used to calculate an intermediate or choose coefficients, branches, stores or tolerances.",
+    "No complete Excel variance kernel or rank/domain policy follows."
+  ],
+  "input_sha256": "3dc2495b17f69e988039fb1e5311f6d909f687056b7bd5cd2c9e9509b121e3b5",
+  "provenance": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/provenance.json",
+  "status": "Declared before execution; final source hashes and receipts will be indexed in round14-result.json.",
+  "bank_extension_declared_before_execution": {
+    "input": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/variance-three-bank-VAR.S.jsonl",
+    "sha256": "ff73c575aca63a3df8a0925fd7cc0e3c76afa8bdb56af397eae85ea387f1ab8e",
+    "scope": "All148 bounded three-input VAR.S bank observations, including76 matched controls and72 mismatches; no result-based selection.",
+    "previous_corpus_unit_sha256": "e5a4ebb45b29a228013d480a28ee0554c056290d3dd0ce1ddb272825d609edef"
+  },
+  "exact_identity_note": "With old mean m=S/(k-1) and d=x-m, k*x-(S+x)=(k-1)*d. Thus (k*x-S_new)^2/(k*(k-1))=d^2*(k-1)/k=d*(x-(m+d/k)) in exact real arithmetic. Rounding choices define separate finite update graphs, not a claim that rounded forms are equal."
+}

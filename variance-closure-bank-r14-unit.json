@@ -1,0 +1,46 @@
+{
+  "id": "dc-j9k-r14-three-input-VAR.S-bank-closures",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "Defining plain/corrected two-pass variance identities",
+      "IEEE754 nearest/even arithmetic",
+      "Original three-input mismatching corpus calls"
+    ],
+    "banned": [
+      "Tier3/tier4 code",
+      "Removed implementation/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "scope": "All148 three-input VAR.S decoded full-bank calls with numeric expected outcomes and bounded numeric inputs, in original trace order. Includes76 matched controls and72 current failures. No selection by error or residual.",
+  "grammar": {
+    "mean": "Every full binary addition tree and input permutation; every site independently has one of five arithmetic/store models; divide by3 with every model. One common mean per evaluation.",
+    "squares": "Every subtraction and square independently has every model; every sum tree/permutation of the squared leaves has every model.",
+    "corrected": "Also every sum tree/permutation of residuals, square/divide correction, subtraction and final variance divide, each with arbitrary five-model sites. Correlations between the two sums are deliberately dropped, giving a conservative superset.",
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "publication": "RN53, with exact open/closed ties; zero signs do not affect squares or positive-integer divisors."
+  },
+  "proof": "Search subset closures are recomputed by an independent explicit permutation/two-tree enumerator with separate rational rounding code. Every intermediate set and root is verified. No expected output produces an intermediate.",
+  "limits": [
+    "Three inputs and the declared two-pass/corrected identities only",
+    "Corrected reachability is conservative, not a consistent program",
+    "No coefficient, selector, threshold or method switch",
+    "No product change or Excel kernel identified"
+  ],
+  "input_sha256": "ff73c575aca63a3df8a0925fd7cc0e3c76afa8bdb56af397eae85ea387f1ab8e",
+  "source_sha256": {
+    "racer/variance_closure.py": "befe48d5a074a65f46191b35794260848d0cb44b7d4da5bdba0e8046b90787cc",
+    "racer/bessel.py": "7beb746c41fa2d879a9e2ac0e13c9f8819bf8ad40aa1e94fd2a0193d9f451f90",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/variance_closure.py": "32ae7907f603230460574266ab482c3be33587053a1a4a95e8e05b490c0e32c7",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "parent_sha256": "37f02d4169693c583e105c137fc2ef8f6140b3e093fdf736fbe6fbcf9391b82d"
+}

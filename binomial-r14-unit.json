@@ -1,0 +1,57 @@
+{
+  "id": "dc-j9k-r14-binomial-recurrence",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "NIST/SEMATECH e-Handbook, binomial probability mass definition: https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm",
+      "P(k+1)/P(k)=(n-k)*p/((k+1)*(1-p)), derived algebraically from the defining mass",
+      "IEEE754 nearest/even arithmetic",
+      "Original corpus and full-bank Excel observations"
+    ],
+    "banned": [
+      "Tier3 and tier4 code",
+      "Deleted code and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "initial_mass": "Every Ext80 value in the exact RN53 preimage of recorded P(0); shared through subsequent counts for this source/environment",
+    "trees": [
+      "((((v*a)/b)*p)/q)",
+      "((((v*p)/q)*a)/b)",
+      "(v*(a*p))/(b*q)",
+      "v*((a*p)/(b*q))",
+      "((v/b)*a)*(p/q)",
+      "(v*(a/b))*(p/q)"
+    ],
+    "a": "n-k",
+    "b": "k+1",
+    "q": "model0(1-p)",
+    "sites": 5,
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "profiles": 18750,
+    "repeat": "The four update-site policies repeat unchanged at every count. The complement is shared."
+  },
+  "scope": "Numeric PMF calls, exact integer 1<=n<=2^53 and 0<=k<=min(n,64), 0<p<1; normal nonzero publications and original source/environment grouping. The 64 bound is a declared research resource limit, never a product branch.",
+  "exposure": "All corpus and bank observations are discovery. No new readings, fitted helper or full-program identification.",
+  "limits": [
+    "No initial mass producer",
+    "No CDF or endpoint kernel",
+    "Necessary survivors are conservative monotone-box conditions only",
+    "No count/region-specific graph selector"
+  ],
+  "input_sha256": "14a950bdc3c6941595e1764a6a002acb0ec89d8a23b93f822155ea8d48191fc0",
+  "source_sha256": {
+    "racer/binomial.py": "684cfd5cea72b4593652bb71deac3836d3835250bb3c3e9f9025af300b0d29dc",
+    "racer/bessel.py": "7beb746c41fa2d879a9e2ac0e13c9f8819bf8ad40aa1e94fd2a0193d9f451f90",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/binomial.py": "ac4adfa431be5e3437808413285d75645403c2ca874c5182ff1552e21fd5320a",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  }
+}

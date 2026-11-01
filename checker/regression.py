@@ -1,0 +1,132 @@
+"""Independent rational verification of finite LINEST coefficient programs."""
+from collections import Counter
+from fractions import Fraction as R
+from functools import lru_cache
+import itertools
+import json
+from pathlib import Path
+import sys
+import time
+
+from exact import BINARY64 as B,binary64,operation,two
+from check import records,require,digest
+
+MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
+
+
+@lru_cache(maxsize=131072)
+def arithmetic(kind,model,a,b):return operation(a,b,kind,model)
+
+
+def extract(row):
+    if row['function']!='LINEST'or row['result_index']not in ([1,1],[1,2]):return None,'surface_or_selected_statistic'
+    a=row['args']
+    if len(a)<2:return None,'implicit_predictor'
+    def vector(arg):
+        if not isinstance(arg,list):raise ValueError('not vector')
+        if all(isinstance(r,list)for r in arg):
+            if len(arg)>1 and any(len(r)!=1 for r in arg):raise ValueError('not vector')
+            arg=list(itertools.chain.from_iterable(arg))
+        if not all(isinstance(x,str)and x.startswith('0x')for x in arg):raise ValueError('not numeric')
+        return list(map(binary64,arg))
+    try:y,x=map(vector,a[:2])
+    except ValueError:return None,'outside_numeric_single_predictor'
+    if len(y)!=len(x)or not(2<=len(x)<=32):return None,'shape_or_length'
+    if any(v!=0 and not two(-100)<=abs(v)<=two(100)for v in x+y):return None,'magnitude_bound'
+    if len(a)<3:constant=True
+    elif isinstance(a[2],bool):constant=a[2]
+    elif isinstance(a[2],str)and a[2].startswith('0x'):constant=binary64(a[2])!=0
+    else:return None,'const_coercion_outside_scope'
+    if (constant and len(set(x))==1)or(not constant and all(v==0 for v in x)):return None,'not_exact_full_rank'
+    if not row['expected'].startswith('0x'):return None,'non_numeric_expected'
+    binary64(row['expected'])
+    return (x,y,constant),None
+
+
+def evaluate(p,data,column):
+    xs,ys,constant=data;models=p['models']
+    def op(site,kind,a,b):return arithmetic(kind,models[site],a,b)
+    def minus(site,a,b):return op(site,'add',a,-b)
+    def total(items,order,site):
+        if order==2:
+            if len(items)==0:return R(0)
+            if len(items)==1:return items[0]
+            middle=len(items)//2
+            return op(site,'add',total(items[:middle],2,site),total(items[middle:],2,site))
+        result=R(0)
+        for item in items if order==0 else items[::-1]:result=op(site,'add',result,item)
+        return result
+    size=R(len(xs));linear=p['linear_order'];squared=p['square_order']
+    sx,sy=total(xs,linear,0),total(ys,linear,0)
+    mx,my=op(1,'div',sx,size),op(1,'div',sy,size)
+    if p['algorithm']==0 and constant:
+        a=[minus(1,x,mx)for x in xs];b=[minus(1,y,my)for y in ys]
+        xx=[op(2,'mul',x,x)for x in a];xy=[op(2,'mul',x,y)for x,y in zip(a,b)]
+        denominator,numerator=total(xx,squared,3),total(xy,squared,3)
+    else:
+        xx=[op(2,'mul',x,x)for x in xs];xy=[op(2,'mul',x,y)for x,y in zip(xs,ys)]
+        denominator,numerator=total(xx,squared,3),total(xy,squared,3)
+        if constant:
+            if p['algorithm']==1:
+                denominator=minus(4,denominator,op(2,'mul',sx,mx))
+                numerator=minus(4,numerator,op(2,'mul',sx,my))
+            else:
+                denominator=minus(4,op(4,'mul',size,denominator),op(2,'mul',sx,sx))
+                numerator=minus(4,op(4,'mul',size,numerator),op(2,'mul',sx,sy))
+    if denominator==0:return None,'error:Div0'
+    slope=op(4,'div',numerator,denominator)
+    value=slope if column==1 else minus(4,my,op(2,'mul',slope,mx))if constant else R(0)
+    published=B.round(value)
+    if published is None:return value,'error:Num'
+    if published==0:return value,'0x0000000000000000'
+    if abs(published)<two(-1022):return value,'fault:NotImplemented'
+    return value,f'0x{B.floor_coordinate(abs(published))|((1<<63)if published<0 else 0):016x}'
+
+
+def check(input_path,directory,output):
+    start=time.monotonic();directory=Path(directory);source=Path(__file__)
+    hashes={str(p):digest(p)for p in (source,source.with_name('exact.py'),source.with_name('check.py'))}
+    rows=list(records(input_path));scoped=[];excluded=[];coordinates=[];scope=Counter()
+    for index,raw in enumerate(rows):
+        data,reason=extract(raw)
+        if reason:excluded.append(dict(trace_index=index,raw=raw,reason=reason));scope[reason]+=1
+        else:scoped.append(dict(trace_index=index,raw=raw));coordinates.append(data);scope['scoped']+=1
+    require(scoped==list(records(directory/'scoped.jsonl'))and excluded==list(records(directory/'excluded.jsonl')),'changed inputs or scope')
+    ps=[dict(id=i,algorithm=a,linear_order=l,square_order=s,models=list(m))for i,(a,l,s,m)in enumerate(itertools.product(range(3),range(3),range(3),itertools.product(MODELS,repeat=5)))]
+    require(ps==list(records(directory/'profiles.jsonl'))and len(ps)==84375,'changed program grammar')
+    summary=json.loads((directory/'summary.json').read_text());require(summary['complete']is True,'partial run')
+    killed=set();executions=0;counts=Counter();per_witness=Counter()
+    for record in records(directory/'first-kills.jsonl'):
+        identity,order=record['candidate_id'],record['order']
+        require(identity not in killed and 0<=identity<len(ps)and 0<=order<len(scoped),'duplicate or unknown program/witness')
+        require(record['trace_index']==scoped[order]['trace_index']and record['expected']==scoped[order]['raw']['expected'],'changed identity or answer')
+        for earlier in range(order+1):
+            row=scoped[earlier]['raw'];root,got=evaluate(ps[identity],coordinates[earlier],row['result_index'][1]);executions+=1
+            if earlier<order:require(got==row['expected'],'not the first contradiction')
+            else:
+                expected_root=[str(root.numerator),str(root.denominator)]if root is not None else None
+                require(record['root']==expected_root and record['got']==got and got!=row['expected'],'invalid full-width first kill')
+        killed.add(identity);per_witness[order]+=1;counts['certified_first_kills']+=1
+    alive=json.loads((directory/'survivors.json').read_text())
+    require(len(set(alive))==len(alive)and killed.isdisjoint(alive)and killed|set(alive)==set(range(len(ps))),'unsearched program')
+    for identity in alive:
+        for row,data in zip(scoped,coordinates):
+            _,got=evaluate(ps[identity],data,row['raw']['result_index'][1]);executions+=1
+            require(got==row['raw']['expected'],'invalid survivor')
+    remaining=len(ps);witnesses=list(records(directory/'witnesses.jsonl'))
+    require(len(witnesses)==len(scoped),'missing witness accounting')
+    for order,(witness,row)in enumerate(zip(witnesses,scoped)):
+        remaining-=per_witness[order]
+        require(witness==dict(order=order,trace_index=row['trace_index'],killed=per_witness[order],remaining=remaining),'wrong elimination counts')
+    require(summary['programs']==len(ps)and summary['recorded']==len(rows)and summary['scoped']==len(scoped)and
+            summary['scope']==scope and summary['executions']==executions and summary['survivors']==len(alive),'incorrect summary')
+    require(all(digest(p)==h for p,h in hashes.items()),'checker changed during run')  # ubs:ignore — public integrity hashes, not secrets
+    receipt=dict(complete=True,programs=len(ps),scoped=len(scoped),survivors=len(alive),executions=executions,
+                 counts=counts,arithmetic_cache=arithmetic.cache_info()._asdict(),seconds=time.monotonic()-start,
+                 source_sha256=hashes,input_sha256={str(p):digest(p)for p in (Path(input_path),*sorted(directory.iterdir()))if p.is_file()},
+                 limits='Specified single-predictor coefficient algebra only. No QR, multiple predictors, LOGEST, numerical rank threshold, fitted coefficient or complete Excel program is inferred.')
+    with open(output,'x')as out:json.dump(receipt,out,indent=2);out.write('\n')
+    print(json.dumps(receipt))
+
+
+if __name__=='__main__':check(*sys.argv[1:])

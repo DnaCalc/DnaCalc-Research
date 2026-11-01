@@ -1,0 +1,81 @@
+{
+  "id": "dc-j9k-r14-variance",
+  "role": "implementer",
+  "application_revision": "baf27cdec01dbb40c19039e2234d613f5fee6f0f",
+  "route_audit": true,
+  "scope": "Numeric-only 2..32-element variance/STDEV calls. Original input bits preserved. Nonzero input magnitudes 2^-400..2^400. Finite nonnegative normal-or-zero expected outcomes. Unsupported and unread observations remain failed obligations, outside this grammar.",
+  "sources": {
+    "tier1": [
+      "Original Excel corpus captures and existing witness judge traces",
+      "Defining variance identities; IEEE754 nearest-even arithmetic",
+      "Chan, Golub and LeVeque, Algorithms for Computing the Sample Variance: Analysis and Recommendations (1983), DOI 10.1080/00031305.1983.10483115; equations only",
+      "Welford (1962), DOI 10.1080/00401706.1962.10490022; published update identity"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc arithmetic and existing research evaluator"
+    ],
+    "banned": [
+      "Tier3 and tier4 source code",
+      "Deleted source and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "algorithms": [
+      "two-pass centered",
+      "corrected centered two-pass",
+      "raw moments Q-S*(S/n)",
+      "raw moments (n*Q-S*S)/n",
+      "first-element-shifted raw moments",
+      "Welford update",
+      "Youngs-Cramer update"
+    ],
+    "reductions": [
+      "forward fold from zero",
+      "reverse fold from zero",
+      "balanced contiguous halves; singleton unchanged"
+    ],
+    "online_orders": [
+      "forward",
+      "reverse"
+    ],
+    "regions": [
+      "linear reduction",
+      "mean and residual",
+      "products",
+      "squared reduction",
+      "correction, divisor and square root"
+    ],
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "templates": 49,
+    "assignments_per_template": 3125,
+    "programs_per_function": 153125,
+    "shared_regions": "Every execution of a region uses one fixed policy; dead labels retained. No data-dependent selector, cutoff or fitted constant.",
+    "population_divisor": "n",
+    "sample_divisor": "n-1",
+    "publication": "single final binary64 store, existing product zero/nonfinite/subnormal policy"
+  },
+  "exposure": "All corpus and old bank observations are discovery. No new Excel readings. No blind validation claim.",
+  "limits": [
+    "No data-dependent algorithm switch; especially no removed 1% selector",
+    "No arbitrary per-iteration stores, extra compensation, FMA or unlisted association",
+    "Elimination is per named function; no assumption that aliases share a private Excel body",
+    "Independent checker re-derives each program and every first contradiction with exact integer/rational arithmetic; reachability is not a producer"
+  ],
+  "source_sha256": {
+    "racer/src/variance.rs": "3510c7d5aff2f774a1f48e763231121d4bd74fa359c17318814aca6095cedb8b",
+    "racer/src/main.rs": "3df864024d0e86518c0378694c92d77421dc4c565ea9f42b3c63fc4ad6b920fd",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/variance_common.rs": "b00bd6bef3328f0e85bc8353a4bbc4355855257d388baa40fbc1e749ed029136",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs": "3514c1acd215c238a48c951b08d3690e58e624f780a634f92f8425d4cc3ce830"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "dc-j9k-r14-as-j01-all-site-polynomial",
+  "role": "implementer",
+  "scope": "BESSELJ order0 and order1, positive x in[1/4,3], recorded normal binary64 targets; all original discovery rows in this region, not selected by mismatch.",
+  "sources": {
+    "tier1": [
+      "Abramowitz and Stegun Handbook, page369 equation9.4.1 and page370 equation9.4.4; fixed coefficient literals and polynomial identities",
+      "IEEE754 nearest/even arithmetic; original Excel observations"
+    ],
+    "tier2": [
+      "Current cleared exact research arithmetic"
+    ],
+    "banned": [
+      "tier3/4 code",
+      "deleted references and their history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "coefficient_loads": "Independently RN53 or RN64 of every published decimal. Exact rational1/9 admits RN53/RN64 loads, not fitted.",
+    "arithmetic": "Every node independently one of strict/storedPC64/residentPC64/storedPC53/residentPC53.",
+    "scaled_square": [
+      "(x/3)*(x/3)",
+      "(x*x)/9",
+      "(x*x)*load(1/9)"
+    ],
+    "polynomial": [
+      "Horner",
+      "Estrin",
+      "expanded powers: sequential-chain or binary powers, each summed forward/reverse/balanced"
+    ],
+    "labels_per_order": 24,
+    "sharing": "Order0 and order1 treated independently. Shared intermediate boxes lose correlations and conservatively enclose the declared DAGs."
+  },
+  "limits": [
+    "No additive approximation remainder is chosen or fitted. This tests the stated polynomials without their analytic error term.",
+    "All-site hulls may contain unrealizable combinations; survival is necessary, never a producer.",
+    "No new Excel answer, Bessel cutoff or product replacement follows.",
+    "Label counts retain algebraic redundancies; no sum as distinct kernels."
+  ],
+  "primary_source_sha256": {
+    "AS-page369.jpg": "5124c275e034a08d97c384b74ceb1aa6577bfcc60d6b22a62fa46689a6205be7",
+    "AS-page370.jpg": "8b689f4e3967e72feb8164b44710dab1a56004ed6dd1a07194c4ad729db216cb"
+  },
+  "provenance": "/home/ubuntu/codex-runs/dna-firehorse-20261101-round14/provenance.json",
+  "status": "Declared before execution; final source and receipts will be bound by the postpull unit and round14-result.json."
+}

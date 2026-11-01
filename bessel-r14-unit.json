@@ -1,0 +1,62 @@
+{
+  "id": "dc-j9k-r14-bessel-order-two-recurrence",
+  "role": "implementer",
+  "application_revision": "baf27cdec01dbb40c19039e2234d613f5fee6f0f",
+  "scope": "Same source/environment x>0 and numeric order 0/1/2 observations with normal nonzero publications. All Ext80 seeds consistent with order-zero and order-one publications; no chosen seed.",
+  "sources": {
+    "tier1": [
+      "https://dlmf.nist.gov/10.6.E1",
+      "https://dlmf.nist.gov/10.29.E1",
+      "IEEE754 nearest/even arithmetic",
+      "Original Excel corpus and witness readings"
+    ],
+    "permitted_inspection": [
+      "https://www.netlib.org/specfun/rjbesl",
+      "https://www.netlib.org/specfun/rybesl",
+      "https://www.netlib.org/specfun/ribesl"
+    ],
+    "banned": [
+      "Tier3 and tier4 code",
+      "Removed implementations and history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "consumers": [
+      "((2*C1)/x) +/- C0",
+      "2*(C1/x) +/- C0",
+      "(2/x)*C1 +/- C0",
+      "C1/(x/2) +/- C0"
+    ],
+    "signs": {
+      "BESSELJ": "term-C0",
+      "BESSELY": "term-C0",
+      "BESSELI": "C0-term",
+      "BESSELK": "C0+term"
+    },
+    "sites": 3,
+    "models": [
+      "strict",
+      "stored_pc64",
+      "resident_pc64",
+      "stored_pc53",
+      "resident_pc53"
+    ],
+    "profiles_per_function": 500,
+    "proof": "Monotone corner evaluations bound every pair of Ext80 seeds in their exact publication preimages. A target outside the published output range excludes the consumer. A surviving range is necessary only."
+  },
+  "exposure": "Previously inspected corpus and banks are discovery. No new Excel reading or blind-validation claim.",
+  "limits": [
+    "No actual seed producer identified",
+    "No implication that external seed functions and order-two helper share their internals",
+    "No fitted coefficient, phase/domain cutoff or selector",
+    "Two unresolved result-kind corpus cases remain outside numeric projection"
+  ],
+  "source_sha256": {
+    "racer/bessel.py": "7beb746c41fa2d879a9e2ac0e13c9f8819bf8ad40aa1e94fd2a0193d9f451f90",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/bessel.py": "0742793fe9d469f64ba6749525f5e8977693fa02f41f9d2954d3e4cc0a7c6c4a",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "input_sha256": "5461d75536ad99c696cffbe6611531764c8af40d3be3a9d673551073ee73a757"
+}

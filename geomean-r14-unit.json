@@ -1,0 +1,72 @@
+{
+  "id": "dc-j9k-r14-geomean-native-x87",
+  "role": "implementer",
+  "sources": {
+    "tier1": [
+      "Geometric-mean product/logarithm identities",
+      "Intel public SDM instruction semantics, as used by the existing native interpreter",
+      "Original Excel corpus captures"
+    ],
+    "tier2": [
+      "Current cleared GEOMEAN product and root body, read only",
+      "Existing original native interpreter and independent rational checker"
+    ],
+    "banned": [
+      "Tier3 and tier4 code",
+      "Removed code/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "grammar": {
+    "paths": [
+      "FYL2X(1,product)/n",
+      "FYL2X(1/n,product)",
+      "sum(FYL2X(1,x))/n",
+      "sum(FYL2X(FLDLN2,x))/n * FLDL2E"
+    ],
+    "reductions": [
+      "forward from identity",
+      "reverse from identity",
+      "balanced contiguous halves with unchanged singleton"
+    ],
+    "words": [
+      "PC53 RN",
+      "PC64 RN"
+    ],
+    "precision_regions": [
+      "preparation and reduction",
+      "F2XM1 reconstruction"
+    ],
+    "store_groups": [
+      "each reduction result",
+      "final reduction result",
+      "each logarithm",
+      "mean division and natural/base2 conversion",
+      "fraction subtraction",
+      "F2XM1",
+      "mantissa addition",
+      "FSCALE"
+    ],
+    "root_store": "The physical final-reduction store is logical bit1 OR bit0. All logical labels retained, including duplicates/dead bits.",
+    "constants": "Only 0,1,exact count and hardware FLDLN2/FLDL2E ROM values",
+    "programs": 12288
+  },
+  "scope": "2..32 strictly positive numeric inputs; every exact partial product in the three declared reduction trees stays within 2^-1000..2^1000 (22-binade margin from binary64 under/overflow). Native F2XM1 argument is reduced to [-1/2,1/2].",
+  "exposure": "All current corpus is discovery, not blind validation. No new Excel reading.",
+  "limits": [
+    "Native Linux CPU microcode; Windows CPU transfer remains unverified",
+    "No assumption that FYL2X/F2XM1 is correctly rounded",
+    "No fitted constants or selector",
+    "Reference arguments remain outside this typed-call adapter"
+  ],
+  "input_sha256": "438efcda6d8e375372c2cce98e46f084d12a31cd412ffcdd9af352314bc1216e",
+  "source_sha256": {
+    "racer/geomean.py": "3fab6389413ec71f3965b6c6413b3627688600fc613d9b4f617d24c239532c66",
+    "racer/x87_programs.py": "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7",
+    "racer/x87_native.c": "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1",
+    "checker/geomean.py": "8fa1f01120de098d4e00f0ab967544d0adc033e04648c2f4597b21a42976fad4",
+    "checker/x87.py": "ae47c2094fe98f481f084f18e3a01352a1790eac52d9d6c2d355ca842c1810d4",
+    "checker/x87_isa.c": "00bbe78af4f827f11bddbb59c7a004d9ff1b0ab5ff17eee10759887e568d2a83",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  }
+}
