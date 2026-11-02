@@ -42,12 +42,12 @@ def score_readings(packet, results, executable, output):
                 actual=actual['calc_func_prediction'],
                 reading=dict(bitness=env['excel_bitness'], cpu=env['cpu_id'],
                              excel_build=env['excel_build'], platform=env['platform']),
-                source='readings/excel-20527/r13-'+path.name,
+                source=f"readings/excel-20527/r{intake['packet_round']}-"+path.name,
                 capture_provenance=doc['capture_provenance'], source_sha256=batch['reading_sha256']))
             status = 'matched' if rows[-1]['expected'] == rows[-1]['actual'] else 'failed'
             counts[status] += 1
         require(sha(path) == batch['reading_sha256'], 'reading changed during scoring')
-    require(sha(executable) == binary_hash and len(rows) == 234, 'scoring execution changed')
+    require(sha(executable) == binary_hash and len(rows) == intake['calls'], 'scoring execution changed')
     (output/'observations.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
     functions = {}
     for function in sorted({r['function'] for r in rows}):
@@ -74,7 +74,24 @@ def check_readings(packet, results, output):
     require(files == read(results/'packet-sha256.json'), 'received packet manifest differs')
     require(files == {p.relative_to(received).as_posix(): sha(p)
                       for p in received.rglob('*') if p.is_file()}, 'received packet bytes differ')
-    for name, expected in manifest['files_sha256'].items():
+    if manifest.get('format') == 'dnacalc-research-questions-r14-variance/1':
+        packet_round, expected_calls, expected_batches = 14, 44, 6
+        require(manifest['requests'] == expected_calls and manifest['counts'] ==
+                {'VAR.S': 10, 'VAR.P': 6, 'STDEV.S': 6, 'STDEV.P': 6, 'DEVSQ': 10, 'AVERAGE': 6},
+                'R14 packet scope differs')
+        batch_list = [dict(function=f, path=f'requests-{f}.json', calls=count)
+                      for f, count in manifest['counts'].items()]
+        file_hashes = manifest['files']
+    elif manifest.get('format') == 'dnacalc-research-questions-r16/1':
+        packet_round, expected_calls, expected_batches = 16, 250, 13
+        require(manifest['scalar_calls'] == expected_calls, 'R16 packet scope differs')
+        batch_list = read(packet/'batches.json')
+        file_hashes = manifest['files_sha256']
+    else:
+        packet_round, expected_calls, expected_batches = 13, 234, 13
+        batch_list = read(packet/'batches.json')
+        file_hashes = manifest['files_sha256']
+    for name, expected in file_hashes.items():
         require(files[name] == expected, 'original packet hash differs: '+name)
     # Preserve/hash the whole supplied result tree, including predictions. Only
     # canonical witness-reader exports, not those predictions, enter the bank.
@@ -87,7 +104,7 @@ def check_readings(packet, results, output):
         require(source not in exports, 'duplicate batch export')
         exports[source] = path, doc
     batches, seen, total, predictions = [], set(), 0, Counter()
-    for batch in read(packet/'batches.json'):
+    for batch in batch_list:
         request_path = packet/batch['path']
         request = read(request_path)
         request_hash = sha(request_path)
@@ -162,16 +179,128 @@ def check_readings(packet, results, output):
         total += count
         batches.append(dict(**batch, reading=path.relative_to(results).as_posix(),
                             reading_sha256=sha(path), request_sha256=sha(request_path)))
-    require(not exports and total == 234 and len(batches) == 13, 'missing/excess batch')
+    require(not exports and total == expected_calls and len(batches) == expected_batches, 'missing/excess batch')
     require(frozen == {p.relative_to(results).as_posix(): sha(p)
                       for p in results.rglob('*') if p.is_file()}, 'result tree changed')
-    result = dict(complete=True, calls=total, batches=batches, result_files_sha256=frozen,
+    result = dict(complete=True, packet_round=packet_round, calls=total, batches=batches, result_files_sha256=frozen,
                   packet_files_sha256=files, frozen_windows_application=dict(predictions),
                   limits='Existing reader exports only; Value2 transport audited. Effective callee '
                          'operands remain unobservable. Native CPU measurements and predictions '
                          'are never Excel answers. Repeated captures are observations, not distinct inputs.')
     with Path(output).open('x') as f:
         json.dump(result, f, indent=2); f.write('\n')
+    return result
+
+
+def check_round16_questions(packet, readings, workbook, output):
+    """Independently re-derive every requested tuple and catalogue formula."""
+    import itertools
+    import math
+    import struct
+    import zipfile
+    import xml.etree.ElementTree as ET
+    packet,readings,workbook=map(Path,(packet,readings,workbook))
+    manifest=read(packet/'manifest.json')
+    checker_hash=sha(Path(__file__))
+    input_hashes={str(p):sha(p)for p in (workbook,*sorted(readings.glob('*.json')))}
+    require(manifest['format']=='dnacalc-research-questions-r16/1','wrong packet format')
+    files={p.relative_to(packet).as_posix():sha(p)for p in packet.rglob('*')if p.is_file()and p.name!='manifest.json'}
+    require(files==manifest['files_sha256'],'changed/missing/extra packet file')
+    for source,expected_hash in manifest['sources_sha256'].items():
+        require(sha(readings/Path(source).name)==expected_hash,'changed R14 source reading')
+    bits=lambda x:'0x'+struct.pack('>d',float(x)).hex()
+    number=lambda x:struct.unpack('>d',bytes.fromhex(x[2:]))[0]
+    lit=lambda x:format(float(x),'.17g')
+    r14=read(readings/'VAR.S.json')['witnesses']
+    require(len(r14)==10,'missing R14 anchors')
+    triples=[list(map(number,r['args']))for r in r14]
+    expected={}
+    def ask(f,values):expected.setdefault(f,set()).add(tuple(map(bits,values)))
+    names=('VAR.S','VAR.P','STDEV.S','STDEV.P','DEVSQ','AVERAGE')
+    for t,f in itertools.product(triples,names):ask(f,t)
+    limit=float(2**27)
+    grid=[limit+v for v in(-2,-1,-.75,-.5,-.25,0,.25,.5,.75,1,2)]+[math.nextafter(limit,0),math.nextafter(limit,math.inf)]
+    for x,n in itertools.product(grid,(0,1,2,3,4)):ask('BESSELJ',(x,n))
+    for x,n in itertools.product((limit-1,limit-.5,limit,limit+.5),(0,1,2)):ask('BESSELJ',(-x,n))
+    for x,n in itertools.product((limit-1,limit-.5,math.nextafter(limit,0),limit,math.nextafter(limit,math.inf),limit+1),(0,1,2)):ask('BESSELY',(x,n))
+    for x,n in itertools.product((709,709.5,math.nextafter(709.7,0),709.7,math.nextafter(709.7,math.inf),709.78,710,713,714),(0,1,2,3,10,100)):ask('BESSELI',(x,n))
+    for x,n in itertools.product((709.7,math.nextafter(709.7,math.inf),710),(0,1,2)):ask('BESSELI',(-x,n))
+    for x in(709,709.5,709.7,math.nextafter(709.7,math.inf),709.78,math.log(float.fromhex('0x1.fffffffffffffp+1023')),710):ask('EXP',(x,))
+    phase_grid=(limit-1,limit-.5,math.nextafter(limit,0),limit,math.nextafter(limit,math.inf),limit+.5)
+    for x,f in itertools.product(phase_grid,('SIN','COS')):ask(f,(x,))
+    geo=list(itertools.permutations((1,5,3)))+[(15,),(1,15),(3,5),(15,1,1),(1,15,1),(1,1,15),(1,3,5,1)]
+    for values in geo:ask('GEOMEAN',values)
+    found={};ids=set();counts=Counter()
+    for batch in read(packet/'batches.json'):
+        f=batch['function'];doc=read(packet/batch['path']);require(doc['function']==f,'wrong request function')
+        require(f not in found and f in expected,'duplicate/unknown function batch');found[f]=set()
+        predictions=records(packet/f'application-predictions-{f}.jsonl')
+        require(len(predictions)==len(doc['witnesses'])==batch['calls'],'missing prediction/request')
+        for index,(row,pred)in enumerate(zip(doc['witnesses'],predictions)):
+            require(set(row)=={'id','args','input_transport'}and row['input_transport']=='cell_value2_bulk','unexpected request answer/transport field')
+            require(row['id']==f"r16-{f.lower().replace('.','-')}-{index:03d}"and row['id']not in ids,'changed request identity')
+            ids.add(row['id']);args=tuple(row['args']);require(args not in found[f],'duplicate scalar question');found[f].add(args)
+            require(pred['id']==row['id']and pred['args']==row['args']and pred['not_excel_evidence']is True,'prediction identity/evidence status changed')
+            counts[f]+=1
+    require(found==expected and len(ids)==manifest['scalar_calls']==250 and dict(counts)==manifest['calls_by_function'],'scalar derivation/count differs')
+    selected=read(packet/'selection.json');require(len(selected)==250 and {r['id']for r in selected}==ids,'missing selection provenance')
+    lookup={r['id']:(f,r['args'])for batch in read(packet/'batches.json')for r in read(packet/batch['path'])['witnesses']for f in[batch['function']]}
+    for r in selected:require(lookup[r['id']]==(r['function'],r['requested_args']),'selection identity changed')
+    formulas=[]
+    def add(text):formulas.append(text);return f'D{len(formulas)}'
+    def surfaces(f,values,refs):
+        literals=list(map(lit,values));span=f'{refs[0]}:{refs[-1]}'
+        for body in(','.join(refs),span,'{'+','.join(literals)+'}','{'+ ';'.join(literals)+'}',f'TRANSPOSE({span})',','.join(literals)):
+            add(f'{f}({body})')
+    for i,values in enumerate(triples):
+        refs=[add(lit(v))for v in values]
+        for f in names if i<6 else('VAR.S','DEVSQ'):surfaces(f,values,refs)
+    require(len(formulas)==294,'internal variance question census')
+    for x in phase_grid:
+        base=add(lit(x))
+        for phase in(1,3):
+            p=add(f'{base}-{phase}*PI()/4')
+            for f in('SIN','COS'):add(f'{f}({p})');add(f'{f}({base}-{phase}*PI()/4)')
+    require(len(formulas)==360,'internal phase question census')
+    used=set()
+    def regression(delta,s1=1,s2=1,affine=False):
+        rows=[[x*s1,(2*x+int(affine)+(delta if i==3 else 0))*s2]for i,x in enumerate((1,2,5,4))]
+        x='{'+ ';'.join(','.join(map(lit,r))for r in rows)+'}'
+        for const,f in itertools.product(('FALSE','TRUE'),('LINEST','LOGEST')):
+            for r,c in((1,1),(1,2),(4,2)):
+                text=f'INDEX({f}({{1;2;4;7}},{x},{const},TRUE),{r},{c})'
+                if text not in used:add(text);used.add(text)
+    for delta in(0,2**-30,2**-26,2**-24,2**-22,2**-20,1e-6,2**-18,2**-16,2**-12):regression(delta)
+    for delta,scales in itertools.product((0,2**-24,2**-20,2**-16),((2**-20,2**-20),(2**20,2**20),(1,2**-20),(1,2**20))):regression(delta,*scales)
+    regression(0,affine=True)
+    for x,const,f in itertools.product(('{1,3;2,5;5,11;4,9}','{1,0,1;0,1,1;1,1,2;2,1,3}','{1,0;2,0;5,0;4,0}'),('FALSE','TRUE'),('LINEST','LOGEST')):
+        add(f'INDEX({f}({{1;2;4;7}},{x},{const},TRUE),4,2)')
+    require(len(formulas)==696,'internal rank question census')
+    for values in geo:surfaces('GEOMEAN',values,[add(lit(v))for v in values])
+    require(len(formulas)==810,'internal full question census')
+    questions=read(packet/'catalogue-questions.json');require(questions['sheet']=='dcj9k_r16'and len(questions['questions'])==810,'wrong catalogue question inventory')
+    predictions=records(packet/'application-predictions-catalogue.jsonl');require(len(predictions)==810,'missing catalogue prediction')
+    for row,(q,pred,text)in enumerate(zip(questions['questions'],predictions,formulas),1):
+        require(q['id']==f'r16-sheet-{row:04d}'and q['row']==row and q['column']==4 and q['formula']==text,'catalogue derivation changed')
+        require(not any(k in q for k in('expected','expected_bits','calc_func_prediction')),'question contains an answer')
+        require(pred['id']==q['id']and pred['row']==row and pred['column']==4 and pred['formula']==text and pred['not_excel_evidence']is True,'catalogue prediction identity changed')
+    lines=[s for s in(packet/'sheet-dcj9k_r16.txt').read_text().splitlines()if s and not s.startswith('#')]
+    require(lines==formulas and sha(packet/'sheet-dcj9k_r16.txt')==manifest['catalogue_section_sha256'],'section mirror differs')
+    namespace={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+    relns='{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'
+    with zipfile.ZipFile(workbook)as z:
+        rels={r.attrib['Id']:r.attrib['Target']for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}
+        selected=[s for s in ET.fromstring(z.read('xl/workbook.xml')).find('m:sheets',namespace)if s.attrib['name']=='dcj9k_r16']
+        require(len(selected)==1,'missing registered question sheet')
+        xml=ET.fromstring(z.read('xl/'+rels[selected[0].attrib[relns+'id']]))
+        actual=[(c.attrib['r'],c.find('m:f',namespace).text)for c in xml.findall('.//m:c',namespace)if c.find('m:f',namespace)is not None]
+        require(actual==[(f'D{i}',text)for i,text in enumerate(formulas,1)],'workbook question formula differs')
+    require(files=={p.relative_to(packet).as_posix():sha(p)for p in packet.rglob('*')if p.is_file()and p.name!='manifest.json'},'packet changed during check')
+    require(sha(Path(__file__))==checker_hash and all(sha(p)==h for p,h in input_hashes.items()),'question checker/input changed')
+    result=dict(complete=True,scalar_calls=250,catalogue_formula_cells=810,new_excel_answers=0,
+        files_sha256=files,workbook_sha256=sha(workbook),checker_sha256=checker_hash,input_sha256=input_hashes,
+        limits='Every scalar input and worksheet formula re-derived from R14 anchors and fixed stated grids. Predictions are calculation outputs only. No measured Excel answer or candidate validation is created. Worksheet literal echoes and capture settings must be inspected when answers return.')
+    with Path(output).open('x')as out:json.dump(result,out,indent=2);out.write('\n')
     return result
 
 
@@ -450,6 +579,9 @@ def check(packet,trace,gaps,library,output):
 
 if __name__=='__main__':
     import sys
+    if len(sys.argv) > 1 and sys.argv[1] == 'round16-questions':
+        print(json.dumps(check_round16_questions(*sys.argv[2:])))
+        raise SystemExit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'rate-newton':
         print(json.dumps(check_rate_newton(*sys.argv[2:])))
         raise SystemExit(0)

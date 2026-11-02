@@ -124,6 +124,34 @@ fn encoded(value: &CalcValue) -> String {
     calc_verdict::encode_result(value).expect("scalar audit value")
 }
 
+/// Freeze ordinary Workbook predictions for one question sheet. No expected
+/// answer is read or synthesized; these predictions never enter an Excel bank.
+pub fn sheet_predictions(input: &str, out: &str) {
+    use std::io::Write;
+    let doc: Value = serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    let mut book = Workbook::new_blank();
+    let sheet = book.sheets()[0].id;
+    let questions = doc["questions"].as_array().unwrap();
+    for question in questions {
+        assert!(question.get("expected").is_none(), "a question contains an answer");
+        let at = CellKey::new(sheet, question["row"].as_u64().unwrap() as u32,
+            question["column"].as_u64().unwrap() as u32).unwrap();
+        assert!(book.enter(at, &format!("={}", question["formula"].as_str().unwrap())).accepted());
+    }
+    let mut output = std::io::BufWriter::new(fs::OpenOptions::new().write(true).create_new(true).open(out).unwrap());
+    for question in questions {
+        let at = CellKey::new(sheet, question["row"].as_u64().unwrap() as u32,
+            question["column"].as_u64().unwrap() as u32).unwrap();
+        let cell = book.cell(at).unwrap();
+        let ProjectedValue::Calculated { value, .. } = cell.value() else {
+            panic!("question prediction was not calculated")
+        };
+        writeln!(output, "{}", json!({"id":question["id"],"formula":question["formula"],
+            "row":question["row"],"column":question["column"],"calc_func_prediction":encoded(value),
+            "not_excel_evidence":true,"route":"ordinary Workbook::enter on the whole question sheet"})).unwrap();
+    }
+}
+
 /// Check literal operands and whole calls through the ordinary workbook route.
 /// This extends the existing audit; it never supplies replacement Excel answers.
 pub fn function_routes(input: &str, out: &str) {

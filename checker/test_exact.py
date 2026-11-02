@@ -31,6 +31,115 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_variance_checker_rejects_complete_empty_scope(self):
+        from checker.variance import profiles, check
+        with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):
+            root=Path(scratch);proof=root/'proof';proof.mkdir();scoped=root/'empty.jsonl';scoped.write_text('')
+            ps=list(profiles('AVERAGE'))
+            (proof/'summary.json').write_text(json.dumps(dict(complete=True,function='AVERAGE',
+                programs=75,observations=0,executions=0,survivors=75)))
+            (proof/'profiles.jsonl').write_text(''.join(json.dumps(p)+'\n'for p in ps))
+            (proof/'first-kills.jsonl').write_text('');(proof/'witnesses.jsonl').write_text('')
+            (proof/'survivors.json').write_text(json.dumps(list(range(75))))
+            receipt=root/'must-not-exist.json'
+            with self.assertRaisesRegex(ValueError,'empty'):
+                check(scoped,proof,receipt)
+            self.assertFalse(receipt.exists())
+
+    def test_devsq_memoization_uses_only_identical_root_expressions(self):
+        from checker.variance import evaluate, root_profile_key, MODELS
+        values=[[R(1)+two(-52),R(1),R(1)-two(-53)],
+                [two(390)+two(338),two(390),two(390)-two(337)],
+                [two(-390),two(-389),two(-388)]]
+        for index,modes in enumerate(itertools.product(MODELS,repeat=4)):
+            if index%7:continue
+            for algorithm,order,finish in itertools.product((0,12),(0,1,2),MODELS):
+                p=dict(id=index,algorithm=algorithm,linear_order=order,square_order=order,
+                       models=[*modes,finish])
+                a,l,s,m=root_profile_key(p,'DEVSQ')
+                canonical=dict(algorithm=a,linear_order=l,square_order=s,models=m)
+                for xs in values:self.assertEqual(evaluate(p,xs,'DEVSQ'),evaluate(canonical,xs,'DEVSQ'))
+                self.assertEqual(root_profile_key(p,'VAR.S'),(algorithm,order,order,tuple(p['models'])))
+
+    def test_variance_checker_nonempty_survivor_and_first_kill_routes(self):
+        from checker.variance import profiles, check
+        with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):
+            root=Path(scratch);ps=list(profiles('AVERAGE'))
+            for matched in (False,True):
+                proof=root/str(matched);proof.mkdir();scoped=proof/'input.jsonl'
+                target='0x3ff8000000000000'if matched else'0x3ffc000000000000'
+                raw=dict(id='SYNTHETIC-not-Excel',function='AVERAGE',result_index=None,
+                    args=['0x3ff0000000000000','0x4000000000000000'],expected=target)
+                scoped.write_text(json.dumps(dict(trace_index=0,raw=raw,values_bits=[0x3ff0000000000000,0x4000000000000000]))+'\n')
+                (proof/'profiles.jsonl').write_text(''.join(json.dumps(p)+'\n'for p in ps))
+                (proof/'summary.json').write_text(json.dumps(dict(complete=True,function='AVERAGE',programs=75,observations=1,executions=75,survivors=75 if matched else 0)))
+                (proof/'survivors.json').write_text(json.dumps(list(range(75))if matched else []))
+                (proof/'witnesses.jsonl').write_text(json.dumps(dict(order=0,trace_index=0,killed=0 if matched else 75,remaining=75 if matched else 0))+'\n')
+                kills=[]
+                if not matched:
+                    for p in ps:
+                        encoded=extended_control(R(3,2))if p['models'][1].startswith('resident')else'binary64:3ff8000000000000'
+                        kills.append(dict(candidate_id=p['id'],order=0,trace_index=0,root=encoded,got='0x3ff8000000000000',expected=target))
+                (proof/'first-kills.jsonl').write_text(''.join(json.dumps(k)+'\n'for k in kills))
+                receipt=proof/'checked.json';check(scoped,proof,receipt)
+                result=json.loads(receipt.read_text())
+                self.assertTrue(result['complete'])
+                self.assertEqual(result['counts']['program_executions'],75)
+
+    def test_rank_schur_exact_dependencies_and_zero_column_policy(self):
+        from checker.regression import rank_schur
+        for threshold,normalizer,zero in itertools.product(
+                ('zero','epsilon','epsilon_squared','sqrt_epsilon','gamma_n','gamma_n_squared'),
+                ('column','largest','first','absolute'),('keep','drop')):
+            p=dict(threshold=threshold,normalizer=normalizer,zero=zero)
+            columns=[list(map(R,(1,2,5,4))),list(map(R,(2,4,10,8)))]
+            self.assertEqual(rank_schur(p,(columns,False,0))[0],3)
+            self.assertEqual(rank_schur(p,(columns,True,0))[0],2)
+            columns=[list(map(R,(1,2,5,4))),[R(0)]*4]
+            self.assertEqual(rank_schur(p,(columns,False,0))[0],2 if zero=='keep'else 3)
+
+    def test_mpfr_log_bounds_retain_direction_and_exact_zero(self):
+        from checker.reference import log_bounds
+        self.assertEqual(log_bounds(0x3ff0000000000000),(R(0),R(0)))
+        lo,hi=log_bounds(0x4000000000000000)
+        self.assertLess(lo,hi)
+        self.assertTrue(R(69,100)<lo<hi<R(7,10))
+
+    def test_scope_does_not_compare_different_selected_results(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('scope_audit',Path(__file__).resolve().parents[1]/'racer/corpus_cases.py')
+        audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit)
+        common=dict(function='LINEST',args=[[['0x3ff0000000000000']]],source='SYNTHETIC',reading={})
+        rows=[dict(common,id='coef',result_index=[1,1],expected='0x3ff0000000000000'),
+              dict(common,id='df',result_index=[4,2],expected='0x4000000000000000')]
+        with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):
+            root=Path(scratch)
+            for name,values in [('bank',rows),('corpus',[]),('observations',[])]:
+                (root/name).write_text(''.join(json.dumps(r)+'\n'for r in values))
+            audit.variance_scope(root/'bank',root/'corpus',root/'observations',root/'out','LINEST')
+            self.assertEqual(json.loads((root/'out/different-answers.json').read_text()),[])
+
+    def test_corpus_freeze_reads_ordinary_committed_capture_and_excludes_intersection(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('corpus_audit',Path(__file__).resolve().parents[1]/'racer/corpus_cases.py')
+        audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit)
+        with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):
+            root=Path(scratch);folder=root/'workbooks'/'ordinary_oracle.xlsx';folder.mkdir(parents=True)
+            capture=root/'original.capture.json'
+            cells=[dict(sheet='S',row=i,column=1)for i in(1,2)]
+            number=dict(number='4005555555555555')
+            capture.write_text(json.dumps(dict(environment={},formulas=[dict(c,formula=f)for c,f in zip(cells,['=AVERAGE(1,2,5)','=\u0040AVERAGE(1,2,5)'])],observations=[dict(c,excel_raw=number)for c in cells])))
+            (folder/'evaluations.json').write_text(json.dumps(dict(evaluations=[dict(c,returned=dict(value=number))for c in cells])))
+            (folder/'triage.json').write_text(json.dumps(dict(cells=[dict(c,verdict='matched')for c in cells])))
+            (root/'summary.json').write_text(json.dumps(dict(workbooks=[dict(name='ordinary/oracle.xlsx',capture='committed capture '+str(capture))])))
+            audit.freeze(root,root/'frozen','AVERAGE')
+            rows=[json.loads(line)for line in(root/'frozen/cases.jsonl').read_text().splitlines()]
+            self.assertEqual(len(rows),1)
+            self.assertEqual(rows[0]['formula'],'=AVERAGE(1,2,5)')
+            excluded=[json.loads(line)for line in(root/'frozen/excluded.jsonl').read_text().splitlines()]
+            self.assertEqual(len(excluded),1)
+            self.assertIn('implicit intersection',excluded[0]['reason'])
+
     def test_bank_delta_orders_function_prefixes_and_counts_real_losses(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location('r15_audit',Path(__file__).resolve().parents[1]/'racer/audit.py')
@@ -107,15 +216,31 @@ class ExactArithmetic(unittest.TestCase):
             self.assertEqual(evaluate(profile,(x,list(map(R,(3,5,7))),True),2),(R(1),'0x3ff0000000000000'))
             self.assertEqual(evaluate(profile,(x,list(map(R,(2,4,6))),False),2),(R(0),'0x0000000000000000'))
 
+    def test_average_and_devsq_use_their_own_finishes(self):
+        from checker.variance import profiles, evaluate, outcome
+        self.assertEqual(len(list(profiles('AVERAGE'))), 75)
+        for profile in profiles('AVERAGE'):
+            self.assertEqual(evaluate(profile, [R(-4), R(1), R(3)], 'AVERAGE'), R(0))
+            self.assertEqual(outcome(evaluate(profile, [R(-4), R(-1), R(-1)], 'AVERAGE')),
+                             '0xc000000000000000')
+        for profile in profiles():
+            if len(set(profile['models'])) == 1:
+                self.assertEqual(evaluate(profile, [R(-3), R(0), R(3)], 'DEVSQ'), R(18))
+
     def test_variance_published_identities_and_grammar(self):
         from checker.variance import profiles, evaluate, outcome
         ps = list(profiles())
-        self.assertEqual(len(ps), 153125)
-        self.assertEqual({p['id'] for p in ps}, set(range(153125)))
+        self.assertEqual(len(ps), 350000)
+        self.assertEqual({p['id'] for p in ps}, set(range(350000)))
         # Exact symmetric controls exercise every algorithm/order with all
         # five coherent models, including the two different online updates.
         for p in ps:
             if len(set(p['models'])) != 1:
+                continue
+            if p['algorithm'] >= 7:
+                self.assertEqual(evaluate(p, [R(-3),R(0),R(3)], 'VAR.S'), R(9))
+                self.assertEqual(evaluate(p, [R(-3),R(0),R(3)], 'VAR.P'), R(6))
+                self.assertEqual(evaluate(p, [R(-3),R(0),R(3)], 'STDEV.S'), R(3))
                 continue
             self.assertEqual(evaluate(p, [R(1),R(2),R(3)], 'VAR.S'), R(1))
             self.assertEqual(outcome(evaluate(p, [R(0),R(2),R(4)], 'STDEV.S')), '0x4000000000000000')

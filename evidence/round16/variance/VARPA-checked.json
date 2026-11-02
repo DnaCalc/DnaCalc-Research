@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "function": "VARPA",
+  "programs": 350000,
+  "observations": 1053,
+  "survivors": 0,
+  "counts": {
+    "program_executions": 445545,
+    "certified_first_kills": 350000
+  },
+  "arithmetic_cache": {
+    "hits": 20560990,
+    "misses": 19930,
+    "maxsize": 262144,
+    "currsize": 19930
+  },
+  "distinct_exact_operations": 19930,
+  "seconds": 78.31617340212688,
+  "root_cache": {
+    "hits": 0,
+    "misses": 445545,
+    "maxsize": 65536,
+    "currsize": 65536
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "a884df26ea96c2387e92a8689bec353160350e96c9bf51038ab7adbe82218d00",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233"
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-stats-frozen/scoped.jsonl": "9a917dd497f5a6954c2483cea9a20e6585ebe312e9d7e4b117fac09c2c809084",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-VARPA-native/first-kills.jsonl": "d6f0c8a7ed66ab4b3cfc2c6ffe6028ba663bd61b452a1553a406ca8e950f36d8",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-VARPA-native/profiles.jsonl": "6c41b6c660a595cff98a430540c238a6f2ebbbe99980273b4bcc8bc3ef39d4ee",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-VARPA-native/summary.json": "3165a25c299f3dc97ad1c236b42e8cdc26e2bf1b4bbbcc3c59b232c78b6ca851",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-VARPA-native/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-VARPA-native/witnesses.jsonl": "54f102e77fc550fa863287af257a15645d7ce83a3da58243f682868712020d6b"
+  },
+  "limits": "Finite declared programs only. Coherent precision regions and original transport assumptions. Zero signs are immaterial here: every divisor is a positive integer, roots publish zero with the product zero policy. No alias identity, private Excel precision, extra branch, fitted cutoff or complete kernel is inferred."
+}

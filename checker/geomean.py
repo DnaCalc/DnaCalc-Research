@@ -21,6 +21,8 @@ WORDS=(0x123f,0x133f)
 
 def coordinates(row):
     if row['function']!='GEOMEAN'or row['result_index']is not None:return None,'surface'
+    if 'reference_binding' in row:
+        verify_static_reference(row)
     def flatten(v):
         if not isinstance(v,list):return[v]
         return list(itertools.chain.from_iterable(flatten(a)for a in v))
@@ -46,6 +48,37 @@ def coordinates(row):
     except ValueError:return None,'partial_product_bound'
     if not row['expected'].startswith('0x'):return None,'non_numeric_expected'
     return [int(x,16)for x in args],None
+
+
+def verify_static_reference(row):
+    """Re-read the immutable package/capture, rather than trust derived operands."""
+    import zipfile
+    import xml.etree.ElementTree as ET
+    binding=row['reference_binding'];package=Path(binding['package']);capture=Path(row['source'])
+    require(digest(package)==binding['package_sha256']and digest(capture)==binding['capture_sha256'],'reference source changed')
+    require(row['formula'].lstrip('=')in('GEOMEAN(Data!A1:A3)','_xlfn.GEOMEAN(Data!A1:A3)')and
+            binding['sheet']=='Data'and binding['cells']==['A1','A2','A3'],'unsupported reference binding')
+    ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'};rid='{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id'
+    with zipfile.ZipFile(package)as z:
+        rels={r.attrib['Id']:r.attrib['Target']for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}
+        sheet=next(s for s in ET.fromstring(z.read('xl/workbook.xml')).find('m:sheets',ns)if s.attrib['name']=='Data')
+        cells={c.attrib['r']:c for c in ET.fromstring(z.read('xl/'+rels[sheet.attrib[rid]])).findall('.//m:c',ns)}
+        values=[]
+        for name in('A1','A2','A3'):
+            cell=cells[name];require(cell.find('m:f',ns)is None and cell.attrib.get('t','n')=='n','not a static numeric reference')
+            value=Q(cell.find('m:v',ns).text)
+            require(value==binary64(binding['values'][len(values)]),'reference numeric value changed')
+            values.append(binding['values'][len(values)])
+    require(row['args']==[[[v]for v in values]],'reference operands differ')
+    doc=json.loads(capture.read_text())
+    package_source='sha256:'+binding['package_sha256']
+    require(doc['source']==package_source and doc['session']['packages']['input']==package_source,
+            'reference capture/package lineage differs')
+    f=row['original_formula'];key=(f['sheet'],f['row'],f['column'])
+    require(f in doc['formulas']and f['formula']==row['formula'],'reference formula changed')
+    original=next(r for r in doc['observations']if(r['sheet'],r['row'],r['column'])==key)
+    require(original==row['original_capture']and row['reading']==doc['environment'],'reference observation changed')
+    require(row['expected']=='0x'+original['excel_raw']['number'],'reference answer changed')
 
 
 def grammar(count,path,order):
@@ -153,4 +186,68 @@ def check(input_path,directory,library,output):
     print(json.dumps(result))
 
 
-if __name__=='__main__':check(*sys.argv[1:])
+def check_exact_roots(input_path, directory, output):
+    """Verify roots by inverse midpoint powers, without the producer's root search."""
+    from exact import operation
+    directory = Path(directory)
+    frozen = {str(p):digest(p) for p in (Path(input_path), *sorted(directory.iterdir()),
+              Path(__file__), Path(__file__).with_name('exact.py')) if p.is_file()}
+    original = list(records(input_path)); rows = []; scope = Counter()
+    for index, raw in enumerate(original):
+        inputs, reason = coordinates(raw)
+        if reason: scope[reason] += 1
+        else: rows.append(dict(trace_index=index, raw=raw, inputs=inputs)); scope['scoped'] += 1
+    require(rows, 'empty exact-root scope')
+    require(json.loads((directory/'scoped.json').read_text()) == rows, 'changed exact-root scope')
+    modes = ('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53','exact')
+    ps = [dict(id=i, order=order, model=model) for i,(order,model) in enumerate(itertools.product(range(3),modes))]
+    require(json.loads((directory/'profiles.json').read_text()) == ps, 'changed exact-root grammar')
+    def product(profile, row):
+        xs = list(map(binary64, row['inputs']))
+        def multiply(a,b): return a*b if profile['model']=='exact' else operation(a,b,'mul',profile['model'])
+        def balanced(items):
+            if len(items)==1:return items[0]
+            k=len(items)//2
+            return multiply(balanced(items[:k]),balanced(items[k:]))
+        if profile['order']==2:return balanced(xs)
+        result=Q(1)
+        for x in xs if profile['order']==0 else xs[::-1]:result=multiply(result,x)
+        return result
+    def verifies(value, count, encoded):
+        bits=int(encoded,16)
+        require(0 < bits < 0x7ff0000000000000, 'nonpositive or nonfinite root')
+        center=binary64(bits);low=((binary64(bits-1)+center)/2)**count;high=((binary64(bits+1)+center)/2)**count
+        return (low <= value <= high) if bits%2==0 else (low < value < high)
+    seen=set();executions=0
+    for kill in records(directory/'first-kills.jsonl'):
+        identity, at=kill['candidate_id'], kill['order']
+        require(identity not in seen and 0<=identity<len(ps) and 0<=at<len(rows), 'bad root kill identity')
+        for prior in range(at+1):
+            row=rows[prior];value=product(ps[identity],row);executions+=1
+            if prior<at:require(verifies(value,len(row['inputs']),row['raw']['expected']), 'not first root contradiction')
+            else:
+                require(value==Q(*map(int,kill['product'])) and
+                        verifies(value,len(row['inputs']),kill['got']), 'incorrect product/root')
+                require(kill['expected']==row['raw']['expected']!=kill['got'], 'changed root target')
+        seen.add(identity)
+    survivors=json.loads((directory/'survivors.json').read_text())
+    require(len(set(survivors))==len(survivors) and seen.isdisjoint(survivors) and
+            seen|set(survivors)==set(range(len(ps))), 'unsearched root program')
+    for identity in survivors:
+        for row in rows:
+            require(verifies(product(ps[identity],row),len(row['inputs']),row['raw']['expected']), 'invalid root survivor')
+            executions+=1
+    summary=json.loads((directory/'summary.json').read_text())
+    require(summary['complete'] and summary['programs']==len(ps) and summary['survivors']==len(survivors)
+            and summary['observations']==len(rows) and summary['scope']==scope and summary['executions']==executions,
+            'wrong root summary')
+    require(all(digest(p)==h for p,h in frozen.items()), 'root proof/source changed')
+    result=dict(complete=True,programs=len(ps),observations=len(rows),survivors=len(survivors),executions=executions,
+                input_sha256=frozen,limits='Exact inverse midpoint-power verification of the specified rounded-product/correct-root programs. No native transcendental instruction, fitted answer or Excel internal precision is assumed.')
+    with open(output,'x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(result))
+
+
+if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='exact-root':check_exact_roots(*sys.argv[2:])
+    else:check(*sys.argv[1:])

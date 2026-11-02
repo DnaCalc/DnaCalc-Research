@@ -1,4 +1,4 @@
-"""Independent rational verifier of the R14 finite variance family.
+"""Independent rational verifier of the R14/R16 finite variance families.
 
 No search generator, native interpreter, product source or numeric library is
 imported. The only shared arithmetic is the existing integer/rational checker.
@@ -21,10 +21,17 @@ MODELS = ('strict', 'stored_pc64', 'resident_pc64', 'stored_pc53', 'resident_pc5
 COUNTS = Counter()
 
 
-def profiles():
+def profiles(function=None):
+    if function == 'AVERAGE':
+        identity = 0
+        for order, division, reduction in itertools.product(range(3), MODELS, MODELS):
+            yield dict(id=identity, algorithm=0, linear_order=order, square_order=0,
+                       models=[reduction, division, 'strict', 'strict', 'strict'])
+            identity += 1
+        return
     identity = 0
-    for algorithm in range(7):
-        orders = itertools.product(range(3), repeat=2) if algorithm < 5 else ((0, 0), (1, 1))
+    for algorithm in range(14):
+        orders = itertools.product(range(3), repeat=2) if algorithm < 5 or algorithm >= 7 else ((0, 0), (1, 1))
         for linear, square in orders:
             for reversed_models in itertools.product(MODELS, repeat=5):
                 yield dict(id=identity, algorithm=algorithm, linear_order=linear,
@@ -43,7 +50,7 @@ def arithmetic(kind, model, x, y=Q(0)):
 
 
 def evaluate(profile, values, function):
-    """Re-derive the seven mathematical programs; all rounding is rational."""
+    """Re-derive the fourteen mathematical programs; all rounding is rational."""
     modes = profile['models']
     def calc(region, kind, x, y=Q(0)):
         return arithmetic(kind, modes[region], x, y)
@@ -60,9 +67,56 @@ def evaluate(profile, values, function):
         for item in items if order == 0 else items[::-1]:
             total = calc(region, 'add', total, item)
         return total
+    if function == 'AVERAGE':
+        return calc(1, 'div', reduction(values, profile['linear_order'], 0), Q(len(values)))
     algorithm = profile['algorithm']
     linear, squared = profile['linear_order'], profile['square_order']
     size = Q(len(values))
+    if algorithm >= 7:
+        total = reduction(values, linear, 0)
+        squares = reduction([calc(2, 'mul', x, x) for x in values], squared, 3)
+        square_total = calc(2, 'mul', total, total)
+        population = function in ('VAR.P', 'VARP', 'VARPA', 'STDEV.P', 'STDEVP', 'STDEVPA')
+        divisor = Q(1) if function == 'DEVSQ' else (size if population else size-1)
+        if algorithm == 7:
+            numerator = subtract(4, squares, calc(1, 'div', square_total, size))
+            result = numerator if function == 'DEVSQ' else calc(4, 'div', numerator, divisor)
+        elif algorithm == 8:
+            numerator = subtract(4, calc(4, 'mul', size, squares), square_total)
+            denominator = size if function == 'DEVSQ' else calc(4, 'mul', size, divisor)
+            result = calc(4, 'div', numerator, denominator)
+        elif algorithm == 9:
+            left = calc(4, 'div', squares, divisor)
+            right = calc(4, 'div', square_total, calc(4, 'mul', size, divisor))
+            result = subtract(4, left, right)
+        elif algorithm == 10:
+            left = calc(4, 'div', squares, divisor)
+            mean = calc(1, 'div', total, size)
+            scaled = calc(1, 'div', total, divisor)
+            result = subtract(4, left, calc(2, 'mul', mean, scaled))
+        elif algorithm == 11:
+            mean = calc(1, 'div', total, size)
+            difference = subtract(4, calc(4, 'div', squares, size), calc(2, 'mul', mean, mean))
+            scale = size if function == 'DEVSQ' else calc(4, 'div', size, divisor)
+            result = calc(4, 'mul', difference, scale)
+        elif algorithm == 12:
+            mean = calc(1, 'div', total, size)
+            terms = []
+            for x in values:
+                difference = subtract(1, x, mean)
+                product = calc(2, 'mul', difference, difference)
+                terms.append(product if function == 'DEVSQ' else calc(4, 'div', product, divisor))
+            result = reduction(terms, squared, 3)
+        else:
+            terms = []
+            for i in range(len(values)):
+                for j in range(i+1, len(values)):
+                    difference = subtract(1, values[i], values[j])
+                    terms.append(calc(2, 'mul', difference, difference))
+            numerator = reduction(terms, squared, 3)
+            denominator = size if function == 'DEVSQ' else calc(4, 'mul', size, divisor)
+            result = calc(4, 'div', numerator, denominator)
+        return calc(4, 'sqrt', result) if function.startswith('STDEV') else result
     if algorithm in (5, 6):
         data = values if linear == 0 else values[::-1]
         mean, total, dispersion = data[0], data[0], Q(0)
@@ -105,6 +159,8 @@ def evaluate(profile, values, function):
             else:
                 correction = calc(2, 'mul', total, mean)
                 dispersion = subtract(4, uncentered, correction)
+    if function == 'DEVSQ':
+        return dispersion
     is_population = function in ('VAR.P', 'VARP', 'VARPA', 'STDEV.P', 'STDEVP', 'STDEVPA')
     variance = calc(4, 'div', dispersion, size if is_population else size-1)
     return calc(4, 'sqrt', variance) if function.startswith('STDEV') else variance
@@ -128,7 +184,7 @@ def decode_scoped(row):
     values = list(map(binary64, bits))
     require(all(x == 0 or two(-400) <= abs(x) <= two(400) for x in values), 'input outside bounded scope')
     expected = binary64(raw['expected'])
-    require(expected >= 0 and (expected == 0 or expected >= two(-1022)), 'target outside scope')
+    require((expected >= 0 or raw['function'] == 'AVERAGE') and (expected == 0 or abs(expected) >= two(-1022)), 'target outside scope')
     return values
 
 
@@ -159,6 +215,19 @@ def verify_root(root, encoded, model):
         require(tagged_value(encoded) == root, 'exact full-width root mismatch')
 
 
+def root_profile_key(profile, function):
+    """Ignore only the label and provably dead DEVSQ expression fields.
+
+    DEVSQ forms 0 and 12 return the identical centered sum, with no divisor.
+    Their region 4 does not reach that root. All logical labels remain in the
+    catalogue, first-kill coverage and execution counts.
+    """
+    algorithm=profile['algorithm'];models=tuple(profile['models'])
+    if function=='DEVSQ' and algorithm in (0,12):
+        algorithm=0;models=(*models[:4],'strict')
+    return algorithm,profile['linear_order'],profile['square_order'],models
+
+
 def check(scoped, directory, output):
     start = time.monotonic()
     source = Path(__file__)
@@ -167,10 +236,19 @@ def check(scoped, directory, output):
     summary = json.loads((directory/'summary.json').read_text())
     require(summary['complete'] is True, 'partial search cannot certify completeness')
     function = summary['function']
+    require(function in ('VAR','VAR.S','VAR.P','VARP','VARA','VARPA','STDEV','STDEV.S',
+            'STDEV.P','STDEVP','STDEVA','STDEVPA','DEVSQ','AVERAGE'),'unknown variance function')
     frozen = [r for r in records(scoped) if r['raw']['function'] == function]
+    require(frozen, 'empty variance observation scope')
     values = [decode_scoped(r) for r in frozen]
     ps = list(records(directory/'profiles.jsonl'))
-    require(ps == list(profiles()) and len(ps) == summary['programs'] == 153125, 'incomplete or modified grammar')
+    require(ps == list(profiles(function)) and len(ps) == summary['programs'] == (75 if function == 'AVERAGE' else 350000), 'incomplete or modified grammar')
+    keys=[root_profile_key(p,function)for p in ps]
+    @lru_cache(maxsize=65536)
+    def replay_root(key, at):
+        algorithm,linear,squared,models=key
+        profile=dict(algorithm=algorithm,linear_order=linear,square_order=squared,models=models)
+        return evaluate(profile,values[at],function)
     witnesses = list(records(directory/'witnesses.jsonl'))
     require(len(witnesses) == len(frozen) == summary['observations'], 'missing observation accounting')
     seen = set()
@@ -184,14 +262,15 @@ def check(scoped, directory, output):
         require(kill['expected'] == frozen[order]['raw']['expected'], 'changed answer')
         p = ps[identity]
         for prior in range(order+1):
-            root = evaluate(p, values[prior], function)
+            root = replay_root(keys[identity], prior)
             calculated = outcome(root)
             expected = frozen[prior]['raw']['expected']
             counts['program_executions'] += 1
             if prior < order:
                 require(calculated == expected, 'record is not the first contradiction')
             else:
-                verify_root(root, kill['root'], p['models'][4])
+                region = 1 if function == 'AVERAGE' else 4 if function.startswith('STDEV') else 3 if p['algorithm'] == 12 or (function == 'DEVSQ' and p['algorithm'] in (0, 5, 6)) else 4
+                verify_root(root, kill['root'], p['models'][region])
                 require(calculated == kill['got'] and calculated != expected, 'invalid kill')
         seen.add(identity)
         kill_counts[order] += 1
@@ -199,9 +278,9 @@ def check(scoped, directory, output):
     survivors = json.loads((directory/'survivors.json').read_text())
     require(len(set(survivors)) == len(survivors), 'duplicate survivor')
     require(seen.isdisjoint(survivors) and seen | set(survivors) == set(range(len(ps))), 'unsearched program')
-    for identity in survivors:
-        for row, xs in zip(frozen, values):
-            require(outcome(evaluate(ps[identity], xs, function)) == row['raw']['expected'], 'invalid survivor')
+    for at, row in enumerate(frozen):
+        for identity in survivors:
+            require(outcome(replay_root(keys[identity], at)) == row['raw']['expected'], 'invalid survivor')
             counts['program_executions'] += 1
     remaining = len(ps)
     for order, (record, row) in enumerate(zip(witnesses, frozen)):
@@ -214,6 +293,7 @@ def check(scoped, directory, output):
     result = dict(complete=True, function=function, programs=len(ps), observations=len(frozen),
                   survivors=len(survivors), counts=counts, arithmetic_cache=arithmetic.cache_info()._asdict(),
                   distinct_exact_operations=COUNTS['distinct_exact_operations'], seconds=time.monotonic()-start,
+                  root_cache=replay_root.cache_info()._asdict(),
                   source_sha256=sources,
                   input_sha256={str(p): digest(p) for p in (Path(scoped), *sorted(directory.iterdir())) if p.is_file()},
                   limits='Finite declared programs only. Coherent precision regions and original transport assumptions. '

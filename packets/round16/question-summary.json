@@ -1,0 +1,33 @@
+{
+  "format": "dnacalc-research-questions-r16/1",
+  "scalar_calls": 250,
+  "calls_by_function": {
+    "VAR.S": 10,
+    "VAR.P": 10,
+    "STDEV.S": 10,
+    "STDEV.P": 10,
+    "DEVSQ": 10,
+    "AVERAGE": 10,
+    "BESSELJ": 77,
+    "BESSELY": 18,
+    "BESSELI": 63,
+    "EXP": 7,
+    "SIN": 6,
+    "COS": 6,
+    "GEOMEAN": 13
+  },
+  "catalogue_formula_cells": 810,
+  "catalogue_sheet": "dcj9k_r16",
+  "catalogue_section": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/fixtures/catalogue/sheet-dcj9k_r16.txt",
+  "executable_sha256": "7c1173a5a3c72470c8f2b9bbc7b179b5a2c4f19911b44fcbc5aaafb5e9ff1504",
+  "sources_sha256": {
+    "/home/ubuntu/codex-runs/excel-results-r14-variance/OxFunc-Evidence/readings/excel-20527/AVERAGE.json": "4666343a3403685b4e1b232cf410f24246d1d2edf1f4c23c924b23e0ec5fd519",
+    "/home/ubuntu/codex-runs/excel-results-r14-variance/OxFunc-Evidence/readings/excel-20527/DEVSQ.json": "3e7e58a726fcd676c6654f5cd9c4cdf6338d67421669b774b8966bb0a3516284",
+    "/home/ubuntu/codex-runs/excel-results-r14-variance/OxFunc-Evidence/readings/excel-20527/STDEV.P.json": "8cddb6e497339f2698dd8e6749fbcf2a0344af8610c2d4609d77a1e4fe40f5c5",
+    "/home/ubuntu/codex-runs/excel-results-r14-variance/OxFunc-Evidence/readings/excel-20527/STDEV.S.json": "ff2167754f20ce231c1c2e5b9aa7714757175b66af028f4f79173094fb865a53",
+    "/home/ubuntu/codex-runs/excel-results-r14-variance/OxFunc-Evidence/readings/excel-20527/VAR.P.json": "c1632dd4c26804556003d6c5ed6dd5be6d7b131efb9fc3c0fbb9790afff3ee4f",
+    "/home/ubuntu/codex-runs/excel-results-r14-variance/OxFunc-Evidence/readings/excel-20527/VAR.S.json": "6c0894d032adac645fe3711a489f8725c443a44ab2c9905ee98224dd41d75739"
+  },
+  "new_excel_answers": 0,
+  "limits": "Questions only. Scalar Value2 references use CompatibilityVersion/settings recorded by the standard reader; catalogue questions use the existing section capture. Literal operand echoes expose worksheet parsing, not private callee inputs. No fitted cutoff/rank tolerance or validated numerical candidate. Preserve all settings, failures and original raw outputs. No R15 annuity question or answer."
+}

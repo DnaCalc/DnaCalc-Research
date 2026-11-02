@@ -1,0 +1,510 @@
+{
+  "function": "BESSELI",
+  "selection": "R16 fixed surface/domain questions; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r16-besseli-000",
+      "args": [
+        "0x4086280000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-001",
+      "args": [
+        "0x4086280000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-002",
+      "args": [
+        "0x4086280000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-003",
+      "args": [
+        "0x4086280000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-004",
+      "args": [
+        "0x4086280000000000",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-005",
+      "args": [
+        "0x4086280000000000",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-006",
+      "args": [
+        "0x40862c0000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-007",
+      "args": [
+        "0x40862c0000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-008",
+      "args": [
+        "0x40862c0000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-009",
+      "args": [
+        "0x40862c0000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-010",
+      "args": [
+        "0x40862c0000000000",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-011",
+      "args": [
+        "0x40862c0000000000",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-012",
+      "args": [
+        "0x40862d9999999999",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-013",
+      "args": [
+        "0x40862d9999999999",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-014",
+      "args": [
+        "0x40862d9999999999",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-015",
+      "args": [
+        "0x40862d9999999999",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-016",
+      "args": [
+        "0x40862d9999999999",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-017",
+      "args": [
+        "0x40862d9999999999",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-018",
+      "args": [
+        "0x40862d999999999a",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-019",
+      "args": [
+        "0x40862d999999999a",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-020",
+      "args": [
+        "0x40862d999999999a",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-021",
+      "args": [
+        "0x40862d999999999a",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-022",
+      "args": [
+        "0x40862d999999999a",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-023",
+      "args": [
+        "0x40862d999999999a",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-024",
+      "args": [
+        "0x40862d999999999b",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-025",
+      "args": [
+        "0x40862d999999999b",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-026",
+      "args": [
+        "0x40862d999999999b",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-027",
+      "args": [
+        "0x40862d999999999b",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-028",
+      "args": [
+        "0x40862d999999999b",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-029",
+      "args": [
+        "0x40862d999999999b",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-030",
+      "args": [
+        "0x40862e3d70a3d70a",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-031",
+      "args": [
+        "0x40862e3d70a3d70a",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-032",
+      "args": [
+        "0x40862e3d70a3d70a",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-033",
+      "args": [
+        "0x40862e3d70a3d70a",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-034",
+      "args": [
+        "0x40862e3d70a3d70a",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-035",
+      "args": [
+        "0x40862e3d70a3d70a",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-036",
+      "args": [
+        "0x4086300000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-037",
+      "args": [
+        "0x4086300000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-038",
+      "args": [
+        "0x4086300000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-039",
+      "args": [
+        "0x4086300000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-040",
+      "args": [
+        "0x4086300000000000",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-041",
+      "args": [
+        "0x4086300000000000",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-042",
+      "args": [
+        "0x4086480000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-043",
+      "args": [
+        "0x4086480000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-044",
+      "args": [
+        "0x4086480000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-045",
+      "args": [
+        "0x4086480000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-046",
+      "args": [
+        "0x4086480000000000",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-047",
+      "args": [
+        "0x4086480000000000",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-048",
+      "args": [
+        "0x4086500000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-049",
+      "args": [
+        "0x4086500000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-050",
+      "args": [
+        "0x4086500000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-051",
+      "args": [
+        "0x4086500000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-052",
+      "args": [
+        "0x4086500000000000",
+        "0x4024000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-053",
+      "args": [
+        "0x4086500000000000",
+        "0x4059000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-054",
+      "args": [
+        "0xc0862d999999999a",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-055",
+      "args": [
+        "0xc0862d999999999a",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-056",
+      "args": [
+        "0xc0862d999999999a",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-057",
+      "args": [
+        "0xc0862d999999999b",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-058",
+      "args": [
+        "0xc0862d999999999b",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-059",
+      "args": [
+        "0xc0862d999999999b",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-060",
+      "args": [
+        "0xc086300000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-061",
+      "args": [
+        "0xc086300000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besseli-062",
+      "args": [
+        "0xc086300000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

@@ -24,8 +24,8 @@ pub struct Profile {
 
 pub fn profiles() -> Vec<Profile> {
     let mut all = Vec::new();
-    for algorithm in 0..7 {
-        let orders: Vec<_> = if algorithm < 5 {
+    for algorithm in 0..14 {
+        let orders: Vec<_> = if algorithm < 5 || algorithm >= 7 {
             (0..3).flat_map(|a| (0..3).map(move |b| (a, b))).collect()
         } else {
             vec![(0, 0), (1, 1)]
@@ -48,7 +48,22 @@ pub fn profiles() -> Vec<Profile> {
             }
         }
     }
-    assert_eq!(all.len(), 153125);
+    assert_eq!(all.len(), 350000);
+    all
+}
+
+/// AVERAGE has just a reduction and division. Other regions do not enter its grammar.
+fn function_profiles(function: &str) -> Vec<Profile> {
+    if function != "AVERAGE" { return profiles(); }
+    let mut all = Vec::new();
+    for linear_order in 0..3 {
+        for &division in &WIDE_MODELS {
+            for &sum in &WIDE_MODELS {
+                all.push(Profile { id: all.len(), algorithm: 0, linear_order,
+                    square_order: 0, models: [sum, division, EvalModel::Strict, EvalModel::Strict, EvalModel::Strict] });
+            }
+        }
+    }
     all
 }
 
@@ -157,7 +172,80 @@ pub fn evaluate<F: Fpu>(
     };
     let mut xs: Vec<_> = bits.iter().copied().map(Val::F64).collect();
     let n = Val::f64(xs.len() as f64);
+    if function == "AVERAGE" {
+        let total = a.sum(&xs, p.linear_order, 0);
+        let mean = a.div(1, total, n);
+        return (mean, a.trace);
+    }
     let d = Val::f64((xs.len() - usize::from(!population(function))) as f64);
+    // Algebraically equal raw-moment forms have distinct store boundaries.
+    // Constants here are only the count and its sample/population divisor.
+    if p.algorithm >= 7 {
+        let total = a.sum(&xs, p.linear_order, 0);
+        let terms: Vec<_> = xs.iter().map(|&x| a.mul(2, x, x)).collect();
+        let squares = a.sum(&terms, p.square_order, 3);
+        let square_total = a.mul(2, total, total);
+        let mut value = match p.algorithm {
+            7 => {
+                let correction = a.div(1, square_total, n);
+                let numerator = a.sub(4, squares, correction);
+                if function == "DEVSQ" { numerator } else { a.div(4, numerator, d) }
+            }
+            8 => {
+                let left = a.mul(4, n, squares);
+                let numerator = a.sub(4, left, square_total);
+                let divisor = if function == "DEVSQ" { n } else { a.mul(4, n, d) };
+                a.div(4, numerator, divisor)
+            }
+            9 => {
+                let divisor = if function == "DEVSQ" { Val::f64(1.0) } else { d };
+                let left = a.div(4, squares, divisor);
+                let denominator = a.mul(4, n, divisor);
+                let right = a.div(4, square_total, denominator);
+                a.sub(4, left, right)
+            }
+            10 => {
+                let divisor = if function == "DEVSQ" { Val::f64(1.0) } else { d };
+                let left = a.div(4, squares, divisor);
+                let mean = a.div(1, total, n);
+                let scaled = a.div(1, total, divisor);
+                let right = a.mul(2, mean, scaled);
+                a.sub(4, left, right)
+            }
+            11 => {
+                let mean = a.div(1, total, n);
+                let left = a.div(4, squares, n);
+                let right = a.mul(2, mean, mean);
+                let difference = a.sub(4, left, right);
+                let scale = if function == "DEVSQ" { n } else { a.div(4, n, d) };
+                a.mul(4, difference, scale)
+            }
+            12 => {
+                let mean = a.div(1, total, n);
+                let terms: Vec<_> = xs.iter().map(|&x| {
+                    let delta = a.sub(1, x, mean);
+                    let product = a.mul(2, delta, delta);
+                    if function == "DEVSQ" { product } else { a.div(4, product, d) }
+                }).collect();
+                a.sum(&terms, p.square_order, 3)
+            }
+            13 => {
+                let mut terms = Vec::new();
+                for i in 0..xs.len() {
+                    for j in i+1..xs.len() {
+                        let difference = a.sub(1, xs[i], xs[j]);
+                        terms.push(a.mul(2, difference, difference));
+                    }
+                }
+                let numerator = a.sum(&terms, p.square_order, 3);
+                let divisor = if function == "DEVSQ" { n } else { a.mul(4, n, d) };
+                a.div(4, numerator, divisor)
+            }
+            _ => unreachable!(),
+        };
+        if function.starts_with("STDEV") { value = a.sqrt(value); }
+        return (value, a.trace);
+    }
     let ss = if p.algorithm >= 5 {
         if p.linear_order == 1 {
             xs.reverse();
@@ -219,7 +307,7 @@ pub fn evaluate<F: Fpu>(
             }
         }
     };
-    let mut value = a.div(4, ss, d);
+    let mut value = if function == "DEVSQ" { ss } else { a.div(4, ss, d) };
     if function.starts_with("STDEV") {
         value = a.sqrt(value);
     }
@@ -274,7 +362,7 @@ fn numeric_values(raw: &Value) -> Result<Vec<u64>, &'static str> {
         return Err("non_numeric_expected");
     }
     let x = f64::from_bits(u64::from_str_radix(&e[2..], 16).map_err(|_| "unsupported_expected")?);
-    if !x.is_finite() || x.is_subnormal() || x < 0.0 {
+    if !x.is_finite() || x.is_subnormal() || (x < 0.0 && raw["function"] != "AVERAGE") {
         return Err("expected_outside_bounded_scope");
     }
     Ok(bits)
@@ -303,7 +391,9 @@ pub fn prepare(input: &str, out: &str) {
     for (trace_index, raw) in rows.iter().enumerate() {
         assert!(matches!(
             raw["function"].as_str().unwrap(),
-            "VAR"
+            "AVERAGE"
+                | "DEVSQ"
+                | "VAR"
                 | "VAR.S"
                 | "VAR.P"
                 | "VARP"
@@ -356,7 +446,7 @@ pub fn run<F: Fpu>(input: &str, function: &str, out: &str) {
     for r in &rows {
         assert_eq!(numeric_values(&r.raw).unwrap(), r.values_bits);
     }
-    let ps = profiles();
+    let ps = function_profiles(function);
     let mut pf = file(Path::new(out).join("profiles.jsonl"));
     for p in &ps {
         line(&mut pf, p);
@@ -404,9 +494,11 @@ pub fn controls(input: &str, out: &str) {
     let ps = profiles();
     for p in ps.iter().step_by(625) {
         for (function, xs, expected) in [
-            ("VAR.S", vec![1.0, 2.0, 3.0], 1.0_f64),
-            ("VAR.P", vec![2.0, 4.0, 6.0], 8.0 / 3.0),
-            ("STDEV.S", vec![0.0, 2.0, 4.0], 2.0),
+            ("VAR.S", vec![-3.0, 0.0, 3.0], 9.0_f64),
+            ("VAR.P", vec![-3.0, 0.0, 3.0], 6.0),
+            ("STDEV.S", vec![-3.0, 0.0, 3.0], 3.0),
+            ("DEVSQ", vec![-3.0, 0.0, 3.0], 18.0),
+            ("AVERAGE", vec![-3.0, 0.0, 3.0], 0.0),
         ] {
             let bits: Vec<_> = xs.into_iter().map(f64::to_bits).collect();
             let (hard, trace) = evaluate::<Hard>(p, &bits, function, true);

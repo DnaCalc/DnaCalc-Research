@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "counts": {
+    "shared_inputs": 3875012,
+    "unchanged_outputs": 3875012,
+    "changed_outputs": 0,
+    "changed_expected": 0,
+    "representative_metadata_changes": 0,
+    "shared_before_matches": 3230427,
+    "shared_after_matches": 3230427,
+    "shared_gains": 0,
+    "shared_losses": 0,
+    "added_inputs": 44,
+    "added_matched": 21,
+    "added_failed": 23
+  },
+  "examples": [],
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-before-release.jsonl": "2ffc423ba6f686943e00fa2b61325ab5df5cd5143de1de038259a1404cb418db",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-ingested.jsonl": "2fac950369799cd0f153fa304cc526165118b060a2c5079f7537bc242d171a7d",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "69aaf74878c8806387d775a319dc382d8bbf4677925caebb45122869ebe6eed1"
+  },
+  "limits": "Counts distinguish input coverage from gains/losses on shared inputs. Metadata changes retain the selected capture source. Unread rows have no trace and still fail in each original judge summary; no calculated-only pass rate."
+}

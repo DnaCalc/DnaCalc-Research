@@ -129,4 +129,91 @@ def check(input_path,directory,output):
     print(json.dumps(receipt))
 
 
-if __name__=='__main__':check(*sys.argv[1:])
+def rank_data(raw):
+    if raw['function'] not in ('LINEST','LOGEST') or raw['result_index'] != [4,2]:
+        return None,'not_degrees_of_freedom'
+    args=raw['args']
+    if len(args)<2 or not isinstance(args[0],list) or not isinstance(args[1],list):return None,'not_explicit_numeric_arrays'
+    try:
+        y=args[0]
+        if all(isinstance(r,list)for r in y):
+            if not(len(y)==1 or all(len(r)==1 for r in y)):return None,'response_shape'
+            y=[v for r in y for v in r]
+        x=args[1]
+        if not all(isinstance(r,list)for r in x):x=[[v]for v in x]
+        if len(x)!=len(y)or not 2<=len(y)<=32 or not x or not 1<=len(x[0])<=8 or any(len(r)!=len(x[0])for r in x):return None,'matrix_shape'
+        values=list(map(binary64,y+[v for r in x for v in r]))
+        if any(v and not two(-100)<=abs(v)<=two(100)for v in values):return None,'magnitude_bound'
+        columns=[[binary64(r[c])for r in x]for c in range(len(x[0]))]
+        constant=True if len(args)<3 else args[2] if isinstance(args[2],bool)else binary64(args[2])!=0
+        target=binary64(raw['expected'])
+        if target.denominator!=1 or not 0<=target<=len(y):return None,'not_integer_degrees_of_freedom'
+    except (ValueError,TypeError,OverflowError):return None,'non_numeric'
+    return (columns,constant,int(target)),None
+
+
+def rank_schur(profile,data):
+    columns,constant,_=data;n=len(columns[0]);p=len(columns)
+    # Gram matrix, with exact centering, followed by Schur complements.
+    means=[sum(c)/n if constant else R(0)for c in columns]
+    matrix=[[sum((a-means[i])*(b-means[j])for a,b in zip(columns[i],columns[j]))
+             for j in range(p)]for i in range(p)]
+    diagonal=[matrix[i][i]for i in range(p)];remaining=list(range(p));kept=[];dropped=[];first=None
+    unit=R(1,2**52);gamma=n*unit/(1-n*unit)
+    tolerance={'zero':R(0),'epsilon':unit,'epsilon_squared':unit*unit,
+               'sqrt_epsilon':R(1,2**26),'gamma_n':gamma,'gamma_n_squared':gamma*gamma}[profile['threshold']]
+    while remaining and len(kept)+int(constant)<n:
+        index=max(remaining,key=lambda k:matrix[k][k]);remaining.remove(index)
+        pivot=matrix[index][index]
+        if first is None:first=pivot
+        scales={'column':diagonal[index],'largest':max(diagonal),'first':first,'absolute':R(1)}
+        if diagonal[index]==0:
+            (kept if profile['zero']=='keep'else dropped).append(index)
+        elif pivot<=tolerance*scales[profile['normalizer']]:dropped.append(index)
+        else:
+            kept.append(index)
+            for i in remaining:
+                for j in remaining:matrix[i][j]-=matrix[i][index]*matrix[index][j]/pivot
+    dropped.extend(remaining)
+    return n-len(kept)-int(constant),dict(kept=kept,dropped=dropped)
+
+
+def check_rank(input_path,directory,output):
+    directory=Path(directory);frozen={str(p):digest(p)for p in (Path(input_path),*directory.iterdir(),Path(__file__),Path(__file__).with_name('exact.py'))if p.is_file()}
+    rows=[];scope=Counter()
+    for index,raw in enumerate(records(input_path)):
+        data,reason=rank_data(raw)
+        if reason:scope[reason]+=1
+        else:rows.append((index,raw,data));scope['scoped']+=1
+    require(rows,'empty rank-policy scope')
+    ps=[dict(id=i,threshold=t,normalizer=n,zero=z)for i,(t,n,z)in enumerate(itertools.product(
+        ('zero','epsilon','epsilon_squared','sqrt_epsilon','gamma_n','gamma_n_squared'),
+        ('column','largest','first','absolute'),('keep','drop')))]
+    require(json.loads((directory/'profiles.json').read_text())==ps,'changed rank grammar')
+    require(json.loads((directory/'scoped.json').read_text())==[dict(trace_index=i,raw=r)for i,r,_ in rows],'changed rank scope')
+    seen=set();executions=0
+    for kill in records(directory/'first-kills.jsonl'):
+        identity,at=kill['candidate_id'],kill['order']
+        require(identity not in seen and 0<=identity<len(ps) and 0<=at<len(rows),'bad rank kill identity')
+        for prior in range(at+1):
+            index,raw,data=rows[prior];got,trace=rank_schur(ps[identity],data);executions+=1
+            if prior<at:require(got==data[2],'not first rank contradiction')
+            else:require(got==kill['got']!=data[2]==kill['expected']and kill['trace_index']==index and trace==kill['trace'],'invalid rank kill')
+        seen.add(identity)
+    alive=json.loads((directory/'survivors.json').read_text())
+    require(len(set(alive))==len(alive) and seen.isdisjoint(alive) and seen|set(alive)==set(range(len(ps))),'unsearched rank policy')
+    for identity in alive:
+        for _,_,data in rows:
+            require(rank_schur(ps[identity],data)[0]==data[2],'invalid rank survivor');executions+=1
+    summary=json.loads((directory/'summary.json').read_text())
+    require(summary['complete']and summary['programs']==len(ps)and summary['observations']==len(rows)and summary['scope']==scope and summary['executions']==executions and summary['survivors']==len(alive),'wrong rank summary')
+    require(all(digest(p)==h for p,h in frozen.items()),'rank evidence/source changed')
+    result=dict(complete=True,programs=len(ps),observations=len(rows),survivors=len(alive),executions=executions,input_sha256=frozen,
+                limits='Independent rational Gram-matrix Schur-complement replay of fixed rank-policy hypotheses. Degrees of freedom only, not a floating QR or complete coefficient program; no fitted threshold or adoption follows.')
+    with open(output,'x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(result))
+
+
+if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='rank':check_rank(*sys.argv[2:])
+    else:check(*sys.argv[1:])

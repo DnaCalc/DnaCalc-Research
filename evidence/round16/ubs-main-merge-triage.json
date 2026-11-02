@@ -1,0 +1,68 @@
+{
+  "complete": true,
+  "source_sha256": "d98c13e1cdc65d97c618051b219b6cd33010e90c22522f65fd2d8af20e6dc0d0",
+  "totals": {
+    "critical": 6,
+    "warning": 2904,
+    "info": 1075,
+    "files": 17
+  },
+  "all_reported_files_identical_to_upstream": [
+    "apps/dna-calc-worker/src/server.rs",
+    "apps/dna-calc/src/app.rs",
+    "apps/dna-calc/src/ledger.rs",
+    "apps/dna-calc/tests/smoke/cases.rs",
+    "crates/calc-engine/src/read.rs",
+    "crates/calc-engine/src/recalc.rs",
+    "crates/calc-fml/src/callable.rs",
+    "crates/calc-fml/src/eval/mod.rs",
+    "crates/calc-fml/src/eval/run.rs",
+    "crates/calc-func/src/call.rs",
+    "crates/calc-func/src/catalogue/arrays.rs",
+    "crates/calc-func/src/catalogue/lambda_helpers.rs",
+    "crates/calc-host/src/copy.rs",
+    "crates/calc-host/tests/round_trip.rs",
+    "crates/calc-xll-reference/native/trace.cpp",
+    "crates/calc-xll-reference/verify.py",
+    "tools/xtask-harness/src/app.rs"
+  ],
+  "critical_triage": [
+    {
+      "rule_id": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-xll-reference/verify.py",
+      "line": 195,
+      "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+    },
+    {
+      "rule_id": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-xll-reference/verify.py",
+      "line": 271,
+      "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+    },
+    {
+      "rule_id": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-xll-reference/verify.py",
+      "line": 492,
+      "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+    },
+    {
+      "rule_id": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-xll-reference/verify.py",
+      "line": 774,
+      "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+    },
+    {
+      "rule_id": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-xll-reference/verify.py",
+      "line": 864,
+      "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+    },
+    {
+      "rule_id": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-xll-reference/verify.py",
+      "line": 888,
+      "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+    }
+  ],
+  "assessment": "All scanner-reported code files equal the incoming master version. Six critical labels compare public capture hashes or worksheet ABI signature strings; none compare authentication secrets. The warnings concern existing unwraps/indexing/test assertions, collection allocation and unsafe native Excel adapter boundaries. This merge adds R16 question data and metadata, not new implementation code. Required workspace build and 1285 tests passed."
+}

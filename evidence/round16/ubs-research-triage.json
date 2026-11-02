@@ -1,0 +1,54 @@
+{
+  "complete": true,
+  "baseline": {
+    "critical": 0,
+    "warning": 593,
+    "info": 285,
+    "files": 15
+  },
+  "current": {
+    "critical": 6,
+    "warning": 677,
+    "info": 457,
+    "files": 15
+  },
+  "critical_triage": [
+    {
+      "rule": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/bessel.py",
+      "line": 183,
+      "assessment": "Public file integrity hashes; no authentication secret."
+    },
+    {
+      "rule": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+      "line": 58,
+      "assessment": "Public file integrity hashes; no authentication secret."
+    },
+    {
+      "rule": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+      "line": 244,
+      "assessment": "Public file integrity hashes; no authentication secret."
+    },
+    {
+      "rule": "python.ctcompare.secret_eq",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/regression.py",
+      "line": 210,
+      "assessment": "Public file integrity hashes; no authentication secret."
+    },
+    {
+      "rule": "python.taint.command",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py",
+      "line": 449,
+      "assessment": "Explicit trusted, recorded research executable path passed as an argv element without a shell."
+    },
+    {
+      "rule": "rust.ownership.panic-macro",
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/src/route_audit.rs",
+      "line": 147,
+      "assessment": "Intentional refusal to publish an application prediction unless the real workbook route calculated it."
+    }
+  ],
+  "warnings": "Reviewed exact arithmetic assertions, bounds-checked grammar indexing, controlled artifact input parsing, owned command execution, test assertion and allocation diagnostics. No numerical source patch is adopted. Required cargo and independent arithmetic checks cover the relevant routes. Baseline and current scans preserve all raw findings; counts are not a claim of scanner-clean code."
+}

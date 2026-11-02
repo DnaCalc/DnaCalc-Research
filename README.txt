@@ -550,3 +550,36 @@ they never increase product failures. The exact partitions are in the result ind
 The last upstream pull adds shared-formula storage and calc-syntax. The late-pull
 unit and executable bind that application revision; the source guard also covers
 the new syntax crate. Prior units, archives and measurements remain preserved.
+
+Round 16 verifies all44 returned R14 readings, preserving63 original raw files and
+six canonical WitnessSets in OxFunc-Evidence2a205f5f. Current application calls
+match21 and fail23. Intake adds21 matches and23 failures; shared bank outputs do
+not change. No R15 annuity answer is available or used.
+
+The expanded variance family has112 templates and350000 labelled policies per
+variance/STDEV/DEVSQ name; AVERAGE has75. Native and software payloads agree,
+and a nonempty independent rational replay verifies every first contradiction
+and survivor. The twelve variance/STDEV names have zero survivors; DEVSQ has800
+on8717 observations and AVERAGE5 on1040. Equivalent/dead labels are retained.
+All21 corpus outputs are searched, original surfaces/environments remain explicit,
+and excluded numeric/domain/transport obligations do not become product passes.
+
+Four real application-route tests first reproduce the Bessel I/J boundaries,
+near-dependent LINEST rank and GEOMEAN reference miss. The saved failing patch
+and output are evidence, not passing tests. No numerical product body changes.
+112 Bessel guard-only explanations have zero sole-explanation survivors;48 may
+still precede a failing body. The48 necessary rank policies leave two equivalent
+labels over121 df observations, not a coefficient program. All18 fixed product/
+correct-root GEOMEAN programs fail the first original reference constraint.
+
+packets/round16 has250 unanswered scalar calls and810 catalogue formulas. It
+uses the existing witness reader and section capture, with parser echoes and
+recorded settings. Adding the sheet also requires1633 existing context cells to
+be recaptured. No old capture key or recorded answer is changed to force a pass.
+The runner preserves partial and duplicate attempts; six constructed controls
+pass on Linux PowerShell, without claiming Windows or Excel execution.
+
+round16-publication-unit.json binds current research sources; variance-r16-unit.json
+binds the original producer archive. Complete receipts and controls are under
+evidence/round16; large raw proofs remain indexed under
+/home/ubuntu/codex-runs/dna-firehorse-20261102-round16. No complete kernel is adopted.

@@ -123,6 +123,97 @@ def run(input_path,destination):
     print(json.dumps(result))
 
 
+def rank_coordinates(raw):
+    """Read only explicit degrees-of-freedom observations, with exact numeric inputs."""
+    if raw['function'] not in ('LINEST','LOGEST') or raw['result_index'] != [4,2]:
+        return None, 'not_degrees_of_freedom'
+    args = raw['args']
+    if len(args)<2 or not isinstance(args[0],list) or not isinstance(args[1],list):
+        return None, 'not_explicit_numeric_arrays'
+    try:
+        y = args[0]
+        if all(isinstance(r,list) for r in y):
+            if not (len(y)==1 or all(len(r)==1 for r in y)):return None,'response_shape'
+            y = list(itertools.chain.from_iterable(y))
+        x = args[1]
+        if not all(isinstance(r,list) for r in x): x = [[v] for v in x]
+        if len(x)!=len(y) or not(2<=len(y)<=32) or not x or not(1<=len(x[0])<=8):
+            return None,'matrix_shape'
+        if any(len(r)!=len(x[0]) for r in x):return None,'matrix_shape'
+        values = [Q(number(v)) for v in y+list(itertools.chain.from_iterable(x))]
+        if any(v and not pow2(-100)<=abs(v)<=pow2(100) for v in values):return None,'magnitude_bound'
+        columns = [[Q(number(row[c])) for row in x] for c in range(len(x[0]))]
+        constant = True if len(args)<3 else args[2] if isinstance(args[2],bool) else number(args[2])!=0
+        expected = Q(number(raw['expected']))
+        if expected.denominator!=1 or not 0<=expected<=len(y):return None,'not_integer_degrees_of_freedom'
+    except (ValueError,TypeError,OverflowError,struct.error):return None,'non_numeric'
+    return (columns,constant,int(expected)),None
+
+
+def rank_profiles():
+    # All tolerances are mathematical IEEE roundoff scales, never inferred
+    # from a residual or fitted to an Excel rank transition.
+    for identity,(threshold,normalizer,zero) in enumerate(itertools.product(
+            ('zero','epsilon','epsilon_squared','sqrt_epsilon','gamma_n','gamma_n_squared'),
+            ('column','largest','first','absolute'),('keep','drop'))):
+        yield dict(id=identity,threshold=threshold,normalizer=normalizer,zero=zero)
+
+
+def rank_evaluate(profile, data):
+    columns, constant, _ = data
+    n = len(columns[0]); epsilon=Q(1,2**52);gamma=n*epsilon/(1-n*epsilon)
+    tolerances = dict(zero=Q(0),epsilon=epsilon,epsilon_squared=epsilon**2,
+                      sqrt_epsilon=Q(1,2**26),gamma_n=gamma,gamma_n_squared=gamma**2)
+    values = [[x-sum(c)/n for x in c] if constant else list(c) for c in columns]
+    initial = [sum(x*x for x in c) for c in values]
+    live = list(range(len(columns)));basis=[];first=None;kept=[];dropped=[]
+    while live and len(kept)+int(constant)<n:
+        norms = {i:sum(x*x for x in values[i]) for i in live}
+        index=max(live,key=lambda i:norms[i]); norm=norms[index];live.remove(index)
+        if first is None:first=norm
+        scale = {'column':initial[index], 'largest':max(initial), 'first':first, 'absolute':Q(1)}[profile['normalizer']]
+        if initial[index]==0:
+            if profile['zero']=='keep':kept.append(index)
+            else:dropped.append(index)
+            continue
+        if norm<=tolerances[profile['threshold']]*scale:
+            dropped.append(index);continue
+        kept.append(index);basis.append(index)
+        for other in live:
+            coefficient=sum(a*b for a,b in zip(values[index],values[other]))/norm
+            values[other]=[b-coefficient*a for a,b in zip(values[index],values[other])]
+    dropped.extend(live)
+    return n-len(kept)-int(constant), dict(kept=kept, dropped=dropped)
+
+
+def rank_run(input_path, destination):
+    dest=Path(destination);dest.mkdir();rows=[];scope=Counter()
+    for index,raw in enumerate(map(json.loads,Path(input_path).read_text().splitlines())):
+        data,reason=rank_coordinates(raw)
+        if reason:scope[reason]+=1
+        else:rows.append((index,raw,data));scope['scoped']+=1
+    require(rows,'empty rank-policy scope')
+    ps=list(rank_profiles());alive=list(range(len(ps)));executions=0
+    (dest/'profiles.json').write_text(json.dumps(ps)+'\n')
+    (dest/'scoped.json').write_text(json.dumps([dict(trace_index=i,raw=r) for i,r,_ in rows])+'\n')
+    with (dest/'first-kills.jsonl').open('x')as kills:
+        for order,(index,raw,data)in enumerate(rows):
+            following=[]
+            for identity in alive:
+                got,trace=rank_evaluate(ps[identity],data);executions+=1
+                if got==data[2]:following.append(identity)
+                else:kills.write(json.dumps(dict(candidate_id=identity,order=order,trace_index=index,
+                     got=got,expected=data[2],trace=trace))+'\n')
+            alive=following
+    (dest/'survivors.json').write_text(json.dumps(alive)+'\n')
+    result=dict(complete=True,programs=len(ps),observations=len(rows),survivors=len(alive),executions=executions,
+        scope=scope,source_sha256=digest(Path(__file__)),input_sha256={str(input_path):digest(input_path)},
+        limits='Exact rational pivoted Gram-Schmidt geometry with fixed IEEE roundoff-scale comparisons. Degrees of freedom only; no floating QR implementation, coefficient program, fitted tolerance or reusable Excel rank rule is identified. Surviving necessary rank policies cannot be adopted as numeric programs.')
+    (dest/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+
+
 if __name__=='__main__':
+    import sys
+    if len(sys.argv)>1 and sys.argv[1]=='rank':rank_run(*sys.argv[2:]);raise SystemExit(0)
     parser=argparse.ArgumentParser();parser.add_argument('input');parser.add_argument('destination')
     args=parser.parse_args();run(args.input,args.destination)

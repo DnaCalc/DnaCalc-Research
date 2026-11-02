@@ -1,0 +1,48 @@
+{
+  "function": "SIN",
+  "selection": "R16 fixed surface/domain questions; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r16-sin-000",
+      "args": [
+        "0x419ffffffc000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-sin-001",
+      "args": [
+        "0x419ffffffe000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-sin-002",
+      "args": [
+        "0x419fffffffffffff"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-sin-003",
+      "args": [
+        "0x41a0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-sin-004",
+      "args": [
+        "0x41a0000000000001"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-sin-005",
+      "args": [
+        "0x41a0000001000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

@@ -143,6 +143,66 @@ def run(input_path,library,destination):
     print(json.dumps(summary))
 
 
+def exact_root(product, count):
+    """A correctly rounded root, certified by rational midpoint powers."""
+    import math
+    # The approximation only starts the search. It never determines an answer
+    # without exact comparisons at both rounding boundaries.
+    candidate = int.from_bytes(struct.pack('>d', math.pow(float(product), 1.0/count)), 'big')
+    def value(bits): return Q(struct.unpack('>d', bits.to_bytes(8, 'big'))[0])
+    for _ in range(1024):
+        center = value(candidate)
+        low = ((value(candidate-1)+center)/2)**count
+        high = ((value(candidate+1)+center)/2)**count
+        even = candidate % 2 == 0
+        if product < low or (product == low and not even): candidate -= 1
+        elif product > high or (product == high and not even): candidate += 1
+        else: return f'0x{candidate:016x}'
+    raise ValueError('initial root approximation failed to bracket; no result emitted')
+
+
+def exact_root_run(input_path, destination):
+    """Eliminate fixed rounded-product/correct-root programs, not native log approximations."""
+    from bessel import MODELS, operation, pair
+    dest = Path(destination); dest.mkdir()
+    original = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    rows, scope = [], Counter()
+    for index, raw in enumerate(original):
+        inputs, reason = coordinates(raw)
+        if reason: scope[reason] += 1
+        else:
+            rows.append(dict(trace_index=index, raw=raw, inputs=inputs)); scope['scoped'] += 1
+    require(rows, 'empty exact-root scope')
+    ps = [dict(id=i, order=order, model=model) for i,(order,model) in
+          enumerate(itertools.product(range(3), (*MODELS, 'exact')))]
+    def calculate(profile, row):
+        xs = [Q(struct.unpack('>d', x.to_bytes(8, 'big'))[0]) for x in row['inputs']]
+        def multiply(a,b): return a*b if profile['model']=='exact' else operation('mul', profile['model'], a, b)
+        product = fold(xs, profile['order'], multiply, Q(1))
+        return exact_root(product, len(xs)), product
+    for name, data in [('profiles.json', ps), ('scoped.json', rows)]:
+        (dest/name).write_text(json.dumps(data)+'\n')
+    alive = list(range(len(ps))); executions = 0
+    with (dest/'first-kills.jsonl').open('x') as kills:
+        for order, row in enumerate(rows):
+            following = []
+            for identity in alive:
+                got, product = calculate(ps[identity], row); executions += 1
+                if got == row['raw']['expected']: following.append(identity)
+                else: kills.write(json.dumps(dict(candidate_id=identity, order=order, got=got,
+                            product=pair(product), expected=row['raw']['expected']))+'\n')
+            alive = following
+    (dest/'survivors.json').write_text(json.dumps(alive)+'\n')
+    result = dict(complete=True, programs=len(ps), observations=len(rows), recorded=len(original),
+        scope=scope, survivors=len(alive), executions=executions,
+        input_sha256={str(input_path):digest(input_path)}, source_sha256=digest(Path(__file__)),
+        limits='Three product orders, five fixed rounding/store policies plus exact products, followed by a correctly rounded root proved by exact rational powers. This is a specified alternative program family, not a claim that Excel uses a correctly rounded root. All old observations are discovery; no fitting or per-row choice.')
+    (dest/'summary.json').write_text(json.dumps(result, indent=2)+'\n'); print(json.dumps(result))
+
+
 if __name__=='__main__':
+    import sys
+    if len(sys.argv)>1 and sys.argv[1]=='exact-root':
+        exact_root_run(*sys.argv[2:]); raise SystemExit(0)
     parser=argparse.ArgumentParser();parser.add_argument('input');parser.add_argument('library');parser.add_argument('destination')
     args=parser.parse_args();run(args.input,args.library,args.destination)

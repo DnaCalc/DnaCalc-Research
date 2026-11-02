@@ -1,0 +1,37 @@
+--- a/crates/calc-func/tests/f1_stats.rs
++++ b/crates/calc-func/tests/f1_stats.rs
+@@ -627,3 +627,34 @@
+     exact(call("F.DIST", vec![n(4.0), n(4.0), n(8.0), b(true)]),
+         f64::from_bits(0x3fee_8d2b_3183_aff0));
+ }
++
++// R16 failing-first probes: exact recorded obligations, with no tolerance.
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r16_bessel_i_recorded_domain_obligation() {
++    error(call("BESSELI", vec![n(709.7000001), n(0.0)]), Num);
++}
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r16_bessel_j_recorded_domain_obligation() {
++    error(call("BESSELJ", vec![n(134217728.0), n(0.0)]), Num);
++}
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r16_geomean_recorded_reference_obligation() {
++    let mut sheet = Sheet::new();
++    sheet.column(1, 1, vec![n(1.0), n(5.0), n(3.0)]);
++    let range = sheet.area(1, 1, 3, 1);
++    exact(call_on(&mut sheet, "GEOMEAN", vec![range]), f64::from_bits(0x4003bacd6561ff5d));
++}
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r16_linest_recorded_rank_obligation() {
++    let known_y = arr(vec![vec![1.0], vec![2.0], vec![4.0], vec![7.0]]);
++    let known_x = arr(vec![vec![1.0,2.0], vec![2.0,4.0], vec![5.0,10.0], vec![4.0,8.000001]]);
++    let result = call("LINEST", vec![known_y, known_x, b(false), b(true)]).unwrap();
++    let values = result.as_array().unwrap();
++    assert_eq!((values.shape().rows, values.shape().cols), (5, 3));
++    // Corpus dcj9k_linest_stats row1831, result cell(4,2): Excel drops one predictor.
++    exact(Ok(values.get(3, 1).unwrap().clone()), 3.0);
++}

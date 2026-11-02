@@ -545,6 +545,8 @@ fn main() {
         #[cfg(route_audit)]
         Some("function-routes") => route_audit::function_routes(&a[2], &a[3]),
         #[cfg(route_audit)]
+        Some("sheet-predictions") => route_audit::sheet_predictions(&a[2], &a[3]),
+        #[cfg(route_audit)]
         Some("literal-input-audit") => route_audit::literal_inputs(&a[2], &a[3], &a[4]),
         #[cfg(route_audit)]
         Some("number-input-audit") => route_audit::number_inputs(&a[2], &a[3]),

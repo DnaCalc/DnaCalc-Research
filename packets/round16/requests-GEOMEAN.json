@@ -1,0 +1,120 @@
+{
+  "function": "GEOMEAN",
+  "selection": "R16 fixed surface/domain questions; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r16-geomean-000",
+      "args": [
+        "0x3ff0000000000000",
+        "0x4014000000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-001",
+      "args": [
+        "0x3ff0000000000000",
+        "0x4008000000000000",
+        "0x4014000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-002",
+      "args": [
+        "0x4014000000000000",
+        "0x3ff0000000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-003",
+      "args": [
+        "0x4014000000000000",
+        "0x4008000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-004",
+      "args": [
+        "0x4008000000000000",
+        "0x3ff0000000000000",
+        "0x4014000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-005",
+      "args": [
+        "0x4008000000000000",
+        "0x4014000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-006",
+      "args": [
+        "0x402e000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-007",
+      "args": [
+        "0x3ff0000000000000",
+        "0x402e000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-008",
+      "args": [
+        "0x4008000000000000",
+        "0x4014000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-009",
+      "args": [
+        "0x402e000000000000",
+        "0x3ff0000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-010",
+      "args": [
+        "0x3ff0000000000000",
+        "0x402e000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-011",
+      "args": [
+        "0x3ff0000000000000",
+        "0x3ff0000000000000",
+        "0x402e000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-geomean-012",
+      "args": [
+        "0x3ff0000000000000",
+        "0x4008000000000000",
+        "0x4014000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

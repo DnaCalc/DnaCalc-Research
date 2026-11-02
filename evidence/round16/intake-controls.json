@@ -1,0 +1,35 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "changed-canonical-answer",
+      "rejected": true,
+      "error": "reader/raw result differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-readback-input",
+      "rejected": true,
+      "error": "transport changed requested operands",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "omitted-reader-batch",
+      "rejected": true,
+      "error": "missing reader batch: requests-VAR.S.json",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "self-consistent-wrong-function",
+      "rejected": true,
+      "error": "requested function/formula differs",
+      "success_receipt_exists": false
+    }
+  ],
+  "checker_sha256": {
+    "r13_controls.py": "d2dbae9197d2146ef04b35d719ede9dcf7b73b3ff40b05eb5553dcfe9c2013f8",
+    "questions_r13.py": "2acad629618d36ba68cb29a964f4878e6f8021079139bc45ba5a2a33f37e4f7d"
+  },
+  "limits": "Corrupted private copies only; original packet and supplied result files unchanged."
+}

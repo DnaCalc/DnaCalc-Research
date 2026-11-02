@@ -1,0 +1,43 @@
+{"command": ["cargo", "test", "--offline", "--locked", "-p", "calc-func", "--test", "f1_stats", "r16_", "--", "--nocapture"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.97s
+     Running tests/f1_stats.rs (target/debug/deps/f1_stats-3060b753ff6cd3c5)
+
+running 4 tests
+
+thread 'r16_bessel_i_recorded_domain_obligation' (494167) panicked at crates/calc-func/tests/f1_stats.rs:635:5:
+assertion `left == right` failed: got CalcValue { core: Number(2.4788086164227322e306), callable: None }
+  left: None
+ right: Some(Num)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'r16_bessel_j_recorded_domain_obligation' (494168) panicked at crates/calc-func/tests/f1_stats.rs:640:5:
+assertion `left == right` failed: got CalcValue { core: Number(-5.7212089019809e-6), callable: None }
+  left: None
+ right: Some(Num)
+test r16_bessel_i_recorded_domain_obligation ... FAILED
+test r16_bessel_j_recorded_domain_obligation ... FAILED
+
+thread 'r16_linest_recorded_rank_obligation' (494170) panicked at crates/calc-func/tests/f1_stats.rs:659:5:
+assertion `left == right` failed: got 2e0, expected 3e0
+  left: 4611686018427387904
+ right: 4613937818241073152
+test r16_linest_recorded_rank_obligation ... FAILED
+
+thread 'r16_geomean_recorded_reference_obligation' (494169) panicked at crates/calc-func/tests/f1_stats.rs:648:5:
+assertion `left == right` failed: got 2.4662120743304703e0, expected 2.46621207433047e0
+  left: 4612735834689503070
+ right: 4612735834689503069
+test r16_geomean_recorded_reference_obligation ... FAILED
+
+failures:
+
+failures:
+    r16_bessel_i_recorded_domain_obligation
+    r16_bessel_j_recorded_domain_obligation
+    r16_geomean_recorded_reference_obligation
+    r16_linest_recorded_rank_obligation
+
+test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured; 34 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f1_stats`

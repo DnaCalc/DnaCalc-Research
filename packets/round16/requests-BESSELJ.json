@@ -1,0 +1,622 @@
+{
+  "function": "BESSELJ",
+  "selection": "R16 fixed surface/domain questions; intentional rechecks, no --new-only",
+  "witnesses": [
+    {
+      "id": "r16-besselj-000",
+      "args": [
+        "0x419ffffff8000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-001",
+      "args": [
+        "0x419ffffff8000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-002",
+      "args": [
+        "0x419ffffff8000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-003",
+      "args": [
+        "0x419ffffff8000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-004",
+      "args": [
+        "0x419ffffff8000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-005",
+      "args": [
+        "0x419ffffffc000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-006",
+      "args": [
+        "0x419ffffffc000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-007",
+      "args": [
+        "0x419ffffffc000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-008",
+      "args": [
+        "0x419ffffffc000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-009",
+      "args": [
+        "0x419ffffffc000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-010",
+      "args": [
+        "0x419ffffffd000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-011",
+      "args": [
+        "0x419ffffffd000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-012",
+      "args": [
+        "0x419ffffffd000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-013",
+      "args": [
+        "0x419ffffffd000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-014",
+      "args": [
+        "0x419ffffffd000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-015",
+      "args": [
+        "0x419ffffffe000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-016",
+      "args": [
+        "0x419ffffffe000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-017",
+      "args": [
+        "0x419ffffffe000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-018",
+      "args": [
+        "0x419ffffffe000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-019",
+      "args": [
+        "0x419ffffffe000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-020",
+      "args": [
+        "0x419fffffff000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-021",
+      "args": [
+        "0x419fffffff000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-022",
+      "args": [
+        "0x419fffffff000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-023",
+      "args": [
+        "0x419fffffff000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-024",
+      "args": [
+        "0x419fffffff000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-025",
+      "args": [
+        "0x41a0000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-026",
+      "args": [
+        "0x41a0000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-027",
+      "args": [
+        "0x41a0000000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-028",
+      "args": [
+        "0x41a0000000000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-029",
+      "args": [
+        "0x41a0000000000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-030",
+      "args": [
+        "0x41a0000000800000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-031",
+      "args": [
+        "0x41a0000000800000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-032",
+      "args": [
+        "0x41a0000000800000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-033",
+      "args": [
+        "0x41a0000000800000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-034",
+      "args": [
+        "0x41a0000000800000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-035",
+      "args": [
+        "0x41a0000001000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-036",
+      "args": [
+        "0x41a0000001000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-037",
+      "args": [
+        "0x41a0000001000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-038",
+      "args": [
+        "0x41a0000001000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-039",
+      "args": [
+        "0x41a0000001000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-040",
+      "args": [
+        "0x41a0000001800000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-041",
+      "args": [
+        "0x41a0000001800000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-042",
+      "args": [
+        "0x41a0000001800000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-043",
+      "args": [
+        "0x41a0000001800000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-044",
+      "args": [
+        "0x41a0000001800000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-045",
+      "args": [
+        "0x41a0000002000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-046",
+      "args": [
+        "0x41a0000002000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-047",
+      "args": [
+        "0x41a0000002000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-048",
+      "args": [
+        "0x41a0000002000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-049",
+      "args": [
+        "0x41a0000002000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-050",
+      "args": [
+        "0x41a0000004000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-051",
+      "args": [
+        "0x41a0000004000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-052",
+      "args": [
+        "0x41a0000004000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-053",
+      "args": [
+        "0x41a0000004000000",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-054",
+      "args": [
+        "0x41a0000004000000",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-055",
+      "args": [
+        "0x419fffffffffffff",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-056",
+      "args": [
+        "0x419fffffffffffff",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-057",
+      "args": [
+        "0x419fffffffffffff",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-058",
+      "args": [
+        "0x419fffffffffffff",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-059",
+      "args": [
+        "0x419fffffffffffff",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-060",
+      "args": [
+        "0x41a0000000000001",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-061",
+      "args": [
+        "0x41a0000000000001",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-062",
+      "args": [
+        "0x41a0000000000001",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-063",
+      "args": [
+        "0x41a0000000000001",
+        "0x4008000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-064",
+      "args": [
+        "0x41a0000000000001",
+        "0x4010000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-065",
+      "args": [
+        "0xc19ffffffc000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-066",
+      "args": [
+        "0xc19ffffffc000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-067",
+      "args": [
+        "0xc19ffffffc000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-068",
+      "args": [
+        "0xc19ffffffe000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-069",
+      "args": [
+        "0xc19ffffffe000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-070",
+      "args": [
+        "0xc19ffffffe000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-071",
+      "args": [
+        "0xc1a0000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-072",
+      "args": [
+        "0xc1a0000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-073",
+      "args": [
+        "0xc1a0000000000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-074",
+      "args": [
+        "0xc1a0000001000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-075",
+      "args": [
+        "0xc1a0000001000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r16-besselj-076",
+      "args": [
+        "0xc1a0000001000000",
+        "0x4000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

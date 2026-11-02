@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "wrong-root",
+      "rejected": true,
+      "error": "incorrect product/root",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "missing-root-kill",
+      "rejected": true,
+      "error": "unsearched root program",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "unrelated-reference-package",
+      "rejected": true,
+      "error": "reference capture/package lineage differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "false-rank-survivor",
+      "rejected": true,
+      "error": "invalid rank survivor",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "forged-domain-count",
+      "rejected": true,
+      "error": "incorrect domain contradiction",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "empty-variance",
+      "rejected": true,
+      "error": "empty variance observation scope",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "unknown-variance-function",
+      "rejected": true,
+      "error": "unknown variance function",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "wrong-packet-input",
+      "rejected": true,
+      "error": "scalar derivation/count differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "wrong-rank-question",
+      "rejected": true,
+      "error": "catalogue derivation changed",
+      "success_receipt_exists": false
+    }
+  ],
+  "source_sha256": {
+    "r13_controls.py": "411788d2bffe1994a4ac5cbb69a3eb20b509ba629cbe31e0c56654929a16f1e1",
+    "geomean.py": "12f3db47bd218138112aec9024151f6908616ef0f82b9226c0729d44e7de623f",
+    "regression.py": "321d845772ad40e2f77d35a8d6389fb02540b766100fb0ad56b52fa716f83c14",
+    "bessel.py": "cb56ade63f6b3b8822edb3931651a73f5df76d72df13e521301debefaf1d83ae",
+    "variance.py": "a884df26ea96c2387e92a8689bec353160350e96c9bf51038ab7adbe82218d00",
+    "questions_r13.py": "5c32002e20176dd9d75f3eda6f352441cabe6a06217b3c88b3e6e4c442f56466"
+  },
+  "limits": "Constructed corruptions in private copies only; original captures, packages, answers, search outputs and question packet unchanged. Recomputed hashes do not authorize changed semantics."
+}

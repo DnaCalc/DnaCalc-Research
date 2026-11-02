@@ -1,0 +1,40 @@
+{
+  "synthetic": true,
+  "complete": true,
+  "controls": [
+    {
+      "synthetic": true,
+      "control": "success/repeat-1",
+      "passed": true
+    },
+    {
+      "synthetic": true,
+      "control": "success/repeat-2",
+      "passed": true
+    },
+    {
+      "synthetic": true,
+      "control": "failed-reader-raw-preservation",
+      "passed": true
+    },
+    {
+      "synthetic": true,
+      "control": "failed-capture-raw-preservation",
+      "passed": true
+    },
+    {
+      "synthetic": true,
+      "control": "duplicate-fresh-both-preserved",
+      "passed": true
+    },
+    {
+      "synthetic": true,
+      "control": "recursive-output-rejected",
+      "passed": true
+    }
+  ],
+  "mocked_cargo_commands": 50,
+  "powershell": "7.6.9",
+  "runner_sha256": "00068cc53f35b22bcc5b9b03803a10046d0ea9e1050c0395fd093b1d110265b4",
+  "limits": "Control-flow and packaging tests on constructed files only. No Excel started; no synthetic file is an answer or a WitnessSet. Linux PowerShell does not certify Windows 5.1 runtime equivalence."
+}

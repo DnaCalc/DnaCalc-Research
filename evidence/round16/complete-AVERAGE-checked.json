@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "function": "AVERAGE",
+  "programs": 75,
+  "observations": 1040,
+  "survivors": 5,
+  "counts": {
+    "program_executions": 5505,
+    "certified_first_kills": 70
+  },
+  "arithmetic_cache": {
+    "hits": 26383,
+    "misses": 11717,
+    "maxsize": 262144,
+    "currsize": 11717
+  },
+  "distinct_exact_operations": 11717,
+  "seconds": 1.549375272821635,
+  "root_cache": {
+    "hits": 0,
+    "misses": 5505,
+    "maxsize": 65536,
+    "currsize": 5505
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "a884df26ea96c2387e92a8689bec353160350e96c9bf51038ab7adbe82218d00",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233"
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-stats-frozen/scoped.jsonl": "40feee91d703de24b489bef88292c40e86d755d66da209e21de97a869cdfb402",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-AVERAGE-native/first-kills.jsonl": "4b9adff85b7f7ad697e16402f365936c1622ff42b0f922171492b7f63685f349",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-AVERAGE-native/profiles.jsonl": "4d79fbce4ee21a96b654fa62e19f2f6a4a78c8af4c591d4a9a00bbfeeb5c3883",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-AVERAGE-native/summary.json": "678ffd9a3a41d1853abad7989c8b0dd4a218e71615bc3d354e53f918aa47832e",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-AVERAGE-native/survivors.json": "69585d66aa3a6887bd6550a845cd1d0c9ce8e19debcea24b9d95d78ecaf44f0d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-AVERAGE-native/witnesses.jsonl": "a0e94689ba1782febf28aadabf8852e717281f2b0110934d4721a72e8449b4b9"
+  },
+  "limits": "Finite declared programs only. Coherent precision regions and original transport assumptions. Zero signs are immaterial here: every divisor is a positive integer, roots publish zero with the product zero policy. No alias identity, private Excel precision, extra branch, fitted cutoff or complete kernel is inferred."
+}

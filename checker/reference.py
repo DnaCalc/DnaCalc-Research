@@ -26,6 +26,7 @@ for name, args, result in [
         ('init2', [PTR,C.c_long], None), ('clear',[PTR],None),
         ('set_d',[PTR,C.c_double,C.c_int],C.c_int),
         ('sqrt',[PTR,PTR,C.c_int],C.c_int), ('erfc',[PTR,PTR,C.c_int],C.c_int),
+        ('log',[PTR,PTR,C.c_int],C.c_int),
         ('div',[PTR,PTR,PTR,C.c_int],C.c_int), ('mul',[PTR,PTR,PTR,C.c_int],C.c_int),
         ('sub',[PTR,PTR,PTR,C.c_int],C.c_int),
         ('get_d',[PTR,C.c_int],C.c_double),
@@ -46,6 +47,21 @@ def rational(value):
         return (-1 if negative else 1)*int(digits,2)*two(exponent.value-len(digits))
     finally:
         LIB.mpfr_free_str(ptr)
+
+
+def log_bounds(bits, precision=256):
+    """Directed MPFR bounds on log of an exact positive binary64 input."""
+    value=struct.unpack('>d',int(bits).to_bytes(8,'big'))[0]
+    require(value>0 and value<float('inf'),'positive finite logarithm input required')
+    raw=[Raw(),Raw(),Raw()]
+    for item in raw:LIB.mpfr_init2(C.byref(item),precision)
+    try:
+        LIB.mpfr_set_d(C.byref(raw[0]),value,0)
+        LIB.mpfr_log(C.byref(raw[1]),C.byref(raw[0]),3)
+        LIB.mpfr_log(C.byref(raw[2]),C.byref(raw[0]),2)
+        return rational(raw[1]),rational(raw[2])
+    finally:
+        for item in raw:LIB.mpfr_clear(C.byref(item))
 
 
 def normal_bounds(bits, precision=256):

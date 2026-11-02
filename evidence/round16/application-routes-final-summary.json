@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "r14_rows_identical": 44,
+  "application_route_audits": 3245,
+  "catalogue_predictions_identical": 810,
+  "application_revision": "ad34b1ad494827aa7b365e629137a9df9e6c3668",
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/application-route-inputs.jsonl": "f129de910cb1752e81b804df384ba02d168fec0b3c941a769ea6f34775a15138",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/application-routes-final.jsonl": "3d55a8eb196431cfd14511ac857ebd5f631649338ed3a72daa59b877cd0767e0",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/packet-predictions-final.jsonl": "9833a58e29d0243f99b6cf4be6646593ebc3ba6c3ee140ecfc9c3b6097bb59e8",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/r14-score-final/summary.json": "cddcc60384474c4a0b6d2ca3e344ad484b4e24b3a620d55f65b00bcffade37e3",
+    "target/release/symbolic-racer": "e9fca28e68ebdb8c62904ccc8901b6f9adf74cd64c8062e0c06a808cabb3d343"
+  },
+  "limits": "Application calculations only, never new Excel observations. Original Excel effective-input assumptions and environments remain explicit."
+}

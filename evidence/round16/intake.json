@@ -1,0 +1,53 @@
+{
+  "complete": true,
+  "observations": 44,
+  "batches": 6,
+  "entries": [
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/VAR.S.json",
+      "destination": "readings/excel-20527/r14-VAR.S.json",
+      "sha256": "6c0894d032adac645fe3711a489f8725c443a44ab2c9905ee98224dd41d75739",
+      "function": "VAR.S",
+      "calls": 10
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/VAR.P.json",
+      "destination": "readings/excel-20527/r14-VAR.P.json",
+      "sha256": "c1632dd4c26804556003d6c5ed6dd5be6d7b131efb9fc3c0fbb9790afff3ee4f",
+      "function": "VAR.P",
+      "calls": 6
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/STDEV.S.json",
+      "destination": "readings/excel-20527/r14-STDEV.S.json",
+      "sha256": "ff2167754f20ce231c1c2e5b9aa7714757175b66af028f4f79173094fb865a53",
+      "function": "STDEV.S",
+      "calls": 6
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/STDEV.P.json",
+      "destination": "readings/excel-20527/r14-STDEV.P.json",
+      "sha256": "8cddb6e497339f2698dd8e6749fbcf2a0344af8610c2d4609d77a1e4fe40f5c5",
+      "function": "STDEV.P",
+      "calls": 6
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/DEVSQ.json",
+      "destination": "readings/excel-20527/r14-DEVSQ.json",
+      "sha256": "3e7e58a726fcd676c6654f5cd9c4cdf6338d67421669b774b8966bb0a3516284",
+      "function": "DEVSQ",
+      "calls": 10
+    },
+    {
+      "source": "OxFunc-Evidence/readings/excel-20527/AVERAGE.json",
+      "destination": "readings/excel-20527/r14-AVERAGE.json",
+      "sha256": "4666343a3403685b4e1b232cf410f24246d1d2edf1f4c23c924b23e0ec5fd519",
+      "function": "AVERAGE",
+      "calls": 6
+    }
+  ],
+  "source_results": "/home/ubuntu/codex-runs/excel-results-r14-variance",
+  "evidence_revision_before": "0891b67e71a5871372ef9e6b735d9fcc392c9f81",
+  "verified_manifest_sha256": "e2f52f4070826936ac5020b4a15dd21733bc45243bd0ee13303bc9f9a675e260",
+  "limits": "Canonical reader WitnessSets copied byte for byte. Complete original bundle preserved under probes/2026-11-01-r14-variance. Predictions and mathematical controls are never answers. Three separate numeric Value2 references; original array context and compatibility settings remain distinct observations."
+}

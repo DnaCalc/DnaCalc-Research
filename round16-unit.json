@@ -1,0 +1,32 @@
+{
+  "id": "dc-j9k-r16",
+  "role": "implementer",
+  "application_revision": "ad34b1ad494827aa7b365e629137a9df9e6c3668",
+  "route_audit": true,
+  "scope": "Build guard for R16 application-route audits after the upstream merge. Search provenance and finite grammars are declared by variance-r16-unit.json and the R16 publication unit, not by this build guard.",
+  "sources": {
+    "tier1": [
+      "Original Excel corpus captures and existing witness judge traces",
+      "Defining variance identities; IEEE754 nearest-even arithmetic",
+      "Chan, Golub and LeVeque, Algorithms for Computing the Sample Variance: Analysis and Recommendations (1983), DOI 10.1080/00031305.1983.10483115; equations only",
+      "Welford (1962), DOI 10.1080/00401706.1962.10490022; published update identity"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc arithmetic and existing research evaluator"
+    ],
+    "banned": [
+      "Tier3 and tier4 source code",
+      "Deleted source and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "exposure": "All recorded corpus/bank and returned R14 readings are discovery. R15 annuity is unanswered and excluded. No fitting.",
+  "limits": [
+    "No data-dependent algorithm switch; especially no removed 1% selector",
+    "No arbitrary per-iteration stores, extra compensation, FMA or unlisted association",
+    "Elimination is per named function; no assumption that aliases share a private Excel body",
+    "Independent checker re-derives each program and every first contradiction with exact integer/rational arithmetic; reachability is not a producer",
+    "This file only selects the frozen application build. Earlier searches retain their original executable/source hashes and cannot be attributed to this later build."
+  ],
+  "source_sha256": {}
+}
