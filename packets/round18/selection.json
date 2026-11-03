@@ -1,0 +1,524 @@
+[
+  {
+    "id": "r18-yield-par-000",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-001",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-002",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-003",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-004",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-005",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-006",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-007",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-008",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-009",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-010",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": "yield-near-seed-discovery-d-oncoupon-short-b0-f2-006",
+    "role": "recorded recheck"
+  },
+  {
+    "id": "r18-yield-par-011",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": "yield-near-seed-discovery-d-oncoupon-short-b0-f2-007",
+    "role": "recorded recheck"
+  },
+  {
+    "id": "r18-yield-par-012",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-013",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-014",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-015",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-016",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-017",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-018",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-019",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-020",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-021",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-022",
+    "reason": "multi-period on-coupon mathematical par identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-023",
+    "reason": "one binary64 price step above par; independent boundary control",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-024",
+    "reason": "multi-period par identity with Actual/360 or Actual/365",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-025",
+    "reason": "single-period documented day-count formula; excluded from the identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-026",
+    "reason": "multi-period par identity with Actual/360 or Actual/365",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-027",
+    "reason": "single-period documented day-count formula; excluded from the identity",
+    "existing_bank_id": null,
+    "role": "new typed identity"
+  },
+  {
+    "id": "r18-yield-par-028",
+    "reason": "recorded long-par recheck",
+    "existing_bank_id": "yield-near-seed-discovery-d-oncoupon-long-b0-f2-004",
+    "role": "recorded recheck"
+  },
+  {
+    "id": "r18-concat-tie-000",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, below",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 79,
+        "column": 4,
+        "formula": "A79&\"\"",
+        "input": "-0x1.6d752c3df9780p+42",
+        "expected_text": "-6278515587045.88"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 215,
+        "column": 4,
+        "formula": "(-6278515587045-0.875)&\"\"",
+        "input": "-0x1.6d752c3df9780p+42",
+        "expected_text": "-6278515587045.88"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-001",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, center",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 79,
+        "column": 4,
+        "formula": "A79&\"\"",
+        "input": "-0x1.6d752c3df9780p+42",
+        "expected_text": "-6278515587045.88"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 215,
+        "column": 4,
+        "formula": "(-6278515587045-0.875)&\"\"",
+        "input": "-0x1.6d752c3df9780p+42",
+        "expected_text": "-6278515587045.88"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-002",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, above",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 79,
+        "column": 4,
+        "formula": "A79&\"\"",
+        "input": "-0x1.6d752c3df9780p+42",
+        "expected_text": "-6278515587045.88"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 215,
+        "column": 4,
+        "formula": "(-6278515587045-0.875)&\"\"",
+        "input": "-0x1.6d752c3df9780p+42",
+        "expected_text": "-6278515587045.88"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-003",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, below",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 78,
+        "column": 4,
+        "formula": "A78&\"\"",
+        "input": "0x1.4f2e4625bed80p+42",
+        "expected_text": "5758361573115.38"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 213,
+        "column": 4,
+        "formula": "(5758361573115+0.375)&\"\"",
+        "input": "0x1.4f2e4625bed80p+42",
+        "expected_text": "5758361573115.38"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-004",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, center",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 78,
+        "column": 4,
+        "formula": "A78&\"\"",
+        "input": "0x1.4f2e4625bed80p+42",
+        "expected_text": "5758361573115.38"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 213,
+        "column": 4,
+        "formula": "(5758361573115+0.375)&\"\"",
+        "input": "0x1.4f2e4625bed80p+42",
+        "expected_text": "5758361573115.38"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-005",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, above",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 78,
+        "column": 4,
+        "formula": "A78&\"\"",
+        "input": "0x1.4f2e4625bed80p+42",
+        "expected_text": "5758361573115.38"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 213,
+        "column": 4,
+        "formula": "(5758361573115+0.375)&\"\"",
+        "input": "0x1.4f2e4625bed80p+42",
+        "expected_text": "5758361573115.38"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-006",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, below",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 82,
+        "column": 4,
+        "formula": "A82&\"\"",
+        "input": "0x1.6038e11b5d39fp-18",
+        "expected_text": "5.24851955262677E-06"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-007",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, center",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 82,
+        "column": 4,
+        "formula": "A82&\"\"",
+        "input": "0x1.6038e11b5d39fp-18",
+        "expected_text": "5.24851955262677E-06"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-008",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, above",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 82,
+        "column": 4,
+        "formula": "A82&\"\"",
+        "input": "0x1.6038e11b5d39fp-18",
+        "expected_text": "5.24851955262677E-06"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-009",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, below",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 77,
+        "column": 4,
+        "formula": "A77&\"\"",
+        "input": "0x1.da21018b91418p+48",
+        "expected_text": "521310271410498"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 214,
+        "column": 4,
+        "formula": "(521310271410497+0.5)&\"\"",
+        "input": "0x1.da21018b91418p+48",
+        "expected_text": "521310271410498"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-010",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, center",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 77,
+        "column": 4,
+        "formula": "A77&\"\"",
+        "input": "0x1.da21018b91418p+48",
+        "expected_text": "521310271410498"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 214,
+        "column": 4,
+        "formula": "(521310271410497+0.5)&\"\"",
+        "input": "0x1.da21018b91418p+48",
+        "expected_text": "521310271410498"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-011",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, above",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 77,
+        "column": 4,
+        "formula": "A77&\"\"",
+        "input": "0x1.da21018b91418p+48",
+        "expected_text": "521310271410498"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 214,
+        "column": 4,
+        "formula": "(521310271410497+0.5)&\"\"",
+        "input": "0x1.da21018b91418p+48",
+        "expected_text": "521310271410498"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-012",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, below",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 80,
+        "column": 4,
+        "formula": "A80&\"\"",
+        "input": "0x1.f9e7fea050400p+38",
+        "expected_text": "543212677140.063"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 216,
+        "column": 4,
+        "formula": "(543212677140+0.0625)&\"\"",
+        "input": "0x1.f9e7fea050400p+38",
+        "expected_text": "543212677140.063"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-013",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, center",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 80,
+        "column": 4,
+        "formula": "A80&\"\"",
+        "input": "0x1.f9e7fea050400p+38",
+        "expected_text": "543212677140.063"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 216,
+        "column": 4,
+        "formula": "(543212677140+0.0625)&\"\"",
+        "input": "0x1.f9e7fea050400p+38",
+        "expected_text": "543212677140.063"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  },
+  {
+    "id": "r18-concat-tie-014",
+    "reason": "CONCAT numeric coercion with exact Value2 readback, above",
+    "original_infix_observations": [
+      {
+        "case": "dc_q9rb",
+        "sheet": "number_text_for_concatenation",
+        "row": 80,
+        "column": 4,
+        "formula": "A80&\"\"",
+        "input": "0x1.f9e7fea050400p+38",
+        "expected_text": "543212677140.063"
+      },
+      {
+        "case": "catalogue",
+        "sheet": "dch9u_functions",
+        "row": 216,
+        "column": 4,
+        "formula": "(543212677140+0.0625)&\"\"",
+        "input": "0x1.f9e7fea050400p+38",
+        "expected_text": "543212677140.063"
+      }
+    ],
+    "role": "new coercion-surface question; original infix answers are discovery"
+  }
+]

@@ -1,0 +1,108 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 1022,
+    "form_0_unreachable": 117,
+    "root_values": 612872,
+    "form_1_unreachable": 132,
+    "form_2_unreachable": 112,
+    "form_3_unreachable": 123,
+    "form_4_unreachable": 130,
+    "form_5_unreachable": 214,
+    "form_6_unreachable": 165,
+    "form_7_unreachable": 159,
+    "form_8_unreachable": 156,
+    "form_9_unreachable": 152
+  },
+  "by_function": {
+    "VAR": {
+      "observations": 176,
+      "form_0_unreachable": 15,
+      "form_1_unreachable": 32,
+      "form_2_unreachable": 15,
+      "form_3_unreachable": 17,
+      "form_4_unreachable": 17,
+      "form_5_unreachable": 40,
+      "form_6_unreachable": 27,
+      "form_7_unreachable": 33,
+      "form_8_unreachable": 35,
+      "form_9_unreachable": 23
+    },
+    "VAR.P": {
+      "observations": 175,
+      "form_0_unreachable": 21,
+      "form_1_unreachable": 13,
+      "form_2_unreachable": 24,
+      "form_3_unreachable": 22,
+      "form_4_unreachable": 22,
+      "form_5_unreachable": 36,
+      "form_6_unreachable": 25,
+      "form_7_unreachable": 21,
+      "form_8_unreachable": 18,
+      "form_9_unreachable": 27
+    },
+    "VAR.S": {
+      "observations": 148,
+      "form_0_unreachable": 12,
+      "form_1_unreachable": 25,
+      "form_2_unreachable": 12,
+      "form_3_unreachable": 12,
+      "form_4_unreachable": 17,
+      "form_5_unreachable": 35,
+      "form_6_unreachable": 21,
+      "form_7_unreachable": 26,
+      "form_8_unreachable": 25,
+      "form_9_unreachable": 19
+    },
+    "VARA": {
+      "observations": 163,
+      "form_0_unreachable": 11,
+      "form_1_unreachable": 29,
+      "form_2_unreachable": 11,
+      "form_3_unreachable": 17,
+      "form_4_unreachable": 19,
+      "form_5_unreachable": 39,
+      "form_6_unreachable": 27,
+      "form_7_unreachable": 29,
+      "form_8_unreachable": 31,
+      "form_9_unreachable": 23
+    },
+    "VARP": {
+      "observations": 182,
+      "form_0_unreachable": 31,
+      "form_1_unreachable": 19,
+      "form_2_unreachable": 26,
+      "form_3_unreachable": 31,
+      "form_4_unreachable": 31,
+      "form_5_unreachable": 28,
+      "form_6_unreachable": 36,
+      "form_7_unreachable": 28,
+      "form_8_unreachable": 28,
+      "form_9_unreachable": 35
+    },
+    "VARPA": {
+      "observations": 178,
+      "form_0_unreachable": 27,
+      "form_1_unreachable": 14,
+      "form_2_unreachable": 24,
+      "form_3_unreachable": 24,
+      "form_4_unreachable": 24,
+      "form_5_unreachable": 36,
+      "form_6_unreachable": 29,
+      "form_7_unreachable": 22,
+      "form_8_unreachable": 19,
+      "form_9_unreachable": 25
+    }
+  },
+  "seconds": 494.0311582428403,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-bank-three/cases.jsonl": "5d0e57f7fd135f1927df2a858cb5b6e2a3998e72e4fc6084f0f40ee17db399f8",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance_closure.py": "29093e69c441487d8d3f104825791521fa6a9d106281a2f776b3b8671d31baf2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-bank-mixed-fma/closures.jsonl": "6241c39a735e55fe1a4c3a4c1e264d3712dae3ed4a3ca2fe567dd777972cb722",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-bank-mixed-fma/summary.json": "6de4ae98bcf277c41f2534f6d0e78ffcb6457214f507df162e67fcf7030dab1d"
+  },
+  "limits": "Complete independent explicit-tree/permutation regeneration of every root-set digest, using separate exact lattice arithmetic. Ten declared forms, including fused multiply-add. Q covers ordinary square-sum trees with optional fusion of any leaf square and its sibling sum, including mixed trees. Conservative correlation projections; reachability never supplies a reusable kernel or product match."
+}

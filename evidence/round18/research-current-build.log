@@ -1,0 +1,26 @@
+{"command": ["cargo", "build", "--release", "--offline", "--locked", "-p", "symbolic-racer"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+   Compiling calc-doc-model v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-doc-model)
+   Compiling dna-calc-model v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-calc-model)
+   Compiling symbolic-racer v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer)
+   Compiling dna-calc-protocol v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-calc-protocol)
+   Compiling calc-fml v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml)
+   Compiling calc-engine v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine)
+   Compiling calc-doc v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-doc)
+   Compiling calc-vba v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-vba)
+   Compiling dna-formula-ui v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-formula-ui)
+   Compiling calc-host v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-host)
+warning: method `opened_position` is never used
+   --> /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-host/src/state.rs:740:19
+    |
+162 | impl HostState {
+    | -------------- method in this implementation
+...
+740 |     pub(crate) fn opened_position(&self, at: CellKey) -> Option<(u32, u32)> {
+    |                   ^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling dna-calc-worker v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-calc-worker)
+warning: `calc-host` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 1m 40s

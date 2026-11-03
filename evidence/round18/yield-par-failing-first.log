@@ -1,0 +1,22 @@
+{"command": ["cargo", "test", "-p", "calc-func", "--test", "f3_financial", "yield_at_par_on_a_coupon_date_returns_the_recorded_coupon_rate", "--", "--nocapture"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.97s
+     Running tests/f3_financial.rs (/tmp/cargo-target/debug/deps/f3_financial-86e0cf75fd0929d5)
+
+running 1 test
+
+thread 'yield_at_par_on_a_coupon_date_returns_the_recorded_coupon_rate' (1273710) panicked at crates/calc-func/tests/f3_financial.rs:375:9:
+assertion `left == right` failed: got 5.000000000000005e-2, expected 5e-2
+  left: 4587366580439587233
+ right: 4587366580439587226
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test yield_at_par_on_a_coupon_date_returns_the_recorded_coupon_rate ... FAILED
+
+failures:
+
+failures:
+    yield_at_par_on_a_coupon_date_returns_the_recorded_coupon_rate
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f3_financial`

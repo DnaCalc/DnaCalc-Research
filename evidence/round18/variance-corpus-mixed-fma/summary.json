@@ -1,0 +1,105 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 69,
+    "form_0_unreachable": 15,
+    "root_values": 77193,
+    "form_1_unreachable": 17,
+    "form_2_unreachable": 19,
+    "form_3_unreachable": 25,
+    "form_4_unreachable": 29,
+    "form_5_unreachable": 27,
+    "form_6_unreachable": 30,
+    "form_7_unreachable": 25,
+    "form_8_unreachable": 33,
+    "form_9_unreachable": 33
+  },
+  "by_function": {
+    "VAR.S": {
+      "observations": 35,
+      "form_0_unreachable": 10,
+      "form_1_unreachable": 13,
+      "form_2_unreachable": 10,
+      "form_3_unreachable": 12,
+      "form_4_unreachable": 13,
+      "form_5_unreachable": 11,
+      "form_6_unreachable": 18,
+      "form_7_unreachable": 16,
+      "form_8_unreachable": 18,
+      "form_9_unreachable": 16
+    },
+    "VAR.P": {
+      "observations": 18,
+      "form_0_unreachable": 2,
+      "form_1_unreachable": 3,
+      "form_2_unreachable": 6,
+      "form_3_unreachable": 8,
+      "form_4_unreachable": 9,
+      "form_5_unreachable": 7,
+      "form_6_unreachable": 5,
+      "form_7_unreachable": 5,
+      "form_8_unreachable": 8,
+      "form_9_unreachable": 10
+    },
+    "VARPA": {
+      "observations": 3,
+      "form_0_unreachable": 1,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 1,
+      "form_3_unreachable": 1,
+      "form_4_unreachable": 1,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 1,
+      "form_7_unreachable": 1,
+      "form_8_unreachable": 0,
+      "form_9_unreachable": 1
+    },
+    "VAR": {
+      "observations": 6,
+      "form_0_unreachable": 1,
+      "form_1_unreachable": 1,
+      "form_2_unreachable": 1,
+      "form_3_unreachable": 1,
+      "form_4_unreachable": 2,
+      "form_5_unreachable": 4,
+      "form_6_unreachable": 2,
+      "form_7_unreachable": 2,
+      "form_8_unreachable": 2,
+      "form_9_unreachable": 1
+    },
+    "VARP": {
+      "observations": 7,
+      "form_0_unreachable": 1,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 1,
+      "form_3_unreachable": 3,
+      "form_4_unreachable": 4,
+      "form_5_unreachable": 5,
+      "form_6_unreachable": 4,
+      "form_7_unreachable": 1,
+      "form_8_unreachable": 5,
+      "form_9_unreachable": 5
+    }
+  },
+  "seconds": 34.53026104811579,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-three.jsonl": "cadfe2591915ee21e0a7828579905f2d566ce912e6144a9cfcc55ad96771cb41",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/variance_closure.py": "3ac621cef33545403cca6831ff6936a09770bb878c108e94ec91b57fbd2be659",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py": "5ec7d2d295e4dd6a8eca59a7280ee0d505f697aea5855c9a8e249e4902f2f1f0",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010"
+  },
+  "forms": [
+    "(Q-S*S/n)/d",
+    "(n*Q-S*S)/(n*d)",
+    "Q/d-S*S/(n*d)",
+    "Q/d-(S/n)*(S/d)",
+    "(Q/n-(S/n)^2)*(n/d)",
+    "sum_pairs((xi-xj)^2)/(n*d)",
+    "FMA(-S/n,S,Q)/d",
+    "FMA(n,Q,-S*S)/(n*d)",
+    "FMA(-S,S,n*Q)/(n*d)",
+    "FMA(-S/n,S/n,Q/n)*(n/d)"
+  ],
+  "limits": "Three numeric inputs; ten forms including FMA; all sum trees/permutations and independent five-model arithmetic choices at every site. Q permits every ordinary square-sum tree and any fusion of a leaf square with its sibling sum, including mixed fused/ordinary trees. Other fusion placements are outside the declared forms. Shared-sum correlations are discarded where documented, enlarging the sets. Root digests are checked by complete independent regeneration. Reachability supplies no reusable program, fitted value, product gain or tolerance claim."
+}

@@ -1,0 +1,114 @@
+{"command": ["cargo", "test", "--release", "--offline", "--locked", "-p", "symbolic-racer"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+warning: method `opened_position` is never used
+   --> /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-host/src/state.rs:740:19
+    |
+162 | impl HostState {
+    | -------------- method in this implementation
+...
+740 |     pub(crate) fn opened_position(&self, at: CellKey) -> Option<(u32, u32)> {
+    |                   ^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `calc-host` (lib) generated 1 warning
+   Compiling symbolic-racer v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer)
+    Finished `release` profile [optimized] target(s) in 10.96s
+     Running unittests src/main.rs (target/release/deps/symbolic_racer-ce4749afb31d5b41)
+
+running 93 tests
+test ported::bessel::tests::besseli_series_mathematical_controls ... ok
+test ported::bond_core_family::tests::accrint_leap_february_and_settlement_after_first_bit_exact ... ok
+test annuity_early::loan_publication_tests::beginning_interest_publishes_positive_zero_for_every_declared_root ... ok
+test ported::bond_core_family::tests::accrint_slices ... ok
+test ported::bond_core_family::tests::accrintm_actual_actual_and_edges_match_excel ... ok
+test ported::bond_core_family::tests::duration_relation ... ok
+test ported::bond_core_family::tests::accrint_x87_final_publication_matches_live_excel_w109 ... ok
+test ported::bond_core_family::tests::d360us_rolls_end_day_31_into_next_month ... ok
+test ported::bond_core_family::tests::duration_matches_live_excel_pinned_witnesses ... ok
+test ported::bessel::tests::spot_values_record_exact_controls_and_known_gaps ... ok
+test ported::bond_core_family::tests::accrint_staging_bit_exact_vs_excel_w109 ... ok
+test ported::bond_core_family::tests::price_binexp_matches_excel_ladders ... ok
+test ported::bond_core_family::tests::price_dsc_e_minus_a_and_x87_pow_chain_pins ... ok
+test ported::bond_core_family::tests::price_yield_round_trip ... ok
+test ported::bond_core_family::tests::yield_converges_for_well_posed_multi_period_discount_bond ... ok
+test ported::bond_core_family::tests::d360us_start_at_least_30_collapses_end_in_place ... ok
+test ported::bond_core_family::tests::yieldmat_matches_live_excel_pinned_witnesses ... ok
+test ported::day_count_common::tests::december_31_end_rolls_across_year_boundary ... ok
+test ported::day_count_common::tests::end_day_31_rolls_into_next_month ... ok
+test ported::bond_core_family::tests::mat_round_trip ... ok
+test ported::day_count_common::tests::same_month_forward_range_is_non_negative ... ok
+test ported::day_count_common::tests::start_at_least_30_matches_amor_in_place_form ... ok
+test ported::excel_numeric::crt_libm::tests::spot_values ... ok
+test ported::excel_numeric::crt_pow::tests::special_values ... ok
+test ported::bond_core_family::tests::yield_par_identity_and_existing_nonpar_solver ... ok
+test ported::excel_numeric::gammaln::tests::matches_reference_across_bands ... ok
+test ported::excel_numeric::soft87::hardware::transcendental_operations_against_the_hardware ... ignored
+test ported::bond_core_family::tests::yielddisc_bit_exact_vs_excel ... ok
+test ported::excel_numeric::tests::software_chains_against_the_hardware ... ignored
+test ported::excel_numeric::tests::spot_values ... ok
+test ported::excel_numeric::gammaln::tests::stirling_ln87_dr_matches_current_build_hits_and_keeps_two_open ... ok
+test ported::excel_numeric::soft87::hardware::constants_equal_the_rom ... ok
+test ported::excel_numeric::tests::trig_matches_live_excel_pinned_witnesses ... ok
+test ported::excel_numeric::x87::tests::double_rounded_mul_and_recip ... ok
+test ported::excel_numeric::x87_chains::tests::chains_run_on_the_software_x87 ... ok
+test ported::exp_fn::tests::exp_kernel_matches_std ... ok
+test ported::excel_numeric::x87::tests::control_word_is_restored ... ok
+test ported::exp_fn::tests::exp_overflow_maps_to_num ... ok
+test ported::financial_time_value_family::tests::core_annuity_functions_match_known_examples ... ok
+test ported::excel_numeric::soft87::tests::constants_match_their_series ... ok
+test ported::financial_time_value_family::tests::core_annuity_functions_match_pinned_excel_publication_rows ... ok
+test ported::financial_time_value_family::tests::effect_switches_to_raw_pow_chain_at_u32_max_truncated_periods ... ok
+test ported::financial_time_value_family::tests::effect_widened_publication_family_rows_pin_current_local_bits ... ok
+test ported::financial_time_value_family::tests::effect_uses_x87_spill_binexp_on_banked_and_blind_discriminators ... ok
+test ported::financial_time_value_family::tests::effect_exactness_witness_matches_excel_target ... ok
+test ported::financial_time_value_family::tests::fv_negative_base_lanes_match_excel_probe_matrix ... ok
+test ported::financial_time_value_family::tests::fvschedule_matches_microsoft_sample ... ok
+test ported::financial_time_value_family::tests::ipmt_and_ppmt_partition_payment ... ok
+test ported::financial_time_value_family::tests::ipmt_ppmt_type_one_witness_candidates_pending_excel_bit_pinning ... ok
+test ported::financial_time_value_family::tests::ispmt_uses_even_principal_schedule ... ok
+test ported::financial_time_value_family::tests::mirr_matches_manual_compounding_identity ... ok
+test ported::financial_time_value_family::tests::nominal_and_effect_are_consistent_with_microsoft_example ... ok
+test ported::financial_time_value_family::tests::nominal_of_effect_stays_just_below_nominal_input_for_widened_rows ... ok
+test ported::excel_numeric::soft87::tests::loads_and_stores_round_trip_every_binary64_class ... ok
+test ported::excel_numeric::tests::edge_cases ... ok
+test ported::financial_time_value_family::tests::nper_matches_live_excel_pinned_witnesses ... ok
+test ported::financial_time_value_family::tests::npv_matches_microsoft_sample ... ok
+test ported::financial_time_value_family::tests::npv_negative_base_lanes_match_excel_probe_matrix ... ok
+test ported::financial_time_value_family::tests::numeric_domain_errors_are_reported ... ok
+test ported::excel_numeric::tests::expm1_edge_cases ... ok
+test ported::financial_time_value_family::tests::pduration_and_rri_match_documented_examples ... ok
+test ported::financial_time_value_family::tests::pmt_and_npv_exactness_witness_rows_are_pinned ... ok
+test ported::financial_time_value_family::tests::pmt_ipmt_nper_keep_num_at_rate_at_or_below_minus_one ... ok
+test ported::financial_time_value_family::tests::ppmt_exactness_witness_pins_current_local_bits_and_excel_gap ... ok
+test ported::financial_time_value_family::tests::pv_negative_base_lanes_match_excel_probe_matrix ... ok
+test ported::financial_time_value_family::tests::nominal_uses_direct_x87_then_raw_pow_routes_with_stored_power ... ok
+test ported::financial_time_value_family::tests::rri_uses_raw_x87_pow_chain_and_x87_spill_wrapper ... ok
+test ported::financial_time_value_family::tests::rate_default_guess_converges_on_mortgage_style_lane ... ok
+test ported::financial_time_value_family::tests::rate_exactness_witness_pins_current_local_value_and_excel_gap ... ok
+test ported::financial_time_value_family::tests::rate_recovers_known_periodic_rate_from_annuity_identity ... ok
+test ported::financial_time_value_family::tests::rri_matches_excel_daz_guard_order_and_exact_period_identity ... ok
+test ported::power_fn::tests::power_kernel_exponent_half_is_sqrt ... ok
+test ported::power_fn::tests::power_kernel_matches_excel_domain_lanes ... ok
+test ported::power_fn::tests::power_kernel_matches_excel_integer_publication_rows ... ok
+test ported::power_fn::tests::power_kernel_matches_excel_negative_base_reciprocal_odd_root_rows ... ok
+test ported::power_fn::tests::power_kernel_overflow_maps_to_excel_error_codes ... ok
+test ported::real_policy::tests::excel_real_policy_circular_trig_guards_arg_at_two_pow_27 ... ok
+test ported::financial_time_value_family::tests::w108_bead_c_bit_exact_witnesses_match_live_excel ... ok
+test ported::power_fn::tests::power_kernel_fractional_pins_live_excel ... ok
+test ported::excel_numeric::tests::golden_matches_cr ... ok
+test ported::excel_numeric::tests::log1p_edge_cases ... ok
+test ported::excel_numeric::gammaln::tests::zeros_at_1_and_2 ... ok
+test ported::excel_numeric::tests::chains_on_the_hardware_backend_equal_the_x87_assembly ... ok
+test ported::financial_time_value_family::tests::ipmt_tiny_rate_flows_through_main_path ... ok
+test ported::financial_time_value_family::tests::ipmt_type_one_per_equal_one_is_zero_interest ... ok
+test ported::real_policy::tests::excel_real_policy_finite_maps_overflow_to_num ... ok
+test ported::real_policy::tests::excel_real_policy_saturate_sign_publishes_unit ... ok
+test ported::real_policy::tests::excel_real_policy_wrap_threads_through_kernel ... ok
+test ported::excel_numeric::tests::exp_and_ln_against_live_excel ... ok
+test ported::bessel::tests::domain_controls_and_known_besselj_underflow_gap ... ok
+test ported::excel_numeric::gammaln::tests::extended_bands_equal_on_the_software_x87 ... ok
+test ported::excel_numeric::tests::software_x87_arithmetic_matches_the_x87_hardware ... ok
+test ported::excel_numeric::soft87::hardware::exact_operations_equal_the_hardware ... ok
+
+test result: ok. 91 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 9.28s
+

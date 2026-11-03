@@ -1,0 +1,1262 @@
+{
+  "complete": true,
+  "counts": {
+    "CUMPRINC:pairs": 20,
+    "CUMPRINC:equal": 8,
+    "CUMPRINC:different": 12,
+    "CUMIPMT:pairs": 20,
+    "CUMIPMT:equal": 5,
+    "CUMIPMT:different": 15
+  },
+  "records": [
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbff97b28185054af",
+        "expected_bits": "0xbff97b28185054b1",
+        "id": "r15-cumprinc-000"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x3ff0000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbff97b28185054af",
+        "expected_bits": "0xbff97b28185054ae",
+        "id": "r15-ppmt-000"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbfd33a2581239f0c",
+        "expected_bits": "0xbfd33a2581239f00",
+        "id": "r15-cumipmt-000"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x3ff0000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbfd33a2581239f08",
+        "expected_bits": "0xbfd33a2581239f09",
+        "id": "r15-ipmt-000"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbff98409f053a22e",
+        "expected_bits": "0xbff98409f053a22e",
+        "id": "r15-cumprinc-003"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x4000000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbff98409f053a22e",
+        "expected_bits": "0xbff98409f053a22c",
+        "id": "r15-ppmt-001"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbfd3169e21166910",
+        "expected_bits": "0xbfd3169e2116690c",
+        "id": "r15-cumipmt-003"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x4000000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbfd3169e21166910",
+        "expected_bits": "0xbfd3169e21166910",
+        "id": "r15-ipmt-001"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbffe3f265c984e89",
+        "expected_bits": "0xbffe3f265c984e89",
+        "id": "r15-cumprinc-005"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbffe3f265c984e89",
+        "expected_bits": "0xbffe3f265c984e87",
+        "id": "r15-ppmt-003"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf65163801dbd200",
+        "expected_bits": "0xbf65163801dbd000",
+        "id": "r15-cumipmt-005"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf65163801dbd236",
+        "expected_bits": "0xbf65163801dbd236",
+        "id": "r15-ipmt-003"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbffe3f265c984e89",
+        "expected_bits": "0xbffe3f265c984e88",
+        "id": "r15-cumprinc-006"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x3ff0000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbffe3f265c984e89",
+        "expected_bits": "0xbffe3f265c984e88",
+        "id": "r15-ppmt-004"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-cumipmt-006"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x3ff0000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-ipmt-004"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbff97b28185054b0",
+        "expected_bits": "0xbff97b28185054b0",
+        "id": "r15-cumprinc-009"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x4000000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbff97b28185054b0",
+        "expected_bits": "0xbff97b28185054ae",
+        "id": "r15-ppmt-005"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbfd30ff9111fe764",
+        "expected_bits": "0xbfd30ff9111fe760",
+        "id": "r15-cumipmt-009"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x4000000000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbfd30ff9111fe764",
+        "expected_bits": "0xbfd30ff9111fe765",
+        "id": "r15-ipmt-005"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbffe349eec2b13fc",
+        "expected_bits": "0xbffe349eec2b13fc",
+        "id": "r15-cumprinc-011"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbffe349eec2b13fc",
+        "expected_bits": "0xbffe349eec2b13fa",
+        "id": "r15-ppmt-007"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf650ee0da751a00",
+        "expected_bits": "0xbf650ee0da751800",
+        "id": "r15-cumipmt-011"
+      },
+      "standalone": {
+        "args": [
+          "0x3f564f23b0123bb2",
+          "0x405fc00000000000",
+          "0x405fc00000000000",
+          "0x406b9446d200b345",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf650ee0da751a6b",
+        "expected_bits": "0xbf650ee0da751a6b",
+        "id": "r15-ipmt-007"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc06e09eace050721",
+        "expected_bits": "0xc06e09eace050722",
+        "id": "r15-cumprinc-012"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc06e09eace050721",
+        "expected_bits": "0xc06e09eace050723",
+        "id": "r15-ppmt-008"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc08a0aaaaaaaaaac",
+        "expected_bits": "0xc08a0aaaaaaaaaac",
+        "id": "r15-cumipmt-012"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc08a0aaaaaaaaaab",
+        "expected_bits": "0xc08a0aaaaaaaaaab",
+        "id": "r15-ipmt-008"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc06e29f56213fb6d",
+        "expected_bits": "0xc06e29f56213fb6d",
+        "id": "r15-cumprinc-015"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc06e29f56213fb6d",
+        "expected_bits": "0xc06e29f56213fb6e",
+        "id": "r15-ppmt-009"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc08a02a805a6ed99",
+        "expected_bits": "0xc08a02a805a6ed99",
+        "id": "r15-cumipmt-015"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc08a02a805a6ed98",
+        "expected_bits": "0xc08a02a805a6ed99",
+        "id": "r15-ipmt-009"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc090b4c0d059daa6",
+        "expected_bits": "0xc090b4c0d059daa5",
+        "id": "r15-cumprinc-017"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc090b4c0d059daa6",
+        "expected_bits": "0xc090b4c0d059daa6",
+        "id": "r15-ppmt-011"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc011d1debc1b9400",
+        "expected_bits": "0xc011d1debc1b9500",
+        "id": "r15-cumipmt-017"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xc011d1debc1b93e4",
+        "expected_bits": "0xc011d1debc1b93e3",
+        "id": "r15-ipmt-011"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc090b4c0d059daa6",
+        "expected_bits": "0xc090b4c0d059daa6",
+        "id": "r15-cumprinc-018"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc090b4c0d059daa6",
+        "expected_bits": "0xc090b4c0d059daa6",
+        "id": "r15-ppmt-012"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-cumipmt-018"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-ipmt-012"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc06e09eace050721",
+        "expected_bits": "0xc06e09eace050721",
+        "id": "r15-cumprinc-021"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc06e09eace050721",
+        "expected_bits": "0xc06e09eace050722",
+        "id": "r15-ppmt-013"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc089e706ed327384",
+        "expected_bits": "0xc089e706ed327384",
+        "id": "r15-cumipmt-021"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc089e706ed327384",
+        "expected_bits": "0xc089e706ed327385",
+        "id": "r15-ipmt-013"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc090a301df6b8a13",
+        "expected_bits": "0xc090a301df6b8a12",
+        "id": "r15-cumprinc-023"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc090a301df6b8a13",
+        "expected_bits": "0xc090a301df6b8a13",
+        "id": "r15-ppmt-015"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc011bef0ee509300",
+        "expected_bits": "0xc011bef0ee509400",
+        "id": "r15-cumipmt-023"
+      },
+      "standalone": {
+        "args": [
+          "0x3f71111111111111",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x41086a0000000000",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xc011bef0ee509347",
+        "expected_bits": "0xc011bef0ee509346",
+        "id": "r15-ipmt-015"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf669edffbf43d25",
+        "expected_bits": "0xbf669edffbf43d24",
+        "id": "r15-cumprinc-024"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf669edffbf43d25",
+        "expected_bits": "0xbf669edffbf43d25",
+        "id": "r15-ppmt-016"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbe409904ac7c0000",
+        "expected_bits": "0xbe409904ac800000",
+        "id": "r15-cumipmt-024"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbe409904ac7cc120",
+        "expected_bits": "0xbe409904ac7cc11f",
+        "id": "r15-ipmt-016"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf669edffee79e6a",
+        "expected_bits": "0xbf669edffee79e6a",
+        "id": "r15-cumprinc-027"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf669edffee79e6a",
+        "expected_bits": "0xbf669edffee79e6a",
+        "id": "r15-ppmt-017"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbe408d3727680000",
+        "expected_bits": "0xbe408d3727680000",
+        "id": "r15-cumipmt-027"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbe408d3727661953",
+        "expected_bits": "0xbe408d3727661953",
+        "id": "r15-ipmt-017"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf669ee41f420674",
+        "expected_bits": "0xbf669ee41f420674",
+        "id": "r15-cumprinc-029"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbf669ee41f420674",
+        "expected_bits": "0xbf669ee41f420674",
+        "id": "r15-ppmt-019"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbdb79b0e80000000",
+        "expected_bits": "0xbdb79b0e80000000",
+        "id": "r15-cumipmt-029"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbdb79b0e7ebe0daa",
+        "expected_bits": "0xbdb79b0e7ebe0dab",
+        "id": "r15-ipmt-019"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf669ee41f420673",
+        "expected_bits": "0xbf669ee41f420675",
+        "id": "r15-cumprinc-030"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf669ee41f420673",
+        "expected_bits": "0xbf669ee41f420675",
+        "id": "r15-ppmt-020"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-cumipmt-030"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x3ff0000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-ipmt-020"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf669edffbf43d24",
+        "expected_bits": "0xbf669edffbf43d25",
+        "id": "r15-cumprinc-033"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf669edffbf43d24",
+        "expected_bits": "0xbf669edffbf43d25",
+        "id": "r15-ppmt-021"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbe408d37253c0000",
+        "expected_bits": "0xbe408d3725400000",
+        "id": "r15-cumipmt-033"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4000000000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbe408d37253d6218",
+        "expected_bits": "0xbe408d37253d6219",
+        "id": "r15-ipmt-021"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf669ee41c4ea4a4",
+        "expected_bits": "0xbf669ee41c4ea4a5",
+        "id": "r15-cumprinc-035"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbf669ee41c4ea4a4",
+        "expected_bits": "0xbf669ee41c4ea4a5",
+        "id": "r15-ppmt-023"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbdb79b0e78000000",
+        "expected_bits": "0xbdb79b0e80000000",
+        "id": "r15-cumipmt-035"
+      },
+      "standalone": {
+        "args": [
+          "0x3e40b25c74007082",
+          "0x4076800000000000",
+          "0x4076800000000000",
+          "0x3fefcf6de32210e3",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbdb79b0e7ba9c72d",
+        "expected_bits": "0xbdb79b0e7ba9c72f",
+        "id": "r15-ipmt-023"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbfaa950ab2586df9",
+        "expected_bits": "0xbfaa950ab2586dfb",
+        "id": "r15-cumprinc-036"
+      },
+      "standalone": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbfaa950ab2586df9",
+        "expected_bits": "0xbfaa950ab2586df9",
+        "id": "r15-ppmt-024"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbdfcb878b8000000",
+        "expected_bits": "0xbdfcb878a8000000",
+        "id": "r15-cumipmt-036"
+      },
+      "standalone": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0xbdfcb878ba0f210a",
+        "expected_bits": "0xbdfcb878ba0f210a",
+        "id": "r15-ipmt-024"
+      },
+      "equal_publications": false
+    },
+    {
+      "cumulative_function": "CUMPRINC",
+      "standalone_function": "PPMT",
+      "cumulative": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbfaa950ab2586df9",
+        "expected_bits": "0xbfaa950ab2586df9",
+        "id": "r15-cumprinc-037"
+      },
+      "standalone": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0xbfaa950ab2586df9",
+        "expected_bits": "0xbfaa950ab2586df9",
+        "id": "r15-ppmt-025"
+      },
+      "equal_publications": true
+    },
+    {
+      "cumulative_function": "CUMIPMT",
+      "standalone_function": "IPMT",
+      "cumulative": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-cumipmt-037"
+      },
+      "standalone": {
+        "args": [
+          "0x3e4149806bffeb65",
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x3faa950ab2586df9",
+          "0x0000000000000000",
+          "0x3ff0000000000000"
+        ],
+        "calc_func_prediction": "0x0000000000000000",
+        "expected_bits": "0x0000000000000000",
+        "id": "r15-ipmt-025"
+      },
+      "equal_publications": true
+    }
+  ],
+  "input_sha256": {
+    "../OxFunc-Evidence/readings/excel-20527/r15-CUMPRINC.json": "6b60706419ecbb8b8b059ed024bad0f21c2a8a669b6c22a6090bbda96d6cdeef",
+    "../OxFunc-Evidence/readings/excel-20527/r15-CUMIPMT.json": "34ed9e9eb5c4808bc06a0c34ed04ca1fb95177429141998ab4be3e01172fe61e",
+    "../OxFunc-Evidence/readings/excel-20527/r15-PPMT.json": "6c323e45dff90559c99b3b9ebc9fb153399a53603c6d17cec59162b584a93d78",
+    "../OxFunc-Evidence/readings/excel-20527/r15-IPMT.json": "e605e239c3267899d7f68d0bc0ef281cfcf503cfaba5cf33918f8a9491839c8e",
+    "packets/round15-annuity/conditional-relations.json": "5dbc24e2c8a9eefae8f656e8917ea11a166a567e6221aded6dbddcfed1fa7982"
+  },
+  "method": "Direct comparison using the existing R15 singleton publication relations. Original typed operands and environment/settings agree; both original canonical WitnessSet rows are retained.",
+  "limits": "These are different function surfaces. Unequal publications exclude reusing the exact published standalone result for that singleton. They do not establish shared internal cashflows or exclude a later correction, different helper, or state."
+}

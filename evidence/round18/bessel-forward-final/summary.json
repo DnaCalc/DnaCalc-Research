@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "counts": {
+    "BESSELJ": {
+      "profiles": 1125,
+      "groups": 9,
+      "executions": 7275,
+      "rejected": 620,
+      "necessary_survivors": 505
+    },
+    "BESSELY": {
+      "profiles": 1125,
+      "groups": 12,
+      "executions": 4951,
+      "rejected": 820,
+      "necessary_survivors": 305
+    }
+  },
+  "seconds": 6.819071762030944,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-corpus/cases.jsonl": "acd329a58b5a7d362fd0831b5323da8dafa7d08f93787e2db8cdbe562a6e009a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py": "5ec7d2d295e4dd6a8eca59a7280ee0d505f697aea5855c9a8e249e4902f2f1f0",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010"
+  },
+  "claim": "Fixed forward recurrence policies through all recorded orders up to32, with exact conservative Ext80 publication-preimage intersections at each recorded step.",
+  "limits": "Y uses positive x; J additionally requires x>n for target orders>=2. Shared original source/environment and seed helper publications are assumptions. Correlations discarded after each step; a survivor need not have a consistent seed pair or producer. No seed, cutoff, coefficient or answer is fitted."
+}

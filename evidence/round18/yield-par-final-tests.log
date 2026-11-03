@@ -1,0 +1,11 @@
+{"command": ["cargo", "test", "-p", "calc-func", "--test", "f3_financial", "yield", "--", "--nocapture"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.66s
+     Running tests/f3_financial.rs (/tmp/cargo-target/debug/deps/f3_financial-86e0cf75fd0929d5)
+
+running 2 tests
+test single_period_actual_day_counts_keep_their_own_yield_formula ... ok
+test yield_at_par_on_a_coupon_date_returns_the_recorded_coupon_rate ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.00s
+

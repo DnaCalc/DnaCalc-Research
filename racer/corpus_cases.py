@@ -588,7 +588,134 @@ def round16_questions(readings, executable, output, section):
     print(json.dumps(result))
 
 
+def par_yield_questions(executable, output, bank_trace, text_failures=None):
+    """Par identity and recorded text ties; extend the standard scalar packet."""
+    import datetime
+    import math
+    import subprocess
+    executable, output, bank_trace = Path(executable).resolve(), Path(output), Path(bank_trace)
+    output.mkdir()
+    def bits(value):
+        return '0x'+struct.pack('>d', float(value)).hex()
+    def date(year, month, day):
+        return float((datetime.date(year, month, day)-datetime.date(1899, 12, 30)).days)
+    bank = [json.loads(line) for line in bank_trace.read_text().splitlines()]
+    known = {json.dumps(row['args'], separators=(',', ':')): row['id'] for row in bank}
+    questions, selection, identities = [], [], set()
+    def ask(settlement, maturity, rate, price, frequency, basis, reason):
+        args = list(map(bits, (settlement, maturity, rate, price, 100.0, frequency, basis)))
+        identity = json.dumps(args, separators=(',', ':'))
+        require = identity not in identities
+        if not require:
+            raise ValueError('duplicate par-yield question')
+        identities.add(identity)
+        qid = f'r18-yield-par-{len(questions):03d}'
+        questions.append(dict(id=qid, args=args, input_transport='cell_value2_bulk'))
+        selection.append(dict(id=qid, reason=reason, existing_bank_id=known.get(identity),
+                              role='recorded recheck' if identity in known else 'new typed identity'))
+    shapes = [(1, date(2021, 1, 1), date(2024, 1, 1)),
+              (2, date(2020, 7, 1), date(2022, 1, 1)),
+              (4, date(2020, 10, 1), date(2022, 1, 1))]
+    for frequency, settlement, maturity in shapes:
+        for rate in (0.0, 0.05, 0.0575, 0.125):
+            ask(settlement, maturity, rate, 100.0, frequency, 0, 'multi-period on-coupon mathematical par identity')
+            ask(settlement, maturity, rate, math.nextafter(100.0, math.inf), frequency, 0,
+                'one binary64 price step above par; independent boundary control')
+    for basis in (2, 3):
+        ask(date(2020, 7, 1), date(2022, 1, 1), 0.0575, 100.0, 2, basis,
+            'multi-period par identity with Actual/360 or Actual/365')
+        ask(date(2020, 7, 1), date(2021, 1, 1), 0.05, 100.0, 2, basis,
+            'single-period documented day-count formula; excluded from the identity')
+    ask(date(2020, 7, 1), date(2028, 1, 1), 0.05, 100.0, 2, 0,
+        'recorded long-par recheck')
+    if len(questions) != 29:
+        raise ValueError('incomplete par-yield question plan')
+    batches = {'YIELD': questions}
+    if text_failures is not None:
+        from number_conversion import observations
+        failures = [json.loads(line) for line in Path(text_failures).read_text().splitlines()]
+        selected = {(Path(r['workbook']).parts[1], r['expected']['sheet'], r['expected']['row'], r['expected']['column'])
+                    for r in failures if r['cause'] == 'text_value' and r['function'] == 'Infix &'}
+        originals = {}
+        for row in observations(bank_trace.resolve().parents[2]):
+            if (row['case'], row['sheet'], row['row'], row['column']) in selected:
+                originals.setdefault(row['input'], []).append({k:v for k,v in row.items() if k not in ('exact_input','expected_decimal')})
+        if len(originals) != 5:
+            raise ValueError('recorded five text-tie operands changed')
+        text_questions = []
+        for source, bindings in sorted(originals.items()):
+            center = float.fromhex(source)
+            for value, direction in ((math.nextafter(center, -math.inf), 'below'), (center, 'center'),
+                                     (math.nextafter(center, math.inf), 'above')):
+                qid = f'r18-concat-tie-{len(text_questions):03d}'
+                text_questions.append(dict(id=qid, args=[bits(value)], input_transport='cell_value2_bulk'))
+                selection.append(dict(id=qid, reason='CONCAT numeric coercion with exact Value2 readback, '+direction,
+                    original_infix_observations=bindings, role='new coercion-surface question; original infix answers are discovery'))
+        batches['CONCAT'] = text_questions
+    audit_input = output/'application-route-inputs.jsonl'
+    with audit_input.open('x') as out:
+        for function, batch in batches.items():
+            request = dict(function=function, selection='R18 mathematical/boundary questions; intentional rechecks, no --new-only', witnesses=batch)
+            request_path = output/('requests-'+function+'.json')
+            request_path.write_text(json.dumps(request, indent=2)+'\n')
+            prediction_path = output/('application-predictions-'+function+'.jsonl')
+            # ubs:ignore — operator-selected local executable and argv, no shell; predictions are explicitly not Excel evidence.
+            subprocess.run([str(executable), 'invoke-inputs', str(request_path), str(prediction_path), '1900'], check=True, timeout=300)
+            predictions = [json.loads(line) for line in prediction_path.read_text().splitlines()]
+            if len(predictions) != len(batch):
+                raise ValueError('missing packet predictions')
+            for question, prediction in zip(batch, predictions):
+                if question['id'] != prediction['id'] or question['args'] != prediction['args'] or prediction.get('date_system') != '1900':
+                    raise ValueError('packet prediction input/environment differs')
+                out.write(json.dumps(dict(**question, function=function, result_index=None,
+                    actual=prediction['calc_func_prediction'], numeric_cell_inputs=True,
+                    date_system_1900=True, not_excel_evidence=True))+'\n')
+    # ubs:ignore — same selected local executable, argv only; a failed application audit aborts packet publication.
+    subprocess.run([str(executable), 'function-routes', str(audit_input), str(output/'application-route-audit.jsonl')], check=True, timeout=300)
+    (output/'selection.json').write_text(json.dumps(selection, indent=2)+'\n')
+    (output/'batches.json').write_text(json.dumps([dict(function=f, path='requests-'+f+'.json', calls=len(q)) for f,q in batches.items()], indent=2)+'\n')
+    (output/'README.txt').write_text('''R18 scalar questions, no catalogue additions; counts in batches.json.
+
+From the published DnaCalc checkout on Windows, use the existing reader:
+  cargo xtask witness read --func YIELD --inputs <packet>/requests-YIELD.json
+  cargo xtask witness read --func CONCAT --inputs <packet>/requests-CONCAT.json
+Do not use --new-only. The packet deliberately rechecks two recorded par calls.
+Only requests-*.json are inputs to the reader. Predictions and route audits
+are application calculations, never Excel readings or expected-answer files.
+
+These calls ask whether Excel follows the exact mathematical par identity over
+more coupon rates/frequencies, and retain adjacent-price and single-period
+day-count controls. Mathematics alone does not settle Excel's iteration bits.
+No fitted stopping tolerance, cutoff, residual selector or seed is requested.
+The optional CONCAT batch asks the five unresolved infix number-text ties and
+their adjacent binary64 values through numeric-cell coercion. Exact Value2
+readback separates submitted operands from authored worksheet literals. CONCAT
+is a new surface; matching it would not by itself prove the infix route fixed.
+The Linux predictions declare date system 1900; keep the reader's complete
+Excel environment, requested/submitted/Value2 operand audits and failures.
+
+Return the canonical new WitnessSet under OxFunc-Evidence/readings, the new
+target/witness/read run directory and target/witness/frozen files, plus this
+unchanged packet and file hashes. Preserve partial attempts. Missing, unread
+or changed-input obligations fail. Use the existing capture lineage only.
+''')
+    sha = lambda path: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    summary = dict(format='dnacalc-research-questions-r18/1', scalar_calls=sum(map(len, batches.values())),
+        calls_by_function={f:len(q) for f,q in batches.items()}, catalogue_formula_cells=0,
+        role='implementer', new_excel_answers=0, executable_sha256=sha(executable),
+        sources_sha256={str(p):sha(p) for p in (Path(__file__), bank_trace,
+            *([Path(text_failures), Path(__file__).with_name('number_conversion.py')] if text_failures else []))},
+        exposure='Predictions frozen before new answers. Two recorded par rechecks are discovery; no full YIELD algorithm or held-out performance claim.',
+        limits='Tests the mathematical par identity, neighboring prices, the documented single-period day-count exception and optional text-coercion ties. Ordinary product routes only; standalone calls do not expose Excel private solver or conversion state.')
+    summary['files_sha256'] = {p.name:sha(p) for p in sorted(output.iterdir()) if p.is_file()}
+    (output/'manifest.json').write_text(json.dumps(summary, indent=2)+'\n')
+    print(json.dumps({k:v for k,v in summary.items() if 'sha256' not in k}))
+
+
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'par-yield-questions':
+        par_yield_questions(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'classify':
         classify(*sys.argv[2:])
         sys.exit(0)

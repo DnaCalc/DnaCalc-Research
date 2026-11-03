@@ -1,0 +1,40 @@
+{
+  "complete": false,
+  "scanner": "UBS --diff --format=jsonl",
+  "status": "partial",
+  "failure": "Python detector sql_injection: SQLFlowLimit: SQL list mutation aliasing is unsupported; doctor is healthy.",
+  "new_critical_triage": {
+    "python.taint.command": "Two operator-selected local executables run through argv without a shell; bounded timeout and check=True. Added explicit comments.",
+    "rust.ownership.panic-macro": "Malformed diagnostic YIELD inputs must abort before emitting any receipt; not an application panic path."
+  },
+  "other_critical_triage": {
+    "python.ctcompare.secret_eq": "Three pre-existing comparisons of public source/fixture SHA256 values; no secrets or authentication.",
+    "rust.ownership.panic-macro": "One pre-existing route-audit assertion rejects an uncalculated question prediction."
+  },
+  "new_warning_triage": {
+    "json-loads-no-try": "Malformed original inputs/proofs intentionally abort; no complete receipt follows.",
+    "subprocess-timeout": "Added timeout=60 to each git provenance query.",
+    "regex.nested-quantifiers": "False positive on a grammar description string; no regex is executed.",
+    "unwrap-expect/assert/direct-indexing": "Required diagnostic schema and source guards; fixed two-program/five-counter arrays and CLI argument slots. Failure aborts diagnostic execution.",
+    "clone-in-loop": "Two bounded string copies per YIELD diagnostic, under 1024 iterations; no material resource concern."
+  },
+  "limits": "Partial scanner coverage is not a clean scan; independent proof/unit/source review remains separately recorded.",
+  "initial_raw_counts": {
+    "critical": 7,
+    "warning": 707,
+    "info": 663
+  },
+  "current_raw_counts": {
+    "critical": 4,
+    "warning": 706,
+    "info": 668
+  },
+  "current_critical_triage": "All four remaining critical findings are pre-existing: three equality comparisons of public integrity hashes and one fail-closed route-audit panic. The three new critical findings are explicitly annotated and no longer reported.",
+  "current_status": "Python remains partial with the same SQLFlowLimit tool failure; doctor verifies environment and helper checksums. No partial result is called a clean scan.",
+  "staged_raw_counts": {
+    "critical": 4,
+    "warning": 727,
+    "info": 841
+  },
+  "staged_status": "Same partial Python detector failure; two additional immutable historical source fixtures scanned. Same four pre-existing critical findings; artifact warnings have the same fail-closed JSON/provenance/CLI interpretation."
+}

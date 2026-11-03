@@ -3,6 +3,7 @@
 compile_error!("symbolic-racer is native-only");
 
 pub use calc_func::value;
+pub use calc_func::locale;
 mod ported {
     include!(concat!(env!("OUT_DIR"), "/bridge.rs"));
 }
@@ -81,14 +82,24 @@ fn invoke_selected_control(
     args: Vec<value::CalcValue>,
     index: Option<(usize, usize)>,
 ) -> (String, Option<f64>) {
+    invoke_selected_control_in(function, args, index, None)
+}
+fn invoke_selected_control_in(
+    function: &str,
+    args: Vec<value::CalcValue>,
+    index: Option<(usize, usize)>,
+    environment: Option<&locale::CalcEnvironment>,
+) -> (String, Option<f64>) {
     let target = calc_func::catalogue()
         .resolve_surface(calc_func::Notation::Call, function)
         .unwrap();
     let mode = value::NumericMode::Fast;
+    let mut services = calc_func::EvalServices::new(&mode);
+    if let Some(environment) = environment { services = services.with_environment(environment); }
     match calc_func::invoke(
         target,
         &mut Given(args),
-        &mut calc_func::EvalServices::new(&mode),
+        &mut services,
         &mut calc_func::FunctionCallScratch::new(),
     ) {
         Ok(value) => {
@@ -535,6 +546,10 @@ fn main() {
         Some("invoke-inputs") => {
             let doc: Value = serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
             let name = doc["function"].as_str().unwrap();
+            let environment = a.get(4).map(|value| {
+                assert_eq!(value, "1900", "supported explicit prediction environment");
+                locale::CalcEnvironment::dates(locale::DateSystem::System1900)
+            });
             let mut output = BufWriter::new(fs::File::create(&a[3]).unwrap());
             for r in doc["witnesses"].as_array().unwrap() {
                 let args = r["args"]
@@ -543,15 +558,19 @@ fn main() {
                     .iter()
                     .map(|v| calc_verdict::decode_argument(v, "arg").unwrap())
                     .collect();
-                let (got, _) = invoke_control(name, args);
-                writeln!(output,"{}",json!({"id":r["id"],"args":r["args"],"calc_func_prediction":got,
-                    "transport_assumption":"registered typed arguments; literal parsing may change inputs","not_excel_evidence":true})).unwrap();
+                let (got, _) = invoke_selected_control_in(name, args, None, environment.as_ref());
+                let mut prediction = json!({"id":r["id"],"args":r["args"],"calc_func_prediction":got,
+                    "transport_assumption":"registered typed arguments; literal parsing may change inputs","not_excel_evidence":true});
+                if environment.is_some() { prediction["date_system"] = json!("1900"); }
+                writeln!(output,"{}",prediction).unwrap();
             }
         }
         #[cfg(route_audit)]
         Some("route-audit") => route_audit::run(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("function-routes") => route_audit::function_routes(&a[2], &a[3]),
+        #[cfg(bond_solver_audit)]
+        Some("yield-newton") => route_audit::yield_newton(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("sheet-predictions") => route_audit::sheet_predictions(&a[2], &a[3]),
         #[cfg(route_audit)]

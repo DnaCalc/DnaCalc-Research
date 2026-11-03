@@ -1,0 +1,31 @@
+{
+  "format": "dnacalc-research-questions-r18/1",
+  "scalar_calls": 44,
+  "calls_by_function": {
+    "YIELD": 29,
+    "CONCAT": 15
+  },
+  "catalogue_formula_cells": 0,
+  "role": "implementer",
+  "new_excel_answers": 0,
+  "executable_sha256": "e7ab23406d8f9b2002a7b21c2fbdf3090bf001fa545d93bbcbe6796bff712b0c",
+  "sources_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py": "098b768c5f2a87752a964b2b42140bc85179835c5d7ffb46b160eccedc06111f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/target/witness/r18-yield-before.jsonl": "29ce30882e25e411e3aeaa39321c3eb4133ce67cbc916c00733e8b1aad102d68",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/classification-before/cells.jsonl": "bc6409fc5254227e3b9d12e19e4515dc90dc792ab1ae38c55dae9e4b484bdc75",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/number_conversion.py": "f151488e3efcdcb3fe21d5b5b8507a63bbae3e56d6390d8121e29d3d0b2c9163"
+  },
+  "exposure": "Predictions frozen before new answers. Two recorded par rechecks are discovery; no full YIELD algorithm or held-out performance claim.",
+  "limits": "Tests the mathematical par identity, neighboring prices, the documented single-period day-count exception and optional text-coercion ties. Ordinary product routes only; standalone calls do not expose Excel private solver or conversion state.",
+  "files_sha256": {
+    "README.txt": "87f919a6e1434100878c2254f4c72d1389384b6488206db8b02a81367f304e29",
+    "application-predictions-CONCAT.jsonl": "8f3956baf860d45d9daea2b046fd934041a8e5694d5b3189fa2dc56a2196345f",
+    "application-predictions-YIELD.jsonl": "0a28a38a7cd21e6ffda61030bc7df378d494c57e36359d8734783525df0460c7",
+    "application-route-audit.jsonl": "bb293cb7eb4ac00a6f8cddaa9964781413128d6e205fa6e6d5c18d2a2142d9f9",
+    "application-route-inputs.jsonl": "8fbc5bc3163bdceb16bb53fcf5d2de70de5893b06feb908a827d81d4e0936772",
+    "batches.json": "1253103c639abdb92da6c38282a83090875aad39ebc2759055202ec0fd013f7a",
+    "requests-CONCAT.json": "3b29d19ca5bbf3d8302f5f50f9be3dc6b04d1a217240989eab705492ff5204b2",
+    "requests-YIELD.json": "f2e35b2430e14234b9ea6bfe6d57b26b5b2a12f63a2016078961e65950046d04",
+    "selection.json": "44b01ffc10862c0086dcea284db906b55c6942f9013654149d3efc2d12af7e89"
+  }
+}

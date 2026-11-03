@@ -1,0 +1,925 @@
+{
+  "round": 18,
+  "round_complete": false,
+  "status": "Checked checkpoint; largest recorded numerical failures and R16 scalar intake remain open.",
+  "started_utc": "2026-11-03 04:58 UTC",
+  "product_commit": "0469283f1da45e03274fc0db1ba32d92d9331983",
+  "research_unit": "round18-final-unit.json",
+  "product": {
+    "change": "Bounded multi-period on-coupon par YIELD algebraic root",
+    "failing_first": true,
+    "bank_gains": 2,
+    "bank_losses": 0,
+    "corpus_gains": 0,
+    "corpus_losses": 0
+  },
+  "corpus": {
+    "original_before": 18841,
+    "original_after": 18841,
+    "original_total": 20030,
+    "before": 19594,
+    "after": 19594,
+    "total": 20840,
+    "pass_rate": 0.94021113243762,
+    "failed": 1246,
+    "mismatched": 1152,
+    "refused": 6,
+    "missing": 1,
+    "external": 73,
+    "circular": 14,
+    "awaiting_capture": 0,
+    "nonpasses": 1246,
+    "evaluations": 63783,
+    "changed_evaluations": 0,
+    "receipt": "evidence/round18/corpus-current-delta.json",
+    "original_scope_receipt": "evidence/round18/original-scope-before-after.json",
+    "mismatched_refused_missing": 1159,
+    "original_failed": 1189,
+    "original_mismatched_refused_missing": 1102,
+    "R16_added_failed": 57
+  },
+  "bank": {
+    "before": 3230756,
+    "after": 3230758,
+    "total": 3875343,
+    "pass_rate": 0.8336702067404098,
+    "failed": 644585,
+    "unread": 116,
+    "decoded": 3875227,
+    "gains": 2,
+    "losses": 0,
+    "changed_outputs": 2,
+    "receipt": "evidence/round18/bank-merged-live/receipt.json",
+    "current_merged_total": "evidence/round18/bank-current-metadata.log"
+  },
+  "bessel": {
+    "forward": {
+      "BESSELJ": {
+        "profiles": 1125,
+        "groups": 9,
+        "executions": 7275,
+        "rejected": 620,
+        "necessary_survivors": 505
+      },
+      "BESSELY": {
+        "profiles": 1125,
+        "groups": 12,
+        "executions": 4951,
+        "rejected": 820,
+        "necessary_survivors": 305
+      }
+    },
+    "miller_labels": 6093750,
+    "miller_survivors": 0,
+    "miller_observations": 26,
+    "limits": "Nested coherent families are included, not added. Labels can repeat arithmetic programs. Necessary forward survivors do not supply consistent seed pairs or complete producers."
+  },
+  "variance": {
+    "corpus_observations": 69,
+    "corpus_local_roots": 77193,
+    "bank_observations": 1022,
+    "bank_local_roots": 612872,
+    "functions": [
+      "VAR",
+      "VAR.S",
+      "VAR.P",
+      "VARP",
+      "VARA",
+      "VARPA"
+    ],
+    "all_ten_forms_contradicted_per_bank_function": true,
+    "limits": "Local root counts sum separate root-set cardinalities, not distinct programs. Q permits ordinary square-sum trees and optional leaf-square/sibling-sum FMA; other fusion placements and arities remain open."
+  },
+  "geomean": {
+    "observations": 193,
+    "local_products": 1262,
+    "unreachable": 23,
+    "static_reference_unreachable": 2,
+    "limits": "The final real nth root rounds directly to binary64. This certificate does not exclude extended-root double rounding or native pow/log leaves."
+  },
+  "function_obligations": [
+    {
+      "function": "CUMPRINC",
+      "failed_cells": 157,
+      "within_16_ulp": 153,
+      "larger_numeric": 4,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "R15 singleton publications:12 of20 differ from standalone PPMT. This excludes direct published-result reuse, without identifying internal helpers. Earlier R17 conditional models remain scoped.",
+      "receipts": [
+        "singleton-publications.json"
+      ]
+    },
+    {
+      "function": "PPMT",
+      "failed_cells": 104,
+      "within_16_ulp": 92,
+      "larger_numeric": 12,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Earlier R17 six-loan conditional certificates remain scoped; no new complete cashflow program or product change.",
+      "receipts": [
+        "singleton-publications.json"
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "failed_cells": 87,
+      "within_16_ulp": 10,
+      "larger_numeric": 76,
+      "other_failures": {
+        "type_or_error": 1
+      },
+      "status": "open",
+      "r18_evidence": "Forward publication bounds and finite six-site Miller family checked; seeds and admission boundary remain open.",
+      "receipts": [
+        "bessel-forward-current-checked.json",
+        "bessel-miller-sites-checked.json"
+      ]
+    },
+    {
+      "function": "GEOMEAN",
+      "failed_cells": 84,
+      "within_16_ulp": 84,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Arbitrary-site two/three-operand products followed by a real root rounded directly to binary64:23 unreachable among193 observations. Extended-root/double-rounding/native pow/log variants remain open.",
+      "receipts": [
+        "geomean-product-closure-checked.json"
+      ]
+    },
+    {
+      "function": "BESSELY",
+      "failed_cells": 80,
+      "within_16_ulp": 0,
+      "larger_numeric": 80,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Forward publication bounds checked; necessary consumers survive, seed program remains open.",
+      "receipts": [
+        "bessel-forward-current-checked.json"
+      ]
+    },
+    {
+      "function": "IPMT",
+      "failed_cells": 80,
+      "within_16_ulp": 79,
+      "larger_numeric": 1,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Earlier R17 six-loan conditional certificates remain scoped; no new complete cashflow program or product change.",
+      "receipts": [
+        "singleton-publications.json"
+      ]
+    },
+    {
+      "function": "VAR.S",
+      "failed_cells": 76,
+      "within_16_ulp": 32,
+      "larger_numeric": 44,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "All ten declared three-input uncentered/mixed-FMA forms have a recorded bank contradiction for this function. Other syntaxes/arity and complete kernels remain open.",
+      "receipts": [
+        "variance-bank-mixed-fma-checked.json"
+      ]
+    },
+    {
+      "function": "BINOM.DIST",
+      "failed_cells": 71,
+      "within_16_ulp": 61,
+      "larger_numeric": 10,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CUMIPMT",
+      "failed_cells": 67,
+      "within_16_ulp": 66,
+      "larger_numeric": 1,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "R15 singleton publications:15 of20 differ from standalone IPMT. This excludes direct published-result reuse, without identifying internal helpers. Earlier R17 conditional models remain scoped.",
+      "receipts": [
+        "singleton-publications.json"
+      ]
+    },
+    {
+      "function": "VAR.P",
+      "failed_cells": 63,
+      "within_16_ulp": 23,
+      "larger_numeric": 40,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "All ten declared three-input uncentered/mixed-FMA forms have a recorded bank contradiction for this function. Other syntaxes/arity and complete kernels remain open.",
+      "receipts": [
+        "variance-bank-mixed-fma-checked.json"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "failed_cells": 47,
+      "within_16_ulp": 43,
+      "larger_numeric": 3,
+      "other_failures": {
+        "type_or_error": 1
+      },
+      "status": "open",
+      "r18_evidence": "Earlier R17 gains retained; no new whole-function or admission-boundary fix.",
+      "receipts": [
+        "corpus-current-delta.json"
+      ]
+    },
+    {
+      "function": "LINEST",
+      "failed_cells": 26,
+      "within_16_ulp": 19,
+      "larger_numeric": 7,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "STDEV",
+      "failed_cells": 17,
+      "within_16_ulp": 5,
+      "larger_numeric": 12,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "VARP",
+      "failed_cells": 16,
+      "within_16_ulp": 2,
+      "larger_numeric": 14,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "All ten declared three-input uncentered/mixed-FMA forms have a recorded bank contradiction for this function. Other syntaxes/arity and complete kernels remain open.",
+      "receipts": [
+        "variance-bank-mixed-fma-checked.json"
+      ]
+    },
+    {
+      "function": "VARPA",
+      "failed_cells": 14,
+      "within_16_ulp": 14,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "All ten declared three-input uncentered/mixed-FMA forms have a recorded bank contradiction for this function. Other syntaxes/arity and complete kernels remain open.",
+      "receipts": [
+        "variance-bank-mixed-fma-checked.json"
+      ]
+    },
+    {
+      "function": "STDEV.S",
+      "failed_cells": 13,
+      "within_16_ulp": 13,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "STDEVA",
+      "failed_cells": 13,
+      "within_16_ulp": 13,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "POISSON.DIST",
+      "failed_cells": 12,
+      "within_16_ulp": 11,
+      "larger_numeric": 1,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "LOGEST",
+      "failed_cells": 11,
+      "within_16_ulp": 4,
+      "larger_numeric": 5,
+      "other_failures": {
+        "type_or_error": 2
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "STDEV.P",
+      "failed_cells": 10,
+      "within_16_ulp": 10,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "VAR",
+      "failed_cells": 10,
+      "within_16_ulp": 5,
+      "larger_numeric": 5,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "All ten declared three-input uncentered/mixed-FMA forms have a recorded bank contradiction for this function. Other syntaxes/arity and complete kernels remain open.",
+      "receipts": [
+        "variance-bank-mixed-fma-checked.json"
+      ]
+    },
+    {
+      "function": "Infix &",
+      "failed_cells": 9,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "text_value": 9
+      },
+      "status": "open",
+      "r18_evidence": "Nine failed cells, five unique operands; new CONCAT/Value2 neighbor questions preserve the distinction between surfaces. No text selector or fix adopted.",
+      "receipts": [
+        "unresolved-regressions.patch"
+      ]
+    },
+    {
+      "function": "HYPGEOM.DIST",
+      "failed_cells": 6,
+      "within_16_ulp": 4,
+      "larger_numeric": 2,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "NEGBINOM.DIST",
+      "failed_cells": 5,
+      "within_16_ulp": 5,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "GAMMA.DIST",
+      "failed_cells": 4,
+      "within_16_ulp": 4,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "<",
+      "failed_cells": 3,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "not_modeled": 3
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "RATE",
+      "failed_cells": 3,
+      "within_16_ulp": 0,
+      "larger_numeric": 3,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "BETADIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "BETAINV",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "BINOM.DIST.RANGE",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "BINOMDIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CHIDIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CONFIDENCE",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "DURATION",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "FDIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "FINV",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "GAMMADIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "GAMMAINV",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "GETPIVOTDATA",
+      "failed_cells": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "not_modeled": 2
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "HYPGEOMDIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "IRR",
+      "failed_cells": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 2,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "LOGINV",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "NEGBINOMDIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "ODDFYIELD",
+      "failed_cells": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 2,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "POISSON",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "ROUND",
+      "failed_cells": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "capture_failure": 2
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "TDIST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "TINV",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "TTEST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "YIELD",
+      "failed_cells": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 2,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Two bank par gains; the two corpus nonpar failures remain open. Published Newton phase stays diagnostic.",
+      "receipts": [
+        "bank-merged-live/receipt.json",
+        "yield-newton-dated/summary.json",
+        "yield-corpus-newton/summary.json"
+      ]
+    },
+    {
+      "function": "Z.TEST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "ZTEST",
+      "failed_cells": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": ">",
+      "failed_cells": 1,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "not_modeled": 1
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "BETA.DIST",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "BETA.INV",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CHISQ.DIST.RT",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CHISQ.INV",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CONFIDENCE.NORM",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "CONFIDENCE.T",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "F.DIST.RT",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "F.INV",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "F.INV.RT",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "GAMMA.INV",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "LOGNORM.INV",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "N",
+      "failed_cells": 1,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "capture_failure": 1
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "NORM.S.DIST",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "PMT",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "T.DIST",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "T.DIST.2T",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "T.DIST.RT",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "T.INV.2T",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "T.TEST",
+      "failed_cells": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other_failures": {},
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    },
+    {
+      "function": "TRUNC",
+      "failed_cells": 1,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other_failures": {
+        "capture_failure": 1
+      },
+      "status": "open",
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
+      "receipts": []
+    }
+  ],
+  "triage_definition": "Within16 ULP is triage only; every listed cell still fails. Fixed recorded inputs/answers only; no fitted parameter, tolerance pass or row-specific selector.",
+  "r16_intake": {
+    "status": "Directory /home/ubuntu/codex-runs/excel-results-r16 absent at checkpoint; no scalar reading ingested.",
+    "new_readings": 0
+  },
+  "next_packet": {
+    "path": "packets/round18",
+    "scalar_calls": 44,
+    "YIELD": 29,
+    "CONCAT": 15,
+    "catalogue_additions": 0,
+    "new_excel_answers": 0,
+    "application_route_audits": 44,
+    "external_zip": "/home/ubuntu/codex-runs/excel-questions-r18.zip"
+  },
+  "checks": {
+    "main_passed": 1341,
+    "main_failed": 0,
+    "main_ignored": 5,
+    "main_not_run": 1,
+    "main_packages": 12,
+    "rust_passed": 91,
+    "rust_failed": 0,
+    "rust_ignored": 2,
+    "python_passed": 67,
+    "lattice_checks": 1504,
+    "ubs": "Partial Python scanner: SQLFlowLimit; findings triaged, doctor healthy. Not a complete clean scan."
+  },
+  "read_only_review": "Read-only source/math/receipt review passes for the checkpoint; final round report will be reviewed separately.",
+  "evidence_index": "evidence/round18/final-index.json",
+  "source_review": "evidence/round18/source-review-r18.json",
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18",
+  "forbidden_checkout_touched": false,
+  "still_open": "BESSELY80/BESSELJ76 large numeric cells, nine text cells, original two Bessel type/error cells, two added LOGEST type/error cells and all other recorded failures.",
+  "function_obligations_counted_subtotal": 1159,
+  "policy_nonpasses_outside_function_table": {
+    "external": 73,
+    "circular": 14,
+    "still_failed": 87
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "counts_pass_fail_gains_losses_failed_phase": [
+    [
+      1,
+      503,
+      1,
+      0,
+      0
+    ],
+    [
+      6,
+      498,
+      6,
+      0,
+      0
+    ]
+  ],
+  "limits": "Published Newton phase only, with unchanged existing product date/price bodies and two existing discount leaves. Failed phases are NUM hypotheses, not a faithful port of the reference fallback. Single-coupon controls retain the current product result. Fixed constants from the reference, no fitted solver parameter or tolerance claim.",
+  "observations": 504,
+  "programs": 2,
+  "source": "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs/bonds.fs; Apache-2.0"
+}

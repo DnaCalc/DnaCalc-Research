@@ -133,7 +133,36 @@ fn main() {
             println!("cargo:rerun-if-changed={}", path.display());
             writeln!(bridge, "#[path = {:?}] pub mod {module};", path).unwrap();
         }
+        if unit["bond_solver_audit"].as_bool() == Some(true) {
+            let day_count = source.parent().unwrap().join("day_count_common.rs");
+            writeln!(bridge, "#[path = {:?}] pub mod day_count_common;", day_count).unwrap();
+            println!("cargo:rerun-if-changed={}", day_count.display());
+            let original = source.parent().unwrap().join("bond_core_family.rs");
+            let mut bond = fs::read_to_string(&original).unwrap();
+            // The current price/date bodies are unchanged. This appended
+            // wrapper exposes their existing private schedule inside the same
+            // module, solely for the research solver comparison.
+            bond.push_str(r#"
+pub(crate) struct ResearchPrice { context: Ctx, coupons: Period, coupon_rate: f64, redemption: f64 }
+impl ResearchPrice {
+    pub(crate) fn new(a: &[f64]) -> Result<Self, BondCoreEvalError> {
+        let context = ctx(a[0], a[1], a[5], a.get(6).copied())?;
+        Ok(Self { context, coupons: period(context)?, coupon_rate: rate(a[2])?, redemption: pos(a[4])? })
+    }
+    pub(crate) fn count(&self) -> i64 { self.coupons.n }
+    pub(crate) fn value(&self, y: f64, staged: bool) -> Result<f64, BondCoreEvalError> {
+        Ok(pcomp_disc(self.coupon_rate, y, self.redemption, self.context, self.coupons, staged)?.0)
+    }
+}
+"#);
+            let path = output.join("bond-research.rs");
+            fs::write(&path, bond).unwrap();
+            writeln!(bridge, "#[path = {:?}] pub mod bond_core_family;", path).unwrap();
+            println!("cargo:rerun-if-changed={}", original.display());
+            println!("cargo:rustc-cfg=bond_solver_audit");
+        }
         println!("cargo:rustc-cfg=route_audit");
     }
     println!("cargo:rustc-check-cfg=cfg(route_audit)");
+    println!("cargo:rustc-check-cfg=cfg(bond_solver_audit)");
 }

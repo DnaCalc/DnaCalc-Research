@@ -188,6 +188,168 @@ class ExactArithmetic(unittest.TestCase):
             for function,expected in [('BESSELJ',R(1)),('BESSELY',R(1)),('BESSELI',R(-1)),('BESSELK',R(3))]:
                 self.assertEqual(calculate(profile,function,R(2),R(1),R(2)),expected)
 
+    def test_forward_bessel_boxes_keep_exact_sequences_and_reject_wrong_later_order(self):
+        from checker.bessel import forward_cohorts, forward_proof
+        bits = lambda x: '0x'+struct.pack('>d', float(x)).hex()
+        for function in ('BESSELJ', 'BESSELY'):
+            # A synthetic recurrence at x=16, seeded by 1 and3. These are
+            # arithmetic controls, not values of the Bessel functions.
+            rows = [dict(function=function, args=[bits(16), bits(n)], expected=bits(v),
+                         result_index=None, reading='synthetic', source='no Excel evidence')
+                    for n, v in enumerate((R(1), R(3), -R(5, 8), -R(101, 32)))]
+            groups = forward_cohorts(rows)
+            self.assertEqual(len(groups), 1)
+            for form, model in itertools.product(range(5), ('strict', 'stored_pc64', 'resident_pc64', 'stored_pc53', 'resident_pc53')):
+                profile = dict(form=form, models=[model]*(4 if form == 4 else 3))
+                self.assertFalse(forward_proof(rows, groups[0], profile)['excluded'])
+                altered = copy.deepcopy(rows)
+                altered[-1]['expected'] = bits(R(1, 2))
+                proof = forward_proof(altered, groups[0], profile)
+                self.assertTrue(proof['excluded'])
+                self.assertEqual(proof['steps'][-1]['order'], 3)
+
+    def test_raw_moment_closures_cover_exact_variances_and_do_not_create_other_answers(self):
+        from checker.variance_closure import raw_moment_result
+        bits = lambda x: '0x'+struct.pack('>d', float(x)).hex()
+        for function, answer in (('VAR.S', R(1)), ('VAR.P', R(2, 3))):
+            row = dict(function=function, args=[[[bits(1), bits(2), bits(3)]]], expected=bits(answer))
+            for fused in (False, True):
+                proof = raw_moment_result(row, fused)
+                self.assertEqual(len(proof['forms']), 10 if fused else 6)
+                self.assertTrue(all(form['reachable'] for form in proof['forms']))
+                self.assertTrue(all(form['root_count'] > 0 for form in proof['forms']))
+                wrong = dict(row, expected=bits(1000))
+                self.assertTrue(all(not form['reachable'] for form in raw_moment_result(wrong, fused)['forms']))
+
+    def test_forward_bessel_checker_rejects_an_empty_scope(self):
+        from checker.bessel import check_forward
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source, directory = root/'empty.jsonl', root/'proof'
+            source.write_text('')
+            directory.mkdir()
+            (directory/'groups.json').write_text('[]')
+            with self.assertRaisesRegex(ValueError, 'empty'):
+                check_forward(source, directory, root/'receipt.json')
+            self.assertFalse((root/'receipt.json').exists())
+
+    def test_miller_rescaling_keeps_its_represented_states(self):
+        from checker.bessel import miller_result, decode_pair
+        bits = lambda x: '0x'+struct.pack('>d', float(x)).hex()
+        row = dict(args=[bits(R(1, 8)), bits(100)])
+        for model in ('strict', 'resident_pc64', 'stored_pc64', 'resident_pc53', 'stored_pc53'):
+            p = dict(margin=64, include_boundary=True, normalization=1, models=[model]*4)
+            result = miller_result(row, p)
+            self.assertGreater(result['scalings'], 0)
+            self.assertGreater(decode_pair(result['published']), 0)
+
+    def test_miller_site_decoder_and_coherent_subset(self):
+        from checker.bessel import miller_profile, miller_result, MODELS
+        first = miller_profile(0, True, True)
+        self.assertEqual(first, dict(id=0, margin=0, include_boundary=False, models=['strict']*6, normalization=0))
+        last = miller_profile(6093750-1, True, True)
+        self.assertEqual((last['margin'], last['include_boundary'], last['models'], last['normalization']),
+                         (64, True, ['resident_pc53']*6, 2))
+        row = dict(args=['0x3ffe666666666666', '0x4000000000000000'])
+        for ratio, recurrence, reduction, finish in itertools.product(MODELS, repeat=4):
+            old = dict(margin=8, include_boundary=False, models=[ratio, recurrence, reduction, finish], normalization=1)
+            new = dict(old, models=[ratio, recurrence, recurrence, recurrence, reduction, finish])
+            self.assertEqual(miller_result(row, old), miller_result(row, new))
+
+    def test_miller_checker_rejects_duplicate_and_missing_programs(self):
+        from checker.bessel import miller_profile, miller_result, check_miller
+        import gzip
+        raw = dict(function='BESSELJ', result_index=None,
+                   args=['0x3fc0000000000000', '0x4000000000000000'], expected='0x3ff0000000000000')
+        proof = miller_result(raw, miller_profile(0, True, True))
+        self.assertNotEqual(proof['published'], ['1', '1'])
+        record = dict(candidate_id=0, order=0, trace_index=0, proof=proof)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root/'input.jsonl'
+            source.write_text(json.dumps(raw)+'\n')
+            (root/'scope.json').write_text('[0]\n')
+            (root/'survivors.json').write_text('[]\n')
+            for count, message in ((2, 'duplicate or unknown'), (1, 'incomplete Miller accounting')):
+                with gzip.open(root/'first-kills.jsonl.gz', 'wt') as out:
+                    out.write((json.dumps(record)+'\n')*count)
+                with self.assertRaisesRegex(ValueError, message):
+                    check_miller(source, root, root/f'invalid-{count}.json', True, True)
+
+    def test_raw_moment_receipt_rejects_changed_digest_answer_and_coverage(self):
+        from checker.variance_closure import raw_moment_result, raw_moment_check
+        from collections import Counter
+        row = dict(function='VAR.S', args=[['0x3ff0000000000000', '0x4000000000000000',
+                                         '0x4008000000000000']], expected='0x3ff0000000000000')
+        for fused in (False, True):
+            proof = raw_moment_result(row, fused)
+            counts = Counter(observations=1)
+            for form, root in enumerate(proof['forms']):
+                counts['form_'+str(form)+'_unreachable'] += not root['reachable']
+                counts['root_values'] += root['root_count']
+            summary = dict(complete=True, fused=fused, counts=counts, by_function={'VAR.S': counts})
+            # Per-function counts do not contain the global root total.
+            summary['by_function'] = {'VAR.S': {k:v for k,v in counts.items() if k != 'root_values'}}
+            with tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                source = root/'input.jsonl'
+                source.write_text(json.dumps(row)+'\n')
+                (root/'summary.json').write_text(json.dumps(summary))
+                closure = root/'closures.jsonl'
+                closure.write_text(json.dumps(proof)+'\n')
+                with contextlib.redirect_stdout(io.StringIO()):
+                    raw_moment_check(source, root, root/'valid.json', fused)
+                mutations = []
+                changed = copy.deepcopy(proof)
+                changed['forms'][0]['roots_sha256'] = '0'*64
+                mutations.append(changed)
+                changed = copy.deepcopy(proof)
+                changed['raw']['expected'] = '0x4000000000000000'
+                mutations.append(changed)
+                mutations.append(None)
+                for index, changed in enumerate(mutations):
+                    closure.write_text('' if changed is None else json.dumps(changed)+'\n')
+                    with self.assertRaises(ValueError):
+                        raw_moment_check(source, root, root/f'invalid-{index}.json', fused)
+
+    def test_geomean_arbitrary_site_products_and_inverse_root_bounds(self):
+        from racer.geomean import product_closure
+        from checker.geomean import product_result
+        row = dict(function='GEOMEAN', result_index=None,
+                   args=['0x3ff0000000000000', '0x4000000000000000', '0x4010000000000000'],
+                   expected='0x4000000000000000')
+        self.assertEqual(product_closure(row), product_result(row))
+        self.assertTrue(product_result(row)['reachable'])
+        wrong = dict(row, expected='0x4008000000000000')
+        self.assertFalse(product_result(wrong)['reachable'])
+        for values in ([0.1, 0.2], [0.1, 0.2, 0.3], [2.0**80, 2.0**-80, 1.1]):
+            raw = dict(row, args=['0x'+struct.pack('>d', v).hex() for v in values])
+            self.assertEqual(product_closure(raw), product_result(raw))
+
+    def test_geomean_product_scope_and_missing_tree_control(self):
+        from racer.geomean import product_closure_run
+        from checker.geomean import check_product_closure
+        raw = dict(function='GEOMEAN', result_index=None,
+                   args=['0x'+struct.pack('>d', x).hex() for x in (0.1, 0.2, 0.3)],
+                   expected='0x3ff0000000000000')
+        outside = dict(raw, args=['0x'+struct.pack('>d', x).hex() for x in (1e-40, 1.0)])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, proof = root/'inputs.jsonl', root/'proof'
+            source.write_text(json.dumps(raw)+'\n'+json.dumps(outside)+'\n')
+            with contextlib.redirect_stdout(io.StringIO()):
+                product_closure_run(source, proof)
+                check_product_closure(source, proof, root/'valid.json')
+            counts = json.loads((proof/'summary.json').read_text())['counts']
+            self.assertEqual(counts['scoped'], 1)
+            self.assertEqual(counts['outside_modest_magnitudes'], 1)
+            closure = proof/'closures.jsonl'
+            record = json.loads(closure.read_text())
+            record['products']['7'].pop()
+            closure.write_text(json.dumps(record)+'\n')
+            with self.assertRaises(ValueError):
+                check_product_closure(source, proof, root/'invalid.json')
+
     def test_binomial_consumers_obey_exact_dyadic_mass_ratios(self):
         from checker.binomial import step
         for form,model in itertools.product(range(6),('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')):

@@ -1,0 +1,101 @@
+{"command": ["cargo", "test", "-p", "calc-func", "--test", "f1_engineering", "--test", "f1_stats", "--test", "acceptance", "--no-fail-fast", "r18_recorded", "--", "--nocapture"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+warning: variant `Required` is never constructed
+    --> crates/calc-func/tests/acceptance.rs:1817:5
+     |
+1805 | enum Expect {
+     |      ------ variant in this enum
+...
+1817 |     Required(usize),
+     |     ^^^^^^^^
+     |
+     = note: `Expect` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: constant `COLLATION` is never used
+    --> crates/calc-func/tests/acceptance.rs:1915:7
+     |
+1915 | const COLLATION: Owner = Owner {
+     |       ^^^^^^^^^
+
+warning: unused `Result` in tuple element 2 that must be used
+     --> crates/calc-func/tests/acceptance.rs:22728:9
+      |
+22728 |         call_and_assert(&mut sheet, &NumericMode::Fast, AMPERSAND, &args, &t(expected));
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |
+      = note: this `Result` may be an `Err` variant, which should be handled
+      = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+
+warning: `calc-func` (test "acceptance") generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s
+     Running tests/acceptance.rs (/tmp/cargo-target/debug/deps/acceptance-5322a51834e3732d)
+
+running 1 test
+
+thread 'r18_recorded_number_text_ties' (1272586) panicked at crates/calc-func/tests/acceptance.rs:2051:5:
+=A77&"" under Fast: expected text "521310271410498", got Ok(CalcValue { core: Text(ExcelText { units: [53, 50, 49, 51, 49, 48, 50, 55, 49, 52, 49, 48, 52, 57, 55] }), callable: None })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test r18_recorded_number_text_ties ... FAILED
+
+failures:
+
+failures:
+    r18_recorded_number_text_ties
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 28 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test acceptance`
+     Running tests/f1_engineering.rs (/tmp/cargo-target/debug/deps/f1_engineering-00aebc80b5f24b62)
+
+running 3 tests
+
+thread 'r18_recorded_besselj_seed' (1272589) panicked at crates/calc-func/tests/f1_engineering.rs:85:5:
+assertion `left == right` failed: got 9.77626246538296e-1, expected 9.776262482903991e-1
+  left: 4606980893944511389
+ right: 4606980893960292931
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'r18_recorded_bessel_admission' (1272588) panicked at crates/calc-func/tests/f1_engineering.rs:91:5:
+assertion `left == right` failed: got CalcValue { core: Number(-5.7212089019809e-6), callable: None }
+  left: None
+ right: Some(Num)
+
+thread 'r18_recorded_bessely_seed' (1272590) panicked at crates/calc-func/tests/f1_engineering.rs:79:5:
+assertion `left == right` failed: got -8.072735778045196e-1, expected -8.072735831518252e-1
+  left: 13828818530368425187
+ right: 13828818530416589434
+test r18_recorded_besselj_seed ... FAILED
+test r18_recorded_bessely_seed ... FAILED
+test r18_recorded_bessel_admission ... FAILED
+
+failures:
+
+failures:
+    r18_recorded_bessel_admission
+    r18_recorded_besselj_seed
+    r18_recorded_bessely_seed
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f1_engineering`
+     Running tests/f1_stats.rs (/tmp/cargo-target/debug/deps/f1_stats-3060b753ff6cd3c5)
+
+running 1 test
+
+thread 'r18_recorded_logest_rank_boundary' (1272592) panicked at crates/calc-func/tests/f1_support/mod.rs:221:22:
+expected a number, got Error(Num)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test r18_recorded_logest_rank_boundary ... FAILED
+
+failures:
+
+failures:
+    r18_recorded_logest_rank_boundary
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 36 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f1_stats`
+error: 3 targets failed:
+    `-p calc-func --test acceptance`
+    `-p calc-func --test f1_engineering`
+    `-p calc-func --test f1_stats`

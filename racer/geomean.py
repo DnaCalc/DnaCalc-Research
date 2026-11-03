@@ -200,8 +200,78 @@ def exact_root_run(input_path, destination):
     (dest/'summary.json').write_text(json.dumps(result, indent=2)+'\n'); print(json.dumps(result))
 
 
+def product_closure(raw):
+    """All product trees for two or three modest positive operands."""
+    from bessel import MODELS, operation, pair
+    from intervals import B64, Interval, number, pow2
+    inputs, reason = coordinates(raw)
+    require(reason is None and 2 <= len(inputs) <= 3, 'product-closure arity/domain')
+    xs = [Q(number(f'0x{x:016x}')) for x in inputs]
+    require(all(pow2(-100) <= x <= pow2(100) for x in xs), 'product-closure magnitude')
+    table = {1 << i: {x} for i, x in enumerate(xs)}
+    for mask in range(1, 1 << len(xs)):
+        if mask in table:
+            continue
+        values = set()
+        left = (mask-1) & mask
+        while left:
+            right = mask ^ left
+            for a, b in itertools.product(table[left], table[right]):
+                values.add(a*b)
+                values.update(operation('mul', m, a, b) for m in MODELS)
+            left = (left-1) & mask
+        table[mask] = values
+    target = Q(number(raw['expected']))
+    span = B64.preimage(Interval(target, target))
+    # Root is monotone: pull its publication interval back by exact nth powers.
+    lo, hi = span.lo**len(xs), span.hi**len(xs)
+    roots = table[(1 << len(xs))-1]
+    reachable = any((p > lo or p == lo and span.lc) and
+                    (p < hi or p == hi and span.hc) for p in roots)
+    return dict(raw=raw, products={str(k):[pair(x) for x in sorted(v)] for k,v in table.items()},
+                root_span=span.json(), reachable=reachable)
+
+
+def product_closure_run(input_path, destination):
+    from intervals import number, pow2
+    started = time.monotonic()
+    dest = Path(destination)
+    dest.mkdir()
+    frozen = {str(p):digest(p) for p in (Path(input_path), Path(__file__),
+        Path(__file__).with_name('bessel.py'), Path(__file__).with_name('intervals.py'))}
+    counts = Counter()
+    with Path(input_path).open() as source, (dest/'closures.jsonl').open('x') as out, (dest/'scope.jsonl').open('x') as scope:
+        for index, line in enumerate(source):
+            raw = json.loads(line)
+            inputs, reason = coordinates(raw)
+            if reason is None and not 2 <= len(inputs) <= 3:
+                reason = 'arity_outside_2_to_3'
+            if reason is None and any(not pow2(-100) <= Q(number(v)) <= pow2(100) for v in flatten(raw['args'])):
+                reason = 'outside_modest_magnitudes'
+            if reason is None and number(raw['expected']) <= 0:
+                reason = 'nonpositive_expected'
+            scope.write(json.dumps(dict(trace_index=index, reason=reason))+'\n')
+            if reason:
+                counts[reason] += 1
+                continue
+            proof = product_closure(raw)
+            out.write(json.dumps(dict(trace_index=index, **proof))+'\n')
+            counts['scoped'] += 1
+            counts['unreachable'] += not proof['reachable']
+            counts['root_product_values'] += len(proof['products'][str((1 << len(inputs))-1)])
+    require(counts['scoped'] and frozen == {p:digest(p) for p in frozen}, 'empty or changed product closure')
+    result = dict(complete=True, counts=counts, input_sha256=frozen, seconds=time.monotonic()-started,
+        limits='All multiplication trees/permutations with an independent choice at every node among five precision/store models or exact rational multiplication, followed by a correctly rounded real nth root. '
+               'Only two/three positive operands in[2^-100,2^100]. Exact inverse midpoint powers determine reachability. '
+               'No native logarithm/power leaf, complete Excel algorithm, tolerance or product gain is claimed.')
+    (dest/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='product-closure':
+        product_closure_run(*sys.argv[2:]); raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='exact-root':
         exact_root_run(*sys.argv[2:]); raise SystemExit(0)
     parser=argparse.ArgumentParser();parser.add_argument('input');parser.add_argument('library');parser.add_argument('destination')

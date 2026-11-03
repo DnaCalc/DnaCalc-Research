@@ -1,0 +1,76 @@
+diff --git a/crates/calc-func/tests/acceptance.rs b/crates/calc-func/tests/acceptance.rs
+index 6daba7f8..770ea98b 100644
+--- a/crates/calc-func/tests/acceptance.rs
++++ b/crates/calc-func/tests/acceptance.rs
+@@ -22712,3 +22712,19 @@ fn dc_nzpw__excel_comparison() {
+ fn dc_xrxb__prefix_metadata_matches_excel() {
+     dc_xrxb_support::prefix_metadata_matches_excel();
+ }
++
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test)]
++fn r18_recorded_number_text_ties() {
++    let mut sheet = number_text_sheet();
++    for (address, expected) in [
++        ("A77", "521310271410498"),
++        ("A78", "5758361573115.38"),
++        ("A79", "-6278515587045.88"),
++        ("A80", "543212677140.063"),
++        ("A82", "5.24851955262677E-06"),
++    ] {
++        let args = [cell(&sheet, address), txt("")];
++        call_and_assert(&mut sheet, &NumericMode::Fast, AMPERSAND, &args, &t(expected));
++    }
++}
+diff --git a/crates/calc-func/tests/f1_engineering.rs b/crates/calc-func/tests/f1_engineering.rs
+index 00af34b6..4ae010ba 100644
+--- a/crates/calc-func/tests/f1_engineering.rs
++++ b/crates/calc-func/tests/f1_engineering.rs
+@@ -73,6 +73,25 @@ fn bessel_functions() {
+     error(call("BESSELJ", vec![n(1.9), n(-1.0)]), Num);
+ }
+ 
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r18_recorded_bessely_seed() {
++    exact(call("BESSELY", vec![n(0.3), n(0.0)]), f64::from_bits(0xbfe9_d52f_68d1_fa7a));
++}
++
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r18_recorded_besselj_seed() {
++    exact(call("BESSELJ", vec![n(0.3), n(0.0)]), f64::from_bits(0x3fef_48b6_d783_ca43));
++}
++
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r18_recorded_bessel_admission() {
++    error(call("BESSELJ", vec![n(134217728.0), n(0.0)]), Num);
++    error(call("BESSELI", vec![n(709.7000001), n(0.0)]), Num);
++}
++
+ #[cfg_attr(not(target_arch = "wasm32"), test)]
+ #[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
+ fn besseli_higher_orders_use_the_same_normalization_as_order_zero() {
+diff --git a/crates/calc-func/tests/f1_stats.rs b/crates/calc-func/tests/f1_stats.rs
+index b2a62116..6f932744 100644
+--- a/crates/calc-func/tests/f1_stats.rs
++++ b/crates/calc-func/tests/f1_stats.rs
+@@ -200,6 +200,17 @@ fn regression_keeps_scaled_independent_predictors_from_r16() {
+     }
+ }
+ 
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn r18_recorded_logest_rank_boundary() {
++    let y = arr(vec![vec![1.0], vec![2.0], vec![4.0], vec![7.0]]);
++    let x = arr(vec![vec![1.0, 2.0], vec![2.0, 4.0], vec![5.0, 10.0], vec![4.0, 8.00000381469726]]);
++    for (constant, expected) in [(false, 0x3ff3_0f6b_4559_ebb7), (true, 0x3ff3_9136_1a3b_f593)] {
++        let result = call("LOGEST", vec![y.clone(), x.clone(), b(constant), b(true)]).unwrap();
++        exact(Ok(result.as_array().unwrap().get(0, 0).unwrap().clone()), f64::from_bits(expected));
++    }
++}
++
+ #[cfg_attr(not(target_arch = "wasm32"), test)]
+ #[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
+ fn distributions_match_excel_examples() {

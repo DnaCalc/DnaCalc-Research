@@ -6,8 +6,9 @@ import json
 from pathlib import Path
 import sys
 import time
+from functools import lru_cache
 
-from exact import BINARY64 as B, EXTENDED64 as E, Span, binary64, operation, two
+from exact import BINARY64 as B, EXTENDED64 as E, EXTENDED53 as P53, Span, binary64, operation, two
 from check import records, require, digest
 
 MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
@@ -188,6 +189,277 @@ def check_domains(input_path,directory,output):
     print(json.dumps(result))
 
 
+def forward_cohorts(rows):
+    by_context = defaultdict(dict)
+    for index, row in enumerate(rows):
+        a = row['args']
+        if (row['function'] not in ('BESSELJ', 'BESSELY') or row['result_index'] is not None
+                or len(a) != 2 or not all(isinstance(v, str) and v.startswith('0x') for v in a)
+                or not row['expected'].startswith('0x')):
+            continue
+        x, n = map(binary64, a)
+        if x <= 0 or n.denominator != 1 or not 0 <= n <= 32:
+            continue
+        if abs(binary64(row['expected'])) < two(-1022):
+            continue
+        if row['function'] == 'BESSELJ' and n >= 2 and x <= n:
+            continue
+        key = json.dumps([row['function'], a[0], row['reading'], row['source']], sort_keys=True, separators=(',', ':'))
+        n = int(n)
+        if n in by_context[key]:
+            require(rows[by_context[key][n]]['expected'] == row['expected'], 'conflicting forward answer')
+        else:
+            by_context[key][n] = index
+    return [dict(context=k, indices=[v[n] for n in sorted(v)])
+            for k, v in sorted(by_context.items()) if 0 in v and 1 in v and max(v) >= 2]
+
+
+def forward_proof(rows, group, profile):
+    observations = {int(binary64(rows[i]['args'][1])): i for i in group['indices']}
+    x = binary64(rows[observations[0]]['args'][0])
+    previous = seed_bounds(binary64(rows[observations[0]]['expected']))
+    current = seed_bounds(binary64(rows[observations[1]]['expected']))
+    model = profile['models']
+    def apply(kind, left, right, site):
+        values = [operation(a, b, kind, model[site]) for a, b in itertools.product(left, right)]
+        return min(values), max(values)
+    pair = lambda q: [str(q.numerator), str(q.denominator)]
+    encoded = lambda bounds: list(map(pair, bounds))
+    steps = []
+    for order in range(2, max(observations)+1):
+        factor = (R(2*(order-1)),)*2
+        argument = (x, x)
+        form = profile['form']
+        if form == 0:
+            term = apply('div', apply('mul', factor, current, 0), argument, 1)
+        elif form == 1:
+            term = apply('mul', factor, apply('div', current, argument, 0), 1)
+        elif form == 2:
+            term = apply('mul', apply('div', factor, argument, 0), current, 1)
+        elif form == 3:
+            term = apply('div', current, apply('div', argument, factor, 0), 1)
+        else:
+            reciprocal = apply('div', (R(2),)*2, argument, 0)
+            coefficient = apply('mul', (R(order-1),)*2, reciprocal, 1)
+            term = apply('mul', coefficient, current, 2)
+        roots = apply('add', term, (-previous[1], -previous[0]), len(model)-1)
+        step = dict(order=order, previous=encoded(previous), current=encoded(current),
+                    roots=encoded(roots), observation=observations.get(order))
+        retained = roots
+        if order in observations:
+            target = binary64(rows[observations[order]]['expected'])
+            allowed = seed_bounds(target)
+            step.update(target=pair(target), allowed=encoded(allowed))
+            retained = max(roots[0], allowed[0]), min(roots[1], allowed[1])
+            if retained[0] > retained[1]:
+                step['excluded'] = True
+                return dict(excluded=True, steps=steps+[step])
+        step.update(excluded=False, retained=encoded(retained))
+        steps.append(step)
+        previous, current = current, retained
+    return dict(excluded=False, steps=steps)
+
+
+def check_forward(input_path, directory, output):
+    started = time.monotonic()
+    directory = Path(directory)
+    frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__),
+        Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py'), *sorted(directory.iterdir())) if p.is_file()}
+    rows = list(records(input_path))
+    gs = forward_cohorts(rows)
+    require(gs and gs == json.loads((directory/'groups.json').read_text()), 'empty or changed higher-order scope')
+    profiles = []
+    for form in range(5):
+        for choices in itertools.product(MODELS, repeat=4 if form == 4 else 3):
+            profiles.append(dict(id=len(profiles), form=form, models=list(choices)))
+    require(len(profiles) == 1125 and profiles == json.loads((directory/'profiles.json').read_text()), 'changed higher-order grammar')
+    summary = json.loads((directory/'summary.json').read_text())
+    require(summary['complete'] is True, 'partial forward run')
+    counts, functions = Counter(), {}
+    for function in ('BESSELJ', 'BESSELY'):
+        scoped = [(i, g) for i, g in enumerate(gs) if rows[g['indices'][0]]['function'] == function]
+        require(scoped, 'empty higher-order function cohort')
+        killed = set()
+        executions = 0
+        for row in records(directory/(function+'-first-kills.jsonl')):
+            identity, order = row['candidate_id'], row['order']
+            require(identity not in killed and 0 <= identity < len(profiles), 'duplicate/unknown forward profile')
+            require(0 <= order < len(scoped) and row['group_index'] == scoped[order][0], 'wrong forward first kill')
+            for earlier in range(order):
+                require(not forward_proof(rows, scoped[earlier][1], profiles[identity])['excluded'], 'earlier contradiction omitted')
+                executions += 1
+            independently = forward_proof(rows, scoped[order][1], profiles[identity])
+            require(independently == row['proof'] and independently['excluded'], 'incorrect forward proof')
+            executions += 1
+            killed.add(identity)
+        alive = json.loads((directory/(function+'-necessary-survivors.json')).read_text())
+        require(len(alive) == len(set(alive)) and killed.isdisjoint(alive)
+                and killed | set(alive) == set(range(len(profiles))), 'incomplete forward coverage')
+        for identity in alive:
+            for _, group in scoped:
+                require(not forward_proof(rows, group, profiles[identity])['excluded'], 'invalid forward survivor')
+                executions += 1
+        totals = dict(profiles=len(profiles), groups=len(scoped), executions=executions,
+                      rejected=len(killed), necessary_survivors=len(alive))
+        require(summary['counts'][function] == totals, 'incorrect forward totals')
+        functions[function] = totals
+        counts['independent_cohort_replays'] += executions
+    require(frozen == {p: digest(p) for p in frozen}, 'forward evidence changed during check')
+    receipt = dict(complete=True, functions=functions, counts=counts, seconds=time.monotonic()-started,
+        input_sha256=frozen, limits='Independent exact lattice arithmetic and interval-corner replay. Publication constraints are intersected at every recorded order. Necessary conditions only; no shared seed producer or complete Bessel program.')
+    with open(output, 'x') as out:
+        json.dump(receipt, out, indent=2)
+        out.write('\n')
+    print(json.dumps(receipt))
+
+
+def miller_scope(rows):
+    selected = []
+    for index, row in enumerate(rows):
+        args = row['args']
+        if (row['function'] != 'BESSELJ' or row['result_index'] is not None or len(args) != 2
+                or not all(isinstance(v, str) and v.startswith('0x') for v in args)
+                or not row['expected'].startswith('0x')):
+            continue
+        x, order = map(binary64, args)
+        n = int(order)
+        if R(1, 8) <= x <= n and 2 <= n <= 100 and abs(binary64(row['expected'])) >= two(-1022):
+            selected.append(index)
+    return selected
+
+
+@lru_cache(maxsize=131072)
+def miller_op(kind, model, a, b):
+    return operation(a, b, kind, model)
+
+
+@lru_cache(maxsize=8192)
+def miller_state(x, n, margin, boundary, policies):
+    top = 2*((n+margin+1)//2)
+    ratio_policy, coefficient_policy, multiplication_policy, subtraction_policy, reduction_policy = policies
+    ratio = miller_op('div', ratio_policy, R(2), x)
+    state = [R(1), R(0)]  # t_k, t_(k+1)
+    target_term = R(1) if top == n else R(0)
+    total = R(int(boundary))
+    shifts = 0
+    for order in reversed(range(top)):
+        factor = miller_op('mul', coefficient_policy, R(order+1), ratio)
+        product = miller_op('mul', multiplication_policy, factor, state[0])
+        computed = miller_op('add', subtraction_policy, product, -state[1])
+        state = [computed, state[0]]
+        if order == n:
+            target_term = state[0]
+        if order != 0 and order % 2 == 0:
+            total = miller_op('add', reduction_policy, total, state[0])
+        if any(abs(value) > two(512) for value in (*state, total)):
+            state = [value*two(-512) for value in state]
+            total *= two(-512)
+            target_term *= two(-512)
+            def represented(value, policy):
+                fmt = B if policy == 'strict' or policy.startswith('stored') else E if policy.endswith('pc64') else P53
+                require(fmt.round(value) == value, 'Miller rescaling loses a represented state')
+            for value in (*state, target_term):
+                represented(value, subtraction_policy)
+            represented(total, reduction_policy)
+            shifts += 1
+    return top, state[0], total, target_term, shifts
+
+
+def miller_result(row, profile):
+    x = binary64(row['args'][0])
+    n = int(binary64(row['args'][1]))
+    policies = profile['models']
+    if len(policies) == 4:
+        ratio, recurrence, reduction_policy, finish_policy = policies
+        prefix = (ratio, recurrence, recurrence, recurrence, reduction_policy)
+    else:
+        require(len(policies) == 6, 'wrong independent Miller site count')
+        prefix, reduction_policy, finish_policy = tuple(policies[:5]), policies[4], policies[5]
+    top, first, total, target_term, shifts = miller_state(
+        x, n, profile['margin'], profile['include_boundary'], prefix)
+    form = profile.get('normalization', 0)
+    if form == 0:
+        doubled = miller_op('mul', reduction_policy, R(2), total)
+        normalizer = miller_op('add', reduction_policy, first, doubled)
+    elif form == 1:
+        added = miller_op('add', reduction_policy, first, total)
+        doubled = miller_op('mul', reduction_policy, R(2), added)
+        normalizer = miller_op('add', reduction_policy, doubled, -first)
+    else:
+        added = miller_op('add', reduction_policy, first, total)
+        normalizer = miller_op('add', reduction_policy, added, total)
+    require(normalizer != 0, 'zero independent Miller normalizer')
+    root = miller_op('div', finish_policy, target_term, normalizer)
+    pair = lambda v: [str(v.numerator), str(v.denominator)]
+    return dict(start=top, scalings=shifts, root=pair(root), published=pair(B.round(root)))
+
+
+def miller_profile(identity, expanded=False, sites=False):
+    width, associations = (6 if sites else 4), (3 if expanded else 1)
+    association, rest = identity % associations, identity // associations
+    model_index, outer = rest % (5**width), rest // (5**width)
+    policies = [MODELS[(model_index//5**(width-1-i)) % 5] for i in range(width)]
+    result = dict(id=identity, margin=outer//2, include_boundary=bool(outer%2), models=policies)
+    if expanded:
+        result['normalization'] = association
+    return result
+
+
+def check_miller(input_path, directory, output, expanded=False, sites=False):
+    import gzip
+    started = time.monotonic()
+    directory = Path(directory)
+    frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__),
+        Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py'), *sorted(directory.iterdir())) if p.is_file()}
+    rows = list(records(input_path))
+    selected = miller_scope(rows)
+    require(selected and selected == json.loads((directory/'scope.json').read_text()), 'changed Miller obligations')
+    programs = 65*2*5**(6 if sites else 4)*(3 if expanded else 1)
+    executions, killed, first_kills = 0, bytearray(programs), Counter()
+    killed_count = 0
+    with gzip.open(directory/'first-kills.jsonl.gz', 'rt', encoding='utf-8') as source:
+        for line in source:
+            row = json.loads(line)
+            identity, order = row['candidate_id'], row['order']
+            require(0 <= identity < programs and not killed[identity], 'duplicate or unknown Miller program')
+            require(0 <= order < len(selected) and row['trace_index'] == selected[order], 'changed Miller first kill')
+            for earlier in range(order+1):
+                independently = miller_result(rows[selected[earlier]], miller_profile(identity, expanded, sites))
+                expected = binary64(rows[selected[earlier]]['expected'])
+                matched = decode_pair(independently['published']) == expected
+                executions += 1
+                if earlier == order:
+                    require(independently == row['proof'] and not matched, 'incorrect Miller contradiction')
+                else:
+                    require(matched, 'earlier Miller contradiction omitted')
+            killed[identity] = 1
+            killed_count += 1
+            first_kills[str(order)] += 1
+    alive = json.loads((directory/'survivors.json').read_text())
+    require(len(alive) == len(set(alive)) and all(0 <= i < programs and not killed[i] for i in alive)
+            and killed_count+len(alive) == programs, 'incomplete Miller accounting')
+    for identity in alive:
+        for index in selected:
+            require(decode_pair(miller_result(rows[index], miller_profile(identity, expanded, sites))['published']) == binary64(rows[index]['expected']), 'invalid Miller survivor')
+            executions += 1
+    summary = json.loads((directory/'summary.json').read_text())
+    require(summary['complete'] is True and summary['expanded'] == expanded and summary.get('sites', False) == sites and summary['programs'] == programs
+            and summary['observations'] == len(selected) and summary['executions'] == executions
+            and summary['survivors'] == len(alive) and summary['first_kills'] == first_kills, 'incorrect Miller totals')
+    require(frozen == {p: digest(p) for p in frozen}, 'Miller evidence changed during check')
+    receipt = dict(complete=True, expanded=expanded, sites=sites, programs=programs, observations=len(selected), executions=executions,
+        survivors=len(alive), seconds=time.monotonic()-started, input_sha256=frozen,
+        limits='Independent rational recurrence, normalization and first-kill coverage for the specified finite starting-depth family. No fitted depth rule, elementary leaf, complete Excel algorithm or product improvement.')
+    with open(output, 'x') as out:
+        json.dump(receipt, out, indent=2)
+        out.write('\n')
+    print(json.dumps(receipt))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='miller-sites':check_miller(*sys.argv[2:], expanded=True, sites=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='miller-forms':check_miller(*sys.argv[2:], expanded=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='miller':check_miller(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='forward':check_forward(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='domains':check_domains(*sys.argv[2:])
     else:check(*sys.argv[1:])

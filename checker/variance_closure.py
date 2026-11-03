@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 import time
 
-from exact import BINARY64 as B,Span,binary64,operation,two
+from exact import BINARY64 as B,EXTENDED64 as E,EXTENDED53 as P53,Span,binary64,operation,two
 from check import records,require,digest
 
 MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
@@ -164,6 +164,134 @@ def online_check(input_path,directory,output):
     print(json.dumps(receipt))
 
 
+def raw_moment_result(row, fused=False):
+    """Independent explicit-tree enumeration of the six uncentered identities."""
+    import hashlib
+    def flatten(v):
+        return list(itertools.chain.from_iterable(map(flatten, v))) if isinstance(v, list) else [v]
+    bits = flatten(row['args'])
+    require(len(bits) == 3 and all(isinstance(v, str) and v.startswith('0x') for v in bits), 'raw three-input scope')
+    xs = list(map(binary64, bits))
+    require(all(x == 0 or two(-100) <= abs(x) <= two(100) for x in xs), 'raw magnitude scope')
+    require(row['function'] in ('VAR', 'VAR.S', 'VAR.P', 'VARP', 'VARA', 'VARPA'), 'raw function scope')
+    denominator = R(3 if row['function'] in ('VAR.P', 'VARP', 'VARPA') else 2)
+    def cross(kind, left, right):
+        result = set()
+        for model in MODELS:
+            for a in left:
+                for b in right:
+                    result.add(op(kind, model, a, b))
+        return result
+    def minus(left, right):
+        return cross('add', left, {-b for b in right})
+    def squared(values):
+        return {op('mul', model, a, a) for model in MODELS for a in values}
+    def fused_results(a, b, c):
+        result = set()
+        for model, fmt in [('strict', B), ('stored_pc64', E), ('resident_pc64', E),
+                           ('stored_pc53', P53), ('resident_pc53', P53)]:
+            if model == 'strict':
+                exact = B.round(a)*B.round(b)+B.round(c)
+            else:
+                exact = a*b+c
+            value = fmt.round(exact)
+            result.add(B.round(value) if model.startswith('stored') else value)
+        return result
+    s = all_sums([{x} for x in xs])['7']
+    q = all_sums([squared({x}) for x in xs])['7']
+    if fused:
+        def square_tree(tree):
+            if isinstance(tree, int):
+                return squared({xs[tree]})
+            left, right = tree
+            a, b = square_tree(left), square_tree(right)
+            values = cross('add', a, b)
+            for leaf, sibling in ((left, b), (right, a)):
+                if isinstance(leaf, int):
+                    for accumulator in sibling:
+                        values |= fused_results(xs[leaf], xs[leaf], accumulator)
+            return values
+        q = set()
+        for ordering in itertools.permutations(range(3)):
+            a, b, c = ordering
+            q |= square_tree(((a, b), c))
+            q |= square_tree((a, (b, c)))
+    s2 = squared(s)
+    n, d = {R(3)}, {denominator}
+    nd = cross('mul', n, d)
+    results = [cross('div', minus(q, cross('div', s2, n)), d),
+               cross('div', minus(cross('mul', n, q), s2), nd),
+               minus(cross('div', q, d), cross('div', s2, nd))]
+    products = set()
+    for total in s:
+        products |= cross('mul', cross('div', {total}, n), cross('div', {total}, d))
+    results.append(minus(cross('div', q, d), products))
+    centered = minus(cross('div', q, n), squared(cross('div', s, n)))
+    results.append(cross('mul', centered, cross('div', n, d)))
+    pair_terms = [squared(minus({a}, {b})) for a, b in itertools.combinations(xs, 2)]
+    results.append(cross('div', all_sums(pair_terms)['7'], nd))
+    if fused:
+        extra = [set() for _ in range(4)]
+        for total in s:
+            mean_values = cross('div', {total}, n)
+            for mean, squares in itertools.product(mean_values, q):
+                extra[0] |= fused_results(-mean, total, squares)
+            for mean, average_square in itertools.product(mean_values, cross('div', q, n)):
+                extra[3] |= fused_results(-mean, mean, average_square)
+            for scaled in cross('mul', n, q):
+                extra[2] |= fused_results(-total, total, scaled)
+        for squares, square_sum in itertools.product(q, s2):
+            extra[1] |= fused_results(R(3), squares, -square_sum)
+        results += [cross('div', extra[0], d), cross('div', extra[1], nd),
+                    cross('div', extra[2], nd), cross('mul', extra[3], cross('div', n, d))]
+    target = binary64(row['expected'])
+    span = B.pullback(Span(target, target))
+    forms = []
+    for values in results:
+        hasher = hashlib.sha256(json.dumps(encode(values), separators=(',', ':')).encode())
+        forms.append(dict(root_count=len(values), roots_sha256=hasher.hexdigest(),
+                          reachable=any(span.contains(v) for v in values)))
+    return dict(raw=row, target_span=span.json(), forms=forms,
+                total_values=len(s), square_sum_values=len(q))
+
+
+def raw_moment_check(input_path, directory, output, fused=False):
+    started = time.monotonic()
+    directory = Path(directory)
+    frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__),
+        Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py'), *sorted(directory.iterdir())) if p.is_file()}
+    rows = list(records(input_path))
+    proofs = list(records(directory/'closures.jsonl'))
+    require(rows and len(rows) == len(proofs), 'missing raw-moment obligations')
+    counts, by_function = Counter(), {}
+    for row, proof in zip(rows, proofs):
+        independently = raw_moment_result(row, fused)
+        require(independently == proof, 'raw-moment source, root set, digest or reachability differs')
+        function = by_function.setdefault(row['function'], Counter())
+        counts['observations'] += 1
+        function['observations'] += 1
+        for form, result in enumerate(independently['forms']):
+            counts['form_'+str(form)+'_unreachable'] += not result['reachable']
+            function['form_'+str(form)+'_unreachable'] += not result['reachable']
+            counts['root_values'] += result['root_count']
+    summary = json.loads((directory/'summary.json').read_text())
+    require(summary['complete'] is True and summary['fused'] == fused and summary['counts'] == counts and summary['by_function'] == by_function,
+            'incorrect raw-moment summary')
+    require(frozen == {p: digest(p) for p in frozen}, 'raw-moment evidence changed during check')
+    receipt = dict(complete=True, fused=fused, counts=counts, by_function=by_function,
+        seconds=time.monotonic()-started, input_sha256=frozen,
+        limits='Complete independent explicit-tree/permutation regeneration of every root-set digest, using separate exact lattice arithmetic. '
+               + ('Ten declared forms, including fused multiply-add.' if fused else 'Six declared uncentered identities.')
+               + (' Q covers ordinary square-sum trees with optional fusion of any leaf square and its sibling sum, including mixed trees.' if fused else '')
+               + ' Conservative correlation projections; reachability never supplies a reusable kernel or product match.')
+    with open(output, 'x') as out:
+        json.dump(receipt, out, indent=2)
+        out.write('\n')
+    print(json.dumps(receipt))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='raw-moments-fma':raw_moment_check(*sys.argv[2:], fused=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='raw-moments':raw_moment_check(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='online':online_check(*sys.argv[2:])
     else:check(*sys.argv[1:])

@@ -9,6 +9,77 @@ use dna_calc_worker::workbook::Workbook;
 use serde_json::{Value, json};
 use std::{fs, path::Path};
 
+/// Research-only translation of ExcelFinancialFunctions Common.newton
+/// (Apache-2.0, Luca Bolognese, copyright 2010-2013), changed to return a typed
+/// failure on nonfinite evaluation. Its fixed 0.05 seed, 1e-6 difference/step and
+/// count>20 termination are retained. This is the Newton phase, not its fallback.
+#[cfg(bond_solver_audit)]
+fn published_yield_newton(price: &crate::ported::bond_core_family::ResearchPrice, target: f64, staged: bool) -> Option<f64> {
+    let mut x = 0.05_f64;
+    let precision = 0.000001_f64;
+    for count in 0..=21 {
+        let f = price.value(x, staged).ok()? - target;
+        let above = price.value(x+precision, staged).ok()? - target;
+        let below = price.value(x-precision, staged).ok()? - target;
+        let derivative = (above-below)/(2.0*precision);
+        let next = x-f/derivative;
+        if !next.is_finite() { return None; }
+        if (next-x).abs() < precision { return Some(next); }
+        if count > 20 { return None; }
+        x = next;
+    }
+    None
+}
+
+#[cfg(bond_solver_audit)]
+pub fn yield_newton(input: &str, out: &str) {
+    use crate::ported::bond_core_family::ResearchPrice;
+    let destination = Path::new(out);
+    fs::create_dir(destination).unwrap();
+    let rows = crate::lines::<Value>(input);
+    let mut counts = [[0_usize; 5]; 2]; // pass, fail, gains, losses, failed Newton phase
+    let mut output = String::new();
+    for (index, row) in rows.iter().enumerate() {
+        assert_eq!(row["function"], "YIELD");
+        let args: Vec<_> = row["args"].as_array().unwrap().iter()
+            .map(|v| calc_verdict::decode_argument(v, "YIELD research").unwrap()).collect();
+        let numeric: Vec<_> = args.iter().map(|v| match v.core_ref() {
+            CoreRef::Number(n) => n,
+            _ => panic!("numeric YIELD arguments required"), // ubs:ignore — malformed diagnostic inputs must stop, never synthesize a measurement.
+        }).collect();
+        let environment = CalcEnvironment::dates(DateSystem::System1900);
+        let baseline = crate::invoke_selected_control_in("YIELD", args, None, Some(&environment)).0;
+        assert_eq!(baseline, row["actual"]);
+        let price = ResearchPrice::new(&numeric).unwrap();
+        for staged in [false, true] {
+            let program = usize::from(staged);
+            let prediction = if price.count() <= 1 {
+                Some(baseline.clone())
+            } else {
+                published_yield_newton(&price, numeric[3], staged)
+                    .map(|v| calc_verdict::encode_result(&CalcValue::number(v)).unwrap())
+            };
+            let got = prediction.clone().unwrap_or_else(|| "error:Num".to_owned());
+            let matched = got == row["expected"];
+            let was = baseline == row["expected"];
+            counts[program][usize::from(!matched)] += 1;
+            counts[program][2] += usize::from(matched && !was);
+            counts[program][3] += usize::from(was && !matched);
+            counts[program][4] += usize::from(prediction.is_none());
+            output.push_str(&serde_json::to_string(&json!({"trace_index":index,"program":program,
+                "got":got,"matched":matched,"baseline_matched":was,"phase_failed":prediction.is_none()})).unwrap());
+            output.push('\n');
+        }
+    }
+    fs::write(destination.join("predictions.jsonl"), output).unwrap();
+    let result = json!({"complete":true,"observations":rows.len(),"programs":2,
+        "counts_pass_fail_gains_losses_failed_phase":counts,
+        "source":"ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs/bonds.fs; Apache-2.0",
+        "limits":"Published Newton phase only, with unchanged existing product date/price bodies and two existing discount leaves. Failed phases are NUM hypotheses, not a faithful port of the reference fallback. Single-coupon controls retain the current product result. Fixed constants from the reference, no fitted solver parameter or tolerance claim."});
+    json_write(destination.join("summary.json").to_str().unwrap(), &result);
+    println!("{result}");
+}
+
 /// Ordinary algebraic reciprocal programs. Every program applies to all four
 /// reciprocal functions, so a function or residual cannot choose its graph.
 fn reciprocal(z: ParsedComplex, graph: usize) -> ParsedComplex {
@@ -267,8 +338,10 @@ pub fn function_routes(input: &str, out: &str) {
                 v[1].as_u64().unwrap() as usize,
             )
         });
-        let (registered, _) =
-            crate::invoke_selected_control(raw["function"].as_str().unwrap(), args, selection);
+        let environment = (raw["date_system_1900"].as_bool() == Some(true))
+            .then(|| CalcEnvironment::dates(DateSystem::System1900));
+        let (registered, _) = crate::invoke_selected_control_in(
+            raw["function"].as_str().unwrap(), args, selection, environment.as_ref());
         let result = at(1, 30);
         assert!(book.enter(result, &formula).accepted());
         let cell = book.cell(result).unwrap();

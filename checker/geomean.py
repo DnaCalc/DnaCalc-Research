@@ -248,6 +248,78 @@ def check_exact_roots(input_path, directory, output):
     print(json.dumps(result))
 
 
+def product_result(raw):
+    """Explicit ordered trees; independent of the producer's subset closure."""
+    from exact import operation, BINARY64 as B, Span
+    inputs, reason = coordinates(raw)
+    require(reason is None and 2 <= len(inputs) <= 3, 'product-closure arity/domain')
+    xs = list(map(binary64, inputs))
+    require(all(two(-100) <= x <= two(100) for x in xs), 'product-closure magnitude')
+    models = ('strict', 'stored_pc64', 'resident_pc64', 'stored_pc53', 'resident_pc53', 'exact')
+    def mul(a, b, model):
+        return a*b if model == 'exact' else operation(a, b, 'mul', model)
+    table = {}
+    for mask in range(1, 1 << len(xs)):
+        indices = [i for i in range(len(xs)) if mask & (1 << i)]
+        values = set()
+        for order in itertools.permutations(indices):
+            if len(order) == 1:
+                values.add(xs[order[0]])
+            elif len(order) == 2:
+                values.update(mul(xs[order[0]], xs[order[1]], m) for m in models)
+            else:
+                a, b, c = (xs[i] for i in order)
+                for first, last in itertools.product(models, repeat=2):
+                    values.add(mul(mul(a, b, first), c, last))
+                    values.add(mul(a, mul(b, c, first), last))
+        table[str(mask)] = [[str(x.numerator), str(x.denominator)] for x in sorted(values)]
+    target = binary64(raw['expected'])
+    span = B.pullback(Span(target, target))
+    interval = Span(span.low**len(xs), span.high**len(xs), span.left, span.right)
+    products = (Q(*map(int, p)) for p in table[str((1 << len(xs))-1)])
+    return dict(raw=raw, products=table, root_span=span.json(), reachable=any(interval.contains(p) for p in products))
+
+
+def check_product_closure(input_path, directory, output):
+    directory = Path(directory)
+    frozen = {str(p):digest(p) for p in (Path(input_path), Path(__file__),
+        Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py'),
+        *sorted(directory.iterdir())) if p.is_file()}
+    counts = Counter()
+    proofs, scope = iter(records(directory/'closures.jsonl')), iter(records(directory/'scope.jsonl'))
+    for index, raw in enumerate(records(input_path)):
+        inputs, reason = coordinates(raw)
+        if reason is None and not 2 <= len(inputs) <= 3:
+            reason = 'arity_outside_2_to_3'
+        if reason is None and any(not two(-100) <= binary64(x) <= two(100) for x in inputs):
+            reason = 'outside_modest_magnitudes'
+        if reason is None and binary64(raw['expected']) <= 0:
+            reason = 'nonpositive_expected'
+        require(next(scope, None) == dict(trace_index=index, reason=reason), 'changed product scope')
+        if reason:
+            counts[reason] += 1
+            continue
+        independently = product_result(raw)
+        require(next(proofs, None) == dict(trace_index=index, **independently), 'incomplete product closure, answer or source differs')
+        counts['scoped'] += 1
+        counts['unreachable'] += not independently['reachable']
+        counts['root_product_values'] += len(independently['products'][str((1 << len(inputs))-1)])
+    require(counts['scoped'] and next(scope, None) is None and next(proofs, None) is None, 'empty or extra product obligations')
+    summary = json.loads((directory/'summary.json').read_text())
+    require(summary['complete'] is True and summary['counts'] == counts, 'incorrect product closure totals')
+    require(frozen == {p:digest(p) for p in frozen}, 'product closure inputs/checker changed')
+    receipt = dict(complete=True, counts=counts, input_sha256=frozen,
+        limits='Independent explicit permutation/two-tree reconstruction of complete product sets and exact midpoint-power root preimages. '
+               'Two/three modest positive operands; six choices per multiply (five rounding/store modes or exact). '
+               'Reference bindings are re-read from original workbook/capture bytes. No native power leaf or complete Excel algorithm is inferred.')
+    with open(output, 'x') as out:
+        json.dump(receipt, out, indent=2)
+        out.write('\n')
+    print(json.dumps(receipt))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='product-closure':
+        check_product_closure(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='exact-root':check_exact_roots(*sys.argv[2:])
     else:check(*sys.argv[1:])

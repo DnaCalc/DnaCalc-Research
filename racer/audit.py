@@ -504,35 +504,70 @@ def bank_delta(before, after, output):
     print(json.dumps(result));return result
 
 
-def bank_replay(before, executable, checkout, output):
+def bank_replay(before, executable, checkout, output, mode='file', function=None):
     """Replay through the existing judge/comparator without retaining a new trace."""
     import os
     import subprocess
     import tempfile
     before, executable, checkout, output = (Path(p).resolve() for p in
         (before, executable, checkout, output))
+    if mode not in ('file', 'live'):
+        raise ValueError('bank replay mode must be file or live')
     output.mkdir(parents=True, exist_ok=False)
     sources = {str(p): sha(p) for p in (before, executable, Path(__file__))}
+    legacy_root = Path(os.environ['DNACALC_LEGACY_ROOT']) if 'DNACALC_LEGACY_ROOT' in os.environ else checkout.parent
+    evidence = (legacy_root if legacy_root.is_absolute() else checkout/legacy_root).resolve()/'OxFunc-Evidence'
+    def evidence_state():
+        def git(*args):
+            return subprocess.check_output(['git', '-C', str(evidence), *args], timeout=60)
+        changed = set(git('diff', '--name-only', '-z', 'HEAD').decode().split('\0'))
+        changed.update(git('ls-files', '--others', '--exclude-standard', '-z').decode().split('\0'))
+        dirty = {name: sha(evidence/name) if (evidence/name).is_file() else None
+                 for name in sorted(changed) if name}
+        return dict(root=str(evidence), revision=git('rev-parse', 'HEAD').decode().strip(),
+            status=git('status', '--porcelain=v1', '--untracked-files=all').decode(),
+            dirty_or_untracked_sha256=dirty,
+            readings_sha256={str(p.relative_to(evidence)): sha(p) for p in sorted((evidence/'readings').rglob('*.json'))})
+    bank_scope = evidence_state()
     commands = []
     with tempfile.TemporaryDirectory(prefix='dnacalc-bank-') as scratch:
         fifo = Path(scratch)/'trace.fifo'
         os.mkfifo(fifo, 0o600)
-        compare = [str(executable), 'witness', 'compare', '--before', str(before), '--after', str(fifo)]
+        old_trace = before
+        old_judge = None
+        if mode == 'live':
+            old_trace = Path(scratch)/'before.fifo'
+            os.mkfifo(old_trace, 0o600)
+            old_judge = [str(before), 'witness', 'judge', '--bank', 'full', '--trace', str(old_trace)]
+            if function:
+                old_judge.extend(('--func', function))
+        compare = [str(executable), 'witness', 'compare', '--before', str(old_trace), '--after', str(fifo)]
         judge = [str(executable), 'witness', 'judge', '--bank', 'full', '--trace', str(fifo)]
+        if function:
+            judge.extend(('--func', function))
         commands.extend((compare, judge))
+        if old_judge is not None:
+            commands.append(old_judge)
         with (output/'compare.log').open('x') as compare_log, (output/'judge.log').open('x') as judge_log:
             # ubs:ignore — operator-selected local executable and argv lists, never a shell.
             reader = subprocess.Popen(compare, cwd=checkout, stdout=compare_log, stderr=subprocess.STDOUT)
             writer = None
+            old_writer = None
+            old_log = None
             try:
+                if old_judge is not None:
+                    old_log = (output/'before-judge.log').open('x')
+                    # ubs:ignore — operator-selected local executable and argv, never a shell.
+                    old_writer = subprocess.Popen(old_judge, cwd=checkout, stdout=old_log, stderr=subprocess.STDOUT)
                 # ubs:ignore — operator-selected local executable and argv lists, never a shell.
                 writer = subprocess.Popen(judge, cwd=checkout, stdout=judge_log, stderr=subprocess.STDOUT)
                 writer_code = writer.wait(timeout=3600)
+                old_code = old_writer.wait(timeout=60) if old_writer is not None else 0
                 reader_code = reader.wait(timeout=60)
-                if writer_code or reader_code:
-                    raise ValueError(f'judge/comparison failed ({writer_code}, {reader_code}); retain both logs')
+                if writer_code or reader_code or old_code:
+                    raise ValueError(f'judge/comparison failed ({old_code}, {writer_code}, {reader_code}); retain all logs')
             finally:
-                for child in (writer, reader):
+                for child in (writer, old_writer, reader):
                     if child is not None and child.poll() is None:
                         child.terminate()
                         try:
@@ -540,8 +575,12 @@ def bank_replay(before, executable, checkout, output):
                         except subprocess.TimeoutExpired:
                             child.kill()
                             child.wait()
+                if old_log is not None:
+                    old_log.close()
     if sources != {p: sha(Path(p)) for p in sources}:
         raise ValueError('bank, executable or orchestration source changed during replay')
+    if bank_scope != evidence_state():
+        raise ValueError('evidence revision, dirty files or readings changed during replay')
     import re
     compared = (output/'compare.log').read_text()
     summary = re.search(r'xtask witness compare: (\d+) -> (\d+) matched, \+(\d+) / -(\d+); (\d+) actuals changed', compared)
@@ -553,9 +592,13 @@ def bank_replay(before, executable, checkout, output):
     matched, total, failed, unread = map(int, judged.groups())
     if new != matched or total != int(rows[1])+unread or failed != total-matched:
         raise ValueError('judge and comparator totals do not reconcile')
+    if mode == 'live':
+        previous = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)', (output/'before-judge.log').read_text())
+        if previous is None or tuple(map(int, previous.groups())) != (old, total, total-old, unread):
+            raise ValueError('baseline judge and comparison totals do not reconcile')
     result = dict(complete=True, decoded_rows=int(rows[1]), before_matched=old, matched=matched,
         total=total, failed=failed, unread=unread, gains=gains, losses=losses, changed_outputs=changed,
-        commands=commands, input_sha256=sources,
+        commands=commands, mode=mode, function=function, input_sha256=sources, bank_scope=bank_scope,
         logs_sha256={p.name: sha(p) for p in output.glob('*.log')},
         limits='Existing application judge and verdict comparator; all identity/answer fields compared. '
                'Unread observations remain failures. The FIFO trace is consumed once and never retained.')

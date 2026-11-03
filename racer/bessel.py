@@ -306,8 +306,253 @@ def normalized_i(input_path, producers_path, destination):
     print(json.dumps(result))
 
 
+def forward_groups(rows):
+    """Positive normal publications, with J restricted to its forward regime."""
+    grouped = defaultdict(dict)
+    for index, row in enumerate(rows):
+        a = row['args']
+        if (row['function'] not in ('BESSELJ', 'BESSELY') or row['result_index'] is not None
+                or len(a) != 2 or not all(isinstance(v, str) and v.startswith('0x') for v in a)
+                or not row['expected'].startswith('0x')):
+            continue
+        x, n = map(number, a)
+        if not (0 < x and n == int(n) and 0 <= n <= 32):
+            continue
+        if abs(Q(number(row['expected']))) < pow2(-1022):
+            continue
+        if row['function'] == 'BESSELJ' and n >= 2 and n >= x:
+            continue
+        key = context(row)
+        if int(n) in grouped[key]:
+            require(rows[grouped[key][int(n)]]['expected'] == row['expected'], 'conflicting forward publication')
+        else:
+            grouped[key][int(n)] = index
+    return [dict(context=key, indices=[values[n] for n in sorted(values)])
+            for key, values in sorted(grouped.items())
+            if 0 in values and 1 in values and any(n >= 2 for n in values)]
+
+
+def forward_profiles():
+    # The first four forms have three sites. The reusable 2/x form has four.
+    result = []
+    for form in range(5):
+        for models in itertools.product(MODELS, repeat=4 if form == 4 else 3):
+            result.append(dict(id=len(result), form=form, models=list(models)))
+    return result
+
+
+def forward_step(x, n, previous, current, profile):
+    m, form = profile['models'], profile['form']
+    def op(kind, a, b, site):
+        return operation(kind, m[site], a, b)
+    coefficient = Q(2*n)
+    if form == 0:
+        term = op('div', op('mul', coefficient, current, 0), x, 1)
+    elif form == 1:
+        term = op('mul', coefficient, op('div', current, x, 0), 1)
+    elif form == 2:
+        term = op('mul', op('div', coefficient, x, 0), current, 1)
+    elif form == 3:
+        term = op('div', current, op('div', x, coefficient, 0), 1)
+    else:
+        reciprocal = op('div', Q(2), x, 0)
+        term = op('mul', op('mul', Q(n), reciprocal, 1), current, 2)
+    return op('add', term, -previous, len(m)-1)
+
+
+def forward_bounds(rows, group, profile):
+    observations = {int(number(rows[i]['args'][1])): i for i in group['indices']}
+    x = Q(number(rows[observations[0]]['args'][0]))
+    before = seed_bounds(Q(number(rows[observations[0]]['expected'])))
+    current = seed_bounds(Q(number(rows[observations[1]]['expected'])))
+    steps = []
+    for n in range(1, max(observations)):
+        # Positive coefficient: increasing in current, decreasing in previous.
+        roots = (forward_step(x, n, before[1], current[0], profile),
+                 forward_step(x, n, before[0], current[1], profile))
+        require(roots[0] <= roots[1], 'forward monotonicity')
+        following = roots
+        step = dict(order=n+1, previous=list(map(pair, before)), current=list(map(pair, current)),
+                    roots=list(map(pair, roots)), observation=observations.get(n+1))
+        if n+1 in observations:
+            target = Q(number(rows[observations[n+1]]['expected']))
+            allowed = seed_bounds(target)
+            following = max(roots[0], allowed[0]), min(roots[1], allowed[1])
+            step.update(target=pair(target), allowed=list(map(pair, allowed)))
+            if following[0] > following[1]:
+                step['excluded'] = True
+                steps.append(step)
+                return dict(excluded=True, steps=steps)
+        step.update(excluded=False, retained=list(map(pair, following)))
+        steps.append(step)
+        # This projection discards correlations and can only enlarge the set.
+        before, current = current, following
+    return dict(excluded=False, steps=steps)
+
+
+def forward_run(input_path, destination):
+    started = time.monotonic()
+    dest = Path(destination)
+    dest.mkdir()
+    frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__), Path(__file__).with_name('intervals.py'))}
+    rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    gs, ps = forward_groups(rows), forward_profiles()
+    require(len(ps) == 1125 and gs, 'empty or incomplete forward grammar')
+    for name, data in [('groups.json', gs), ('profiles.json', ps)]:
+        (dest/name).write_text(json.dumps(data, indent=2)+'\n')
+    counts = {}
+    for function in ('BESSELJ', 'BESSELY'):
+        scoped = [(i, g) for i, g in enumerate(gs) if rows[g['indices'][0]]['function'] == function]
+        require(scoped, 'empty forward function scope')
+        alive, executions = [], 0
+        with (dest/(function+'-first-kills.jsonl')).open('x') as out:
+            for p in ps:
+                for order, (index, g) in enumerate(scoped):
+                    result = forward_bounds(rows, g, p)
+                    executions += 1
+                    if result['excluded']:
+                        out.write(json.dumps(dict(candidate_id=p['id'], order=order, group_index=index, proof=result))+'\n')
+                        break
+                else:
+                    alive.append(p['id'])
+        (dest/(function+'-necessary-survivors.json')).write_text(json.dumps(alive)+'\n')
+        counts[function] = dict(profiles=len(ps), groups=len(scoped), executions=executions,
+                                rejected=len(ps)-len(alive), necessary_survivors=len(alive))
+    require(frozen == {p: digest(p) for p in frozen}, 'forward source/input changed')
+    summary = dict(complete=True, counts=counts, seconds=time.monotonic()-started, input_sha256=frozen,
+        claim='Fixed forward recurrence policies through all recorded orders up to32, with exact conservative Ext80 publication-preimage intersections at each recorded step.',
+        limits='Y uses positive x; J additionally requires x>n for target orders>=2. Shared original source/environment and seed helper publications are assumptions. Correlations discarded after each step; a survivor need not have a consistent seed pair or producer. No seed, cutoff, coefficient or answer is fitted.')
+    (dest/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
+    print(json.dumps(summary))
+
+
+def miller_rows(rows):
+    selected = []
+    for index, row in enumerate(rows):
+        a = row['args']
+        if (row['function'] != 'BESSELJ' or row['result_index'] is not None or len(a) != 2
+                or not all(isinstance(v, str) and v.startswith('0x') for v in a)
+                or not row['expected'].startswith('0x')):
+            continue
+        x, order = map(number, a)
+        n = int(order)
+        if Q(1, 8) <= x <= n and 2 <= n <= 100 and abs(Q(number(row['expected']))) >= pow2(-1022):
+            selected.append(index)
+    return selected
+
+
+def miller_profiles(expanded=False, sites=False):
+    identity = 0
+    for margin, last, models in itertools.product(range(65), (False, True), itertools.product(MODELS, repeat=6 if sites else 4)):
+        for normalization in range(3 if expanded else 1):
+            result = dict(id=identity, margin=margin, include_boundary=last, models=list(models))
+            if expanded:
+                result['normalization'] = normalization
+            yield result
+            identity += 1
+
+
+@lru_cache(maxsize=8192)
+def miller_prefix(x, n, margin, include_boundary, models):
+    start = n+margin
+    start += start % 2
+    ratio_model, coefficient_model, product_model, subtract_model, sum_model = models
+    ratio = operation('div', ratio_model, Q(2), x)
+    following, current = Q(0), Q(1)
+    selected = Q(1) if start == n else Q(0)
+    even_sum = Q(1) if include_boundary else Q(0)
+    scalings = 0
+    for k in range(start, 0, -1):
+        coefficient = operation('mul', coefficient_model, Q(k), ratio)
+        previous = operation('add', subtract_model,
+            operation('mul', product_model, coefficient, current), -following)
+        following, current = current, previous
+        if k-1 == n:
+            selected = current
+        if k-1 >= 2 and (k-1) % 2 == 0:
+            even_sum = operation('add', sum_model, even_sum, current)
+        if max(abs(following), abs(current), abs(even_sum)) > pow2(512):
+            # Exact powers of two keep the trial sequence in its represented
+            # range. No target or measured error enters this rescaling.
+            following *= pow2(-512)
+            current *= pow2(-512)
+            selected *= pow2(-512)
+            even_sum *= pow2(-512)
+            def represented(value, model):
+                fmt = B64 if model == 'strict' or model.startswith('stored') else E53 if model.endswith('pc53') else E64
+                require(fmt.rn(value) == value, 'Miller rescaling loses a represented state')
+            for value in (following, current, selected):
+                represented(value, subtract_model)
+            represented(even_sum, sum_model)
+            scalings += 1
+    return start, current, even_sum, selected, scalings
+
+
+def miller_value(row, profile):
+    """Trial recurrence normalized by J0+2*sum(J_even)=1 (DLMF10.12.4)."""
+    x = Q(number(row['args'][0]))
+    n = int(number(row['args'][1]))
+    models = profile['models']
+    if len(models) == 4:
+        ratio_model, recurrence_model, sum_model, finish_model = models
+        prefix = (ratio_model, recurrence_model, recurrence_model, recurrence_model, sum_model)
+    else:
+        require(len(models) == 6, 'Miller site policy count')
+        prefix, sum_model, finish_model = tuple(models[:5]), models[4], models[5]
+    start, current, even_sum, selected, scalings = miller_prefix(
+        x, n, profile['margin'], profile['include_boundary'], prefix)
+    form = profile.get('normalization', 0)
+    if form == 0:
+        denominator = operation('add', sum_model, current, operation('mul', sum_model, Q(2), even_sum))
+    elif form == 1:
+        total = operation('add', sum_model, current, even_sum)
+        denominator = operation('add', sum_model, operation('mul', sum_model, Q(2), total), -current)
+    else:
+        denominator = operation('add', sum_model, operation('add', sum_model, current, even_sum), even_sum)
+    require(denominator != 0, 'zero Miller normalizer')
+    root = operation('div', finish_model, selected, denominator)
+    return dict(start=start, scalings=scalings, root=pair(root), published=pair(B64.rn(root)))
+
+
+def miller_run(input_path, destination, expanded=False, sites=False):
+    started = time.monotonic()
+    dest = Path(destination)
+    dest.mkdir()
+    frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__), Path(__file__).with_name('intervals.py'))}
+    rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    scope = miller_rows(rows)
+    require(scope, 'empty Miller scope')
+    (dest/'scope.json').write_text(json.dumps(scope)+'\n')
+    alive, executions, kill_counts = [], 0, Counter()
+    import gzip
+    with gzip.open(dest/'first-kills.jsonl.gz', 'xt', encoding='utf-8') as out:
+        for p in miller_profiles(expanded, sites):
+            for order, index in enumerate(scope):
+                result = miller_value(rows[index], p)
+                executions += 1
+                if Q(*map(int, result['published'])) != Q(number(rows[index]['expected'])):
+                    out.write(json.dumps(dict(candidate_id=p['id'], order=order, trace_index=index, proof=result))+'\n')
+                    kill_counts[order] += 1
+                    break
+            else:
+                alive.append(p['id'])
+    (dest/'survivors.json').write_text(json.dumps(alive)+'\n')
+    require(frozen == {p: digest(p) for p in frozen}, 'Miller source/input changed')
+    programs = 65*2*5**(6 if sites else 4)*(3 if expanded else 1)
+    summary = dict(complete=True, expanded=expanded, sites=sites, programs=programs, observations=len(scope), executions=executions,
+        survivors=len(alive), first_kills=kill_counts, seconds=time.monotonic()-started, input_sha256=frozen,
+        grammar='Even starting order ceil_even(n+margin), margin0..64; two truncated even-sum endpoints; five arithmetic models. Basic mode has ratio/recurrence/sum/final policies; sites mode splits recurrence coefficient/product/subtraction policies. Expanded mode has three fixed normalizer associations (t0+2*S, 2*(t0+S)-t0, (t0+S)+S). Cached prefixes depend only on operands and physical policies, never expected answers.',
+        limits='Positive x in[1/8,n], truncated integer order2..100, normal numeric publications. DLMF10.6.1/10.12.4 identities; finite starting-order hypotheses only. No starting-depth rule, tolerance, seed coefficient or row-dependent selector is recovered or adopted. All observations are discovery.')
+    (dest/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
+    print(json.dumps(summary))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='miller-sites':miller_run(*sys.argv[2:], expanded=True, sites=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='miller-forms':miller_run(*sys.argv[2:], expanded=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='miller':miller_run(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='forward':forward_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='normalized-i':normalized_i(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='domains':domain_run(*sys.argv[2:]);raise SystemExit(0)
     parser=argparse.ArgumentParser();parser.add_argument('input');parser.add_argument('destination')

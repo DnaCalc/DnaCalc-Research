@@ -1,0 +1,30 @@
+{
+  "role": "implementer",
+  "used_sources": [
+    {
+      "url": "https://dlmf.nist.gov/10.6#E1",
+      "use": "Three-term Bessel recurrence mathematics."
+    },
+    {
+      "url": "https://dlmf.nist.gov/10.12#E4",
+      "use": "Even-order normalization identity for the finite Miller hypotheses."
+    },
+    {
+      "url": "https://github.com/fsprojects/ExcelFinancialFunctions/tree/97756a375769e45059c7d58fc51fc7e391bc4984",
+      "use": "Apache-2.0 fixed Newton phase, diagnostic only; notice retained."
+    }
+  ],
+  "inspected_not_used": [
+    {
+      "url": "https://dlmf.nist.gov/3.11",
+      "use": "Published rational-approximation example inspected; no coefficient or program adopted."
+    },
+    {
+      "url": "https://math.nist.gov/jnt/api/jnt.functions.Bessel.html",
+      "use": "API documentation only. Bessel implementation licence was not established; eight source/header HEAD requests returned403, no implementation source fetched."
+    }
+  ],
+  "incidental_exposure": "After the current numerical code, product commit and checked proof families were frozen, a general web search returned an unrequested Numerical Recipes third-edition code excerpt. The result was not opened separately, downloaded, copied or used. Subsequent searches used explicit primary-source domain filters. No numerical code change followed that exposure.",
+  "earlier_inspection": "The pre-product unit records the MATH77 headers/coefficient inspection whose distribution terms were not established; none was used or copied into either repository.",
+  "limits": "A NIST-hosted package is not assumed entirely public domain; JNT documentation also identifies differently licensed components. No source licence is inferred from a host domain."
+}
