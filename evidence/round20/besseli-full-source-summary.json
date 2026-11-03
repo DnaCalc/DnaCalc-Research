@@ -1,0 +1,379 @@
+{
+  "id": "dc-j9k-r20-besseli-full-source-scalar-providers",
+  "role": "clean-implementer",
+  "method": "Entire pinned I0/I1 coefficients, source branches and published backward program; global abs/parity/truncated-order/domain/flush outer policy preserved. Two global EXP providers, ordinary scalar binary64 operation order. Distinct from the earlier isolated JavaScript backward lead.",
+  "count_order": [
+    "all",
+    "exact",
+    "recorded_baseline_exact",
+    "new_exact",
+    "lost_exact"
+  ],
+  "results": [
+    {
+      "provider": "javascript_exp",
+      "groups": {
+        "cases.jsonl|I1:low": [
+          9,
+          9,
+          9,
+          0,
+          0
+        ],
+        "cases.jsonl|I0:low": [
+          7,
+          6,
+          7,
+          0,
+          1
+        ],
+        "cases.jsonl|In:low": [
+          25,
+          8,
+          6,
+          5,
+          3
+        ],
+        "cases.jsonl|I1:high": [
+          9,
+          9,
+          9,
+          0,
+          0
+        ],
+        "cases.jsonl|I0:high": [
+          9,
+          9,
+          9,
+          0,
+          0
+        ],
+        "cases.jsonl|In:high": [
+          31,
+          0,
+          4,
+          0,
+          4
+        ],
+        "cases.jsonl|outer_policy": [
+          5,
+          5,
+          5,
+          0,
+          0
+        ],
+        "BESSELI-bank-before.jsonl.gz|I0:low": [
+          17,
+          16,
+          17,
+          0,
+          1
+        ],
+        "BESSELI-bank-before.jsonl.gz|I1:low": [
+          7,
+          6,
+          7,
+          0,
+          1
+        ],
+        "BESSELI-bank-before.jsonl.gz|In:low": [
+          90,
+          23,
+          25,
+          11,
+          13
+        ],
+        "BESSELI-bank-before.jsonl.gz|outer_policy": [
+          110,
+          110,
+          110,
+          0,
+          0
+        ],
+        "BESSELI-bank-before.jsonl.gz|In:high": [
+          965,
+          112,
+          209,
+          91,
+          188
+        ],
+        "BESSELI-bank-before.jsonl.gz|I1:high": [
+          56,
+          53,
+          56,
+          0,
+          3
+        ],
+        "BESSELI-bank-before.jsonl.gz|I0:high": [
+          59,
+          55,
+          59,
+          0,
+          4
+        ],
+        "R19-BESSELI-3|I0:high": [
+          2,
+          2,
+          2,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|outer_policy": [
+          16,
+          16,
+          16,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|I1:high": [
+          2,
+          2,
+          2,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|In:high": [
+          12,
+          4,
+          4,
+          2,
+          2
+        ]
+      },
+      "totals": {
+        "I1:low": [
+          16,
+          15,
+          16,
+          0,
+          1
+        ],
+        "I0:low": [
+          24,
+          22,
+          24,
+          0,
+          2
+        ],
+        "In:low": [
+          115,
+          31,
+          31,
+          16,
+          16
+        ],
+        "I1:high": [
+          67,
+          64,
+          67,
+          0,
+          3
+        ],
+        "I0:high": [
+          70,
+          66,
+          70,
+          0,
+          4
+        ],
+        "In:high": [
+          1008,
+          116,
+          217,
+          93,
+          194
+        ],
+        "outer_policy": [
+          131,
+          131,
+          131,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "provider": "worksheet_exp",
+      "groups": {
+        "cases.jsonl|I1:low": [
+          9,
+          9,
+          9,
+          0,
+          0
+        ],
+        "cases.jsonl|I0:low": [
+          7,
+          6,
+          7,
+          0,
+          1
+        ],
+        "cases.jsonl|In:low": [
+          25,
+          8,
+          6,
+          5,
+          3
+        ],
+        "cases.jsonl|I1:high": [
+          9,
+          9,
+          9,
+          0,
+          0
+        ],
+        "cases.jsonl|I0:high": [
+          9,
+          9,
+          9,
+          0,
+          0
+        ],
+        "cases.jsonl|In:high": [
+          31,
+          0,
+          4,
+          0,
+          4
+        ],
+        "cases.jsonl|outer_policy": [
+          5,
+          5,
+          5,
+          0,
+          0
+        ],
+        "BESSELI-bank-before.jsonl.gz|I0:low": [
+          17,
+          16,
+          17,
+          0,
+          1
+        ],
+        "BESSELI-bank-before.jsonl.gz|I1:low": [
+          7,
+          6,
+          7,
+          0,
+          1
+        ],
+        "BESSELI-bank-before.jsonl.gz|In:low": [
+          90,
+          23,
+          25,
+          11,
+          13
+        ],
+        "BESSELI-bank-before.jsonl.gz|outer_policy": [
+          110,
+          110,
+          110,
+          0,
+          0
+        ],
+        "BESSELI-bank-before.jsonl.gz|In:high": [
+          965,
+          112,
+          209,
+          91,
+          188
+        ],
+        "BESSELI-bank-before.jsonl.gz|I1:high": [
+          56,
+          56,
+          56,
+          0,
+          0
+        ],
+        "BESSELI-bank-before.jsonl.gz|I0:high": [
+          59,
+          59,
+          59,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|I0:high": [
+          2,
+          2,
+          2,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|outer_policy": [
+          16,
+          16,
+          16,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|I1:high": [
+          2,
+          2,
+          2,
+          0,
+          0
+        ],
+        "R19-BESSELI-3|In:high": [
+          12,
+          4,
+          4,
+          2,
+          2
+        ]
+      },
+      "totals": {
+        "I1:low": [
+          16,
+          15,
+          16,
+          0,
+          1
+        ],
+        "I0:low": [
+          24,
+          22,
+          24,
+          0,
+          2
+        ],
+        "In:low": [
+          115,
+          31,
+          31,
+          16,
+          16
+        ],
+        "I1:high": [
+          67,
+          67,
+          67,
+          0,
+          0
+        ],
+        "I0:high": [
+          70,
+          70,
+          70,
+          0,
+          0
+        ],
+        "In:high": [
+          1008,
+          116,
+          217,
+          93,
+          194
+        ],
+        "outer_policy": [
+          131,
+          131,
+          131,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "limits": "Discovery only. Natural source regions classified by order0/1/higher and their published3.75 seed threshold. Any product proposal requires a complete region survivor and no prior exact loss; no source changes or partial-fit adoption."
+}

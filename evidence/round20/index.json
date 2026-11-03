@@ -28,6 +28,8 @@
     "bessel-rational-opaque-integration.json": "8869e23dbfab8c003d896c3347a1225c6ce62f6c22eede8ae9eee7fce86cb459",
     "bessel-ubs-triage.json": "0f7ea66b249c72cc255709dedc088cd60c9bdf3153f22bba2027e78de8da913b",
     "bessel-ubs.jsonl": "3473a6e547158054d907844a36f2c9fd5c8f9204d4e74bdc2e9b635f48623436",
+    "besseli-full-source-receipt.json": "5adcc0825e1b5b76a69a3b7f9d116e1bbd862c2c67c8fd0e4c2ed82be104b404",
+    "besseli-full-source-summary.json": "0deb488cbc495f774c99eb90a4a1a026da2fac164a70f6d3d639e00e82014580",
     "binomial-direct-scope.json": "143d9fa5c59b6bf102b32183ad9080112d6f5c3a3285cdfd8a20caeff781c6c6",
     "binomial-direct-summary.json": "797fe8b5715f5c9487e238bb762bcb169f9f1a864d200878302ad3777b70b528",
     "checkpoint-final-check.log": "5a3641e85d61dd626c875832e18a95061df29095ace8c624b1ab7f76fcf81437",
@@ -35,6 +37,7 @@
     "classification-final.json": "3b187b888bbee87792e3494db9b02d3265791554d09fc7e9ca7fd056b0f9e904",
     "corpus-bessel-delta.json": "c20e77f13c3abf11757fd0344a842d8414f573989c6d6e20dcad773518bc1343",
     "corpus-domain-delta.json": "aa19dceb561e298c0c36a38f814c5fcd70cbe811f9d5c647ea4a5e63a9ffce12",
+    "corpus-final-integration-delta.json": "b887b2e5080cbdaa339568a02c68db914907f4dbf3fb925f8ff7a47a66297ebd",
     "corpus-followup-delta-categories.json": "44f98839b37a63926a79837042c0aff0e443ce320b36f3f47fc4c6c2f1a3a7e0",
     "corpus-followup-delta.json": "60616d035f85a02555118cd1f28939696cc4b074841fc2db7e9441b790af2eda",
     "corpus-followup-integration-delta.json": "cf8023cc1bd77a3d72e5abbabca14f82787585553aa847da3530d5ffb3cf4099",
@@ -87,11 +90,14 @@
     "research-python-tests.log": "4225300bd8d6741d2bde3684d91b08d9b7c7aca2d58a6b7458ecf6440510523e",
     "research-rust-final.log": "deac2707a614f7c1067a3c8f8f738a1d57d251ebde64060b2fcd1526fe262307",
     "research-rust-followup.log": "755a56eae15d93fccb3818388a45e54d6c2f624935ff61af8eeb94a7ba0bd122",
+    "research-rust-last-integration.log": "1d8b43280e8e2db5b87b8fa8cdc63492c070265006293eff5d1e727c6b8a9895",
     "research-rust-publish.log": "af3e2edfdabf5225915c76ab6b24796954970ade2c76ca40dc0d2044038b4804",
     "research-ubs-doctor.log": "3d922575bce3badef06853b3a79c9c9064990190de9ef40c0fa6296becc99c4d",
     "research-ubs-triage.json": "e73b0b3d42deb48c12a4a2060a70af2807e420eada75ac8a57e758e477cce8c6",
     "research-ubs.jsonl": "362b6d75f8d027dc35b7ae699acba537064ba19f7b266bee1b3397096452e8dd",
+    "review-r20-final-supplement.json": "b4f0bec7828758bed1ff6af23f33de0c640ee90c05041cb8912396ab5bab7e1c",
     "review-r20-publication.json": "e2640330d5e7633d35ff5d289a1e0d1897882ce449ff62dc0865eb4314d67fc0",
+    "round20-final-main-check.log": "2552439f0b1409c23877f8945b9acb4d5efbc161ae5fe1c228000ca524976c66",
     "ubs-doctor.log": "b1fdc482180400c948d294dc2a2f28a5872805dfcdfb052e37eb94706452d34f"
   },
   "source_units": {
@@ -100,9 +106,9 @@
     "bessel-rational-r20-seed-family-unit.json": "694b45848f1680b49d4032e080da1a087fc7d94fe2ab3d1ab057a236b07e3abb",
     "bessel-rational-r20-unit.json": "4774ed2c9c2ecc97e7e6358b97d418a6baa224c5a315ab4b13c00a0559d76f28",
     "round20-domain-unit.json": "0a47ff1bc1fa3029b65351bde8688477c6ddf5804a58f126d1ec948d789288c9",
-    "round20-unit.json": "282bea1a71449e0b5891e02d5da22b044074720729891a35840a75d5c9fcade3"
+    "round20-unit.json": "e85c7bf3b4ff80d97972e965e17ff196d6081d6cdddb464006d43197fc14ba64"
   },
-  "root_source_unit_sha256": "282bea1a71449e0b5891e02d5da22b044074720729891a35840a75d5c9fcade3",
+  "root_source_unit_sha256": "e85c7bf3b4ff80d97972e965e17ff196d6081d6cdddb464006d43197fc14ba64",
   "packet_files_sha256": {
     "README.txt": "98755676fc1103dd7d5a627a210504ac31823f2381679cbd8bcf4e61f632338e",
     "application-predictions-BINOM.DIST.jsonl": "09ae8bb382637587c4ab57c32f13fa9ad967a91605f52423bae89ece52ca1350",
@@ -125,9 +131,14 @@
     "r19-score/summary.json": "7ba629886a93ccff3137f3e7dc3d431c1f45a5d0920df5873e40731b438f77d1",
     "r19-domains-intake-review.json": "0b38d10427bdb31566ed059336efbb1dd75df2b7035db1424989ab2658503563",
     "bessel-forward-fixed-js/summary.json": "79520a0470aeddf5e8b7d706b8082deff1112e3c6693f39ec2a5fbd6a977414f",
-    "root-unit-cfab-with-followup.json": "5715891e4edf9020df205dd327a9104383320915e5022b4e46fbd8a703f41a33"
+    "root-unit-cfab-with-followup.json": "5715891e4edf9020df205dd327a9104383320915e5022b4e46fbd8a703f41a33",
+    "besseli-full-source-r20/receipt.json": "5adcc0825e1b5b76a69a3b7f9d116e1bbd862c2c67c8fd0e4c2ed82be104b404",
+    "besseli-full-source-r20/scalar-provider-summary.json": "0deb488cbc495f774c99eb90a4a1a026da2fac164a70f6d3d639e00e82014580",
+    "review-r20-final-supplement.json": "b4f0bec7828758bed1ff6af23f33de0c640ee90c05041cb8912396ab5bab7e1c",
+    "corpus-final-integration-delta.json": "b887b2e5080cbdaa339568a02c68db914907f4dbf3fb925f8ff7a47a66297ebd",
+    "root-unit-cef-final-source.json": "282bea1a71449e0b5891e02d5da22b044074720729891a35840a75d5c9fcade3"
   },
-  "checkpoint": "Product/distribution/capture work complete; I full seed/body discovery has no adopted change or claimed gains.",
+  "checkpoint": "Final R20: all required product/distribution/capture work and stopped-I supplement complete. dc-j9k remains in progress.",
   "limits": [
     "All original1151 mismatches have per-cell ULPrelative errors;16ULP is triage only and every mismatch/refusal/unavailable remains failure.",
     "Native9000 distribution enumeration uses declared fixed/common leaves; no full independent numerical kill replay.",
@@ -137,5 +148,5 @@
     "Research Python UBS SQL detector remains incomplete with SQLFlowLimit; doctor environment check passes.",
     "Lossless executables/traces archives listed in lossless-archives.json; restore original bytes withgzip andchmod+x before replaying old bound paths."
   ],
-  "checkpoint_result_sha256": "269c9e844cfc4d6706b33eed991f06b9fbd0c33eabce8892d241aef43ac37669"
+  "checkpoint_result_sha256": "ed3caa7680ce5526d99e83840e71956393173607653e514d0efc04cccbe4e151"
 }

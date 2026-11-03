@@ -1,0 +1,126 @@
+{
+  "review_id": "dc-j9k-r20-final-I-and-integration-supplement",
+  "reviewer": "/root/review_r20_domains",
+  "reviewed_utc": "2026-11-03T15:48:31.384081+00:00",
+  "decision": "approved as a stopped/rejected fixed-program lead; no product adoption or gain",
+  "scope": "Two fixed scalar EXP providers with the complete pinned SheetJS I0/I1 tables, branches, backward body and the declared unchanged outer policy. No general I-algorithm or arithmetic/store-family exclusion is established.",
+  "source": {
+    "repository": "https://github.com/SheetJS/bessel",
+    "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+    "licence": "Apache-2.0",
+    "pinned_hashes_verified": true,
+    "no_product_or_shared_numerical_source_change": true
+  },
+  "input_preservation": {
+    "all_rows": 1431,
+    "original_corpus": 95,
+    "original_bank": 1304,
+    "independently_audited_R19": 32,
+    "all_original_corpus_bank_rows_exactly_equal": true,
+    "R19_ID_argument_answer_fields_match_original_canonical": true,
+    "current_application_ID_arguments_match_all1431": true,
+    "changed_current_vs_saved_baseline": 0
+  },
+  "independent_replay": {
+    "runtime": "Node v18.20.8",
+    "method": "Evaluated the unmodified pinned source in a fresh vm context with concrete recorded worksheet EXP leaves and the single uniform declared outer policy. No original expected I answers enter the computation.",
+    "rows": 1431,
+    "output_differences_vs_recorded_worksheet_program": 0,
+    "worksheet_EXP_calls": 1145,
+    "native_JavaScript_provider": "Recorded row flags and grouped/totals bookkeeping independently reconciled; its original reported runtime version was not independently established by this reviewer."
+  },
+  "admitted_counts": {
+    "all": 1300,
+    "source_exact": 321,
+    "current_application_exact": 425,
+    "new_exact": 109,
+    "lost_exact": 213
+  },
+  "outside_admission_counts": {
+    "all": 131,
+    "source_exact": 131,
+    "current_application_exact": 131,
+    "new_exact": 0,
+    "lost_exact": 0
+  },
+  "whole_scope_counts": {
+    "all": 1431,
+    "source_exact": 452,
+    "current_application_exact": 556,
+    "new_exact": 109,
+    "lost_exact": 213
+  },
+  "natural_regions": {
+    "I0_high": {
+      "source_exact": 70,
+      "current_exact": 70,
+      "total": 70,
+      "new": 0,
+      "lost": 0
+    },
+    "I1_high": {
+      "source_exact": 67,
+      "current_exact": 67,
+      "total": 67,
+      "new": 0,
+      "lost": 0
+    },
+    "In_low": {
+      "source_exact": 31,
+      "current_exact": 31,
+      "total": 115,
+      "new": 16,
+      "lost": 16
+    },
+    "In_high": {
+      "source_exact": 116,
+      "current_exact": 217,
+      "total": 1008,
+      "new": 93,
+      "lost": 194
+    }
+  },
+  "no_EXP_counterexample": {
+    "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:180:4",
+    "x": 3.75,
+    "order": 3,
+    "expected_and_current": "0x4003d5346d0725af",
+    "fixed_source": "0x4003d53465f4eb10",
+    "relative_error": 2.1251468144832453e-08,
+    "independent_direct_source_replay_EXP_calls": 0
+  },
+  "decision_basis": "213 admitted old passes are lost. The two complete high seed cohorts already match the current application with no gain, and neither named higher-order source region survives its recorded constraints. Stop this concrete lead; no arithmetic/store expansion or partial-fit selector was adopted.",
+  "final_integration": {
+    "main_source_revision": "621d677da3156d7648194a04ae864c46a8b986b7",
+    "main_note_tip": "27ca78ebdd2a7c2aef4a22c3f8831e7747f2f77e",
+    "main_source_unchanged_from621d": true,
+    "source_unit_sha256": "e85c7bf3b4ff80d97972e965e17ff196d6081d6cdddb464006d43197fc14ba64",
+    "current_research_source_hashes_verified": 72,
+    "corpus_before": 19710,
+    "corpus_after": 19710,
+    "formula_cells": 20840,
+    "evaluations": 63783,
+    "gains": 0,
+    "losses": 0,
+    "changed_values": 0,
+    "all154_integration_input_bindings_verified": true,
+    "rebound_Rust": "77 passed,0failed,2ignored",
+    "latest_main_required_check": "Passed provenance/workspace build;0 touched packages,0 tests, as distinct from earlier full numeric check.",
+    "latest_main_check_log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/round20-final-main-check.log",
+    "latest_main_check_log_sha256": "2552439f0b1409c23877f8945b9acb4d5efbc161ae5fe1c228000ca524976c66"
+  },
+  "artifacts_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/receipt.json": "5adcc0825e1b5b76a69a3b7f9d116e1bbd862c2c67c8fd0e4c2ed82be104b404",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/scalar-provider-summary.json": "0deb488cbc495f774c99eb90a4a1a026da2fac164a70f6d3d639e00e82014580",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/known.jsonl": "5325adb5ac6ad67127ee451679fd4f2c47412a8d1adefc0f304cfe2b95786c62",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/worksheet-source-vs-current.jsonl": "063e073ac14dc054f8d8e312c2c6ab0dac4f40559634e9002db3bf3f7028bc6d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/worksheet_exp-predictions.jsonl": "7689fc9162c109b9aad9efb249ff12334eb546583399df3de6234edf2c47af07",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/corpus-final-integration-delta.json": "b887b2e5080cbdaa339568a02c68db914907f4dbf3fb925f8ff7a47a66297ebd",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/research-rust-last-integration.log": "1d8b43280e8e2db5b87b8fa8cdc63492c070265006293eff5d1e727c6b8a9895"
+  },
+  "limitations": [
+    "All records are discovery. No new live Excel execution, held-out result or product gain is claimed.",
+    "The rejection applies to the exact pinned programs/provider choices and recorded region constraints, not all I algorithms or all floating-point variants.",
+    "No new source body or Cargo build was run by reviewer. The separate Node replay ran the permitted fixed source only."
+  ]
+}

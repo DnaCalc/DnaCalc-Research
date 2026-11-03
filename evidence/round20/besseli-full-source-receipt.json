@@ -1,0 +1,195 @@
+{
+  "id": "dc-j9k-r20-besseli-full-source-parked",
+  "role": "clean-implementer",
+  "decision": "REJECTED; park I for the remainder ofR20. No product/shared source/Cargo changes or further family expansion.",
+  "distinction_from_prior_lead": "This test evaluates the complete pinned I0/I1 coefficient/region/body program with the application worksheet EXP leaf, rather than only the earlier integer-order JavaScript EXP/backward run. All accepted numeric orders are truncated by existing outer policy before the fixed source program.",
+  "pinned_source": {
+    "repository": "https://github.com/SheetJS/bessel",
+    "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+    "licence": "Apache-2.0",
+    "files_sha256": {
+      "bessel.js": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+      "LICENSE": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26"
+    },
+    "restriction": "Tier2 original source; no Tier3 implementation retained."
+  },
+  "program": {
+    "coefficients": "Unmodified published pinned decimal tables.",
+    "seed_regions": "I0 uses abs(x)<=3.75; I1 uses abs(x)<3.75; higher orders use the source I0 normalization branch.",
+    "backward": "Exact pinned adaptive start/rounding, positive backward recurrence, rescale1e10/1e-10 and source normalization expression.",
+    "outer_policy": "Preserved finite numeric admission, negative-order refusal before truncation, order<=10000000 after truncation, flushed magnitude<=709.7, zero and parity behavior, subnormal output flush. No new guard or row selector.",
+    "providers_tested": [
+      "JavaScript scalar EXP, ordinary binary64 fixed source",
+      "Existing worksheet EXP via calc_func::invoke, ordinary binary64 fixed source"
+    ],
+    "not_enumerated": "No arithmetic/store-family expansion: an admitted gross contradiction using no EXP invalidates this as a plausible last-bit/provider product hypothesis."
+  },
+  "scope": {
+    "all_known_rows": 1431,
+    "admitted_rows": 1300,
+    "outside_product_admission": 131,
+    "cohorts": {
+      "original_corpus": 95,
+      "original_bank": 1304,
+      "new_audited_R19": 32
+    }
+  },
+  "count_order": [
+    "all",
+    "source_exact",
+    "current_application_exact",
+    "new_exact",
+    "lost_exact"
+  ],
+  "worksheet_program_admitted_counts": [
+    1300,
+    321,
+    425,
+    109,
+    213
+  ],
+  "worksheet_program_outside_admission_counts": [
+    131,
+    131,
+    131,
+    0,
+    0
+  ],
+  "worksheet_program_all_counts": [
+    1431,
+    452,
+    556,
+    109,
+    213
+  ],
+  "regions": {
+    "I1:low": [
+      16,
+      15,
+      16,
+      0,
+      1
+    ],
+    "I0:low": [
+      24,
+      22,
+      24,
+      0,
+      2
+    ],
+    "In:low": [
+      115,
+      31,
+      31,
+      16,
+      16
+    ],
+    "I1:high": [
+      67,
+      67,
+      67,
+      0,
+      0
+    ],
+    "I0:high": [
+      70,
+      70,
+      70,
+      0,
+      0
+    ],
+    "In:high": [
+      1008,
+      116,
+      217,
+      93,
+      194
+    ],
+    "outer_policy": [
+      131,
+      131,
+      131,
+      0,
+      0
+    ]
+  },
+  "cohorts": {
+    "cases.jsonl": [
+      95,
+      46,
+      49,
+      5,
+      8
+    ],
+    "BESSELI-bank-before.jsonl.gz": [
+      1304,
+      382,
+      483,
+      102,
+      203
+    ],
+    "R19-BESSELI-3": [
+      32,
+      24,
+      24,
+      2,
+      2
+    ]
+  },
+  "actual_admitted_exact_losses": 213,
+  "outside_admission_exact_losses": 0,
+  "complete_regions_with_no_gain": [
+    "I0-high70/70; current70/70",
+    "I1-high67/67; current67/67"
+  ],
+  "higher_order_complete_survivors": {
+    "In-low": 0,
+    "In-high": 0
+  },
+  "gross_no_EXP_counterexample": [
+    {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:180:4",
+      "cohort": "cases.jsonl",
+      "args": [
+        "0x400e000000000000",
+        "0x4008000000000000"
+      ],
+      "expected": "0x4003d5346d0725af",
+      "current_actual": "0x4003d5346d0725af",
+      "source_actual": "0x4003d53465f4eb10",
+      "relative_error": 2.1251468144832453e-08,
+      "uses_EXP": false
+    }
+  ],
+  "R19_result": "Full packet24/32 vs current24/32, with2 new exact and2 lost exact; the two1570 zero results improve but do not form a natural source-region survivor. Orders2/3/10 remain mismatched. No gains claimed for adoption.",
+  "application_baseline": {
+    "route": "Existing symbolic-racer invoke-inputs -> registered calc_func::invoke. Both worksheet EXP and current I were evaluated, never read from production bodies.",
+    "parent_declared_source_binding": "cef521cb97b3967f1f0f2c6be60cb1a23c64b711",
+    "executable": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/target/release/symbolic-racer",
+    "measured_sha256_after_invocations": "700e1556dff6ba301431dceca0aed80df44e70920468aad9a3e3f12c05b02303",
+    "changed_vs_original_saved_baselines": 0,
+    "not_a_new_build": true
+  },
+  "artifact_hashes": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/discrete-corpus/cases.jsonl": "e3f796aee1c91eddbf1b44468ae3d0c1344d062cac665788c07afcae8c3912e9",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/BESSELI-bank-before.jsonl.gz": "fca532e94008c59ee5f90a6f5c932d636223b8f376003a5e8fca13a2d9b08139",
+    "/home/ubuntu/codex-runs/excel-results-r19-domains/OxFunc-Evidence/readings/excel-20527/BESSELI-3.json": "99f160c5d93158205eea881977bdd11d2c130e3f799c5332a63c7d699e97130b",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/r19-domains-intake-review.json": "0b38d10427bdb31566ed059336efbb1dd75df2b7035db1424989ab2658503563",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/known.jsonl": "5325adb5ac6ad67127ee451679fd4f2c47412a8d1adefc0f304cfe2b95786c62",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/worksheet-exp.jsonl": "b30ebfcb655f2f3d9991ce62d33499d9baadd884c03e72c04b3578ccc7018fd5",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/current-I-predictions.jsonl": "907bc3c0bf6c0acea56680b539d0ea48dd8d1ff056270331720b5f4390789a85",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-full-source-r20/worksheet-source-vs-current.jsonl": "063e073ac14dc054f8d8e312c2c6ab0dac4f40559634e9002db3bf3f7028bc6d"
+  },
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "cpu": "AMD EPYC Processor (with IBPB)",
+    "model": "Codex, GPT-6 family; runtime model id not exposed",
+    "javascript": "v25.8.1"
+  },
+  "limits": [
+    "All original IDs, arguments, answers, readings and output files retained unchanged. Converted R19 rows retain original provenance and the audited intake hash.",
+    "All records are discovery. No held-out, overall product gain or new Excel execution claim.",
+    "No old I production body/history, Tier3/4 source or DnaCalc-engine checkout was read.",
+    "No partial fits, order selectors, new coefficients or start rules were tried."
+  ]
+}

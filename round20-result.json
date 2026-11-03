@@ -1,8 +1,8 @@
 {
   "round": 20,
-  "round_complete": false,
+  "round_complete": true,
   "started_utc": "2026-11-03 12:58:14 UTC",
-  "main_checkpoint": "cef521cb97b3967f1f0f2c6be60cb1a23c64b711",
+  "main_checkpoint": "27ca78eb",
   "product_commits": [
     "f1feb925",
     "4df60f0f",
@@ -28,7 +28,9 @@
     "gross_numeric_gains": 104,
     "last_bits_gains": 10,
     "unchanged_formula_inventory": true,
-    "changed_evaluation_values": 532
+    "changed_evaluation_values": 532,
+    "before_pass_rate_percent": 94.03071017,
+    "after_pass_rate_percent": 94.57773512
   },
   "bank": {
     "before": 3230830,
@@ -39,7 +41,9 @@
     "unread": 116,
     "inclusive_failures": 643812,
     "followup_gains": 48,
-    "followup_changed_outputs": 52
+    "followup_changed_outputs": 52,
+    "before_pass_rate_percent": 83.36502799,
+    "after_pass_rate_percent": 83.38773461
   },
   "mismatch_inventory": {
     "before": 1151,
@@ -59,7 +63,8 @@
   "parked": {
     "annuity": "CUMPRINC/PPMT/IPMT/CUMIPMT: zero full numerical-program survivors across rounds16-19; no structurally new hypothesis this round.",
     "variance": "Repeated zero producer survivors; R19 latent consumer bounds do not identify a producer. No new producer hypothesis this round.",
-    "GEOMEAN": "Repeated zero complete product/root programs through R19. No new producer hypothesis this round."
+    "GEOMEAN": "Repeated zero complete product/root programs through R19. No new producer hypothesis this round.",
+    "BESSELI": "The later complete pinned source+worksheetEXP program loses213 admitted prior matches; fixed complete high seeds add0. Stop this concrete lead without broader algorithm exclusion."
   },
   "distribution_studies": {
     "direct_programs": 9000,
@@ -97,14 +102,20 @@
       "ignored": 5,
       "not_run": 1
     },
-    "review": "Approved independent read-only source, complete corpus/bank/pin, all artifact/source hashes, audited R18/R19 captures and stable coverage intake. evidence/round20/review-r20-publication.json",
+    "review": "Approved independent checkpoint and final supplement reviews: source/artifact hashes, complete corpus/bank/pins, original capture/coverage intake, rebound integration and independent stopped-I replay. See evidence/round20/review-r20-publication.json and review-r20-final-supplement.json.",
     "platform_limits": "Linux native and targeted soft-x87 tests; browser/Windows sweep not run",
     "rust": {
       "passed": 77,
       "failed": 0,
       "ignored": 2
     },
-    "ubs": "Main Rust scans complete/0critical; Research Rust complete/0critical, Python partial because existing SQLFlowLimit detector does not support list mutation aliases. No complete Python scan claim."
+    "ubs": "Main Rust scans complete/0critical; Research Rust complete/0critical, Python partial because existing SQLFlowLimit detector does not support list mutation aliases. No complete Python scan claim.",
+    "last_main_check": {
+      "source_revision": "621d677d",
+      "pushed_tip": "27ca78eb",
+      "result": "provenance and workspace build pass; tracker-only change touches no package so no tests repeated",
+      "full_test_checkpoint": "cef521cb:1440passed/0failed/5ignored/1notrun"
+    }
   },
   "restricted_checkout_files_opened_or_edited": false,
   "evidence_checkpoint": "a22dcd0f",
@@ -140,13 +151,45 @@
       "after_matched": 3231745,
       "after_total": 3875673,
       "after_failed": 643928,
-      "unread": 116
+      "unread": 116,
+      "after_pass_rate_percent": 83.38538881
     }
   },
   "no_gain_followup": "The fixed source low J forward branch matches11/11 records already matched by the current application; no change. I backward lead loses8 earlier matches and is rejected.",
   "checkpoint_complete": true,
-  "ongoing_followup": "Complete published I seed/body under worksheet arithmetic: unadopted discovery, no shared numerical source edits and no gains claimed.",
-  "main_tip": "1172f4cd",
+  "ongoing_followup": "None. I full-source lead and low-forward J lead closed without product changes.",
+  "main_tip": "27ca78eb",
   "main_tip_pushed": true,
-  "tracker_note": "1172f4cd records complete core checkpoint; pending full-I discovery does not claim gains."
+  "tracker_note": "Final round note records stopped I/forward leads; dc-j9k remains in progress.",
+  "completed_utc": "2026-11-03T15:49:58.825219+00:00",
+  "main_source_revision": "621d677da3156d7648194a04ae864c46a8b986b7",
+  "final_integration": {
+    "baseline": "cef521cb",
+    "after": "621d677d",
+    "corpus_matches": 19710,
+    "formula_cells": 20840,
+    "changed_evaluation_values": 0,
+    "gains": 0,
+    "losses": 0,
+    "evaluations": 63783,
+    "rebound_rust_tests": {
+      "passed": 77,
+      "failed": 0,
+      "ignored": 2
+    }
+  },
+  "stopped_I_lead": {
+    "complete_recorded_rows": 1431,
+    "admitted_rows": 1300,
+    "lost_previously_exact_admitted": 213,
+    "outside_admission_losses": 0,
+    "decision": "Reject fixed published full program with worksheet EXP; park I. No source change, arithmetic/store expansion or general I-algorithm exclusion."
+  },
+  "numeric_product_checkpoint": "cef521cb",
+  "final_publication": {
+    "main_pushed": "27ca78eb",
+    "research_checkpoint_pushed": "38ee4d3",
+    "research_final": "this commit",
+    "evidence_pushed": "a22dcd0f"
+  }
 }
