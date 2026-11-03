@@ -117,7 +117,6 @@
       "full_test_checkpoint": "cef521cb:1440passed/0failed/5ignored/1notrun"
     }
   },
-  "restricted_checkout_files_opened_or_edited": false,
   "evidence_checkpoint": "a22dcd0f",
   "evidence_pushed": true,
   "received_packets": {
@@ -191,5 +190,11 @@
     "research_checkpoint_pushed": "38ee4d3",
     "research_final": "this commit",
     "evidence_pushed": "a22dcd0f"
+  },
+  "engine_checkout_scope": {
+    "commands_run_there": false,
+    "source_code_read": false,
+    "files_changed": false,
+    "incidental_access": "One broad AGENTS filename listing traversed the engine checkout paths/ignore metadata. No source content was inspected and no Git mutation command was run there."
   }
 }
