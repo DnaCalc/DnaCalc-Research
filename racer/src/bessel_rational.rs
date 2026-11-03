@@ -563,15 +563,16 @@ fn run_programs<F: Fpu>(input: &str, out: &str, programs: Vec<Program>, followup
     );
 }
 
-/// Three fixed algebraic realizations of DLMF10.6.1. Program0 retains
-/// SheetJS's forward order. Seeds and input coercion use the current invoke
+/// Three fixed algebraic realizations of DLMF10.6.1, now across five coherent
+/// arithmetic models and optional binary64 iteration stores. Seeds and coercion use the current invoke
 /// route; this diagnostic never substitutes its result into that route.
-pub fn replay_y_forward(input: &str, out: &str) {
+pub fn replay_y_forward<F:Fpu>(input: &str, out: &str) {
     use calc_func::value::{CalcValue, CoreValue};
     let destination = Path::new(out);
     fs::create_dir(destination).unwrap();
     let rows = lines::<Value>(input);
-    let mut counts = [[0_usize; 5]; 3]; // all, exact, baseline_exact, gains, losses
+    let mut profiles=Vec::new();for shape in 0..3 {for model in WIDE_MODELS {for iteration_store in [false,true] {profiles.push((shape,model,iteration_store));}}}
+    let mut counts = vec![[0_usize;5];profiles.len()];
     let mut excluded = BTreeMap::<String, usize>::new();
     let mut file =
         BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
@@ -603,23 +604,28 @@ pub fn replay_y_forward(input: &str, out: &str) {
                 crate::invoke_control("BESSELY", vec![CalcValue::number(x), CalcValue::number(n)])
             })
             .into();
-        for program in 0..3 {
+        for (program,&(shape,model,iteration_store)) in profiles.iter().enumerate() {
             let order = raw_order.trunc() as usize;
             let prediction = if order <= 1 {
                 seeds[order].0.clone()
-            } else if let (Some(mut previous), Some(mut current)) = (seeds[0].1, seeds[1].1) {
-                let twice_over_x = 2.0 / x;
+            } else if let (Some(previous), Some(current)) = (seeds[0].1, seeds[1].1) {
+                let mut previous=Val::f64(previous);let mut current=Val::f64(current);
+                let mul=|a,b|binop::<F>(Op::Mul(0,1),model,a,b);
+                let div=|a,b|binop::<F>(Op::Div(0,1),model,a,b);
+                let sub=|a,b|binop::<F>(Op::Add(0,1),model,a,crate::boundary::neg(b));
+                let twice_over_x = div(Val::f64(2.0),Val::f64(x));
                 for j in 1..order {
-                    let j = j as f64;
-                    let next = match program {
-                        0 => current * j * twice_over_x - previous,
-                        1 => (j * twice_over_x) * current - previous,
-                        2 => ((2.0 * j) / x) * current - previous,
+                    let j = Val::f64(j as f64);
+                    let next = match shape {
+                        0 => sub(mul(mul(current,j),twice_over_x),previous),
+                        1 => sub(mul(mul(j,twice_over_x),current),previous),
+                        2 => sub(mul(div(mul(Val::f64(2.0),j),Val::f64(x)),current),previous),
                         _ => unreachable!(),
                     };
                     previous = current;
-                    current = next;
+                    current = if iteration_store {Val::f64(next.to_f64::<F>())}else{next};
                 }
+                let current=current.to_f64::<F>();
                 if !current.is_finite() {
                     "error:Num".into()
                 } else {
@@ -633,6 +639,7 @@ pub fn replay_y_forward(input: &str, out: &str) {
             } else {
                 seeds.iter().find(|s| s.1.is_none()).unwrap().0.clone()
             };
+            if shape==1&&model==EvalModel::Strict {assert_eq!(prediction,baseline,"strict Y forward route {}",row["id"]);}
             let matched = prediction == expected;
             let was = baseline == expected;
             for (slot, increment) in counts[program].iter_mut().zip([
@@ -647,7 +654,7 @@ pub fn replay_y_forward(input: &str, out: &str) {
             writeln!(file, "{}", json!({"trace_index":index,"id":row["id"],"program":program,"prediction":prediction,"expected":expected,"baseline":baseline,"matched":matched})).unwrap();
         }
     }
-    let result = json!({"complete":true,"input_rows":rows.len(),"counts_all_exact_baseline_gains_losses":counts,"excluded":excluded,
+    let result = json!({"complete":true,"input_rows":rows.len(),"profiles":profiles,"counts_all_exact_baseline_gains_losses":counts,"excluded":excluded,
         "source":"SheetJS/bessel2e2331329891dc5c16bda3461db0b9fe590ff2e9 bessel.js Apache-2.0; DLMF10.6.1",
         "limits":"Discovery only. Every original scoped outcome is compared, including domain errors; unsupported records remain obligations. Current invoke seeds are conditional leaves. No coefficient, cutoff or store boundary fitted."});
     json_write(destination.join("summary.json"), &result);

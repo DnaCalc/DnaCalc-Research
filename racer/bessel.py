@@ -14,7 +14,10 @@ import json
 from pathlib import Path
 import time
 
-from intervals import B64, E64, E53, Interval, number, pow2
+try:
+    from .intervals import B64, E64, E53, Interval, number, pow2
+except ImportError:
+    from intervals import B64, E64, E53, Interval, number, pow2
 
 MODELS = ('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
 
@@ -673,6 +676,7 @@ def regime_run(input_path,destination):
             counts['scoped'] += 1;counts['outside_real_rounding_bound'] += impossible
             out.write(json.dumps(dict(trace_index=index,id=row['id'],function=row['function'],args=row['args'],
                 expected=row['expected'],region=region,proof=proof,outside_real_rounding_bound=impossible))+'\n')
+    # ubs:ignore — public source-integrity hashes, never secret authentication material.
     require(source == digest(Path(__file__)),'reference source changed during run')
     result = dict(complete=True,counts=counts,regions=regions,excluded=excluded,
         source_sha256=source,input_sha256=digest(input_path),bounds_sha256=digest(dest/'reference-bounds.jsonl'),

@@ -1,25 +1,34 @@
 {
   "round": 22,
-  "status": "checkpoint, round continues",
-  "product": "ITK published I0 and higher-I kernel; RN53(RN64) arithmetic reproduces all1318 current BESSELI bank rows",
+  "status": "completed",
+  "product": "Complete published ITK I0/higher-I program with staged arithmetic; original Householder reflector uses shared stored-PC64 arithmetic.",
   "corpus": {
-    "before_matched": 19916,
-    "matched": 19962,
-    "total": 22234,
-    "gains": 46,
-    "losses": 0,
-    "pending": 1160,
-    "inclusive_failed": 2272
+    "matched": 19973,
+    "total": 22339,
+    "pending": 1265,
+    "inclusive_failed": 2366,
+    "mismatched": 958,
+    "refused": 55,
+    "failed_or_missing": 1,
+    "external_links": 73,
+    "circular_rule": 14,
+    "pass_rate": 0.8940865750481222
   },
   "bank": {
     "before_matched": 3231759,
-    "matched": 3232584,
+    "matched": 3232589,
     "total": 3875673,
-    "gains": 825,
+    "gains": 830,
     "losses": 0,
-    "failed": 643089,
+    "failed": 643084,
     "unread": 116,
-    "only_BESSELI_outputs_changed": true
+    "decoded_rows": 3875557,
+    "changed_outputs": 830,
+    "own_BESSELI_gains": 825,
+    "own_QR_bank_changes": 0,
+    "upstream_BAHTTEXT_gains": 3,
+    "upstream_FLOOR_gains": 2,
+    "all_original_identity_answer_fields_preserved": true
   },
   "coverage_restoration": {
     "cells": 1633,
@@ -31,30 +40,46 @@
   },
   "pending_question_cells": {
     "R21": 204,
-    "incoming_fn2": 956
+    "incoming_fn2": 956,
+    "R22_QR": 105
   },
   "larger_numeric_before": 199,
   "larger_numeric_after": 196,
   "last_bits_before": 801,
-  "last_bits_after": 758,
+  "last_bits_after": 747,
   "tests": {
     "failing_first_application": true,
     "application_original_cases": 100,
     "engineering_passed": 12,
     "soft_x87_original_cases": 100,
-    "research_rust_passed": 94,
+    "research_rust_passed": 95,
     "research_rust_ignored": 2,
-    "python_passed": 87,
+    "python_passed": 90,
     "independent_lattice_controls": 1504,
     "main_check": {
-      "passed": 1488,
+      "passed": 1502,
       "failed": 0,
       "ignored": 5,
       "not_run": 1,
       "packages": 12
-    }
+    },
+    "application_I_original_cases": 100,
+    "application_QR_original_selections": 35,
+    "QR_previously_failed": 11,
+    "QR_previously_matched_preserved": 24,
+    "QR_test_failed_before_product_change": true,
+    "earlier_all_workspace": {
+      "passed": 1765,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 27,
+      "application_revision": "344c1667",
+      "limits": "Before the reflector change and latest upstream changes; final source has the required12package check."
+    },
+    "soft_x87_QR_original_selections": 35
   },
-  "source": "ITK311b7060ef39e371f3cd209ec135284ff5fde735 Apache2; whole published body and I0, no fitted coefficient, threshold, start/rescale or per-row selector.",
+  "source": "ITK311b7060ef39e371f3cd209ec135284ff5fde735 Apache2; whole I0/higher-I body. Original MIT OxFunc6fca3518 regression_forecast_family.rs reflector, shared staged operations. No fitted coefficient, threshold or per-row selector.",
   "parked": [
     "annuity producer families",
     "VAR/STDEV/DEVSQ producers",
@@ -65,5 +90,110 @@
   "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round22",
   "excluded_checkout_accessed": false,
   "limits": "Coverage restoration is separate from numeric gains. All pending, external/circular, mismatched/refused/missing and unread obligations remain failures. No Windows/browser sweep.",
-  "ubs": "Rust completed with0critical; Python SQLFlowLimit remains partial, not a complete pass. doctor --fix reports environment good."
+  "ubs": "Rust scan completed with0critical; Python scan exited2 partially with one triaged operator-supplied executable taint false positive. No clean Python scan is claimed.",
+  "application_revision": "0e33b704c4f5d42847398f393f8282467b2492b4",
+  "application_commits": [
+    "55674b3a",
+    "d62b1283",
+    "3f3b1622",
+    "0f23ca19",
+    "0e33b704"
+  ],
+  "corpus_before_new_questions": {
+    "before_matched": 19916,
+    "matched": 19973,
+    "total": 22234,
+    "gains": 57,
+    "losses": 0,
+    "pending": 1160,
+    "inclusive_failed": 2261
+  },
+  "new_questions": {
+    "scalar_BESSELI_calls": 49,
+    "QR_workbook_formula_cells": 105,
+    "new_Excel_answers": 0,
+    "separate_new_workbook": true
+  },
+  "rejected_studies": {
+    "regression_inverse": {
+      "inverse_labels": 20,
+      "original_consumer_labels_per_role": 2400,
+      "expanded_consumer_labels_per_role": 144000,
+      "scope": "168 finite coefficient leaves (123 slope,45 intercept) from394 registered controls; original QR,R,means,SSR,df conditional.",
+      "full_survivors": 0,
+      "zero_loss_improvements": 0
+    },
+    "binomial_commons": {
+      "labels": 90,
+      "input_rows": 70479,
+      "scoped": 52633,
+      "unique_registered_controls": 52631,
+      "baseline": 14389,
+      "best_exact": 10055,
+      "best_gains": 6283,
+      "best_losses": 10617,
+      "zero_loss_improvements": 0,
+      "limits": "Complete Commons saddle-point body with three conditional LN/EXP adapters; not a complete FastMath identification."
+    },
+    "binomial_beta": {
+      "labels": 20,
+      "scoped": 52633,
+      "best_exact": 2237,
+      "best_gains": 1363,
+      "best_losses": 13515,
+      "zero_loss_improvements": 0,
+      "limits": "Four exact identities conditional on existing TOMS708 brcomp."
+    },
+    "AS241": {
+      "labels": 30,
+      "corpus_eligible": 12,
+      "corpus_baseline": 6,
+      "initial_stored_pc64_matches": 12,
+      "expanded_recorded_eligible": 23,
+      "expanded_stored_pc64_matches": 17,
+      "expanded_gains": 10,
+      "expanded_losses": 4,
+      "zero_loss_improvements": 0,
+      "limits": "Complete CPython source body; LN adapters and existing output wrappers conditional. Additional11 original source-recorded expectations retained separately from canonical captures."
+    },
+    "Acklam": {
+      "labels": 30,
+      "eligible": 23,
+      "best_exact": 11,
+      "zero_loss_improvements": 0,
+      "limits": "Original cleared refined body, current ERFC and wrappers conditional."
+    },
+    "Y_forward": {
+      "labels": 30,
+      "input_rows": 1073,
+      "scoped": 101,
+      "baseline": 92,
+      "zero_loss_improvements": 0
+    },
+    "gamma_PDF": {
+      "labels": 360,
+      "input_rows": 77982,
+      "scoped": 4753,
+      "unique_registered_controls": 4751,
+      "baseline": 549,
+      "best_exact": 964,
+      "best_gains": 611,
+      "best_losses": 196,
+      "zero_loss_improvements": 0,
+      "limits": "Positive normal PDF inputs, current Lanczos/GAMMALN and LN/EXP leaves conditional; no CDF/admission result."
+    }
+  },
+  "reflector_study": {
+    "labels": 10,
+    "rows": 3944,
+    "excluded": 0,
+    "baseline": 3890,
+    "matches": 3901,
+    "gains": 11,
+    "losses": 0,
+    "native_software_predictions_identical": true,
+    "limits": "Norm,rank,means,pivots,backsolve and statistics remain the original product; no complete LAPACK QR identification."
+  },
+  "raw_artifacts_retained_bytes": 38249910,
+  "raw_compression_map": "evidence/round22/raw-compression-final.json"
 }

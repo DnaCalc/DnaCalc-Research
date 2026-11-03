@@ -1,0 +1,14 @@
+{
+  "complete": true,
+  "unchanged": {
+    "requests-BESSELI.json": true,
+    "application-predictions-BESSELI.jsonl": true,
+    "application-route-inputs.jsonl": true,
+    "application-route-audit.jsonl": true,
+    "selection.json": true
+  },
+  "original_revision": "1ebdbe85",
+  "replay_revision": "344c1667",
+  "replay_unit": "dc-j9k-r22-final",
+  "limits": "Original49-question packet remains frozen, including its original generator/executable hashes. Future generator executions obtain the application binding from the compiled executable rather than a hard-coded revision. Predictions are not Excel evidence."
+}

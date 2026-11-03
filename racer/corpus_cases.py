@@ -392,6 +392,154 @@ not fitted rank rules or a coefficient program. Return all failures and attempts
     print(json.dumps({k:v for k,v in summary.items()if 'sha256'not in k}))
 
 
+def round22_questions(executable, output):
+    """Public I0/neighbor controls for the complete fixed ITK program.
+
+    Scalar Value2 transport only; this extends the established packet format
+    and creates no catalogue sheet or new capture lineage.
+    """
+    import math
+    import subprocess
+    executable, output = Path(executable).resolve(), Path(output)
+    # ubs:ignore — trusted local executable, argv only. Its compiled unit binds
+    # the application sources; the working checkout may have advanced since.
+    binding=json.loads(subprocess.check_output([str(executable),'provenance'],timeout=60))
+    output.mkdir(parents=True, exist_ok=False)
+    bits = lambda v: '0x'+struct.pack('>d', float(v)).hex()
+    questions, reasons = [], []
+    def add(x, order, reason):
+        identity = f'r22-besseli-{len(questions):03d}'
+        questions.append(dict(id=identity, args=[bits(x),bits(order)], input_transport='cell_value2_bulk'))
+        reasons.append(dict(id=identity, function='BESSELI', purpose=reason))
+    for x in (1.8661547234119729,3.2741177381715616,5.432532676165661,
+              6.577498665623793,12.514410892637624,13.469754413420809):
+        for order in (0,2,7):
+            add(x,order,'Public I0 and fixed neighboring integer orders at prior arithmetic discriminators; expose normalization independently of a fitted recurrence.')
+        add(-x,7,'Odd-order parity control at the same magnitude.')
+    for x in (math.nextafter(3.75,0),3.75,math.nextafter(3.75,math.inf)):
+        for order in (0,2,17):
+            add(x,order,'Adjacent binary64 inputs at the published I0 branch boundary; no boundary is estimated from answers.')
+    for order in range(1568,1573):
+        for x in (709.7,-709.7):
+            add(x,order,'Neighbors of an independently recorded normalization-underflow case, including even/odd parity. Existing center readings are intentional controls.')
+    for x,order in ((0,0),(0,2),(.1,2),(3,2),(10,20),(100,100)):
+        add(x,order,'Public zero, small-argument and rescaled-recurrence controls for the same fixed program.')
+    request=output/'requests-BESSELI.json'
+    request.write_text(json.dumps(dict(function='BESSELI',selection='R22 fixed complete-program controls; intentional repeats, no --new-only',witnesses=questions),indent=2)+'\n')
+    predictions=output/'application-predictions-BESSELI.jsonl'
+    # ubs:ignore — trusted local executable, argument vector; failures abort.
+    subprocess.run([str(executable),'invoke-inputs',str(request),str(predictions),'1900'],check=True,timeout=300)
+    rows=[json.loads(line) for line in predictions.read_text().splitlines()]
+    if len(rows)!=len(questions):
+        raise ValueError('missing R22 application prediction')
+    route=output/'application-route-inputs.jsonl'
+    with route.open('x') as out:
+        for question,prediction in zip(questions,rows):
+            if any(prediction[key]!=question[key] for key in ('id','args')):
+                raise ValueError('changed R22 question input')
+            out.write(json.dumps(dict(**question,function='BESSELI',result_index=None,
+                actual=prediction['calc_func_prediction'],numeric_cell_inputs=True,
+                date_system_1900=True,not_excel_evidence=True))+'\n')
+    # ubs:ignore — same trusted executable and established route audit.
+    subprocess.run([str(executable),'function-routes',str(route),str(output/'application-route-audit.jsonl')],check=True,timeout=300)
+    (output/'batches.json').write_text(json.dumps([dict(function='BESSELI',path=request.name,calls=len(questions))],indent=2)+'\n')
+    (output/'selection.json').write_text(json.dumps(dict(calls=len(questions),questions=reasons,new_excel_answers=0,
+        rule='Published branch, integer-order/parity neighbors and public I0 controls. No fitted coefficient, threshold or expected answer.'),indent=2)+'\n')
+    (output/'README.txt').write_text('''R22 BESSELI scalar questions; no Excel answers included.
+From the published Windows DnaCalc checkout:
+  cargo xtask witness read --func BESSELI --inputs <packet>/requests-BESSELI.json
+Do not use --new-only: independently recorded controls intentionally repeat.
+Only requests-BESSELI.json is reader input. Application predictions and route
+audits are calculations, never Excel answers or expected values.
+Preserve canonical WitnessSets in OxFunc-Evidence, requested/submitted/Value2
+bit audits, worker settings, original requests/results, file hashes and partial
+attempts. Return those files and the unchanged packet under
+~/codex-runs/excel-results-r22. Missing/unread outcomes remain failures.
+
+Do not append research questions to the captured catalogue workbook. R21's
+204 cells now live in crates/calc-func/tests/fixtures/dcj9k_r21/oracle.xlsx;
+fn2 questions live in fixtures/fn2_questions/oracle.xlsx. The original catalogue
+has been restored byte-for-byte and needs no recapture for those1633 old cells.
+Use cargo xtask capture --pending for the separate pending workbooks.
+This supersedes only R21's instruction to capture its questions in catalogue;
+the historical R21 request/answer formats and hashes remain unchanged.
+''')
+    sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+    manifest=dict(format='dnacalc-research-questions-r22/1',scalar_calls=len(questions),
+        catalogue_formula_cells=0,new_excel_answers=0,application_revision=binding['application_revision'],
+        application_working_blobs=binding.get('application_working_blobs',{}),prediction_unit=binding['id'],
+        prediction_executable_sha256=sha(executable),source_sha256=sha(Path(__file__)),
+        limits='Fixed discovery questions; registered and workbook-parser routes audited. No new Excel evidence, catalogue mutation or replacement oracle.')
+    manifest['files_sha256']={p.name:sha(p) for p in sorted(output.iterdir()) if p.is_file()}
+    (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in manifest.items() if 'sha256' not in k}))
+
+
+def round22_qr_questions(executable, output):
+    """Add an isolated regression workbook packet; preserve the scalar packet."""
+    import subprocess
+    executable=Path(executable).resolve();output=Path(output)/'qr'
+    output.mkdir(parents=True,exist_ok=False)
+    # ubs:ignore — selected local executable and argv; immutable compiled binding.
+    binding=json.loads(subprocess.check_output([str(executable),'provenance'],timeout=60))
+    questions=[]
+    def add(formula,kind,shape):
+        questions.append(dict(id=f'r22-qr-sheet-{len(questions)+1:04d}',row=len(questions)+1,
+            column=4,formula=formula,kind=kind,shape=shape))
+    literal=lambda v:format(float(v),'.17g')
+    array=lambda rows:'{'+';'.join(','.join(literal(x)for x in row)for row in rows)+'}'
+    def fit(label,y,x,constant,outputs):
+        ys,xs=array([[v]for v in y]),array(x)
+        for i in range(len(y)):
+            add(f'INDEX({ys},{i+1},1)','operand_echo',label)
+            for j in range(len(x[0])):add(f'INDEX({xs},{i+1},{j+1})','operand_echo',label)
+        for row,column in outputs:
+            add(f'INDEX(LINEST({ys},{xs},{str(constant).upper()},TRUE),{row},{column})','selected_output',label)
+    y=[31.78,5.61,-9.09]
+    x=[[53.56,30.22,32],[-9,-17.977,47.17],[9.4,-11.83,39.39]]
+    coefficients=[(1,c)for c in range(1,4)]
+    fit('recorded_control',y,x,False,coefficients)
+    fit('reverse_rows',y[::-1],x[::-1],False,coefficients)
+    fit('swap_columns',y,[[r[1],r[0],r[2]]for r in x],False,coefficients)
+    fit('dyadic_column_scale',y,[[r[0]*2**20,r[1],r[2]]for r in x],False,coefficients)
+    y=[-17.979,-.126,8,-5,1.7,37,12.4,14.46,-8,24.2]
+    x=[[20.8,50],[34,23.41],[38.875,-17.7],[4.863,36.9],[42.1,6],[-14.55,44.41],[-4.57,-12.96],[-9.909,2.589],[47.549,42],[54.9,-17.63]]
+    fit('reverse_statistical_fit',y[::-1],x[::-1],True,[(r,c)for r in range(1,6)for c in range(1,4)])
+    sheet=output/'workbook-questions.json';sheet.write_text(json.dumps(dict(sheet='dcj9k_r22',questions=questions),indent=2)+'\n')
+    section=output/'sheet-dcj9k_r22.txt';section.write_text('# R22: full-rank reflector transforms and operand echoes. Questions only.\n'+'\n'.join(q['formula']for q in questions)+'\n',encoding='ascii')
+    predictions=output/'application-predictions-workbook.jsonl'
+    # ubs:ignore — same trusted executable, registered workbook parser route.
+    subprocess.run([str(executable),'sheet-predictions',str(sheet),str(predictions)],check=True,timeout=300)
+    rows=list(map(json.loads,predictions.read_text().splitlines()))
+    if len(rows)!=len(questions)or any(p['id']!=q['id']or p['formula']!=q['formula']for p,q in zip(rows,questions)):
+        raise ValueError('missing or changed R22 regression question')
+    (output/'README.txt').write_text('''R22 regression workbook questions:105 formulas,27 selected LINEST outputs and78 operand echoes.
+These are discovery questions, not Excel answers. The original scalar R22 packet stays frozen.
+The section belongs only in crates/calc-func/tests/fixtures/dcj9k_r22/oracle.xlsx.
+It must never be appended to the captured catalogue. The existing
+make-catalogue-fixtures.ps1 generates this separate workbook from the identical
+committed sheet-dcj9k_r22.txt. From the published Windows checkout:
+  cargo xtask capture --pending --list
+  cargo xtask capture --pending
+Preserve all original worker outputs, saved packages, settings, attempts and
+canonical captures; return them with the unchanged packet under
+~/codex-runs/excel-results-r22. Predictions are application calculations only.
+The original3x3 center is an intentional control. Reversed rows, swapped columns
+and a fixed dyadic column scale ask about arithmetic invariance; no Excel
+invariance is assumed. Operand echoes measure literal-parser bits separately.
+No coefficient, threshold, rank tolerance or per-row arithmetic choice is fitted.
+''')
+    sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+    manifest=dict(format='dnacalc-research-questions-r22-qr/1',formula_cells=len(questions),
+        selected_outputs=sum(q['kind']=='selected_output'for q in questions),operand_echoes=sum(q['kind']=='operand_echo'for q in questions),
+        new_excel_answers=0,application_revision=binding['application_revision'],application_working_blobs=binding.get('application_working_blobs',{}),
+        prediction_unit=binding['id'],prediction_executable_sha256=sha(executable),source_sha256=sha(Path(__file__)),
+        section_sha256=sha(section),files_sha256={p.name:sha(p)for p in sorted(output.iterdir())if p.is_file()},
+        limits='Separate new workbook via the existing generator/capture lineage. All prior captures remain unchanged; every new cell awaits capture and fails the inclusive denominator.')
+    (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in manifest.items()if 'sha256'not in k}))
+
+
 def split_arguments(text, separator=','):
     depth = 0
     quoted = False
@@ -1176,6 +1324,12 @@ or changed-input obligations fail. Use the existing capture lineage only.
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'round22-qr-questions':
+        round22_qr_questions(*sys.argv[2:])
+        sys.exit(0)
+    if len(sys.argv) > 1 and sys.argv[1] == 'round22-questions':
+        round22_questions(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'round21-questions':
         round21_questions(*sys.argv[2:])
         sys.exit(0)

@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "changed_function_totals": {
+    "BAHTTEXT": {
+      "before": {
+        "rows": 1983,
+        "matched": 1980
+      },
+      "after": {
+        "rows": 1983,
+        "matched": 1983
+      },
+      "gain": 3
+    },
+    "BESSELI": {
+      "before": {
+        "rows": 1318,
+        "matched": 493
+      },
+      "after": {
+        "rows": 1318,
+        "matched": 1318
+      },
+      "gain": 825
+    },
+    "FLOOR": {
+      "before": {
+        "rows": 1335,
+        "matched": 1322
+      },
+      "after": {
+        "rows": 1335,
+        "matched": 1324
+      },
+      "gain": 2
+    }
+  },
+  "source": "Per-function totals of both complete frozen-input application judge logs, reconciled with witness compare +830/-0 and830 changed outputs.",
+  "limits": "Only825 I gains belong to this round numerical implementation; BAHTTEXT3 and FLOOR2 are upstream changes. The reflector changes no bank output."
+}

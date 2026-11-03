@@ -1,6 +1,7 @@
 //! Bounded normal-CDF sketches from Cody's published rational tables.
 //! CALERF: netlib SPECFUN/erf; direct tables: SciPy1.14.1 cdflib.c:cumnor.
-//! See notices/SciPy-cdflib.txt. No application normal kernel/history is read.
+//! See notices/SciPy-cdflib.txt. The later inverse studies use the current
+//! cleared MIT Acklam body and the separately pinned CPython AS241 source.
 use crate::{
     boundary::{neg, store},
     dsl::*,
@@ -16,6 +17,140 @@ use std::{
     io::{BufWriter, Write},
     path::Path,
 };
+
+// Complete Wichura AS241 coefficient sets as published in CPython3.13.0,
+// Modules/_statisticsmodule.c,60403a5409ff2c3f3b07dd2ca91a7a3e096839c7.
+// All literals load binary64; no fitted coefficient or region boundary.
+const AS241:[[f64;8];6]=[
+ [2.5090809287301226727e3,3.3430575583588128105e4,6.7265770927008700853e4,4.5921953931549871457e4,1.3731693765509461125e4,1.9715909503065514427e3,1.3314166789178437745e2,3.3871328727963666080],
+ [5.2264952788528545610e3,2.8729085735721942674e4,3.9307895800092710610e4,2.1213794301586595867e4,5.3941960214247511077e3,6.8718700749205790830e2,4.2313330701600911252e1,1.0],
+ [7.74545014278341407640e-4,2.27238449892691845833e-2,2.41780725177450611770e-1,1.27045825245236838258,3.64784832476320460504,5.76949722146069140550,4.63033784615654529590,1.42343711074968357734],
+ [1.05075007164441684324e-9,5.47593808499534494600e-4,1.51986665636164571966e-2,1.48103976427480074590e-1,6.89767334985100004550e-1,1.67638483018380384940,2.05319162663775882187,1.0],
+ [2.01033439929228813265e-7,2.71155556874348757815e-5,1.24266094738807843860e-3,2.65321895265761230930e-2,2.96560571828504891230e-1,1.78482653991729133580,5.46378491116411436990,6.65790464350110377720],
+ [2.04426310338993978564e-15,1.42151175831644588870e-7,1.84631831751005468180e-5,7.86869131145613259100e-4,1.48753612908506148525e-2,1.36929880922735805310e-1,5.99832206555887937690e-1,1.0]];
+
+#[derive(Clone,Copy,Debug,Serialize)]
+struct InverseProgram {model:EvalModel,local_store:bool,log:usize}
+fn inverse_store<F:Fpu>(v:Val,p:InverseProgram)->Val {
+    if p.local_store {Val::f64(v.to_f64::<F>())}else{v}
+}
+fn inverse_abs_le(v:Val,b:f64)->bool {
+    let key=|e:Extended|(u16::from_le_bytes(e.0[8..10].try_into().unwrap())&0x7fff,
+        u64::from_le_bytes(e.0[..8].try_into().unwrap()));
+    key(v.to_ext())<=key(research_load(b))
+}
+fn inverse_as241<F:Fpu>(probability:f64,p:InverseProgram)->f64 {
+    let op=|kind,a,b|binop::<F>(kind,p.model,a,b);
+    let add=|a,b|op(Op::Add(0,1),a,b);let mul=|a,b|op(Op::Mul(0,1),a,b);
+    let q=inverse_store::<F>(add(Val::f64(probability),Val::f64(-0.5)),p);
+    let (r,tables,central)=if inverse_abs_le(q,0.425) {
+        (inverse_store::<F>(add(Val::f64(0.180625),neg(mul(q,q))),p),0,true)
+    }else{
+        let tail=if q.to_f64::<F>()<=0.0{Val::f64(probability)}else{add(Val::f64(1.0),Val::f64(-probability))};
+        let tail=inverse_store::<F>(tail,p);
+        let log=match p.log {
+            0=>Val::f64(crt_log(tail.to_f64::<F>())),
+            1=>Val::f64(excel_log(tail.to_f64::<F>())),
+            2=>Val::Ext(research_log::<F>(&tail.to_ext())),
+            _=>unreachable!(),
+        };
+        let cw=if matches!(p.model,EvalModel::StoredPc53|EvalModel::ResidentPc53){(CW&!0x300)|0x200}else{CW};
+        let root=if p.model==EvalModel::Strict {Val::f64((-log.to_f64::<F>()).sqrt())}
+            else {let v=Val::Ext(F::sqrt(&neg(log).to_ext(),cw));if matches!(p.model,EvalModel::StoredPc64|EvalModel::StoredPc53){Val::f64(v.to_f64::<F>())}else{v}};
+        let root=inverse_store::<F>(root,p);
+        let (shift,tables)=if inverse_abs_le(root,5.0){(1.6,2)}else{(5.0,4)};
+        (inverse_store::<F>(add(root,Val::f64(-shift)),p),tables,false)
+    };
+    let polynomial=|table:usize| {
+        AS241[table][1..].iter().fold(Val::f64(AS241[table][0]),|value,&c|add(mul(value,r),Val::f64(c)))
+    };
+    let mut numerator=polynomial(tables);
+    if central {numerator=mul(numerator,q);}
+    numerator=inverse_store::<F>(numerator,p);
+    let denominator=inverse_store::<F>(polynomial(tables+1),p);
+    let value=inverse_store::<F>(op(Op::Div(0,1),numerator,denominator),p);
+    let value=if !central&&q.to_f64::<F>()<0.0{neg(value)}else{value};
+    value.to_f64::<F>()
+}
+
+fn inverse_acklam<F:Fpu>(probability:f64,p:InverseProgram)->f64 {
+    // Published Acklam tables from the current MIT cleared implementation.
+    const A:&[f64]=&[-3.969683028665376e1,2.209460984245205e2,-2.759285104469687e2,1.38357751867269e2,-3.066479806614716e1,2.506628277459239];
+    const B:&[f64]=&[-5.447609879822406e1,1.615858368580409e2,-1.556989798598866e2,6.680131188771972e1,-1.328068155288572e1,1.0];
+    const C:&[f64]=&[-7.784894002430293e-3,-3.223964580411365e-1,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783];
+    const D:&[f64]=&[7.784695709041462e-3,3.224671290700398e-1,2.445134137142996,3.754408661907416,1.0];
+    let op=|kind,a,b|binop::<F>(kind,p.model,a,b);
+    let add=|a,b|op(Op::Add(0,1),a,b);let mul=|a,b|op(Op::Mul(0,1),a,b);let div=|a,b|op(Op::Div(0,1),a,b);
+    let cw=if matches!(p.model,EvalModel::StoredPc53|EvalModel::ResidentPc53){(CW&!0x300)|0x200}else{CW};
+    let root=|v:Val|if p.model==EvalModel::Strict{Val::f64(v.to_f64::<F>().sqrt())}else{
+        let v=Val::Ext(F::sqrt(&v.to_ext(),cw));if matches!(p.model,EvalModel::StoredPc64|EvalModel::StoredPc53){Val::f64(v.to_f64::<F>())}else{v}};
+    let poly=|table:&[f64],r|table[1..].iter().fold(Val::f64(table[0]),|v,&c|add(mul(v,r),Val::f64(c)));
+    let log=|v:Val|match p.log{0=>Val::f64(crt_log(v.to_f64::<F>())),1=>Val::f64(excel_log(v.to_f64::<F>())),2=>Val::Ext(research_log::<F>(&v.to_ext())),_=>unreachable!()};
+    let x=if probability<0.02425 || probability>1.0-0.02425 {
+        let tail=if probability<0.02425{Val::f64(probability)}else{add(Val::f64(1.0),Val::f64(-probability))};
+        let q=inverse_store::<F>(root(mul(Val::f64(-2.0),log(tail))),p);
+        let value=div(poly(C,q),poly(D,q));if probability<0.02425{value}else{neg(value)}
+    }else{
+        let q=inverse_store::<F>(add(Val::f64(probability),Val::f64(-0.5)),p);
+        let r=inverse_store::<F>(mul(q,q),p);div(mul(poly(A,r),q),poly(B,r))
+    };
+    let x=inverse_store::<F>(x,p);let xf=x.to_f64::<F>();
+    // The erfc and PHI operands cross the same binary64 function boundaries
+    // as the original cleared refinement. Their producers are conditional.
+    let argument=div(Val::f64(xf.abs()),Val::f64(std::f64::consts::SQRT_2)).to_f64::<F>();
+    let tail=inverse_store::<F>(mul(Val::f64(0.5),Val::f64(libm::erfc(argument))),p);
+    let error=if xf<0.0{add(tail,Val::f64(-probability))}else{add(add(Val::f64(1.0),Val::f64(-probability)),neg(tail))};
+    let error=inverse_store::<F>(error,p);
+    let sq=excel_x87_mul(xf,xf);let density=excel_x87_mul(excel_exp(-sq/2.0),f64::from_bits(0x3fd9884533d43651));
+    if density.abs()<f64::MIN_POSITIVE {xf}else{add(x,neg(div(error,Val::f64(density)))).to_f64::<F>()}
+}
+
+pub fn inverse_programs<F:Fpu>(input:&str,output:&str,acklam:bool) {
+    let destination=Path::new(output);fs::create_dir(destination).unwrap();
+    let rows=crate::lines::<Value>(input);let mut programs=Vec::new();
+    for model in WIDE_MODELS {for local_store in [true,false] {for log in 0..3 {programs.push(InverseProgram{model,local_store,log});}}}
+    let mut counts=vec![[0usize;5];programs.len()];let mut first=vec![None;programs.len()];let mut excluded=BTreeMap::<String,usize>::new();
+    let mut out=BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for (index,row) in rows.iter().enumerate() {
+        let name=row["function"].as_str().unwrap();
+        if !matches!(name,"NORM.S.INV"|"NORMSINV"|"NORM.INV"|"NORMINV"|"LOGNORM.INV"|"LOGINV"|"CONFIDENCE"|"CONFIDENCE.NORM") || !row["result_index"].is_null() {
+            *excluded.entry("surface_or_selection".into()).or_default()+=1;continue;
+        }
+        let a=row["args"].as_array().unwrap();
+        let numeric:Option<Vec<_>>=a.iter().map(|v|v.as_str().and_then(|s|s.strip_prefix("0x")).and_then(|s|u64::from_str_radix(s,16).ok()).map(f64::from_bits)).collect();
+        let Some(a)=numeric else{*excluded.entry("not_scalar_numeric".into()).or_default()+=1;continue;};
+        if !a.iter().all(|v|v.is_finite()) || !(0.0<a[0]&&a[0]<1.0) || (a.len()==3&&a[2]<=0.0) {
+            *excluded.entry("outside_finite_domain".into()).or_default()+=1;continue;
+        }
+        let arguments=row["args"].as_array().unwrap().iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+        let (baseline,_)=crate::invoke_control(name,arguments);assert_eq!(row["actual"],baseline,"changed frozen inverse baseline");
+        let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
+        for (id,p) in programs.iter().enumerate() {
+            let confidence=matches!(name,"CONFIDENCE"|"CONFIDENCE.NORM");
+            let probability=if confidence{1.0-a[0]/2.0}else{a[0]};
+            let z=if acklam{inverse_acklam::<F>(probability,*p)}else{inverse_as241::<F>(probability,*p)};
+            // The existing public wrappers keep their binary64 boundaries.
+            let value=if confidence {z*a[1]/a[2].trunc().sqrt()}
+                else if a.len()==1 {z}
+                else if matches!(name,"LOGNORM.INV"|"LOGINV") {excel_exp(a[1]+a[2]*z)}
+                else {a[1]+a[2]*z};
+            let got=if value.is_finite(){format!("0x{:016x}",value.to_bits())}else{"error:Num".into()};
+            if acklam&&id==0 {assert_eq!(got,baseline,"strict original Acklam control {}",row["id"]);}
+            let now=got==expected;
+            for(slot,v)in counts[id].iter_mut().zip([true,now,was,now&&!was,was&&!now]){*slot+=usize::from(v);}
+            if !now&&first[id].is_none(){first[id]=Some(json!({"trace_index":index,"id":row["id"],"got":got,"expected":expected}));}
+            writeln!(out,"{}",json!({"trace_index":index,"id":row["id"],"function":name,"program":id,"prediction":got,"expected":expected,"baseline":baseline})).unwrap();
+        }
+    }
+    assert!(counts[0][0]>0);assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    let safe:Vec<_>=counts.iter().enumerate().filter(|(_,c)|c[3]>0&&c[4]==0).map(|(i,_)|i).collect();
+    let result=json!({"complete":true,"input_rows":rows.len(),"programs":programs,"counts_all_exact_baseline_gains_losses":counts,
+        "first_contradictions":first,"excluded":excluded,"zero_loss_improvements":safe,
+        "algorithm":if acklam{"Acklam with original conditional refinement"}else{"AS241"},
+        "source":if acklam{"Published Acklam tables and cleared MIT product program at1ebdbe85 normal_log_family.rs; original libm erfc/current PHI leaves."}else{"CPython3.13.0 commit60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 _statisticsmodule.c, PSF2; complete published Wichura AS241, fixed binary64 literals and region boundaries."},
+        "limits":"Five coherent arithmetic models, local stores on/off, three declared conditional log adapters; existing public affine/EXP/confidence wrappers retained. Discovery corpus only; any survivor needs application tests/full bank and independent arithmetic verification. No fitted coefficient or threshold."});
+    json_write(destination.join("summary.json"),&result);println!("{result}");
+}
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Program {

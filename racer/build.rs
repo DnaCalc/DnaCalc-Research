@@ -81,6 +81,9 @@ fn main() {
         .expect("DnaCalc sibling checkout");
     let mut text = fs::read_to_string(source.join("mod.rs")).unwrap();
     let output = PathBuf::from(env::var_os("OUT_DIR").unwrap());
+    // Freeze the admitted unit inside the executable. Packet metadata must
+    // describe its compiled application sources rather than the current HEAD.
+    fs::write(output.join("research-unit.json"),fs::read(&unit_path).unwrap()).unwrap();
     for module in [
         "tables",
         "x87",
@@ -217,7 +220,12 @@ impl ResearchPrice {
         let mut bridge = fs::OpenOptions::new().append(true).open(output.join("bridge.rs")).unwrap();
         writeln!(bridge, "#[path = {:?}] pub mod discrete_dist;", path).unwrap();
         let special = source.parent().unwrap().join("special_math_common.rs");
-        writeln!(bridge, "#[path = {:?}] pub mod special_math_common;", special).unwrap();
+        // Visibility only: the original kept TOMS708 arithmetic is unchanged.
+        let special_text=fs::read_to_string(&special).unwrap();
+        assert_eq!(special_text.matches("fn bratio_brcomp(").count(),1);
+        let generated_special=output.join("special-research.rs");
+        fs::write(&generated_special,special_text.replace("fn bratio_brcomp(","pub(crate) fn bratio_brcomp(")).unwrap();
+        writeln!(bridge, "#[path = {:?}] pub mod special_math_common;", generated_special).unwrap();
         println!("cargo:rerun-if-changed={}", original.display());
         println!("cargo:rerun-if-changed={}", special.display());
         println!("cargo:rustc-cfg=discrete_audit");
@@ -241,6 +249,21 @@ impl ResearchPrice {
             assert_eq!(text.matches(old).count(),1,"changed regression observation site");
             text=text.replace(old,new);
         }
+        if unit["regression_inverse_audit"].as_bool() == Some(true) {
+            let site = "    // (R'R)^-1 = R^-1 R^-T.";
+            assert_eq!(text.matches(site).count(), 1, "changed inverse-R observation site");
+            text = text.replace(site, &format!(
+                "    crate::route_audit::regression_triangular(&fit.r, nz, &inverse, &fit.order, fit.model.coefficients.len());\n{site}"));
+        }
+        if unit["regression_householder_audit"].as_bool() == Some(true) {
+            let first="        let norm = squares.sqrt();";
+            let last="        diagonal[j] = alpha;";
+            assert_eq!(text.matches(first).count(),1,"changed reflector start");
+            assert_eq!(text.matches(last).count(),1,"changed reflector end");
+            let start=text.find(first).unwrap();let end=text.find(last).unwrap();assert!(start<end);
+            text.replace_range(start..end,"        let alpha = crate::route_audit::regression_householder_step(&mut matrix, &mut target, j, x0, rest, squares);\n");
+            println!("cargo:rustc-cfg=regression_householder_audit");
+        }
         let path=output.join("regression-research.rs");fs::write(&path,text).unwrap();
         let mut bridge=fs::OpenOptions::new().append(true).open(output.join("bridge.rs")).unwrap();
         writeln!(bridge,"#[path = {:?}] pub mod regression_forecast_family;",path).unwrap();
@@ -248,4 +271,5 @@ impl ResearchPrice {
         println!("cargo:rustc-cfg=regression_audit");
     }
     println!("cargo:rustc-check-cfg=cfg(regression_audit)");
+    println!("cargo:rustc-check-cfg=cfg(regression_householder_audit)");
 }

@@ -1,0 +1,38 @@
+{
+  "id": "dc-j9k-r22-normal-inverse",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "1ebdbe85",
+  "scope": "Complete published AS241 three-region rational program with fixed binary64 literals and declared arithmetic/log adapters; original inverse/confidence caller corpus.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/normal.rs": "dd42eeb7223e672deeb8ec19aec8d33e2796b4b3e3bbbf361b67c314375f6b03",
+    "racer/src/main.rs": "e6a211ceb0f6647d5701e34cf7cc79f9d3d646007c707a51631edd33c740da8e",
+    "racer/build.rs": "ce38e7cabc8fe26ca41ef9307f34612575e637cb2f9dcf61de31fcd75d7042de"
+  },
+  "regression_audit": false,
+  "regression_inverse_audit": false,
+  "programs": "30labels:5coherent arithmetic models,local stores on/off,3log leaves; existing affine/EXP wrappers.",
+  "limits": "Full-bank/application/independent controls required before product adoption; no fitted coefficient or threshold.",
+  "unit": "normal-inverse-r22"
+}

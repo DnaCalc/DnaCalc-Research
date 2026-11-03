@@ -1,0 +1,202 @@
+{
+  "method": "Lossless gzip, mtime0; decompressed SHA256 verified before removal of the redundant plaintext.",
+  "files": [
+    {
+      "path": "I-bank-after.jsonl",
+      "sha256": "066400699b48c87ff0fa6f3e86f5847a955ae82baf1a9cf5118cf9db0789e2f2",
+      "raw_bytes": 475186,
+      "gzip_bytes": 46752,
+      "gzip_sha256": "170998ba4ba1ddec780b3a560dd36f301e3283464eee453f5af89ed10f7e69ef"
+    },
+    {
+      "path": "I-bank-before.jsonl",
+      "sha256": "fcbea9fd8c0ace126301d53499b46de05820bfdd49f199455c9b62b4bb62813f",
+      "raw_bytes": 475186,
+      "gzip_bytes": 47891,
+      "gzip_sha256": "82931a55d4d388cbcc7c7627ded836bc8ff43331a0a696099adf85fd14a68c4f"
+    },
+    {
+      "path": "binomial-r20-inputs.jsonl",
+      "sha256": "6ec642fdf3c8109cc1a4ddecd5fdaec1f3823cd78ccd4ddb9a0198ba6aa34ef3",
+      "raw_bytes": 27808398,
+      "gzip_bytes": 1232469,
+      "gzip_sha256": "395b8b2bb79faf94b945824bd9889548fb2a53e617bcfbf8d37ad8ca55024c9b"
+    },
+    {
+      "path": "capture-premerge-check-test.log",
+      "sha256": "ea1d87f8d9f51ae747f02d4f045455ead9465638a5eee51abf60b11d0eefce46",
+      "raw_bytes": 1219560,
+      "gzip_bytes": 158430,
+      "gzip_sha256": "99a1953c276fe1b9713faeb7616189451f2909ff2ce3ca75cc0170e65f6bde87"
+    },
+    {
+      "path": "classification-after-itk/cells.jsonl",
+      "sha256": "93686351176b59b27d106fd32a0e1676a951dffe64dd133fdb703e0eb06eb86a",
+      "raw_bytes": 1679758,
+      "gzip_bytes": 105820,
+      "gzip_sha256": "7680028905f8605e6f7bd3b5eb66c9505ac0be254600c473b68f813a40bcbdba"
+    },
+    {
+      "path": "classification-before/cells.jsonl",
+      "sha256": "c33289f80739fecf9d6e1af28b3ef079cb3a523dc7a2196b8e6d324e0d524f52",
+      "raw_bytes": 1768887,
+      "gzip_bytes": 110920,
+      "gzip_sha256": "c859ea3860793c41098b46fc4ba709f865f223ca9f5e3394564d009c951fc687"
+    },
+    {
+      "path": "functions-after-itk/mismatches.tsv",
+      "sha256": "f6d731719cb29c8f791087d159a33a5860736ac4262493896a941f62c09126ed",
+      "raw_bytes": 247439,
+      "gzip_bytes": 44459,
+      "gzip_sha256": "d29180fca73c69be27664d6b9fb552577a815652a25821ae7237589038200eae"
+    },
+    {
+      "path": "functions-before/mismatches.tsv",
+      "sha256": "0b4a44d4766f4c86fa777e1533f6a7901d524e58b7993f028243254ad07c0faf",
+      "raw_bytes": 258020,
+      "gzip_bytes": 46375,
+      "gzip_sha256": "2a5c0810029ee72e256e895cd2bce76ad8c53ffad316c2a2b7aee1d870a8bf31"
+    },
+    {
+      "path": "gamma-density-combined.jsonl",
+      "sha256": "8b904e705b5c319012677dbf18b0200de4432546690517cf29ce404b59014f39",
+      "raw_bytes": 30124586,
+      "gzip_bytes": 1830103,
+      "gzip_sha256": "952abcf655ee9ffdd28834507af64a29a1d0c5e508d903dd73ec141461760d92"
+    },
+    {
+      "path": "gamma-density-inputs.jsonl",
+      "sha256": "48d0f53a8a3eb679508de5e79ba4761c9b27821b61e1f26d8a15c431162d887d",
+      "raw_bytes": 30093160,
+      "gzip_bytes": 1827316,
+      "gzip_sha256": "c62f0e4bd1efc90a93057cd1b5f5064102382f7eaa7f8ff38f85f455dd6c48d1"
+    },
+    {
+      "path": "householder-all-hard/predictions.jsonl",
+      "sha256": "5df425a136d84a5faad5e4fe357bd363d387ba517a721987d87b9c52f4a05f99",
+      "raw_bytes": 7358052,
+      "gzip_bytes": 177226,
+      "gzip_sha256": "322153e27cbbe3cf117d3cc193f747fd91d744d3c687050675d33f8bc6040581"
+    },
+    {
+      "path": "householder-all-inputs.jsonl",
+      "sha256": "212350c63a28800198241a1364f5dee61283c98d266f286f6c797df8b9c221ea",
+      "raw_bytes": 12436619,
+      "gzip_bytes": 238473,
+      "gzip_sha256": "6efc2feafa3125a114fb40813f131548ce24ae558437e9188dc409afa2baf66c"
+    },
+    {
+      "path": "householder-all-soft/predictions.jsonl",
+      "sha256": "5df425a136d84a5faad5e4fe357bd363d387ba517a721987d87b9c52f4a05f99",
+      "raw_bytes": 7358052,
+      "gzip_bytes": 177226,
+      "gzip_sha256": "322153e27cbbe3cf117d3cc193f747fd91d744d3c687050675d33f8bc6040581"
+    },
+    {
+      "path": "householder-bank-GROWTH.jsonl",
+      "sha256": "906e4a01d1e5f0f2295f5d059c59cd1dd468d162b8d1a600fb259f15f1c3f00b",
+      "raw_bytes": 970916,
+      "gzip_bytes": 40640,
+      "gzip_sha256": "71f459399deab15f97ca3b6ca7a79f91e6de2416f7ac15127457c51e7e69d3e0"
+    },
+    {
+      "path": "householder-bank-LOGEST.jsonl",
+      "sha256": "68179e543a84ba9fac08c16411b08a436e0cbee86bc072021af65a256aba2f3b",
+      "raw_bytes": 225616,
+      "gzip_bytes": 16537,
+      "gzip_sha256": "d0fc9575d1efc422552ffc6280dfc13329fe94adcb80b3f5ab884e2ced6eb3b0"
+    },
+    {
+      "path": "householder-prediction-corpus/excluded.jsonl",
+      "sha256": "bf6e3e010194e1e0a7e80b7edf5b4ac5b0cf374a90d5d3c54bec5c55c9dbf84b",
+      "raw_bytes": 981755,
+      "gzip_bytes": 23937,
+      "gzip_sha256": "94049e0c96e6e76c30ce11a6d8278c284e4e3df2525d2588bb9ced93a20a7391"
+    },
+    {
+      "path": "householder-published-hard/predictions.jsonl",
+      "sha256": "f9dabcb52993b994dc9a6e2e5b805c44603422d7bbf21413adee50bb673c4f0c",
+      "raw_bytes": 4507962,
+      "gzip_bytes": 99536,
+      "gzip_sha256": "16a0c5681d8ea343b37fad3eb12871d5879fa5bbe2dd5e08bfa6a382ee3c19fd"
+    },
+    {
+      "path": "householder-published-soft/predictions.jsonl",
+      "sha256": "f9dabcb52993b994dc9a6e2e5b805c44603422d7bbf21413adee50bb673c4f0c",
+      "raw_bytes": 4507962,
+      "gzip_bytes": 99536,
+      "gzip_sha256": "16a0c5681d8ea343b37fad3eb12871d5879fa5bbe2dd5e08bfa6a382ee3c19fd"
+    },
+    {
+      "path": "i-itk/predictions.jsonl",
+      "sha256": "476eaf1f137c8e1382d6af607fb3c5dcc0a785efce65e7f3f7e6ba93e0099ff9",
+      "raw_bytes": 371262,
+      "gzip_bytes": 59121,
+      "gzip_sha256": "496a8261f158423aa48944863fccca889e8d75783ee58198ce5c9fc986156eb6"
+    },
+    {
+      "path": "i-itk-models-hard/predictions.jsonl",
+      "sha256": "4e19f7326a14bb50ff82d4e95a855eeb0b942774001f8da6cdc012b7ecbea66e",
+      "raw_bytes": 2689740,
+      "gzip_bytes": 78430,
+      "gzip_sha256": "0b6ff2186e7e47ffd66e7541d3d4e4004900b2e2686981125c12f638a569cb7e"
+    },
+    {
+      "path": "i-itk-models-soft/predictions.jsonl",
+      "sha256": "4e19f7326a14bb50ff82d4e95a855eeb0b942774001f8da6cdc012b7ecbea66e",
+      "raw_bytes": 2689740,
+      "gzip_bytes": 78430,
+      "gzip_sha256": "0b6ff2186e7e47ffd66e7541d3d4e4004900b2e2686981125c12f638a569cb7e"
+    },
+    {
+      "path": "regression-inverse-all-consumers/summary.json",
+      "sha256": "16202ae26f579ccbf1f027c4eda2b38192dfd7f7c59d7b05c21ea641b2788759",
+      "raw_bytes": 38344778,
+      "gzip_bytes": 264938,
+      "gzip_sha256": "cba49ec4541b61351030ca5a3a93e0cd8ea873db49fff102e2880faf352d8503"
+    },
+    {
+      "path": "regression-inverse-leaves/scoped.jsonl",
+      "sha256": "94e0ffccc65c1e79945f51547d592be8d8d3299b14ac8934c8d377bbe374fecd",
+      "raw_bytes": 930659,
+      "gzip_bytes": 39787,
+      "gzip_sha256": "553a2edf823c5dfcbcc1ab02ff1bde2c087b1274da5c130cfc857e3283e428f8"
+    },
+    {
+      "path": "regression-inverse-original-consumers/summary.json",
+      "sha256": "5b8bfc3bd8ecba3bfd7b55236fb5cd0974dbe979946f18c37d0733c124fc180c",
+      "raw_bytes": 643188,
+      "gzip_bytes": 5387,
+      "gzip_sha256": "cb041d1b5578c98539f0898cfec9ff798ce7b637197827c18fa8713f8da4d136"
+    },
+    {
+      "path": "regression-r21-cases.jsonl",
+      "sha256": "6ea348075e438839e941df136ccf01ae3b0b0d88c3ef66e85af4f5d14b27972b",
+      "raw_bytes": 11232878,
+      "gzip_bytes": 179975,
+      "gzip_sha256": "d7bf9266c3b9e6ab51bc9e6b3c7df668400d6c413412ecbae9fae4af642e1cae"
+    },
+    {
+      "path": "y-forward-hard/predictions.jsonl",
+      "sha256": "f1551ca6e6df66fac3b6ea78e926a11e5e1720e343ff8db9525bc43c48082b8c",
+      "raw_bytes": 613490,
+      "gzip_bytes": 11409,
+      "gzip_sha256": "42e51d3a4afa9706d85dcd3fc9ee1648d535368d816501ee291f9b26ab61ceb4"
+    },
+    {
+      "path": "y-forward-soft/predictions.jsonl",
+      "sha256": "f1551ca6e6df66fac3b6ea78e926a11e5e1720e343ff8db9525bc43c48082b8c",
+      "raw_bytes": 613490,
+      "gzip_bytes": 11409,
+      "gzip_sha256": "42e51d3a4afa9706d85dcd3fc9ee1648d535368d816501ee291f9b26ab61ceb4"
+    },
+    {
+      "path": "application-before",
+      "sha256": "77a11e0c6a6ad8d3ed332fa7560a5cd17b5fb60cba0e983e854856db205dd141",
+      "raw_bytes": 23163752,
+      "gzip_bytes": 8224743,
+      "gzip_sha256": "29f288ba170ecf2d0bbf33e3bb0d1fe29bce5a5cb28e3ea6ea44f7cbcac74c3b"
+    }
+  ],
+  "retained_bytes": 38249601
+}

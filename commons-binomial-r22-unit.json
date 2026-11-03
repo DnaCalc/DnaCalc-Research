@@ -1,0 +1,37 @@
+{
+  "id": "dc-j9k-r22-commons-binomial",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "1ebdbe85",
+  "scope": "Complete fixed Apache Commons Math3.6.1 interior binomial log-PMF with declared precision and existing log/EXP adapters; current registered route controls, original recorded Excel answers.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/discrete.rs": "822da12f9062e145b859720cb24d100a7a4ad04df64259b2833c0be23ef6ab2f",
+    "racer/src/main.rs": "76be0fc4a7d742422c62aa472046fa2273f494194c1e0141d283efc1ccdae770",
+    "racer/build.rs": "ce38e7cabc8fe26ca41ef9307f34612575e637cb2f9dcf61de31fcd75d7042de"
+  },
+  "regression_audit": false,
+  "regression_inverse_audit": false,
+  "programs": "90 complete interior log-PMF labels:5models,2local-store policies,3log providers,3EXP adapters.",
+  "limits": "Java FastMath is not identified; fixed integer PMF scope, no parameters fitted.",
+  "unit": "commons-binomial-r22"
+}

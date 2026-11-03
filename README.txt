@@ -1,23 +1,52 @@
 DNA Calc arithmetic program research
 
-Round22 restores the catalogue bytes from before the R21 questions. The same
-existing generator now writes R21 and incoming fn2 questions into separate
-workbooks. All25 old captured sections remain valid:1633cells restored,
-including1561matches and72failures, with no Excel run or capture edit.
-The204 R21 and956 fn2 questions remain pending, never passes.
+Round 22 restores all 25 original catalogue sections by moving R21 and incoming
+fn2 questions to separate workbooks. The catalogue bytes are identical to those
+before R21: 1,633 cells restored, including 1,561 matches and 72 failures, without
+Excel or capture edits. New questions always use a separate new workbook.
 
-The complete published ITK I0 and higher-I program at311b7060 (Apache-2.0)
-with stored-PC64 arithmetic matches all1318 current BESSELI bank rows.
-Full bank:3231759->3232584/3875673,+825/-0;643089fail including116unread.
-Only BESSELI outputs change; recorded inputs,answers and provenance stay fixed.
-Corpus:19916->19962/22234,+46/-0;2272inclusivefailures include1160pending.
-Three gains were larger numeric mismatches and43 were last bits. Source,
-failed-first100case application test, software-x87 controls, exact-rational
-review, notices and original pin-answer preservation are in evidence/round22.
-An old mathematical product expectation at709.7,1570 now asserts the recorded
-R19 Excel zero exactly; the mathematical series controls remain unchanged.
-Main publication checks and final round details are in round22-result.json.
-No coefficient, cutoff, source constant or per-row selector is fitted.
+The complete published ITK I0/higher-I body at 311b7060 (Apache-2.0), using shared
+stored-PC64 arithmetic, matches all 1,318 BESSELI bank rows. Its 100-case original
+answer application test failed before the change and passes natively and in
+software. The original MIT Householder reflector now stores arithmetic through
+the same helpers. Its 35-selection test of original answers failed before the
+change: 11 previous failures improve and 24 matches remain. Exact rational review
+and software execution agree; no coefficient, threshold or row selector is fitted.
+
+The full bank improves 3,231,759 to 3,232,589 of 3,875,673, with 830 gains and no
+losses. Its 643,084 failures include 116 unread rows. BESSELI contributes 825 gains;
+incoming BAHTTEXT and FLOOR changes contribute three and two. The reflector
+changes no bank output. The canonical comparator preserves all original input,
+answer and provenance fields.
+
+The fixed 22,234-cell corpus improves 19,916 to 19,973, with 57 gains and no losses
+(46 I, 11 LINEST/LOGEST). The larger numeric group falls from 199 to 196 and the
+last-bit group from 801 to 747. These are triage counts, not proof that a complete
+mathematical kernel has been identified. Adding 105 QR question formulas in their
+own new workbook leaves all prior workbooks, captures and evaluations unchanged.
+The current corpus has 19,973 matches of 22,339 cells. Its 2,366 failures include
+1,265 pending, 958 mismatched, 55 refused, one missing, 73 external-link and 14
+circular cells. Pending questions never become passes.
+
+Commons/binomial, beta identities, gamma PDF, AS241/refined Acklam, forward Y and
+covariance-inverse programs retain bounded negative results. Expanded original
+controls reject AS241's initial 12/12 result: the stored-PC64 candidate has ten
+gains and four losses on 23 eligible controls. Every tested alternative with
+losses is rejected. LN/EXP, norms/rank and other conditional leaves are explicit;
+these studies exclude finite programs, not whole numerical algorithm families.
+LAPACK, Commons Math and CPython sources are pinned with compatible notices.
+
+packets/round22 and /home/ubuntu/codex-runs/excel-questions-r22 contain 49 frozen
+BESSELI scalar calls and 105 QR workbook formulas, including operand echoes.
+The QR workbook contains no cached formula results and uses the existing
+section-capture lineage. R20/R21 answers have not appeared locally.
+
+Use round22-publication-unit.json for the research build bound to current source;
+historical units retain their own archives and inputs. Final receipts, failed-first
+output, independent review and source bindings are in evidence/round22. See
+round22-result.json for final bank attribution, tests, remaining failures and
+limits. No Windows/browser sweep was run. Rust UBS completed with zero critical
+findings; Python UBS is partial with a triaged local-executable taint false positive.
 
 Historical R21 note follows; its measured scope and old packet are preserved.
 

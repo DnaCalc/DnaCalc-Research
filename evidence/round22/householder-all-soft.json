@@ -1,0 +1,166 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      3944,
+      3890,
+      3890,
+      0,
+      0
+    ],
+    [
+      3944,
+      3901,
+      3890,
+      11,
+      0
+    ],
+    [
+      3944,
+      2936,
+      3890,
+      7,
+      961
+    ],
+    [
+      3944,
+      3890,
+      3890,
+      0,
+      0
+    ],
+    [
+      3944,
+      3890,
+      3890,
+      0,
+      0
+    ],
+    [
+      3944,
+      2840,
+      3890,
+      5,
+      1055
+    ],
+    [
+      3944,
+      2840,
+      3890,
+      5,
+      1055
+    ],
+    [
+      3944,
+      2840,
+      3890,
+      5,
+      1055
+    ],
+    [
+      3944,
+      2840,
+      3890,
+      5,
+      1055
+    ],
+    [
+      3944,
+      2840,
+      3890,
+      5,
+      1055
+    ]
+  ],
+  "excluded": {},
+  "first_losses": [
+    null,
+    null,
+    {
+      "expected": "0x3fe199999999999a",
+      "got": "0x3fe1999999999999",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_r16:367:4",
+      "trace_index": 6
+    },
+    null,
+    null,
+    {
+      "expected": "0x3fe199999999999a",
+      "got": "0x3fe199999999999b",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_r16:367:4",
+      "trace_index": 6
+    },
+    {
+      "expected": "0x3fe199999999999a",
+      "got": "0x3fe199999999999b",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_r16:367:4",
+      "trace_index": 6
+    },
+    {
+      "expected": "0x3fe199999999999a",
+      "got": "0x3fe1999999999999",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_r16:367:4",
+      "trace_index": 6
+    },
+    {
+      "expected": "0x3fe199999999999a",
+      "got": "0x3fe199999999999b",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_r16:367:4",
+      "trace_index": 6
+    },
+    {
+      "expected": "0x3fe199999999999a",
+      "got": "0x3fe199999999999b",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_r16:367:4",
+      "trace_index": 6
+    }
+  ],
+  "input_rows": 3944,
+  "limits": "10 fixed reflector labels. Original rank,mean,pivot and binary64 squared norms remain conditional; arrays store binary64, normalized reciprocal/tau cross binary64 helper boundaries. This is not a full LAPACK QR implementation. No fitted threshold/coefficient/row selector or new Excel answer.",
+  "programs": [
+    [
+      0,
+      "strict"
+    ],
+    [
+      0,
+      "stored_pc64"
+    ],
+    [
+      0,
+      "resident_pc64"
+    ],
+    [
+      0,
+      "stored_pc53"
+    ],
+    [
+      0,
+      "resident_pc53"
+    ],
+    [
+      1,
+      "strict"
+    ],
+    [
+      1,
+      "stored_pc64"
+    ],
+    [
+      1,
+      "resident_pc64"
+    ],
+    [
+      1,
+      "stored_pc53"
+    ],
+    [
+      1,
+      "resident_pc53"
+    ]
+  ],
+  "source": "Householder I-2vv'/v'v and LAPACK3.12.1 DLARFG ordinary normalized-vector/tau formulas,6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca,modifiedBSD.",
+  "zero_loss_improvements": [
+    1
+  ]
+}

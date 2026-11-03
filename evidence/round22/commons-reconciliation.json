@@ -1,0 +1,33 @@
+{
+  "complete": true,
+  "hardware_scoped": 52633,
+  "software_scoped": 52633,
+  "different_count_labels": [
+    {
+      "id": 52,
+      "profile": {
+        "exponential": 1,
+        "local_store": false,
+        "log": 2,
+        "model": "resident_pc64"
+      },
+      "hardware": [
+        52633,
+        6139,
+        14389,
+        3094,
+        11344
+      ],
+      "software": [
+        52633,
+        6138,
+        14389,
+        3093,
+        11344
+      ]
+    }
+  ],
+  "hardware_safe": [],
+  "software_safe": [],
+  "limits": "Arithmetic/log/EXP providers are explicit conditional leaves. Hardware/software disagreement is retained and does not identify either as Excel; all gainful labels lose in both runs."
+}

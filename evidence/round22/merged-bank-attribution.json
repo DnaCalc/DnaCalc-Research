@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "own_BESSELI_gains": 825,
+  "upstream_additional_gains": 3,
+  "functions": [
+    {
+      "function": "BAHTTEXT",
+      "before": [
+        1983,
+        1980
+      ],
+      "after": [
+        1983,
+        1983
+      ]
+    }
+  ],
+  "limits": "Own I-only replay versus integration replay; same original bank. Additional text-adapter gains are separate from the I kernel."
+}

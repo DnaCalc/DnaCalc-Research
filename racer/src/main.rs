@@ -413,7 +413,10 @@ fn main() {
             _ => bessel_rational::replay_i_models::<Hard>(&a[2], &a[3]),
         },
         Some("bessel-i-source") => bessel_rational::replay_i_source(&a[2], &a[3]),
-        Some("bessel-y-forward") => bessel_rational::replay_y_forward(&a[2], &a[3]),
+        Some("bessel-y-forward") => match a.get(4).map(String::as_str) {
+            Some("soft")=>bessel_rational::replay_y_forward::<Soft>(&a[2], &a[3]),
+            _=>bessel_rational::replay_y_forward::<Hard>(&a[2], &a[3]),
+        },
         Some("bessel-rational-followup") => match a.get(4).map(String::as_str) {
             Some("soft") => bessel_rational::replay_followup::<Soft>(&a[2], &a[3]),
             _ => bessel_rational::replay_followup::<Hard>(&a[2], &a[3]),
@@ -582,6 +585,21 @@ fn main() {
             _ => discrete::run::<Hard>(&a[2], &a[3]),
         },
         #[cfg(discrete_audit)]
+        Some("binomial-commons") => match a.get(4).map(String::as_str) {
+            Some("soft") => discrete::commons_binomial::<Soft>(&a[2], &a[3]),
+            _ => discrete::commons_binomial::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(discrete_audit)]
+        Some("binomial-beta") => match a.get(4).map(String::as_str) {
+            Some("soft") => discrete::beta_binomial::<Soft>(&a[2], &a[3]),
+            _ => discrete::beta_binomial::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(discrete_audit)]
+        Some("gamma-density") => match a.get(4).map(String::as_str) {
+            Some("soft") => discrete::gamma_density::<Soft>(&a[2], &a[3]),
+            _ => discrete::gamma_density::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(discrete_audit)]
         Some("discrete-cdf") => discrete::cdf(&a[2], &a[3]),
         Some("arithmetic-reference-controls") => eval::reference_controls(&a[2]),
         Some("normal-cdf") => match a.get(6).map(String::as_str) {
@@ -699,6 +717,20 @@ fn main() {
         }
         Some("count-one-test") => saddle::self_test(&lines::<poisson::MassRow>(&a[2]), &a[3]),
         Some("inverse-controls") => boundary::inverse_controls(&lines::<Row>(&a[2]), &a[3]),
+        Some("provenance") => {
+            let unit:serde_json::Value=serde_json::from_str(include_str!(concat!(env!("OUT_DIR"),"/research-unit.json"))).unwrap();
+            println!("{unit}");
+        },
+        #[cfg(regression_householder_audit)]
+        Some("regression-householder")=>route_audit::regression_householder(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
+        Some("normal-inverse-programs") => match a.get(4).map(String::as_str) {
+            Some("soft") => normal::inverse_programs::<Soft>(&a[2], &a[3], false),
+            _ => normal::inverse_programs::<Hard>(&a[2], &a[3], false),
+        },
+        Some("normal-inverse-acklam") => match a.get(4).map(String::as_str) {
+            Some("soft") => normal::inverse_programs::<Soft>(&a[2], &a[3], true),
+            _ => normal::inverse_programs::<Hard>(&a[2], &a[3], true),
+        },
         Some("mass-prepare") => poisson::prepare(&a[2], &a[3]),
         Some("mass-test") => poisson::self_test(&lines::<poisson::MassRow>(&a[2])),
         Some("mass") => {

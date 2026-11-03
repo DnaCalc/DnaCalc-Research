@@ -1,0 +1,13 @@
+{
+  "application_revision": "aeb2581a6e48e86c8485fc3123f7d9e18f4a307a",
+  "working_blobs": {
+    "crates/calc-func/src/ported/regression_forecast_family.rs": "3fe9df295bd3c4be0860669ea1e16d77f3fe9ccc",
+    "crates/calc-func/tests/f1_stats.rs": "d04f492de4c1b7ef31cad91fb275a05de84cfdf8"
+  },
+  "working_sha256": {
+    "crates/calc-func/src/ported/regression_forecast_family.rs": "7301cef071cc43016d84394a08d94a8e0e2ac8b135ddfd6a897562c2cb84b26b",
+    "crates/calc-func/tests/f1_stats.rs": "9e07d9da17c1c96faf6eefc8f773de92afc350d681df67d9c2922ed78f323f05"
+  },
+  "executable_sha256": "f8f9831d2dc1ea5e7c873b709d8514b5296025f242938e1dd7413e3b56207677",
+  "program": "Existing Householder reflector operations each use shared RN53(RN64) add/sub/mul/div. Original norms,rank,mean,pivot and scalar-parameter choices retained. No learned coefficient, tolerance or selector."
+}

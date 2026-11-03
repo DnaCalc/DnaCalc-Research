@@ -1,0 +1,45 @@
+{
+  "id": "dc-j9k-r22-regression-original-R-observation",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "d62b1283bbfe1582589afa37702d7a6d91bdb901",
+  "scope": "Observe original QR R and inverse through unchanged current regression code, with exact registered and selected-result controls. Later inverse programs condition on original QR, means and residuals; no claim of a complete regression algorithm.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/build.rs": "ce38e7cabc8fe26ca41ef9307f34612575e637cb2f9dcf61de31fcd75d7042de",
+    "racer/src/main.rs": "c7df3a6e0442828925410698e8b97f0c312e9d64c3f919feaa9d0d4cffde4813",
+    "racer/src/route_audit.rs": "3cca4150ed223656a849757691fe9b31bc5a69e808a0d5bcf2b86d46e80747b0",
+    "racer/regression.py": "3d1a91ea04d777ed5aaf9a5b4521b9a53af1c800a82d7785875273026cdbb28f"
+  },
+  "regression_audit": true,
+  "application_working_blobs": {
+    "crates/calc-func/src/catalogue/bonds.rs": "e8a2c9ad871c905b8bbfd064233eeb5c46c9c388",
+    "crates/calc-func/src/catalogue/dates.rs": "a3e02de3efbada57caaf7e4792f6902cd9fb4d53",
+    "crates/calc-func/src/catalogue/distributions.rs": "cac375e22dc076bb32bf1ae776e7317547f446d5",
+    "crates/calc-func/src/catalogue/engineering.rs": "62d111e9b9c2249914515a5b3fd8768cb31f81b6",
+    "crates/calc-func/src/catalogue/host_facts.rs": "f72700f20799db04bbd1c52e97f25324a1c6e5d0",
+    "crates/calc-func/src/catalogue/kit.rs": "1fa645960c9e3232c5b8984405cbee6604455548",
+    "crates/calc-func/src/catalogue/math.rs": "0e5a359d164d2fe6167df66e7bffe8d506dd473e",
+    "crates/calc-func/src/catalogue/text_format.rs": "b72daf215ac6f9c4d706211cf9ad449e0301f11e",
+    "crates/calc-func/src/value_text.rs": "681c51bce76911af807cdb7eeba9056afe6252dc"
+  },
+  "regression_inverse_audit": true
+}

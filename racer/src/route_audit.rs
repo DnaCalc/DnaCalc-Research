@@ -1,4 +1,5 @@
-//! Trace the existing registered and workbook routes, without selecting an alternative kernel.
+//! Trace the registered/workbook routes. Explicit conditional producer studies
+//! use a generated research copy and require an unchanged registered baseline.
 use crate::ported::complex_family::{ParsedComplex, format_complex_text, parse_complex_text};
 use crate::{Given, json_write, ported::financial_time_value_family as tv};
 use calc_func::locale::{CalcEnvironment, DateSystem};
@@ -13,6 +14,123 @@ use std::{fs, path::Path};
 std::thread_local! {
     static REGRESSION_LEAVES: std::cell::RefCell<Vec<Value>> = const { std::cell::RefCell::new(Vec::new()) };
     static REGRESSION_FACTORS: std::cell::RefCell<Option<Value>> = const { std::cell::RefCell::new(None) };
+    static REGRESSION_TRIANGULAR: std::cell::RefCell<Option<Value>> = const { std::cell::RefCell::new(None) };
+}
+
+#[cfg(regression_householder_audit)]
+std::thread_local! {
+    static REGRESSION_HOUSEHOLDER_PROGRAM:std::cell::Cell<Option<(usize,crate::dsl::EvalModel,bool)>>=const{std::cell::Cell::new(None)};
+}
+
+/// Existing unnormalized reflector, or LAPACK DLARFG's normalized vector/tau
+/// representation. Original pivot/mean/rank rules and binary64 squared norms
+/// remain conditional. Every matrix/vector write stores binary64.
+#[cfg(regression_householder_audit)]
+pub fn regression_householder_step(matrix:&mut[(Option<usize>,Vec<f64>)],target:&mut[f64],j:usize,x0:f64,rest:f64,squares:f64)->f64 {
+    use crate::dsl::EvalModel;
+    use crate::ported::excel_numeric::{Hard,Soft};
+    let (shape,model,software)=REGRESSION_HOUSEHOLDER_PROGRAM.with(|p|p.get()).unwrap_or((0,EvalModel::Strict,false));
+    if software {householder_step::<Soft>(matrix,target,j,x0,rest,squares,shape,model)}
+        else{householder_step::<Hard>(matrix,target,j,x0,rest,squares,shape,model)}
+}
+
+#[cfg(regression_householder_audit)]
+fn householder_step<F:crate::ported::excel_numeric::Fpu>(matrix:&mut[(Option<usize>,Vec<f64>)],target:&mut[f64],j:usize,x0:f64,rest:f64,squares:f64,shape:usize,model:crate::dsl::EvalModel)->f64 {
+    use crate::{dsl::Op,eval::{Val,binop}};
+    let add=|a,b|binop::<F>(Op::Add(0,1),model,a,b);
+    let sub=|a,b|add(a,crate::boundary::neg(b));
+    let mul=|a,b|binop::<F>(Op::Mul(0,1),model,a,b);
+    let div=|a,b|binop::<F>(Op::Div(0,1),model,a,b);
+    let alpha=-squares.sqrt().copysign(x0);
+    if shape==1&&rest==0.0{return x0;} // DLARFG zero-tail identity reflector.
+    let mut vector=matrix[j].1[j..].to_vec();
+    let multiplier=if shape==0 {
+        vector[0]=sub(Val::f64(x0),Val::f64(alpha)).to_f64::<F>();
+        add(Val::f64(rest),mul(Val::f64(vector[0]),Val::f64(vector[0])))
+    }else{
+        assert_eq!(shape,1);
+        let denominator=sub(Val::f64(x0),Val::f64(alpha));
+        // DSCAL receives a binary64 reciprocal; tau crosses DLARFG's scalar
+        // output boundary before applying the reflector to another column.
+        let reciprocal=Val::f64(div(Val::f64(1.0),denominator).to_f64::<F>());
+        for value in &mut vector[1..]{*value=mul(Val::f64(*value),reciprocal).to_f64::<F>();}
+        vector[0]=1.0;
+        Val::f64(div(sub(Val::f64(alpha),Val::f64(x0)),Val::f64(alpha)).to_f64::<F>())
+    };
+    let reflect=|values:&mut[f64]| {
+        let dot=vector.iter().zip(&values[j..]).fold(Val::f64(0.0),|sum,(&v,&a)|add(sum,mul(Val::f64(v),Val::f64(a))));
+        let factor=if shape==0{div(mul(Val::f64(2.0),dot),multiplier)}else{mul(multiplier,dot)};
+        for(a,&v)in values[j..].iter_mut().zip(&vector){*a=sub(Val::f64(*a),mul(factor,Val::f64(v))).to_f64::<F>();}
+    };
+    for(_,column)in matrix.iter_mut().skip(j+1){reflect(column);}
+    reflect(target);alpha
+}
+
+#[cfg(regression_householder_audit)]
+pub fn regression_householder(input:&str,out:&str,software:bool) {
+    use std::io::Write;
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=crate::lines::<Value>(input);
+    let mut programs=Vec::new();for shape in 0..2{for model in crate::dsl::WIDE_MODELS{programs.push((shape,model));}}
+    let mut counts=vec![[0usize;5];programs.len()];let mut first_losses=vec![None;programs.len()];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let evaluate=|name:&str,args:&[CalcValue],selected:Option<(usize,usize)>| {
+        REGRESSION_LEAVES.with(|v|v.borrow_mut().clear());REGRESSION_FACTORS.with(|v|*v.borrow_mut()=None);REGRESSION_TRIANGULAR.with(|v|*v.borrow_mut()=None);
+        let result=match name{
+            "LINEST"=>crate::ported::regression_forecast_family::eval_linest_surface(args),
+            "LOGEST"=>crate::ported::regression_forecast_family::eval_logest_surface(args),
+            "TREND"=>crate::ported::regression_forecast_family::eval_trend_surface(args),
+            "GROWTH"=>crate::ported::regression_forecast_family::eval_growth_surface(args),
+            _=>unreachable!(),
+        };
+        let value=result.unwrap_or_else(CalcValue::error);
+        // The original statistics adapter refuses any subnormal array cell,
+        // converts a nonfinite selected number to NUM, and normalizes zero.
+        // Reuse the existing research publication rule after the array check.
+        let subnormal=|cell:&CalcValue|cell.as_number().is_some_and(f64::is_subnormal);
+        if value.as_array().map_or_else(||subnormal(&value),|a|a.iter_row_major().any(subnormal)){
+            return Some("fault:NotImplemented".into());
+        }
+        calc_verdict::select_result(&value,selected).and_then(|chosen|chosen.as_number().map_or_else(
+            ||calc_verdict::encode_result(&chosen),
+            |n|Some(crate::eval::outcome::<crate::ported::excel_numeric::Hard>(crate::eval::Val::f64(n)))))
+    };
+    let mut file=std::io::BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for(index,row)in rows.iter().enumerate(){
+        let name=row["function"].as_str().unwrap();if !matches!(name,"LINEST"|"LOGEST"|"TREND"|"GROWTH"){*excluded.entry("other_surface".into()).or_default()+=1;continue;}
+        let selected=if row["result_index"].is_null(){None}else{let v=row["result_index"].as_array().unwrap();Some((v[0].as_u64().unwrap()as usize,v[1].as_u64().unwrap()as usize))};
+        let args:Vec<_>=row["args"].as_array().unwrap().iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+        REGRESSION_HOUSEHOLDER_PROGRAM.with(|p|p.set(None));
+        let Some(observed)=evaluate(name,&args,selected)else{*excluded.entry("outside_selectable_result_shape".into()).or_default()+=1;continue;};
+        let(baseline,_)=crate::invoke_selected_control(name,args.clone(),selected);
+        assert_eq!(baseline,row["actual"].as_str().unwrap(),"frozen registered QR {}",row["id"]);
+        assert_eq!(observed,baseline,"unmodified reflector/registered QR {}",row["id"]);
+        let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
+        for(id,&(shape,model))in programs.iter().enumerate(){
+            REGRESSION_HOUSEHOLDER_PROGRAM.with(|p|p.set(Some((shape,model,software))));
+            let got=evaluate(name,&args,selected).unwrap_or_else(||"error:Ref".into());
+            if id==0{assert_eq!(got,baseline,"original strict QR {}",row["id"]);}
+            let now=got==expected;for(slot,b)in counts[id].iter_mut().zip([true,now,was,now&&!was,was&&!now]){*slot+=usize::from(b);}
+            if was&&!now&&first_losses[id].is_none(){first_losses[id]=Some(json!({"trace_index":index,"id":row["id"],"got":got,"expected":expected}));}
+            writeln!(file,"{}",json!({"trace_index":index,"id":row["id"],"program":id,"prediction":got,"expected":expected,"baseline":baseline})).unwrap();
+        }
+    }
+    REGRESSION_HOUSEHOLDER_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]>0);assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    let safe:Vec<_>=counts.iter().enumerate().filter(|(_,v)|v[3]>0&&v[4]==0).map(|(i,_)|i).collect();
+    let result=json!({"complete":true,"input_rows":rows.len(),"programs":programs,"counts_all_exact_baseline_gains_losses":counts,"first_losses":first_losses,"excluded":excluded,"zero_loss_improvements":safe,
+        "source":"Householder I-2vv'/v'v and LAPACK3.12.1 DLARFG ordinary normalized-vector/tau formulas,6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca,modifiedBSD.",
+        "limits":"10 fixed reflector labels. Original rank,mean,pivot and binary64 squared norms remain conditional; arrays store binary64, normalized reciprocal/tau cross binary64 helper boundaries. This is not a full LAPACK QR implementation. No fitted threshold/coefficient/row selector or new Excel answer."});
+    json_write(destination.join("summary.json"),&result);println!("{result}");
+}
+
+/// Observe the original R input and inverse output without changing either.
+#[cfg(regression_audit)]
+pub fn regression_triangular(r: &[Vec<f64>], size: usize, inverse: &[Vec<f64>],
+    order: &[Option<usize>], predictors: usize) {
+    let matrix = |rows: &[Vec<f64>]| rows.iter().take(size)
+        .map(|row| row.iter().take(size).map(|v| format!("0x{:016x}", v.to_bits())).collect::<Vec<_>>())
+        .collect::<Vec<_>>();
+    REGRESSION_TRIANGULAR.with(|slot| *slot.borrow_mut() = Some(json!({
+        "r": matrix(r), "inverse": matrix(inverse), "order": &order[..size], "predictors": predictors,
+    })));
 }
 
 #[cfg(regression_audit)]
@@ -29,8 +147,9 @@ pub fn regression_factors(weights:&[f64],inverse:&[Vec<f64>],observations:usize,
 pub fn regression_leaf(ss:f64,covariance:f64,df:f64,row:usize,column:usize,role:usize,value:f64)->f64 {
     let bits=|v:f64|format!("0x{:016x}",v.to_bits());
     let factors=if role==1 {REGRESSION_FACTORS.with(|f|f.borrow().clone())}else{None};
+    let triangular = REGRESSION_TRIANGULAR.with(|f| f.borrow().clone());
     REGRESSION_LEAVES.with(|leaves|leaves.borrow_mut().push(json!({"ss":bits(ss),"covariance":bits(covariance),
-        "df":bits(df),"row":row,"column":column,"role":role,"value":bits(value),"factors":factors})));
+        "df":bits(df),"row":row,"column":column,"role":role,"value":bits(value),"factors":factors,"triangular":triangular})));
     value
 }
 
@@ -56,6 +175,7 @@ pub fn regression_stat_leaves(input:&str,out:&str) {
         assert_eq!(baseline,raw["actual"].as_str().unwrap(),"frozen registered regression {}",raw["id"]);
         REGRESSION_LEAVES.with(|leaves|leaves.borrow_mut().clear());
         REGRESSION_FACTORS.with(|factors|*factors.borrow_mut()=None);
+        REGRESSION_TRIANGULAR.with(|triangular|*triangular.borrow_mut()=None);
         let observed=if name=="LINEST" {crate::ported::regression_forecast_family::eval_linest_surface(&args)}
             else {crate::ported::regression_forecast_family::eval_logest_surface(&args)};
         let value=observed.unwrap_or_else(CalcValue::error);

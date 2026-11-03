@@ -1,0 +1,45 @@
+{
+  "id": "dc-j9k-r22-final",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "344c1667",
+  "scope": "R22 final coherent source binding for isolated questions and all declared conditional arithmetic studies; product I source is already published.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/discrete.rs": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+    "racer/src/normal.rs": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+    "racer/src/main.rs": "87c2ab9f305930ff26a770a93b26b9f3a1e05146eed8075b4d34c8dfb78b133a",
+    "racer/build.rs": "2c16ba8574394c4e3db62e57f6d9817a8a07ba814d2adfd0694c1d07d384274f",
+    "racer/src/route_audit.rs": "3cca4150ed223656a849757691fe9b31bc5a69e808a0d5bcf2b86d46e80747b0",
+    "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+    "racer/bessel.py": "d5abacd146b1d0763931d1c472acc49ff00e1d631314a0f67a97566ab36cc122",
+    "racer/corpus_cases.py": "2e8e45b31802d44b7bb3bec0a35a0b4d680fea694da28291b3200461f549fadf",
+    "checker/test_exact.py": "9e84c61a7143a4d999782dfda4e48764c660b9e30dddce3bce7d422eddb54353",
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31"
+  },
+  "regression_audit": true,
+  "regression_inverse_audit": true,
+  "programs": "Published I studies plus30Y,90Commons,20beta,30AS241,30Acklam,360Gamma-density labels and declared regression inverse/covariance/consumer labels.",
+  "limits": "All declared numerical leaves remain conditional; no fitted coefficient/tolerance/selector. Source/control rows are separately identified from complete canonical readings.",
+  "unit": "round22-final"
+}

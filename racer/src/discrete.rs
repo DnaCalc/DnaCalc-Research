@@ -115,6 +115,210 @@ fn coordinates(row:&Value)->Option<(f64,f64,f64)> {
     Some((x,n,p))
 }
 
+/// Apache Commons Math3.6.1 SaddlePointExpansion, commit16abfe5de688cc52fb0396e0609cb33044b15653.
+/// The whole interior log-PMF program is fixed; arithmetic and elementary
+/// providers are declared conditional adapters. See notices/CommonsMath.txt.
+#[derive(Clone, Copy, Debug, Serialize)]
+struct CommonsProfile { model: EvalModel, local_store: bool, log: usize, exponential: usize }
+
+fn commons_local<F:Fpu>(v:Val,p:CommonsProfile)->Val {
+    if p.local_store {Val::f64(v.to_f64::<F>())} else {v}
+}
+fn commons_log<F:Fpu>(v:Val,p:CommonsProfile)->Val {
+    match p.log {
+        0=>Val::f64(excel_log(v.to_f64::<F>())),
+        1=>Val::f64(crt_log(v.to_f64::<F>())),
+        2=>Val::Ext(research_log::<F>(&v.to_ext())),
+        _=>unreachable!(),
+    }
+}
+fn commons_stirling<F:Fpu>(z:f64,p:CommonsProfile)->Val {
+    // Source constants, not values inferred from Excel. Half-integer inputs
+    // below15 use the source table; the admitted count domain is integral.
+    const HALF:[f64;31]=[0.0,0.1534264097200273452913848,0.0810614667953272582196702,
+        0.0548141210519176538961390,0.0413406959554092940938221,0.03316287351993628748511048,
+        0.02767792568499833914878929,0.02374616365629749597132920,0.02079067210376509311152277,
+        0.01848845053267318523077934,0.01664469118982119216319487,0.01513497322191737887351255,
+        0.01387612882307074799874573,0.01281046524292022692424986,0.01189670994589177009505572,
+        0.01110455975820691732662991,0.010411265261972096497478567,0.009799416126158803298389475,
+        0.009255462182712732917728637,0.008768700134139385462952823,0.008330563433362871256469318,
+        0.007934114564314020547248100,0.007573675487951840794972024,0.007244554301320383179543912,
+        0.006942840107209529865664152,0.006665247032707682442354394,0.006408994188004207068439631,
+        0.006171712263039457647532867,0.005951370112758847735624416,0.005746216513010115682023589,
+        0.005554733551962801371038690];
+    if z<15.0 {return Val::f64(HALF[(2.0*z)as usize]);}
+    let m=p.model;let z=Val::f64(z);let z2=commons_local::<F>(mul::<F>(m,z,z),p);
+    let mut value=Val::f64(0.0008417508417508417508417508);
+    for c in [0.000595238095238095238095238,0.00079365079365079365079365,
+              0.00277777777777777777778,0.083333333333333333333] {
+        value=sub::<F>(m,Val::f64(c),div::<F>(m,value,z2));
+    }
+    commons_local::<F>(div::<F>(m,value,z),p)
+}
+fn commons_deviance<F:Fpu>(x:f64,mu:Val,p:CommonsProfile)->Val {
+    let m=p.model;let a=Val::f64(x);
+    let d=sub::<F>(m,a,mu);let sum=add::<F>(m,a,mu);
+    if d.to_f64::<F>().abs()<mul::<F>(m,Val::f64(0.1),sum).to_f64::<F>() {
+        let d=commons_local::<F>(d,p);
+        let mut v=commons_local::<F>(div::<F>(m,d,sum),p);
+        let mut s1=commons_local::<F>(mul::<F>(m,v,d),p);
+        let mut ej=commons_local::<F>(mul::<F>(m,mul::<F>(m,Val::f64(2.0),a),v),p);
+        v=commons_local::<F>(mul::<F>(m,v,v),p);
+        for j in 1..10000 {
+            let s=s1;
+            ej=commons_local::<F>(mul::<F>(m,ej,v),p);
+            s1=commons_local::<F>(add::<F>(m,s,div::<F>(m,ej,Val::f64((2*j+1)as f64))),p);
+            if s1==s {return s1;}
+        }
+        // ubs:ignore — abort the standalone research receipt on a resource failure; never omit a row or claim completeness.
+        panic!("published deviance series did not converge within research bound");
+    }
+    commons_local::<F>(sub::<F>(m,add::<F>(m,mul::<F>(m,a,commons_log::<F>(div::<F>(m,a,mu),p)),mu),a),p)
+}
+fn commons_mass<F:Fpu>(x:f64,n:f64,prob:f64,p:CommonsProfile)->String {
+    let m=p.model;let a=Val::f64(x);let total=Val::f64(n);let rest=Val::f64(n-x);
+    // Public count/probability inputs and complement are stored binary64,
+    // matching the Java method's supplied p/q argument boundary.
+    let mut value=sub::<F>(m,sub::<F>(m,commons_stirling::<F>(n,p),commons_stirling::<F>(x,p)),commons_stirling::<F>(n-x,p));
+    value=sub::<F>(m,value,commons_deviance::<F>(x,mul::<F>(m,total,Val::f64(prob)),p));
+    value=commons_local::<F>(sub::<F>(m,value,commons_deviance::<F>(n-x,mul::<F>(m,total,Val::f64(1.0-prob)),p)),p);
+    let factor=commons_local::<F>(div::<F>(m,mul::<F>(m,mul::<F>(m,Val::f64(2.0*std::f64::consts::PI),a),rest),total),p);
+    value=commons_local::<F>(add::<F>(m,mul::<F>(m,Val::f64(-0.5),commons_log::<F>(factor,p)),value),p);
+    let answer=match p.exponential {
+        0=>excel_exp(value.to_f64::<F>()),
+        1=>F::store(&research_exp::<F>(&value.to_ext()),CW),
+        2=>F::store(&research_exp::<F>(&research_load(value.to_f64::<F>())),CW),
+        _=>unreachable!(),
+    };
+    if !answer.is_finite() {"error:Num".into()}
+    else {format!("0x{:016x}",if answer.is_subnormal()||answer==0.0{0}else{answer.to_bits()})}
+}
+
+pub fn commons_binomial<F:Fpu>(input:&str,output:&str) {
+    let mut ps=Vec::new();
+    for model in crate::dsl::WIDE_MODELS {for local_store in [true,false] {for log in 0..3 {for exponential in 0..3 {
+        ps.push(CommonsProfile{model,local_store,log,exponential});
+    }}}}
+    assert_eq!(ps.len(),90);
+    binomial_study::<F,_>(input,output,&ps,false,|x,n,p,profile|commons_mass::<F>(x,n,p,*profile),
+        "Apache Commons Math3.6.1 commit16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; source fixed table and all asymptotic terms.",
+        "Interior integer PMF only, n<=1e6 research resource bound. Fixed complete source log-PMF with5 arithmetic models,2local-store policies,3conditional log and3EXP adapters. Java FastMath itself is not identified. No endpoint/CDF/other producer exclusion; no fitted parameters or product change.");
+}
+
+#[derive(Clone,Copy,Serialize)]
+struct BetaMassProgram {model:EvalModel,shape:usize}
+pub fn beta_binomial<F:Fpu>(input:&str,output:&str) {
+    let mut ps=Vec::new();for model in crate::dsl::WIDE_MODELS {for shape in 0..4 {ps.push(BetaMassProgram{model,shape});}}
+    binomial_study::<F,_>(input,output,&ps,false,|x,n,p,profile| {
+        let m=profile.model;let rest=n-x;let q=1.0-p;
+        let leaf=Val::f64(if profile.shape<2 {crate::ported::special_math_common::bratio_brcomp(x,rest,p,q)}
+            else{crate::ported::special_math_common::bratio_brcomp(x+1.0,rest+1.0,p,q)});
+        let v=match profile.shape {
+            0=>div::<F>(m,mul::<F>(m,leaf,Val::f64(n)),mul::<F>(m,Val::f64(x),Val::f64(rest))),
+            1=>div::<F>(m,mul::<F>(m,leaf,div::<F>(m,Val::f64(n),Val::f64(x))),Val::f64(rest)),
+            2=>div::<F>(m,leaf,mul::<F>(m,mul::<F>(m,Val::f64(n+1.0),Val::f64(p)),Val::f64(q))),
+            3=>div::<F>(m,div::<F>(m,div::<F>(m,leaf,Val::f64(n+1.0)),Val::f64(p)),Val::f64(q)),
+            _=>unreachable!(),
+        }.to_f64::<F>();
+        if !v.is_finite(){"error:Num".into()}else{format!("0x{:016x}",if v==0.0||v.is_subnormal(){0}else{v.to_bits()})}
+    },"Beta factorial identity; current kept TOMS708 brcomp conditional leaf, original source unchanged except research visibility.",
+      "Interior integer PMFs n<=1e6 only.20labels:4fixed beta-derivative identities/groupings,5outer arithmetic models. Existing brcomp and complement binary64 leaves; no complete binomial/CDF kernel identified or fitted.");
+}
+
+#[derive(Clone,Copy,Serialize)]
+struct GammaDensityProgram {model:EvalModel,local_store:bool,log:usize,exponential:usize,normalizer:usize,shape:usize}
+pub fn gamma_density<F:Fpu>(input:&str,output:&str) {
+    let mut ps=Vec::new();for model in crate::dsl::WIDE_MODELS {for local_store in [true,false] {for log in 0..3 {for exponential in 0..3 {for normalizer in 0..2 {for shape in 0..2 {
+        ps.push(GammaDensityProgram{model,local_store,log,exponential,normalizer,shape});
+    }}}}}}
+    assert_eq!(ps.len(),360);
+    binomial_study::<F,_>(input,output,&ps,true,|x,a,b,p| {
+        let m=p.model;let v=Val::f64;
+        let local=|value:Val|if p.local_store{Val::f64(value.to_f64::<F>())}else{value};
+        let log=|value:Val|match p.log {0=>v(crt_log(value.to_f64::<F>())),1=>v(excel_log(value.to_f64::<F>())),2=>Val::Ext(research_log::<F>(&value.to_ext())),_=>unreachable!()};
+        let normalizer=if a==1.0{0.0}else if p.normalizer==0{crate::ported::special_math_common::ln_gamma(a)}else{gammaln_excel(a)};
+        let reduced=local(div::<F>(m,v(x),v(b)));
+        let alpha=sub::<F>(m,v(a),v(1.0));
+        let value=if p.shape==0 {
+            sub::<F>(m,sub::<F>(m,sub::<F>(m,mul::<F>(m,alpha,log(v(x))),reduced),v(normalizer)),mul::<F>(m,v(a),log(v(b))))
+        }else{
+            sub::<F>(m,sub::<F>(m,sub::<F>(m,mul::<F>(m,alpha,log(reduced)),reduced),v(normalizer)),log(v(b)))
+        };
+        let value=local(value);
+        let output=match p.exponential {0=>crt_exp(value.to_f64::<F>()),1=>excel_exp(value.to_f64::<F>()),2=>F::store(&research_exp::<F>(&value.to_ext()),CW),_=>unreachable!()};
+        crate::eval::outcome::<F>(v(output))
+    },"Gamma density definition and equivalent scale normalization; current cleared MIT raw-log PDF, Lanczos normalizer or current worksheet GAMMALN as conditional leaves.",
+      "Normal positive scalar x/shape/scale, PDF only.360 fixed labels:5coherent arithmetic modes,local stores on/off,3log and3EXP adapters,2normalizer leaves,2algebraic scale forms. Original strict label0 reproduces registered/frozen actuals. No CDF/admission/complete gamma producer identified; no fitted constant or selector.");
+}
+
+fn binomial_study<F:Fpu,P:Serialize>(input:&str,output:&str,ps:&[P],gamma:bool,prediction:impl Fn(f64,f64,f64,&P)->String,source:&str,limits:&str) {
+    use std::collections::{BTreeMap,HashMap};
+    let destination=Path::new(output);fs::create_dir(destination).unwrap();
+    let rows=crate::lines::<Value>(input);
+    let mut counts=vec![[0usize;5];ps.len()];let mut first=vec![None;ps.len()];
+    let mut excluded=BTreeMap::<String,usize>::new();let mut cache=HashMap::new();let mut controls=0;
+    for (index,row) in rows.iter().enumerate() {
+        let surface=if gamma{matches!(row["function"].as_str(),Some("GAMMA.DIST"|"GAMMADIST"))}else{matches!(row["function"].as_str(),Some("BINOM.DIST"|"BINOMDIST"))};
+        if !surface || !row["result_index"].is_null() {
+            *excluded.entry("surface_or_selection".into()).or_default()+=1;continue;
+        }
+        // ubs:ignore — malformed frozen input must abort this standalone receipt, never silently leave its counted scope.
+        let Some(a)=row["args"].as_array() else{panic!("missing original arguments");};
+        if a.len()!=4 || !(a[3]==false || numeric(&a[3])==Some(0.0)) {
+            *excluded.entry("cdf_or_shape".into()).or_default()+=1;continue;
+        }
+        let Some((x,n,p))=numeric(&a[0]).zip(numeric(&a[1])).zip(numeric(&a[2])).map(|((x,n),p)|(x,n,p)) else {
+            *excluded.entry("non_numeric".into()).or_default()+=1;continue;
+        };
+        let admitted=if gamma{[x,n,p].iter().all(|v|v.is_normal()&&*v>0.0)}
+            else{x.is_finite() && n.is_finite() && x==x.trunc() && n==n.trunc() && 0.0<x && x<n && n<=1e6 && 0.0<p && p<1.0};
+        if !admitted {
+            *excluded.entry(if gamma{"outside_normal_positive_domain"}else{"outside_interior_integer_domain_or_resource_bound"}.into()).or_default()+=1;continue;
+        }
+        let (baseline,predictions)=cache.entry((x.to_bits(),n.to_bits(),p.to_bits())).or_insert_with(|| {
+            let args=a.iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+            let (registered,_)=crate::invoke_control(row["function"].as_str().unwrap(),args);
+            if !gamma {
+                let mass=current::binom_mass(x,n,p,1.0-p);
+                let direct=if !mass.is_finite(){"error:Num".into()}else{format!("0x{:016x}",if mass==0.0||mass.is_subnormal(){0}else{mass.to_bits()})};
+                assert_eq!(direct,registered,"registered mass route control {}",row["id"]);
+            }
+            controls+=1;
+            let predictions=ps.iter().map(|profile|prediction(x,n,p,profile)).collect::<Vec<_>>();
+            if gamma{assert_eq!(predictions[0],registered,"strict original gamma density {}",row["id"]);}
+            (registered,predictions)
+        });
+        if gamma{assert_eq!(*baseline,row["actual"].as_str().unwrap(),"frozen gamma density {}",row["id"]);}
+        let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
+        for (id,got) in predictions.iter().enumerate() {
+            let now=got==expected;
+            for (slot,b) in counts[id].iter_mut().zip([true,now,was,now&&!was,was&&!now]){*slot+=usize::from(b);}
+            if !now && first[id].is_none(){first[id]=Some(json!({"trace_index":index,"id":row["id"],"got":got,"expected":expected,"baseline":baseline}));}
+        }
+    }
+    assert!(counts[0][0]>0);assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    let safe:Vec<_>=counts.iter().enumerate().filter(|(_,c)|c[3]>0&&c[4]==0).map(|(i,_)|i).collect();
+    let result=json!({"complete":true,"input_rows":rows.len(),"scoped":counts[0][0],"unique_registered_controls":controls,
+        "profiles":ps,"counts_all_exact_baseline_gains_losses":counts,"first_contradictions":first,"excluded":excluded,"zero_loss_improvements":safe,
+        "source":source,"limits":limits});
+    crate::json_write(destination.join("summary.json"),&result);
+    println!("rows {} scoped {} controls {} zero-loss {:?}",rows.len(),counts[0][0],controls,safe);
+}
+
+#[cfg(test)]
+mod commons_controls {
+    use super::*;
+    #[test]
+    fn published_binomial_masses_follow_exact_dyadic_distribution() {
+        let profile=CommonsProfile{model:EvalModel::Strict,local_store:true,log:0,exponential:0};
+        for (n,x,numerator) in [(2.,1.,2u64),(4.,2.,6),(8.,3.,56),(10.,6.,210),(16.,8.,12870)] {
+            let bits=commons_mass::<Hard>(x,n,0.5,profile);let answer=f64::from_bits(u64::from_str_radix(&bits[2..],16).unwrap());
+            let exact=numerator as f64/2f64.powi(n as i32);
+            assert!((answer-exact).abs()<=8.*f64::EPSILON*exact,"n={n} x={x}");
+        }
+    }
+}
+
 /// Fixed hypergeometric quotient programs from the conditional-binomial identity.
 /// Existing binomial masses are explicit conditional leaves; no table is changed.
 pub fn hypergeom_quotients<F:Fpu>(input:&str,output:&str) {

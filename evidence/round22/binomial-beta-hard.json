@@ -1,0 +1,379 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      52633,
+      2218,
+      14389,
+      1358,
+      13529
+    ],
+    [
+      52633,
+      2219,
+      14389,
+      1358,
+      13528
+    ],
+    [
+      52633,
+      1648,
+      14389,
+      1125,
+      13866
+    ],
+    [
+      52633,
+      1582,
+      14389,
+      1104,
+      13911
+    ],
+    [
+      52633,
+      2218,
+      14389,
+      1358,
+      13529
+    ],
+    [
+      52633,
+      2219,
+      14389,
+      1358,
+      13528
+    ],
+    [
+      52633,
+      1647,
+      14389,
+      1123,
+      13865
+    ],
+    [
+      52633,
+      1581,
+      14389,
+      1104,
+      13912
+    ],
+    [
+      52633,
+      2237,
+      14389,
+      1363,
+      13515
+    ],
+    [
+      52633,
+      2237,
+      14389,
+      1363,
+      13515
+    ],
+    [
+      52633,
+      1601,
+      14389,
+      1082,
+      13870
+    ],
+    [
+      52633,
+      1601,
+      14389,
+      1082,
+      13870
+    ],
+    [
+      52633,
+      2218,
+      14389,
+      1358,
+      13529
+    ],
+    [
+      52633,
+      2219,
+      14389,
+      1358,
+      13528
+    ],
+    [
+      52633,
+      1648,
+      14389,
+      1125,
+      13866
+    ],
+    [
+      52633,
+      1582,
+      14389,
+      1104,
+      13911
+    ],
+    [
+      52633,
+      2218,
+      14389,
+      1358,
+      13529
+    ],
+    [
+      52633,
+      2219,
+      14389,
+      1358,
+      13528
+    ],
+    [
+      52633,
+      1648,
+      14389,
+      1125,
+      13866
+    ],
+    [
+      52633,
+      1582,
+      14389,
+      1104,
+      13911
+    ]
+  ],
+  "excluded": {
+    "cdf_or_shape": 1078,
+    "outside_interior_integer_domain_or_resource_bound": 16768
+  },
+  "first_contradictions": [
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000001",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca400000000004",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:25:1",
+      "trace_index": 0
+    }
+  ],
+  "input_rows": 70479,
+  "limits": "Interior integer PMFs n<=1e6 only.20labels:4fixed beta-derivative identities/groupings,5outer arithmetic models. Existing brcomp and complement binary64 leaves; no complete binomial/CDF kernel identified or fitted.",
+  "profiles": [
+    {
+      "model": "strict",
+      "shape": 0
+    },
+    {
+      "model": "strict",
+      "shape": 1
+    },
+    {
+      "model": "strict",
+      "shape": 2
+    },
+    {
+      "model": "strict",
+      "shape": 3
+    },
+    {
+      "model": "stored_pc64",
+      "shape": 0
+    },
+    {
+      "model": "stored_pc64",
+      "shape": 1
+    },
+    {
+      "model": "stored_pc64",
+      "shape": 2
+    },
+    {
+      "model": "stored_pc64",
+      "shape": 3
+    },
+    {
+      "model": "resident_pc64",
+      "shape": 0
+    },
+    {
+      "model": "resident_pc64",
+      "shape": 1
+    },
+    {
+      "model": "resident_pc64",
+      "shape": 2
+    },
+    {
+      "model": "resident_pc64",
+      "shape": 3
+    },
+    {
+      "model": "stored_pc53",
+      "shape": 0
+    },
+    {
+      "model": "stored_pc53",
+      "shape": 1
+    },
+    {
+      "model": "stored_pc53",
+      "shape": 2
+    },
+    {
+      "model": "stored_pc53",
+      "shape": 3
+    },
+    {
+      "model": "resident_pc53",
+      "shape": 0
+    },
+    {
+      "model": "resident_pc53",
+      "shape": 1
+    },
+    {
+      "model": "resident_pc53",
+      "shape": 2
+    },
+    {
+      "model": "resident_pc53",
+      "shape": 3
+    }
+  ],
+  "scoped": 52633,
+  "source": "Beta factorial identity; current kept TOMS708 brcomp conditional leaf, original source unchanged except research visibility.",
+  "unique_registered_controls": 52631,
+  "zero_loss_improvements": []
+}

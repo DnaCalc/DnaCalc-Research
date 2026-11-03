@@ -31,6 +31,51 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_householder_normalized_and_unnormalized_reflectors(self):
+        for a in range(2,8):
+            for b in range(1,a):
+                for sign in (-1,1):
+                    x=[R(sign*(a*a-b*b)),R(2*a*b),R(0)];norm=R(a*a+b*b)
+                    beta=-norm if x[0]>0 else norm
+                    v=[x[0]-beta,*x[1:]];square=sum(t*t for t in v)
+                    u=[t/v[0] for t in v];tau=(beta-x[0])/beta
+                    left=[[R(i==j)-2*v[i]*v[j]/square for j in range(3)]for i in range(3)]
+                    right=[[R(i==j)-tau*u[i]*u[j] for j in range(3)]for i in range(3)]
+                    self.assertEqual(left,right)
+                    self.assertEqual([sum(left[i][j]*x[j]for j in range(3))for i in range(3)],[beta,0,0])
+                    self.assertEqual([[sum(left[i][k]*left[j][k]for k in range(3))for j in range(3)]for i in range(3)],
+                                     [[R(i==j)for j in range(3)]for i in range(3)])
+
+    def test_beta_derivative_binomial_identities(self):
+        from math import comb, factorial
+        for n in range(2,26):
+            for k in range(1,n):
+                for p in (R(1,2),R(2,7)):
+                    q=1-p;rest=n-k
+                    beta=R(factorial(k-1)*factorial(rest-1),factorial(n-1))
+                    shifted=R(factorial(k)*factorial(rest),factorial(n+1))
+                    leaf=p**k*q**rest/beta
+                    other=p**(k+1)*q**(rest+1)/shifted
+                    exact=comb(n,k)*p**k*q**rest
+                    for value in (leaf*n/(k*rest),leaf*(R(n,k))/rest,
+                                  other/((n+1)*p*q),other/(n+1)/p/q):
+                        self.assertEqual(value,exact)
+
+    def test_triangular_inverse_programs_preserve_left_and_right_identities(self):
+        from racer.regression import triangular_inverse, inverse_profiles
+        rng = random.Random(220031)
+        for size in range(1, 6):
+            for _ in range(9):
+                matrix = [[(R(rng.choice((-1, 1)))*two(rng.randrange(-3, 4)) if i == j
+                            else R(rng.randrange(-3, 4)) if i < j else R(0))
+                           for j in range(size)] for i in range(size)]
+                for p in inverse_profiles():
+                    inverse = triangular_inverse(matrix, p['algorithm'], p['model'], p['local_store'])
+                    for a, b in ((matrix, inverse), (inverse, matrix)):
+                        for i in range(size):
+                            for j in range(size):
+                                self.assertEqual(sum((a[i][k]*b[k][j] for k in range(size)), R(0)), R(i == j))
+
     def test_pending_workbooks_remain_failed_in_classification_and_fixed_scope_audit(self):
         from racer.corpus_cases import classify
         from racer.audit import corpus_delta

@@ -1,0 +1,45 @@
+{
+  "id": "dc-j9k-r22-forward-y-precision",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "1ebdbe85",
+  "scope": "Published Y forward recurrence with current registered binary64 seed leaves,3fixed expression trees,5coherent arithmetic modes and binary64 iteration stores on/off.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/discrete.rs": "47a10484e2489c68b11acc329e611d894ce0b6ae19599739c339d840a70b9192",
+    "racer/src/normal.rs": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+    "racer/src/main.rs": "fb24f805b52da77497e32d6a802ce8b56b387d698d3ff530fdcb96b8391a5b8b",
+    "racer/build.rs": "31cb20e013bc420c06f956faeabe2c7d6c13a5b98d80b4de93e0abd506c0e6a8",
+    "racer/src/route_audit.rs": "3cca4150ed223656a849757691fe9b31bc5a69e808a0d5bcf2b86d46e80747b0",
+    "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+    "racer/bessel.py": "d5abacd146b1d0763931d1c472acc49ff00e1d631314a0f67a97566ab36cc122",
+    "racer/corpus_cases.py": "3e4ccfbaadefc64b3752a74f2fa5657fdbd247be45f3041565fa1e72b256c4e8",
+    "checker/test_exact.py": "9e84c61a7143a4d999782dfda4e48764c660b9e30dddce3bce7d422eddb54353",
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31"
+  },
+  "regression_audit": true,
+  "regression_inverse_audit": true,
+  "programs": "30Y labels; strict original expression reproduces every current route result in scope; other research commands retain their separate declared counts.",
+  "limits": "All declared numerical leaves remain conditional; no fitted coefficient/tolerance/selector. Source/control rows are separately identified from complete canonical readings.",
+  "unit": "bessel-y-forward-r22"
+}

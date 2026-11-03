@@ -1,0 +1,26 @@
+{
+  "format": "dnacalc-research-questions-r22-qr/1",
+  "formula_cells": 105,
+  "selected_outputs": 27,
+  "operand_echoes": 78,
+  "new_excel_answers": 0,
+  "application_revision": "aeb2581a6e48e86c8485fc3123f7d9e18f4a307a",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/regression_forecast_family.rs": "3fe9df295bd3c4be0860669ea1e16d77f3fe9ccc"
+  },
+  "prediction_unit": "dc-j9k-r22-product-reflector",
+  "prediction_executable_sha256": "a61e91a54808c1cc22d7dbe2ed85013c478860d2def34ea14784c7e38723796b",
+  "source_sha256": "3fed8401e8d49e1ec95cf1c0c2f4c4cd645cd07df29305d977ca5cb2e4945172",
+  "section_sha256": "452ad01e0d7e5c1a5f87c5d9548fa8bd7de82d6cc07a4106feb83b58b32ca960",
+  "files_sha256": {
+    "README.txt": "6ed3fd5ca3179a3346c62885de034b685af1410e51482f5dc2c59351d3ebaff7",
+    "application-predictions-workbook.jsonl": "ac397c69fd36b3cc9ca367e525f4b7835689eb11ac4037a49d48f5ff6093b8f1",
+    "sheet-dcj9k_r22.txt": "452ad01e0d7e5c1a5f87c5d9548fa8bd7de82d6cc07a4106feb83b58b32ca960",
+    "workbook-questions.json": "bca2261e8b990fc93615371ae24822d0ee4d3e5c1fe530368d473a3712790124",
+    "oracle.xlsx": "7c97260e239506e0255c9c6930229ce97b4678ef805d0945380a00fc56309317"
+  },
+  "limits": "Separate new workbook via the existing generator/capture lineage. All prior captures remain unchanged; every new cell awaits capture and fails the inclusive denominator.",
+  "workbook_sha256": "7c97260e239506e0255c9c6930229ce97b4678ef805d0945380a00fc56309317",
+  "fixture_path": "crates/calc-func/tests/fixtures/dcj9k_r22/oracle.xlsx",
+  "workbook_generator_sha256": "285d23285a0a262bb6eec41057d72332f5fb52becafbf6488424a25b4926cc16"
+}

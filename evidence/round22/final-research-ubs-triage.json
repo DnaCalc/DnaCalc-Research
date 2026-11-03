@@ -1,0 +1,16 @@
+{
+  "rust": {
+    "complete": true,
+    "critical": 0,
+    "warnings": 1259,
+    "info": 261,
+    "scope": "Changed research Rust files; numeric operations, precision conversions, generated hooks and test assertions reviewed."
+  },
+  "python": {
+    "complete": false,
+    "exit_code": 2,
+    "critical_reported": 1,
+    "triage": "The remaining taint finding is an operator-supplied local executable path in round22_questions, intentionally invoked as argv without a shell with bounded timeout and checked exit. The scanner terminates partially; it is not a clean scan."
+  },
+  "limits": "No UBS_ALLOW_PARTIAL or weakened scan result. Previous public source-hash comparison annotation makes no numerical change."
+}

@@ -1,8 +1,9 @@
-"""Finite single-predictor least-squares identities, with exact rounding.
+"""Finite regression arithmetic programs, with exact rounding.
 
 Original algebra, MIT. This extends the existing arithmetic research machinery;
 it is not an alternate application evaluator. No coefficient or rank tolerance
-is selected or fitted. Multiple-predictor and LOGEST programs are outside scope.
+is selected or fitted. Statistical programs explicitly condition on original
+QR, residual and mean operands collected through the registered-route control.
 """
 import argparse
 from collections import Counter
@@ -13,8 +14,12 @@ from pathlib import Path
 import struct
 import time
 
-from bessel import MODELS,operation,pair,digest,require
-from intervals import B64,number,pow2
+try:
+    from .bessel import MODELS,operation,pair,digest,require
+    from .intervals import B64,number,pow2
+except ImportError:
+    from bessel import MODELS,operation,pair,digest,require
+    from intervals import B64,number,pow2
 
 
 def extract(row):
@@ -361,8 +366,146 @@ def rank_run(input_path, destination):
     (dest/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
 
 
+def triangular_inverse(matrix, algorithm, model, local_store):
+    """Upper/non-unit inverse: original back substitution or LAPACK DTRTI2.
+
+    LAPACK3.12.1, 6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca,
+    SRC/dtrti2.f and BLAS/SRC/{dtrmv,dscal}.f, modified BSD.
+    Copyright Universities of Tennessee, California Berkeley, Colorado Denver.
+    See notices/LAPACK.txt. Array writes always store binary64.
+    """
+    size = len(matrix)
+    require(size > 0 and all(len(r) == size for r in matrix), 'invalid triangular shape')
+    require(all(matrix[i][i] != 0 for i in range(size)), 'zero triangular diagonal')
+    def op(kind, a, b): return operation(kind, model, a, b)
+    def store(x):
+        value = B64.rn(x)
+        require(value is not None, 'nonfinite inverse array element')
+        return value
+    if algorithm == 'back_substitution':
+        inverse = [[Q(0) for _ in range(size)] for _ in range(size)]
+        for j in range(size):
+            inverse[j][j] = store(op('div', Q(1), matrix[j][j]))
+            for i in range(j-1, -1, -1):
+                total = Q(0)
+                for k in range(i+1, j+1):
+                    total = op('add', total, op('mul', matrix[i][k], inverse[k][j]))
+                    if local_store: total = store(total)
+                inverse[i][j] = store(op('div', -total, matrix[i][i]))
+        return inverse
+    require(algorithm == 'lapack_dtrti2', 'unknown triangular program')
+    inverse = [list(row) for row in matrix]
+    for j in range(size):
+        inverse[j][j] = store(op('div', Q(1), inverse[j][j]))
+        scale = -inverse[j][j]
+        # DTRMV Upper/NoTranspose/NonUnit, unit stride, in source order.
+        for k in range(j):
+            if inverse[k][j] != 0:
+                value = inverse[k][j]
+                for i in range(k):
+                    inverse[i][j] = store(op('add', inverse[i][j], op('mul', value, inverse[i][k])))
+                inverse[k][j] = store(op('mul', inverse[k][j], inverse[k][k]))
+        for i in range(j):
+            inverse[i][j] = store(op('mul', scale, inverse[i][j]))
+    return inverse
+
+
+def inverse_profiles():
+    for identity, (algorithm, model, local_store) in enumerate(itertools.product(
+            ('back_substitution', 'lapack_dtrti2'), MODELS, (False, True))):
+        yield dict(id=identity, algorithm=algorithm, model=model, local_store=local_store)
+
+
+def inverse_covariance(profile, leaf, inverse):
+    if leaf['role'] == 1:
+        copy = dict(leaf, factors=dict(leaf['factors'], inverse=[
+            ['0x'+struct.pack('>d', float(x)).hex() for x in row] for row in inverse]))
+        return factor_value(profile, copy)
+    original = leaf['triangular']
+    predictor = original['predictors']-leaf['column']
+    position = original['order'].index(predictor)
+    values = inverse[position]
+    model = profile['model']
+    def total(xs):
+        xs = list(xs)
+        if profile['order'] == 2 and len(xs) > 1:
+            middle = len(xs)//2
+            return operation('add', model, total(xs[:middle]), total(xs[middle:]))
+        result = Q(0)
+        for x in xs if profile['order'] != 1 else xs[::-1]:
+            result = operation('add', model, result, x)
+        return result
+    result = total(operation('mul', model, x, x) for x in values)
+    return B64.rn(result) if profile['store_factor'] else result
+
+
+def inverse_run(input_path, destination, mode='original_consumers'):
+    """Whole inverse/covariance producers with explicitly conditional QR leaves."""
+    require(mode in ('original_consumers', 'all_consumers'), 'unknown inverse consumer scope')
+    start = time.monotonic(); dest = Path(destination); dest.mkdir()
+    rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    require(rows and all(r['leaf'].get('triangular') for r in rows), 'missing original R observations')
+    inverses = list(inverse_profiles()); factors = list(factor_profiles())
+    consumers = list(statistic_profiles())
+    grammar = dict(inverse_programs=inverses, factor_programs=factors,
+                   consumer_programs=consumers if mode == 'all_consumers' else 'original role-specific strict consumer')
+    (dest/'grammar.json').write_text(json.dumps(grammar, indent=2)+'\n')
+    controls = 0; scope = Counter(r['leaf']['role'] for r in rows)
+    counts = {role: [[0]*5 for _ in range(len(inverses)*len(factors)*(len(consumers) if mode == 'all_consumers' else 1))]
+              for role in scope}
+    first = {role: [None for _ in values] for role, values in counts.items()}
+    for at, record in enumerate(rows):
+        raw, leaf = record['raw'], record['leaf']; role = leaf['role']
+        original = leaf['triangular']; matrix = [[Q(number(x)) for x in row] for row in original['r']]
+        observed = [[Q(number(x)) for x in row] for row in original['inverse']]
+        baseline = triangular_inverse(matrix, 'back_substitution', 'strict', False)
+        require(baseline == observed, 'original inverse arithmetic changed')
+        baseline_factor = dict(shape=0, order=0, model='strict', store_factor=False)
+        require(inverse_covariance(baseline_factor, leaf, baseline) == Q(number(leaf['covariance'])),
+                'original inverse/covariance route changed')
+        baseline_consumer = dict(model='strict', root='binary64', form=role)
+        require(statistic_value(baseline_consumer, leaf) == raw['actual'], 'original statistic route changed')
+        controls += 1; was = raw['actual'] == raw['expected']
+        predictions = {}
+        for ip in inverses:
+            try: inverse = triangular_inverse(matrix, ip['algorithm'], ip['model'], ip['local_store'])
+            except (ValueError, ZeroDivisionError, OverflowError): inverse = None
+            for fp in factors:
+                try: covariance = inverse_covariance(fp, leaf, inverse) if inverse is not None else None
+                except (ValueError, ZeroDivisionError, OverflowError): covariance = None
+                used = consumers if mode == 'all_consumers' else [baseline_consumer]
+                for ci, cp in enumerate(used):
+                    identity = (ip['id']*len(factors)+fp['id'])*len(used)+ci
+                    key = (covariance, cp['model'], cp['root'], cp['form'])
+                    if key not in predictions:
+                        try:
+                            require(covariance is not None and covariance >= 0, 'nonfinite covariance')
+                            prediction = statistic_value(cp, leaf, covariance)
+                        except (ValueError, ZeroDivisionError, OverflowError): prediction = 'error:Num'
+                        predictions[key] = prediction
+                    prediction = predictions[key]; now = prediction == raw['expected']
+                    for index, value in enumerate((1, now, was, now and not was, was and not now)):
+                        counts[role][identity][index] += value
+                    if not now and first[role][identity] is None:
+                        first[role][identity] = [at, prediction]
+    rankings = {role: sorted(range(len(values)), key=lambda i: (values[i][4], -values[i][1], i))
+                for role, values in counts.items()}
+    result = dict(complete=True, input_rows=len(rows), role_counts=dict(scope), original_route_controls=controls,
+        counts_all_exact_baseline_gains_losses=counts, first_contradictions=first,
+        zero_loss_improvements={role: [i for i,c in enumerate(values) if c[3] and not c[4]] for role,values in counts.items()},
+        full_survivors={role: [i for i,c in enumerate(values) if c[0] == c[1]] for role,values in counts.items()},
+        best={role: [dict(id=i, counts=counts[role][i]) for i in ids[:10]] for role,ids in rankings.items()},
+        inputs_sha256={str(p): digest(p) for p in (Path(input_path), Path(__file__), Path(__file__).with_name('intervals.py'))},
+        seconds=time.monotonic()-start, mode=mode,
+        source='LAPACK3.12.1 6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modified BSD; least-squares covariance identities and IEEE arithmetic.',
+        limits='Original observed binary64 QR R, means, residual sums of squares and degrees of freedom remain conditional. Two inverse algorithms, five precisions/local stores,120 existing covariance labels and declared consumers. Array writes store binary64. No coefficient, threshold, rank tolerance or row-specific program fitted. A survivor still requires full application/bank checks.')
+    (dest/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps({k:v for k,v in result.items() if k not in ('counts_all_exact_baseline_gains_losses','first_contradictions','inputs_sha256')}))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='inverse':inverse_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='factors':factor_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='statistics':statistic_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='rank':rank_run(*sys.argv[2:]);raise SystemExit(0)
