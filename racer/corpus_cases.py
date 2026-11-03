@@ -12,6 +12,171 @@ from pathlib import Path
 import re
 import struct
 import sys
+from decimal import Decimal, localcontext
+from fractions import Fraction
+
+
+def error_size(expected, actual):
+    """Report finite binary64 error without overflowing subtraction/division.
+
+    Decimal strings are diagnostics, rounded to 18 significant digits from
+    exact rational differences. They never participate in the verdict.
+    Relative error uses abs(expected); it is undefined at an expected zero.
+    """
+    import math
+    x, y = (struct.unpack('>d', bytes.fromhex(b))[0] for b in (expected, actual))
+    if not (math.isfinite(x) and math.isfinite(y)):
+        return dict(absolute_error=None, relative_error=None)
+    difference = abs(Fraction(y)-Fraction(x))
+    def decimal(q):
+        with localcontext() as context:
+            context.prec = 18
+            return str(Decimal(q.numerator)/Decimal(q.denominator))
+    return dict(absolute_error=decimal(difference),
+                relative_error=decimal(difference/abs(Fraction(x))) if x else None)
+
+
+def domain_orders(inputs, output):
+    """Eliminate fixed validation orders using recorded result types only.
+
+    This certificate identifies branch order on the stated domain; numeric
+    values still require the application/bank comparison. No answer enters a
+    proposed computation and no numerical parameter is inferred.
+    """
+    import itertools
+    import math
+    paths = [Path(p) for p in inputs.split(',')]
+    groups = {'POISSON.DIST': [], 'HYPGEOM.DIST': []}
+    omitted = Counter()
+    for path in paths:
+        for index, row in enumerate(map(json.loads, path.read_text().splitlines())):
+            name = row['function']
+            if name not in groups:
+                omitted['other_function'] += 1
+                continue
+            try:
+                a = [struct.unpack('>d', bytes.fromhex(v[2:]))[0] for v in row['args'][:-1]]
+                if not all(math.isfinite(v) for v in a):
+                    raise ValueError('nonfinite')
+                if name == 'POISSON.DIST':
+                    # EXP overflow is deliberately outside this type-only proof.
+                    if not (a[0] < 0 or -709 <= a[1] < 0):
+                        omitted['poisson_ordinary_or_overflow'] += 1
+                        continue
+                elif not (any(v < 0 for v in a) or a[3] == 0):
+                    omitted['hypergeometric_ordinary'] += 1
+                    continue
+                expected = row['expected']
+                if expected == 'error:Num':
+                    kind = 'num_error'
+                elif expected.startswith('0x'):
+                    kind = 'number'
+                else:
+                    raise ValueError('outside_number_or_num')
+            except (ValueError, TypeError, struct.error):
+                omitted['input_or_output_shape'] += 1
+                continue
+            groups[name].append(dict(source=str(path), index=index, id=row['id'], args=a,
+                                     expected=kind))
+    results = {}
+    for name, rows in groups.items():
+        if not rows:
+            raise ValueError('empty domain-order scope '+name)
+        profiles = (list(itertools.product((False, True), repeat=3)) if name == 'POISSON.DIST'
+                    else list(itertools.product((False, True), repeat=2)))
+        records, survivors = [], []
+        for identity, profile in enumerate(profiles):
+            for order, row in enumerate(rows):
+                a = row['args']
+                if name == 'POISSON.DIST':
+                    raw_sign, zero_before_mean, truncate_zero = profile
+                    x, mean = a
+                    count = math.trunc(x)
+                    zero = (count == 0) if truncate_zero else (x == 0)
+                    if (x if raw_sign else count) < 0:
+                        got = 'num_error'
+                    elif zero_before_mean and zero:
+                        got = 'number'
+                    else:
+                        got = 'num_error' if mean < 0 else 'number'
+                else:
+                    raw_sign, allow_empty = profile
+                    s, n, k, total = map(math.trunc, a)
+                    negative = any(v < 0 for v in (a if raw_sign else (s,n,k,total)))
+                    got = ('num_error' if negative or total == 0 and not allow_empty
+                           or n > total or k > total else 'number')
+                if got != row['expected']:
+                    records.append(dict(candidate_id=identity, profile=profile, order=order,
+                                        witness=row, got=got))
+                    break
+            else:
+                survivors.append(dict(candidate_id=identity, profile=profile))
+        results[name] = dict(profiles=len(profiles), observations=len(rows),
+                            first_kills=records, survivors=survivors)
+    result = dict(complete=True, functions=results, omitted=omitted,
+                  inputs_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
+                  limits='Result types only on finite numeric scalar inputs. Poisson EXP overflow and '
+                         'all ordinary numerical bodies remain outside this certificate. Discovery '
+                         'observations, no fitted parameter; full application bank replay supplies value evidence.')
+    with Path(output).open('x') as out:
+        json.dump(result, out, indent=2)
+        out.write('\n')
+    print(json.dumps({k:dict(profiles=v['profiles'],observations=v['observations'],survivors=v['survivors'])
+                      for k,v in results.items()}))
+    return result
+
+
+def discrete_questions(output):
+    """Small fixed neighbor/symmetry questions, without predicted answers."""
+    import math
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    bits = lambda v: '0x'+struct.pack('>d',float(v)).hex()
+    groups = {'BINOM.DIST': [], 'HYPGEOM.DIST': []}
+    reasons = []
+    def add(name, arguments, purpose):
+        identity = 'r20-'+name.lower().replace('.','-')+'-'+str(len(groups[name])).zfill(3)
+        groups[name].append(dict(id=identity,args=list(map(bits,arguments)),input_transport='cell_value2_bulk'))
+        reasons.append(dict(id=identity,function=name,purpose=purpose))
+    # These paired tails distinguish independent saddle-point evaluation from
+    # symmetric or recurrent consumers. Neighboring probabilities distinguish
+    # complement rounding without tuning a coefficient or branch boundary.
+    for n, probability, counts in ((1000,.5,(1,999)),(100,.3,(1,99)),(1000,.02,(333,667))):
+        for p in (math.nextafter(probability,0.0),probability,math.nextafter(probability,1.0)):
+            for which, k in enumerate(counts):
+                for cumulative in (0,1):
+                    add('BINOM.DIST',(k,n,p if which==0 else 1.0-p,cumulative),
+                        'Mirrored counts at rounded complementary probabilities and adjacent probability bits; PMF/CDF distinguish independent masses from recurrence or beta consumers. A rounded complement need not be the exact real complement.')
+    for a in ((0,8.5,3,8.1),(0,8.1,3,8.5),(0,3,8.5,8.1),(0,3,8.1,8.5)):
+        for cumulative in (0,1):
+            add('HYPGEOM.DIST',(*a,cumulative),
+                'Raw upper-domain comparisons versus truncation before comparison; both cumulative flags. Negative signs/empty populations are already recorded.')
+    batches = []
+    for name, rows in groups.items():
+        filename = 'requests-'+name+'.json'
+        (output/filename).write_text(json.dumps(dict(function=name,
+            selection='R20 fixed discriminating questions, with intentional recorded controls; no --new-only',
+            witnesses=rows),indent=2)+'\n')
+        batches.append(dict(function=name,path=filename,calls=len(rows)))
+    (output/'batches.json').write_text(json.dumps(batches,indent=2)+'\n')
+    (output/'selection.json').write_text(json.dumps(dict(calls=len(reasons),questions=reasons,
+        new_excel_answers=0,rule='Fixed mathematical symmetry, adjacent binary64 probabilities and validation-order alternatives. No coefficient fitting or expected-answer file.'),indent=2)+'\n')
+    (output/'README.txt').write_text('''R20 discrete distribution questions: 36 BINOM.DIST calls and8 HYPGEOM.DIST calls.
+From the published DnaCalc Windows checkout, use the existing witness reader:
+  cargo xtask witness read --func BINOM.DIST --inputs <packet>/requests-BINOM.DIST.json
+  cargo xtask witness read --func HYPGEOM.DIST --inputs <packet>/requests-HYPGEOM.DIST.json
+Do not use --new-only. Center points intentionally repeat recorded controls.
+Only requests-*.json are reader inputs. Predictions and route audits are current
+application calculations, never Excel answers or expected values.
+
+Preserve the full requested/submitted/Value2 bit audits, worker settings,
+canonical WitnessSets, original worker requests/results and frozen predictions.
+Return those files, the unchanged packet, file hashes and partial attempts in
+~/codex-runs/excel-results-r20. Preserve canonical readings in OxFunc-Evidence.
+Input changes, missing/unread results and automation failures remain failures.
+This packet uses the established witness reader and capture lineage only.
+''')
+    print(json.dumps(dict(calls=len(reasons),batches=batches,new_excel_answers=0)))
 
 
 def split_arguments(text, separator=','):
@@ -151,6 +316,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
             x = e.get('excel_raw') if e else None
             y = a.get('returned', {}).get('value') if a else None
             reason, distance = 'unavailable', None
+            magnitude = dict(absolute_error=None, relative_error=None)
             if verdict.get('class') == 'capture':
                 reason = 'capture_failure'
             elif verdict['verdict'] != 'mismatched':
@@ -160,6 +326,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
                     import math
                     if math.isfinite(number(x['number'])) and math.isfinite(number(y['number'])):
                         distance = abs(ordered(x['number'])-ordered(y['number']))
+                        magnitude = error_size(x['number'], y['number'])
                         reason = 'last_bits' if distance <= 16 else 'numeric_value'
                     else:
                         reason = 'nonfinite'
@@ -178,6 +345,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
             groups[category, function, reason] += 1
             rows.append(dict(workbook=workbook, formula=formula, function=function,
                 category=category, cause=reason, ulp_distance=distance,
+                **magnitude,
                 original_verdict=verdict, expected=e, actual=a,
                 capture=str(capture_path), evaluation=str(paths[1])))
     require_count = compared['after_fail'] if compared is not None else summary['totals']['counts']['fail']
@@ -204,6 +372,7 @@ def function_table(classification, output):
     if summary['complete'] is not True or len(rows) != summary['failed'] or sha(source/'cells.jsonl') != summary['cells_sha256']:
         raise ValueError('classification coverage or hash differs')
     groups, outside = {}, Counter()
+    errors = {}
     for row in rows:
         verdict = row['original_verdict']['verdict']
         if verdict != 'mismatched':
@@ -211,12 +380,24 @@ def function_table(classification, output):
             continue
         counts = groups.setdefault(row['function'], Counter())
         counts[row['cause']] += 1
+        if row['ulp_distance'] is not None:
+            errors.setdefault(row['function'], []).append(row)
     functions = [dict(function=f, mismatches=sum(c.values()),
                       numeric=c['last_bits']+c['numeric_value'], within_16_ulp=c['last_bits'],
                       larger_numeric=c['numeric_value'],
                       other={k:n for k,n in sorted(c.items()) if k not in ('last_bits','numeric_value')})
                  for f,c in groups.items()]
     functions.sort(key=lambda r: (-r['mismatches'], r['function']))
+    for function in functions:
+        numeric = errors.get(function['function'], [])
+        ulps = sorted(r['ulp_distance'] for r in numeric)
+        relatives = sorted(Decimal(r['relative_error']) for r in numeric if r.get('relative_error') is not None)
+        function['gross'] = function['mismatches']-function['within_16_ulp']
+        function['ulp_min'] = ulps[0] if ulps else None
+        function['ulp_median_upper'] = ulps[len(ulps)//2] if ulps else None
+        function['ulp_max'] = ulps[-1] if ulps else None
+        function['relative_error_max'] = str(relatives[-1]) if relatives else None
+        function['relative_error_undefined'] = sum(r.get('relative_error') is None for r in numeric)
     output.mkdir(parents=True, exist_ok=False)
     result = dict(complete=True, mismatches=sum(r['mismatches'] for r in functions),
         nonpasses_in_classification=len(rows), other_verdicts=dict(outside), functions=functions,
@@ -227,11 +408,24 @@ def function_table(classification, output):
     if result['mismatches']+sum(outside.values()) != len(rows):
         raise ValueError('function totals do not reconcile')
     (output/'table.json').write_text(json.dumps(result, indent=2)+'\n')
-    lines = ['function\tmismatches\tnumeric\twithin_16_ulp\tlarger_numeric\tother']
+    columns = ('function','mismatches','numeric','within_16_ulp','larger_numeric','gross',
+               'ulp_min','ulp_median_upper','ulp_max','relative_error_max','relative_error_undefined')
+    lines = ['\t'.join(columns)+'\tother']
     for r in functions:
-        lines.append('\t'.join(str(r[k]) for k in ('function','mismatches','numeric','within_16_ulp','larger_numeric'))+
+        lines.append('\t'.join(str(r[k]) for k in columns)+
                      '\t'+json.dumps(r['other'],sort_keys=True))
     (output/'table.tsv').write_text('\n'.join(lines)+'\n')
+    columns = ('function','workbook','sheet','row','column','category','cause','ulp_distance',
+               'absolute_error','relative_error','expected','actual','formula')
+    lines = ['\t'.join(columns)]
+    for row in rows:
+        if row['original_verdict']['verdict'] != 'mismatched':
+            continue
+        cell = dict(row, **{k:row['original_verdict'][k] for k in ('sheet','row','column')})
+        cell['expected'] = row['expected'].get('excel_raw') if row['expected'] else None
+        cell['actual'] = row['actual'].get('returned', {}).get('value') if row['actual'] else None
+        lines.append('\t'.join(json.dumps(cell.get(k),ensure_ascii=True) for k in columns))
+    (output/'mismatches.tsv').write_text('\n'.join(lines)+'\n')
     print(json.dumps({k:v for k,v in result.items() if k != 'functions'}))
     return result
 
@@ -754,6 +948,12 @@ or changed-input obligations fail. Use the existing capture lineage only.
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'discrete-questions':
+        discrete_questions(*sys.argv[2:])
+        sys.exit(0)
+    if len(sys.argv) > 1 and sys.argv[1] == 'domain-orders':
+        domain_orders(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'function-table':
         function_table(*sys.argv[2:])
         sys.exit(0)

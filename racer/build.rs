@@ -31,8 +31,40 @@ fn main() {
             "crates/calc-syntax/src",
         ]);
     }
-    assert!(
-        std::process::Command::new("git")
+    let untracked = std::process::Command::new("git")
+        .current_dir(&checkout)
+        .args(["ls-files", "--others", "--exclude-standard", "--"])
+        .args(&guarded_paths)
+        .output().unwrap();
+    assert!(untracked.status.success());
+    let untracked = std::str::from_utf8(&untracked.stdout).unwrap();
+    if let Some(blobs) = unit["application_working_blobs"].as_object() {
+        // A pending product change can be studied before its commit only if
+        // the unit binds every changed guarded file to its exact Git blob.
+        // Historical revision-only units retain the original stricter mode.
+        let diff = std::process::Command::new("git")
+            .current_dir(&checkout)
+            .args(["diff", "--name-only", revision, "--"])
+            .args(&guarded_paths)
+            .output().unwrap();
+        assert!(diff.status.success());
+        let mut changed: std::collections::BTreeSet<_> = std::str::from_utf8(&diff.stdout).unwrap()
+            .lines().collect();
+        changed.extend(untracked.lines());
+        let declared: std::collections::BTreeSet<_> = blobs.keys().map(String::as_str).collect();
+        assert_eq!(changed, declared, "unbound changed application sources");
+        for (path, expected) in blobs {
+            assert!(path.starts_with("crates/") || path.starts_with("apps/") || path.starts_with("tools/"));
+            let blob = std::process::Command::new("git").current_dir(&checkout)
+                .args(["hash-object", "--", path]).output().unwrap();
+            assert!(blob.status.success());
+            assert_eq!(std::str::from_utf8(&blob.stdout).unwrap().trim(), expected.as_str().unwrap(),
+                "application source differs from frozen working blob: {path}");
+            println!("cargo:rerun-if-changed={}", checkout.join(path).display());
+        }
+    } else {
+        assert!(untracked.is_empty(), "unbound untracked application sources");
+        assert!(std::process::Command::new("git")
             .current_dir(&checkout)
             .args(["diff", "--quiet", revision, "--"])
             .args(guarded_paths)
@@ -40,7 +72,8 @@ fn main() {
             .unwrap()
             .success(),
         "DnaCalc sources differ from the research unit's frozen revision"
-    );
+        );
+    }
     println!("cargo:rerun-if-changed={}", unit_path.display());
     let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("../../DnaCalc/crates/calc-func/src/ported/excel_numeric")
@@ -133,6 +166,11 @@ fn main() {
             println!("cargo:rerun-if-changed={}", path.display());
             writeln!(bridge, "#[path = {:?}] pub mod {module};", path).unwrap();
         }
+        if unit["bessel_rational_audit"].as_bool() == Some(true) {
+            let path = source.parent().unwrap().join("bessel_rational.rs");
+            println!("cargo:rerun-if-changed={}", path.display());
+            writeln!(bridge, "#[path = {:?}] pub mod bessel_rational;", path).unwrap();
+        }
         if unit["bond_solver_audit"].as_bool() == Some(true) {
             let day_count = source.parent().unwrap().join("day_count_common.rs");
             writeln!(bridge, "#[path = {:?}] pub mod day_count_common;", day_count).unwrap();
@@ -165,4 +203,24 @@ impl ResearchPrice {
     }
     println!("cargo:rustc-check-cfg=cfg(route_audit)");
     println!("cargo:rustc-check-cfg=cfg(bond_solver_audit)");
+    if unit["discrete_audit"].as_bool() == Some(true) {
+        use std::io::Write;
+        let original = source.parent().unwrap().join("discrete_dist.rs");
+        let text = fs::read_to_string(&original).unwrap();
+        // Expose current cleared primitives; the copied body and constants
+        // are unchanged. Hypotheses live separately in discrete.rs.
+        let text = text.replace("fn stirling_error(", "pub(crate) fn stirling_error(")
+            .replace("fn deviance(", "pub(crate) fn deviance(")
+            .replace("fn binom_mass(", "pub(crate) fn binom_mass(");
+        let path = output.join("discrete-research.rs");
+        fs::write(&path, text).unwrap();
+        let mut bridge = fs::OpenOptions::new().append(true).open(output.join("bridge.rs")).unwrap();
+        writeln!(bridge, "#[path = {:?}] pub mod discrete_dist;", path).unwrap();
+        let special = source.parent().unwrap().join("special_math_common.rs");
+        writeln!(bridge, "#[path = {:?}] pub mod special_math_common;", special).unwrap();
+        println!("cargo:rerun-if-changed={}", original.display());
+        println!("cargo:rerun-if-changed={}", special.display());
+        println!("cargo:rustc-cfg=discrete_audit");
+    }
+    println!("cargo:rustc-check-cfg=cfg(discrete_audit)");
 }

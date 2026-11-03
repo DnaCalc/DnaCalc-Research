@@ -1,0 +1,248 @@
+{
+  "complete": true,
+  "functions": {
+    "POISSON.DIST": {
+      "profiles": 8,
+      "observations": 567,
+      "first_kills": [
+        {
+          "candidate_id": 0,
+          "profile": [
+            false,
+            false,
+            false
+          ],
+          "order": 0,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 34152,
+            "id": "poisson-branch-heldout-00054-count-domain",
+            "args": [
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        },
+        {
+          "candidate_id": 1,
+          "profile": [
+            false,
+            false,
+            true
+          ],
+          "order": 0,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 34152,
+            "id": "poisson-branch-heldout-00054-count-domain",
+            "args": [
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        },
+        {
+          "candidate_id": 2,
+          "profile": [
+            false,
+            true,
+            false
+          ],
+          "order": 76,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 34282,
+            "id": "poisson.dist-branch-00154-count-mean-order",
+            "args": [
+              2.2250738585072014e-308,
+              -0.1
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        },
+        {
+          "candidate_id": 3,
+          "profile": [
+            false,
+            true,
+            true
+          ],
+          "order": 251,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 49391,
+            "id": "poisson.dist-branch-00108-count-mean-order",
+            "args": [
+              -2.2250738585072014e-308,
+              0.0
+            ],
+            "expected": "num_error"
+          },
+          "got": "number"
+        },
+        {
+          "candidate_id": 4,
+          "profile": [
+            true,
+            false,
+            false
+          ],
+          "order": 0,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 34152,
+            "id": "poisson-branch-heldout-00054-count-domain",
+            "args": [
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        },
+        {
+          "candidate_id": 5,
+          "profile": [
+            true,
+            false,
+            true
+          ],
+          "order": 0,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 34152,
+            "id": "poisson-branch-heldout-00054-count-domain",
+            "args": [
+              0.0,
+              -2.2737367544323206e-13
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        },
+        {
+          "candidate_id": 6,
+          "profile": [
+            true,
+            true,
+            false
+          ],
+          "order": 76,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+            "index": 34282,
+            "id": "poisson.dist-branch-00154-count-mean-order",
+            "args": [
+              2.2250738585072014e-308,
+              -0.1
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        }
+      ],
+      "survivors": [
+        {
+          "candidate_id": 7,
+          "profile": [
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    "HYPGEOM.DIST": {
+      "profiles": 4,
+      "observations": 1526,
+      "first_kills": [
+        {
+          "candidate_id": 0,
+          "profile": [
+            false,
+            false
+          ],
+          "order": 0,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/HYPGEOM.DIST-bank-before.jsonl",
+            "index": 0,
+            "id": "hypgeom.dist-domain-00026-integer-support",
+            "args": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        },
+        {
+          "candidate_id": 1,
+          "profile": [
+            false,
+            true
+          ],
+          "order": 4,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/HYPGEOM.DIST-bank-before.jsonl",
+            "index": 90,
+            "id": "fresh-hypgeom.dist-00234-fractional-support-controls",
+            "args": [
+              0.0,
+              0.0,
+              -0.1,
+              8.0
+            ],
+            "expected": "num_error"
+          },
+          "got": "number"
+        },
+        {
+          "candidate_id": 2,
+          "profile": [
+            true,
+            false
+          ],
+          "order": 0,
+          "witness": {
+            "source": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/HYPGEOM.DIST-bank-before.jsonl",
+            "index": 0,
+            "id": "hypgeom.dist-domain-00026-integer-support",
+            "args": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "expected": "number"
+          },
+          "got": "num_error"
+        }
+      ],
+      "survivors": [
+        {
+          "candidate_id": 3,
+          "profile": [
+            true,
+            true
+          ]
+        }
+      ]
+    }
+  },
+  "omitted": {
+    "poisson_ordinary_or_overflow": 49140,
+    "hypergeometric_ordinary": 2127
+  },
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl": "361dadf1e3535e83db7286661c8c503c30ffce78d91a04fa5672c7a8e55ea4a2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/HYPGEOM.DIST-bank-before.jsonl": "f6e8a661d416784c36cb152200b6e218962d39de2f15482c8b3a7d374aae4b06"
+  },
+  "limits": "Result types only on finite numeric scalar inputs. Poisson EXP overflow and all ordinary numerical bodies remain outside this certificate. Discovery observations, no fitted parameter; full application bank replay supplies value evidence."
+}

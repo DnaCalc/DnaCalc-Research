@@ -1,0 +1,65 @@
+{
+  "id": "dc-j9k-r20-bessel-followup",
+  "role": "clean-implementer",
+  "application_revision": "cfab47b9909d454edfe356d9ae985d9dca6fadb4",
+  "application_working_blobs": {},
+  "route_audit": false,
+  "bessel_rational_audit": false,
+  "scope": "Exactly one fixed follow-up: pinned published adaptive J backward body for admitted n>=2 and0<abs(x)<=n, plus previously complete profile0 Y1-high. No fitting, branch search, constants search or family expansion.",
+  "sources": {
+    "tier1": [
+      "Original unchanged corpus182 and R19 J873/Y18 answer records",
+      "IEEE754 arithmetic; existing Excel-labelled test contracts"
+    ],
+    "tier2": [
+      {
+        "repository": "https://github.com/SheetJS/bessel",
+        "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+        "licence": "Apache-2.0",
+        "files_sha256": {
+          "bessel.js": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+          "LICENSE": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26"
+        },
+        "restriction": "Tier2 original source; no Tier3 implementation retained."
+      },
+      "Current cleared numeric substrate"
+    ],
+    "banned": [
+      "Tier3/4 code",
+      "bessel.rs numerical bodies/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "published_backward_constants": {
+    "adaptive_start_factor": 40,
+    "rescale_upper": 10000000000.0,
+    "rescale_factor": 1e-10
+  },
+  "high_y1_program": {
+    "original_id": 0,
+    "polynomial": "strict",
+    "reconstruction": "strict",
+    "assignment_stores": false,
+    "helpers": "worksheet",
+    "association": 0,
+    "reduction": 0,
+    "full_region_records": 11
+  },
+  "exposure": "Original answers are discovery. Exact source JS backward reference already matched72/72 eligible answers (+68/-0). No held-out or preregistration claim.",
+  "source_sha256": {
+    "racer/src/bessel_rational.rs": "fae140505598f4223ce4f0d46fc6e5dd0f8aa8c87758bddc68d730a01d2b6bd0",
+    "racer/src/main.rs": "2dcc42fae3a91e7a42b0eadc8adbc7ca529ec97374db08ee22fb88fa773ed3bb",
+    "racer/build.rs": "4f8dbe6d7a1e4f7b952877ef2110a3d7ba40d12fab4157e6f9a0e4a51e61bb14"
+  },
+  "limits": [
+    "All other records remain explicit research refusals counted fail in overall research totals.",
+    "Y outer route rejects nonfinite and nonpositive flushed x and orders outside0..10m; no finite upper argument admission is inferred.",
+    "No product adoption until exact Rust replay, failing-first invoke tests and loss-free application comparison."
+  ],
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "model": "Codex, GPT-6 family; runtime model id not exposed"
+  },
+  "previous_application_revision": "4df60f0ff14445b1f9f666c016418d9e05b6b72e",
+  "rebind_reason": "Guarded arrays.rs/kit.rs/lambda_helpers.rs changed during original execution. Historical run retained; fresh current-source replay required."
+}

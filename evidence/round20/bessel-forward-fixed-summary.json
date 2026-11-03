@@ -1,0 +1,49 @@
+{
+  "id": "dc-j9k-r20-bessel-low-forward-fixed-js",
+  "role": "clean-implementer",
+  "scope": "ONE pinned fixed reference program: admitted n>=2 andn<abs(x)<8; use its complete published low J0/J1 seeds and published forward recurrence. No parameters or source changes.",
+  "source": {
+    "repository": "https://github.com/SheetJS/bessel",
+    "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+    "licence": "Apache-2.0",
+    "files_sha256": {
+      "bessel.js": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+      "LICENSE": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26"
+    },
+    "restriction": "Tier2 original source; no Tier3 implementation retained."
+  },
+  "counts": {
+    "all": 11,
+    "numeric_records": 11,
+    "exact": 11,
+    "current_application_exact": 11,
+    "gains": 0,
+    "losses": 0,
+    "changed": 0
+  },
+  "decision": "NO PRODUCT CHANGE: every scoped record already matches the application; the fixed reference is identical on all11 records and gives zero gain.",
+  "current_application_evidence": {
+    "evaluation_file": "/home/ubuntu/projects/DnaCalc/DnaCalc/target/corpus-r20-followup/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json",
+    "evaluation_sha256": "18c62a8892b276a23dca06786cb16e724b6a3cc896dd185722802a6a8590b72a",
+    "release_executable_sha256": "f9064a3e85f44295f219ab40d899121910d7bbaa759d4d62866a5759f06647e3",
+    "receipt": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bank-followup/receipt.json",
+    "scope_note": "These are actual completed full-application follow-up corpus values. Latest pullcef521cb changes onlycalc-engine/tracker, with no guarded calc-func/value/verdict source changes; no claim of a new post-pull full corpus execution is made."
+  },
+  "inputs": [
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-corpus/cases.jsonl",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/besselj-bank-before.jsonl",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessely-bank-before.jsonl"
+  ],
+  "input_scope_note": "All original1073 combined records inspected. Exactly11 fall in the natural low-forward scope; all are original corpus numeric records. Original J/Y banks have zero eligible rows.",
+  "node": "v25.8.1",
+  "limits": [
+    "No Cargo, source, fixture, answer or product edits were needed.",
+    "This is a complete fixed-program black-box scope check, not a held-out or overall product pass-rate claim.",
+    "No gains exist to justify adoption or further family expansion."
+  ],
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "model": "Codex, GPT-6 family; runtime model id not exposed"
+  },
+  "new_build": "Not run: fixed source comparison had0gain and all eligible actual completed application values were already exact. No new source binding is implied."
+}

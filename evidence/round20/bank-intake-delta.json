@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "counts": {
+    "shared_inputs": 3875406,
+    "unchanged_outputs": 3875406,
+    "changed_outputs": 0,
+    "changed_expected": 0,
+    "representative_metadata_changes": 46,
+    "shared_before_matches": 3231710,
+    "shared_after_matches": 3231710,
+    "shared_gains": 0,
+    "shared_losses": 0,
+    "added_inputs": 151,
+    "added_matched": 35,
+    "added_failed": 116
+  },
+  "examples": [],
+  "input_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "3bb5f2835ca91c8d5e45fabac9958cffc0c70c7c684910898156db6d3bddd16b"
+  },
+  "limits": "Counts distinguish input coverage from gains/losses on shared inputs. Metadata changes retain the selected capture source. Unread rows have no trace and still fail in each original judge summary; no calculated-only pass rate.",
+  "trace_mode": "streamed once; input bindings and judge completion supplied by bank-intake receipt"
+}

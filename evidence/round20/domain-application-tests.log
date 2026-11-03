@@ -1,0 +1,19 @@
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+   Compiling calc-fml v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml)
+   Compiling dna-formula-ui v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-formula-ui)
+   Compiling calc-vba v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-vba)
+   Compiling dna-onecalc v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-onecalc)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.02s
+     Running tests/acceptance.rs (target/xtask-accept/debug/deps/acceptance-f9953d00942e34a4)
+
+running 7 tests
+test caller_comes_from_the_formula_instance ... ok
+test lifted_textsplit_preserves_the_recorded_spill ... ok
+test hypergeometric_validates_raw_counts_and_admits_an_empty_population ... ok
+test poisson_validates_raw_counts_before_the_zero_count_exponential ... ok
+test onecalc_m1_1__reference_without_engine ... ok
+test dc_snz_3__vba ... ok
+test onecalc_m1_1__dependency_gate ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.12s
+

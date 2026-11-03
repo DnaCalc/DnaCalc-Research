@@ -1,0 +1,94 @@
+{
+  "function": "HYPGEOM.DIST",
+  "selection": "R20 fixed discriminating questions, with intentional recorded controls; no --new-only",
+  "witnesses": [
+    {
+      "id": "r20-hypgeom-dist-000",
+      "args": [
+        "0x0000000000000000",
+        "0x4021000000000000",
+        "0x4008000000000000",
+        "0x4020333333333333",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-001",
+      "args": [
+        "0x0000000000000000",
+        "0x4021000000000000",
+        "0x4008000000000000",
+        "0x4020333333333333",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-002",
+      "args": [
+        "0x0000000000000000",
+        "0x4020333333333333",
+        "0x4008000000000000",
+        "0x4021000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-003",
+      "args": [
+        "0x0000000000000000",
+        "0x4020333333333333",
+        "0x4008000000000000",
+        "0x4021000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-004",
+      "args": [
+        "0x0000000000000000",
+        "0x4008000000000000",
+        "0x4021000000000000",
+        "0x4020333333333333",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-005",
+      "args": [
+        "0x0000000000000000",
+        "0x4008000000000000",
+        "0x4021000000000000",
+        "0x4020333333333333",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-006",
+      "args": [
+        "0x0000000000000000",
+        "0x4008000000000000",
+        "0x4020333333333333",
+        "0x4021000000000000",
+        "0x0000000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    },
+    {
+      "id": "r20-hypgeom-dist-007",
+      "args": [
+        "0x0000000000000000",
+        "0x4008000000000000",
+        "0x4020333333333333",
+        "0x4021000000000000",
+        "0x3ff0000000000000"
+      ],
+      "input_transport": "cell_value2_bulk"
+    }
+  ]
+}

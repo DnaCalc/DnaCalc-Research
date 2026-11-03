@@ -1,0 +1,69 @@
+{
+  "method": "Insert only fixed low-seed dispatch after each approved private signature; original bodies treated as opaque bytes and never printed. Removing four exact inserted byte strings reconstructs the entire original file byte for byte.",
+  "before_sha256": "21fc0ff0e838e036268ca2109226257c8403e67f8f06fb0e2ac4eb558972f7af",
+  "after_sha256": "a788a67fad4f96bcf009952c75fc49dccc50f95805c85ce6669797e0c14a986f",
+  "reconstruction_sha256": "21fc0ff0e838e036268ca2109226257c8403e67f8f06fb0e2ac4eb558972f7af",
+  "functions": [
+    {
+      "function": "j0",
+      "original_line_sha256": "294d49e8ee71b150afb76e018affa017a700abd7021a767c5cac0ba8a873f538",
+      "inserted_bytes": 182,
+      "guard": "x.0.abs() < 8.0"
+    },
+    {
+      "function": "j1",
+      "original_line_sha256": "6f2bad89451637d8f5c7bcbf0e3d52e69d8b16f83bd52c9df53fe33323385331",
+      "inserted_bytes": 182,
+      "guard": "x.0.abs() < 8.0"
+    },
+    {
+      "function": "y0",
+      "original_line_sha256": "9e94bdd0d797e77a36125bff8dad5aa66ded1b90e243531c95e8629219eabb0a",
+      "inserted_bytes": 189,
+      "guard": "x.0 > 0.0 && x.0 < 8.0"
+    },
+    {
+      "function": "y1",
+      "original_line_sha256": "2c772945b0119d832d3802f2bff0babfff935c4e2beb572cd5fc33a1f5f06748",
+      "inserted_bytes": 189,
+      "guard": "x.0 > 0.0 && x.0 < 8.0"
+    }
+  ],
+  "subsequent_non_numerical_edits": {
+    "comment_change": "Source description now names licensed low helpers and retained high libm fallback.",
+    "test_updates": [
+      {
+        "function": "BESSELY",
+        "x": "0x3fe0000000000000",
+        "order": "0x0000000000000000",
+        "old_prediction": "0xbfdc72feb3b7b8a2",
+        "new_prediction": "0xbfdc72feb3fe171f",
+        "preserved_excel": "-0.44451873376270784",
+        "source_identity": "existing bessel.rs::tests::spot_values_record_exact_controls_and_known_gaps Excel-labelled17-digit reading; original raw capture not located"
+      },
+      {
+        "function": "BESSELJ",
+        "x": "0x0000000000000000",
+        "order": "0x0000000000000000",
+        "old_prediction": "0x3ff0000000000000",
+        "new_prediction": "0x3ff0000000c292b1",
+        "preserved_excel": "1.00000000283141; original exact bits0x3ff0000000c292b1",
+        "source_identity": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:309:4"
+      },
+      {
+        "function": "BESSELJ",
+        "x": "0xc004000000000000",
+        "order": "0x3ff0000000000000",
+        "old_prediction": "0xbfdfd063c84795fd",
+        "new_prediction": "0xbfdfd063c8529f24",
+        "preserved_excel": "-0.49709410250442176",
+        "source_identity": "existing bessel.rs::tests::spot_values_record_exact_controls_and_known_gaps Excel-labelled negative17-digit reading; original negative raw capture not located",
+        "additional_evidence": "Committed dc96l3_bessel row20,column4 has positive BESSELJ(2.5,1), raw0x3fdfd063c8529f24; odd parity follows from the mathematical identity. Not a newly captured negative reading."
+      }
+    ],
+    "sha256_before_non_numerical_edits": "a788a67fad4f96bcf009952c75fc49dccc50f95805c85ce6669797e0c14a986f",
+    "sha256_after_non_numerical_edits": "91b252305834c1f1f073f87ef1a94d92f93ea6b1b9bc247fc4d7c6930ed7fecc",
+    "reversing_comment_test_edits_and_four_insertions_sha256": "21fc0ff0e838e036268ca2109226257c8403e67f8f06fb0e2ac4eb558972f7af",
+    "all_original_bytes_reconstruct": true
+  }
+}

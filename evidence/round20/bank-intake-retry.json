@@ -1,0 +1,6 @@
+{
+  "first_attempt": "bank-intake",
+  "result": "guard rejected comparison",
+  "reason": "Evidence README, attributes, staging and commit were finalized during the first comparison. Canonical readings and the executable stayed unchanged, but the exact evidence state binding correctly failed.",
+  "action": "Repeat once against clean pushed a22dcd0f without further Evidence mutations. First outputs retained as rejected diagnostic, not used for totals."
+}

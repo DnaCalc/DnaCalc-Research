@@ -1,0 +1,17 @@
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [optimized + debuginfo] target(s) in 7.82s
+     Running tests/f1_engineering.rs (target/xtask-accept/debug/deps/f1_engineering-3633d63cd9065f30)
+
+running 9 tests
+test bessel_functions ... ok
+test bessel_low_rational_seeds_match_recorded_excel_bits ... ok
+test besseli_higher_orders_use_the_same_normalization_as_order_zero ... ok
+test bit_functions ... ok
+test besseli_recorded_adjacent_domain_boundary ... ok
+test delta_gestep_and_convert ... ok
+test complex_numbers ... ok
+test besseli_normalization_keeps_a_normal_result_when_its_ratio_underflows ... ok
+test radix_conversions ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

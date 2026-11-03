@@ -1,0 +1,39 @@
+{
+  "id": "dc-j9k-r20-bessel-rational-facts",
+  "role": "analyst",
+  "author": "root",
+  "exposure": "A web search returned restricted implementation snippets. The analyst writes no numerical Bessel implementation for this work unit. No restricted source is retained. A separate implementer sees only this checked facts specification and permitted sources.",
+  "sources": [
+    {
+      "repository": "https://github.com/SheetJS/bessel",
+      "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+      "licence": "Apache-2.0",
+      "files_sha256": {
+        "bessel.js": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+        "LICENSE": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26"
+      },
+      "restriction": "Tier2 original source; no Tier3 implementation retained."
+    },
+    {
+      "tier": 1,
+      "description": "Original Excel corpus captures and R19 J/Y bank traces; mathematical Bessel recurrence identities from DLMF10.6.1"
+    }
+  ],
+  "facts": [
+    "The permissive reference publishes J0/J1 and Y0/Y1 seed approximations in two argument regions separated at magnitude8.",
+    "The low-argument J seeds are rational approximations in the squared argument. The constant ratio for J0 is57568490574/57568490411, which differs from one. These constants are fixed published numbers; none may be fitted to captured outputs.",
+    "The low-argument Y seeds add logarithmic J terms to rational expressions. The coefficient0.636619772 is a finite approximation to2/pi.",
+    "The large-argument seeds combine fixed polynomial amplitude corrections with sine/cosine phases. Published phases are0.785398164 and2.356194491, and the scale coefficient is0.636619772.",
+    "Published decimal coefficient tables are available in the cited Tier2 source. No table inferred from measured answers is permitted.",
+    "Possible finite-precision hypotheses are ordinary binary64 versus documented x87 arithmetic/assignment stores and the existing cleared private CRT or worksheet elementary operations. Predictions remain hypotheses until exactly compared with recorded answers.",
+    "The DLMF three-term recurrence relates higher integer orders to two seeds; it alone identifies no Excel rounding or admission rule."
+  ],
+  "scope": "A structurally new seed coefficient family, distinct from the A&S polynomial/Cody rational/DLMF-coefficient families previously excluded. Assess J/Y seeds first. Any accepted body must preserve existing recorded passes and be exercised through the application route. Admission/domain limits stay separately measured.",
+  "implementer_banned": [
+    "Tier3/4 implementations or search results containing them",
+    "crates/calc-func/src/ported/bessel.rs body and its history",
+    "DnaCalc-engine checkout"
+  ],
+  "allowed_interface": "Existing wrappers accept finite binary64 x and return a typed error or number; new seed helpers can accept f64 and return f64. The current module uses a flushing numeric wrapper, which integration must preserve without reading its replaced seed bodies.",
+  "permission": "AGENTS.md RESEARCH_SOURCES.md analyst/check/implementer split; no numerical implementation leaves the analyst."
+}

@@ -1,0 +1,7 @@
+{
+  "invalidated_outputs": {
+    "r18-score/summary.json": "No explicit date system was supplied to registered invocation; YIELD returned typed NotImplemented. Preserved as failed diagnostic, not application score."
+  },
+  "valid_output": "r18-score-dates1900/summary.json",
+  "reason": "Original Excel settings Date1904=false; explicit 1900 is required. Existing shared scorer now verifies recorded Date1904=false before passing1900. No expected answer or actual value edited."
+}

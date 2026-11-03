@@ -1,0 +1,20 @@
+{
+  "scope": "staged Bessel follow-up; UBS scanner completed three changed Rust files",
+  "totals": {
+    "type": "totals",
+    "project": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+    "status": "ok",
+    "failed_modules": [],
+    "files": 3,
+    "critical": 0,
+    "warning": 35,
+    "info": 48,
+    "timestamp": "2026-11-03 16:58:28"
+  },
+  "triage": [
+    "All test assertions, unwraps and panic macros are test scaffolding, including the preserved fallback body test warnings.",
+    "Private polynomial helper receives fixed nonempty published coefficient arrays only; last() and prefix slice cannot be empty at a call.",
+    "The source-defined source program preserves existing domain guards. No new scanner-detected unchecked user indexing."
+  ],
+  "limits": "Dependency audit not evaluated by staged scanner. Numerical/source and admissions reviewed separately by read-only checker."
+}

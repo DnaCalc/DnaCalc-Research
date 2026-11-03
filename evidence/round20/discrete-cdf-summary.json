@@ -1,0 +1,89 @@
+{
+  "complete": true,
+  "counts_pass_fail_gains_losses_changed": {
+    "BINOM.DIST": [
+      [
+        94,
+        963,
+        16,
+        944,
+        978
+      ],
+      [
+        95,
+        962,
+        17,
+        944,
+        978
+      ],
+      [
+        39,
+        1018,
+        16,
+        999,
+        1031
+      ],
+      [
+        39,
+        1018,
+        17,
+        1000,
+        1033
+      ],
+      [
+        94,
+        963,
+        15,
+        943,
+        975
+      ]
+    ],
+    "NEGBINOM.DIST": [
+      [
+        70,
+        74,
+        12,
+        16,
+        77
+      ],
+      [
+        71,
+        73,
+        13,
+        16,
+        77
+      ],
+      [
+        72,
+        72,
+        13,
+        15,
+        71
+      ],
+      [
+        72,
+        72,
+        13,
+        15,
+        71
+      ],
+      [
+        70,
+        74,
+        12,
+        16,
+        77
+      ]
+    ]
+  },
+  "limits": "Existing incomplete-beta body; fixed defining identities, no fitted constants or answers. Integer nonendpoint counts/shapes <=10000 are a research resource scope. All rows are discovery. Exact rejection means any recorded mismatch; scores never authorize a row-specific program selector.",
+  "programs": [
+    "bratio(a,b,z,w).p",
+    "bratio(b,a,w,z).q",
+    "1-bratio(b,a,w,z).p",
+    "0.5+(0.5-bratio(b,a,w,z).p)",
+    "regularized_beta(z,a,b)"
+  ],
+  "programs_per_function": 5,
+  "scoped": 1201
+}

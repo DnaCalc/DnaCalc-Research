@@ -1,0 +1,72 @@
+{
+  "id": "dc-j9k-r20-domain-binomial-checkpoint",
+  "role": "implementer",
+  "application_revision": "6b08ce3a28baec71fc3a21e5dd7384c2d52c989a",
+  "route_audit": true,
+  "scope": "Completed Poisson/hypergeometric branch order correction;9000 fixed BINOM direct-deviance programs and5 defining incomplete-beta CDF programs per name.",
+  "sources": {
+    "tier1": [
+      "Original Excel Value2 readings and committed corpus captures",
+      "IEEE754 rounding and Intel x87 instruction contracts",
+      "Loader binomial saddle-point identity already documented in cleared product discrete_dist.rs",
+      "Exact least-squares geometry"
+    ],
+    "tier2": [
+      "Existing cleared DnaCalc discrete_dist.rs and regression_forecast_family.rs"
+    ],
+    "banned": [
+      "tier3/4 implementation code",
+      "deleted source and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "exposure": "All existing rows are discovery; family recorded with implementation. No preregistration or held-out performance claim. No new Excel answers.",
+  "limits": [
+    "Native fixed-family exclusions only; current Stirling/series bodies are conditional leaves, no independent full numeric elimination replay claimed.",
+    "Every recorded nonpass remains failure. No numerical distribution body adopted.",
+    "R20 domain gains are832 bank outputs and0 corpus cells."
+  ],
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20",
+  "source_sha256": {
+    "Cargo.toml": "48c9d13c0f8371cb98e37059855afb6f7182255e3e6dc42e31eedc6a81a1c85e",
+    "Cargo.lock": "06ed107173f4279e4e88a6153cf084f9f3144a9680af9d56b2be2396a662333f",
+    "racer/Cargo.toml": "5c9f409baadfb19c99d1ce5766eaceaf301b37606ac31d5316febe18d9b3493f",
+    "racer/x87_probe.rs": "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e",
+    "racer/build.rs": "d8050486ac63353aa13733b3256cd0be23026b2a587a7ba4d9d53b4a830bbace",
+    "racer/src/route_audit.rs": "cff21e1ac88682268ab2110b599b2aef895717e33297c177139e3ea862acd48d",
+    "racer/src/scheduler.rs": "2907befcd01e35d36d38ffb7d07d8da3cb736801d2503a715bdf50f4deaf2223",
+    "racer/src/normal.rs": "4ba79987ae87de2abff72d7d2d13e7602fbe9c3bd6697b50cec6497a60f8978e",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/variance.rs": "5ed07b38f84202122b979a0faed34c94acfb513445c141a2f57d43e854d9b575",
+    "racer/src/discrete.rs": "9ec36cdc1888ad5aea429ecf795543b31d495a22dc2477a7d2d13f481273faec",
+    "racer/src/identity.rs": "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/saddle.rs": "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287",
+    "racer/src/annuity.rs": "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299",
+    "racer/src/poisson.rs": "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f",
+    "racer/src/cumulative_balance.rs": "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec",
+    "racer/src/enumerate.rs": "d155883c18e29accf6b5393f8f944ba39940eccc2a0744dfc6548d7f3634fbdd",
+    "racer/src/main.rs": "430f9e4e0efef6a46403135dcdb467575be55f6aed5518703a8ffa92ee757bb9",
+    "racer/src/boundary.rs": "3450185e7d49d484e191cf788d6aaf2df579f62f255e518ea32ccde123bc877a",
+    "racer/src/annuity_early.rs": "5afa6fa733c2c414549b8ec4e8a42593f0f3652ced0bff21d9a06b3c771b1a90",
+    "racer/src/cumulative.rs": "1ae49aac9d9ecd78331541338ce53b4a9d9d79ee37316024ab03c4613fdceaa7"
+  },
+  "geomean": "Existing18 rounded-product/correct-root programs independently refuted in each two-operand109-row and three-operand127-row cohort.",
+  "bessel_asymptotic": "67500 labels per J/Y:10 universal phase quantizers*10 amplitude quantizers*5 body models*5 forward models*3 trig providers*3 asymptotic truncations*3 forward associations. J1536 numeric survivors over41 readings, independently replayed; Y0 survivors over11. Domain errors excluded; no numerical body adopted.",
+  "status": "Checkpoint source binding, recorded after discovery execution; no preregistration claim.",
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "cpu": "AMD EPYC Processor (with IBPB)"
+  },
+  "discrete_audit": true,
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/discrete_dist.rs": "a1cf081609786c0ed052e916ed16680ea82abd29"
+  },
+  "executable_sha256": "d5c1aa8c4f8cfe04c5aac1e99bf1232729f5268c6231abb08cf015e69b3a6488",
+  "committed_product_equivalent": "f1feb925",
+  "parked": {
+    "annuity": "CUMPRINC/PPMT/IPMT/CUMIPMT: zero full numerical-program survivors across rounds16-19; no structurally new hypothesis this round.",
+    "variance": "Repeated zero producer survivors; R19 latent consumer bounds do not identify a producer. No new producer hypothesis this round.",
+    "GEOMEAN": "Repeated zero complete product/root programs through R19. No new producer hypothesis this round."
+  }
+}

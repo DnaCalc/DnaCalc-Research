@@ -1,0 +1,61 @@
+{
+  "id": "dc-j9k-r20-bessel-rational",
+  "role": "clean-implementer",
+  "application_revision": "013102156d270162793ab516e79adb12cdd0f330",
+  "route_audit": false,
+  "scope": "Fixed published rational/polynomial J0/J1/Y0/Y1 seed family, source-defined argument boundary8; current cleared numeric substrate only.",
+  "sources": {
+    "tier1": [
+      "Original frozen Excel corpus captures and R19 J/Y bank traces",
+      "IEEE754 arithmetic and Intel x87 contracts"
+    ],
+    "tier2": [
+      {
+        "repository": "https://github.com/SheetJS/bessel",
+        "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+        "licence": "Apache-2.0",
+        "files_sha256": {
+          "bessel.js": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+          "LICENSE": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26"
+        },
+        "restriction": "Tier2 original source; no Tier3 implementation retained."
+      },
+      "Current cleared excel_numeric substrate, exposed through existing Research bridge"
+    ],
+    "checked_facts": "bessel-rational-r20-facts.json",
+    "banned": [
+      "Tier3/4 implementation code",
+      "crates/calc-func/src/ported/bessel.rs body and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "family": {
+    "programs": 900,
+    "polynomial_models": 5,
+    "reconstruction_models": 5,
+    "assignment_stores": 2,
+    "helper_providers": [
+      "worksheet",
+      "cleared CRT",
+      "libm"
+    ],
+    "algebraic_associations": 3,
+    "large_argument_reductions": 2,
+    "constants": "Published pinned source values only; no fitted constants or answer selectors."
+  },
+  "exposure": "All existing answers are discovery; no preregistration or held-out claim.",
+  "limits": [
+    "Seeds only at this checkpoint; higher orders are explicit research refusals and remain fail in overall statistics.",
+    "Any product adoption requires application-route checks and preservation of old recorded passes.",
+    "A profile is a coherent complete operation program; per-row answer selection is forbidden."
+  ],
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42"
+  },
+  "source_sha256": {
+    "racer/src/bessel_rational.rs": "137565ef44a42f830551a733396071d811ee04c0a9964d5a2948fc41b7414e75",
+    "notices/SheetJS-bessel.txt": "01662f8e685e7628b3ef18eda8c526c11bd1a8c1439dd49d112b3166141196da",
+    "bessel-rational-r20-facts.json": "b8ea952239aae07cc1c5af48d7124c5dd36f6eb3b48cfffd17663981d254bfad"
+  },
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20"
+}

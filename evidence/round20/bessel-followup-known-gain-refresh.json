@@ -1,0 +1,60 @@
+{
+  "scope": "Three previously recorded calculation gaps now exactly match their preserved Excel outcomes; no Excel answer changed.",
+  "program": 1000,
+  "updates": [
+    {
+      "reading": "BESSELJ(1.9,2)",
+      "old_prediction": "0x3fd51d80cca30f39",
+      "new_prediction": "0x3fd51d81390f83eb",
+      "test_locations": [
+        "bessel.rs spot-values unit",
+        "f1_engineering bessel_functions invoke control"
+      ],
+      "provenance": "Original frozen corpus capture identities listed below."
+    },
+    {
+      "reading": "BESSELY(100,1)",
+      "old_prediction": "0xbf94dc7ab72edc1f",
+      "new_prediction": "0xbf94dc7ab5ff838f",
+      "preserved_excel_decimal": "-0.020372311933786909",
+      "provenance": "Existing Excel-labelled17-digit unit test contract; original raw capture not located. Research fixed program and application route agree."
+    },
+    {
+      "reading": "BESSELJ(1e-300,2)",
+      "old_prediction": "0x0000000000000000",
+      "new_prediction": "error:Num",
+      "provenance": "Existing unkeyed bessel.rs::tests::domain_controls_and_known_besselj_underflow_gap Excel-labelled NUM contract; original raw capture not located. Not in the frozen combined corpus/banks or original_capture_records. The finite published program produces nonfinite arithmetic and the existing wrapper returns NUM."
+    }
+  ],
+  "original_capture_records": [
+    {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:15:1",
+      "function": "BESSELJ",
+      "args": [
+        "0x3ffe666666666666",
+        "0x4000000000000000"
+      ],
+      "expected": "0x3fd51d81390f83eb",
+      "actual": "0x3fd51d80cca30f39",
+      "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json"
+    },
+    {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:15:2",
+      "function": "BESSELJ",
+      "args": [
+        "0x3ffe666666666666",
+        "0x4000000000000000"
+      ],
+      "expected": "0x3fd51d81390f83eb",
+      "actual": "0x3fd51d80cca30f39",
+      "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json"
+    }
+  ],
+  "evidence": [
+    "bessel-followup-current-hard/best-predictions.jsonl",
+    "bessel-followup-invoke-after.log",
+    "bessel-followup-existing-contract-replay/best-predictions.jsonl"
+  ],
+  "limits": "Existing unkeyed test-contract provenance remains distinct from a newly acquired or located original raw reading.",
+  "metadata_correction": "Tiny-J NUM is an existing unkeyed test contract, not a located original capture. original_capture_records contains only the actually located J(1.9,2) records. The original follow-up scope has83 numeric records; the distinct invoke table has80 numeric records and0 error records."
+}

@@ -1,0 +1,32 @@
+{
+  "path": "crates/calc-func/tests/witnesses/BESSELJ.json",
+  "recorded_fields_unchanged": true,
+  "changed_predictions": 5,
+  "changes": [
+    {
+      "id": "besj-ho-0021",
+      "expected": "0x3f1f676a4bb3d2ba",
+      "old_prediction": "0x3f1f676a4bb3d2c2"
+    },
+    {
+      "id": "besj-ho-0042",
+      "expected": "0x3d09ada4beb68e5f",
+      "old_prediction": "0x3d09ada4beb68e5a"
+    },
+    {
+      "id": "besj-ho-0062",
+      "expected": "0x3d521244b37a53a8",
+      "old_prediction": "0x3d521244b37a53ad"
+    },
+    {
+      "id": "besj-ho-0073",
+      "expected": "0x37f07a3da3c055db",
+      "old_prediction": "0x37f07a3da3c055d0"
+    },
+    {
+      "id": "besj-ho-0113",
+      "expected": "0x3bef7880f465f2ec",
+      "old_prediction": "0x3bef7880f465f2f9"
+    }
+  ]
+}

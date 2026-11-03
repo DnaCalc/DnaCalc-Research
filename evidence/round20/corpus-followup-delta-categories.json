@@ -1,0 +1,7 @@
+{
+  "gain_error_groups": {
+    "gross_numeric": 21,
+    "last_bits": 10
+  },
+  "rule": "finite number <=16ULP is last_bits; >16ULP gross_numeric; unchanged pass policy"
+}

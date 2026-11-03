@@ -31,6 +31,20 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_corpus_error_sizes_handle_zero_and_extreme_exponents(self):
+        from racer.corpus_cases import error_size
+        self.assertEqual(error_size('0000000000000000', '3ff0000000000000'),
+                         dict(absolute_error='1', relative_error=None))
+        self.assertEqual(error_size('bff0000000000000', '3ff0000000000000'),
+                         dict(absolute_error='2', relative_error='2'))
+        # Both operations overflow if carried out directly in binary64.
+        error = error_size('0000000000000001', '7fefffffffffffff')
+        from decimal import Decimal
+        self.assertGreater(Decimal(error['relative_error']), Decimal('1e630'))
+        error = error_size('ffefffffffffffff', '7fefffffffffffff')
+        self.assertGreater(Decimal(error['absolute_error']), Decimal('3e308'))
+        self.assertEqual(error['relative_error'], '2')
+
     def test_asymptotic_survivor_inventory_rejects_missing_ids_and_changed_axes(self):
         from checker.bessel import asymptotic_inventory
         with tempfile.TemporaryDirectory()as scratch:

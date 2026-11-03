@@ -1,0 +1,198 @@
+{
+  "id": "dc-j9k-r20-bessel-followup-result",
+  "role": "clean-implementer",
+  "status": "Exactly two fixed follow-up programs integrated. Final native engineering10/10, old Bessel units3/3 and targeted soft-x87 invoke1/1 pass. Parent owns full corpus/bank/check/review/publication.",
+  "source_unit": "bessel-followup-r20-unit.json",
+  "source_snapshot": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-source-snapshot.json",
+  "application_revision": "cfab47b9909d454edfe356d9ae985d9dca6fadb4",
+  "guarded_source_stability": "Post-run HEAD stayedcfab47b9 and guarded source diff from that revision was empty.",
+  "program": {
+    "assignment_stores": false,
+    "association": 0,
+    "group_y0_log": false,
+    "helpers": 0,
+    "id": 1000,
+    "polynomial": "strict",
+    "reconstruction": "strict",
+    "reduction": 0
+  },
+  "program_meaning": "One pinned published adaptive J backward program, plus existing complete Y1-high survivor0. No constants, branch or parameter search.",
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "new_exact",
+    "lost_exact"
+  ],
+  "scoped_regions": {
+    "BESSELJ:backward:high": [
+      44,
+      44,
+      0,
+      44,
+      0
+    ],
+    "BESSELJ:backward:low": [
+      28,
+      28,
+      4,
+      24,
+      0
+    ],
+    "BESSELY:1:high": [
+      11,
+      11,
+      0,
+      11,
+      0
+    ]
+  },
+  "scoped_totals": {
+    "all": 83,
+    "exact": 83,
+    "fail": 0,
+    "old_original_exact": 4,
+    "new_exact": 79,
+    "lost_exact": 0
+  },
+  "all_research_rows": {
+    "all": 1073,
+    "exact": 83,
+    "fail": 990,
+    "old_original_exact": 15,
+    "new_exact": 79,
+    "lost_exact": 11,
+    "unsupported": 990,
+    "pass_rate_all_records": 0.07735321528424977
+  },
+  "interpretation": "All11 lost research rows are outside the selected scope and explicitly refused by this research hypothesis. No product regression or complete product pass claim is made.",
+  "current_replay": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-current-hard",
+  "historical_replay": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-hard",
+  "replay_equality": "All1073 prediction records are byte-identical between historical4df60f0f and reboundcfab47b9 runs.",
+  "extra_existing_contract": {
+    "records": 1,
+    "exact": 1,
+    "function": "BESSELY(100,1)",
+    "expected": "0xbf94dc7ab5ff838f",
+    "provenance": "Existing Excel-labelled17-digit unit test reading; original raw capture not located. Separate from83 original scoped records.",
+    "replay": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-existing-contract-replay"
+  },
+  "application_test": {
+    "recorded_distinct_cases": 80,
+    "numeric_cases": 80,
+    "numeric_error_cases": 0,
+    "additional_math_parity_zero_controls": 3,
+    "failing_first_log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-failing-first.log",
+    "failing_first_result": "BESSELJ(1.9,2) old0x3fd51d80cca30f39 differs from unchanged expected0x3fd51d81390f83eb",
+    "additional_existing_test_contracts": 1,
+    "final_cases": "80 distinct original NUMERIC records +1 existing Excel-labelled Y1(100,1) contract +3 mathematical parity/zero controls. The tiny-J NUM case belongs to a separate existing unkeyed unit-test contract, not the frozen records."
+  },
+  "limits": [
+    "Product upper Y admission is not inferred. Existing outer finite/nonpositive/order/flush policy must remain unchanged.",
+    "High J0/J1/Y0 have no complete survivor and are excluded.",
+    "Only the pinned permitted Tier2 source, checked facts, original Excel records and current cleared numeric substrate were used. No forbidden body/history was read.",
+    "No new held-out or preregistration claim."
+  ],
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "model": "Codex, GPT-6 family; runtime model id not exposed"
+  },
+  "independent_I_lead": {
+    "receipt": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/besseli-published-backward-js/summary.json",
+    "decision": "Rejected and stopped:84 eligible records,14exact vs16old,6new/8lost. No source or parameter expansion."
+  },
+  "product_integration": {
+    "base_revision": "cfab47b9909d454edfe356d9ae985d9dca6fadb4",
+    "files": {
+      "crates/calc-func/src/ported/bessel.rs": "f7d2a3f2c54f60e4b395314e12dc9856be470447",
+      "crates/calc-func/src/ported/bessel_rational.rs": "4eaaec070eea1755ae7557e72fe53709524c1bb9",
+      "crates/calc-func/src/ported/mod.rs": "d9dd3b1aa50df9c9e1b8ff42b70c614407dc7d4b",
+      "crates/calc-func/tests/f1_engineering.rs": "364875952720e6e8764420416a1751e0a5598757",
+      "migration/licence-ledger.json": "db41772e86b2aba742564b5ade791df3a8eba8cb",
+      "deploy/notices/ported.txt": "af4c0f0b72d7b3054e84cfa0294e8d664e1827e9"
+    },
+    "same_signature": "Unique original libm::jn call redirected to jn(order:i32,x:f64), both opaque argument strings byte-identical. Caller retains validation, order truncation, flushing, sign and zero policies.",
+    "high_y1": "Fixed source>=8 polynomial branch; no new upper Y admission or selector.",
+    "opaque_receipt": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-opaque-integration.json",
+    "gain_refresh": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-known-gain-refresh.json",
+    "attribution": "Existing full Apache-2.0 text retained; modifications/ledger/docs now name the added published backward body and Y1 high seed.",
+    "I_scope": "No BESSELI code changed; rejected lead stopped."
+  },
+  "targeted_checks": [
+    {
+      "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-failing-first.log",
+      "result": "New invoke test failed first before production changes on J(1.9,2)."
+    },
+    {
+      "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-invoke-after.log",
+      "result": "New80-record invoke test passes after integration."
+    },
+    {
+      "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-engineering-final-native.log",
+      "result": "All10 engineering tests pass on final source, including additional preserved Y1(100,1) reading."
+    },
+    {
+      "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-old-units-after.log",
+      "result": "All3 old Bessel units pass after3 proven prediction refreshes."
+    },
+    {
+      "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-engineering-soft-x87.log",
+      "result": "Targeted final invoke test passes with soft-x87 on Linux. No browser/Windows execution claim."
+    }
+  ],
+  "remaining_with_parent": [
+    "Final Research publication and work-report-20.md"
+  ],
+  "scoped_outcome_types": {
+    "original_records": 83,
+    "numeric": 83,
+    "errors": 0,
+    "distinct_original_test_cases": 80,
+    "distinct_numeric": 80,
+    "distinct_errors": 0
+  },
+  "metadata_correction": "The earlier79numeric/1NUM table count and captured-tiny-J claim were incorrect. All83 scoped original records and all80 distinct original test cases are numeric. BESSELJ(1e-300,2) has only the existing unkeyed Excel-labelled test contract; no original raw capture was located.",
+  "extra_existing_contracts": [
+    {
+      "function": "BESSELY(100,1)",
+      "expected": "0xbf94dc7ab5ff838f",
+      "provenance": "Existing Excel-labelled17-digit unit-test contract; original raw capture not located."
+    },
+    {
+      "function": "BESSELJ(1e-300,2)",
+      "expected": "error:Num",
+      "provenance": "Existing Excel-labelled NUM unit-test contract; original raw capture not located. Not in the frozen combined corpus/banks."
+    }
+  ],
+  "actual_product_validation": {
+    "product_commit": "4cc87cc6",
+    "pushed_merge": "cef521cb",
+    "corpus": {
+      "before": 19679,
+      "after": 19710,
+      "total": 20840,
+      "gains": 31,
+      "losses": 0,
+      "changed_evaluations": 196
+    },
+    "bank": {
+      "before": 3231662,
+      "after": 3231710,
+      "total": 3875522,
+      "gains": 48,
+      "losses": 0,
+      "changed_outputs": 52,
+      "unread": 116
+    },
+    "pinned_predictions_removed": 5,
+    "all_recorded_fields_preserved": true,
+    "check": {
+      "passed": 1440,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 1
+    },
+    "independent_review": "Source/coefficient/opaque-body admissions, all24 corpus sessions and bank/pin receipts verified.",
+    "evidence": "evidence/round20"
+  }
+}

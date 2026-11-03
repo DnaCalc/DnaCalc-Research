@@ -1,0 +1,24 @@
+    Blocking waiting for file lock on artifact directory
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.70s
+     Running tests/acceptance.rs (target/xtask-accept/debug/deps/acceptance-f9953d00942e34a4)
+
+running 1 test
+test hypergeometric_validates_raw_counts_and_admits_an_empty_population ... FAILED
+
+failures:
+
+---- hypergeometric_validates_raw_counts_and_admits_an_empty_population stdout ----
+
+thread 'hypergeometric_validates_raw_counts_and_admits_an_empty_population' (1923402) panicked at apps/dna-onecalc/tests/acceptance.rs:98:13:
+assertion `left == right` failed: =HYPGEOM.DIST(0,0,-0.1,8,FALSE): []
+  left: Some(CalcValue { core: Number(1.0), callable: None })
+ right: Some(CalcValue { core: Error(Num), callable: None })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    hypergeometric_validates_raw_counts_and_admits_an_empty_population
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p dna-onecalc --test acceptance`

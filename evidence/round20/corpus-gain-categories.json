@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "gains": [
+    {
+      "function": "BESSELY",
+      "category": "gross_or_unavailable",
+      "cause": "numeric_value",
+      "cells": 52
+    },
+    {
+      "function": "BESSELJ",
+      "category": "gross_or_unavailable",
+      "cause": "numeric_value",
+      "cells": 31
+    }
+  ],
+  "remaining_category_shifts": [
+    {
+      "before": "gross_or_unavailable",
+      "after": "last_bits_only",
+      "cells": 1
+    }
+  ]
+}

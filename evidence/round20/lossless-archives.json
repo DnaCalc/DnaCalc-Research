@@ -1,0 +1,120 @@
+{
+  "complete": true,
+  "restoration": "gzip -dk <archive> recreates original bytes; executables also need chmod +x",
+  "files": [
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-before",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-before.gz",
+      "original_bytes": 22080320,
+      "original_sha256": "7ed74395f383f8488a226c0524d29b0b48c5943a259db24d1709299e451d7bc3",
+      "archive_bytes": 7855975,
+      "archive_sha256": "a3b42253035eee0432f9a5b08ddf6b153efd4c61ce85ce28a8d0d978b6a859a7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-domain-after",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-domain-after.gz",
+      "original_bytes": 22235592,
+      "original_sha256": "dc12d25922d8647a216d09bbdb65d6105f1d58f679c3a857cbe299e7c7e730ae",
+      "archive_bytes": 7908103,
+      "archive_sha256": "bf3c594699fdc04a7d0c8e0274ac5970eab48b683b0a3235eafd17eb31adbe9b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-pre-bessel",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-pre-bessel.gz",
+      "original_bytes": 22427784,
+      "original_sha256": "66b317aa86fb681cb53518918af5860bb6c40ddac1862ba885089ecc9990c32d",
+      "archive_bytes": 7986642,
+      "archive_sha256": "b1816ae5e3a111b8451a27d332d794b6809200c6708408103590c101e864e6cc"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/BINOM.DIST-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/BINOM.DIST-bank-before.jsonl.gz",
+      "original_bytes": 27135695,
+      "original_sha256": "571f2294f9a8e4e05e4617403fb184dd9d945b58207c090d820ef7ee13c95e37",
+      "archive_bytes": 1218349,
+      "archive_sha256": "865af743de93d4f4d83b4219b0e38d1ae59d00505ae0eb955db3154eae50a634"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/POISSON.DIST-bank-before.jsonl.gz",
+      "original_bytes": 18463451,
+      "original_sha256": "361dadf1e3535e83db7286661c8c503c30ffce78d91a04fa5672c7a8e55ea4a2",
+      "archive_bytes": 1210640,
+      "archive_sha256": "4bce92f4eaa31d1a7130c94efe2d954898858edf67ba6ac5296c49d4dd4ffbac"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/HYPGEOM.DIST-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/HYPGEOM.DIST-bank-before.jsonl.gz",
+      "original_bytes": 1568151,
+      "original_sha256": "f6e8a661d416784c36cb152200b6e218962d39de2f15482c8b3a7d374aae4b06",
+      "archive_bytes": 36712,
+      "archive_sha256": "af79c0c6a9785c11f2ed540771ff21582b4cb791fb8fb2ea0b0b02ed86b1ae95"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/NEGBINOM.DIST-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/NEGBINOM.DIST-bank-before.jsonl.gz",
+      "original_bytes": 208134,
+      "original_sha256": "d9423f9d09b14867d1068c3c6eb3bc87d395d47c31904cbc2bfc6cb1e41e44a7",
+      "archive_bytes": 6346,
+      "archive_sha256": "42ac61a16283d81dad73df47ebb173cc599c1b54e4af9edb7981af8689ce869c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/BESSELI-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/BESSELI-bank-before.jsonl.gz",
+      "original_bytes": 469952,
+      "original_sha256": "ce6af5c6c7c7c8d73dd4cb4ccfd8e15b011dde3c0bf9d35cebfe33985fd7b059",
+      "archive_bytes": 47739,
+      "archive_sha256": "fca532e94008c59ee5f90a6f5c932d636223b8f376003a5e8fca13a2d9b08139"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/LINEST-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/LINEST-bank-before.jsonl.gz",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_bytes": 45,
+      "archive_sha256": "f6cbe31996f108c9f0c589a58c2241559903812daf23cdf9404a26165efc4ad3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/LOGEST-bank-before.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/LOGEST-bank-before.jsonl.gz",
+      "original_bytes": 225616,
+      "original_sha256": "68179e543a84ba9fac08c16411b08a436e0cbee86bc072021af65a256aba2f3b",
+      "archive_bytes": 16562,
+      "archive_sha256": "6c03011ac65dd4cf2b086ed67a11026509609446b87969b060836e56dad2cec0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-inputs.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-inputs.jsonl.gz",
+      "original_bytes": 27808398,
+      "original_sha256": "6ec642fdf3c8109cc1a4ddecd5fdaec1f3823cd78ccd4ddb9a0198ba6aa34ef3",
+      "archive_bytes": 1232491,
+      "archive_sha256": "365db53454e580802a2a48aad74ec26b0e9155a4ea7a2c1a5d6fdbcf0dbacfc2"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/cdf-inputs.jsonl",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/cdf-inputs.jsonl.gz",
+      "original_bytes": 28050781,
+      "original_sha256": "a3fbf25227abfd87e5ba274ec4e1d64c3326603c45343aedc6755261e53bacaf",
+      "archive_bytes": 1239748,
+      "archive_sha256": "a9dca6f90d935f0122cc3da8038f71fb99f7f3923e0633122c4930de75d62fca"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-low-bessel-after",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-low-bessel-after.gz",
+      "original_bytes": 22431856,
+      "original_sha256": "6a734b8b7e8c4f37316accffa31ff3907e917a9f1ee710a8d50fb457e40b8028",
+      "archive_bytes": 7988319,
+      "archive_sha256": "08f9235801b5d9f2130c6f1b4165d24a010b0785dcaf7638ce98359f42bbcc9a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-pre-followup",
+      "archive": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-pre-followup.gz",
+      "original_bytes": 22437184,
+      "original_sha256": "130f09b8d7d962d8a50d52796f9ba2b7237cb1207278099afd333e83a633f546",
+      "archive_bytes": 7991236,
+      "archive_sha256": "9f15abe2155c697c94d41d3b2f4e35efdbd4fdc072cf96dc875c851bc4d1d233"
+    }
+  ],
+  "uncompressed_bytes": 170673874,
+  "compressed_bytes": 28759352
+}

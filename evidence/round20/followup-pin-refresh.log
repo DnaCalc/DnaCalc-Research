@@ -1,0 +1,6 @@
+xtask witness: 120 readings of 1 bank files
+xtask witness: BESSELJ                     120 rows        5 matched  worst 802366603136 ULP  gross
+xtask witness: 1 functions, 0 exact on every counted row; 5 of 120 rows matched, 115 failed (mismatched, refused or unread; 0 unread)
+xtask witness: 0 inputs read differently: 0 across builds or platforms, 0 within one environment
+xtask witness: refreshed 5 calculated predictions in 1 original pinned sets; all recorded fields unchanged
+xtask witness: wrote crates/calc-func/witness-status.tsv (pinned)

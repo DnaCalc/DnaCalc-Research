@@ -1,0 +1,103 @@
+{
+  "review_id": "dc-j9k-r20-publication-review",
+  "reviewer": "/root/review_r20_domains",
+  "reviewed_utc": "2026-11-03T15:36:26.373024+00:00",
+  "decision": "approved",
+  "scope": "Completed R20 product/distribution/capture checkpoint only. Further full-I discovery remains RAW-only and unadopted; no associated gain is approved.",
+  "main_tip_at_review": "1172f4cd6cec195f2018116fa3cfb4c7ca0cbfdf",
+  "main_numeric_checkpoint": "cef521cb97b3967f1f0f2c6be60cb1a23c64b711",
+  "main_source_unchanged_from_numeric_checkpoint": true,
+  "code_review": {
+    "changed_research_files": [
+      "racer/build.rs",
+      "racer/src/main.rs",
+      "racer/src/discrete.rs",
+      "racer/src/bessel_rational.rs",
+      "racer/corpus_cases.py",
+      "checker/questions_r13.py",
+      "checker/test_exact.py"
+    ],
+    "source_unit_sha256": "282bea1a71449e0b5891e02d5da22b044074720729891a35840a75d5c9fcade3",
+    "current_source_hashes_verified": 72,
+    "working_blob_guard": "Complete changed/untracked guarded-path set must equal declared paths, then every content Git blob must match. Revision-only units reject untracked guarded files.",
+    "distribution_family": "9000 fixed labels independently reconstructed; all9000 unique first contradictions reconcile with unchanged inputs.46719 baseline-control scope. No fitted coefficients/row selectors; conditional shared leaves and lack of full independent numerical kill replay are explicit.",
+    "Bessel": "Permissive source coefficients and fixed arithmetic/body reviewed; low-seed and follow-up opaque reconstruction passed. Full Apache licence and ledger verified. Independent program scopes exclude unsupported records; no global parity or held-out claim.",
+    "error_sizes": "All1151 original mismatches independently reconciled across69functions:1136 finite numeric(810within16ULP+326larger),15nonnumeric/capture. Signed-coordinate ULP and18digit relative diagnostics independently replayed with Decimal; expected-zero relative error remains undefined. Classification never changes verdicts.",
+    "R18_scorer": "Recorded Date1904=false is required before explicit1900 invocation; valid22/44score is independently reconciled. Previous no-date output is preserved and explicitly invalidated."
+  },
+  "artifact_review": {
+    "index_sha256_before_adding_this_review": "33d382f67b8b551578cb4a59f37c9a865769ceaf6b8bc9507afa748ce0eadd45",
+    "result_sha256_before_review_status_update": "fefadfa1ca6acf3dcc7a3e9ad6ce26091be7069015f4bbcf95e4e53b5b47904e",
+    "published_entries_verified": 90,
+    "source_units_verified": 6,
+    "packet_files_verified": 10,
+    "raw_receipts_verified": 10,
+    "historical_distribution_archive": "All22 original source hashes and embedded unit bytes match round20-domain-unit.json.",
+    "Evidence": "All132 committed probe/canonical blobs at a22dcd0f independently byte-matched to received original bundles using git show."
+  },
+  "metrics": {
+    "corpus": {
+      "before": 19596,
+      "after": 19710,
+      "total": 20840,
+      "gains": 114,
+      "losses": 0,
+      "changed_evaluations": 532,
+      "evaluations": 63783,
+      "gross_numeric_gains": 104,
+      "last_bits_gains": 10,
+      "inclusive_failures": 1130
+    },
+    "fixed_bank": {
+      "before": 3230830,
+      "after": 3231710,
+      "total": 3875522,
+      "gains": 880,
+      "losses": 0,
+      "inclusive_failures": 643812,
+      "unread": 116
+    },
+    "intake": {
+      "added_inputs": 151,
+      "added_matched": 35,
+      "added_failed": 116,
+      "shared_inputs": 3875406,
+      "shared_gains": 0,
+      "shared_losses": 0,
+      "shared_outputs_changed": 0,
+      "shared_answers_changed": 0,
+      "selected_metadata_changes": 46,
+      "after_matched": 3231745,
+      "after_total": 3875673,
+      "after_failed": 643928,
+      "unread": 116
+    },
+    "received": {
+      "R18_raw_calls": 44,
+      "R18_matched": 22,
+      "R19_raw_calls": 219,
+      "R19_distinct_inputs": 153,
+      "R19_rechecks": 66,
+      "R19_matched": 33
+    }
+  },
+  "checks": {
+    "main": "1440 passed,0failed,5ignored,1notrun at mergedcef521cb. Later note/clean checks pass build/provenance with0touched tests; no claim those reran1440 tests.",
+    "research_Rust": "77passed,0failed,2ignored",
+    "research_Python": "86passed plus1504exhaustive lattice controls",
+    "UBS": "Rust scans complete/0critical; Python SQL detector remains partial, explicitly disclosed."
+  },
+  "preservation": "Independent pin comparisons confirmed only14 HYPGEOM calc_func removals and5 BESSELJ calc_func removals; every captured answer/input/identity/metadata field is unchanged. Existing unkeyed Bessel test contracts are explicitly separate from located raw observations.",
+  "corrections_resolved": [
+    "80captured numeric invoke cases and0captured NUM cases; tiny-J NUM is an existing unkeyed contract, not a frozen captured record.",
+    "R18 scoring explicitly uses recorded1900date system; invalid diagnostic not used in totals.",
+    "Model-search exposure is qualified as pre-intake; later readings are separate new coverage.",
+    "First intake attempt rejected by exact Evidence-state guard; stable cleana22dcd0f rerun alone supplies totals."
+  ],
+  "limitations": [
+    "No complete independent numeric replay of9000distribution first kills was performed or claimed.",
+    "R19 domain review proves observed local adjacent endpoints under declared search assumption, not global monotonicity or fitted cutoffs.",
+    "Linux native/targeted soft-x87 evidence does not claim a Windows/browser sweep.",
+    "Review result/index hashes name the checkpoint before insertion of this receipt and approval-status metadata update; numerical sources/metrics must remain unchanged."
+  ]
+}

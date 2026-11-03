@@ -1,0 +1,8 @@
+{
+  "negative_control": "Declared blob deliberately changed to all zeros while source stayed fixed.",
+  "expected_rejection": true,
+  "observed": "build.rs rejects mismatched frozen working blob for bessel.rs",
+  "log_sha256": "604906a9fcfad717763e996d79fc1d68cb1efd15e1eaff8411e290d4d60824f0",
+  "initial_attempt": "First command used wrong package ID and did not exercise guard. Corrected command uses symbolic-racer.",
+  "positive_control": "Correctly bound integrated round20-unit.json passes77 Rust tests,0failed,2ignored (research-rust-publish.log)."
+}

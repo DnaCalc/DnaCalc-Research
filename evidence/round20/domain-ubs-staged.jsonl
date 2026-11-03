@@ -1,0 +1,13 @@
+ℹ Preparing shadow workspace from Git index (3 files)
+ℹ Scanning shadow workspace at /tmp/tmp.GVOVNgPepS/git_scan
+UBS Meta-Runner v5.5.26  2026-11-03 15:29:54
+Project: /home/ubuntu/projects/DnaCalc/DnaCalc
+Format:  jsonl
+Detected: rust
+Scanning rust...
+Finished rust (2s)
+✗ FINDINGS_MERGE_ERROR: Could not assemble per-finding results; scanner summaries are preserved, but the findings ledger is incomplete
+findings-merge: combined summary missing or empty: /tmp/tmp.GVOVNgPepS/combined.json
+✗ FINDINGS_MERGE_ERROR: Could not assemble per-finding results; scanner summaries are preserved, but the findings ledger is incomplete
+findings-merge: combined summary missing or empty: /tmp/tmp.GVOVNgPepS/combined.json
+Error (exit 1) line 9731: read -r crit warn < <(jq -r '[.totals.critical // 0, .totals.warning // 0] | @tsv' "$COMBINED_JSON_FILE" 2> /dev/null || echo "0 0")

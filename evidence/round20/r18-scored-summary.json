@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "total": 44,
+  "matched": 22,
+  "failed": 22,
+  "functions": {
+    "CONCAT": {
+      "total": 15,
+      "matched": 10,
+      "failed": 5
+    },
+    "YIELD": {
+      "total": 29,
+      "matched": 12,
+      "failed": 17
+    }
+  },
+  "executable_sha256": "700e1556dff6ba301431dceca0aed80df44e70920468aad9a3e3f12c05b02303",
+  "observations_sha256": "a83d1bea9c6a75c9bed6ac3875e6e27e20969c30f8613841f90814be3bf9204a",
+  "intake_sha256": "ac4eb1b182d2ca87f8d44d3d281586d986f29c592a8433ec2dc036d50b499cb1",
+  "limits": "Every supplied observation is scored, including repeated inputs. Existing registered invoke route; typed failures count as failures. Value2 read-back does not expose effective callee inputs. Predictions never become answers."
+}

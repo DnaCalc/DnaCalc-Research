@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "unit": "round20-domain-unit.json",
+  "executable_sha256": "d5c1aa8c4f8cfe04c5aac1e99bf1232729f5268c6231abb08cf015e69b3a6488",
+  "files_sha256": {
+    "round20-domain-unit.json": "0a47ff1bc1fa3029b65351bde8688477c6ddf5804a58f126d1ec948d789288c9",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/domain-binomial-source.tar.gz": "51eb656632f5660b5df62d49f517cf484416e0cad48ee1f52c2c6fdf5e8e1126",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-inputs.jsonl": "6ec642fdf3c8109cc1a4ddecd5fdaec1f3823cd78ccd4ddb9a0198ba6aa34ef3",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/cdf-inputs.jsonl": "a3fbf25227abfd87e5ba274ec4e1d64c3326603c45343aedc6755261e53bacaf",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-direct/profiles.json": "a7fc1a72152ed7e0d2b2ed6ab50ccbed58af8d6061c950b437f790b0c54cf40d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-direct/first-kills.jsonl": "5f912ef1c60fca52f89906f0591adaa21e9beb38c4c7c8cdf4283c3d95e5f093",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-direct/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-direct/scope.json": "143d9fa5c59b6bf102b32183ad9080112d6f5c3a3285cdfd8a20caeff781c6c6",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/binomial-direct/summary.json": "797fe8b5715f5c9487e238bb762bcb169f9f1a864d200878302ad3777b70b528",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/discrete-cdf/first-kills.json": "8330b368d254ed1dd7ea9c25e69bba271b370ec4aec4257f79118a38eff3c918",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/discrete-cdf/scope.json": "8929de66b2ec6eaa06fd91a50c40a053ac5aea4e8776de1750b869c59a02e77f",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/discrete-cdf/summary.json": "2e20c61a81149a7ce27cc61f2bf7a94e4fec87abcaa938125e7ba161f5d6d19e"
+  },
+  "scope": "Native finite program exclusions only; current Stirling and near-mean deviance leaves remain conditional. 46719 baseline mass controls reproduce current arithmetic. No full independent numerical elimination replay claimed."
+}

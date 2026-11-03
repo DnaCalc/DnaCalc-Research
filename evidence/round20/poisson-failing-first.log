@@ -1,0 +1,60 @@
+   Compiling simdutf8 v0.1.5
+   Compiling web-sys v0.3.94
+   Compiling fnv v1.0.7
+   Compiling gimli v0.33.0
+   Compiling bytecheck v0.8.3
+   Compiling rend v0.5.4
+   Compiling rkyv v0.8.18
+   Compiling cranelift-codegen v0.133.3
+   Compiling oxvba-runtime v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling calcvba-host-api v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-com v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-bundle v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-hal v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-lib v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-oxir v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-eval v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-symbol v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling gloo-utils v0.2.0
+   Compiling tachys v0.2.19
+   Compiling gloo-net v0.6.0
+   Compiling wasm-streams v0.5.0
+   Compiling oxvba-bind v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling server_fn v0.8.13
+   Compiling oxvba-rt-abi v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-vm3 v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling cranelift-native v0.133.3
+   Compiling cranelift-module v0.133.3
+   Compiling cranelift-frontend v0.133.3
+   Compiling cranelift-jit v0.133.3
+   Compiling oxvba-jit v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling oxvba-embed v0.1.2 (https://github.com/DnaCalc/OxVba.git?rev=953ece7f8aadf158e175ca36439171ba6ce5f444#953ece7f)
+   Compiling calc-vba v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-vba)
+   Compiling leptos_dom v0.8.8
+   Compiling leptos_server v0.8.8
+   Compiling leptos v0.8.19
+   Compiling dna-formula-ui v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-formula-ui)
+   Compiling dna-onecalc v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/apps/dna-onecalc)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 07s
+     Running tests/acceptance.rs (target/xtask-accept/debug/deps/acceptance-f9953d00942e34a4)
+
+running 1 test
+test poisson_validates_raw_counts_before_the_zero_count_exponential ... FAILED
+
+failures:
+
+---- poisson_validates_raw_counts_before_the_zero_count_exponential stdout ----
+
+thread 'poisson_validates_raw_counts_before_the_zero_count_exponential' (1923399) panicked at apps/dna-onecalc/tests/acceptance.rs:75:17:
+assertion `left == right` failed: =POISSON.DIST(0,-1,FALSE): []
+  left: Some(CalcValue { core: Error(Num), callable: None })
+ right: Some(CalcValue { core: Number(2.718281828459045), callable: None })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    poisson_validates_raw_counts_before_the_zero_count_exponential
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p dna-onecalc --test acceptance`

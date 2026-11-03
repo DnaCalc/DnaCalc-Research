@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "total": 219,
+  "matched": 33,
+  "functions": {
+    "BESSELI": {
+      "total": 32,
+      "matched": 24,
+      "failed": 8
+    },
+    "BESSELJ": {
+      "total": 136,
+      "matched": 0,
+      "failed": 136
+    },
+    "BESSELY": {
+      "total": 51,
+      "matched": 9,
+      "failed": 42
+    }
+  },
+  "executable_sha256": "700e1556dff6ba301431dceca0aed80df44e70920468aad9a3e3f12c05b02303",
+  "limits": "All219 raw calls, including66 rechecks. Canonical original operands/raw worker/frozen input lineage verified separately. Discovery observations, not new implementation gains."
+}

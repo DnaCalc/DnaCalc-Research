@@ -1,0 +1,48 @@
+{
+  "scanner_totals": {
+    "type": "totals",
+    "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+    "status": "partial",
+    "failed_modules": [
+      {
+        "language": "python",
+        "status": "partial",
+        "module_error": "ANALYZER_ERROR",
+        "message": "Python analysis did not complete: detector sql_injection: SQLFlowLimit: SQL list mutation aliasing is unsupported; analysis is incomplete"
+      }
+    ],
+    "files": 8,
+    "critical": 0,
+    "warning": 595,
+    "info": 401,
+    "timestamp": "2026-11-03 17:22:04",
+    "error": "environment",
+    "reason": "module-failed",
+    "exit_code": 2,
+    "message": "One or more scanner modules could not run (tooling/dependency problem, not a code-quality failure): python"
+  },
+  "warning_groups": {
+    "py.comparison.type-equality": 1,
+    "py.perf.io-in-loop": 17,
+    "py.regex.nested-quantifiers": 7,
+    "py.parsing.json-loads-no-try": 30,
+    "py.type-equality": 1,
+    "rust.ownership.unwrap-expect": 92,
+    "rust.ownership.unreachable-macro": 9,
+    "rust.collections.clone-in-loop": 1,
+    "rust.panic.assert-macros": 29,
+    "rust.panic.direct-indexing": 389,
+    "rust.parsing.parse-unwrap": 2,
+    "rust.parsing.serde-unwrap": 7,
+    "rust.parsing.env-var-unwrap": 1,
+    "rust.perf.string-alloc-in-loop": 9
+  },
+  "triage": {
+    "research_inputs": "Offline trusted recorded captures. Malformed/missing JSON, IDs or unsupported variants abort; unwraps/assertions/direct indexing enforce frozen shapes and programs rather than synthesize a result. All outcome failures remain counted.",
+    "fixed_rust_families": "Profile indices originate from enumerated fixed bounded ranges; arrays/polynomial coefficients are fixed nonempty source constants. Unreachable variants are rejected malformed internal profiles. No request-driven array index in product.",
+    "io_and_allocation": "Intentional per-capture hashing and finite program enumeration. No service endpoint; loops are bounded by local frozen evidence and fixed programs.",
+    "regex": "Existing local formula recognizers; input sizes are bounded repository formula strings. Potential nested-regex warnings are retained, not asserted as a proved linear-time implementation.",
+    "type_equality": "Exact built-in types are used deliberately for expected-value/schema validation (bool is not int)."
+  },
+  "limits": "Python SQL detector fails with unsupported list-mutation aliasing in existing code. Doctor reports environment good; this remains a partial Python scan, not a clean full-scan claim. Rust scan completed with0critical. Read-only code/honesty review is separate."
+}

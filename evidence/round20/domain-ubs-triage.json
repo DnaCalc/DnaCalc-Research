@@ -1,0 +1,21 @@
+{
+  "complete_diff_scan": true,
+  "critical": 0,
+  "warnings": 190,
+  "rules": {
+    "rust.ownership.unwrap-expect": 57,
+    "rust.ownership.panic-macro": 5,
+    "rust.collections.clone-in-loop": 3,
+    "rust.panic.assert-macros": 89,
+    "rust.panic.direct-indexing": 26,
+    "rust.parsing.parse-unwrap": 1,
+    "rust.parsing.serde-unwrap": 1,
+    "rust.perf.string-alloc-in-loop": 8
+  },
+  "triage": "Every changed-line finding is Session::new(...).unwrap(), an intentional test assertion or a bounded test formula string allocation. Remaining warnings concern existing whole-file code and are not new findings. No changed numerical validation line has a warning.",
+  "staged_scan": "UBS findings merge failed: combined summary missing or empty. No clean staged scan is claimed. The prior complete --diff scan and source review are the evidence.",
+  "input_sha256": {
+    "domain-ubs.jsonl": "6c177e6768a4dcbffa6c0f203ec6971d100c9f38274c55ea608f3117863a1525",
+    "domain-ubs-staged.jsonl": "182aae6c234d7e559930e7941737408ceb05dfb7c5be305fac77991817ca1f5a"
+  }
+}

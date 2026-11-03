@@ -1,0 +1,27 @@
+{
+  "method": "Unique libm::jn callee replaced with same-signature licensed helper; both original argument strings remain opaque and byte-identical. One Y1>=8 branch inserted after its approved private signature. No other production bytes changed at this step.",
+  "before_sha256": "91b252305834c1f1f073f87ef1a94d92f93ea6b1b9bc247fc4d7c6930ed7fecc",
+  "after_numerical_dispatch_sha256": "7dac1f00be290ee61489a0d22ee64ba1773359dfe319688960059bf985bbbc35",
+  "reconstruction_sha256": "91b252305834c1f1f073f87ef1a94d92f93ea6b1b9bc247fc4d7c6930ed7fecc",
+  "all_original_bytes_reconstruct": true,
+  "opaque_old_argument_sha256": [
+    "30d8a9dd186826d5127f7408d48f616ccde0d60c315a91c226071907c389f269",
+    "8ab287df005779028b2975377738b6742880b3f1beade5359ee0fb8b3e4d530a"
+  ],
+  "old_callee": "libm::jn",
+  "new_callee": "super::bessel_rational::jn",
+  "y1_insertion": "\n    if x.0 >= 8.0 {\n        let value = super::bessel_rational::y1_large(x.0);\n        return if value.is_finite() { Ok(D::new(value)) } else { Err(WorksheetErrorCode::Num) };\n    }\n",
+  "outer_policy": "All existing order, magnitude, sign, zero, flushing and nonfinite admission remains outside these unchanged call arguments and fallback bytes. No new upper Y admission rule.",
+  "before_executable": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/application-pre-followup",
+    "sha256": "130f09b8d7d962d8a50d52796f9ba2b7237cb1207278099afd333e83a633f546"
+  },
+  "separate_comment_test_edits": {
+    "source_description": "Names new high Y1 and published backward delegation; retained seed and forward fallbacks stated separately.",
+    "before_sha256": "7dac1f00be290ee61489a0d22ee64ba1773359dfe319688960059bf985bbbc35",
+    "after_sha256": "1352aee508e2666164386537538facccd11fbfffed1616f2015651f388941f99",
+    "prediction_edits": 3,
+    "reversing_all_declared_edits_sha256": "91b252305834c1f1f073f87ef1a94d92f93ea6b1b9bc247fc4d7c6930ed7fecc",
+    "all_original_bytes_reconstruct": true
+  }
+}

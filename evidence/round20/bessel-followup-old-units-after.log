@@ -1,0 +1,11 @@
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [optimized + debuginfo] target(s) in 13.55s
+     Running unittests src/lib.rs (target/xtask-accept/debug/deps/calc_func-81f99a069196e5e4)
+
+running 3 tests
+test ported::bessel::tests::spot_values_record_exact_controls_and_known_gaps ... ok
+test ported::bessel::tests::besseli_series_mathematical_controls ... ok
+test ported::bessel::tests::domain_controls_and_known_besselj_underflow_gap ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 430 filtered out; finished in 0.04s
+

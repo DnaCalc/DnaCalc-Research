@@ -28,8 +28,10 @@ def score_readings(packet, results, executable, output):
         path = results/batch['reading']
         require(sha(path) == batch['reading_sha256'], 'reading changed before scoring')
         doc = read(path)
+        require(doc['capture_provenance']['calculation_settings'].get('Date1904') is False,
+                'scorer supports the recorded 1900 date system only')
         prediction = output/f'prediction-{i:02d}.jsonl'
-        subprocess.run([str(executable), 'invoke-inputs', str(path), str(prediction)], check=True,
+        subprocess.run([str(executable), 'invoke-inputs', str(path), str(prediction), '1900'], check=True,
                        timeout=300)  # ubs:ignore — explicit compiled executable and argv, no shell; binary hash bound below
         actuals = records(prediction)
         require(len(actuals) == len(doc['witnesses']), 'missing calculated result')
@@ -94,6 +96,13 @@ def check_readings(packet, results, output):
     elif manifest.get('format') == 'dnacalc-research-questions-r16/1':
         packet_round, expected_calls, expected_batches = 16, 250, 13
         require(manifest['scalar_calls'] == expected_calls, 'R16 packet scope differs')
+        batch_list = read(packet/'batches.json')
+        file_hashes = manifest['files_sha256']
+    elif manifest.get('format') == 'dnacalc-research-questions-r18/1':
+        packet_round, expected_calls, expected_batches = 18, 44, 2
+        require(manifest['scalar_calls'] == expected_calls and
+                manifest['calls_by_function'] == {'YIELD': 29, 'CONCAT': 15},
+                'R18 packet scope differs')
         batch_list = read(packet/'batches.json')
         file_hashes = manifest['files_sha256']
     elif manifest.get('calls') == 236 and manifest.get('calls_by_function') == {
@@ -166,7 +175,7 @@ def check_readings(packet, results, output):
             require(environment['excel_bitness'] == bitness, 'environment bitness differs')
         count = batch['calls']
         frozen_packet_predictions = None
-        if packet_round in (15, 16):
+        if packet_round in (15, 16, 18):
             frozen_packet_predictions = records(packet/f'application-predictions-{function}.jsonl')
             require(len(frozen_packet_predictions) == count, 'frozen packet prediction coverage differs')
         require(all(len(rows) == count for rows in (request['witnesses'], doc['witnesses'],

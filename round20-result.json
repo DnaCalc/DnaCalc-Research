@@ -1,0 +1,152 @@
+{
+  "round": 20,
+  "round_complete": false,
+  "started_utc": "2026-11-03 12:58:14 UTC",
+  "main_checkpoint": "cef521cb97b3967f1f0f2c6be60cb1a23c64b711",
+  "product_commits": [
+    "f1feb925",
+    "4df60f0f",
+    "4cc87cc6"
+  ],
+  "main_checkpoint_pushed": true,
+  "corpus": {
+    "before": 19596,
+    "after_low_seeds": 19679,
+    "total": 20840,
+    "own_gains": 114,
+    "own_losses": 0,
+    "after_low_inclusive_failures": 1161,
+    "after": 19710,
+    "inclusive_failures": 1130,
+    "failures": {
+      "mismatched": 1037,
+      "refused": 5,
+      "missing": 1,
+      "external_links": 73,
+      "circular_rule": 14
+    },
+    "gross_numeric_gains": 104,
+    "last_bits_gains": 10,
+    "unchanged_formula_inventory": true,
+    "changed_evaluation_values": 532
+  },
+  "bank": {
+    "before": 3230830,
+    "after": 3231710,
+    "total": 3875522,
+    "own_gains": 880,
+    "own_losses": 0,
+    "unread": 116,
+    "inclusive_failures": 643812,
+    "followup_gains": 48,
+    "followup_changed_outputs": 52
+  },
+  "mismatch_inventory": {
+    "before": 1151,
+    "last_bits": 810,
+    "larger_numeric": 326,
+    "other": 15,
+    "functions": 69,
+    "table": "evidence/round20/per-function-before.tsv",
+    "cells": "evidence/round20/mismatches-before.tsv",
+    "after": {
+      "mismatches": 1037,
+      "last_bits": 801,
+      "larger_numeric": 221,
+      "other": 15
+    }
+  },
+  "parked": {
+    "annuity": "CUMPRINC/PPMT/IPMT/CUMIPMT: zero full numerical-program survivors across rounds16-19; no structurally new hypothesis this round.",
+    "variance": "Repeated zero producer survivors; R19 latent consumer bounds do not identify a producer. No new producer hypothesis this round.",
+    "GEOMEAN": "Repeated zero complete product/root programs through R19. No new producer hypothesis this round."
+  },
+  "distribution_studies": {
+    "direct_programs": 9000,
+    "direct_native_survivors": 0,
+    "cdf_programs_per_function": 5,
+    "cdf_survivors": 0,
+    "independent_full_numeric_kill_replay": false
+  },
+  "packet": {
+    "calls": 44,
+    "path": "/home/ubuntu/codex-runs/excel-questions-r20",
+    "new_excel_answers": 0
+  },
+  "followup": "Fixed published adaptive J backward start and high Y1 seed: actual corpus+31/-0, original bank+48/-0. Full check1440pass/0fail on mergedcef521cb and read-only source/corpus/bank/pin reviews pass.",
+  "still_open": [
+    "All1037 remaining corpus mismatches and5refused+1missing+73external+14circular nonpasses.",
+    "R18 answers retain YIELD near-par inversion/text failures; R19 establishes local adjacent J/Y domain brackets but no global cutoff or high numerical program.",
+    "Global Bessel high J0/J1/Y0, annuity, variance, GEOMEAN and other distribution kernels remain divergent."
+  ],
+  "source_split": {
+    "discrete": "root implementer; existing cleared body/Tier1 facts only",
+    "bessel": "root analyst after restricted search-snippet exposure; read-only checker and fresh-history clean implementer; pinned permissive SheetJS source only was ported",
+    "permissive_revision": "SheetJS/bessel 2e2331329891dc5c16bda3461db0b9fe590ff2e9 bessel.js, Apache-2.0",
+    "new_structural_hypothesis": "Published adaptive backward start, rescaling and normalization, absent from previous fixed-margin family. No free parameter or fitted constant."
+  },
+  "checks": {
+    "python": {
+      "passed": 86,
+      "exhaustive_lattice_controls": 1504
+    },
+    "main": {
+      "commit": "cef521cb",
+      "passed": 1440,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 1
+    },
+    "review": "Approved independent read-only source, complete corpus/bank/pin, all artifact/source hashes, audited R18/R19 captures and stable coverage intake. evidence/round20/review-r20-publication.json",
+    "platform_limits": "Linux native and targeted soft-x87 tests; browser/Windows sweep not run",
+    "rust": {
+      "passed": 77,
+      "failed": 0,
+      "ignored": 2
+    },
+    "ubs": "Main Rust scans complete/0critical; Research Rust complete/0critical, Python partial because existing SQLFlowLimit detector does not support list mutation aliases. No complete Python scan claim."
+  },
+  "restricted_checkout_files_opened_or_edited": false,
+  "evidence_checkpoint": "a22dcd0f",
+  "evidence_pushed": true,
+  "received_packets": {
+    "r18": {
+      "raw_calls": 44,
+      "current_matched": 22,
+      "failed": 22,
+      "indexed_hashes_verified": 42
+    },
+    "r19_domains": {
+      "raw_calls": 219,
+      "distinct_inputs": 153,
+      "rechecks": 66,
+      "current_matched": 33,
+      "failed": 186,
+      "indexed_hashes_verified": 54,
+      "local_adjacent_brackets": 11
+    },
+    "unread": 0,
+    "changed_inputs": 0,
+    "evidence_commit": "a22dcd0f",
+    "bank_coverage": {
+      "added_inputs": 151,
+      "added_matched": 35,
+      "added_failed": 116,
+      "shared_gains": 0,
+      "shared_losses": 0,
+      "shared_outputs_changed": 0,
+      "shared_answers_changed": 0,
+      "selected_metadata_changes": 46,
+      "after_matched": 3231745,
+      "after_total": 3875673,
+      "after_failed": 643928,
+      "unread": 116
+    }
+  },
+  "no_gain_followup": "The fixed source low J forward branch matches11/11 records already matched by the current application; no change. I backward lead loses8 earlier matches and is rejected.",
+  "checkpoint_complete": true,
+  "ongoing_followup": "Complete published I seed/body under worksheet arithmetic: unadopted discovery, no shared numerical source edits and no gains claimed.",
+  "main_tip": "1172f4cd",
+  "main_tip_pushed": true,
+  "tracker_note": "1172f4cd records complete core checkpoint; pending full-I discovery does not claim gains."
+}

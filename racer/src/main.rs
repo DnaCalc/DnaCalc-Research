@@ -10,9 +10,12 @@ mod ported {
 mod annuity;
 mod annuity_early;
 mod boundary;
+mod bessel_rational;
 mod cumulative;
 mod cumulative_balance;
 mod dsl;
+#[cfg(discrete_audit)]
+mod discrete;
 mod enumerate;
 mod eval;
 mod identity;
@@ -376,6 +379,18 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("bessel-rational-followup") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_followup::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_followup::<Hard>(&a[2], &a[3]),
+        },
+        Some("bessel-rational-fixed") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_fixed::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_fixed::<Hard>(&a[2], &a[3]),
+        },
+        Some("bessel-rational") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::run::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::run::<Hard>(&a[2], &a[3]),
+        },
         Some("variance-prepare") => variance::prepare(&a[2], &a[3]),
         Some("variance-controls") => variance::controls(&a[2], &a[3]),
         Some("variance") => match a.get(5).map(String::as_str) {
@@ -526,6 +541,13 @@ fn main() {
             }
         }
         Some("precision-test") => eval::precision_controls(),
+        #[cfg(discrete_audit)]
+        Some("binomial-direct") => match a.get(4).map(String::as_str) {
+            Some("soft") => discrete::run::<Soft>(&a[2], &a[3]),
+            _ => discrete::run::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(discrete_audit)]
+        Some("discrete-cdf") => discrete::cdf(&a[2], &a[3]),
         Some("arithmetic-reference-controls") => eval::reference_controls(&a[2]),
         Some("normal-cdf") => match a.get(6).map(String::as_str) {
             Some("soft") => normal::run::<Soft>(&a[2], &a[3], &a[4], &a[5], false, false, false),

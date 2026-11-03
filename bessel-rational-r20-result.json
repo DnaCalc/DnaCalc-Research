@@ -1,0 +1,178 @@
+{
+  "id": "dc-j9k-r20-bessel-rational-result",
+  "role": "clean-implementer",
+  "status": "Low seed product implementation validated; publication is in progress. Higher-order follow-up is a separate fixed source program.",
+  "application_revision": "51be1dedb9a636830cec1197bb399dcec56e49f4",
+  "guarded_bytes": "Unchanged from013102156d270162793ab516e79adb12cdd0f330 in calc-func/src, calc-value/src, calc-verdict/src, checked after execution.",
+  "source_unit": "bessel-rational-r20-unit.json",
+  "source_facts": "bessel-rational-r20-facts.json",
+  "profile": {
+    "assignment_stores": false,
+    "association": 0,
+    "group_y0_log": true,
+    "helpers": 0,
+    "id": 900,
+    "polynomial": "strict",
+    "reconstruction": "strict",
+    "reduction": 0
+  },
+  "counts_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "new_exact",
+    "lost_exact"
+  ],
+  "low_regions": {
+    "BESSELJ:0:low": [
+      10,
+      10,
+      0,
+      10,
+      0
+    ],
+    "BESSELJ:1:low": [
+      11,
+      11,
+      1,
+      10,
+      0
+    ],
+    "BESSELY:0:low": [
+      9,
+      9,
+      1,
+      8,
+      0
+    ],
+    "BESSELY:1:low": [
+      12,
+      12,
+      1,
+      11,
+      0
+    ]
+  },
+  "proposed_scope_totals": {
+    "all": 42,
+    "exact": 42,
+    "fail": 0,
+    "baseline_exact": 3,
+    "new_exact": 39,
+    "lost_exact": 0
+  },
+  "all_research_rows": {
+    "all": 1073,
+    "exact": 130,
+    "fail": 943,
+    "baseline_exact": 15,
+    "new_exact": 127,
+    "lost_exact": 12,
+    "unsupported": 807
+  },
+  "interpretation": "The12 lost research rows are outside seed scope and are explicit research refusals; no product regression result is claimed. High88 exact predictions are exploratory and not proposed for adoption. Product higher-order effects require application-route measurement.",
+  "replays": {
+    "hard": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-fixed-hard",
+    "soft_operations": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-fixed-soft-ops",
+    "comparison": "All1073 prediction records equal. Strict binary64 operations make no extended arithmetic calls; worksheet leaves are shared native numeric substrate, so this is not a standalone soft worksheet-log validation."
+  },
+  "inputs": [
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-corpus/cases.jsonl",
+      "sha256": "3858d36956fb09cf78def56aa98556b34c71555cc9ac573e706ca30a4581591e",
+      "rows": 182
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/besselj-bank-before.jsonl",
+      "sha256": "266d40f44f234b159192192d49e171576ad1ba0ed70e9c45508489d81d0e5077",
+      "rows": 873
+    },
+    {
+      "path": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessely-bank-before.jsonl",
+      "sha256": "eef0cc1e77c459739f7c3ac0b6e1a15fef68a3d77fbb700f6dedf6ee5b319f5f",
+      "rows": 18
+    }
+  ],
+  "machine": {
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "cpu": "AMD EPYC Processor (with IBPB)",
+    "model": "Codex, GPT-6 family; runtime model id not exposed"
+  },
+  "limitations": [
+    "All readings are discovery; no held-out or preregistration claim.",
+    "No fitted coefficient, per-row answer selection, changed captured answer or secondary evaluator.",
+    "Main integration requires failing-first application test, unchanged fallback bytes, exact replay over prior passes, notice and ledger, required check and read-only review."
+  ],
+  "product_integration": {
+    "base_revision": "90b1357c87b11b55b6788b696d5dd23f28420bb1",
+    "program": 900,
+    "scope": "J0/J1 when |x|<8; Y0/Y1 when0<x<8; all old fallback bodies and admissions preserved as opaque bytes.",
+    "files": {
+      "crates/calc-func/src/ported/bessel.rs": "e557b1216290c2381fb8b3424aa49fcde16df658",
+      "crates/calc-func/src/ported/bessel_rational.rs": "5962d655be9cc4cc64f4616d008f00ba15a2d2f3",
+      "crates/calc-func/src/ported/mod.rs": "d9dd3b1aa50df9c9e1b8ff42b70c614407dc7d4b",
+      "crates/calc-func/tests/f1_engineering.rs": "fb73395c8244cffd8f8993d15cce5c98e503aad7",
+      "migration/licence-ledger.json": "a50e44c157e79dd3e1c1fdce7b725001ecd77efe",
+      "deploy/notices/ported.txt": "9c779707ec764eda132d2ec599c0036a6fbe892c"
+    },
+    "opaque_receipt": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-opaque-integration.json",
+    "old_prediction_refresh": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-known-gain-refresh.json",
+    "tests": [
+      {
+        "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-failing-first.log",
+        "result": "40-case invoke test failed before production changes on the existing BESSELY(2.5,1) mismatch."
+      },
+      {
+        "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-engineering-after.log",
+        "result": "All9 f1_engineering tests pass, including38 numeric and2NUM distinct frozen low-seed cases."
+      },
+      {
+        "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-old-unit-after-refresh.log",
+        "result": "Existing embedded spot-values unit test passes after3 proven prediction updates; recorded Excel values unchanged."
+      },
+      {
+        "log": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-engineering-soft-x87.log",
+        "result": "Same40-case invoke test passes with soft-x87 on Linux. No browser or Windows execution claim."
+      }
+    ],
+    "remaining_with_parent": [
+      "Current-master publication and final round report."
+    ]
+  },
+  "existing_contract_followup": {
+    "rows": 2,
+    "profile": 900,
+    "exact": 2,
+    "source": "Unchanged17-digit Excel-labelled readings in the existing unit test; raw originals not located. Separate from frozen corpus input counts.",
+    "receipt": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-existing-contract-replay/best-predictions.jsonl"
+  },
+  "actual_product_validation": {
+    "corpus": {
+      "before": 19596,
+      "after": 19679,
+      "total": 20840,
+      "gains": 83,
+      "losses": 0,
+      "gross_gains": 83,
+      "inclusive_failures_after": 1161,
+      "receipt": "evidence/round20/corpus-bessel-delta.json"
+    },
+    "bank": {
+      "before": 3231662,
+      "after": 3231662,
+      "total": 3875522,
+      "gains": 0,
+      "losses": 0,
+      "changed_outputs": 0,
+      "receipt": "evidence/round20/bank-bessel-receipt.json"
+    },
+    "check": {
+      "passed": 1435,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 1,
+      "receipt": "evidence/round20/bessel-check.log"
+    },
+    "review": "Final read-only product/evidence review approved; source/license/opaque restoration hashes checked."
+  }
+}

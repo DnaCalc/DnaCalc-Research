@@ -1,0 +1,35 @@
+{
+  "format": "dnacalc-r20-discrete-questions/1",
+  "calls": 44,
+  "functions": {
+    "BINOM.DIST": 36,
+    "HYPGEOM.DIST": 8
+  },
+  "new_excel_answers": 0,
+  "application_revision_base": "6b08ce3a28baec71fc3a21e5dd7384c2d52c989a",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/discrete_dist.rs": "a1cf081609786c0ed052e916ed16680ea82abd29"
+  },
+  "product_commit": "f1feb925",
+  "application_route_audits": 44,
+  "executable_sha256": "d5c1aa8c4f8cfe04c5aac1e99bf1232729f5268c6231abb08cf015e69b3a6488",
+  "source_files_sha256": {
+    "racer/src/main.rs": "430f9e4e0efef6a46403135dcdb467575be55f6aed5518703a8ffa92ee757bb9",
+    "racer/build.rs": "d8050486ac63353aa13733b3256cd0be23026b2a587a7ba4d9d53b4a830bbace",
+    "racer/src/discrete.rs": "9ec36cdc1888ad5aea429ecf795543b31d495a22dc2477a7d2d13f481273faec",
+    "racer/src/route_audit.rs": "cff21e1ac88682268ab2110b599b2aef895717e33297c177139e3ea862acd48d",
+    "racer/corpus_cases.py": "807d556f74c8568f39f20f6bfd184c71780fcc2fb592d9ae0de0a906320debe8"
+  },
+  "files_sha256": {
+    "README.txt": "98755676fc1103dd7d5a627a210504ac31823f2381679cbd8bcf4e61f632338e",
+    "application-predictions-BINOM.DIST.jsonl": "09ae8bb382637587c4ab57c32f13fa9ad967a91605f52423bae89ece52ca1350",
+    "application-predictions-HYPGEOM.DIST.jsonl": "ec46d2bfee7e70bed3076326432d916eae2f82fa533d94b832286f2e6f3a194f",
+    "application-route-audit.jsonl": "6341f85ed5c6a4fc06bf3a37a2d721abb0b4274f6b4cc756c439997ca8cd5538",
+    "application-route-inputs.jsonl": "7c9fb0b1f9ef1cb506d061bd92b94c706c781f2fe16af54d655043e97f8afb32",
+    "batches.json": "1a95192bc7508af2c86676eda1f84af9e956e51ce94dc9fe57227b305e844b93",
+    "requests-BINOM.DIST.json": "57943296ed8eff6216fcb5afabf893d2bc1ffadf8623bc0cb859f16cd7c5b563",
+    "requests-HYPGEOM.DIST.json": "57acc27e5516c7065b9b59b6cc49c841ae194270a65f1c8a3092cf1f695a9b81",
+    "selection.json": "7d923b79e20a5aa6e56079dfc3ad2ecef9370b8fc7d80345b4d99709384a8567"
+  },
+  "limits": "This source binding is the pending domain source at its exact Git blob; f1feb925 subsequently commits it. No Bessel replacement in this executable. No prediction is an Excel answer; only requests are reader inputs."
+}

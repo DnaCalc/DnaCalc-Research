@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "critical": 0,
+  "warnings": 32,
+  "rules": {
+    "rust.ownership.unwrap-expect": 3,
+    "rust.ownership.panic-macro": 1,
+    "rust.panic.assert-macros": 25,
+    "rust.panic.direct-indexing": 3
+  },
+  "new_helper": "The only helper warnings are last().unwrap() and len()-1 slicing. All private calls pass one of eight fixed nonempty coefficient arrays, independently checked against49 published values; no caller-supplied coefficient slice exists.",
+  "remaining": "Assertions and existing unwrap/index operations in tests. Failures must panic to stop conformance claims. No warning in a changed production dispatch; no security or async finding.",
+  "limits": "UBS deliberately does not run cargo/lints/dependency audits. Main build/tests supply compiler/test evidence; no extra lint/audit claim.",
+  "source_sha256": "3473a6e547158054d907844a36f2c9fd5c8f9204d4e74bdc2e9b635f48623436"
+}

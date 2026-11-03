@@ -1,0 +1,24 @@
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1.39s
+     Running tests/f1_engineering.rs (target/xtask-accept/debug/deps/f1_engineering-3633d63cd9065f30)
+
+running 1 test
+test bessel_published_backward_and_high_y1_match_recorded_excel_bits ... FAILED
+
+failures:
+
+---- bessel_published_backward_and_high_y1_match_recorded_excel_bits stdout ----
+
+thread 'bessel_published_backward_and_high_y1_match_recorded_excel_bits' (2159837) panicked at crates/calc-func/tests/f1_engineering.rs:294:9:
+assertion `left == right` failed: BESSELJ(1.9, 2)
+  left: 4599615033455087417
+ right: 4599615035274134507
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    bessel_published_backward_and_high_y1_match_recorded_excel_bits
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f1_engineering`

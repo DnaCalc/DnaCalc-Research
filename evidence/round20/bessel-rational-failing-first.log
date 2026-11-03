@@ -1,0 +1,29 @@
+   Compiling serde_core v1.0.229
+   Compiling memchr v2.8.3
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.154
+   Compiling calc-verdict v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/tools/calc-verdict)
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [optimized + debuginfo] target(s) in 13.42s
+     Running tests/f1_engineering.rs (target/xtask-accept/debug/deps/f1_engineering-3633d63cd9065f30)
+
+running 1 test
+test bessel_low_rational_seeds_match_recorded_excel_bits ... FAILED
+
+failures:
+
+---- bessel_low_rational_seeds_match_recorded_excel_bits stdout ----
+
+thread 'bessel_low_rational_seeds_match_recorded_excel_bits' (2104674) panicked at crates/calc-func/tests/f1_engineering.rs:195:9:
+assertion `left == right` failed: BESSELY(2.5, 1)
+  left: 4594425275264725928
+ right: 4594425275248207700
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    bessel_low_rational_seeds_match_recorded_excel_bits
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f1_engineering`

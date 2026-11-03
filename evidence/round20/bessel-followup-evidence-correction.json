@@ -1,0 +1,27 @@
+{
+  "id": "dc-j9k-r20-followup-evidence-correction",
+  "role": "clean-implementer",
+  "corrections": {
+    "original_followup_records": {
+      "all": 83,
+      "numeric": 83,
+      "error": 0
+    },
+    "distinct_invoke_original_table": {
+      "all": 80,
+      "numeric": 80,
+      "error": 0
+    },
+    "BESSELJ(1e-300,2)": "Existing unkeyed Excel-labelled NUM test contract only; no raw original located. Not part of frozen original scope.",
+    "BESSELY(100,1)": "Existing unkeyed Excel-labelled17-digit test contract only; no raw original located."
+  },
+  "preservation": "No original output, input, answer, prediction, product source or test changed. This addendum corrects historical descriptions in generated summaries and messages.",
+  "supersedes_claims": [
+    "79 numeric and1NUM original table case",
+    "tiny-J NUM was in the frozen combined/corpus records"
+  ],
+  "corrected_receipts": [
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/bessel-followup-r20-result.json",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-followup-known-gain-refresh.json"
+  ]
+}
