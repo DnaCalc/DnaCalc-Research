@@ -1,0 +1,295 @@
+{
+  "complete": true,
+  "original_rows": 3653,
+  "predictions": 2180,
+  "combinatorial_controls": 3952,
+  "counts_all_exact_baseline_gains_losses": {
+    "0": [
+      436,
+      305,
+      305,
+      0,
+      0
+    ],
+    "1": [
+      436,
+      316,
+      305,
+      28,
+      17
+    ],
+    "2": [
+      218,
+      136,
+      136,
+      0,
+      0
+    ],
+    "3": [
+      218,
+      144,
+      136,
+      19,
+      11
+    ],
+    "4": [
+      218,
+      136,
+      136,
+      1,
+      1
+    ],
+    "5": [
+      218,
+      142,
+      136,
+      18,
+      12
+    ],
+    "6": [
+      218,
+      136,
+      136,
+      1,
+      1
+    ],
+    "7": [
+      218,
+      144,
+      136,
+      19,
+      11
+    ]
+  },
+  "excluded": {
+    "outside_integer_finite_support": 2003,
+    "outside_scalar_integer_shape": 1214
+  },
+  "first_losses": {
+    "1": {
+      "original": {
+        "actual": "0x3fe0000000000000",
+        "args": [
+          "0x0000000000000000",
+          "0x3ff0000000000000",
+          "0x4000000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x3fe0000000000000",
+        "function": "HYPGEOM.DIST",
+        "id": "hypgeom.dist-domain-00766-integer-support",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-distribution-domain-20260929/answers-hypgeom.dist.json"
+      },
+      "transformed": {
+        "args": [
+          "0x0000000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0x3fe0000000000001",
+        "id": "168:1",
+        "not_excel_evidence": true,
+        "transport_assumption": "registered typed arguments; literal parsing may change inputs"
+      }
+    },
+    "3": {
+      "original": {
+        "actual": "0x3fe0000000000000",
+        "args": [
+          "0x0000000000000000",
+          "0x3ff0000000000000",
+          "0x4000000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x3fe0000000000000",
+        "function": "HYPGEOM.DIST",
+        "id": "hypgeom.dist-domain-00766-integer-support",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-distribution-domain-20260929/answers-hypgeom.dist.json"
+      },
+      "transformed": {
+        "args": [
+          "0x3ff0000000000000",
+          "0x4000000000000000",
+          "0x3ff0000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0x3fe0000000000002",
+        "id": "168:3",
+        "not_excel_evidence": true,
+        "transport_assumption": "registered typed arguments; literal parsing may change inputs"
+      }
+    },
+    "5": {
+      "original": {
+        "actual": "0x3fe0000000000000",
+        "args": [
+          "0x0000000000000000",
+          "0x3ff0000000000000",
+          "0x4000000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x3fe0000000000000",
+        "function": "HYPGEOM.DIST",
+        "id": "hypgeom.dist-domain-00766-integer-support",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-distribution-domain-20260929/answers-hypgeom.dist.json"
+      },
+      "transformed": {
+        "args": [
+          "0x4000000000000000",
+          "0x4000000000000000",
+          "0x4008000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0x3fe0000000000001",
+        "id": "168:5",
+        "not_excel_evidence": true,
+        "transport_assumption": "registered typed arguments; literal parsing may change inputs"
+      }
+    },
+    "7": {
+      "original": {
+        "actual": "0x3fe0000000000000",
+        "args": [
+          "0x0000000000000000",
+          "0x3ff0000000000000",
+          "0x4000000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x3fe0000000000000",
+        "function": "HYPGEOM.DIST",
+        "id": "hypgeom.dist-domain-00766-integer-support",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-distribution-domain-20260929/answers-hypgeom.dist.json"
+      },
+      "transformed": {
+        "args": [
+          "0x3ff0000000000000",
+          "0x4000000000000000",
+          "0x4008000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0x3fe0000000000002",
+        "id": "168:7",
+        "not_excel_evidence": true,
+        "transport_assumption": "registered typed arguments; literal parsing may change inputs"
+      }
+    },
+    "4": {
+      "original": {
+        "actual": "0x3fe8000000000002",
+        "args": [
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x4008000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x3fe8000000000002",
+        "function": "HYPGEOM.DIST",
+        "id": "hypgeom.dist-domain-00776-integer-support",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-distribution-domain-20260929/answers-hypgeom.dist.json"
+      },
+      "transformed": {
+        "args": [
+          "0x4000000000000000",
+          "0x4008000000000000",
+          "0x4008000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0x3fe8000000000001",
+        "id": "1070:4",
+        "not_excel_evidence": true,
+        "transport_assumption": "registered typed arguments; literal parsing may change inputs"
+      }
+    },
+    "6": {
+      "original": {
+        "actual": "0x3fe8000000000002",
+        "args": [
+          "0x3ff0000000000000",
+          "0x3ff0000000000000",
+          "0x4008000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x3fe8000000000002",
+        "function": "HYPGEOM.DIST",
+        "id": "hypgeom.dist-domain-00776-integer-support",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-distribution-domain-20260929/answers-hypgeom.dist.json"
+      },
+      "transformed": {
+        "args": [
+          "0x3ff0000000000000",
+          "0x4008000000000000",
+          "0x3ff0000000000000",
+          "0x4010000000000000",
+          "0x0000000000000000"
+        ],
+        "calc_func_prediction": "0x3fe8000000000001",
+        "id": "1070:6",
+        "not_excel_evidence": true,
+        "transport_assumption": "registered typed arguments; literal parsing may change inputs"
+      }
+    }
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/HYPGEOM-current.jsonl": "60f2877c721d2feb6c3287696a1b68b558539bafbdbfa393e2457e2925142dd2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/target/release/symbolic-racer": "0f050b35beac825f75181dc4708507c2828d2f44fc7a3c916136455138cd562a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py": "c2e7183a668ab96bea5663f34a8703bd0fae29177ab2569370b7644a82152166",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/hypergeom-symmetry-final/inputs.json": "97dd726afb875438458b4956b0b4f47dcd3c986013fda3cacde07efbc20ca353",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/hypergeom-symmetry-final/predictions.jsonl": "0b1ebd806e6efa3c198ac039ae6da64cf1cff8ea8bd88938fd9a194a268c7d33"
+  },
+  "source": "Hypergeometric combination definition and exact marginal/sample/success-complement identities; no third-party code.",
+  "limits": "Current invoke is a conditional numerical leaf. No fitted parameter, kernel identification, full-bank improvement or product change. CDF is tested only under marginal interchange."
+}

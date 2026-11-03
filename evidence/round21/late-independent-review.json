@@ -1,0 +1,14 @@
+{
+  "status": "Verified late claims; no blocker found",
+  "reviewer": "/root/r21_review",
+  "role": "Read-only; no mutations, cargo, or excluded-checkout access",
+  "measured_revision": "9c5aa7f5",
+  "publication_tip_before_tracker_commit": "513bcf2e",
+  "checks": [
+    "All138 late-delta input hashes match. 69 changes are refused-to-matched:67fn1_collation+2dczsn2_collation, zero losses.",
+    "Measured corpus18355/21278 matched;2923 inclusive failures=1837pending+945mismatched+53refused+1missing+73external+14circular.",
+    "Completed source-wide check confirms1735passed,0failed,5ignored,4notrun.",
+    "Verified bank receipt and log hashes retain+14/-0."
+  ],
+  "limits": "Measurements bind9c5aa7f5. Later document-validation source pull is separate. Research units remain historical measured units; upstream69 comparison gains remain separate from R21 highY0."
+}

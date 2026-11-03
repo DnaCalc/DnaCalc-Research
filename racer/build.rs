@@ -223,4 +223,29 @@ impl ResearchPrice {
         println!("cargo:rustc-cfg=discrete_audit");
     }
     println!("cargo:rustc-check-cfg=cfg(discrete_audit)");
+    if unit["regression_audit"].as_bool() == Some(true) {
+        use std::io::Write;
+        let original=source.parent().unwrap().join("regression_forecast_family.rs");
+        let mut text=fs::read_to_string(&original).unwrap();
+        // Observe only final standard-error operands. Every original arithmetic
+        // expression is retained, and the collector checks the selected result
+        // against the registered invocation before admitting any captured leaf.
+        for (old,new) in [
+            ("(ss_resid * covariance(position, position) / df).sqrt()",
+             "crate::route_audit::regression_leaf(ss_resid, covariance(position, position), df, 2, fit.model.coefficients.len()-*index, 0, (ss_resid * covariance(position, position) / df).sqrt())"),
+            ("(ss_resid / df * variance).sqrt()",
+             "crate::route_audit::regression_leaf(ss_resid, variance, df, 2, first.len(), 1, (ss_resid / df * variance).sqrt())"),
+            ("let se_b = if exact",
+             "let variance = crate::route_audit::regression_factors(&w, &inverse, n, variance); let se_b = if exact"),
+        ] {
+            assert_eq!(text.matches(old).count(),1,"changed regression observation site");
+            text=text.replace(old,new);
+        }
+        let path=output.join("regression-research.rs");fs::write(&path,text).unwrap();
+        let mut bridge=fs::OpenOptions::new().append(true).open(output.join("bridge.rs")).unwrap();
+        writeln!(bridge,"#[path = {:?}] pub mod regression_forecast_family;",path).unwrap();
+        println!("cargo:rerun-if-changed={}",original.display());
+        println!("cargo:rustc-cfg=regression_audit");
+    }
+    println!("cargo:rustc-check-cfg=cfg(regression_audit)");
 }

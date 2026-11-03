@@ -1,0 +1,2673 @@
+{
+  "sheet": "dcj9k_r21",
+  "questions": [
+    {
+      "id": "r21-sheet-0001",
+      "row": 1,
+      "column": 4,
+      "formula": "1",
+      "reason": "response operand control"
+    },
+    {
+      "id": "r21-sheet-0002",
+      "row": 2,
+      "column": 4,
+      "formula": "2",
+      "reason": "response operand control"
+    },
+    {
+      "id": "r21-sheet-0003",
+      "row": 3,
+      "column": 4,
+      "formula": "4",
+      "reason": "response operand control"
+    },
+    {
+      "id": "r21-sheet-0004",
+      "row": 4,
+      "column": 4,
+      "formula": "7",
+      "reason": "response operand control"
+    },
+    {
+      "id": "r21-sheet-0005",
+      "row": 5,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0006",
+      "row": 6,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0007",
+      "row": 7,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0008",
+      "row": 8,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0009",
+      "row": 9,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0010",
+      "row": 10,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0011",
+      "row": 11,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0012",
+      "row": 12,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "exact-control",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0013",
+      "row": 13,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0014",
+      "row": 14,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0015",
+      "row": 15,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0016",
+      "row": 16,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0017",
+      "row": 17,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0018",
+      "row": 18,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0019",
+      "row": 19,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0020",
+      "row": 20,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0021",
+      "row": 21,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0022",
+      "row": 22,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0023",
+      "row": 23,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0024",
+      "row": 24,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "exact-control",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0025",
+      "row": 25,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0026",
+      "row": 26,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0027",
+      "row": 27,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0028",
+      "row": 28,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0029",
+      "row": 29,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0030",
+      "row": 30,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0031",
+      "row": 31,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0032",
+      "row": 32,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000152587890625},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "resolved-control",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0033",
+      "row": 33,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0034",
+      "row": 34,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0035",
+      "row": 35,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0036",
+      "row": 36,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0037",
+      "row": 37,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0038",
+      "row": 38,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0039",
+      "row": 39,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0040",
+      "row": 40,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0041",
+      "row": 41,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0042",
+      "row": 42,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0043",
+      "row": 43,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0044",
+      "row": 44,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000152587890625},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "resolved-control",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0045",
+      "row": 45,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0046",
+      "row": 46,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0047",
+      "row": 47,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0048",
+      "row": 48,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0049",
+      "row": 49,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0050",
+      "row": 50,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0051",
+      "row": 51,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0052",
+      "row": 52,
+      "column": 4,
+      "formula": "INDEX({1,2;2,4;5,10;4,8.0000038146972656},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "base",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0053",
+      "row": 53,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0054",
+      "row": 54,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0055",
+      "row": 55,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0056",
+      "row": 56,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0057",
+      "row": 57,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0058",
+      "row": 58,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0059",
+      "row": 59,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0060",
+      "row": 60,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0061",
+      "row": 61,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0062",
+      "row": 62,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0063",
+      "row": 63,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0064",
+      "row": 64,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972656},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "base",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0065",
+      "row": 65,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0066",
+      "row": 66,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0067",
+      "row": 67,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0068",
+      "row": 68,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0069",
+      "row": 69,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0070",
+      "row": 70,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0071",
+      "row": 71,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0072",
+      "row": 72,
+      "column": 4,
+      "formula": "INDEX({4,8.0000038146972656;5,10;2,4;1,2},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "reverse",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0073",
+      "row": 73,
+      "column": 4,
+      "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0074",
+      "row": 74,
+      "column": 4,
+      "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0075",
+      "row": 75,
+      "column": 4,
+      "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0076",
+      "row": 76,
+      "column": 4,
+      "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0077",
+      "row": 77,
+      "column": 4,
+      "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0078",
+      "row": 78,
+      "column": 4,
+      "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0079",
+      "row": 79,
+      "column": 4,
+      "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0080",
+      "row": 80,
+      "column": 4,
+      "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0081",
+      "row": 81,
+      "column": 4,
+      "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0082",
+      "row": 82,
+      "column": 4,
+      "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0083",
+      "row": 83,
+      "column": 4,
+      "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0084",
+      "row": 84,
+      "column": 4,
+      "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972656;5,10;2,4;1,2},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "reverse",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0085",
+      "row": 85,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0086",
+      "row": 86,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0087",
+      "row": 87,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0088",
+      "row": 88,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0089",
+      "row": 89,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0090",
+      "row": 90,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0091",
+      "row": 91,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0092",
+      "row": 92,
+      "column": 4,
+      "formula": "INDEX({9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-both",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0093",
+      "row": 93,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0094",
+      "row": 94,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0095",
+      "row": 95,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0096",
+      "row": 96,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0097",
+      "row": 97,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0098",
+      "row": 98,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0099",
+      "row": 99,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0100",
+      "row": 100,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0101",
+      "row": 101,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0102",
+      "row": 102,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0103",
+      "row": 103,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0104",
+      "row": 104,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,1.9073486328125e-06;1.9073486328125e-06,3.814697265625e-06;4.76837158203125e-06,9.5367431640625e-06;3.814697265625e-06,7.6293981692288071e-06},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-both",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0105",
+      "row": 105,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0106",
+      "row": 106,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0107",
+      "row": 107,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0108",
+      "row": 108,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0109",
+      "row": 109,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0110",
+      "row": 110,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0111",
+      "row": 111,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0112",
+      "row": 112,
+      "column": 4,
+      "formula": "INDEX({1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-both",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0113",
+      "row": 113,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0114",
+      "row": 114,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0115",
+      "row": 115,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0116",
+      "row": 116,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0117",
+      "row": 117,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0118",
+      "row": 118,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0119",
+      "row": 119,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0120",
+      "row": 120,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0121",
+      "row": 121,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0122",
+      "row": 122,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0123",
+      "row": 123,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0124",
+      "row": 124,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2097152;2097152,4194304;5242880,10485760;4194304,8388612},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-both",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0125",
+      "row": 125,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0126",
+      "row": 126,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0127",
+      "row": 127,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0128",
+      "row": 128,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0129",
+      "row": 129,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0130",
+      "row": 130,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0131",
+      "row": 131,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0132",
+      "row": 132,
+      "column": 4,
+      "formula": "INDEX({1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "small-second",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0133",
+      "row": 133,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0134",
+      "row": 134,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0135",
+      "row": 135,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0136",
+      "row": 136,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0137",
+      "row": 137,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0138",
+      "row": 138,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0139",
+      "row": 139,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0140",
+      "row": 140,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0141",
+      "row": 141,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0142",
+      "row": 142,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0143",
+      "row": 143,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0144",
+      "row": 144,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,1.9073486328125e-06;2,3.814697265625e-06;5,9.5367431640625e-06;4,7.6293981692288071e-06},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "small-second",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0145",
+      "row": 145,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0146",
+      "row": 146,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0147",
+      "row": 147,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0148",
+      "row": 148,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0149",
+      "row": 149,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0150",
+      "row": 150,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0151",
+      "row": 151,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0152",
+      "row": 152,
+      "column": 4,
+      "formula": "INDEX({1,2097152;2,4194304;5,10485760;4,8388612},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "large-second",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0153",
+      "row": 153,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0154",
+      "row": 154,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0155",
+      "row": 155,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0156",
+      "row": 156,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0157",
+      "row": 157,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0158",
+      "row": 158,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0159",
+      "row": 159,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0160",
+      "row": 160,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0161",
+      "row": 161,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0162",
+      "row": 162,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0163",
+      "row": 163,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0164",
+      "row": 164,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1,2097152;2,4194304;5,10485760;4,8388612},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "large-second",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0165",
+      "row": 165,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0166",
+      "row": 166,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0167",
+      "row": 167,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0168",
+      "row": 168,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0169",
+      "row": 169,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0170",
+      "row": 170,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0171",
+      "row": 171,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0172",
+      "row": 172,
+      "column": 4,
+      "formula": "INDEX({1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "translated",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0173",
+      "row": 173,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0174",
+      "row": 174,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0175",
+      "row": 175,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0176",
+      "row": 176,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0177",
+      "row": 177,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0178",
+      "row": 178,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0179",
+      "row": 179,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0180",
+      "row": 180,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0181",
+      "row": 181,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0182",
+      "row": 182,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0183",
+      "row": 183,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0184",
+      "row": 184,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{1048577,1048578;1048578,1048580;1048581,1048586;1048580,1048584.0000038147},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "translated",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0185",
+      "row": 185,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},1,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0186",
+      "row": 186,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},1,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0187",
+      "row": 187,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},2,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0188",
+      "row": 188,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},2,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0189",
+      "row": 189,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},3,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0190",
+      "row": 190,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},3,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0191",
+      "row": 191,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},4,1)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "r21-sheet-0192",
+      "row": 192,
+      "column": 4,
+      "formula": "INDEX({2,1;4,2;10,5;8.0000038146972656,4},4,2)",
+      "reason": "matrix operand echo; Excel parser bits are observed, never assumed",
+      "shape": "swap-columns",
+      "matrix_index": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "r21-sheet-0193",
+      "row": 193,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0194",
+      "row": 194,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0195",
+      "row": 195,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0196",
+      "row": 196,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0197",
+      "row": 197,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LINEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0198",
+      "row": 198,
+      "column": 4,
+      "formula": "INDEX(LINEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LINEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0199",
+      "row": 199,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},FALSE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0200",
+      "row": 200,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},FALSE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0201",
+      "row": 201,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},FALSE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": false
+    },
+    {
+      "id": "r21-sheet-0202",
+      "row": 202,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},TRUE,TRUE),1,1)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        1
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0203",
+      "row": 203,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},TRUE,TRUE),1,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LOGEST",
+      "result_index": [
+        1,
+        2
+      ],
+      "use_const": true
+    },
+    {
+      "id": "r21-sheet-0204",
+      "row": 204,
+      "column": 4,
+      "formula": "INDEX(LOGEST({1;2;4;7},{2,1;4,2;10,5;8.0000038146972656,4},TRUE,TRUE),4,2)",
+      "reason": "fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted",
+      "shape": "swap-columns",
+      "function": "LOGEST",
+      "result_index": [
+        4,
+        2
+      ],
+      "use_const": true
+    }
+  ]
+}

@@ -1,5 +1,43 @@
 DNA Calc arithmetic program research
 
+Round21 retains the fixed published high-Y0 application change:22 corpus gains
+and14 original-bank gains, with no losses in those fixed comparisons. Main
+e60788ec contains the numerical change;96a4f367 adds unanswered questions.
+No further numerical body is adopted from the resumed studies.
+
+The complete Kornia I candidate loses prior matches in all ten declared models.
+Thirty hypergeometric quotient programs and ten count-one Poisson CDF programs
+also have no gain without losses. Hardware/software prediction files agree.
+These results condition on the stated current numerical leaves; they do not
+exclude complete distribution or Bessel algorithm families.
+
+An independent rational replay rejects48 fixed rank policies on241 recorded
+degrees-of-freedom observations. For standard errors,394 registered/instrumented
+controls admit168 finite operand records. Sixty fixed consumers per mathematical
+coefficient role and7200 intercept-factor/consumer labels have no zero-loss
+improvement. The factor study uses120 producers and60 consumers on45 intercept
+records; inverse-R and weights remain conditional operands. Exact square-root
+controls total1324, with513 additional independently checked cases. No threshold,
+coefficient, row-specific program or annuity/VAR/GEOMEAN change is selected.
+
+packets/round21 contains20 scalar HYPGEOM.DIST questions and204 catalogue cells
+(120 LINEST/LOGEST selections and84 operand echoes). Predictions are application
+calculations, never answers. The published catalogue section uses the existing
+oracle/generator. Adding it leaves all26 previous sheet XMLs unchanged by name,
+but moves dcuar_cell's part and requires context-dependent sections to be captured.
+The final rebuilt measurement adds69 upstream comparison matches separately:
+67 on fn1_collation and2 on dczsn2_collation.
+The current corpus has18355 matches of21278 and2923 inclusive nonpasses:
+1837 awaiting capture,999 mismatched/refused/missing and87 external/circular.
+Pending captures are failures. These scope changes are separate from the fixed
+high-Y0 gains. No R20 Excel answers have arrived.
+
+round21-final-unit.json freezes the measured9c5aa7f5 source; later upstream
+source pulls require a new unit before another research build. Historical
+unit metadata and the exact pre-factor consumer source snapshot remain indexed
+under the external round21 directory. Compact receipts are in evidence/round21;
+round21-result.json records final checks, publication and limits.
+
 This separate native-only research workspace interprets candidate data. Its code
 does not enter the application. The first unit is PMT's finite discount combine,
 specified by DnaCalc/docs/plan/SYMBOLIC_SEARCH.md and pmt-r6-unit.json (dc-j9k).

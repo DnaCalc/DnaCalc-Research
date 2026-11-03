@@ -93,6 +93,22 @@ class Format:
         return lo if dl < dh or (dl == dh and self.even(lo)) else hi
 
     @lru_cache(maxsize=131072)
+    def rn_sqrt(self, x):
+        """Nearest/even square root using exact integer midpoint comparisons."""
+        if x < 0:
+            raise ValueError('negative square root')
+        if x == 0:
+            return Q(0)
+        step = pow2(max(self.emin, log2floor(x)//2)-self.p+1)
+        scaled = x/(step*step)
+        lower = math.isqrt(scaled.numerator//scaled.denominator)
+        # sqrt(scaled) is above the midpoint iff scaled>(lower+1/2)^2.
+        left, right = 4*scaled.numerator, (2*lower+1)**2*scaled.denominator
+        rounded = lower+int(left > right or left == right and lower % 2 == 1)
+        value = rounded*step
+        return value if value <= self.maximum else None
+
+    @lru_cache(maxsize=131072)
     def preimage(self, i):
         if i is None:
             return None

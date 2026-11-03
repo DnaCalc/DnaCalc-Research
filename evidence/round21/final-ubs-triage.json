@@ -1,0 +1,76 @@
+{
+  "critical": 0,
+  "scanners": [
+    {
+      "type": "scanner",
+      "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "language": "python",
+      "status": "partial",
+      "files": 3,
+      "critical": 0,
+      "warning": 41,
+      "info": 242,
+      "timestamp": "2026-11-03 21:58:35",
+      "scanner_timestamp": "2026-11-03T19:58:35Z"
+    },
+    {
+      "type": "scanner",
+      "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "language": "rust",
+      "status": "ok",
+      "files": 4,
+      "critical": 0,
+      "warning": 868,
+      "info": 153,
+      "timestamp": "2026-11-03 21:58:35",
+      "scanner_timestamp": "2026-11-03T19:58:17Z"
+    },
+    {
+      "type": "totals",
+      "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "status": "partial",
+      "failed_modules": [
+        {
+          "language": "python",
+          "status": "partial",
+          "module_error": "ANALYZER_ERROR",
+          "message": "Python analysis did not complete: detector sql_injection: SQLFlowLimit: SQL list mutation aliasing is unsupported; analysis is incomplete"
+        }
+      ],
+      "files": 7,
+      "critical": 0,
+      "warning": 909,
+      "info": 395,
+      "timestamp": "2026-11-03 21:58:35",
+      "error": "environment",
+      "reason": "module-failed",
+      "exit_code": 2,
+      "message": "One or more scanner modules could not run (tooling/dependency problem, not a code-quality failure): python"
+    }
+  ],
+  "warning_groups": {
+    "python:py.perf.io-in-loop": 11,
+    "python:py.regex.nested-quantifiers": 5,
+    "python:py.parsing.json-loads-no-try": 25,
+    "rust:rust.ownership.unwrap-expect": 213,
+    "rust:rust.ownership.unreachable-macro": 8,
+    "rust:rust.collections.clone-in-loop": 5,
+    "rust:rust.panic.assert-macros": 74,
+    "rust:rust.panic.direct-indexing": 524,
+    "rust:rust.parsing.parse-unwrap": 2,
+    "rust:rust.parsing.serde-unwrap": 12,
+    "rust:rust.parsing.env-var-unwrap": 1,
+    "rust:rust.perf.string-alloc-in-loop": 29
+  },
+  "reviewed_false_positive_annotations": [
+    "Public file-integrity comparisons are not authentication secrets.",
+    "Missing calculated provenance intentionally aborts question publication."
+  ],
+  "warnings": {
+    "schema_and_indexing": "Operator-owned frozen schemas and explicit size/domain controls; malformed or changed evidence aborts rather than becoming a result.",
+    "assertions_and_unwraps": "Research integrity assertions and failed-run exits, not runtime application behavior.",
+    "allocation_and_io": "Finite per-record logs and packet generation; isolated native research tools.",
+    "regex": "Existing bounded worksheet-formula parser patterns; no service endpoint or new regular expression added."
+  },
+  "limits": "Rust structural scan complete. Python partial: SQLFlowLimit on unsupported list mutation aliasing; doctor completed but cannot provide the missing analysis. No full security scan or clean Python scan is claimed. Fixture-only main commit has no supported UBS language and was explicitly not scanned."
+}

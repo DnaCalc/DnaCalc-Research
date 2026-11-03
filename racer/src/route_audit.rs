@@ -9,6 +9,78 @@ use dna_calc_worker::workbook::Workbook;
 use serde_json::{Value, json};
 use std::{fs, path::Path};
 
+#[cfg(regression_audit)]
+std::thread_local! {
+    static REGRESSION_LEAVES: std::cell::RefCell<Vec<Value>> = const { std::cell::RefCell::new(Vec::new()) };
+    static REGRESSION_FACTORS: std::cell::RefCell<Option<Value>> = const { std::cell::RefCell::new(None) };
+}
+
+#[cfg(regression_audit)]
+pub fn regression_factors(weights:&[f64],inverse:&[Vec<f64>],observations:usize,value:f64)->f64 {
+    let bits=|v:f64|format!("0x{:016x}",v.to_bits());
+    REGRESSION_FACTORS.with(|factors|*factors.borrow_mut()=Some(json!({"observations":observations,
+        "weights":weights.iter().copied().map(bits).collect::<Vec<_>>(),
+        "inverse":inverse.iter().map(|row|row.iter().copied().map(bits).collect::<Vec<_>>()).collect::<Vec<_>>()})));
+    value
+}
+
+/// Observe original binary64 operands and return the unchanged original value.
+#[cfg(regression_audit)]
+pub fn regression_leaf(ss:f64,covariance:f64,df:f64,row:usize,column:usize,role:usize,value:f64)->f64 {
+    let bits=|v:f64|format!("0x{:016x}",v.to_bits());
+    let factors=if role==1 {REGRESSION_FACTORS.with(|f|f.borrow().clone())}else{None};
+    REGRESSION_LEAVES.with(|leaves|leaves.borrow_mut().push(json!({"ss":bits(ss),"covariance":bits(covariance),
+        "df":bits(df),"row":row,"column":column,"role":role,"value":bits(value),"factors":factors})));
+    value
+}
+
+/// Freeze standard-error operands only after an exact registered-route control.
+#[cfg(regression_audit)]
+pub fn regression_stat_leaves(input:&str,out:&str) {
+    use std::io::Write;
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();
+    let rows=crate::lines::<Value>(input);
+    let mut scoped=std::io::BufWriter::new(fs::File::create_new(destination.join("scoped.jsonl")).unwrap());
+    let mut omitted=std::collections::BTreeMap::<String,usize>::new();
+    let mut controls=0;let mut admitted=0;
+    for (index,raw) in rows.iter().enumerate() {
+        let name=raw["function"].as_str().unwrap();
+        let selected=raw["result_index"].as_array();
+        if !matches!(name,"LINEST"|"LOGEST") || selected.is_none_or(|s|s.len()!=2 || s[0]!=2 || s[1].as_u64().is_none_or(|c|c==0)) {
+            *omitted.entry("outside_standard_error_selection".into()).or_default()+=1;continue;
+        }
+        let selected=selected.unwrap();let column=selected[1].as_u64().unwrap() as usize;
+        let args:Vec<_>=raw["args"].as_array().unwrap().iter().enumerate()
+            .map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+        let (baseline,_)=crate::invoke_selected_control(name,args.clone(),Some((2,column)));
+        assert_eq!(baseline,raw["actual"].as_str().unwrap(),"frozen registered regression {}",raw["id"]);
+        REGRESSION_LEAVES.with(|leaves|leaves.borrow_mut().clear());
+        REGRESSION_FACTORS.with(|factors|*factors.borrow_mut()=None);
+        let observed=if name=="LINEST" {crate::ported::regression_forecast_family::eval_linest_surface(&args)}
+            else {crate::ported::regression_forecast_family::eval_logest_surface(&args)};
+        let value=observed.unwrap_or_else(CalcValue::error);
+        let chosen=calc_verdict::select_result(&value,Some((2,column))).unwrap();
+        assert_eq!(calc_verdict::encode_result(&chosen).unwrap(),baseline,"instrumented regression route {}",raw["id"]);
+        controls+=1;
+        let leaves=REGRESSION_LEAVES.with(|leaves|leaves.borrow().clone());
+        let leaf=leaves.iter().find(|leaf|leaf["row"]==2 && leaf["column"]==column);
+        let Some(leaf)=leaf else {*omitted.entry("structural_zero_error_or_exact_fit".into()).or_default()+=1;continue;};
+        let decoded:Vec<_>=["ss","covariance","df","value"].into_iter().map(|key| {
+            let s=leaf[key].as_str().unwrap();f64::from_bits(u64::from_str_radix(&s[2..],16).unwrap())
+        }).collect();
+        if !(decoded.iter().all(|v|v.is_finite()) && decoded[0]>=0.0 && decoded[1]>=0.0 && decoded[2]>0.0
+            && raw["expected"].as_str().is_some_and(|s|s.starts_with("0x"))) {
+            *omitted.entry("outside_finite_numeric_consumer".into()).or_default()+=1;continue;
+        }
+        assert_eq!(leaf["value"].as_str().unwrap(),baseline,"selected leaf mismatch");
+        writeln!(scoped,"{}",json!({"trace_index":index,"raw":raw,"leaf":leaf})).unwrap();admitted+=1;
+    }
+    assert!(admitted>0);assert_eq!(admitted+omitted.values().sum::<usize>(),rows.len());
+    let summary=json!({"complete":true,"input_rows":rows.len(),"registered_and_instrumented_controls":controls,"scoped":admitted,"excluded":omitted,
+        "limits":"Final standard-error operands only, original QR/covariance and original arithmetic retained. Every selected instrumented value equals the registered invocation and frozen actual result. No new Excel answer or producer identification."});
+    json_write(destination.join("summary.json"),&summary);println!("{summary}");
+}
+
 /// Research-only translation of ExcelFinancialFunctions Common.newton
 /// (Apache-2.0, Luca Bolognese, copyright 2010-2013), changed to return a typed
 /// failure on nonfinite evaluation. Its fixed 0.05 seed, 1e-6 difference/step and
@@ -354,7 +426,7 @@ pub fn sheet_predictions(input: &str, out: &str) {
             question["column"].as_u64().unwrap() as u32).unwrap();
         let cell = book.cell(at).unwrap();
         let ProjectedValue::Calculated { value, .. } = cell.value() else {
-            panic!("question prediction was not calculated")
+            panic!("question prediction was not calculated") // ubs:ignore — missing calculated provenance must abort this research packet, never become an answer
         };
         writeln!(output, "{}", json!({"id":question["id"],"formula":question["formula"],
             "row":question["row"],"column":question["column"],"calc_func_prediction":encoded(value),

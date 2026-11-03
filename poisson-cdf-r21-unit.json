@@ -1,0 +1,35 @@
+{
+  "id": "dc-j9k-r21-poisson-one-cdf",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "9b0caf536d7db2d3c7588685db444cc7e0d8f551",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/bessel.rs": "f9c96a3366d2a0a0f4c39dc4076b74c50fac024d",
+    "crates/calc-func/src/ported/bessel_rational.rs": "38289b5f397fafcd50b9139b5626bdfc4156b9d3"
+  },
+  "scope": "Ten fixed count-one CDF expressions; existing worksheet EXP; no constants or parameter search.",
+  "programs": 10,
+  "sources": {
+    "tier1": [
+      "Recorded Excel answers; hypergeometric combination and conditional-binomial identities; IEEE754 and Intel SDM"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc discrete_dist.rs and numeric infrastructure; no external code copied."
+    ],
+    "banned": [
+      "Tier3 and Tier4 numerical implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "Codex session model, no override",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no preregistration or held-out claim. No coefficient, tolerance, cutoff or row selector fitted.",
+  "source_sha256": {
+    "racer/src/discrete.rs": "3a294bb803e5811ac47714df1ccab915ef0dabd466d6c48f334ed34c53b7f914",
+    "racer/src/main.rs": "0f770d6c7701511d19c7463acff69c651aad98be41238aa3229a8371f966ca04",
+    "racer/build.rs": "4f8dbe6d7a1e4f7b952877ef2110a3d7ba40d12fab4157e6f9a0e4a51e61bb14"
+  },
+  "revision_note": "Fresh unit for incoming formula cache-allocation change; retains same two highY0 working blobs and corrected accounting source hashes."
+}

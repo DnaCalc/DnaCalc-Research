@@ -1,0 +1,35 @@
+{
+  "id": "dc-j9k-r21-hypergeom-quotients",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "6cc618b9cfc955c706bd9c4f79161865a4b5c64b",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/bessel.rs": "f9c96a3366d2a0a0f4c39dc4076b74c50fac024d",
+    "crates/calc-func/src/ported/bessel_rational.rs": "38289b5f397fafcd50b9139b5626bdfc4156b9d3"
+  },
+  "scope": "Fixed hypergeometric conditional-binomial quotient/complement arithmetic; exact current invocation controls; integer domain at most10000. Existing binomial leaves are conditional.",
+  "programs": 30,
+  "sources": {
+    "tier1": [
+      "Recorded Excel answers; hypergeometric combination and conditional-binomial identities; IEEE754 and Intel SDM"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc discrete_dist.rs and numeric infrastructure; no external code copied."
+    ],
+    "banned": [
+      "Tier3 and Tier4 numerical implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "Codex session model, no override",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no preregistration or held-out claim. No coefficient, tolerance, cutoff or row selector fitted.",
+  "source_sha256": {
+    "racer/src/discrete.rs": "42fb0492e7ab28af7f97640ab392ff2d88b51d5f0e5702e724371fb23d948593",
+    "racer/src/main.rs": "95cc9a1d2d76305ca91b94d54cb06318a5e89929a61ad7922485fe1f86a8036f",
+    "racer/build.rs": "4f8dbe6d7a1e4f7b952877ef2110a3d7ba40d12fab4157e6f9a0e4a51e61bb14"
+  },
+  "revision_note": "Source accounting correction: malformed args counted as excluded; admitted+excluded must equal every input row. Initial metadata retained separately."
+}

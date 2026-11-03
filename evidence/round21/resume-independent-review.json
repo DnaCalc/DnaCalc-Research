@@ -1,0 +1,26 @@
+{
+  "reviewer": "/root/r21_review",
+  "role": "independent read-only check",
+  "status": "approved",
+  "concerns": [],
+  "corpus": {
+    "before": 19825,
+    "after": 19847,
+    "total": 21074,
+    "gains": 22,
+    "losses": 0,
+    "inclusive_failures": 1227,
+    "hashes_verified": 162
+  },
+  "bank": {
+    "before": 3231745,
+    "after": 3231759,
+    "total": 3875673,
+    "gains": 14,
+    "losses": 0,
+    "unread": 116
+  },
+  "source_review": "Main highY0 source grouping, notice and ledger; ten recorded test bits; complete Kornia seeds/start/rescale/normalization and ten models checked. All14 Kornia manifest items verified.",
+  "facts_sha256": "4c1a1de2189e48b5369a5a07b3a60807fb5e9f254b9924b162e04e113a8d8409",
+  "limitations": "No independent full numerical bank/cargo replay by reviewer. Fresh required check pending at review time. No product or research files changed by reviewer."
+}

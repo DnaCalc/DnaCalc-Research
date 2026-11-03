@@ -1,0 +1,25 @@
+{
+  "format": "dnacalc-research-questions-r21/1",
+  "scalar_calls": 20,
+  "catalogue_formula_cells": 204,
+  "selected_regression_outputs": 120,
+  "operand_echoes": 84,
+  "new_excel_answers": 0,
+  "catalogue_sheet": "dcj9k_r21",
+  "catalogue_section_sha256": "aeebbde170842f302120637bea408ceb8265bfed4eb017d8d168ea417f32a5f7",
+  "prediction_executable_sha256": "0f050b35beac825f75181dc4708507c2828d2f44fc7a3c916136455138cd562a",
+  "source_sha256": "9940136e3ed091b02a5c86fe6c3744c979a965ea2d14bcd57b7f455cdf7bc4ea",
+  "limits": "Predictions from the frozen R21 pre-merge research executable; all are application calculations, never Excel evidence. Existing standard scalar reader and catalogue capture only; no alternative oracle.",
+  "files_sha256": {
+    "README.txt": "f75bdbf0ec65bb3b350f133c79dd134126f87ef2c391fdcc92a878f377f126f9",
+    "application-predictions-HYPGEOM.DIST.jsonl": "3829fe9c2ac080c41226902c55a00c0a5b2e30533f36ca37508db3259a3276bb",
+    "application-predictions-catalogue.jsonl": "d45ed90998dfec8ee01d02b64f85f5ea6c0caae065c930b4cb4dd48ed543f671",
+    "application-route-audit.jsonl": "9ac79abff38f6f99041f928151f49b96a35889c9480be4494a95b8fe2f31739a",
+    "application-route-inputs.jsonl": "2e1557cfdcb7a5fba2723b9517138dc853234ef17ea4744ff803087391521d2c",
+    "batches.json": "ac726353a9354582e52663522544ed3ffc6c86c43499039f024dbcf2b03a5468",
+    "catalogue-questions.json": "4d26fc29cc2c2bf37e4ce2f8bd95a9b0247578f339df3b7e36106162da627818",
+    "requests-HYPGEOM.DIST.json": "9857590282fce8888a39dc6c4212544f77ce490ed5ce08ac9df571d07e923d63",
+    "selection.json": "5ca8f7ad34207a3e1d74649cb93b4fcee08c6dac889f58bd24a9c2eb4121f7af",
+    "sheet-dcj9k_r21.txt": "aeebbde170842f302120637bea408ceb8265bfed4eb017d8d168ea417f32a5f7"
+  }
+}

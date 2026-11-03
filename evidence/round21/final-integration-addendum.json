@@ -1,0 +1,42 @@
+{
+  "source_checkpoint": "9c5aa7f5",
+  "upstream_tip_after_measurement": "513bcf2e",
+  "basis": "Direct final rebuilt bank and corpus receipts; later source pull not measured again.",
+  "current_corpus": {
+    "awaiting_capture": 1837,
+    "circular_rule": 14,
+    "external_links": 73,
+    "fail": 999,
+    "failed_or_missing": 1,
+    "failed_or_missing_by_verdict": {
+      "not_run": 1
+    },
+    "formula_cells": 21278,
+    "mismatched": 945,
+    "pass": 18355,
+    "pass_rate": 0.8626280665476078,
+    "refused": 53,
+    "inclusive_failures": 2923,
+    "pass_rate_percent": 86.26280665476078
+  },
+  "late_comparison_change": {
+    "gains": 69,
+    "losses": 0,
+    "gains_by_sheet": {
+      "fn1_collation": 67,
+      "dczsn2_collation": 2
+    },
+    "all_previously_refused": true
+  },
+  "main_all": {
+    "passed": 1735,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 4,
+    "packages": 27
+  },
+  "superseded_attempts": "Raw superseded-late-attempts.json identifies premature runs; they are not evidence.",
+  "earlier_binary_sha256": "4aa7ae20598a504a93a8fee218282f18ad3ff3f484221a0852f699213073211c",
+  "final_binary_sha256": "5c64ef43594dbdf956f985adcbcb799915b03e98719bb619d58c0ef5c37db5d4",
+  "review_scope": "Earlier independent review remains scoped to its historical receipts. Late review addendum, if any, recorded separately."
+}

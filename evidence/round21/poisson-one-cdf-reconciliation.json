@@ -1,0 +1,86 @@
+{
+  "complete": true,
+  "input_rows": 49747,
+  "scoped": 154,
+  "excluded": {
+    "outside_one_count_positive_cdf": 49593
+  },
+  "programs": 10,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      154,
+      69,
+      73,
+      3,
+      7
+    ],
+    [
+      154,
+      72,
+      73,
+      1,
+      2
+    ],
+    [
+      154,
+      69,
+      73,
+      3,
+      7
+    ],
+    [
+      154,
+      72,
+      73,
+      1,
+      2
+    ],
+    [
+      154,
+      71,
+      73,
+      3,
+      5
+    ],
+    [
+      154,
+      71,
+      73,
+      3,
+      5
+    ],
+    [
+      154,
+      69,
+      73,
+      3,
+      7
+    ],
+    [
+      154,
+      72,
+      73,
+      1,
+      2
+    ],
+    [
+      154,
+      69,
+      73,
+      3,
+      7
+    ],
+    [
+      154,
+      72,
+      73,
+      1,
+      2
+    ]
+  ],
+  "full_survivors": 0,
+  "gain_without_loss": 0,
+  "predictions_sha256": "091eccfc9f52843f58e63abc6c785b3104f0db14c6555b3cb9db8bde83ad5bf5",
+  "decision": "No adoption; every model loses prior matches.",
+  "limits": "Ten fixed expressions, positive finite means, original count in[1,2), cumulative only. EXP leaf is conditional. Discovery, no parameter fitting, row selection or complete gamma/Poisson algorithm identification."
+}

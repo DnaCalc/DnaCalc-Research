@@ -150,6 +150,155 @@ def rank_coordinates(raw):
     return (columns,constant,int(expected)),None
 
 
+def statistic_profiles():
+    for identity,(model,root,form)in enumerate(itertools.product(MODELS,('binary64','coherent'),range(6))):
+        yield dict(id=identity,model=model,root=root,form=form)
+
+
+def statistic_value(profile,leaf,covariance_override=None):
+    from intervals import E64,E53
+    ss,covariance,df=(Q(number(leaf[k]))for k in ('ss','covariance','df'))
+    if covariance_override is not None:
+        covariance=covariance_override
+    model=profile['model']
+    def op(kind,a,b):return operation(kind,model,a,b)
+    def root(x):
+        if profile['root']=='binary64' or model=='strict':
+            result=B64.rn_sqrt(B64.rn(x))
+        else:
+            fmt=E53 if model.endswith('pc53')else E64
+            result=fmt.rn_sqrt(x)
+            if model.startswith('stored'):result=B64.rn(result)
+        require(result is not None,'nonfinite square root outside the finite study')
+        return result
+    form=profile['form']
+    if form==0:value=root(op('div',op('mul',ss,covariance),df))
+    elif form==1:value=root(op('mul',op('div',ss,df),covariance))
+    elif form==2:value=root(op('mul',ss,op('div',covariance,df)))
+    elif form==3:value=op('mul',root(op('div',ss,df)),root(covariance))
+    elif form==4:value=op('mul',root(ss),root(op('div',covariance,df)))
+    else:value=op('div',root(op('mul',ss,covariance)),root(df))
+    value=B64.rn(value)
+    if value is None:return 'error:Num'
+    return '0x'+struct.pack('>d',float(value)).hex()
+
+
+def statistic_run(input_path,destination):
+    """Fixed exact standard-error consumers with explicitly conditional QR leaves."""
+    from intervals import E64,E53
+    import math
+    import random
+    start=time.monotonic();dest=Path(destination);dest.mkdir()
+    source=Path(__file__);intervals=source.with_name('intervals.py')
+    hashes={str(p):digest(p)for p in (source,intervals,Path(input_path))}
+    # Binary64 controls independently use hardware sqrt; exact square and tie
+    # controls exercise both extended precisions without a floating oracle.
+    rng=random.Random(21003);controls=0
+    for _ in range(1000):
+        bits=rng.randrange(1,0x7ff0000000000000)
+        x=struct.unpack('>d',bits.to_bytes(8,'big'))[0]
+        require(float(B64.rn_sqrt(Q(x)))==math.sqrt(x),'binary64 root control')
+        controls+=1
+    for fmt in (B64,E64,E53):
+        for exponent in (-100,0,100):
+            for offset in range(12):
+                lo=pow2(exponent)+offset*pow2(exponent-fmt.p+1)
+                hi=lo+pow2(exponent-fmt.p+1);mid=(lo+hi)/2
+                for squared,wanted in ((lo*lo,lo),(hi*hi,hi),(mid*mid,lo if offset%2==0 else hi)):
+                    require(fmt.rn_sqrt(squared)==wanted,'exact square/root midpoint control');controls+=1
+    rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]
+    ps=list(statistic_profiles());counts={};first={};scope=Counter();baseline_controls=0
+    with(dest/'predictions.jsonl').open('x')as out:
+        for index,record in enumerate(rows):
+            raw,leaf=record['raw'],record['leaf'];role=str(leaf['role'])
+            values=[Q(number(leaf[k]))for k in ('ss','covariance','df')]
+            if any(v and not pow2(-500)<=abs(v)<=pow2(500)for v in values):
+                scope['outside_research_magnitude_bound']+=1;continue
+            require(values[0]>=0 and values[1]>=0 and values[2]>0,'invalid finite leaf domain')
+            baseline=dict(model='strict',root='binary64',form=0 if role=='0'else 1)
+            require(statistic_value(baseline,leaf)==raw['actual']==leaf['value'],'original standard-error arithmetic changed')
+            baseline_controls+=1;scope['scoped']+=1
+            stats=counts.setdefault(role,[[0]*5 for _ in ps]);kills=first.setdefault(role,[None]*len(ps))
+            was=raw['actual']==raw['expected'];predictions=[]
+            for p in ps:
+                prediction=statistic_value(p,leaf);predictions.append(prediction);now=prediction==raw['expected']
+                for i,value in enumerate((1,now,was,now and not was,was and not now)):stats[p['id']][i]+=value
+                if not now and kills[p['id']]is None:kills[p['id']]=dict(input_index=index,trace_index=record['trace_index'],id=raw['id'],prediction=prediction,expected=raw['expected'])
+            out.write(json.dumps(dict(input_index=index,id=raw['id'],role=role,predictions=predictions,expected=raw['expected'],baseline=raw['actual']),separators=(',',':'))+'\n')
+    require(scope['scoped']>0 and sum(scope.values())==len(rows),'incomplete statistic scope')
+    require(all(digest(p)==h for p,h in hashes.items()),'statistic source/input changed')  # ubs:ignore — public evidence-integrity hashes, not authentication secrets
+    summary=dict(complete=True,input_rows=len(rows),scope=scope,programs_per_role=len(ps),roles={'0':'predictor','1':'constant'},
+        profiles=ps,counts_all_exact_baseline_gains_losses=counts,first_contradictions=first,
+        exact_root_controls=controls,baseline_controls=baseline_controls,input_sha256=hashes,
+        seconds=time.monotonic()-start,
+        source='Defining standard-error identity sqrt(residual_sum_squares*covariance/degrees_of_freedom); IEEE754 and Intel x87 models; exact integer midpoint square roots.',
+        limits='Six fixed algebraic expressions, five arithmetic modes and binary64/coherent square roots, separately counted by mathematical coefficient role. Current QR/covariance operands are conditional binary64 leaves, not identified Excel producers. No fitting, per-row selector, tolerance or complete regression-kernel claim.')
+    (dest/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in summary.items()if k not in ('profiles','first_contradictions','input_sha256')}))
+
+
+def factor_profiles():
+    for identity,(shape,order,model,store)in enumerate(itertools.product(range(4),range(3),MODELS,(False,True))):
+        yield dict(id=identity,shape=shape,order=order,model=model,store_factor=store)
+
+
+def factor_value(profile,leaf):
+    factors=leaf['factors'];w=list(map(lambda x:Q(number(x)),factors['weights']))
+    inverse=[[Q(number(x))for x in row]for row in factors['inverse']]
+    require(len(inverse)==len(w)and all(len(row)==len(w)for row in inverse),'invalid triangular-factor shape')
+    model=profile['model'];order=profile['order'];shape=profile['shape'];size=len(w)
+    def op(kind,a,b):return operation(kind,model,a,b)
+    def total(values):
+        values=list(values)
+        if order==2 and len(values)>1:
+            middle=len(values)//2;return op('add',total(values[:middle]),total(values[middle:]))
+        value=Q(0)
+        for x in values if order!=1 else values[::-1]:value=op('add',value,x)
+        return value
+    if shape==0:
+        def covariance(a,b):return total(op('mul',inverse[a][k],inverse[b][k])for k in range(size))
+        value=total(op('mul',op('mul',w[a],w[b]),covariance(a,b))for a in range(size)for b in range(size))
+    else:
+        start=0 if shape==1 else 1
+        weighted=[total(op('mul',w[a],inverse[a][k])for a in range(start,size))for k in range(start,size)]
+        value=total(op('mul',x,x)for x in weighted)
+        if shape>=2:
+            base=op('mul',inverse[0][0],inverse[0][0])if shape==2 else op('div',Q(1),Q(factors['observations']))
+            value=op('add',base,value)
+    return B64.rn(value)if profile['store_factor']else value
+
+
+def factor_run(input_path,destination):
+    """Quadratic form versus weighted inverse-R norms, with frozen QR factors."""
+    start=time.monotonic();dest=Path(destination);dest.mkdir()
+    rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]
+    scoped=[r for r in rows if r['leaf']['role']==1]
+    require(scoped,'empty intercept standard-error scope')
+    producers=list(factor_profiles());consumers=list(statistic_profiles())
+    profiles=[dict(id=i,producer=p,consumer=c)for i,(p,c)in enumerate(itertools.product(producers,consumers))]
+    counts=[[0]*5 for _ in profiles];first=[None]*len(profiles);controls=0
+    for at,record in enumerate(scoped):
+        raw,leaf=record['raw'],record['leaf']
+        baseline=dict(shape=0,order=0,model='strict',store_factor=False)
+        require(factor_value(baseline,leaf)==Q(number(leaf['covariance'])),'original covariance-factor arithmetic changed')
+        controls+=1;values=[factor_value(p,leaf)for p in producers];was=raw['actual']==raw['expected']
+        for p in profiles:
+            covariance=values[p['producer']['id']]
+            require(covariance is not None and covariance>=0,'outside finite positive covariance-factor study')
+            prediction=statistic_value(p['consumer'],leaf,covariance);now=prediction==raw['expected'];tally=counts[p['id']]
+            for i,v in enumerate((1,now,was,now and not was,was and not now)):tally[i]+=v
+            if not now and first[p['id']]is None:first[p['id']]=dict(input_index=at,id=raw['id'],prediction=prediction,expected=raw['expected'])
+    summary=dict(complete=True,input_rows=len(rows),scoped=len(scoped),excluded_other_roles=len(rows)-len(scoped),
+        producers=len(producers),consumers=len(consumers),profiles=len(profiles),baseline_factor_controls=controls,
+        counts_all_exact_baseline_gains_losses=counts,first_contradictions=first,
+        input_sha256={str(p):digest(p)for p in (Path(input_path),Path(__file__),Path(__file__).with_name('intervals.py'))},seconds=time.monotonic()-start,
+        source='Linear least-squares covariance identity w*R^-1*(R^-1)^T*w^T = sum((w*R^-1)_k^2); centered intercept identity 1/n plus centered predictor term; IEEE754 exact algebra and square-root rounding.',
+        limits='Conditional original binary64 inverse-R and weight operands, with120 fixed factor producers and60 standard-error consumers. Four mathematical forms, three summation orders, five arithmetic modes and a final store choice. No fitted coefficient, cutoff, per-row selector or claim of identifying a full QR/regression algorithm.')
+    (dest/'profiles.json').write_text(json.dumps(profiles)+'\n')
+    (dest/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in summary.items()if k not in ('counts_all_exact_baseline_gains_losses','first_contradictions','input_sha256')}))
+
+
 def rank_profiles():
     # All tolerances are mathematical IEEE roundoff scales, never inferred
     # from a residual or fitted to an Excel rank transition.
@@ -214,6 +363,8 @@ def rank_run(input_path, destination):
 
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='factors':factor_run(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='statistics':statistic_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='rank':rank_run(*sys.argv[2:]);raise SystemExit(0)
     parser=argparse.ArgumentParser();parser.add_argument('input');parser.add_argument('destination')
     args=parser.parse_args();run(args.input,args.destination)

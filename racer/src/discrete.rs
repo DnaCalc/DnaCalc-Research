@@ -115,6 +115,86 @@ fn coordinates(row:&Value)->Option<(f64,f64,f64)> {
     Some((x,n,p))
 }
 
+/// Fixed hypergeometric quotient programs from the conditional-binomial identity.
+/// Existing binomial masses are explicit conditional leaves; no table is changed.
+pub fn hypergeom_quotients<F:Fpu>(input:&str,output:&str) {
+    use calc_func::value::CalcValue;
+    let destination=Path::new(output);fs::create_dir(destination).unwrap();
+    let rows=crate::lines::<Value>(input);
+    let mut profiles=Vec::new();
+    for model in crate::dsl::WIDE_MODELS {
+        for association in 0..3 {
+            for complement in 0..2 {
+                profiles.push((model,association,complement));
+            }
+        }
+    }
+    crate::json_write(destination.join("profiles.json"),&profiles);
+    let mut counts=vec![[0_usize;5];profiles.len()];
+    let mut first=vec![None;profiles.len()];
+    let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let mut file=BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for (index,row) in rows.iter().enumerate() {
+        let name=row["function"].as_str().unwrap();
+        if !matches!(name,"HYPGEOM.DIST"|"HYPGEOMDIST") || !row["result_index"].is_null() {
+            *excluded.entry("surface_or_selection".into()).or_default()+=1;continue;
+        }
+        let Some(args)=row["args"].as_array() else {*excluded.entry("shape".into()).or_default()+=1;continue;};
+        let values:Option<Vec<_>>=args.iter().enumerate().map(|(i,v)| {
+            if i==4 {v.as_bool().map(|b|if b {1.0}else{0.0}).or_else(||numeric(v))} else {numeric(v)}
+        }).collect();
+        let Some(a)=values else {*excluded.entry("non_numeric_argument".into()).or_default()+=1;continue};
+        if a.len()!=if name=="HYPGEOMDIST" {4}else{5} {*excluded.entry("shape".into()).or_default()+=1;continue;}
+        let (s,n,k,total)=(a[0],a[1],a[2],a[3]);
+        if !a[..4].iter().all(|v|v.is_finite() && *v>=0.0 && *v==v.trunc())
+            || n>total || k>total || total>10000.0 || s>10000.0 {
+            *excluded.entry("outside_integer_domain_or_resource_bound".into()).or_default()+=1;continue;
+        }
+        let cumulative=a.get(4).is_some_and(|v|*v!=0.0);
+        let original_args=args.iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+        let (baseline,_)=crate::invoke_control(name,original_args);
+        assert_eq!(baseline,row["actual"].as_str().unwrap(),"frozen baseline {}",row["id"]);
+        let expected=row["expected"].as_str().unwrap();
+        for (id,&(model,association,complement)) in profiles.iter().enumerate() {
+            let mass=|x:f64| {
+                if x>n || x>k || n-x>total-k {return Val::f64(0.0);}
+                if n==0.0 || n==total {return Val::f64(if x==if n==0.0 {0.0}else{k} {1.0}else{0.0});}
+                let p=n/total;
+                let q=if complement==0 {(total-n)/total}else{1.0-p};
+                let left=Val::f64(current::binom_mass(x,k,p,q));
+                let right=Val::f64(current::binom_mass(n-x,total-k,p,q));
+                let denominator=Val::f64(current::binom_mass(n,total,p,q));
+                match association {
+                    0=>div::<F>(model,mul::<F>(model,left,right),denominator),
+                    1=>mul::<F>(model,left,div::<F>(model,right,denominator)),
+                    2=>mul::<F>(model,div::<F>(model,left,denominator),right),
+                    _=>unreachable!(),
+                }
+            };
+            let value=if cumulative && s>=n.min(k) {1.0}
+                else if cumulative {
+                    let mut sum=Val::f64(0.0);
+                    for x in 0..=s as usize {sum=add::<F>(model,sum,mass(x as f64));}
+                    sum.to_f64::<F>().min(1.0)
+                } else {mass(s).to_f64::<F>()};
+            let prediction=if !value.is_finite() {"error:Num".into()}
+                else {calc_verdict::encode_result(&CalcValue::number(if value.is_subnormal(){0.0}else{value})).unwrap()};
+            if id==0 {assert_eq!(prediction,baseline,"strict quotient control {}",row["id"]);}
+            let was=baseline==expected;let matched=prediction==expected;
+            for (slot,increment) in counts[id].iter_mut().zip([1,usize::from(matched),usize::from(was),usize::from(matched&&!was),usize::from(was&&!matched)]) {*slot+=increment;}
+            if !matched && first[id].is_none() {first[id]=Some(json!({"trace_index":index,"id":row["id"],"prediction":prediction,"expected":expected}));}
+            writeln!(file,"{}",json!({"trace_index":index,"id":row["id"],"program":id,"prediction":prediction,"expected":expected,"baseline":baseline})).unwrap();
+        }
+    }
+    assert!(counts[0][0]>0,"empty hypergeometric quotient scope");
+    assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len(),"unaccounted input rows");
+    let summary=json!({"complete":true,"input_rows":rows.len(),"profiles":profiles,"counts_all_exact_baseline_gains_losses":counts,"first_contradictions":first,"excluded":excluded,
+        "source":"Hypergeometric conditional-binomial identity; IEEE754/Intel x87 coherent arithmetic models; current cleared binomial mass leaves.",
+        "limits":"30 fixed quotient/complement programs with coherent CDF sums; integer domain bounded at10000 for research resources. Conditional binomial leaves, discovery answers, no fitted parameter or general kernel identification."});
+    crate::json_write(destination.join("summary.json"),&summary);
+    println!("{summary}");
+}
+
 pub fn run<F:Fpu>(input:&str,output:&str) {
     let destination=Path::new(output);fs::create_dir(destination).unwrap();
     let original:Vec<Value>=BufReader::new(fs::File::open(input).unwrap()).lines()
@@ -148,6 +228,49 @@ pub fn run<F:Fpu>(input:&str,output:&str) {
     let result=json!({"complete":true,"profiles":ps.len(),"scoped":scoped.len(),"input_rows":original.len(),"executions":executions,"survivors":survivors.len(),"baseline_controls":controls,
         "limits":"Fixed arithmetic programs, no fitted constants. Current Stirling constants and near-mean deviance series are conditional leaves, not independently identified Excel producers. Endpoints/CDFs and other programs remain open."});
     crate::json_write(destination.join("summary.json"),&result);println!("{result}");
+}
+
+/// Q(2,mean)=exp(-mean)*(1+mean), with two fixed algebraic forms.
+/// EXP is the existing cleared worksheet helper, not an inferred private leaf.
+pub fn poisson_one_cdf<F:Fpu>(input:&str,output:&str) {
+    let destination=Path::new(output);fs::create_dir(destination).unwrap();
+    let rows=crate::lines::<Value>(input);
+    let profiles:Vec<_>=crate::dsl::WIDE_MODELS.into_iter().flat_map(|model|[(model,0),(model,1)]).collect();
+    let mut counts=vec![[0_usize;5];profiles.len()];
+    let mut first=vec![None;profiles.len()];
+    let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let mut file=BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for (index,row) in rows.iter().enumerate() {
+        let name=row["function"].as_str().unwrap();
+        if !matches!(name,"POISSON.DIST"|"POISSON") || !row["result_index"].is_null() {*excluded.entry("surface_or_selection".into()).or_default()+=1;continue;}
+        let Some(a)=row["args"].as_array()else{*excluded.entry("shape".into()).or_default()+=1;continue;};
+        if a.len()!=3 {*excluded.entry("shape".into()).or_default()+=1;continue;}
+        let (Some(x),Some(mean))=(numeric(&a[0]),numeric(&a[1]))else{*excluded.entry("non_numeric".into()).or_default()+=1;continue;};
+        let cumulative=a[2]==true || numeric(&a[2]).is_some_and(|v|v!=0.0);
+        if !(x>=1.0 && x<2.0 && mean>=0.0 && mean.is_finite() && cumulative) {*excluded.entry("outside_one_count_positive_cdf".into()).or_default()+=1;continue;}
+        let original_args=a.iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+        let (baseline,_)=crate::invoke_control(name,original_args);
+        assert_eq!(baseline,row["actual"].as_str().unwrap(),"frozen Poisson baseline {}",row["id"]);
+        let expected=row["expected"].as_str().unwrap();
+        let exponential=Val::f64(excel_exp(-mean));
+        for (id,&(model,form)) in profiles.iter().enumerate() {
+            let v=if form==0 {mul::<F>(model,exponential,add::<F>(model,Val::f64(1.0),Val::f64(mean)))}
+                else {add::<F>(model,exponential,mul::<F>(model,Val::f64(mean),exponential))};
+            let value=v.to_f64::<F>();
+            let prediction=if !value.is_finite(){"error:Num".into()}
+                else{calc_verdict::encode_result(&calc_func::value::CalcValue::number(if value.is_subnormal(){0.0}else{value})).unwrap()};
+            let was=baseline==expected;let matched=prediction==expected;
+            for (slot,increment) in counts[id].iter_mut().zip([1,usize::from(matched),usize::from(was),usize::from(matched&&!was),usize::from(was&&!matched)]) {*slot+=increment;}
+            if !matched && first[id].is_none(){first[id]=Some(json!({"trace_index":index,"id":row["id"],"prediction":prediction,"expected":expected}));}
+            writeln!(file,"{}",json!({"trace_index":index,"id":row["id"],"program":id,"prediction":prediction,"baseline":baseline,"expected":expected})).unwrap();
+        }
+    }
+    assert!(counts[0][0]>0,"empty Poisson CDF scope");
+    assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    let summary=json!({"complete":true,"input_rows":rows.len(),"profiles":profiles,"counts_all_exact_baseline_gains_losses":counts,"first_contradictions":first,"excluded":excluded,
+        "source":"Defining Poisson finite sum at count1; DLMF8.4.8; IEEE754 and Intel x87 coherent arithmetic models; existing cleared EXP helper.",
+        "limits":"Ten fixed expressions, positive finite means, original count in[1,2), cumulative only. EXP leaf is conditional. Discovery, no parameter fitting, row selection or complete gamma/Poisson algorithm identification."});
+    crate::json_write(destination.join("summary.json"),&summary);println!("{summary}");
 }
 
 /// Test the defining incomplete-beta identities as whole fixed programs.

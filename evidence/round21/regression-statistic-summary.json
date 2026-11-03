@@ -1,0 +1,2076 @@
+{
+  "complete": true,
+  "input_rows": 168,
+  "scope": {
+    "scoped": 168
+  },
+  "programs_per_role": 60,
+  "roles": {
+    "0": "predictor",
+    "1": "constant"
+  },
+  "profiles": [
+    {
+      "id": 0,
+      "model": "strict",
+      "root": "binary64",
+      "form": 0
+    },
+    {
+      "id": 1,
+      "model": "strict",
+      "root": "binary64",
+      "form": 1
+    },
+    {
+      "id": 2,
+      "model": "strict",
+      "root": "binary64",
+      "form": 2
+    },
+    {
+      "id": 3,
+      "model": "strict",
+      "root": "binary64",
+      "form": 3
+    },
+    {
+      "id": 4,
+      "model": "strict",
+      "root": "binary64",
+      "form": 4
+    },
+    {
+      "id": 5,
+      "model": "strict",
+      "root": "binary64",
+      "form": 5
+    },
+    {
+      "id": 6,
+      "model": "strict",
+      "root": "coherent",
+      "form": 0
+    },
+    {
+      "id": 7,
+      "model": "strict",
+      "root": "coherent",
+      "form": 1
+    },
+    {
+      "id": 8,
+      "model": "strict",
+      "root": "coherent",
+      "form": 2
+    },
+    {
+      "id": 9,
+      "model": "strict",
+      "root": "coherent",
+      "form": 3
+    },
+    {
+      "id": 10,
+      "model": "strict",
+      "root": "coherent",
+      "form": 4
+    },
+    {
+      "id": 11,
+      "model": "strict",
+      "root": "coherent",
+      "form": 5
+    },
+    {
+      "id": 12,
+      "model": "stored_pc64",
+      "root": "binary64",
+      "form": 0
+    },
+    {
+      "id": 13,
+      "model": "stored_pc64",
+      "root": "binary64",
+      "form": 1
+    },
+    {
+      "id": 14,
+      "model": "stored_pc64",
+      "root": "binary64",
+      "form": 2
+    },
+    {
+      "id": 15,
+      "model": "stored_pc64",
+      "root": "binary64",
+      "form": 3
+    },
+    {
+      "id": 16,
+      "model": "stored_pc64",
+      "root": "binary64",
+      "form": 4
+    },
+    {
+      "id": 17,
+      "model": "stored_pc64",
+      "root": "binary64",
+      "form": 5
+    },
+    {
+      "id": 18,
+      "model": "stored_pc64",
+      "root": "coherent",
+      "form": 0
+    },
+    {
+      "id": 19,
+      "model": "stored_pc64",
+      "root": "coherent",
+      "form": 1
+    },
+    {
+      "id": 20,
+      "model": "stored_pc64",
+      "root": "coherent",
+      "form": 2
+    },
+    {
+      "id": 21,
+      "model": "stored_pc64",
+      "root": "coherent",
+      "form": 3
+    },
+    {
+      "id": 22,
+      "model": "stored_pc64",
+      "root": "coherent",
+      "form": 4
+    },
+    {
+      "id": 23,
+      "model": "stored_pc64",
+      "root": "coherent",
+      "form": 5
+    },
+    {
+      "id": 24,
+      "model": "resident_pc64",
+      "root": "binary64",
+      "form": 0
+    },
+    {
+      "id": 25,
+      "model": "resident_pc64",
+      "root": "binary64",
+      "form": 1
+    },
+    {
+      "id": 26,
+      "model": "resident_pc64",
+      "root": "binary64",
+      "form": 2
+    },
+    {
+      "id": 27,
+      "model": "resident_pc64",
+      "root": "binary64",
+      "form": 3
+    },
+    {
+      "id": 28,
+      "model": "resident_pc64",
+      "root": "binary64",
+      "form": 4
+    },
+    {
+      "id": 29,
+      "model": "resident_pc64",
+      "root": "binary64",
+      "form": 5
+    },
+    {
+      "id": 30,
+      "model": "resident_pc64",
+      "root": "coherent",
+      "form": 0
+    },
+    {
+      "id": 31,
+      "model": "resident_pc64",
+      "root": "coherent",
+      "form": 1
+    },
+    {
+      "id": 32,
+      "model": "resident_pc64",
+      "root": "coherent",
+      "form": 2
+    },
+    {
+      "id": 33,
+      "model": "resident_pc64",
+      "root": "coherent",
+      "form": 3
+    },
+    {
+      "id": 34,
+      "model": "resident_pc64",
+      "root": "coherent",
+      "form": 4
+    },
+    {
+      "id": 35,
+      "model": "resident_pc64",
+      "root": "coherent",
+      "form": 5
+    },
+    {
+      "id": 36,
+      "model": "stored_pc53",
+      "root": "binary64",
+      "form": 0
+    },
+    {
+      "id": 37,
+      "model": "stored_pc53",
+      "root": "binary64",
+      "form": 1
+    },
+    {
+      "id": 38,
+      "model": "stored_pc53",
+      "root": "binary64",
+      "form": 2
+    },
+    {
+      "id": 39,
+      "model": "stored_pc53",
+      "root": "binary64",
+      "form": 3
+    },
+    {
+      "id": 40,
+      "model": "stored_pc53",
+      "root": "binary64",
+      "form": 4
+    },
+    {
+      "id": 41,
+      "model": "stored_pc53",
+      "root": "binary64",
+      "form": 5
+    },
+    {
+      "id": 42,
+      "model": "stored_pc53",
+      "root": "coherent",
+      "form": 0
+    },
+    {
+      "id": 43,
+      "model": "stored_pc53",
+      "root": "coherent",
+      "form": 1
+    },
+    {
+      "id": 44,
+      "model": "stored_pc53",
+      "root": "coherent",
+      "form": 2
+    },
+    {
+      "id": 45,
+      "model": "stored_pc53",
+      "root": "coherent",
+      "form": 3
+    },
+    {
+      "id": 46,
+      "model": "stored_pc53",
+      "root": "coherent",
+      "form": 4
+    },
+    {
+      "id": 47,
+      "model": "stored_pc53",
+      "root": "coherent",
+      "form": 5
+    },
+    {
+      "id": 48,
+      "model": "resident_pc53",
+      "root": "binary64",
+      "form": 0
+    },
+    {
+      "id": 49,
+      "model": "resident_pc53",
+      "root": "binary64",
+      "form": 1
+    },
+    {
+      "id": 50,
+      "model": "resident_pc53",
+      "root": "binary64",
+      "form": 2
+    },
+    {
+      "id": 51,
+      "model": "resident_pc53",
+      "root": "binary64",
+      "form": 3
+    },
+    {
+      "id": 52,
+      "model": "resident_pc53",
+      "root": "binary64",
+      "form": 4
+    },
+    {
+      "id": 53,
+      "model": "resident_pc53",
+      "root": "binary64",
+      "form": 5
+    },
+    {
+      "id": 54,
+      "model": "resident_pc53",
+      "root": "coherent",
+      "form": 0
+    },
+    {
+      "id": 55,
+      "model": "resident_pc53",
+      "root": "coherent",
+      "form": 1
+    },
+    {
+      "id": 56,
+      "model": "resident_pc53",
+      "root": "coherent",
+      "form": 2
+    },
+    {
+      "id": 57,
+      "model": "resident_pc53",
+      "root": "coherent",
+      "form": 3
+    },
+    {
+      "id": 58,
+      "model": "resident_pc53",
+      "root": "coherent",
+      "form": 4
+    },
+    {
+      "id": 59,
+      "model": "resident_pc53",
+      "root": "coherent",
+      "form": 5
+    }
+  ],
+  "counts_all_exact_baseline_gains_losses": {
+    "0": [
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        84,
+        121,
+        0,
+        37
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        84,
+        121,
+        0,
+        37
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        115,
+        121,
+        0,
+        6
+      ],
+      [
+        123,
+        115,
+        121,
+        0,
+        6
+      ],
+      [
+        123,
+        115,
+        121,
+        0,
+        6
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        102,
+        121,
+        0,
+        19
+      ],
+      [
+        123,
+        102,
+        121,
+        0,
+        19
+      ],
+      [
+        123,
+        102,
+        121,
+        0,
+        19
+      ],
+      [
+        123,
+        102,
+        121,
+        0,
+        19
+      ],
+      [
+        123,
+        102,
+        121,
+        0,
+        19
+      ],
+      [
+        123,
+        102,
+        121,
+        0,
+        19
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        84,
+        121,
+        0,
+        37
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        84,
+        121,
+        0,
+        37
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        84,
+        121,
+        0,
+        37
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ],
+      [
+        123,
+        121,
+        121,
+        0,
+        0
+      ],
+      [
+        123,
+        111,
+        121,
+        0,
+        10
+      ],
+      [
+        123,
+        113,
+        121,
+        0,
+        8
+      ],
+      [
+        123,
+        84,
+        121,
+        0,
+        37
+      ],
+      [
+        123,
+        86,
+        121,
+        0,
+        35
+      ],
+      [
+        123,
+        85,
+        121,
+        0,
+        36
+      ]
+    ],
+    "1": [
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        29,
+        30,
+        1,
+        2
+      ],
+      [
+        45,
+        29,
+        30,
+        1,
+        2
+      ],
+      [
+        45,
+        29,
+        30,
+        1,
+        2
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        2,
+        2
+      ],
+      [
+        45,
+        30,
+        30,
+        2,
+        2
+      ],
+      [
+        45,
+        30,
+        30,
+        2,
+        2
+      ],
+      [
+        45,
+        30,
+        30,
+        2,
+        2
+      ],
+      [
+        45,
+        30,
+        30,
+        2,
+        2
+      ],
+      [
+        45,
+        30,
+        30,
+        2,
+        2
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ],
+      [
+        45,
+        30,
+        30,
+        1,
+        1
+      ],
+      [
+        45,
+        30,
+        30,
+        0,
+        0
+      ],
+      [
+        45,
+        28,
+        30,
+        1,
+        3
+      ],
+      [
+        45,
+        27,
+        30,
+        5,
+        8
+      ],
+      [
+        45,
+        26,
+        30,
+        5,
+        9
+      ],
+      [
+        45,
+        27,
+        30,
+        2,
+        5
+      ]
+    ]
+  },
+  "first_contradictions": {
+    "0": [
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 98,
+        "trace_index": 1429,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:1094:4",
+        "prediction": "0x3fc863a97e13b08b",
+        "expected": "0x3fc863a97e13b089"
+      },
+      {
+        "input_index": 42,
+        "trace_index": 833,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:498:4",
+        "prediction": "0x3fd19448865f9b99",
+        "expected": "0x3fd19448865f9b98"
+      },
+      {
+        "input_index": 0,
+        "trace_index": 338,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:3:4",
+        "prediction": "0x3fdee8d8a6696144",
+        "expected": "0x3fdee8d8a6696145"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe16",
+        "expected": "0x3fde15cd6fecbe17"
+      },
+      {
+        "input_index": 14,
+        "trace_index": 465,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:130:4",
+        "prediction": "0x3fd5018908fd25d4",
+        "expected": "0x3fd5018908fd25d3"
+      },
+      {
+        "input_index": 1,
+        "trace_index": 358,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:23:4",
+        "prediction": "0x3fde15cd6fecbe18",
+        "expected": "0x3fde15cd6fecbe17"
+      }
+    ],
+    "1": [
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 9,
+        "trace_index": 436,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:101:4",
+        "prediction": "0x402dcb365e4f6222",
+        "expected": "0x402dcb365e4f6221"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      },
+      {
+        "input_index": 2,
+        "trace_index": 359,
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_linest_stats:24:4",
+        "prediction": "0x402b066976b84516",
+        "expected": "0x402b066976b84515"
+      }
+    ]
+  },
+  "exact_root_controls": 1324,
+  "baseline_controls": 168,
+  "input_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/regression.py": "949ca80e7d32e2b4de102fa7461c7b6c7ca22e47219696bde851b3d620ffc7f2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "11f43fb8c0f66fc2f98bf08e2c8038484cb35df514fd53343c0342eeb63c4850",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/regression-stat-leaves/scoped.jsonl": "dd5b817abe2298650484fcf09668339be3c582d7760e122af49f9bd6fdf0faf3"
+  },
+  "seconds": 1.7324848710559309,
+  "source": "Defining standard-error identity sqrt(residual_sum_squares*covariance/degrees_of_freedom); IEEE754 and Intel x87 models; exact integer midpoint square roots.",
+  "limits": "Six fixed algebraic expressions, five arithmetic modes and binary64/coherent square roots, separately counted by mathematical coefficient role. Current QR/covariance operands are conditional binary64 leaves, not identified Excel producers. No fitting, per-row selector, tolerance or complete regression-kernel claim."
+}

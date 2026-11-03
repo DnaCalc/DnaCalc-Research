@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "programs": 48,
+  "observations": 241,
+  "survivors": 0,
+  "executions": 688,
+  "scope": {
+    "not_degrees_of_freedom": 2044,
+    "scoped": 241,
+    "matrix_shape": 21,
+    "not_explicit_numeric_arrays": 6
+  },
+  "source_sha256": "8593cd7d7ec7f0ac3529a7571d46f14c307d846ad19427867a94cb20e06cf2af",
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/regression-corpus/cases.jsonl": "6ea348075e438839e941df136ccf01ae3b0b0d88c3ef66e85af4f5d14b27972b"
+  },
+  "limits": "Exact rational pivoted Gram-Schmidt geometry with fixed IEEE roundoff-scale comparisons. Degrees of freedom only; no floating QR implementation, coefficient program, fitted tolerance or reusable Excel rank rule is identified. Surviving necessary rank policies cannot be adopted as numeric programs."
+}

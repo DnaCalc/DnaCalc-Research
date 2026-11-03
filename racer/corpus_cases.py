@@ -36,6 +36,93 @@ def error_size(expected, actual):
                 relative_error=decimal(difference/abs(Fraction(x))) if x else None)
 
 
+def hypergeom_symmetry(executable, input_path, output):
+    """Check fixed exact-distribution symmetries through the current invoke route.
+
+    Conditional arithmetic diagnostics, never a replacement numerical kernel.
+    Integer finite-support rows only; CDF permits marginal interchange alone.
+    """
+    import math
+    import subprocess
+    executable = Path(executable).resolve()
+    input_path, output = Path(input_path), Path(output)
+    output.mkdir()
+    originals = [json.loads(line) for line in input_path.read_text().splitlines()]
+    bits = lambda v: '0x'+struct.pack('>d', float(v)).hex()
+    def transform(s, n, k, total, identity):
+        if identity & 2:
+            s, k = n-s, total-k
+        if identity & 4:
+            s, n = k-s, total-n
+        if identity & 1:
+            n, k = k, n
+        return s, n, k, total
+    # Independent integer combinatorial controls for the proposed mappings.
+    controls = 0
+    for total in range(1, 9):
+        for n in range(total+1):
+            for k in range(total+1):
+                for s in range(max(0, n+k-total), min(n, k)+1):
+                    exact = Fraction(math.comb(k, s)*math.comb(total-k, n-s), math.comb(total, n))
+                    for identity in range(8):
+                        ss, nn, kk, _ = transform(s, n, k, total, identity)
+                        other = Fraction(math.comb(kk, ss)*math.comb(total-kk, nn-ss), math.comb(total, nn))
+                        if exact != other:
+                            raise ValueError('incorrect hypergeometric identity')
+                        controls += 1
+    questions, excluded = [], Counter()
+    for index, row in enumerate(originals):
+        if row['function'] != 'HYPGEOM.DIST':
+            excluded['other_function'] += 1
+            continue
+        try:
+            a = [struct.unpack('>d', bytes.fromhex(v[2:]))[0] for v in row['args']]
+            s, n, k, total, flag = a
+            if not all(math.isfinite(v) and v == math.trunc(v) for v in a[:4]):
+                raise ValueError('not finite integer')
+        except (ValueError, TypeError, struct.error):
+            excluded['outside_scalar_integer_shape'] += 1
+            continue
+        if not (0 <= s <= min(n, k) and n+k-s <= total and 0 <= n <= total <= 10000 and 0 <= k <= total):
+            excluded['outside_integer_finite_support'] += 1
+            continue
+        for identity in range(2 if flag else 8):
+            args = (*transform(s, n, k, total, identity), flag)
+            questions.append(dict(id=f'{index}:{identity}', args=list(map(bits, args))))
+    request = output/'inputs.json'
+    request.write_text(json.dumps(dict(function='HYPGEOM.DIST', witnesses=questions))+'\n')
+    predictions = output/'predictions.jsonl'
+    # ubs:ignore — trusted local executable, argument vector only; failed invocation aborts the receipt.
+    subprocess.run([str(executable), 'invoke-inputs', str(request), str(predictions)], check=True, timeout=300)
+    results = [json.loads(line) for line in predictions.read_text().splitlines()]
+    if len(results) != len(questions):
+        raise ValueError('missing symmetry predictions')
+    counts, first_losses = {}, {}
+    for question, result in zip(questions, results):
+        if question['id'] != result['id'] or question['args'] != result['args']:
+            raise ValueError('changed symmetry request')
+        index, identity = map(int, question['id'].split(':'))
+        original = originals[index]
+        was = original['actual'] == original['expected']
+        now = result['calc_func_prediction'] == original['expected']
+        if identity == 0 and result['calc_func_prediction'] != original['actual']:
+            raise ValueError('baseline route changed')
+        tally = counts.setdefault(str(identity), [0]*5)
+        for j, value in enumerate((1, now, was, now and not was, was and not now)):
+            tally[j] += value
+        if was and not now:
+            first_losses.setdefault(str(identity), dict(original=original, transformed=result))
+    sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
+    summary = dict(complete=True, original_rows=len(originals), predictions=len(results),
+        combinatorial_controls=controls, counts_all_exact_baseline_gains_losses=counts,
+        excluded=excluded, first_losses=first_losses,
+        input_sha256={str(p):sha(p) for p in (input_path, executable, Path(__file__), request, predictions)},
+        source='Hypergeometric combination definition and exact marginal/sample/success-complement identities; no third-party code.',
+        limits='Current invoke is a conditional numerical leaf. No fitted parameter, kernel identification, full-bank improvement or product change. CDF is tested only under marginal interchange.')
+    (output/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
+    print(json.dumps({k:v for k,v in summary.items() if k not in ('input_sha256', 'first_losses')}))
+
+
 def domain_orders(inputs, output):
     """Eliminate fixed validation orders using recorded result types only.
 
@@ -126,42 +213,61 @@ def domain_orders(inputs, output):
     return result
 
 
-def discrete_questions(output):
+def discrete_questions(output, round_number='20'):
     """Small fixed neighbor/symmetry questions, without predicted answers."""
     import math
+    if round_number not in ('20', '21'):
+        raise ValueError('unknown discrete question round')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     bits = lambda v: '0x'+struct.pack('>d',float(v)).hex()
     groups = {'BINOM.DIST': [], 'HYPGEOM.DIST': []}
     reasons = []
     def add(name, arguments, purpose):
-        identity = 'r20-'+name.lower().replace('.','-')+'-'+str(len(groups[name])).zfill(3)
+        identity = 'r'+round_number+'-'+name.lower().replace('.','-')+'-'+str(len(groups[name])).zfill(3)
         groups[name].append(dict(id=identity,args=list(map(bits,arguments)),input_transport='cell_value2_bulk'))
         reasons.append(dict(id=identity,function=name,purpose=purpose))
     # These paired tails distinguish independent saddle-point evaluation from
     # symmetric or recurrent consumers. Neighboring probabilities distinguish
     # complement rounding without tuning a coefficient or branch boundary.
-    for n, probability, counts in ((1000,.5,(1,999)),(100,.3,(1,99)),(1000,.02,(333,667))):
+    for n, probability, counts in (((1000,.5,(1,999)),(100,.3,(1,99)),(1000,.02,(333,667))) if round_number == '20' else ()):
         for p in (math.nextafter(probability,0.0),probability,math.nextafter(probability,1.0)):
             for which, k in enumerate(counts):
                 for cumulative in (0,1):
                     add('BINOM.DIST',(k,n,p if which==0 else 1.0-p,cumulative),
                         'Mirrored counts at rounded complementary probabilities and adjacent probability bits; PMF/CDF distinguish independent masses from recurrence or beta consumers. A rounded complement need not be the exact real complement.')
-    for a in ((0,8.5,3,8.1),(0,8.1,3,8.5),(0,3,8.5,8.1),(0,3,8.1,8.5)):
+    for a in (((0,8.5,3,8.1),(0,8.1,3,8.5),(0,3,8.5,8.1),(0,3,8.1,8.5)) if round_number == '20' else ()):
         for cumulative in (0,1):
             add('HYPGEOM.DIST',(*a,cumulative),
                 'Raw upper-domain comparisons versus truncation before comparison; both cumulative flags. Negative signs/empty populations are already recorded.')
+    if round_number == '21':
+        for s, n, k, total in ((60,200,300,1000), (2,5,7,20)):
+            for identity in range(8):
+                ss, nn, kk = s, n, k
+                if identity & 2:
+                    ss, kk = nn-ss, total-kk
+                if identity & 4:
+                    ss, nn = kk-ss, total-nn
+                if identity & 1:
+                    nn, kk = kk, nn
+                add('HYPGEOM.DIST', (ss, nn, kk, total, 0),
+                    'Integer finite-support PMF under marginal interchange and exact sample/success complements; fixed identity '+str(identity))
+            for nn, kk in ((n,k), (k,n)):
+                add('HYPGEOM.DIST', (s,nn,kk,total,1),
+                    'CDF marginal interchange; paired with the corresponding PMF. Rounded Excel symmetry is a question, never assumed.')
     batches = []
     for name, rows in groups.items():
+        if not rows:
+            continue
         filename = 'requests-'+name+'.json'
         (output/filename).write_text(json.dumps(dict(function=name,
-            selection='R20 fixed discriminating questions, with intentional recorded controls; no --new-only',
+            selection='R'+round_number+' fixed discriminating questions, with intentional recorded controls; no --new-only',
             witnesses=rows),indent=2)+'\n')
         batches.append(dict(function=name,path=filename,calls=len(rows)))
     (output/'batches.json').write_text(json.dumps(batches,indent=2)+'\n')
     (output/'selection.json').write_text(json.dumps(dict(calls=len(reasons),questions=reasons,
         new_excel_answers=0,rule='Fixed mathematical symmetry, adjacent binary64 probabilities and validation-order alternatives. No coefficient fitting or expected-answer file.'),indent=2)+'\n')
-    (output/'README.txt').write_text('''R20 discrete distribution questions: 36 BINOM.DIST calls and8 HYPGEOM.DIST calls.
+    (output/'README.txt').write_text(('''R20 discrete distribution questions: 36 BINOM.DIST calls and8 HYPGEOM.DIST calls.
 From the published DnaCalc Windows checkout, use the existing witness reader:
   cargo xtask witness read --func BINOM.DIST --inputs <packet>/requests-BINOM.DIST.json
   cargo xtask witness read --func HYPGEOM.DIST --inputs <packet>/requests-HYPGEOM.DIST.json
@@ -175,8 +281,115 @@ Return those files, the unchanged packet, file hashes and partial attempts in
 ~/codex-runs/excel-results-r20. Preserve canonical readings in OxFunc-Evidence.
 Input changes, missing/unread results and automation failures remain failures.
 This packet uses the established witness reader and capture lineage only.
-''')
+''' if round_number == '20' else '''R21 hypergeometric questions: 20 scalar calls; no expected answers.
+From the published DnaCalc Windows checkout, use the existing witness reader:
+  cargo xtask witness read --func HYPGEOM.DIST --inputs <packet>/requests-HYPGEOM.DIST.json
+Do not use --new-only: recorded center controls are intentional. Only requests-*.json
+are reader inputs. Predictions are application calculations, never Excel readings.
+Preserve the canonical WitnessSet in OxFunc-Evidence, requested/submitted/Value2
+bit audits, worker settings, original requests/results, frozen files, packet hashes
+and partial attempts. Return them under ~/codex-runs/excel-results-r21.
+No second oracle or capture lineage is introduced. Missing/unread outcomes fail.
+'''))
     print(json.dumps(dict(calls=len(reasons),batches=batches,new_excel_answers=0)))
+
+
+def round21_questions(executable, output):
+    """Extend the existing scalar packet and catalogue section question formats."""
+    import subprocess
+    executable, output = Path(executable).resolve(), Path(output)
+    discrete_questions(str(output), '21')
+    questions = []
+    def add(formula, reason, **metadata):
+        row = len(questions)+1
+        questions.append(dict(id=f'r21-sheet-{row:04d}', row=row, column=4,
+                              formula=formula, reason=reason, **metadata))
+    literal = lambda x: format(float(x), '.17g')
+    array = lambda rows: '{'+';'.join(','.join(literal(x) for x in row) for row in rows)+'}'
+    for y in (1,2,4,7):
+        add(literal(y), 'response operand control')
+    shapes = [('exact-control', 0.0, 1.0, 1.0, 0.0, False, False),
+              ('resolved-control', 2**-16, 1.0, 1.0, 0.0, False, False)]
+    for label, scale1, scale2, shift, reverse, swap in (
+        ('base', 1,1,0,False,False), ('reverse',1,1,0,True,False),
+        ('small-both',2**-20,2**-20,0,False,False),
+        ('large-both',2**20,2**20,0,False,False),
+        ('small-second',1,2**-20,0,False,False),
+        ('large-second',1,2**20,0,False,False),
+        ('translated',1,1,2**20,False,False),
+        ('swap-columns',1,1,0,False,True)):
+        shapes.append((label,2**-18,scale1,scale2,shift,reverse,swap))
+    for label, delta, scale1, scale2, shift, reverse, swap in shapes:
+        x = [[v*scale1+shift, (2*v+(delta if i==3 else 0))*scale2+shift]
+             for i,v in enumerate((1,2,5,4))]
+        y = [[v] for v in (1,2,4,7)]
+        if reverse:
+            x, y = x[::-1], y[::-1]
+        if swap:
+            x = [row[::-1] for row in x]
+        xs, ys = array(x), array(y)
+        for r in range(1,5):
+            for c in range(1,3):
+                add(f'INDEX({xs},{r},{c})', 'matrix operand echo; Excel parser bits are observed, never assumed',
+                    shape=label, matrix_index=[r,c])
+        for function in ('LINEST','LOGEST'):
+            for constant in ('FALSE','TRUE'):
+                for r,c in ((1,1),(1,2),(4,2)):
+                    add(f'INDEX({function}({ys},{xs},{constant},TRUE),{r},{c})',
+                        'fixed rank/removed-column question under scaling, translation or permutation; no threshold fitted',
+                        shape=label, function=function, result_index=[r,c], use_const=constant=='TRUE')
+    sheet = dict(sheet='dcj9k_r21', questions=questions)
+    sheet_path = output/'catalogue-questions.json'
+    sheet_path.write_text(json.dumps(sheet,indent=2)+'\n')
+    section = output/'sheet-dcj9k_r21.txt'
+    section.write_text('# R21: numeric rank transformations and operand echoes. Questions only.\n'+
+                       '\n'.join(q['formula'] for q in questions)+'\n',encoding='ascii')
+    # ubs:ignore — trusted local executable and argv; missing application values abort publication.
+    subprocess.run([str(executable),'sheet-predictions',str(sheet_path),str(output/'application-predictions-catalogue.jsonl')],check=True,timeout=300)
+    predictions = [json.loads(line)for line in(output/'application-predictions-catalogue.jsonl').read_text().splitlines()]
+    if len(predictions)!=len(questions)or any(q['id']!=p['id']or q['formula']!=p['formula']for q,p in zip(questions,predictions)):
+        raise ValueError('missing or changed catalogue question')
+    request = output/'requests-HYPGEOM.DIST.json'
+    prediction = output/'application-predictions-HYPGEOM.DIST.jsonl'
+    # ubs:ignore — same operator-selected executable, argument vector only.
+    subprocess.run([str(executable),'invoke-inputs',str(request),str(prediction),'1900'],check=True,timeout=300)
+    batch = json.loads(request.read_text())['witnesses']
+    calculated = [json.loads(line)for line in prediction.read_text().splitlines()]
+    if len(batch)!=len(calculated):
+        raise ValueError('missing scalar question prediction')
+    audit = output/'application-route-inputs.jsonl'
+    with audit.open('x')as f:
+        for q,p in zip(batch,calculated):
+            if q['id']!=p['id']or q['args']!=p['args']or p['date_system']!='1900':
+                raise ValueError('changed scalar question input/environment')
+            f.write(json.dumps(dict(**q,function='HYPGEOM.DIST',result_index=None,
+                actual=p['calc_func_prediction'],numeric_cell_inputs=True,date_system_1900=True,
+                not_excel_evidence=True))+'\n')
+    # ubs:ignore — same executable and argv; audit assertions must succeed.
+    subprocess.run([str(executable),'function-routes',str(audit),str(output/'application-route-audit.jsonl')],check=True,timeout=300)
+    with(output/'README.txt').open('a')as f:
+        f.write('''
+The same packet asks 204 scalar formula cells on catalogue sheet dcj9k_r21:
+120 LINEST/LOGEST selected outputs and84 operand echoes. They extend the one
+catalogue oracle; the existing generator registers sheet-dcj9k_r21.txt.
+From the published DnaCalc checkout on Windows:
+  cargo xtask capture --pending --list
+  cargo xtask capture --pending
+Keep sections/dcj9k_r21.capture.json and the original worker capture outputs.
+Do not place application predictions into a capture or a WitnessSet. The operand
+echoes record Excel's literal parser results; requested binary64 arithmetic and
+parsed literals need not have identical bits. These are discovery questions,
+not fitted rank rules or a coefficient program. Return all failures and attempts.
+''')
+    sha = lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+    summary = dict(format='dnacalc-research-questions-r21/1',scalar_calls=20,
+        catalogue_formula_cells=len(questions),selected_regression_outputs=120,operand_echoes=84,
+        new_excel_answers=0,catalogue_sheet='dcj9k_r21',catalogue_section_sha256=sha(section),
+        prediction_executable_sha256=sha(executable),source_sha256=sha(Path(__file__)),
+        limits='Predictions from the frozen R21 pre-merge research executable; all are application calculations, never Excel evidence. Existing standard scalar reader and catalogue capture only; no alternative oracle.')
+    summary['files_sha256']={p.name:sha(p)for p in sorted(output.iterdir())if p.is_file()}
+    (output/'manifest.json').write_text(json.dumps(summary,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in summary.items()if 'sha256'not in k}))
 
 
 def split_arguments(text, separator=','):
@@ -948,6 +1161,12 @@ or changed-input obligations fail. Use the existing capture lineage only.
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'round21-questions':
+        round21_questions(*sys.argv[2:])
+        sys.exit(0)
+    if len(sys.argv) > 1 and sys.argv[1] == 'hypergeom-symmetry':
+        hypergeom_symmetry(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'discrete-questions':
         discrete_questions(*sys.argv[2:])
         sys.exit(0)

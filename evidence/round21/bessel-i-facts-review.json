@@ -1,0 +1,64 @@
+{
+  "id": "dc-j9k-r21-bessel-i-published-source-facts-review",
+  "role": "check",
+  "checker": "/root/r21_source_checker",
+  "reviewed_at_utc": "2026-11-03T17:21:06.297756+00:00",
+  "status": "approved",
+  "facts_path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/bessel-i-r21-facts.json",
+  "facts_sha256": "3115ad090df51d3f74f472af1870dac7d03125fc1306bc02cbc506e9eb8cc0d1",
+  "policy": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/plan/RESEARCH_SOURCES.md",
+  "reasons": [
+    "The four numerical facts are supported by the pinned MIT PhpSpreadsheet source: complete I0/I1 seeds, integer-order backward recurrence, exact published start, rescaling constants, normalization, zero and parity rules.",
+    "No restricted-source implementation text, identifiers, control structure or comments were identified in this facts note. The analyst explicitly disclosed additional tier3 search-snippet exposure.",
+    "All19 manifest items match recorded bytes and SHA256. The Iridium LGPL item is licence metadata only and explicitly excluded as an implementation source.",
+    "SheetJS history metadata has exactly five listed revisions; each paired source/licence was checked. All retain the stated rounded I start, with MIT notices in three old revisions and Apache-2.0 notices in two newer revisions.",
+    "Current MathNet source supports its bounded Chebyshev/Amos description, with MIT and embedded CERN notices. ParallelColt supplies I0/I1 but no higher-order integer I routine; its relevant CERN permission is distinct from the separate hep.aida terms.",
+    "The note keeps the complete PhpSpreadsheet program distinct from SheetJS and makes no Excel-equivalence or implementation-success claim."
+  ],
+  "evidence": {
+    "manifest_path": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-source-analyst-permitted/manifest.json",
+    "manifest_sha256": "57dfb18b0ea4e57032f42ca55dad18bf4972cd98b7ca1f7a52c22f5808dbb4e0",
+    "manifest_items_verified": 19,
+    "php_source_sha256": "168c41025dfce6c543ce1d81ed092f06fccd6fb8b597f8a79fd535f29cabcb3f",
+    "php_licence_sha256": "1416c9cb9b9925bbbecbd2aaeb62864fa5544f5572e5e0e130304f532c38ac8e"
+  },
+  "checker_boundaries": {
+    "DnaCalc_engine_accessed": false,
+    "old_bessel_numerical_bodies_or_history_read": false,
+    "tier3_or_tier4_source_code_read": false,
+    "facts_or_product_files_modified": false,
+    "commit_or_push": false,
+    "research_AGENTS_md": "No AGENTS.md exists at the Research repository root; main repository policy read and followed."
+  },
+  "optional_fixed_program_fidelity_review": {
+    "status": "source-fidelity-approved; whole-program-rejected-against-Excel",
+    "source_path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/src/bessel_rational.rs",
+    "reviewed_kernel_slice_sha256": "6d5117f76ccc1917f2ae8a9c1c7e8dedb1bd24f690f7bafc42538e44bdcac634",
+    "scope": "Fixed published_i0/published_i kernels, coefficient tables, strict Horner helper, existing research MIT notice and recorded prediction accounting. Later arithmetic/store models excluded.",
+    "finding": "Coefficients, source grouping, branch threshold3.75, start2*(n+floor(sqrt(40*n))), strict recurrence operations, source1e12/1e-12 rescaling and final normalization agree with the direct pinned PHP numerical source. Worksheet EXP substitution is disclosed.",
+    "notice_path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/notices/PhpSpreadsheet.txt",
+    "notice_matches_pinned_licence": true,
+    "predictions_sha256": "e231ab5a5f988688d2dd493675baf9d1275e39de545f73788d72fdf60f04ed92",
+    "summary_sha256": "a0354ce9d7595348b6cd55ea64877fdfa4657ca25aa08ecb18853b25c8977e86",
+    "independently_recounted": {
+      "rows": 1431,
+      "baseline_matched": 556,
+      "candidate_matched": 787,
+      "gains": 365,
+      "losses": 134,
+      "mismatched": 644,
+      "nonnumeric_mismatches": 0,
+      "worst_ulp": 7,
+      "mismatch_ulp_histogram": {
+        "1": 392,
+        "2": 154,
+        "3": 70,
+        "4": 18,
+        "5": 7,
+        "6": 2,
+        "7": 1
+      }
+    },
+    "limits": "Recorded predictions independently recounted; numerical program not independently rerun. Product outer admissions not rechecked because replaced numerical bodies are excluded from this checker. Source-fidelity approval does not approve product adoption, hybrid starts/rescaling or later unreviewed arithmetic models."
+  }
+}

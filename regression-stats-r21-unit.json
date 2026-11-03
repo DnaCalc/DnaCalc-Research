@@ -1,0 +1,36 @@
+{
+  "id": "dc-j9k-r21-regression-standard-error-consumers",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "9b0caf536d7db2d3c7588685db444cc7e0d8f551",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/bessel.rs": "f9c96a3366d2a0a0f4c39dc4076b74c50fac024d",
+    "crates/calc-func/src/ported/bessel_rational.rs": "38289b5f397fafcd50b9139b5626bdfc4156b9d3"
+  },
+  "scope": "Instrumented existing QR/statistics source retains original expressions and returns original values. Registered invocation controls precede admission of fixed standard-error operands. Exact arithmetic consumers are a separate bounded study.",
+  "sources": {
+    "tier1": [
+      "Recorded Excel answers; standard-error identity sqrt(residual_sum_squares*covariance/degrees_of_freedom); inverse-R covariance identities from linear least squares; IEEE754 and Intel SDM."
+    ],
+    "tier2": [
+      "Current cleared DnaCalc regression_forecast_family.rs and exact-rounding infrastructure; instrumentation retains every original final arithmetic expression. No external code copied."
+    ],
+    "banned": [
+      "Tier3 and Tier4 numerical implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "Codex session model, no override",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no preregistration or held-out claim. No coefficient, tolerance, cutoff or row selector fitted.",
+  "source_sha256": {
+    "racer/src/main.rs": "d7c6eb555f324dbcbb6686e957ed4fb825a97c2d5273113aacbe4488a744ff8b",
+    "racer/src/route_audit.rs": "3202c1b11ca9b6c93b5e7d58f51e6692f0bd7d5be18ff3b16fbbdf8c9e180d44",
+    "racer/build.rs": "d339cc03ed2a015e39be985214490cb538202a3ae8f12e3aec5e1f25d53183c9"
+  },
+  "revision_note": "Fresh unit for incoming formula cache-allocation change; retains same two highY0 working blobs and corrected accounting source hashes.",
+  "regression_audit": true,
+  "metadata_correction": "Read-only R21 review corrected inherited distribution citations to the actual regression sources. Numerical code and frozen application bindings are unchanged; original metadata retained under the external round21/unit-metadata-before-review directory."
+}

@@ -1,0 +1,1813 @@
+{
+  "complete": true,
+  "compared_cells": 19441,
+  "counts": {
+    "changed_returns": 69,
+    "gains": 69,
+    "losses": 0
+  },
+  "gains_by_sheet": {
+    "fn1_collation": 67,
+    "dczsn2_collation": 2
+  },
+  "changes": [
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        2,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        3,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        4,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        6,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        7,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        9,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        10,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        11,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        12,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        14,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        16,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        17,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        18,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        19,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        20,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        30,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        31,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        32,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        33,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        35,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        36,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        38,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        39,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        40,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        41,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        42,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        44,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        46,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        47,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        48,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        49,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        50,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        51,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        62,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        63,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        64,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        65,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        67,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        68,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        70,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        71,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        72,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        73,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        74,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        76,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        78,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        79,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        80,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        81,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        82,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        83,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": false
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        217,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.2), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "3ff0000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        218,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "3ff0000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        219,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.2), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        220,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        221,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.2), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "3ff0000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        222,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "3ff0000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        223,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.2), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        224,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        225,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.2), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        226,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        227,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.2), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4008000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        228,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(9.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "number": "4008000000000000"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        229,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(310.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "text": "6642007c66423005007c66420061007c66420062007c66426642"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        230,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(310.3), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "text": "66426642007c66420062007c66420061007c66423005007c6642"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        231,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(310.4), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "text": "007000720065006600690078007c0069007400650072007c0061007c0062007c007200650070006500610074"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "fn1_collation",
+        232,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(310.4), argument: None })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "text": "007200650070006500610074007c0062007c0061007c0069007400650072007c007000720065006600690078"
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "dczsn2_collation",
+        60,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    },
+    {
+      "cell": [
+        "calc-func_catalogue_oracle.xlsx",
+        "dczsn2_collation",
+        62,
+        4
+      ],
+      "before": {
+        "verdict": "not_modeled",
+        "policy": false,
+        "returned": {
+          "no_value": "CalcFml refused: Function(NotImplemented { id: FunctionId(2.3), argument: Some(0) })"
+        }
+      },
+      "after": {
+        "verdict": "matched",
+        "policy": false,
+        "returned": {
+          "value": {
+            "logical": true
+          }
+        }
+      }
+    }
+  ],
+  "input_sha256": {
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "27c030862e737ea821bc99bd7d16f78d606360d968e01384e57065cecd973a16",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "2e06a20d9c72695ac11eb7fe537c31747d8f5c281494edd8a459104ce571ad25",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "263f40f58d502f825e2d6afc6cf05c58088f996c7eea50c2cc48ba2f11b9f9fa",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "target/corpus-r21-final/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "target/corpus-r21-final/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "7a5531d1bcc24c963bcf0db6f045819883ed26cf49a6a0b6dd828605b86b49d6",
+    "target/corpus-r21-final/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "target/corpus-r21-final/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "target/corpus-r21-final/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "17ae7fdf2b6ea5cb84e86b0c9c27be44dc2882b6c6a4ef8032a80745e40adcc4",
+    "target/corpus-r21-final/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "a51a075a6d61e71ec847d727bb0871af945f3b96b696abf7598b640656871dc0",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "target/corpus-r21-final/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "target/corpus-r21-final/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "d31560b0ba6d4d91adf065848cdb9bf3b6ce5ee4adbbcd400a7594d3d6b530cc",
+    "target/corpus-r21-final/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+    "target/corpus-r21-final/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "target/corpus-r21-final/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "3beaef5fbb8e668857e3ed899d0db6e25088319ec02ba6d2ef6a72b8a8f7626f",
+    "target/corpus-r21-final/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "6d967407ed3debfdd2b3942ce98a85baf6917c0a5487987b7a0cb38cdc2399aa",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "6759fa6e0753f24b8f4dbed289e14f9840fa809169034064663fb7af4f85f940",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "target/corpus-r21-final/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "target/corpus-r21-final/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "c856b6a3d289df7d184ef62385cd512681a73b73bcd27f1a59b9d26f7cce7b0f",
+    "target/corpus-r21-final/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "2d2d047fbca7ac62425d4af3ee71834def30044f83d0499d8d263064e62ed8b2",
+    "target/corpus-r21-final/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "1ec31a8e1781955e816039c5f07876be5d4e8f7c5fd4266662d2547fc289b4e2",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "4fb84b384dfb3626132cdad1e9ce9424b4d5e4b91c092380c30f9ae85d621bbc",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "848d2f4cf4fb7cd8cd158fb25f784e69daa9969023cb45470da58762e459884d",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "7589df7797fac58debc9be13f4ab171a868ad30b4af748f0aabc8075c0d30f44",
+    "target/corpus-r21-final/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "target/corpus-r21-final/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "target/corpus-r21-final/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "82e735c735a6055fea2be8567815378311f292b9dffb63b624cfb2495daccec3",
+    "target/corpus-r21-final/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "target/corpus-r21-final/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "target/corpus-r21-final/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "3f73e1a4849e777056c5251463148d3902414c37b02f6aa581d54a79e81f2d31",
+    "target/corpus-r21-final/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "target/corpus-r21-final/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "target/corpus-r21-final/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "dbf428885e1839d071d249772b544c985dbda88cda3cb9b110338b3e29a13f9d",
+    "target/corpus-r21-final/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "928198e119afa477dbe8c14fd05e885a7d6290e0fcf58370226884b4ab73a425",
+    "target/corpus-r21-final/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "85c84683f96f80f099de02e507cf8ef9b47a23a7fab98ea4faf88b652d96ebd5",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "52dd54eb5568a7cf26a030bbb2edc0ba100a0d6efa4db505c235ba3f2cecb85a",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "a3ac6f0a2046deae68c8422a2d908ff3583fc094babbf14eb2a23b40d92c5403",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "45b6bf7e5b998118065d8ff54ae014a0cbc041ce1fd0aac6592734a61cadd383",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "5339becbde85c9c8d479edc11d8641ca933e53ced0dee287bc392dc43633d19c",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "f6d5a6302434132c868b9716879e4621ccd571263fa3c5f2b636b2243514bdbf",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "06bb8bc61cad42a726ef30a9b1ef28dcf3fe5569bcbf7d39351f248116a02e97",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "2c9d6b43c9a00e026e7fd4409286290a9ec4b341f8738d6191e459c470f274c8",
+    "target/corpus-r21-final/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "bc0614e0835008ac0bb25169eb7875d1d3d12b96171e21adf4b0d146fb640e26",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "db81bfcc802cfa1eb390f09658faf7ba561ad8cac8463117b0fd550c928f3b3f",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "32890f673c6706cf76e96764dd56e4ffdb4e6f0288a745509df863a5db4f6c39",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "d2b8f11f5e139225ece8443abfecad3ca24aa437b8af7c22104eb6e9bb0b2384",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "11e66c97c997674ce1d7fb1979c90e4bb1f80afb004bc971b4e7fde8dff2fdb9",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "b64b057ada4dc4c1a7e6b6a5b68e17cde774bba8077ecff727e57bfa5f71817d",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "70798591a12cc933b874932e434d5c5c429304bf0b7d1112234e4733c9f06378",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "target/corpus-r21-verified/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "target/corpus-r21-verified/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "938f941e1a5ff5c4b547ad107271bf08e1c8004f7585f2eaf89c5155ef52a89e",
+    "target/corpus-r21-verified/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+    "target/corpus-r21-verified/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "target/corpus-r21-verified/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "f3e05252f2dfa8eca4b87201d8122957a023f972982626f6cbe1450791806cee",
+    "target/corpus-r21-verified/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "6612a143d45cfb6b234474b453b9e5f6af70ca308b6fc7f60faae9b4e3a4ee6b",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "8f589eca7d1eca25225e42828e2a98935efe3be41b666333cbb7f5194067ff87",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "267b5a51bd7cf4b604a7ec746cd2614bccd5f57787b14413c864b0e38c077efd",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "31d5a47446eac19f81869344baf5a36a8fd656ca50f25406eeeedb3c334f3e64",
+    "target/corpus-r21-verified/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "85ac22b3778c27951d9e712c4c924e1abfa72f0c1d99f8456faa3744398ecf1c",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "ba023294029343a40713fd789b686bac0b13c9cd8dc70ac377cfff027da3eadd",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "e97413dc6a34fd2435380bdd6db30090e8d35c6c1c6eaf1ff6be42a72adaf2fa",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "0460ea7f27c861b4bf551ff78d87a12142aa63a6c617f2a28e9773cf2ab5bc91",
+    "target/corpus-r21-verified/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "31ceef786cbf03e8ba3503a1f3244dc8f8e0875f5f30096522126bdbfd17ce30",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "0ce9ee3a716d7477ae1e00916d06ab8c834562b42ad64c19e7d2720f3d0bc6f3",
+    "target/corpus-r21-verified/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "target/corpus-r21-verified/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "target/corpus-r21-verified/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "f38fd60e363dce137f0139b79413e8e8841b7b11721323b99034aab9c2f7fe36",
+    "target/corpus-r21-verified/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "cd99ef9ef9d65afa83421275023d80e109b2b39ec06a3051dc2110fa761aba5f",
+    "target/corpus-r21-verified/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "85c84683f96f80f099de02e507cf8ef9b47a23a7fab98ea4faf88b652d96ebd5",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "248b325a70ddad449e97d079c41dd7dbeec3789591d19fbe8069514e3181d30b",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "cd05cc3135bcb0217d627b0579395a4087dc768774d835a46eb998f519f39502",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "b32cbc95734dbcc393cafa0d14627fb8a5e38e6f3d7f51efac65655a51c8f053",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "0270d5b7a47a097b64e89895539c1b06a5fe2311a1cecb210bfbaf1f21cf9dd2",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "4b933a1725ceb5342444f823dd74e93bd4e731aab10e9c72f8f630f53dcd0e1b",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "e840c51db3197c8580b537e952788b7d064dc7a534ec09ea063aab74ea8620e0",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "98b4d14beb9aa1e0de6632476e3d12ba32595663096324d4e8e9db72345bf00a",
+    "target/corpus-r21-verified/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "8ad991def9dd579c549aa7f03240f761ab8501be5dcb3cbea589bd2e80fa6710"
+  },
+  "source": "Final rebuilt9c5aa7f5 integration versus frozen highY0 release binary; upstream comparison gains, not scalar-adapter attribution.",
+  "limits": "Both runs have1837 pending failures. Earlier executable SHA2564aa7ae20598a504a93a8fee218282f18ad3ff3f484221a0852f699213073211c matches original highY0 binary; no EA0 build attribution."
+}

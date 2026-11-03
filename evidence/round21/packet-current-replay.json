@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "counts": {
+    "catalogue": 204,
+    "scalar": 20
+  },
+  "changed_predictions": 0,
+  "input_sha256": {
+    "packets/round21/application-predictions-catalogue.jsonl": "d45ed90998dfec8ee01d02b64f85f5ea6c0caae065c930b4cb4dd48ed543f671",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/packet-current-catalogue-predictions.jsonl": "d45ed90998dfec8ee01d02b64f85f5ea6c0caae065c930b4cb4dd48ed543f671",
+    "packets/round21/application-predictions-HYPGEOM.DIST.jsonl": "3829fe9c2ac080c41226902c55a00c0a5b2e30533f36ca37508db3259a3276bb",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/packet-current-scalar-predictions.jsonl": "3829fe9c2ac080c41226902c55a00c0a5b2e30533f36ca37508db3259a3276bb"
+  },
+  "limits": "Fresh guarded publication build agrees with every original frozen question prediction. Neither file contains Excel answers."
+}

@@ -1,0 +1,185 @@
+{
+  "round": 21,
+  "measurements_complete": true,
+  "started_utc": "2026-11-03 16:58 UTC",
+  "first_run_stopped_utc": "2026-11-03 17:29 UTC",
+  "resumed_utc": "2026-11-03 18:58 UTC",
+  "measurement_checkpoint_utc": "2026-11-03T20:43:00+00:00",
+  "main_measured_checkpoint": "9c5aa7f5",
+  "product_commit": "e60788ec",
+  "question_commit": "96a4f367",
+  "research_carryover_commit": "f64b50d",
+  "fixed_product_comparison": {
+    "before_matched": 19825,
+    "matched": 19847,
+    "formula_cells": 21074,
+    "gains": 22,
+    "losses": 0,
+    "inclusive_failures": 1227,
+    "pass_rate_percent": 94.17765967542944,
+    "larger_numeric_gains": 22,
+    "limits": "Original fixed observations and capture contexts before adding the question sheet; separate from current pending capture coverage."
+  },
+  "bank": {
+    "decoded_rows": 3875557,
+    "before_matched": 3231745,
+    "matched": 3231759,
+    "total": 3875673,
+    "failed": 643914,
+    "unread": 116,
+    "gains": 14,
+    "losses": 0,
+    "changed_outputs": 30,
+    "pass_rate_percent": 83.38575003618726
+  },
+  "current_corpus": {
+    "awaiting_capture": 1837,
+    "circular_rule": 14,
+    "external_links": 73,
+    "fail": 999,
+    "failed_or_missing": 1,
+    "failed_or_missing_by_verdict": {
+      "not_run": 1
+    },
+    "formula_cells": 21278,
+    "mismatched": 945,
+    "pass": 18355,
+    "pass_rate": 0.8626280665476078,
+    "refused": 53,
+    "inclusive_failures": 2923,
+    "pass_rate_percent": 86.26280665476078
+  },
+  "coverage_reconciliation": {
+    "old_cells_now_pending": 1633,
+    "prior_matched_now_pending": 1561,
+    "prior_nonmatched_now_pending": 72,
+    "new_pending_questions": 204,
+    "common_compared_cells": 19441,
+    "common_changed_calculated_returns": 0,
+    "common_gains": 0,
+    "common_losses": 0,
+    "limits": "Pending cells remain failures. Workbook-context recapture is required; current aggregate counts do not replace the fixed product comparison.",
+    "checkpoint": "Earlier frozen highY0 executable, before the 69 upstream comparison gains."
+  },
+  "fixed_mismatch_inventory_after_y0": {
+    "last_bit_numeric": 801,
+    "larger_numeric": 199,
+    "other": 15,
+    "limits": "Inventory at the fixed afterY0 checkpoint before question-induced pending sections."
+  },
+  "studies": {
+    "published_i": {
+      "php_models": 10,
+      "kornia_models": 10,
+      "rows": 1431,
+      "all_models_lose": true,
+      "kornia_strict_gains": 578,
+      "kornia_strict_losses": 107
+    },
+    "hypergeometric_quotient": {
+      "profiles": 30,
+      "scoped": 994,
+      "excluded": 2668,
+      "full_survivors": 0,
+      "gain_without_loss": 0
+    },
+    "poisson_one_count_cdf": {
+      "profiles": 10,
+      "scoped": 154,
+      "full_survivors": 0,
+      "gain_without_loss": 0
+    },
+    "rank": {
+      "profiles": 48,
+      "observations": 241,
+      "survivors": 0,
+      "independent_rational_replay": true
+    },
+    "standard_errors": {
+      "registered_and_instrumented_controls": 394,
+      "finite_leaf_rows": 168,
+      "programs_per_role": 60,
+      "gain_without_loss": 0,
+      "square_root_controls": 1324,
+      "additional_independent_root_controls": 513
+    },
+    "intercept_factors": {
+      "producer_labels": 120,
+      "consumer_labels": 60,
+      "program_labels": 7200,
+      "observations": 45,
+      "full_survivors": 0,
+      "gain_without_loss": 0,
+      "identical_baseline_value_labels": 64
+    }
+  },
+  "study_limits": "Conditional numerical/QR operands and declared finite programs only; no complete Bessel/distribution/regression algorithm identified. No numeric product change follows the resumed studies.",
+  "parked": [
+    "CUMPRINC/PPMT/IPMT/CUMIPMT annuity producers",
+    "VAR/STDEV/DEVSQ producer families",
+    "GEOMEAN"
+  ],
+  "questions": {
+    "scalar_calls": 20,
+    "catalogue_formula_cells": 204,
+    "regression_selected_outputs": 120,
+    "operand_echoes": 84,
+    "new_excel_answers": 0,
+    "path": "packets/round21",
+    "external_path": "/home/ubuntu/codex-runs/excel-questions-r21",
+    "r20_answers_received": false,
+    "r20_last_checked_utc": "2026-11-03T20:51:11.293420+00:00"
+  },
+  "checks": {
+    "required_main_check": "Source-wide --all at measured9c5aa7f5 passed1735/0; publication check after the later upstream pull is separately logged.",
+    "research_rust": {
+      "passed": 93,
+      "failed": 0,
+      "ignored": 2
+    },
+    "python": {
+      "passed": 86,
+      "failed": 0,
+      "lattice_controls": 1504
+    },
+    "soft_x87_high_y0_route": {
+      "tests_passed": 1,
+      "recorded_answer_cases": 10
+    },
+    "ubs": "Rust structural scan complete and0 critical; Python partial SQLFlowLimit with0 critical among completed analysis. Two reviewed false positives documented inline. Main fixture files unsupported by UBS, never called a scan pass.",
+    "windows_browser_sweep": "Not run",
+    "main_all": {
+      "passed": 1735,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 4,
+      "packages": 27
+    },
+    "final_guarded_research_unit": "round21-final-unit.json",
+    "publication_check": "Passed after pull513bcf2e: provenance scan, workspace build, tracker-only touched paths,0package tests required (1min6s). Log publish-metadata-check.log."
+  },
+  "review": "evidence/round21/final-independent-review.json",
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21",
+  "raw_compression": "Lossless gzip map in compressed-artifacts.json; before binary retained; full bank traces consumed through FIFOs and never retained.",
+  "source_snapshots": {
+    "consumer": "regression-consumer-source.py",
+    "factor": "regression-factor-source.py",
+    "current": "research-source-snapshot.tar.gz"
+  },
+  "still_open": "dc-j9k remains in progress. High J0/J1 and remaining I/distribution/regression kernels, parked functions and pending captures remain failures.",
+  "excluded_checkout_accessed": false,
+  "earlier_measured_binary_sha256": "4aa7ae20598a504a93a8fee218282f18ad3ff3f484221a0852f699213073211c",
+  "late_upstream_corpus_change": {
+    "gains": 69,
+    "losses": 0,
+    "gains_by_sheet": {
+      "fn1_collation": 67,
+      "dczsn2_collation": 2
+    },
+    "all_previously_refused": true
+  },
+  "earlier_provenance_correction": "Earlier manual replay used the original highY0 executable, not a rebuilt EA0 integration. Final verified measurement source/binary is9c5aa7f5.",
+  "last_pulled_main_tip": "513bcf2e",
+  "last_pull_limits": "Later upstream document-validation changes were pulled after the measured9c5aa7f5 checkpoint. Numerical measurements and the final guarded unit bind9c5aa7f5, not the later tip.",
+  "late_review": "evidence/round21/late-independent-review.json"
+}

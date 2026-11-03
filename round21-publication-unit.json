@@ -1,0 +1,39 @@
+{
+  "id": "dc-j9k-r21-publication",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "ea0b4303abdc9590b4470011b603b39ac1fe2558",
+  "scope": "Current merged R21 research build with Bessel, discrete quotient/CDF and original-expression regression instrumentation. Historical measurements retain their own frozen units and source snapshots.",
+  "sources": {
+    "tier1": [
+      "Recorded Excel answers; DLMF Bessel and discrete-distribution identities; standard-error and inverse-R covariance identities; IEEE754 and Intel SDM."
+    ],
+    "tier2": [
+      "Current cleared DnaCalc numeric, discrete_dist.rs and regression_forecast_family.rs infrastructure; retained owner-authorized TOMS654/708 substrate.",
+      "SheetJS/bessel bessel.js2e2331329891dc5c16bda3461db0b9fe590ff2e9, Apache-2.0.",
+      "PhpSpreadsheet BesselI.php60cc826911f1a1a125d756f22f0476a88504ab1f, MIT; Kornia kernels.py5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661, Apache-2.0; existing notices retained."
+    ],
+    "banned": [
+      "Other Tier3 and Tier4 numerical implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no preregistration or held-out claim. No coefficient, tolerance, cutoff or row selector fitted.",
+  "source_sha256": {
+    "racer/build.rs": "afc241d833ff0ea33b40e89289d6e16f8d965aee8b85732a1cfda4151d46f7f7",
+    "racer/src/main.rs": "d7c6eb555f324dbcbb6686e957ed4fb825a97c2d5273113aacbe4488a744ff8b",
+    "racer/src/bessel_rational.rs": "d978932cb3e49f340c36319bbaba08d3330504a11115530c995481d6d1b2140f",
+    "racer/src/discrete.rs": "3a294bb803e5811ac47714df1ccab915ef0dabd466d6c48f334ed34c53b7f914",
+    "racer/src/route_audit.rs": "a2033b1fac635e722eccfa52665518904c92b2fbd9992f99bb2c268aacd02e1c",
+    "racer/corpus_cases.py": "9940136e3ed091b02a5c86fe6c3744c979a965ea2d14bcd57b7f455cdf7bc4ea",
+    "racer/intervals.py": "11f43fb8c0f66fc2f98bf08e2c8038484cb35df514fd53343c0342eeb63c4850",
+    "racer/regression.py": "3d1a91ea04d777ed5aaf9a5b4521b9a53af1c800a82d7785875273026cdbb28f"
+  },
+  "regression_audit": true,
+  "metadata_correction": "Read-only R21 review corrected inherited distribution citations to the actual regression sources. Numerical code and frozen application bindings are unchanged; original metadata retained under the external round21/unit-metadata-before-review directory.",
+  "annotation_note": "Two reviewed UBS false positives are documented inline: public file-integrity hashes and intentional refusal to emit uncalculated predictions. Arithmetic is unchanged. Historical exact consumer and factor script snapshots remain in the external round21 directory."
+}

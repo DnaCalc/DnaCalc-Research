@@ -379,6 +379,18 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        #[cfg(regression_audit)]
+        Some("regression-stat-leaves") => route_audit::regression_stat_leaves(&a[2], &a[3]),
+        #[cfg(discrete_audit)]
+        Some("poisson-one-cdf") => match a.get(4).map(String::as_str) {
+            Some("soft") => discrete::poisson_one_cdf::<Soft>(&a[2], &a[3]),
+            _ => discrete::poisson_one_cdf::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(discrete_audit)]
+        Some("hypergeom-quotients") => match a.get(4).map(String::as_str) {
+            Some("soft") => discrete::hypergeom_quotients::<Soft>(&a[2], &a[3]),
+            _ => discrete::hypergeom_quotients::<Hard>(&a[2], &a[3]),
+        },
         Some("bessel-i-kornia") => match a.get(4).map(String::as_str) {
             Some("soft") => bessel_rational::replay_i_kornia::<Soft>(&a[2], &a[3]),
             _ => bessel_rational::replay_i_kornia::<Hard>(&a[2], &a[3]),

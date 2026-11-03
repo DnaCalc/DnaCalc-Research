@@ -1,0 +1,66 @@
+{
+  "id": "dc-j9k-r21-bessel-high-source-facts-review",
+  "role": "check",
+  "checker": "/root/r21_source_checker",
+  "reviewed_at_utc": "2026-11-03T17:14:20.616732+00:00",
+  "status": "approved",
+  "facts_path": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/bessel-high-r21-facts.json",
+  "facts_sha256": "9a96418fca1930e6edbb04056773c1b7c2e3827fd4d0a92facef06b326abff3f",
+  "policy": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/plan/RESEARCH_SOURCES.md",
+  "scope": "Independent facts-only source-policy check. No implementation authorization for altered coefficients.",
+  "reasons": [
+    "All six numerical/method-family facts are supported by identified tier1/tier2 sources. No restricted-source implementation text, variable names, control flow or comments identified in the facts.",
+    "The analyst disclosed tier3/uncleared search-snippet exposure. The mixed-content historical observation was removed before approval; no claim depends on it.",
+    "All16 R21 permitted snapshots match manifest bytes and SHA256. Separately pinned R20 SheetJS source and Apache-2.0 licence match the facts hashes.",
+    "Local notices support the stated SheetJS Apache-2.0, Boost BSL-1.0, PhpSpreadsheet/FormulaJS MIT, fdlibm Sun notice and SLATEC public-domain claims. SPECFUN is treated as permitted by repository policy, without claiming a newly verified upstream licence.",
+    "DLMF10.17 equations1 and3 support the stated asymptotic coefficients; all four J0 residual examples and J1(8) bits bind exact original fixed-source prediction records and recorded Excel answers.",
+    "Negative search outcomes are explicitly bounded. No changed coefficient or implementation is proposed."
+  ],
+  "evidence": {
+    "permitted_manifest": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-source-analyst-permitted/manifest.json",
+    "permitted_manifest_sha256": "e767c1b74fb404d72279aa8e55868e043d164b223621975e12e9884332710fbe",
+    "permitted_files_verified": 16,
+    "sheetjs_source_sha256": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+    "sheetjs_licence_sha256": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26",
+    "diagnostic_sha256": "8de2e324a66432c045a4577c8862f22ac7f1cd3c5b8325c7a9d1a1052678336b",
+    "diagnostic_records_match_original_predictions": 5,
+    "original_predictions_sha256": "ada90787462a722a389af17fedbf4fb5c298e1b9f55901fd841274561efb508a",
+    "dlmf_urls": [
+      "https://dlmf.nist.gov/10.17.E1",
+      "https://dlmf.nist.gov/10.17.E3"
+    ]
+  },
+  "checker_boundaries": {
+    "DnaCalc_engine_accessed": false,
+    "old_bessel_numerical_bodies_or_history_read": false,
+    "tier3_or_tier4_source_code_read": false,
+    "facts_or_product_files_modified": false,
+    "commit_or_push": false
+  },
+  "optional_product_review": {
+    "status": "licence-and-capture-evidence-approved; cargo-check-in-progress",
+    "scope": "Current highY0 diff only; existing numerical bodies/history excluded.",
+    "published_coefficients": "All10 highY0 coefficients and phase constant match pinned SheetJS source; cutoff remains8.",
+    "licence_coverage": "Current notice and both ledger reasons now expressly cover highY0/Y1, with retained copyright and full Apache-2.0 text.",
+    "added_raw_bit_tests": 10,
+    "all_added_test_bits_match_original_live_capture": true,
+    "capture_sha256": "ef969433fc2d6679f63071d117bde365aa4e9e10e0dae53f88eb02dea1b485fc",
+    "corpus": {
+      "gains": 22,
+      "losses": 0,
+      "before_matched": 19825,
+      "after_matched": 19847,
+      "formula_cells": 21074
+    },
+    "full_recorded_bank": {
+      "gains": 14,
+      "losses": 0,
+      "before_matched": 3231745,
+      "after_matched": 3231759,
+      "total": 3875673,
+      "failed": 643914,
+      "unread": 116
+    },
+    "limits": "Comparison receipts reviewed; neither corpus nor full bank independently rerun by this checker. Cargo xtask check was still running at review time; no check-pass claim."
+  }
+}

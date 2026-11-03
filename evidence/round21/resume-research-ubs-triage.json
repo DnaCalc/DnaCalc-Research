@@ -1,0 +1,22 @@
+{
+  "scanner_complete": true,
+  "critical": 0,
+  "warnings": 502,
+  "groups": {
+    "rust.ownership.unwrap-expect": 71,
+    "rust.ownership.unreachable-macro": 7,
+    "rust.collections.clone-in-loop": 4,
+    "rust.panic.assert-macros": 20,
+    "rust.panic.direct-indexing": 386,
+    "rust.casts.try-into-unwrap": 1,
+    "rust.parsing.parse-unwrap": 2,
+    "rust.parsing.serde-unwrap": 4,
+    "rust.perf.string-alloc-in-loop": 7
+  },
+  "triage": {
+    "panics": "Research tool consumes fixed known schemas and aborts on malformed or changed observations; failed runs produce no accepted receipt. Static polynomial slices and ten-byte Ext80 accesses have fixed extents. Existing CLI arity failures abort locally.",
+    "assertions": "Integrity, frozen-route and backend equality checks are intentionally fatal.",
+    "allocation": "Finite discovery logs and small per-row outcomes; no product allocation regression."
+  },
+  "limits": "Structural Rust scan only; cargo tests separately verify compilation. No full security-audit claim."
+}
