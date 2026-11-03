@@ -1,0 +1,81 @@
+{
+  "complete": true,
+  "functions": {
+    "AVERAGE": {
+      "before": 1039,
+      "after": 1040,
+      "identical": false
+    },
+    "DEVSQ": {
+      "before": 8717,
+      "after": 8717,
+      "identical": true
+    },
+    "STDEV": {
+      "before": 1068,
+      "after": 1068,
+      "identical": true
+    },
+    "STDEV.P": {
+      "before": 1054,
+      "after": 1054,
+      "identical": true
+    },
+    "STDEV.S": {
+      "before": 1073,
+      "after": 1073,
+      "identical": true
+    },
+    "STDEVA": {
+      "before": 1046,
+      "after": 1046,
+      "identical": true
+    },
+    "STDEVP": {
+      "before": 1067,
+      "after": 1067,
+      "identical": true
+    },
+    "STDEVPA": {
+      "before": 1034,
+      "after": 1034,
+      "identical": true
+    },
+    "VAR": {
+      "before": 1069,
+      "after": 1069,
+      "identical": true
+    },
+    "VAR.P": {
+      "before": 1178,
+      "after": 1178,
+      "identical": true
+    },
+    "VAR.S": {
+      "before": 1382,
+      "after": 1382,
+      "identical": true
+    },
+    "VARA": {
+      "before": 1044,
+      "after": 1044,
+      "identical": true
+    },
+    "VARP": {
+      "before": 1099,
+      "after": 1099,
+      "identical": true
+    },
+    "VARPA": {
+      "before": 1053,
+      "after": 1053,
+      "identical": true
+    }
+  },
+  "backend_files_identical": 56,
+  "source_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/all-stats-frozen/scoped.jsonl": "9a917dd497f5a6954c2483cea9a20e6585ebe312e9d7e4b117fac09c2c809084",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-stats-frozen/scoped.jsonl": "40feee91d703de24b489bef88292c40e86d755d66da209e21de97a869cdfb402"
+  },
+  "limits": "Thirteen named-function constraint subsequences are byte-for-byte identical. The one added AVERAGE constraint gets a separate complete-scope replay. No raw outside-scope obligation or new Excel answer is removed."
+}

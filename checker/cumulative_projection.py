@@ -153,10 +153,14 @@ def coupled(packet, trace, directory, output):
     frozen={str(p):digest(p)for p in (trace,packet/'conditional-relations.json',
         directory/'relations.json',directory/'identities.json',directory/'summary.json')}
     rows=list(records(trace));byid={r['id']:r for r in rows}
-    require(len(rows)==234 and len(byid)==234,'incomplete packet observations')
+    r15 = json.loads((packet/'manifest.json').read_text()).get('calls') == 236
+    expected_rows = 236 if r15 else 234
+    require(len(rows)==expected_rows and len(byid)==expected_rows,'incomplete packet observations')
     relations=json.loads((packet/'conditional-relations.json').read_text())
     groups=defaultdict(list);identities=[]
     for relation in relations:
+        if relation.get('kind') == 'published payment partition audit':
+            continue
         c=byid[relation['CUMPRINC']];a=c['args']
         require(c['function']=='CUMPRINC','wrong cumulative function')
         if 'PPMT'in relation:
@@ -175,9 +179,10 @@ def coupled(packet, trace, directory, output):
                 groups[p['id']].append((relation,c,i));continue
             require(list(map(binary64,a[3:6]))==[1,1,1],'wrong first beginning control')
         identities.append(dict(relation=relation,equal=c['expected']==p['expected'],cumulative=c,standalone=p))
-    require(len(groups)==4 and sum(map(len,groups.values()))==12 and len(identities)==18,'missing frozen relation')
+    require((len(groups),sum(map(len,groups.values())),len(identities)) == ((8,38,20)if r15 else(4,12,18)),
+        'missing frozen relation')
     require(json.loads((directory/'identities.json').read_text())==identities,'identity result differs')
-    proofs=json.loads((directory/'relations.json').read_text());require(len(proofs)==100,'missing profile/loan result')
+    proofs=json.loads((directory/'relations.json').read_text());require(len(proofs)==25*len(groups),'missing profile/loan result')
     survivors=[];stored_survivors=[];position=0;checks=0
     for pid,(pm,sm)in enumerate(itertools.product(MODELS,repeat=2)):
         alive=True;stored_alive=True
@@ -191,7 +196,7 @@ def coupled(packet, trace, directory, output):
                 for relation,c,i in triplets:
                     product=operation(Fraction(relation['count']),payment,'mul',pm)
                     interest=binary64(i['expected']);principal=binary64(c['expected'])
-                    require(interest<0 and principal<0,'nonnegative cumulative result outside scope')
+                    require(interest<=0 and principal<=0,'positive cumulative result outside scope')
                     wanted=inverse(B.pullback(Span(interest,interest)),product,'add',False,sm)
                     wanted=wanted.linear(Fraction(-1))if wanted else None
                     overlap=B.pullback(Span(principal,principal)).meet(wanted)
@@ -213,9 +218,9 @@ def coupled(packet, trace, directory, output):
     require(summary['complete']is True and summary['profiles']==25 and summary['survivors']==survivors,
         'coupled survivor result differs')
     require(frozen=={p:digest(p)for p in frozen}and digest(Path(__file__))==SOURCE,'proof/source changed')  # ubs:ignore — public evidence/source hashes, no secret or authentication comparison
-    write_result(output,dict(complete=True,profiles=25,survivors=survivors,loans=4,intervals=12,
+    write_result(output,dict(complete=True,profiles=25,survivors=survivors,loans=len(groups),intervals=sum(map(len,groups.values())),
         stored_payment_survivors=stored_survivors,
-        singleton_pairs=16,singleton_equal=sum(r['equal']for r in identities if 'PPMT'in r['relation']),
+        singleton_pairs=sum('PPMT'in r['relation']for r in identities),singleton_equal=sum(r['equal']for r in identities if 'PPMT'in r['relation']),
         first_beginning_equal=sum(r['equal']for r in identities if 'PPMT'not in r['relation']),
         exact_constraints_checked=checks,input_sha256=frozen,projection_checker_sha256=SOURCE,
         limits='Independent exact arithmetic/preimages over every Ext80 payment in its publication '

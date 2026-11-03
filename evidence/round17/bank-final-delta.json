@@ -1,0 +1,782 @@
+{
+  "complete": true,
+  "counts": {
+    "shared_inputs": 3875227,
+    "unchanged_outputs": 3874187,
+    "changed_outputs": 1040,
+    "changed_expected": 0,
+    "representative_metadata_changes": 0,
+    "shared_before_matches": 3230525,
+    "shared_after_matches": 3230756,
+    "shared_gains": 231,
+    "shared_losses": 0
+  },
+  "examples": [
+    {
+      "before": {
+        "actual": "0x3e80c6f7b82aba4a",
+        "args": [
+          "0x3f50624dd2f1a9fc",
+          "0x4000000000000000"
+        ],
+        "expected": "0x3e80c6f7b82ab785",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00016",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3e80c6f7b82ab785",
+        "args": [
+          "0x3f50624dd2f1a9fc",
+          "0x4000000000000000"
+        ],
+        "expected": "0x3e80c6f7b82ab785",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00016",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x37b77173ebbc1ec5",
+        "args": [
+          "0x3f50624dd2f1a9fc",
+          "0x4024000000000000"
+        ],
+        "expected": "0x37b77173ebbc1afc",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00017",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x37b77173ebbc1afe",
+        "args": [
+          "0x3f50624dd2f1a9fc",
+          "0x4024000000000000"
+        ],
+        "expected": "0x37b77173ebbc1afc",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00017",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3cdfa80e93ad5795",
+        "args": [
+          "0x3faaff85221f8640",
+          "0x401dd1e80af44be0"
+        ],
+        "expected": "0x3cdfa80e93751fd8",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00893",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3cdfa80e93751fd8",
+        "args": [
+          "0x3faaff85221f8640",
+          "0x401dd1e80af44be0"
+        ],
+        "expected": "0x3cdfa80e93751fd8",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00893",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3c471e4dfe5df3c5",
+        "args": [
+          "0x3fc4244df407c7a0",
+          "0x40248274b89c84f0"
+        ],
+        "expected": "0x3c471e4dfcfc6fa2",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-01168",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3c471e4dfcfc6fa3",
+        "args": [
+          "0x3fc4244df407c7a0",
+          "0x40248274b89c84f0"
+        ],
+        "expected": "0x3c471e4dfcfc6fa2",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-01168",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x39fbf22b1d656a29",
+        "args": [
+          "0x3fc43590b886e980",
+          "0x402ff3ce3cc780d2"
+        ],
+        "expected": "0x39fbf22b1bb7518b",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00568",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x39fbf22b1bb75184",
+        "args": [
+          "0x3fc43590b886e980",
+          "0x402ff3ce3cc780d2"
+        ],
+        "expected": "0x39fbf22b1bb7518b",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00568",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3b92eef290c2c0eb",
+        "args": [
+          "0x3fc8148a94d5e0b0",
+          "0x40287e85b52d3409"
+        ],
+        "expected": "0x3b92eef28f2ba4a5",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00679",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3b92eef28f2ba4a5",
+        "args": [
+          "0x3fc8148a94d5e0b0",
+          "0x40287e85b52d3409"
+        ],
+        "expected": "0x3b92eef28f2ba4a5",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00679",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3b58817dc05a59f8",
+        "args": [
+          "0x3fccfe5dd7641b80",
+          "0x402bbc7f7fdbb68f"
+        ],
+        "expected": "0x3b58817dbd70f8a0",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00647",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3b58817dbd70f898",
+        "args": [
+          "0x3fccfe5dd7641b80",
+          "0x402bbc7f7fdbb68f"
+        ],
+        "expected": "0x3b58817dbd70f8a0",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00647",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3e8b3da110f0d261",
+        "args": [
+          "0x3fce92ee74a61e40",
+          "0x401518aa4d64922f"
+        ],
+        "expected": "0x3e8b3da10d5f9eb5",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00657",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3e8b3da10d5f9eb6",
+        "args": [
+          "0x3fce92ee74a61e40",
+          "0x401518aa4d64922f"
+        ],
+        "expected": "0x3e8b3da10d5f9eb5",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00657",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3f93a599f7b23390",
+        "args": [
+          "0x3fd8ea920f3da6d0",
+          "0x4002f0afce4619c0"
+        ],
+        "expected": "0x3f93a599f1cdafe3",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-01050",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3f93a599f1cdafe3",
+        "args": [
+          "0x3fd8ea920f3da6d0",
+          "0x4002f0afce4619c0"
+        ],
+        "expected": "0x3f93a599f1cdafe3",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-01050",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x39e1227a8105991f",
+        "args": [
+          "0x3fdd9623068a92f8",
+          "0x403379f8e752c29c"
+        ],
+        "expected": "0x39e1227a7a76d9bb",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00995",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x39e1227a7a76d9b8",
+        "args": [
+          "0x3fdd9623068a92f8",
+          "0x403379f8e752c29c"
+        ],
+        "expected": "0x39e1227a7a76d9bb",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00995",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3ed94aca77022a90",
+        "args": [
+          "0x3fde151778587ef0",
+          "0x40167d033bbb3efe"
+        ],
+        "expected": "0x3ed94aca6d1e52c0",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00554",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3ed94aca6d1e52c2",
+        "args": [
+          "0x3fde151778587ef0",
+          "0x40167d033bbb3efe"
+        ],
+        "expected": "0x3ed94aca6d1e52c0",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00554",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3f2ddd72a1ab664d",
+        "args": [
+          "0x3fe15716ea0f1288",
+          "0x401021ff92eaec06"
+        ],
+        "expected": "0x3f2ddd7293e62aa2",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00515",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3f2ddd7293e62aa1",
+        "args": [
+          "0x3fe15716ea0f1288",
+          "0x401021ff92eaec06"
+        ],
+        "expected": "0x3f2ddd7293e62aa2",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00515",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3dc310e5349b8681",
+        "args": [
+          "0x3fe240b01e72e798",
+          "0x4022164994a85eb5"
+        ],
+        "expected": "0x3dc310e52b5ef3be",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00484",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3dc310e52b5ef3bd",
+        "args": [
+          "0x3fe240b01e72e798",
+          "0x4022164994a85eb5"
+        ],
+        "expected": "0x3dc310e52b5ef3be",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00484",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3f7523ebbb6fa678",
+        "args": [
+          "0x3fe3efb05823865c",
+          "0x400df98fb5eaeb90"
+        ],
+        "expected": "0x3f7523ebb0752eaf",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00475",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3f7523ebb0752eaf",
+        "args": [
+          "0x3fe3efb05823865c",
+          "0x400df98fb5eaeb90"
+        ],
+        "expected": "0x3f7523ebb0752eaf",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00475",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3d6e9c092b2c5c4b",
+        "args": [
+          "0x3fe9228d9b440b92",
+          "0x40262992f0a0da4a"
+        ],
+        "expected": "0x3d6e9c091a75220e",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00825",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3d6e9c091a752205",
+        "args": [
+          "0x3fe9228d9b440b92",
+          "0x40262992f0a0da4a"
+        ],
+        "expected": "0x3d6e9c091a75220e",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00825",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3f18fea761af8c93",
+        "args": [
+          "0x3fea07e3abf85c0c",
+          "0x40148809b0b6c82f"
+        ],
+        "expected": "0x3f18fea754400596",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00792",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3f18fea754400595",
+        "args": [
+          "0x3fea07e3abf85c0c",
+          "0x40148809b0b6c82f"
+        ],
+        "expected": "0x3f18fea754400596",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00792",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3aee0ba004723559",
+        "args": [
+          "0x3feb4e3d88ffde38",
+          "0x4033bec28bbe54ef"
+        ],
+        "expected": "0x3aee0b9ff4db0eb6",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00683",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3aee0b9ff4db0eb9",
+        "args": [
+          "0x3feb4e3d88ffde38",
+          "0x4033bec28bbe54ef"
+        ],
+        "expected": "0x3aee0b9ff4db0eb6",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00683",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3f8dd84a4c64eb18",
+        "args": [
+          "0x3febf5bbe691f6a4",
+          "0x400ad36c0a8efdf0"
+        ],
+        "expected": "0x3f8dd84a3d4711bc",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00628",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3f8dd84a3d4711bb",
+        "args": [
+          "0x3febf5bbe691f6a4",
+          "0x400ad36c0a8efdf0"
+        ],
+        "expected": "0x3f8dd84a3d4711bc",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00628",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3b303fbc215d32f6",
+        "args": [
+          "0x3fefb897ac465d54",
+          "0x4033c9598b3eac32"
+        ],
+        "expected": "0x3b303fbc1acfb452",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00299",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3b303fbc1acfb458",
+        "args": [
+          "0x3fefb897ac465d54",
+          "0x4033c9598b3eac32"
+        ],
+        "expected": "0x3b303fbc1acfb452",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00299",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    },
+    {
+      "before": {
+        "actual": "0x3fc1602dfd142d78",
+        "args": [
+          "0x3ff0000000000000",
+          "0x4000000000000000"
+        ],
+        "expected": "0x3fc1602df63c781d",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00022",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      },
+      "after": {
+        "actual": "0x3fc1602df63c781d",
+        "args": [
+          "0x3ff0000000000000",
+          "0x4000000000000000"
+        ],
+        "expected": "0x3fc1602df63c781d",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00022",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    }
+  ],
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/bank-intake.jsonl": "be7563bcb434bf516ad5d42b6dafdcb8efe3f25ff65d593eae9c67dc83c05e19",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/bank-final.jsonl": "3f744087b5d57cdb79b9f024830c9d97e4cba4c1e89b3dc1a5e4282010743b3b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "fab541c54b7d5c1aecf60b81c5667f6d227c2755246ddffb692f0340cf7a2738"
+  },
+  "limits": "Counts distinguish input coverage from gains/losses on shared inputs. Metadata changes retain the selected capture source. Unread rows have no trace and still fail in each original judge summary; no calculated-only pass rate."
+}

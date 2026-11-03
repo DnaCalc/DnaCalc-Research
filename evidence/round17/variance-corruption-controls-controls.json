@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "changed-root",
+      "rejected": true,
+      "error": "exact full-width root mismatch"
+    },
+    {
+      "control": "unknown-program",
+      "rejected": true,
+      "error": "duplicate or unknown candidate"
+    }
+  ],
+  "limits": "Constructed proof corruptions only; original inputs, answers and search records unchanged."
+}

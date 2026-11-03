@@ -1,0 +1,125 @@
+{
+  "round": 17,
+  "complete": false,
+  "phase": "Implementation and product measurements published; remaining independent replays in progress.",
+  "role": "implementer",
+  "application_measurement_revision": "3a253ee89c015a6acee3bb2ef57d28377b060cf3",
+  "product_commits": [
+    "92c7256d",
+    "f7b3668d"
+  ],
+  "evidence_revision": "0a7885ff",
+  "r15": {
+    "observations": 236,
+    "matched": 100,
+    "failed": 136,
+    "raw_result_files_verified": 94,
+    "packet_files_verified": 32,
+    "native_instructions_matched": 933,
+    "native_instructions_total": 933
+  },
+  "corpus": {
+    "matched_before": 18812,
+    "matched_after": 18841,
+    "formula_cells": 20030,
+    "gains": 29,
+    "losses": 0,
+    "failed_before": 1131,
+    "failed_after": 1102,
+    "external": 73,
+    "circular": 14,
+    "pass_rate": 0.9406390414378433
+  },
+  "extended_corpus": {
+    "matched": 17284,
+    "total": 20840,
+    "failed": 1026,
+    "external": 73,
+    "circular": 14,
+    "awaiting_capture": 2443,
+    "pass_rate": 0.8293666026871401
+  },
+  "bank": {
+    "before_intake_matched": 3230448,
+    "before_intake_total": 3875172,
+    "after_intake_matched": 3230525,
+    "after_intake_total": 3875343,
+    "matched_after_product": 3230756,
+    "failed_after_product": 644587,
+    "unread_failed": 116,
+    "product_gains": 231,
+    "product_losses": 0,
+    "intake_added_matches": 77,
+    "intake_added_failures": 94,
+    "pass_rate": 0.8336696906570592
+  },
+  "classification": {
+    "failed": 1131,
+    "causes": {
+      "last_bits": 723,
+      "numeric_value": 386,
+      "not_modeled": 6,
+      "type_or_error": 3,
+      "text_value": 9,
+      "capture_failure": 4
+    },
+    "numeric_ulp_bands": {
+      "2..16": 364,
+      ">256": 240,
+      "1": 359,
+      "17..256": 146
+    },
+    "proven_gross_values": 398,
+    "unavailable_obligations": 10,
+    "definition": "Last-bits-only is <=16 ULP. Larger numeric errors retain full distances so that another practical boundary can be assessed without changing any verdict."
+  },
+  "variance": {
+    "structural_templates": 333,
+    "policies_per_template": 3125,
+    "labels_per_name": 1040625,
+    "variance_stdev_names_without_survivors": 12,
+    "adopted": false,
+    "independent_receipts_pending": [
+      "STDEVP",
+      "STDEVPA",
+      "VARPA"
+    ]
+  },
+  "annuity": {
+    "complete_kernel_adopted": false,
+    "PMT_native_survivors": 0,
+    "PMT_independent_replay": "in progress; no completed receipt yet",
+    "FV_PV_joint_survivors": 11520,
+    "NPER_cash_product_models_surviving": 4,
+    "RATE_conditional_newton_survivors": 0,
+    "loans": "Native/software reproduced conditional searches; independent end-to-end loan checker remains open."
+  },
+  "checks": {
+    "cargo_xtask_check": {
+      "passed": 1417,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 2
+    },
+    "rust_tests": {
+      "passed": 70,
+      "failed": 0,
+      "ignored": 2
+    },
+    "python_tests": 58,
+    "small_lattice_controls": 1504,
+    "read_only_review": true,
+    "UBS": "0 critical findings; Python SQL detector incomplete after doctor validation, retained as a tool limitation."
+  },
+  "compact_evidence_index": "evidence/round17/initial-index.json",
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17",
+  "pending_packet": "packets/round16",
+  "new_packet": null,
+  "limits": [
+    "No complete variance or annuity program identified.",
+    "The numerical-rank cutoff is measured on these inputs; broader scaling behavior awaits Excel.",
+    "No independent end-to-end loan or complete FV/PV/NPER certificate is claimed.",
+    "All exclusions retain their finite grammar, elementary-leaf and effective-input assumptions.",
+    "Unread and typed refusals remain failures; external/circular/pending cells remain separately counted over all formula cells."
+  ]
+}

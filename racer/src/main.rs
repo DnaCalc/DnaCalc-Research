@@ -371,6 +371,10 @@ fn main() {
             Some("soft") => variance::run::<Soft>(&a[2], &a[3], &a[4]),
             _ => variance::run::<Hard>(&a[2], &a[3], &a[4]),
         },
+        Some("variance-structural") => match a.get(5).map(String::as_str) {
+            Some("soft") => variance::run_family::<Soft>(&a[2], &a[3], &a[4], true),
+            _ => variance::run_family::<Hard>(&a[2], &a[3], &a[4], true),
+        },
         Some("cumulative-balance-free") => match a.get(6).map(String::as_str) {
             Some("soft") => cumulative_balance::run_variant::<Soft>(
                 &a[2],

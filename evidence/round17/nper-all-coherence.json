@@ -1,0 +1,62 @@
+{
+  "allowed_model_indices": [
+    0,
+    1,
+    3,
+    4
+  ],
+  "allowed_models": [
+    "strict",
+    "stored_pc64",
+    "stored_pc53",
+    "resident_pc53"
+  ],
+  "backend": "native Fpu, including existing x87 logarithms",
+  "baseline_application_trace_matches": 2509,
+  "cash_product_models": [
+    "strict",
+    "stored_pc64",
+    "resident_pc64",
+    "stored_pc53",
+    "resident_pc53"
+  ],
+  "claim": "Exact conditional joint constraint, not uniqueness of the NPER programme or a product gain",
+  "evaluations_per_model": [
+    2509,
+    2509,
+    456,
+    2509,
+    2509
+  ],
+  "first_kills": [
+    {
+      "case": 455,
+      "expected": "0x404880dedfdac6f0",
+      "got": "0x404880dedfdac714",
+      "model": "resident_pc64",
+      "witness": {
+        "actual": "0x404880dedfdac6f0",
+        "args": [
+          "0x3f4b4e81b4e81b4f",
+          "0xc0701339eecbfb16",
+          "0x40c81cd6e631f8a1",
+          "0x0000000000000000",
+          "0x0000000000000000"
+        ],
+        "expected": "0x404880dedfdac6f0",
+        "function": "NPER",
+        "id": "oc151",
+        "reading": {
+          "bitness": null,
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20131",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle/build-20131/NPER.jsonl"
+      }
+    }
+  ],
+  "rows": 2509,
+  "sharing": "Only PV*rate and FV*rate change model; all other NPER sites retain the existing registered graph. The same interest-product model is imposed on the PMT I=PV*rate hypothesis."
+}

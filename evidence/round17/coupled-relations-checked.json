@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "profiles": 25,
+  "survivors": [],
+  "loans": 8,
+  "intervals": 38,
+  "stored_payment_survivors": [],
+  "singleton_pairs": 20,
+  "singleton_equal": 8,
+  "first_beginning_equal": 0,
+  "exact_constraints_checked": 1380787,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/annuity-score-audited/observations.jsonl": "e73347ffced0722fb31f3a66b20f398dc5405316d1e099cb3949a14fb686c9f7",
+    "packets/round15-annuity/conditional-relations.json": "5dbc24e2c8a9eefae8f656e8917ea11a166a567e6221aded6dbddcfed1fa7982",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/coupled-relations/relations.json": "7b06e5453af58c009d89506978e65c4a81e27a4142b982e9bb24f67d9274d3d1",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/coupled-relations/identities.json": "1d4d4f29d568eaaaa283f70e15fe1b5d7ac028977075f3d3ccb986694281df19",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/coupled-relations/summary.json": "5e36ae1f4213f00d083f7a2ed70ae4b96f12d8dc6cd53ce5d30d9b333645fce2"
+  },
+  "projection_checker_sha256": "94f91d7cb8f3c6cf19ebf91b66891a1d7d650196d711e9481f9da0518d256fc8",
+  "limits": "Independent exact arithmetic/preimages over every Ext80 payment in its publication cell. Remaining profiles are necessary relations, not producers or whole functions. No latent coefficient chosen; original effective-callee-input limitation remains.",
+  "checker_sha256": {
+    "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+  }
+}

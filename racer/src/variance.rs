@@ -67,6 +67,37 @@ fn function_profiles(function: &str) -> Vec<Profile> {
     all
 }
 
+// A separate, explicitly named family preserves the R14/R16 grammar and its
+// receipts. Structural choices are mathematical algorithms, not answer rules.
+fn structural_profiles(function: &str) -> Vec<Profile> {
+    let mut all = Vec::new();
+    let algorithms = if function == "AVERAGE" { 1 } else { 22 };
+    for algorithm in 0..algorithms {
+        let orders: Vec<_> = if [5, 6, 19, 20, 21].contains(&algorithm) {
+            vec![(0, 0), (1, 1)]
+        } else if function == "AVERAGE" {
+            (0..13).map(|order| (order, 0)).collect()
+        } else {
+            (0..3).flat_map(|x| (0..3).map(move |y| (x, y)))
+                .chain((3..13).map(|order| (order, order))).collect()
+        };
+        for (linear_order, square_order) in orders {
+            let policies = if function == "AVERAGE" { 25 } else { 5usize.pow(5) };
+            for index in 0..policies {
+                let mut label = index;
+                let models = std::array::from_fn(|region| {
+                    if function == "AVERAGE" && region >= 2 { return EvalModel::Strict; }
+                    let model = WIDE_MODELS[label % 5];
+                    label /= 5;
+                    model
+                });
+                all.push(Profile { id: all.len(), algorithm, linear_order, square_order, models });
+            }
+        }
+    }
+    all
+}
+
 fn neg(x: Val) -> Val {
     match x {
         Val::F64(b) => Val::F64(b ^ (1 << 63)),
@@ -121,6 +152,61 @@ impl<F: Fpu> Arithmetic<'_, F> {
                     self.add(region, a, b)
                 }
             },
+            3 | 4 => {
+                let mut sorted = xs.to_vec();
+                sorted.sort_by(|a, b| a.to_f64::<F>().abs().total_cmp(&b.to_f64::<F>().abs()));
+                self.sum(&sorted, usize::from(order == 4), region)
+            }
+            5 | 6 => {
+                let mut total = Val::f64(0.0);
+                let mut correction = Val::f64(0.0);
+                let mut data = xs.to_vec();
+                if order == 6 { data.reverse(); }
+                for x in data {
+                    let y = self.sub(region, x, correction);
+                    let next = self.add(region, total, y);
+                    let added = self.sub(region, next, total);
+                    correction = self.sub(region, added, y);
+                    total = next;
+                }
+                total
+            }
+            7 | 8 => {
+                let mut total = Val::f64(0.0);
+                let mut correction = Val::f64(0.0);
+                let mut data = xs.to_vec();
+                if order == 8 { data.reverse(); }
+                for x in data {
+                    let next = self.add(region, total, x);
+                    let error = if total.to_f64::<F>().abs() >= x.to_f64::<F>().abs() {
+                        let retained = self.sub(region, total, next);
+                        self.add(region, retained, x)
+                    } else {
+                        let retained = self.sub(region, x, next);
+                        self.add(region, retained, total)
+                    };
+                    correction = self.add(region, correction, error);
+                    total = next;
+                }
+                self.add(region, total, correction)
+            }
+            9..=11 => {
+                let lanes = 1 << (order - 8);
+                let mut totals = vec![Val::f64(0.0); lanes];
+                for (i, &x) in xs.iter().enumerate() {
+                    totals[i % lanes] = self.add(region, totals[i % lanes], x);
+                }
+                self.sum(&totals, 0, region)
+            }
+            12 => {
+                let mut values = xs.to_vec();
+                while values.len() > 1 {
+                    values = values.chunks(2).map(|pair| if pair.len() == 2 {
+                        self.add(region, pair[0], pair[1])
+                    } else { pair[0] }).collect();
+                }
+                values.first().copied().unwrap_or(Val::f64(0.0))
+            }
             _ => unreachable!(),
         }
     }
@@ -178,6 +264,85 @@ pub fn evaluate<F: Fpu>(
         return (mean, a.trace);
     }
     let d = Val::f64((xs.len() - usize::from(!population(function))) as f64);
+    if p.algorithm >= 14 {
+        let ss = if p.algorithm == 21 {
+            // Chan's merge identity: M2(A+B)=M2(A)+M2(B)+delta^2*nA*nB/(nA+nB).
+            fn merge<F: Fpu>(a: &mut Arithmetic<'_, F>, xs: &[Val]) -> (Val, Val) {
+                if xs.len() == 1 { return (xs[0], Val::f64(0.0)); }
+                let k = xs.len()/2;
+                let (left, left_ss) = merge(a, &xs[..k]);
+                let (right, right_ss) = merge(a, &xs[k..]);
+                let delta = a.sub(1, right, left);
+                let fraction = a.div(1, Val::f64((xs.len()-k) as f64), Val::f64(xs.len() as f64));
+                let step = a.mul(1, delta, fraction);
+                let mean = a.add(1, left, step);
+                let square = a.mul(2, delta, delta);
+                let weighted = a.mul(2, square, Val::f64((k*(xs.len()-k)) as f64));
+                let correction = a.div(4, weighted, Val::f64(xs.len() as f64));
+                let subtotal = a.add(3, left_ss, right_ss);
+                (mean, a.add(3, subtotal, correction))
+            }
+            if p.linear_order == 1 { xs.reverse(); }
+            merge(&mut a, &xs).1
+        } else if p.algorithm >= 19 {
+            if p.linear_order == 1 { xs.reverse(); }
+            let mut mean = xs[0];
+            let mut ss = Val::f64(0.0);
+            for (i, &x) in xs.iter().enumerate().skip(1) {
+                let k = Val::f64((i+1) as f64);
+                let delta = a.sub(1, x, mean);
+                if p.algorithm == 19 {
+                    let weighted = a.mul(1, mean, Val::f64(i as f64));
+                    let numerator = a.add(1, weighted, x);
+                    mean = a.div(1, numerator, k);
+                    let remainder = a.sub(1, x, mean);
+                    let term = a.mul(2, delta, remainder);
+                    ss = a.add(3, ss, term);
+                } else {
+                    let increment = a.div(1, delta, k);
+                    mean = a.add(1, mean, increment);
+                    let square = a.mul(2, delta, delta);
+                    let weighted = a.mul(2, square, Val::f64(i as f64));
+                    let term = a.div(4, weighted, k);
+                    ss = a.add(3, ss, term);
+                }
+            }
+            ss
+        } else {
+            if p.algorithm == 15 {
+                let first = xs[0];
+                xs = xs.into_iter().map(|x| a.sub(1, x, first)).collect();
+            }
+            let total = a.sum(&xs, p.linear_order, 0);
+            let mut mean = a.div(1, total, n);
+            if [14, 18].contains(&p.algorithm) {
+                // Correct the computed center once or twice, then perform a
+                // new pass. No convergence threshold is chosen from answers.
+                for _ in 0..if p.algorithm == 14 { 1 } else { 2 } {
+                    let deltas: Vec<_> = xs.iter().map(|&x| a.sub(1, x, mean)).collect();
+                    let residual = a.sum(&deltas, p.linear_order, 0);
+                    let correction = a.div(1, residual, n);
+                    mean = a.add(1, mean, correction);
+                }
+            }
+            let deltas: Vec<_> = xs.iter().map(|&x| a.sub(1, x, mean)).collect();
+            let terms: Vec<_> = deltas.iter().zip(&xs).map(|(&delta, &x)|
+                a.mul(2, delta, if [16, 17].contains(&p.algorithm) { x } else { delta })).collect();
+            let mut ss = a.sum(&terms, p.square_order, 3);
+            if p.algorithm == 15 || p.algorithm == 17 {
+                let residual = a.sum(&deltas, p.linear_order, 0);
+                let correction = if p.algorithm == 15 {
+                    let square = a.mul(2, residual, residual);
+                    a.div(4, square, n)
+                } else { a.mul(2, mean, residual) };
+                ss = a.sub(4, ss, correction);
+            }
+            ss
+        };
+        let mut result = if function == "DEVSQ" { a.add(4, ss, Val::f64(0.0)) } else { a.div(4, ss, d) };
+        if function.starts_with("STDEV") { result = a.sqrt(result); }
+        return (result, a.trace);
+    }
     // Algebraically equal raw-moment forms have distinct store boundaries.
     // Constants here are only the count and its sample/population divisor.
     if p.algorithm >= 7 {
@@ -435,6 +600,10 @@ pub fn prepare(input: &str, out: &str) {
 }
 
 pub fn run<F: Fpu>(input: &str, function: &str, out: &str) {
+    run_family::<F>(input, function, out, false)
+}
+
+pub fn run_family<F: Fpu>(input: &str, function: &str, out: &str, structural: bool) {
     let start = std::time::Instant::now();
     fs::create_dir(out).unwrap();
     let observations = crate::lines::<Observation>(input);
@@ -446,7 +615,7 @@ pub fn run<F: Fpu>(input: &str, function: &str, out: &str) {
     for r in &rows {
         assert_eq!(numeric_values(&r.raw).unwrap(), r.values_bits);
     }
-    let ps = function_profiles(function);
+    let ps = if structural { structural_profiles(function) } else { function_profiles(function) };
     let mut pf = file(Path::new(out).join("profiles.jsonl"));
     for p in &ps {
         line(&mut pf, p);
@@ -482,6 +651,7 @@ pub fn run<F: Fpu>(input: &str, function: &str, out: &str) {
     line(&mut surviving, &alive);
     let summary = json!({"complete":true,"function":function,"programs":ps.len(),"observations":rows.len(),"executions":executions,
         "survivors":alive.len(),"seconds":start.elapsed().as_secs_f64(),
+        "family":if structural {"structural-r17"} else {"r16"},
         "claim":"Exhaustive exact first-contradiction elimination of the declared finite family, not all variance programs or Excel kernels."});
     line(&mut file(Path::new(out).join("summary.json")), &summary);
     println!("{summary}");

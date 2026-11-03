@@ -21,7 +21,25 @@ MODELS = ('strict', 'stored_pc64', 'resident_pc64', 'stored_pc53', 'resident_pc5
 COUNTS = Counter()
 
 
-def profiles(function=None):
+def profiles(function=None, family='r16'):
+    if family == 'structural-r17':
+        identity = 0
+        for algorithm in range(1 if function == 'AVERAGE' else 22):
+            if algorithm in (5, 6, 19, 20, 21):
+                orders = [(0, 0), (1, 1)]
+            elif function == 'AVERAGE':
+                orders = [(i, 0) for i in range(13)]
+            else:
+                orders = list(itertools.product(range(3), repeat=2))+[(i, i) for i in range(3, 13)]
+            for linear, squared in orders:
+                for code in range(25 if function == 'AVERAGE' else 3125):
+                    models = [MODELS[(code//5**i) % 5] if function != 'AVERAGE' or i < 2 else 'strict'
+                              for i in range(5)]
+                    yield dict(id=identity, algorithm=algorithm, linear_order=linear,
+                               square_order=squared, models=models)
+                    identity += 1
+        return
+    require(family == 'r16', 'unknown variance family')
     if function == 'AVERAGE':
         identity = 0
         for order, division, reduction in itertools.product(range(3), MODELS, MODELS):
@@ -63,6 +81,36 @@ def evaluate(profile, values, function):
             middle = len(items)//2
             return calc(region, 'add', reduction(items[:middle], 2, region),
                         reduction(items[middle:], 2, region))
+        if order in (3, 4):
+            return reduction(sorted(items, key=lambda x: abs(B.round(x))), int(order == 4), region)
+        if order in (5, 6):
+            total = error = Q(0)
+            for x in items if order == 5 else items[::-1]:
+                adjusted = subtract(region, x, error)
+                updated = calc(region, 'add', total, adjusted)
+                error = subtract(region, subtract(region, updated, total), adjusted)
+                total = updated
+            return total
+        if order in (7, 8):
+            total = error = Q(0)
+            for x in items if order == 7 else items[::-1]:
+                updated = calc(region, 'add', total, x)
+                larger, smaller = (total, x) if abs(B.round(total)) >= abs(B.round(x)) else (x, total)
+                lost = calc(region, 'add', subtract(region, larger, updated), smaller)
+                error = calc(region, 'add', error, lost)
+                total = updated
+            return calc(region, 'add', total, error)
+        if order in (9, 10, 11):
+            lanes = [Q(0)]*(2**(order-8))
+            for i, x in enumerate(items):
+                lanes[i % len(lanes)] = calc(region, 'add', lanes[i % len(lanes)], x)
+            return reduction(lanes, 0, region)
+        if order == 12:
+            items = list(items)
+            while len(items) > 1:
+                items = [calc(region, 'add', items[i], items[i+1]) if i+1 < len(items) else items[i]
+                         for i in range(0, len(items), 2)]
+            return items[0] if items else Q(0)
         total = Q(0)
         for item in items if order == 0 else items[::-1]:
             total = calc(region, 'add', total, item)
@@ -72,6 +120,49 @@ def evaluate(profile, values, function):
     algorithm = profile['algorithm']
     linear, squared = profile['linear_order'], profile['square_order']
     size = Q(len(values))
+    if algorithm >= 14:
+        if algorithm == 21:
+            def merge(data):
+                if len(data) == 1: return data[0], Q(0)
+                middle = len(data)//2
+                left, lss = merge(data[:middle])
+                right, rss = merge(data[middle:])
+                difference = subtract(1, right, left)
+                weight = calc(1, 'div', Q(len(data)-middle), Q(len(data)))
+                center = calc(1, 'add', left, calc(1, 'mul', difference, weight))
+                square = calc(2, 'mul', difference, difference)
+                extra = calc(4, 'div', calc(2, 'mul', square, Q(middle*(len(data)-middle))), Q(len(data)))
+                return center, calc(3, 'add', calc(3, 'add', lss, rss), extra)
+            dispersion = merge(values if linear == 0 else values[::-1])[1]
+        elif algorithm in (19, 20):
+            data = values if linear == 0 else values[::-1]
+            mean, dispersion = data[0], Q(0)
+            for count, x in enumerate(data[1:], 2):
+                difference = subtract(1, x, mean)
+                if algorithm == 19:
+                    mean = calc(1, 'div', calc(1, 'add', calc(1, 'mul', mean, Q(count-1)), x), Q(count))
+                    term = calc(2, 'mul', difference, subtract(1, x, mean))
+                else:
+                    mean = calc(1, 'add', mean, calc(1, 'div', difference, Q(count)))
+                    term = calc(4, 'div', calc(2, 'mul', calc(2, 'mul', difference, difference), Q(count-1)), Q(count))
+                dispersion = calc(3, 'add', dispersion, term)
+        else:
+            data = [subtract(1, x, values[0]) for x in values] if algorithm == 15 else values
+            mean = calc(1, 'div', reduction(data, linear, 0), size)
+            for _ in range(1 if algorithm == 14 else 2 if algorithm == 18 else 0):
+                errors = [subtract(1, x, mean) for x in data]
+                mean = calc(1, 'add', mean, calc(1, 'div', reduction(errors, linear, 0), size))
+            errors = [subtract(1, x, mean) for x in data]
+            terms = [calc(2, 'mul', delta, x if algorithm in (16, 17) else delta)
+                     for delta, x in zip(errors, data)]
+            dispersion = reduction(terms, squared, 3)
+            if algorithm in (15, 17):
+                residual = reduction(errors, linear, 0)
+                correction = calc(4, 'div', calc(2, 'mul', residual, residual), size) if algorithm == 15 else calc(2, 'mul', mean, residual)
+                dispersion = subtract(4, dispersion, correction)
+        population = function in ('VAR.P', 'VARP', 'VARPA', 'STDEV.P', 'STDEVP', 'STDEVPA')
+        result = calc(4, 'add', dispersion, Q(0)) if function == 'DEVSQ' else calc(4, 'div', dispersion, size if population else size-1)
+        return calc(4, 'sqrt', result) if function.startswith('STDEV') else result
     if algorithm >= 7:
         total = reduction(values, linear, 0)
         squares = reduction([calc(2, 'mul', x, x) for x in values], squared, 3)
@@ -242,7 +333,8 @@ def check(scoped, directory, output):
     require(frozen, 'empty variance observation scope')
     values = [decode_scoped(r) for r in frozen]
     ps = list(records(directory/'profiles.jsonl'))
-    require(ps == list(profiles(function)) and len(ps) == summary['programs'] == (75 if function == 'AVERAGE' else 350000), 'incomplete or modified grammar')
+    family = summary.get('family', 'r16')
+    require(ps == list(profiles(function, family)) and len(ps) == summary['programs'], 'incomplete or modified grammar')
     keys=[root_profile_key(p,function)for p in ps]
     @lru_cache(maxsize=65536)
     def replay_root(key, at):

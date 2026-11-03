@@ -226,4 +226,25 @@ class ProbeControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'duplicate'):self.exercise('duplicate')
 
 
+class StructuralVarianceControls(unittest.TestCase):
+    def test_compensation_recovers_the_small_addend_before_averaging(self):
+        from variance import evaluate
+        for reduction, large in [(5, 2**53), (6, 2**53), (7, 2**54), (8, 2**54)]:
+            profile = dict(algorithm=0, linear_order=reduction, square_order=0,
+                           models=['strict']*5)
+            result = evaluate(profile, [Q(large), Q(1), Q(-large)], 'AVERAGE')
+            self.assertEqual(result, B.round(Q(1, 3)))
+
+    def test_extra_pass_and_merge_forms_keep_translation_and_sample_divisor(self):
+        from variance import evaluate, MODELS
+        values = [Q(2**40+1), Q(2**40+3), Q(2**40+5)]
+        for algorithm in range(14, 22):
+            for mode in MODELS:
+                for order in (0, 1):
+                    profile = dict(algorithm=algorithm, linear_order=order,
+                                   square_order=order, models=[mode]*5)
+                    self.assertEqual(evaluate(profile, values, 'VAR.S'), Q(4),
+                                     (algorithm, mode, order))
+
+
 if __name__=='__main__':unittest.main()

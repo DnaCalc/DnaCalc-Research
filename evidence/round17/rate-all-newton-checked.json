@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "programs": 625,
+  "cases": 61,
+  "survivors": 0,
+  "exact_nodes_checked": 2500,
+  "input_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py": "5673c74e333fa22777c7483a31191df372e1d2666039d81c52c1e68e77a4ea66",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/annuity-all-traces/RATE.jsonl": "29e9d9d4ec91439e445ecc93a25915df0625fb5579896a8f05d3dbff64f1e2bf",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/annuity-all-traces/FV.jsonl": "89c4bc87353b97485d9ab1a6a29c9c355c7acb4ccfe30486d9b1e7a0c984d809",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/rate-all-newton/grammar.json": "dfaec3f19cd01719bf39731d3680db70174a6923f8c8eb5ee6b16e116c51dc32",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/rate-all-newton/observations.json": "ac8389638619d81773c2206108082e3720298571ee7912bc73a5bd972c26fde6",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/rate-all-newton/first-kills.jsonl": "8443ee2c0b669a7f5c3ddc5d97aed8078748792c09eec95a5843e7574117b3cb",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/rate-all-newton/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/rate-all-newton/summary.json": "8a25ae17599a3397780aaad18aa9438e637f65ea2af078566ab993bbe2acb7f5"
+  },
+  "limits": "One analytic-derivative Newton step with the recorded FV(guess) publication as a constrained call leaf. Internal RATE evaluations, iterations and stopping rules remain unknown. This does not eliminate standalone PV/FV programs."
+}

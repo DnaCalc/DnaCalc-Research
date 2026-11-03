@@ -583,3 +583,40 @@ round16-publication-unit.json binds current research sources; variance-r16-unit.
 binds the original producer archive. Complete receipts and controls are under
 evidence/round16; large raw proofs remain indexed under
 /home/ubuntu/codex-runs/dna-firehorse-20261102-round16. No complete kernel is adopted.
+
+Round 17 ingests the R15 annuity answers in the existing WitnessSet lineage:
+236 observations, 100 exact application matches and 136 failures. All 94 raw
+result files and 32 packet files are hash-verified. The separate native probe
+reproduces all 933 requested x87 leaves; this is finite operand-specific evidence.
+OxFunc-Evidence commit 0a7885ff retains the originals and their provenance.
+
+The original corpus improves from 18812 to 18841 matches out of 20030, with
+29 gains and zero losses: 20 LINEST/LOGEST cells and 9 BESSELI cells. The two
+registered-route regressions failed first. The post-intake bank improves from
+3230525 to 3230756 matches out of 3875343, with 231 gains and zero losses;
+116 unread rows remain failures. Intake itself adds 77 matches and 94 failures
+on 171 new inputs, separately from product gains. All original answers remain.
+The rank policy is measured over these inputs; its general scaling behavior
+is not an identified Excel rule. R16 already contains rank/scale questions.
+
+The variance family now contains 333 structural templates with 3125 coherent
+arithmetic/store policies each. New reductions include compensation, multiple
+lanes and adjacent pairs; new identities include extra correction passes,
+shifted deviations, online mean updates and Chan merges. All twelve variance/
+STDEV names still have zero complete survivors. No partial fit is adopted.
+
+Annuity searches preserve their separate scopes: PMT instruction programs,
+joint FV/PV graphs, NPER cash products, conditional RATE Newton steps and
+shared-latent-payment IPMT/PPMT constraints. Loan searches are reproduced on
+both arithmetic backends; an independent end-to-end loan certificate remains
+open. Nonempty latent domains are hypotheses, never installed intermediates.
+
+Use round17-publication-unit.json for the current research build. Raw receipts
+and interrupted attempts remain under dna-firehorse-20261103-round17 in the
+external codex-runs directory. The final result index records which independent
+replays completed. No further Windows packet replaces the unanswered R16 set.
+
+For a fresh bank comparison without another full trace file, use the existing
+application judge and comparator through a FIFO:
+  python3 racer/audit.py bank-replay BEFORE.jsonl HARNESS DNACALC_CHECKOUT NEW_OUT
+The receipt reconciles decoded rows with unread failures and hashes both logs.

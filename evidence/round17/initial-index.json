@@ -1,0 +1,94 @@
+{
+  "complete": true,
+  "files": {
+    "intake-frozen-verified.json": {
+      "published_path": "evidence/round17/intake-frozen-verified.json",
+      "sha256": "f1f2a79f5221e4321b355d821a57aa273335773d3322cd3b2dc24693a86bf491"
+    },
+    "native-verified.json": {
+      "published_path": "evidence/round17/native-verified.json",
+      "sha256": "eac6e00af699965a05b6ce7ae2fd975588e170649b6e7d3334f9dd89be674207"
+    },
+    "bank-intake-delta.json": {
+      "published_path": "evidence/round17/bank-intake-delta.json",
+      "sha256": "b9f468624a62025fc10eca94021ddb0ff32320755a0407ea0049298dcae8d3bf"
+    },
+    "bank-final-delta.json": {
+      "published_path": "evidence/round17/bank-final-delta.json",
+      "sha256": "50a0d5b7c4e2fb97b7f519db4623546efd90869460bdcbea5806e915bf2fba52"
+    },
+    "classification-causes.json": {
+      "published_path": "evidence/round17/classification-causes.json",
+      "sha256": "4b950c4ff8d804913d96a2966bd9398baf834719cab91fff24b368e008fe7681"
+    },
+    "product-gains-by-cause.json": {
+      "published_path": "evidence/round17/product-gains-by-cause.json",
+      "sha256": "e688a428e003e4be1f3e4dc7314262557ed6eca1a4ac474cb09c34659632634e"
+    },
+    "variance-coverage-backends.json": {
+      "published_path": "evidence/round17/variance-coverage-backends.json",
+      "sha256": "820af97208b41c3e9cd820e9e16eed1ab677559362c9c6ce388921db5bb63908"
+    },
+    "fv-pv-backends.json": {
+      "published_path": "evidence/round17/fv-pv-backends.json",
+      "sha256": "e80e6758b6662e00932f88c1823f20c04902017aa6a3d0d781e641385023fa13"
+    },
+    "nper-all-coherence.json": {
+      "published_path": "evidence/round17/nper-all-coherence.json",
+      "sha256": "ae0e574da6608e60d52e880887a0f72cee4bbb89d2aedc221ea2a0b15c3a5e5d"
+    },
+    "rate-all-newton-checked.json": {
+      "published_path": "evidence/round17/rate-all-newton-checked.json",
+      "sha256": "d33f708e66d28a917f3d8f92b0fc00bb809465d5b6312d609545517cc3b0276e"
+    },
+    "coupled-relations-checked.json": {
+      "published_path": "evidence/round17/coupled-relations-checked.json",
+      "sha256": "abdc59a5832c1962fffc5edf1e578d240e4b9f9257c6d4c1eda9601a2e2f64bf"
+    },
+    "besseli-pin-refresh-checked.json": {
+      "published_path": "evidence/round17/besseli-pin-refresh-checked.json",
+      "sha256": "3bd724b85b97d0b5dc71fd9705c6eba75ecb2bda9f3538dd9879d5373e9c3fea"
+    },
+    "besseli-failing-first.log": {
+      "published_path": "evidence/round17/besseli-failing-first.log",
+      "sha256": "4b208fd4304b813d79dae87ade52f546e7bd1c44f160b4c9051c44222a7360ae"
+    },
+    "rank-failing-first-df.log": {
+      "published_path": "evidence/round17/rank-failing-first-df.log",
+      "sha256": "ba3f741fec8033e85f55b19cfd4a7ab5c56ee4894246ebd7d44eec19e98edcd5"
+    },
+    "resumed/corpus-delta.json": {
+      "published_path": "evidence/round17/resumed-corpus-delta.json",
+      "sha256": "363fc68575d74d68c5502c5a03c4ecd34dbefe2536c85a2a4b2474a8223d3226"
+    },
+    "resumed/bank-stream/receipt.json": {
+      "published_path": "evidence/round17/resumed-bank-stream-receipt.json",
+      "sha256": "5fab2979475cfc711b691f9dbab974ca00a1fab802db28c1641bf87967dd4803"
+    },
+    "resumed/check-merge.log": {
+      "published_path": "evidence/round17/resumed-check-merge.log",
+      "sha256": "042a756a496f486f42dac398d7de58243edd2f364f6579c145f44fd49a1b9a9a"
+    },
+    "resumed/research-tests.log": {
+      "published_path": "evidence/round17/resumed-research-tests.log",
+      "sha256": "6e66e2e2ff62d8233db3cd64ea4b8eb61f380db91fcdeb261fc7884efd366ad6"
+    },
+    "resumed/python-tests.log": {
+      "published_path": "evidence/round17/resumed-python-tests.log",
+      "sha256": "13c0a5e11e1c58ee3326796afae07253909cf2ce42cf1ab05c371df5350c8815"
+    },
+    "intake-controls-final/controls.json": {
+      "published_path": "evidence/round17/intake-controls-final-controls.json",
+      "sha256": "c62770b91730c0028f7fa2fb183e69e767e065f64d4cdfa3024fed130b9baeec"
+    },
+    "variance-corruption-controls/controls.json": {
+      "published_path": "evidence/round17/variance-corruption-controls-controls.json",
+      "sha256": "72381ef7bc7fe3e5ed43794c167bb44843667129532fbea136435816fc67aea0"
+    },
+    "loan-input-controls/controls.json": {
+      "published_path": "evidence/round17/loan-input-controls-controls.json",
+      "sha256": "cdf51abc63dc549d096008292d39aa096ab5dcba009de92a1196e8050e928f6c"
+    }
+  },
+  "limits": "Compact original receipts and transcripts only. Raw Excel files remain in OxFunc-Evidence; raw proof matrices and bank traces stay outside git."
+}

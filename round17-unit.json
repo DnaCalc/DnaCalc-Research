@@ -1,0 +1,44 @@
+{
+  "role": "implementer",
+  "route_audit": true,
+  "artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17",
+  "exposure": "All original and R15 answers are discovery constraints. R15 has236 readings, frozen predictions100 matched/136 failed; no held-out validation claim.",
+  "new_packet": null,
+  "pending_packet": "packets/round16",
+  "source_tiers": {
+    "tier1": [
+      "Original Excel captures, Value2 read-backs and separate native instruction probes",
+      "IEEE754 nearest/even arithmetic and Intel public x87 contracts",
+      "Variance identities, compensated summation, Welford/West and Chan merge mathematics",
+      "DLMF10.29.1/10.74(iv) modified-Bessel recurrence and computation"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc arithmetic and public I0 approximation"
+    ],
+    "excluded": [
+      "Tier3/tier4 code as implementation sources",
+      "Removed source/history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "source_incident": "One web search incidentally returned Numerical Recipes J0/J1 snippets. No J/Y implementation or coefficient from those results was used or retained; modified-I work uses the separately cited published recurrence and the existing cleared I0.",
+  "limits": [
+    "No complete variance or annuity implementation identified or adopted.",
+    "Rank and modified-I product improvements are measured separately; every prior corpus/bank match is retained.",
+    "Native CPU leaf agreement is finite and operand-specific, not general CPU equivalence.",
+    "Each proof receipt binds its actual source/binary/input scope; excluded and unread obligations never become product passes."
+  ],
+  "grammars": {
+    "variance": "structural-r17:22 algorithms,13 reduction choices;333 structural templates*3125 coherent precision/store labels=1040625 labels per variance/STDEV/DEVSQ name;325 AVERAGE labels.",
+    "annuity": "Existing x87-r13 canonical PMT family; factorized shared growth/core FV/PV; conditional NPER cash-product and RATE one-step families; generic multi-period latent-payment IPMT/PPMT family. Logical labels can be redundant.",
+    "product": "Rank uses a dot-product roundoff norm bound. Higher I uses backward recurrence normalized to current I0, with series fallback for representation failure. No fitted coefficient or input selector."
+  },
+  "id": "dc-j9k-r17-baseline",
+  "application_revision": "27e56a3b9fddbc9e1255e5035fa458972a0aa180",
+  "scope": "Baseline before both R17 numerical product changes; R15 intake/scoring used this baseline.",
+  "binary_sha256": "e2702df4bce89912e1900b1e2805e5d8322658cb91ae1ee23d578ade40ed8571",
+  "research_source_revision": "858e95b",
+  "source_sha256": {},
+  "binary_retention": "Actual binary hash retained by the original score; the executable was subsequently rebuilt. The original calculation outputs and revision bindings are retained.",
+  "final_application_build": "The strengthened source uses round17-publication-unit.json; earlier binary/source capsules retain their own revision guards."
+}

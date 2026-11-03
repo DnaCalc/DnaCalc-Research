@@ -88,6 +88,10 @@ def intake_controls(packet, results, output):
         path=next((root/'worker/read').glob(function+'-*/result.json'))
         doc=json.loads(path.read_text());doc['rows'][0]['input_audit']['read_back'][0]['number']='3ff0000000000000'
         path.write_text(json.dumps(doc))
+    def changed_prediction(root):
+        path=root/f'OxFunc-Evidence/readings/excel-20527/{function}.json'
+        doc=json.loads(path.read_text());doc['witnesses'][0]['calc_func_prediction']='0x3ff0000000000000'
+        path.write_text(json.dumps(doc))
     def missing_batch(root):
         (root/f'OxFunc-Evidence/readings/excel-20527/{function}.json').unlink()
     def wrong_formula(root):
@@ -98,6 +102,7 @@ def intake_controls(packet, results, output):
         readings['rows'][0]['input_audit']['formula']=asked['rows'][0]['formula']
         request.write_text(json.dumps(asked));result.write_text(json.dumps(readings))
     run('changed-canonical-answer',changed_answer,'reader/raw result differs')
+    run('changed-frozen-prediction',changed_prediction,'canonical/frozen worker prediction differs')
     run('changed-readback-input',changed_input,'transport changed requested operands')
     run('omitted-reader-batch',missing_batch,'missing reader batch')
     run('self-consistent-wrong-function',wrong_formula,'requested function/formula differs')
@@ -216,8 +221,83 @@ def round16_controls(artifacts, packet, readings, workbook, output):
     (output/'controls.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
 
 
+def variance_structural_controls(scoped, proof, output):
+    """Reject changed roots and unknown labels in the larger R17 family."""
+    from variance import check as check_variance
+    proof, output = Path(proof), Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    controls = []
+    for label, message in [('changed-root', 'exact full-width root mismatch'),
+                           ('unknown-program', 'duplicate or unknown candidate')]:
+        bad = output/label
+        shadow(proof, bad, {'first-kills.jsonl'})
+        with (proof/'first-kills.jsonl').open() as original, (bad/'first-kills.jsonl').open('x') as changed:
+            first = json.loads(next(original))
+            if label == 'changed-root':
+                tag, bits = first['root'].split(':')
+                first['root'] = tag+':'+format(int(bits, 16)^1, '0'+str(len(bits))+'x')
+            else:
+                first['candidate_id'] = json.loads((proof/'summary.json').read_text())['programs']
+            changed.write(json.dumps(first)+'\n')
+            shutil.copyfileobj(original, changed)
+        receipt = output/(label+'-must-not-exist.json')
+        try:
+            check_variance(scoped, bad, receipt)
+        except ValueError as error:
+            if message not in str(error) or receipt.exists(): raise
+            controls.append(dict(control=label, rejected=True, error=str(error)))
+        else:
+            raise ValueError('corrupted structural proof was accepted: '+label)
+    result = dict(complete=True, all_rejected=True, controls=controls,
+                  limits='Constructed proof corruptions only; original inputs, answers and search records unchanged.')
+    (output/'controls.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(result))
+
+
+def loan_input_controls(executable, source, output):
+    """Mispaired public calls must fail before the annuity search starts."""
+    import copy
+    import subprocess
+    executable, source, output = Path(executable).resolve(), Path(source), Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    original = json.loads(source.read_text())
+    controls = []
+    for label, expected in [('wrong-function', 'loan payment function identity'),
+                            ('wrong-nper', 'payment/principal period count differs'),
+                            ('wrong-pv', 'payment/principal present value differs'),
+                            ('wrong-fv', 'zero final value required'),
+                            ('outside-period', 'observed period outside the loan')]:
+        rows = copy.deepcopy(original)
+        if label == 'wrong-function': rows[0]['pmt'][0]['function'] = 'PV'
+        elif label == 'wrong-fv':
+            for row in rows: row['pmt'][0]['args'][3] = '0x3ff0000000000000'
+        else:
+            at, value = {'wrong-nper': (2, '0x3ff0000000000000'),
+                         'wrong-pv': (3, '0x3ff0000000000000'),
+                         'outside-period': (1, '0xbff0000000000000')}[label]
+            rows[0]['ppmt']['args'][at] = value
+            rows[0]['ipmt'][0]['args'][at] = value
+        path, result_dir = output/(label+'.json'), output/(label+'-result')
+        path.write_text(json.dumps(rows)+'\n')
+        # ubs:ignore — the operator supplies the trusted local executable; arguments never enter a shell.
+        result = subprocess.run([str(executable), 'loan-backward', str(path), str(result_dir), 'hard'],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=30)
+        if result.returncode == 0 or expected not in result.stdout or (result_dir/'summary.json').exists():
+            raise ValueError('mispaired loan was accepted: '+label+' '+result.stdout)
+        (output/(label+'.log')).write_text(result.stdout)
+        controls.append(dict(control=label, rejected=True, reason=expected))
+    result = dict(complete=True, all_rejected=True, controls=controls,
+        executable_sha256=hashlib.sha256(executable.read_bytes()).hexdigest(),
+        source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
+        limits='Constructed invalid loans, never Excel readings or candidate successes.')
+    (output/'controls.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='variance-r17':variance_structural_controls(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='loan-inputs':loan_input_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='intake':intake_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='next-packet':next_packet_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='round16':round16_controls(*sys.argv[2:]);raise SystemExit(0)

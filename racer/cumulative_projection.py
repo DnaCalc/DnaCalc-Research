@@ -171,8 +171,11 @@ def coupled(packet, trace, out):
     out.mkdir(parents=True, exist_ok=False)
     rows = {r['id']:r for r in map(json.loads, trace.read_text().splitlines())}
     relations = json.loads((packet/'conditional-relations.json').read_text())
+    r15 = json.loads((packet/'manifest.json').read_text()).get('calls') == 236
     loans = defaultdict(list); identities = []
     for relation in relations:
+        if relation.get('kind') == 'published payment partition audit':
+            continue  # The component publication cells are checked separately.
         c = rows[relation['CUMPRINC']]
         assert c['function'] == 'CUMPRINC'
         if 'PPMT' in relation:
@@ -197,7 +200,7 @@ def coupled(packet, trace, out):
             assert c['reading']==p['reading']
             identities.append(dict(relation=relation,equal=c['expected']==p['expected'],
                                    cumulative=c,standalone=p))
-    assert len(loans)==4 and sum(map(len,loans.values()))==12 and len(identities)==18
+    assert (len(loans), sum(map(len,loans.values())), len(identities)) == ((8,38,20) if r15 else (4,12,18))
     def rounded(x,m):
         if m==0:return B64.rn(x)
         z=(E64 if m in (1,2) else E53).rn(x)
@@ -237,8 +240,8 @@ def coupled(packet, trace, out):
         if feasible:survivors.append(pid)
     (out/'relations.json').write_text(json.dumps(results,indent=2)+'\n')
     (out/'identities.json').write_text(json.dumps(identities,indent=2)+'\n')
-    summary=dict(complete=True,profiles=25,survivors=survivors,loans=4,intervals=12,
-        singleton_pairs=16,singleton_equal=sum(r['equal']for r in identities if 'PPMT'in r['relation']),
+    summary=dict(complete=True,profiles=25,survivors=survivors,loans=len(loans),intervals=sum(map(len,loans.values())),
+        singleton_pairs=sum('PPMT'in r['relation']for r in identities),singleton_equal=sum(r['equal']for r in identities if 'PPMT'in r['relation']),
         first_beginning_equal=sum(r['equal']for r in identities if 'PPMT'not in r['relation']),
         inputs={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in (trace,packet/'conditional-relations.json',Path(__file__))},
         limits='Frozen necessary relation only: one shared Ext80 payment per loan, and independent '

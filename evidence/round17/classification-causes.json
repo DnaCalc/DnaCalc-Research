@@ -1,0 +1,20 @@
+{
+  "failed": 1131,
+  "causes": {
+    "last_bits": 723,
+    "numeric_value": 386,
+    "not_modeled": 6,
+    "type_or_error": 3,
+    "text_value": 9,
+    "capture_failure": 4
+  },
+  "numeric_ulp_bands": {
+    "2..16": 364,
+    ">256": 240,
+    "1": 359,
+    "17..256": 146
+  },
+  "proven_gross_values": 398,
+  "unavailable_obligations": 10,
+  "definition": "Last-bits-only is <=16 ULP. Larger numeric errors retain full distances so that another practical boundary can be assessed without changing any verdict."
+}

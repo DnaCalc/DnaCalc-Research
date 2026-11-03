@@ -72,6 +72,105 @@ def outcome(value):
     raise ValueError('unsupported result encoding')
 
 
+def classify(corpus, output):
+    """Account for every failed formula without changing the verdict policy.
+
+    Last-bits means two finite numeric values at most 16 binary64 steps
+    apart. Larger differences are kept as value bugs, even if their relative
+    error is small. Capture failures/refusals/missing results are separately
+    named gross obligations; none are asserted to be proven product bugs.
+    """
+    corpus, output = Path(corpus), Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    summary_path = corpus/'summary.json'
+    summary = json.loads(summary_path.read_text())
+    inputs = {str(summary_path): hashlib.sha256(summary_path.read_bytes()).hexdigest()}
+    rows, counts, groups = [], Counter(), Counter()
+    key = lambda r: (r['sheet'], r['row'], r['column'])
+    runs = []
+    for workbook in summary['workbooks']:
+        label = workbook['name'].replace('/', '_').replace('\\', '_')
+        directory = corpus/'workbooks'/label
+        captures = sorted(directory.glob('*.capture.json'))
+        if captures:
+            runs.extend((capture, directory/capture.name.removesuffix('.capture.json'), workbook['name'])
+                        for capture in captures)
+        elif workbook['capture'].startswith('committed capture '):
+            runs.append((Path(workbook['capture'].removeprefix('committed capture ')), directory, workbook['name']))
+        else:
+            raise ValueError('unaccounted workbook '+workbook['name'])
+    def number(bits):
+        return struct.unpack('>d', bytes.fromhex(bits))[0]
+    def ordered(bits):
+        n = int(bits, 16)
+        return (~n & ((1 << 64)-1)) if n >> 63 else n | (1 << 63)
+    for capture_path, directory, workbook in runs:
+        paths = (capture_path, directory/'evaluations.json', directory/'triage.json')
+        for p in paths:
+            inputs[str(p)] = hashlib.sha256(p.read_bytes()).hexdigest()
+        capture, evaluations, triage = [json.loads(p.read_text()) for p in paths]
+        expected = {key(r): r for r in capture['observations']}
+        formulas = {key(r): r for r in capture['formulas']}
+        actual = {key(r): r for r in evaluations['evaluations']}
+        for verdict in triage['cells']:
+            if verdict['verdict'] in ('matched', 'external_link', 'circular_rule', 'awaiting_capture'):
+                continue
+            if verdict['verdict'] not in ('mismatched', 'not_modeled', 'not_run', 'failed', 'missing', 'stale', 'unproven', 'file_cached'):
+                raise ValueError('unknown nonpass '+str(verdict))
+            k = key(verdict)
+            formula = formulas.get(k, {}).get('formula', '')
+            names = re.findall(r'([A-Za-z][A-Za-z0-9_.]*)\s*\(', formula)
+            function = (names[1] if len(names) > 1 and names[0] == 'INDEX' else names[0]) if names else ('Infix &' if '&' in formula else formula)
+            if verdict.get('class') == 'not-modelled':
+                function = verdict['key']
+            e, a = expected.get(k), actual.get(k)
+            x = e.get('excel_raw') if e else None
+            y = a.get('returned', {}).get('value') if a else None
+            reason, distance = 'unavailable', None
+            if verdict.get('class') == 'capture':
+                reason = 'capture_failure'
+            elif verdict['verdict'] != 'mismatched':
+                reason = verdict['verdict']
+            elif isinstance(x, dict) and isinstance(y, dict):
+                if set(x) == set(y) == {'number'}:
+                    import math
+                    if math.isfinite(number(x['number'])) and math.isfinite(number(y['number'])):
+                        distance = abs(ordered(x['number'])-ordered(y['number']))
+                        reason = 'last_bits' if distance <= 16 else 'numeric_value'
+                    else:
+                        reason = 'nonfinite'
+                elif set(x) != set(y):
+                    reason = 'type_or_error'
+                elif set(x) == {'error'}:
+                    reason = 'error_kind'
+                elif set(x) == {'text'}:
+                    reason = 'text_value'
+                elif set(x) == {'array'}:
+                    reason = 'shape_or_array_value'
+                else:
+                    reason = 'value'
+            category = 'last_bits_only' if reason == 'last_bits' else 'gross_or_unavailable'
+            counts[category] += 1
+            groups[category, function, reason] += 1
+            rows.append(dict(workbook=workbook, formula=formula, function=function,
+                category=category, cause=reason, ulp_distance=distance,
+                original_verdict=verdict, expected=e, actual=a,
+                capture=str(capture_path), evaluation=str(paths[1])))
+    require_count = summary['totals']['counts']['fail']
+    if len(rows) != require_count:
+        raise ValueError(f'nonpass accounting differs: {len(rows)} != {require_count}')
+    (output/'cells.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
+    result = dict(complete=True, failed=len(rows), counts=dict(counts),
+        groups=[dict(category=c, function=f, cause=r, cells=n)
+                for (c,f,r), n in groups.most_common()], inputs_sha256=inputs,
+        cells_sha256=hashlib.sha256((output/'cells.jsonl').read_bytes()).hexdigest(),
+        rule='Last-bits-only: finite numbers <=16 ULP apart. All larger errors stay gross. '
+             'Capture failures, refusals and missing values remain failures, explicitly distinguished from proven product bugs.')
+    (output/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps({k:v for k,v in result.items() if k not in ('inputs_sha256','groups')}))
+    return result
+
+
 def freeze(corpus, output, functions):
     corpus, output = Path(corpus), Path(output)
     output.mkdir()
@@ -446,6 +545,7 @@ def round16_questions(readings, executable, output, section):
         request = dict(function=function, selection='R16 fixed surface/domain questions; intentional rechecks, no --new-only', witnesses=rows)
         name = f'requests-{function}.json'
         (output/name).write_text(json.dumps(request, indent=2)+'\n')
+        # ubs:ignore — the operator supplies the trusted local executable; arguments never enter a shell.
         subprocess.run([executable, 'invoke-inputs', str(output/name), str(output/f'application-predictions-{function}.jsonl')], check=True, timeout=300)
         batches.append(dict(function=function, path=name, calls=len(rows)))
     (output/'batches.json').write_text(json.dumps(batches, indent=2)+'\n')
@@ -465,6 +565,9 @@ def round16_questions(readings, executable, output, section):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'classify':
+        classify(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'static-reference-cases':
         static_reference_cases(*sys.argv[2:])
         sys.exit(0)

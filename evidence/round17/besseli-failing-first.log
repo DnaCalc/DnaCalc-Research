@@ -1,0 +1,25 @@
+{"command": ["cargo", "test", "--offline", "-p", "calc-func", "--test", "f1_engineering", "besseli_higher_orders_use_the_same_normalization_as_order_zero"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+   Compiling calc-func v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.68s
+     Running tests/f1_engineering.rs (/tmp/cargo-target/debug/deps/f1_engineering-00aebc80b5f24b62)
+
+running 1 test
+test besseli_higher_orders_use_the_same_normalization_as_order_zero ... FAILED
+
+failures:
+
+---- besseli_higher_orders_use_the_same_normalization_as_order_zero stdout ----
+
+thread 'besseli_higher_orders_use_the_same_normalization_as_order_zero' (1011808) panicked at crates/calc-func/tests/f1_engineering.rs:92:9:
+assertion `left == right` failed: got 6.889484476987382e-1, expected 6.889484491977633e-1
+  left: 4604380715489943454
+ right: 4604380715503445472
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    besseli_higher_orders_use_the_same_normalization_as_order_zero
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p calc-func --test f1_engineering`

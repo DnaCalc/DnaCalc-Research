@@ -1,0 +1,335 @@
+{
+  "complete": true,
+  "gains": 29,
+  "all_gains_from_gross_groups": true,
+  "by_function": {
+    "LINEST": 10,
+    "LOGEST": 10,
+    "BESSELI": 9
+  },
+  "by_cause": {
+    "numeric_value": 28,
+    "type_or_error": 1
+  },
+  "cells": [
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1821,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),1,1)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 101764368626715550
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1822,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),1,2)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 4709632116801480091
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1824,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),2,1)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 96132948499711516
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1825,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),2,2)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 4694388331444360193
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1827,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),3,1)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 1128230607995846
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1828,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),3,2)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 11579038574709460
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1830,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),4,1)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 19614258107703443
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1831,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),4,2)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 2251799813685248
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1833,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),5,1)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 823517886476254
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1834,
+        4
+      ],
+      "formula": "=INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),5,2)",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 26046632154626515
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1836,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),1,1)",
+      "function": "LOGEST",
+      "cause": "type_or_error",
+      "prior_ulp_distance": null
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1837,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),1,2)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 4607182418800017408
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1839,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),2,1)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 103684957124321350
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1840,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),2,2)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 4692910192838079444
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1842,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),3,1)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 664760487118681
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1843,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),3,2)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 4339599850517517
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1845,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),4,1)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 4818752003283175
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1846,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),4,2)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 2251799813685248
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1848,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),5,1)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 514261320174173
+    },
+    {
+      "cell": [
+        "dcj9k_linest_stats",
+        1849,
+        4
+      ],
+      "formula": "=INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.000001},FALSE,TRUE),5,2)",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 11566338989393139
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        167,
+        4
+      ],
+      "formula": "=BESSELI(2,2)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 13502018
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        175,
+        4
+      ],
+      "formula": "=BESSELI(2.5,5)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 40775746
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        180,
+        4
+      ],
+      "formula": "=BESSELI(3.75,3)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 81387279
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        188,
+        4
+      ],
+      "formula": "=BESSELI(3.9,10)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 11924725
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        194,
+        4
+      ],
+      "formula": "=BESSELI(5.2,10)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 83319663
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        203,
+        4
+      ],
+      "formula": "=BESSELI(8,2)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 129288958
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        228,
+        4
+      ],
+      "formula": "=BESSELI(-1.7,3)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 74075788
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        231,
+        4
+      ],
+      "formula": "=BESSELI(-9.1,2)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 251458554
+    },
+    {
+      "cell": [
+        "dc96l3_bessel",
+        329,
+        4
+      ],
+      "formula": "=BESSELI(1.5,2.9)",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "prior_ulp_distance": 45734188
+    }
+  ]
+}

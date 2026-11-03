@@ -461,14 +461,15 @@ pub(crate) fn publication_candidates<F: Fpu>(p_bits: u64) -> Vec<Val> {
 pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) {
     let original: Vec<serde_json::Value> =
         serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
-    assert_eq!(
-        original.len(),
-        7,
-        "This conditional unit has one recorded loan and seven periods"
-    );
+    assert!(!original.is_empty(), "a recorded loan and its observed periods are required");
     fs::create_dir_all(out).unwrap();
     let root = Path::new(out);
     let raw_p = &original[0]["pmt"][0];
+    assert_eq!(raw_p["function"], "PMT", "loan payment function identity");
+    assert_eq!(raw_p["args"].as_array().unwrap().len(), 5, "complete payment arguments");
+    assert_eq!(crate::annuity::number(&raw_p["args"][3]), 0.0, "zero final value required");
+    let nper = crate::annuity::number(&raw_p["args"][1]);
+    assert!(nper >= 1.0 && nper.fract() == 0.0, "positive integer period count required");
     let p_bits = u64::from_str_radix(
         raw_p["expected"].as_str().unwrap().trim_start_matches("0x"),
         16,
@@ -476,19 +477,36 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
     .unwrap();
     let rate = crate::annuity::number(&raw_p["args"][0]);
     assert!(rate > 0.0 && rate <= 0.25 && f64::from_bits(p_bits) < 0.0);
+    let beginning = crate::annuity::number(&raw_p["args"][4]) == 1.0;
+    assert!(beginning || crate::annuity::number(&raw_p["args"][4]) == 0.0);
     let mut periods = vec![];
+    let mut first_beginning = vec![];
     let mut ip_targets = vec![];
     let mut pp_targets = vec![];
     for row in &original {
         assert_eq!(&row["pmt"][0], raw_p);
+        assert_eq!(row["ppmt"]["function"], "PPMT", "principal function identity");
+        assert_eq!(row["ipmt"].as_array().unwrap().len(), 1, "one interest observation required");
+        assert_eq!(row["ipmt"][0]["function"], "IPMT", "interest function identity");
         let a = row["ppmt"]["args"].as_array().unwrap();
+        assert_eq!(a.len(), 6, "complete principal arguments");
+        assert_eq!(a[2], raw_p["args"][1], "payment/principal period count differs");
+        assert_eq!(a[3], raw_p["args"][2], "payment/principal present value differs");
+        assert_eq!(a[4], raw_p["args"][3], "payment/principal final value differs");
+        assert_eq!(a[5], raw_p["args"][4], "payment/principal timing differs");
+        let period = crate::annuity::number(&a[1]);
+        assert!(period >= 1.0 && period <= nper && period.fract() == 0.0,
+            "observed period outside the loan");
         assert_eq!(crate::annuity::number(&a[0]), rate);
         assert_eq!(crate::annuity::number(&a[4]), 0.0);
-        assert_eq!(crate::annuity::number(&a[5]), 0.0);
+        assert_eq!(crate::annuity::number(&a[5]), if beginning { 1.0 } else { 0.0 });
+        assert_eq!(&row["ipmt"][0]["args"], &row["ppmt"]["args"]);
+        assert_eq!(&row["ipmt"][0]["reading"], &raw_p["reading"]);
+        assert_eq!(&row["ppmt"]["reading"], &raw_p["reading"]);
         let remaining = crate::annuity::number(&a[2]) - crate::annuity::number(&a[1]) + 1.0;
         assert!(remaining >= 1.0 && remaining.fract() == 0.0);
         periods.push(remaining);
-        assert_eq!(row["ipmt"].as_array().unwrap().len(), 1);
+        first_beginning.push(beginning && crate::annuity::number(&a[1]) == 1.0);
         let bits = |v: &serde_json::Value| {
             u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"), 16).unwrap()
         };
@@ -521,7 +539,10 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
                 .map(|h| {
                     periods
                         .iter()
-                        .map(|&n| {
+                        .enumerate()
+                        .map(|(index, &n)| {
+                            // A payment at time zero has no preceding interest.
+                            if first_beginning[index] { return Val::f64(0.0); }
                             if prior.is_some() {
                                 let g = crate::annuity::loan_growth::<F>(growth_ids[lp], rate, -n);
                                 binop::<F>(Op::Add(0, 1), MODELS[h], g, Val::f64(-1.0))
@@ -541,7 +562,7 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
             .iter()
             .flatten()
             .flatten()
-            .all(|e| e.to_f64::<F>().is_finite() && e.to_f64::<F>() < 0.0)
+            .all(|e| e.to_f64::<F>().is_finite() && e.to_f64::<F>() <= 0.0)
     );
     let profiles: Vec<(usize, usize)> = (0..4)
         .flat_map(|shape| (0..if shape == 3 { 3 } else { 27 }).map(move |code| (shape, code)))
@@ -560,8 +581,10 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
         "component_count":log_count*helper_count*84,"program_count":log_count*helper_count*84*3,
         "joint_PV_FV_hypotheses":prior,"joint_growth_ids":growth_ids,
         "joint_growth_policy":"When prior is present, producer selects its integer growth ID, helper selects one of three G-1 models, and the frozen PV/FV negative-integer growth programme supplies G. No log/expm1 helper is used. Other helper descriptions apply only when prior is absent.",
-        "proof":"IPMT root is monotone increasing in finite P: rounding is monotone and the constant negative em plus final negation give positive slope. Exact ordered Ext80 binary searches intersect all seven published IPMT targets. Every remaining P is then checked exactly against all seven PPMT targets.",
-        "scope":"One original rate=.0075,nper=360,PV=125000,FV=0,type=0 loan. Unknown internal PMT is any finite Ext80 value publishing to the recorded PMT, shared across every period.",
+        "proof":"IPMT root is monotone nondecreasing in finite P: rounding is monotone and the nonpositive em plus final negation give nonnegative slope. Exact ordered Ext80 binary searches intersect all observed IPMT targets. Every remaining P is then checked exactly against all observed PPMT targets.",
+        "scope":"One original positive-rate FV=0 loan, canonical beginning/end timing. Beginning period one has zero interest. Unknown internal PMT is any finite Ext80 value publishing to the recorded PMT, shared across every observed period.",
+        "observed_periods":original.len(),"first_beginning":first_beginning,
+        "zero_interest_publication":"P is negative, rate positive and the beginning-period-one em is positive zero; every declared root returns positive zero. Checked for native/software backends and all84 root profiles.",
         "limitation":"Conditional partial programme only: the PMT-producing programme is unspecified, and latent values are constraints, never fitted constants or predictions for a new loan.",
         "instruction_policy":"FYL2XP1 measured natively in both arithmetic modes; all other operations follow declared Fpu"}),
     );
@@ -570,8 +593,8 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
     let mut survivors = BufWriter::new(fs::File::create(root.join("survivors.jsonl")).unwrap());
     let mut evals = 0u64;
     let mut component_count = 0;
-    let mut ip_kills = [0usize; 7];
-    let mut pp_kills = [0usize; 7];
+    let mut ip_kills = vec![0usize; original.len()];
+    let mut pp_kills = vec![0usize; original.len()];
     let mut surviving_programs = 0;
     for lp in 0..log_count {
         for h in 0..helper_count {
@@ -583,7 +606,7 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
                 let mut kill = None;
                 let mut kill_boundaries = vec![];
                 let mut previous = (low, high);
-                for i in 0..7 {
+                for i in 0..original.len() {
                     previous = (low, high);
                     let mut value = |index: usize| {
                         evals += 1;
@@ -651,7 +674,7 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
                         let mut killed = None;
                         let mut last_partitions =
                             std::collections::BTreeMap::<String, Vec<usize>>::new();
-                        for i in 0..7 {
+                        for i in 0..original.len() {
                             let mut rejected =
                                 std::collections::BTreeMap::<String, Vec<usize>>::new();
                             allowed.retain(|&index| {
@@ -710,10 +733,31 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
     let summary = json!({"components":component_count,"programs":component_count*3,"survivors":surviving_programs,
         "joint_PV_FV_hypotheses":prior.as_ref().map(Vec::len),"joint_partial_programs":prior.as_ref().map(|p|p.len()*helper_count*84*3),"joint_growth_ids":growth_ids,
         "latent_P_values":latent.len(),"evaluations":evals,"IPMT_first_kill_counts":ip_kills,"PPMT_first_kill_counts":pp_kills,
-        "complete":true,"scope":"One recorded loan, all7 IPMT/PPMT periods and PMT publication, same latent PMT across every period",
+        "complete":true,"observed_periods":original.len(),"scope":"One recorded loan, all supplied IPMT/PPMT periods and PMT publication, same latent PMT across every period",
         "claim":"Exact conditional joint partial-program constraints; no fitted PMT and no identified full application programme"});
     json_write(root.join("summary.json"), &summary);
     println!("{summary}");
+}
+
+#[cfg(test)]
+mod loan_publication_tests {
+    use super::*;
+    use crate::ported::excel_numeric::{Hard, Soft};
+
+    #[test]
+    fn beginning_interest_publishes_positive_zero_for_every_declared_root() {
+        let latent = publication_candidates::<Hard>((-1.5_f64).to_bits());
+        for &p in latent.iter().step_by(1024) {
+            for shape in 0..4 {
+                for code in 0..if shape == 3 { 3 } else { 27 } {
+                    let hard = backward_interest::<Hard>(p, Val::f64(0.0), Val::f64(0.01), shape, code);
+                    let soft = backward_interest::<Soft>(p, Val::f64(0.0), Val::f64(0.01), shape, code);
+                    assert_eq!(hard.to_f64::<Hard>().to_bits(), 0);
+                    assert_eq!(soft.to_f64::<Soft>().to_bits(), 0);
+                }
+            }
+        }
+    }
 }
 
 fn nper_profile<F: Fpu>(a: [f64; 5], cash_model: EvalModel) -> String {

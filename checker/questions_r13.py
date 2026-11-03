@@ -38,6 +38,7 @@ def score_readings(packet, results, executable, output):
                     'calculated identity differs')
             env = doc['capture_provenance']['environment']
             rows.append(dict(id=original['id'], function=doc['function'], args=original['args'],
+                input_transport='cell_value2_bulk',
                 result_index=original.get('result_index'), expected=original['expected_bits'],
                 actual=actual['calc_func_prediction'],
                 reading=dict(bitness=env['excel_bitness'], cpu=env['cpu_id'],
@@ -71,7 +72,15 @@ def check_readings(packet, results, output):
     manifest = read(packet/'manifest.json')
     files = {p.relative_to(packet).as_posix(): sha(p)
              for p in packet.rglob('*') if p.is_file()}
-    require(files == read(results/'packet-sha256.json'), 'received packet manifest differs')
+    received_index = read(results/'packet-sha256.json')
+    # The R15 runner exported the manifest's payload map; the other runners
+    # exported the whole directory map. Whole-tree byte equality below still
+    # verifies manifest.json itself against the original research packet.
+    if manifest.get('calls') == 236:
+        require({k: v for k, v in files.items() if k != 'manifest.json'} == received_index,
+                'received R15 payload manifest differs')
+    else:
+        require(files == received_index, 'received packet manifest differs')
     require(files == {p.relative_to(received).as_posix(): sha(p)
                       for p in received.rglob('*') if p.is_file()}, 'received packet bytes differ')
     if manifest.get('format') == 'dnacalc-research-questions-r14-variance/1':
@@ -85,6 +94,12 @@ def check_readings(packet, results, output):
     elif manifest.get('format') == 'dnacalc-research-questions-r16/1':
         packet_round, expected_calls, expected_batches = 16, 250, 13
         require(manifest['scalar_calls'] == expected_calls, 'R16 packet scope differs')
+        batch_list = read(packet/'batches.json')
+        file_hashes = manifest['files_sha256']
+    elif manifest.get('calls') == 236 and manifest.get('calls_by_function') == {
+            'PMT': 24, 'IPMT': 26, 'PPMT': 26, 'CUMPRINC': 38, 'CUMIPMT': 38,
+            'FV': 30, 'PV': 30, 'NPER': 8, 'RATE': 16}:
+        packet_round, expected_calls, expected_batches = 15, 236, 9
         batch_list = read(packet/'batches.json')
         file_hashes = manifest['files_sha256']
     else:
@@ -104,6 +119,7 @@ def check_readings(packet, results, output):
         require(source not in exports, 'duplicate batch export')
         exports[source] = path, doc
     batches, seen, total, predictions = [], set(), 0, Counter()
+    packet_predictions = Counter()
     for batch in batch_list:
         request_path = packet/batch['path']
         request = read(request_path)
@@ -118,6 +134,10 @@ def check_readings(packet, results, output):
         model_name = model['frozen_path'].replace('\\', '/').split('/')[-1]
         model_path = results/'worker/frozen'/model_name
         require(sha(model_path) == model['frozen_sha256'], 'frozen worker prediction changed')
+        frozen_worker = read(model_path)
+        require(frozen_worker['function'] == function, 'frozen worker prediction function differs')
+        require(frozen_worker['inputs_sha256'] == request_hash and frozen_worker['input_document'] == request,
+                'frozen worker input document differs')
         worker = results/'worker/read'/(model_name[:-5]+'-1')
         raw, submitted = read(worker/'result.json'), read(worker/'request.json')
         require(raw['fatal'] is None and not raw['failures'], 'worker failed')
@@ -135,16 +155,25 @@ def check_readings(packet, results, output):
         require(provenance['environment']['excel_file_version'] == raw['excel_file_version']
                 and provenance['environment']['cpu_id'] == raw['cpu'], 'environment provenance differs')
         count = batch['calls']
+        frozen_packet_predictions = None
+        if packet_round == 15:
+            frozen_packet_predictions = records(packet/f'application-predictions-{function}.jsonl')
+            require(len(frozen_packet_predictions) == count, 'frozen packet prediction coverage differs')
         require(all(len(rows) == count for rows in (request['witnesses'], doc['witnesses'],
-                doc['input_audits'], submitted['rows'], raw['rows'])), 'batch coverage differs')
-        for asked, canonical, audit, call, answer in zip(request['witnesses'], doc['witnesses'],
-                doc['input_audits'], submitted['rows'], raw['rows']):
+                doc['input_audits'], submitted['rows'], raw['rows'], frozen_worker['predictions'])), 'batch coverage differs')
+        for index, (asked, canonical, audit, call, answer) in enumerate(zip(
+                request['witnesses'], doc['witnesses'], doc['input_audits'], submitted['rows'], raw['rows'])):
             qid = asked['id']
             require(qid not in seen, 'duplicate packet ID'); seen.add(qid)
             require(qid == canonical['id'] == audit['id'] == call['id'] == answer['id'],
                     'request/answer order differs')
             require(asked['args'] == canonical['args'] and
                     asked.get('result_index') == canonical.get('result_index'), 'typed identity differs')
+            frozen_row = frozen_worker['predictions'][index]
+            require(frozen_row['id'] == qid and frozen_row['args'] == asked['args']
+                    and frozen_row.get('result_index') == asked.get('result_index')
+                    and frozen_row['calc_func_prediction'] == canonical['calc_func_prediction'],
+                    'canonical/frozen worker prediction differs')
             # This finite packet contains only explicit binary64 numbers.
             require(all(isinstance(x, str) and len(x) == 18 and x.startswith('0x')
                         for x in asked['args']), 'unexpected packet argument type')
@@ -176,6 +205,13 @@ def check_readings(packet, results, output):
             require(canonical['expected_bits'] == expected, 'reader/raw result differs')
             predictions['total'] += 1
             predictions['matched' if canonical['calc_func_prediction'] == expected else 'failed'] += 1
+            if frozen_packet_predictions is not None:
+                prediction = frozen_packet_predictions[index]
+                require(prediction['id'] == qid and prediction['args'] == asked['args']
+                        and prediction.get('not_excel_evidence') is True,
+                        'frozen packet prediction identity differs')
+                packet_predictions['total'] += 1
+                packet_predictions['matched' if prediction['calc_func_prediction'] == expected else 'failed'] += 1
         total += count
         batches.append(dict(**batch, reading=path.relative_to(results).as_posix(),
                             reading_sha256=sha(path), request_sha256=sha(request_path)))
@@ -184,6 +220,7 @@ def check_readings(packet, results, output):
                       for p in results.rglob('*') if p.is_file()}, 'result tree changed')
     result = dict(complete=True, packet_round=packet_round, calls=total, batches=batches, result_files_sha256=frozen,
                   packet_files_sha256=files, frozen_windows_application=dict(predictions),
+                  frozen_packet_application=dict(packet_predictions),
                   limits='Existing reader exports only; Value2 transport audited. Effective callee '
                          'operands remain unobservable. Native CPU measurements and predictions '
                          'are never Excel answers. Repeated captures are observations, not distinct inputs.')

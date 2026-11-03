@@ -504,8 +504,133 @@ def bank_delta(before, after, output):
     print(json.dumps(result));return result
 
 
+def bank_replay(before, executable, checkout, output):
+    """Replay through the existing judge/comparator without retaining a new trace."""
+    import os
+    import subprocess
+    import tempfile
+    before, executable, checkout, output = (Path(p).resolve() for p in
+        (before, executable, checkout, output))
+    output.mkdir(parents=True, exist_ok=False)
+    sources = {str(p): sha(p) for p in (before, executable, Path(__file__))}
+    commands = []
+    with tempfile.TemporaryDirectory(prefix='dnacalc-bank-') as scratch:
+        fifo = Path(scratch)/'trace.fifo'
+        os.mkfifo(fifo, 0o600)
+        compare = [str(executable), 'witness', 'compare', '--before', str(before), '--after', str(fifo)]
+        judge = [str(executable), 'witness', 'judge', '--bank', 'full', '--trace', str(fifo)]
+        commands.extend((compare, judge))
+        with (output/'compare.log').open('x') as compare_log, (output/'judge.log').open('x') as judge_log:
+            # ubs:ignore — operator-selected local executable and argv lists, never a shell.
+            reader = subprocess.Popen(compare, cwd=checkout, stdout=compare_log, stderr=subprocess.STDOUT)
+            writer = None
+            try:
+                # ubs:ignore — operator-selected local executable and argv lists, never a shell.
+                writer = subprocess.Popen(judge, cwd=checkout, stdout=judge_log, stderr=subprocess.STDOUT)
+                writer_code = writer.wait(timeout=3600)
+                reader_code = reader.wait(timeout=60)
+                if writer_code or reader_code:
+                    raise ValueError(f'judge/comparison failed ({writer_code}, {reader_code}); retain both logs')
+            finally:
+                for child in (writer, reader):
+                    if child is not None and child.poll() is None:
+                        child.terminate()
+                        try:
+                            child.wait(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            child.kill()
+                            child.wait()
+    if sources != {p: sha(Path(p)) for p in sources}:
+        raise ValueError('bank, executable or orchestration source changed during replay')
+    import re
+    compared = (output/'compare.log').read_text()
+    summary = re.search(r'xtask witness compare: (\d+) -> (\d+) matched, \+(\d+) / -(\d+); (\d+) actuals changed', compared)
+    rows = re.search(r'xtask witness compare: (\d+) decoded rows;', compared)
+    judged = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)', (output/'judge.log').read_text())
+    if summary is None or rows is None or judged is None or int(rows[1]) == 0:
+        raise ValueError('missing nonempty judge/comparison totals')
+    old, new, gains, losses, changed = map(int, summary.groups())
+    matched, total, failed, unread = map(int, judged.groups())
+    if new != matched or total != int(rows[1])+unread or failed != total-matched:
+        raise ValueError('judge and comparator totals do not reconcile')
+    result = dict(complete=True, decoded_rows=int(rows[1]), before_matched=old, matched=matched,
+        total=total, failed=failed, unread=unread, gains=gains, losses=losses, changed_outputs=changed,
+        commands=commands, input_sha256=sources,
+        logs_sha256={p.name: sha(p) for p in output.glob('*.log')},
+        limits='Existing application judge and verdict comparator; all identity/answer fields compared. '
+               'Unread observations remain failures. The FIFO trace is consumed once and never retained.')
+    with (output/'receipt.json').open('x') as file:
+        json.dump(result, file, indent=2)
+        file.write('\n')
+    print(json.dumps(result))
+    return result
+
+
+def corpus_delta(before, after, original_catalogue_after, output):
+    """Compare the unchanged original inventory while the new sheet awaits Excel."""
+    before, after, original_catalogue_after, output = map(Path,
+        (before, after, original_catalogue_after, output))
+    document = lambda path: json.loads(path.read_text())
+    summary = document(before/'summary.json')
+    counts = collections.Counter()
+    changes, pairs = [], []
+    hashes = {str(before/'summary.json'): sha(before/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
+    for old_report in sorted(before.glob('workbooks/**/report.json')):
+        relative = old_report.relative_to(before)
+        new_report = original_catalogue_after/'report.json' if 'calc-func_catalogue_oracle.xlsx' in relative.parts else after/relative
+        paths = [old_report, new_report, old_report.with_name('evaluations.json'), new_report.with_name('evaluations.json')]
+        old_triage, new_triage = old_report.with_name('triage.json'), new_report.with_name('triage.json')
+        for p in (old_triage, new_triage): hashes[str(p)] = sha(p)
+        for p in paths: hashes[str(p)] = sha(p)
+        old, new, old_evaluations, new_evaluations = map(document, paths)
+        key = lambda r: (r['sheet'], r['row'], r['column'])
+        policy = {key(r): r for r in document(old_triage)['cells']}
+        new_policy = {key(r): r for r in document(new_triage)['cells']}
+        a = {key(r): r for r in old['cells']}
+        b = {key(r): r for r in new['cells']}
+        if a.keys() != b.keys(): raise ValueError('original formula inventory changed: '+str(relative))
+        x = {key(r): r for r in old_evaluations['evaluations']}
+        y = {key(r): r for r in new_evaluations['evaluations']}
+        if x.keys() != y.keys(): raise ValueError('original evaluation coverage changed: '+str(relative))
+        counts['workbooks'] += 1
+        counts['formula_cells'] += len(a)
+        counts['evaluations'] += len(x)
+        for k in a:
+            excluded = bool(policy[k].get('external_links') or policy[k].get('circular_rule'))
+            if excluded != bool(new_policy[k].get('external_links') or new_policy[k].get('circular_rule')):
+                raise ValueError('original comparison context changed: '+str(k))
+            if excluded:
+                counts['external_or_circular'] += 1
+                continue
+            was, now = a[k]['verdict'] == 'matched', b[k]['verdict'] == 'matched'
+            counts['before_matched'] += was
+            counts['after_matched'] += now
+            counts['gains'] += now and not was
+            counts['losses'] += was and not now
+            if a[k]['verdict'] != b[k]['verdict']:
+                changes.append(dict(workbook=str(relative), cell=k, before=a[k], after=b[k],
+                                    original_evaluation=x.get(k), current_evaluation=y.get(k)))
+        for k in x:
+            counts['changed_values'] += x[k].get('returned') != y[k].get('returned')
+        pairs.append(dict(before=str(old_report), after=str(new_report), formula_cells=len(a)))
+    expected = summary['totals']['counts']
+    if counts['workbooks'] != summary['totals']['workbooks'] or counts['formula_cells'] != expected['formula_cells'] or counts['before_matched'] != expected['pass']:
+        raise ValueError('original corpus totals do not reconcile: '+str(dict(counts)))
+    if any(sha(Path(p)) != h for p,h in hashes.items()): raise ValueError('corpus/source changed during comparison')
+    result = dict(complete=True, counts=dict(counts), changes=changes, pairs=pairs, inputs_sha256=hashes,
+        external=expected['external_links'], circular=expected['circular_rule'],
+        before_fail=expected['fail'], after_fail=expected['fail']-counts['gains']+counts['losses'],
+        limits='Original formula inventory, original answers and original workbook contexts. '
+               'The extended catalogue and its awaiting-capture cells are separately reported; no new answer or scope-dependent pass is synthesized.')
+    with output.open('x')as file:json.dump(result,file,indent=2);file.write('\n')
+    print(json.dumps(dict(counts=dict(counts), before_fail=result['before_fail'], after_fail=result['after_fail'])))
+    return result
+
+
 if __name__ == "__main__":
+    if sys.argv[1]=="corpus-delta":corpus_delta(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-delta":bank_delta(*sys.argv[2:]);raise SystemExit(0)
+    if sys.argv[1]=="bank-replay":bank_replay(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="structural-questions":structural_questions(sys.argv[2])
     elif sys.argv[1]=="pmt-group-questions":pmt_group_questions(*sys.argv[2:])
     elif sys.argv[1]=="pmt-observation-questions":pmt_observation_questions(*sys.argv[2:])

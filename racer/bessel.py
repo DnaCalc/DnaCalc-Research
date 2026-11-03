@@ -235,8 +235,80 @@ def domain_run(input_path, destination):
     (dest/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
 
 
+def normalized_i(input_path, producers_path, destination):
+    """Miller's recurrence normalized to the existing public I0 producer.
+
+    DLMF 10.29.1 and 10.74(iv). This is an original fixed program. Starting
+    n+ceil(abs(x))+53 gives at least 53 tail steps above x; the ratio-map
+    derivative there is bounded by 1/4. Rescaling uses binary64's exponent
+    range, with no measured coefficient, threshold, depth or answer selector.
+    """
+    import math
+    import struct
+    destination = Path(destination)
+    destination.mkdir(parents=True, exist_ok=False)
+    raw_rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    producers = [json.loads(line) for line in Path(producers_path).read_text().splitlines()]
+    as_float = lambda value: struct.unpack('>d', bytes.fromhex(value[2:]))[0]
+    i0 = {r['args'][0]: as_float(r['calc_func_prediction']) for r in producers
+          if r['calc_func_prediction'].startswith('0x')}
+    counts = Counter()
+    decisions = []
+    def flush(x):
+        return math.copysign(0., x) if 0 < abs(x) < 2.**-1022 else x
+    for raw in raw_rows:
+        try:
+            x, order = map(as_float, raw['args'])
+        except (ValueError, TypeError):
+            counts['outside_typed_scope'] += 1
+            continue
+        if raw['function'] != 'BESSELI' or raw['args'][0] not in i0 or not (2 <= order < 10000001) or not x:
+            counts['outside_normalization_scope'] += 1
+            continue
+        n, x = int(order), abs(x)
+        before, current, answer = 0., 1., 0.
+        failed = False
+        for k in range(n+math.ceil(x)+53, 0, -1):
+            if k == n: answer = current
+            product = flush(flush((2.*k)/x)*current)
+            following = flush(before+product)
+            if not math.isfinite(following):
+                failed = True
+                break
+            before, current = current, following
+            if current > 2.**512:
+                before = flush(before*2.**-512)
+                current = flush(current*2.**-512)
+                answer = flush(answer*2.**-512)
+        ratio = flush(answer/current) if not failed else 0.
+        if not ratio:
+            counts['unrepresented_ratio_use_series'] += 1
+            continue
+        value = flush(i0[raw['args'][0]]*ratio)
+        if as_float(raw['args'][0]) < 0 and n % 2: value = -value
+        actual = '0x'+struct.pack('>d', value).hex()
+        matched, previous = actual == raw['expected'], raw['actual'] == raw['expected']
+        counts['scoped'] += 1
+        counts['matched'] += matched
+        counts['gains'] += matched and not previous
+        counts['losses'] += previous and not matched
+        corpus = str(raw.get('id', '')).startswith('corpus:')
+        counts['corpus_scoped' if corpus else 'bank_scoped'] += 1
+        counts['corpus_gains' if corpus else 'bank_gains'] += matched and not previous
+        decisions.append(dict(raw=raw, calculated=actual, matched=matched, previous_matched=previous))
+    (destination/'records.jsonl').write_text(''.join(json.dumps(row)+'\n' for row in decisions))
+    result = dict(complete=True, program='backward Miller, I0*(I_n/I0), strict binary64 with FTZ',
+        counts=counts, input_sha256={str(p): digest(p) for p in (input_path, producers_path, Path(__file__))},
+        limits='Fixed mathematical program with the current cleared I0 producer. No fitted constant '
+               'or Excel seed. Unrepresentable normalization ratios retain the existing positive-series '
+               'path. Prototype comparisons are discovery, not new Excel readings or a complete Bessel implementation.')
+    (destination/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='normalized-i':normalized_i(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='domains':domain_run(*sys.argv[2:]);raise SystemExit(0)
     parser=argparse.ArgumentParser();parser.add_argument('input');parser.add_argument('destination')
     args=parser.parse_args();run(args.input,args.destination)

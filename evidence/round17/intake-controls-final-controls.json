@@ -1,0 +1,41 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "changed-canonical-answer",
+      "rejected": true,
+      "error": "reader/raw result differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-frozen-prediction",
+      "rejected": true,
+      "error": "canonical/frozen worker prediction differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-readback-input",
+      "rejected": true,
+      "error": "transport changed requested operands",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "omitted-reader-batch",
+      "rejected": true,
+      "error": "missing reader batch: requests-CUMIPMT.json",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "self-consistent-wrong-function",
+      "rejected": true,
+      "error": "requested function/formula differs",
+      "success_receipt_exists": false
+    }
+  ],
+  "checker_sha256": {
+    "r13_controls.py": "5a6c69da2d163e7f709f47b3ed35ff0c1bddec08dafdfe28fde046a421c476ee",
+    "questions_r13.py": "5673c74e333fa22777c7483a31191df372e1d2666039d81c52c1e68e77a4ea66"
+  },
+  "limits": "Corrupted private copies only; original packet and supplied result files unchanged."
+}

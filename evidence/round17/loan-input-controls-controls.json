@@ -1,0 +1,34 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "wrong-function",
+      "rejected": true,
+      "reason": "loan payment function identity"
+    },
+    {
+      "control": "wrong-nper",
+      "rejected": true,
+      "reason": "payment/principal period count differs"
+    },
+    {
+      "control": "wrong-pv",
+      "rejected": true,
+      "reason": "payment/principal present value differs"
+    },
+    {
+      "control": "wrong-fv",
+      "rejected": true,
+      "reason": "zero final value required"
+    },
+    {
+      "control": "outside-period",
+      "rejected": true,
+      "reason": "observed period outside the loan"
+    }
+  ],
+  "executable_sha256": "e98661777a39a7bab439ee8630169a73c5dd22d3fbf8c6813fc0d911a9b82829",
+  "source_sha256": "438036448b370085f8941da228d11554d2c24fb8ea96f5c294284e1cfca78c47",
+  "limits": "Constructed invalid loans, never Excel readings or candidate successes."
+}
