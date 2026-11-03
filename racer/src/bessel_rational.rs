@@ -725,6 +725,72 @@ fn published_i0(x: f64) -> f64 {
     }
 }
 
+// Copyright NumFOCUS, Apache-2.0. ITK v5.4.0, commit311b7060ef39e371f3cd209ec135284ff5fde735,
+// Modules/Core/Common/include/itkGaussianOperator.hxx:ModifiedBesselI.
+// Rust scalar port; the published I0 polynomial uses the existing worksheet EXP.
+fn published_i_itk(x: f64, order: usize) -> f64 {
+    assert!(order >= 2);
+    if x == 0.0 { return 0.0; }
+    let twice_over_x = 2.0 / x.abs();
+    let mut next = 0.0;
+    let mut current = 1.0;
+    let mut answer = 0.0;
+    let start = 2 * (order + (40.0 * order as f64).sqrt() as usize);
+    for j in (1..=start).rev() {
+        let previous = next + (j as f64 * twice_over_x) * current;
+        next = current;
+        current = previous;
+        if current.abs() > 1e10 {
+            answer *= 1e-10;
+            current *= 1e-10;
+            next *= 1e-10;
+        }
+        if j == order { answer = next; }
+    }
+    answer *= published_i0(x) / current;
+    if x < 0.0 && order % 2 == 1 { -answer } else { answer }
+}
+
+pub fn replay_i_itk(input: &str, out: &str) {
+    use calc_func::value::CalcValue;
+    let dest = Path::new(out);
+    fs::create_dir(dest).unwrap();
+    let rows = lines::<Value>(input);
+    let mut counts = BTreeMap::<String, [usize; 5]>::new();
+    let mut file = BufWriter::new(fs::File::create_new(dest.join("predictions.jsonl")).unwrap());
+    for (index, record) in rows.iter().enumerate() {
+        let row = &record["raw"];
+        assert_eq!(row["function"], "BESSELI");
+        let (raw_x, raw_n) = (decode(&row["args"][0]).unwrap(), decode(&row["args"][1]).unwrap());
+        let (baseline, _) = crate::invoke_control("BESSELI", vec![CalcValue::number(raw_x), CalcValue::number(raw_n)]);
+        let x = if raw_x.is_subnormal() { 0.0 } else { raw_x };
+        let admitted = x.is_finite() && x.abs() <= 709.7 && raw_n.is_finite()
+            && raw_n >= 2.0 && raw_n.trunc() <= 10_000_000.0;
+        let (prediction, region) = if admitted {
+            let (_, seed) = crate::invoke_control("BESSELI", vec![CalcValue::number(x), CalcValue::number(0.0)]);
+            assert_eq!(seed.unwrap().to_bits(), published_i0(x).to_bits(), "ITK I0/application seed differs");
+            let value = published_i_itk(x, raw_n.trunc() as usize);
+            let encoded = if value.is_finite() {
+                calc_verdict::encode_result(&CalcValue::number(if value.is_subnormal() { 0.0 } else { value })).unwrap()
+            } else { "error:Num".into() };
+            (encoded, "published_higher_I")
+        } else { (baseline.clone(), "unchanged_outer_or_lower_order") };
+        let expected = row["expected"].as_str().unwrap();
+        let matched = prediction == expected;
+        let was = baseline == expected;
+        for k in ["all", region] {
+            for (slot, inc) in counts.entry(k.into()).or_default().iter_mut().zip([
+                1, usize::from(matched), usize::from(was), usize::from(matched && !was), usize::from(!matched && was)]) { *slot += inc; }
+        }
+        writeln!(file,"{}",json!({"trace_index":index,"id":row["id"],"args":row["args"],"baseline":baseline,"expected":expected,"prediction":prediction,"region":region,"matched":matched})).unwrap();
+    }
+    let result = json!({"complete":true,"input_rows":rows.len(),"counts_all_exact_baseline_gains_losses":counts,
+        "source":"ITK v5.4.0 311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx:ModifiedBesselI and I0, Apache-2.0; Copyright NumFOCUS",
+        "limits":"One complete fixed published higher-order numerical program, strict published I0 with worksheet EXP, unchanged outer order/flush/admission and existing order0/1 product routes. All original records checked; no fitted constant, grouping, cutoff or row-specific selector. Discovery, not held-out."});
+    json_write(dest.join("summary.json"), &result);
+    println!("{result}");
+}
+
 fn published_i(x: f64, order: usize) -> f64 {
     let a = x.abs();
     if order == 0 {
@@ -773,6 +839,28 @@ struct IProgram {
     model: EvalModel,
     store_state: bool,
     kornia: bool,
+    itk: bool,
+    seed_model: EvalModel,
+    seed_store: bool,
+    seed_return_store: bool,
+}
+
+fn i0_model<F: Fpu>(x: f64, p: &IProgram) -> Val {
+    let program = Program { id: 0, polynomial: p.seed_model, reconstruction: p.seed_model,
+        assignment_stores: p.seed_store, helpers: 0, association: 0, reduction: 0, group_y0_log: false };
+    let m = Machine::<F>::new(&program);
+    let mode = p.seed_model;
+    let a = Val::f64(x.abs());
+    let result = if x.abs() < 3.75 {
+        let z = m.assign(m.div(Val::f64(x), Val::f64(3.75), mode));
+        let square = m.assign(m.mul(z, z, mode));
+        m.poly(square, I0_LOW)
+    } else {
+        let z = m.assign(m.div(Val::f64(3.75), a, mode));
+        let scale = m.div(Val::f64(excel_exp(x.abs())), m.sqrt(a), mode);
+        m.mul(scale, m.poly(z, I0_HIGH), mode)
+    };
+    if p.seed_return_store { Val::f64(result.to_f64::<F>()) } else { result }
 }
 
 fn positive_above(value: Val, bound: f64) -> bool {
@@ -793,6 +881,8 @@ fn positive_above(value: Val, bound: f64) -> bool {
 }
 
 fn published_i_model<F: Fpu>(x: f64, order: usize, p: &IProgram) -> f64 {
+    let seed = if p.itk { i0_model::<F>(x, p) } else { Val::f64(published_i0(x)) };
+    if p.itk && order == 0 { return seed.to_f64::<F>(); }
     if order <= 1 || x == 0.0 {
         // Kornia v0.6.4 kernels.py, Apache-2.0. Its I0 and low I1
         // expressions agree with the PHP source; high I1 groups the final
@@ -829,8 +919,8 @@ fn published_i_model<F: Fpu>(x: f64, order: usize, p: &IProgram) -> f64 {
         );
         next = current;
         current = m.assign(previous);
-        if positive_above(current, if p.kornia { 1e10 } else { 1e12 }) {
-            let factor = Val::f64(if p.kornia { 1e-10 } else { 1e-12 });
+        if positive_above(current, if p.kornia || p.itk { 1e10 } else { 1e12 }) {
+            let factor = Val::f64(if p.kornia || p.itk { 1e-10 } else { 1e-12 });
             answer = m.assign(m.mul(answer, factor, mode));
             current = m.assign(m.mul(current, factor, mode));
             next = m.assign(m.mul(next, factor, mode));
@@ -841,14 +931,14 @@ fn published_i_model<F: Fpu>(x: f64, order: usize, p: &IProgram) -> f64 {
     }
     let value = if p.kornia {
         m.div(
-            m.mul(answer, Val::f64(published_i0(x)), mode),
+            m.mul(answer, seed, mode),
             current,
             mode,
         )
     } else {
         m.mul(
             answer,
-            m.div(Val::f64(published_i0(x)), current, mode),
+            m.div(seed, current, mode),
             mode,
         )
     };
@@ -861,28 +951,186 @@ fn published_i_model<F: Fpu>(x: f64, order: usize, p: &IProgram) -> f64 {
 }
 
 pub fn replay_i_models<F: Fpu>(input: &str, out: &str) {
-    run_i_models::<F>(input, out, false);
+    run_i_models::<F>(input, out, 0);
 }
 
 pub fn replay_i_kornia<F: Fpu>(input: &str, out: &str) {
-    run_i_models::<F>(input, out, true);
+    run_i_models::<F>(input, out, 1);
 }
 
-fn run_i_models<F: Fpu>(input: &str, out: &str, kornia: bool) {
+pub fn replay_i_itk_models<F: Fpu>(input: &str, out: &str) {
+    run_i_models::<F>(input, out, 2);
+}
+
+pub fn replay_i_itk_complete<F: Fpu>(input: &str, out: &str) {
+    run_i_models::<F>(input, out, 3);
+}
+
+/// Independently rounded sites in the two fixed published higher-I bodies.
+/// The ratio-first normalization is separately labelled as a mathematical identity.
+#[derive(Clone, Debug, Serialize)]
+struct ISites {
+    id: usize,
+    source: usize,
+    ratio_first: bool,
+    stores: u8,
+    models: [EvalModel; 7],
+}
+
+fn i_sites_value<F: Fpu>(x: f64, order: usize, seed: f64, p: &ISites) -> f64 {
+    use crate::{dsl::Op, eval::binop};
+    let op = |kind, site: usize, a, b| binop::<F>(kind, p.models[site], a, b);
+    let mul = |site, a, b| op(Op::Mul(0, 1), site, a, b);
+    let div = |site, a, b| op(Op::Div(0, 1), site, a, b);
+    let store = |v: Val, mask| if p.stores & mask != 0 { Val::f64(v.to_f64::<F>()) } else { v };
+    let tox = div(0, Val::f64(2.0), Val::f64(x.abs()));
+    let mut next = Val::f64(0.0);
+    let mut current = Val::f64(1.0);
+    let mut answer = Val::f64(0.0);
+    let start = 2 * (order + (40.0 * order as f64).sqrt() as usize);
+    let (limit, factor) = if p.source == 0 { (1e12, 1e-12) } else { (1e10, 1e-10) };
+    for j in (1..=start).rev() {
+        let first = mul(1, Val::f64(j as f64), tox);
+        let second = mul(2, first, current);
+        let previous = op(Op::Add(0, 1), 3, next, second);
+        next = store(current, 2);
+        current = store(previous, 1);
+        if positive_above(current, limit) {
+            current = store(mul(4, current, Val::f64(factor)), 1);
+            next = store(mul(4, next, Val::f64(factor)), 2);
+            answer = store(mul(4, answer, Val::f64(factor)), 4);
+        }
+        if j == order { answer = store(next, 4); }
+    }
+    let seed = Val::f64(seed);
+    let value = if p.ratio_first {
+        mul(6, div(5, answer, current), seed)
+    } else if p.source == 0 {
+        mul(6, answer, div(5, seed, current))
+    } else {
+        div(6, mul(5, answer, seed), current)
+    };
+    let result = value.to_f64::<F>();
+    if x < 0.0 && order % 2 == 1 { -result } else { result }
+}
+
+pub fn replay_i_sites<F: Fpu>(input: &str, out: &str) {
+    use crate::dsl::WIDE_MODELS;
+    let destination = Path::new(out);
+    fs::create_dir(destination).unwrap();
+    let original = lines::<Value>(input);
+    let mut rows = Vec::new();
+    for (index, record) in original.iter().enumerate() {
+        let row = &record["raw"];
+        assert_eq!(row["function"], "BESSELI");
+        let (x, n) = (decode(&row["args"][0]).unwrap(), decode(&row["args"][1]).unwrap());
+        if x.is_finite() && !x.is_subnormal() && x != 0.0 && x.abs() <= 709.7
+            && n.is_finite() && n >= 2.0 && n.trunc() <= 10000.0
+            && row["expected"].as_str().unwrap().starts_with("0x") {
+            let seed = published_i0(x);
+            assert!(seed.is_finite());
+            rows.push((index, x, n.trunc() as usize, seed, decode(&row["expected"]).unwrap().to_bits()));
+        }
+    }
+    assert!(!rows.is_empty());
+    // Deterministic discovery order: the first previously lost observations,
+    // then every other original observation. No answer-dependent program selection.
+    rows.sort_by_key(|(index, _, _, _, _)| {
+        let r = &original[*index]["raw"];
+        (r["actual"] != r["expected"], *index)
+    });
+    let scope: Vec<_> = rows.iter().map(|r| r.0).collect();
+    json_write(destination.join("scope.json"), &scope);
+    let per_models = 5usize.pow(7);
+    let programs = 2 * 2 * 8 * per_models;
+    let mut kills = vec![u32::MAX; programs];
+    let mut survivors = Vec::new();
+    let mut killed_by = vec![0usize; rows.len()];
+    let mut evaluations = 0u64;
+    for source in 0..2 {
+        for ratio_first in [false, true] {
+            for stores in 0..8 {
+                for code in 0..per_models {
+                    let id = (((source * 2 + usize::from(ratio_first)) * 8 + stores) * per_models) + code;
+                    let mut digits = code;
+                    let mut models = [EvalModel::Strict; 7];
+                    for m in &mut models { *m = WIDE_MODELS[digits % 5]; digits /= 5; }
+                    let p = ISites { id, source, ratio_first, stores: stores as u8, models };
+                    for (order, &(_, x, n, seed, expected)) in rows.iter().enumerate() {
+                        let got = i_sites_value::<F>(x, n, seed, &p);
+                        let got = if got.is_subnormal() || got == 0.0 { 0.0 } else { got };
+                        evaluations += 1;
+                        if got.to_bits() != expected {
+                            kills[id] = order as u32;
+                            killed_by[order] += 1;
+                            break;
+                        }
+                    }
+                    if kills[id] == u32::MAX { survivors.push(p); }
+                }
+            }
+        }
+    }
+    let mut file = BufWriter::new(fs::File::create_new(destination.join("first-kill-order.u32le")).unwrap());
+    for k in &kills { file.write_all(&k.to_le_bytes()).unwrap(); }
+    file.flush().unwrap();
+    json_write(destination.join("survivors.json"), &survivors);
+    let summary = json!({"complete":true,"original_rows":original.len(),"scoped_rows":rows.len(),"programs":programs,
+        "survivors":survivors.len(),"evaluations":evaluations,"killed_by_order":killed_by,
+        "grammar":{"models":WIDE_MODELS,"sites":["2/x","j*tox","coefficient*current","next+product","rescale","normalization_first","normalization_second"],"state_store_bits":["current","next","selected"],"source_programs":["PhpSpreadsheet1e12 and source normalization","Kornia0.6.4 1e10 and source normalization"],"ratio_first":[false,true],"program_id":"(((source*2+ratio_first)*8+stores)*5^7)+little_endian_base5_models"},
+        "limits":"Declared higher-order bodies, fixed published starts, rescale factors and strict published I0 seed with worksheet EXP. Only admitted nonzero normal x and numeric results with truncated orders2..10000. Independent precision/store sites and a separately labelled ratio identity; no fitted coefficient, cutoff or row-specific policy. A full survivor would still require application-route and full-bank checks; first contradictions exclude only these programs."});
+    json_write(destination.join("summary.json"), &summary);
+    println!("{summary}");
+}
+
+#[cfg(test)]
+mod i_site_controls {
+    use super::*;
+
+    #[test]
+    fn strict_sites_reproduce_both_published_bodies() {
+        for source in 0..2 {
+            let p = ISites { id: 0, source, ratio_first: false, stores: 0,
+                models: [EvalModel::Strict; 7] };
+            let old = IProgram { id: 0, model: EvalModel::Strict,
+                store_state: false, kornia: source == 1, itk: false,
+                seed_model: EvalModel::Strict, seed_store: false, seed_return_store: false };
+            for x in [0.001, 0.3, 2.0, 3.75, 5.2, 8.0, 12.3, 25.6, 100.0, -9.1] {
+                for n in [2, 3, 10, 50, 100] {
+                    let a = i_sites_value::<Hard>(x, n, published_i0(x), &p);
+                    let b = published_i_model::<Hard>(x, n, &old);
+                    assert_eq!(a.to_bits(), b.to_bits(), "source{source}, x{x}, n{n}");
+                }
+            }
+        }
+    }
+}
+
+fn run_i_models<F: Fpu>(input: &str, out: &str, source: usize) {
     use calc_func::value::CalcValue;
     let destination = Path::new(out);
     fs::create_dir(destination).unwrap();
     let rows = lines::<Value>(input);
     let mut programs = Vec::new();
+    for seed_model in if source == 3 { WIDE_MODELS.to_vec() } else { vec![EvalModel::Strict] } {
+      for seed_store in if source == 3 { vec![false, true] } else { vec![false] } {
+       for seed_return_store in if source == 3 { vec![false, true] } else { vec![false] } {
     for model in WIDE_MODELS {
         for store_state in [false, true] {
             programs.push(IProgram {
                 id: programs.len(),
                 model,
                 store_state,
-                kornia,
+                kornia: source == 1,
+                itk: source >= 2,
+                seed_model,
+                seed_store,
+                seed_return_store,
             });
         }
+    }
+       }
+      }
     }
     json_write(destination.join("programs.json"), &programs);
     let mut counts = vec![[0_usize; 5]; programs.len()];
@@ -908,10 +1156,10 @@ fn run_i_models<F: Fpu>(input: &str, out: &str, kornia: bool) {
                 "error:Num".into()
             } else {
                 let v = published_i_model::<F>(x, n.trunc() as usize, p);
-                if p.id == 0 && !kornia {
+                if p.id == 0 && source != 1 {
                     assert_eq!(
                         v.to_bits(),
-                        published_i(x, n.trunc() as usize).to_bits(),
+                        if source >= 2 && n.trunc() >= 2.0 { published_i_itk(x, n.trunc() as usize) } else { published_i(x, n.trunc() as usize) }.to_bits(),
                         "strict source control"
                     );
                 }
@@ -946,8 +1194,8 @@ fn run_i_models<F: Fpu>(input: &str, out: &str, kornia: bool) {
         }
     }
     let result = json!({"complete":true,"input_rows":rows.len(),"programs":programs,"counts_all_exact_baseline_gains_losses":counts,"first_contradictions":first,
-        "source":if kornia {"Kornia v0.6.4 kernels.py5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661 (Apache-2.0); binary64 caller dtype, existing worksheet EXP, outer Excel parity/admission; IEEE754/Intel x87 models"} else {"Fixed PhpSpreadsheet BesselI.php60cc826911f1a1a125d756f22f0476a88504ab1f (MIT); IEEE754 and Intel x87 arithmetic/store models"},
-        "limits":"Ten coherent arithmetic/state-store realizations of the unchanged published higher-order body; fixed strict published seeds/worksheet EXP and existing outer policy. No coefficient, start, rescale or row-selector search. All answers are discovery."});
+        "source":if source >= 2 {"ITK v5.4.0 311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0; existing worksheet EXP and unchanged outer admissions; IEEE754/Intel x87 models"} else if source == 1 {"Kornia v0.6.4 kernels.py5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661 (Apache-2.0); binary64 caller dtype, existing worksheet EXP, outer Excel parity/admission; IEEE754/Intel x87 models"} else {"Fixed PhpSpreadsheet BesselI.php60cc826911f1a1a125d756f22f0476a88504ab1f (MIT); IEEE754 and Intel x87 arithmetic/store models"},
+        "limits":"Coherent arithmetic/state-store realizations of the unchanged published higher-order body; source3 also gives its complete I0 helper the declared coherent arithmetic, local and return stores, including its public order0 observations. Worksheet EXP and outer policy remain fixed. No coefficient, start, rescale or row-selector search. All answers are discovery."});
     json_write(destination.join("summary.json"), &result);
     println!("{result}");
 }

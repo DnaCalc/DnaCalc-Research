@@ -1,0 +1,64 @@
+{
+  "id": "dc-j9k-r22-itk-complete-helper-models",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "55674b3a79634a0a5341017b9f5eaa9f0d5c5425",
+  "scope": "ITK complete higher-I program; source frozen after incoming document/review changes. Existing numerical kernels unchanged.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/main.rs": "c7df3a6e0442828925410698e8b97f0c312e9d64c3f919feaa9d0d4cffde4813",
+    "racer/src/bessel_rational.rs": "e854e5f9b6a9bef61f719dfb0a2806e3b087ac18c9c890f2cb290f19f1a73f00",
+    "racer/build.rs": "afc241d833ff0ea33b40e89289d6e16f8d965aee8b85732a1cfda4151d46f7f7"
+  },
+  "regression_audit": true,
+  "application_working_blobs": {
+    "apps/dna-calc-model/src/lib.rs": "65ece02cab48345d2cc47efc68238c7ddb78d51a",
+    "apps/dna-calc-model/src/projection.rs": "fad68faacc8b3a480ccb223135b75624445344ce",
+    "apps/dna-calc-model/src/runtime.rs": "244da5fecda3d1c3458f183d98a1aa400e4d3c36",
+    "apps/dna-calc-worker/src/server.rs": "c9fbb8fbcc390a06f66c4d712f399219b9cefa72",
+    "crates/calc-doc-model/src/conditional.rs": "699cce2143d395d53b39c62e57fbcc781d3a2a68",
+    "crates/calc-doc-model/src/lib.rs": "89f7f9b531c0a70b8e86b204581951d7d59dde38",
+    "crates/calc-doc-model/src/review.rs": "0551aec3a82c158e975b4d22643a85f16de88a4a",
+    "crates/calc-doc-model/src/structural.rs": "fc770fcb35253cbd0ff32b1b5118089b59694099",
+    "crates/calc-doc-model/src/validation.rs": "377765c72e326540582a391dc5a9b62b0f7abe3b",
+    "crates/calc-doc/src/lib.rs": "eadfbf03ed97d208b1da548b21d7c20e45810d42",
+    "crates/calc-doc/src/load/mod.rs": "d4b3e02df1227b4901ad582bfc070b8a93ec1c24",
+    "crates/calc-doc/src/load/review.rs": "6c74549c5f4493cd08c143a5f2b9a04aa6bedff3",
+    "crates/calc-doc/src/load/strings.rs": "118da4df48eeeee80c102c4dd60d5bde745ddc69",
+    "crates/calc-doc/src/load/validation.rs": "0a37fa1098e4e413ac47462d49863444fdcd48b5",
+    "crates/calc-doc/src/save/author.rs": "f4dc5ebc38944f0b0b529554cded2c4485b9e78b",
+    "crates/calc-doc/src/save/conditional.rs": "648b8d18290ccaf366d1e6d0aa1c3b84e010d58f",
+    "crates/calc-doc/src/save/mod.rs": "8191ce84aa5df9eca0d30d5ac1315e43bde7a2df",
+    "crates/calc-doc/src/save/parts.rs": "638e9102acba2134e3431d19e610688e4ca91d99",
+    "crates/calc-doc/src/save/reader.rs": "640282b3e2a42287940839a3e4d62a0e6317b9cd",
+    "crates/calc-doc/src/save/review.rs": "d6fa21500e8ca5404030a087c64fc850ae9cb7bf",
+    "crates/calc-doc/src/save/sheets.rs": "472c8ab9cfd9e1edcd315da188c86dfcee9bbd41",
+    "crates/calc-doc/src/save/text.rs": "24ec5bb740b838c9f19fa4f2d75d7ea03f7e1a29",
+    "crates/calc-doc/src/save/validation.rs": "bf0802c4c5dbb0694b3b39f1dbf8272fd42c4181",
+    "crates/calc-host/src/actions.rs": "2966032a061902407ccd560292fd9c2856b20a9f",
+    "crates/calc-host/src/command.rs": "b64a974130d2f098f911d83457db693fbbb64397",
+    "crates/calc-host/src/copy.rs": "140a4a628262b5444ebd2c7b9de27db02b431917",
+    "crates/calc-host/src/copy_metadata.rs": "32609372cde0ea4af7426aa86b6a9319223b319a",
+    "crates/calc-host/src/lib.rs": "cc8913646d92fe44a6b47017a7d79b245149acf0",
+    "crates/calc-host/src/paste.rs": "a9f54cd4f2d5bea4aa3f7ae376f030bfd114724b",
+    "crates/calc-host/src/review.rs": "4330e4a5bc08ede23ca9105b24f320b4dd9f6f05",
+    "crates/calc-host/src/state.rs": "c798fb05b075bc2a803f6cfddfe0ea78f3dd05ea"
+  }
+}

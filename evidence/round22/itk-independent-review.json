@@ -1,0 +1,28 @@
+{
+  "status": "read-only review passed; no material findings",
+  "source": "ITK311b7060 Apache2 source, unchanged tables/branch/start/rescale/normalization, stored-PC64 arithmetic checked",
+  "independent_exact_rational_controls": 134,
+  "new_application_test_cases": 100,
+  "original_expected_answers_preserved": true,
+  "R19_zero_correction_verified": true,
+  "bank": {
+    "before_matched": 3231759,
+    "matched": 3232584,
+    "total": 3875673,
+    "gains": 825,
+    "losses": 0,
+    "failed": 643089,
+    "unread": 116,
+    "only_BESSELI_outputs_changed": true
+  },
+  "corpus": {
+    "before_matched": 19916,
+    "matched": 19962,
+    "total": 22234,
+    "gains": 46,
+    "losses": 0,
+    "pending": 1160,
+    "inclusive_failed": 2272
+  },
+  "limits": "Reviewer did not invoke cargo or Excel; research hardware/software arithmetic replay shares native worksheet EXP leaves. Separate100case product soft-x87 test passes; no browser parity claim."
+}

@@ -1,0 +1,3457 @@
+{
+  "complete": true,
+  "counts": {
+    "sessions": 25,
+    "formula_cells": 22234,
+    "evaluations": 79272,
+    "before_matched": 19916,
+    "after_matched": 19962,
+    "gains": 46,
+    "losses": 0,
+    "changed_values": 230,
+    "external_or_circular": 87,
+    "awaiting_capture": 1160,
+    "workbooks": 23
+  },
+  "changes": [
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        155,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 155,
+        "column": 4,
+        "cell": "D155",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "3f873699f0fa6a4b"
+        },
+        "actual": {
+          "number": "3f873699f0fa6a49"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 155,
+        "column": 4,
+        "cell": "D155",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 155,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f873699f0fa6a49"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 155,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f873699f0fa6a4b"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        156,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 156,
+        "column": 4,
+        "cell": "D156",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3f4289319e1d41e3"
+        },
+        "actual": {
+          "number": "3f4289319e1d41e4"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 156,
+        "column": 4,
+        "cell": "D156",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 156,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f4289319e1d41e4"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 156,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f4289319e1d41e3"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        157,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 157,
+        "column": 4,
+        "cell": "D157",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3ea5503c2ad9ea15"
+        },
+        "actual": {
+          "number": "3ea5503c2ad9ea16"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 157,
+        "column": 4,
+        "cell": "D157",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 157,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ea5503c2ad9ea16"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 157,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ea5503c2ad9ea15"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        158,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 158,
+        "column": 4,
+        "cell": "D158",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 4
+        },
+        "expected": {
+          "number": "3cdcaf67ed0c0be6"
+        },
+        "actual": {
+          "number": "3cdcaf67ed0c0be2"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 158,
+        "column": 4,
+        "cell": "D158",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 158,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3cdcaf67ed0c0be2"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 158,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3cdcaf67ed0c0be6"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        161,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 161,
+        "column": 4,
+        "cell": "D161",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3fc563304988da68"
+        },
+        "actual": {
+          "number": "3fc563304988da69"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 161,
+        "column": 4,
+        "cell": "D161",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 161,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fc563304988da69"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 161,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fc563304988da68"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        162,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 162,
+        "column": 4,
+        "cell": "D162",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3f9e9baab6102950"
+        },
+        "actual": {
+          "number": "3f9e9baab610294f"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 162,
+        "column": 4,
+        "cell": "D162",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 162,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f9e9baab610294f"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 162,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f9e9baab6102950"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        163,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 163,
+        "column": 4,
+        "cell": "D163",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3f3ce6f0f1d374dd"
+        },
+        "actual": {
+          "number": "3f3ce6f0f1d374dc"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 163,
+        "column": 4,
+        "cell": "D163",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 163,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f3ce6f0f1d374dc"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 163,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f3ce6f0f1d374dd"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        164,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 164,
+        "column": 4,
+        "cell": "D164",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3e08a6c7fa31aa71"
+        },
+        "actual": {
+          "number": "3e08a6c7fa31aa72"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 164,
+        "column": 4,
+        "cell": "D164",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 164,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3e08a6c7fa31aa72"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 164,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3e08a6c7fa31aa71"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        168,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 168,
+        "column": 4,
+        "cell": "D168",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "3fcb3b1020bce0b5"
+        },
+        "actual": {
+          "number": "3fcb3b1020bce0b7"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 168,
+        "column": 4,
+        "cell": "D168",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 168,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fcb3b1020bce0b7"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 168,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fcb3b1020bce0b5"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        169,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 169,
+        "column": 4,
+        "cell": "D169",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3f841f7c5b90b3e8"
+        },
+        "actual": {
+          "number": "3f841f7c5b90b3e7"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 169,
+        "column": 4,
+        "cell": "D169",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 169,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f841f7c5b90b3e7"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 169,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f841f7c5b90b3e8"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        170,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 170,
+        "column": 4,
+        "cell": "D170",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3e943f1abfcf579f"
+        },
+        "actual": {
+          "number": "3e943f1abfcf57a0"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 170,
+        "column": 4,
+        "cell": "D170",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 170,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3e943f1abfcf57a0"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 170,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3e943f1abfcf579f"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        173,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 173,
+        "column": 4,
+        "cell": "D173",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3ff46c67c769054a"
+        },
+        "actual": {
+          "number": "3ff46c67c769054b"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 173,
+        "column": 4,
+        "cell": "D173",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 173,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ff46c67c769054b"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 173,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ff46c67c769054a"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        174,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 174,
+        "column": 4,
+        "cell": "D174",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "3fde5c15b85c636b"
+        },
+        "actual": {
+          "number": "3fde5c15b85c636d"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 174,
+        "column": 4,
+        "cell": "D174",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 174,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fde5c15b85c636d"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 174,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fde5c15b85c636b"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        176,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 176,
+        "column": 4,
+        "cell": "D176",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 5
+        },
+        "expected": {
+          "number": "3ec8cb693f9d11cb"
+        },
+        "actual": {
+          "number": "3ec8cb693f9d11d0"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 176,
+        "column": 4,
+        "cell": "D176",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 176,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ec8cb693f9d11d0"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 176,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ec8cb693f9d11cb"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        179,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 179,
+        "column": 4,
+        "cell": "D179",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4013e0dfff01cb62"
+        },
+        "actual": {
+          "number": "4013e0dfff01cb61"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 179,
+        "column": 4,
+        "cell": "D179",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 179,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4013e0dfff01cb61"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 179,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4013e0dfff01cb62"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        181,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 181,
+        "column": 4,
+        "cell": "D181",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3fd5b6e93222147d"
+        },
+        "actual": {
+          "number": "3fd5b6e93222147c"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 181,
+        "column": 4,
+        "cell": "D181",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 181,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fd5b6e93222147c"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 181,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fd5b6e93222147d"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        182,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 182,
+        "column": 4,
+        "cell": "D182",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 3
+        },
+        "expected": {
+          "number": "3f2a97dcd155e20d"
+        },
+        "actual": {
+          "number": "3f2a97dcd155e20a"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 182,
+        "column": 4,
+        "cell": "D182",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 182,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f2a97dcd155e20a"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 182,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3f2a97dcd155e20d"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        185,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 185,
+        "column": 4,
+        "cell": "D185",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "40173174f39bc785"
+        },
+        "actual": {
+          "number": "40173174f39bc786"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 185,
+        "column": 4,
+        "cell": "D185",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 185,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40173174f39bc786"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 185,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40173174f39bc785"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        186,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 186,
+        "column": 4,
+        "cell": "D186",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4007b9fd7669b7af"
+        },
+        "actual": {
+          "number": "4007b9fd7669b7ae"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 186,
+        "column": 4,
+        "cell": "D186",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 186,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4007b9fd7669b7ae"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 186,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4007b9fd7669b7af"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        187,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 187,
+        "column": 4,
+        "cell": "D187",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "3fdb9cd39a1ada03"
+        },
+        "actual": {
+          "number": "3fdb9cd39a1ada05"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 187,
+        "column": 4,
+        "cell": "D187",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 187,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fdb9cd39a1ada05"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 187,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fdb9cd39a1ada03"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        191,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 191,
+        "column": 4,
+        "cell": "D191",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "403554f9b5e9a17b"
+        },
+        "actual": {
+          "number": "403554f9b5e9a17a"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 191,
+        "column": 4,
+        "cell": "D191",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 191,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "403554f9b5e9a17a"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 191,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "403554f9b5e9a17b"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        192,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 192,
+        "column": 4,
+        "cell": "D192",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4029b0b4c616a417"
+        },
+        "actual": {
+          "number": "4029b0b4c616a418"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 192,
+        "column": 4,
+        "cell": "D192",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 192,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4029b0b4c616a418"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 192,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4029b0b4c616a417"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        193,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 193,
+        "column": 4,
+        "cell": "D193",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4006a15310058d91"
+        },
+        "actual": {
+          "number": "4006a15310058d90"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 193,
+        "column": 4,
+        "cell": "D193",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 193,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4006a15310058d90"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 193,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4006a15310058d91"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        197,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 197,
+        "column": 4,
+        "cell": "D197",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "406e9a62ce06ad92"
+        },
+        "actual": {
+          "number": "406e9a62ce06ad93"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 197,
+        "column": 4,
+        "cell": "D197",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 197,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "406e9a62ce06ad93"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 197,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "406e9a62ce06ad92"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        198,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 198,
+        "column": 4,
+        "cell": "D198",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4065c42f4c920204"
+        },
+        "actual": {
+          "number": "4065c42f4c920203"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 198,
+        "column": 4,
+        "cell": "D198",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 198,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4065c42f4c920203"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 198,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4065c42f4c920204"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        199,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 199,
+        "column": 4,
+        "cell": "D199",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "404e5ec51e47adc4"
+        },
+        "actual": {
+          "number": "404e5ec51e47adc3"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 199,
+        "column": 4,
+        "cell": "D199",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 199,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "404e5ec51e47adc3"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 199,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "404e5ec51e47adc4"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        200,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 200,
+        "column": 4,
+        "cell": "D200",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "3fe6b5860c3334c5"
+        },
+        "actual": {
+          "number": "3fe6b5860c3334c3"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 200,
+        "column": 4,
+        "cell": "D200",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 200,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fe6b5860c3334c3"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 200,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fe6b5860c3334c5"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        204,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 204,
+        "column": 4,
+        "cell": "D204",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "406d82684104a253"
+        },
+        "actual": {
+          "number": "406d82684104a252"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 204,
+        "column": 4,
+        "cell": "D204",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 204,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "406d82684104a252"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 204,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "406d82684104a253"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        205,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 205,
+        "column": 4,
+        "cell": "D205",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4055624aaa2f58cf"
+        },
+        "actual": {
+          "number": "4055624aaa2f58ce"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 205,
+        "column": 4,
+        "cell": "D205",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 205,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4055624aaa2f58ce"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 205,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4055624aaa2f58cf"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        206,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 206,
+        "column": 4,
+        "cell": "D206",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "3ff25472f294f19a"
+        },
+        "actual": {
+          "number": "3ff25472f294f19c"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 206,
+        "column": 4,
+        "cell": "D206",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 206,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ff25472f294f19c"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 206,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3ff25472f294f19a"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        209,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 209,
+        "column": 4,
+        "cell": "D209",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "407e2fa67acd89cf"
+        },
+        "actual": {
+          "number": "407e2fa67acd89ce"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 209,
+        "column": 4,
+        "cell": "D209",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 209,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "407e2fa67acd89ce"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 209,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "407e2fa67acd89cf"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        210,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 210,
+        "column": 4,
+        "cell": "D210",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "40761aadda50a1f4"
+        },
+        "actual": {
+          "number": "40761aadda50a1f3"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 210,
+        "column": 4,
+        "cell": "D210",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 210,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40761aadda50a1f3"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 210,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40761aadda50a1f4"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        211,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 211,
+        "column": 4,
+        "cell": "D211",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "4060c8e84e4dffa2"
+        },
+        "actual": {
+          "number": "4060c8e84e4dffa1"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 211,
+        "column": 4,
+        "cell": "D211",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 211,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4060c8e84e4dffa1"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 211,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4060c8e84e4dffa2"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        212,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 212,
+        "column": 4,
+        "cell": "D212",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 3
+        },
+        "expected": {
+          "number": "4001100add69d30d"
+        },
+        "actual": {
+          "number": "4001100add69d30a"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 212,
+        "column": 4,
+        "cell": "D212",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 212,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4001100add69d30a"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 212,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4001100add69d30d"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        215,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 215,
+        "column": 4,
+        "cell": "D215",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 102
+        },
+        "expected": {
+          "number": "40d4d24f35720616"
+        },
+        "actual": {
+          "number": "40d4d24f357205b0"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 215,
+        "column": 4,
+        "cell": "D215",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 215,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40d4d24f357205b0"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 215,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40d4d24f35720616"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        216,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 216,
+        "column": 4,
+        "cell": "D216",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "40d0de8c9223eb3f"
+        },
+        "actual": {
+          "number": "40d0de8c9223eb40"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 216,
+        "column": 4,
+        "cell": "D216",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 216,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40d0de8c9223eb40"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 216,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40d0de8c9223eb3f"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        217,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 217,
+        "column": 4,
+        "cell": "D217",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "40c15baacd896ec6"
+        },
+        "actual": {
+          "number": "40c15baacd896ec5"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 217,
+        "column": 4,
+        "cell": "D217",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 217,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40c15baacd896ec5"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 217,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "40c15baacd896ec6"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        218,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 218,
+        "column": 4,
+        "cell": "D218",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "407c9a554a0c3240"
+        },
+        "actual": {
+          "number": "407c9a554a0c3241"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 218,
+        "column": 4,
+        "cell": "D218",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 218,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "407c9a554a0c3241"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 218,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "407c9a554a0c3240"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        221,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 221,
+        "column": 4,
+        "cell": "D221",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 62989074
+        },
+        "expected": {
+          "number": "4201e1d64369889b"
+        },
+        "actual": {
+          "number": "4201e1d63fa86589"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 221,
+        "column": 4,
+        "cell": "D221",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 221,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4201e1d63fa86589"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 221,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "4201e1d64369889b"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        222,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 222,
+        "column": 4,
+        "cell": "D222",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 35978
+        },
+        "expected": {
+          "number": "42003066e6936431"
+        },
+        "actual": {
+          "number": "42003066e693f0bb"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 222,
+        "column": 4,
+        "cell": "D222",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 222,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "42003066e693f0bb"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 222,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "42003066e6936431"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        223,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 223,
+        "column": 4,
+        "cell": "D223",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "41f792bef8254dc1"
+        },
+        "actual": {
+          "number": "41f792bef8254dc2"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 223,
+        "column": 4,
+        "cell": "D223",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 223,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "41f792bef8254dc2"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 223,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "41f792bef8254dc1"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        224,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 224,
+        "column": 4,
+        "cell": "D224",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 2
+        },
+        "expected": {
+          "number": "41d5af846f57a917"
+        },
+        "actual": {
+          "number": "41d5af846f57a915"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 224,
+        "column": 4,
+        "cell": "D224",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 224,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "41d5af846f57a915"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 224,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "41d5af846f57a917"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        227,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 227,
+        "column": 4,
+        "cell": "D227",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3fdd3745241cba94"
+        },
+        "actual": {
+          "number": "3fdd3745241cba95"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 227,
+        "column": 4,
+        "cell": "D227",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 227,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fdd3745241cba95"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 227,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3fdd3745241cba94"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        232,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 232,
+        "column": 4,
+        "cell": "D232",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "c086576eeb47db74"
+        },
+        "actual": {
+          "number": "c086576eeb47db73"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 232,
+        "column": 4,
+        "cell": "D232",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 232,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "c086576eeb47db73"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 232,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "c086576eeb47db74"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        335,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 335,
+        "column": 4,
+        "cell": "D335",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 1
+        },
+        "expected": {
+          "number": "3b979ca10c924223"
+        },
+        "actual": {
+          "number": "3b979ca10c924224"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 335,
+        "column": 4,
+        "cell": "D335",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 335,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3b979ca10c924224"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 335,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "3b979ca10c924223"
+          }
+        }
+      }
+    },
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        336,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 336,
+        "column": 4,
+        "cell": "D336",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "number",
+          "ulp": 8
+        },
+        "expected": {
+          "number": "478d056635fca6da"
+        },
+        "actual": {
+          "number": "478d056635fca6e2"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 336,
+        "column": 4,
+        "cell": "D336",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 336,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "478d056635fca6e2"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 336,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "478d056635fca6da"
+          }
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json",
+      "formula_cells": 17
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json",
+      "formula_cells": 1436
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json",
+      "formula_cells": 22
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json",
+      "formula_cells": 17
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_l3_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_l3_oracle.xlsx/report.json",
+      "formula_cells": 112
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json",
+      "formula_cells": 183
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json",
+      "formula_cells": 83
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json",
+      "formula_cells": 57
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json",
+      "formula_cells": 783
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json",
+      "formula_cells": 850
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json",
+      "formula_cells": 234
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json",
+      "formula_cells": 810
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "formula_cells": 11876
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json",
+      "formula_cells": 1526
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json",
+      "formula_cells": 234
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json",
+      "formula_cells": 218
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json",
+      "formula_cells": 112
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json",
+      "formula_cells": 136
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json",
+      "formula_cells": 596
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json",
+      "formula_cells": 1144
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json",
+      "formula_cells": 115
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json",
+      "formula_cells": 186
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json",
+      "formula_cells": 86
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json",
+      "formula_cells": 167
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r22-itk/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json",
+      "formula_cells": 74
+    }
+  ],
+  "inputs_sha256": {
+    "../DnaCalc/target/corpus-r22-integrated/summary.json": "096f04a3e5932093e40809523c56f0e1b54ca05af7601e2d67d96d3fec3dcb01",
+    "../DnaCalc/target/corpus-r22-itk/summary.json": "4993c23b10cf461dbf11873e587ea88d7598dabbf0210791a1e6d5bfe7dc6e24",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "886141de4b3db4b2d77874df68be6b5f5fce5c44c3f194a856eb15e476f6ad79",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "4bdb59899fa59ae9d44dab60c9b3e072cbee78f311558339a69874ac75653610",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "ec6bfe35ba0a096f2bfe26241dca4e131dddde0e86da2072ab54868a542db991",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "f6f9d9bdc161f422af06a80af6e85522b886971212ec9d3025af99f48296bc84",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "9f6e013afbe3b10897cef0dfb7e0174f6b27abcf7d61c0ebd7147ed049bc3d54",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "464166863486fc92d88d3ebb36ba3a1f90b9f831e9e8856d9875dbd4bc8d7cd8",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "84e8ec71db9fa122749c0808b95459837a3fc539afa4f8db4e420290500d3c7b",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "21196187fd773e0629c5f885ddf59e8539931aba80cf0126bb23eb5c792c08ad",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "8980286268decb60a3827e3f24908b6fae0539234822825062e7be77ad7c0a46",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "baceb1b49a3b7cbfff3f6ee67c5445299877f1ba37c9648bb9145753e7ce162a",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "6b5338970ef4a4f8a46a47d1f739e662df5e782285ba423ca48c61a5c239b6fc",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "279dd9c1231c28ae19e72b339e1b862faaa3753b96b5612202455418c1ea3f8f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "e9063c04104c6eca4264d282c76d28e1ef9ec41cfad676362f467c5a93fd75fd",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "c78a983387a8d3070a5fc7bbbc450a36d113324cb9ae4438a2dbc49d074905de",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "a15ff4d62ec4ef63cb8d908fc222358ffc285843104dffed99536f36df0999ff",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "93a08969682fc39c3264f279b2f1dc2dc2db38237fedb723fe12979763f70040",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "5ce32a05b28d63da006a842a98c78ade8b526050b15bc9c1fd351d27bfd1087b",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "5ce32a05b28d63da006a842a98c78ade8b526050b15bc9c1fd351d27bfd1087b",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "2931b1039064f40cf5cb1ec1ef923bad0a80c761a6cd6f34bb8e29ba46d5979d",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "0ad5346a284ffec6c5cf2f3008648b940769acfdcdc07912ca40f267e29bc87b",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "6e3c3664e13d997888832042f5fb05232f18d1eb911278dcdd3c719112d2944d",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "6e3c3664e13d997888832042f5fb05232f18d1eb911278dcdd3c719112d2944d",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "f44dedfae75f947bdb12b37900142b0fd41b811c41473aebd1016bab522f8ace",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "bcd2115dd38e026d0fba92d0aadce918e15d1a803f14449c945ca6425749c95a",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-2.capture.json": "59a567927936be915693e2bc58ae047e8aad14512773abf9a3f83d0eebff4c54",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-2.capture.json": "59a567927936be915693e2bc58ae047e8aad14512773abf9a3f83d0eebff4c54",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "c2d60695985ac168733838b3a9a8e5b38b8510a2130233feb01133ec72264f7f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "5ea558bb231dbbe5f3617c4961260bafdf9bdd0e459a07d302eb6b4f52dc1f78",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "4b6bc9cd88a68ec893efe3342695834a6a08cfa6e15ef6904b47a3e3602c22cf",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "4b6bc9cd88a68ec893efe3342695834a6a08cfa6e15ef6904b47a3e3602c22cf",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "b19a70d75adde6d651ef78125606f1e55129bad4da050d21044bca4278a97965",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "9f2bc156ce287eceae9b076c0f1fc2cbcb4653321193323b351add7ae3311231",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json": "a2e07ca8bb7175326f1c4caec6ff9b1ceffbe73024ea0f2beda91c681deec079",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json": "a2e07ca8bb7175326f1c4caec6ff9b1ceffbe73024ea0f2beda91c681deec079",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "e137c0c711485736df758fdff8db5e972b56420ca874a131f7f92d2f2b9a15eb",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "b3cf988363bd5d26841410ad857835de4eb5c37fabd28b81d1ba2b33ed2dcb98",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "3c409f5d9e0216eb0eb3209619416a6690b07b6a1c70a25686871c5e0d0fd109",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "3c409f5d9e0216eb0eb3209619416a6690b07b6a1c70a25686871c5e0d0fd109",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "3cdff7f1b175b01334dc9c2c2f9337320eb8aaccb20977920b9125360ae0064a",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "1544b837069948369303fb0d6d09b4bb4513e72a32bd5caeb46090d995464e34",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json": "25ff7e1febf24a2b006d8edad6ca2a8cd066cc28cf51d0f23b091dc7f6dff5ab",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json": "25ff7e1febf24a2b006d8edad6ca2a8cd066cc28cf51d0f23b091dc7f6dff5ab",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-4/triage.json": "bff74a91265f8a88414d88c4e946d9ee0dd8115a475eb3fadb370850ddd7a9e8",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-4/triage.json": "814c91225c52ce2f40c99c03bb30f1a430599770c0302850e1cc4138e7bdb0ef",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json": "c026cc6b61aa0b80f08cba4eae4c7dd746f4704e5f16059cb0c7f30cca90190e",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json": "c026cc6b61aa0b80f08cba4eae4c7dd746f4704e5f16059cb0c7f30cca90190e",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-4/evaluations.json": "213214ef8afb1f7e1bbb77db6942c141abd61468ee33866f218840c3c779e6a0",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-4/evaluations.json": "393a3b2696d5efa0bd7009a7d96a277692892985ac8e5a7d1f1f919d06f28a16",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-5.capture.json": "17cdfb5723921f8adb5d381086c0b3f3979cbd2e0e8b3260cdc599b49062182f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-5.capture.json": "17cdfb5723921f8adb5d381086c0b3f3979cbd2e0e8b3260cdc599b49062182f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-5/triage.json": "90bb42b97a70c8aec7ec30823b8ecfe40bd7975da813c6656500f5942595ac47",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-5/triage.json": "06b9a2a661a1f077fa9bda4e2ec7b1a9cdbecd12142a56184cb6c340f8687ca1",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json": "0b7e80de45b9de2ebac478d631885f3a7125a0bb30f676a1683ed18fa944e4f7",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json": "836ab072bd602c5b4a14dec0942085aeceef5936be76dfdc81cca5de10f87802",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_catalogue_oracle.xlsx/session-5/evaluations.json": "cecf4ad8107a56151f7b42932e61cd6c63eafcf6e7c36320e7055c10982e492c",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_catalogue_oracle.xlsx/session-5/evaluations.json": "730cd2c6cb240731376de84c11cc3536a07e6ece5657c74823673c5813b8ab8e",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "1fc5ba8893958f41437b8562396e1a2d6665ff99945ea935e9b03f78cf5e9365",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "df8ac0aef5a81fcdf10697f74df65caf416620da8332dc4e253da788d3f65309",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "1f5169f52537fc2a0e10ee48d5ea7eb3f6d7871001d6e4332995c57e2fc857cc",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "4747efc1a428a5e92db99b0e2358f9aaa3322188e1459d38c1d8a8fb83b42fd1",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "72ecd3329bb8d69a68369ffa07e177c923c1ca656422b123add67d003159c80d",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "877522339870a13b2940fabc91b504ce80c4f9dfcab92ed719e6e89f030c8fd6",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "01fbe0c2faf68d9822a72a5fa2a8252443147feaa209b7a4fdf113ce181f77c9",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "8a9b08c9824419ea0aa76ead20900439178fd7b3ec58ce80bf0eafb96187a3ec",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "b3fd0da10c615dffcc7ad090f29eedc3d94b2872f9f6a93d2a8b84f02b918b26",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "16098f0eb7850ce9f7b609b96f564a1f9cdf2a2ea60f46566fa225a5970f270b",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "816a2385b764e72851912937be33def981690d01db094b91046158e4fa5576f0",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "0557fa0dab17bdf6a9d20445fc95e5261a8ac5e6ef1f694044a63d915fa5210c",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "8de3025a730b9809a2ec477953162a9cd5901ab6b5ad3cac6b6bc6e3f679878d",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "2fdfc6f8319aef319665bbf103f4420a3f7b2ac9899a24add0294d42d3341248",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "3c9635db97a4333e17aeb2473d309def3772ee1ef85316036c9a09e6f684709e",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "78696b47f391c33cf9adc572b03ed1366724b96c7e9b966ffc138d20525e9ef5",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "8e0b3f849649b18c63cedaac3735d8f02730dc6346141457460359af0a45bd3a",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "0f9c450a6966eea4d812904e3922fa27beaa73c41c52867859d0c0f73b41b2d0",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "081aab5e9d0c5cc48c0136cee258e6cbbaf9bbc8be13d9999c30f50ed7a0cf11",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "8e5ca12d7a5616637394f0b38fbb09da77283823e2e580347bba754ad63445d2",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "77c1d617868c64035538d930ad6f9e3699af65342bdfc11426f6e937acbf75db",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "3f997fd80e4f528674401183e3c28c49386ab680dea9f8a29ed89470e5bc8f5e",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "1b50e12591c7528e52942291ad5cb3c4e0d7980cde6c4b2cc4b8c72cfc2d52d0",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "972c2fd787a9a999c320b9e60bbbc7463fe2f26384626a62f75884b8054bc502",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "../DnaCalc/target/corpus-r22-integrated/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+    "../DnaCalc/target/corpus-r22-itk/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614"
+  },
+  "pending_coverage": [
+    {
+      "workbook": "calc-func/dcj9k_r21/oracle.xlsx",
+      "cells": 204,
+      "source_sha256": "d3e3f469aad6dcad09edd92021aad4e71157e5b62ba92a99399872f725bfdf53"
+    },
+    {
+      "workbook": "calc-func/fn2_questions/oracle.xlsx",
+      "cells": 956,
+      "source_sha256": "c5d039de7df3898ba23938d1fd3ce0185d4aadb0162fed571419322cb04adfbc"
+    }
+  ],
+  "inclusive_before_failed": 2318,
+  "inclusive_after_failed": 2272,
+  "external": 73,
+  "circular": 14,
+  "before_fail": 1071,
+  "after_fail": 1025,
+  "limits": "Fixed formula inventory, answers and workbook contexts, including every comparison session. New capture coverage is separate from product gains; no answer or scope-dependent pass is synthesized."
+}

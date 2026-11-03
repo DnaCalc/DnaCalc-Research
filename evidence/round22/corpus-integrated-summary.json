@@ -1,0 +1,1726 @@
+{
+  "format": "dnacalc-corpus-summary",
+  "root_causes": {
+    "mismatches": [
+      {
+        "cells": 83,
+        "downstream": 0,
+        "function": "GEOMEAN",
+        "roots": 83,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 65,
+        "downstream": 0,
+        "function": "CUMPRINC",
+        "roots": 65,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 60,
+        "downstream": 0,
+        "function": "PPMT",
+        "roots": 60,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 56,
+        "downstream": 0,
+        "function": "CUMPRINC",
+        "roots": 56,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 56,
+        "downstream": 0,
+        "function": "IPMT",
+        "roots": 56,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 47,
+        "downstream": 0,
+        "function": "VAR.S",
+        "roots": 47,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 40,
+        "downstream": 0,
+        "function": "VAR.P",
+        "roots": 40,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 35,
+        "downstream": 0,
+        "function": "CUMPRINC",
+        "roots": 35,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 31,
+        "downstream": 0,
+        "function": "BINOM.DIST",
+        "roots": 31,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 31,
+        "downstream": 0,
+        "function": "CUMIPMT",
+        "roots": 31,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 30,
+        "downstream": 0,
+        "function": "BESSELI",
+        "roots": 30,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 29,
+        "downstream": 0,
+        "function": "BESSELJ",
+        "roots": 29,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 29,
+        "downstream": 0,
+        "function": "CUMIPMT",
+        "roots": 29,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 25,
+        "downstream": 0,
+        "function": "BINOM.DIST",
+        "roots": 25,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 22,
+        "downstream": 0,
+        "function": "PPMT",
+        "roots": 22,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 22,
+        "downstream": 0,
+        "function": "PPMT",
+        "roots": 22,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 18,
+        "downstream": 0,
+        "function": "IPMT",
+        "roots": 18,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 16,
+        "downstream": 0,
+        "function": "VAR.P",
+        "roots": 16,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 16,
+        "downstream": 0,
+        "function": "VAR.S",
+        "roots": 16,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 14,
+        "downstream": 0,
+        "function": "BINOM.DIST",
+        "roots": 14,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 14,
+        "downstream": 0,
+        "function": "INDEX",
+        "roots": 14,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 14,
+        "downstream": 0,
+        "function": "INDEX",
+        "roots": 14,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 13,
+        "downstream": 0,
+        "function": "STDEV",
+        "roots": 13,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 13,
+        "downstream": 0,
+        "function": "VARP",
+        "roots": 13,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 9,
+        "downstream": 0,
+        "function": "BESSELI",
+        "roots": 9,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 9,
+        "downstream": 0,
+        "function": "Infix &",
+        "roots": 9,
+        "shape": "text expected, text returned",
+        "whole_workbook": 0,
+        "workbooks": 2
+      },
+      {
+        "cells": 9,
+        "downstream": 0,
+        "function": "STDEV.S",
+        "roots": 9,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 9,
+        "downstream": 0,
+        "function": "STDEVA",
+        "roots": 9,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 9,
+        "downstream": 0,
+        "function": "VAR.S",
+        "roots": 9,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 9,
+        "downstream": 0,
+        "function": "VARPA",
+        "roots": 9,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 7,
+        "downstream": 0,
+        "function": "BESSELI",
+        "roots": 7,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 7,
+        "downstream": 0,
+        "function": "INDEX",
+        "roots": 7,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 6,
+        "downstream": 0,
+        "function": "CUMIPMT",
+        "roots": 6,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 6,
+        "downstream": 0,
+        "function": "IPMT",
+        "roots": 6,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 5,
+        "downstream": 0,
+        "function": "POISSON.DIST",
+        "roots": 5,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 5,
+        "downstream": 0,
+        "function": "STDEV.P",
+        "roots": 5,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 5,
+        "downstream": 0,
+        "function": "VAR",
+        "roots": 5,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 5,
+        "downstream": 0,
+        "function": "VAR.P",
+        "roots": 5,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 5,
+        "downstream": 0,
+        "function": "VARPA",
+        "roots": 5,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "HYPGEOM.DIST",
+        "roots": 4,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "POISSON.DIST",
+        "roots": 4,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "STDEV",
+        "roots": 4,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "STDEV.P",
+        "roots": 4,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "STDEV.S",
+        "roots": 4,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "STDEVA",
+        "roots": 4,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 4,
+        "downstream": 0,
+        "function": "VAR.S",
+        "roots": 4,
+        "shape": "number, equal to 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 3,
+        "downstream": 0,
+        "function": "NEGBINOM.DIST",
+        "roots": 3,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 3,
+        "downstream": 0,
+        "function": "POISSON.DIST",
+        "roots": 3,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 3,
+        "downstream": 0,
+        "function": "RATE",
+        "roots": 3,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 3,
+        "downstream": 0,
+        "function": "VAR",
+        "roots": 3,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "BETADIST",
+        "roots": 2,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "BETAINV",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "BINOM.DIST.RANGE",
+        "roots": 2,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "BINOMDIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "CHIDIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "CONFIDENCE",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "DURATION",
+        "roots": 2,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "FDIST",
+        "roots": 2,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "FINV",
+        "roots": 2,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "GAMMA.DIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "GAMMADIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "GAMMAINV",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "HYPGEOM.DIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "HYPGEOMDIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "INDEX",
+        "roots": 2,
+        "shape": "number expected, error Num returned",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "IRR",
+        "roots": 2,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "LOGINV",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "NEGBINOMDIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "ODDFYIELD",
+        "roots": 2,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "POISSON",
+        "roots": 2,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "TDIST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "TINV",
+        "roots": 2,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "TTEST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "VAR",
+        "roots": 2,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "VAR.P",
+        "roots": 2,
+        "shape": "number, equal to 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "VARP",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "YIELD",
+        "roots": 2,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "Z.TEST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "function": "ZTEST",
+        "roots": 2,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "BESSELJ",
+        "roots": 1,
+        "shape": "error Num expected, number returned",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "BESSELY",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "BETA.DIST",
+        "roots": 1,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "BETA.INV",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "BINOM.DIST",
+        "roots": 1,
+        "shape": "number, equal to 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "CHISQ.DIST.RT",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "CHISQ.INV",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "CONFIDENCE.NORM",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "CONFIDENCE.T",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "CUMIPMT",
+        "roots": 1,
+        "shape": "number, equal to 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "CUMPRINC",
+        "roots": 1,
+        "shape": "number, equal to 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "F.DIST.RT",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "F.INV",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "F.INV.RT",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "GAMMA.DIST",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "GAMMA.DIST",
+        "roots": 1,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "GAMMA.INV",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "GEOMEAN",
+        "roots": 1,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "LOGNORM.INV",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "NEGBINOM.DIST",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "NEGBINOM.DIST",
+        "roots": 1,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "NORM.S.DIST",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "PMT",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "STDEV.P",
+        "roots": 1,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "T.DIST",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "T.DIST.2T",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "T.DIST.RT",
+        "roots": 1,
+        "shape": "number, differs within 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "T.INV.2T",
+        "roots": 1,
+        "shape": "number, 1 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "T.TEST",
+        "roots": 1,
+        "shape": "number, 2 to 16 ulp apart",
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "function": "VARP",
+        "roots": 1,
+        "shape": "number, equal to 15 significant digits",
+        "whole_workbook": 0,
+        "workbooks": 1
+      }
+    ],
+    "other": [
+      {
+        "cells": 3,
+        "class": "capture",
+        "downstream": 0,
+        "key": "capture failure at stage reopen",
+        "roots": 3,
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "class": "capture",
+        "downstream": 0,
+        "key": "capture failure at stage value",
+        "roots": 1,
+        "whole_workbook": 0,
+        "workbooks": 1
+      }
+    ],
+    "refusals": [
+      {
+        "cells": 52,
+        "downstream": 0,
+        "owner": "exactness dc-uar",
+        "reason": "not-modelled <",
+        "roots": 52,
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 2,
+        "downstream": 0,
+        "owner": "exactness dc-uar",
+        "reason": "not-modelled GETPIVOTDATA",
+        "roots": 2,
+        "whole_workbook": 0,
+        "workbooks": 1
+      },
+      {
+        "cells": 1,
+        "downstream": 0,
+        "owner": "exactness dc-uar",
+        "reason": "not-modelled =",
+        "roots": 1,
+        "whole_workbook": 0,
+        "workbooks": 1
+      }
+    ]
+  },
+  "rule": "pass = matched Excel from the workbook's own inputs; external_links = matched Excel from values another workbook's link caches hold (neither pass nor fail, dc-ylr); circular_rule = matched Excel with the value the circular-reference rule holds with iteration off (neither pass nor fail, dc-y2o.1); awaiting_capture = formula cells of an oracle workbook or section with no committed capture of its current content (neither pass nor fail; cargo xtask capture --pending takes them); fail = mismatched + refused (not modelled) + failed or missing; the pass rate is pass over all formula cells, awaiting ones included (owner ruling 2026-10-23)",
+  "run": {
+    "cache": "C:\\Work\\DnaCalc\\corpus\\captures-cache",
+    "command": "cargo xtask corpus --oracle --no-capture --out target/corpus-r22-integrated",
+    "compare_process": "this xtask, a release build",
+    "excel_build": "not read (no capture needed it)",
+    "finished_utc": "2026-11-03T21:17:03Z",
+    "listing_failures": [],
+    "repository": "faa2c72d9c1765ba521c595b5b45f1247f2c0580+dirty",
+    "wall_time_s": 9.584374116
+  },
+  "totals": {
+    "compared": 23,
+    "counts": {
+      "awaiting_capture": 1160,
+      "circular_rule": 14,
+      "external_links": 73,
+      "fail": 1071,
+      "failed_or_missing": 1,
+      "failed_or_missing_by_verdict": {
+        "not_run": 1
+      },
+      "formula_cells": 22234,
+      "mismatched": 1015,
+      "pass": 19916,
+      "pass_rate": 0.8957452550148421,
+      "refused": 55
+    },
+    "not_compared": 0,
+    "wall_time_s": {
+      "capture": null,
+      "compare_process": 7.600175284000001,
+      "judge": 0.17871048400000003,
+      "open": 0.630593183,
+      "project": 0.048541329999999994,
+      "recalculation": 4.884246862000002
+    },
+    "whole_run_failed": 0,
+    "workbooks": 23
+  },
+  "version": 1,
+  "workbooks": [
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_10y/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 5,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 1436,
+        "mismatched": 5,
+        "pass": 1431,
+        "pass_rate": 0.9965181058495822,
+        "refused": 0
+      },
+      "name": "calc-engine/dc_10y/oracle.xlsx",
+      "sha256": "c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.117578038,
+        "judge": 0.006364957,
+        "open": 0.018351508,
+        "project": 0.000942685,
+        "recalculation": 0.033301004
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_10y_iteration/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 17,
+        "mismatched": 0,
+        "pass": 17,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-engine/dc_10y_iteration/oracle.xlsx",
+      "sha256": "dd3d66a85327aaa2cfef12f54607821482babdb4947655ba31aa0fccd9fce87f",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.011309741,
+        "judge": 0.000051607,
+        "open": 0.00131087,
+        "project": 0.000013806,
+        "recalculation": 0.004891114
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_86f/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 22,
+        "mismatched": 0,
+        "pass": 22,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-engine/dc_86f/oracle.xlsx",
+      "sha256": "7c8887848b182706ca8aefb53418ce66a234d768fec1bd48acfa39a525935da9",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.010199585,
+        "judge": 0.000061775,
+        "open": 0.001815179,
+        "project": 0.000012935,
+        "recalculation": 0.001193322
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_y2o/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 14,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 17,
+        "mismatched": 0,
+        "pass": 3,
+        "pass_rate": 0.17647058823529413,
+        "refused": 0
+      },
+      "name": "calc-engine/dc_y2o/oracle.xlsx",
+      "sha256": "a96155346bd3ce9df1ff00adb646d79770d0b83ab60a0b1db33bb816c2df69f9",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.006742249,
+        "judge": 0.000037891,
+        "open": 0.001167923,
+        "project": 0.000013255,
+        "recalculation": 0.000973491
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/l3/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 112,
+        "mismatched": 0,
+        "pass": 112,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-engine/l3/oracle.xlsx",
+      "sha256": "96830c147c9f3a6cd5fe91dfb1910db59aeffa41a9f8995f9fb1130b698c808a",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.015389605,
+        "judge": 0.000326156,
+        "open": 0.003456784,
+        "project": 0.000095216,
+        "recalculation": 0.003535902
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml/tests/captures/dc_51ka/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 183,
+        "mismatched": 0,
+        "pass": 183,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-fml/dc_51ka/oracle.xlsx",
+      "sha256": "7a7fd9aa13bb8310d82e17977b434006b6ab41c1abd1591baf1129b4e76b34a1",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.060520858,
+        "judge": 0.000492708,
+        "open": 0.003402153,
+        "project": 0.000089587,
+        "recalculation": 0.045657933
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml/tests/captures/dc_ibp2/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 83,
+        "mismatched": 0,
+        "pass": 83,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-fml/dc_ibp2/oracle.xlsx",
+      "sha256": "59082b145c9a0aa0096dcdd596a54d4b222abea54377c8b575372cc54044dec0",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.013052736,
+        "judge": 0.000230229,
+        "open": 0.001355924,
+        "project": 0.000055984,
+        "recalculation": 0.002488462
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml/tests/captures/dc_l10u/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 57,
+        "mismatched": 0,
+        "pass": 57,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-fml/dc_l10u/oracle.xlsx",
+      "sha256": "9e65fa7e8567ae06d19fb45ac5cdb57bfe7b50f646470ef3b0d6ef7d719673a2",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.055041759,
+        "judge": 0.000140983,
+        "open": 0.001137688,
+        "project": 0.000054361,
+        "recalculation": 0.045564239
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "25 committed section captures from 5 capture session(s); 0 section(s) awaiting capture",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 1057,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 14553,
+        "mismatched": 1002,
+        "pass": 13496,
+        "pass_rate": 0.9273689273689274,
+        "refused": 55
+      },
+      "name": "calc-func/catalogue/oracle.xlsx",
+      "sha256": "ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 6.427117939,
+        "judge": 0.155063327,
+        "open": 0.507804927,
+        "project": 0.043552293,
+        "recalculation": 4.298723247
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cdoc_jpha/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 1526,
+        "mismatched": 0,
+        "pass": 1526,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/cdoc_jpha/oracle.xlsx",
+      "sha256": "3174ffda41b22f19274f53baf66d60b742c1c0a8ec8ae8ca453f2707198df760",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.174403187,
+        "judge": 0.006121605,
+        "open": 0.01303355,
+        "project": 0.000963634,
+        "recalculation": 0.086386261
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m1_2/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 234,
+        "mismatched": 0,
+        "pass": 234,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/cfunc_m1_2/oracle.xlsx",
+      "sha256": "f37656d9c0a1f2cebc11d82eab48fd932a68bfcb29a852780ce7a1b45a6e4d7f",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.080555458,
+        "judge": 0.000781215,
+        "open": 0.002841609,
+        "project": 0.000169174,
+        "recalculation": 0.048864551
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_2/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 3,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 218,
+        "mismatched": 3,
+        "pass": 215,
+        "pass_rate": 0.9862385321100917,
+        "refused": 0
+      },
+      "name": "calc-func/cfunc_m3_2/oracle.xlsx",
+      "sha256": "1e3fb218fe5ca44271799b8befe850e34fa12bc9b15e44b4007f19104fb64724",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.019592106,
+        "judge": 0.000739175,
+        "open": 0.002051638,
+        "project": 0.000113531,
+        "recalculation": 0.004335018
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_4/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 112,
+        "mismatched": 0,
+        "pass": 112,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/cfunc_m3_4/oracle.xlsx",
+      "sha256": "bcafc5cd895033e2a6cd386a4b89638128a689523e00530ebcd5b4a663692200",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.02817315,
+        "judge": 0.000401737,
+        "open": 0.00181563,
+        "project": 0.000095769,
+        "recalculation": 0.003393506
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_5/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 136,
+        "mismatched": 0,
+        "pass": 136,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/cfunc_m3_5/oracle.xlsx",
+      "sha256": "3be4a5eb6556cd7ef3f0eaced4d6f0fc68382ca9cfdeb76d767e844b3686b40d",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.088020543,
+        "judge": 0.000471056,
+        "open": 0.002130265,
+        "project": 0.000184373,
+        "recalculation": 0.059849939
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_6/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 596,
+        "mismatched": 0,
+        "pass": 596,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/cfunc_m3_6/oracle.xlsx",
+      "sha256": "caa237a0a87d04fd4036dee6e0ca1b84bdd285aa237ccc93d362503494ce0e8b",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.106501963,
+        "judge": 0.002370382,
+        "open": 0.00625945,
+        "project": 0.00063385,
+        "recalculation": 0.066916701
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_e00t/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 1144,
+        "mismatched": 0,
+        "pass": 1144,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/dc_e00t/oracle.xlsx",
+      "sha256": "88538be54c1ff8759661981fb415a7f46d2cc5f76c4c6b46631f2886d9fdff3c",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.12290323,
+        "judge": 0.003192934,
+        "open": 0.007885387,
+        "project": 0.00058553,
+        "recalculation": 0.064693754
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_fwpz/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 115,
+        "mismatched": 0,
+        "pass": 115,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/dc_fwpz/oracle.xlsx",
+      "sha256": "8c72b027a901d5263eed14b8aa26c773e39645bd236c3cde0c61aad8c7a1776e",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.02610042,
+        "judge": 0.000287976,
+        "open": 0.001984263,
+        "project": 0.000067486,
+        "recalculation": 0.004427691
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_nzpw/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 1,
+        "failed_or_missing": 1,
+        "failed_or_missing_by_verdict": {
+          "not_run": 1
+        },
+        "formula_cells": 186,
+        "mismatched": 0,
+        "pass": 185,
+        "pass_rate": 0.9946236559139785,
+        "refused": 0
+      },
+      "name": "calc-func/dc_nzpw/oracle.xlsx",
+      "sha256": "a00beb0092961e06082007939d1d8d92c53e7f7f6f2f73e8d7048ec9b3875460",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.018246262,
+        "judge": 0.00057527,
+        "open": 0.001860404,
+        "project": 0.000110716,
+        "recalculation": 0.003285966
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_q9rb/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 5,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 86,
+        "mismatched": 5,
+        "pass": 81,
+        "pass_rate": 0.9418604651162791,
+        "refused": 0
+      },
+      "name": "calc-func/dc_q9rb/oracle.xlsx",
+      "sha256": "fae71399bb394a4782cdf69bf96557984ac46123f5e36bcfd7bdfe398331f844",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.012162228,
+        "judge": 0.000379607,
+        "open": 0.001485986,
+        "project": 0.000066363,
+        "recalculation": 0.001781356
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_xrxb/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 167,
+        "mismatched": 0,
+        "pass": 167,
+        "pass_rate": 1.0,
+        "refused": 0
+      },
+      "name": "calc-func/dc_xrxb/oracle.xlsx",
+      "sha256": "573037bf3f1d1bda3dd67b5d2724e257e7a80f43e97571fc8b20ad3c6230fdde",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.092674835,
+        "judge": 0.00041389,
+        "open": 0.001716304,
+        "project": 0.000085349,
+        "recalculation": 0.060216121
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "awaiting capture: no committed capture",
+      "counts": {
+        "awaiting_capture": 204,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 204,
+        "mismatched": 0,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "refused": 0
+      },
+      "name": "calc-func/dcj9k_r21/oracle.xlsx",
+      "sha256": "d3e3f469aad6dcad09edd92021aad4e71157e5b62ba92a99399872f725bfdf53",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": null,
+        "judge": null,
+        "open": null,
+        "project": null,
+        "recalculation": null
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "awaiting capture: no committed capture",
+      "counts": {
+        "awaiting_capture": 956,
+        "circular_rule": 0,
+        "external_links": 0,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 956,
+        "mismatched": 0,
+        "pass": 0,
+        "pass_rate": 0.0,
+        "refused": 0
+      },
+      "name": "calc-func/fn2_questions/oracle.xlsx",
+      "sha256": "c5d039de7df3898ba23938d1fd3ce0185d4aadb0162fed571419322cb04adfbc",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": null,
+        "judge": null,
+        "open": null,
+        "project": null,
+        "recalculation": null
+      },
+      "whole_run_failure": null
+    },
+    {
+      "capture": "committed capture /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-host/tests/captures/dc_ylr/oracle.capture.json",
+      "counts": {
+        "awaiting_capture": 0,
+        "circular_rule": 0,
+        "external_links": 73,
+        "fail": 0,
+        "failed_or_missing": 0,
+        "failed_or_missing_by_verdict": {},
+        "formula_cells": 74,
+        "mismatched": 0,
+        "pass": 1,
+        "pass_rate": 0.013513513513513514,
+        "refused": 0
+      },
+      "name": "calc-host/dc_ylr/oracle.xlsx",
+      "sha256": "5265fccb7365b8828c74c46b774a807d9e6a45bdfbf9b05967e151465b7b502d",
+      "status": "compared",
+      "wall_time_s": {
+        "capture": null,
+        "compare_process": 0.113889392,
+        "judge": 0.000206004,
+        "open": 0.047725741,
+        "project": 0.000635433,
+        "recalculation": 0.043767284
+      },
+      "whole_run_failure": null
+    }
+  ]
+}

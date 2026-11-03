@@ -1,0 +1,69 @@
+{
+  "round": 22,
+  "status": "checkpoint, round continues",
+  "product": "ITK published I0 and higher-I kernel; RN53(RN64) arithmetic reproduces all1318 current BESSELI bank rows",
+  "corpus": {
+    "before_matched": 19916,
+    "matched": 19962,
+    "total": 22234,
+    "gains": 46,
+    "losses": 0,
+    "pending": 1160,
+    "inclusive_failed": 2272
+  },
+  "bank": {
+    "before_matched": 3231759,
+    "matched": 3232584,
+    "total": 3875673,
+    "gains": 825,
+    "losses": 0,
+    "failed": 643089,
+    "unread": 116,
+    "only_BESSELI_outputs_changed": true
+  },
+  "coverage_restoration": {
+    "cells": 1633,
+    "matched": 1561,
+    "mismatched": 70,
+    "refused": 2,
+    "capture_files_changed": false,
+    "catalogue_bytes_same_as_pre_R21": true
+  },
+  "pending_question_cells": {
+    "R21": 204,
+    "incoming_fn2": 956
+  },
+  "larger_numeric_before": 199,
+  "larger_numeric_after": 196,
+  "last_bits_before": 801,
+  "last_bits_after": 758,
+  "tests": {
+    "failing_first_application": true,
+    "application_original_cases": 100,
+    "engineering_passed": 12,
+    "soft_x87_original_cases": 100,
+    "research_rust_passed": 94,
+    "research_rust_ignored": 2,
+    "python_passed": 87,
+    "independent_lattice_controls": 1504,
+    "main_check": {
+      "passed": 1488,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 1,
+      "packages": 12
+    }
+  },
+  "source": "ITK311b7060ef39e371f3cd209ec135284ff5fde735 Apache2; whole published body and I0, no fitted coefficient, threshold, start/rescale or per-row selector.",
+  "parked": [
+    "annuity producer families",
+    "VAR/STDEV/DEVSQ producers",
+    "GEOMEAN"
+  ],
+  "R20_results_received": false,
+  "R21_results_received": false,
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round22",
+  "excluded_checkout_accessed": false,
+  "limits": "Coverage restoration is separate from numeric gains. All pending, external/circular, mismatched/refused/missing and unread obligations remain failures. No Windows/browser sweep.",
+  "ubs": "Rust completed with0critical; Python SQLFlowLimit remains partial, not a complete pass. doctor --fix reports environment good."
+}

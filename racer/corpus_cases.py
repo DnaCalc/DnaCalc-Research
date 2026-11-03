@@ -481,6 +481,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
     rows, counts, groups = [], Counter(), Counter()
     key = lambda r: (r['sheet'], r['row'], r['column'])
     runs = []
+    pending_workbooks = []
     for workbook in summary['workbooks']:
         label = workbook['name'].replace('/', '_').replace('\\', '_')
         directory = corpus/'workbooks'/label
@@ -490,6 +491,12 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
                         for capture in captures)
         elif workbook['capture'].startswith('committed capture '):
             runs.append((Path(workbook['capture'].removeprefix('committed capture ')), directory, workbook['name']))
+        elif workbook['capture'].startswith('awaiting capture:'):
+            c = workbook['counts']
+            if c['awaiting_capture'] != c['formula_cells'] or c['pass'] or c['fail']:
+                raise ValueError('inconsistent wholly pending workbook '+workbook['name'])
+            pending_workbooks.append(dict(workbook=workbook['name'], cells=c['formula_cells'],
+                                          source_sha256=workbook['sha256']))
         else:
             raise ValueError('unaccounted workbook '+workbook['name'])
     def number(bits):
@@ -565,7 +572,15 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
     if len(rows) != require_count:
         raise ValueError(f'nonpass accounting differs: {len(rows)} != {require_count}')
     (output/'cells.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
+    totals = summary['totals']['counts']
+    matched = compared['counts']['after_matched'] if compared is not None else totals['pass']
+    inclusive_failed = len(rows)+totals['awaiting_capture']+totals['external_links']+totals['circular_rule']
+    if matched+inclusive_failed != totals['formula_cells']:
+        raise ValueError('inclusive formula accounting differs')
     result = dict(complete=True, failed=len(rows), counts=dict(counts),
+        matched=matched, formula_cells=totals['formula_cells'], inclusive_failed=inclusive_failed,
+        pass_rate=matched/totals['formula_cells'] if totals['formula_cells'] else 0,
+        awaiting_capture=totals['awaiting_capture'], wholly_pending_workbooks=pending_workbooks,
         groups=[dict(category=c, function=f, cause=r, cells=n)
                 for (c,f,r), n in groups.most_common()], inputs_sha256=inputs,
         cells_sha256=hashlib.sha256((output/'cells.jsonl').read_bytes()).hexdigest(),

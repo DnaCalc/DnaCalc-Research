@@ -391,6 +391,19 @@ fn main() {
             Some("soft") => discrete::hypergeom_quotients::<Soft>(&a[2], &a[3]),
             _ => discrete::hypergeom_quotients::<Hard>(&a[2], &a[3]),
         },
+        Some("bessel-i-itk") => bessel_rational::replay_i_itk(&a[2], &a[3]),
+        Some("bessel-i-itk-complete") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_i_itk_complete::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_i_itk_complete::<Hard>(&a[2], &a[3]),
+        },
+        Some("bessel-i-itk-models") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_i_itk_models::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_i_itk_models::<Hard>(&a[2], &a[3]),
+        },
+        Some("bessel-i-sites") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_i_sites::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_i_sites::<Hard>(&a[2], &a[3]),
+        },
         Some("bessel-i-kornia") => match a.get(4).map(String::as_str) {
             Some("soft") => bessel_rational::replay_i_kornia::<Soft>(&a[2], &a[3]),
             _ => bessel_rational::replay_i_kornia::<Hard>(&a[2], &a[3]),

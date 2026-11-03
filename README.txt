@@ -1,5 +1,26 @@
 DNA Calc arithmetic program research
 
+Round22 restores the catalogue bytes from before the R21 questions. The same
+existing generator now writes R21 and incoming fn2 questions into separate
+workbooks. All25 old captured sections remain valid:1633cells restored,
+including1561matches and72failures, with no Excel run or capture edit.
+The204 R21 and956 fn2 questions remain pending, never passes.
+
+The complete published ITK I0 and higher-I program at311b7060 (Apache-2.0)
+with stored-PC64 arithmetic matches all1318 current BESSELI bank rows.
+Full bank:3231759->3232584/3875673,+825/-0;643089fail including116unread.
+Only BESSELI outputs change; recorded inputs,answers and provenance stay fixed.
+Corpus:19916->19962/22234,+46/-0;2272inclusivefailures include1160pending.
+Three gains were larger numeric mismatches and43 were last bits. Source,
+failed-first100case application test, software-x87 controls, exact-rational
+review, notices and original pin-answer preservation are in evidence/round22.
+An old mathematical product expectation at709.7,1570 now asserts the recorded
+R19 Excel zero exactly; the mathematical series controls remain unchanged.
+Main publication checks and final round details are in round22-result.json.
+No coefficient, cutoff, source constant or per-row selector is fitted.
+
+Historical R21 note follows; its measured scope and old packet are preserved.
+
 Round21 retains the fixed published high-Y0 application change:22 corpus gains
 and14 original-bank gains, with no losses in those fixed comparisons. Main
 e60788ec contains the numerical change;96a4f367 adds unanswered questions.

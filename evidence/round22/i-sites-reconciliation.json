@@ -1,0 +1,770 @@
+{
+  "complete": true,
+  "programs": 2500000,
+  "scoped_rows": 1120,
+  "survivors": 0,
+  "arithmetic_hardware_software_first_kills_equal": true,
+  "known_sha256": "5325adb5ac6ad67127ee451679fd4f2c47412a8d1adefc0f304cfe2b95786c62",
+  "first_kill_matrix_sha256": "b0cc2b6071f2fbbd751a0231a20a221f68602228f10752e29e2d75f86da71753",
+  "kill_witnesses": [
+    {
+      "scope_order": 0,
+      "candidate_kills": 756200,
+      "trace_index": 16,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:167:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(2,2)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 167,
+          "column": 4,
+          "excel_raw": {
+            "number": "3fe60bdd9e3de5e0"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 167,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "3fe60bdd9e3de5e0"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 167,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(2,2)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "2",
+          "2"
+        ],
+        "args": [
+          "0x4000000000000000",
+          "0x4000000000000000"
+        ],
+        "expected": "0x3fe60bdd9e3de5e0",
+        "actual": "0x3fe60bdd9e3de5e0"
+      }
+    },
+    {
+      "scope_order": 1,
+      "candidate_kills": 1637620,
+      "trace_index": 24,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:175:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(2.5,5)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 175,
+          "column": 4,
+          "excel_raw": {
+            "number": "3fa0d0dc29ee9cbe"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 175,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "3fa0d0dc29ee9cbe"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 175,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(2.5,5)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "2.5",
+          "5"
+        ],
+        "args": [
+          "0x4004000000000000",
+          "0x4014000000000000"
+        ],
+        "expected": "0x3fa0d0dc29ee9cbe",
+        "actual": "0x3fa0d0dc29ee9cbe"
+      }
+    },
+    {
+      "scope_order": 2,
+      "candidate_kills": 65768,
+      "trace_index": 29,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:180:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(3.75,3)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 180,
+          "column": 4,
+          "excel_raw": {
+            "number": "4003d5346d0725af"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 180,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "4003d5346d0725af"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 180,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(3.75,3)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "3.75",
+          "3"
+        ],
+        "args": [
+          "0x400e000000000000",
+          "0x4008000000000000"
+        ],
+        "expected": "0x4003d5346d0725af",
+        "actual": "0x4003d5346d0725af"
+      }
+    },
+    {
+      "scope_order": 3,
+      "candidate_kills": 30894,
+      "trace_index": 37,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:188:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(3.9,10)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 188,
+          "column": 4,
+          "excel_raw": {
+            "number": "3f34303a16dea877"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 188,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "3f34303a16dea877"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 188,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(3.9,10)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "3.9",
+          "10"
+        ],
+        "args": [
+          "0x400f333333333333",
+          "0x4024000000000000"
+        ],
+        "expected": "0x3f34303a16dea877",
+        "actual": "0x3f34303a16dea877"
+      }
+    },
+    {
+      "scope_order": 4,
+      "candidate_kills": 2142,
+      "trace_index": 43,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:194:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(5.2,10)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 194,
+          "column": 4,
+          "excel_raw": {
+            "number": "3f7d06aac7a38c8e"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 194,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "3f7d06aac7a38c8e"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 194,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(5.2,10)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "5.2",
+          "10"
+        ],
+        "args": [
+          "0x4014cccccccccccd",
+          "0x4024000000000000"
+        ],
+        "expected": "0x3f7d06aac7a38c8e",
+        "actual": "0x3f7d06aac7a38c8e"
+      }
+    },
+    {
+      "scope_order": 6,
+      "candidate_kills": 1008,
+      "trace_index": 77,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:228:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(-1.7,3)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 228,
+          "column": 4,
+          "excel_raw": {
+            "number": "bfbf4aa3956a9c7d"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 228,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "bfbf4aa3956a9c7d"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 228,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(-1.7,3)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "-1.7",
+          "3"
+        ],
+        "args": [
+          "0xbffb333333333333",
+          "0x4008000000000000"
+        ],
+        "expected": "0xbfbf4aa3956a9c7d",
+        "actual": "0xbfbf4aa3956a9c7d"
+      }
+    },
+    {
+      "scope_order": 8,
+      "candidate_kills": 6032,
+      "trace_index": 84,
+      "raw": {
+        "id": "corpus:calc-func_catalogue_oracle.xlsx:dc96l3_bessel:329:4",
+        "function": "BESSELI",
+        "result_index": null,
+        "formula": "=BESSELI(1.5,2.9)",
+        "source": "../DnaCalc/target/corpus-r20-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json",
+        "reading": {
+          "excel_build": "16.0.20527.20088",
+          "channel": "current",
+          "compatibility": "compat-1/calc-191029",
+          "numeric_environment": "excel-x86-64/cpu-x86-64",
+          "settings": {
+            "workbook_compatibility_version": "1",
+            "excel_version": "16.0",
+            "excel_build_number": "20527",
+            "excel_machine": "x86-64",
+            "calculation_version": "191029",
+            "workbook_calculation_version": "191029",
+            "channel_source": "http://officecdn.microsoft.com/pr/492350f6-3a01-4f97-b9c0-c7c6ddf67d60",
+            "operating_system": "Windows (64-bit) NT 10.00",
+            "os_version": "Microsoft Windows NT 10.0.26200.0",
+            "cpu_architecture": "AMD64",
+            "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+            "processor_count": "16",
+            "user_culture": "en-ZA",
+            "ui_language_id": "1033",
+            "install_language_id": "7177",
+            "country_code": "1",
+            "country_setting": "27",
+            "decimal_separator": ".",
+            "thousands_separator": " ",
+            "list_separator": ",",
+            "date_separator": "/",
+            "date_order": "2",
+            "use_system_separators": "true",
+            "date1904": "false",
+            "calculation": "automatic",
+            "iteration": "false",
+            "calculation_state": "done",
+            "max_iterations": "100",
+            "max_change": "3f50624dd2f1a9fc",
+            "precision_as_displayed": "false",
+            "automation_security": "3",
+            "enable_events": "false",
+            "interactive": "false",
+            "display_alerts": "false",
+            "ask_to_update_links": "false",
+            "ignore_remote_requests": "false",
+            "add_ins": "COM add-in Carousel.ExcelAddin connect=false;COM add-in Dna_78b015d8b23f56a68ecce694f11f8794_3 connect=false;COM add-in ExcelPlugInShell.PowerMapConnect connect=false;COM add-in ExcelVstoAddIn1 connect=false;COM add-in MicrosoftDataStreamerforExcel connect=false;COM add-in NativeShim.InquireConnector.1 connect=false;COM add-in OxVbaExcelAddin.ExcelAddin connect=false;COM add-in PDFMaker.OfficeAddin connect=false;COM add-in PowerPivotExcelClientAddIn.NativeEntry.1 connect=false;COM add-in TestComAddIn.ComAddIn connect=false;COM add-in TestRibbonRegistration.MyCustomRibbon connect=false;COM add-in VS15ExcelAdaptor connect=true;COM add-in xlPerf connect=false;add-in ANALYS32.XLL open=false installed=false;add-in ATPVBAEN.XLAM open=false installed=false;add-in CsTest160PR-AddIn64-packed.xll open=false installed=false;add-in EUROTOOL.XLAM open=false installed=false;add-in ExcelDna.IntelliSense.Tools-AddIn64.xll open=false installed=false;add-in ExcelDna.IntelliSense64.xll open=false installed=false;add-in ExcelDna64.xll open=false installed=false;add-in GENERIC.xll open=false installed=false;add-in McpExcel-AddIn64.xll open=false installed=true;add-in RibbonTest-AddIn64.xll open=false installed=false;add-in SOLVER.XLAM open=false installed=false;add-in Test160rc1Local-AddIn64.xll open=false installed=false;add-in TestCrashGuard-AddIn64.xll open=false installed=true;add-in TestCs170rc2-AddIn64.xll open=false installed=false;add-in TestDoc170-AddIn64.xll open=false installed=false;add-in TestIntelliEmbed-AddIn64.xll open=false installed=false;add-in TestOpen16-AddIn64-packed.xll open=false installed=false",
+            "com_add_ins_connected": "VS15ExcelAdaptor|Visual Studio Tools for Office Design-Time Adaptor for Excel",
+            "add_ins_installed": "McpExcel-AddIn64.xll;TestCrashGuard-AddIn64.xll",
+            "has_vb_project": "false",
+            "opened_read_only": "true",
+            "external_links": "",
+            "ole_dde_links": "",
+            "connections": "",
+            "calculation_clock": "40e69eae3dec29c9",
+            "workbook_path": "C:\\Work\\DnaCalc\\corpus\\c96\\in\\oracle.xlsx"
+          }
+        },
+        "original_capture": {
+          "sheet": "dc96l3_bessel",
+          "row": 329,
+          "column": 4,
+          "excel_raw": {
+            "number": "3fd59f151a072f72"
+          }
+        },
+        "original_evaluation": {
+          "sheet": "dc96l3_bessel",
+          "row": 329,
+          "column": 4,
+          "tick": 1,
+          "revision": 0,
+          "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+          "returned": {
+            "value": {
+              "number": "3fd59f151a072f72"
+            }
+          }
+        },
+        "original_formula": {
+          "sheet": "dc96l3_bessel",
+          "row": 329,
+          "column": 4,
+          "kind": "ordinary",
+          "formula": "=BESSELI(1.5,2.9)"
+        },
+        "verdict": "matched",
+        "argument_sources": [
+          "1.5",
+          "2.9"
+        ],
+        "args": [
+          "0x3ff8000000000000",
+          "0x4007333333333333"
+        ],
+        "expected": "0x3fd59f151a072f72",
+        "actual": "0x3fd59f151a072f72"
+      }
+    },
+    {
+      "scope_order": 9,
+      "candidate_kills": 336,
+      "trace_index": 104,
+      "raw": {
+        "actual": "0x3e80c6f7b82ab785",
+        "args": [
+          "0x3f50624dd2f1a9fc",
+          "0x4000000000000000"
+        ],
+        "expected": "0x3e80c6f7b82ab785",
+        "function": "BESSELI",
+        "id": "w111extended-2026092903-BESSELI-00016",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-extended-numeric-20260929/answers/answers-besseli.json"
+      }
+    }
+  ],
+  "limits": "Seven-site precision and three state-store controls in two fixed published recurrences, plus separately labelled ratio normalization. Strict published I0/worksheet EXP is a shared conditional leaf. All programs lose at least one of the declared discovery controls; no product code adopted."
+}

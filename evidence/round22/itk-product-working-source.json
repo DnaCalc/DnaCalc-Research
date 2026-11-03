@@ -1,0 +1,14 @@
+{
+  "application_revision": "ac83861e41084337c63fdb4d079a6f3823cf3ba2",
+  "working_file_sha256": {
+    "crates/calc-func/src/ported/bessel.rs": "f574f5ab39b913f2adf1b476dc581e5a87b5702324dc287b5064f0d87d46c731",
+    "crates/calc-func/src/ported/bessel_rational.rs": "fda6d454385bb1e2aaa88d63a5ba928c537f1855d1b43d119287f323fa3672cb",
+    "crates/calc-func/tests/f1_engineering.rs": "714c82d0659cb3b090486c596526607dd2bf8a97506b7b873b9058b5b3bed0be",
+    "deploy/notices/ported.txt": "ec8c54a60a91b1cfd5900c915724662a7bd90bd10e1ae9783ef435220125cf4a",
+    "migration/licence-ledger.json": "0986235517e27d916fb19455cc2612786841557149bae2970ce4fc977d2b4538"
+  },
+  "executable_sha256": "509ecc0a267378145e37d44061a13777434f2c53df86d2516b8cd1ed3896ea9d",
+  "source_and_corpus_review": "Read-only capture_review passed; independently checked134 low-I0/recurrence inputs with exact-rational rounding. ITK source,100answers andR19zero provenance checked.",
+  "numeric_program": "ITK311b7060 whole higher-I and I0 with existing StoredPc64 arithmetic; no fitted constant, threshold, coefficient or per-row selector.",
+  "limits": "Native Linux product and 100case software-x87 test; no browser/Windows sweep."
+}

@@ -704,9 +704,20 @@ def corpus_delta(before, after, original_catalogue_after, output):
         (before, after, original_catalogue_after, output))
     document = lambda path: json.loads(path.read_text())
     summary = document(before/'summary.json')
+    current_summary = document(after/'summary.json')
+    current_books = {w['name']: w for w in current_summary['workbooks']}
+    pending = []
+    for workbook in summary['workbooks']:
+        count = workbook['counts']['awaiting_capture']
+        if count:
+            current = current_books[workbook['name']]
+            if current['sha256'] != workbook['sha256'] or current['counts']['awaiting_capture'] != count:
+                raise ValueError('pending workbook context changed: '+workbook['name'])
+            pending.append(dict(workbook=workbook['name'], cells=count, source_sha256=workbook['sha256']))
     counts = collections.Counter()
     changes, pairs, workbooks = [], [], set()
-    hashes = {str(before/'summary.json'): sha(before/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
+    hashes = {str(before/'summary.json'): sha(before/'summary.json'),
+              str(after/'summary.json'): sha(after/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
     for old_report in sorted(before.glob('workbooks/**/report.json')):
         relative = old_report.relative_to(before)
         new_report = original_catalogue_after/'report.json' if override_catalogue and 'calc-func_catalogue_oracle.xlsx' in relative.parts else after/relative
@@ -754,12 +765,22 @@ def corpus_delta(before, after, original_catalogue_after, output):
         for k in x:
             counts['changed_values'] += x[k].get('returned') != y[k].get('returned')
         pairs.append(dict(before=str(old_report), after=str(new_report), formula_cells=len(a)))
-    counts['workbooks'] = len(workbooks)
     expected = summary['totals']['counts']
+    for name in ('sessions', 'evaluations', 'before_matched', 'after_matched', 'gains', 'losses', 'changed_values'):
+        counts[name] += 0
+    counts['awaiting_capture'] = sum(p['cells'] for p in pending)
+    if counts['awaiting_capture'] != expected['awaiting_capture']:
+        raise ValueError('pending coverage does not reconcile')
+    counts['formula_cells'] += counts['awaiting_capture']
+    workbooks.update(p['workbook'].replace('/', '_').replace('\\', '_') for p in pending)
+    counts['workbooks'] = len(workbooks)
     if counts['workbooks'] != summary['totals']['workbooks'] or counts['formula_cells'] != expected['formula_cells'] or counts['before_matched'] != expected['pass']:
         raise ValueError('original corpus totals do not reconcile: '+str(dict(counts)))
     if any(sha(Path(p)) != h for p,h in hashes.items()): raise ValueError('corpus/source changed during comparison')
     result = dict(complete=True, counts=dict(counts), changes=changes, pairs=pairs, inputs_sha256=hashes,
+        pending_coverage=pending,
+        inclusive_before_failed=counts['formula_cells']-counts['before_matched'],
+        inclusive_after_failed=counts['formula_cells']-counts['after_matched'],
         external=expected['external_links'], circular=expected['circular_rule'],
         before_fail=expected['fail'], after_fail=expected['fail']-counts['gains']+counts['losses'],
         limits='Fixed formula inventory, answers and workbook contexts, including every comparison session. '

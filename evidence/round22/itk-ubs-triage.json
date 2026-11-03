@@ -1,0 +1,9 @@
+{
+  "command": "ubs --diff --only=rust --format=jsonl",
+  "status": "complete; all findings triaged",
+  "critical": 0,
+  "warning": 38,
+  "info": 47,
+  "triage": "Warnings are floating division/normalizer handling (caller validates finite input and publishes nonfinite results as NUM), original embedded-fixture asserts/unwraps, and numeric variable/polynomial diagnostics. The shared Horner empty-slice assumption is unchanged and every call passes nonempty fixed tables. No new unsafe access or unchecked integer order is introduced.",
+  "scope": "Three changed Rust files only; full existing static diagnostics, no browser or native Excel validation."
+}

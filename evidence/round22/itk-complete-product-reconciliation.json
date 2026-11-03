@@ -1,0 +1,109 @@
+{
+  "complete": true,
+  "rows": 1431,
+  "before_matched": 556,
+  "matched": 1431,
+  "gains": 875,
+  "losses": 0,
+  "survivor_profiles": [
+    {
+      "id": 42,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": false,
+      "seed_store": false,
+      "store_state": false
+    },
+    {
+      "id": 43,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": false,
+      "seed_store": false,
+      "store_state": true
+    },
+    {
+      "id": 52,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": true,
+      "seed_store": false,
+      "store_state": false
+    },
+    {
+      "id": 53,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": true,
+      "seed_store": false,
+      "store_state": true
+    },
+    {
+      "id": 62,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": false,
+      "seed_store": true,
+      "store_state": false
+    },
+    {
+      "id": 63,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": false,
+      "seed_store": true,
+      "store_state": true
+    },
+    {
+      "id": 72,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": true,
+      "seed_store": true,
+      "store_state": false
+    },
+    {
+      "id": 73,
+      "itk": true,
+      "kornia": false,
+      "model": "stored_pc64",
+      "seed_model": "stored_pc64",
+      "seed_return_store": true,
+      "seed_store": true,
+      "store_state": true
+    }
+  ],
+  "distinct_numeric_programs": "All8 survivor labels use StoredPc64 for every body and I0 helper operation. Local/return store bits are redundant because each operation already stores binary64.",
+  "arithmetic_hardware_and_software_predictions_equal": true,
+  "source": "ITK v5.4.0 311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0",
+  "original_input_sha256": "5325adb5ac6ad67127ee451679fd4f2c47412a8d1adefc0f304cfe2b95786c62",
+  "predictions_sha256": "e299f30f5a6f64b9db6ada19b64012bb32e3fe25c659096c40b1f72dd4663400",
+  "limits": "Research fixed-source replay only; source bound by round22-itk-complete-unit.json. Product has not changed. No coefficient, cutoff, start/rescale or per-row program fitted. Full product test/corpus/bank verification remains.",
+  "product_validation": {
+    "corpus_gains": 46,
+    "corpus_losses": 0,
+    "bank_gains": 825,
+    "bank_losses": 0,
+    "BESSELI_current_bank_matched": 1318,
+    "BESSELI_current_bank_rows": 1318,
+    "only_BESSELI_actuals_changed": true,
+    "registered_100_case_failed_first": true,
+    "engineering_tests": "12passed0failed",
+    "software_x87": "100recorded cases passed through invoke; no browser claim",
+    "mathematical_product_expectation_correction": "R19 Value2 r19-endpoints-besseli-046/047 proves0 at\u00b1709.7,1570; mathematical series references retained in separate existing tests."
+  }
+}

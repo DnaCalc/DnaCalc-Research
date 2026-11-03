@@ -31,6 +31,31 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_pending_workbooks_remain_failed_in_classification_and_fixed_scope_audit(self):
+        from racer.corpus_cases import classify
+        from racer.audit import corpus_delta
+        counts = dict(awaiting_capture=204, circular_rule=0, external_links=0, fail=0,
+                      formula_cells=204, pass_rate=0.0)
+        counts['pass'] = 0
+        workbook = dict(name='calc-func/questions/oracle.xlsx', capture='awaiting capture: no committed capture',
+                        counts=counts, sha256='question-source')
+        summary = dict(workbooks=[workbook], totals=dict(workbooks=1, counts=counts))
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            for side in ('before', 'after'):
+                (root/side).mkdir()
+                (root/side/'summary.json').write_text(json.dumps(summary))
+            result = classify(root/'before', root/'classified')
+            self.assertEqual((result['matched'], result['inclusive_failed'], result['formula_cells']), (0, 204, 204))
+            self.assertEqual(result['pass_rate'], 0)
+            delta = corpus_delta(root/'before', root/'after', '-', root/'delta.json')
+            self.assertEqual(delta['inclusive_after_failed'], 204)
+            self.assertEqual(delta['counts']['gains'], 0)
+            workbook['sha256'] = 'changed-source'
+            (root/'after'/'summary.json').write_text(json.dumps(summary))
+            with self.assertRaisesRegex(ValueError, 'pending workbook context changed'):
+                corpus_delta(root/'before', root/'after', '-', root/'changed.json')
+
     def test_corpus_error_sizes_handle_zero_and_extreme_exponents(self):
         from racer.corpus_cases import error_size
         self.assertEqual(error_size('0000000000000000', '3ff0000000000000'),

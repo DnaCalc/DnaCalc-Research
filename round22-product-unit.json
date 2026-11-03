@@ -1,0 +1,38 @@
+{
+  "id": "dc-j9k-r22-product-and-publication",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "ac83861e41084337c63fdb4d079a6f3823cf3ba2",
+  "scope": "ITK complete higher-I program; source frozen after incoming document/review changes. Existing numerical kernels unchanged.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/main.rs": "c7df3a6e0442828925410698e8b97f0c312e9d64c3f919feaa9d0d4cffde4813",
+    "racer/src/bessel_rational.rs": "e854e5f9b6a9bef61f719dfb0a2806e3b087ac18c9c890f2cb290f19f1a73f00",
+    "racer/build.rs": "afc241d833ff0ea33b40e89289d6e16f8d965aee8b85732a1cfda4151d46f7f7",
+    "racer/audit.py": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+    "racer/corpus_cases.py": "ba1f71ecdba6aa853c782840bc489a6dc903c4541b856b9d54d50bd74ed42b79",
+    "checker/test_exact.py": "07669db0e91ebd7898455e0e35306fa8d341ec1dcd81724867f2bafdf195dcb3"
+  },
+  "regression_audit": true,
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/bessel.rs": "ba23e80cb6fb555b1d9ac4c35f9bd58f61575e74",
+    "crates/calc-func/src/ported/bessel_rational.rs": "2c2da9f721f4043b18ab46045ad225e93e6b22c1"
+  }
+}

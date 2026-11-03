@@ -1,0 +1,8 @@
+.......................................................................................
+----------------------------------------------------------------------
+Ran 87 tests in 39.220s
+
+OK
+exhaustive small-lattice checks: 1504
+{"complete": true, "failed": 0, "counts": {}, "matched": 0, "formula_cells": 204, "inclusive_failed": 204, "pass_rate": 0.0, "awaiting_capture": 204, "wholly_pending_workbooks": [{"workbook": "calc-func/questions/oracle.xlsx", "cells": 204, "source_sha256": "question-source"}], "cells_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "rule": "Last-bits-only: finite numbers <=16 ULP apart. Larger errors are a triage group, not a mathematical root-cause proof. Capture failures, refusals and missing values remain failures, explicitly distinguished from proven product bugs."}
+{"counts": {"sessions": 0, "evaluations": 0, "before_matched": 0, "after_matched": 0, "gains": 0, "losses": 0, "changed_values": 0, "awaiting_capture": 204, "formula_cells": 204, "workbooks": 1}, "before_fail": 0, "after_fail": 0}
