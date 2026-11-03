@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "controls": [
+    {
+      "control": "helper-node",
+      "rejected": true,
+      "success_receipt_absent": true
+    },
+    {
+      "control": "missing-helper",
+      "rejected": true,
+      "success_receipt_absent": true
+    },
+    {
+      "control": "payment-lattice",
+      "rejected": true,
+      "success_receipt_absent": true
+    },
+    {
+      "control": "survivor-lattice",
+      "rejected": true,
+      "success_receipt_absent": true
+    }
+  ],
+  "checker_sha256": "27532b727a2a3059842a2abf54d31bdb71954068676bbf1cc117e284f7a333f7",
+  "source_sha256": "2f2cad9384c3be4ef40dd8c4240b037956269f013cb3dce22f9441ea1964e9d0",
+  "limits": "Constructed corruptions only, never new Excel readings or modified original evidence."
+}

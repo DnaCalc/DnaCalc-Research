@@ -1,0 +1,54 @@
+{
+  "complete": true,
+  "programs": 2698920,
+  "survivors": 0,
+  "helper_profiles": 10710,
+  "helper_period_constraints": 42840,
+  "exact_helper_value_groups": 90,
+  "conditional_elementary_leaves": 27,
+  "IPMT_first_kill_counts": [
+    0,
+    933300,
+    184896,
+    91980
+  ],
+  "PPMT_first_kill_counts": [
+    0,
+    603040,
+    885704,
+    0
+  ],
+  "counts": {
+    "interest_preimages": 21982,
+    "principal_lattice_checks": 7404022,
+    "canonical_consumer_components": 2652
+  },
+  "arithmetic_cache": {
+    "hits": 28707854,
+    "misses": 379668,
+    "maxsize": 262144,
+    "currsize": 262144
+  },
+  "checker_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/cumulative_balance.py": "27532b727a2a3059842a2abf54d31bdb71954068676bbf1cc117e284f7a333f7",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/timing.py": "933747df666ad1d2d4731aaf41c6b4d5dc3ee00bf2294d63313ac91c1672e140",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+  },
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/r15-loans/r15-pmt-015.json": "c7b5a64f648cf0620df0c30692b059896cb1e474340309b9653f8d66d3b97415",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/loan-015-helpers/certificate-scope.json": "61e5f7a86816327c6f6f9252629df23c4f67dfe1269f25077afa8c1d92e428b8",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/loan-015-helpers/grammar.json": "14233c89013b5f6902b71c1f3149d2363f9925c2a5fe911ada8509b6d08c6610",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/loan-015-helpers/helper-mappings.json": "ff5283e52c573e2ec0fd6e0ec6de2324b96cab21c005f3ff5b175f68cb8434b6",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/loan-015-helpers/helper-traces.json": "a3f8916d7aab228c7552f23f5a9f6377a6c5f880d6e8d320020e06c4fbd25f19",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/loan-015-helpers/log-inputs.json": "7be4ebfabfe4d789af4923f7b84f9116a305eb437e5db44a84e8f19fb2c8a166",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/loan-015-helpers/observations.json": "43a353da270aff05a2dd2a364bb904b4c45a2152e69961a7c7140fb4575100c3",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/loan-015-native/grammar.json": "cb6e8935028d243dd23bacb552918c7e29acbba95db6c349f06f1a1d123b15ec",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/loan-015-native/observations.json": "43a353da270aff05a2dd2a364bb904b4c45a2152e69961a7c7140fb4575100c3",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/loan-015-native/summary.json": "ae36a760a24c8bc68c3f92b8bff0a5d0cc20d521cc7f332fef10a41fa150ef06",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/loan-015-native/survivors.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "seconds": 162.04128744499758,
+  "claim": "Independent exact preimages and exhaustive remaining-payment checks cover every declared loan consumer label. Helper arithmetic is replayed with coherent explicit elementary leaves; equal full-width helper tuples share only identical consumer calculations.",
+  "limits": "Conditional on the declared EXP/LN/F2XM1 and frozen log1p leaves, positive-rate FV0 inputs and recorded effective-input assumptions. Not a complete PMT producer, Excel kernel, general CPU equivalence or a product gain. No latent payment selected or installed."
+}

@@ -294,10 +294,83 @@ def loan_input_controls(executable, source, output):
     print(json.dumps(result))
 
 
+def loan_certificate_controls(input_path, helpers, search, output):
+    """Reject damaged compact helper, payment-lattice and survivor evidence."""
+    import tempfile
+    import subprocess
+    import sys
+    input_path, helpers, search, output = map(Path, (input_path, helpers, search, output))
+    output.mkdir(parents=True, exist_ok=False)
+    checker = Path(__file__).with_name('cumulative_balance.py')
+    controls = []
+    for label, expected in [('helper-node', 'helper exponent arithmetic differs'),
+                            ('missing-helper', 'missing helper profile'),
+                            ('payment-lattice', 'payment lattice'),
+                            ('survivor-lattice', 'native survivor/lattice differs')]:
+        with tempfile.TemporaryDirectory(prefix='dnacalc-loan-control-') as scratch:
+            scratch = Path(scratch)
+            helper_view, search_view = scratch/'helpers', scratch/'search'
+            helper_view.mkdir(); search_view.mkdir()
+            for source, destination in ((helpers, helper_view), (search, search_view)):
+                for p in source.iterdir():
+                    if p.name in ('grammar.json', 'observations.json', 'summary.json', 'survivors.jsonl') or source == helpers:
+                        (destination/p.name).symlink_to(p.resolve())
+            def replace(path, value):
+                # Unlink only this temporary symlink, never its original target.
+                path.unlink()
+                with path.open('x') as f:
+                    json.dump(value, f)
+                    f.write('\n')
+            if label == 'helper-node':
+                p = helper_view/'helper-traces.json'
+                value = json.loads(p.read_text())
+                node = next(t for t in value if t['kind'] == 'kahan')
+                node['t'] = 'binary64:0000000000000000'
+                replace(p, value)
+            elif label == 'missing-helper':
+                p = helper_view/'helper-mappings.json'
+                replace(p, json.loads(p.read_text())[:-1])
+            elif label == 'payment-lattice':
+                for p in (helper_view/'grammar.json', search_view/'grammar.json'):
+                    value = json.loads(p.read_text())
+                    value['latent_P_values'] = value['latent_P_values'][1:]
+                    replace(p, value)
+            else:
+                p = search_view/'survivors.jsonl'
+                lines = p.read_text().splitlines()
+                if not lines:
+                    raise ValueError('survivor control requires a search with a nonempty survivor set')
+                value = json.loads(lines[0])
+                value['latent_P_indices'] = [-1]
+                lines[0] = json.dumps(value)
+                p.unlink()
+                with p.open('x') as f:
+                    f.write('\n'.join(lines)+'\n')
+            receipt = scratch/'receipt.json'
+            # ubs:ignore — the interpreter and checker are fixed; supplied paths are data arguments.
+            result = subprocess.run([sys.executable, str(checker), 'loan', str(input_path),
+                str(helper_view), str(search_view), str(receipt)], stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, text=True, timeout=600)
+            if result.returncode == 0 or expected not in result.stdout or receipt.exists():
+                raise ValueError('damaged loan certificate was accepted: '+label+' '+result.stdout)
+            with (output/(label+'.log')).open('x') as f:
+                f.write(result.stdout)
+            controls.append(dict(control=label, rejected=True, success_receipt_absent=True))
+    result = dict(complete=True, controls=controls,
+        checker_sha256=hashlib.sha256(checker.read_bytes()).hexdigest(),
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        limits='Constructed corruptions only, never new Excel readings or modified original evidence.')
+    with (output/'controls.json').open('x') as f:
+        json.dump(result, f, indent=2)
+        f.write('\n')
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     import sys
     if len(sys.argv)>1 and sys.argv[1]=='variance-r17':variance_structural_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='loan-inputs':loan_input_controls(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='loan-certificate':loan_certificate_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='intake':intake_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='next-packet':next_packet_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='round16':round16_controls(*sys.argv[2:]);raise SystemExit(0)

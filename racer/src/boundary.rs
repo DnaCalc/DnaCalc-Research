@@ -92,6 +92,19 @@ fn less_one<F: Fpu>(v: Val) -> bool {
     let d = F::sub(&e, &one, CW);
     d.0[9] & 0x80 != 0 && d.0[..8].iter().any(|b| *b != 0)
 }
+/// Full-width helper arithmetic with explicit conditional elementary leaves.
+/// Shared by the existing timing proofs and the compact loan certificates.
+pub fn helper_trace<F: Fpu>(h: &Helper, n: f64, log: Val) -> (Val, Value) {
+    let (t, u, em) = helper_components::<F>(h, n, log);
+    let exp_raw = Val::Ext(research_exp::<F>(&t.to_ext()));
+    let log_raw = if h.correction && less_one::<F>(t) && u.to_ext().0 != research_load(1.0).0 {
+        Some(Val::Ext(research_log::<F>(&u.to_ext())).exact_encoding())
+    } else {
+        None
+    };
+    (em, json!({"t":t.exact_encoding(),"u":u.exact_encoding(),
+        "em":em.exact_encoding(),"exp_raw":exp_raw.exact_encoding(),"log_raw":log_raw}))
+}
 pub fn helper<F: Fpu>(h: &Helper, rate: f64, n: f64, log: f64) -> Val {
     let _ = rate; // Rate's frozen log1p is an explicit leaf, never refitted.
     helper_components::<F>(h, n, Val::f64(log)).2
@@ -522,17 +535,9 @@ fn helper_consumers<F: Fpu>(
                 continue;
             }
             let h = &hs[h_index];
-            let (t, u, em) = helper_components::<F>(h, nper(r), log);
-            let exp_raw = Val::Ext(research_exp::<F>(&t.to_ext()));
-            let log_raw =
-                if h.correction && less_one::<F>(t) && u.to_ext().0 != research_load(1.0).0 {
-                    Some(Val::Ext(research_log::<F>(&u.to_ext())).exact_encoding())
-                } else {
-                    None
-                };
+            let (em, component) = helper_trace::<F>(h, nper(r), log);
             values.push(em);
-            components.push(json!({"t":t.exact_encoding(),"u":u.exact_encoding(),
-                "em":em.exact_encoding(),"exp_raw":exp_raw.exact_encoding(),"log_raw":log_raw}));
+            components.push(component);
         }
         // Values are records of the declared helper programs, never latent
         // values recovered from the target. Preserve full-width operands.

@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "function": "AVERAGE",
+  "programs": 325,
+  "observations": 1040,
+  "survivors": 5,
+  "counts": {
+    "program_executions": 7710,
+    "certified_first_kills": 320
+  },
+  "arithmetic_cache": {
+    "hits": 44626,
+    "misses": 13109,
+    "maxsize": 262144,
+    "currsize": 13109
+  },
+  "distinct_exact_operations": 13109,
+  "seconds": 1.893414975842461,
+  "root_cache": {
+    "hits": 0,
+    "misses": 7710,
+    "maxsize": 65536,
+    "currsize": 7710
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233"
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-stats-frozen/scoped.jsonl": "40feee91d703de24b489bef88292c40e86d755d66da209e21de97a869cdfb402",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-complete-AVERAGE-native/first-kills.jsonl": "222cb5da93654163f9e5434f7cf8c478f2063b32a12e94d6b3626f71a592fe4a",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-complete-AVERAGE-native/profiles.jsonl": "dadecce1c936f3aed233eb633be40bb604b72f3975378bf22d9d537c57e167ec",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-complete-AVERAGE-native/summary.json": "6235c9ea278ce67ad69739bc4d35c4103d4a6962525f3e64357a5594adc1a452",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-complete-AVERAGE-native/survivors.json": "69585d66aa3a6887bd6550a845cd1d0c9ce8e19debcea24b9d95d78ecaf44f0d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-complete-AVERAGE-native/witnesses.jsonl": "b3bfb9fff43b01b1c68edb6804b17ca687b2b1c79301671fd8d08dc970355e02"
+  },
+  "limits": "Finite declared programs only. Coherent precision regions and original transport assumptions. Zero signs are immaterial here: every divisor is a positive integer, roots publish zero with the product zero policy. No alias identity, private Excel precision, extra branch, fitted cutoff or complete kernel is inferred."
+}

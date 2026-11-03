@@ -430,6 +430,10 @@ fn main() {
             Some("soft") => annuity_early::loan_backward::<Soft>(&a[2], &a[3], None),
             _ => annuity_early::loan_backward::<Hard>(&a[2], &a[3], None),
         },
+        Some("loan-helper-certificate") => match a.get(4).map(String::as_str) {
+            Some("soft") => annuity_early::loan_helper_certificate::<Soft>(&a[2], &a[3]),
+            _ => annuity_early::loan_helper_certificate::<Hard>(&a[2], &a[3]),
+        },
         Some("loan-pv-fv") => match a.get(5).map(String::as_str) {
             Some("soft") => annuity_early::loan_backward::<Soft>(&a[2], &a[4], Some(&a[3])),
             _ => annuity_early::loan_backward::<Hard>(&a[2], &a[4], Some(&a[3])),

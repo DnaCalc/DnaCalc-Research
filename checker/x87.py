@@ -117,8 +117,11 @@ class Instructions:
         require(self.lib.replay(opcode, C.byref(x), C.byref(y), cw, C.byref(z)) == 1,
                 'unsupported hardware leaf')
         self.counts[kind] += 1
-        self.transcript[kind,a,b,cw] = bytes(z)
-        return bytes(z)
+        key, result = (kind, a, b, cw), bytes(z)
+        prior = self.transcript.get(key)
+        require(prior is None or prior == result, 'native leaves differ within the replay')
+        self.transcript[key] = result
+        return result
 
 
 def canonical_templates():
@@ -301,7 +304,80 @@ def subtract_box(alive,helper_values,hp,hs,match_sets,box,touched):
     return removed
 
 
-def check(directory,trace,library,output,leaves=None):
+def replay_row_tables(path, row, hs, cs, consumer_offsets, exact):
+    """Verify one independent observation's complete arithmetic tables."""
+    checked = Counter()
+    before_operations = exact.counts.copy()
+    before_native = exact.instructions.counts.copy()
+    data = read(path)
+    ins = [int(x, 16) for x in row['args']]
+    require(data['witness_id'] == row['id'], 'witness ID differs')
+    helper_values = []
+    require(len(data['helper_tables']) == 4*len(hs), 'missing helper table')
+    for ti, t in enumerate(data['helper_tables']):
+        template = hs[ti//4]
+        cw, inner = WORDS[(ti//2) % 2], WORDS[ti % 2]
+        require((t['template'], t['cw'], t['inner_cw']) == (template['id'], cw, inner), 'helper table order differs')
+        raw = base64.b64decode(t['values'], validate=True)
+        require(len(raw) == 20*(1 << template['graph']['sites']), 'incomplete helper output table')
+        for mask in range(1 << template['graph']['sites']):
+            value = exact.graph(template['graph'], ins, cw, mask, inner_cw=inner)
+            require(value == raw[20*mask:20*(mask+1)], 'helper instruction/store output differs')
+            helper_values.append(value)
+            checked['helper_executions'] += 1
+    match_sets = {}
+    for ev in data['consumer_evaluations']:
+        key = ev['mode'], bytes.fromhex(ev['helper'])
+        require(key not in match_sets and key[0] in ('growth', 'discount'), 'duplicate/unknown consumer input')
+        relevant = [c for c in cs if c['mode'] == key[0]]
+        require(len(ev['tables']) == 4*len(relevant), 'missing consumer table')
+        matches = 0
+        for ti, t in enumerate(ev['tables']):
+            c = relevant[ti//4]
+            cw, inner = WORDS[(ti//2) % 2], WORDS[ti % 2]
+            require((t['template'], t['cw'], t['inner_cw']) == (c['id'], cw, inner), 'consumer table order differs')
+            raw = base64.b64decode(t['values'], validate=True)
+            require(len(raw) == 10*(1 << c['graph']['sites']), 'incomplete consumer output table')
+            offset = consumer_offsets[c['id'], cw, inner]
+            for mask in range(1 << c['graph']['sites']):
+                value = exact.graph(c['graph'], ins, cw, mask, key[1], inner_cw=inner)[:10]
+                require(value == raw[10*mask:10*(mask+1)], 'consumer arithmetic/store output differs')
+                if published_bits(value) == int(row['expected'], 16):
+                    matches |= 1 << (offset+mask)
+                checked['consumer_executions'] += 1
+        match_sets[key] = matches
+    return dict(helper_values=helper_values, match_sets=match_sets, checked=dict(checked),
+        operation_misses=dict(exact.counts-before_operations),
+        native_replays=dict(exact.instructions.counts-before_native),
+        leaves=list(exact.instructions.transcript.items()))
+
+
+def initialize_row_worker(hs, cs, consumer_offsets, library):
+    global ROW_CONTEXT
+    ROW_CONTEXT = hs, cs, consumer_offsets, Exact(Instructions(library))
+
+
+def replay_row_worker(task):
+    path, row = task
+    return replay_row_tables(path, row, *ROW_CONTEXT)
+
+
+def row_replays(files, rows, hs, cs, consumer_offsets, library, exact, workers):
+    """Only table arithmetic is independent; first-kill coverage stays ordered."""
+    tasks = [(path, rows[ri]) for ri, path in enumerate(files)]
+    if workers == 1:
+        for path, row in tasks:
+            yield replay_row_tables(path, row, hs, cs, consumer_offsets, exact)
+    else:
+        import multiprocessing
+        # Spawn avoids inheriting the parent's large coverage bitsets/caches.
+        with multiprocessing.get_context('spawn').Pool(workers, initializer=initialize_row_worker,
+                initargs=(hs, cs, consumer_offsets, str(library))) as pool:
+            yield from pool.imap(replay_row_worker, tasks, chunksize=1)
+
+
+def check(directory,trace,library,output,leaves=None,workers=1):
+    require(type(workers) is int and 1 <= workers <= 8, 'workers must be between1 and8')
     start=time.monotonic();directory=Path(directory)
     source_paths=[Path(__file__),ROOT/'checker/exact.py',ROOT/'checker/x87_isa.c',ROOT/'checker/x87_consumer_grammar.py']
     source_sha={str(p):digest(p)for p in source_paths}
@@ -344,59 +420,42 @@ def check(directory,trace,library,output,leaves=None):
     exact=Exact(Instructions(library));checked=Counter();used=0;excluded_count=0
     files=sorted((directory/'rows').glob('*.json'))
     require([p.name for p in files]==[f'{i:03d}.json'for i in range(len(files))],'missing/unexpected row certificate')
-    for ri,path in enumerate(files):
-        require(ri<len(rows),'unknown witness row')
-        row=rows[ri];data=read(path);ins=[int(x,16)for x in row['args']]
-        require(data['witness_id']==row['id'],'witness ID differs')
-        helper_values=[]
-        require(len(data['helper_tables'])==4*len(hs),'missing helper table')
-        for ti,t in enumerate(data['helper_tables']):
-            template=hs[ti//4];cw=WORDS[(ti//2)%2];inner=WORDS[ti%2]
-            require((t['template'],t['cw'],t['inner_cw'])==(template['id'],cw,inner),'helper table order differs')
-            raw=base64.b64decode(t['values'],validate=True)
-            require(len(raw)==20*(1<<template['graph']['sites']),'incomplete helper output table')
-            for mask in range(1<<template['graph']['sites']):
-                value=exact.graph(template['graph'],ins,cw,mask,inner_cw=inner)
-                require(value==raw[20*mask:20*(mask+1)],'helper instruction/store output differs')
-                helper_values.append(value);checked['helper_executions']+=1
-        match_sets={}
-        for ev in data['consumer_evaluations']:
-            key=ev['mode'],bytes.fromhex(ev['helper'])
-            require(key not in match_sets and key[0]in cbits,'duplicate/unknown consumer input')
-            relevant=[c for c in cs if c['mode']==key[0]]
-            require(len(ev['tables'])==4*len(relevant),'missing consumer table')
-            matches=0
-            for ti,t in enumerate(ev['tables']):
-                c=relevant[ti//4];cw=WORDS[(ti//2)%2];inner=WORDS[ti%2]
-                require((t['template'],t['cw'],t['inner_cw'])==(c['id'],cw,inner),'consumer table order differs')
-                raw=base64.b64decode(t['values'],validate=True)
-                require(len(raw)==10*(1<<c['graph']['sites']),'incomplete consumer output table')
-                offset=consumer_offsets[c['id'],cw,inner]
-                for mask in range(1<<c['graph']['sites']):
-                    value=exact.graph(c['graph'],ins,cw,mask,key[1],inner_cw=inner)[:10]
-                    require(value==raw[10*mask:10*(mask+1)],'consumer arithmetic/store output differs')
-                    if published_bits(value)==int(row['expected'],16):matches|=1<<(offset+mask)
-                    checked['consumer_executions']+=1
-            match_sets[key]=matches
-        touched=set()
-        for box in byrow.get(ri,[]):
-            excluded_count+=subtract_box(alive,helper_values,hp,hs,match_sets,box,touched)
-            tr=transcripts[trace_index];hid=box['helpers'][0]
-            failed=int(box['consumers'],16);cid=(failed&-failed).bit_length()-1
-            require((tr['row'],tr['box'],tr['helper_profile'],tr['consumer_profile'])==(ri,trace_index,hid,cid),'first-kill trace identity differs')
-            h,c=hp[hid],cp[cid]
-            ho,hr,hv=exact.graph(hs[h['template']]['graph'],ins,h['cw'],h['mask'],inner_cw=h['inner_cw'],trace=True)
-            co,cr,cv=exact.graph(cs[c['template']]['graph'],ins,c['cw'],c['mask'],ho,inner_cw=c['inner_cw'],trace=True)
-            require((ho.hex(),hr,hv,co.hex(),cr,cv)==(tr['helper_output'],base64.b64decode(tr['helper_raw']),base64.b64decode(tr['helper_values']),tr['consumer_output'],base64.b64decode(tr['consumer_raw']),base64.b64decode(tr['consumer_values'])),'full-width first-kill node trace differs')
-            trace_index+=1
-            checked['first_kill_boxes']+=1
-        # An omitted zero-kill helper still has all its survivors checked.
-        for hid,bits in enumerate(alive):
-            if bits:
-                key=hs[hp[hid]['template']]['mode'],helper_values[hid]
-                require(key in match_sets and bits&~match_sets[key]==0,'a first contradiction was omitted')
-        checked['rows']+=1;used+=1
-        print(json.dumps(dict(row=ri,id=row['id'],checked=dict(checked),seconds=time.monotonic()-start)),flush=True)
+    require(len(files) <= len(rows), 'unknown witness row')
+    tables = row_replays(files, rows, hs, cs, consumer_offsets, library, exact, workers)
+    worker_operations, worker_native = Counter(), Counter()
+    try:
+        for ri, replayed in enumerate(tables):
+            row = rows[ri]
+            ins = [int(x, 16) for x in row['args']]
+            helper_values, match_sets = replayed['helper_values'], replayed['match_sets']
+            checked.update(replayed['checked'])
+            worker_operations.update(replayed['operation_misses'])
+            worker_native.update(replayed['native_replays'])
+            for key, value in replayed['leaves']:
+                prior = exact.instructions.transcript.get(key)
+                require(prior is None or prior == value, 'native leaves differ between row workers')
+                exact.instructions.transcript[key] = value
+            touched=set()
+            for box in byrow.get(ri,[]):
+                excluded_count+=subtract_box(alive,helper_values,hp,hs,match_sets,box,touched)
+                tr=transcripts[trace_index];hid=box['helpers'][0]
+                failed=int(box['consumers'],16);cid=(failed&-failed).bit_length()-1
+                require((tr['row'],tr['box'],tr['helper_profile'],tr['consumer_profile'])==(ri,trace_index,hid,cid),'first-kill trace identity differs')
+                h,c=hp[hid],cp[cid]
+                ho,hr,hv=exact.graph(hs[h['template']]['graph'],ins,h['cw'],h['mask'],inner_cw=h['inner_cw'],trace=True)
+                co,cr,cv=exact.graph(cs[c['template']]['graph'],ins,c['cw'],c['mask'],ho,inner_cw=c['inner_cw'],trace=True)
+                require((ho.hex(),hr,hv,co.hex(),cr,cv)==(tr['helper_output'],base64.b64decode(tr['helper_raw']),base64.b64decode(tr['helper_values']),tr['consumer_output'],base64.b64decode(tr['consumer_raw']),base64.b64decode(tr['consumer_values'])),'full-width first-kill node trace differs')
+                trace_index+=1
+                checked['first_kill_boxes']+=1
+            # Every original first contradiction is still applied in order.
+            for hid,bits in enumerate(alive):
+                if bits:
+                    key=hs[hp[hid]['template']]['mode'],helper_values[hid]
+                    require(key in match_sets and bits&~match_sets[key]==0,'a first contradiction was omitted')
+            checked['rows']+=1;used+=1
+            print(json.dumps(dict(row=ri,id=row['id'],checked=dict(checked),seconds=time.monotonic()-start)),flush=True)
+    finally:
+        tables.close()
     declared_survivors=[dict(helper=i,consumers=hex(bits))for i,bits in enumerate(alive)if bits]
     require(read(directory/'survivors.json')==declared_survivors,'final survivor set differs')
     remaining=sum(x.bit_count()for x in alive)
@@ -412,8 +471,10 @@ def check(directory,trace,library,output,leaves=None):
     require(source_sha=={str(p):digest(p)for p in source_paths},'checker sources changed')
     require(frozen=={str(p):digest(p)for p in inputs},'proof inputs changed')
     receipt=dict(complete=True,declared_assignments=total,excluded_assignments=excluded_count,
-        surviving_assignments=remaining,checked=dict(checked),unique_exact_operations=dict(exact.counts),
-        native_microcode_replays=dict(exact.instructions.counts),seconds=time.monotonic()-start,
+        surviving_assignments=remaining,checked=dict(checked),workers=workers,
+        unique_exact_operations=dict(exact.counts) if workers == 1 else None,
+        worker_operation_cache_misses=dict(worker_operations),
+        native_microcode_replays=dict(exact.instructions.counts if workers == 1 else worker_native+exact.instructions.counts),seconds=time.monotonic()-start,
         inputs_sha256=frozen,checker_sha256=source_sha,
         claim='Complete coverage of the declared four-phase PC53/PC64 store-mask family. Every first kill is reproduced by independent rational arithmetic and direct native instruction leaves.',
         limits='Native AMD microcode replay is conditional on this CPU; not mathematical correctly rounded transcendentals or a software x87 emulation. Scope/input provenance and dead/redundant labels are retained. No fitted helper, identified Excel implementation or corpus gain.')
@@ -434,7 +495,8 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for a in ('directory','trace','library','output'):p.add_argument(a)
     p.add_argument('--leaves')
-    a=p.parse_args();check(a.directory,a.trace,a.library,a.output,a.leaves)
+    p.add_argument('--workers', type=int, default=1)
+    a=p.parse_args();check(a.directory,a.trace,a.library,a.output,a.leaves,a.workers)
 
 
 if __name__=='__main__':main()

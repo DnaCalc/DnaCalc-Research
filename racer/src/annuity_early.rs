@@ -459,6 +459,14 @@ pub(crate) fn publication_candidates<F: Fpu>(p_bits: u64) -> Vec<Val> {
 }
 
 pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) {
+    loan_backward_impl::<F>(input, out, joint_pv_fv, false)
+}
+
+pub fn loan_helper_certificate<F: Fpu>(input: &str, out: &str) {
+    loan_backward_impl::<F>(input, out, None, true)
+}
+
+fn loan_backward_impl<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>, helpers_only: bool) {
     let original: Vec<serde_json::Value> =
         serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
     assert!(!original.is_empty(), "a recorded loan and its observed periods are required");
@@ -588,6 +596,47 @@ pub fn loan_backward<F: Fpu>(input: &str, out: &str, joint_pv_fv: Option<&str>) 
         "limitation":"Conditional partial programme only: the PMT-producing programme is unspecified, and latent values are constraints, never fitted constants or predictions for a new loan.",
         "instruction_policy":"FYL2XP1 measured natively in both arithmetic modes; all other operations follow declared Fpu"}),
     );
+    if helpers_only {
+        assert!(prior.is_none());
+        let mut traces = Vec::new();
+        let mut interned = std::collections::BTreeMap::new();
+        let mut mappings = Vec::new();
+        for lp in 0..log_count {
+            for h in 0..helper_count {
+                let mut ids = Vec::new();
+                for (index, &n) in periods.iter().enumerate() {
+                    let (em, trace) = if first_beginning[index] {
+                        (Val::f64(0.0), json!({"kind":"beginning_zero","em":Val::f64(0.0).exact_encoding()}))
+                    } else if h < hs.len() {
+                        let (em, mut trace) = boundary::helper_trace::<F>(&hs[h], n, ls[lp]);
+                        trace["kind"] = json!("kahan");
+                        (em, trace)
+                    } else {
+                        let nodes = direct_component_details::<F>(h - hs.len(), -n, ls[lp]);
+                        (nodes[9], json!({"kind":"direct","nodes":nodes.map(Val::exact_encoding),"em":nodes[9].exact_encoding()}))
+                    };
+                    assert_eq!(em.exact_encoding(), components[lp][h][index].exact_encoding());
+                    let key = serde_json::to_string(&trace).unwrap();
+                    let id = *interned.entry(key).or_insert_with(|| {
+                        let id = traces.len();
+                        traces.push(trace);
+                        id
+                    });
+                    ids.push(id);
+                }
+                mappings.push(json!({"log_provider":lp,"helper":h,"traces":ids}));
+            }
+        }
+        json_write(root.join("helper-traces.json"), &traces);
+        json_write(root.join("helper-mappings.json"), &mappings);
+        json_write(root.join("log-inputs.json"), &ls.map(Val::exact_encoding));
+        json_write(root.join("certificate-scope.json"), &json!({"complete":true,
+            "helper_profiles":log_count*helper_count,"periods":original.len(),"distinct_helper_traces":traces.len(),
+            "purpose":"Full-width helper arithmetic for independent conditional loan replay; no new Excel observations or fitted intermediate.",
+            "elementary_leaf_policy":"EXP and LN raw values are explicit shared hypotheses from the cleared elementary chains. FYL2XP1 remains a native measured leaf. No mathematical transcendental or general CPU equivalence is claimed."}));
+        println!("{} helper profiles, {} distinct traces", mappings.len(), traces.len());
+        return;
+    }
     let mut results =
         BufWriter::new(fs::File::create(root.join("component-results.jsonl")).unwrap());
     let mut survivors = BufWriter::new(fs::File::create(root.join("survivors.jsonl")).unwrap());

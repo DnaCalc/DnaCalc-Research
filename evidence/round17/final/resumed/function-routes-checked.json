@@ -1,0 +1,14 @@
+{
+  "complete": true,
+  "rows": 236,
+  "input_transform": "Only numeric_cell_inputs=true added to each complete original observation; all original fields remain identical.",
+  "application_route": "Workbook numeric cells and ordinary referenced formula, compared with registered invoke and recorded current actual by assertions in route_audit.rs.",
+  "source_sha256": {
+    "racer/src/route_audit.rs": "5656d9d885a86a8615808fb69d2740f363bcd7738e478cadd0c6e41a38fc51ab",
+    "target/release/symbolic-racer": "443b934dea9c7967b77a6049c1c09aa12517393081a6c1779f88dd966f8eedef",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/annuity-score-audited/observations.jsonl": "e73347ffced0722fb31f3a66b20f398dc5405316d1e099cb3949a14fb686c9f7",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/numeric-route-inputs.jsonl": "8ad6bfcb208f6e7cd6c360f502546be2c9a51f108bb25d1f1f91c593a99b37a2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/function-routes.jsonl": "4790f4d82a58b150cc32de34e505791e73f6f29ec0255bc08d7475a82dda0f2e"
+  },
+  "limits": "This checks application input preservation and route equality. It does not reveal private Excel callee inputs or turn the136 mismatches into passes."
+}

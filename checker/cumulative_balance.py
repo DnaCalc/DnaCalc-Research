@@ -13,7 +13,7 @@ import time
 
 from check import records, require, digest, graph_trace, tagged_value, write_result
 from cumulative import coordinates, node, MODELS
-from exact import BINARY64 as B, EXTENDED64 as E, Span, binary64, inverse, operation
+from exact import BINARY64 as B, EXTENDED64 as E, Span, binary64, inverse, operation, two
 
 SOURCE=digest(Path(__file__))
 HELPER_SOURCE=digest(Path(__file__).parent/'cumulative.py')
@@ -229,4 +229,243 @@ def check(trace,structure,directory,output):
             'No complete payment producer, CUMPRINC kernel or global backend equivalence identified. Historical read-back audits unavailable.'))
 
 
-if __name__=='__main__':check(*sys.argv[1:])
+def loan_backward(input_path, helper_directory, search_directory, output):
+    """Independent conditional IPMT/PPMT proof using exact publication preimages.
+
+    Helper EXP/LN/F2XM1 results remain explicit coherent leaves. The ordinary
+    arithmetic, all payment lattice points and every labelled consumer are
+    checked independently; a surviving latent value is never a fitted payment.
+    """
+    from functools import lru_cache
+    from collections import defaultdict
+    from timing import MODELS, canonical_kahan_helpers, helper_component, direct_component, series_log1p
+
+    started = time.monotonic()
+    input_path, helper_directory, search_directory, output = map(Path,
+        (input_path, helper_directory, search_directory, output))
+    source_paths = [Path(__file__), Path(__file__).parent/'timing.py',
+                    Path(__file__).parent/'exact.py', Path(__file__).parent/'check.py']
+    sources = {str(p): digest(p) for p in source_paths}
+    inputs = [input_path, *sorted(helper_directory.glob('*.json')),
+              *(search_directory/n for n in ('grammar.json', 'observations.json', 'summary.json', 'survivors.jsonl'))]
+    hashes = {str(p): digest(p) for p in inputs}
+    read = lambda p: json.loads(p.read_text())
+    original = read(input_path)
+    grammar = read(helper_directory/'grammar.json')
+    search_grammar = read(search_directory/'grammar.json')
+    # The interrupted search predates this explanatory field. Every actual
+    # grammar/input field must still agree; the zero-sign statement is proved
+    # below from the roots and the original positive-zero observation.
+    old_grammar_fields = {k: v for k, v in grammar.items()
+                          if k != 'zero_interest_publication' or k in search_grammar}
+    require(old_grammar_fields == search_grammar, 'loan grammar differs from the original search')
+    require(original == read(helper_directory/'observations.json') == read(search_directory/'observations.json'),
+            'loan observations changed')
+    require(original and all(len(r['pmt']) == 1 and len(r['ipmt']) == 1 for r in original),
+            'one payment and interest observation required per period')
+    payment = original[0]['pmt'][0]
+    require(payment['function'] == 'PMT' and len(payment['args']) == 5, 'wrong payment function/arity')
+    rate, count, pv, fv, beginning = map(binary64, payment['args'])
+    require(0 < rate <= Q(1, 4) and count.denominator == 1 and 1 <= count <= 2**53
+            and fv == 0 and beginning in (0, 1), 'outside the declared positive-rate loan scope')
+    pmt = binary64(payment['expected'])
+    require(pmt < 0 and abs(pmt) >= two(-1022), 'normal negative PMT publication required')
+    periods, zero_periods, interests, principals = [], [], [], []
+    for row in original:
+        require(row['pmt'][0] == payment, 'payment companion changed')
+        interest, principal = row['ipmt'][0], row['ppmt']
+        require(interest['function'] == 'IPMT' and principal['function'] == 'PPMT', 'wrong loan function')
+        require(interest['args'] == principal['args'] and len(principal['args']) == 6, 'loan argument pairing differs')
+        args = principal['args']
+        require(args[0] == payment['args'][0] and args[2:] == payment['args'][1:]
+                and interest['reading'] == principal['reading'] == payment['reading'], 'loan inputs/environment differ')
+        period = binary64(args[1])
+        require(period.denominator == 1 and 1 <= period <= count, 'period outside this loan')
+        periods.append(count-period+1)
+        zero_periods.append(bool(beginning and period == 1))
+        interests.append(binary64(interest['expected']))
+        principals.append(binary64(principal['expected']))
+        if zero_periods[-1]:
+            require(interest['expected'] == '0x0000000000000000', 'beginning-period interest is not positive zero')
+    hs = canonical_kahan_helpers()
+    roots = [[shape, code] for shape in range(4) for code in range(3 if shape == 3 else 27)]
+    require(grammar['helpers'] == hs and grammar['root_profiles'] == roots
+            and grammar['models'] == list(MODELS), 'changed helper/root arithmetic grammar')
+    require(grammar['helper_count'] == 2142 and grammar['log_producer_count'] == 5
+            and grammar['first_beginning'] == zero_periods and grammar['joint_PV_FV_hypotheses'] is None,
+            'wrong conditional loan family')
+    domain = E.coordinates(B.pullback(Span(pmt, pmt)))
+    require(domain is not None, 'empty payment publication cell')
+    start, end = domain
+    latent = [E.value(i) for i in range(start, end+1)]
+    require(list(map(tagged_value, grammar['latent_P_values'])) == latent, 'incomplete/reordered payment lattice')
+    logs = list(map(tagged_value, read(helper_directory/'log-inputs.json')))
+    require(len(logs) == 5 and logs[2] == B.round(logs[1]) and logs[3] == series_log1p(rate)
+            and logs[4] == B.round(logs[3]), 'log-provider stores/series differ')
+    require(logs[0] == B.round(logs[0]) and all(v > 0 for v in logs), 'invalid frozen log-provider leaves')
+    traces = read(helper_directory/'helper-traces.json')
+    mappings = read(helper_directory/'helper-mappings.json')
+    require(len(mappings) == 5*2142, 'missing helper profile')
+    elementary, seen_traces, grouped = {}, set(), defaultdict(list)
+    for identity, mapping in enumerate(mappings):
+        lp, h = divmod(identity, 2142)
+        require(mapping['log_provider'] == lp and mapping['helper'] == h
+                and len(mapping['traces']) == len(original), 'helper profile/order differs')
+        values = []
+        for i, tid in enumerate(mapping['traces']):
+            require(type(tid) is int and 0 <= tid < len(traces), 'unknown helper trace')
+            seen_traces.add(tid)
+            trace = traces[tid]
+            if zero_periods[i]:
+                require(trace == dict(kind='beginning_zero', em='binary64:0000000000000000'), 'zero-interest trace differs')
+                em = Q(0)
+            elif h < 1980:
+                require(trace['kind'] == 'kahan', 'wrong correction-helper trace')
+                em = helper_component(hs[h], trace, periods[i], logs[lp], elementary)
+            else:
+                require(trace['kind'] == 'direct', 'wrong direct-helper trace')
+                helper = h-1980
+                profile = dict(models=[MODELS[(helper//2//3**k) % 3] for k in range(4)],
+                               f2xm1_store=bool(helper % 2))
+                em = direct_component(profile, trace, periods[i], logs[lp], elementary)
+            require(em <= 0 and (em == 0 or B.round(em) != 0), 'helper is outside the finite nonzero-interest scope')
+            values.append(em)
+        grouped[tuple(values)].append(identity)
+    require(seen_traces == set(range(len(traces))), 'unbound helper trace')
+    scope = read(helper_directory/'certificate-scope.json')
+    require(scope['complete'] and scope['helper_profiles'] == len(mappings)
+            and scope['periods'] == len(original) and scope['distinct_helper_traces'] == len(traces),
+            'helper-certificate coverage differs')
+    print(json.dumps(dict(helper_profiles=len(mappings), exact_helper_value_groups=len(grouped),
+                          conditional_elementary_leaves=len(elementary))), flush=True)
+
+    @lru_cache(maxsize=262144)
+    def rounded(value):
+        result = B.round(value)
+        require(result is not None, 'nonfinite publication outside the checker scope')
+        return result
+
+    @lru_cache(maxsize=262144)
+    def arithmetic(kind, model, a, b):
+        return operation(a, b, kind, model)
+
+    def calc(kind, model, a, b):
+        if model == 'strict':
+            a, b = rounded(a), rounded(b)
+        return arithmetic(kind, model, a, b)
+
+    def interest(p, em, shape, code):
+        a, b, c = (MODELS[code//3**k % 3] for k in range(3))
+        if shape == 0:
+            value = calc('mul', c, calc('div', b, calc('mul', a, p, em), rate), rate)
+        elif shape == 1:
+            value = calc('mul', c, calc('mul', b, p, calc('div', a, em, rate)), rate)
+        elif shape == 2:
+            value = calc('div', c, calc('mul', b, calc('mul', a, p, rate), em), rate)
+        else:
+            value = calc('mul', a, p, em)
+        return -value
+
+    def interest_preimage(target, em, shape, code):
+        a, b, c = (MODELS[code//3**k % 3] for k in range(3))
+        span = B.pullback(Span(-target, -target))
+        if shape == 0:
+            return inverse(inverse(inverse(span, rate, 'mul', True, c), rate, 'div', True, b), em, 'mul', True, a)
+        if shape == 1:
+            ratio = calc('div', a, em, rate)
+            return inverse(inverse(span, rate, 'mul', True, c), ratio, 'mul', True, b)
+        if shape == 2:
+            return inverse(inverse(inverse(span, rate, 'div', True, c), em, 'mul', True, b), rate, 'mul', True, a)
+        return inverse(span, em, 'mul', True, a)
+
+    ip_kills, pp_kills = [0]*len(original), [0]*len(original)
+    survivors, counts = {}, Counter()
+    for group_index, (ems, identities) in enumerate(grouped.items()):
+        weight = len(identities)
+        for ri, (shape, code) in enumerate(roots):
+            interval, bounds = Span(latent[0], latent[-1]), (start, end)
+            for i, em in enumerate(ems):
+                counts['interest_preimages'] += 1
+                if em == 0:
+                    require(zero_periods[i] and interests[i] == 0, 'unsupported zero helper')
+                    continue
+                wanted = interest_preimage(interests[i], em, shape, code)
+                interval = interval.meet(wanted) if wanted is not None else None
+                bounds = E.coordinates(interval) if interval is not None else None
+                if bounds is None:
+                    ip_kills[i] += 3*weight
+                    break
+            if bounds is None:
+                continue
+            allowed = list(range(max(0, bounds[0]-start), min(len(latent), bounds[1]-start+1)))
+            require(allowed, 'empty surviving payment interval')
+            for sub in (0, 1):
+                remaining = allowed[:]
+                for i, em in enumerate(ems):
+                    if sub == 0:
+                        # RN53(P) and RN53(I) are fixed throughout the checked
+                        # publication cells, so the strict subtraction is constant.
+                        value = calc('add', MODELS[0], pmt, -interests[i])
+                        if rounded(value) != principals[i]:
+                            remaining = []
+                    else:
+                        keep = []
+                        for index in remaining:
+                            raw_interest = interest(latent[index], em, shape, code)
+                            require(rounded(raw_interest) == interests[i], 'preimage/forward interest disagreement')
+                            value = calc('add', MODELS[1], latent[index], -raw_interest)
+                            counts['principal_lattice_checks'] += 1
+                            if rounded(value) == principals[i]:
+                                keep.append(index)
+                        remaining = keep
+                    if not remaining:
+                        # Stored/resident PC64 at the final subtraction have
+                        # the same publication: RN53(RN64(P-I)).
+                        pp_kills[i] += weight*(1 if sub == 0 else 2)
+                        break
+                if remaining:
+                    for identity in identities:
+                        for model in ((0,) if sub == 0 else (1, 2)):
+                            survivors[(identity*84+ri)*3+model] = tuple(remaining)
+            counts['canonical_consumer_components'] += 1
+        if group_index % 16 == 15:
+            print(json.dumps(dict(helper_value_groups_checked=group_index+1, counts=dict(counts),
+                                  seconds=time.monotonic()-started)), flush=True)
+    seen = set()
+    for row in records(search_directory/'survivors.jsonl'):
+        program = row['program']
+        require(program not in seen and program in survivors
+                and tuple(row['latent_P_indices']) == survivors[program], 'native survivor/lattice differs')
+        require(row['component'] == program//3 and row['subtraction_model'] == program % 3, 'survivor label differs')
+        seen.add(program)
+    require(seen == set(survivors), 'native survivor coverage differs')
+    summary = read(search_directory/'summary.json')
+    programs = 5*2142*84*3
+    require(summary['complete'] and summary['programs'] == programs and summary['survivors'] == len(survivors)
+            and summary['IPMT_first_kill_counts'] == ip_kills and summary['PPMT_first_kill_counts'] == pp_kills,
+            'native first-contradiction totals differ')
+    require(sum(ip_kills)+sum(pp_kills)+len(survivors) == programs, 'incomplete labelled-program coverage')
+    require(sources == {str(p): digest(p) for p in source_paths}, 'checker source changed during replay')
+    require(hashes == {str(p): digest(p) for p in inputs}, 'loan proof inputs changed during replay')
+    result = dict(complete=True, programs=programs, survivors=len(survivors),
+        helper_profiles=len(mappings), helper_period_constraints=len(mappings)*len(original),
+        exact_helper_value_groups=len(grouped), conditional_elementary_leaves=len(elementary),
+        IPMT_first_kill_counts=ip_kills, PPMT_first_kill_counts=pp_kills,
+        counts=dict(counts), arithmetic_cache=arithmetic.cache_info()._asdict(),
+        checker_sha256=sources, inputs_sha256=hashes, seconds=time.monotonic()-started,
+        claim='Independent exact preimages and exhaustive remaining-payment checks cover every declared loan consumer label. '
+              'Helper arithmetic is replayed with coherent explicit elementary leaves; equal full-width helper tuples share only identical consumer calculations.',
+        limits='Conditional on the declared EXP/LN/F2XM1 and frozen log1p leaves, positive-rate FV0 inputs and recorded effective-input assumptions. '
+               'Not a complete PMT producer, Excel kernel, general CPU equivalence or a product gain. No latent payment selected or installed.')
+    with output.open('x') as f:
+        json.dump(result, f, indent=2)
+        f.write('\n')
+    print(json.dumps(result), flush=True)
+    return result
+
+
+if __name__=='__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'loan':
+        loan_backward(*sys.argv[2:])
+    else:
+        check(*sys.argv[1:])

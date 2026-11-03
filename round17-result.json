@@ -1,12 +1,13 @@
 {
   "round": 17,
-  "complete": false,
-  "phase": "Implementation and product measurements published; remaining independent replays in progress.",
+  "complete": true,
+  "phase": "Product changes measured; independent conditional replays complete. Full unknown kernels remain open.",
   "role": "implementer",
-  "application_measurement_revision": "3a253ee89c015a6acee3bb2ef57d28377b060cf3",
+  "application_measurement_revision": "f36fa45af6e370c6159400f1f3f73543c3530fcc",
   "product_commits": [
     "92c7256d",
-    "f7b3668d"
+    "f7b3668d",
+    "5fd689703af23e7e2aa66d336d9e70a27710c623"
   ],
   "evidence_revision": "0a7885ff",
   "r15": {
@@ -31,13 +32,31 @@
     "pass_rate": 0.9406390414378433
   },
   "extended_corpus": {
-    "matched": 17284,
+    "matched_before": 19391,
+    "matched_after": 19594,
     "total": 20840,
-    "failed": 1026,
+    "failed_before": 1362,
+    "failed_after": 1159,
+    "mismatched_after": 1152,
+    "refused_after": 6,
+    "missing_after": 1,
     "external": 73,
     "circular": 14,
-    "awaiting_capture": 2443,
-    "pass_rate": 0.8293666026871401
+    "awaiting_capture": 0,
+    "gains": 203,
+    "losses": 0,
+    "pass_rate": 0.94021113243762,
+    "workbooks": 21,
+    "comparison_sessions": 24,
+    "evaluation_records": 63783,
+    "baseline_numerical_revision": "27e56a3b9fddbc9e1255e5035fa458972a0aa180",
+    "baseline_scope": "Only the two pre-round numerical bodies are restored in the current application/capture tree; every input, answer and context is fixed.",
+    "gains_by_cause": {
+      "regression_rank": 194,
+      "BESSELI": 9
+    },
+    "interim_global_rank_losses": 24,
+    "interim_global_rank_losses_repaired": 24
   },
   "bank": {
     "before_intake_matched": 3230448,
@@ -69,9 +88,63 @@
       "1": 359,
       "17..256": 146
     },
-    "proven_gross_values": 398,
     "unavailable_obligations": 10,
-    "definition": "Last-bits-only is <=16 ULP. Larger numeric errors retain full distances so that another practical boundary can be assessed without changing any verdict."
+    "definition": "<=16 ULP is an explicit last-bits triage boundary; larger numeric differences are not a mathematical root-cause proof. All remain failures. Error/type/text and unavailable obligations are counted separately.",
+    "larger_value_or_type_differences": 398,
+    "after": {
+      "failed": 1102,
+      "causes": {
+        "last_bits": 765,
+        "numeric_value": 316,
+        "text_value": 9,
+        "not_modeled": 6,
+        "capture_failure": 4,
+        "type_or_error": 2
+      },
+      "larger_value_or_type_differences": 327,
+      "unavailable_obligations": 10,
+      "last_bits_only": 765,
+      "scope": "Original20030-cell inventory"
+    },
+    "remaining_large_groups": [
+      {
+        "category": "gross_or_unavailable",
+        "function": "BESSELY",
+        "cause": "numeric_value",
+        "cells": 80
+      },
+      {
+        "category": "gross_or_unavailable",
+        "function": "BESSELJ",
+        "cause": "numeric_value",
+        "cells": 76
+      },
+      {
+        "category": "gross_or_unavailable",
+        "function": "VAR.S",
+        "cause": "numeric_value",
+        "cells": 44
+      },
+      {
+        "category": "gross_or_unavailable",
+        "function": "VAR.P",
+        "cause": "numeric_value",
+        "cells": 40
+      },
+      {
+        "category": "gross_or_unavailable",
+        "function": "VARP",
+        "cause": "numeric_value",
+        "cells": 14
+      },
+      {
+        "category": "gross_or_unavailable",
+        "function": "PPMT",
+        "cause": "numeric_value",
+        "cells": 12
+      }
+    ],
+    "historical_note": "The immutable initial classification-causes.json uses proven_gross_values as an old label. That398 count is a triage size, not a proven root-cause count; this result supplies the corrected interpretation."
   },
   "variance": {
     "structural_templates": 333,
@@ -79,27 +152,68 @@
     "labels_per_name": 1040625,
     "variance_stdev_names_without_survivors": 12,
     "adopted": false,
-    "independent_receipts_pending": [
-      "STDEVP",
-      "STDEVPA",
-      "VARPA"
-    ]
+    "independent_receipts_pending": [],
+    "independent_receipts_complete": 14,
+    "DEVSQ_survivors": 800,
+    "AVERAGE_survivors": 5,
+    "software_native_payload_files_identical": 56
   },
   "annuity": {
     "complete_kernel_adopted": false,
     "PMT_native_survivors": 0,
-    "PMT_independent_replay": "in progress; no completed receipt yet",
+    "PMT_independent_replay": {
+      "complete": true,
+      "assignments": 26985627648,
+      "excluded": 26985627648,
+      "survivors": 0,
+      "checked": {
+        "helper_executions": 31051776,
+        "consumer_executions": 348997632,
+        "first_kill_boxes": 5207,
+        "rows": 38
+      },
+      "Windows_leaf_requests_matched": 933
+    },
     "FV_PV_joint_survivors": 11520,
     "NPER_cash_product_models_surviving": 4,
     "RATE_conditional_newton_survivors": 0,
-    "loans": "Native/software reproduced conditional searches; independent end-to-end loan checker remains open."
+    "loans": {
+      "independent_conditional_receipts": 12,
+      "labels_per_loan": 2698920,
+      "loan_indices": [
+        "000",
+        "003",
+        "006",
+        "009",
+        "012",
+        "015"
+      ],
+      "survivors": [
+        0,
+        0,
+        224,
+        0,
+        88656,
+        0
+      ],
+      "backend_survivor_domains_identical": true,
+      "full_width_helpers_identical": false,
+      "helper_publications_identical": true,
+      "limit": "Complete declared consumer/payment lattices and ordinary arithmetic replay, conditional on explicitly supplied coherent elementary leaves. No complete Excel producer is identified."
+    },
+    "FV_PV_independent_complete_certificate": false,
+    "NPER_independent_complete_certificate": false
   },
   "checks": {
     "cargo_xtask_check": {
-      "passed": 1417,
+      "passed": 1324,
       "failed": 0,
       "ignored": 5,
-      "not_run": 2
+      "not_run": 1,
+      "harnesses": 61,
+      "packages": 12,
+      "returncode": 0,
+      "transcript_sha256": "21fd39f1da603ded98dcb1da431f39af2c44f51db0b28e147a33bd2158631932"
     },
     "rust_tests": {
       "passed": 70,
@@ -109,17 +223,37 @@
     "python_tests": 58,
     "small_lattice_controls": 1504,
     "read_only_review": true,
-    "UBS": "0 critical findings; Python SQL detector incomplete after doctor validation, retained as a tool limitation."
+    "UBS": "0 critical findings; Python scan incomplete (exit2) after healthy doctor validation. Findings triaged; no complete scanner claim.",
+    "UBS_triage": "evidence/round17/final/resumed/ubs-triage-final.json",
+    "rust_final_receipt": "evidence/round17/final/resumed/research-final-tests.log.resource.json",
+    "release_binary_sha256": "c3b82c96dc8eda77511c1aa0b1e01cd486424eafebb6d880d0227b31e8d4ce97"
   },
-  "compact_evidence_index": "evidence/round17/initial-index.json",
+  "compact_evidence_index": "evidence/round17/final-index.json",
   "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17",
-  "pending_packet": "packets/round16",
+  "pending_packet": "R16 scalar bundle only: catalogue captures arrived in application commit221549e3; scalar250-call raw bundle is not locally available.",
   "new_packet": null,
   "limits": [
-    "No complete variance or annuity program identified.",
-    "The numerical-rank cutoff is measured on these inputs; broader scaling behavior awaits Excel.",
-    "No independent end-to-end loan or complete FV/PV/NPER certificate is claimed.",
+    "No complete variance or annuity program identified or adopted.",
+    "The normalized Gram rank policy is measured on recorded inputs; it does not identify the Excel algorithm or prove exact dependence.",
+    "Loan certificates are conditional on explicit elementary leaves. No complete FV/PV/NPER independent certificate is claimed.",
     "All exclusions retain their finite grammar, elementary-leaf and effective-input assumptions.",
-    "Unread and typed refusals remain failures; external/circular/pending cells remain separately counted over all formula cells."
-  ]
+    "Unread, refusals and missing outputs remain failures; external and circular cells are separately counted over all formula cells.",
+    "New R16 capture coverage is separated from same-input product gains. The scalar R16 raw bundle is still unavailable locally."
+  ],
+  "r16": {
+    "catalogue_formulas_received": 810,
+    "context_cells_recaptured": 1633,
+    "capture_commit": "221549e3",
+    "scalar_calls": 250,
+    "scalar_raw_bundle_locally_ingested": false,
+    "limit": "Some modern-name/implicit-intersection catalogue surfaces differ from frozen scalar questions. Only canonical captured workbook routes score product gains. Windows scalar raw bundle is not available in the Linux workspace."
+  },
+  "research_unit": "round17-final-unit.json",
+  "postmerge_verification": {
+    "application_revision": "f36fa45af6e370c6159400f1f3f73543c3530fcc",
+    "corpus_receipt": "evidence/round17/final/resumed/corpus-postpull-delta.json",
+    "corpus_changed_outputs": 0,
+    "corpus_losses": 0,
+    "bank_receipt": "evidence/round17/final/resumed/bank-postpull/receipt.json"
+  }
 }

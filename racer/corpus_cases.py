@@ -72,7 +72,7 @@ def outcome(value):
     raise ValueError('unsupported result encoding')
 
 
-def classify(corpus, output):
+def classify(corpus, output, after=None, original_catalogue_after=None, scope_receipt=None):
     """Account for every failed formula without changing the verdict policy.
 
     Last-bits means two finite numeric values at most 16 binary64 steps
@@ -81,10 +81,25 @@ def classify(corpus, output):
     named gross obligations; none are asserted to be proven product bugs.
     """
     corpus, output = Path(corpus), Path(output)
+    compared = None
+    if any(p is not None for p in (after, original_catalogue_after, scope_receipt)):
+        if any(p is None for p in (after, original_catalogue_after, scope_receipt)):
+            raise ValueError('after classification needs both comparison roots and the original-scope receipt')
+        after, original_catalogue_after, scope_receipt = map(Path,
+            (after, original_catalogue_after, scope_receipt))
+        compared = json.loads(scope_receipt.read_text())
+        if compared.get('complete') is not True:
+            raise ValueError('original-scope comparison is incomplete')
     output.mkdir(parents=True, exist_ok=False)
     summary_path = corpus/'summary.json'
     summary = json.loads(summary_path.read_text())
     inputs = {str(summary_path): hashlib.sha256(summary_path.read_bytes()).hexdigest()}
+    if compared is not None:
+        if compared['counts']['formula_cells'] != summary['totals']['counts']['formula_cells']:
+            raise ValueError('classification formula inventory differs from the comparison receipt')
+        if compared['inputs_sha256'].get(str(summary_path)) != inputs[str(summary_path)]:
+            raise ValueError('classification baseline differs from the comparison receipt')
+        inputs[str(scope_receipt)] = hashlib.sha256(scope_receipt.read_bytes()).hexdigest()
     rows, counts, groups = [], Counter(), Counter()
     key = lambda r: (r['sheet'], r['row'], r['column'])
     runs = []
@@ -105,6 +120,15 @@ def classify(corpus, output):
         n = int(bits, 16)
         return (~n & ((1 << 64)-1)) if n >> 63 else n | (1 << 63)
     for capture_path, directory, workbook in runs:
+        if compared is not None:
+            relative = directory.relative_to(corpus)
+            directory = (original_catalogue_after if 'calc-func_catalogue_oracle.xlsx' in relative.parts
+                         else after/relative)
+            for name in ('report.json', 'evaluations.json', 'triage.json'):
+                path = directory/name
+                digest = hashlib.sha256(path.read_bytes()).hexdigest()
+                if compared['inputs_sha256'].get(str(path)) != digest:
+                    raise ValueError('classification input differs from comparison receipt: '+str(path))
         paths = (capture_path, directory/'evaluations.json', directory/'triage.json')
         for p in paths:
             inputs[str(p)] = hashlib.sha256(p.read_bytes()).hexdigest()
@@ -156,7 +180,7 @@ def classify(corpus, output):
                 category=category, cause=reason, ulp_distance=distance,
                 original_verdict=verdict, expected=e, actual=a,
                 capture=str(capture_path), evaluation=str(paths[1])))
-    require_count = summary['totals']['counts']['fail']
+    require_count = compared['after_fail'] if compared is not None else summary['totals']['counts']['fail']
     if len(rows) != require_count:
         raise ValueError(f'nonpass accounting differs: {len(rows)} != {require_count}')
     (output/'cells.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
@@ -164,7 +188,7 @@ def classify(corpus, output):
         groups=[dict(category=c, function=f, cause=r, cells=n)
                 for (c,f,r), n in groups.most_common()], inputs_sha256=inputs,
         cells_sha256=hashlib.sha256((output/'cells.jsonl').read_bytes()).hexdigest(),
-        rule='Last-bits-only: finite numbers <=16 ULP apart. All larger errors stay gross. '
+        rule='Last-bits-only: finite numbers <=16 ULP apart. Larger errors are a triage group, not a mathematical root-cause proof. '
              'Capture failures, refusals and missing values remain failures, explicitly distinguished from proven product bugs.')
     (output/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps({k:v for k,v in result.items() if k not in ('inputs_sha256','groups')}))

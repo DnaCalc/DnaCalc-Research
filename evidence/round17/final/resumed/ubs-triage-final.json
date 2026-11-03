@@ -1,0 +1,21 @@
+{
+  "complete": true,
+  "rust_scan": "ubs-gram-final.log",
+  "critical": 0,
+  "warnings": 204,
+  "disposition": {
+    "test_unwrap_assert_panic": "Tests must fail on malformed regression outputs; retained assertions.",
+    "indexed_vectors": "least_squares validates predictor lengths; Gram moments index equally sized original columns, LDL rows/pivots are appended together.",
+    "float_equality": "Exact zero/normality and bit-preserving power-of-two representation tests; epsilon comparisons would invalidate this policy.",
+    "division": "Positive scale, positive count, positive gamma denominators and positive LDL divisor intervals are checked before use; nonfinite outward arithmetic disables comparisons.",
+    "clone_collect": "Existing QR copies and tiny test fixture clones are required by ownership; cached interval LDL retains O(np^2+p^3) bounds.",
+    "existing_style_casts": "No newly introduced unsafe, panic or unchecked conversion in product arithmetic; prior broad-file style findings are unchanged.",
+    "research_cli_failures": "Malformed proof JSON or violated arithmetic/coverage invariants must abort with no success receipt; caught-and-continued errors would weaken these checkers.",
+    "research_trusted_commands": "Explicit interpreter/executable paths and fixed argv are operator-controlled local research tools, with timeouts/process teardown. No shell interpolation or network service."
+  },
+  "python_scan": "ubs-research-closure.log",
+  "python_status": "0 critical; Python scan incomplete (exit2). Doctor --fix exit0 reports a healthy environment; no complete scan claim.",
+  "review": "Read-only review checked interval arithmetic, root inverse constraints and final proof/measurement receipts.",
+  "python_warnings": 812,
+  "python_infos": 563
+}

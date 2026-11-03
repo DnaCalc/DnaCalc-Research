@@ -567,17 +567,24 @@ def bank_replay(before, executable, checkout, output):
 
 
 def corpus_delta(before, after, original_catalogue_after, output):
-    """Compare the unchanged original inventory while the new sheet awaits Excel."""
+    """Compare fixed observations; '-' uses every matching catalogue session."""
+    override_catalogue = str(original_catalogue_after) != '-'
     before, after, original_catalogue_after, output = map(Path,
         (before, after, original_catalogue_after, output))
     document = lambda path: json.loads(path.read_text())
     summary = document(before/'summary.json')
     counts = collections.Counter()
-    changes, pairs = [], []
+    changes, pairs, workbooks = [], [], set()
     hashes = {str(before/'summary.json'): sha(before/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
     for old_report in sorted(before.glob('workbooks/**/report.json')):
         relative = old_report.relative_to(before)
-        new_report = original_catalogue_after/'report.json' if 'calc-func_catalogue_oracle.xlsx' in relative.parts else after/relative
+        new_report = original_catalogue_after/'report.json' if override_catalogue and 'calc-func_catalogue_oracle.xlsx' in relative.parts else after/relative
+        if not override_catalogue:
+            captures = [p.parent.parent/(p.parent.name+'.capture.json') for p in (old_report, new_report)]
+            if any(p.exists() for p in captures):
+                if not all(p.is_file() for p in captures) or sha(captures[0]) != sha(captures[1]):
+                    raise ValueError('capture observations changed: '+str(relative))
+                for p in captures: hashes[str(p)] = sha(p)
         paths = [old_report, new_report, old_report.with_name('evaluations.json'), new_report.with_name('evaluations.json')]
         old_triage, new_triage = old_report.with_name('triage.json'), new_report.with_name('triage.json')
         for p in (old_triage, new_triage): hashes[str(p)] = sha(p)
@@ -592,10 +599,13 @@ def corpus_delta(before, after, original_catalogue_after, output):
         x = {key(r): r for r in old_evaluations['evaluations']}
         y = {key(r): r for r in new_evaluations['evaluations']}
         if x.keys() != y.keys(): raise ValueError('original evaluation coverage changed: '+str(relative))
-        counts['workbooks'] += 1
+        workbooks.add(relative.parts[1])
+        counts['sessions'] += 1
         counts['formula_cells'] += len(a)
         counts['evaluations'] += len(x)
         for k in a:
+            if (a[k]['verdict'] == 'awaiting_capture') != (b[k]['verdict'] == 'awaiting_capture'):
+                raise ValueError('capture availability changed; score coverage separately: '+str(k))
             excluded = bool(policy[k].get('external_links') or policy[k].get('circular_rule'))
             if excluded != bool(new_policy[k].get('external_links') or new_policy[k].get('circular_rule')):
                 raise ValueError('original comparison context changed: '+str(k))
@@ -613,6 +623,7 @@ def corpus_delta(before, after, original_catalogue_after, output):
         for k in x:
             counts['changed_values'] += x[k].get('returned') != y[k].get('returned')
         pairs.append(dict(before=str(old_report), after=str(new_report), formula_cells=len(a)))
+    counts['workbooks'] = len(workbooks)
     expected = summary['totals']['counts']
     if counts['workbooks'] != summary['totals']['workbooks'] or counts['formula_cells'] != expected['formula_cells'] or counts['before_matched'] != expected['pass']:
         raise ValueError('original corpus totals do not reconcile: '+str(dict(counts)))
@@ -620,8 +631,8 @@ def corpus_delta(before, after, original_catalogue_after, output):
     result = dict(complete=True, counts=dict(counts), changes=changes, pairs=pairs, inputs_sha256=hashes,
         external=expected['external_links'], circular=expected['circular_rule'],
         before_fail=expected['fail'], after_fail=expected['fail']-counts['gains']+counts['losses'],
-        limits='Original formula inventory, original answers and original workbook contexts. '
-               'The extended catalogue and its awaiting-capture cells are separately reported; no new answer or scope-dependent pass is synthesized.')
+        limits='Fixed formula inventory, answers and workbook contexts, including every comparison session. '
+               'New capture coverage is separate from product gains; no answer or scope-dependent pass is synthesized.')
     with output.open('x')as file:json.dump(result,file,indent=2);file.write('\n')
     print(json.dumps(dict(counts=dict(counts), before_fail=result['before_fail'], after_fail=result['after_fail'])))
     return result

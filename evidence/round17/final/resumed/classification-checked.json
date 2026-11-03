@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "after_causes": {
+    "last_bits": 765,
+    "numeric_value": 316,
+    "not_modeled": 6,
+    "text_value": 9,
+    "type_or_error": 2,
+    "capture_failure": 4
+  },
+  "controls": [
+    {
+      "control": "wrong-inventory",
+      "rejected": true,
+      "success_receipt_absent": true
+    },
+    {
+      "control": "changed-input-hash",
+      "rejected": true,
+      "success_receipt_absent": true
+    }
+  ],
+  "source_sha256": "c233095207964f0799d9f2889da2c9f4411de0bbbc6a2b29400eff62a44277c8",
+  "limits": "Constructed invalid classification receipts, not Excel observations. The positive replay reconciles all1102 failures with the independently compared original formula inventory."
+}

@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "function": "STDEVA",
+  "programs": 1040625,
+  "observations": 1046,
+  "survivors": 0,
+  "counts": {
+    "program_executions": 1207157,
+    "certified_first_kills": 1040625
+  },
+  "arithmetic_cache": {
+    "hits": 83552664,
+    "misses": 62306,
+    "maxsize": 262144,
+    "currsize": 62306
+  },
+  "distinct_exact_operations": 62306,
+  "seconds": 573.805008132942,
+  "root_cache": {
+    "hits": 0,
+    "misses": 1207157,
+    "maxsize": 65536,
+    "currsize": 65536
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233"
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-stats-frozen/scoped.jsonl": "40feee91d703de24b489bef88292c40e86d755d66da209e21de97a869cdfb402",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-STDEVA-native/first-kills.jsonl": "6256830dc217f121df5a2f06afb75cb6b551540ed3c12626c07d5f91b18ca8e3",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-STDEVA-native/profiles.jsonl": "82e092b5c62c5fd0d0ff216582e1cae8ce968754d910dcbea508d0803fc5d5c2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-STDEVA-native/summary.json": "b9586f4d5725abcb7cb23e3a055313ab610c74e7212743bce7fcc0473738abcf",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-STDEVA-native/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-STDEVA-native/witnesses.jsonl": "4933271262c553558b30c9913b6a84c2b80fce9dff6b8b12db3b0e3701265ac1"
+  },
+  "limits": "Finite declared programs only. Coherent precision regions and original transport assumptions. Zero signs are immaterial here: every divisor is a positive integer, roots publish zero with the product zero policy. No alias identity, private Excel precision, extra branch, fitted cutoff or complete kernel is inferred."
+}

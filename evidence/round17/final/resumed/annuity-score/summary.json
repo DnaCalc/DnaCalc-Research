@@ -1,0 +1,57 @@
+{
+  "complete": true,
+  "total": 236,
+  "failed": 136,
+  "matched": 100,
+  "functions": {
+    "CUMIPMT": {
+      "total": 38,
+      "matched": 12,
+      "failed": 26
+    },
+    "CUMPRINC": {
+      "total": 38,
+      "matched": 13,
+      "failed": 25
+    },
+    "FV": {
+      "total": 30,
+      "matched": 16,
+      "failed": 14
+    },
+    "IPMT": {
+      "total": 26,
+      "matched": 11,
+      "failed": 15
+    },
+    "NPER": {
+      "total": 8,
+      "matched": 8,
+      "failed": 0
+    },
+    "PMT": {
+      "total": 24,
+      "matched": 15,
+      "failed": 9
+    },
+    "PPMT": {
+      "total": 26,
+      "matched": 9,
+      "failed": 17
+    },
+    "PV": {
+      "total": 30,
+      "matched": 16,
+      "failed": 14
+    },
+    "RATE": {
+      "total": 16,
+      "matched": 0,
+      "failed": 16
+    }
+  },
+  "executable_sha256": "443b934dea9c7967b77a6049c1c09aa12517393081a6c1779f88dd966f8eedef",
+  "observations_sha256": "e73347ffced0722fb31f3a66b20f398dc5405316d1e099cb3949a14fb686c9f7",
+  "intake_sha256": "f1f2a79f5221e4321b355d821a57aa273335773d3322cd3b2dc24693a86bf491",
+  "limits": "Every supplied observation is scored, including repeated inputs. Existing registered invoke route; typed failures count as failures. Value2 read-back does not expose effective callee inputs. Predictions never become answers."
+}

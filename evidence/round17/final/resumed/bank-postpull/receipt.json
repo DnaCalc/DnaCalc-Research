@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "decoded_rows": 3875227,
+  "before_matched": 3230756,
+  "matched": 3230756,
+  "total": 3875343,
+  "failed": 644587,
+  "unread": 116,
+  "gains": 0,
+  "losses": 0,
+  "changed_outputs": 0,
+  "commands": [
+    [
+      "/home/ubuntu/projects/DnaCalc/DnaCalc/target/xtask-corpus/release/xtask-harness",
+      "witness",
+      "compare",
+      "--before",
+      "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/bank-final.jsonl",
+      "--after",
+      "/tmp/dnacalc-bank-hntjj0rm/trace.fifo"
+    ],
+    [
+      "/home/ubuntu/projects/DnaCalc/DnaCalc/target/xtask-corpus/release/xtask-harness",
+      "witness",
+      "judge",
+      "--bank",
+      "full",
+      "--trace",
+      "/tmp/dnacalc-bank-hntjj0rm/trace.fifo"
+    ]
+  ],
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/bank-final.jsonl": "3f744087b5d57cdb79b9f024830c9d97e4cba4c1e89b3dc1a5e4282010743b3b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/target/xtask-corpus/release/xtask-harness": "3e0b19ee821a967f786db5b9b14d4dd3e84c78706e9ee1a34d25be8962a73b9a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "db84dff1df7d5bbce351c707d30d1393b454f3b2162de5c100902ffc2dffc62e"
+  },
+  "logs_sha256": {
+    "compare.log": "305e6a2ee04a2a984938643a8ed31e44dc2e87d20586f53f05696b0ef32ae093",
+    "judge.log": "36936641a4063be63da1e5481fe7cdaaa4e51992898a90f0e5a99bd67bc78722"
+  },
+  "limits": "Existing application judge and verdict comparator; all identity/answer fields compared. Unread observations remain failures. The FIFO trace is consumed once and never retained."
+}

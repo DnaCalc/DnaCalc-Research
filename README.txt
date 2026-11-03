@@ -585,36 +585,51 @@ evidence/round16; large raw proofs remain indexed under
 /home/ubuntu/codex-runs/dna-firehorse-20261102-round16. No complete kernel is adopted.
 
 Round 17 ingests the R15 annuity answers in the existing WitnessSet lineage:
-236 observations, 100 exact application matches and 136 failures. All 94 raw
-result files and 32 packet files are hash-verified. The separate native probe
-reproduces all 933 requested x87 leaves; this is finite operand-specific evidence.
-OxFunc-Evidence commit 0a7885ff retains the originals and their provenance.
+236 observations,100 exact application matches and136 failures. All94 raw
+result files and32 packet files are hash-verified. The native probe reproduces
+all933 requested x87 leaves; this is finite operand-specific evidence.
+OxFunc-Evidence commit0a7885ff retains the originals and their provenance.
 
-The original corpus improves from 18812 to 18841 matches out of 20030, with
-29 gains and zero losses: 20 LINEST/LOGEST cells and 9 BESSELI cells. The two
-registered-route regressions failed first. The post-intake bank improves from
-3230525 to 3230756 matches out of 3875343, with 231 gains and zero losses;
-116 unread rows remain failures. Intake itself adds 77 matches and 94 failures
-on 171 new inputs, separately from product gains. All original answers remain.
-The rank policy is measured over these inputs; its general scaling behavior
-is not an identified Excel rule. R16 already contains rank/scale questions.
+The original corpus improves18812->18841/20030 with29 gains,zero losses
+(20 LINEST/LOGEST,9 BESSELI). With the received R16 catalogue captures, a
+controlled replay changes only the two numerical bodies against the same
+20840 captured cells:19391->19594,+203/-0 (194 rank,9 BESSELI). Failures fall
+1362->1159;73 external and14 circular remain separate. There are21 workbooks
+and24 comparison sessions, with no pending capture cells. New capture coverage
+is not counted as a product gain. The interim global rank cutoff lost24 R16
+matches; normalized outward Gram bounds fix all24. Coefficients retain QR.
+This policy measures numerical uncertainty; it does not identify Excel's rule.
 
-The variance family now contains 333 structural templates with 3125 coherent
-arithmetic/store policies each. New reductions include compensation, multiple
-lanes and adjacent pairs; new identities include extra correction passes,
-shifted deviations, online mean updates and Chan merges. All twelve variance/
-STDEV names still have zero complete survivors. No partial fit is adopted.
+The post-intake bank improves3230525->3230756/3875343,+231/-0;116 unread rows
+remain failures. The fresh final replay preserves every decoded output. Intake
+itself adds77 matches and94 failures on171 new inputs, separately from gains.
+The original1131 failures comprise723 within16ULP,398 larger value/type/text
+differences and10 unavailable obligations. Afterwards1102 comprise765,327,10.
+The ULP boundary is triage, not a proof of root cause. BESSELJ/Y remain large
+unresolved value groups. No answers or expected values are rewritten.
 
-Annuity searches preserve their separate scopes: PMT instruction programs,
-joint FV/PV graphs, NPER cash products, conditional RATE Newton steps and
-shared-latent-payment IPMT/PPMT constraints. Loan searches are reproduced on
-both arithmetic backends; an independent end-to-end loan certificate remains
-open. Nonempty latent domains are hypotheses, never installed intermediates.
+Variance now has333 structural templates*3125 coherent arithmetic/store
+policies. Compensation, lanes, pairs, correction passes, shifted deviations,
+online means and Chan merges all receive exact replay. All14 independent
+receipts are complete: twelve variance/STDEV names have zero survivors,
+DEVSQ800 and AVERAGE5 in their recorded scopes. No partial fit is adopted.
 
-Use round17-publication-unit.json for the current research build. Raw receipts
-and interrupted attempts remain under dna-firehorse-20261103-round17 in the
-external codex-runs directory. The final result index records which independent
-replays completed. No further Windows packet replaces the unanswered R16 set.
+The independent PMT replay excludes all26985627648 declared assignments,
+with31051776 helper and348997632 consumer executions. Its933 leaf requests
+agree exactly with the returned Windows probe. Twelve conditional loan
+certificates cover six loans on both backends. Surviving payment/program
+domains agree despite disclosed full-width helper differences. These proofs
+condition on explicit elementary leaves; no complete annuity kernel is found.
+Joint FV/PV,NPER cash-product and RATE one-step searches retain their distinct
+finite scopes. No full FV/PV/NPER independent certificate is claimed.
+
+Use round17-final-unit.json for the current research build. Historical units
+retain their source guards and indexed archives. evidence/round17/final-index.json
+binds completed receipts; round17-result.json gives counts and limitations.
+R16 catalogue captures arrived; the250-call scalar raw bundle is not locally
+available. No further Windows packet is needed while that raw bundle is awaited
+locally.
+Raw partial attempts remain external under dna-firehorse-20261103-round17.
 
 For a fresh bank comparison without another full trace file, use the existing
 application judge and comparator through a FIFO:

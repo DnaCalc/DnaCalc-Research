@@ -1,0 +1,272 @@
+{
+  "complete": true,
+  "files_identical": 28,
+  "files_differing": 8,
+  "loans": {
+    "000": {
+      "programs": 2698920,
+      "survivors": 0,
+      "helper_em_differences": 2,
+      "helper_em_publication_differences": 0,
+      "survivor_lattices_identical": true,
+      "survivors_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": {
+        "certificate-scope.json": {
+          "native": "d28bf7e4e2f4ef442b15746c385969aca8e4b22da940c9d03b41caf6a72415fa",
+          "software": "d28bf7e4e2f4ef442b15746c385969aca8e4b22da940c9d03b41caf6a72415fa",
+          "identical": true
+        },
+        "grammar.json": {
+          "native": "f4fea282259ebd50fc5a87acebd3f90fecba48b3d041022d7b0100846d34e6b5",
+          "software": "f4fea282259ebd50fc5a87acebd3f90fecba48b3d041022d7b0100846d34e6b5",
+          "identical": true
+        },
+        "helper-mappings.json": {
+          "native": "ec9fadf81a67d21a726083a184f3fd8e22ec8bdff957575e42347b4c08ad8afd",
+          "software": "ec9fadf81a67d21a726083a184f3fd8e22ec8bdff957575e42347b4c08ad8afd",
+          "identical": true
+        },
+        "helper-traces.json": {
+          "native": "5827cb1b0d8f3c1077d99d0fbef3274b4769b6083f2287654ddd5c5bf1403ed2",
+          "software": "ce3433f46bc70cd3b714b7d2bde424d45c4f0f7541baaece3f84d035daaedaa3",
+          "identical": false
+        },
+        "log-inputs.json": {
+          "native": "3073499d8e84de88a54a5d65e21e4fe8ec4e770c8ff61f984647e1d94b24bad1",
+          "software": "3073499d8e84de88a54a5d65e21e4fe8ec4e770c8ff61f984647e1d94b24bad1",
+          "identical": true
+        },
+        "observations.json": {
+          "native": "bfcfd73074582bf5030389b9d77319d9224f7bb566bd18feea828c29731c5a45",
+          "software": "bfcfd73074582bf5030389b9d77319d9224f7bb566bd18feea828c29731c5a45",
+          "identical": true
+        }
+      },
+      "proof_sha256": {
+        "native": "e75a32495ed542bd244ea87518ddcac49580ae891a50aacf4066b05091019bc8",
+        "software": "c04e25e24c7aa6031f2e642fd0d224691fde18ee5d19c39bb4732bb43eb77f4b"
+      }
+    },
+    "003": {
+      "programs": 2698920,
+      "survivors": 0,
+      "helper_em_differences": 2,
+      "helper_em_publication_differences": 0,
+      "survivor_lattices_identical": true,
+      "survivors_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": {
+        "certificate-scope.json": {
+          "native": "21363dd232f359d11a4cc4991d1ef2a8ae29fcdc94b88853932bce17b92248fc",
+          "software": "21363dd232f359d11a4cc4991d1ef2a8ae29fcdc94b88853932bce17b92248fc",
+          "identical": true
+        },
+        "grammar.json": {
+          "native": "65988cf95e4f4b833c46e2a6b7293e12e42a9fb09b83d9d8a2549b3a6b5f06f5",
+          "software": "65988cf95e4f4b833c46e2a6b7293e12e42a9fb09b83d9d8a2549b3a6b5f06f5",
+          "identical": true
+        },
+        "helper-mappings.json": {
+          "native": "e70bf359100cd49941adf1f33daf2a6563cc86c95c39a08d7e293906f9914cdc",
+          "software": "e70bf359100cd49941adf1f33daf2a6563cc86c95c39a08d7e293906f9914cdc",
+          "identical": true
+        },
+        "helper-traces.json": {
+          "native": "cc7a37ea16823bfb7a11ae69fb6711a45669a4ab4021faa2037189d3a8728df0",
+          "software": "f10f33920cf81f717bdc22986bfefbd229d279a8dde56fc92ed842dd7384640c",
+          "identical": false
+        },
+        "log-inputs.json": {
+          "native": "3073499d8e84de88a54a5d65e21e4fe8ec4e770c8ff61f984647e1d94b24bad1",
+          "software": "3073499d8e84de88a54a5d65e21e4fe8ec4e770c8ff61f984647e1d94b24bad1",
+          "identical": true
+        },
+        "observations.json": {
+          "native": "34dd2274bde3c005575e2bbc60090fcc0da95181234b277bf30c61e6de3de970",
+          "software": "34dd2274bde3c005575e2bbc60090fcc0da95181234b277bf30c61e6de3de970",
+          "identical": true
+        }
+      },
+      "proof_sha256": {
+        "native": "952542ad7712bc74dce7a6cafaf9cc65cfcf3d0943972b88faaa645419f679b4",
+        "software": "5fde684538a61be395bea3f64b33884e6d35216eadb8a955407476bf9d700272"
+      }
+    },
+    "006": {
+      "programs": 2698920,
+      "survivors": 224,
+      "helper_em_differences": 14,
+      "helper_em_publication_differences": 0,
+      "survivor_lattices_identical": true,
+      "survivors_sha256": "71bb9a007b54d03b06e54ea233dc6f08f959b88cc5ec7708e5e01eef12ae32ff",
+      "files": {
+        "certificate-scope.json": {
+          "native": "f7699985879becb401ef3aaeb6f26380fb6a605f1497c31b5e2a43fc90ef84d0",
+          "software": "f7699985879becb401ef3aaeb6f26380fb6a605f1497c31b5e2a43fc90ef84d0",
+          "identical": true
+        },
+        "grammar.json": {
+          "native": "887e961e092eb54c27e1c2f4a6b59ff5a02fdc0acfcc1c9409dccfef387d38c1",
+          "software": "887e961e092eb54c27e1c2f4a6b59ff5a02fdc0acfcc1c9409dccfef387d38c1",
+          "identical": true
+        },
+        "helper-mappings.json": {
+          "native": "e5fe68a1d79fed53178ccd8d59cebc812cb91d06656767836658e3e7302fd941",
+          "software": "fdc258c4be3de92de8c9d5e23fdbf680d196a9f2b8e9f02ae20a85cc45426acb",
+          "identical": false
+        },
+        "helper-traces.json": {
+          "native": "12a9af8a9cbe91cb7c8ddaec2f8105661ca8e244e6307f0c3214b4d8e28346af",
+          "software": "fb6976ad43571671afdaf611bf2aa3a8562a2c470fb5406f6bbe71b573d71090",
+          "identical": false
+        },
+        "log-inputs.json": {
+          "native": "9f188d3bfcf9c010823e62eb8154b7ea6efc99e944a05d3ed3e1379a4b8d4cb6",
+          "software": "9f188d3bfcf9c010823e62eb8154b7ea6efc99e944a05d3ed3e1379a4b8d4cb6",
+          "identical": true
+        },
+        "observations.json": {
+          "native": "dfa9600a938711d1eef6e4aa13b40b922df830ff64e0edea34a7a28296621cae",
+          "software": "dfa9600a938711d1eef6e4aa13b40b922df830ff64e0edea34a7a28296621cae",
+          "identical": true
+        }
+      },
+      "proof_sha256": {
+        "native": "a8967fcb94d65c19bf39bff1c82e218e4d42986edea9f3c73988e889d2281e84",
+        "software": "ad92a7efa46bdba68ffc62fc1ed16965f21778f5eb344d525f3dd4d9c03ed23d"
+      }
+    },
+    "009": {
+      "programs": 2698920,
+      "survivors": 0,
+      "helper_em_differences": 14,
+      "helper_em_publication_differences": 0,
+      "survivor_lattices_identical": true,
+      "survivors_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": {
+        "certificate-scope.json": {
+          "native": "aaf5ca382d10c8b9769b98f7dcec9b1a08ea6c649e2f3af202f6dc2830d5d74a",
+          "software": "aaf5ca382d10c8b9769b98f7dcec9b1a08ea6c649e2f3af202f6dc2830d5d74a",
+          "identical": true
+        },
+        "grammar.json": {
+          "native": "44a1c3b0089c06c1dcdc4044d958c3fd72517953f9a32b02165d3fd2aa3327b7",
+          "software": "44a1c3b0089c06c1dcdc4044d958c3fd72517953f9a32b02165d3fd2aa3327b7",
+          "identical": true
+        },
+        "helper-mappings.json": {
+          "native": "6d315be89ab4e9d6a5b3f1311eec86f532bfcd6fa92500ad6acdf87ba08edfaa",
+          "software": "16504e51e319fa34f74789d3ffa14cc039325af1f3529ad7b16eaada1ca8940c",
+          "identical": false
+        },
+        "helper-traces.json": {
+          "native": "64264f24663925d7fb5668d1bd14d8abbddad0b2e1afd7f5aa2778a4e0b4a65c",
+          "software": "daa9809ffcb0880cf46ca1f7ba68ae4753fb6d587d156bcbdf4824a5dcd75603",
+          "identical": false
+        },
+        "log-inputs.json": {
+          "native": "9f188d3bfcf9c010823e62eb8154b7ea6efc99e944a05d3ed3e1379a4b8d4cb6",
+          "software": "9f188d3bfcf9c010823e62eb8154b7ea6efc99e944a05d3ed3e1379a4b8d4cb6",
+          "identical": true
+        },
+        "observations.json": {
+          "native": "17cb0d64c555625e3a7e1e86506da986c5f12725c983cc6f29cd4cb29993248e",
+          "software": "17cb0d64c555625e3a7e1e86506da986c5f12725c983cc6f29cd4cb29993248e",
+          "identical": true
+        }
+      },
+      "proof_sha256": {
+        "native": "51af48ef71ce0db9fdd66291dcd9cdc3533ffef25b51d2b84e117287b9e449d7",
+        "software": "48dff0b9c8777bb9678b020e9b51c85948243971ee05fc049db95e616db48b54"
+      }
+    },
+    "012": {
+      "programs": 2698920,
+      "survivors": 88656,
+      "helper_em_differences": 120,
+      "helper_em_publication_differences": 0,
+      "survivor_lattices_identical": true,
+      "survivors_sha256": "12c12f8730075c3cdcd890b8f5fd2f87648d032322fa42f9d3242692b79434a5",
+      "files": {
+        "certificate-scope.json": {
+          "native": "b36735a94331fa63ebaa90a8a9c0f236369d2982e34311dcb366c6964a0fb63e",
+          "software": "b36735a94331fa63ebaa90a8a9c0f236369d2982e34311dcb366c6964a0fb63e",
+          "identical": true
+        },
+        "grammar.json": {
+          "native": "aa54ed517c4efa73599e38aecaf37c66ba230b874bdd4ddd82e03b32e27d515c",
+          "software": "aa54ed517c4efa73599e38aecaf37c66ba230b874bdd4ddd82e03b32e27d515c",
+          "identical": true
+        },
+        "helper-mappings.json": {
+          "native": "9fc2de875a09bd7a0aceb7afc2b4f12d80b2fe1f2686487e6b66a2ceb4dc791c",
+          "software": "9fc2de875a09bd7a0aceb7afc2b4f12d80b2fe1f2686487e6b66a2ceb4dc791c",
+          "identical": true
+        },
+        "helper-traces.json": {
+          "native": "0067343f096a346914f5434e988422c9a51da1f20cf4b566348eda25a76054ba",
+          "software": "536ce50ae41418656d223b2a52582700894b67a9dd42596af279c901b207dbbd",
+          "identical": false
+        },
+        "log-inputs.json": {
+          "native": "7be4ebfabfe4d789af4923f7b84f9116a305eb437e5db44a84e8f19fb2c8a166",
+          "software": "7be4ebfabfe4d789af4923f7b84f9116a305eb437e5db44a84e8f19fb2c8a166",
+          "identical": true
+        },
+        "observations.json": {
+          "native": "45aee43ce2cf1ca5607b26a8518417921fcb198f2e5d2ddbe28b8025319237a3",
+          "software": "45aee43ce2cf1ca5607b26a8518417921fcb198f2e5d2ddbe28b8025319237a3",
+          "identical": true
+        }
+      },
+      "proof_sha256": {
+        "native": "bf20a339108f3482ea438c7f62ed1f0d514926d75d2a8efb30be9df25f84c50d",
+        "software": "0c0e320848a4bc25a21ed0791eeb62ca7e55ec70bd0adf0d36b2ef3f025b9856"
+      }
+    },
+    "015": {
+      "programs": 2698920,
+      "survivors": 0,
+      "helper_em_differences": 120,
+      "helper_em_publication_differences": 0,
+      "survivor_lattices_identical": true,
+      "survivors_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": {
+        "certificate-scope.json": {
+          "native": "61e5f7a86816327c6f6f9252629df23c4f67dfe1269f25077afa8c1d92e428b8",
+          "software": "61e5f7a86816327c6f6f9252629df23c4f67dfe1269f25077afa8c1d92e428b8",
+          "identical": true
+        },
+        "grammar.json": {
+          "native": "14233c89013b5f6902b71c1f3149d2363f9925c2a5fe911ada8509b6d08c6610",
+          "software": "14233c89013b5f6902b71c1f3149d2363f9925c2a5fe911ada8509b6d08c6610",
+          "identical": true
+        },
+        "helper-mappings.json": {
+          "native": "ff5283e52c573e2ec0fd6e0ec6de2324b96cab21c005f3ff5b175f68cb8434b6",
+          "software": "ff5283e52c573e2ec0fd6e0ec6de2324b96cab21c005f3ff5b175f68cb8434b6",
+          "identical": true
+        },
+        "helper-traces.json": {
+          "native": "a3f8916d7aab228c7552f23f5a9f6377a6c5f880d6e8d320020e06c4fbd25f19",
+          "software": "d8452211408f62a1743055392cb2e5ee5732518440c88743a0238786948dee0e",
+          "identical": false
+        },
+        "log-inputs.json": {
+          "native": "7be4ebfabfe4d789af4923f7b84f9116a305eb437e5db44a84e8f19fb2c8a166",
+          "software": "7be4ebfabfe4d789af4923f7b84f9116a305eb437e5db44a84e8f19fb2c8a166",
+          "identical": true
+        },
+        "observations.json": {
+          "native": "43a353da270aff05a2dd2a364bb904b4c45a2152e69961a7c7140fb4575100c3",
+          "software": "43a353da270aff05a2dd2a364bb904b4c45a2152e69961a7c7140fb4575100c3",
+          "identical": true
+        }
+      },
+      "proof_sha256": {
+        "native": "b1dc52ad9b526e22565fd2c4aac59c4e0294c5378b9a14c6dd0419724bc01692",
+        "software": "1b46b9d11fb4d8dd2a4ca745623462273aefc86d499c1ecd2b905652c2803d45"
+      }
+    }
+  },
+  "limits": "Separate leaf sets are preserved and certified independently. Equal consumer survivor/first-kill results on these loans do not imply equal elementary values or general CPU/backend equivalence."
+}

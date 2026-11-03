@@ -1,0 +1,17 @@
+{
+  "baseline_revision": "27e56a3b9fddbc9e1255e5035fa458972a0aa180",
+  "application_head": "93ad8caa2008753550b185a44efaa5c0ba8c37ae",
+  "files": [
+    {
+      "path": "crates/calc-func/src/ported/regression_forecast_family.rs",
+      "working_sha256": "b31b5c48cedd7a1971dea37753d9dfbd908af013a7881e5e1d03a45ac3474c0f",
+      "baseline_sha256": "8b2921f0a2a845383f0a923c6d53bbd120cb81d99891afab359423807f7ef3d9"
+    },
+    {
+      "path": "crates/calc-func/src/ported/bessel.rs",
+      "working_sha256": "31dc4947751eb72fc73e89229764678e24ed428b7a756468176fe0caedb0a5ca",
+      "baseline_sha256": "56bcac974b73498fdbb098082c100ccfa943f011b4d06e0c9d3e18f38fb5262f"
+    }
+  ],
+  "scope": "Same current application and captured inputs; only the two numerical kernel files temporarily use their cleared pre-round versions. Current source is restored in finally."
+}

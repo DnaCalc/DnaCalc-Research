@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "function": "VARP",
+  "programs": 1040625,
+  "observations": 1099,
+  "survivors": 0,
+  "counts": {
+    "program_executions": 2132239,
+    "certified_first_kills": 1040625
+  },
+  "arithmetic_cache": {
+    "hits": 84031104,
+    "misses": 57233,
+    "maxsize": 262144,
+    "currsize": 57233
+  },
+  "distinct_exact_operations": 57233,
+  "seconds": 672.1464462808799,
+  "root_cache": {
+    "hits": 0,
+    "misses": 2132239,
+    "maxsize": 65536,
+    "currsize": 65536
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233"
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/complete-stats-frozen/scoped.jsonl": "40feee91d703de24b489bef88292c40e86d755d66da209e21de97a869cdfb402",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-VARP-native/first-kills.jsonl": "62cf7bad1bf5f6d526002f2505e561133ce9aa576eb1fbe67fb22d4482381110",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-VARP-native/profiles.jsonl": "82e092b5c62c5fd0d0ff216582e1cae8ce968754d910dcbea508d0803fc5d5c2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-VARP-native/summary.json": "ac3e322668a9bdf474303a862bf9a25132a164cd9f7df2880a951b843de28034",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-VARP-native/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/structural-VARP-native/witnesses.jsonl": "590e9b4f804450f88530ee93332bfbf406d305b06ecac9ee3b87396282446def"
+  },
+  "limits": "Finite declared programs only. Coherent precision regions and original transport assumptions. Zero signs are immaterial here: every divisor is a positive integer, roots publish zero with the product zero policy. No alias identity, private Excel precision, extra branch, fitted cutoff or complete kernel is inferred."
+}

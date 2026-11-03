@@ -1,0 +1,625 @@
+{
+  "complete": true,
+  "failed": 1102,
+  "counts": {
+    "last_bits_only": 765,
+    "gross_or_unavailable": 337
+  },
+  "groups": [
+    {
+      "category": "last_bits_only",
+      "function": "CUMPRINC",
+      "cause": "last_bits",
+      "cells": 153
+    },
+    {
+      "category": "last_bits_only",
+      "function": "PPMT",
+      "cause": "last_bits",
+      "cells": 92
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "BESSELY",
+      "cause": "numeric_value",
+      "cells": 80
+    },
+    {
+      "category": "last_bits_only",
+      "function": "IPMT",
+      "cause": "last_bits",
+      "cells": 79
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "BESSELJ",
+      "cause": "numeric_value",
+      "cells": 76
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CUMIPMT",
+      "cause": "last_bits",
+      "cells": 66
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BINOM.DIST",
+      "cause": "last_bits",
+      "cells": 61
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "VAR.S",
+      "cause": "numeric_value",
+      "cells": 44
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BESSELI",
+      "cause": "last_bits",
+      "cells": 43
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "VAR.P",
+      "cause": "numeric_value",
+      "cells": 40
+    },
+    {
+      "category": "last_bits_only",
+      "function": "GEOMEAN",
+      "cause": "last_bits",
+      "cells": 39
+    },
+    {
+      "category": "last_bits_only",
+      "function": "VAR.S",
+      "cause": "last_bits",
+      "cells": 32
+    },
+    {
+      "category": "last_bits_only",
+      "function": "VAR.P",
+      "cause": "last_bits",
+      "cells": 23
+    },
+    {
+      "category": "last_bits_only",
+      "function": "LINEST",
+      "cause": "last_bits",
+      "cells": 19
+    },
+    {
+      "category": "last_bits_only",
+      "function": "VARPA",
+      "cause": "last_bits",
+      "cells": 14
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "VARP",
+      "cause": "numeric_value",
+      "cells": 14
+    },
+    {
+      "category": "last_bits_only",
+      "function": "STDEV.S",
+      "cause": "last_bits",
+      "cells": 13
+    },
+    {
+      "category": "last_bits_only",
+      "function": "STDEVA",
+      "cause": "last_bits",
+      "cells": 13
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "PPMT",
+      "cause": "numeric_value",
+      "cells": 12
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "STDEV",
+      "cause": "numeric_value",
+      "cells": 12
+    },
+    {
+      "category": "last_bits_only",
+      "function": "POISSON.DIST",
+      "cause": "last_bits",
+      "cells": 11
+    },
+    {
+      "category": "last_bits_only",
+      "function": "STDEV.P",
+      "cause": "last_bits",
+      "cells": 10
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BESSELJ",
+      "cause": "last_bits",
+      "cells": 10
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "BINOM.DIST",
+      "cause": "numeric_value",
+      "cells": 10
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "Infix &",
+      "cause": "text_value",
+      "cells": 9
+    },
+    {
+      "category": "last_bits_only",
+      "function": "NEGBINOM.DIST",
+      "cause": "last_bits",
+      "cells": 5
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "VAR",
+      "cause": "numeric_value",
+      "cells": 5
+    },
+    {
+      "category": "last_bits_only",
+      "function": "VAR",
+      "cause": "last_bits",
+      "cells": 5
+    },
+    {
+      "category": "last_bits_only",
+      "function": "STDEV",
+      "cause": "last_bits",
+      "cells": 5
+    },
+    {
+      "category": "last_bits_only",
+      "function": "GAMMA.DIST",
+      "cause": "last_bits",
+      "cells": 4
+    },
+    {
+      "category": "last_bits_only",
+      "function": "HYPGEOM.DIST",
+      "cause": "last_bits",
+      "cells": 4
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "CUMPRINC",
+      "cause": "numeric_value",
+      "cells": 4
+    },
+    {
+      "category": "last_bits_only",
+      "function": "LOGEST",
+      "cause": "last_bits",
+      "cells": 4
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "RATE",
+      "cause": "numeric_value",
+      "cells": 3
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "<",
+      "cause": "not_modeled",
+      "cells": 3
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "BESSELI",
+      "cause": "numeric_value",
+      "cells": 3
+    },
+    {
+      "category": "last_bits_only",
+      "function": "Z.TEST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "ZTEST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BETADIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BETAINV",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BINOM.DIST.RANGE",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BINOMDIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CHIDIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CONFIDENCE",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "FDIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "FINV",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "GAMMADIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "GAMMAINV",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "HYPGEOMDIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "LOGINV",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "NEGBINOMDIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "POISSON",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "TDIST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "TINV",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "TTEST",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "GETPIVOTDATA",
+      "cause": "not_modeled",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "DURATION",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "IRR",
+      "cause": "numeric_value",
+      "cells": 2
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "ODDFYIELD",
+      "cause": "numeric_value",
+      "cells": 2
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "YIELD",
+      "cause": "numeric_value",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "VARP",
+      "cause": "last_bits",
+      "cells": 2
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "HYPGEOM.DIST",
+      "cause": "numeric_value",
+      "cells": 2
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "ROUND",
+      "cause": "capture_failure",
+      "cells": 2
+    },
+    {
+      "category": "last_bits_only",
+      "function": "NORM.S.DIST",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BETA.DIST",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "BETA.INV",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CHISQ.DIST.RT",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CHISQ.INV",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CONFIDENCE.NORM",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "CONFIDENCE.T",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "F.DIST.RT",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "F.INV",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "F.INV.RT",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "GAMMA.INV",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "LOGNORM.INV",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "T.DIST",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "T.DIST.2T",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "T.DIST.RT",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "T.INV.2T",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "T.TEST",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "last_bits_only",
+      "function": "PMT",
+      "cause": "last_bits",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "IPMT",
+      "cause": "numeric_value",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "CUMIPMT",
+      "cause": "numeric_value",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "LINEST",
+      "cause": "numeric_value",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "LOGEST",
+      "cause": "numeric_value",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": ">",
+      "cause": "not_modeled",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "BESSELI",
+      "cause": "type_or_error",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "BESSELJ",
+      "cause": "type_or_error",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "POISSON.DIST",
+      "cause": "numeric_value",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "TRUNC",
+      "cause": "capture_failure",
+      "cells": 1
+    },
+    {
+      "category": "gross_or_unavailable",
+      "function": "N",
+      "cause": "capture_failure",
+      "cells": 1
+    }
+  ],
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/corpus-before/summary.json": "77dba929868c1ad50090361ae642ce6fff11e9b50e22f62c64d16dd5487937da",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round17/resumed/corpus-gram-original-delta.json": "42b7259c091b134f93870acdb1cdf7108c1670912f697991000a6ac4cc476445",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_10y/oracle.capture.json": "9431eac30d0e8b2e779356fecd1a57217a94f29c390f111f07f05d9f33697b03",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "6ca67065035aebd3a2736de2868d5d00bc94d98142c02df88794175af9a469b4",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_10y_iteration/oracle.capture.json": "3c32c4b1436186295b6db03e2e6362b311ef4ad9b78b8de769a196b4de638fbe",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "d4e9f770208f3292baa84771d851f8f654f6b1b4f2c148c8e2d0554146ca077c",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_86f/oracle.capture.json": "2b9a0af9c8af9d2a1b92d48b364120b8c28c1cb8654ad3a2b2a88a0c7e2c8ee8",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "6a37f086b4e40fd5827a256d0349a1bd4893340624fcb5bbfda39a92a7187c3a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/dc_y2o/oracle.capture.json": "b7933c0c8dca059c77c2409d0b78497e1cbe85c7257248e8718a06cbb2e7bae9",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "92200ee3992e40b88ae4cbf1bfb038c58a24f228e89c969f13288c6062f69d44",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-engine/tests/captures/l3/oracle.capture.json": "89db0e6557207f3f70463d0a765df4b8c3684830c4428dfb00f7cd0af35d0749",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "target/corpus-r17-rank-gram/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "89b82773ed4f7b64a64eb8e756e69648423716a589d453853e6f0e283af7b9ac",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml/tests/captures/dc_51ka/oracle.capture.json": "29855d38aad3adbcbecfd48adc9ecf5ea9591d40ccd43300b5911e66c343bcd0",
+    "target/corpus-r17-rank-gram/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "target/corpus-r17-rank-gram/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "6a4bb7a515d19eef894c406cde33bb261996e10f1ba073538b150c01083fb0e5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml/tests/captures/dc_ibp2/oracle.capture.json": "86820e9865002f37365900d62255f2457e6559bb35648d21c7961e3074251570",
+    "target/corpus-r17-rank-gram/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "target/corpus-r17-rank-gram/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "24896a86a3f28e9a1e1868218589c644b7d15df235d6ac74a6f3622c87fd8d3b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-fml/tests/captures/dc_l10u/oracle.capture.json": "cd49400b593455c995cbab364301654f5b71abff75d8cf3b9136ab265cb54f33",
+    "target/corpus-r17-rank-gram/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "target/corpus-r17-rank-gram/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "d720479d622e3e60d7da1fd45b708de24e6d93a5bd17e59d9f44556e59320e8a",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/corpus-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "1cb2f253069e3000504738ecfb1da6d63be82b590fe718956c1692f9c57e4e84",
+    "target/catalogue-r17-rank-gram/evaluations.json": "6daf9aa1235c290e9d122c854573b7bdba7c97bc15c0e7b3a5d591fb3fcc2b33",
+    "target/catalogue-r17-rank-gram/triage.json": "4fa5d7190634c44db697ae1f677dfd77a6469c6a29da7a5d65809ea00efba48a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cdoc_jpha/oracle.capture.json": "0715f78c10c025d3ddd5ae94c00638603bf4b83b6cef3d68ece9d1492a21e66d",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "3434838e5d7e638c748d1569581c9a05b23e40bf1403073f72466c8a2f4cd980",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m1_2/oracle.capture.json": "90e9682f9167a21bc2f09b98bf591d741c32bb4836e4c4d15964a3e35435a2f5",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "481c95755ea7b20340d09856eeddb91599ea8a525f5b3a883d0b0aee2e58e629",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_2/oracle.capture.json": "7979d864021b393e3ed8878bf054081347a819e9b6268b9a45076cde2a37512c",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "710c4f277ce8113e7aa39c81cdfb2b0a1f1b51316b1ab41e4e22665336812027",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_4/oracle.capture.json": "4f95169adf07860a0733f3fbeb112bd89c6e6f7c6c5b9b720a1948a0a6c52e84",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "bc10548e436d130ea7c6b0394a8792321dfea805114b339619d5c7d9fd3b7967",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_5/oracle.capture.json": "a081c92bc67686fb02dee651fd192041c519bf37324319c41a8a3bf3bcd86a44",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "0e3a87280ed64939bebad6ad29d18f35b63aef1678e241c3b8f7e0074d81662e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/cfunc_m3_6/oracle.capture.json": "5c4fed308a0637f2fe8968a377945aa203b1f2f3f9f0c580f91a0586ac15b482",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "30b0d504424e92da5016d418a60871d3e51c5cc8adb6c766909e250f58457e79",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_e00t/oracle.capture.json": "c1d6bab21e84382c38687ce52291f2df34a2745add2d2bd26ec73376c60b7dc1",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "3e546afd0f6a40b9b2ac873febdd119236d509008d70553d3e025c3b588835b0",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_fwpz/oracle.capture.json": "cd43e5aa173f292a67935ee01a2fde3f70066b308c1c0cdaded5dc09f47f4eb3",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "2139af2720125e92cb59cdf703ba41dd4494fb2d9ccbff274809f3a938622b3e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_nzpw/oracle.capture.json": "350617950d36906deedf6caa9e9d2f093f6c30b053bfb6770125f5f0af4231ab",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "61895ee013af3d7af2cdb1e29676a29a25bf03a10dcd5b511356cdbd05a1436f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_q9rb/oracle.capture.json": "bf204ead52b4691069c69b5595bd6041c23e7fb954287837fd09324ee88bd779",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "34c86d3f1c3f5fee893f13750767d4a98db2c176fb788ef979e0a4b0d5474243",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/captures/dc_xrxb/oracle.capture.json": "0e4814baa16e714e350e4180fe54edd21dc563e953fd5a42f1a6ad76edb7296a",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "target/corpus-r17-rank-gram/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "b1094d3ee7c2c32398a275ac695270e7338c0afcd7a7a56adc9b37ee74ff328f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-host/tests/captures/dc_ylr/oracle.capture.json": "fbb227e14cc2f4f14fef5feb07f6353831d875417604a4f3720e40ef6a3245cc",
+    "target/corpus-r17-rank-gram/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+    "target/corpus-r17-rank-gram/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "35f1e265b9a334b05177922f42ba32b8bc724b690534650472b38a71f2ed72ce"
+  },
+  "cells_sha256": "2f8b2a583c8eb1eba0113f71a679871365acdfda092705e35b153e2286af7592",
+  "rule": "Last-bits-only: finite numbers <=16 ULP apart. Larger errors are a triage group, not a mathematical root-cause proof. Capture failures, refusals and missing values remain failures, explicitly distinguished from proven product bugs."
+}
