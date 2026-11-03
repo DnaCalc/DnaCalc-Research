@@ -1,0 +1,150 @@
+{
+  "complete": true,
+  "calls": 250,
+  "matched": 70,
+  "failed": 180,
+  "pass_rate": 0.28,
+  "counts": {
+    "matched_number": 53,
+    "number_vs_number": 109,
+    "error:Num_vs_number": 71,
+    "matched_error:Num": 17
+  },
+  "by_function": {
+    "VAR.S": {
+      "matched_number": 2,
+      "number_vs_number": 8
+    },
+    "VAR.P": {
+      "number_vs_number": 9,
+      "matched_number": 1
+    },
+    "STDEV.S": {
+      "matched_number": 2,
+      "number_vs_number": 8
+    },
+    "STDEV.P": {
+      "number_vs_number": 9,
+      "matched_number": 1
+    },
+    "DEVSQ": {
+      "matched_number": 10
+    },
+    "AVERAGE": {
+      "matched_number": 10
+    },
+    "BESSELJ": {
+      "number_vs_number": 40,
+      "error:Num_vs_number": 37
+    },
+    "BESSELY": {
+      "number_vs_number": 10,
+      "error:Num_vs_number": 8
+    },
+    "BESSELI": {
+      "matched_number": 11,
+      "number_vs_number": 16,
+      "error:Num_vs_number": 26,
+      "matched_error:Num": 10
+    },
+    "EXP": {
+      "matched_number": 6,
+      "matched_error:Num": 1
+    },
+    "SIN": {
+      "matched_number": 3,
+      "matched_error:Num": 3
+    },
+    "COS": {
+      "matched_number": 3,
+      "matched_error:Num": 3
+    },
+    "GEOMEAN": {
+      "matched_number": 4,
+      "number_vs_number": 9
+    }
+  },
+  "admission_error_ids": {
+    "BESSELJ": [
+      "r16-besselj-025",
+      "r16-besselj-027",
+      "r16-besselj-028",
+      "r16-besselj-029",
+      "r16-besselj-030",
+      "r16-besselj-032",
+      "r16-besselj-033",
+      "r16-besselj-034",
+      "r16-besselj-035",
+      "r16-besselj-037",
+      "r16-besselj-038",
+      "r16-besselj-039",
+      "r16-besselj-040",
+      "r16-besselj-042",
+      "r16-besselj-043",
+      "r16-besselj-044",
+      "r16-besselj-045",
+      "r16-besselj-047",
+      "r16-besselj-048",
+      "r16-besselj-049",
+      "r16-besselj-050",
+      "r16-besselj-051",
+      "r16-besselj-052",
+      "r16-besselj-053",
+      "r16-besselj-054",
+      "r16-besselj-055",
+      "r16-besselj-057",
+      "r16-besselj-058",
+      "r16-besselj-059",
+      "r16-besselj-060",
+      "r16-besselj-062",
+      "r16-besselj-063",
+      "r16-besselj-064",
+      "r16-besselj-071",
+      "r16-besselj-073",
+      "r16-besselj-074",
+      "r16-besselj-076"
+    ],
+    "BESSELY": [
+      "r16-bessely-006",
+      "r16-bessely-008",
+      "r16-bessely-009",
+      "r16-bessely-011",
+      "r16-bessely-012",
+      "r16-bessely-014",
+      "r16-bessely-015",
+      "r16-bessely-017"
+    ],
+    "BESSELI": [
+      "r16-besseli-024",
+      "r16-besseli-025",
+      "r16-besseli-026",
+      "r16-besseli-027",
+      "r16-besseli-028",
+      "r16-besseli-029",
+      "r16-besseli-030",
+      "r16-besseli-031",
+      "r16-besseli-032",
+      "r16-besseli-033",
+      "r16-besseli-034",
+      "r16-besseli-035",
+      "r16-besseli-038",
+      "r16-besseli-039",
+      "r16-besseli-040",
+      "r16-besseli-041",
+      "r16-besseli-044",
+      "r16-besseli-045",
+      "r16-besseli-046",
+      "r16-besseli-047",
+      "r16-besseli-052",
+      "r16-besseli-053",
+      "r16-besseli-057",
+      "r16-besseli-058",
+      "r16-besseli-059",
+      "r16-besseli-062"
+    ]
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/r16-published-score/observations.jsonl": "2eddf816fa824c08c618b65d24943d830d94f9c701563311b5edae1aae7ed148"
+  },
+  "limits": "Counts every R16 observation, including repeated inputs. These are250 supplied calls, not179 added distinct bank identities. Expected Num outcomes are recorded Excel error values, not typed not-modelled refusals. This split identifies observed admission/output-type disagreements only; it supplies no fitted cutoff, implemented guard or complete Bessel algorithm."
+}

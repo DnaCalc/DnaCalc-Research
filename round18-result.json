@@ -482,9 +482,10 @@
         "text_value": 9
       },
       "status": "open",
-      "r18_evidence": "Nine failed cells, five unique operands; new CONCAT/Value2 neighbor questions preserve the distinction between surfaces. No text selector or fix adopted.",
+      "r18_evidence": "Nine failed cells, five unique operands; new CONCAT/Value2 neighbor questions preserve the distinction between surfaces. No text selector or fix adopted. Existing3240 chunked first-rounding profiles replayed with independent exact node checks; all reject conditionally on authored Excel operands. Current192 Workbook operands unchanged;9 original text failures remain.",
       "receipts": [
-        "unresolved-regressions.patch"
+        "unresolved-regressions.patch",
+        "number-chunks-current-checked.json"
       ]
     },
     {
@@ -1107,7 +1108,20 @@
     "limits": "Frozen/current score differences predate this round product fix and are not R18 gains. Mixed-arity runtime grouping is retained and checked through unique-ID bijections. Build, CPU, worker, package and settings are provenance, never eligibility values; raw/canonical completeness and consistency are enforced. The accepted synthetic metadata copy is not an Excel observation.",
     "current_pass_rate": 0.28,
     "frozen_pass_rate": 0.276,
-    "frozen_failed": 181
+    "frozen_failed": 181,
+    "outcome_kinds": {
+      "matched_numbers": 53,
+      "matched_errors": 17,
+      "numeric_mismatches": 109,
+      "expected_Num_actual_number": 71,
+      "by_function": {
+        "BESSELJ": 37,
+        "BESSELY": 8,
+        "BESSELI": 26
+      },
+      "receipt": "evidence/round18/r16-outcome-kinds.json",
+      "next_round": "Keep the71 supplied-call admission disagreements in the existing Bessel work package, separate from109 numeric mismatches. Counts include repeats and are not new distinct-bank totals. No sample-fitted cutoff is adopted."
+    }
   },
   "next_packet": {
     "path": "packets/round18",
@@ -1133,9 +1147,10 @@
     "ubs": "Complete staged Python scan:9 files,6 triaged critical findings (two public-hash equalities and two local argv calls reported by two detectors),106 warnings triaged,565 info. The8-current-source scan separately completed with2 public-hash findings. Historical partial scans remain recorded. No zero-critical claim.",
     "main_receipt": "evidence/round18/main-merged-publication-check-complete.log",
     "rust_receipt": "evidence/round18/research-publication-tests.log",
-    "python_receipt": "evidence/round18/python-publication-tests.log"
+    "python_receipt": "evidence/round18/python-publication-tests.log",
+    "notes_only_receipt": "evidence/round18/main-before-text-receipt-check.log"
   },
-  "read_only_review": "Approved by the single read-only review agent: current sources, checkpoint/archive resolution, all indexed hashes, proof/corpus/bank counters and24-line report match tool output. Gross failures and dc-j9k remain open. Fixed-scope product gains and new-capture coverage remain separate.",
+  "read_only_review": "Approved by the single read-only review agent: current sources, checkpoint/archive resolution, all indexed hashes, proof/corpus/bank counters and24-line report match tool output. Gross failures and dc-j9k remain open. Fixed-scope product gains and new-capture coverage remain separate. Later read-only addenda approve the existing text-profile replay and independent R16 outcome-kind recount; all152 pre-review indexed files and27-line report were checked. Final review receipt: evidence/round18/final-addendum-review.json.",
   "evidence_index": "evidence/round18/final-index.json",
   "source_review": "evidence/round18/source-review-r18.json",
   "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18",
@@ -1337,5 +1352,19 @@
     ],
     "limits": "Four operands, nine uncentered/mixed-FMA forms, five independent arithmetic modes and three correctly rounded real-sqrt publication paths. First32 eligible bank rows per function, full outside-scope reasons retained. Q permits optional fusion of any leaf square and sibling sum. Pairwise-difference form, other fusion placements, native root approximations and other arities are outside. Conservative projections discard correlations. Only STDEVP corpus rows contradict all nine forms; many necessary alternatives remain for other names."
   },
-  "source_binding": "evidence/round18/publication-source-binding.json"
+  "source_binding": "evidence/round18/publication-source-binding.json",
+  "text_conversion_replay": {
+    "programs": 3240,
+    "survivors": 0,
+    "observations": 192,
+    "application_matched": 183,
+    "application_failed": 9,
+    "application_pass_rate": 0.953125,
+    "changed_application_operands": 0,
+    "independently_checked_rounding_nodes": 29592,
+    "corruption_controls_rejected": 3,
+    "receipt": "evidence/round18/number-chunks-current-checked.json",
+    "limits": "Fresh replay of the existing R12 family, not additional models or product gains. Operand, application-record and search hashes exactly reproduce their prior recorded hashes. Authored operand bits are verified through current Workbook calculation; historical effective Excel operands remain unobservable. First-rounding decimal magnitude only; second-rounding/sign/notation and all other algorithms remain open. Initial checker invocation rejected an unsupported --out option; corrected positional invocation passed, and its separate failed-attempt resource receipt is retained."
+  },
+  "latest_notes_revision": "7ab0e0af"
 }

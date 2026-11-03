@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "changed-prediction",
+      "rejected": true,
+      "error": "chunk certificate is not a contradiction",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "duplicate-profile",
+      "rejected": true,
+      "error": "noncanonical chunk profile ID",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-rounding-node",
+      "rejected": true,
+      "error": "chunk arithmetic trace differs",
+      "success_receipt_exists": false
+    }
+  ],
+  "checker_sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+  "original_search_sha256": "c862b8f22b183580ba6097bd4617bf86b76743a98ae10d4832f9a694010b43b8",
+  "limits": "Constructed private proof corruptions only. No original operand, capture, source program or answer changed."
+}

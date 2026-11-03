@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "programs": 3240,
+  "survivors": 0,
+  "checked_rounding_nodes": 29592,
+  "observations": 192,
+  "inputs": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/number-inputs-current.json": "cac6df9f114510cd60ca068d56d37b24defb02e14ab09d9f16f9397b5a432a13",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/number-input-current-routes/records.json": "c7809f55bc5613baf7c250d1d5839f430bf777015b18510abf52abdb66a9fc1f",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/number-chunks-current.json": "c862b8f22b183580ba6097bd4617bf86b76743a98ae10d4832f9a694010b43b8",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/number_conversion.py": "f151488e3efcdcb3fe21d5b5b8507a63bbae3e56d6390d8121e29d3d0b2c9163"
+  },
+  "claim": "Every declared chunk profile has an exact contradiction; all trace nodes are checked using separate integer quotient/remainder rounding, without calling the search evaluator or its Lattice rounder.",
+  "limits": "First-rounding decimal magnitude on192 existing authored operands only, conditional on effective Excel operands matching those authored values. No full rendering, fresh Excel validation, fitted rule or product gain.",
+  "checker_sha256": {
+    "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+  }
+}

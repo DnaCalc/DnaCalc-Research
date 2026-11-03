@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "read_only": true,
+  "approved": true,
+  "reviewed_indexed_files": 152,
+  "current_sources": 73,
+  "work_report_lines": 27,
+  "text_profile_labels": 3240,
+  "text_independent_rounding_nodes": 29592,
+  "text_corruption_controls_rejected": 3,
+  "r16_counts": {
+    "matched_numbers": 53,
+    "matched_Num_errors": 17,
+    "numeric_mismatches": 109,
+    "Num_vs_number": 71
+  },
+  "r16_admission_by_function": {
+    "BESSELJ": 37,
+    "BESSELI": 26,
+    "BESSELY": 8
+  },
+  "findings": "None remaining. Current text input/application/search hashes reproduce the prior R12 claim exactly. Scope, historical effective-operand limitation, initial CLI refusal and corrected successful receipt remain explicit.",
+  "limits": "Bounded result approved; no package closure, fitted cutoff, product gain or full-renderer claim. Final commit heads/end time/clean-state wording are filled only after publication."
+}
