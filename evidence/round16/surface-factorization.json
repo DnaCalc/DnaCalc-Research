@@ -1,0 +1,50 @@
+{
+  "complete": true,
+  "functions": {
+    "VAR.S": {
+      "survivors_by_surface": {
+        "array_argument": 0,
+        "separate_arguments": 0
+      },
+      "independent_fixed_profiles_by_surface": 0,
+      "receipts": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/array_argument-VAR.S.json": "dbf0e0f440c544137d4ba063890950011fba27dde1787ef6c87667c92d922c19",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/separate_arguments-VAR.S.json": "5935311b7699cd8bbc4830a7899068d1a1894b1fb49748859fc88ae2320340d8"
+      }
+    },
+    "VAR.P": {
+      "survivors_by_surface": {
+        "array_argument": 0,
+        "separate_arguments": 0
+      },
+      "independent_fixed_profiles_by_surface": 0,
+      "receipts": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/array_argument-VAR.P.json": "30da13c7f055746385261247eefbb79bd44007ff141100851cd746b745ef4d87",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/separate_arguments-VAR.P.json": "5276db022aafbd28065d561151e90c9934f1c9ce20aca74498e980b8018e533a"
+      }
+    },
+    "STDEV.S": {
+      "survivors_by_surface": {
+        "array_argument": 0,
+        "separate_arguments": 0
+      },
+      "independent_fixed_profiles_by_surface": 0,
+      "receipts": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/array_argument-STDEV.S.json": "484e5f819266f4937ed570bbff40e111d13f2d886554d2a97bebade3d81ff0c1",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/separate_arguments-STDEV.S.json": "0087de70ffaeee650ece02f0f13a1ee909d972513016df25a16752e3f66cc3c8"
+      }
+    },
+    "STDEV.P": {
+      "survivors_by_surface": {
+        "array_argument": 1300,
+        "separate_arguments": 0
+      },
+      "independent_fixed_profiles_by_surface": 0,
+      "receipts": {
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/array_argument-STDEV.P.json": "5d3b2804928fcf2e44a73de40c6cc033a5bb2f473aa459c6b2d6f55e04fc1120",
+        "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-checked/separate_arguments-STDEV.P.json": "32cbf436d2a540f092a282c66582f8a369ae2800438cff8068dc9524eca19a27"
+      }
+    }
+  },
+  "limits": "Exact factorization in the declared bounded grammar: choose one fixed profile per public typed-argument array/separate partition, each constrained by every recorded row in that partition. Zero in either partition excludes every such pair. This does not identify private Excel call routing, assume alias identity, collapse environments, test unobserved range/literal surfaces, or justify a fitted selector. R16 requests expose the finer original surfaces and operand echoes."
+}

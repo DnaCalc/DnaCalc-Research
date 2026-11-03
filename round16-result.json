@@ -1,0 +1,277 @@
+{
+  "round": 16,
+  "complete": true,
+  "role": "implementer",
+  "application_measurement_revision": "267f4ea9f02dcdff6af6f9e00e9d8a991138fd1c",
+  "research_implementation_revision": "f413f2b",
+  "evidence_revision": "2a205f5f80da1cf628eadb764ea6eb18f5bb0887",
+  "numeric_product_changes": 0,
+  "program_adopted": false,
+  "r14": {
+    "readings": 44,
+    "raw_files_verified": 63,
+    "canonical_sets": 6,
+    "matched": 21,
+    "failed": 23
+  },
+  "r15_annuity_answers_used": 0,
+  "variance": {
+    "functions": {
+      "AVERAGE": {
+        "programs": 75,
+        "observations": 1040,
+        "survivors": 5
+      },
+      "DEVSQ": {
+        "programs": 350000,
+        "observations": 8717,
+        "survivors": 800
+      },
+      "STDEV": {
+        "programs": 350000,
+        "observations": 1068,
+        "survivors": 0
+      },
+      "STDEV.P": {
+        "programs": 350000,
+        "observations": 1054,
+        "survivors": 0
+      },
+      "STDEV.S": {
+        "programs": 350000,
+        "observations": 1073,
+        "survivors": 0
+      },
+      "STDEVA": {
+        "programs": 350000,
+        "observations": 1046,
+        "survivors": 0
+      },
+      "STDEVP": {
+        "programs": 350000,
+        "observations": 1067,
+        "survivors": 0
+      },
+      "STDEVPA": {
+        "programs": 350000,
+        "observations": 1034,
+        "survivors": 0
+      },
+      "VAR": {
+        "programs": 350000,
+        "observations": 1069,
+        "survivors": 0
+      },
+      "VAR.P": {
+        "programs": 350000,
+        "observations": 1178,
+        "survivors": 0
+      },
+      "VAR.S": {
+        "programs": 350000,
+        "observations": 1382,
+        "survivors": 0
+      },
+      "VARA": {
+        "programs": 350000,
+        "observations": 1044,
+        "survivors": 0
+      },
+      "VARP": {
+        "programs": 350000,
+        "observations": 1099,
+        "survivors": 0
+      },
+      "VARPA": {
+        "programs": 350000,
+        "observations": 1053,
+        "survivors": 0
+      }
+    },
+    "complete_source_index": "evidence/round16/studies-final-index.json",
+    "surface_comparison": "evidence/round16/surface-factorization.json",
+    "scope": "39628 recorded constraints,22924 scoped; length2..32 and stated normal exponent bounds. Original surfaces/environments retained. All exclusions are conditional on recorded transport assumptions."
+  },
+  "bessel": {
+    "guard_labels": 112,
+    "observations": 38,
+    "sole_explanation_survivors": 0,
+    "early_guard_compatible": 48
+  },
+  "rank": {
+    "labels": 48,
+    "observations": 121,
+    "surviving_labels": 2,
+    "distinct_policy_note": "The surviving first/largest norm labels are equivalent in this grammar; neither identifies a coefficient program."
+  },
+  "geomean": {
+    "product_root_labels": 18,
+    "observations": 638,
+    "survivors": 0,
+    "original_reference_misses_included": 2
+  },
+  "bank_before": {
+    "matched": 3230427,
+    "total": 3875128,
+    "failed": 644701,
+    "unread": 116
+  },
+  "bank_after": {
+    "matched": 3230448,
+    "total": 3875172,
+    "failed": 644724,
+    "unread": 116,
+    "shared_gains": 0,
+    "shared_losses": 0
+  },
+  "corpus_original": {
+    "matched": 18812,
+    "total": 20030,
+    "fail": 1131,
+    "external": 73,
+    "circular": 14,
+    "unchanged_evaluation_records": 20016,
+    "workbooks": 21
+  },
+  "corpus_extended": {
+    "awaiting_capture": 2443,
+    "circular_rule": 14,
+    "external_links": 73,
+    "fail": 1055,
+    "failed_or_missing": 1,
+    "failed_or_missing_by_verdict": {
+      "not_run": 1
+    },
+    "formula_cells": 20840,
+    "mismatched": 1050,
+    "pass": 17255,
+    "pass_rate": 0.8279750479846449,
+    "refused": 4
+  },
+  "next_packet": {
+    "path": "packets/round16",
+    "scalar_calls": 250,
+    "scalar_functions": 13,
+    "catalogue_formulas": 810,
+    "existing_context_cells_to_recapture": 1633,
+    "new_excel_answers": 0,
+    "export": "/home/ubuntu/codex-runs/excel-questions-r16.zip",
+    "zip_sha256": "1720990828697ac50f86a6b424bafb62253d209a915b03130f367138fdb85baa"
+  },
+  "checks": {
+    "cargo_xtask_check": "evidence/round16/check-third-merge.log",
+    "passed": 1293,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 2,
+    "python_tests": 56,
+    "lattice_cases": 1504,
+    "research_rust_passed": 69,
+    "research_rust_ignored": 2,
+    "intake_corruptions_rejected": 4,
+    "proof_packet_corruptions_rejected": 9,
+    "synthetic_runner_controls": 6,
+    "windows_filtered_packet_files": 35,
+    "application_route_audits": 3245,
+    "read_only_review": "evidence/round16/read-only-review-final.json",
+    "check_revision_note": "The measured application sources are267f4ea9. A later metadata publication check also covers incoming master changes without attributing new numerical measurements to them.",
+    "publication_ubs": {
+      "exit_code": 3,
+      "status": "No supported source languages among staged metadata files; no source changes since f413f2b. Original source scan and triage remain applicable.",
+      "files": 0
+    },
+    "publication_check": {
+      "path": "evidence/round16/check-publication.log",
+      "passed": 1300,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 2,
+      "application_source_revision": "55bd99d7"
+    }
+  },
+  "artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16",
+  "report": "/home/ubuntu/codex-runs/work-report-16.md",
+  "source_archive_index": "evidence/round16/publication-source-index.json",
+  "limits": "No fitted constant, cutoff, rank tolerance, per-row selector or numerical body is adopted. Bessel bodies/domain boundaries, regression rank/coefficient behavior, GEOMEAN compatibility and complete variance implementations remain open. Native Linux controls are not Windows/Excel readings.",
+  "application_metadata_revision": "27e56a3b",
+  "final_evidence_sha256": {
+    "evidence/round16/application-routes-final-summary.json": "07ab6a9e904192f157fb5a62c00669d3a40876843bfcd4f89790b44579b7c366",
+    "evidence/round16/bank-final-compare.log": "9097ac8269f226538859fa3db95f74e051e5c13fc975cbec0cd7e34d9b95a5c0",
+    "evidence/round16/bank-final-delta.json": "cc6b535cccba1e9bb1ba7ceeb9df24e43641d089ab975f2320172041f45561b5",
+    "evidence/round16/bank-final.log": "f8900b40f8f3d23a8c56a5edb7c4c55f5473647a30966d6aa72acb394863e56d",
+    "evidence/round16/bank-intake-delta.json": "2271c1771a455b66004fbb00fc5949c32c6b08339d177dcbb9a65c8ccc6070bf",
+    "evidence/round16/catalogue-regeneration.json": "285ce9fd17eeace9fe31d6087a60f0e3b990f22572fd819027427c68c7a8d396",
+    "evidence/round16/check-final-merge.log": "4a387adf66c5b22b7af51f1f21a5223eb93f8ac4a3917f5e1815a397b8c27e52",
+    "evidence/round16/check-merged-main.log": "1fdd1532ae3c6321ee5042e991ef0bca60971bb0eb6a77137e80a5acad07a04f",
+    "evidence/round16/check-publication.log": "1b7a648e9bd16f7a3fa4841564d8a99347fd358cefea72264ae465376e98717a",
+    "evidence/round16/check-third-merge.log": "53c2d03e97adaf4ab63bb713d158b0c4775d210f183c256ecc4a28fd31c6e7c0",
+    "evidence/round16/complete-AVERAGE-checked.json": "934d6779d294368ec18fa8cad3958684c7db69d7e89825e70980763dd5b706a2",
+    "evidence/round16/complete-bessel-checked.json": "4f1ab66ded3e3c2dcb4a7a6a536abb4cc85892159bda7417e2824ba4c4148648",
+    "evidence/round16/complete-geomean-checked.json": "5410ddc75de7db59d32c40b0134dda14722a8a6f70833fb0e40b80fc0a3a1388",
+    "evidence/round16/complete-other-coverage.json": "35ce3f45f1ca6f6d92fc87b68b36bfb47487d7cf237f56b33705106f20d7190c",
+    "evidence/round16/complete-rank-checked.json": "d9497ba629a92cc346d7863e26e0a781aae03a252d36cca45c30f439fcc652d7",
+    "evidence/round16/complete-stats-coverage.json": "d8f923987e571b7abd955781f6c666da19055ed354e5812b76158d425485a165",
+    "evidence/round16/complete-stats-scope-extension.json": "628e5e9656f075153297a7248f5f71152b8424b87a8bd7cc8299cb876a862f77",
+    "evidence/round16/corpus-final-delta.json": "486b06cc6f81c83003c1a2f178e3079f1bf7b975f8c1522dd7d91198e6f9ce42",
+    "evidence/round16/corpus-original-scope-delta.json": "085b487aecaeaaf4772ef203a8f1a1ca61678af2f0015848f21e34feef7ca454",
+    "evidence/round16/corruption-controls.json": "0c087444cba2a51c97e802ee461c7a8cc42535d8968afbab124707950859fc07",
+    "evidence/round16/failing-first-product-tests.patch": "66b73c3314d7ae87de814aa4dd85dd39a14bf60dbf25da286ff114e25d80fd8c",
+    "evidence/round16/intake-controls.json": "869150d6f99a3b57f392c1a7d74586b9f7b42475389a750b8954f37fc5a04460",
+    "evidence/round16/intake-verified.json": "e2f52f4070826936ac5020b4a15dd21733bc45243bd0ee13303bc9f9a675e260",
+    "evidence/round16/intake.json": "d2ed3aa94dcb1659fc0b4a44a6766c58b27148f9fdb3ef373c48aef762f64721",
+    "evidence/round16/line-ending-after.json": "815ddced017cf13cd5639c847c4e029c8467fb0ee3548cdb99b6f9bce728c262",
+    "evidence/round16/packet-export.json": "22f6cfd0812d153bc469ea167ff7900d93a11e09ffde6994920c9bfe0b01bf7e",
+    "evidence/round16/packet-runner-controls.json": "3fc744fe155683c8b1d4e8033434d6af92d467298fce5cfc66eb325ade8b41f0",
+    "evidence/round16/packet-windows-checkout-bytes.json": "e48a71a794eaa1ec145be80e39769c615653a42b353df35583554e6260090563",
+    "evidence/round16/product-failing-first-final.log": "65fb75b91f9bdf435486cd4752b76252248a18c494cc38f7b54d1e2b972a8d8c",
+    "evidence/round16/publication-source-index.json": "73efb239437062511e5d0540c528faf55f6a8a0ecc0b30dfca1226384781b2be",
+    "evidence/round16/python-tests-final.log": "ea60fd2b7dd6ec071317563a66c5d57268ed15b5840eb2474ebd84255b11bbcf",
+    "evidence/round16/read-only-review-final.json": "18c09e0e7a6036851c942b2de57e31d3fafdd247ac6817755215767d025512db",
+    "evidence/round16/read-only-review-interim.json": "9774bd0595426aaf0470caa3a957020daf1277750e83b3b7449eb874f7286132",
+    "evidence/round16/research-build-publication.log": "8b741fdbcb97f347a5eb62fbc9b9004180fd587175ac0b7db12c4daf73b93c9c",
+    "evidence/round16/research-rust-tests-final.log": "1a791ee2e0edeb1fd716fb6df72b259545fd5de400be1b688d2190534fbe2956",
+    "evidence/round16/research-rust-tests-postpull.log": "966fd3031eb7877eef2a86a97a1ffc451abed80ba4bef40fc35bed404eeb005a",
+    "evidence/round16/research-tests-publication.log": "6cbaca316cbdea72e3a4dff32ef53ac2e107ca1b934b70cc56e3d5dbe80aa500",
+    "evidence/round16/round16-questions-checked.json": "7700cd789fc68b4a22ef4f656cc816fe4ddf53c7515f377cf4bb90908965e1f3",
+    "evidence/round16/studies-final-index.json": "48cf08525b2b205eabcf83220704ebb99af096de0704e7dde8ec9498ac60332d",
+    "evidence/round16/surface-factorization.json": "068059a8c6ffc66183c61fdfc2c0716cd9eee4ab364af40ad6d1d9c69fc608d3",
+    "evidence/round16/ubs-main-merge-triage.json": "10102f8306a5ede7c33fe721a0796865ab79d0f112a829d6dbe78b7f97766c30",
+    "evidence/round16/ubs-research-triage.json": "a37fc15b39168d377ba9f40168131132a6bb086b0ce67514c7d5457759b95def",
+    "evidence/round16/variance/AVERAGE-checked.json": "934d6779d294368ec18fa8cad3958684c7db69d7e89825e70980763dd5b706a2",
+    "evidence/round16/variance/DEVSQ-checked.json": "a4597fc75fae591ab59acba31b5a2bf45995a5f67dd97329ee186304e8a32e6c",
+    "evidence/round16/variance/STDEV-checked.json": "d677ea4c73dd03775d20edd85cb3b14e28c18b2e9f235d1102b4356d3edd6db0",
+    "evidence/round16/variance/STDEV.P-checked.json": "56a9e75d043a61cb6c321583a8b9556c23e07b2a42bb2abb52c3feb9331a9c67",
+    "evidence/round16/variance/STDEV.S-checked.json": "448c0589edc512f302ca1199293a2d41017e44543feefaf5bda187e67642ee5c",
+    "evidence/round16/variance/STDEVA-checked.json": "c899c7b0a12c89966e4574ef72ac834dfe7a2e7791b37f518246bb29ef44dcdb",
+    "evidence/round16/variance/STDEVP-checked.json": "608f33c498a4157b72ee31c21fe52233b0e88f5e656880ed03d33f04e256852d",
+    "evidence/round16/variance/STDEVPA-checked.json": "d20c9e5df86fc4bca73850148ff3251a638e0ceb8fc1ab704cbda9d21b7b779f",
+    "evidence/round16/variance/VAR-checked.json": "adf7a1ca74b1c34b2f36959439e953f01a374ed771fc5d3299b6b9faa9e208a3",
+    "evidence/round16/variance/VAR.P-checked.json": "49f78ece231d59b713141ed63664b28a20a2df7fd5a7d5e5138d28e1cec46b42",
+    "evidence/round16/variance/VAR.S-checked.json": "f56d60f6b577c778bc090396ee6a6671117676e9a3d42597e4e056200c57d8d5",
+    "evidence/round16/variance/VARA-checked.json": "e0a8ddc297ae592eaa4e93fd44974f7167f11364e4dca4c36f5265c388d05ac9",
+    "evidence/round16/variance/VARP-checked.json": "d29439aa13b8bbd00de76b6dff4d69845cc19e057e52010945b0aec9fef49ac4",
+    "evidence/round16/variance/VARPA-checked.json": "a2bdeeec4c63e35a051ec307ff7085e7645d63459d94c44ce4edb2202da89a4d",
+    "evidence/round16/variance/current-build-all-STDEV.P.json": "ef8c1914cda322121b8bea3bfe83f360b945e7098bb2b9bcd81efdb878940a50",
+    "evidence/round16/variance/current-build-all-STDEV.S.json": "c7f3638f2ae4b85e848fc9953bfc8597c3db5b1b6ef168ed57fe53089b4981b0",
+    "evidence/round16/variance/current-build-all-VAR.P.json": "20575de98c4a413968e375c37da1b471f1ca86f444faa6524fcc779bb4469892",
+    "evidence/round16/variance/current-build-all-VAR.S.json": "ce52284bebbb12fde734edaeaa1716376bd943c19dca9aca595e6cf75a19db92",
+    "evidence/round16/variance/current-build-array_argument-STDEV.P.json": "122521b165b1ab11940e898f6231a583891d553564aa83c4a4816de62bd32d52",
+    "evidence/round16/variance/current-build-array_argument-STDEV.S.json": "0502f7b988b9b9f8290ebb114169aa23f4d280bff8ce19600a3ec97c9d988952",
+    "evidence/round16/variance/current-build-array_argument-VAR.P.json": "01df5960bc83ca1a1a54e8ce00193f02d6fd4f5a57e20e0dcc56c074dac2ba1f",
+    "evidence/round16/variance/current-build-array_argument-VAR.S.json": "8e67f501feebfe13391162578bf5163864fc2be279b101a555c8683372bf9a32",
+    "evidence/round16/variance/current-build-separate_arguments-STDEV.P.json": "024b45d58e7982dafb4bec2a88b5f023edbc2e30e5128a386923f23ea9cc1dd5",
+    "evidence/round16/variance/current-build-separate_arguments-STDEV.S.json": "b56cb0e1eed2c8bd178ba4d461252fb4544800a91cdb35e50e04a3377326af8a",
+    "evidence/round16/variance/current-build-separate_arguments-VAR.P.json": "4d24fce5ac4fb062873dcb552561c5191b2a0738969e7dfa92b98a049df268cf",
+    "evidence/round16/variance/current-build-separate_arguments-VAR.S.json": "d9eb3263ee59b5512f815bda0c9b6a6ce8357a4b5123779331e2c96c1ee3d0b0",
+    "evidence/round16/variance/surface-array_argument-STDEV.P.json": "5d3b2804928fcf2e44a73de40c6cc033a5bb2f473aa459c6b2d6f55e04fc1120",
+    "evidence/round16/variance/surface-array_argument-STDEV.S.json": "484e5f819266f4937ed570bbff40e111d13f2d886554d2a97bebade3d81ff0c1",
+    "evidence/round16/variance/surface-array_argument-VAR.P.json": "30da13c7f055746385261247eefbb79bd44007ff141100851cd746b745ef4d87",
+    "evidence/round16/variance/surface-array_argument-VAR.S.json": "dbf0e0f440c544137d4ba063890950011fba27dde1787ef6c87667c92d922c19",
+    "evidence/round16/variance/surface-separate_arguments-STDEV.P.json": "32cbf436d2a540f092a282c66582f8a369ae2800438cff8068dc9524eca19a27",
+    "evidence/round16/variance/surface-separate_arguments-STDEV.S.json": "0087de70ffaeee650ece02f0f13a1ee909d972513016df25a16752e3f66cc3c8",
+    "evidence/round16/variance/surface-separate_arguments-VAR.P.json": "5276db022aafbd28065d561151e90c9934f1c9ce20aca74498e980b8018e533a",
+    "evidence/round16/variance/surface-separate_arguments-VAR.S.json": "5935311b7699cd8bbc4830a7899068d1a1894b1fb49748859fc88ae2320340d8",
+    "evidence/round16/variance-backends.json": "2c564b6a5000383b5e414a4a456959c386760c4eac72dc2120181e59a7e8ba8e",
+    "evidence/round16/witness-status-delta.json": "b11028258de0fabfa0f96e49cbf231f672adf47689d9db4850c56b59f2a3e299"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "complete": true,
+  "packet_files_checked": 35,
+  "core_autocrlf": true,
+  "files": [
+    {
+      "path": "packets/round16/README.txt",
+      "sha256": "7f5ea8ab89a128a2464477116eb5c25cd913c447ed9a8d93c102b0d14689216f"
+    },
+    {
+      "path": "packets/round16/RUN-R16.ps1",
+      "sha256": "00068cc53f35b22bcc5b9b03803a10046d0ea9e1050c0395fd093b1d110265b4"
+    },
+    {
+      "path": "packets/round16/application-predictions-AVERAGE.jsonl",
+      "sha256": "d7154a9a6d5b6a703839b875128e5e4049394d8fa4bb07a5238b23d1aa843d6d"
+    },
+    {
+      "path": "packets/round16/application-predictions-BESSELI.jsonl",
+      "sha256": "44ed5826fab62f6a55f7da1896e96d8548dab223a142fabc9483574ffad79935"
+    },
+    {
+      "path": "packets/round16/application-predictions-BESSELJ.jsonl",
+      "sha256": "cb8649f4f76ffec99c260ee5d40763c825afecb520fca8cedfdb6e4c09428434"
+    },
+    {
+      "path": "packets/round16/application-predictions-BESSELY.jsonl",
+      "sha256": "b4e3289b3f5685e528989618a80ebb9ae2a3c15434ecc2242ccf0fa0d7282842"
+    },
+    {
+      "path": "packets/round16/application-predictions-COS.jsonl",
+      "sha256": "558777dbd956fd44fbc887d3eadea7f333eea2af5c583db4fd83ff6b5fae1e2b"
+    },
+    {
+      "path": "packets/round16/application-predictions-DEVSQ.jsonl",
+      "sha256": "368708fbd30debf6e4a1195148a0091934bc5259a6ea84c5e4453c576670c6db"
+    },
+    {
+      "path": "packets/round16/application-predictions-EXP.jsonl",
+      "sha256": "534527498e4d4d211569d5eb79cf62c81197205a767d8219954f2bd222934c64"
+    },
+    {
+      "path": "packets/round16/application-predictions-GEOMEAN.jsonl",
+      "sha256": "2cdf4f1b8bf4d580bb23129ae997f8c631514c399bc4acd1341a22668f9fc883"
+    },
+    {
+      "path": "packets/round16/application-predictions-SIN.jsonl",
+      "sha256": "2d46ee748b3b4faa66e2c97a7f8677fda0c0784b5a08082bec347fa26d18b429"
+    },
+    {
+      "path": "packets/round16/application-predictions-STDEV.P.jsonl",
+      "sha256": "d528ee7621f514d3fe45c75a6fe66e9ec53a98623bab796487525925d5601b44"
+    },
+    {
+      "path": "packets/round16/application-predictions-STDEV.S.jsonl",
+      "sha256": "ffc329c34d70f332da243604b9743913425a74d5b8e70de3dd60a129cef20a01"
+    },
+    {
+      "path": "packets/round16/application-predictions-VAR.P.jsonl",
+      "sha256": "9cb74d2aff49a6dd7080407cc084d88b944fcc316e1082807a4bb5c81cc8ed0d"
+    },
+    {
+      "path": "packets/round16/application-predictions-VAR.S.jsonl",
+      "sha256": "10777294a141146d586e2b41def12b793533173fd5cdf91fb8e5c478fd9f3caf"
+    },
+    {
+      "path": "packets/round16/application-predictions-catalogue.jsonl",
+      "sha256": "9833a58e29d0243f99b6cf4be6646593ebc3ba6c3ee140ecfc9c3b6097bb59e8"
+    },
+    {
+      "path": "packets/round16/batches.json",
+      "sha256": "14972c1ba6fbd1bb5e6e634abe955216eaadfa1b50a2ae9869b2cf446d9d3194"
+    },
+    {
+      "path": "packets/round16/catalogue-questions.json",
+      "sha256": "215dae16d147b661634f7a1a253455c86a7cbb824efb3d5d5ad90f6d36e19a22"
+    },
+    {
+      "path": "packets/round16/manifest.json",
+      "sha256": "2a100269e03c4f838940b1c94f4fc4c5ed8bbdd9cb7342fc6b65dd8577957102"
+    },
+    {
+      "path": "packets/round16/question-summary.json",
+      "sha256": "58a6e6094799ae92126730957c70ef578dd5acf9e0e2d81c7a9348f1cb55250b"
+    },
+    {
+      "path": "packets/round16/requests-AVERAGE.json",
+      "sha256": "a529d04c019ef5600a1ace1befaee1df21469e80b383452460f23db85e57e026"
+    },
+    {
+      "path": "packets/round16/requests-BESSELI.json",
+      "sha256": "92ea972a669d54790be2657f5318c8d894973de793e763e4824b757a114123f2"
+    },
+    {
+      "path": "packets/round16/requests-BESSELJ.json",
+      "sha256": "9b4b861a923cc9821bd2b53c4d20377dcfcb48aead9722ef61e2b1db82d5537c"
+    },
+    {
+      "path": "packets/round16/requests-BESSELY.json",
+      "sha256": "f750acda66c4d9b5f955cf7f832d0d13eae8e4104d5587e90cf0a2722b1e4b9c"
+    },
+    {
+      "path": "packets/round16/requests-COS.json",
+      "sha256": "eaaffd13b1586290c65155a0495015e5f4a8d71501b5e7aaaaf275cba8acb695"
+    },
+    {
+      "path": "packets/round16/requests-DEVSQ.json",
+      "sha256": "abe63494351a81da9760da4ee221b821208888a9c04d4b2f40b19968245eee5d"
+    },
+    {
+      "path": "packets/round16/requests-EXP.json",
+      "sha256": "2a00bc55a8c0763dbcd0e0aa3098d85bcdb06215f4000139d2d07a93ede2d933"
+    },
+    {
+      "path": "packets/round16/requests-GEOMEAN.json",
+      "sha256": "b465bb04e308b2bedcb20d32b4d287ed4a74b07fb9943a033ca31b6e9792afdc"
+    },
+    {
+      "path": "packets/round16/requests-SIN.json",
+      "sha256": "200c54cd7fb761d1eab5eb03e78e458c1449af79abf690e9a7ef7c61929f8288"
+    },
+    {
+      "path": "packets/round16/requests-STDEV.P.json",
+      "sha256": "8c88fbaf8f9426a5dbedc0a877502249f4a703382a061928395ae9844ff264ef"
+    },
+    {
+      "path": "packets/round16/requests-STDEV.S.json",
+      "sha256": "95e437fc405effb42506b7578e87676473ff1469462ffde0a2237e5d410d18b5"
+    },
+    {
+      "path": "packets/round16/requests-VAR.P.json",
+      "sha256": "83686e64653b5ab0c4510fd7008c324dc72de47e668ef48c612f03d3a0389e4d"
+    },
+    {
+      "path": "packets/round16/requests-VAR.S.json",
+      "sha256": "9e2f990498a325e31c7ff92f884f800aebee9c456122fd72cd714e4633c00ce5"
+    },
+    {
+      "path": "packets/round16/selection.json",
+      "sha256": "2c10f73440d4ce69f6b1890626ba83de3256a14f31c1538161f74532f520eb4e"
+    },
+    {
+      "path": "packets/round16/sheet-dcj9k_r16.txt",
+      "sha256": "dec335ca02dc281e2c616e440cc30fd63f8201d95071144ed43372c649355fc5"
+    }
+  ],
+  "limits": "Git checkout-filter simulation only. No Windows PowerShell or Excel execution is claimed. Main fixture and R14 evidence byte rules already existed; only Research R16 rules were missing."
+}

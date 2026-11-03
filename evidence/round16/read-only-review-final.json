@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "reviewer": "/root/r16_readonly_review",
+  "review_type": "read-only",
+  "finding": "No blocking correctness/provenance finding.",
+  "report_lines": 24,
+  "bank": {
+    "bytes_each": 1361417791,
+    "identical_sha256": "2fac950369799cd0f153fa304cc526165118b060a2c5079f7537bc242d171a7d",
+    "decoded_rows": 3875056,
+    "gains": 0,
+    "losses": 0
+  },
+  "corpus": {
+    "workbooks": 21,
+    "evaluation_records": 20016,
+    "changed_outputs": 0
+  },
+  "verified": {
+    "hashes": 190,
+    "surface_receipts": 8,
+    "windows_filtered_packet_files": 35,
+    "publication_source_files": 76
+  },
+  "assessment": "Report/tracker/result agree with saved outputs and correctly limit measurements to267f4ea9, numerical non-adoption, finite grammars, transport assumptions and pending Windows answers. All source/input/packet/ZIP/archive hashes checked matched. Prior memoization, reference binding and runner fixes remain sound.",
+  "pending": "Publication cargo check and commit/push are operational steps performed by the primary agent after this review."
+}

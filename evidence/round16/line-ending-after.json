@@ -1,0 +1,50 @@
+{
+  "complete": true,
+  "before": [
+    {
+      "repo": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+      "path": "crates/calc-func/tests/fixtures/catalogue/sheet-dcj9k_r16.txt",
+      "raw_sha256": "dec335ca02dc281e2c616e440cc30fd63f8201d95071144ed43372c649355fc5",
+      "windows_filtered_sha256": "dec335ca02dc281e2c616e440cc30fd63f8201d95071144ed43372c649355fc5",
+      "identical": true
+    },
+    {
+      "repo": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "path": "packets/round16/requests-VAR.S.json",
+      "raw_sha256": "9e2f990498a325e31c7ff92f884f800aebee9c456122fd72cd714e4633c00ce5",
+      "windows_filtered_sha256": "99cedd628482b96020386060fa367f4a26584b6fba4e5fb3c0b12e12e95d1c15",
+      "identical": false
+    },
+    {
+      "repo": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "path": "evidence/round16/product-failing-first-final.log",
+      "raw_sha256": "65fb75b91f9bdf435486cd4752b76252248a18c494cc38f7b54d1e2b972a8d8c",
+      "windows_filtered_sha256": "c56a96e0ab6d0908d8df6738a95edc081dcb1c308e9028fe5b0c8f64032f9c23",
+      "identical": false
+    }
+  ],
+  "after": [
+    {
+      "repo": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+      "path": "crates/calc-func/tests/fixtures/catalogue/sheet-dcj9k_r16.txt",
+      "raw_sha256": "dec335ca02dc281e2c616e440cc30fd63f8201d95071144ed43372c649355fc5",
+      "windows_filtered_sha256": "dec335ca02dc281e2c616e440cc30fd63f8201d95071144ed43372c649355fc5",
+      "identical": true
+    },
+    {
+      "repo": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "path": "packets/round16/requests-VAR.S.json",
+      "raw_sha256": "9e2f990498a325e31c7ff92f884f800aebee9c456122fd72cd714e4633c00ce5",
+      "windows_filtered_sha256": "9e2f990498a325e31c7ff92f884f800aebee9c456122fd72cd714e4633c00ce5",
+      "identical": true
+    },
+    {
+      "repo": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+      "path": "evidence/round16/product-failing-first-final.log",
+      "raw_sha256": "65fb75b91f9bdf435486cd4752b76252248a18c494cc38f7b54d1e2b972a8d8c",
+      "windows_filtered_sha256": "65fb75b91f9bdf435486cd4752b76252248a18c494cc38f7b54d1e2b972a8d8c",
+      "identical": true
+    }
+  ],
+  "notes": "The main fixtures subtree and R14 evidence already preserve bytes. Extend the existing Research R15 rules to R16; packet/proof bytes stay identical with core.autocrlf=true. No request, answer, runner, manifest or exported ZIP changes."
+}

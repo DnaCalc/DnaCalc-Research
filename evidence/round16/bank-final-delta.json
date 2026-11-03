@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "application_revision": "267f4ea9f02dcdff6af6f9e00e9d8a991138fd1c",
+  "decoded_rows": 3875056,
+  "matched": 3230448,
+  "total": 3875172,
+  "failed": 644724,
+  "unread": 116,
+  "changed_outputs": 0,
+  "changed_expected": 0,
+  "shared_gains": 0,
+  "shared_losses": 0,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-ingested.jsonl": "2fac950369799cd0f153fa304cc526165118b060a2c5079f7537bc242d171a7d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-final.jsonl": "2fac950369799cd0f153fa304cc526165118b060a2c5079f7537bc242d171a7d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-final.log": "f8900b40f8f3d23a8c56a5edb7c4c55f5473647a30966d6aa72acb394863e56d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-final-compare.log": "9097ac8269f226538859fa3db95f74e051e5c13fc975cbec0cd7e34d9b95a5c0"
+  },
+  "limits": "Existing witness compare checked every input, selected result, recorded answer, source and environment. Every unread row remains a failure in the judge denominator. R14 intake changes21 matches/23 failures are new coverage, not product gains."
+}

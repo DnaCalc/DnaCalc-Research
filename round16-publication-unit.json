@@ -1,7 +1,7 @@
 {
   "id": "dc-j9k-r16-publication",
   "role": "implementer",
-  "application_revision": "ad34b1ad494827aa7b365e629137a9df9e6c3668",
+  "application_revision": "267f4ea9f02dcdff6af6f9e00e9d8a991138fd1c",
   "original_search_application_revision": "8b3d1c163d2062b743791e57487e10db5297e539",
   "source_tiers": {
     "tier1": [
@@ -109,7 +109,8 @@
     "racer/x87_native.c": "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1",
     "racer/x87_probe.rs": "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e",
     "racer/x87_programs.py": "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7",
-    "round16-unit.json": "59d0936782052347a853d3d5785279f71e38a93ab960d0c53411051c8548d9b0"
+    "round16-unit.json": "59d0936782052347a853d3d5785279f71e38a93ab960d0c53411051c8548d9b0",
+    ".gitattributes": "5cc7ba8b5d69356a724fe40a590c0b246f63f37d153502e05f07e60459f710d2"
   },
   "artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16",
   "new_packet": "packets/round16",
@@ -119,5 +120,8 @@
     "Complete-program adoption requires all recorded answers plus zero corpus/bank losses.",
     "Earlier searches bind their original executable and archive; later application-route measurements bind their own build.",
     "Every unread/refused/missing row remains counted in product statistics."
-  ]
+  ],
+  "route_audit": true,
+  "final_application_build": "Use DNA_RESEARCH_UNIT=round16-publication-unit.json; earlier guards and search archives retain their own original revisions.",
+  "binary_sha256": "847d8437d9ccb1084a406ccd923d2773c710ede49282781103f9dd87cd07bc95"
 }

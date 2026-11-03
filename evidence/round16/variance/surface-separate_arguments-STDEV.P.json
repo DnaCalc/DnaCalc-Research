@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "function": "STDEV.P",
+  "programs": 350000,
+  "observations": 1034,
+  "survivors": 0,
+  "counts": {
+    "program_executions": 580705,
+    "certified_first_kills": 350000
+  },
+  "arithmetic_cache": {
+    "hits": 9882583,
+    "misses": 9833,
+    "maxsize": 262144,
+    "currsize": 9833
+  },
+  "distinct_exact_operations": 9833,
+  "seconds": 68.64944335212931,
+  "root_cache": {
+    "hits": 0,
+    "misses": 580705,
+    "maxsize": 65536,
+    "currsize": 65536
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "a884df26ea96c2387e92a8689bec353160350e96c9bf51038ab7adbe82218d00",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233"
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-scopes/separate_arguments.jsonl": "db22b492642f314eed1f051527c2085a0cd7d152f7f7a7a5e90555edc9fcf276",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-separate_arguments-STDEV.P/first-kills.jsonl": "16daf6e606cd02327a2f2a72add65bcd1a16b12b651fb8451186cc26fad25faa",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-separate_arguments-STDEV.P/profiles.jsonl": "6c41b6c660a595cff98a430540c238a6f2ebbbe99980273b4bcc8bc3ef39d4ee",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-separate_arguments-STDEV.P/summary.json": "4a131794b024ce673634763d9203968e431b2e557e809edd444e0e12136dbe90",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-separate_arguments-STDEV.P/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/surface-separate_arguments-STDEV.P/witnesses.jsonl": "40851559ccc3b4e982ec1b553d79c638df343d8cb3646bd1548289ec62d251f2"
+  },
+  "limits": "Finite declared programs only. Coherent precision regions and original transport assumptions. Zero signs are immaterial here: every divisor is a positive integer, roots publish zero with the product zero policy. No alias identity, private Excel precision, extra branch, fitted cutoff or complete kernel is inferred."
+}

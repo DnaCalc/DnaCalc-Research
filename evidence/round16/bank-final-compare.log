@@ -1,0 +1,3 @@
+{"command": ["target/xtask-corpus/release/xtask-harness", "witness", "compare", "--before", "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-ingested.jsonl", "--after", "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/bank-final.jsonl"], "executable_sha256": "b10ea35afb80e4b43a6c9551fe731ea40e2d07a8cb50e6541b53c97ea3158b7b"}
+xtask witness compare: 3875056 decoded rows; all input/selection/answer/source/environment fields unchanged
+xtask witness compare: 3230448 -> 3230448 matched, +0 / -0; 0 actuals changed; unread failures are only in judge summaries
