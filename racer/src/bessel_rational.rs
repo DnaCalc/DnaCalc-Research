@@ -562,3 +562,470 @@ fn run_programs<F: Fpu>(input: &str, out: &str, programs: Vec<Program>, followup
         top["counts"][4]
     );
 }
+
+/// Three fixed algebraic realizations of DLMF10.6.1. Program0 retains
+/// SheetJS's forward order. Seeds and input coercion use the current invoke
+/// route; this diagnostic never substitutes its result into that route.
+pub fn replay_y_forward(input: &str, out: &str) {
+    use calc_func::value::{CalcValue, CoreValue};
+    let destination = Path::new(out);
+    fs::create_dir(destination).unwrap();
+    let rows = lines::<Value>(input);
+    let mut counts = [[0_usize; 5]; 3]; // all, exact, baseline_exact, gains, losses
+    let mut excluded = BTreeMap::<String, usize>::new();
+    let mut file =
+        BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for (index, row) in rows.iter().enumerate() {
+        if row["function"] != "BESSELY" {
+            *excluded.entry("other_function".into()).or_default() += 1;
+            continue;
+        }
+        let a = row["args"].as_array().unwrap();
+        let (Some(x), Some(raw_order)) = (decode(&a[0]), decode(&a[1])) else {
+            *excluded.entry("input_type".into()).or_default() += 1;
+            continue;
+        };
+        if !(x.is_finite()
+            && raw_order.is_finite()
+            && raw_order >= 0.0
+            && raw_order.trunc() <= 10_000_000.0)
+        {
+            *excluded
+                .entry("outside_order_admission".into())
+                .or_default() += 1;
+            continue;
+        }
+        let args = vec![CalcValue::number(x), CalcValue::number(raw_order)];
+        let (baseline, _) = crate::invoke_control("BESSELY", args);
+        let expected = row["expected"].as_str().unwrap();
+        let seeds: Vec<_> = [0.0, 1.0]
+            .map(|n| {
+                crate::invoke_control("BESSELY", vec![CalcValue::number(x), CalcValue::number(n)])
+            })
+            .into();
+        for program in 0..3 {
+            let order = raw_order.trunc() as usize;
+            let prediction = if order <= 1 {
+                seeds[order].0.clone()
+            } else if let (Some(mut previous), Some(mut current)) = (seeds[0].1, seeds[1].1) {
+                let twice_over_x = 2.0 / x;
+                for j in 1..order {
+                    let j = j as f64;
+                    let next = match program {
+                        0 => current * j * twice_over_x - previous,
+                        1 => (j * twice_over_x) * current - previous,
+                        2 => ((2.0 * j) / x) * current - previous,
+                        _ => unreachable!(),
+                    };
+                    previous = current;
+                    current = next;
+                }
+                if !current.is_finite() {
+                    "error:Num".into()
+                } else {
+                    calc_verdict::encode_result(&CalcValue::number(if current.is_subnormal() {
+                        0.0
+                    } else {
+                        current
+                    }))
+                    .unwrap()
+                }
+            } else {
+                seeds.iter().find(|s| s.1.is_none()).unwrap().0.clone()
+            };
+            let matched = prediction == expected;
+            let was = baseline == expected;
+            for (slot, increment) in counts[program].iter_mut().zip([
+                1,
+                usize::from(matched),
+                usize::from(was),
+                usize::from(matched && !was),
+                usize::from(!matched && was),
+            ]) {
+                *slot += increment;
+            }
+            writeln!(file, "{}", json!({"trace_index":index,"id":row["id"],"program":program,"prediction":prediction,"expected":expected,"baseline":baseline,"matched":matched})).unwrap();
+        }
+    }
+    let result = json!({"complete":true,"input_rows":rows.len(),"counts_all_exact_baseline_gains_losses":counts,"excluded":excluded,
+        "source":"SheetJS/bessel2e2331329891dc5c16bda3461db0b9fe590ff2e9 bessel.js Apache-2.0; DLMF10.6.1",
+        "limits":"Discovery only. Every original scoped outcome is compared, including domain errors; unsupported records remain obligations. Current invoke seeds are conditional leaves. No coefficient, cutoff or store boundary fitted."});
+    json_write(destination.join("summary.json"), &result);
+    println!("{result}");
+}
+
+// PhpSpreadsheet BesselI.php, MIT, copyright (c)2019-2026
+// PhpSpreadsheet Authors, revision60cc826911f1a1a125d756f22f0476a88504ab1f.
+// See notices/PhpSpreadsheet.txt. This is the complete fixed published
+// numerical program; only EXP is supplied by the existing worksheet chain.
+const I0_LOW: &[f64] = &[
+    1.0,
+    3.5156229,
+    3.0899424,
+    1.2067492,
+    0.2659732,
+    0.360768e-1,
+    0.45813e-2,
+];
+const I0_HIGH: &[f64] = &[
+    0.39894228,
+    0.1328592e-1,
+    0.225319e-2,
+    -0.157565e-2,
+    0.916281e-2,
+    -0.2057706e-1,
+    0.2635537e-1,
+    -0.1647633e-1,
+    0.392377e-2,
+];
+const I1_LOW: &[f64] = &[
+    0.5,
+    0.87890594,
+    0.51498869,
+    0.15084934,
+    0.2658733e-1,
+    0.301532e-2,
+    0.32411e-3,
+];
+const I1_HIGH: &[f64] = &[
+    0.39894228,
+    -0.3988024e-1,
+    -0.362018e-2,
+    0.163801e-2,
+    -0.1031555e-1,
+    0.2282967e-1,
+    -0.2895312e-1,
+    0.1787654e-1,
+    -0.420059e-2,
+];
+
+fn polynomial(x: f64, coefficients: &[f64]) -> f64 {
+    let strict = Program {
+        id: 0,
+        polynomial: EvalModel::Strict,
+        reconstruction: EvalModel::Strict,
+        assignment_stores: false,
+        helpers: 0,
+        association: 0,
+        reduction: 0,
+        group_y0_log: false,
+    };
+    Machine::<Hard>::new(&strict)
+        .poly(Val::f64(x), coefficients)
+        .to_f64::<Hard>()
+}
+
+fn published_i0(x: f64) -> f64 {
+    let a = x.abs();
+    if a < 3.75 {
+        let y = x / 3.75;
+        polynomial(y * y, I0_LOW)
+    } else {
+        (excel_exp(a) / a.sqrt()) * polynomial(3.75 / a, I0_HIGH)
+    }
+}
+
+fn published_i(x: f64, order: usize) -> f64 {
+    let a = x.abs();
+    if order == 0 {
+        return published_i0(x);
+    }
+    let result = if order == 1 {
+        if a < 3.75 {
+            let y = x / 3.75;
+            a * polynomial(y * y, I1_LOW)
+        } else {
+            polynomial(3.75 / a, I1_HIGH) * (excel_exp(a) / a.sqrt())
+        }
+    } else if x == 0.0 {
+        0.0
+    } else {
+        let twice_over_x = 2.0 / a;
+        let mut next = 0.0;
+        let mut current = 1.0;
+        let mut answer = 0.0;
+        let start = 2 * (order + (40.0 * order as f64).sqrt() as usize);
+        for j in (1..=start).rev() {
+            let previous = next + (j as f64 * twice_over_x) * current;
+            next = current;
+            current = previous;
+            if current.abs() > 1e12 {
+                answer *= 1e-12;
+                current *= 1e-12;
+                next *= 1e-12;
+            }
+            if j == order {
+                answer = next;
+            }
+        }
+        answer * (published_i0(x) / current)
+    };
+    if x < 0.0 && order % 2 == 1 {
+        -result
+    } else {
+        result
+    }
+}
+
+#[derive(Clone, Debug, Serialize)]
+struct IProgram {
+    id: usize,
+    model: EvalModel,
+    store_state: bool,
+    kornia: bool,
+}
+
+fn positive_above(value: Val, bound: f64) -> bool {
+    // Recurrence operands are positive. Compare their exact significands and
+    // exponents, including values too large to publish in binary64.
+    let key = |v: Val| {
+        let bytes = v.to_ext().0;
+        (
+            u16::from_le_bytes([bytes[8], bytes[9]]) & 0x7fff,
+            u64::from_le_bytes(bytes[..8].try_into().unwrap()),
+        )
+    };
+    let a = key(value);
+    if a.0 == 0x7fff && a.1 != 1 << 63 {
+        return false;
+    }
+    a > key(Val::f64(bound))
+}
+
+fn published_i_model<F: Fpu>(x: f64, order: usize, p: &IProgram) -> f64 {
+    if order <= 1 || x == 0.0 {
+        // Kornia v0.6.4 kernels.py, Apache-2.0. Its I0 and low I1
+        // expressions agree with the PHP source; high I1 groups the final
+        // polynomial*EXP before division. The outer parity contract remains.
+        if p.kornia && order == 1 && x.abs() >= 3.75 {
+            let a = x.abs();
+            let result = (polynomial(3.75 / a, I1_HIGH) * excel_exp(a)) / a.sqrt();
+            return if x < 0.0 { -result } else { result };
+        }
+        return published_i(x, order);
+    }
+    let strict = Program {
+        id: 0,
+        polynomial: EvalModel::Strict,
+        reconstruction: p.model,
+        assignment_stores: p.store_state,
+        helpers: 0,
+        association: 0,
+        reduction: 0,
+        group_y0_log: false,
+    };
+    let m = Machine::<F>::new(&strict);
+    let mode = p.model;
+    let twice_over_x = m.assign(m.div(Val::f64(2.0), Val::f64(x.abs()), mode));
+    let mut next = Val::f64(0.0);
+    let mut current = Val::f64(1.0);
+    let mut answer = Val::f64(0.0);
+    let start = 2 * (order + (40.0 * order as f64).sqrt() as usize);
+    for j in (1..=start).rev() {
+        let previous = m.add(
+            next,
+            m.mul(m.mul(Val::f64(j as f64), twice_over_x, mode), current, mode),
+            mode,
+        );
+        next = current;
+        current = m.assign(previous);
+        if positive_above(current, if p.kornia { 1e10 } else { 1e12 }) {
+            let factor = Val::f64(if p.kornia { 1e-10 } else { 1e-12 });
+            answer = m.assign(m.mul(answer, factor, mode));
+            current = m.assign(m.mul(current, factor, mode));
+            next = m.assign(m.mul(next, factor, mode));
+        }
+        if j == order {
+            answer = next;
+        }
+    }
+    let value = if p.kornia {
+        m.div(
+            m.mul(answer, Val::f64(published_i0(x)), mode),
+            current,
+            mode,
+        )
+    } else {
+        m.mul(
+            answer,
+            m.div(Val::f64(published_i0(x)), current, mode),
+            mode,
+        )
+    };
+    let result = value.to_f64::<F>();
+    if x < 0.0 && order % 2 == 1 {
+        -result
+    } else {
+        result
+    }
+}
+
+pub fn replay_i_models<F: Fpu>(input: &str, out: &str) {
+    run_i_models::<F>(input, out, false);
+}
+
+pub fn replay_i_kornia<F: Fpu>(input: &str, out: &str) {
+    run_i_models::<F>(input, out, true);
+}
+
+fn run_i_models<F: Fpu>(input: &str, out: &str, kornia: bool) {
+    use calc_func::value::CalcValue;
+    let destination = Path::new(out);
+    fs::create_dir(destination).unwrap();
+    let rows = lines::<Value>(input);
+    let mut programs = Vec::new();
+    for model in WIDE_MODELS {
+        for store_state in [false, true] {
+            programs.push(IProgram {
+                id: programs.len(),
+                model,
+                store_state,
+                kornia,
+            });
+        }
+    }
+    json_write(destination.join("programs.json"), &programs);
+    let mut counts = vec![[0_usize; 5]; programs.len()];
+    let mut first = vec![None; programs.len()];
+    let mut file =
+        BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for (index, record) in rows.iter().enumerate() {
+        let row = &record["raw"];
+        assert_eq!(row["function"], "BESSELI");
+        let a = row["args"].as_array().unwrap();
+        let (x, n) = (decode(&a[0]).unwrap(), decode(&a[1]).unwrap());
+        let (baseline, _) =
+            crate::invoke_control("BESSELI", vec![CalcValue::number(x), CalcValue::number(n)]);
+        let expected = row["expected"].as_str().unwrap();
+        let x = if x.is_subnormal() { 0.0 } else { x };
+        let admitted = x.is_finite()
+            && n.is_finite()
+            && n >= 0.0
+            && n.trunc() <= 10_000_000.0
+            && x.abs() <= 709.7;
+        for p in &programs {
+            let prediction = if !admitted {
+                "error:Num".into()
+            } else {
+                let v = published_i_model::<F>(x, n.trunc() as usize, p);
+                if p.id == 0 && !kornia {
+                    assert_eq!(
+                        v.to_bits(),
+                        published_i(x, n.trunc() as usize).to_bits(),
+                        "strict source control"
+                    );
+                }
+                if !v.is_finite() {
+                    "error:Num".into()
+                } else {
+                    calc_verdict::encode_result(&CalcValue::number(if v.is_subnormal() {
+                        0.0
+                    } else {
+                        v
+                    }))
+                    .unwrap()
+                }
+            };
+            let matched = prediction == expected;
+            let was = baseline == expected;
+            for (slot, increment) in counts[p.id].iter_mut().zip([
+                1,
+                usize::from(matched),
+                usize::from(was),
+                usize::from(matched && !was),
+                usize::from(!matched && was),
+            ]) {
+                *slot += increment;
+            }
+            if !matched && first[p.id].is_none() {
+                first[p.id] = Some(
+                    json!({"trace_index":index,"id":row["id"],"expected":expected,"prediction":prediction}),
+                );
+            }
+            writeln!(file, "{}", json!({"trace_index":index,"id":row["id"],"program":p.id,"prediction":prediction,"expected":expected,"baseline":baseline,"matched":matched})).unwrap();
+        }
+    }
+    let result = json!({"complete":true,"input_rows":rows.len(),"programs":programs,"counts_all_exact_baseline_gains_losses":counts,"first_contradictions":first,
+        "source":if kornia {"Kornia v0.6.4 kernels.py5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661 (Apache-2.0); binary64 caller dtype, existing worksheet EXP, outer Excel parity/admission; IEEE754/Intel x87 models"} else {"Fixed PhpSpreadsheet BesselI.php60cc826911f1a1a125d756f22f0476a88504ab1f (MIT); IEEE754 and Intel x87 arithmetic/store models"},
+        "limits":"Ten coherent arithmetic/state-store realizations of the unchanged published higher-order body; fixed strict published seeds/worksheet EXP and existing outer policy. No coefficient, start, rescale or row-selector search. All answers are discovery."});
+    json_write(destination.join("summary.json"), &result);
+    println!("{result}");
+}
+
+pub fn replay_i_source(input: &str, out: &str) {
+    use calc_func::value::CalcValue;
+    let destination = Path::new(out);
+    fs::create_dir(destination).unwrap();
+    let rows = lines::<Value>(input);
+    let mut groups = BTreeMap::<String, [usize; 5]>::new();
+    let mut file =
+        BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
+    for (index, record) in rows.iter().enumerate() {
+        let row = &record["raw"];
+        assert_eq!(row["function"], "BESSELI");
+        let a = row["args"].as_array().unwrap();
+        let (x, n) = (decode(&a[0]).unwrap(), decode(&a[1]).unwrap());
+        let (baseline, _) =
+            crate::invoke_control("BESSELI", vec![CalcValue::number(x), CalcValue::number(n)]);
+        let expected = row["expected"].as_str().unwrap();
+        let x = if x.is_subnormal() { 0.0 } else { x };
+        // These are the existing product's outer admissions, not a new
+        // published numerical branch or an observed-input selector.
+        let admitted = x.is_finite()
+            && n.is_finite()
+            && n >= 0.0
+            && n.trunc() <= 10_000_000.0
+            && x.abs() <= 709.7;
+        let region = if !admitted {
+            "outer_policy".into()
+        } else {
+            format!(
+                "I{}:{}",
+                if n.trunc() <= 1.0 {
+                    n.trunc().to_string()
+                } else {
+                    "n".into()
+                },
+                if x.abs() < 3.75 { "low" } else { "high" }
+            )
+        };
+        let prediction = if !admitted {
+            "error:Num".into()
+        } else {
+            let v = published_i(x, n.trunc() as usize);
+            if !v.is_finite() {
+                "error:Num".into()
+            } else {
+                calc_verdict::encode_result(&CalcValue::number(if v.is_subnormal() {
+                    0.0
+                } else {
+                    v
+                }))
+                .unwrap()
+            }
+        };
+        let matched = prediction == expected;
+        let was = baseline == expected;
+        for key in [
+            "all".to_owned(),
+            region.clone(),
+            format!("{}|{}", record["cohort"].as_str().unwrap(), region),
+        ] {
+            for (slot, increment) in groups.entry(key).or_default().iter_mut().zip([
+                1,
+                usize::from(matched),
+                usize::from(was),
+                usize::from(matched && !was),
+                usize::from(!matched && was),
+            ]) {
+                *slot += increment;
+            }
+        }
+        writeln!(file, "{}", json!({"trace_index":index,"id":row["id"],"prediction":prediction,"expected":expected,"baseline":baseline,"matched":matched,"region":region})).unwrap();
+    }
+    let result = json!({"complete":true,"input_rows":rows.len(),"counts_all_exact_baseline_gains_losses":groups,
+        "source":"PhpSpreadsheet BesselI.php60cc826911f1a1a125d756f22f0476a88504ab1f (MIT), existing worksheet EXP and outer policy",
+        "limits":"Whole published numerical program, fixed start/rescale/constants; no fitted program parameter or region selection. Discovery, no held-out claim. Losses reject this whole program."});
+    json_write(destination.join("summary.json"), &result);
+    println!("{result}");
+}

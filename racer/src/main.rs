@@ -379,6 +379,16 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        Some("bessel-i-kornia") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_i_kornia::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_i_kornia::<Hard>(&a[2], &a[3]),
+        },
+        Some("bessel-i-models") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_i_models::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_i_models::<Hard>(&a[2], &a[3]),
+        },
+        Some("bessel-i-source") => bessel_rational::replay_i_source(&a[2], &a[3]),
+        Some("bessel-y-forward") => bessel_rational::replay_y_forward(&a[2], &a[3]),
         Some("bessel-rational-followup") => match a.get(4).map(String::as_str) {
             Some("soft") => bessel_rational::replay_followup::<Soft>(&a[2], &a[3]),
             _ => bessel_rational::replay_followup::<Hard>(&a[2], &a[3]),

@@ -1,0 +1,34 @@
+{
+  "id": "dc-j9k-r21-kornia-I-body",
+  "role": "clean-implementer",
+  "route_audit": true,
+  "application_revision": "b2d13365ac52f24e03278ba33fd342b6368b4d9a",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/bessel.rs": "f9c96a3366d2a0a0f4c39dc4076b74c50fac024d",
+    "crates/calc-func/src/ported/bessel_rational.rs": "38289b5f397fafcd50b9139b5626bdfc4156b9d3"
+  },
+  "scope": "Complete Kornia v0.6.4 source mathematical program with binary64 caller dtype, worksheet EXP and preserved outer Excel admissions/parity; ten coherent arithmetic/state-store models. No parameter/source mixing.",
+  "sources": {
+    "tier1": [
+      "Recorded Excel answers; IEEE754 and Intel SDM; DLMF mathematical identities"
+    ],
+    "tier2": [
+      "SheetJS/bessel 2e2331329891dc5c16bda3461db0b9fe590ff2e9, Apache-2.0; current cleared numerical substrate",
+      "PhpSpreadsheet BesselI.php60cc826911f1a1a125d756f22f0476a88504ab1f (MIT), source SHA256168c41025dfce6c543ce1d81ed092f06fccd6fb8b597f8a79fd535f29cabcb3f; full published numerical program with worksheet EXP",
+      "Kornia5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661 kornia/filters/kernels.py (Apache-2.0), source SHA2562d3f74dfa7ce30b50fa70dfb513c4e6f8f1437b406470180e771870d349bffef. Complete source start/rescale/normalization, no fitted parameter."
+    ],
+    "banned": [
+      "Tier3 and Tier4 code",
+      "crates/calc-func/src/ported/bessel.rs numerical body and history",
+      "Excluded engine checkout"
+    ]
+  },
+  "exposure": "After discovery rejection of PhpSpreadsheet10-model family; new complete independently published source, not a constant substitution or held-out claim.",
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21",
+  "source_sha256": {
+    "racer/src/bessel_rational.rs": "d978932cb3e49f340c36319bbaba08d3330504a11115530c995481d6d1b2140f",
+    "racer/src/main.rs": "38c4b50c84a09e0bff26eaae4306e9fb57725a307049247fa5b547199551c11d",
+    "racer/build.rs": "4f8dbe6d7a1e4f7b952877ef2110a3d7ba40d12fab4157e6f9a0e4a51e61bb14"
+  },
+  "bessel_rational_audit": true
+}

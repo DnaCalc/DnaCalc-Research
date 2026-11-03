@@ -1,0 +1,199 @@
+{
+  "id": "dc-j9k-r21-bessel-high-source-facts",
+  "role": "analyst",
+  "analyst": "/root/bessel_source_analyst",
+  "date": "2026-11-03",
+  "status": "awaiting-independent-facts-check",
+  "scope": "Published sources for the remaining high-argument J0/J1 discrepancy; no numerical implementation, product edit, commit or push.",
+  "provenance": {
+    "agent": "Codex; no model override requested for this analyst",
+    "machine": "dna-firehorse, Linux x86_64",
+    "policy": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/plan/RESEARCH_SOURCES.md",
+    "exposure": "Web searches exposed Numerical Recipes and other uncleared implementation snippets. The historical Excel observation page also contains implementation text and is treated as analyst-only. No restricted source file was downloaded or retained; no restricted implementation text, names, comments or control structure is reproduced here.",
+    "tier3_or_uncleared_exposures": [
+      "Numerical Recipes second-edition C and Fortran search snippets, including hlevkin.com, is.umk.pl, worldcolleges.info and cec.uchile.cl mirrors",
+      "Numerical Recipes official routine indices, webnotes index and forum search results; no numerical source file downloaded",
+      "Computational Science Stack Exchange question30279 and answer41376; analyst-only because the page mixes historical Excel observations with implementation text",
+      "Search snippets from OMLC Mie, LBNL Modelica Buildings, ROOT, Geant4, BioPP/grapes and a Wikibooks SVG; no licence-cleared source selected from these results"
+    ],
+    "tier4_read": false,
+    "banned_path_access": false
+  },
+  "implementer_banned": [
+    "All tier3/4 numerical implementations and search results containing them",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-engine, including listings and history",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/bessel.rs bodies being replaced and their history",
+    "The analyst-only historical observation page and uncleared sources listed in provenance"
+  ],
+  "permitted_sources": [
+    {
+      "id": "sheetjs",
+      "tier": 2,
+      "revision": "2e2331329891dc5c16bda3461db0b9fe590ff2e9",
+      "licence": "Apache-2.0",
+      "source_url": "https://raw.githubusercontent.com/SheetJS/bessel/2e2331329891dc5c16bda3461db0b9fe590ff2e9/bessel.js",
+      "source_sha256": "a0a05e9a457a6ec74b5dc1685fe893885f7721d5db4cc71be937822a273986a8",
+      "licence_url": "https://raw.githubusercontent.com/SheetJS/bessel/2e2331329891dc5c16bda3461db0b9fe590ff2e9/LICENSE",
+      "licence_sha256": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26",
+      "pin_origin": "Existing checked R20 specification; local permitted source read again."
+    },
+    {
+      "id": "slatec",
+      "tier": 2,
+      "licence": "Public domain; SLATEC guide sections4 and6 explicitly state public-domain distribution and unrestricted distribution intent.",
+      "licence_url": "https://www.netlib.org/slatec/guide",
+      "licence_sha256": "7e86d4af528bc23d9294b4dbb32d9204fcb7dbb94d658eb78e2b1ce0721e56f3",
+      "files": [
+        {
+          "url": "https://www.netlib.org/slatec/fnlib/d9b0mp.f",
+          "sha256": "52983617d24ffb89ce958289ca9f16a5adea039a68b3853d201b8efc7601d610"
+        },
+        {
+          "url": "https://www.netlib.org/slatec/fnlib/d9b1mp.f",
+          "sha256": "e020237f01127add671ac9da349a83428832f97e9bb92cc807367804bf619078"
+        }
+      ]
+    },
+    {
+      "id": "specfun",
+      "tier": 2,
+      "licence": "Cody SPECFUN is expressly permitted as tier2 by the repository policy. The fetched upstream files/readme contain no separate explicit licence notice; no new code port is proposed from them by this note.",
+      "files": [
+        {
+          "url": "https://www.netlib.org/specfun/j0y0",
+          "sha256": "26b19c95ee8cf1c7161ed8d50cfef5a61f0a3fac958b1f9c558e7710661ecb93"
+        },
+        {
+          "url": "https://www.netlib.org/specfun/j1y1",
+          "sha256": "3510617b1c25765b4168a74107a7fa85c663a45397bf36f143df9b3c66bd7742"
+        }
+      ],
+      "readme_url": "https://www.netlib.org/specfun/readme",
+      "readme_sha256": "bd1e737126e4b29d82394a34db30ca5cc8b8f84311fa8cad86802dd6302ec6b9"
+    },
+    {
+      "id": "boost",
+      "tier": 2,
+      "revision": "4c2cdc2cf67060db2053a5db10da344cf7d42681 (boost-1.86.0)",
+      "licence": "BSL-1.0",
+      "licence_url": "https://raw.githubusercontent.com/boostorg/boost/65c1319bb92fe7a9a4abd588eff5818d9c2bccf9/LICENSE_1_0.txt",
+      "licence_sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/boostorg/math/4c2cdc2cf67060db2053a5db10da344cf7d42681/include/boost/math/special_functions/detail/bessel_j0.hpp",
+          "sha256": "36c4449f4b03903734125ba6d2b6bf8d4987b224e05cecd470d17649f46f27a9"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/boostorg/math/4c2cdc2cf67060db2053a5db10da344cf7d42681/include/boost/math/special_functions/detail/bessel_j1.hpp",
+          "sha256": "060ca7db73e2e81c2d956afd2f8017d7ac52ff3993fd125ba70ace2f3331247d"
+        }
+      ]
+    },
+    {
+      "id": "fdlibm",
+      "tier": 2,
+      "licence": "Sun permissive notice in each file: use, copying, modification and distribution permitted with notice preservation.",
+      "files": [
+        {
+          "url": "https://www.netlib.org/fdlibm/e_j0.c",
+          "sha256": "6af3068212814704bf52912455efaf5a769448f78057d49535ace0b6d556b308"
+        },
+        {
+          "url": "https://www.netlib.org/fdlibm/e_j1.c",
+          "sha256": "241be73309b9eec497cf75c44cd241980e2257781ce740e3ac5c231bdbd64a3e"
+        }
+      ]
+    },
+    {
+      "id": "phpspreadsheet",
+      "tier": 2,
+      "revision": "60cc826911f1a1a125d756f22f0476a88504ab1f",
+      "licence": "MIT",
+      "source_url": "https://raw.githubusercontent.com/PHPOffice/PhpSpreadsheet/60cc826911f1a1a125d756f22f0476a88504ab1f/src/PhpSpreadsheet/Calculation/Engineering/BesselJ.php",
+      "source_sha256": "1aaa046313fbd3c2b55a00420ed34b23d8d646ad84284b54ae78c45c33109a7b",
+      "licence_url": "https://raw.githubusercontent.com/PHPOffice/PhpSpreadsheet/60cc826911f1a1a125d756f22f0476a88504ab1f/LICENSE",
+      "licence_sha256": "1416c9cb9b9925bbbecbd2aaeb62864fa5544f5572e5e0e130304f532c38ac8e"
+    },
+    {
+      "id": "formulajs",
+      "tier": 2,
+      "revision": "42dbeb18b15f271b6e90d927cc972f0f06565dcf",
+      "licence": "MIT; separate dependency notices remain applicable.",
+      "source_url": "https://raw.githubusercontent.com/formulajs/formulajs/42dbeb18b15f271b6e90d927cc972f0f06565dcf/src/engineering.js",
+      "source_sha256": "717e227ce5c1bc5503a00f82affcd888c0f0f4a79dd23ac1001bb8ccf4143990",
+      "package_url": "https://raw.githubusercontent.com/formulajs/formulajs/42dbeb18b15f271b6e90d927cc972f0f06565dcf/package.json",
+      "package_sha256": "5dcfd432fee58ee6adc71d409e8d4218fd823e29006ba72b731f1c18f5e5d504",
+      "licence_url": "https://raw.githubusercontent.com/formulajs/formulajs/42dbeb18b15f271b6e90d927cc972f0f06565dcf/LICENSE",
+      "licence_sha256": "174950f43de64be376a36ce6f81c9da6242f59f86c5aad6371bff0fa30469a7b"
+    },
+    {
+      "id": "dlmf",
+      "tier": 1,
+      "url": "https://dlmf.nist.gov/10.17",
+      "description": "Published Hankel asymptotic mathematics, equations10.17.1-10.17.3; no code port proposed."
+    }
+  ],
+  "facts": [
+    {
+      "sources": ["sheetjs", "phpspreadsheet"],
+      "fact": "PhpSpreadsheet publishes the same ten high-J0 decimal coefficients and the same ten high-J1 decimal coefficients as the pinned SheetJS source. Its J0 first nonconstant amplitude coefficient is -0.1098628627e-2; its J1 first two are 0.183105e-2 and -0.3516396496e-4. The phase constants0.785398164 and2.356194491 and scale0.636619772 also agree. This independently published permissive file supplies no changed-coefficient explanation."
+    },
+    {
+      "sources": ["formulajs"],
+      "fact": "FormulaJS delegates the Bessel functions to the bessel dependency, declared as version range^1.0.2. It supplies no separate numerical coefficient table and is not an independent coefficient lineage."
+    },
+    {
+      "sources": ["slatec"],
+      "fact": "Fullerton's published high-J0/J1 family uses Chebyshev approximations to modulus and phase, with argument regions4 through8 and above8. The stored tables have37 or40 amplitude coefficients and39 or44 phase coefficients. It is structurally different from the five-coefficient SheetJS amplitude and phase-correction polynomials. No alternate short-polynomial literal was recovered from these files."
+    },
+    {
+      "sources": ["specfun", "boost"],
+      "fact": "The inspected Cody and Boost sources identify Hart et al., Computer Approximations(1968), as their large-argument origin. Their high-J0/J1 amplitude corrections are rational coefficient families, rather than the short SheetJS polynomial tables. These are independently published permitted alternatives, but this source-only work did not evaluate their Excel fit."
+    },
+    {
+      "sources": ["fdlibm"],
+      "fact": "The inspected Sun source uses rational high-argument correction tables in several argument intervals, with trigonometric phase identities. It supplies no changed short-polynomial literal explaining the reported discrepancy."
+    },
+    {
+      "sources": ["dlmf"],
+      "fact": "Hankel's expansion gives leading amplitude corrections -9/(128*x^2) for J0 and15/(128*x^2) for J1. In powers of(8/x)^2 these leading coefficients are -9/8192 and15/8192. These exact asymptotic coefficients are not substitutes for a published finite-interval approximation table."
+    }
+  ],
+  "measurement_context": {
+    "origin": "Root's frozen R21 diagnostic extract of original R20 capture/evaluation records and fixed-source predictions; not independently replayed by this source analyst.",
+    "artifact": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/j-high-diagnostics.json",
+    "artifact_sha256": "8de2e324a66432c045a4577c8862f22ac7f1cd3c5b8325c7a9d1a1052678336b",
+    "original_predictions": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round20/bessel-rational-hard/best-predictions.jsonl",
+    "original_predictions_sha256": "ada90787462a722a389af17fedbf4fb5c298e1b9f55901fd841274561efb508a",
+    "J1_at_8_expected_bits": "3fce084d8f616cc8",
+    "J1_at_8_sheetjs_bits": "3fce0890559ae977",
+    "J0_residual": "Root reports an amplitude-scaled residual proportional to(8/x)^2 with coefficient3.6e-10. The frozen artifact binds original answers and predictions at8,8.4,12.3 and25.6. This is diagnostic evidence only; no coefficient is fitted or proposed here."
+  },
+  "bounded_search": {
+    "literal_queries": [
+      "\"0.1098628267\"",
+      "\"1098628267\"",
+      "\"0.1098628267e-2\"",
+      "\"0.001098628267\" Bessel",
+      "\"1.098628267\"",
+      "\"109862 8267\" Bessel"
+    ],
+    "literal_result": "No relevant Bessel coefficient publication was returned. Some broad queries returned unrelated numeric coincidences; none was treated as evidence. This is a bounded web-search result, not proof that no such publication exists.",
+    "J1_typo_queries": [
+      "\"Bessel\" \"183105\" \"typo\"",
+      "\"Excel\" \"BesselJ\" \"typo\" coefficients",
+      "site:numerical.recipes \"Bessel\" \"error\"",
+      "\"Bessel J1\" \"published typo\"",
+      "\"Bessel\" \"J1\" \"coefficient\" \"erratum\""
+    ],
+    "J1_typo_result": "No independently documented old typo with an alternative high-J1 coefficient table was recovered. Searches also included the restricted library's routine names, omitted here. Search snippets and the mixed-content historical page were analyst-only; no implementation content from them forms a recommendation."
+  },
+  "mathematical_hypotheses": [
+    "A transcription difference remains a hypothesis suggested by Root's Excel measurements. The inspected permitted sources do not establish it or supply a justified changed coefficient.",
+    "The pinned Hart rational and Fullerton modulus/phase families are fixed published alternatives if a separate work unit needs them. Their availability alone establishes neither Excel equivalence nor novelty relative to earlier research."
+  ],
+  "proposed_changed_coefficients": [],
+  "proposed_implementation": null,
+  "result": "Published permitted high-J0/J1 tables located and pinned; no independently published changed short-polynomial coefficient or documented old high-J1 typo found within this search. A different checker must review this facts-only note before an implementer uses it.",
+  "permitted_snapshot_manifest": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-source-analyst-permitted/manifest.json"
+}

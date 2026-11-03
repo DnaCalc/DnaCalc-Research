@@ -1,0 +1,107 @@
+{
+  "id": "dc-j9k-r21-bessel-i-published-start-facts",
+  "role": "analyst",
+  "analyst": "/root/bessel_source_analyst",
+  "date": "2026-11-03",
+  "status": "awaiting-independent-facts-check",
+  "scope": "Locate a complete permissive integer-order modified-Bessel-I program with the fixed published recurrence start2*(n+floor(sqrt(40*n))). No numerical implementation, product edit, commit or push.",
+  "provenance": {
+    "agent": "Codex; no model override requested",
+    "machine": "dna-firehorse, Linux x86_64",
+    "policy": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/plan/RESEARCH_SOURCES.md",
+    "exposure": "The analyst already saw tier3 snippets during the high-J source unit. This unit's web search additionally returned a US Department of Energy2015 slide quoting Numerical Recipes implementation text; it is treated as tier3 despite the government hosting. No restricted implementation file was downloaded or retained, and none of its text, identifiers, comments or control structure is reproduced here.",
+    "tier4_read": false,
+    "banned_path_access": false
+  },
+  "implementer_banned": [
+    "All tier3/4 numerical implementations and search results containing them",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-engine, including listings and history",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/bessel.rs bodies being replaced and their history",
+    "The analyst-only DOE2015 slide and other uncleared numerical snippets"
+  ],
+  "positive_source": {
+    "id": "phpspreadsheet-i",
+    "tier": 2,
+    "repository": "https://github.com/PHPOffice/PhpSpreadsheet",
+    "revision": "60cc826911f1a1a125d756f22f0476a88504ab1f",
+    "licence": "MIT",
+    "source_url": "https://raw.githubusercontent.com/PHPOffice/PhpSpreadsheet/60cc826911f1a1a125d756f22f0476a88504ab1f/src/PhpSpreadsheet/Calculation/Engineering/BesselI.php",
+    "source_sha256": "168c41025dfce6c543ce1d81ed092f06fccd6fb8b597f8a79fd535f29cabcb3f",
+    "licence_url": "https://raw.githubusercontent.com/PHPOffice/PhpSpreadsheet/60cc826911f1a1a125d756f22f0476a88504ab1f/LICENSE",
+    "licence_sha256": "1416c9cb9b9925bbbecbd2aaeb62864fa5544f5572e5e0e130304f532c38ac8e",
+    "snapshot": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-source-analyst-permitted/phpspreadsheet-BesselI.php",
+    "licence_snapshot": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-source-analyst-permitted/phpspreadsheet-LICENSE",
+    "licence_obligation": "Retain the MIT copyright and permission notice in copies or substantial portions. No product port is performed by this note."
+  },
+  "facts": [
+    {
+      "source": "phpspreadsheet-i",
+      "fact": "The single pinned source file publishes the complete numerical I0 seed, I1 seed and higher-integer-order program. The higher-order recurrence start is exactly2*(n+floor(sqrt(40*n))) for integer order n>=2. There is no division by2 inside that published start expression."
+    },
+    {
+      "source": "phpspreadsheet-i",
+      "fact": "The higher-order method is backward three-term modified-Bessel-I recurrence with normalization by the source's own I0 seed. It uses fixed rescaling magnitude1e12 and rescaling factor1e-12. These are published source constants, not searched parameters."
+    },
+    {
+      "source": "phpspreadsheet-i",
+      "fact": "The published I0 and I1 seeds separate argument magnitudes at3.75. Low-seed polynomials use the square of the quotient x/3.75; high-seed polynomials use3.75 divided by the argument magnitude, with exponential and square-root scaling. Their coefficients and arithmetic grouping are part of this complete candidate."
+    },
+    {
+      "source": "phpspreadsheet-i",
+      "fact": "The source supplies zero-argument values and integer-order parity for negative arguments. Its numerical program supplies no measured Excel overflow-admission boundary. Existing product admission behavior is a separate obligation."
+    }
+  ],
+  "bounded_source_search": {
+    "sheetjs": {
+      "repository": "https://github.com/SheetJS/bessel",
+      "history_url": "https://api.github.com/repos/SheetJS/bessel/commits?path=bessel.js&per_page=100",
+      "history_sha256": "5c6800276650a3484ab34f4f316676b54180d40bcfff90385bbfe5e2107b0223",
+      "revisions_read": [
+        "616aabfb42d01d6542c796ab2c3b5329b48b437a",
+        "64765e5e98812fdc3236ff0272cfec8172ff6abc",
+        "73ee33e4023ed62347caf249e7faae7c7b932609",
+        "ce446fc526d75d8215d585e279812ec553f32132",
+        "45c1c7b614b20e916abf31f949cb30198343175b"
+      ],
+      "licences": "MIT in the three older revisions; Apache-2.0 in the two newer revisions. Each paired source/licence snapshot is hash-bound in the manifest.",
+      "fact": "All five revisions returned by the file-history listing retain the current SheetJS rounded start2*round((n+round(sqrt(40*n)))/2) for the higher-I program. None supplies the requested alternative. The current pinned2e2331329891dc5c16bda3461db0b9fe590ff2e9 source bytes equal the616aab revision's source bytes."
+    },
+    "mathnet_numerics": {
+      "tier": 2,
+      "revision": "84e9432bc1e8a6b2ae7acd32cda4175abeaeaed1",
+      "licence": "MIT; embedded contribution notices are present in the seed file. No new port from these files is proposed.",
+      "licence_url": "https://raw.githubusercontent.com/mathnet/mathnet-numerics/84e9432bc1e8a6b2ae7acd32cda4175abeaeaed1/LICENSE.md",
+      "licence_sha256": "3f87fb0bec6467d87760555e3cb246646a51912b0e97f432c159ba6baf5738f2",
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/mathnet/mathnet-numerics/84e9432bc1e8a6b2ae7acd32cda4175abeaeaed1/src/Numerics/SpecialFunctions/ModifiedBessel.cs",
+          "sha256": "a7dff4aa63d1892a886a9a009471d984da48cf272c466798ce3935647c653ed9"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mathnet/mathnet-numerics/84e9432bc1e8a6b2ae7acd32cda4175abeaeaed1/src/Numerics/SpecialFunctions/Bessel.cs",
+          "sha256": "ca6f7636d929c11b844fc8bbb9aaa034259ffc4c18ea662f598bc28c72781f54"
+        }
+      ],
+      "fact": "The current source uses Chebyshev I0/I1 seed families and general Amos evaluation for higher-order I. These inspected files do not supply the requested fixed-start family. This does not describe every historical MathNet revision."
+    },
+    "parallelcolt": {
+      "tier": 2,
+      "revision": "36a75e68abae9ed7ece5426cd96272a9ba328346",
+      "licence": "CERN permissive notice for cern.jet package; preserve copyright and permission notices in copies and supporting documentation. The separate hep.aida licence is irrelevant to this source and is not proposed for use.",
+      "licence_url": "https://raw.githubusercontent.com/rwl/ParallelColt/36a75e68abae9ed7ece5426cd96272a9ba328346/license.txt",
+      "licence_sha256": "ff3268e53d0da92e47e2c4b42634692726bf2f4e1ed99713c051b3062382c424",
+      "source_url": "https://raw.githubusercontent.com/rwl/ParallelColt/36a75e68abae9ed7ece5426cd96272a9ba328346/src/main/java/cern/jet/math/tdouble/Bessel.java",
+      "source_sha256": "2954c51c5cd8ce02cf4cd89a3e410bd3f6f29b68663f9ec97a7c23766d979a04",
+      "fact": "The inspected source contains I0/I1 seeds but no higher-integer-order I routine, and therefore supplies no complete candidate for this request."
+    },
+    "licence_only_exclusions": [
+      "MathNet Iridium revision7911739524677b3582feb713c0a21aa59b0fa119 licence is LGPL-2.1-or-later; licence metadata read, no implementation file read.",
+      "Current Smile licence did not establish a permissive implementation source, so no numerical implementation file was read."
+    ]
+  },
+  "hypothesis": "The complete pinned PhpSpreadsheet numerical program is an independently published fixed-family candidate. It can be assessed against the entire recorded numerical region without fitting a start order, scale, coefficient or empirical cutoff. This source investigation establishes provenance and the published program, not Excel equivalence.",
+  "whole_program_requirement": "Keep each published program distinct. In particular, the PhpSpreadsheet start,1e12 rescaling, complete seeds and arithmetic grouping form one candidate; replacing only the rejected SheetJS start would be a different program unless separately justified by a published source.",
+  "numerical_candidate_run_by_analyst": false,
+  "result": "Positive complete permissive source found in PhpSpreadsheet. No additional complete requested-start candidate recovered from the bounded SheetJS-history, current MathNet Numerics or CERN-permissive searches. A different checker must review this facts-only note before implementation uses it.",
+  "snapshot_manifest": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-source-analyst-permitted/manifest.json"
+}

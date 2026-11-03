@@ -1,0 +1,95 @@
+{
+  "id": "dc-j9k-r21-bessel-i-published-1e10-source-facts",
+  "role": "analyst",
+  "analyst": "/root/bessel_source_analyst",
+  "date": "2026-11-03",
+  "status": "awaiting-independent-facts-check",
+  "scope": "Final bounded query for a complete permitted higher-order I program publishing both start2*(n+floor(sqrt(40*n))) and rescaling1e10/1e-10. This supplements the separately checked PhpSpreadsheet1e12 facts; it does not modify that frozen note.",
+  "provenance": {
+    "agent": "Codex; no model override requested",
+    "machine": "dna-firehorse, Linux x86_64",
+    "policy": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/plan/RESEARCH_SOURCES.md",
+    "exposure": "The analyst retains tier3 exposure from the preceding Bessel source units. This search returned further Numerical Recipes snippets, a glibc patch snippet and a public Microsoft KB archive search snippet; none was opened as a source for implementation or retained. Only licence-cleared implementation sources were downloaded. No restricted text, identifiers, comments or control structure is reproduced here.",
+    "tier4_read": false,
+    "banned_path_access": false
+  },
+  "implementer_banned": [
+    "All tier3/4 numerical implementations and search results containing them",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-engine, including listings and history",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/bessel.rs bodies being replaced and their history"
+  ],
+  "positive_source": {
+    "id": "kornia-0.6.4",
+    "tier": 2,
+    "repository": "https://github.com/kornia/kornia",
+    "release": "v0.6.4",
+    "revision": "5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661",
+    "licence": "Apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/kornia/kornia/5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661/kornia/filters/kernels.py",
+    "source_sha256": "2d3f74dfa7ce30b50fa70dfb513c4e6f8f1437b406470180e771870d349bffef",
+    "licence_url": "https://raw.githubusercontent.com/kornia/kornia/5dc3c71a5385aa1cdebb39b7aa4f47a0663c9661/LICENSE",
+    "licence_sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+    "source_snapshot": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-1e10-source-analyst-permitted/kornia-v0.6.4-kernels.py",
+    "licence_snapshot": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-1e10-source-analyst-permitted/kornia-v0.6.4-LICENSE",
+    "licence_obligations": "Apply Apache-2.0 notice, attribution and modification requirements to any future port; no product port is performed by this analyst."
+  },
+  "facts": [
+    {
+      "source": "kornia-0.6.4",
+      "fact": "The single pinned file publishes complete I0/I1 helpers and a higher-integer-order I helper. The higher-order program publishes start2*(n+floor(sqrt(40*n))) and rescale magnitude1e10 with factor1e-10 together. They are not combined from different sources."
+    },
+    {
+      "source": "kornia-0.6.4",
+      "fact": "The program uses backward modified-Bessel-I recurrence and normalizes by its own I0 helper. Its final mathematical grouping is(target recurrence value times I0) divided by the final zero-order recurrence value. This differs from grouping the I0 division first."
+    },
+    {
+      "source": "kornia-0.6.4",
+      "fact": "Both seeds use the fixed3.75 magnitude split. The low polynomial argument is the product of two quotients x/3.75. The I0 high expression groups exponential divided by square root before multiplying its fixed polynomial. All coefficients and arithmetic grouping belong to this complete published candidate."
+    },
+    {
+      "source": "kornia-0.6.4",
+      "fact": "This version does not coerce its input tensor to a fixed dtype. It initializes recurrence states with exact0 and1 tensors and uses the caller's tensor in recurrence arithmetic. The source therefore differs from MONAI's explicitly torch.float input conversion. Any claimed binary64 realization still needs its elementary-operation and store semantics stated and tested."
+    },
+    {
+      "source": "kornia-0.6.4",
+      "fact": "The pinned higher-order helper has exact zero-input handling and negative-input integer-order parity. It does not publish Excel's measured overflow-admission policy. That policy remains a separate application obligation."
+    }
+  ],
+  "lineage_and_alternatives": [
+    {
+      "id": "monai-current",
+      "tier": 2,
+      "revision": "5b7e3149332ff2ee2a686e236b9e62b1238dc413",
+      "licence": "Apache-2.0",
+      "source_url": "https://raw.githubusercontent.com/Project-MONAI/MONAI/5b7e3149332ff2ee2a686e236b9e62b1238dc413/monai/networks/layers/convutils.py",
+      "source_sha256": "18334ceb911cae040eed1d58a28f019060b73ed40e8e3d88a9a2bae910ae9d97",
+      "licence_url": "https://raw.githubusercontent.com/Project-MONAI/MONAI/5b7e3149332ff2ee2a686e236b9e62b1238dc413/LICENSE",
+      "licence_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "fact": "MONAI also publishes the requested start and1e10/1e-10 together with complete seeds, but explicitly converts inputs to torch.float. Its earliest helper-bearing revision inspected,94f69d47bb25feecd4734992536c67e840919758, already has that conversion. Kornia names MONAI as its source lineage, so these are related programs rather than independent confirmations."
+    },
+    {
+      "id": "kornia-current",
+      "tier": 2,
+      "revision": "15f12ea3be55aa43b60c8a8129b9a39b2e9027ec",
+      "licence": "Apache-2.0",
+      "source_url": "https://raw.githubusercontent.com/kornia/kornia/15f12ea3be55aa43b60c8a8129b9a39b2e9027ec/kornia/filters/kernels.py",
+      "source_sha256": "d17aff8920eb1bb25f72f0539b4477174d13a6635ced75f4bbc131ce3872e54e",
+      "licence_url": "https://raw.githubusercontent.com/kornia/kornia/15f12ea3be55aa43b60c8a8129b9a39b2e9027ec/LICENSE",
+      "licence_sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+      "fact": "Current Kornia retains the constants but has a more extensive vectorized program with combined multiply-add, near-zero handling and an additional scaled mode. It is a distinct published candidate. No pieces of that program are combined with the0.6.4 program here."
+    },
+    {
+      "id": "mathnet-history",
+      "tier": 2,
+      "revision": "136bdbb11319046a8bac07c1e9e5fac27920845d",
+      "licence": "MIT notice embedded in source",
+      "source_url": "https://raw.githubusercontent.com/mathnet/mathnet-numerics/136bdbb11319046a8bac07c1e9e5fac27920845d/src/Numerics/SpecialFunctions/ModifiedBessel.cs",
+      "source_sha256": "46b95f0f45e203ded22025c7edb94d69dfa6e4c618bebd8bdde4db7d67660801",
+      "fact": "The earliest2012 modified-Bessel file returned by its path history contains I0/I1 helpers, not the requested higher-I recurrence. The general Bessel path history begins with an Amos-family addition in2018. This bounded history check recovered no additional requested-start program."
+    }
+  ],
+  "whole_program_requirement": "The complete Kornia0.6.4 helpers, start, rescaling, normalization grouping and other arithmetic form one candidate. No constant, seed or operation grouping is fitted to Excel or combined with the rejected PhpSpreadsheet program.",
+  "numerical_candidate_run_by_analyst": false,
+  "result": "A complete Apache-2.0 published program with both requested start and1e10/1e-10 rescaling is available in Kornia0.6.4. Its related MONAI lineage is explicit. This establishes source provenance, not Excel agreement; a different checker must approve the facts note before implementation uses it.",
+  "snapshot_manifest": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/bessel-i-1e10-source-analyst-permitted/manifest.json"
+}
