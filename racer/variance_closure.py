@@ -346,7 +346,123 @@ def raw_moment_scope(input_path, destination, root=False):
     print(json.dumps(dict(complete=True, counts=counts)))
 
 
+def paired_cohorts(rows):
+    """Pair scalar readings by exact operands and recorded operating context.
+
+    Per-function source/capture time differs. Equal context is not a claim that
+    these calls shared an actual Excel intermediate or were simultaneous.
+    """
+    names = ('DEVSQ', 'VAR.S', 'VAR.P', 'STDEV.S', 'STDEV.P')
+    grouped = {}
+    omitted = []
+    for index, row in enumerate(rows):
+        if row['function'] not in names:
+            omitted.append(dict(index=index, reason='other_function'))
+            continue
+        args = row['args']
+        require(row.get('result_index') is None and len(args) >= 2 and
+                all(isinstance(x, str) and x.startswith('0x') for x in args),
+                'paired scalar numeric input scope')
+        require(all(pow2(-100) <= abs(Q(number(x))) <= pow2(100) or number(x) == 0 for x in args),
+                'paired input magnitude scope')
+        require(isinstance(row['expected'], str) and row['expected'].startswith('0x') and
+                pow2(-100) <= Q(number(row['expected'])) <= pow2(100), 'positive normal paired target scope')
+        provenance = row.get('capture_provenance', {})
+        context = dict(args=args, reading=row['reading'], transport=row.get('input_transport'),
+                       environment=provenance.get('environment'), settings=provenance.get('calculation_settings'))
+        key = json.dumps(context, sort_keys=True, separators=(',', ':'))
+        group = grouped.setdefault(key, dict(context=context, indices={}))
+        require(row['function'] not in group['indices'], 'duplicate paired function/context')
+        group['indices'][row['function']] = index
+    cohorts = []
+    for group in grouped.values():
+        if set(group['indices']) == set(names):
+            cohorts.append(group)
+        else:
+            omitted.extend(dict(index=i, reason='incomplete_context_cohort') for i in group['indices'].values())
+    require(cohorts, 'empty paired scope')
+    return cohorts, sorted(omitted, key=lambda r: r['index'])
+
+
+def published_points(bits):
+    """Every Ext64 point in a binary64 publication cell, including tie flags."""
+    target = Q(number(bits))
+    require(pow2(-100) <= target <= pow2(100), 'paired publication magnitude scope')
+    span = B64.preimage(Interval(target, target))
+    point = E64.ceil(span.lo)
+    if point == span.lo and not span.lc:
+        point = E64.next(point)
+    values = []
+    while span.contains(point):
+        values.append(point)
+        point = E64.next(point)
+    require(values and len(values) <= 4097, 'paired publication lattice bound')
+    return values
+
+
+def paired_result(rows):
+    """Necessary consumer tests; arbitrary latent values are never producers."""
+    import hashlib
+    cohorts, omitted = paired_cohorts(rows)
+    q_survivors = set(itertools.product(range(5), repeat=2))
+    sigma_survivors = {name: set(range(5)) for name in ('sample', 'population')}
+    details = []
+    def mask_record(indices, points):
+        values = [points[i] for i in sorted(indices)]
+        payload = json.dumps(encode(values), separators=(',', ':')).encode()
+        return dict(count=len(values), sha256=hashlib.sha256(payload).hexdigest(),
+                    first=pair(values[0]) if values else None, last=pair(values[-1]) if values else None)
+    for cohort in cohorts:
+        selected = {name: rows[i] for name, i in cohort['indices'].items()}
+        n = Q(len(cohort['context']['args']))
+        q_points = published_points(selected['DEVSQ']['expected'])
+        q_masks = {}
+        sigma = {}
+        for label, var, sd, divisor in (('sample', 'VAR.S', 'STDEV.S', n-1),
+                                        ('population', 'VAR.P', 'STDEV.P', n)):
+            target = Q(number(selected[var]['expected']))
+            q_masks[label] = [{i for i, q in enumerate(q_points)
+                              if B64.rn(operation('div', model, q, divisor)) == target} for model in MODELS]
+            points = published_points(selected[sd]['expected'])
+            masks = [{i for i, q in enumerate(points)
+                      if B64.rn(operation('mul', model, q, q)) == target} for model in MODELS]
+            sigma_survivors[label].intersection_update(i for i, mask in enumerate(masks) if mask)
+            sigma[label] = dict(point_count=len(points), models=[mask_record(mask, points) for mask in masks])
+        joint = [(a, b) for a, b in itertools.product(range(5), repeat=2)
+                 if q_masks['sample'][a] & q_masks['population'][b]]
+        q_survivors.intersection_update(joint)
+        details.append(dict(cohort=cohort, q_point_count=len(q_points),
+                            q_divisions={label:[mask_record(mask, q_points) for mask in masks]
+                                         for label, masks in q_masks.items()},
+                            q_joint_profiles=[list(p) for p in joint], sigma_square=sigma))
+    return dict(models=list(MODELS), cohorts=details, omitted=omitted,
+                shared_devsq_division_survivors=[list(p) for p in sorted(q_survivors)],
+                separate_sigma_square_survivors={name: sorted(values) for name, values in sigma_survivors.items()})
+
+
+def paired_run(input_path, destination):
+    dest = Path(destination)
+    dest.mkdir()
+    dependencies = [Path(__file__), Path(__file__).with_name('bessel.py'), Path(__file__).with_name('intervals.py')]
+    frozen = {str(p): digest(p) for p in [Path(input_path), *dependencies]}
+    rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    result = paired_result(rows)
+    require(frozen == {p: digest(p) for p in frozen}, 'paired inputs/source changed')
+    (dest/'proof.json').write_text(json.dumps(result, indent=2)+'\n')
+    summary = dict(complete=True, input_sha256=frozen, proof_sha256=digest(dest/'proof.json'),
+        observations=len(rows), cohorts=len(result['cohorts']), omitted=len(result['omitted']),
+        shared_devsq_division_survivors=result['shared_devsq_division_survivors'],
+        separate_sigma_square_survivors=result['separate_sigma_square_survivors'],
+        limits='Discovery necessary-consumer conditions. Shared DEVSQ latent q, then sample/population division:25 fixed model pairs. '
+               'Separate sample/population STDEV latent sigma, then squaring:5 fixed models per name. '
+               'Every positive extended64 point in each recorded publication cell is enumerated, with open tie endpoints. '
+               'Latent points may differ per cohort; no prefix producer, shared Excel intermediate, internal regime, held-out gain or product program is identified.')
+    (dest/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
+    print(json.dumps(summary))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='paired':paired_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moment-scope-stdev4':raw_moment_scope(*sys.argv[2:], root=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments-stdev4':raw_moment_run(*sys.argv[2:], fused=True, root=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moment-scope':raw_moment_scope(*sys.argv[2:]);raise SystemExit(0)

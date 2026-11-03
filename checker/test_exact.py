@@ -48,6 +48,24 @@ class ExactArithmetic(unittest.TestCase):
             (root/'grammar.json').write_text(json.dumps(grammar))
             with self.assertRaisesRegex(ValueError,'axes'):asymptotic_inventory(root)
 
+    def test_amplitude_inventory_keeps_function_axis_and_rejects_missing_forms(self):
+        from checker.bessel import asymptotic_inventory
+        with tempfile.TemporaryDirectory() as scratch:
+            root=Path(scratch)
+            counts=[dict(function=name, programs=607500, survivors=2)for name in ('BESSELJ','BESSELY')]
+            grammar=dict(programs=607500,axes_in_loop_order=[['phase',10],['scale',10],['body',5],['recurrence',5],['trig',3],['terms',3],['association',3],['amplitude',9]],
+                amplitudes=['sqrt(c/x)*b','(sqrt(c)/sqrt(x))*b','sqrt(c)*(b/sqrt(x))','(sqrt(c)*b)/sqrt(x)',
+                    '(sqrt(c)*sqrt(1/x))*b','sqrt(c)*(sqrt(1/x)*b)','(sqrt(c)*b)*sqrt(1/x)','b/sqrt(x/c)','(1/sqrt(x/c))*b'])
+            (root/'summary.json').write_text(json.dumps(dict(counts=counts)))
+            (root/'grammar.json').write_text(json.dumps(grammar))
+            for name in ('BESSELJ','BESSELY'):
+                (root/(name+'-survivors.json')).write_text('[0,607499]')
+                self.assertEqual(asymptotic_inventory(root,True,name)[2],[0,607499])
+            grammar['amplitudes'].pop()
+            (root/'grammar.json').write_text(json.dumps(grammar))
+            with self.assertRaisesRegex(ValueError,'amplitude grammar'):
+                asymptotic_inventory(root,True,'BESSELY')
+
     def test_bessel_negative_hankel_phases_remain_in_the_declared_scope(self):
         import sys
         from reference import bessel_bounds
@@ -257,6 +275,51 @@ class ExactArithmetic(unittest.TestCase):
                 proof = forward_proof(altered, groups[0], profile)
                 self.assertTrue(proof['excluded'])
                 self.assertEqual(proof['steps'][-1]['order'], 3)
+
+    def test_paired_variance_full_cells_and_corruption(self):
+        from racer.variance_closure import paired_result, paired_cohorts
+        from checker.variance_closure import paired_verify
+        bits = lambda x: '0x'+struct.pack('>d', float(x)).hex()
+        answers = {'DEVSQ':1, 'VAR.S':1, 'VAR.P':0.5, 'STDEV.S':1, 'STDEV.P':math.sqrt(0.5)}
+        rows = [dict(function=name, args=[bits(0), bits(1)], expected=bits(answer),
+                     reading={'kind':'constructed control, not Excel'}, result_index=None)
+                for name, answer in answers.items()]
+        proof = paired_result(rows)
+        checked = paired_verify(rows, proof)
+        self.assertEqual(len(checked['shared_devsq_division_survivors']), 25)
+        self.assertEqual(checked['separate_sigma_square_survivors']['sample'], list(range(5)))
+        self.assertGreater(checked['lattice_points'], 4000)
+        altered = copy.deepcopy(proof)
+        altered['cohorts'][0]['q_divisions']['sample'][0]['count'] += 1
+        with self.assertRaisesRegex(ValueError, 'division full-set'):
+            paired_verify(rows, altered)
+        altered = copy.deepcopy(proof)
+        altered['shared_devsq_division_survivors'].pop()
+        with self.assertRaisesRegex(ValueError, 'survivor intersection'):
+            paired_verify(rows, altered)
+        altered = copy.deepcopy(proof)
+        altered['cohorts'][0]['cohort']['context']['transport'] = 'changed'
+        with self.assertRaisesRegex(ValueError, 'coverage/context'):
+            paired_verify(rows, altered)
+        with self.assertRaisesRegex(ValueError, 'duplicate'):
+            paired_cohorts(rows+[rows[0]])
+        with self.assertRaisesRegex(ValueError, 'empty'):
+            paired_cohorts(rows[:-1])
+        shifted = copy.deepcopy(rows)
+        shifted[-1]['reading']['kind'] = 'different context'
+        with self.assertRaisesRegex(ValueError, 'empty'):
+            paired_cohorts(shifted)
+
+    def test_paired_variance_publication_ties_are_complete(self):
+        from racer.variance_closure import published_points
+        for offset in (0, 1, 2):
+            bits = '0x'+format(0x3ff8000000000000+offset, '016x')
+            points = published_points(bits)
+            target = binary64(bits)
+            span = B.pullback(Span(target, target))
+            bounds = E.coordinates(span)
+            self.assertEqual(points, [E.value(i) for i in range(bounds[0], bounds[1]+1)])
+            self.assertEqual(len(points), 2049 if offset%2 == 0 else 2047)
 
     def test_raw_moment_closures_cover_exact_variances_and_do_not_create_other_answers(self):
         from checker.variance_closure import raw_moment_result

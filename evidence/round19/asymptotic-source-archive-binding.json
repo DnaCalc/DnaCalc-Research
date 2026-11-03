@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "archive_sha256": "299d0ada55b7b8344463709cbac2a0444142128e3e0e1fdc09ac3e5dea2519f6",
+  "archive_members_sha256": {
+    "racer/src/route_audit.rs": "b77d07edbb081e8ebf55e8f5c338560c96af11022457413273790e4e4bb0ae14",
+    "racer/src/main.rs": "6e837406266336819c4358b7e9569e599a7f5b6740cbf68f974b645d604f17cb",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/build.rs": "474f05c6f88c8e119c1ab7121a0da530c69e612a5f3b09f670f097201eff2c3e",
+    "racer/constants.py": "1027f4853859e5a8d0d740764b1d14ee323ceeb1cee326f4a782caaaf5d8c5d6",
+    "round19-unit.json": "ffb62d044b8cae3a51bd044e5990b5a7e0b212500e637d40180ca2ffa2d1ff42"
+  },
+  "archived_unit_role": "Pre-study metadata retained byte-for-byte. Its research-source entries are not an internally complete freeze of the subsequently added asymptotic command.",
+  "declared_research_entries_differing_from_archived_bytes": {
+    "racer/src/main.rs": {
+      "declared": "63b66435e3a9addb1760f3863cbec16dde2a0afce40a62808ccc079b60c0168b",
+      "archived": "6e837406266336819c4358b7e9569e599a7f5b6740cbf68f974b645d604f17cb"
+    },
+    "racer/src/route_audit.rs": {
+      "declared": "bf4c7dbac49e84c166449855d28e5fd5f94d5d7cda5acacae6fba286ca67814c",
+      "archived": "b77d07edbb081e8ebf55e8f5c338560c96af11022457413273790e4e4bb0ae14"
+    }
+  },
+  "authoritative_checkpoint_unit": "DnaCalc-Research/round19-unit.json at3e2b866",
+  "current_binding": "evidence/round19/asymptotic-current-binding.json",
+  "claim": "The archive retains the actual original compiled Rust command bytes. The later69-source unit and byte-identical current search/trig binding supersede its embedded unit for source-freeze claims. No archive or numerical reading is rewritten."
+}

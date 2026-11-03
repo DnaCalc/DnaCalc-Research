@@ -1,0 +1,32 @@
+{
+  "complete": true,
+  "created_utc": "2026-11-03T10:51:22.960561+00:00",
+  "functions": {
+    "BESSELJ": {
+      "gzip_bytes": 1523490,
+      "uncompressed_bytes": 18069562,
+      "lossless_hash_verified": true,
+      "total_kills": 605964,
+      "amplitude0_kills": 65964,
+      "amplitude0_survivors": 1536,
+      "all_old_kills_and_survivors_identical": true
+    },
+    "BESSELY": {
+      "gzip_bytes": 1561812,
+      "uncompressed_bytes": 18113914,
+      "lossless_hash_verified": true,
+      "total_kills": 607500,
+      "amplitude0_kills": 67500,
+      "amplitude0_survivors": 0,
+      "all_old_kills_and_survivors_identical": true
+    }
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-amplitudes/compression.json": "41d558fd0f00eb5bb189f8635474275b2e53592730b1f12e39bcdbfc8ecc674b",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-amplitudes/BESSELJ-first-kills.tsv.gz": "d37758dafcfa7748f2ac236d503b8daaa6acf1b96b9400f28cbed7b905e39cc5",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-amplitudes/BESSELY-first-kills.tsv.gz": "94f594119e34546af5984cf89cf822985d8d5ca3b771b6e089f7dd51daf78c8e",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-amplitudes/BESSELJ-survivors.json": "388fcfa7f5b41abef38a4d82d9a952ea9fc235af09e465150f01700e75af744f",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-amplitudes/BESSELY-survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "limits": "Lossless generated-study artefact verification and amplitude0 subfamily identity only. This does not independently calculate first-kill numerical outputs for the eight additional amplitude forms or identify an Excel body."
+}

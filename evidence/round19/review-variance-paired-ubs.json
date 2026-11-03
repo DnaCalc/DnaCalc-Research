@@ -1,0 +1,327 @@
+{
+  "complete": true,
+  "scans": [
+    {
+      "file": "racer/variance_closure.py",
+      "before_sha256": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+      "after_sha256": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+      "stable": true,
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 12:41:28",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 5,
+        "info": 35,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 40,
+          "accounted": 40,
+          "emitted": 40,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 5,
+              "accounted": 5,
+              "emitted": 5,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 35,
+              "accounted": 35,
+              "emitted": 35,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 76,
+          "message": "json.loads without error handling \u2014 rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 132,
+          "message": "json.loads without error handling \u2014 rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()];require(rows,'empty online observation scope')",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 260,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 448,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 305,
+          "message": "json.loads without error handling \u2014 raw = json.loads(line)",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        }
+      ]
+    },
+    {
+      "file": "checker/variance_closure.py",
+      "before_sha256": "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f",
+      "after_sha256": "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f",
+      "stable": true,
+      "exit_code": 1,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 12:41:37",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 2,
+        "warning": 5,
+        "info": 44,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 51,
+          "accounted": 51,
+          "emitted": 51,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 2,
+              "accounted": 2,
+              "emitted": 2,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 5,
+              "accounted": 5,
+              "emitted": 5,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 44,
+              "accounted": 44,
+              "emitted": 44,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 100,
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 170,
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text());require(summary['complete']is True and summary['counts']==counts,'incorrect online summary')",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 310,
+          "message": "json.loads without error handling \u2014 summary = json.loads((directory/'summary.json').read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 412,
+          "message": "json.loads without error handling \u2014 proof = json.loads((dest/'proof.json').read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 413,
+          "message": "json.loads without error handling \u2014 summary = json.loads((dest/'summary.json').read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "severity": "critical",
+          "line": 417,
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: public proof/source integrity hashes are not secret authentication material."
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "severity": "critical",
+          "line": 418,
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: public proof/source integrity hashes are not secret authentication material."
+        }
+      ]
+    },
+    {
+      "file": "checker/test_exact.py",
+      "before_sha256": "142096d2fa575027e7bf6046ed3fcaa470f39bef971d4ea12b2892763c24b364",
+      "after_sha256": "142096d2fa575027e7bf6046ed3fcaa470f39bef971d4ea12b2892763c24b364",
+      "stable": true,
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 12:41:43",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 10,
+        "info": 154,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 164,
+          "accounted": 164,
+          "emitted": 164,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 10,
+              "accounted": 10,
+              "emitted": 10,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 154,
+              "accounted": 154,
+              "emitted": 154,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 442,
+          "message": "json.loads without error handling \u2014 record = json.loads(closure.read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 485,
+          "message": "json.loads without error handling \u2014 record = json.loads(path.read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 522,
+          "message": "json.loads without error handling \u2014 original = json.loads(path.read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 828,
+          "message": "json.loads without error handling \u2014 result = json.loads((base/'result.json').read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 846,
+          "message": "json.loads without error handling \u2014 result=json.loads((base/'receipt.json').read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 135,
+          "message": "json.loads without error handling \u2014 result=json.loads(receipt.read_text())",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 170,
+          "message": "json.loads without error handling \u2014 self.assertEqual(json.loads((root/'out/different-answers.json').read_text()),[])",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 186,
+          "message": "json.loads without error handling \u2014 rows=[json.loads(line)for line in(root/'frozen/cases.jsonl').read_text().splitlines()]",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 189,
+          "message": "json.loads without error handling \u2014 excluded=[json.loads(line)for line in(root/'frozen/excluded.jsonl').read_text().splitlines()]",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 438,
+          "message": "json.loads without error handling \u2014 counts = json.loads((proof/'summary.json').read_text())['counts']",
+          "triage": "Malformed evidence deliberately raises, preventing a successful numerical receipt."
+        }
+      ]
+    }
+  ]
+}

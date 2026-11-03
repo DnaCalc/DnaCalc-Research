@@ -1,0 +1,33 @@
+{
+  "complete": true,
+  "independent": true,
+  "counts": {
+    "cohorts": 10,
+    "lattice_points": 61444,
+    "operations": 409620,
+    "shared_devsq_division_survivors": [],
+    "separate_sigma_square_survivors": {
+      "sample": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "population": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/r16-published-score/observations.jsonl": "2eddf816fa824c08c618b65d24943d830d94f9c701563311b5edae1aae7ed148",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance_closure.py": "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/variance-paired-bound/proof.json": "e41950493a6e713403238803256fae6dabc3954ecc4d04e3475009eb50b283ca",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/variance-paired-bound/summary.json": "f89cd1ca825223c7592af64b03a147ead481a15154d0c75b8d177afaf72927d2"
+  },
+  "limits": "Independent signed-coordinate enumeration with exact rational arithmetic; no imports from producer. Necessary consumers only. Existence of a latent point is not a reusable producer or a product match."
+}

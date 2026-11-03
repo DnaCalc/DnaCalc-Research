@@ -456,34 +456,43 @@ def check_miller(input_path, directory, output, expanded=False, sites=False):
     print(json.dumps(receipt))
 
 
-def asymptotic_inventory(directory):
+def asymptotic_inventory(directory, amplitudes=False, function='BESSELJ'):
     directory=Path(directory)
     summary=json.loads((directory/'summary.json').read_text())
     grammar=json.loads((directory/'grammar.json').read_text())
-    survivors=json.loads((directory/'BESSELJ-survivors.json').read_text())
+    survivors=json.loads((directory/(function+'-survivors.json')).read_text())
     axes=[['phase',10],['scale',10],['body',5],['recurrence',5],['trig',3],['terms',3],['association',3]]
-    require(grammar['programs']==67500 and grammar['axes_in_loop_order']==axes,'asymptotic axes differ')
+    if amplitudes:
+        axes.append(['amplitude',9])
+        require(grammar['amplitudes']==['sqrt(c/x)*b','(sqrt(c)/sqrt(x))*b','sqrt(c)*(b/sqrt(x))','(sqrt(c)*b)/sqrt(x)',
+                '(sqrt(c)*sqrt(1/x))*b','sqrt(c)*(sqrt(1/x)*b)','(sqrt(c)*b)*sqrt(1/x)','b/sqrt(x/c)','(1/sqrt(x/c))*b'],
+                'asymptotic amplitude grammar differs')
+    size=67500*(9 if amplitudes else 1)
+    require(grammar['programs']==size and grammar['axes_in_loop_order']==axes,'asymptotic axes differ')
     counts=summary['counts']
     require(len(counts)==2 and {r['function']for r in counts}=={'BESSELJ','BESSELY'},'asymptotic function inventory differs')
-    j=next(r for r in counts if r['function']=='BESSELJ')
-    require(j['programs']==67500 and len(set(survivors))==len(survivors)==j['survivors']>0
-            and all(isinstance(i,int)and 0<=i<67500 for i in survivors),'bad asymptotic survivor inventory')
+    j=next(r for r in counts if r['function']==function)
+    require(j['programs']==size and len(set(survivors))==len(survivors)==j['survivors']>0
+            and all(isinstance(i,int)and 0<=i<size for i in survivors),'bad asymptotic survivor inventory')
     return summary,grammar,survivors
 
 
-def check_asymptotic_survivors(input_path,tables_path,directory,executable,output):
+def check_asymptotic_survivors(input_path,tables_path,directory,executable,output,amplitudes=False,function='BESSELJ'):
     """Exact J survivor replay with separately calculated registered trig leaves."""
     import csv,struct,subprocess
     from functools import lru_cache
     directory=Path(directory);executable=Path(executable).resolve();output=Path(output)
     rows=list(records(input_path));tables=json.loads(Path(tables_path).read_text())
-    summary,grammar,survivors=asymptotic_inventory(directory)
+    summary,grammar,survivors=asymptotic_inventory(directory,amplitudes,function)
+    size=67500*(9 if amplitudes else 1)
     frozen={str(p):digest(p)for p in (Path(input_path),Path(tables_path),directory/'summary.json',directory/'grammar.json',
-        directory/'BESSELJ-survivors.json',executable,Path(__file__),Path(__file__).with_name('exact.py'))}
+        directory/(function+'-survivors.json'),executable,Path(__file__),Path(__file__).with_name('exact.py'))}
     def decode(identity):
         result={}
-        for key,size in reversed((('phase',10),('scale',10),('body',5),('recurrence',5),('trig',3),('terms',3),('association',3))):
-            result[key]=identity%size;identity//=size
+        axes=[('phase',10),('scale',10),('body',5),('recurrence',5),('trig',3),('terms',3),('association',3)]
+        if amplitudes:axes.append(('amplitude',9))
+        for key,width in reversed(axes):
+            result[key]=identity%width;identity//=width
         require(identity==0,'out-of-range asymptotic program');return result
     programs=[decode(i)for i in survivors]
     require(all(p['trig']==0 for p in programs),'this independent replay requires registered trig leaves')
@@ -513,24 +522,27 @@ def check_asymptotic_survivors(input_path,tables_path,directory,executable,outpu
             and all(binary64(p['value']['binary64'])==scales[i]for i,p in enumerate(tables['scales'])),'universal constants changed')
     scoped=[]
     for index,raw in enumerate(rows):
-        if raw['function']!='BESSELJ'or raw['result_index']is not None or len(raw['args'])!=2 or not raw['expected'].startswith('0x'):continue
+        if raw['function']!=function or raw['result_index']is not None or len(raw['args'])!=2 or not raw['expected'].startswith('0x'):continue
         try:x,n=map(binary64,raw['args'])
         except(ValueError,TypeError):continue
-        if abs(x)>=two(24)and n in range(5):scoped.append((index,x,int(n),raw))
-    require(len(scoped)==next(r for r in summary['counts']if r['function']=='BESSELJ')['observations'],'J replay scope differs')
-    killed=set();native_executions=len(survivors)*len(scoped);orders={at:i for i,(at,*_)in enumerate(scoped)}
-    path=directory/'BESSELJ-first-kills.tsv';frozen[str(path)]=digest(path)
-    with path.open()as stream:
+        if abs(x)>=two(24)and n in range(5)and(function=='BESSELJ'or x>0):scoped.append((index,x,int(n),raw))
+    require(len(scoped)==next(r for r in summary['counts']if r['function']==function)['observations'],'replay scope differs')
+    killed=set();survivor_ids=set(survivors);native_executions=len(survivors)*len(scoped);orders={at:i for i,(at,*_)in enumerate(scoped)}
+    path=directory/(function+'-first-kills.tsv')
+    if not path.exists():path=path.with_suffix(path.suffix+'.gz')
+    frozen[str(path)]=digest(path)
+    import gzip
+    with (gzip.open(path,'rt')if path.suffix=='.gz'else path.open())as stream:
         reader=csv.DictReader(stream,delimiter='\t')
         require(reader.fieldnames==['program','trace_index','got'],'asymptotic kill header differs')
         for kill in reader:
             identity,at=int(kill['program']),int(kill['trace_index'])
-            require(0<=identity<67500 and identity not in killed and identity not in survivors and at in orders,
+            require(0<=identity<size and identity not in killed and identity not in survivor_ids and at in orders,
                     'duplicate or invalid asymptotic kill identity')
             require(kill['got']!=rows[at]['expected'],'invalid asymptotic contradiction')
             native_executions+=orders[at]+1;killed.add(identity)
-    require(killed|set(survivors)==set(range(67500)) and
-            native_executions==next(r for r in summary['counts']if r['function']=='BESSELJ')['executions'],
+    require(killed|set(survivors)==set(range(size)) and
+            native_executions==next(r for r in summary['counts']if r['function']==function)['executions'],
             'asymptotic search coverage or executions differ')
     def bits(q):return '0x'+struct.pack('>d',float(q)).hex()
     # Only seeds actually consumed by the declared recurrence need leaves.
@@ -542,16 +554,16 @@ def check_asymptotic_survivors(input_path,tables_path,directory,executable,outpu
                 angle=operation(abs(x),-phases[p['phase']][seed],'add',model)
                 arguments.add(bits(B.round(angle)))
     leaves={}
-    for function in ('SIN','COS'):
-        request=output.with_name(output.stem+'-'+function+'-requests.json')
-        prediction=output.with_name(output.stem+'-'+function+'-predictions.jsonl')
-        questions=[dict(id=f'r19-{function.lower()}-leaf-{i:03d}',args=[arg],input_transport='cell_value2_bulk')for i,arg in enumerate(sorted(arguments))]
-        with request.open('x')as out:json.dump(dict(function=function,witnesses=questions),out);out.write('\n')
+    for leaf_function in ('SIN','COS'):
+        request=output.with_name(output.stem+'-'+leaf_function+'-requests.json')
+        prediction=output.with_name(output.stem+'-'+leaf_function+'-predictions.jsonl')
+        questions=[dict(id=f'r19-{leaf_function.lower()}-leaf-{i:03d}',args=[arg],input_transport='cell_value2_bulk')for i,arg in enumerate(sorted(arguments))]
+        with request.open('x')as out:json.dump(dict(function=leaf_function,witnesses=questions),out);out.write('\n')
         subprocess.run([str(executable),'invoke-inputs',str(request),str(prediction)],check=True,timeout=300)
         actual=list(records(prediction));require(len(actual)==len(questions),'missing registered trig leaf')
         for q,r in zip(questions,actual):
             require(q['id']==r['id']and q['args']==r['args']and r['calc_func_prediction'].startswith('0x'),'trig leaf identity or domain differs')
-            leaves[function,q['args'][0]]=binary64(r['calc_func_prediction'])
+            leaves[leaf_function,q['args'][0]]=binary64(r['calc_func_prediction'])
         frozen[str(request)]=digest(request);frozen[str(prediction)]=digest(prediction)
     @lru_cache(maxsize=4096)
     def sqrt_round(q,model):
@@ -568,7 +580,7 @@ def check_asymptotic_survivors(input_path,tables_path,directory,executable,outpu
         result=a if q<midpoint*midpoint or q==midpoint*midpoint and low%2==0 else b
         return B.round(result)if model.startswith('stored')else result
     @lru_cache(maxsize=65536)
-    def evaluate(x,n,phase_id,scale_id,body,recurrence,terms,association):
+    def evaluate(x,n,phase_id,scale_id,body,recurrence,terms,association,amplitude_form):
         model=MODELS[body];rec=MODELS[recurrence]
         def op(kind,a,b):return operation(a,b,kind,model)
         def seed(n):
@@ -578,9 +590,20 @@ def check_asymptotic_survivors(input_path,tables_path,directory,executable,outpu
             a1,a2,a3=(R(-1,8),R(9,128),R(-75,1024))if n==0 else(R(3,8),R(-15,128),R(105,1024))
             p=op('add',R(1),-op('mul',a2,z2))if terms>=2 else R(1)
             q=R(0)if terms==0 else op('mul',op('add',a1,-op('mul',a3,z2))if terms>=2 else a1,z)
-            expression=op('add',op('mul',cosine,p),-op('mul',sine,q))
-            amplitude=sqrt_round(op('div',scales[scale_id],abs(x)),model)
-            return op('mul',amplitude,expression)
+            expression=(op('add',op('mul',cosine,p),-op('mul',sine,q))if function=='BESSELJ'
+                        else op('add',op('mul',sine,p),op('mul',cosine,q)))
+            c=scales[scale_id];a=abs(x);b=expression
+            root=lambda v:sqrt_round(v,model)
+            if amplitude_form==0:return op('mul',root(op('div',c,a)),b)
+            if amplitude_form==1:return op('mul',op('div',root(c),root(a)),b)
+            if amplitude_form==2:return op('mul',root(c),op('div',b,root(a)))
+            if amplitude_form==3:return op('div',op('mul',root(c),b),root(a))
+            if amplitude_form==4:return op('mul',op('mul',root(c),root(z)),b)
+            if amplitude_form==5:return op('mul',root(c),op('mul',root(z),b))
+            if amplitude_form==6:return op('mul',op('mul',root(c),b),root(z))
+            if amplitude_form==7:return op('div',b,root(op('div',a,c)))
+            require(amplitude_form==8,'unknown amplitude form')
+            return op('mul',op('div',R(1),root(op('div',a,c))),b)
         if n<=1:result=seed(n)
         else:
             previous,current=seed(0),seed(1);tox=operation(R(2),abs(x),'div',rec)
@@ -594,11 +617,11 @@ def check_asymptotic_survivors(input_path,tables_path,directory,executable,outpu
     executions=0
     for p in programs:
         for _,x,n,row in scoped:
-            got=evaluate(x,n,p['phase'],p['scale'],p['body'],p['recurrence'],p['terms'],p['association']);executions+=1
+            got=evaluate(x,n,p['phase'],p['scale'],p['body'],p['recurrence'],p['terms'],p['association'],p.get('amplitude',0));executions+=1
             require(got==row['expected'],'independent asymptotic survivor mismatch')
     require(frozen=={p:digest(p)for p in frozen},'asymptotic input/source changed')
-    result=dict(complete=True,programs=len(programs),observations=len(scoped),executions=executions,registered_trig_arguments=len(arguments),input_sha256=frozen,
-        limits='Independent exact arithmetic and rational sqrt-rounding replay of every declared J numeric survivor. '
+    result=dict(complete=True,function=function,amplitudes=amplitudes,programs=len(programs),observations=len(scoped),executions=executions,registered_trig_arguments=len(arguments),input_sha256=frozen,
+        limits='Independent exact arithmetic and rational sqrt-rounding replay of every declared numeric survivor for the named function. '
                'SIN/COS leaves are current registered application calculations, not new Excel observations or identified private Bessel helpers. '
                'Domain obligations are excluded; no complete Excel kernel or product gain follows.')
     with output.open('x')as out:json.dump(result,out,indent=2);out.write('\n')
@@ -656,6 +679,7 @@ def check_regimes(input_path,directory,output):
 
 
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='amplitude-survivors':check_asymptotic_survivors(*sys.argv[2:-1],amplitudes=True,function=sys.argv[-1]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='asymptotic-survivors':check_asymptotic_survivors(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='regimes':check_regimes(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller-sites':check_miller(*sys.argv[2:], expanded=True, sites=True);raise SystemExit(0)

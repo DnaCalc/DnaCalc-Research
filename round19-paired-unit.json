@@ -1,0 +1,44 @@
+{
+  "id": "dc-j9k-r19-paired",
+  "role": "implementer",
+  "application_revision": "1fea451ec394068c5a49467b731bc38455f824cb",
+  "checkpoint_research_revision": "3e2b8667f0caf8db9de48ec8dd4ec3893d6bb9dc",
+  "scope": "Paired DEVSQ/VAR and STDEV/VAR necessary consumer constraints over complete extended64 publication cells.",
+  "sources": {
+    "tier1": [
+      "Original Excel Value2 readings and committed catalogue captures",
+      "DLMF10.2.2,10.8.1,10.17.1--4/iii,5.2.3",
+      "IEEE754 exact arithmetic and Intel x87 instruction contracts",
+      "Ordinary annuity/geometric-sum algebra derived in racer/cumulative_projection.py"
+    ],
+    "tier2": [
+      "Existing cleared DnaCalc numeric operations"
+    ],
+    "api_only": [
+      "Official MPFR jn/yn directed-rounding API; installed library called, no implementation source read"
+    ],
+    "banned": [
+      "tier3/4 implementation code",
+      "deleted source and its history",
+      "DnaCalc-engine checkout"
+    ]
+  },
+  "exposure": "R16 observations already read; discovery, no preregistration or held-out claim. Source bindings refreshed before the dependency-complete replay; early own-module-only receipts retained.",
+  "limits": [
+    "Every latent value is an existential variable; no producer or product implementation follows.",
+    "Equal recorded environment/settings is not simultaneity or an observed shared Excel intermediate.",
+    "Only complete numeric scalar cohorts, exact ordered operands, positive bounded outputs."
+  ],
+  "source_sha256": {
+    "racer/variance_closure.py": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+    "racer/bessel.py": "e3b0ef74a5398a77b68f00805a620a08a4696853d5e86c7c64dc89bc59806ecd",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/variance_closure.py": "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+  },
+  "inputs": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/r16-published-score/observations.jsonl": "2eddf816fa824c08c618b65d24943d830d94f9c701563311b5edae1aae7ed148"
+  },
+  "source_binding": "Post-run dependency inventory. Bound producer/checker receipts independently guard these six numerical sources; unrelated Rust and test files belong to their separate checkpoint units."
+}

@@ -1,0 +1,29 @@
+{
+  "complete": true,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/r16-published-score/observations.jsonl": "2eddf816fa824c08c618b65d24943d830d94f9c701563311b5edae1aae7ed148",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/variance_closure.py": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py": "e3b0ef74a5398a77b68f00805a620a08a4696853d5e86c7c64dc89bc59806ecd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010"
+  },
+  "proof_sha256": "e41950493a6e713403238803256fae6dabc3954ecc4d04e3475009eb50b283ca",
+  "observations": 250,
+  "cohorts": 10,
+  "omitted": 200,
+  "shared_devsq_division_survivors": [],
+  "separate_sigma_square_survivors": {
+    "sample": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "population": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "limits": "Discovery necessary-consumer conditions. Shared DEVSQ latent q, then sample/population division:25 fixed model pairs. Separate sample/population STDEV latent sigma, then squaring:5 fixed models per name. Every positive extended64 point in each recorded publication cell is enumerated, with open tie endpoints. Latent points may differ per cohort; no prefix producer, shared Excel intermediate, internal regime, held-out gain or product program is identified."
+}

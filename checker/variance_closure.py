@@ -329,7 +329,107 @@ def raw_moment_check(input_path, directory, output, fused=False, root=False):
     print(json.dumps(receipt))
 
 
+def paired_verify(rows, proof):
+    """Independent signed-coordinate enumeration of the full publication cells."""
+    import hashlib
+    names = ('DEVSQ', 'VAR.S', 'VAR.P', 'STDEV.S', 'STDEV.P')
+    groups = {}
+    omitted = []
+    for i, row in enumerate(rows):
+        if row['function'] not in names:
+            omitted.append(dict(index=i, reason='other_function'))
+            continue
+        xs = row['args']
+        require(row.get('result_index') is None and len(xs) >= 2 and
+                all(isinstance(x, str) and x.startswith('0x') for x in xs), 'paired input shape')
+        require(all(x == 0 or two(-100) <= abs(x) <= two(100) for x in map(binary64, xs)), 'paired input range')
+        require(two(-100) <= binary64(row['expected']) <= two(100), 'paired target range')
+        p = row.get('capture_provenance', {})
+        context = dict(args=xs, reading=row['reading'], transport=row.get('input_transport'),
+                       environment=p.get('environment'), settings=p.get('calculation_settings'))
+        key = json.dumps(context, sort_keys=True, separators=(',', ':'))
+        members = groups.setdefault(key, (context, {}))[1]
+        require(row['function'] not in members, 'duplicate paired function/context')
+        members[row['function']] = i
+    complete = []
+    for context, members in groups.values():
+        if set(members) == set(names):
+            complete.append(dict(context=context, indices=members))
+        else:
+            omitted.extend(dict(index=i, reason='incomplete_context_cohort') for i in members.values())
+    require(complete and proof['models'] == list(MODELS) and
+            proof['omitted'] == sorted(omitted, key=lambda row: row['index']) and
+            [row['cohort'] for row in proof['cohorts']] == complete, 'paired complete coverage/context')
+    def cell(bits):
+        t = binary64(bits)
+        lo, hi = E.coordinates(B.pullback(Span(t, t)))
+        require(1 <= hi-lo+1 <= 4097, 'paired cell bound')
+        return [E.value(k) for k in range(lo, hi+1)]
+    def certificate(indices, points):
+        values = [points[k] for k in sorted(indices)]
+        payload = json.dumps(encode(values), separators=(',', ':')).encode()
+        return dict(count=len(values), sha256=hashlib.sha256(payload).hexdigest(),
+                    first=encode(values[:1])[0] if values else None,
+                    last=encode(values[-1:])[0] if values else None)
+    shared = set(itertools.product(range(5), repeat=2))
+    separate = dict(sample=set(range(5)), population=set(range(5)))
+    points_checked = operations_checked = 0
+    for group, detail in zip(complete, proof['cohorts']):
+        selected = {name:rows[i] for name, i in group['indices'].items()}
+        n = R(len(group['context']['args']))
+        q = cell(selected['DEVSQ']['expected'])
+        require(detail['q_point_count'] == len(q), 'paired q point count')
+        q_masks = {}
+        points_checked += len(q)
+        for label, var, sd, d in (('sample', 'VAR.S', 'STDEV.S', n-1), ('population', 'VAR.P', 'STDEV.P', n)):
+            target = binary64(selected[var]['expected'])
+            q_masks[label] = [{k for k, x in enumerate(q) if B.round(operation(x, d, 'div', model)) == target}
+                              for model in MODELS]
+            require(detail['q_divisions'][label] == [certificate(mask, q) for mask in q_masks[label]],
+                    'paired division full-set certificate')
+            s = cell(selected[sd]['expected'])
+            masks = [{k for k, x in enumerate(s) if B.round(operation(x, x, 'mul', model)) == target}
+                     for model in MODELS]
+            require(detail['sigma_square'][label] == dict(point_count=len(s), models=[certificate(mask, s) for mask in masks]),
+                    'paired square full-set certificate')
+            separate[label].intersection_update(k for k, mask in enumerate(masks) if mask)
+            points_checked += len(s)
+            operations_checked += 5*(len(q)+len(s))
+        joint = [(a, b) for a, b in itertools.product(range(5), repeat=2) if q_masks['sample'][a] & q_masks['population'][b]]
+        require(detail['q_joint_profiles'] == [list(p) for p in joint], 'paired correlated q intersection')
+        shared.intersection_update(joint)
+    require(proof['shared_devsq_division_survivors'] == [list(p) for p in sorted(shared)] and
+            proof['separate_sigma_square_survivors'] == {k:sorted(v) for k,v in separate.items()}, 'paired survivor intersection')
+    return dict(cohorts=len(complete), lattice_points=points_checked, operations=operations_checked,
+                shared_devsq_division_survivors=[list(p) for p in sorted(shared)],
+                separate_sigma_square_survivors={k:sorted(v) for k,v in separate.items()})
+
+
+def paired_check(input_path, directory, output):
+    dest = Path(directory)
+    dependencies = [Path(__file__), Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py')]
+    frozen = {str(p):digest(p) for p in [Path(input_path), *dependencies, dest/'proof.json', dest/'summary.json']}
+    proof = json.loads((dest/'proof.json').read_text())
+    summary = json.loads((dest/'summary.json').read_text())
+    rows = list(records(input_path))
+    result = paired_verify(rows, proof)
+    require(summary['complete'] and summary['observations'] == len(rows) and summary['cohorts'] == result['cohorts'] and
+            summary['omitted'] == len(proof['omitted']) and summary['proof_sha256'] == digest(dest/'proof.json') and
+            summary['input_sha256'].get(str(Path(input_path))) == digest(input_path), 'paired summary binding')
+    for name in ('shared_devsq_division_survivors', 'separate_sigma_square_survivors'):
+        require(summary[name] == result[name], 'paired summary survivor binding')
+    require(frozen == {p:digest(p) for p in frozen}, 'paired files changed during check')
+    receipt = dict(complete=True, independent=True, counts=result, input_sha256=frozen,
+                   limits='Independent signed-coordinate enumeration with exact rational arithmetic; no imports from producer. '
+                          'Necessary consumers only. Existence of a latent point is not a reusable producer or a product match.')
+    with open(output, 'x') as out:
+        json.dump(receipt, out, indent=2)
+        out.write('\n')
+    print(json.dumps(receipt))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='paired':paired_check(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments-stdev4':raw_moment_check(*sys.argv[2:], fused=True, root=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments-fma':raw_moment_check(*sys.argv[2:], fused=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments':raw_moment_check(*sys.argv[2:]);raise SystemExit(0)

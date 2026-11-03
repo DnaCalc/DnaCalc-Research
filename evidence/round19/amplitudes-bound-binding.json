@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "application_revision": "8aaf1671c70f7374608477ae41e1e5f69356b21d",
+  "executable_sha256": "6629e16918ae0f01d63f4829c7878f7c95b00b5e6bdf764ed592f1d3be5139fe",
+  "unit_sha256": "e8c45453916dab5dcafac53d0447c6ffca1e150c44fb3ae0fe76fa0a554b6c7d",
+  "source_files": 69,
+  "all_payloads_unchanged": {
+    "BESSELY-first-kills.tsv.gz": {
+      "before": "94f594119e34546af5984cf89cf822985d8d5ca3b771b6e089f7dd51daf78c8e",
+      "after": "94f594119e34546af5984cf89cf822985d8d5ca3b771b6e089f7dd51daf78c8e"
+    },
+    "BESSELJ-survivors.json": {
+      "before": "388fcfa7f5b41abef38a4d82d9a952ea9fc235af09e465150f01700e75af744f",
+      "after": "388fcfa7f5b41abef38a4d82d9a952ea9fc235af09e465150f01700e75af744f"
+    },
+    "grammar.json": {
+      "before": "9334f2ae77f6bfe97bbeb5de4d0ddb59101f21df479759c3df376ac75943bb72",
+      "after": "9334f2ae77f6bfe97bbeb5de4d0ddb59101f21df479759c3df376ac75943bb72"
+    },
+    "BESSELY-survivors.json": {
+      "before": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "after": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "summary.json": {
+      "before": "0fbc47ecb74b849020e1f55eb8a67bf44dd129ff3b4a2e66b09aac73727cf9f1",
+      "after": "0fbc47ecb74b849020e1f55eb8a67bf44dd129ff3b4a2e66b09aac73727cf9f1"
+    },
+    "BESSELJ-first-kills.tsv.gz": {
+      "before": "d37758dafcfa7748f2ac236d503b8daaa6acf1b96b9400f28cbed7b905e39cc5",
+      "after": "d37758dafcfa7748f2ac236d503b8daaa6acf1b96b9400f28cbed7b905e39cc5"
+    }
+  },
+  "compression": {
+    "BESSELJ-first-kills.tsv": {
+      "uncompressed_sha256": "be0c87b0dce4f9b70c3c6f10998d9524be3d8436d8bc5a6c970865bc1cc36269",
+      "uncompressed_bytes": 18069562,
+      "gzip_sha256": "d37758dafcfa7748f2ac236d503b8daaa6acf1b96b9400f28cbed7b905e39cc5"
+    },
+    "BESSELY-first-kills.tsv": {
+      "uncompressed_sha256": "8faf1bf10517825d739dfb4616b8167deae7d9e486cad08e34d7742a5d717e56",
+      "uncompressed_bytes": 18113914,
+      "gzip_sha256": "94f594119e34546af5984cf89cf822985d8d5ca3b771b6e089f7dd51daf78c8e"
+    }
+  }
+}

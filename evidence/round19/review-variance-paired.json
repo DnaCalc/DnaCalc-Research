@@ -1,0 +1,73 @@
+{
+  "approved": true,
+  "created_utc": "2026-11-03T10:46:36.419896+00:00",
+  "source_sha256": {
+    "racer/variance_closure.py": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+    "racer/bessel.py": "e3b0ef74a5398a77b68f00805a620a08a4696853d5e86c7c64dc89bc59806ecd",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/variance_closure.py": "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "checker/test_exact.py": "a254bf7d9e94ba6cecd232db18102adfcf743ee08c75a6f6da12b9de1d74b754",
+    "round19-paired-unit.json": "03e728ebde3a06f1e4371ebad5369984f3a6f9818de6edc2cc455b61f7b04401",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/variance-paired-bound/summary.json": "f89cd1ca825223c7592af64b03a147ead481a15154d0c75b8d177afaf72927d2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/variance-paired-bound/proof.json": "e41950493a6e713403238803256fae6dabc3954ecc4d04e3475009eb50b283ca",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/variance-paired-bound-checked.json": "f78aad05690b79da6d5f27c165fc698372c2fcdafc76a76e9caf1b65f37d66f5",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/review/variance-paired-ubs.json": "45756a629aa8a4660dd1c95aabd5c827b4e88e8b364b01e6658496760d966f77",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/review/variance-paired-cells.json": "04e03edc4c716e97ebea93a14ed266ed34cea0833d1ab13c05cc63cd343b3afb",
+    "evidence/round19/asymptotic-source-archive-binding.json": "f448e15dbf943584affd1016f8e9e6a38bcf3ef9de76e317ae23382d68979365"
+  },
+  "paired_scope_source_unit_matches": {
+    "racer/variance_closure.py": true,
+    "racer/bessel.py": true,
+    "racer/intervals.py": true,
+    "checker/variance_closure.py": true,
+    "checker/exact.py": true,
+    "checker/check.py": true
+  },
+  "proof_bindings_match": true,
+  "observations": 250,
+  "complete_cohorts": 10,
+  "omitted": 200,
+  "independent_counts": {
+    "cohorts": 10,
+    "lattice_points": 61444,
+    "operations": 409620,
+    "shared_devsq_division_survivors": [],
+    "separate_sigma_square_survivors": {
+      "sample": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "population": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "lattice_review": "Producer enumerates all positive Ext64 values in each binary64 publication cell, retaining odd/even open endpoints. Independent checker enumerates signed lattice coordinates and recomputes every division/square mask certificate. Shared-q conditions intersect sample/population masks at the same latent index within each cohort and fixed model pairs across cohorts.",
+  "context_review": "Exact ordered argument encodings, reading metadata, transport, recorded environment and settings are paired. Duplicate function/context aborts; incomplete contexts are explicitly omitted. Per-function source/time differences are excluded from the key and are never claimed to prove simultaneity or an actual shared Excel intermediate.",
+  "sigma_review": "Sample and population sigma cells are independent existential consumers. Four non-strict models survive for each name; no common sigma producer or variance-to-sqrt implementation is identified.",
+  "constructed_controls": {
+    "cells": 19,
+    "lattice_points": 38919,
+    "scope": "Binade boundaries, positive magnitude bounds and odd/even adjacent significands; synthetic only"
+  },
+  "UBS": {
+    "complete_stable_scans": true,
+    "producer_critical": 0,
+    "checker_critical": 2,
+    "test_critical": 0,
+    "triage": "Two checker criticals compare public integrity hashes; fail-closed JSON/test warnings retained. Full detail in variance-paired-ubs.json."
+  },
+  "archive_addendum_truthful": true,
+  "limits": [
+    "Necessary consumers only. No prefix, private Excel regime, fitted latent value, product program, new Excel answer or gain is inferred.",
+    "The six-source unit is scoped to this paired supplement; later unrelated research changes do not rewrite the historical checkpoint3e2b866.",
+    "Full independent replay verified10 cohorts,61444 lattice points and409620 operations; no complete variance algorithm follows from zero shared-q survivors."
+  ]
+}

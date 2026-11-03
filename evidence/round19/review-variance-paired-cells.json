@@ -1,0 +1,109 @@
+{
+  "complete": true,
+  "synthetic": true,
+  "cells": 19,
+  "points": 38919,
+  "cases": [
+    {
+      "exponent": -100,
+      "offset": 0,
+      "points": 2049
+    },
+    {
+      "exponent": -100,
+      "offset": 1,
+      "points": 2047
+    },
+    {
+      "exponent": -100,
+      "offset": 2,
+      "points": 2049
+    },
+    {
+      "exponent": -53,
+      "offset": 0,
+      "points": 2049
+    },
+    {
+      "exponent": -53,
+      "offset": 1,
+      "points": 2047
+    },
+    {
+      "exponent": -53,
+      "offset": 2,
+      "points": 2049
+    },
+    {
+      "exponent": -1,
+      "offset": 0,
+      "points": 2049
+    },
+    {
+      "exponent": -1,
+      "offset": 1,
+      "points": 2047
+    },
+    {
+      "exponent": -1,
+      "offset": 2,
+      "points": 2049
+    },
+    {
+      "exponent": 0,
+      "offset": 0,
+      "points": 2049
+    },
+    {
+      "exponent": 0,
+      "offset": 1,
+      "points": 2047
+    },
+    {
+      "exponent": 0,
+      "offset": 2,
+      "points": 2049
+    },
+    {
+      "exponent": 1,
+      "offset": 0,
+      "points": 2049
+    },
+    {
+      "exponent": 1,
+      "offset": 1,
+      "points": 2047
+    },
+    {
+      "exponent": 1,
+      "offset": 2,
+      "points": 2049
+    },
+    {
+      "exponent": 53,
+      "offset": 0,
+      "points": 2049
+    },
+    {
+      "exponent": 53,
+      "offset": 1,
+      "points": 2047
+    },
+    {
+      "exponent": 53,
+      "offset": 2,
+      "points": 2049
+    },
+    {
+      "exponent": 100,
+      "offset": 0,
+      "points": 2049
+    }
+  ],
+  "source_sha256": {
+    "racer/variance_closure.py": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+    "racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "limits": "Constructed publication-cell controls at binade boundaries, adjacent odd/even significands and both declared magnitude bounds. Not Excel observations or a product score."
+}

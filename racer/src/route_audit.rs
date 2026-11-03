@@ -198,6 +198,15 @@ fn encoded(value: &CalcValue) -> String {
 /// Fixed DLMF Hankel programs with universal decimal-constant quantizers.
 /// This is a numerical hypothesis study, not a replacement application route.
 pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
+    bessel_asymptotic_search(input, tables, out, false);
+}
+
+/// The same Hankel family with nine algebraically equal amplitude associations.
+pub fn bessel_amplitudes(input: &str, tables: &str, out: &str) {
+    bessel_asymptotic_search(input, tables, out, true);
+}
+
+fn bessel_asymptotic_search(input: &str, tables: &str, out: &str, amplitudes: bool) {
     use crate::dsl::{EvalModel, Op, WIDE_MODELS};
     use crate::eval::{binop, Val, CW};
     use crate::ported::excel_numeric::{Fpu, Hard, excel_cos, excel_sin};
@@ -221,7 +230,7 @@ pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
         let v=match kind {0=>Hard::sqrt(&x,cw),1=>Hard::sin(&x,cw),_=>Hard::cos(&x,cw)};
         if matches!(model,EvalModel::StoredPc53|EvalModel::StoredPc64) {Val::f64(Hard::store(&v,CW))}else{Val::Ext(v)}
     }
-    fn seed(function:&str,x:f64,n:usize,phase:f64,scale:f64,model:EvalModel,trig:usize,terms:usize)->Val {
+    fn seed(function:&str,x:f64,n:usize,phase:f64,scale:f64,model:EvalModel,trig:usize,terms:usize,amplitude:usize)->Val {
         let a=Val::f64(x);let one=Val::f64(1.0);
         let z=arithmetic(2,model,one,a);
         let z2=arithmetic(1,model,z,z);
@@ -241,8 +250,19 @@ pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
         let body=if function=="BESSELJ" {
             arithmetic(0,model,arithmetic(1,model,c,p),negative(arithmetic(1,model,s,q)))
         }else{arithmetic(0,model,arithmetic(1,model,s,p),arithmetic(1,model,c,q))};
-        let amplitude=extended_unary(arithmetic(2,model,Val::f64(scale),a),model,0);
-        arithmetic(1,model,amplitude,body)
+        let c=Val::f64(scale);
+        match amplitude {
+            0=>arithmetic(1,model,extended_unary(arithmetic(2,model,c,a),model,0),body),
+            1=>arithmetic(1,model,arithmetic(2,model,extended_unary(c,model,0),extended_unary(a,model,0)),body),
+            2=>arithmetic(1,model,extended_unary(c,model,0),arithmetic(2,model,body,extended_unary(a,model,0))),
+            3=>arithmetic(2,model,arithmetic(1,model,extended_unary(c,model,0),body),extended_unary(a,model,0)),
+            4=>arithmetic(1,model,arithmetic(1,model,extended_unary(c,model,0),extended_unary(z,model,0)),body),
+            5=>arithmetic(1,model,extended_unary(c,model,0),arithmetic(1,model,extended_unary(z,model,0),body)),
+            6=>arithmetic(1,model,arithmetic(1,model,extended_unary(c,model,0),body),extended_unary(z,model,0)),
+            7=>arithmetic(2,model,body,extended_unary(arithmetic(2,model,a,c),model,0)),
+            8=>arithmetic(1,model,arithmetic(2,model,one,extended_unary(arithmetic(2,model,a,c),model,0)),body),
+            _=>unreachable!(),
+        }
     }
     let destination=Path::new(out);fs::create_dir(destination).unwrap();
     let original=crate::lines::<Value>(input);
@@ -251,13 +271,20 @@ pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
     assert_eq!((phases.len(),scales.len()),(10,10));
     let decode=|v:&Value| f64::from_bits(u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"),16).unwrap());
     let mut counts=Vec::new();let mut programs=Vec::new();
-    for phase in 0..10 {for scale in 0..10 {for body in 0..5 {for recurrence in 0..5 {for trig in 0..3 {for terms in 0..3 {for association in 0..3 {
-        programs.push(json!({"id":programs.len(),"phase":phase,"scale":scale,"body":body,"recurrence":recurrence,"trig":trig,"terms":terms,"association":association}));
-    }}}}}}}
-    json_write(destination.join("grammar.json").to_str().unwrap(),&json!({
-        "programs":programs.len(),"axes_in_loop_order":[["phase",10],["scale",10],["body",5],["recurrence",5],["trig",3],["terms",3],["association",3]],
+    for phase in 0..10 {for scale in 0..10 {for body in 0..5 {for recurrence in 0..5 {for trig in 0..3 {for terms in 0..3 {for association in 0..3 {for amplitude in 0..if amplitudes {9}else{1} {
+        programs.push([phase,scale,body,recurrence,trig,terms,association,amplitude]);
+    }}}}}}}}
+    let mut axes=json!([["phase",10],["scale",10],["body",5],["recurrence",5],["trig",3],["terms",3],["association",3]]);
+    if amplitudes {axes.as_array_mut().unwrap().push(json!(["amplitude",9]));}
+    let mut grammar=json!({
+        "programs":programs.len(),"axes_in_loop_order":axes,
         "id":"Mixed-radix rank, association fastest. Model IDs follow WIDE_MODELS. Trig0=current worksheet kernel,1=native instruction,2=libm.",
-        "terms":"0 leading sin/cos;1 includes a1/x;2 includes a2/x^2 and a3/x^3."}));
+        "terms":"0 leading sin/cos;1 includes a1/x;2 includes a2/x^2 and a3/x^3."});
+    if amplitudes {
+        grammar["id"]=json!("Mixed-radix rank, amplitude fastest. Other axes retain the original Hankel meanings; model IDs follow WIDE_MODELS.");
+        grammar["amplitudes"]=json!(["sqrt(c/x)*b","(sqrt(c)/sqrt(x))*b","sqrt(c)*(b/sqrt(x))","(sqrt(c)*b)/sqrt(x)","(sqrt(c)*sqrt(1/x))*b","sqrt(c)*(sqrt(1/x)*b)","(sqrt(c)*b)*sqrt(1/x)","b/sqrt(x/c)","(1/sqrt(x/c))*b"]);
+    }
+    json_write(destination.join("grammar.json").to_str().unwrap(),&grammar);
     for function in ["BESSELJ","BESSELY"] {
         let rows:Vec<_>=original.iter().enumerate().filter_map(|(i,r)| {
             if r["function"]!=function||!r["result_index"].is_null()||!r["expected"].as_str()?.starts_with("0x") {return None;}
@@ -270,8 +297,8 @@ pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
         let mut first=std::io::BufWriter::new(fs::OpenOptions::new().write(true).create_new(true).open(destination.join(format!("{function}-first-kills.tsv"))).unwrap());
         writeln!(first,"program\ttrace_index\tgot").unwrap();
         let mut alive=Vec::new();let mut executions=0;
-        for p in &programs {
-            let index=|key:&str|p[key].as_u64().unwrap()as usize;
+        for (id,p) in programs.iter().enumerate() {
+            let index=|key:&str|match key {"phase"=>p[0],"scale"=>p[1],"body"=>p[2],"recurrence"=>p[3],"trig"=>p[4],"terms"=>p[5],"association"=>p[6],"amplitude"=>p[7],"id"=>id,_=>unreachable!()};
             let phase=&phases[index("phase")]["values"];
             let phase0=decode(&phase[0]["binary64"]);let phase1=decode(&phase[1]["binary64"]);
             let scale=decode(&scales[index("scale")]["value"]["binary64"]);
@@ -279,8 +306,8 @@ pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
             let mut killed=false;
             for &(at,x,n,row) in &rows {
                 let ax=x.abs();
-                let mut previous=seed(function,ax,0,phase0,scale,body,index("trig"),index("terms"));
-                let mut current=seed(function,ax,1,phase1,scale,body,index("trig"),index("terms"));
+                let mut previous=seed(function,ax,0,phase0,scale,body,index("trig"),index("terms"),index("amplitude"));
+                let mut current=seed(function,ax,1,phase1,scale,body,index("trig"),index("terms"),index("amplitude"));
                 let tox=arithmetic(2,model,Val::f64(2.0),Val::f64(ax));
                 for k in 1..n {
                     let step=match index("association") {

@@ -1,0 +1,74 @@
+{
+  "approved": true,
+  "created_utc": "2026-11-03T11:05:32.432624+00:00",
+  "review_kind": "Final amplitude supplement and publication-draft metrics; no source edits",
+  "validations": {
+    "current_source_unit": true,
+    "independent_replay_sources": true,
+    "published_index": true,
+    "raw_index": true,
+    "packet_index": true,
+    "native_bound_binding": true,
+    "native_bound_payloads": true,
+    "authoritative_replay": true,
+    "final_corpus": true,
+    "all_evaluation_records_equal": true,
+    "report_under_30_lines": true,
+    "staged_whitespace": true,
+    "staged_equal_working": true
+  },
+  "staged_files_sha256": {
+    "Cargo.lock": "6e4d50e40814989d8a68d7a31f6d2133a82e5a6c87c13dd4234e880eb09194b5",
+    "checker/bessel.py": "b7f42d7628e536d2227a105803bfbb9f97047cbdbe83181ba78cce8b3c77ad5a",
+    "checker/test_exact.py": "a254bf7d9e94ba6cecd232db18102adfcf743ee08c75a6f6da12b9de1d74b754",
+    "checker/variance_closure.py": "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f",
+    "evidence/round19/amplitudes-bound-binding.json": "80f2f1c94b4f35e172cc21869794fb17135c6b95df3342cb198173af493898ed",
+    "evidence/round19/asymptotic-source-archive-binding.json": "f448e15dbf943584affd1016f8e9e6a38bcf3ef9de76e317ae23382d68979365",
+    "evidence/round19/bessel-amplitudes-checked.json": "310cb7655ada5bdd331d9160187b6d49a29c8da33e666070809aa517c9353daf",
+    "evidence/round19/bessel-amplitudes-summary.json": "0fbc47ecb74b849020e1f55eb8a67bf44dd129ff3b4a2e66b09aac73727cf9f1",
+    "evidence/round19/corpus-final-integration-delta.json": "0a0f3fc4a6736a0957f6f47c1ce8eaad5890ae33b13d023b6ebe35ef783cf504",
+    "evidence/round19/index.json": "462c666ef94d3852c35ec6eeed9454723df253be2750782d42f72a224e7c82a5",
+    "evidence/round19/review-amplitudes-preservation.json": "538e1522298498a552f1c1a0272c9c6de1f3c66716d9cba2bdda4806c9649618",
+    "evidence/round19/review-amplitudes-ubs.json": "86df5d8c69b189a8176be7b4e4d496bb834de05d86ee63f219d20c24e3357888",
+    "evidence/round19/review-variance-paired-cells.json": "04e03edc4c716e97ebea93a14ed266ed34cea0833d1ab13c05cc63cd343b3afb",
+    "evidence/round19/review-variance-paired-ubs.json": "45756a629aa8a4660dd1c95aabd5c827b4e88e8b364b01e6658496760d966f77",
+    "evidence/round19/review-variance-paired.json": "be7763b675fed7c4aec06871a43193daa668e6b0ad17776970d60d2063c58b9e",
+    "evidence/round19/variance-paired-checked.json": "f78aad05690b79da6d5f27c165fc698372c2fcdafc76a76e9caf1b65f37d66f5",
+    "evidence/round19/variance-paired-summary.json": "f89cd1ca825223c7592af64b03a147ead481a15154d0c75b8d177afaf72927d2",
+    "racer/src/main.rs": "5f778fd80e453cfff3bf4842c0ae8270c9416be28ff1f2e44a06eac15157d5fc",
+    "racer/src/route_audit.rs": "cff21e1ac88682268ab2110b599b2aef895717e33297c177139e3ea862acd48d",
+    "racer/variance_closure.py": "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382",
+    "round19-amplitudes-unit.json": "e8c45453916dab5dcafac53d0447c6ffca1e150c44fb3ae0fe76fa0a554b6c7d",
+    "round19-paired-unit.json": "03e728ebde3a06f1e4371ebad5369984f3a6f9818de6edc2cc455b61f7b04401",
+    "round19-result.json": "7ebc8ee4b154b5cbd88e0e16740f99762a7297c35ddf703ae79815b5d01ef8ae"
+  },
+  "source_unit_entries": 69,
+  "source_unit_sha256": "e8c45453916dab5dcafac53d0447c6ffca1e150c44fb3ae0fe76fa0a554b6c7d",
+  "authoritative_replay_sha256": "310cb7655ada5bdd331d9160187b6d49a29c8da33e666070809aa517c9353daf",
+  "authoritative_replay": {
+    "programs": 1536,
+    "observations": 41,
+    "executions": 62976,
+    "registered_trig_arguments": 17,
+    "seconds": 110.11238766205497
+  },
+  "report_draft": {
+    "path": "/home/ubuntu/codex-runs/work-report-19.md",
+    "lines": 28,
+    "sha256": "af81236a32be00f46ab992cd45788d888c2105f72db6464db5542cd8d9010ce8",
+    "metrics_approved": true,
+    "overclaims_found": []
+  },
+  "tracker_note_draft": {
+    "path": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/tracker-note-draft.txt",
+    "sha256": "16942ec5a1b61a1325a204383d5a6525a45bc11aaef6a17762cfadfb0a4d4dae",
+    "metrics_approved": true
+  },
+  "limitations": [
+    "Independent arithmetic verifies surviving amplitude0 J programs; killed alternatives/Y remain native exclusions with coverage bookkeeping. No Excel regime or body adoption is claimed.",
+    "Replay1 failed and replay2 failed its source/file guard; only the successful stable bound replay is authoritative.",
+    "The report clearly separates own+1 corpus, upstream+1, bank+30/-0 and inclusive failures. Latest integration changes no evaluation record. High-order BESSELI policy remains explicit inference.",
+    "Publication time, final commit IDs and the pending-review status line need factual completion after publication; this approval covers the reviewed metrics and bounded claims.",
+    "The main required clean-tree check runs build/provenance with zero tests; prior1370-test full check and Research85 Python/70 Rust checks are reported separately."
+  ]
+}

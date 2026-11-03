@@ -1,7 +1,7 @@
 {
   "round": 19,
-  "round_complete": false,
-  "status": "Checkpoint; timed numerical research continues.",
+  "round_complete": true,
+  "status": "Round ended: measured admission fix and bounded numerical studies; the listed regimes and domain questions remain open.",
   "started_utc": "2026-11-03 08:58 UTC",
   "application_revision": "1fea451ec394068c5a49467b731bc38455f824cb",
   "product_commit": "f2e72693",
@@ -161,13 +161,15 @@
   },
   "checks": {
     "optimized_test_profile_check": "1370 passed,0 failed; testopt-level1",
-    "research_Rust": "70 passed,0 failed,2 ignored",
-    "research_Python": "82 passed,0 failed;1504 exhaustive lattice controls",
+    "research_Rust": "70 passed,0 failed,2 ignored; final optional route build and disabled-route compile both pass",
+    "research_Python": "85 passed,0 failed;1504 exhaustive lattice controls",
     "UBS": "Complete new-file scans; deliberate source-hash/local-executable findings triaged. Existing corpus_cases SQL analysis partial; no clean full-scan claim.",
     "latest_standard_check_with_tests": "1370 passed,0 failed,5 ignored,1 not run",
-    "before_checkpoint_push_check": "Build/provenance passed; clean main tree,0 touched packages,0 tests run (main-before-research-checkpoint-check.log)."
+    "before_checkpoint_push_check": "Build/provenance passed; clean main tree,0 touched packages,0 tests run (main-before-research-checkpoint-check.log).",
+    "latest_integrated_clean_check": "8aaf1671 workspace build/provenance passed;0 touched packages,0 tests (main-final-integrated-check.log).",
+    "before_final_push_check": "See main-before-final-push-check.log; tracker-only integration, no source package changes."
   },
-  "read_only_review": "Checkpoint source, exact bounds, native algebra, packet and finite-family limitations reviewed; final report pending.",
+  "read_only_review": "Checkpoint, paired variance and final amplitude source/receipt/staged-file review approved; report and tracker metrics checked against tool output.",
   "source_unit": "round19-unit.json",
   "evidence_index": "evidence/round19/index.json",
   "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19",
@@ -177,5 +179,69 @@
     "Small/near-order Bessel programs, seed approximation coefficients and Y asymptotic program.",
     "Larger loan/GEOMEAN/variance/binomial numerical groups.",
     "Higher-order BESSELI admission beyond the measured orders."
+  ],
+  "source_binding": {
+    "current": "round19-unit.json at checkpoint3e2b866",
+    "archive_note": "evidence/round19/asymptotic-source-archive-binding.json",
+    "limits": "The original raw source archive retains pre-study unit metadata; do not treat that embedded unit as an internally complete research-source freeze. Later current bindings are authoritative.",
+    "amplitudes": "New69-source unit at final integration8aaf1671, with the resolved transitive VBA lock and final command executable bound separately."
+  },
+  "variance_paired": {
+    "cohorts": 10,
+    "rows": 50,
+    "omitted": 200,
+    "lattice_points": 61444,
+    "independent_operations": 409620,
+    "shared_devsq_division_survivors": 0,
+    "separate_sigma_square_survivors": {
+      "sample": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "population": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "body_adopted": false,
+    "limits": "Necessary consumer conditions only, arbitrary per-cohort latent values. No producer or shared internal Excel intermediate is identified.",
+    "unit": "round19-paired-unit.json",
+    "receipt": "evidence/round19/variance-paired-checked.json"
+  },
+  "final_integration_revision": "8aaf1671",
+  "final_integration_corpus": {
+    "matched": 19596,
+    "total": 20840,
+    "inclusive_failures": 1244,
+    "gains_from_1fea451e": 0,
+    "losses_from_1fea451e": 0,
+    "changed_evaluations": 0,
+    "evaluations": 63783,
+    "receipt": "evidence/round19/corpus-final-integration-delta.json"
+  },
+  "amplitude_supplement": {
+    "labels_per_function": 607500,
+    "J_survivors": 1536,
+    "J_readings": 41,
+    "J_unique_inputs": 40,
+    "J_survivor_amplitudes": [
+      0
+    ],
+    "Y_native_survivors": 0,
+    "limits": "Native finite-family exclusions and exact coverage bookkeeping; only surviving amplitude0 J programs receive independent numerical replay. No killed amplitude1..8 or Y numeric replay and no internal regime identified.",
+    "unit": "round19-amplitudes-unit.json",
+    "native_binding": "evidence/round19/amplitudes-bound-binding.json",
+    "independent_replay": "evidence/round19/bessel-amplitudes-checked.json",
+    "independent_executions": 62976,
+    "registered_trig_arguments": 17
+  },
+  "source_units": [
+    "round19-unit.json at3e2b866",
+    "round19-paired-unit.json",
+    "round19-amplitudes-unit.json"
   ]
 }
