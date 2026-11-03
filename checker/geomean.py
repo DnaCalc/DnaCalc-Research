@@ -248,9 +248,24 @@ def check_exact_roots(input_path, directory, output):
     print(json.dumps(result))
 
 
-def product_result(raw):
+def root_publication_domains(products, count, target, staged=False):
+    from exact import BINARY64 as B, EXTENDED64 as E, EXTENDED53 as P, Span
+    binary = B.pullback(Span(target, target))
+    formats = {'binary64': binary}
+    if staged:
+        formats['extended64_then_binary64'] = E.pullback(binary)
+        formats['extended53_then_binary64'] = P.pullback(binary)
+    results = {}
+    for name, span in formats.items():
+        require(span is not None and span.low > 0, 'positive normal root publication required')
+        inverse_root = Span(span.low**count, span.high**count, span.left, span.right)
+        results[name] = dict(span=span.json(), reachable=any(inverse_root.contains(v) for v in products))
+    return results
+
+
+def product_result(raw, staged=False):
     """Explicit ordered trees; independent of the producer's subset closure."""
-    from exact import operation, BINARY64 as B, Span
+    from exact import operation
     inputs, reason = coordinates(raw)
     require(reason is None and 2 <= len(inputs) <= 3, 'product-closure arity/domain')
     xs = list(map(binary64, inputs))
@@ -274,13 +289,16 @@ def product_result(raw):
                     values.add(mul(a, mul(b, c, first), last))
         table[str(mask)] = [[str(x.numerator), str(x.denominator)] for x in sorted(values)]
     target = binary64(raw['expected'])
-    span = B.pullback(Span(target, target))
-    interval = Span(span.low**len(xs), span.high**len(xs), span.left, span.right)
-    products = (Q(*map(int, p)) for p in table[str((1 << len(xs))-1)])
-    return dict(raw=raw, products=table, root_span=span.json(), reachable=any(interval.contains(p) for p in products))
+    products = [Q(*map(int, p)) for p in table[str((1 << len(xs))-1)]]
+    domains = root_publication_domains(products, len(xs), target, staged)
+    result = dict(raw=raw, products=table, root_span=domains['binary64']['span'],
+                  reachable=any(d['reachable'] for d in domains.values()))
+    if staged:
+        result['root_roundings'] = domains
+    return result
 
 
-def check_product_closure(input_path, directory, output):
+def check_product_closure(input_path, directory, output, staged=False):
     directory = Path(directory)
     frozen = {str(p):digest(p) for p in (Path(input_path), Path(__file__),
         Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py'),
@@ -299,19 +317,28 @@ def check_product_closure(input_path, directory, output):
         if reason:
             counts[reason] += 1
             continue
-        independently = product_result(raw)
+        independently = product_result(raw, staged)
         require(next(proofs, None) == dict(trace_index=index, **independently), 'incomplete product closure, answer or source differs')
         counts['scoped'] += 1
         counts['unreachable'] += not independently['reachable']
         counts['root_product_values'] += len(independently['products'][str((1 << len(inputs))-1)])
+        if staged:
+            for name, result in independently['root_roundings'].items():
+                counts[name+'_unreachable'] += not result['reachable']
     require(counts['scoped'] and next(scope, None) is None and next(proofs, None) is None, 'empty or extra product obligations')
     summary = json.loads((directory/'summary.json').read_text())
     require(summary['complete'] is True and summary['counts'] == counts, 'incorrect product closure totals')
+    require(summary.get('root_staging', False) == staged, 'incorrect product root-stage grammar')
     require(frozen == {p:digest(p) for p in frozen}, 'product closure inputs/checker changed')
     receipt = dict(complete=True, counts=counts, input_sha256=frozen,
         limits='Independent explicit permutation/two-tree reconstruction of complete product sets and exact midpoint-power root preimages. '
                'Two/three modest positive operands; six choices per multiply (five rounding/store modes or exact). '
                'Reference bindings are re-read from original workbook/capture bytes. No native power leaf or complete Excel algorithm is inferred.')
+    if staged:
+        receipt.update(root_staging=True,
+            limits='Independent complete product-tree sets and exact inverse publication/nth-power boundaries for direct binary64, extended64-then-binary64, or extended53-then-binary64 real roots. '
+                   'Every intermediate root is assumed correctly rounded in its declared format; native pow/log approximations and other programs remain open. '
+                   'The direct-root family is included, not added. Original static reference lineage is revalidated.')
     with open(output, 'x') as out:
         json.dump(receipt, out, indent=2)
         out.write('\n')
@@ -319,6 +346,8 @@ def check_product_closure(input_path, directory, output):
 
 
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='product-closure-staged':
+        check_product_closure(*sys.argv[2:], staged=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='product-closure':
         check_product_closure(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='exact-root':check_exact_roots(*sys.argv[2:])

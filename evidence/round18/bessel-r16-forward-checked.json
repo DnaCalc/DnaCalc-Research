@@ -1,0 +1,37 @@
+{
+  "complete": true,
+  "functions": {
+    "BESSELJ": {
+      "profiles": 1125,
+      "groups": 14,
+      "executions": 9800,
+      "rejected": 620,
+      "necessary_survivors": 505
+    },
+    "BESSELY": {
+      "profiles": 1125,
+      "groups": 14,
+      "executions": 5561,
+      "rejected": 820,
+      "necessary_survivors": 305
+    }
+  },
+  "counts": {
+    "independent_cohort_replays": 15361
+  },
+  "seconds": 96.48436855105683,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-with-r16.jsonl": "c878b2d95ba8bd7c96673956a2341e79f84a19f9919b248b7d296a8b990e34b4",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/bessel.py": "9cc1d8122973dd0c95884dc373bdc2e50ba4a02911ed3e399678f2361065f789",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/BESSELJ-first-kills.jsonl": "9e595880e61b8aa5a791c1caaf68ef846e2a37f9acbb47964b0f5209424d9d64",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/BESSELJ-necessary-survivors.json": "7a43e4633f073a394045ae8a3a61c6d9b8c07e0dd6169092c88d6b25037b5012",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/BESSELY-first-kills.jsonl": "ca116d94feabe0c983593ba0fe284cf0cf34e7838b373c0dbbfccbd9d7da9ba2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/BESSELY-necessary-survivors.json": "e79bb8e0c3b734e2205ec255bd31f52743f376b0e391a8eddab0fc642f106d42",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/groups.json": "54cfb5097029af5fbae86f6d0a11fa8fb597f75ffeeafb69756ed39c07695124",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/profiles.json": "26270dffd034a1a27839edc2fff74001d8c6b18fab6922402177d81e9209c869",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/bessel-r16-forward/summary.json": "af8763bb58fb5ab89533d57c422dd7d37911cec7e4161a4d0397a812000dfeb8"
+  },
+  "limits": "Independent exact lattice arithmetic and interval-corner replay. Publication constraints are intersected at every recorded order. Necessary conditions only; no shared seed producer or complete Bessel program."
+}

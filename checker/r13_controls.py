@@ -68,18 +68,31 @@ def run(proof,packet,trace,gaps,library,output):
 
 def intake_controls(packet, results, output):
     """A changed value, changed input or omitted reading batch must be rejected."""
+    import tempfile
     packet,results,output=map(Path,(packet,results,output));output.mkdir(parents=True,exist_ok=False)
     controls=[]
     function = 'VAR.S' if (packet/'requests-VAR.S.json').is_file() else 'CUMIPMT'
     def run(label,change,message):
-        shadow=output/label;shutil.copytree(results,shadow);change(shadow)
-        receipt=output/(label+'-must-not-exist.json')
-        try:check_readings(packet,shadow,receipt)
-        except ValueError as error:
-            if message not in str(error):raise
-            if receipt.exists():raise ValueError('corrupted intake received a success receipt')
-            controls.append(dict(control=label,rejected=True,error=str(error),success_receipt_exists=False))
-        else:raise ValueError('corrupted intake was accepted')
+        with tempfile.TemporaryDirectory(prefix='dnacalc-intake-control-') as scratch:
+            shadow=Path(scratch)/label;shutil.copytree(results,shadow);change(shadow)
+            receipt=Path(scratch)/'must-not-exist.json'
+            try:check_readings(packet,shadow,receipt)
+            except ValueError as error:
+                if message not in str(error):raise
+                if receipt.exists():raise ValueError('corrupted intake received a success receipt')
+                controls.append(dict(control=label,rejected=True,error=str(error),success_receipt_exists=False))
+            else:raise ValueError('corrupted intake was accepted')
+    def metadata(root, consistent):
+        path=root/f'OxFunc-Evidence/readings/excel-20527/{function}.json'
+        doc=json.loads(path.read_text());env=doc['capture_provenance']['environment']
+        env.update(excel_file_version='16.0.99999.1000', excel_build='99999',
+                   cpu_id='synthetic metadata control CPU')
+        path.write_text(json.dumps(doc))
+        if consistent:
+            path=next((root/'worker/read').glob(function+'-*/result.json'))
+            doc=json.loads(path.read_text());doc.update(excel_file_version=env['excel_file_version'],
+                excel_build=env['excel_build'], cpu=env['cpu_id'])
+            path.write_text(json.dumps(doc))
     def changed_answer(root):
         path=root/f'OxFunc-Evidence/readings/excel-20527/{function}.json'
         doc=json.loads(path.read_text());doc['witnesses'][0]['expected_bits']='0x3ff0000000000000'
@@ -101,12 +114,41 @@ def intake_controls(packet, results, output):
         asked['rows'][0]['formula']='=PMT(RC[1],RC[2],RC[3])'
         readings['rows'][0]['input_audit']['formula']=asked['rows'][0]['formula']
         request.write_text(json.dumps(asked));result.write_text(json.dumps(readings))
+    def duplicate_identity(root):
+        path=root/f'OxFunc-Evidence/readings/excel-20527/{function}.json'
+        doc=json.loads(path.read_text())
+        # Keep all runtime orders aligned, but forge a duplicate/missing identity.
+        old, new = doc['witnesses'][1]['id'], doc['witnesses'][0]['id']
+        for key in ('witnesses','input_audits'):
+            next(r for r in doc[key] if r['id']==old)['id']=new
+        path.write_text(json.dumps(doc))
+        for path in (root/'worker/read').glob(function+'-*/*.json'):
+            if path.name not in ('request.json','result.json'):continue
+            data=json.loads(path.read_text());next(r for r in data['rows']if r['id']==old)['id']=new
+            path.write_text(json.dumps(data))
+    def changed_runtime_order(root):
+        path=root/f'OxFunc-Evidence/readings/excel-20527/{function}.json'
+        doc=json.loads(path.read_text());doc['input_audits'][0],doc['input_audits'][1]=doc['input_audits'][1],doc['input_audits'][0]
+        path.write_text(json.dumps(doc))
+    def missing_environment(root):
+        path=next((root/'worker/read').glob(function+'-*/result.json'))
+        doc=json.loads(path.read_text());del doc['cpu'];path.write_text(json.dumps(doc))
     run('changed-canonical-answer',changed_answer,'reader/raw result differs')
     run('changed-frozen-prediction',changed_prediction,'canonical/frozen worker prediction differs')
     run('changed-readback-input',changed_input,'transport changed requested operands')
     run('omitted-reader-batch',missing_batch,'missing reader batch')
     run('self-consistent-wrong-function',wrong_formula,'requested function/formula differs')
+    run('duplicate-runtime-identity',duplicate_identity,'duplicate or missing batch identity')
+    run('changed-runtime-order',changed_runtime_order,'runtime request/answer order differs')
+    run('canonical-raw-environment-mismatch',lambda root:metadata(root,False),'environment provenance differs')
+    run('missing-worker-environment',missing_environment,'missing worker environment provenance')
+    with tempfile.TemporaryDirectory(prefix='dnacalc-intake-metadata-control-') as scratch:
+        shadow=Path(scratch)/'consistent-metadata';shutil.copytree(results,shadow);metadata(shadow,True)
+        accepted=check_readings(packet,shadow,Path(scratch)/'synthetic-receipt.json')
+        positive=dict(control='consistent-different-environment',accepted=accepted['complete'],
+                      calls=accepted['calls'],synthetic=True,not_excel_observations=True)
     result=dict(complete=True,all_rejected=True,controls=controls,
+        positive_synthetic_control=positive,
         checker_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in (
             Path(__file__),Path(__file__).with_name('questions_r13.py'))},
         limits='Corrupted private copies only; original packet and supplied result files unchanged.')

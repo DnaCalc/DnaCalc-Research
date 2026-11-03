@@ -200,10 +200,27 @@ def exact_root_run(input_path, destination):
     (dest/'summary.json').write_text(json.dumps(result, indent=2)+'\n'); print(json.dumps(result))
 
 
-def product_closure(raw):
+def root_publication_domains(products, count, target, staged=False):
+    """Pull publication back through correctly rounded real-root stages."""
+    from intervals import B64, E64, E53, Interval
+    direct = B64.preimage(Interval(target, target))
+    spans = {'binary64': direct}
+    if staged:
+        spans.update(extended64_then_binary64=E64.preimage(direct),
+                     extended53_then_binary64=E53.preimage(direct))
+    result = {}
+    for name, span in spans.items():
+        require(span is not None and span.lo > 0, 'positive normal root publication required')
+        # The nth root is monotone on positive values, including each exact tie.
+        interval = Interval(span.lo**count, span.hi**count, span.lc, span.hc)
+        result[name] = dict(span=span.json(), reachable=any(interval.contains(p) for p in products))
+    return result
+
+
+def product_closure(raw, staged=False):
     """All product trees for two or three modest positive operands."""
     from bessel import MODELS, operation, pair
-    from intervals import B64, Interval, number, pow2
+    from intervals import number, pow2
     inputs, reason = coordinates(raw)
     require(reason is None and 2 <= len(inputs) <= 3, 'product-closure arity/domain')
     xs = [Q(number(f'0x{x:016x}')) for x in inputs]
@@ -222,17 +239,16 @@ def product_closure(raw):
             left = (left-1) & mask
         table[mask] = values
     target = Q(number(raw['expected']))
-    span = B64.preimage(Interval(target, target))
-    # Root is monotone: pull its publication interval back by exact nth powers.
-    lo, hi = span.lo**len(xs), span.hi**len(xs)
     roots = table[(1 << len(xs))-1]
-    reachable = any((p > lo or p == lo and span.lc) and
-                    (p < hi or p == hi and span.hc) for p in roots)
-    return dict(raw=raw, products={str(k):[pair(x) for x in sorted(v)] for k,v in table.items()},
-                root_span=span.json(), reachable=reachable)
+    domains = root_publication_domains(roots, len(xs), target, staged)
+    result = dict(raw=raw, products={str(k):[pair(x) for x in sorted(v)] for k,v in table.items()},
+                  root_span=domains['binary64']['span'], reachable=any(v['reachable'] for v in domains.values()))
+    if staged:
+        result['root_roundings'] = domains
+    return result
 
 
-def product_closure_run(input_path, destination):
+def product_closure_run(input_path, destination, staged=False):
     from intervals import number, pow2
     started = time.monotonic()
     dest = Path(destination)
@@ -254,22 +270,32 @@ def product_closure_run(input_path, destination):
             if reason:
                 counts[reason] += 1
                 continue
-            proof = product_closure(raw)
+            proof = product_closure(raw, staged)
             out.write(json.dumps(dict(trace_index=index, **proof))+'\n')
             counts['scoped'] += 1
             counts['unreachable'] += not proof['reachable']
             counts['root_product_values'] += len(proof['products'][str((1 << len(inputs))-1)])
+            if staged:
+                for name, domain in proof['root_roundings'].items():
+                    counts[name+'_unreachable'] += not domain['reachable']
     require(counts['scoped'] and frozen == {p:digest(p) for p in frozen}, 'empty or changed product closure')
     result = dict(complete=True, counts=counts, input_sha256=frozen, seconds=time.monotonic()-started,
         limits='All multiplication trees/permutations with an independent choice at every node among five precision/store models or exact rational multiplication, followed by a correctly rounded real nth root. '
                'Only two/three positive operands in[2^-100,2^100]. Exact inverse midpoint powers determine reachability. '
                'No native logarithm/power leaf, complete Excel algorithm, tolerance or product gain is claimed.')
+    if staged:
+        result.update(root_staging=True,
+            limits='Complete product closure followed by one of three correctly rounded real nth-root paths: direct binary64; extended64 then binary64; extended53 then binary64. '
+                   'Exact publication preimages include tie parity at both stages. This contains the direct-root family; counts are not additive. '
+                   'Only two/three modest positive operands. Native pow/log approximations and other root programs remain open; no fitted value or product gain.')
     (dest/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result))
 
 
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='product-closure-staged':
+        product_closure_run(*sys.argv[2:], staged=True); raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='product-closure':
         product_closure_run(*sys.argv[2:]); raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='exact-root':

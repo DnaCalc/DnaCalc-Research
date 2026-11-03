@@ -350,6 +350,89 @@ class ExactArithmetic(unittest.TestCase):
             with self.assertRaises(ValueError):
                 check_product_closure(source, proof, root/'invalid.json')
 
+    def test_geomean_root_double_rounding_and_endpoint_parity(self):
+        from racer.geomean import root_publication_domains as produce
+        from checker.geomean import root_publication_domains as verify
+        even, odd = R(1), R(1)+two(-52)
+        midpoint = R(1)+two(-53)
+        for count in (2, 3):
+            for root in (midpoint, midpoint+two(-65), midpoint+two(-64), midpoint+two(-64)+two(-66)):
+                product = root**count
+                for target in (even, odd):
+                    a, b = produce([product], count, target, True), verify([product], count, target, True)
+                    self.assertEqual(a, b)
+                    self.assertEqual(a['binary64'], a['extended53_then_binary64'])
+                above = verify([product], count, even, True)
+                if root == midpoint:
+                    self.assertTrue(above['binary64']['reachable'])
+                elif root <= midpoint+two(-64):
+                    self.assertFalse(above['binary64']['reachable'])
+                    self.assertTrue(above['extended64_then_binary64']['reachable'])
+                else:
+                    self.assertFalse(above['extended64_then_binary64']['reachable'])
+            opposite = verify([(midpoint+two(-65))**count], count, odd, True)
+            self.assertTrue(opposite['binary64']['reachable'])
+            self.assertFalse(opposite['extended64_then_binary64']['reachable'])
+
+    def test_geomean_staged_root_receipt_rejects_changed_stage(self):
+        from racer.geomean import product_closure_run
+        from checker.geomean import check_product_closure
+        raw = dict(function='GEOMEAN', result_index=None,
+                   args=['0x3ff0000000000000', '0x4010000000000000'], expected='0x4000000000000000')
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, proof = root/'inputs.jsonl', root/'proof'
+            source.write_text(json.dumps(raw)+'\n')
+            with contextlib.redirect_stdout(io.StringIO()):
+                product_closure_run(source, proof, True)
+                check_product_closure(source, proof, root/'valid.json', True)
+            path = proof/'closures.jsonl'
+            record = json.loads(path.read_text())
+            record['root_roundings']['extended64_then_binary64']['reachable'] = False
+            path.write_text(json.dumps(record)+'\n')
+            with self.assertRaisesRegex(ValueError, 'incomplete product closure'):
+                check_product_closure(source, proof, root/'invalid.json', True)
+
+    def test_stdev_four_input_closures_and_sqrt_publication(self):
+        from racer.variance_closure import raw_moment_close
+        from checker.variance_closure import raw_moment_result
+        # The first two controls have exact sample/population variance1.
+        for function, values in [('STDEV.S', [-1.5, 0.5, 0.5, 0.5]),
+                                 ('STDEV.P', [-1.0, -1.0, 1.0, 1.0]),
+                                 ('STDEV', [0.1, 0.2, 0.3, 0.4])]:
+            row = dict(function=function, result_index=None,
+                       args=['0x'+struct.pack('>d', v).hex() for v in values], expected='0x3ff0000000000000')
+            a, b = raw_moment_close(row, True, True), raw_moment_result(row, True, True)
+            self.assertEqual(a, b)
+            self.assertEqual(len(a['forms']), 9)
+            if function != 'STDEV':
+                self.assertTrue(all(form['reachable'] for form in a['forms']))
+            wrong = dict(row, expected='0x408f400000000000')
+            self.assertFalse(any(form['reachable'] for form in raw_moment_result(wrong, True, True)['forms']))
+
+    def test_stdev_root_receipt_rejects_changed_boundary_and_missing_form(self):
+        from racer.variance_closure import raw_moment_run
+        from checker.variance_closure import raw_moment_check
+        row = dict(function='STDEV.P', result_index=None, not_excel_evidence=True,
+                   args=['0xbff0000000000000']*2+['0x3ff0000000000000']*2,
+                   expected='0x3ff0000000000000')
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, proof = root/'input.jsonl', root/'proof'
+            source.write_text(json.dumps(row)+'\n')
+            with contextlib.redirect_stdout(io.StringIO()):
+                raw_moment_run(source, proof, True, True)
+                raw_moment_check(source, proof, root/'valid.json', True, True)
+            path = proof/'closures.jsonl'
+            original = json.loads(path.read_text())
+            changed = copy.deepcopy(original)
+            boundary = changed['forms'][0]['root_roundings']['extended64_then_binary64']['span']
+            boundary['lower_closed'] = not boundary['lower_closed']
+            for index, record in enumerate((changed, dict(original, forms=original['forms'][:-1]))):
+                path.write_text(json.dumps(record)+'\n')
+                with self.assertRaisesRegex(ValueError, 'raw-moment source, root set'):
+                    raw_moment_check(source, proof, root/f'invalid-{index}.json', True, True)
+
     def test_binomial_consumers_obey_exact_dyadic_mass_ratios(self):
         from checker.binomial import step
         for form,model in itertools.product(range(6),('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')):

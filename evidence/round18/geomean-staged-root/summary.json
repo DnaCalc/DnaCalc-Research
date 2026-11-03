@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "counts": {
+    "scoped": 193,
+    "unreachable": 23,
+    "root_product_values": 1262,
+    "binary64_unreachable": 23,
+    "extended64_then_binary64_unreachable": 23,
+    "extended53_then_binary64_unreachable": 23,
+    "surface": 5992,
+    "arity_outside_2_to_3": 444,
+    "outside_modest_magnitudes": 1,
+    "length_or_domain": 799,
+    "partial_product_bound": 1
+  },
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/geomean-with-references.jsonl": "1a5726759e00e50892f66f6c2baac6330ae858afc0c797b9c3ae1c0eba91b2c6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/geomean.py": "7b03ef85409f4a678f992e45e50caf7d94f709ef1ab89f908b2fbacb87d050d5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py": "5ec7d2d295e4dd6a8eca59a7280ee0d505f697aea5855c9a8e249e4902f2f1f0",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010"
+  },
+  "seconds": 1.2544836101587862,
+  "limits": "Complete product closure followed by one of three correctly rounded real nth-root paths: direct binary64; extended64 then binary64; extended53 then binary64. Exact publication preimages include tie parity at both stages. This contains the direct-root family; counts are not additive. Only two/three modest positive operands. Native pow/log approximations and other root programs remain open; no fitted value or product gain.",
+  "root_staging": true
+}

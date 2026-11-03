@@ -1,0 +1,92 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 25,
+    "form_0_unreachable": 14,
+    "root_values": 78642,
+    "form_1_unreachable": 14,
+    "form_2_unreachable": 14,
+    "form_3_unreachable": 14,
+    "form_4_unreachable": 14,
+    "form_5_unreachable": 16,
+    "form_6_unreachable": 14,
+    "form_7_unreachable": 16,
+    "form_8_unreachable": 16
+  },
+  "by_function": {
+    "STDEV.S": {
+      "observations": 1,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV.P": {
+      "observations": 1,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVA": {
+      "observations": 1,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV": {
+      "observations": 8,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 2,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 2,
+      "form_8_unreachable": 2
+    },
+    "STDEVP": {
+      "observations": 14,
+      "form_0_unreachable": 14,
+      "form_1_unreachable": 14,
+      "form_2_unreachable": 14,
+      "form_3_unreachable": 14,
+      "form_4_unreachable": 14,
+      "form_5_unreachable": 14,
+      "form_6_unreachable": 14,
+      "form_7_unreachable": 14,
+      "form_8_unreachable": 14
+    }
+  },
+  "seconds": 74.14647842105478,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-corpus-selected/cases.jsonl": "c780bce89c9c040f0c777eb7d72e32a96d220902d5ca045b612560668ecbd9dd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance_closure.py": "008df2652b762f8a7d5812ce8a52e1f44e50f3096faca605deeb9d1ca0286fed",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-corpus-closure/closures.jsonl": "8507f11e94ffbce7d6955d8dc9d988fa3015cf780afccbfa1bd55f006dbf8b9d",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-corpus-closure/summary.json": "cce6f1b7e19405c0857432ff1cadd66725f0b3c676d92d1c376330aab6db93f4",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "1384e66285e45fd5d50f88961249f1f8def6f6225b713bd15ae885b1ed6e7e19"
+  },
+  "limits": "Independent explicit permutation/tree regeneration of nine four-input uncentered/mixed-FMA variance forms, then correctly rounded real sqrt directly to binary64 or via extended64/extended53 before publication. Exact inverse root/publication endpoints are checked; Q includes mixed leaf-square/sibling-sum fusion. Pairwise six-term sums, other fusion placements/arities and native approximations are not covered. Counts sum local pre-sqrt variance states, not programs or product matches.",
+  "root_output": true,
+  "arity": 4
+}

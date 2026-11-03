@@ -23,17 +23,29 @@ def encode(values):return [[str(x.numerator),str(x.denominator)]for x in sorted(
 
 def all_sums(leaves):
     table={}
-    for mask in range(1,8):
-        indices=[i for i in range(3)if mask&(1<<i)];values=set()
+    @lru_cache(maxsize=None)
+    def ordered(indices):
+        if len(indices) == 1:
+            return frozenset(leaves[indices[0]])
+        values = set()
+        for split in range(1, len(indices)):
+            for a, b, model in itertools.product(ordered(indices[:split]), ordered(indices[split:]), MODELS):
+                values.add(op('add', model, a, b))
+        return frozenset(values)
+    for mask in range(1,1 << len(leaves)):
+        indices=[i for i in range(len(leaves))if mask&(1<<i)];values=set()
         for perm in itertools.permutations(indices):
             selected=[leaves[i]for i in perm]
             if len(perm)==1:values.update(selected[0])
             elif len(perm)==2:
                 for a,b,m in itertools.product(*selected,MODELS):values.add(op('add',m,a,b))
             else:
-                for a,b,c,first,last in itertools.product(*selected,MODELS,MODELS):
-                    values.add(op('add',last,op('add',first,a,b),c))
-                    values.add(op('add',last,a,op('add',first,b,c)))
+                if len(perm) == 3:
+                    for a,b,c,first,last in itertools.product(*selected,MODELS,MODELS):
+                        values.add(op('add',last,op('add',first,a,b),c))
+                        values.add(op('add',last,a,op('add',first,b,c)))
+                else:
+                    values.update(ordered(perm))
         table[str(mask)]=values
     return table
 
@@ -164,17 +176,21 @@ def online_check(input_path,directory,output):
     print(json.dumps(receipt))
 
 
-def raw_moment_result(row, fused=False):
+def raw_moment_result(row, fused=False, root=False):
     """Independent explicit-tree enumeration of the six uncentered identities."""
+    require(not root or fused and row.get('result_index') is None, 'STDEV scope requires fused forms and a scalar call')
     import hashlib
     def flatten(v):
         return list(itertools.chain.from_iterable(map(flatten, v))) if isinstance(v, list) else [v]
     bits = flatten(row['args'])
-    require(len(bits) == 3 and all(isinstance(v, str) and v.startswith('0x') for v in bits), 'raw three-input scope')
+    require(len(bits) == (4 if root else 3) and all(isinstance(v, str) and v.startswith('0x') for v in bits), 'raw arity scope')
     xs = list(map(binary64, bits))
     require(all(x == 0 or two(-100) <= abs(x) <= two(100) for x in xs), 'raw magnitude scope')
-    require(row['function'] in ('VAR', 'VAR.S', 'VAR.P', 'VARP', 'VARA', 'VARPA'), 'raw function scope')
-    denominator = R(3 if row['function'] in ('VAR.P', 'VARP', 'VARPA') else 2)
+    names = ('STDEV','STDEV.S','STDEV.P','STDEVP','STDEVA','STDEVPA') if root else ('VAR','VAR.S','VAR.P','VARP','VARA','VARPA')
+    require(row['function'] in names, 'raw function scope')
+    size = len(xs)
+    denominator = R(size if row['function'] in ('VAR.P','VARP','VARPA','STDEV.P','STDEVP','STDEVPA') else size-1)
+    full = str((1 << size)-1)
     def cross(kind, left, right):
         result = set()
         for model in MODELS:
@@ -197,8 +213,8 @@ def raw_moment_result(row, fused=False):
             value = fmt.round(exact)
             result.add(B.round(value) if model.startswith('stored') else value)
         return result
-    s = all_sums([{x} for x in xs])['7']
-    q = all_sums([squared({x}) for x in xs])['7']
+    s = all_sums([{x} for x in xs])[full]
+    q = all_sums([squared({x}) for x in xs])[full]
     if fused:
         def square_tree(tree):
             if isinstance(tree, int):
@@ -212,12 +228,18 @@ def raw_moment_result(row, fused=False):
                         values |= fused_results(xs[leaf], xs[leaf], accumulator)
             return values
         q = set()
-        for ordering in itertools.permutations(range(3)):
-            a, b, c = ordering
-            q |= square_tree(((a, b), c))
-            q |= square_tree((a, (b, c)))
+        def trees(ordering):
+            if len(ordering) == 1:
+                yield ordering[0]
+            else:
+                for split in range(1, len(ordering)):
+                    for a, b in itertools.product(trees(ordering[:split]), trees(ordering[split:])):
+                        yield (a, b)
+        for ordering in itertools.permutations(range(size)):
+            for tree in trees(ordering):
+                q |= square_tree(tree)
     s2 = squared(s)
-    n, d = {R(3)}, {denominator}
+    n, d = {R(size)}, {denominator}
     nd = cross('mul', n, d)
     results = [cross('div', minus(q, cross('div', s2, n)), d),
                cross('div', minus(cross('mul', n, q), s2), nd),
@@ -228,8 +250,9 @@ def raw_moment_result(row, fused=False):
     results.append(minus(cross('div', q, d), products))
     centered = minus(cross('div', q, n), squared(cross('div', s, n)))
     results.append(cross('mul', centered, cross('div', n, d)))
-    pair_terms = [squared(minus({a}, {b})) for a, b in itertools.combinations(xs, 2)]
-    results.append(cross('div', all_sums(pair_terms)['7'], nd))
+    if not root:
+        pair_terms = [squared(minus({a}, {b})) for a, b in itertools.combinations(xs, 2)]
+        results.append(cross('div', all_sums(pair_terms)['7'], nd))
     if fused:
         extra = [set() for _ in range(4)]
         for total in s:
@@ -241,7 +264,7 @@ def raw_moment_result(row, fused=False):
             for scaled in cross('mul', n, q):
                 extra[2] |= fused_results(-total, total, scaled)
         for squares, square_sum in itertools.product(q, s2):
-            extra[1] |= fused_results(R(3), squares, -square_sum)
+            extra[1] |= fused_results(R(size), squares, -square_sum)
         results += [cross('div', extra[0], d), cross('div', extra[1], nd),
                     cross('div', extra[2], nd), cross('mul', extra[3], cross('div', n, d))]
     target = binary64(row['expected'])
@@ -249,23 +272,33 @@ def raw_moment_result(row, fused=False):
     forms = []
     for values in results:
         hasher = hashlib.sha256(json.dumps(encode(values), separators=(',', ':')).encode())
-        forms.append(dict(root_count=len(values), roots_sha256=hasher.hexdigest(),
-                          reachable=any(span.contains(v) for v in values)))
+        form = dict(root_count=len(values), roots_sha256=hasher.hexdigest(),
+                    reachable=any(span.contains(v) for v in values))
+        if root:
+            if __package__:
+                from .geomean import root_publication_domains
+            else:
+                from geomean import root_publication_domains
+            domains = root_publication_domains(values, 2, target, True)
+            form.update(root_roundings=domains, reachable=any(d['reachable'] for d in domains.values()))
+        forms.append(form)
     return dict(raw=row, target_span=span.json(), forms=forms,
                 total_values=len(s), square_sum_values=len(q))
 
 
-def raw_moment_check(input_path, directory, output, fused=False):
+def raw_moment_check(input_path, directory, output, fused=False, root=False):
     started = time.monotonic()
     directory = Path(directory)
     frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__),
         Path(__file__).with_name('exact.py'), Path(__file__).with_name('check.py'), *sorted(directory.iterdir())) if p.is_file()}
+    if root:
+        frozen[str(Path(__file__).with_name('geomean.py'))] = digest(Path(__file__).with_name('geomean.py'))
     rows = list(records(input_path))
     proofs = list(records(directory/'closures.jsonl'))
     require(rows and len(rows) == len(proofs), 'missing raw-moment obligations')
     counts, by_function = Counter(), {}
     for row, proof in zip(rows, proofs):
-        independently = raw_moment_result(row, fused)
+        independently = raw_moment_result(row, fused, root)
         require(independently == proof, 'raw-moment source, root set, digest or reachability differs')
         function = by_function.setdefault(row['function'], Counter())
         counts['observations'] += 1
@@ -277,6 +310,7 @@ def raw_moment_check(input_path, directory, output, fused=False):
     summary = json.loads((directory/'summary.json').read_text())
     require(summary['complete'] is True and summary['fused'] == fused and summary['counts'] == counts and summary['by_function'] == by_function,
             'incorrect raw-moment summary')
+    require(summary.get('root_output', False) == root, 'changed variance/sqrt grammar')
     require(frozen == {p: digest(p) for p in frozen}, 'raw-moment evidence changed during check')
     receipt = dict(complete=True, fused=fused, counts=counts, by_function=by_function,
         seconds=time.monotonic()-started, input_sha256=frozen,
@@ -284,6 +318,11 @@ def raw_moment_check(input_path, directory, output, fused=False):
                + ('Ten declared forms, including fused multiply-add.' if fused else 'Six declared uncentered identities.')
                + (' Q covers ordinary square-sum trees with optional fusion of any leaf square and its sibling sum, including mixed trees.' if fused else '')
                + ' Conservative correlation projections; reachability never supplies a reusable kernel or product match.')
+    if root:
+        receipt.update(root_output=True, arity=4,
+            limits='Independent explicit permutation/tree regeneration of nine four-input uncentered/mixed-FMA variance forms, then correctly rounded real sqrt directly to binary64 or via extended64/extended53 before publication. '
+                   'Exact inverse root/publication endpoints are checked; Q includes mixed leaf-square/sibling-sum fusion. '
+                   'Pairwise six-term sums, other fusion placements/arities and native approximations are not covered. Counts sum local pre-sqrt variance states, not programs or product matches.')
     with open(output, 'x') as out:
         json.dump(receipt, out, indent=2)
         out.write('\n')
@@ -291,6 +330,7 @@ def raw_moment_check(input_path, directory, output, fused=False):
 
 
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='raw-moments-stdev4':raw_moment_check(*sys.argv[2:], fused=True, root=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments-fma':raw_moment_check(*sys.argv[2:], fused=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments':raw_moment_check(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='online':online_check(*sys.argv[2:])

@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "read_only": true,
+  "approved": true,
+  "indexed_compact_files": 135,
+  "current_sources": 73,
+  "corpus": "18,841/20,030 original and19,594/20,840 with R16 catalogue captures;0 gains/0 losses;all1,246 nonmatches fail.",
+  "product": "Fixed bank3,230,756\u21923,230,758/3,875,343;+2/-0.",
+  "intake": "179 added inputs:42 matched/137 failed;3,875,227 shared outputs/answers unchanged.",
+  "source_binding": "publication-source-binding.json",
+  "findings_resolved": [
+    "Mandatory worker provenance completeness",
+    "bank_after_intake latest-total reference label"
+  ],
+  "limits": "Bounded round approved; no package closure or claim that remaining Bessel/text/type failures are fixed. Review ran no mutation, cargo or forbidden-checkout access."
+}

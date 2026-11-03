@@ -1,0 +1,29 @@
+{
+  "complete": true,
+  "scanner_status": "ok",
+  "files": 8,
+  "critical": 2,
+  "warning": 100,
+  "info": 553,
+  "full_log_sha256": "c26a033240391b568e451b18c4796ba724ac298294b14ae5d8e29c59f585de7f",
+  "critical_triage": "Both findings are pre-existing equality checks of public source/fixture hashes in checker/geomean.py:58,244; no secret or authentication value.",
+  "warning_triage": {
+    "py.comparison.type-equality / py.type-equality": "An exact bool type is required for a declared hypothesis flag; accepting integer subclasses would change the grammar.",
+    "py.io.open-missing-with": "Pre-existing small diagnostic list reader; the consumed iterator is released on return. New FIFO streams use context managers.",
+    "py.parsing.json-loads-no-try": "Malformed input deliberately aborts before a complete receipt; corruption controls exercise this behavior.",
+    "py.perf.io-in-loop": "Bounded provenance/fixture reads and per-batch scoring, separately timed; no network request loop.",
+    "py.regex.nested-quantifiers": "False matches on exact arithmetic expressions using ** and multiplication; these expressions execute no regular expression."
+  },
+  "limits": "The changed-Python scan completed with two triaged false-positive critical findings. Earlier checkpoint partial-scan receipts remain unchanged; no zero-critical claim.",
+  "staged_scan": {
+    "complete": true,
+    "status": "ok",
+    "files": 9,
+    "critical": 6,
+    "warning": 106,
+    "info": 565,
+    "full_log_sha256": "df497e1554eb1022da1fb77742cf16fff2ae88e0f6a4a24e2ad5a75e3239ce6c",
+    "critical_triage": "Two pre-existing public-hash equalities plus four findings from two duplicated detectors on the immutable public-power-study.py subprocess calls at31,41. Those calls intentionally execute the operator-selected local native binary through argv without a shell, with check=True and300-second timeouts; the binary hash is frozen before/after. This is authorized local diagnostic execution, not an untrusted network input. The historical script remains byte-identical to its measured receipt.",
+    "extra_warnings": "The added immutable script has the same fail-closed JSON/provenance checks and bounded local file loops. Its exact Python source is retained, not rewritten to alter a completed measurement."
+  }
+}

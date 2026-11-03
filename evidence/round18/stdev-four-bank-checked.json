@@ -1,0 +1,104 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 192,
+    "form_0_unreachable": 0,
+    "root_values": 451901,
+    "form_1_unreachable": 0,
+    "form_2_unreachable": 3,
+    "form_3_unreachable": 3,
+    "form_4_unreachable": 0,
+    "form_5_unreachable": 0,
+    "form_6_unreachable": 0,
+    "form_7_unreachable": 0,
+    "form_8_unreachable": 0
+  },
+  "by_function": {
+    "STDEV": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 1,
+      "form_3_unreachable": 1,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV.P": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV.S": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVA": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 2,
+      "form_3_unreachable": 2,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVP": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVPA": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    }
+  },
+  "seconds": 472.01959491102025,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-bank/cases.jsonl": "0f0df125f66f4b1b1e0c66065708cba3cd8f2cf73e42c206d6bf39f310b41512",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance_closure.py": "008df2652b762f8a7d5812ce8a52e1f44e50f3096faca605deeb9d1ca0286fed",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-bank-closure/closures.jsonl": "ad0a79347555f647b310f8d4dde45a12b4b2f46e19f2d0766bf5b1b412e2bc6a",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-bank-closure/summary.json": "2b5b507ac500a0477b897eee8baa8d559b24797f172fcb66d9cb4e2e57ed5989",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "1384e66285e45fd5d50f88961249f1f8def6f6225b713bd15ae885b1ed6e7e19"
+  },
+  "limits": "Independent explicit permutation/tree regeneration of nine four-input uncentered/mixed-FMA variance forms, then correctly rounded real sqrt directly to binary64 or via extended64/extended53 before publication. Exact inverse root/publication endpoints are checked; Q includes mixed leaf-square/sibling-sum fusion. Pairwise six-term sums, other fusion placements/arities and native approximations are not covered. Counts sum local pre-sqrt variance states, not programs or product matches.",
+  "root_output": true,
+  "arity": 4
+}

@@ -142,34 +142,60 @@ def check_readings(packet, results, output):
         raw, submitted = read(worker/'result.json'), read(worker/'request.json')
         require(raw['fatal'] is None and not raw['failures'], 'worker failed')
         require(submitted['function'] == function, 'submitted function differs')
-        require(raw['automation_security_before'] == raw['automation_security_after'] == 1,
+        require(raw['automation_security_before'] == raw['automation_security_after'],
                 'worker security settings changed')
-        require(raw['excel_file_version'] == '16.0.20527.20088' and
-                raw['excel_machine'] == 'x86-64' and 'Ryzen 7 4800H' in raw['cpu'],
-                'unexpected capture environment')
+        for key in ('automation_security_before', 'automation_security_after'):
+            require(provenance[key] == raw[key], 'security provenance differs')
         settings = raw['calculation_settings']
-        require(settings['calculation'] == -4135 and settings['PrecisionAsDisplayed'] is False
-                and settings['Date1904'] is False and settings['CompatibilityVersion'] == 2,
-                'unexpected calculation settings')
         require(provenance['calculation_settings'] == settings, 'settings provenance differs')
-        require(provenance['environment']['excel_file_version'] == raw['excel_file_version']
-                and provenance['environment']['cpu_id'] == raw['cpu'], 'environment provenance differs')
+        # Environment is provenance, never a whitelist of qualifying captures.
+        # Check the reader's transcription against every field the worker exposes.
+        environment = provenance['environment']
+        require(all(key in raw for key in ('excel_version', 'excel_build',
+                'excel_file_version', 'excel_machine', 'os_version', 'cpu')),
+                'missing worker environment provenance')
+        for canonical_key, worker_key in (
+                ('excel_file_version', 'excel_file_version'), ('excel_version', 'excel_version'),
+                ('excel_build', 'excel_build'), ('cpu_id', 'cpu'),
+                ('excel_operating_system', 'os_version'), ('platform', 'platform'),
+                ('excel_bitness', 'excel_bitness')):
+            if worker_key in raw:
+                require(environment[canonical_key] == raw[worker_key], 'environment provenance differs')
+        bitness = {'x86-64': '64-bit', 'x86': '32-bit', 'arm64': '64-bit'}.get(raw.get('excel_machine'))
+        if bitness is not None:
+            require(environment['excel_bitness'] == bitness, 'environment bitness differs')
         count = batch['calls']
         frozen_packet_predictions = None
-        if packet_round == 15:
+        if packet_round in (15, 16):
             frozen_packet_predictions = records(packet/f'application-predictions-{function}.jsonl')
             require(len(frozen_packet_predictions) == count, 'frozen packet prediction coverage differs')
         require(all(len(rows) == count for rows in (request['witnesses'], doc['witnesses'],
                 doc['input_audits'], submitted['rows'], raw['rows'], frozen_worker['predictions'])), 'batch coverage differs')
-        for index, (asked, canonical, audit, call, answer) in enumerate(zip(
-                request['witnesses'], doc['witnesses'], doc['input_audits'], submitted['rows'], raw['rows'])):
+        # The reader groups mixed-arity requests before submitting them. Keep
+        # its original runtime order, and join to the frozen request by unique ID.
+        original_ids = [r['id'] for r in request['witnesses']]
+        require(len(set(original_ids)) == count, 'duplicate original request ID')
+        runtime = [doc['witnesses'], doc['input_audits'], submitted['rows'], raw['rows']]
+        runtime_ids = [[r['id'] for r in rows] for rows in runtime]
+        require(all(ids == runtime_ids[0] for ids in runtime_ids), 'runtime request/answer order differs')
+        def indexed(rows):
+            ids = [r['id'] for r in rows]
+            require(len(set(ids)) == count and set(ids) == set(original_ids), 'duplicate or missing batch identity')
+            return {r['id']:r for r in rows}
+        canonical_by_id, audit_by_id, call_by_id, answer_by_id = map(indexed, runtime)
+        frozen_by_id = indexed(frozen_worker['predictions'])
+        require([r['id'] for r in frozen_worker['predictions']] == original_ids, 'frozen prediction request order differs')
+        packet_by_id = indexed(frozen_packet_predictions) if frozen_packet_predictions is not None else None
+        for asked in request['witnesses']:
             qid = asked['id']
+            canonical, audit, call, answer = (rows[qid] for rows in
+                (canonical_by_id, audit_by_id, call_by_id, answer_by_id))
             require(qid not in seen, 'duplicate packet ID'); seen.add(qid)
             require(qid == canonical['id'] == audit['id'] == call['id'] == answer['id'],
                     'request/answer order differs')
             require(asked['args'] == canonical['args'] and
                     asked.get('result_index') == canonical.get('result_index'), 'typed identity differs')
-            frozen_row = frozen_worker['predictions'][index]
+            frozen_row = frozen_by_id[qid]
             require(frozen_row['id'] == qid and frozen_row['args'] == asked['args']
                     and frozen_row.get('result_index') == asked.get('result_index')
                     and frozen_row['calc_func_prediction'] == canonical['calc_func_prediction'],
@@ -206,7 +232,7 @@ def check_readings(packet, results, output):
             predictions['total'] += 1
             predictions['matched' if canonical['calc_func_prediction'] == expected else 'failed'] += 1
             if frozen_packet_predictions is not None:
-                prediction = frozen_packet_predictions[index]
+                prediction = packet_by_id[qid]
                 require(prediction['id'] == qid and prediction['args'] == asked['args']
                         and prediction.get('not_excel_evidence') is True,
                         'frozen packet prediction identity differs')
@@ -214,7 +240,9 @@ def check_readings(packet, results, output):
                 packet_predictions['matched' if prediction['calc_func_prediction'] == expected else 'failed'] += 1
         total += count
         batches.append(dict(**batch, reading=path.relative_to(results).as_posix(),
-                            reading_sha256=sha(path), request_sha256=sha(request_path)))
+                            reading_sha256=sha(path), request_sha256=sha(request_path),
+                            original_request_ids=original_ids, runtime_ids=runtime_ids[0],
+                            reader_reordered=original_ids != runtime_ids[0]))
     require(not exports and total == expected_calls and len(batches) == expected_batches, 'missing/excess batch')
     require(frozen == {p.relative_to(results).as_posix(): sha(p)
                       for p in results.rglob('*') if p.is_file()}, 'result tree changed')
@@ -223,7 +251,8 @@ def check_readings(packet, results, output):
                   frozen_packet_application=dict(packet_predictions),
                   limits='Existing reader exports only; Value2 transport audited. Effective callee '
                          'operands remain unobservable. Native CPU measurements and predictions '
-                         'are never Excel answers. Repeated captures are observations, not distinct inputs.')
+                         'are never Excel answers. Repeated captures are observations, not distinct inputs. '
+                         'Mixed-arity runtime grouping is retained; unique-ID bijections join it to the frozen original request, with runtime ordering checked independently.')
     with Path(output).open('x') as f:
         json.dump(result, f, indent=2); f.write('\n')
     return result

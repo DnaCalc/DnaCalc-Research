@@ -1,10 +1,10 @@
 {
   "round": 18,
-  "round_complete": false,
-  "status": "Checked checkpoint; largest recorded numerical failures and R16 scalar intake remain open.",
+  "round_complete": true,
+  "status": "Bounded round complete; dc-j9k and recorded product failures remain open.",
   "started_utc": "2026-11-03 04:58 UTC",
   "product_commit": "0469283f1da45e03274fc0db1ba32d92d9331983",
-  "research_unit": "round18-final-unit.json",
+  "research_unit": "round18-publication-unit.json",
   "product": {
     "change": "Bounded multi-period on-coupon par YIELD algebraic root",
     "failing_first": true,
@@ -31,12 +31,13 @@
     "nonpasses": 1246,
     "evaluations": 63783,
     "changed_evaluations": 0,
-    "receipt": "evidence/round18/corpus-current-delta.json",
+    "receipt": "evidence/round18/corpus-final-delta.json",
     "original_scope_receipt": "evidence/round18/original-scope-before-after.json",
     "mismatched_refused_missing": 1159,
     "original_failed": 1189,
     "original_mismatched_refused_missing": 1102,
-    "R16_added_failed": 57
+    "R16_added_failed": 57,
+    "original_pass_rate": 0.9406390414378433
   },
   "bank": {
     "before": 3230756,
@@ -50,7 +51,8 @@
     "losses": 0,
     "changed_outputs": 2,
     "receipt": "evidence/round18/bank-merged-live/receipt.json",
-    "current_merged_total": "evidence/round18/bank-current-metadata.log"
+    "before_failed": 644587,
+    "before_pass_rate": 0.8336696906570592
   },
   "bessel": {
     "forward": {
@@ -72,7 +74,24 @@
     "miller_labels": 6093750,
     "miller_survivors": 0,
     "miller_observations": 26,
-    "limits": "Nested coherent families are included, not added. Labels can repeat arithmetic programs. Necessary forward survivors do not supply consistent seed pairs or complete producers."
+    "limits": "Nested coherent families are included, not added. Labels can repeat arithmetic programs. Necessary forward survivors do not supply consistent seed pairs or complete producers.",
+    "r16_forward": {
+      "BESSELJ": {
+        "profiles": 1125,
+        "groups": 14,
+        "executions": 9800,
+        "rejected": 620,
+        "necessary_survivors": 505
+      },
+      "BESSELY": {
+        "profiles": 1125,
+        "groups": 14,
+        "executions": 5561,
+        "rejected": 820,
+        "necessary_survivors": 305
+      }
+    },
+    "r16_receipt": "evidence/round18/bessel-r16-forward-checked.json"
   },
   "variance": {
     "corpus_observations": 69,
@@ -88,14 +107,110 @@
       "VARPA"
     ],
     "all_ten_forms_contradicted_per_bank_function": true,
-    "limits": "Local root counts sum separate root-set cardinalities, not distinct programs. Q permits ordinary square-sum trees and optional leaf-square/sibling-sum FMA; other fusion placements and arities remain open."
+    "limits": "Local root counts sum separate root-set cardinalities, not distinct programs. Q permits ordinary square-sum trees and optional leaf-square/sibling-sum FMA; other fusion placements and arities remain open.",
+    "r16": {
+      "counts": {
+        "observations": 20,
+        "form_0_unreachable": 2,
+        "root_values": 22281,
+        "form_1_unreachable": 4,
+        "form_2_unreachable": 2,
+        "form_3_unreachable": 4,
+        "form_4_unreachable": 5,
+        "form_5_unreachable": 15,
+        "form_6_unreachable": 16,
+        "form_7_unreachable": 8,
+        "form_8_unreachable": 15,
+        "form_9_unreachable": 16
+      },
+      "by_function": {
+        "VAR.S": {
+          "observations": 10,
+          "form_0_unreachable": 0,
+          "form_1_unreachable": 4,
+          "form_2_unreachable": 0,
+          "form_3_unreachable": 0,
+          "form_4_unreachable": 0,
+          "form_5_unreachable": 8,
+          "form_6_unreachable": 8,
+          "form_7_unreachable": 4,
+          "form_8_unreachable": 8,
+          "form_9_unreachable": 7
+        },
+        "VAR.P": {
+          "observations": 10,
+          "form_0_unreachable": 2,
+          "form_1_unreachable": 0,
+          "form_2_unreachable": 2,
+          "form_3_unreachable": 4,
+          "form_4_unreachable": 5,
+          "form_5_unreachable": 7,
+          "form_6_unreachable": 8,
+          "form_7_unreachable": 4,
+          "form_8_unreachable": 7,
+          "form_9_unreachable": 9
+        }
+      },
+      "receipt": "evidence/round18/variance-r16-mixed-fma-checked.json",
+      "limits": "Separate twenty-observation scope. Some forms remain necessary for VAR.S or VAR.P here; this alone does not exclude all ten forms."
+    }
   },
   "geomean": {
     "observations": 193,
     "local_products": 1262,
     "unreachable": 23,
     "static_reference_unreachable": 2,
-    "limits": "The final real nth root rounds directly to binary64. This certificate does not exclude extended-root double rounding or native pow/log leaves."
+    "limits": "All product trees/permutations and six per-node modes for two/three modest positive operands, followed by a correctly rounded real root in any of three publication paths. Products enter the root unchanged. Native pow/log approximations, separate root-input conversion and other programs remain open.",
+    "root_modes": [
+      "binary64",
+      "extended64_then_binary64",
+      "extended53_then_binary64"
+    ],
+    "unreachable_by_mode": {
+      "binary64_unreachable": 23,
+      "extended64_then_binary64_unreachable": 23,
+      "extended53_then_binary64_unreachable": 23
+    },
+    "receipt": "evidence/round18/geomean-staged-root-checked.json",
+    "r16": {
+      "scoped": 11,
+      "local_products": 11,
+      "unreachable_in_all_three_modes": 9,
+      "one_argument_identity": 1,
+      "four_argument_outside_scope": 1,
+      "receipt": "evidence/round18/geomean-r16-staged-checked.json"
+    },
+    "registered_power_hypothesis": {
+      "scoped": 638,
+      "profiles": 3,
+      "counts": [
+        {
+          "observations": 638,
+          "matched": 221,
+          "failed": 417,
+          "gains_vs_frozen": 13,
+          "losses_vs_frozen": 343
+        },
+        {
+          "observations": 638,
+          "matched": 220,
+          "failed": 418,
+          "gains_vs_frozen": 13,
+          "losses_vs_frozen": 344
+        },
+        {
+          "observations": 638,
+          "matched": 219,
+          "failed": 419,
+          "gains_vs_frozen": 13,
+          "losses_vs_frozen": 345
+        }
+      ],
+      "route_audits": 1914,
+      "adopted": false,
+      "receipt": "evidence/round18/geomean-public-power/summary.json",
+      "limits": "Three fixed binary64 product orders followed by the existing registered POWER route. All lose hundreds of existing exact matches. No selector or product change; hypothetical gains never enter product totals."
+    }
   },
   "function_obligations": [
     {
@@ -131,10 +246,11 @@
         "type_or_error": 1
       },
       "status": "open",
-      "r18_evidence": "Forward publication bounds and finite six-site Miller family checked; seeds and admission boundary remain open.",
+      "r18_evidence": "Forward publication bounds and finite six-site Miller family checked; seeds and admission boundary remain open. R16 scalar publication constraints leave505 J/305 Y necessary forward policies; no complete seed producer.",
       "receipts": [
         "bessel-forward-current-checked.json",
-        "bessel-miller-sites-checked.json"
+        "bessel-miller-sites-checked.json",
+        "bessel-r16-forward-checked.json"
       ]
     },
     {
@@ -144,9 +260,12 @@
       "larger_numeric": 0,
       "other_failures": {},
       "status": "open",
-      "r18_evidence": "Arbitrary-site two/three-operand products followed by a real root rounded directly to binary64:23 unreachable among193 observations. Extended-root/double-rounding/native pow/log variants remain open.",
+      "r18_evidence": "Two/three-operand arbitrary-site product closures with direct or extended correctly rounded real roots:23 unreachable of193, and9 of11 scoped R16 readings. Three registered-POWER compositions lose343/344/345 prior exact matches and are rejected; native approximation remains open.",
       "receipts": [
-        "geomean-product-closure-checked.json"
+        "geomean-product-closure-checked.json",
+        "geomean-staged-root-checked.json",
+        "geomean-r16-staged-checked.json",
+        "geomean-public-power/summary.json"
       ]
     },
     {
@@ -156,9 +275,10 @@
       "larger_numeric": 80,
       "other_failures": {},
       "status": "open",
-      "r18_evidence": "Forward publication bounds checked; necessary consumers survive, seed program remains open.",
+      "r18_evidence": "Forward publication bounds checked; necessary consumers survive, seed program remains open. R16 scalar publication constraints leave505 J/305 Y necessary forward policies; no complete seed producer.",
       "receipts": [
-        "bessel-forward-current-checked.json"
+        "bessel-forward-current-checked.json",
+        "bessel-r16-forward-checked.json"
       ]
     },
     {
@@ -250,8 +370,11 @@
       "larger_numeric": 12,
       "other_failures": {},
       "status": "open",
-      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
-      "receipts": []
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function. Four-input nine-form closure and three exact real-sqrt publication paths checked on192 bank/25 corpus rows. All nine contradicted for STDEVP corpus only; alternatives remain for other names.",
+      "receipts": [
+        "stdev-four-bank-checked.json",
+        "stdev-four-corpus-checked.json"
+      ]
     },
     {
       "function": "VARP",
@@ -284,8 +407,11 @@
       "larger_numeric": 0,
       "other_failures": {},
       "status": "open",
-      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
-      "receipts": []
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function. Four-input nine-form closure and three exact real-sqrt publication paths checked on192 bank/25 corpus rows. All nine contradicted for STDEVP corpus only; alternatives remain for other names.",
+      "receipts": [
+        "stdev-four-bank-checked.json",
+        "stdev-four-corpus-checked.json"
+      ]
     },
     {
       "function": "STDEVA",
@@ -294,8 +420,11 @@
       "larger_numeric": 0,
       "other_failures": {},
       "status": "open",
-      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
-      "receipts": []
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function. Four-input nine-form closure and three exact real-sqrt publication paths checked on192 bank/25 corpus rows. All nine contradicted for STDEVP corpus only; alternatives remain for other names.",
+      "receipts": [
+        "stdev-four-bank-checked.json",
+        "stdev-four-corpus-checked.json"
+      ]
     },
     {
       "function": "POISSON.DIST",
@@ -326,8 +455,11 @@
       "larger_numeric": 0,
       "other_failures": {},
       "status": "open",
-      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function.",
-      "receipts": []
+      "r18_evidence": "Counted and open; no new R18 exact exclusion is claimed for this function. Four-input nine-form closure and three exact real-sqrt publication paths checked on192 bank/25 corpus rows. All nine contradicted for STDEVP corpus only; alternatives remain for other names.",
+      "receipts": [
+        "stdev-four-bank-checked.json",
+        "stdev-four-corpus-checked.json"
+      ]
     },
     {
       "function": "VAR",
@@ -884,8 +1016,98 @@
   ],
   "triage_definition": "Within16 ULP is triage only; every listed cell still fails. Fixed recorded inputs/answers only; no fitted parameter, tolerance pass or row-specific selector.",
   "r16_intake": {
-    "status": "Directory /home/ubuntu/codex-runs/excel-results-r16 absent at checkpoint; no scalar reading ingested.",
-    "new_readings": 0
+    "status": "Received, independently verified and committed byte-for-byte to the evidence repository.",
+    "evidence_revision": "b0fca08b062d30365ef792286ae515efdc40f19a",
+    "new_readings": 250,
+    "batches": 13,
+    "supplied_hashes_verified": 151,
+    "bundle_files": 152,
+    "current_matched": 70,
+    "current_failed": 180,
+    "frozen_packet_matched": 69,
+    "frozen_windows_matched": 69,
+    "functions": {
+      "AVERAGE": {
+        "total": 10,
+        "matched": 10,
+        "failed": 0
+      },
+      "BESSELI": {
+        "total": 63,
+        "matched": 21,
+        "failed": 42
+      },
+      "BESSELJ": {
+        "total": 77,
+        "matched": 0,
+        "failed": 77
+      },
+      "BESSELY": {
+        "total": 18,
+        "matched": 0,
+        "failed": 18
+      },
+      "COS": {
+        "total": 6,
+        "matched": 6,
+        "failed": 0
+      },
+      "DEVSQ": {
+        "total": 10,
+        "matched": 10,
+        "failed": 0
+      },
+      "EXP": {
+        "total": 7,
+        "matched": 7,
+        "failed": 0
+      },
+      "GEOMEAN": {
+        "total": 13,
+        "matched": 4,
+        "failed": 9
+      },
+      "SIN": {
+        "total": 6,
+        "matched": 6,
+        "failed": 0
+      },
+      "STDEV.P": {
+        "total": 10,
+        "matched": 1,
+        "failed": 9
+      },
+      "STDEV.S": {
+        "total": 10,
+        "matched": 2,
+        "failed": 8
+      },
+      "VAR.P": {
+        "total": 10,
+        "matched": 1,
+        "failed": 9
+      },
+      "VAR.S": {
+        "total": 10,
+        "matched": 2,
+        "failed": 8
+      }
+    },
+    "current_observations_sha256": "2eddf816fa824c08c618b65d24943d830d94f9c701563311b5edae1aae7ed148",
+    "corruption_controls_rejected": 9,
+    "synthetic_metadata_control_accepted": true,
+    "application_route_audits": 250,
+    "catalogue_copies_unchanged": 3,
+    "receipts": [
+      "evidence/round18/r16-published-score/summary.json",
+      "evidence/round18/r16-published-score/intake.json",
+      "evidence/round18/r16-publication-controls/controls.json",
+      "evidence/round18/r16-import-binding.json"
+    ],
+    "limits": "Frozen/current score differences predate this round product fix and are not R18 gains. Mixed-arity runtime grouping is retained and checked through unique-ID bijections. Build, CPU, worker, package and settings are provenance, never eligibility values; raw/canonical completeness and consistency are enforced. The accepted synthetic metadata copy is not an Excel observation.",
+    "current_pass_rate": 0.28,
+    "frozen_pass_rate": 0.276,
+    "frozen_failed": 181
   },
   "next_packet": {
     "path": "packets/round18",
@@ -898,7 +1120,7 @@
     "external_zip": "/home/ubuntu/codex-runs/excel-questions-r18.zip"
   },
   "checks": {
-    "main_passed": 1341,
+    "main_passed": 1355,
     "main_failed": 0,
     "main_ignored": 5,
     "main_not_run": 1,
@@ -906,11 +1128,14 @@
     "rust_passed": 91,
     "rust_failed": 0,
     "rust_ignored": 2,
-    "python_passed": 67,
+    "python_passed": 71,
     "lattice_checks": 1504,
-    "ubs": "Partial Python scanner: SQLFlowLimit; findings triaged, doctor healthy. Not a complete clean scan."
+    "ubs": "Complete staged Python scan:9 files,6 triaged critical findings (two public-hash equalities and two local argv calls reported by two detectors),106 warnings triaged,565 info. The8-current-source scan separately completed with2 public-hash findings. Historical partial scans remain recorded. No zero-critical claim.",
+    "main_receipt": "evidence/round18/main-merged-publication-check-complete.log",
+    "rust_receipt": "evidence/round18/research-publication-tests.log",
+    "python_receipt": "evidence/round18/python-publication-tests.log"
   },
-  "read_only_review": "Read-only source/math/receipt review passes for the checkpoint; final round report will be reviewed separately.",
+  "read_only_review": "Approved by the single read-only review agent: current sources, checkpoint/archive resolution, all indexed hashes, proof/corpus/bank counters and24-line report match tool output. Gross failures and dc-j9k remain open. Fixed-scope product gains and new-capture coverage remain separate.",
   "evidence_index": "evidence/round18/final-index.json",
   "source_review": "evidence/round18/source-review-r18.json",
   "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18",
@@ -921,5 +1146,196 @@
     "external": 73,
     "circular": 14,
     "still_failed": 87
-  }
+  },
+  "application_revision": "f298a40fde8452b746a3cdb025b62051d9af84cc",
+  "bank_after_intake": {
+    "matched": 3230800,
+    "total": 3875522,
+    "failed": 644722,
+    "unread": 116,
+    "pass_rate": 0.8336425389921668,
+    "added_inputs": 179,
+    "added_matched": 42,
+    "added_failed": 137,
+    "shared_gains": 0,
+    "shared_losses": 0,
+    "shared_changed_outputs": 0,
+    "shared_changed_answers": 0,
+    "representative_metadata_changes": 71,
+    "receipt": "evidence/round18/bank-r16-intake-final/receipt.json",
+    "limits": "New observation coverage, separate from the fixed-scope +2/-0 product change. Intake A/B used a historical executable with its source binding; the later final bank refresh confirms totals.",
+    "latest_total_receipt": "evidence/round18/bank-final-metadata.log"
+  },
+  "stdev_four_input": {
+    "forms": 9,
+    "root_publication_modes": 3,
+    "bank_counts": {
+      "observations": 192,
+      "form_0_unreachable": 0,
+      "root_values": 451901,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 3,
+      "form_3_unreachable": 3,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "corpus_counts": {
+      "observations": 25,
+      "form_0_unreachable": 14,
+      "root_values": 78642,
+      "form_1_unreachable": 14,
+      "form_2_unreachable": 14,
+      "form_3_unreachable": 14,
+      "form_4_unreachable": 14,
+      "form_5_unreachable": 16,
+      "form_6_unreachable": 14,
+      "form_7_unreachable": 16,
+      "form_8_unreachable": 16
+    },
+    "bank_by_function": {
+      "STDEV": {
+        "observations": 32,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 1,
+        "form_3_unreachable": 1,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEV.P": {
+        "observations": 32,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEV.S": {
+        "observations": 32,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEVA": {
+        "observations": 32,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 2,
+        "form_3_unreachable": 2,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEVP": {
+        "observations": 32,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEVPA": {
+        "observations": 32,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      }
+    },
+    "corpus_by_function": {
+      "STDEV.S": {
+        "observations": 1,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEV.P": {
+        "observations": 1,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEVA": {
+        "observations": 1,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 0,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 0,
+        "form_8_unreachable": 0
+      },
+      "STDEV": {
+        "observations": 8,
+        "form_0_unreachable": 0,
+        "form_1_unreachable": 0,
+        "form_2_unreachable": 0,
+        "form_3_unreachable": 0,
+        "form_4_unreachable": 0,
+        "form_5_unreachable": 2,
+        "form_6_unreachable": 0,
+        "form_7_unreachable": 2,
+        "form_8_unreachable": 2
+      },
+      "STDEVP": {
+        "observations": 14,
+        "form_0_unreachable": 14,
+        "form_1_unreachable": 14,
+        "form_2_unreachable": 14,
+        "form_3_unreachable": 14,
+        "form_4_unreachable": 14,
+        "form_5_unreachable": 14,
+        "form_6_unreachable": 14,
+        "form_7_unreachable": 14,
+        "form_8_unreachable": 14
+      }
+    },
+    "receipts": [
+      "evidence/round18/stdev-four-bank-checked.json",
+      "evidence/round18/stdev-four-corpus-checked.json"
+    ],
+    "limits": "Four operands, nine uncentered/mixed-FMA forms, five independent arithmetic modes and three correctly rounded real-sqrt publication paths. First32 eligible bank rows per function, full outside-scope reasons retained. Q permits optional fusion of any leaf square and sibling sum. Pairwise-difference form, other fusion placements, native root approximations and other arities are outside. Conservative projections discard correlations. Only STDEVP corpus rows contradict all nine forms; many necessary alternatives remain for other names."
+  },
+  "source_binding": "evidence/round18/publication-source-binding.json"
 }

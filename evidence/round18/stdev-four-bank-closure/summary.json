@@ -1,0 +1,113 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 192,
+    "form_0_unreachable": 0,
+    "root_values": 451901,
+    "form_1_unreachable": 0,
+    "form_2_unreachable": 3,
+    "form_3_unreachable": 3,
+    "form_4_unreachable": 0,
+    "form_5_unreachable": 0,
+    "form_6_unreachable": 0,
+    "form_7_unreachable": 0,
+    "form_8_unreachable": 0
+  },
+  "by_function": {
+    "STDEV": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 1,
+      "form_3_unreachable": 1,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV.P": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV.S": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVA": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 2,
+      "form_3_unreachable": 2,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVP": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVPA": {
+      "observations": 32,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    }
+  },
+  "seconds": 387.3026142169256,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-bank/cases.jsonl": "0f0df125f66f4b1b1e0c66065708cba3cd8f2cf73e42c206d6bf39f310b41512",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/variance_closure.py": "dddad15901da87d3e020487da7d3e28049f4f086c6d0027b8d5169408de2e238",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py": "5ec7d2d295e4dd6a8eca59a7280ee0d505f697aea5855c9a8e249e4902f2f1f0",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/geomean.py": "7b03ef85409f4a678f992e45e50caf7d94f709ef1ab89f908b2fbacb87d050d5"
+  },
+  "forms": [
+    "(Q-S*S/n)/d",
+    "(n*Q-S*S)/(n*d)",
+    "Q/d-S*S/(n*d)",
+    "Q/d-(S/n)*(S/d)",
+    "(Q/n-(S/n)^2)*(n/d)",
+    "FMA(-S/n,S,Q)/d",
+    "FMA(n,Q,-S*S)/(n*d)",
+    "FMA(-S,S,n*Q)/(n*d)",
+    "FMA(-S/n,S/n,Q/n)*(n/d)"
+  ],
+  "limits": "Four numeric inputs, nine declared uncentered/mixed-FMA variance forms, followed by a correctly rounded real square root directly to binary64 or via extended64/extended53 then binary64. Every sum tree/permutation and five-model arithmetic site choice is covered; Q allows leaf-square/sibling-sum FMA, including mixed trees. Six-term pairwise-difference sums, other fusion placements, arities and native approximations are outside this family. Root-state counts are local variance states before sqrt, not programs or product matches. No fitting or tolerance pass.",
+  "root_output": true,
+  "arity": 4
+}

@@ -1,0 +1,56 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 20,
+    "form_0_unreachable": 2,
+    "root_values": 22281,
+    "form_1_unreachable": 4,
+    "form_2_unreachable": 2,
+    "form_3_unreachable": 4,
+    "form_4_unreachable": 5,
+    "form_5_unreachable": 15,
+    "form_6_unreachable": 16,
+    "form_7_unreachable": 8,
+    "form_8_unreachable": 15,
+    "form_9_unreachable": 16
+  },
+  "by_function": {
+    "VAR.S": {
+      "observations": 10,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 4,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 8,
+      "form_6_unreachable": 8,
+      "form_7_unreachable": 4,
+      "form_8_unreachable": 8,
+      "form_9_unreachable": 7
+    },
+    "VAR.P": {
+      "observations": 10,
+      "form_0_unreachable": 2,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 2,
+      "form_3_unreachable": 4,
+      "form_4_unreachable": 5,
+      "form_5_unreachable": 7,
+      "form_6_unreachable": 8,
+      "form_7_unreachable": 4,
+      "form_8_unreachable": 7,
+      "form_9_unreachable": 9
+    }
+  },
+  "seconds": 9.075920214876533,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-r16-three/cases.jsonl": "b5d7caa57e38cc8e75a6c4f9b5b3263d7f0e6f3cf1169af5253cd2a837180edc",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance_closure.py": "008df2652b762f8a7d5812ce8a52e1f44e50f3096faca605deeb9d1ca0286fed",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-r16-mixed-fma/closures.jsonl": "033b7458cfeb0bd9ecd97a1629cc2e6816a7d9228c43bb77a03bee5e26d885cb",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/variance-r16-mixed-fma/summary.json": "f948e0e1045d2ace17bcafcd4d3f7236d97426ff9ebf73d4240b3669af169822"
+  },
+  "limits": "Complete independent explicit-tree/permutation regeneration of every root-set digest, using separate exact lattice arithmetic. Ten declared forms, including fused multiply-add. Q covers ordinary square-sum trees with optional fusion of any leaf square and its sibling sum, including mixed trees. Conservative correlation projections; reachability never supplies a reusable kernel or product match."
+}

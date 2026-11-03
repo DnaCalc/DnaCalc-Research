@@ -1,0 +1,72 @@
+{
+  "complete": true,
+  "all_rejected": true,
+  "controls": [
+    {
+      "control": "changed-canonical-answer",
+      "rejected": true,
+      "error": "reader/raw result differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-frozen-prediction",
+      "rejected": true,
+      "error": "canonical/frozen worker prediction differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-readback-input",
+      "rejected": true,
+      "error": "transport changed requested operands",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "omitted-reader-batch",
+      "rejected": true,
+      "error": "missing reader batch: requests-VAR.S.json",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "self-consistent-wrong-function",
+      "rejected": true,
+      "error": "requested function/formula differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "duplicate-runtime-identity",
+      "rejected": true,
+      "error": "duplicate or missing batch identity",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "changed-runtime-order",
+      "rejected": true,
+      "error": "runtime request/answer order differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "canonical-raw-environment-mismatch",
+      "rejected": true,
+      "error": "environment provenance differs",
+      "success_receipt_exists": false
+    },
+    {
+      "control": "missing-worker-environment",
+      "rejected": true,
+      "error": "missing worker environment provenance",
+      "success_receipt_exists": false
+    }
+  ],
+  "positive_synthetic_control": {
+    "control": "consistent-different-environment",
+    "accepted": true,
+    "calls": 250,
+    "synthetic": true,
+    "not_excel_observations": true
+  },
+  "checker_sha256": {
+    "r13_controls.py": "3af3c469dd076cdbe563cf1eac7faff2ce4ea37043b259b3ce0d9cdc8dff9735",
+    "questions_r13.py": "ed1721e3f9dcb4456d027d32dd8d712f65c4ab5653339dcaa884d6802262e28a"
+  },
+  "limits": "Corrupted private copies only; original packet and supplied result files unchanged."
+}

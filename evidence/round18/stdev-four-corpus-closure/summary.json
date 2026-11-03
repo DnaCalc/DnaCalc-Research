@@ -1,0 +1,101 @@
+{
+  "complete": true,
+  "fused": true,
+  "counts": {
+    "observations": 25,
+    "form_0_unreachable": 14,
+    "root_values": 78642,
+    "form_1_unreachable": 14,
+    "form_2_unreachable": 14,
+    "form_3_unreachable": 14,
+    "form_4_unreachable": 14,
+    "form_5_unreachable": 16,
+    "form_6_unreachable": 14,
+    "form_7_unreachable": 16,
+    "form_8_unreachable": 16
+  },
+  "by_function": {
+    "STDEV.S": {
+      "observations": 1,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV.P": {
+      "observations": 1,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEVA": {
+      "observations": 1,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 0,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 0,
+      "form_8_unreachable": 0
+    },
+    "STDEV": {
+      "observations": 8,
+      "form_0_unreachable": 0,
+      "form_1_unreachable": 0,
+      "form_2_unreachable": 0,
+      "form_3_unreachable": 0,
+      "form_4_unreachable": 0,
+      "form_5_unreachable": 2,
+      "form_6_unreachable": 0,
+      "form_7_unreachable": 2,
+      "form_8_unreachable": 2
+    },
+    "STDEVP": {
+      "observations": 14,
+      "form_0_unreachable": 14,
+      "form_1_unreachable": 14,
+      "form_2_unreachable": 14,
+      "form_3_unreachable": 14,
+      "form_4_unreachable": 14,
+      "form_5_unreachable": 14,
+      "form_6_unreachable": 14,
+      "form_7_unreachable": 14,
+      "form_8_unreachable": 14
+    }
+  },
+  "seconds": 46.79732553707436,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/stdev-four-corpus-selected/cases.jsonl": "c780bce89c9c040f0c777eb7d72e32a96d220902d5ca045b612560668ecbd9dd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/variance_closure.py": "dddad15901da87d3e020487da7d3e28049f4f086c6d0027b8d5169408de2e238",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py": "5ec7d2d295e4dd6a8eca59a7280ee0d505f697aea5855c9a8e249e4902f2f1f0",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/intervals.py": "39536fdc478f8d35d7d692461852667901e8dc638173f3b46b727bb57612a010",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/geomean.py": "7b03ef85409f4a678f992e45e50caf7d94f709ef1ab89f908b2fbacb87d050d5"
+  },
+  "forms": [
+    "(Q-S*S/n)/d",
+    "(n*Q-S*S)/(n*d)",
+    "Q/d-S*S/(n*d)",
+    "Q/d-(S/n)*(S/d)",
+    "(Q/n-(S/n)^2)*(n/d)",
+    "FMA(-S/n,S,Q)/d",
+    "FMA(n,Q,-S*S)/(n*d)",
+    "FMA(-S,S,n*Q)/(n*d)",
+    "FMA(-S/n,S/n,Q/n)*(n/d)"
+  ],
+  "limits": "Four numeric inputs, nine declared uncentered/mixed-FMA variance forms, followed by a correctly rounded real square root directly to binary64 or via extended64/extended53 then binary64. Every sum tree/permutation and five-model arithmetic site choice is covered; Q allows leaf-square/sibling-sum FMA, including mixed trees. Six-term pairwise-difference sums, other fusion placements, arities and native approximations are outside this family. Root-state counts are local variance states before sqrt, not programs or product matches. No fitting or tolerance pass.",
+  "root_output": true,
+  "arity": 4
+}

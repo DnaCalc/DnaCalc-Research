@@ -1,0 +1,15 @@
+{"command": ["cargo", "build", "--release", "--offline", "--locked", "-p", "symbolic-racer"], "executable_sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4"}
+warning: method `opened_position` is never used
+   --> /home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-host/src/state.rs:740:19
+    |
+162 | impl HostState {
+    | -------------- method in this implementation
+...
+740 |     pub(crate) fn opened_position(&self, at: CellKey) -> Option<(u32, u32)> {
+    |                   ^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `calc-host` (lib) generated 1 warning
+   Compiling symbolic-racer v0.1.0 (/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer)
+    Finished `release` profile [optimized] target(s) in 23.05s

@@ -1,0 +1,217 @@
+{
+  "complete": true,
+  "profiles": 3,
+  "scope": {
+    "scoped": 638,
+    "surface": 5992,
+    "length_or_domain": 799,
+    "partial_product_bound": 1
+  },
+  "counts": [
+    {
+      "observations": 638,
+      "matched": 221,
+      "failed": 417,
+      "gains_vs_frozen": 13,
+      "losses_vs_frozen": 343
+    },
+    {
+      "observations": 638,
+      "matched": 220,
+      "failed": 418,
+      "gains_vs_frozen": 13,
+      "losses_vs_frozen": 344
+    },
+    {
+      "observations": 638,
+      "matched": 219,
+      "failed": 419,
+      "gains_vs_frozen": 13,
+      "losses_vs_frozen": 345
+    }
+  ],
+  "counterexamples": [
+    [
+      {
+        "id": "r18-local-power-0-0",
+        "trace_index": 0,
+        "order": 0,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:102:1",
+        "expected": "0x4003bacd6561ff5d",
+        "frozen_actual": "0x4003bacd6561ff5e",
+        "args": [
+          "0x402e000000000000",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4003bacd6561ff5e"
+      },
+      {
+        "id": "r18-local-power-1-0",
+        "trace_index": 1,
+        "order": 0,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:102:2",
+        "expected": "0x4003bacd6561ff5d",
+        "frozen_actual": "0x4003bacd6561ff5e",
+        "args": [
+          "0x402e000000000000",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4003bacd6561ff5e"
+      },
+      {
+        "id": "r18-local-power-10-0",
+        "trace_index": 10,
+        "order": 0,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_statistics:619:4",
+        "expected": "0x4061165976ce11bf",
+        "frozen_actual": "0x4061165976ce11bf",
+        "args": [
+          "0x4297bce2ea265277",
+          "0x3fc5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4061165976ce11be"
+      },
+      {
+        "id": "r18-local-power-14-0",
+        "trace_index": 14,
+        "order": 0,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_statistics:623:4",
+        "expected": "0x4086f713ef06f7fd",
+        "frozen_actual": "0x4086f713ef06f7fd",
+        "args": [
+          "0x41b7a7e3025bb378",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4086f713ef06f7f9"
+      }
+    ],
+    [
+      {
+        "id": "r18-local-power-0-1",
+        "trace_index": 0,
+        "order": 1,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:102:1",
+        "expected": "0x4003bacd6561ff5d",
+        "frozen_actual": "0x4003bacd6561ff5e",
+        "args": [
+          "0x402e000000000000",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4003bacd6561ff5e"
+      },
+      {
+        "id": "r18-local-power-1-1",
+        "trace_index": 1,
+        "order": 1,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:102:2",
+        "expected": "0x4003bacd6561ff5d",
+        "frozen_actual": "0x4003bacd6561ff5e",
+        "args": [
+          "0x402e000000000000",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4003bacd6561ff5e"
+      },
+      {
+        "id": "r18-local-power-10-1",
+        "trace_index": 10,
+        "order": 1,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_statistics:619:4",
+        "expected": "0x4061165976ce11bf",
+        "frozen_actual": "0x4061165976ce11bf",
+        "args": [
+          "0x4297bce2ea265277",
+          "0x3fc5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4061165976ce11be"
+      },
+      {
+        "id": "r18-local-power-14-1",
+        "trace_index": 14,
+        "order": 1,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_statistics:623:4",
+        "expected": "0x4086f713ef06f7fd",
+        "frozen_actual": "0x4086f713ef06f7fd",
+        "args": [
+          "0x41b7a7e3025bb378",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4086f713ef06f7f9"
+      }
+    ],
+    [
+      {
+        "id": "r18-local-power-0-2",
+        "trace_index": 0,
+        "order": 2,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:102:1",
+        "expected": "0x4003bacd6561ff5d",
+        "frozen_actual": "0x4003bacd6561ff5e",
+        "args": [
+          "0x402e000000000000",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4003bacd6561ff5e"
+      },
+      {
+        "id": "r18-local-power-1-2",
+        "trace_index": 1,
+        "order": 2,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:prefix_metadata:102:2",
+        "expected": "0x4003bacd6561ff5d",
+        "frozen_actual": "0x4003bacd6561ff5e",
+        "args": [
+          "0x402e000000000000",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4003bacd6561ff5e"
+      },
+      {
+        "id": "r18-local-power-10-2",
+        "trace_index": 10,
+        "order": 2,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_statistics:619:4",
+        "expected": "0x4061165976ce11bf",
+        "frozen_actual": "0x4061165976ce11bf",
+        "args": [
+          "0x4297bce2ea265276",
+          "0x3fc5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4061165976ce11be"
+      },
+      {
+        "id": "r18-local-power-14-2",
+        "trace_index": 14,
+        "order": 2,
+        "source_id": "corpus:calc-func_catalogue_oracle.xlsx:dcj9k_statistics:623:4",
+        "expected": "0x4086f713ef06f7fd",
+        "frozen_actual": "0x4086f713ef06f7fd",
+        "args": [
+          "0x41b7a7e3025bb378",
+          "0x3fd5555555555555"
+        ],
+        "not_excel_evidence": true,
+        "calculated_power": "0x4086f713ef06f7f9"
+      }
+    ]
+  ],
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261102-round16/geomean-with-references.jsonl": "1a5726759e00e50892f66f6c2baac6330ae858afc0c797b9c3ae1c0eba91b2c6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/target/release/symbolic-racer": "d66cf3010046bb340e2f010a0e999ab10fd1cfebdb330fc5faf1e4a881fd30b2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round18/public-power-study.py": "0d0ff3a108f9d2e05e2f3ff415a688d047ec3ef82b1915efe767fc0e286b90d9"
+  },
+  "generated_request_sha256": "b39923fa12af378fb21390be9f08136427d50888310049d5039596a5ae0e5d75",
+  "prediction_sha256": "d94f86517748d1e6182016577dc8b52b9216f01e9cd6944cd17b5bc30e5b30eb",
+  "limits": "Three fixed binary64 product orders (forward,reverse,balanced), then the existing registered POWER(product,RN53(1/n)) call. Typed inputs and actual POWER workbook routes are audited. This is a conditional shared-helper composition hypothesis, not an Excel internal call trace or a product gain. No row-dependent selector, fitted parameter or fresh validation; original observations are discovery. Frozen actual comparisons are scoped historical application observations, not the current full bank."
+}

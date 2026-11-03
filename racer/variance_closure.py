@@ -23,7 +23,7 @@ def encode(values):return [pair(x)for x in sorted(values)]
 def sums(leaves):
     """Subset closure includes both ordered children at every binary node."""
     table={1<<i:set(values)for i,values in enumerate(leaves)}
-    for mask in range(1,8):
+    for mask in range(1,1 << len(leaves)):
         if mask in table:continue
         result=set();left=(mask-1)&mask
         while left:
@@ -144,16 +144,20 @@ def online_run(input_path,destination):
     print(json.dumps(summary))
 
 
-def raw_moment_close(row, fused=False):
+def raw_moment_close(row, fused=False, root=False):
     """All-site closures of six fixed algebraic variance identities."""
+    require(not root or fused and row.get('result_index') is None, 'STDEV scope requires fused forms and a scalar call')
     def flatten(v):
         return list(itertools.chain.from_iterable(map(flatten, v))) if isinstance(v, list) else [v]
     bits = flatten(row['args'])
-    require(len(bits) == 3 and all(isinstance(v, str) and v.startswith('0x') for v in bits), 'raw-moment three-input scope')
+    require(len(bits) == (4 if root else 3) and all(isinstance(v, str) and v.startswith('0x') for v in bits), 'raw-moment arity scope')
     xs = [Q(number(v)) for v in bits]
     require(all(v == 0 or pow2(-100) <= abs(v) <= pow2(100) for v in xs), 'raw-moment magnitude scope')
-    require(row['function'] in ('VAR', 'VAR.S', 'VAR.P', 'VARP', 'VARA', 'VARPA'), 'raw-moment variance function')
-    d = Q(3 if row['function'] in ('VAR.P', 'VARP', 'VARPA') else 2)
+    names = ('STDEV','STDEV.S','STDEV.P','STDEVP','STDEVA','STDEVPA') if root else ('VAR','VAR.S','VAR.P','VARP','VARA','VARPA')
+    require(row['function'] in names, 'raw-moment function scope')
+    n = Q(len(xs))
+    d = n if row['function'] in ('VAR.P','VARP','VARPA','STDEV.P','STDEVP','STDEVPA') else n-1
+    full = (1 << len(xs))-1
     def combine(kind, left, right):
         return {operation(kind, model, a, b) for a, b, model in itertools.product(left, right, MODELS)}
     def subtract(left, right):
@@ -170,13 +174,13 @@ def raw_moment_close(row, fused=False):
                 value = (E53 if model.endswith('pc53') else E64).rn(a*b+c)
                 result.add(B64.rn(value) if model.startswith('stored') else value)
         return result
-    total = sums([{v} for v in xs])[7]
-    squares = sums([square({v}) for v in xs])[7]
+    total = sums([{v} for v in xs])[full]
+    squares = sums([square({v}) for v in xs])[full]
     if fused:
         # Every square-sum tree may fuse a leaf square with its sibling sum.
         # This includes ordinary sums, fully fused folds and mixed trees.
         table = {1 << i: square({x}) for i, x in enumerate(xs)}
-        for mask in range(1, 8):
+        for mask in range(1, full+1):
             if mask in table:
                 continue
             values = set()
@@ -190,63 +194,74 @@ def raw_moment_close(row, fused=False):
                         values.update(v for accumulator in table[sibling] for v in fma(x, x, accumulator))
                 left = (left-1) & mask
             table[mask] = values
-        squares = table[7]
+        squares = table[full]
     total_square = square(total)
-    nd = combine('mul', {Q(3)}, {d})
+    nd = combine('mul', {n}, {d})
     roots = []
     # Independent sums and their correlations are conservatively projected.
-    roots.append(combine('div', subtract(squares, combine('div', total_square, {Q(3)})), {d}))
-    roots.append(combine('div', subtract(combine('mul', {Q(3)}, squares), total_square), nd))
+    roots.append(combine('div', subtract(squares, combine('div', total_square, {n})), {d}))
+    roots.append(combine('div', subtract(combine('mul', {n}, squares), total_square), nd))
     roots.append(subtract(combine('div', squares, {d}), combine('div', total_square, nd)))
     divided_squares = combine('div', squares, {d})
     mean_products = set()
     for value in total:
-        mean_products.update(combine('mul', combine('div', {value}, {Q(3)}), combine('div', {value}, {d})))
+        mean_products.update(combine('mul', combine('div', {value}, {n}), combine('div', {value}, {d})))
     roots.append(subtract(divided_squares, mean_products))
-    means = combine('div', total, {Q(3)})
-    raw_population = subtract(combine('div', squares, {Q(3)}), square(means))
-    roots.append(combine('mul', raw_population, combine('div', {Q(3)}, {d})))
-    differences = [square(subtract({xs[i]}, {xs[j]})) for i, j in ((0, 1), (0, 2), (1, 2))]
-    roots.append(combine('div', sums(differences)[7], nd))
+    means = combine('div', total, {n})
+    raw_population = subtract(combine('div', squares, {n}), square(means))
+    roots.append(combine('mul', raw_population, combine('div', {n}, {d})))
+    if not root:
+        differences = [square(subtract({xs[i]}, {xs[j]})) for i, j in ((0, 1), (0, 2), (1, 2))]
+        roots.append(combine('div', sums(differences)[7], nd))
     if fused:
         numerators = [set() for _ in range(4)]
         for value in total:
-            for mean in combine('div', {value}, {Q(3)}):
+            for mean in combine('div', {value}, {n}):
                 for q in squares:
                     numerators[0].update(fma(-mean, value, q))
-                for q in combine('div', squares, {Q(3)}):
+                for q in combine('div', squares, {n}):
                     numerators[3].update(fma(-mean, mean, q))
-            for q in combine('mul', {Q(3)}, squares):
+            for q in combine('mul', {n}, squares):
                 numerators[2].update(fma(-value, value, q))
         for q, s2 in itertools.product(squares, total_square):
-            numerators[1].update(fma(Q(3), q, -s2))
+            numerators[1].update(fma(n, q, -s2))
         roots.extend((combine('div', numerators[0], {d}),
                       combine('div', numerators[1], nd),
                       combine('div', numerators[2], nd),
-                      combine('mul', numerators[3], combine('div', {Q(3)}, {d}))))
+                      combine('mul', numerators[3], combine('div', {n}, {d}))))
     target = Q(number(row['expected']))
     span = B64.preimage(Interval(target, target))
     import hashlib
     forms = []
     for values in roots:
         payload = json.dumps(encode(values), separators=(',', ':')).encode()
-        forms.append(dict(root_count=len(values), roots_sha256=hashlib.sha256(payload).hexdigest(),
-                          reachable=any(span.contains(v) for v in values)))
+        form = dict(root_count=len(values), roots_sha256=hashlib.sha256(payload).hexdigest(),
+                    reachable=any(span.contains(v) for v in values))
+        if root:
+            if __package__:
+                from .geomean import root_publication_domains
+            else:
+                from geomean import root_publication_domains
+            domains = root_publication_domains(values, 2, target, True)
+            form.update(root_roundings=domains, reachable=any(d['reachable'] for d in domains.values()))
+        forms.append(form)
     return dict(raw=row, target_span=span.json(), forms=forms,
                 total_values=len(total), square_sum_values=len(squares))
 
 
-def raw_moment_run(input_path, destination, fused=False):
+def raw_moment_run(input_path, destination, fused=False, root=False):
     start = time.monotonic()
     dest = Path(destination)
     dest.mkdir()
     frozen = {str(p): digest(p) for p in (Path(input_path), Path(__file__), Path(__file__).with_name('bessel.py'), Path(__file__).with_name('intervals.py'))}
+    if root:
+        frozen[str(Path(__file__).with_name('geomean.py'))] = digest(Path(__file__).with_name('geomean.py'))
     counts, by_function = Counter(), {}
     rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
     require(rows, 'empty raw-moment scope')
     with (dest/'closures.jsonl').open('x') as out:
         for row in rows:
-            result = raw_moment_close(row, fused)
+            result = raw_moment_close(row, fused, root)
             out.write(json.dumps(result)+'\n')
             out.flush()
             function = by_function.setdefault(row['function'], Counter())
@@ -265,11 +280,18 @@ def raw_moment_run(input_path, destination, fused=False):
             +'; all sum trees/permutations and independent five-model arithmetic choices at every site. '
             + ('Q permits every ordinary square-sum tree and any fusion of a leaf square with its sibling sum, including mixed fused/ordinary trees. ' if fused else '')
             + 'Other fusion placements are outside the declared forms. Shared-sum correlations are discarded where documented, enlarging the sets. Root digests are checked by complete independent regeneration. Reachability supplies no reusable program, fitted value, product gain or tolerance claim.')
+    if root:
+        summary.update(root_output=True, arity=4,
+            forms=[form for i,form in enumerate(summary['forms']) if i != 5],
+            limits='Four numeric inputs, nine declared uncentered/mixed-FMA variance forms, followed by a correctly rounded real square root directly to binary64 or via extended64/extended53 then binary64. '
+                   'Every sum tree/permutation and five-model arithmetic site choice is covered; Q allows leaf-square/sibling-sum FMA, including mixed trees. '
+                   'Six-term pairwise-difference sums, other fusion placements, arities and native approximations are outside this family. '
+                   'Root-state counts are local variance states before sqrt, not programs or product matches. No fitting or tolerance pass.')
     (dest/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
     print(json.dumps(summary))
 
 
-def raw_moment_scope(input_path, destination):
+def raw_moment_scope(input_path, destination, root=False):
     """Select canonical bank rows for the existing three-input closure."""
     dest = Path(destination)
     dest.mkdir()
@@ -283,9 +305,12 @@ def raw_moment_scope(input_path, destination):
             raw = json.loads(line)
             reason = None
             values = flat(raw['args'])
-            if raw['function'] not in ('VAR', 'VAR.S', 'VAR.P', 'VARP', 'VARA', 'VARPA'):
+            names = ('STDEV','STDEV.S','STDEV.P','STDEVP','STDEVA','STDEVPA') if root else ('VAR','VAR.S','VAR.P','VARP','VARA','VARPA')
+            if raw['function'] not in names:
                 reason = 'other_function'
-            elif len(values) != 3:
+            elif root and raw.get('result_index') is not None:
+                reason = 'selected_result'
+            elif len(values) != (4 if root else 3):
                 reason = 'other_input_count'
             elif not all(isinstance(v, str) and v.startswith('0x') and len(v) == 18 for v in values):
                 reason = 'non_numeric_input'
@@ -294,11 +319,15 @@ def raw_moment_scope(input_path, destination):
             else:
                 try:
                     xs = [Q(number(v)) for v in values]
-                    Q(number(raw['expected']))
+                    expected = Q(number(raw['expected']))
                     if not all(x == 0 or pow2(-100) <= abs(x) <= pow2(100) for x in xs):
                         reason = 'outside_magnitude_scope'
+                    elif root and expected <= 0:
+                        reason = 'nonpositive_root_target'
                 except (ValueError, OverflowError):
                     reason = 'non_finite_value'
+            if reason is None and root and counts['selected:'+raw['function']] >= 32:
+                reason = 'after_first_32_eligible_per_function'
             if reason:
                 counts[reason] += 1
                 excluded.write(json.dumps(dict(trace_index=index, reason=reason))+'\n')
@@ -311,11 +340,15 @@ def raw_moment_scope(input_path, destination):
         output_sha256={p.name:digest(p) for p in dest.iterdir()},
         limits='Only original decoded observations are selected; all omitted indices and reasons are retained. '
                'Original arguments, shapes, metadata and answers are unchanged. This scope is not a bank score or new capture.')
+    if root:
+        summary['limits'] += ' STDEV scope keeps the first32 eligible rows per function in original input order; all remaining indices are explicitly outside this bounded experiment.'
     (dest/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
     print(json.dumps(dict(complete=True, counts=counts)))
 
 
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='raw-moment-scope-stdev4':raw_moment_scope(*sys.argv[2:], root=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='raw-moments-stdev4':raw_moment_run(*sys.argv[2:], fused=True, root=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moment-scope':raw_moment_scope(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments-fma':raw_moment_run(*sys.argv[2:], fused=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments':raw_moment_run(*sys.argv[2:]);raise SystemExit(0)

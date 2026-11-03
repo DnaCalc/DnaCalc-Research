@@ -461,10 +461,12 @@ no numerical body or coefficient is selected from their results.
     print(json.dumps({f:len(rows)for f,rows in batches.items()}))
 
 
-def bank_delta(before, after, output):
+def bank_delta(before, after, output, mode='file'):
     """Compare sorted canonical witness identities while retaining new coverage."""
     before,after,output=map(Path,(before,after,output))
-    frozen={str(p):sha(p)for p in (before,after,Path(__file__))}
+    if mode not in ('file','stream'):
+        raise ValueError('bank delta mode must be file or stream')
+    frozen={str(p):sha(p)for p in ((before,after,Path(__file__))if mode=='file'else(Path(__file__),))}
     def key(row):
         selection=row.get('result_index')
         suffix=''if selection is None else f'@{selection[0]},{selection[1]}'
@@ -500,8 +502,94 @@ def bank_delta(before, after, output):
         limits='Counts distinguish input coverage from gains/losses on shared inputs. Metadata '
                'changes retain the selected capture source. Unread rows have no trace and '
                'still fail in each original judge summary; no calculated-only pass rate.')
+    if mode=='stream':
+        result['trace_mode']='streamed once; input bindings and judge completion supplied by bank-intake receipt'
     with output.open('x')as f:json.dump(result,f,indent=2);f.write('\n')
     print(json.dumps(result));return result
+
+
+def bank_intake(executable, checkout, before_receipt, output):
+    """Compare two evidence views through the existing judge, without trace dumps."""
+    import os
+    import subprocess
+    import tempfile
+    executable,checkout,before_receipt,output=(Path(p).resolve()for p in(executable,checkout,before_receipt,output))
+    output.mkdir(parents=True,exist_ok=False)
+    baseline=json.loads(before_receipt.read_text())
+    if baseline.get('complete')is not True:
+        raise ValueError('incomplete pre-intake evidence binding')
+    old_scope=baseline['bank_scope'];evidence=Path(old_scope['root'])
+    if old_scope.get('status') or old_scope.get('dirty_or_untracked_sha256'):
+        raise ValueError('intake comparison requires a clean pre-intake evidence revision')
+    frozen={str(p):sha(p)for p in(executable,before_receipt,Path(__file__))}
+    def git(*args):
+        return subprocess.check_output(['git','-C',str(evidence),*args],text=True,timeout=60).strip()
+    old_paths=set(git('ls-tree','-r','--name-only',old_scope['revision']).splitlines())
+    changed=set(git('diff','--name-only',old_scope['revision']).splitlines())
+    if (changed&old_paths)-{'.gitattributes','README.md'}:
+        raise ValueError('pre-intake bank files changed')
+    def state():
+        readings={str(p.relative_to(evidence)):sha(p)for p in sorted((evidence/'readings').rglob('*.json'))}
+        return dict(revision=git('rev-parse','HEAD'),status=git('status','--porcelain=v1','--untracked-files=all'),
+                    readings_sha256=readings)
+    new_scope=state()
+    if not all(new_scope['readings_sha256'].get(name)==h for name,h in old_scope['readings_sha256'].items()):
+        raise ValueError('original reading missing or changed during intake')
+    added=sorted(new_scope['readings_sha256'].keys()-old_scope['readings_sha256'].keys())
+    if not added:
+        raise ValueError('empty intake comparison')
+    commands=[]
+    with tempfile.TemporaryDirectory(prefix='dnacalc-intake-')as scratch:
+        root=Path(scratch);view=root/'before'/'OxFunc-Evidence';view.mkdir(parents=True)
+        for source in evidence.iterdir():
+            if source.name not in ('.git','readings'):
+                (view/source.name).symlink_to(source,target_is_directory=source.is_dir())
+        for name in old_scope['readings_sha256']:
+            path=view/name;path.parent.mkdir(parents=True,exist_ok=True);path.symlink_to(evidence/name)
+        before,after=root/'before.fifo',root/'after.fifo'
+        for path in(before,after):os.mkfifo(path,0o600)
+        children=[]
+        with (output/'before-judge.log').open('x')as old_log,(output/'judge.log').open('x')as new_log:
+            try:
+                for trace,legacy,log in((before,view.parent,old_log),(after,evidence.parent,new_log)):
+                    command=[str(executable),'witness','judge','--bank','full','--trace',str(trace)]
+                    env=dict(os.environ,DNACALC_LEGACY_ROOT=str(legacy))
+                    commands.append(dict(argv=command,legacy_root=str(legacy)))
+                    # ubs:ignore — selected local binary, argv only; these two owned children are bounded and always reaped.
+                    children.append(subprocess.Popen(command,cwd=checkout,env=env,stdout=log,stderr=subprocess.STDOUT))
+                delta=bank_delta(before,after,output/'delta.json','stream')
+                if any(child.wait(timeout=3600)for child in children):
+                    raise ValueError('bank intake judge failed')
+            finally:
+                for child in children:
+                    if child.poll()is None:
+                        child.terminate()
+                        try:child.wait(timeout=5)
+                        except subprocess.TimeoutExpired:child.kill();child.wait()
+    if frozen!={p:sha(Path(p))for p in frozen}or state()!=new_scope:
+        raise ValueError('intake source, executable or evidence changed during comparison')
+    import re
+    def totals(name):
+        match=re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)',(output/name).read_text())
+        if match is None:raise ValueError('missing intake judge totals')
+        matched,total,failed,unread=map(int,match.groups())
+        if failed!=total-matched:raise ValueError('incorrect intake judge failure count')
+        return dict(matched=matched,total=total,failed=failed,unread=unread)
+    old,new=totals('before-judge.log'),totals('judge.log');c=delta['counts']
+    if old!={key:baseline[key]for key in('matched','total','failed','unread')}:
+        raise ValueError('before-view judge differs from the bound pre-intake totals')
+    if c.get('removed_inputs',0)or c['shared_inputs']+old['unread']!=old['total']or c['shared_inputs']+c.get('added_inputs',0)+new['unread']!=new['total']:
+        raise ValueError('intake coverage does not reconcile')
+    if c['shared_before_matches']!=old['matched']or c['shared_after_matches']+c.get('added_matched',0)!=new['matched']:
+        raise ValueError('intake matches do not reconcile')
+    result=dict(complete=True,before=old,after=new,counts=c,commands=commands,
+        before_bank_scope=old_scope,after_bank_scope=new_scope,added_reading_files=added,
+        input_sha256=frozen,logs_sha256={p.name:sha(p)for p in output.iterdir()if p.is_file()},
+        limits='Same application executable on two evidence views. Existing cache/data files are shared unchanged; the before view exposes exactly the originally bound reading files. '
+               'All identities/answers and typed actuals use the existing canonical judge and bank-delta reconciliation. Added coverage and selected-capture metadata are separate from product gains. '
+               'Unread observations remain failures. Two FIFO traces are consumed once and never retained; no target or bulk bank copy.')
+    with(output/'receipt.json').open('x')as file:json.dump(result,file,indent=2);file.write('\n')
+    print(json.dumps(dict(before=old,after=new,counts=c)));return result
 
 
 def bank_replay(before, executable, checkout, output, mode='file', function=None):
@@ -682,6 +770,7 @@ def corpus_delta(before, after, original_catalogue_after, output):
 
 
 if __name__ == "__main__":
+    if sys.argv[1]=="bank-intake":bank_intake(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="corpus-delta":corpus_delta(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-delta":bank_delta(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-replay":bank_replay(*sys.argv[2:]);raise SystemExit(0)
