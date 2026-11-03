@@ -27,6 +27,8 @@ for name, args, result in [
         ('set_d',[PTR,C.c_double,C.c_int],C.c_int),
         ('sqrt',[PTR,PTR,C.c_int],C.c_int), ('erfc',[PTR,PTR,C.c_int],C.c_int),
         ('log',[PTR,PTR,C.c_int],C.c_int),
+        ('jn',[PTR,C.c_long,PTR,C.c_int],C.c_int),
+        ('yn',[PTR,C.c_long,PTR,C.c_int],C.c_int),
         ('div',[PTR,PTR,PTR,C.c_int],C.c_int), ('mul',[PTR,PTR,PTR,C.c_int],C.c_int),
         ('sub',[PTR,PTR,PTR,C.c_int],C.c_int),
         ('get_d',[PTR,C.c_int],C.c_double),
@@ -62,6 +64,28 @@ def log_bounds(bits, precision=256):
         return rational(raw[1]),rational(raw[2])
     finally:
         for item in raw:LIB.mpfr_clear(C.byref(item))
+
+
+def bessel_bounds(function, bits, order, precision=256):
+    """Directed real-function bounds through the official MPFR jn/yn API.
+
+    Calls the installed shared library only; no MPFR implementation is read.
+    These are mathematical references, never Excel answers or native x87 leaves.
+    """
+    require(function in ('BESSELJ','BESSELY') and 0 <= order <= 64, 'Bessel reference scope')
+    value=struct.unpack('>d',int(bits,16).to_bytes(8,'big'))[0]
+    values=[Raw(),Raw(),Raw()]
+    for raw in values:LIB.mpfr_init2(C.byref(raw),precision)
+    try:
+        LIB.mpfr_set_d(C.byref(values[0]),value,0)
+        operation=LIB.mpfr_jn if function=='BESSELJ' else LIB.mpfr_yn
+        operation(C.byref(values[1]),order,C.byref(values[0]),3)
+        operation(C.byref(values[2]),order,C.byref(values[0]),2)
+        lo,hi=rational(values[1]),rational(values[2])
+        require(lo<=hi,'reversed Bessel reference interval')
+        return lo,hi
+    finally:
+        for raw in values:LIB.mpfr_clear(C.byref(raw))
 
 
 def normal_bounds(bits, precision=256):

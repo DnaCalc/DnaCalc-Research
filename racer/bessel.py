@@ -547,8 +547,148 @@ def miller_run(input_path, destination, expanded=False, sites=False):
     print(json.dumps(summary))
 
 
+def real_reference(row):
+    """Real J/Y enclosures from DLMF10.2.2,10.8.1,10.17(iii), not Excel predictions."""
+    from math import factorial, isqrt
+    from constants import atan
+    from intervals import log2floor
+    x,order = map(lambda a:Q(number(a)),row['args'])
+    n = int(order)
+    require(n == order and 0 <= n <= 64 and row['function'] in ('BESSELJ','BESSELY'), 'real reference scope')
+    negative = x < 0
+    if row['function'] == 'BESSELJ':x = abs(x)
+    require(x >= 0 and (x > 0 or row['function'] == 'BESSELJ'), 'real reference domain')
+    def add(a,b):return a[0]+b[0],a[1]+b[1]
+    def neg(a):return -a[1],-a[0]
+    def mul(a,b):
+        values = [u*v for u in a for v in b]
+        return min(values),max(values)
+    def inv(a):
+        require(a[0]*a[1] > 0,'reference inverse crosses zero')
+        return 1/a[1],1/a[0]
+    a,b = atan(Q(1,5),64),atan(Q(1,239),32)
+    pi = 16*a[0]-4*b[1],16*a[1]-4*b[0]
+    def logarithm(q):
+        exponent = log2floor(q)
+        reduced = q/pow2(exponent)
+        def atanh_log(t):
+            z = (t-1)/(t+1)
+            total = sum((2*z**(2*k+1)/Q(2*k+1) for k in range(192)),Q(0))
+            tail = 2*abs(z)**385/Q(385)/(1-z*z)
+            return total-tail,total+tail
+        return add(atanh_log(reduced),mul((Q(exponent),Q(exponent)),atanh_log(Q(2))))
+    if x <= 32:
+        require(x == 0 or x >= Q(1,1024), 'tiny argument outside reference scope')
+        t = (x/2)**n/factorial(n)
+        total,weighted = Q(0),Q(0)
+        h,higher = Q(0),sum((Q(1,j)for j in range(1,n+1)),Q(0))
+        for k in range(512):
+            total += t
+            weighted += (h+higher)*t
+            next_term = -t*(x*x/4)/((k+1)*(n+k+1))
+            next_weight = h+higher+Q(1,k+1)+Q(1,n+k+1)
+            if k > x and abs(next_term)*max(Q(1),2*next_weight) < pow2(-192):
+                j = total-abs(next_term),total+abs(next_term)
+                w = weighted-2*abs(next_term)*next_weight,weighted+2*abs(next_term)*next_weight
+                break
+            t = next_term
+            h += Q(1,k+1)
+            higher += Q(1,n+k+1)
+        else:raise ValueError('series enclosure did not converge')
+        if row['function'] == 'BESSELJ':value=j
+        else:
+            # DLMF5.2.3 prints these twenty digits as the prefix of gamma.
+            gamma = Q('0.57721566490153286060'),Q('0.57721566490153286061')
+            normalizer = mul((Q(2),Q(2)),inv(pi))
+            value = mul(normalizer,mul(add(logarithm(x/2),gamma),j))
+            finite = (x/2)**(-n)*sum((Q(factorial(n-i-1),factorial(i))*(x*x/4)**i for i in range(n)),Q(0))
+            value = add(value,neg(mul(inv(pi),add((finite,finite),w))))
+        method = 'defining_series'
+        terms = k+1
+    else:
+        terms = max(16,(n+1)//2)
+        coefficients = [Q(1)]
+        for k in range(1,2*terms+2):
+            coefficients.append(coefficients[-1]*Q(4*n*n-(2*k-1)**2,8*k))
+        def expansion(parity):
+            total = sum(((-1)**k*coefficients[2*k+parity]/x**(2*k+parity)for k in range(terms)),Q(0))
+            tail = (-1)**terms*coefficients[2*terms+parity]/x**(2*terms+parity)
+            return min(total,total+tail),max(total,total+tail)
+        p,q = expansion(0),expansion(1)
+        phase = add((x,x),neg(mul((Q(2*n+1,4),Q(2*n+1,4)),pi)))
+        turns = int(((phase[0]+phase[1])/(4*((pi[0]+pi[1])/2))+Q(1,2))//1)
+        reduced = add(phase,neg(mul((Q(2*turns),Q(2*turns)),pi)))
+        midpoint = sum(reduced)/2
+        # A dyadic Taylor center avoids huge odd-denominator powers. Its exact
+        # displacement is included in the radius, so this only widens a proof.
+        center = (midpoint/pow2(-192)//1)*pow2(-192)
+        radius = (reduced[1]-reduced[0])/2+abs(center-midpoint)
+        require(abs(center) < 4,'trigonometric reduction outside Taylor bound')
+        def trig(parity):
+            total = sum(((-1)**k*center**(2*k+parity)/factorial(2*k+parity)for k in range(64)),Q(0))
+            error = abs(center)**(128+parity)/factorial(128+parity)+radius
+            return total-error,total+error
+        sine,cosine = trig(1),trig(0)
+        square = mul((Q(2)/x,Q(2)/x),inv(pi))
+        unit = 1<<256
+        floor = lambda q: Q(isqrt(q.numerator*unit*unit//q.denominator),unit)
+        amplitude = floor(square[0]),floor(square[1])+Q(1,unit)
+        body = add(mul(cosine,p),neg(mul(sine,q))) if row['function'] == 'BESSELJ' else add(mul(sine,p),mul(cosine,q))
+        value = mul(amplitude,body)
+        method = 'hankel_remainder_bound'
+    if negative and n%2:value = neg(value)
+    lower,upper = E64.floor(value[0]),E64.ceil(value[1])
+    require(lower is not None and upper is not None,'reference output outside Ext80')
+    return dict(method=method,terms=terms,enclosure=list(map(pair,(lower,upper))))
+
+
+def regime_run(input_path,destination):
+    dest = Path(destination);dest.mkdir()
+    source = digest(Path(__file__))
+    rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]
+    counts,regions,excluded = Counter(),defaultdict(Counter),[]
+    cache = {}
+    with (dest/'reference-bounds.jsonl').open('x') as out:
+        for index,row in enumerate(rows):
+            if row['function'] not in ('BESSELJ','BESSELY'):
+                counts['other_function'] += 1;continue
+            if row['result_index'] is not None or len(row['args']) != 2 or not all(isinstance(v,str)and v.startswith('0x')for v in row['args']):
+                counts['surface'] += 1;continue
+            if not row['expected'].startswith('0x'):
+                counts['domain_obligation'] += 1;continue
+            try:
+                key = row['function'],tuple(row['args'])
+                if key not in cache:cache[key] = real_reference(row)
+                proof = cache[key]
+            except ValueError as error:
+                counts['outside_reference_scope'] += 1;excluded.append(dict(trace_index=index,reason=str(error)));continue
+            lo,hi = [Q(*map(int,v))for v in proof['enclosure']]
+            published = B64.rn(lo),B64.rn(hi)
+            target = Q(number(row['expected']))
+            impossible = not published[0] <= target <= published[1]
+            x,n = map(number,row['args'])
+            region = ('seed' if n <= 1 else 'above_order' if abs(x) > n else 'at_or_below_order')+'_'+('small' if abs(x) <= 32 else 'large')
+            regions[row['function']+':'+region]['observations'] += 1
+            regions[row['function']+':'+region]['outside_real_rounding_bound'] += impossible
+            counts['scoped'] += 1;counts['outside_real_rounding_bound'] += impossible
+            out.write(json.dumps(dict(trace_index=index,id=row['id'],function=row['function'],args=row['args'],
+                expected=row['expected'],region=region,proof=proof,outside_real_rounding_bound=impossible))+'\n')
+    require(source == digest(Path(__file__)),'reference source changed during run')
+    result = dict(complete=True,counts=counts,regions=regions,excluded=excluded,
+        source_sha256=source,input_sha256=digest(input_path),bounds_sha256=digest(dest/'reference-bounds.jsonl'),
+        sources=['https://dlmf.nist.gov/10.2.E2','https://dlmf.nist.gov/10.8.E1','https://dlmf.nist.gov/10.17.iii','https://dlmf.nist.gov/5.2.E3'],
+        claim='Rational enclosures exclude correctly rounded real J/Y kernels at the listed recorded inputs. '
+              'The series and Hankel labels name reference mathematics, not identified Excel implementation branches.',
+        limits='Integer orders0..64; argument zero for J or magnitude>=1/1024. '
+               'These constraints do not exclude inaccurately truncated/rounded series, approximate seed recurrences or asymptotic approximations. '
+               'No complete Excel program, cutoff, seed or coefficient is selected; no product gain follows.')
+    with (dest/'summary.json').open('x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='regimes':regime_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller-sites':miller_run(*sys.argv[2:], expanded=True, sites=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller-forms':miller_run(*sys.argv[2:], expanded=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller':miller_run(*sys.argv[2:]);raise SystemExit(0)

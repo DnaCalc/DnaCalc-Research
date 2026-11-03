@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "programs": 1536,
+  "observations": 41,
+  "executions": 62976,
+  "registered_trig_arguments": 17,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-all.jsonl": "5a38f0663e516c76e07a544aa0914ea40617fa8c96a6fdc05b08916da6f21386",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-universal-tables.json": "ff2c5e3f6752d2bb928d4142ee1b6d1e440f5f3cfad59d09796533ba817b731b",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/summary.json": "8488d113d927dee9f666244a7598f55e88e239c4c2d9cab6dbfb259243b865d9",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/grammar.json": "185177daf8c3d10ec4609191b8ea0b7616d0fda24f8e4c8e2f28f31a9ca3a0fb",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/BESSELJ-survivors.json": "8d26b4b7f79c26e96e07653d72a733a85fe0f56eac5c4050c3c8c1e767fbc6fa",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/symbolic-racer-asymptotic": "30aa592862a0ea7455c2eec4bd8df075dac90d7f744950bc51b41089c7ff4de5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/bessel.py": "3a6de80697b40de4a7c5890786fa83aee3e86b8afaa0221cfab23b6de21809af",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/BESSELJ-first-kills.tsv": "9364261727355fce0cb06583c48fffbc790913c77bd9cbc66679c6a5c1db7af8",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic-complete-checked-SIN-requests.json": "62f21cd037d02572e218a7a7cd0fb90b0c1dff71075de031ad9dcccf1ce58549",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic-complete-checked-SIN-predictions.jsonl": "570c1bba75eae66a029efb3254d9b1677c65dfa29139b4ad482ad5def0a21941",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic-complete-checked-COS-requests.json": "dab52a51e320d26867764d50752e3224ef9dcb8db16139979b671ceccc4b0997",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic-complete-checked-COS-predictions.jsonl": "7687c37fca72723774a339b0a3f9349c429e463f0a5bf60bd6e3da8d998abdff"
+  },
+  "limits": "Independent exact arithmetic and rational sqrt-rounding replay of every declared J numeric survivor. SIN/COS leaves are current registered application calculations, not new Excel observations or identified private Bessel helpers. Domain obligations are excluded; no complete Excel kernel or product gain follows."
+}

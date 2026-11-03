@@ -120,6 +120,32 @@ def hart_constants(source_dir):
     return out
 
 
+def bessel_asymptotic_constants():
+    """Fixed decimal quantization of universal constants, never of Excel values."""
+    a,b=atan(Q(1,5),128),atan(Q(1,239),64)
+    pi=(16*a[0]-4*b[1],16*a[1]-4*b[0])
+    def quantize(span,digits,mode):
+        scale=10**digits
+        def integer(q):
+            q*=scale;k=q.numerator//q.denominator
+            if mode=='ceil':return k+(q!=k)
+            if mode=='nearest_even':return k+(q-k>Q(1,2)or q-k==Q(1,2)and k%2==1)
+            return k
+        lo,hi=map(integer,span)
+        if lo!=hi:raise ValueError('ambiguous universal decimal quantization')
+        return published_literal(str(Q(lo,scale)))
+    phases=[dict(id=0,rule='correct_binary64',values=[published_literal(str(B64.rn(Q(2*n+1,4)*pi[0])))for n in (0,1)])]
+    scales=[dict(id=0,rule='correct_binary64',value=published_literal(str(B64.rn(2/pi[1]))))]
+    for digits in (8,9,10):
+        for mode in ('floor','nearest_even','ceil'):
+            phases.append(dict(id=len(phases),rule=mode,decimal_places=digits,
+                values=[quantize((Q(2*n+1,4)*pi[0],Q(2*n+1,4)*pi[1]),digits,mode)for n in (0,1)]))
+            scales.append(dict(id=len(scales),rule=mode,decimal_places=digits,value=quantize((2/pi[1],2/pi[0]),digits,mode)))
+    return dict(provenance='DLMF10.17.1--4; Machin rational pi bounds. Universal constants only: phase=(2n+1)pi/4, amplitude squared=2/pi. '
+                'Fixed floor/nearest-even/ceil decimal quantizers at8,9,10places and correctly rounded binary64; no observed answer enters generation.',
+                phases=phases,scales=scales)
+
+
 def published_literal(literal):
     """Round an explicitly stated rational/decimal once; never inspect targets."""
     a,b=B64.rn(Q(literal)),E64.rn(Q(literal));magnitude=abs(b)

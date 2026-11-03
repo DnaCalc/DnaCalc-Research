@@ -19,6 +19,138 @@ from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, log2floo
 MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
 
 
+def direct_graph(function, count, beginning, first, logarithm, association, discount):
+    """Ordinary closed-form loan algebra; coefficients are only0,1 and input counts.
+
+    End principal at k is -r*(PV+FV)*q^(k-1)/(q^N-1).
+    Summing its geometric progression gives CUMPRINC without calling PMT/PPMT.
+    Beginning payments move the power by one, with the first payment separate.
+    """
+    from x87_programs import Builder
+    g=Builder(count);one=g.one
+    def op(kind,a,b=0,site=None):
+        i=g.op(kind,a,b,store=False)
+        if site is not None:g.nodes[i]['site']=site
+        return i
+    def add(a,b,site=6):return op('add',a,b,site)
+    def sub(a,b,site=6):return op('sub',a,b,site)
+    def mul(a,b,site=8):return op('mul',a,b,site)
+    def div(a,b,site=8):return op('div',a,b,site)
+    def neg(a):return op('neg',a)
+    base=add(one,0,0)
+    log=op('fyl2xp1',one,0,1)if logarithm==0 else op('fyl2x',one,base,1)
+    def power(exponent):
+        t=mul(exponent,log,2)
+        integer=op('frndint',t)
+        fraction=sub(t,integer,3)
+        mantissa=add(one,op('f2xm1',fraction,site=3),3)
+        return op('fscale',mantissa,integer,4)
+    def combine(a,b,denominator):
+        return div(mul(a,b,7),denominator,8)if association==0 else mul(a,div(b,denominator,8),7)
+    if function=='PPMT':
+        period,nper,pv,fv=1,2,3,4
+    else:
+        nper,pv=1,2
+        fv=g.constant('0000000000000000')
+    total_power=power(neg(nper)if discount else nper)
+    denominator=sub(one,total_power,5)if discount else sub(total_power,one,5)
+    def payment():
+        numerator=add(pv,mul(fv,total_power,7),7)if discount else add(mul(pv,total_power,7),fv,7)
+        value=neg(combine(0,numerator,denominator))
+        return div(value,base,9)if beginning else value
+    if function=='PPMT':
+        if beginning and first:
+            result=payment()
+        else:
+            degree=add(sub(nper,period),one)if discount else sub(period,one)
+            if beginning:degree=add(degree,one)if discount else sub(degree,one)
+            factor=power(neg(degree)if discount else degree)
+            result=neg(combine(mul(0,add(pv,fv),7),factor,denominator))
+    else:
+        start,end=3,4
+        if beginning and first:
+            first_payment=payment()
+            length=sub(end,one)
+            degree=add(sub(nper,end),one)if discount else g.constant('0000000000000000')
+        else:
+            first_payment=None
+            length=add(sub(end,start),one)
+            degree=sub(nper,end)if discount else sub(start,one)
+            if beginning:degree=add(degree,one)if discount else sub(degree,one)
+        span=power(neg(length)if discount else length)
+        difference=sub(one,span,5)if discount else sub(span,one,5)
+        factor=power(neg(degree)if discount else degree)
+        result=neg(combine(pv,mul(factor,difference,7),denominator))
+        if first_payment is not None:result=add(first_payment,result,9)
+    g.sites=10
+    graph=g.graph(result,result)
+    if len(graph['nodes'])>128:raise ValueError('closed-form graph exceeds native interpreter bound')
+    return graph
+
+
+def direct_run(input_path,library,destination):
+    """Reject complete finite programs on exact observed outputs, never pick per row."""
+    from x87_programs import Native,WORDS,digest
+    dest=Path(destination);dest.mkdir()
+    rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]
+    frozen={str(p):digest(p)for p in (Path(input_path),Path(library),Path(__file__),Path(__file__).with_name('x87_programs.py'),Path(__file__).with_name('x87_native.c'))}
+    native=Native(library);counts={};graphs={};scope=Counter();excluded=[]
+    profiles=[dict(id=i,logarithm=l,association=a,discount=d,cw=cw,mask=mask)
+        for i,(l,a,d,cw,mask)in enumerate(itertools.product(range(2),range(2),(False,True),WORDS,range(1024)))]
+    with(dest/'profiles.json').open('x')as out:json.dump(profiles,out,separators=(',',':'));out.write('\n')
+    for function in ('CUMPRINC','PPMT'):
+        selected=[]
+        for index,row in enumerate(rows):
+            if row['function']!=function:continue
+            args=row['args']
+            try:
+                if row['result_index']is not None or not row['expected'].startswith('0x')or not all(isinstance(v,str)and v.startswith('0x')for v in args):raise ValueError('surface_or_result')
+                if function=='PPMT':
+                    if not 4<=len(args)<=6:raise ValueError('arity')
+                    args=args+['0x0000000000000000']*(6-len(args))
+                    rate,period,nper,pv,fv,t=map(number,args)
+                    if period!=int(period)or not 1<=period<=nper:raise ValueError('period')
+                    first=period==1
+                else:
+                    if len(args)!=6:raise ValueError('arity')
+                    rate,nper,pv,start,end,t=map(number,args)
+                    if not(pv>0 and start==int(start)and end==int(end)and 1<=start<=end<=nper):raise ValueError('interval')
+                    first=start==1
+                if not(0<rate<=1 and nper==int(nper)and 1<=nper<=1000 and t in (0,1)):raise ValueError('rate_count_timing')
+            except (ValueError,TypeError,OverflowError)as error:
+                scope[function+':'+str(error)]+=1;excluded.append(dict(trace_index=index,reason=str(error)));continue
+            selected.append(dict(index=index,args=args,first=first,beginning=t==1))
+        if not selected:raise ValueError('empty closed-form scope '+function)
+        alive={p['id']for p in profiles};executions=0
+        with(dest/(function+'-first-kills.jsonl')).open('x')as out:
+            for order,row in enumerate(selected):
+                if not alive:break
+                raw=rows[row['index']];inputs=list(map(lambda v:int(v,16),row['args']))
+                for l,a,d,cw in itertools.product(range(2),range(2),(False,True),WORDS):
+                    wanted=[p for p in profiles if p['id']in alive and(p['logarithm'],p['association'],p['discount'],p['cw'])==(l,a,d,cw)]
+                    if not wanted:continue
+                    key=(function,row['beginning'],row['first'],l,a,d)
+                    if key not in graphs:graphs[key]=direct_graph(function,6,row['beginning'],row['first'],l,a,d)
+                    values=native.masks(graphs[key],inputs,cw)
+                    for p in wanted:
+                        offset=20*p['mask'];value=values[offset:offset+10]
+                        got=f'0x{native.publish(value,cw):016x}';executions+=1
+                        if got!=raw['expected']:
+                            alive.remove(p['id'])
+                            out.write(json.dumps(dict(candidate_id=p['id'],trace_index=row['index'],order=order,
+                                expected=raw['expected'],got=got,root_ext80_le=value.hex()))+'\n')
+        with(dest/(function+'-survivors.json')).open('x')as out:json.dump(sorted(alive),out);out.write('\n')
+        counts[function]=dict(programs=len(profiles),available_scope=len(selected),executions=executions,survivors=len(alive))
+    with(dest/'graphs.json').open('x')as out:json.dump([dict(key=k,graph=g)for k,g in graphs.items()],out,separators=(',',':'));out.write('\n')
+    if frozen!={p:digest(p)for p in frozen}:raise ValueError('closed-form source/input changed')
+    result=dict(complete=True,counts=counts,scope_exclusions=scope,excluded=excluded,input_sha256=frozen,
+        grammar='16384 labelled complete programs per function: two logarithm instructions, two numerator/division associations, growth/discount algebra, PC53/PC64 and1024 coherent store masks. Labels can repeat physical programs.',
+        limits='All observations are discovery. Native x87 leaves are measured on this CPU, not a Windows claim. '
+               'A first contradiction excludes its fixed program before other rows are needed; no accumulation order, internal payment, full kernel or product gain is inferred.')
+    with(dest/'summary.json').open('x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(result))
+
+
 def tagged(s):
     if s.startswith('binary64:'):return Q(number(s.split(':')[1]))
     assert s.startswith('ext80-le:')
@@ -422,7 +554,8 @@ to validate and no new Excel answer in this packet. Preserve the original R13/R1
 
 
 if __name__=='__main__':
-    if sys.argv[1]=='questions':questions(*sys.argv[2:])
+    if sys.argv[1]=='direct':direct_run(*sys.argv[2:])
+    elif sys.argv[1]=='questions':questions(*sys.argv[2:])
     elif sys.argv[1]=='questions-r15':questions_r15(*sys.argv[2:])
     elif sys.argv[1]=='coupled':coupled(*sys.argv[2:])
     elif sys.argv[1]=='balance-domains':balance_domains(*sys.argv[2:])

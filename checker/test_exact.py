@@ -31,6 +31,56 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_asymptotic_survivor_inventory_rejects_missing_ids_and_changed_axes(self):
+        from checker.bessel import asymptotic_inventory
+        with tempfile.TemporaryDirectory()as scratch:
+            root=Path(scratch)
+            summary=dict(counts=[dict(function='BESSELJ',programs=67500,survivors=2),dict(function='BESSELY',programs=67500,survivors=0)])
+            grammar=dict(programs=67500,axes_in_loop_order=[['phase',10],['scale',10],['body',5],['recurrence',5],['trig',3],['terms',3],['association',3]])
+            (root/'summary.json').write_text(json.dumps(summary));(root/'grammar.json').write_text(json.dumps(grammar))
+            (root/'BESSELJ-survivors.json').write_text('[0,1]')
+            self.assertEqual(asymptotic_inventory(root)[2],[0,1])
+            for ids in ([0],[0,0],[]):
+                (root/'BESSELJ-survivors.json').write_text(json.dumps(ids))
+                with self.assertRaisesRegex(ValueError,'inventory'):asymptotic_inventory(root)
+            (root/'BESSELJ-survivors.json').write_text('[0,1]')
+            grammar['axes_in_loop_order'][0][0]='synthetic_wrong_axis'
+            (root/'grammar.json').write_text(json.dumps(grammar))
+            with self.assertRaisesRegex(ValueError,'axes'):asymptotic_inventory(root)
+
+    def test_bessel_negative_hankel_phases_remain_in_the_declared_scope(self):
+        import sys
+        from reference import bessel_bounds
+        for function in ('BESSELJ','BESSELY'):
+            for x,n in ((33,64),(33,60),(40,64),(50,64)):
+                raw=dict(function=function,args=['0x'+struct.pack('>d',float(v)).hex()for v in (x,n)])
+                with self.subTest(function=function,x=x,n=n),patch.object(sys,'path',[str(Path(__file__).resolve().parents[1]/'racer')]+sys.path):
+                    from racer.bessel import real_reference
+                    proof=real_reference(raw)
+                    lo,hi=[R(*map(int,p))for p in proof['enclosure']]
+                    a,b=bessel_bounds(function,raw['args'][0],n)
+                    self.assertLessEqual(lo,a)
+                    self.assertGreaterEqual(hi,b)
+
+    def test_bessel_reference_checker_rejects_region_mutation_and_missing_scope(self):
+        from checker.bessel import check_regimes
+        from check import digest
+        raw=dict(id='synthetic',function='BESSELJ',args=['0x0000000000000000','0x0000000000000000'],
+                 result_index=None,expected='0x3ff0000000000000')
+        proof=dict(trace_index=0,**{k:raw[k]for k in ('id','function','args','expected')},region='seed_small',
+                   proof=dict(enclosure=[['1','1'],['1','1']]),outside_real_rounding_bound=False)
+        for mutation in ('region','missing'):
+            with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):
+                root=Path(scratch);source=root/'input.jsonl';source.write_text(json.dumps(raw)+'\n')
+                changed=copy.deepcopy(proof)
+                if mutation=='region':changed['region']='synthetic_wrong_region'
+                bounds=root/'reference-bounds.jsonl';bounds.write_text(''if mutation=='missing'else json.dumps(changed)+'\n')
+                counts=dict(scoped=0 if mutation=='missing'else 1,outside_real_rounding_bound=0)
+                regions={}if mutation=='missing'else {'BESSELJ:seed_small':dict(observations=1,outside_real_rounding_bound=0)}
+                (root/'summary.json').write_text(json.dumps(dict(input_sha256=digest(source),bounds_sha256=digest(bounds),counts=counts,regions=regions)))
+                with self.assertRaisesRegex(ValueError,'region|scope'):
+                    check_regimes(source,root,root/'must-not-exist.json')
+
     def test_variance_checker_rejects_complete_empty_scope(self):
         from checker.variance import profiles, check
         with tempfile.TemporaryDirectory()as scratch,contextlib.redirect_stdout(io.StringIO()):

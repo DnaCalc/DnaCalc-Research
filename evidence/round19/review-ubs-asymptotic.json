@@ -1,0 +1,1864 @@
+{
+  "complete": true,
+  "created_utc": "2026-11-03T10:06:26.698668+00:00",
+  "scans": [
+    {
+      "file": "racer/src/route_audit.rs",
+      "source_sha256": "b77d07edbb081e8ebf55e8f5c338560c96af11022457413273790e4e4bb0ae14",
+      "stable": true,
+      "exit_code": 1,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 12:06:12",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 1,
+        "warning": 255,
+        "info": 54,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": false,
+          "analysis_complete": true,
+          "locations_complete": false,
+          "truncated": false,
+          "reported": 310,
+          "accounted": 310,
+          "emitted": 306,
+          "omitted": 4,
+          "unlocated": 4,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [
+            "scanner_locations_incomplete",
+            "unlocated_occurrences"
+          ],
+          "counts": {
+            "critical": {
+              "reported": 1,
+              "accounted": 1,
+              "emitted": 1,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 255,
+              "accounted": 255,
+              "emitted": 255,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 54,
+              "accounted": 54,
+              "emitted": 50,
+              "omitted": 4
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 38,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::create_dir(destination).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 44,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"args\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 45,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::decode_argument(v, \"YIELD research\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 53,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 ResearchPrice::new(&numeric).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 60,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::encode_result(&CalcValue::number(v)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 69,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::to_string(&json!({\"trace_index\":index,\"program\":program,\n                \"got\":got,\"matched\":matched,\"baseline_matched\":was,\"phase_failed\":prediction.is_none()})).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 74,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::write(destination.join(\"predictions.jsonl\"), output).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 79,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 destination.join(\"summary.json\").to_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 133,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"function\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 134,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::decode_argument(&row[\"args\"][0], \"complex\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 153,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"expected\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 156,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"expected\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 247,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::create_dir(destination).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 249,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::from_slice(&fs::read(tables).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 249,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::read(tables).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 250,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 tables[\"phases\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 250,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 tables[\"scales\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 252,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 u64::from_str_radix(v.as_str().unwrap().trim_start_matches(\"0x\"),16).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 252,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 v.as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 257,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 destination.join(\"grammar.json\").to_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 270,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::OpenOptions::new().write(true).create_new(true).open(destination.join(format!(\"{function}-first-kills.tsv\"))).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 271,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 writeln!(first,\"program\\ttrace_index\\tgot\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 274,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 p[key].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 297,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 writeln!(first,\"{}\\t{at}\\t{encoded}\",index(\"id\")).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 302,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 destination.join(format!(\"{function}-survivors.json\")).to_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 307,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 destination.join(\"summary.json\").to_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 314,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::from_slice(&fs::read(input).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 314,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::read(input).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 317,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 doc[\"questions\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 320,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(sheet, question[\"row\"].as_u64().unwrap() as u32,\n            question[\"column\"].as_u64().unwrap() as u32).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 320,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 question[\"row\"].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 321,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 question[\"column\"].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 324,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::OpenOptions::new().write(true).create_new(true).open(out).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 326,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(sheet, question[\"row\"].as_u64().unwrap() as u32,\n            question[\"column\"].as_u64().unwrap() as u32).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 326,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 question[\"row\"].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 327,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 question[\"column\"].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 328,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 332,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 writeln!(output, \"{}\", json!({\"id\":question[\"id\"],\"formula\":question[\"formula\"],\n            \"row\":question[\"row\"],\"column\":question[\"column\"],\"calc_func_prediction\":encoded(value),\n            \"not_excel_evidence\":true,\"route\":\"ordinary Wo"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 343,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::OpenOptions::new()\n            .write(true)\n            .create_new(true)\n            .open(out)\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 353,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(sheet, row, column).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 362,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 raw[\"args\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 366,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::decode_argument(encoded_argument, \"numeric cell input\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 381,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at(row, 1)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 399,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 raw[\"formula\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 400,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 raw[\"argument_sources\"]\n                .as_array()\n                .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 407,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::decode_argument(&raw[\"args\"][index], \"original argument\")\n                        .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 417,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at(top + r as u32, 1 + c as u32)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 421,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 array.get(r, c).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 427,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at(top, 1)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 441,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 raw[\"args\"]\n            .as_array()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 445,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::decode_argument(a, \"original argument\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 449,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 v[0].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 450,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 v[1].as_u64().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 456,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 raw[\"function\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 459,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(result).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 474,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 writeln!(output, \"{}\", json!({\"raw\":raw,\"workbook\":workbook,\"registered\":registered,\"formula\":formula,\n            \"argument_transport\":if numeric_cells {\"authored numeric cells\"}else {\"formula literals\"},\n            \"echoes\":echoes,\"new_e"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 485,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::from_slice(&fs::read(input).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 485,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::read(input).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 488,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(sheet, row, column).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 492,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 u64::from_str_radix(row[\"input_bits\"].as_str().unwrap(), 16).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 492,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"input_bits\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 494,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"formula\"]\n            .as_str()\n            .unwrap()\n            .strip_suffix(\"&\\\"\\\"\")\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 494,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"formula\"]\n            .as_str()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 512,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(output).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 518,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(output).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 522,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 value.as_text().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 532,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::create_dir(out).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 554,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::from_slice(&fs::read(request).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 554,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::read(request).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 555,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::from_slice(&fs::read(observation).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 555,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::read(observation).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 558,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(sheet, 1, column).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 560,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 submitted[\"rows\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 564,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 observed[\"rows\"]\n            .as_array()\n            .unwrap()\n            .iter()\n            .find(|r| r[\"id\"] == row[\"id\"])\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 564,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 observed[\"rows\"]\n            .as_array()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 581,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at(i as u32 + 1)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 588,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"formula\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 590,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at(6)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 596,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 reading[\"input_audit\"][\"read_back\"]\n            .as_array()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 613,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::create_dir(out).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 620,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 serde_json::from_slice(&fs::read(input).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 620,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::read(input).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 624,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(sheet, 1, column).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 630,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 catalogue().resolve_surface(Notation::Call, \"PMT\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 632,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 doc[\"witnesses\"].as_array().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 637,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"args\"]\n            .as_array()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 641,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::decode_argument(v, \"arg\").unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 670,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.cell(at(6)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 675,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 invoke(\n            target,\n            &mut Given(args.clone()),\n            &mut EvalServices::new(&mode).with_environment(&environment),\n            &mut FunctionCallScratch::new(),\n        )\n        .map(|v| encoded(&v))\n        .unwrap"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 709,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 tv::pmt(admitted[0], admitted[1], admitted[2], admitted[3], timing).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 715,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 book.save().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 716,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 Workbook::open(\"route-audit.xlsx\", saved).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 718,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 CellKey::new(re_sheet, 1, column).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 720,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 reopened.cell(re_at(i as u32 + 1)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 726,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 reopened.cell(re_at(6)).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 735,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"args\"]\n            .as_array()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 742,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 row[\"args\"]\n            .as_array()\n            .unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 760,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 fs::create_dir_all(out).unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 765,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 r[\"variant\"].as_str().unwrap()"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 195,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 calc_verdict::encode_result(value).expect(\"scalar audit value\")"
+        },
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "line": 516,
+          "severity": "warning",
+          "message": "Potential panics via unwrap/expect \u2014 value.as_number().expect(\"a numeric operand\")"
+        },
+        {
+          "rule_id": "rust.ownership.panic-macro",
+          "line": 330,
+          "severity": "critical",
+          "message": "panic! macro(s) present \u2014 panic!(\"question prediction was not calculated\")",
+          "triage": "Existing sheet-prediction helper fails closed when an application question was not calculated. A panic prevents publishing an assumed value; not new Bessel runtime behavior."
+        },
+        {
+          "rule_id": "rust.ownership.unreachable-macro",
+          "line": 118,
+          "severity": "warning",
+          "message": "unreachable! may panic if reached \u2014 unreachable!()"
+        },
+        {
+          "rule_id": "rust.ownership.unreachable-macro",
+          "line": 148,
+          "severity": "warning",
+          "message": "unreachable! may panic if reached \u2014 unreachable!()"
+        },
+        {
+          "rule_id": "rust.collections.clone-in-loop",
+          "line": 57,
+          "severity": "warning",
+          "message": "clone() inside loops - potential perf hit \u2014 Some(baseline.clone())"
+        },
+        {
+          "rule_id": "rust.collections.clone-in-loop",
+          "line": 62,
+          "severity": "warning",
+          "message": "clone() inside loops - potential perf hit \u2014 let got = prediction.clone().unwrap_or_else(|| \"error:Num\".to_owned());"
+        },
+        {
+          "rule_id": "rust.collections.clone-in-loop",
+          "line": 677,
+          "severity": "warning",
+          "message": "clone() inside loops - potential perf hit \u2014 &mut Given(args.clone()),"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 269,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(!rows.is_empty())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 319,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(question.get(\"expected\").is_none(), \"a question contains an answer\")"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 322,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(book.enter(at, &format!(\"={}\", question[\"formula\"].as_str().unwrap())).accepted())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 358,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(\n                raw[\"result_index\"].is_null(),\n                \"numeric cell audit requires a scalar result\"\n            )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 367,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(\n                    matches!(argument.core_ref(), CoreRef::Number(_)),\n                    \"explicit numeric cells required\"\n                )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 372,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(\n                    book.dispatch(SkinIntent::Edit {\n                        edits: vec![CellEdit::Set {\n                            at: at(row, 1),\n                            input: literal(&argument),\n                        }]\n"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 410,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(\n                    book.enter(at(top, 1), &format!(\"={}\", source.as_str().unwrap()))\n                        .accepted()\n                )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 458,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(book.enter(result, &formula).accepted())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 501,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(\n                book.dispatch(SkinIntent::Edit {\n                    edits: vec![CellEdit::Set {\n                        at: at(r, 1),\n                        input: CellInput::Number(FiniteNumber::new(wanted).unwrap())\n           "
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 511,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(book.enter(output, &format!(\"={source}\")).accepted())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 517,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(book.enter(output, &format!(\"={source}&\\\"\\\"\")).accepted())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 577,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(\n                book.enter(at(i as u32 + 1), &format!(\"={}\", literal.as_str().unwrap()))\n                    .accepted()\n            )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 589,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(book.enter(at(6), formula).accepted())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 654,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(edit.accepted(), \"{:?}\", edit.error)"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 655,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert!(book.enter(at(6), \"=PMT(A1,B1,C1,D1,E1)\").accepted())"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 43,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(row[\"function\"], \"YIELD\")"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 52,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(baseline, row[\"actual\"])"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 251,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!((phases.len(),scales.len()),(10,10))"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 385,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n                    encoded(value),\n                    encoded(&argument),\n                    \"numeric cell input changed\"\n                )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 422,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(encoded(value), wanted, \"operand changed: {}\", raw[\"id\"])"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 431,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n                        encoded(value),\n                        encoded(&argument),\n                        \"operand changed: {}\",\n                        raw[\"id\"]\n                    )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 464,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            workbook, registered,\n            \"workbook/registered discrepancy: {}\",\n            raw[\"id\"]\n        )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 469,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            workbook, raw[\"actual\"],\n            \"current/frozen product discrepancy: {}\",\n            raw[\"id\"]\n        )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 536,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n        changed, 0,\n        \"conversion-program constraints used an unverified input\"\n    )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 570,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            row[\"argument_literals\"],\n            reading[\"input_audit\"][\"argument_literals\"]\n        )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 574,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(row[\"formula\"], reading[\"input_audit\"][\"formula\"])"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 621,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(doc[\"function\"], \"PMT\")"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 643,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(args.len(), 5)"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 665,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            echoes,\n            args.iter().map(encoded).collect::<Vec<_>>(),\n            \"authored inputs changed\"\n        )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 683,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            worksheet, registered,\n            \"worksheet route differs from registered call\"\n        )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 710,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            registered,\n            encoded(&CalcValue::number(direct)),\n            \"adapter differs from direct cleared body\"\n        )"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 724,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(&encoded(v), wanted, \"save/reopen changed authored bits\")"
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "line": 730,
+          "severity": "warning",
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(\n            encoded(value),\n            worksheet,\n            \"save/reopen changed calculated result\"\n        )"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 44,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 59,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 numeric[3]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 63,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"expected\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 64,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"expected\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 65,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program][usize::from(!matched)]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 65,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 66,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program][2]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 66,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 67,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program][3]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 67,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 68,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program][4]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 68,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[program]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 133,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"function\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 134,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"args\"][0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 134,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 151,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"id\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 153,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"expected\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 156,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"expected\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 172,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[graph][usize::from(!matched)]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 172,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[graph]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 173,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[graph][2]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 173,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[graph]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 174,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[graph][3]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 174,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 counts[graph]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 175,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 first[graph]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 176,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 first[graph]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 179,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"id\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 250,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 tables[\"phases\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 250,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 tables[\"scales\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 263,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"function\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 263,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"result_index\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 263,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"expected\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 264,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 265,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 args[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 265,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 args[1]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 274,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 p[key]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 275,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 phases[index(\"phase\")][\"values\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 275,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 phases[index(\"phase\")]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 276,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 phase[0][\"binary64\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 276,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 phase[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 276,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 phase[1][\"binary64\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 276,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 phase[1]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 277,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 scales[index(\"scale\")][\"value\"][\"binary64\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 277,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 scales[index(\"scale\")][\"value\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 277,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 scales[index(\"scale\")]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 278,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 WIDE_MODELS[index(\"body\")]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 278,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 WIDE_MODELS[index(\"recurrence\")]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 296,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"expected\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 316,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 book.sheets()[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 317,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 doc[\"questions\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 320,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 question[\"row\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 321,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 question[\"column\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 326,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 question[\"row\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 327,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 question[\"column\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 352,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 book.sheets()[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 355,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"numeric_cell_inputs\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 362,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 399,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"formula\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 400,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"argument_sources\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 407,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"args\"][index]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 407,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 441,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 447,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"result_index\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 449,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 v[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 450,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 v[1]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 453,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"date_system_1900\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 456,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 raw[\"function\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 487,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 book.sheets()[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 492,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"input_bits\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 494,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"formula\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 528,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"input_kept\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 557,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 book.sheets()[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 560,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 submitted[\"rows\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 564,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 observed[\"rows\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 568,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"id\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 568,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"id\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 588,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"formula\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 596,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 reading[\"input_audit\"][\"read_back\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 596,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 reading[\"input_audit\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 623,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 book.sheets()[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 632,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 doc[\"witnesses\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 637,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 704,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 admitted[4]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 709,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 admitted[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 709,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 admitted[1]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 709,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 admitted[2]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 709,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 admitted[3]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 717,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 reopened.sheets()[0]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 735,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 742,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 row[\"args\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 764,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 cohorts\n            .entry(r[\"variant\"].as_str().unwrap().into())\n            .or_default()[usize::from(r[\"matches_excel\"] != true)]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 765,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"variant\"]"
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "line": 766,
+          "severity": "warning",
+          "message": "Direct indexing/slicing may panic \u2014 r[\"matches_excel\"]"
+        },
+        {
+          "rule_id": "rust.parsing.serde-unwrap",
+          "line": 249,
+          "severity": "warning",
+          "message": "serde/toml deserialization unwrap/expect \u2014 serde_json::from_slice(&fs::read(tables).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.parsing.serde-unwrap",
+          "line": 314,
+          "severity": "warning",
+          "message": "serde/toml deserialization unwrap/expect \u2014 serde_json::from_slice(&fs::read(input).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.parsing.serde-unwrap",
+          "line": 485,
+          "severity": "warning",
+          "message": "serde/toml deserialization unwrap/expect \u2014 serde_json::from_slice(&fs::read(input).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.parsing.serde-unwrap",
+          "line": 554,
+          "severity": "warning",
+          "message": "serde/toml deserialization unwrap/expect \u2014 serde_json::from_slice(&fs::read(request).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.parsing.serde-unwrap",
+          "line": 555,
+          "severity": "warning",
+          "message": "serde/toml deserialization unwrap/expect \u2014 serde_json::from_slice(&fs::read(observation).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.parsing.serde-unwrap",
+          "line": 620,
+          "severity": "warning",
+          "message": "serde/toml deserialization unwrap/expect \u2014 serde_json::from_slice(&fs::read(input).unwrap()).unwrap()"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 156,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 row[\"expected\"].as_str().unwrap().to_owned()"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 161,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 \"error:Num\".to_owned()"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 180,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 examples.push(json!({\"graph\":graph,\"re_bits\":format!(\"{:016x}\",candidate.re.to_bits()),\"im_bits\":format!(\"{:016x}\",candidate.im.to_bits()),\"outcome\":got,\"matched\":matched}));"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 270,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 let mut first=std::io::BufWriter::new(fs::OpenOptions::new().write(true).create_new(true).open(destination.join(format!(\"{function}-first-kills.tsv\"))).unwrap());"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 295,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 let encoded=format!(\"0x{:016x}\",got.to_bits());executions+=1;"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 302,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 json_write(destination.join(format!(\"{function}-survivors.json\")).to_str().unwrap(),&json!(alive));"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 322,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 assert!(book.enter(at, &format!(\"={}\", question[\"formula\"].as_str().unwrap())).accepted());"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 391,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 references.push(format!(\"A{row}\"));"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 393,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 formula = format!("
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 399,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 formula = raw[\"formula\"].as_str().unwrap().to_owned();"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 411,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 book.enter(at(top, 1), &format!(\"={}\", source.as_str().unwrap()))"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 511,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 assert!(book.enter(output, &format!(\"={source}\")).accepted());"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 517,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 assert!(book.enter(output, &format!(\"={source}&\\\"\\\"\")).accepted());"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 523,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 records.push(json!({\"source\":row,\"admitted_bits\":format!(\"{:016x}\",actual.to_bits()),"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 578,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 book.enter(at(i as u32 + 1), &format!(\"={}\", literal.as_str().unwrap()))"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 600,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 .map(|v| format!(\"0x{}\", v[\"number\"].as_str().unwrap()))"
+        },
+        {
+          "rule_id": "rust.perf.string-alloc-in-loop",
+          "line": 602,
+          "severity": "warning",
+          "message": "String allocation inside loop \u2014 let excel_result = format!(\"0x{}\", reading[\"value\"][\"number\"].as_str().unwrap());"
+        }
+      ]
+    },
+    {
+      "file": "racer/constants.py",
+      "source_sha256": "1027f4853859e5a8d0d740764b1d14ee323ceeb1cee326f4a782caaaf5d8c5d6",
+      "stable": true,
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 12:06:15",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 0,
+        "info": 30,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 30,
+          "accounted": 30,
+          "emitted": 30,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 30,
+              "accounted": 30,
+              "emitted": 30,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": []
+    },
+    {
+      "file": "checker/bessel.py",
+      "source_sha256": "3a6de80697b40de4a7c5890786fa83aee3e86b8afaa0221cfab23b6de21809af",
+      "stable": true,
+      "exit_code": 1,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 12:06:26",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 3,
+        "warning": 22,
+        "info": 57,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 82,
+          "accounted": 82,
+          "emitted": 82,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 3,
+              "accounted": 3,
+              "emitted": 3,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 22,
+              "accounted": 22,
+              "emitted": 22,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 57,
+              "accounted": 57,
+              "emitted": 57,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 83,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text());require(summary['complete']is True,'partial search')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 180,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 276,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 summary = json.loads((directory/'summary.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 438,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 alive = json.loads((directory/'survivors.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 445,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 summary = json.loads((directory/'summary.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 461,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 462,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 grammar=json.loads((directory/'grammar.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 463,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 survivors=json.loads((directory/'BESSELJ-survivors.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 479,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 rows=list(records(input_path));tables=json.loads(Path(tables_path).read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 618,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 96,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 alive=json.loads((directory/f'{function}-necessary-survivors.json').read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 295,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 alive = json.loads((directory/(function+'-necessary-survivors.json')).read_text())"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 80,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(gs==json.loads((directory/'groups.json').read_text()),'changed group selection')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 133,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'constants.json').read_text())==constants,'incorrect domain constants')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 145,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'scoped.json').read_text())==rows,'changed domain scope')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 150,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'profiles.json').read_text())==ps,'changed domain grammar')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 179,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'results.json').read_text())==expected,'incorrect domain contradiction')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 422,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 row = json.loads(line)"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 82,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(ps==json.loads((directory/'profiles.json').read_text())and len(ps)==500,'changed grammar')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 270,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(gs and gs == json.loads((directory/'groups.json').read_text()), 'empty or changed higher-order scope')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 275,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(len(profiles) == 1125 and profiles == json.loads((directory/'profiles.json').read_text()), 'changed higher-order grammar')"
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "line": 416,
+          "severity": "warning",
+          "message": "json.loads without error handling \u2014 require(selected and selected == json.loads((directory/'scope.json').read_text()), 'changed Miller obligations')"
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "line": 184,
+          "severity": "critical",
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: comparisons bind public input/source/proof integrity hashes, not secrets or authentication."
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "line": 621,
+          "severity": "critical",
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: comparisons bind public input/source/proof integrity hashes, not secrets or authentication."
+        },
+        {
+          "rule_id": "python.taint.command",
+          "line": 550,
+          "severity": "critical",
+          "message": "User input reaches subprocess/os.system (sys.argv -> check_asymptotic_survivors() -> executable -> subprocess executable)",
+          "triage": "Intentional operator-selected trusted local research executable, resolved to an absolute path and hashed before/after. Explicit argv with check=True/timeout and no shell; running this executable is the requested function of the checker, not execution of spreadsheet data."
+        }
+      ]
+    }
+  ],
+  "triage": "Critical findings are individually explained. Static Rust warnings cover existing diagnostic assertions/unwraps and bounded numeric casts/indexes; Python JSON parsing deliberately fails closed. No zero-critical or full build-scan claim."
+}

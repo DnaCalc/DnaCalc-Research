@@ -1,0 +1,1344 @@
+{
+  "complete": true,
+  "created_utc": "2026-11-03T09:35:39.166681+00:00",
+  "scans": [
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/bessel.py",
+      "before_sha256": "1db5cd3c1c4a027327834380b031bc977ab62293d828d25a97c3dc71119fd3e2",
+      "after_sha256": "1db5cd3c1c4a027327834380b031bc977ab62293d828d25a97c3dc71119fd3e2",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "racer/bessel.py"
+      ],
+      "exit_code": 1,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:12",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 1,
+        "warning": 10,
+        "info": 77,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 88,
+          "accounted": 88,
+          "emitted": 88,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 1,
+              "accounted": 1,
+              "emitted": 1,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 10,
+              "accounted": 10,
+              "emitted": 10,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 77,
+              "accounted": 77,
+              "emitted": 77,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 271,
+          "message": "Potential catastrophic regex \u2014 for k in range(n+math.ceil(x)+53, 0, -1):",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 544,
+          "message": "Potential catastrophic regex \u2014 grammar='Even starting order ceil_even(n+margin), margin0..64; two truncated even-sum endpoints; five arithmetic models. Basic mode has ratio/recurrence/sum/final policies; sites mode splits recurrence coefficient/product/subtraction polici",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 589,
+          "message": "Potential catastrophic regex \u2014 next_weight = h+higher+Q(1,k+1)+Q(1,n+k+1)",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 626,
+          "message": "Potential catastrophic regex \u2014 error = abs(center)**(128+parity)/factorial(128+parity)+radius",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 131,
+          "message": "json.loads without error handling \u2014 rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 250,
+          "message": "json.loads without error handling \u2014 raw_rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 251,
+          "message": "json.loads without error handling \u2014 producers = [json.loads(line) for line in Path(producers_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 398,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 522,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 645,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "severity": "critical",
+          "line": 673,
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: public SHA256 evidence/source integrity comparisons, not a secret, authentication token or signature."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py",
+      "before_sha256": "5e1d2d1803fe38224a268860fe287c9ce22adc4646bdc38d3edf0d40d53de854",
+      "after_sha256": "5e1d2d1803fe38224a268860fe287c9ce22adc4646bdc38d3edf0d40d53de854",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "checker/reference.py"
+      ],
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:16",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 0,
+        "info": 8,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 8,
+          "accounted": 8,
+          "emitted": 8,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 8,
+              "accounted": 8,
+              "emitted": 8,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": []
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/bessel.py",
+      "before_sha256": "2f745cc913d2e1a28f8a6f9bccc6477e87b394270fb41ab9c1a4dabb7e304c77",
+      "after_sha256": "2f745cc913d2e1a28f8a6f9bccc6477e87b394270fb41ab9c1a4dabb7e304c77",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "checker/bessel.py"
+      ],
+      "exit_code": 1,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:23",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 2,
+        "warning": 18,
+        "info": 23,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 43,
+          "accounted": 43,
+          "emitted": 43,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 2,
+              "accounted": 2,
+              "emitted": 2,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 18,
+              "accounted": 18,
+              "emitted": 18,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 23,
+              "accounted": 23,
+              "emitted": 23,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 83,
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text());require(summary['complete']is True,'partial search')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 180,
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 276,
+          "message": "json.loads without error handling \u2014 summary = json.loads((directory/'summary.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 438,
+          "message": "json.loads without error handling \u2014 alive = json.loads((directory/'survivors.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 445,
+          "message": "json.loads without error handling \u2014 summary = json.loads((directory/'summary.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 469,
+          "message": "json.loads without error handling \u2014 summary=json.loads((directory/'summary.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 96,
+          "message": "json.loads without error handling \u2014 alive=json.loads((directory/f'{function}-necessary-survivors.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 295,
+          "message": "json.loads without error handling \u2014 alive = json.loads((directory/(function+'-necessary-survivors.json')).read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 80,
+          "message": "json.loads without error handling \u2014 require(gs==json.loads((directory/'groups.json').read_text()),'changed group selection')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 133,
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'constants.json').read_text())==constants,'incorrect domain constants')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 145,
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'scoped.json').read_text())==rows,'changed domain scope')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 150,
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'profiles.json').read_text())==ps,'changed domain grammar')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 179,
+          "message": "json.loads without error handling \u2014 require(json.loads((directory/'results.json').read_text())==expected,'incorrect domain contradiction')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 422,
+          "message": "json.loads without error handling \u2014 row = json.loads(line)",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 82,
+          "message": "json.loads without error handling \u2014 require(ps==json.loads((directory/'profiles.json').read_text())and len(ps)==500,'changed grammar')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 270,
+          "message": "json.loads without error handling \u2014 require(gs and gs == json.loads((directory/'groups.json').read_text()), 'empty or changed higher-order scope')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 275,
+          "message": "json.loads without error handling \u2014 require(len(profiles) == 1125 and profiles == json.loads((directory/'profiles.json').read_text()), 'changed higher-order grammar')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 416,
+          "message": "json.loads without error handling \u2014 require(selected and selected == json.loads((directory/'scope.json').read_text()), 'changed Miller obligations')",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "severity": "critical",
+          "line": 184,
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: public SHA256 evidence/source integrity comparisons, not a secret, authentication token or signature."
+        },
+        {
+          "rule_id": "python.ctcompare.secret_eq",
+          "severity": "critical",
+          "line": 472,
+          "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()",
+          "triage": "False positive: public SHA256 evidence/source integrity comparisons, not a secret, authentication token or signature."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/cumulative_projection.py",
+      "before_sha256": "0528c059e3294733b5b9f129b12353467f3d09fe3f5a114021f8d70963e20e79",
+      "after_sha256": "0528c059e3294733b5b9f129b12353467f3d09fe3f5a114021f8d70963e20e79",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "racer/cumulative_projection.py"
+      ],
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:28",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 6,
+        "info": 91,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 97,
+          "accounted": 97,
+          "emitted": 97,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 6,
+              "accounted": 6,
+              "emitted": 6,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 91,
+              "accounted": 91,
+              "emitted": 91,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 305,
+          "message": "json.loads without error handling \u2014 relations = json.loads((packet/'conditional-relations.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 95,
+          "message": "json.loads without error handling \u2014 rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 389,
+          "message": "json.loads without error handling \u2014 rows=[json.loads(line)for line in Path(trace).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 390,
+          "message": "json.loads without error handling \u2014 groups=json.loads(Path(structure).read_text())['groups'];domains=[]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 183,
+          "message": "json.loads without error handling \u2014 key=json.dumps(json.loads(row['group']),sort_keys=True,separators=(',',':'))",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 306,
+          "message": "json.loads without error handling \u2014 r15 = json.loads((packet/'manifest.json').read_text()).get('calls') == 236",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/domain_bisection.py",
+      "before_sha256": "224da87f69a5fd485e958dfccc4df63ca1c9623d2a423941030083bfe2010c50",
+      "after_sha256": "224da87f69a5fd485e958dfccc4df63ca1c9623d2a423941030083bfe2010c50",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "racer/domain_bisection.py"
+      ],
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:35",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 7,
+        "info": 5,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 12,
+          "accounted": 12,
+          "emitted": 12,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 7,
+              "accounted": 7,
+              "emitted": 7,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 5,
+              "accounted": 5,
+              "emitted": 5,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 238,
+          "message": "json.loads without error handling \u2014 manifest = json.loads((packet/'manifest.json').read_text(encoding='utf-8'))",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 242,
+          "message": "json.loads without error handling \u2014 plan = json.loads((packet/'plan.json').read_text(encoding='utf-8'))",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 50,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in Path(trace).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 265,
+          "message": "json.loads without error handling \u2014 doc = json.loads(candidate.read_text(encoding='utf-8-sig'))",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 283,
+          "message": "json.loads without error handling \u2014 raw = json.loads(result_path.read_text(encoding='utf-8-sig'))",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 284,
+          "message": "json.loads without error handling \u2014 submitted = json.loads(submitted_path.read_text(encoding='utf-8-sig'))",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 293,
+          "message": "json.loads without error handling \u2014 frozen,submitted,worker = [json.loads(p.read_text(encoding='utf-8-sig')) for p in bound_paths[:3]]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/test_domains.py",
+      "before_sha256": "ebccbffb4b10d578def60e4daa4dd05c174d85d443bacfc1183fbcf98b587456",
+      "after_sha256": "ebccbffb4b10d578def60e4daa4dd05c174d85d443bacfc1183fbcf98b587456",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "checker/test_domains.py"
+      ],
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:40",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 3,
+        "info": 23,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": true,
+          "analysis_complete": true,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 26,
+          "accounted": 26,
+          "emitted": 26,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 3,
+              "accounted": 3,
+              "emitted": 3,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 23,
+              "accounted": 23,
+              "emitted": 23,
+              "omitted": 0
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 168,
+          "message": "json.loads without error handling \u2014 result = json.loads((output/'summary.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 133,
+          "message": "json.loads without error handling \u2014 request = json.loads(request_path.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 170,
+          "message": "json.loads without error handling \u2014 self.assertTrue(json.loads((output/'run-status.json').read_text())['complete'])",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py",
+      "before_sha256": "fcb9a9c95e8b08ef0fc9163ee5f720ebf417878905862e83300ec44aea72649c",
+      "after_sha256": "fcb9a9c95e8b08ef0fc9163ee5f720ebf417878905862e83300ec44aea72649c",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=python",
+        "--format=jsonl",
+        "--all-occurrences",
+        "racer/corpus_cases.py"
+      ],
+      "exit_code": 2,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "timestamp": "2026-11-03 11:34:59",
+        "status": "partial",
+        "failed_modules": [
+          {
+            "language": "python",
+            "status": "partial",
+            "module_error": "ANALYZER_ERROR",
+            "message": "Python analysis did not complete: detector sql_injection: SQLFlowLimit: SQL list mutation aliasing is unsupported; analysis is incomplete"
+          }
+        ],
+        "critical": 0,
+        "warning": 31,
+        "info": 97,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": false,
+          "analysis_complete": false,
+          "locations_complete": true,
+          "truncated": false,
+          "reported": 128,
+          "accounted": 128,
+          "emitted": 128,
+          "omitted": 0,
+          "unlocated": 0,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [
+            "analysis_incomplete"
+          ],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 31,
+              "accounted": 31,
+              "emitted": 31,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 97,
+              "accounted": 97,
+              "emitted": 97,
+              "omitted": 0
+            }
+          }
+        },
+        "error": "environment",
+        "reason": "module-failed",
+        "exit_code": 2,
+        "message": "One or more scanner modules could not run (tooling/dependency problem, not a code-quality failure): python"
+      },
+      "findings": [
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 369,
+          "message": "I/O in loops \u2014 for function, witnesses in requests.items():",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 378,
+          "message": "I/O in loops \u2014 manifest = dict(format='dnacalc-research-questions-r14-variance/1', requests=sum(map(len, requests.values())),",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 379,
+          "message": "I/O in loops \u2014 counts={k: len(v) for k,v in requests.items()}, input_sha256=hashlib.sha256(Path(input_path).read_bytes()).hexdigest(),",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 452,
+          "message": "I/O in loops \u2014 rel={r.attrib['Id']:r.attrib['Target']for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 453,
+          "message": "I/O in loops \u2014 sheets={s.attrib['name']:'xl/'+rel[s.attrib[rid]]for s in ET.fromstring(z.read('xl/workbook.xml')).find('m:sheets',ns)}",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 454,
+          "message": "I/O in loops \u2014 data={c.attrib['r']:c for c in ET.fromstring(z.read(sheets['Data'])).findall('.//m:c',ns)}",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 609,
+          "message": "I/O in loops \u2014 for function, rows in requests.items():",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 623,
+          "message": "I/O in loops \u2014 result = dict(format='dnacalc-research-questions-r16/1', scalar_calls=sum(len(x) for x in requests.values()),",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.perf.io-in-loop",
+          "severity": "warning",
+          "line": 624,
+          "message": "I/O in loops \u2014 calls_by_function={f:len(rows) for f,rows in requests.items()}, catalogue_formula_cells=len(sheet),",
+          "triage": "Bounded explicit research packet/fixture reads and writes; needed per source, not a correctness or security issue."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 525,
+          "message": "Potential catastrophic regex \u2014 ('{'+','.join(literals)+'}', 'horizontal array literal'),",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 526,
+          "message": "Potential catastrophic regex \u2014 ('{'+ ';'.join(literals)+'}', 'vertical array literal'),",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 543,
+          "message": "Potential catastrophic regex \u2014 ('{'+','.join(literals)+'}', 'horizontal array literal'),",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 544,
+          "message": "Potential catastrophic regex \u2014 ('{'+ ';'.join(literals)+'}', 'vertical array literal'),",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.regex.nested-quantifiers",
+          "severity": "warning",
+          "line": 578,
+          "message": "Potential catastrophic regex \u2014 rows = [[x*scale1, (2*x+(1 if affine else 0)+(delta if i==3 else 0))*scale2]",
+          "triage": "False positive: flagged arithmetic/list or formula-literal text is not regex evaluation."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 95,
+          "message": "json.loads without error handling \u2014 summary = json.loads(summary_path.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 201,
+          "message": "json.loads without error handling \u2014 summary = json.loads((source/'summary.json').read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 90,
+          "message": "json.loads without error handling \u2014 compared = json.loads(scope_receipt.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 202,
+          "message": "json.loads without error handling \u2014 rows = [json.loads(line) for line in (source/'cells.jsonl').read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 322,
+          "message": "json.loads without error handling \u2014 original = [json.loads(line) for line in Path(input_path).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 464,
+          "message": "json.loads without error handling \u2014 doc=json.loads(capture.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 531,
+          "message": "json.loads without error handling \u2014 docs = {f: json.loads((readings/(f+'.json')).read_text()) for f in",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 643,
+          "message": "json.loads without error handling \u2014 bank = [json.loads(line) for line in bank_trace.read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 135,
+          "message": "json.loads without error handling \u2014 capture, evaluations, triage = [json.loads(p.read_text()) for p in paths]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 252,
+          "message": "json.loads without error handling \u2014 for workbook in json.loads(summary_path.read_text())['workbooks']:",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 262,
+          "message": "json.loads without error handling \u2014 capture = json.loads(capture_path.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 264,
+          "message": "json.loads without error handling \u2014 evaluations = json.loads(evaluation_path.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 265,
+          "message": "json.loads without error handling \u2014 triage = json.loads(triage_path.read_text())",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 677,
+          "message": "json.loads without error handling \u2014 failures = [json.loads(line) for line in Path(text_failures).read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 705,
+          "message": "json.loads without error handling \u2014 predictions = [json.loads(line) for line in prediction_path.read_text().splitlines()]",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 413,
+          "message": "json.loads without error handling \u2014 row = json.loads(line)",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        },
+        {
+          "rule_id": "py.parsing.json-loads-no-try",
+          "severity": "warning",
+          "line": 467,
+          "message": "json.loads without error handling \u2014 actual={(r['sheet'],r['row'],r['column']):r for r in json.loads(evaluated.read_text())['evaluations']}",
+          "triage": "Deliberate fail-closed research tooling: malformed input must raise and abort, never supply an assumed answer."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/bessel.rs",
+      "before_sha256": "21fc0ff0e838e036268ca2109226257c8403e67f8f06fb0e2ac4eb558972f7af",
+      "after_sha256": "21fc0ff0e838e036268ca2109226257c8403e67f8f06fb0e2ac4eb558972f7af",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=rust",
+        "--format=jsonl",
+        "--all-occurrences",
+        "--no-cargo",
+        "crates/calc-func/src/ported/bessel.rs"
+      ],
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+        "timestamp": "2026-11-03 11:35:05",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 25,
+        "info": 36,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": false,
+          "analysis_complete": true,
+          "locations_complete": false,
+          "truncated": false,
+          "reported": 61,
+          "accounted": 61,
+          "emitted": 57,
+          "omitted": 4,
+          "unlocated": 4,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [
+            "scanner_locations_incomplete",
+            "unlocated_occurrences"
+          ],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 25,
+              "accounted": 25,
+              "emitted": 25,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 36,
+              "accounted": 36,
+              "emitted": 32,
+              "omitted": 4
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 362,
+          "message": "assert! macros present (panic surface) \u2014 assert!((got - expected).abs() <= expected.abs() * 2e-11,\n                \"I_{n}({x}): {got:e}, mathematical {expected:e}\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 365,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besseli_kernel(f64::NAN, 2.0), Err(WorksheetErrorCode::Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 368,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besseli_kernel(1e12, 2.0), Err(WorksheetErrorCode::Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 374,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(1.9, 2.0).unwrap().to_bits(), 0x3fd51d80cca30f39, \"recorded Excel excel(0x3fd51d81390f83eb)\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 375,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besseli_kernel(1.5, 1.0), Ok(excel(0x3fef69cfb6bc3907)))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 376,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselk_kernel(1.5, 1.0), Ok(excel(0x3fd1c0b8c63a3a82)))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 377,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(bessely_kernel(100.0, 1.0).unwrap().to_bits(), 0xbf94dc7ab72edc1f, \"recorded Excel -0.020372311933786909\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 378,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(bessely_kernel(0.5, 0.0).unwrap().to_bits(), 0xbfdc72feb3b7b8a2, \"recorded Excel -0.44451873376270784\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 379,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(0.0, 0.0).unwrap().to_bits(), 0x3ff0000000000000, \"recorded Excel 1.00000000283141\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 380,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(-2.5, 1.0).unwrap().to_bits(), 0xbfdfd063c84795fd, \"recorded Excel -0.49709410250442176\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 381,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besseli_kernel(-2.5, 1.0), Ok(-2.5167162420253608))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 382,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselk_kernel(700.0, 2.0), besselk_kernel(700.0, 0.0))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 383,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselk_kernel(706.0, 0.0), Ok(0.0))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 390,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(1.0, -1.0), Err(Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 391,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(1.0, -0.5), Err(Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 392,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(5.0, 10_000_001.0), Err(Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 393,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(5.0, 10_000_000.5), Ok(0.0))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 394,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(bessely_kernel(0.0, 1.0), Err(Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 395,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselk_kernel(-1.0, 1.0), Err(Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 396,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(134217728.0, 0.0).unwrap().to_bits(), 0xbed7ff19ed9c47a0, \"recorded Excel NUM; phase cutoff removed\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 397,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(134217727.5, 0.0).unwrap().to_bits(), 0xbf03e23975421ed4, \"recorded Excel -3.792512787637833E-05\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 398,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besseli_kernel(709.78, 0.0), Err(Num))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 400,
+          "message": "assert! macros present (panic surface) \u2014 assert_eq!(besselj_kernel(1e-300, 2.0), Ok(0.0))",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "severity": "warning",
+          "line": 83,
+          "message": "Direct indexing/slicing may panic \u2014 c[c.len() - 1]",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.direct-indexing",
+          "severity": "warning",
+          "line": 84,
+          "message": "Direct indexing/slicing may panic \u2014 c[..c.len() - 1]",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        }
+      ]
+    },
+    {
+      "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_engineering.rs",
+      "before_sha256": "4a94721d603f40bec25217fc78299e7beed8b671ee3792660e389d08746b07cb",
+      "after_sha256": "4a94721d603f40bec25217fc78299e7beed8b671ee3792660e389d08746b07cb",
+      "stable": true,
+      "command": [
+        "ubs",
+        "--no-auto-update",
+        "--only=rust",
+        "--format=jsonl",
+        "--all-occurrences",
+        "--no-cargo",
+        "crates/calc-func/tests/f1_engineering.rs"
+      ],
+      "exit_code": 0,
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+        "timestamp": "2026-11-03 11:35:10",
+        "status": "ok",
+        "failed_modules": [],
+        "critical": 0,
+        "warning": 2,
+        "info": 5,
+        "files": 1,
+        "occurrence_export": {
+          "schema": "ubs.occurrence-export/1",
+          "limit": 100000,
+          "complete": false,
+          "analysis_complete": true,
+          "locations_complete": false,
+          "truncated": false,
+          "reported": 7,
+          "accounted": 7,
+          "emitted": 3,
+          "omitted": 4,
+          "unlocated": 4,
+          "code_unavailable": 0,
+          "code_truncated": 0,
+          "reasons": [
+            "scanner_locations_incomplete",
+            "unlocated_occurrences"
+          ],
+          "counts": {
+            "critical": {
+              "reported": 0,
+              "accounted": 0,
+              "emitted": 0,
+              "omitted": 0
+            },
+            "warning": {
+              "reported": 2,
+              "accounted": 2,
+              "emitted": 2,
+              "omitted": 0
+            },
+            "info": {
+              "reported": 5,
+              "accounted": 5,
+              "emitted": 1,
+              "omitted": 4
+            }
+          }
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "rust.ownership.unwrap-expect",
+          "severity": "warning",
+          "line": 84,
+          "message": "Potential panics via unwrap/expect \u2014 call(\"BESSELI\", vec![n(boundary), n(order)]).unwrap()",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        },
+        {
+          "rule_id": "rust.panic.assert-macros",
+          "severity": "warning",
+          "line": 85,
+          "message": "assert! macros present (panic surface) \u2014 assert!(matches!(value.core(), calc_func::value::CoreValue::Number(_)),\n            \"BESSELI({boundary}, {order}) must remain numeric: {value:?}\")",
+          "triage": "Test assertions/unwrap deliberately fail, or existing indexed numeric coefficient loops are bounded by validated order and array lengths."
+        }
+      ]
+    }
+  ],
+  "doctor": {
+    "exit_code": 0,
+    "status": "ok",
+    "fails": 0,
+    "warnings": 0
+  },
+  "limits": "Read-only source review. Rust cargo/build phases deliberately skipped. A partial SQL analysis on corpus_cases.py remains a scanner limitation; no complete all-file or zero-critical claim. New public hash-comparison critical findings are explicitly triaged, not silently hidden."
+}

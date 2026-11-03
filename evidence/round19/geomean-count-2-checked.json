@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "programs": 18,
+  "observations": 109,
+  "survivors": 0,
+  "executions": 258,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/geomean-count-2.jsonl": "d72837846b5c124a7236a5d9b9f5781a2c072b737531541a14ceb69f94635660",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/geomean-count-2/first-kills.jsonl": "14b18690b99f83c93de9b2fa2ac84b1387553fc9a355c9e84deb8e7bb1a270d2",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/geomean-count-2/profiles.json": "3e2e171604a72b864db825960eed9db0b5a7242b54750b79cc078e441efb08a8",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/geomean-count-2/scoped.json": "c3efc0ce42b8a414048932a60880da370b66d4fc086193047d017402161f222f",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/geomean-count-2/summary.json": "2446d20140d3ec509e800ac41afc95c571f34fa6fab9b5b46a8e0f3759b59a1a",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/geomean-count-2/survivors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "1384e66285e45fd5d50f88961249f1f8def6f6225b713bd15ae885b1ed6e7e19",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "limits": "Exact inverse midpoint-power verification of the specified rounded-product/correct-root programs. No native transcendental instruction, fitted answer or Excel internal precision is assumed."
+}

@@ -569,6 +569,8 @@ fn main() {
         Some("route-audit") => route_audit::run(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("function-routes") => route_audit::function_routes(&a[2], &a[3]),
+        #[cfg(route_audit)]
+        Some("bessel-asymptotic") => route_audit::bessel_asymptotic(&a[2], &a[3], &a[4]),
         #[cfg(bond_solver_audit)]
         Some("yield-newton") => route_audit::yield_newton(&a[2], &a[3]),
         #[cfg(route_audit)]

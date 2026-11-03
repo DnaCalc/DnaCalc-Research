@@ -1,0 +1,70 @@
+function	mismatches	numeric	within_16_ulp	larger_numeric	other
+CUMPRINC	157	157	153	4	{}
+PPMT	104	104	92	12	{}
+BESSELJ	87	86	10	76	{"type_or_error": 1}
+GEOMEAN	84	84	84	0	{}
+BESSELY	80	80	0	80	{}
+IPMT	80	80	79	1	{}
+VAR.S	76	76	32	44	{}
+BINOM.DIST	71	71	61	10	{}
+CUMIPMT	67	67	66	1	{}
+VAR.P	63	63	23	40	{}
+BESSELI	47	46	43	3	{"type_or_error": 1}
+LINEST	26	26	19	7	{}
+STDEV	17	17	5	12	{}
+VARP	16	16	2	14	{}
+VARPA	14	14	14	0	{}
+STDEV.S	13	13	13	0	{}
+STDEVA	13	13	13	0	{}
+POISSON.DIST	12	12	11	1	{}
+LOGEST	11	9	4	5	{"type_or_error": 2}
+STDEV.P	10	10	10	0	{}
+VAR	10	10	5	5	{}
+Infix &	9	0	0	0	{"text_value": 9}
+HYPGEOM.DIST	6	6	4	2	{}
+NEGBINOM.DIST	5	5	5	0	{}
+GAMMA.DIST	4	4	4	0	{}
+RATE	3	3	0	3	{}
+BETADIST	2	2	2	0	{}
+BETAINV	2	2	2	0	{}
+BINOM.DIST.RANGE	2	2	2	0	{}
+BINOMDIST	2	2	2	0	{}
+CHIDIST	2	2	2	0	{}
+CONFIDENCE	2	2	2	0	{}
+DURATION	2	2	2	0	{}
+FDIST	2	2	2	0	{}
+FINV	2	2	2	0	{}
+GAMMADIST	2	2	2	0	{}
+GAMMAINV	2	2	2	0	{}
+HYPGEOMDIST	2	2	2	0	{}
+IRR	2	2	0	2	{}
+LOGINV	2	2	2	0	{}
+NEGBINOMDIST	2	2	2	0	{}
+ODDFYIELD	2	2	0	2	{}
+POISSON	2	2	2	0	{}
+ROUND	2	0	0	0	{"capture_failure": 2}
+TDIST	2	2	2	0	{}
+TINV	2	2	2	0	{}
+TTEST	2	2	2	0	{}
+YIELD	2	2	0	2	{}
+Z.TEST	2	2	2	0	{}
+ZTEST	2	2	2	0	{}
+BETA.DIST	1	1	1	0	{}
+BETA.INV	1	1	1	0	{}
+CHISQ.DIST.RT	1	1	1	0	{}
+CHISQ.INV	1	1	1	0	{}
+CONFIDENCE.NORM	1	1	1	0	{}
+CONFIDENCE.T	1	1	1	0	{}
+F.DIST.RT	1	1	1	0	{}
+F.INV	1	1	1	0	{}
+F.INV.RT	1	1	1	0	{}
+GAMMA.INV	1	1	1	0	{}
+LOGNORM.INV	1	1	1	0	{}
+NORM.S.DIST	1	1	1	0	{}
+PMT	1	1	1	0	{}
+T.DIST	1	1	1	0	{}
+T.DIST.2T	1	1	1	0	{}
+T.DIST.RT	1	1	1	0	{}
+T.INV.2T	1	1	1	0	{}
+T.TEST	1	1	1	0	{}
+TRUNC	1	0	0	0	{"capture_failure": 1}

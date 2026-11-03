@@ -1,0 +1,1140 @@
+{
+  "format": "dnacalc-binary64-domain-bisection/1",
+  "brackets": [
+    {
+      "id": "besselj-0-positive",
+      "function": "BESSELJ",
+      "order": "0x0000000000000000",
+      "negative": false,
+      "low": "0x419fffffff000000",
+      "high": "0x419fffffffffffff",
+      "discovery_low_id": "r16-besselj-020",
+      "discovery_high_id": "r16-besselj-055"
+    },
+    {
+      "id": "besselj-0-negative",
+      "function": "BESSELJ",
+      "order": "0x0000000000000000",
+      "negative": true,
+      "low": "0x419ffffffe000000",
+      "high": "0x41a0000000000000",
+      "discovery_low_id": "r16-besselj-068",
+      "discovery_high_id": "r16-besselj-071"
+    },
+    {
+      "id": "besselj-1-positive",
+      "function": "BESSELJ",
+      "order": "0x3ff0000000000000",
+      "negative": false,
+      "low": "0x41a0000002000000",
+      "high": "0x41a0000004000000",
+      "discovery_low_id": "r16-besselj-046",
+      "discovery_high_id": "r16-besselj-051"
+    },
+    {
+      "id": "besselj-1-negative",
+      "function": "BESSELJ",
+      "order": "0x3ff0000000000000",
+      "negative": true,
+      "low": "0x41a0000001000000",
+      "high": "0x41a0000008000000",
+      "discovery_low_id": "r16-besselj-075",
+      "discovery_high_id": null
+    },
+    {
+      "id": "besselj-2-positive",
+      "function": "BESSELJ",
+      "order": "0x4000000000000000",
+      "negative": false,
+      "low": "0x419fffffff000000",
+      "high": "0x419fffffffffffff",
+      "discovery_low_id": "r16-besselj-022",
+      "discovery_high_id": "r16-besselj-057"
+    },
+    {
+      "id": "besselj-2-negative",
+      "function": "BESSELJ",
+      "order": "0x4000000000000000",
+      "negative": true,
+      "low": "0x419ffffffe000000",
+      "high": "0x41a0000000000000",
+      "discovery_low_id": "r16-besselj-070",
+      "discovery_high_id": "r16-besselj-073"
+    },
+    {
+      "id": "besselj-3-positive",
+      "function": "BESSELJ",
+      "order": "0x4008000000000000",
+      "negative": false,
+      "low": "0x419fffffff000000",
+      "high": "0x419fffffffffffff",
+      "discovery_low_id": "r16-besselj-023",
+      "discovery_high_id": "r16-besselj-058"
+    },
+    {
+      "id": "besselj-4-positive",
+      "function": "BESSELJ",
+      "order": "0x4010000000000000",
+      "negative": false,
+      "low": "0x419fffffff000000",
+      "high": "0x419fffffffffffff",
+      "discovery_low_id": "r16-besselj-024",
+      "discovery_high_id": "r16-besselj-059"
+    },
+    {
+      "id": "bessely-0-positive",
+      "function": "BESSELY",
+      "order": "0x0000000000000000",
+      "negative": false,
+      "low": "0x419ffffffe000000",
+      "high": "0x419fffffffffffff",
+      "discovery_low_id": "r16-bessely-003",
+      "discovery_high_id": "r16-bessely-006"
+    },
+    {
+      "id": "bessely-1-positive",
+      "function": "BESSELY",
+      "order": "0x3ff0000000000000",
+      "negative": false,
+      "low": "0x41a0000002000000",
+      "high": "0x41a0000008000000",
+      "discovery_low_id": "r16-bessely-016",
+      "discovery_high_id": null
+    },
+    {
+      "id": "bessely-2-positive",
+      "function": "BESSELY",
+      "order": "0x4000000000000000",
+      "negative": false,
+      "low": "0x419ffffffe000000",
+      "high": "0x419fffffffffffff",
+      "discovery_low_id": "r16-bessely-005",
+      "discovery_high_id": "r16-bessely-008"
+    }
+  ],
+  "controls": [
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x0000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x0000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x0000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x0000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x3ff0000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x3ff0000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x3ff0000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x3ff0000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x4000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x4000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x4000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x4000000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x4008000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x4008000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x4008000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x4008000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x4024000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x4024000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x4024000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x4024000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x4059000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x4059000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x4059000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x4059000000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x4098880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x4098880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x4098880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x4098880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999a",
+        "0x40c3880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999a",
+        "0x40c3880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0x40862d999999999b",
+        "0x40c3880000000000"
+      ]
+    },
+    {
+      "function": "BESSELI",
+      "args": [
+        "0xc0862d999999999b",
+        "0x40c3880000000000"
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f67",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f68",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f69",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6a",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6b",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6c",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6d",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6e",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6f",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f67",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f68",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f69",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6a",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6b",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6c",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6d",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6e",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6f",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f1c",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f1d",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f1e",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f1f",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f20",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f21",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f22",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f23",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x41a0000002b65f24",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f1c",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f1d",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f1e",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f1f",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f20",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f21",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f22",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f23",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc1a0000002b65f24",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f67",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f68",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f69",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6a",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6b",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6c",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6d",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6e",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6f",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f67",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f68",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f69",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6a",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6b",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6c",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6d",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6e",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0xc19fffffff243f6f",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f67",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f68",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f69",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6a",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6b",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6c",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6d",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6e",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6f",
+        "0x4008000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f67",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f68",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f69",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6a",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6b",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6c",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6d",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6e",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELJ",
+      "args": [
+        "0x419fffffff243f6f",
+        "0x4010000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f67",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f68",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f69",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6a",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6b",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6c",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6d",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6e",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6f",
+        "0x0000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f1c",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f1d",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f1e",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f1f",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f20",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f21",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f22",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f23",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x41a0000002b65f24",
+        "0x3ff0000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f67",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f68",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f69",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6a",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6b",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6c",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6d",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6e",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    },
+    {
+      "function": "BESSELY",
+      "args": [
+        "0x419fffffff243f6f",
+        "0x4000000000000000"
+      ],
+      "reason": "Unverified private phase guard2^27-1; fixed nine-decimal phase, neighboring input lattice."
+    }
+  ],
+  "hypothesis": "Private Bessel trig may reject a stored phase beyond2^27-1. Phase0/1 are the ceilings of pi/4 and3pi/4 at9decimal places. This is an unanswered question, not an adopted cutoff or observed result.",
+  "transition_assumption": "One numeric-to-NUM transition per bracket; observed reversals abort. Adjacent endpoints prove the measured local transition, not monotonicity at unqueried inputs.",
+  "maximum_rounds": 64,
+  "maximum_endpoint_expansions": 8,
+  "neighbor_radius": 2,
+  "source_trace_sha256": "c878b2d95ba8bd7c96673956a2341e79f84a19f9919b248b7d296a8b990e34b4",
+  "sources": "Original R16 Excel Value2 observations; IEEE754 ordered positive binary64 lattice."
+}

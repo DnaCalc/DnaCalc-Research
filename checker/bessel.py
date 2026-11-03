@@ -456,7 +456,208 @@ def check_miller(input_path, directory, output, expanded=False, sites=False):
     print(json.dumps(receipt))
 
 
+def asymptotic_inventory(directory):
+    directory=Path(directory)
+    summary=json.loads((directory/'summary.json').read_text())
+    grammar=json.loads((directory/'grammar.json').read_text())
+    survivors=json.loads((directory/'BESSELJ-survivors.json').read_text())
+    axes=[['phase',10],['scale',10],['body',5],['recurrence',5],['trig',3],['terms',3],['association',3]]
+    require(grammar['programs']==67500 and grammar['axes_in_loop_order']==axes,'asymptotic axes differ')
+    counts=summary['counts']
+    require(len(counts)==2 and {r['function']for r in counts}=={'BESSELJ','BESSELY'},'asymptotic function inventory differs')
+    j=next(r for r in counts if r['function']=='BESSELJ')
+    require(j['programs']==67500 and len(set(survivors))==len(survivors)==j['survivors']>0
+            and all(isinstance(i,int)and 0<=i<67500 for i in survivors),'bad asymptotic survivor inventory')
+    return summary,grammar,survivors
+
+
+def check_asymptotic_survivors(input_path,tables_path,directory,executable,output):
+    """Exact J survivor replay with separately calculated registered trig leaves."""
+    import csv,struct,subprocess
+    from functools import lru_cache
+    directory=Path(directory);executable=Path(executable).resolve();output=Path(output)
+    rows=list(records(input_path));tables=json.loads(Path(tables_path).read_text())
+    summary,grammar,survivors=asymptotic_inventory(directory)
+    frozen={str(p):digest(p)for p in (Path(input_path),Path(tables_path),directory/'summary.json',directory/'grammar.json',
+        directory/'BESSELJ-survivors.json',executable,Path(__file__),Path(__file__).with_name('exact.py'))}
+    def decode(identity):
+        result={}
+        for key,size in reversed((('phase',10),('scale',10),('body',5),('recurrence',5),('trig',3),('terms',3),('association',3))):
+            result[key]=identity%size;identity//=size
+        require(identity==0,'out-of-range asymptotic program');return result
+    programs=[decode(i)for i in survivors]
+    require(all(p['trig']==0 for p in programs),'this independent replay requires registered trig leaves')
+    # Independently reconstruct each universal-constant quantizer.
+    def atan(d,n):return sum((R((-1)**k,(2*k+1)*d**(2*k+1))for k in range(n)),R(0))
+    pi=16*atan(5,128)-4*atan(239,64)
+    pi_error=R(16,257*5**257)+R(4,129*239**129)
+    def rounded_decimal(value,digits,mode):
+        scale=10**digits;q=value*scale;k=q.numerator//q.denominator
+        if mode=='ceil':k+=q!=k
+        if mode=='nearest_even':k+=q-k>R(1,2)or q-k==R(1,2)and k%2==1
+        return B.round(R(k,scale))
+    phases=[[B.round(R(2*n+1,4)*pi)for n in (0,1)]]
+    scales=[B.round(2/pi)]
+    require(all(B.round(R(2*n+1,4)*(pi-pi_error))==B.round(R(2*n+1,4)*(pi+pi_error))==phases[0][n]for n in (0,1))
+            and B.round(2/(pi-pi_error))==B.round(2/(pi+pi_error))==scales[0],'unresolved universal binary64 load')
+    for digits in (8,9,10):
+        for mode in ('floor','nearest_even','ceil'):
+            phases.append([rounded_decimal(R(2*n+1,4)*pi,digits,mode)for n in (0,1)])
+            scales.append(rounded_decimal(2/pi,digits,mode))
+            require(all(rounded_decimal(R(2*n+1,4)*(pi-pi_error),digits,mode)==
+                        rounded_decimal(R(2*n+1,4)*(pi+pi_error),digits,mode)==phases[-1][n]for n in (0,1))
+                    and rounded_decimal(2/(pi-pi_error),digits,mode)==rounded_decimal(2/(pi+pi_error),digits,mode)==scales[-1],
+                    'unresolved universal decimal quantizer')
+    require(len(tables['phases'])==len(tables['scales'])==10,'universal table inventory differs')
+    require(all([binary64(v['binary64'])for v in p['values']]==phases[i]for i,p in enumerate(tables['phases']))
+            and all(binary64(p['value']['binary64'])==scales[i]for i,p in enumerate(tables['scales'])),'universal constants changed')
+    scoped=[]
+    for index,raw in enumerate(rows):
+        if raw['function']!='BESSELJ'or raw['result_index']is not None or len(raw['args'])!=2 or not raw['expected'].startswith('0x'):continue
+        try:x,n=map(binary64,raw['args'])
+        except(ValueError,TypeError):continue
+        if abs(x)>=two(24)and n in range(5):scoped.append((index,x,int(n),raw))
+    require(len(scoped)==next(r for r in summary['counts']if r['function']=='BESSELJ')['observations'],'J replay scope differs')
+    killed=set();native_executions=len(survivors)*len(scoped);orders={at:i for i,(at,*_)in enumerate(scoped)}
+    path=directory/'BESSELJ-first-kills.tsv';frozen[str(path)]=digest(path)
+    with path.open()as stream:
+        reader=csv.DictReader(stream,delimiter='\t')
+        require(reader.fieldnames==['program','trace_index','got'],'asymptotic kill header differs')
+        for kill in reader:
+            identity,at=int(kill['program']),int(kill['trace_index'])
+            require(0<=identity<67500 and identity not in killed and identity not in survivors and at in orders,
+                    'duplicate or invalid asymptotic kill identity')
+            require(kill['got']!=rows[at]['expected'],'invalid asymptotic contradiction')
+            native_executions+=orders[at]+1;killed.add(identity)
+    require(killed|set(survivors)==set(range(67500)) and
+            native_executions==next(r for r in summary['counts']if r['function']=='BESSELJ')['executions'],
+            'asymptotic search coverage or executions differ')
+    def bits(q):return '0x'+struct.pack('>d',float(q)).hex()
+    # Only seeds actually consumed by the declared recurrence need leaves.
+    arguments=set()
+    for p in programs:
+        model=MODELS[p['body']]
+        for _,x,n,_ in scoped:
+            for seed in ((n,)if n<=1 else(0,1)):
+                angle=operation(abs(x),-phases[p['phase']][seed],'add',model)
+                arguments.add(bits(B.round(angle)))
+    leaves={}
+    for function in ('SIN','COS'):
+        request=output.with_name(output.stem+'-'+function+'-requests.json')
+        prediction=output.with_name(output.stem+'-'+function+'-predictions.jsonl')
+        questions=[dict(id=f'r19-{function.lower()}-leaf-{i:03d}',args=[arg],input_transport='cell_value2_bulk')for i,arg in enumerate(sorted(arguments))]
+        with request.open('x')as out:json.dump(dict(function=function,witnesses=questions),out);out.write('\n')
+        subprocess.run([str(executable),'invoke-inputs',str(request),str(prediction)],check=True,timeout=300)
+        actual=list(records(prediction));require(len(actual)==len(questions),'missing registered trig leaf')
+        for q,r in zip(questions,actual):
+            require(q['id']==r['id']and q['args']==r['args']and r['calc_func_prediction'].startswith('0x'),'trig leaf identity or domain differs')
+            leaves[function,q['args'][0]]=binary64(r['calc_func_prediction'])
+        frozen[str(request)]=digest(request);frozen[str(prediction)]=digest(prediction)
+    @lru_cache(maxsize=4096)
+    def sqrt_round(q,model):
+        if model=='strict':q=B.round(q)
+        fmt=B if model=='strict'else P53 if model.endswith('pc53')else E
+        estimate=R(__import__('math').sqrt(float(q)));at=fmt.floor_coordinate(estimate)
+        low,high=at-4096,at+4096
+        require(fmt.value(low)**2<=q<=fmt.value(high)**2,'sqrt search does not enclose root')
+        while low+1<high:
+            middle=(low+high)//2
+            if fmt.value(middle)**2<=q:low=middle
+            else:high=middle
+        a,b=fmt.value(low),fmt.value(high);midpoint=(a+b)/2
+        result=a if q<midpoint*midpoint or q==midpoint*midpoint and low%2==0 else b
+        return B.round(result)if model.startswith('stored')else result
+    @lru_cache(maxsize=65536)
+    def evaluate(x,n,phase_id,scale_id,body,recurrence,terms,association):
+        model=MODELS[body];rec=MODELS[recurrence]
+        def op(kind,a,b):return operation(a,b,kind,model)
+        def seed(n):
+            z=op('div',R(1),abs(x));z2=op('mul',z,z)
+            angle=B.round(op('add',abs(x),-phases[phase_id][n]))
+            sine,cosine=leaves['SIN',bits(angle)],leaves['COS',bits(angle)]
+            a1,a2,a3=(R(-1,8),R(9,128),R(-75,1024))if n==0 else(R(3,8),R(-15,128),R(105,1024))
+            p=op('add',R(1),-op('mul',a2,z2))if terms>=2 else R(1)
+            q=R(0)if terms==0 else op('mul',op('add',a1,-op('mul',a3,z2))if terms>=2 else a1,z)
+            expression=op('add',op('mul',cosine,p),-op('mul',sine,q))
+            amplitude=sqrt_round(op('div',scales[scale_id],abs(x)),model)
+            return op('mul',amplitude,expression)
+        if n<=1:result=seed(n)
+        else:
+            previous,current=seed(0),seed(1);tox=operation(R(2),abs(x),'div',rec)
+            for k in range(1,n):
+                if association==0:step=operation(operation(R(k),tox,'mul',rec),current,'mul',rec)
+                elif association==1:step=operation(operation(R(2*k),abs(x),'div',rec),current,'mul',rec)
+                else:step=operation(operation(R(2*k),current,'mul',rec),abs(x),'div',rec)
+                previous,current=current,operation(step,-previous,'add',rec)
+            result=current
+        return bits(B.round(-result if x<0 and n%2 else result))
+    executions=0
+    for p in programs:
+        for _,x,n,row in scoped:
+            got=evaluate(x,n,p['phase'],p['scale'],p['body'],p['recurrence'],p['terms'],p['association']);executions+=1
+            require(got==row['expected'],'independent asymptotic survivor mismatch')
+    require(frozen=={p:digest(p)for p in frozen},'asymptotic input/source changed')
+    result=dict(complete=True,programs=len(programs),observations=len(scoped),executions=executions,registered_trig_arguments=len(arguments),input_sha256=frozen,
+        limits='Independent exact arithmetic and rational sqrt-rounding replay of every declared J numeric survivor. '
+               'SIN/COS leaves are current registered application calculations, not new Excel observations or identified private Bessel helpers. '
+               'Domain obligations are excluded; no complete Excel kernel or product gain follows.')
+    with output.open('x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(result))
+
+
+def real_bound(raw):
+    """Independent directed MPFR references, no producer arithmetic imports."""
+    from reference import bessel_bounds
+    return bessel_bounds(raw['function'],raw['args'][0],int(binary64(raw['args'][1])))
+
+
+def check_regimes(input_path,directory,output):
+    from reference import LIB
+    start=time.monotonic();directory=Path(directory)
+    rows=list(records(input_path));proofs=records(directory/'reference-bounds.jsonl')
+    summary=json.loads((directory/'summary.json').read_text())
+    frozen={str(p):digest(p)for p in (Path(input_path),directory/'reference-bounds.jsonl',directory/'summary.json',Path(__file__),
+                                    Path(__file__).with_name('reference.py'),Path(__file__).with_name('exact.py'))}
+    require(summary['input_sha256']==digest(input_path)and summary['bounds_sha256']==digest(directory/'reference-bounds.jsonl'),'reference hashes differ')
+    seen=set();counts=Counter();cache={};regions=defaultdict(Counter)
+    for proof in proofs:
+        index=proof['trace_index'];require(index not in seen and 0<=index<len(rows),'duplicate reference identity');seen.add(index)
+        raw=rows[index]
+        require(all(raw[k]==proof[k]for k in ('id','function','args','expected')),'reference identity changed')
+        key=raw['function'],tuple(raw['args'])
+        if key not in cache:cache[key]=real_bound(raw)
+        low,high=cache[key];declared=list(map(decode_pair,proof['proof']['enclosure']))
+        require(declared[0]<=low<=high<=declared[1],'independent real bound escapes declared enclosure')
+        target=binary64(raw['expected'])
+        impossible=not B.round(declared[0])<=target<=B.round(declared[1])
+        require(proof['outside_real_rounding_bound']==impossible,'incorrect exact-reference exclusion')
+        x,n=map(binary64,raw['args'])
+        region=('seed'if n<=1 else'above_order'if abs(x)>n else'at_or_below_order')+('_small'if abs(x)<=32 else'_large')
+        require(proof['region']==region,'reference region differs')
+        regions[raw['function']+':'+region]['observations']+=1
+        regions[raw['function']+':'+region]['outside_real_rounding_bound']+=impossible
+        counts['observations']+=1;counts['excluded']+=impossible
+    require(counts['observations']==summary['counts']['scoped']and counts['excluded']==summary['counts']['outside_real_rounding_bound'],'reference counts differ')
+    require(dict(regions)==summary['regions'],'reference region counts differ')
+    eligible=set()
+    for index,raw in enumerate(rows):
+        if raw['function']not in ('BESSELJ','BESSELY')or raw['result_index']is not None or len(raw['args'])!=2 or not raw['expected'].startswith('0x'):continue
+        try:x,n=map(binary64,raw['args'])
+        except (ValueError,TypeError):continue
+        if (n.denominator==1 and 0<=n<=64 and (raw['function']=='BESSELJ'or x>0)
+                and (abs(x)>=R(1,1024)or x==0 and raw['function']=='BESSELJ')):eligible.add(index)
+    require(seen==eligible,'reference scope omits or adds eligible observations')
+    require(frozen=={p:digest(p)for p in frozen},'reference inputs changed')
+    result=dict(complete=True,counts=counts,regions=regions,seconds=time.monotonic()-start,input_sha256=frozen,mpfr_version=LIB.mpfr_get_version().decode(),
+        method='Independent directed256-bit MPFR real Jn/Yn bounds through the official shared-library API; no library source read.',
+        limits='Certifies the supplied real-function exclusions; does not identify Excel series, seed approximation, recurrence direction or asymptotic program. No product answer is emitted.')
+    with open(output,'x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='asymptotic-survivors':check_asymptotic_survivors(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='regimes':check_regimes(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller-sites':check_miller(*sys.argv[2:], expanded=True, sites=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller-forms':check_miller(*sys.argv[2:], expanded=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='miller':check_miller(*sys.argv[2:]);raise SystemExit(0)

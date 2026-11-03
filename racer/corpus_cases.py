@@ -195,6 +195,47 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
     return result
 
 
+def function_table(classification, output):
+    """Reconcile every mismatch by function, retaining nonnumeric obligations."""
+    source, output = Path(classification), Path(output)
+    summary = json.loads((source/'summary.json').read_text())
+    rows = [json.loads(line) for line in (source/'cells.jsonl').read_text().splitlines()]
+    sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+    if summary['complete'] is not True or len(rows) != summary['failed'] or sha(source/'cells.jsonl') != summary['cells_sha256']:
+        raise ValueError('classification coverage or hash differs')
+    groups, outside = {}, Counter()
+    for row in rows:
+        verdict = row['original_verdict']['verdict']
+        if verdict != 'mismatched':
+            outside[verdict] += 1
+            continue
+        counts = groups.setdefault(row['function'], Counter())
+        counts[row['cause']] += 1
+    functions = [dict(function=f, mismatches=sum(c.values()),
+                      numeric=c['last_bits']+c['numeric_value'], within_16_ulp=c['last_bits'],
+                      larger_numeric=c['numeric_value'],
+                      other={k:n for k,n in sorted(c.items()) if k not in ('last_bits','numeric_value')})
+                 for f,c in groups.items()]
+    functions.sort(key=lambda r: (-r['mismatches'], r['function']))
+    output.mkdir(parents=True, exist_ok=False)
+    result = dict(complete=True, mismatches=sum(r['mismatches'] for r in functions),
+        nonpasses_in_classification=len(rows), other_verdicts=dict(outside), functions=functions,
+        inputs_sha256={str(source/name):sha(source/name) for name in ('cells.jsonl','summary.json')},
+        limits='Exactly the mismatched verdicts, including capture failures. Refusals and missing cells remain failures outside this table. '
+               'External and circular-policy nonpasses are outside the classifier; the corpus denominator includes them. '
+               'The 16-ULP split is triage, not an algorithm or accuracy concession.')
+    if result['mismatches']+sum(outside.values()) != len(rows):
+        raise ValueError('function totals do not reconcile')
+    (output/'table.json').write_text(json.dumps(result, indent=2)+'\n')
+    lines = ['function\tmismatches\tnumeric\twithin_16_ulp\tlarger_numeric\tother']
+    for r in functions:
+        lines.append('\t'.join(str(r[k]) for k in ('function','mismatches','numeric','within_16_ulp','larger_numeric'))+
+                     '\t'+json.dumps(r['other'],sort_keys=True))
+    (output/'table.tsv').write_text('\n'.join(lines)+'\n')
+    print(json.dumps({k:v for k,v in result.items() if k != 'functions'}))
+    return result
+
+
 def freeze(corpus, output, functions):
     corpus, output = Path(corpus), Path(output)
     output.mkdir()
@@ -713,6 +754,9 @@ or changed-input obligations fail. Use the existing capture lineage only.
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'function-table':
+        function_table(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'par-yield-questions':
         par_yield_questions(*sys.argv[2:])
         sys.exit(0)

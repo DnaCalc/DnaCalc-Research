@@ -1,0 +1,104 @@
+{
+  "complete": true,
+  "counts": {
+    "scoped": 1007,
+    "outside_real_rounding_bound": 997,
+    "domain_obligation": 57,
+    "outside_reference_scope": 9
+  },
+  "regions": {
+    "BESSELJ:at_or_below_order_small": {
+      "observations": 68,
+      "outside_real_rounding_bound": 61
+    },
+    "BESSELY:seed_small": {
+      "observations": 26,
+      "outside_real_rounding_bound": 26
+    },
+    "BESSELJ:seed_small": {
+      "observations": 59,
+      "outside_real_rounding_bound": 58
+    },
+    "BESSELJ:above_order_small": {
+      "observations": 100,
+      "outside_real_rounding_bound": 100
+    },
+    "BESSELY:at_or_below_order_small": {
+      "observations": 23,
+      "outside_real_rounding_bound": 23
+    },
+    "BESSELY:above_order_small": {
+      "observations": 25,
+      "outside_real_rounding_bound": 25
+    },
+    "BESSELJ:above_order_large": {
+      "observations": 542,
+      "outside_real_rounding_bound": 542
+    },
+    "BESSELY:above_order_large": {
+      "observations": 3,
+      "outside_real_rounding_bound": 3
+    },
+    "BESSELJ:seed_large": {
+      "observations": 150,
+      "outside_real_rounding_bound": 150
+    },
+    "BESSELY:seed_large": {
+      "observations": 9,
+      "outside_real_rounding_bound": 9
+    },
+    "BESSELJ:at_or_below_order_large": {
+      "observations": 2,
+      "outside_real_rounding_bound": 0
+    }
+  },
+  "excluded": [
+    {
+      "trace_index": 158,
+      "reason": "real reference scope"
+    },
+    {
+      "trace_index": 163,
+      "reason": "tiny argument outside reference scope"
+    },
+    {
+      "trace_index": 164,
+      "reason": "tiny argument outside reference scope"
+    },
+    {
+      "trace_index": 166,
+      "reason": "real reference scope"
+    },
+    {
+      "trace_index": 169,
+      "reason": "real reference scope"
+    },
+    {
+      "trace_index": 174,
+      "reason": "tiny argument outside reference scope"
+    },
+    {
+      "trace_index": 175,
+      "reason": "tiny argument outside reference scope"
+    },
+    {
+      "trace_index": 177,
+      "reason": "real reference scope"
+    },
+    {
+      "trace_index": 181,
+      "reason": "real reference scope"
+    }
+  ],
+  "source_sha256": "e3b0ef74a5398a77b68f00805a620a08a4696853d5e86c7c64dc89bc59806ecd",
+  "input_sha256": "5a38f0663e516c76e07a544aa0914ea40617fa8c96a6fdc05b08916da6f21386",
+  "bounds_sha256": "17f63ee7fe5345b41e91405c4f071be6ba322cc4aca8ac40ab9e8d593ba154e3",
+  "sources": [
+    "https://dlmf.nist.gov/10.2.E2",
+    "https://dlmf.nist.gov/10.8.E1",
+    "https://dlmf.nist.gov/10.17.iii",
+    "https://dlmf.nist.gov/5.2.E3"
+  ],
+  "claim": "Rational enclosures exclude correctly rounded real J/Y kernels at the listed recorded inputs. The series and Hankel labels name reference mathematics, not identified Excel implementation branches.",
+  "limits": "Integer orders0..64; argument zero for J or magnitude>=1/1024. These constraints do not exclude inaccurately truncated/rounded series, approximate seed recurrences or asymptotic approximations. No complete Excel program, cutoff, seed or coefficient is selected; no product gain follows."
+}

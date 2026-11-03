@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "counts": {
+    "CUMPRINC": {
+      "programs": 16384,
+      "available_scope": 785,
+      "executions": 16384,
+      "survivors": 0
+    },
+    "PPMT": {
+      "programs": 16384,
+      "available_scope": 183,
+      "executions": 16384,
+      "survivors": 0
+    }
+  },
+  "scope_exclusions": {},
+  "excluded": [],
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/loans-direct.jsonl": "a88c4214916c2bc9e5be90e33ae95bb89ca00387a1ea55693abd9fb715fa0875",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/x87-native.so": "dfcd1fa356a319ce50e292e697c32b5892bff4e47d377e86760285625b339cf8",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/cumulative_projection.py": "0528c059e3294733b5b9f129b12353467f3d09fe3f5a114021f8d70963e20e79",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/x87_programs.py": "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/x87_native.c": "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1"
+  },
+  "grammar": "16384 labelled complete programs per function: two logarithm instructions, two numerator/division associations, growth/discount algebra, PC53/PC64 and1024 coherent store masks. Labels can repeat physical programs.",
+  "limits": "All observations are discovery. Native x87 leaves are measured on this CPU, not a Windows claim. A first contradiction excludes its fixed program before other rows are needed; no accumulation order, internal payment, full kernel or product gain is inferred."
+}

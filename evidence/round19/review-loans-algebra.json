@@ -1,0 +1,70 @@
+{
+  "complete": true,
+  "created_utc": "2026-11-03T09:34:35.670793+00:00",
+  "constructed_algebra_controls": 320,
+  "failed": [],
+  "largest_relative_difference": 5.131312041939396e-16,
+  "sources_sha256": {
+    "racer/cumulative_projection.py": "0528c059e3294733b5b9f129b12353467f3d09fe3f5a114021f8d70963e20e79",
+    "racer/x87_programs.py": "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7",
+    "racer/x87_native.c": "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/x87-native.so": "dfcd1fa356a319ce50e292e697c32b5892bff4e47d377e86760285625b339cf8"
+  },
+  "reference": "Exact rational loan identities: end principal(k)=-r*(PV+FV)*q^(k-1)/(q^N-1), beginning(k>=2) exponent k-2; beginning(k=1) standalone algebraic payment. Cumulative principal sums those rationals with FV=0.",
+  "dimensions": {
+    "functions": [
+      "CUMPRINC",
+      "PPMT"
+    ],
+    "timings": [
+      0,
+      1
+    ],
+    "rates": [
+      "1/8"
+    ],
+    "periods": [
+      4
+    ],
+    "present_values": [
+      100
+    ],
+    "future_values": [
+      20,
+      0
+    ],
+    "intervals": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "logarithms": 2,
+    "associations": 2,
+    "growth_discount_forms": 2,
+    "control_words": [
+      4671,
+      4927
+    ],
+    "store_masks": [
+      0
+    ]
+  },
+  "limits": "Synthetic arithmetic diagnostics only, never Excel observations or bit-parity evidence. All 320 controls use resident operations; this checks algebraic branches, not every store mask. The 10 masks bits represent coherent site groups, not independently chosen arithmetic-node precision. Native transcendental behavior is this machine only."
+}

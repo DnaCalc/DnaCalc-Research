@@ -1,0 +1,181 @@
+{
+  "round": 19,
+  "round_complete": false,
+  "status": "Checkpoint; timed numerical research continues.",
+  "started_utc": "2026-11-03 08:58 UTC",
+  "application_revision": "1fea451ec394068c5a49467b731bc38455f824cb",
+  "product_commit": "f2e72693",
+  "product_pushed": true,
+  "product": {
+    "change": "Uniform BESSELI magnitude admission at709.7; adjacent recorded boundary tested first.",
+    "higher_order_policy": "Explicit inference beyond orders0,1,2,3,10,100; Windows questions include1570/10000."
+  },
+  "corpus": {
+    "total": 20840,
+    "before": 19594,
+    "domain_after": 19595,
+    "merged_after": 19596,
+    "own_gains": 1,
+    "own_losses": 0,
+    "separately_owned_upstream_gains": 1,
+    "before_failed": 1246,
+    "domain_failed": 1245,
+    "merged_failed": 1244,
+    "merged_mismatches": 1151,
+    "merged_refused": 5,
+    "missing": 1,
+    "external": 73,
+    "circular": 14,
+    "awaiting_capture": 0,
+    "component_receipt": "evidence/round19/corpus-domain-delta.json",
+    "merged_receipt": "evidence/round19/corpus-merged-delta.json",
+    "original_scope": "evidence/round19/original-cell-scope.json"
+  },
+  "bank": {
+    "before": 3230800,
+    "after": 3230830,
+    "total": 3875522,
+    "failed": 644692,
+    "unread": 116,
+    "gains": 30,
+    "losses": 0,
+    "changed_outputs": 30,
+    "pass_rate": 0.8336502798848775,
+    "receipt": "evidence/round19/bank-merged-receipt.json"
+  },
+  "per_function": {
+    "baseline_mismatches": 1152,
+    "functions": 69,
+    "table": "evidence/round19/per-function-before.tsv",
+    "largest_non_bessel_numeric": [
+      {
+        "function": "CUMPRINC",
+        "mismatches": 157,
+        "numeric": 157,
+        "within_16_ulp": 153,
+        "larger_numeric": 4,
+        "other": {}
+      },
+      {
+        "function": "PPMT",
+        "mismatches": 104,
+        "numeric": 104,
+        "within_16_ulp": 92,
+        "larger_numeric": 12,
+        "other": {}
+      },
+      {
+        "function": "GEOMEAN",
+        "mismatches": 84,
+        "numeric": 84,
+        "within_16_ulp": 84,
+        "larger_numeric": 0,
+        "other": {}
+      },
+      {
+        "function": "IPMT",
+        "mismatches": 80,
+        "numeric": 80,
+        "within_16_ulp": 79,
+        "larger_numeric": 1,
+        "other": {}
+      },
+      {
+        "function": "VAR.S",
+        "mismatches": 76,
+        "numeric": 76,
+        "within_16_ulp": 32,
+        "larger_numeric": 44,
+        "other": {}
+      },
+      {
+        "function": "BINOM.DIST",
+        "mismatches": 71,
+        "numeric": 71,
+        "within_16_ulp": 61,
+        "larger_numeric": 10,
+        "other": {}
+      },
+      {
+        "function": "CUMIPMT",
+        "mismatches": 67,
+        "numeric": 67,
+        "within_16_ulp": 66,
+        "larger_numeric": 1,
+        "other": {}
+      }
+    ]
+  },
+  "bessel": {
+    "real_reference_observations": 1007,
+    "outside_correct_real_rounding": 997,
+    "reference_regions_are_not_Excel_branches": true,
+    "asymptotic_labels_per_function": 67500,
+    "J_numeric_survivors": 1536,
+    "J_observations": 41,
+    "J_unique_inputs": 40,
+    "J_argument_magnitudes": [
+      134217726,
+      134217729
+    ],
+    "Y_numeric_survivors": 0,
+    "Y_observations": 11,
+    "independent_J_replays": 62976,
+    "registered_trig_arguments": 17,
+    "Y_full_search_independently_replayed": false,
+    "body_adopted": false,
+    "limits": "Survivors are redundant fixed hypotheses on a narrow measured band. The nominal lower bound2^24 has no nearby readings. Domain outcomes and unobserved inputs prevent a kernel-identification claim."
+  },
+  "loans": {
+    "functions": [
+      "CUMPRINC",
+      "PPMT"
+    ],
+    "labels_per_function": 16384,
+    "survivors_per_function": 0,
+    "scope_counts": [
+      785,
+      183
+    ],
+    "independent_controls": 320,
+    "full_first_kill_independent_replay": false,
+    "body_adopted": false
+  },
+  "geomean": {
+    "programs_per_cohort": 18,
+    "two_operand_observations": 109,
+    "three_operand_observations": 127,
+    "survivors": 0,
+    "independently_checked": true,
+    "body_adopted": false
+  },
+  "packet": {
+    "path": "packets/round19-domains",
+    "ready_zip": "/home/ubuntu/codex-runs/excel-questions-r19-domains.zip",
+    "initial_calls": 153,
+    "brackets": 11,
+    "initial_application_routes": 153,
+    "zip_sha256": "7b466e6b1e43827ab0aab468f2a0830899b792ec7153bd97ef0b056a55bcd4a1",
+    "new_Excel_answers": 0,
+    "limits": "Adaptive bisection assumes one transition per bracket, checks actual original worker/frozen files and verifies local neighbors. Unverified phase-guard anchors only choose questions."
+  },
+  "checks": {
+    "optimized_test_profile_check": "1370 passed,0 failed; testopt-level1",
+    "research_Rust": "70 passed,0 failed,2 ignored",
+    "research_Python": "82 passed,0 failed;1504 exhaustive lattice controls",
+    "UBS": "Complete new-file scans; deliberate source-hash/local-executable findings triaged. Existing corpus_cases SQL analysis partial; no clean full-scan claim.",
+    "latest_standard_check_with_tests": "1370 passed,0 failed,5 ignored,1 not run",
+    "before_checkpoint_push_check": "Build/provenance passed; clean main tree,0 touched packages,0 tests run (main-before-research-checkpoint-check.log)."
+  },
+  "read_only_review": "Checkpoint source, exact bounds, native algebra, packet and finite-family limitations reviewed; final report pending.",
+  "source_unit": "round19-unit.json",
+  "evidence_index": "evidence/round19/index.json",
+  "raw_artifacts": "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19",
+  "forbidden_checkout_accessed": false,
+  "still_open": [
+    "J/Y exact domain transitions await Windows answers.",
+    "Small/near-order Bessel programs, seed approximation coefficients and Y asymptotic program.",
+    "Larger loan/GEOMEAN/variance/binomial numerical groups.",
+    "Higher-order BESSELI admission beyond the measured orders."
+  ]
+}

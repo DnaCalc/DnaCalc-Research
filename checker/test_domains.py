@@ -1,0 +1,175 @@
+"""Constructed controls for adaptive questions; none are Excel observations."""
+import copy
+import importlib.util
+from pathlib import Path
+import unittest
+from unittest.mock import patch
+import json
+import tempfile
+
+SPEC = importlib.util.spec_from_file_location('domain_bisection',Path(__file__).parents[1]/'racer/domain_bisection.py')
+domain = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(domain)
+
+
+class DomainQuestions(unittest.TestCase):
+    def plan(self,negative=False):
+        return dict(brackets=[dict(id='synthetic',function='BESSELJ',order=domain.bits(0),negative=negative,
+            low=domain.bits(2),high=domain.bits(4))],controls=[],maximum_rounds=64,
+            maximum_endpoint_expansions=8,neighbor_radius=2,transition_assumption='SYNTHETIC single transition')
+
+    def search(self,plan,threshold):
+        def ask(calls,stage):
+            return {(f,args):domain.bits(1) if abs(domain.number(args[0])) <= threshold else 'error:Num'
+                    for f,args in calls}
+        return domain.search(plan,ask,lambda *unused:None)
+
+    def test_both_signs_find_adjacent_binary64_values(self):
+        for negative in (False,True):
+            result = self.search(self.plan(negative),3.14159)
+            bracket = result['brackets'][0]
+            self.assertEqual(bracket['low'],domain.bits(3.14159))
+            self.assertEqual(int(bracket['high'],16)-int(bracket['low'],16),1)
+
+    def test_a_numeric_high_endpoint_expands(self):
+        result = self.search(self.plan(),6.0)
+        self.assertEqual(result['brackets'][0]['low'],domain.bits(6))
+
+    def test_missing_answers_stop_the_search(self):
+        with self.assertRaisesRegex(ValueError,'incomplete adaptive batch'):
+            domain.search(self.plan(),lambda calls,stage:{},lambda *unused:None)
+
+    def test_neighborhood_reversal_stops_the_search(self):
+        def ask(calls,stage):
+            result = {(f,args):domain.bits(1) if abs(domain.number(args[0])) <= 3 else 'error:Num'
+                      for f,args in calls}
+            if stage == 'neighbors':
+                for key in result:
+                    if int(key[1][0],16) == int(domain.bits(3),16)+3:
+                        result[key] = domain.bits(1)
+            return result
+        with self.assertRaisesRegex(ValueError,'nonmonotone'):
+            domain.search(self.plan(),ask,lambda *unused:None)
+
+    def fixture(self):
+        args = [domain.bits(3),domain.bits(0)]
+        request = dict(function='BESSELJ',_sha256='synthetic',witnesses=[dict(id='test',args=args)])
+        raw_args = [dict(number=a[2:])for a in args]
+        doc = dict(function='BESSELJ',unread=[],witnesses=[dict(id='test',args=args,expected_bits='error:Num')],
+            capture_provenance=dict(frozen_model_predictions=dict(inputs_sha256='synthetic'),
+                                    environment=dict(excel_input_plumbing='cell_value2_bulk')),
+            input_audits=[dict(id='test',reading_failure=None,observed_raw=dict(error_code=2036),
+                audit=dict(requested=raw_args,submitted_value2=raw_args,read_back=raw_args,
+                    transport='cell_value2_bulk',argument_literals=None,formula='=BESSELJ(RC[1],RC[2])',
+                    effective_callee_inputs='not directly observable'))])
+        doc['transport_audit_readings'] = []
+        doc['witnesses'][0]['calc_func_prediction'] = domain.bits(1)
+        env = doc['capture_provenance']['environment']
+        env.update(excel_version='SYNTHETIC',excel_build='SYNTHETIC',excel_file_version='SYNTHETIC',
+                   cpu_id='SYNTHETIC',excel_operating_system='SYNTHETIC',excel_bitness='64-bit')
+        provenance = doc['capture_provenance']
+        provenance.update(automation_security_before=1,automation_security_after=1,calculation_settings={})
+        frozen = dict(function='BESSELJ',input_document={k:v for k,v in request.items() if k != '_sha256'},
+            inputs_sha256='synthetic',predictions=[dict(id='test',args=args,calc_func_prediction=domain.bits(1))])
+        submitted = dict(function='BESSELJ',rows=[dict(id='test',args=raw_args,argument_literals=None,
+                                                     formula='=BESSELJ(RC[1],RC[2])')])
+        worker = dict(fatal=None,failures=[],automation_security_before=1,automation_security_after=1,
+            calculation_settings={},excel_version='SYNTHETIC',excel_build='SYNTHETIC',excel_file_version='SYNTHETIC',
+            cpu='SYNTHETIC',os_version='SYNTHETIC',excel_machine='x86-64',rows=[dict(id='test',input_kept=True,
+                value=dict(error_code=2036),input_audit=copy.deepcopy(doc['input_audits'][0]['audit']))])
+        return request,doc,frozen,submitted,worker
+
+    def test_exact_canonical_audit_accepts(self):
+        fixture = self.fixture()
+        self.assertEqual(domain.verify_reading(*fixture),{tuple(fixture[0]['witnesses'][0]['args']):'error:Num'})
+
+    def test_changed_operand_and_corrupt_result_and_duplicate_reject(self):
+        request,doc,frozen,submitted,worker = self.fixture()
+        for corruption in ('operand','result','duplicate','hash','missing'):
+            changed = copy.deepcopy(doc)
+            if corruption == 'operand':
+                changed['input_audits'][0]['audit']['read_back'] = [dict(number='0000000000000000')]*2
+            elif corruption == 'result':
+                changed['witnesses'][0]['expected_bits'] = domain.bits(1)
+            elif corruption == 'duplicate':
+                changed['witnesses'].append(copy.deepcopy(changed['witnesses'][0]))
+            elif corruption == 'hash':
+                changed['capture_provenance']['frozen_model_predictions']['inputs_sha256'] = 'corrupted'
+            else:
+                changed['input_audits'] = []
+            with self.subTest(corruption=corruption),self.assertRaises(ValueError):
+                domain.verify_reading(request,changed,frozen,submitted,worker)
+
+    def test_original_raw_corruption_cannot_be_hidden_by_consistent_canonical_audits(self):
+        for corruption in ('result','submitted','frozen','environment'):
+            request,doc,frozen,submitted,worker = self.fixture()
+            if corruption == 'result':
+                worker['rows'][0]['value'] = dict(number=domain.bits(1)[2:])
+            elif corruption == 'submitted':
+                submitted['rows'][0]['args'] = []
+            elif corruption == 'frozen':
+                frozen['predictions'][0]['calc_func_prediction'] = domain.bits(2)
+            else:
+                worker['excel_build'] = 'CORRUPTED'
+            with self.subTest(corruption=corruption),self.assertRaises(ValueError):
+                domain.verify_reading(request,doc,frozen,submitted,worker)
+
+    def test_runner_joins_a_retry_with_a_different_worker_timestamp(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            packet,checkout,evidence,output = [root/name for name in ('packet','application','OxFunc-Evidence','output')]
+            for directory in (packet,checkout,evidence/'readings'):
+                directory.mkdir(parents=True)
+            plan = self.plan()
+            # Start next to the synthetic transition to keep this control small.
+            plan['brackets'][0].update(low=domain.bits(3),high=f'0x{int(domain.bits(3),16)+8:016x}')
+            domain.write(packet/'plan.json',plan)
+            domain.write(packet/'manifest.json',dict(files_sha256={'plan.json':domain.sha(packet/'plan.json')}))
+            counter = 0
+            def cargo(arguments,**kwargs):
+                nonlocal counter
+                counter += 1
+                request_path = Path(arguments[arguments.index('--inputs')+1])
+                request = json.loads(request_path.read_text())
+                _,doc,frozen,submitted,worker = self.fixture()
+                for obj,key in ((doc,'witnesses'),(doc,'input_audits'),(frozen,'predictions'),(submitted,'rows'),(worker,'rows')):
+                    obj[key] = []
+                for row in request['witnesses']:
+                    qid,args = row['id'],row['args']
+                    numeric = int(args[0],16) <= int(domain.bits(3),16)+3
+                    raw = dict(number=domain.bits(1)[2:]) if numeric else dict(error_code=2036)
+                    expected = domain.bits(1) if numeric else 'error:Num'
+                    operands = [dict(number=v[2:])for v in args]
+                    audit = dict(requested=operands,submitted_value2=operands,read_back=operands,argument_literals=None,
+                        formula='=BESSELJ(RC[1],RC[2])',transport='cell_value2_bulk',effective_callee_inputs='not directly observable')
+                    doc['witnesses'].append(dict(id=qid,args=args,expected_bits=expected,calc_func_prediction=domain.bits(1)))
+                    doc['input_audits'].append(dict(id=qid,audit=audit,observed_raw=raw,reading_failure=None))
+                    frozen['predictions'].append(dict(id=qid,args=args,calc_func_prediction=domain.bits(1)))
+                    submitted['rows'].append(dict(id=qid,args=operands,argument_literals=None,formula=audit['formula']))
+                    worker['rows'].append(dict(id=qid,input_kept=True,value=raw,input_audit=audit))
+                frozen.update(input_document=request,inputs_sha256=domain.sha(request_path))
+                frozen_path = checkout/'target/witness/frozen'/f'BESSELJ-frozen-{counter}.json'
+                frozen_path.parent.mkdir(parents=True,exist_ok=True)
+                domain.write(frozen_path,frozen)
+                model = doc['capture_provenance']['frozen_model_predictions']
+                model.update(inputs_sha256=domain.sha(request_path),frozen_path=str(frozen_path),frozen_sha256=domain.sha(frozen_path))
+                worker_root = checkout/'target/witness/read'
+                failed = worker_root/f'BESSELJ-different-clock-{counter}-attempt-1'
+                success = worker_root/f'BESSELJ-different-clock-{counter}-attempt-2'
+                failed.mkdir(parents=True)
+                success.mkdir()
+                domain.write(failed/'request.json',submitted)
+                domain.write(failed/'result.json',dict(worker,fatal='SYNTHETIC failed attempt'))
+                domain.write(success/'request.json',submitted)
+                domain.write(success/'result.json',worker)
+                domain.write(evidence/'readings'/f'synthetic-{counter}.json',doc)
+            with patch.object(domain,'__file__',str(packet/'domain_bisection.py')),patch.object(domain.subprocess,'run',cargo):
+                domain.run(checkout,evidence,output)
+            result = json.loads((output/'summary.json').read_text())
+            self.assertEqual(int(result['brackets'][0]['low'],16),int(domain.bits(3),16)+3)
+            self.assertTrue(json.loads((output/'run-status.json').read_text())['complete'])
+            self.assertEqual(len(list((output/'worker/read').glob('*/result.json'))),2*counter)
+
+
+if __name__ == '__main__':
+    unittest.main()

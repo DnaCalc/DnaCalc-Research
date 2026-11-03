@@ -1,0 +1,118 @@
+{
+  "complete": true,
+  "created_utc": "2026-11-03T10:07:32.716011+00:00",
+  "sources_sha256": {
+    "racer/src/route_audit.rs": "b77d07edbb081e8ebf55e8f5c338560c96af11022457413273790e4e4bb0ae14",
+    "racer/constants.py": "1027f4853859e5a8d0d740764b1d14ee323ceeb1cee326f4a782caaaf5d8c5d6",
+    "checker/bessel.py": "3a6de80697b40de4a7c5890786fa83aee3e86b8afaa0221cfab23b6de21809af",
+    "racer/bessel.py": "e3b0ef74a5398a77b68f00805a620a08a4696853d5e86c7c64dc89bc59806ecd",
+    "checker/reference.py": "5e1d2d1803fe38224a268860fe287c9ce22adc4646bdc38d3edf0d40d53de854",
+    "checker/test_exact.py": "1d4e2e3690697ca653c157425dfd005c52773222f46f5a0715b595858b481ce4",
+    "racer/domain_bisection.py": "ea969e07be01a225bb6ef56a112f35ff29df58e251bea5d8d46398474e0d084a",
+    "checker/test_domains.py": "ebccbffb4b10d578def60e4daa4dd05c174d85d443bacfc1183fbcf98b587456",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/asymptotic-source.tar.gz": "299d0ada55b7b8344463709cbac2a0444142128e3e0e1fdc09ac3e5dea2519f6",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/symbolic-racer-asymptotic": "30aa592862a0ea7455c2eec4bd8df075dac90d7f744950bc51b41089c7ff4de5",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/summary.json": "8488d113d927dee9f666244a7598f55e88e239c4c2d9cab6dbfb259243b865d9",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/grammar.json": "185177daf8c3d10ec4609191b8ea0b7616d0fda24f8e4c8e2f28f31a9ca3a0fb",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic/BESSELJ-survivors.json": "8d26b4b7f79c26e96e07653d72a733a85fe0f56eac5c4050c3c8c1e767fbc6fa",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-asymptotic-final-checked.json": "22e23abc8dfadcb86b4db65de65a87bd1c7233ef7604e5f95d95c0f4d262cb3c",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/bessel-all-regimes-final-checked.json": "91fe7c85f963ab3e676de5a5cad8090ec77316dce405d93d02abea0f8e4ea2d7"
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "checker",
+        "-p",
+        "test_exact.py",
+        "-k",
+        "bessel",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tail": [
+        "----------------------------------------------------------------------",
+        "Ran 5 tests in 0.983s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "checker",
+        "-p",
+        "test_domains.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tail": [
+        "----------------------------------------------------------------------",
+        "Ran 8 tests in 0.037s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "checker",
+        "-p",
+        "test_exact.py",
+        "-k",
+        "asymptotic",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tail": [
+        "----------------------------------------------------------------------",
+        "Ran 1 test in 0.003s",
+        "",
+        "OK"
+      ]
+    }
+  ],
+  "packet": {
+    "payload_hashes": true,
+    "source_mirror": true,
+    "zip_equal": true,
+    "packet_files_sha256": {
+      "README.txt": "bd7defbba8292f65a77cdf908541931b6d283a8c95d623a9b59c49bde7381979",
+      "manifest.json": "7d679d70ec3ab0f7e2bec2f58cd13bc1349b1c9b507c1b6285e45e01ac737bf3",
+      "domain_bisection.py": "ea969e07be01a225bb6ef56a112f35ff29df58e251bea5d8d46398474e0d084a",
+      "plan.json": "a0fb94a2f168ede9d291b0b78cb06a11c4b03619ecc6d00ef367b628bd060cac"
+    },
+    "zip_sha256": "7b466e6b1e43827ab0aab468f2a0830899b792ec7153bd97ef0b056a55bcd4a1"
+  },
+  "verified_independent_J_receipt": {
+    "complete": true,
+    "programs": 1536,
+    "observations": 41,
+    "executions": 62976,
+    "registered_trig_arguments": 17
+  },
+  "verified_real_function_receipt": {
+    "complete": true,
+    "counts": {
+      "observations": 1007,
+      "excluded": 997
+    }
+  },
+  "source_review": "DLMF a1/a2/a3 dyadic coefficients/signs, J/Y Hankel seed combinations, three forward recurrence associations, mixed-radix IDs and coherent model ordering agree. Independent sqrt uses rational midpoint/parity checks and a verified enclosing lattice search; registered SIN/COS leaves are calculations, never Excel readings. Negative-phase floor and dyadic-center displacement widening are valid.",
+  "limitations": [
+    "At review time the survivor checker lacks reconciliation to J summary survivor count and full grammar-axis validation. Actual1536-file/summary/receipt totals agree; missing-list corruption control was recommended."
+  ],
+  "inventory_review": "Current asymptotic_inventory checks exact axes, function inventory, unique in-range survivor IDs and equality to the J summary survivor count; formerly recommended reconciliation is implemented."
+}

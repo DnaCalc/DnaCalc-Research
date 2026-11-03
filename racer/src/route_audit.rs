@@ -195,6 +195,118 @@ fn encoded(value: &CalcValue) -> String {
     calc_verdict::encode_result(value).expect("scalar audit value")
 }
 
+/// Fixed DLMF Hankel programs with universal decimal-constant quantizers.
+/// This is a numerical hypothesis study, not a replacement application route.
+pub fn bessel_asymptotic(input: &str, tables: &str, out: &str) {
+    use crate::dsl::{EvalModel, Op, WIDE_MODELS};
+    use crate::eval::{binop, Val, CW};
+    use crate::ported::excel_numeric::{Fpu, Hard, excel_cos, excel_sin};
+    use std::io::Write;
+    fn arithmetic(kind: usize, model: EvalModel, a: Val, b: Val) -> Val {
+        binop::<Hard>(match kind { 0 => Op::Add(0,0), 1 => Op::Mul(0,0), _ => Op::Div(0,0) },model,a,b)
+    }
+    fn negative(a: Val) -> Val {
+        arithmetic(1,EvalModel::ResidentPc64,Val::f64(-1.0),a)
+    }
+    fn extended_unary(a: Val, model: EvalModel, kind: usize) -> Val {
+        if matches!(model,EvalModel::Strict) {
+            let x=a.to_f64::<Hard>();
+            if kind==0 {return Val::f64(x.sqrt());}
+            let x=Val::f64(x).to_ext();
+            let v=if kind==1 {Hard::sin(&x,CW)}else{Hard::cos(&x,CW)};
+            return Val::f64(Hard::store(&v,CW));
+        }
+        let cw=if matches!(model,EvalModel::StoredPc53|EvalModel::ResidentPc53) {0x123f}else{CW};
+        let x=a.to_ext();
+        let v=match kind {0=>Hard::sqrt(&x,cw),1=>Hard::sin(&x,cw),_=>Hard::cos(&x,cw)};
+        if matches!(model,EvalModel::StoredPc53|EvalModel::StoredPc64) {Val::f64(Hard::store(&v,CW))}else{Val::Ext(v)}
+    }
+    fn seed(function:&str,x:f64,n:usize,phase:f64,scale:f64,model:EvalModel,trig:usize,terms:usize)->Val {
+        let a=Val::f64(x);let one=Val::f64(1.0);
+        let z=arithmetic(2,model,one,a);
+        let z2=arithmetic(1,model,z,z);
+        let phase=arithmetic(0,model,a,Val::f64(-phase));
+        let (s,c)=match trig {
+            0=>(Val::f64(excel_sin(phase.to_f64::<Hard>())),Val::f64(excel_cos(phase.to_f64::<Hard>()))),
+            1=>(extended_unary(phase,model,1),extended_unary(phase,model,2)),
+            _=>(Val::f64(libm::sin(phase.to_f64::<Hard>())),Val::f64(libm::cos(phase.to_f64::<Hard>()))),
+        };
+        // Integer-order DLMF a1,a2,a3 are exact dyadic rationals here.
+        let (a1,a2,a3)=if n==0 {(-0.125,9.0/128.0,-75.0/1024.0)}else{(0.375,-15.0/128.0,105.0/1024.0)};
+        let p=if terms>=2 {arithmetic(0,model,one,negative(arithmetic(1,model,Val::f64(a2),z2)))}else{one};
+        let q=if terms==0 {Val::f64(0.0)}else {
+            let coefficient=if terms>=2 {arithmetic(0,model,Val::f64(a1),negative(arithmetic(1,model,Val::f64(a3),z2)))}else{Val::f64(a1)};
+            arithmetic(1,model,coefficient,z)
+        };
+        let body=if function=="BESSELJ" {
+            arithmetic(0,model,arithmetic(1,model,c,p),negative(arithmetic(1,model,s,q)))
+        }else{arithmetic(0,model,arithmetic(1,model,s,p),arithmetic(1,model,c,q))};
+        let amplitude=extended_unary(arithmetic(2,model,Val::f64(scale),a),model,0);
+        arithmetic(1,model,amplitude,body)
+    }
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();
+    let original=crate::lines::<Value>(input);
+    let tables:Value=serde_json::from_slice(&fs::read(tables).unwrap()).unwrap();
+    let phases=tables["phases"].as_array().unwrap();let scales=tables["scales"].as_array().unwrap();
+    assert_eq!((phases.len(),scales.len()),(10,10));
+    let decode=|v:&Value| f64::from_bits(u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"),16).unwrap());
+    let mut counts=Vec::new();let mut programs=Vec::new();
+    for phase in 0..10 {for scale in 0..10 {for body in 0..5 {for recurrence in 0..5 {for trig in 0..3 {for terms in 0..3 {for association in 0..3 {
+        programs.push(json!({"id":programs.len(),"phase":phase,"scale":scale,"body":body,"recurrence":recurrence,"trig":trig,"terms":terms,"association":association}));
+    }}}}}}}
+    json_write(destination.join("grammar.json").to_str().unwrap(),&json!({
+        "programs":programs.len(),"axes_in_loop_order":[["phase",10],["scale",10],["body",5],["recurrence",5],["trig",3],["terms",3],["association",3]],
+        "id":"Mixed-radix rank, association fastest. Model IDs follow WIDE_MODELS. Trig0=current worksheet kernel,1=native instruction,2=libm.",
+        "terms":"0 leading sin/cos;1 includes a1/x;2 includes a2/x^2 and a3/x^3."}));
+    for function in ["BESSELJ","BESSELY"] {
+        let rows:Vec<_>=original.iter().enumerate().filter_map(|(i,r)| {
+            if r["function"]!=function||!r["result_index"].is_null()||!r["expected"].as_str()?.starts_with("0x") {return None;}
+            let args=r["args"].as_array()?;if args.len()!=2||!args.iter().all(|a|a.as_str().is_some_and(|s|s.starts_with("0x"))) {return None;}
+            let x=decode(&args[0]);let n=decode(&args[1]);
+            (x.abs()>=2_f64.powi(24)&&x.is_finite()&&n==n.trunc()&&(0.0..=4.0).contains(&n)&&(function=="BESSELJ"||x>0.0))
+                .then_some((i,x,n as usize,r))
+        }).collect();
+        assert!(!rows.is_empty());
+        let mut first=std::io::BufWriter::new(fs::OpenOptions::new().write(true).create_new(true).open(destination.join(format!("{function}-first-kills.tsv"))).unwrap());
+        writeln!(first,"program\ttrace_index\tgot").unwrap();
+        let mut alive=Vec::new();let mut executions=0;
+        for p in &programs {
+            let index=|key:&str|p[key].as_u64().unwrap()as usize;
+            let phase=&phases[index("phase")]["values"];
+            let phase0=decode(&phase[0]["binary64"]);let phase1=decode(&phase[1]["binary64"]);
+            let scale=decode(&scales[index("scale")]["value"]["binary64"]);
+            let body=WIDE_MODELS[index("body")];let model=WIDE_MODELS[index("recurrence")];
+            let mut killed=false;
+            for &(at,x,n,row) in &rows {
+                let ax=x.abs();
+                let mut previous=seed(function,ax,0,phase0,scale,body,index("trig"),index("terms"));
+                let mut current=seed(function,ax,1,phase1,scale,body,index("trig"),index("terms"));
+                let tox=arithmetic(2,model,Val::f64(2.0),Val::f64(ax));
+                for k in 1..n {
+                    let step=match index("association") {
+                        0=>arithmetic(1,model,arithmetic(1,model,Val::f64(k as f64),tox),current),
+                        1=>arithmetic(1,model,arithmetic(2,model,Val::f64(2.0*k as f64),Val::f64(ax)),current),
+                        _=>arithmetic(2,model,arithmetic(1,model,Val::f64(2.0*k as f64),current),Val::f64(ax)),
+                    };
+                    let next=arithmetic(0,model,step,negative(previous));previous=current;current=next;
+                }
+                let result=if n==0 {previous}else{current};
+                let mut got=result.to_f64::<Hard>();if x<0.0&&n%2==1 {got=-got;}
+                let encoded=format!("0x{:016x}",got.to_bits());executions+=1;
+                if row["expected"]!=encoded {
+                    writeln!(first,"{}\t{at}\t{encoded}",index("id")).unwrap();killed=true;break;
+                }
+            }
+            if !killed {alive.push(index("id"));}
+        }
+        json_write(destination.join(format!("{function}-survivors.json")).to_str().unwrap(),&json!(alive));
+        counts.push(json!({"function":function,"programs":programs.len(),"observations":rows.len(),"executions":executions,"survivors":alive.len()}));
+    }
+    let result=json!({"complete":true,"counts":counts,"sources":"DLMF10.17.1--4 and generated universal-constant quantizers; no Excel output used as a component.",
+        "limits":"Numeric observations only, |x|>=2^24, integer orders0..4. Exact input/answer traces retained; domain outcomes excluded as separate obligations. Five coherent arithmetic/store models; current worksheet trig, native instruction and libm trig leaves. No candidate is an Excel kernel unless every obligation in its region is satisfied; this study alone cannot promote a body."});
+    json_write(destination.join("summary.json").to_str().unwrap(),&result);println!("{result}");
+}
+
 /// Freeze ordinary Workbook predictions for one question sheet. No expected
 /// answer is read or synthesized; these predictions never enter an Excel bank.
 pub fn sheet_predictions(input: &str, out: &str) {

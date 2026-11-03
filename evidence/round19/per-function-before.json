@@ -1,0 +1,580 @@
+{
+  "complete": true,
+  "mismatches": 1152,
+  "nonpasses_in_classification": 1159,
+  "other_verdicts": {
+    "not_modeled": 6,
+    "not_run": 1
+  },
+  "functions": [
+    {
+      "function": "CUMPRINC",
+      "mismatches": 157,
+      "numeric": 157,
+      "within_16_ulp": 153,
+      "larger_numeric": 4,
+      "other": {}
+    },
+    {
+      "function": "PPMT",
+      "mismatches": 104,
+      "numeric": 104,
+      "within_16_ulp": 92,
+      "larger_numeric": 12,
+      "other": {}
+    },
+    {
+      "function": "BESSELJ",
+      "mismatches": 87,
+      "numeric": 86,
+      "within_16_ulp": 10,
+      "larger_numeric": 76,
+      "other": {
+        "type_or_error": 1
+      }
+    },
+    {
+      "function": "GEOMEAN",
+      "mismatches": 84,
+      "numeric": 84,
+      "within_16_ulp": 84,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "BESSELY",
+      "mismatches": 80,
+      "numeric": 80,
+      "within_16_ulp": 0,
+      "larger_numeric": 80,
+      "other": {}
+    },
+    {
+      "function": "IPMT",
+      "mismatches": 80,
+      "numeric": 80,
+      "within_16_ulp": 79,
+      "larger_numeric": 1,
+      "other": {}
+    },
+    {
+      "function": "VAR.S",
+      "mismatches": 76,
+      "numeric": 76,
+      "within_16_ulp": 32,
+      "larger_numeric": 44,
+      "other": {}
+    },
+    {
+      "function": "BINOM.DIST",
+      "mismatches": 71,
+      "numeric": 71,
+      "within_16_ulp": 61,
+      "larger_numeric": 10,
+      "other": {}
+    },
+    {
+      "function": "CUMIPMT",
+      "mismatches": 67,
+      "numeric": 67,
+      "within_16_ulp": 66,
+      "larger_numeric": 1,
+      "other": {}
+    },
+    {
+      "function": "VAR.P",
+      "mismatches": 63,
+      "numeric": 63,
+      "within_16_ulp": 23,
+      "larger_numeric": 40,
+      "other": {}
+    },
+    {
+      "function": "BESSELI",
+      "mismatches": 47,
+      "numeric": 46,
+      "within_16_ulp": 43,
+      "larger_numeric": 3,
+      "other": {
+        "type_or_error": 1
+      }
+    },
+    {
+      "function": "LINEST",
+      "mismatches": 26,
+      "numeric": 26,
+      "within_16_ulp": 19,
+      "larger_numeric": 7,
+      "other": {}
+    },
+    {
+      "function": "STDEV",
+      "mismatches": 17,
+      "numeric": 17,
+      "within_16_ulp": 5,
+      "larger_numeric": 12,
+      "other": {}
+    },
+    {
+      "function": "VARP",
+      "mismatches": 16,
+      "numeric": 16,
+      "within_16_ulp": 2,
+      "larger_numeric": 14,
+      "other": {}
+    },
+    {
+      "function": "VARPA",
+      "mismatches": 14,
+      "numeric": 14,
+      "within_16_ulp": 14,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "STDEV.S",
+      "mismatches": 13,
+      "numeric": 13,
+      "within_16_ulp": 13,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "STDEVA",
+      "mismatches": 13,
+      "numeric": 13,
+      "within_16_ulp": 13,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "POISSON.DIST",
+      "mismatches": 12,
+      "numeric": 12,
+      "within_16_ulp": 11,
+      "larger_numeric": 1,
+      "other": {}
+    },
+    {
+      "function": "LOGEST",
+      "mismatches": 11,
+      "numeric": 9,
+      "within_16_ulp": 4,
+      "larger_numeric": 5,
+      "other": {
+        "type_or_error": 2
+      }
+    },
+    {
+      "function": "STDEV.P",
+      "mismatches": 10,
+      "numeric": 10,
+      "within_16_ulp": 10,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "VAR",
+      "mismatches": 10,
+      "numeric": 10,
+      "within_16_ulp": 5,
+      "larger_numeric": 5,
+      "other": {}
+    },
+    {
+      "function": "Infix &",
+      "mismatches": 9,
+      "numeric": 0,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other": {
+        "text_value": 9
+      }
+    },
+    {
+      "function": "HYPGEOM.DIST",
+      "mismatches": 6,
+      "numeric": 6,
+      "within_16_ulp": 4,
+      "larger_numeric": 2,
+      "other": {}
+    },
+    {
+      "function": "NEGBINOM.DIST",
+      "mismatches": 5,
+      "numeric": 5,
+      "within_16_ulp": 5,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "GAMMA.DIST",
+      "mismatches": 4,
+      "numeric": 4,
+      "within_16_ulp": 4,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "RATE",
+      "mismatches": 3,
+      "numeric": 3,
+      "within_16_ulp": 0,
+      "larger_numeric": 3,
+      "other": {}
+    },
+    {
+      "function": "BETADIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "BETAINV",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "BINOM.DIST.RANGE",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "BINOMDIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "CHIDIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "CONFIDENCE",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "DURATION",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "FDIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "FINV",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "GAMMADIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "GAMMAINV",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "HYPGEOMDIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "IRR",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 2,
+      "other": {}
+    },
+    {
+      "function": "LOGINV",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "NEGBINOMDIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "ODDFYIELD",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 2,
+      "other": {}
+    },
+    {
+      "function": "POISSON",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "ROUND",
+      "mismatches": 2,
+      "numeric": 0,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other": {
+        "capture_failure": 2
+      }
+    },
+    {
+      "function": "TDIST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "TINV",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "TTEST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "YIELD",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 0,
+      "larger_numeric": 2,
+      "other": {}
+    },
+    {
+      "function": "Z.TEST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "ZTEST",
+      "mismatches": 2,
+      "numeric": 2,
+      "within_16_ulp": 2,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "BETA.DIST",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "BETA.INV",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "CHISQ.DIST.RT",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "CHISQ.INV",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "CONFIDENCE.NORM",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "CONFIDENCE.T",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "F.DIST.RT",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "F.INV",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "F.INV.RT",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "GAMMA.INV",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "LOGNORM.INV",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "NORM.S.DIST",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "PMT",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "T.DIST",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "T.DIST.2T",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "T.DIST.RT",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "T.INV.2T",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "T.TEST",
+      "mismatches": 1,
+      "numeric": 1,
+      "within_16_ulp": 1,
+      "larger_numeric": 0,
+      "other": {}
+    },
+    {
+      "function": "TRUNC",
+      "mismatches": 1,
+      "numeric": 0,
+      "within_16_ulp": 0,
+      "larger_numeric": 0,
+      "other": {
+        "capture_failure": 1
+      }
+    }
+  ],
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/classification-before/cells.jsonl": "045ef9d59c8fe6ddd43571344b094b444103326369a8b41538e521c648760520",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round19/classification-before/summary.json": "38b4b505305ba42d65603f00e9f14b9d812a2060d3ffb96a2bf5db90f77d09ae"
+  },
+  "limits": "Exactly the mismatched verdicts, including capture failures. Refusals and missing cells remain failures outside this table. External and circular-policy nonpasses are outside the classifier; the corpus denominator includes them. The 16-ULP split is triage, not an algorithm or accuracy concession."
+}

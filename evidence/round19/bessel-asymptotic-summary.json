@@ -1,0 +1,21 @@
+{
+  "complete": true,
+  "counts": [
+    {
+      "executions": 131340,
+      "function": "BESSELJ",
+      "observations": 41,
+      "programs": 67500,
+      "survivors": 1536
+    },
+    {
+      "executions": 67500,
+      "function": "BESSELY",
+      "observations": 11,
+      "programs": 67500,
+      "survivors": 0
+    }
+  ],
+  "limits": "Numeric observations only, |x|>=2^24, integer orders0..4. Exact input/answer traces retained; domain outcomes excluded as separate obligations. Five coherent arithmetic/store models; current worksheet trig, native instruction and libm trig leaves. No candidate is an Excel kernel unless every obligation in its region is satisfied; this study alone cannot promote a body.",
+  "sources": "DLMF10.17.1--4 and generated universal-constant quantizers; no Excel output used as a component."
+}
