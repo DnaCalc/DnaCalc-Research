@@ -16,12 +16,13 @@ import subprocess
 import tempfile
 
 if __package__:
-    from .corpus_cases import freeze
+    from .corpus_cases import freeze, numeric_mismatch
 else:
-    from corpus_cases import freeze
+    from corpus_cases import freeze, numeric_mismatch
 
 
-# Owner's parked numerical producers. They remain in the problem report.
+# Parked last-bit producers remain in the report. R24 still asks questions for
+# their larger corpus errors before turning to unparked last-bit families.
 PARKED = {'PMT', 'IPMT', 'PPMT', 'CUMIPMT', 'CUMPRINC', 'FV', 'PV', 'NPER',
           'VAR', 'VAR.S', 'VARP', 'VAR.P', 'VARA', 'VARPA', 'STDEV', 'STDEV.S',
           'STDEVP', 'STDEV.P', 'STDEVA', 'STDEVPA', 'GEOMEAN'}
@@ -73,13 +74,26 @@ def scalar_source(value):
     raise ValueError('scalar seed required')
 
 
-def choose_functions(problem, limit):
-    candidates = [r for r in problem['functions'] if r['function'] not in PARKED
+def choose_functions(problem, limit, include_larger_parked=False):
+    candidates = [r for r in problem['functions'] if (r['function'] not in PARKED or
+                  include_larger_parked and r['corpus']['larger_numeric'] > 0)
                   and re.fullmatch(r'[A-Z][A-Z0-9_.]*', r['function'])
                   and any(v for source in ('corpus', 'bank') for v in r[source].values())]
     candidates.sort(key=lambda r: (-r['corpus']['larger_numeric'], -r['corpus']['last_bit'],
                                   -r['bank']['larger_numeric'], -r['bank']['last_bit'], r['function']))
     return [r['function'] for r in candidates[:limit]]
+
+
+def seed_candidates(rows, function, round_number):
+    candidates = [r for r in rows if r['function'] == function]
+    if round_number >= 24:
+        if function in PARKED:
+            candidates = [r for r in candidates if numeric_mismatch(r['expected'], r['actual']) == 'larger_numeric']
+        candidates.sort(key=lambda r: (numeric_mismatch(r['expected'], r['actual']) != 'larger_numeric',
+                                       r['verdict'] == 'matched', r['id']))
+    else:
+        candidates.sort(key=lambda r: (r['verdict'] == 'matched', r['id']))
+    return candidates
 
 
 def build_questions(seeds, per_function=50, round_number=23, excluded_formulas=()):
@@ -103,6 +117,12 @@ def build_questions(seeds, per_function=50, round_number=23, excluded_formulas=(
         seen.add(key)
         counts[seed['function']] += 1
         emit(body, seed, mutation, role='question', **extra)
+    def array_operand(rows, index, seed, mutation):
+        text = '{'+';'.join(','.join(format(number(v), '.17g') for v in row) for row in rows)+'}'
+        echoes = [emit(f'INDEX({text},{r+1},{c+1})', seed, mutation,
+                       role='operand_echo', argument_index=index, intended_bits=v)
+                  for r, row in enumerate(rows) for c, v in enumerate(row)]
+        return text, echoes
     for seed in seeds:
         function = seed['function']
         allowance = (per_function-counts[function])//seed_counts[function]
@@ -126,12 +146,6 @@ def build_questions(seeds, per_function=50, round_number=23, excluded_formulas=(
                 x = []
             numeric = lambda v: isinstance(v, str) and re.fullmatch(r'0x[0-9a-fA-F]{16}', v) and math.isfinite(number(v))
             if y and len(x) == len(y) and all(numeric(v) for v in y) and all(numeric(v) for row in x for v in row):
-                def paired_array(rows, index):
-                    text = '{'+';'.join(','.join(format(number(v), '.17g') for v in row) for row in rows)+'}'
-                    echoes = [emit(f'INDEX({text},{r+1},{c+1})', seed, 'paired_array_operand',
-                                   role='operand_echo', argument_index=index, intended_bits=v)
-                              for r, row in enumerate(rows) for c, v in enumerate(row)]
-                    return text, echoes
                 variants = [('reverse_observations', list(reversed(y)), list(reversed(x)))]
                 for copies in (2, 4):
                     if len(y)*copies <= 64:
@@ -147,10 +161,46 @@ def build_questions(seeds, per_function=50, round_number=23, excluded_formulas=(
                     if counts[function] >= limits[function]:
                         break
                     changed = original.copy()
-                    changed[0], y_echo = paired_array([[v] for v in response], 0)
-                    changed[1], x_echo = paired_array(predictors, 1)
+                    changed[0], y_echo = array_operand([[v] for v in response], 0, seed, 'paired_array_operand')
+                    changed[1], x_echo = array_operand(predictors, 1, seed, 'paired_array_operand')
                     call(seed, changed, tag, operand_echoes=y_echo+x_echo,
                          transport='Paired decimal arrays; interpret only the captured operand echoes.')
+        if round_number > 23 and function in (PARKED | {'IRR'}):
+            # Observable numeric-array transformations for the larger errors.
+            # These are questions, not floating-point invariance assertions.
+            vector = seed['args'][0] if seed['args'] else None
+            if isinstance(vector, list) and vector and all(isinstance(row, list) for row in vector):
+                shape = [len(row) for row in vector]
+                flat = [v for row in vector for v in row]
+                if 1 <= len(flat) <= 64 and all(isinstance(v, str) and
+                        re.fullmatch(r'0x[0-9a-fA-F]{16}', v) and math.isfinite(number(v)) for v in flat):
+                    def reshape(values):
+                        output, start = [], 0
+                        for width in shape:
+                            output.append(values[start:start+width])
+                            start += width
+                        return output
+                    variants = [('reverse', reshape(flat[::-1]))]
+                    for copies in (2, 4):
+                        if len(flat)*copies <= 64:
+                            variants.append((f'repeat_{copies}', vector*copies))
+                    for exponent in (-20, 20):
+                        try:
+                            scaled = [bits(math.ldexp(number(v), exponent)) for v in flat]
+                        except OverflowError:
+                            continue
+                        variants.append((f'scale_2^{exponent}', reshape(scaled)))
+                    for direction, toward in [('down', -math.inf), ('up', math.inf)]:
+                        neighbor = math.nextafter(number(flat[0]), toward)
+                        if math.isfinite(neighbor):
+                            variants.append((f'first_neighbor_{direction}', reshape([bits(neighbor)]+flat[1:])))
+                    for tag, transformed in variants:
+                        if counts[function] >= limits[function]:
+                            break
+                        changed = original.copy()
+                        changed[0], echoes = array_operand(transformed, 0, seed, 'numeric_array_operand')
+                        call(seed, changed, 'numeric_array_'+tag, operand_echoes=echoes,
+                             transport='Decimal numeric array; every intended input requires its captured echo.')
         for index, value in enumerate(seed['args']):
             if counts[seed['function']] >= limits[function]:
                 break
@@ -235,7 +285,7 @@ def generate(corpus, problems, executable, powershell, output, functions=12, per
     problem = json.loads(steering.read_text())
     if problem.get('complete') is not True:
         raise ValueError('complete maintained problem list required')
-    wanted = choose_functions(problem, functions)
+    wanted = choose_functions(problem, functions, round_number >= 24)
     frozen = output/'corpus-seeds'
     frozen.mkdir()
     # Keep the original source bindings and exclusions, plus selected records.
@@ -254,8 +304,7 @@ def generate(corpus, problems, executable, powershell, output, functions=12, per
         (frozen/'pool-receipt.json').write_text(json.dumps(pool_receipt, indent=2)+'\n')
     seeds, shape_counts = [], Counter()
     for function in wanted:
-        candidates = [r for r in rows if r['function'] == function]
-        candidates.sort(key=lambda r: (r['verdict'] == 'matched', r['id']))
+        candidates = seed_candidates(rows, function, round_number)
         shapes = set()
         for row in candidates:
             shape = (tuple(type(v).__name__ for v in row['args']), row['verdict'])
@@ -311,6 +360,7 @@ def generate(corpus, problems, executable, powershell, output, functions=12, per
         predecessor=predecessor, seeds_per_function=seeds_per_function,
         stable_producer_hashes=input_hashes,
         seeds=len(seeds), seeded_functions=dict(shape_counts), calls_by_function=dict(counts),
+        seed_error_classes=dict(Counter(r['function']+':'+numeric_mismatch(r['expected'], r['actual']) for r in seeds)),
         selected_calls=sum(counts.values()), formula_cells=len(questions),
         prediction_provenance=dict(Counter(r['prediction_provenance'] for r in calculated)),
         mutations=dict(Counter(q['mutation'] for q in questions if q['role'] == 'question')),
@@ -322,6 +372,9 @@ def generate(corpus, problems, executable, powershell, output, functions=12, per
             fuzzer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()),
         limits='Bounded direct scalar/literal-array calls accepted by the existing corpus freezer. '
             'R24 adds array-shape, boolean-flag and selected-result seed classes; predecessor question formulas are omitted. '
+            'R24 includes parked producers only for measured larger corpus errors; parked last-bit-only work is excluded. '
+            'Seed selection prioritizes larger numeric mismatches and admits only larger-error seeds from parked families. '
+            'Numeric-array reversals, repetitions, power-of-two scales and first-element neighbors include every operand echo. '
             'Reference/nested-expression seeds are excluded and counted by that freezer. '
             'Generic mutations change one argument; paired regression mutations change response and predictor arrays together. Arrays may be explicitly reshaped. '
             'Finite binary64 neighbors use exact small-integer expressions; underflow, signed zero and array decimal transport require echoes. '

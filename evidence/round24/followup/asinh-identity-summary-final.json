@@ -1,0 +1,101 @@
+{
+  "complete": true,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/asinh-bank.jsonl": "d7cdfda31c547f36a5960ae423e6db9f4664d1fa48daf5dcadfbf18c933bc546",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/asinh-ln-requests-final.json": "e4c0e045fa69d1cc93acdaf3450229ecc1932ea822e7f176c93dc8211f7f91b6",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/asinh-ln-predictions-final.jsonl": "8a34218115cac637e3329489bf02613d7fc7e65b9928e91cd24b264b1da1d355",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/asinh-discovery-provenance.json": "bf119e77bb95f6c8a20c749603b538027878dbe02195f952d7c5bfcb543df381"
+  },
+  "transport_arguments_equal": true,
+  "models": [
+    "strict",
+    "stored_pc64",
+    "resident_pc64",
+    "stored_pc53",
+    "resident_pc53"
+  ],
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      3423,
+      3418,
+      3418,
+      0,
+      0
+    ],
+    [
+      3423,
+      3423,
+      3418,
+      5,
+      0
+    ],
+    [
+      3423,
+      3405,
+      3418,
+      2,
+      15
+    ],
+    [
+      3423,
+      3418,
+      3418,
+      0,
+      0
+    ],
+    [
+      3423,
+      3418,
+      3418,
+      0,
+      0
+    ]
+  ],
+  "first_losses": [
+    null,
+    null,
+    {
+      "original": {
+        "actual": "0x3f68b5002ada397a",
+        "args": [
+          "0x3f68b5029f4607fb"
+        ],
+        "expected": "0x3f68b5002ada397a",
+        "function": "ASINH",
+        "id": "oc2340",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20430",
+          "invocation": {
+            "compatibility_version": "2",
+            "input_transport": "cell_value2_bulk"
+          },
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle-20430/build-20430/ASINH.jsonl"
+      },
+      "prediction": "0x3f68b5002ada377b"
+    },
+    null,
+    null
+  ],
+  "excluded": {
+    "2": "existing input refusal",
+    "3": "existing input refusal",
+    "2313": "existing input refusal",
+    "2314": "existing input refusal"
+  },
+  "unchanged_square_overflow_rows": 1107,
+  "zero_loss_improvements": [
+    1
+  ],
+  "source_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/asinh-identity-study.py": "fd5aeb4e9d915e1c506f31c5565935b4f8ea972c3731ab0902092aff8e1051f8",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a",
+    "/tmp/dnacalc-research-target/release/symbolic-racer": "1942cc9cf3c20c60ed749415e75fab0d99a372e201b4e70da4bc0a1b71c809fd"
+  },
+  "limits": "Five fixed precision/store programs for sign(x)*LN(abs(x)+sqrt(x*x+1)); existing square-overflow guard and subnormal admission remain unchanged. Independent rational arithmetic/squared-midpoint roots; worksheetLN is the original conditional numerical leaf. Strict identity must reproduce every admitted registered ASINH. No fitted coefficient, threshold, row selector or new Excel answer."
+}

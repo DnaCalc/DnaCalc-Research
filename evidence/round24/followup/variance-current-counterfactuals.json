@@ -1,0 +1,196 @@
+{
+  "complete": true,
+  "registered_controls": 497,
+  "programs": {
+    "0": "original centered two-pass",
+    "7": "(sum(x*x)-sum(x)^2/n)/d",
+    "8": "(n*sum(x*x)-sum(x)^2)/(n*d)"
+  },
+  "counts_all_exact_baseline_gains_losses": {
+    "VAR.S:0": [
+      236,
+      160,
+      160,
+      0,
+      0
+    ],
+    "VAR.S:7": [
+      236,
+      80,
+      160,
+      76,
+      156
+    ],
+    "VAR.S:8": [
+      236,
+      36,
+      160,
+      34,
+      158
+    ],
+    "VAR.P:0": [
+      141,
+      78,
+      78,
+      0,
+      0
+    ],
+    "VAR.P:7": [
+      141,
+      32,
+      78,
+      29,
+      75
+    ],
+    "VAR.P:8": [
+      141,
+      70,
+      78,
+      63,
+      71
+    ],
+    "VAR:0": [
+      40,
+      30,
+      30,
+      0,
+      0
+    ],
+    "VAR:7": [
+      40,
+      10,
+      30,
+      10,
+      30
+    ],
+    "VAR:8": [
+      40,
+      4,
+      30,
+      4,
+      30
+    ],
+    "VARP:0": [
+      40,
+      24,
+      24,
+      0,
+      0
+    ],
+    "VARP:7": [
+      40,
+      4,
+      24,
+      4,
+      24
+    ],
+    "VARP:8": [
+      40,
+      16,
+      24,
+      16,
+      24
+    ],
+    "STDEV:0": [
+      40,
+      23,
+      23,
+      0,
+      0
+    ],
+    "STDEV:7": [
+      40,
+      18,
+      23,
+      17,
+      22
+    ],
+    "STDEV:8": [
+      40,
+      11,
+      23,
+      10,
+      22
+    ]
+  },
+  "first_losses": {
+    "VAR.P:7": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:16:4",
+      "formula": "=VAR.P({141.6436,192.14,186,336.629,277.2,-83.1576,-93.958})",
+      "expected": "0x40d7447551e3fda5",
+      "baseline": "0x40d7447551e3fda5",
+      "prediction": "0x40d7447551e3fda6"
+    },
+    "VAR.S:8": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:51:4",
+      "formula": "=VAR.S({-54.1,221.2,-27.3})",
+      "expected": "0x40d680db851eb851",
+      "baseline": "0x40d680db851eb851",
+      "prediction": "0x40d680db851eb853"
+    },
+    "VAR.S:7": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:121:4",
+      "formula": "=VAR.S({3.05,3.6,3.1164,3.7,3.1})",
+      "expected": "0x3fb8a93348347fc6",
+      "baseline": "0x3fb8a93348347fc6",
+      "prediction": "0x3fb8a93348347f00"
+    },
+    "VAR.P:8": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:241:4",
+      "formula": "=VAR.P({3.05,3.6,3.1164,3.7,3.1})",
+      "expected": "0x3fb3ba8f6cf6cc9e",
+      "baseline": "0x3fb3ba8f6cf6cc9e",
+      "prediction": "0x3fb3ba8f6cf6cb85"
+    },
+    "VAR:7": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:461:4",
+      "formula": "=VAR({2.299,2.361,2.166,2.146,2.065,2.301})",
+      "expected": "0x3f8aa4914460822e",
+      "baseline": "0x3f8aa4914460822e",
+      "prediction": "0x3f8aa49144608000"
+    },
+    "VAR:8": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:461:4",
+      "formula": "=VAR({2.299,2.361,2.166,2.146,2.065,2.301})",
+      "expected": "0x3f8aa4914460822e",
+      "baseline": "0x3f8aa4914460822e",
+      "prediction": "0x3f8aa49144608000"
+    },
+    "VARP:7": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:493:4",
+      "formula": "=VARP({3.05,3.6,3.1164,3.7,3.1})",
+      "expected": "0x3fb3ba8f6cf6cc9e",
+      "baseline": "0x3fb3ba8f6cf6cc9e",
+      "prediction": "0x3fb3ba8f6cf6cc00"
+    },
+    "VARP:8": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:493:4",
+      "formula": "=VARP({3.05,3.6,3.1164,3.7,3.1})",
+      "expected": "0x3fb3ba8f6cf6cc9e",
+      "baseline": "0x3fb3ba8f6cf6cc9e",
+      "prediction": "0x3fb3ba8f6cf6cb85"
+    },
+    "STDEV:7": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:535:4",
+      "formula": "=STDEV({2.156,2.3937,2.552,2.254})",
+      "expected": "0x3fc60e583e548a0a",
+      "baseline": "0x3fc60e583e548a0a",
+      "prediction": "0x3fc60e583e548ab7"
+    },
+    "STDEV:8": {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_statistics:535:4",
+      "formula": "=STDEV({2.156,2.3937,2.552,2.254})",
+      "expected": "0x3fc60e583e548a0a",
+      "baseline": "0x3fc60e583e548a0a",
+      "prediction": "0x3fc60e583e548ab7"
+    }
+  },
+  "source_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/variance-current-counterfactuals.py": "7d52c2ac3f8ec28c0f0fc1e8db3d4a4950937581153c85261a223bb52d8d1988",
+    "checker/variance.py": "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a"
+  },
+  "input_sha256": "ecaee5f7fad8f0a864bc1f2f594c3a80417248f9815a50c6f12526cfefcc742a",
+  "limits": "Existing independent exact rational variance grammar, three fixed strict formulas only; no fitted selector or new numerical program. Original numeric scope/exclusions from variance-prepare. Short original literals refute a15-digit-limit explanation but do not prove Excel operand bits; new operand echoes are still questions. Every changing uncentered formula loses existing matches; no production adoption."
+}

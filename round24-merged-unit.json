@@ -1,0 +1,81 @@
+{
+  "id": "dc-j9k-r24-merged-publication",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "1b6f4f1e80c0448ac9e75e3fb6e1ace86b9c0044",
+  "scope": "R24 publication against the merged master source state, including incoming locale work. Own numerical proof snapshots and active questions retain their exact earlier bindings.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics",
+      "Gregorian integer calendar/month-clamping definitions and original965 Actual/Actual COUPDAYS readings; coherent42-calendar-program study, no fitted scalar or threshold."
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy.",
+      "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs/bonds.fs, Apache2; existing pinned source and notice retained.",
+      "Apache POI3.17 ab700dc2ae3a880f66a10075cbf1a502da928afb Irr.java, Apache2; original source, full LICENSE and NOTICE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a",
+    "checker/questions_r13.py": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+    "checker/regression.py": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+    "checker/test_domains.py": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+    "checker/test_exact.py": "b5ceec2c450fd11d0ae15e5657fb25f7fd2e1b6851b10c2ce9d61902a56034dd",
+    "racer/audit.py": "33587fd2e119d0fe1dcae286ed1d5d24494468b7ef1504e322056098f860e753",
+    "racer/bessel.py": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+    "racer/build.rs": "38e1a78b1bd1d9bb8455e1aee6d596531c37be8e4e8c712c3496ca2f768724db",
+    "racer/corpus_cases.py": "9b3442645e8cd23abf0ec98b4aa96cd34e09a1d6fcab686164caa8f662e6de1f",
+    "racer/corpus_fuzz.py": "2e4edaf37f37ef5f9ebb18a600f730e15ca43077425161a4d5973f82164cfb35",
+    "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+    "racer/src/bond_solver.rs": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+    "racer/src/discrete.rs": "65658ea5e945839a02592c554d8ee67a481561e0f0d4a1d12ced025b2f400d11",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/main.rs": "dda1d17f5c89d922a10717df50d8d59c76a45573824d0f763561c2de641fa845",
+    "racer/src/normal.rs": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+    "racer/src/route_audit.rs": "05954f3d2de7d3b15bb548e2fe0636d6b9d74d0489cd3c3c7177aaec47cd6a35",
+    "evidence/round24/followup/asinh-identity-study.py": "fd5aeb4e9d915e1c506f31c5565935b4f8ea972c3731ab0902092aff8e1051f8",
+    "evidence/round24/followup/variance-current-counterfactuals.py": "7d52c2ac3f8ec28c0f0fc1e8db3d4a4950937581153c85261a223bb52d8d1988"
+  },
+  "regression_audit": true,
+  "regression_inverse_audit": true,
+  "programs": "64 outer QR policies; existing9000 Loader labels;42 Gregorian calendar programs;5 gamma exponent-store policies. The prior3 Poisson gamma identities were redundant controls and are retained externally only.;11 near-mean Loader series arithmetic policies.;37 fixed Temme finish arithmetic policies.;16 fixed PC64 fold-accumulator QR policies.; final published ASINH operations and whole-subnormal admission; five independent identity models remain in their frozen Python study.",
+  "limits": "All declared numerical leaves remain conditional; no fitted coefficient/tolerance/selector. Source/control rows are separately identified from complete canonical readings.",
+  "unit": "round24",
+  "regression_householder_audit": false,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "bessel_k_audit": false,
+  "regression_outer_audit": true,
+  "gamma_exponent_audit": true,
+  "application_working_blobs": {
+    "crates/calc-doc/src/load/mod.rs": "649774b979ce2818c0058f15c105c54720f61d58",
+    "crates/calc-engine/src/result.rs": "5c77aa38738b92196d202e712154d6160cb28731",
+    "crates/calc-engine/src/spill.rs": "83a0d946ed9a1aec9911b1b480bced4b07a7ffe8",
+    "crates/calc-fml/src/eval/context.rs": "53ef4ac8b9f916ee6a769292710f6fd123a312f1",
+    "crates/calc-func/src/catalogue/aggregate.rs": "ee66c8266c3ed7e3f9d25f939df9ce1a1aeced8e",
+    "crates/calc-func/src/catalogue/logical_more.rs": "4c72135186ed6f16bf7bf21d2e8522aace080a72",
+    "crates/calc-func/src/catalogue/text_functions.rs": "5bd5791413b27475b57cd12ccf61a43be4df0d1b",
+    "crates/calc-func/src/coerce.rs": "fca1172cb5d87855869df92bd183d723899350e7",
+    "crates/calc-func/src/locale.rs": "bd0946f9687647472242aef5772f859040b552ca",
+    "crates/calc-func/src/ported/text_kernels.rs": "e308698ffaa38f008f27959345b9e5c282ac1e59",
+    "crates/calc-host/src/entry.rs": "ed5691c5c9bf0105f9d9ada2c1e0f9987330e4c4",
+    "crates/calc-host/src/state.rs": "45dde99e51d9dba44b2f2196a153821262897a61"
+  }
+}

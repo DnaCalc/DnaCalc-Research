@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "domain": "Every finite nonzero binary64 subnormal, either sign",
+  "proof": [
+    "Absolute input lies between0 and2^-1022.",
+    "PC64-rounded square at the largest subnormal is strictly below the binary64 zero midpoint2^-1075. Monotonic rounding therefore stores every square as0.",
+    "The radicand0+1 and its square root are exactly1.",
+    "Largest subnormal is below the PC64 midpoint2^-64 at1. Therefore every stored1+abs(input) is1.",
+    "The existing logarithm returnsLN(1)=0; both signs publish positive zero through the existing output rule."
+  ],
+  "largest_input_bits": "0x000fffffffffffff",
+  "rounded_square_below_zero_midpoint": true,
+  "whole_class_not_sample": true,
+  "independent_checker_sha256": {
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "limits": "Mathematical/rational proof for the unchanged identity and measured stored-PC64 arithmetic, not a new Excel reading. Original captured positive/negative min-subnormal observations supply the four bank obligations."
+}

@@ -1,11 +1,11 @@
 {
-  "id": "dc-j9k-r24-temme-publication",
+  "id": "dc-j9k-r24-larger-first-questions",
   "role": "implementer",
   "route_audit": true,
   "discrete_audit": true,
   "bessel_rational_audit": true,
   "application_revision": "3a9d54adee9c1c8f7d032d63cb6b185cfb757c71",
-  "scope": "R24 final publication and registered-route packet predictions. Earlier fixed-program studies retain their own pre-change executable binding; original answers retained. No tier3/4 exposure.",
+  "scope": "R24 larger-error-first corpus questions, including larger-error families whose last-bit work stays parked. Numerical product remains pushed3a9d54ad; original answers retained. Earlier numerical studies and first packet retain their exact own bindings.",
   "sources": {
     "tier1": [
       "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics",
@@ -35,12 +35,12 @@
     "checker/questions_r13.py": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
     "checker/regression.py": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
     "checker/test_domains.py": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
-    "checker/test_exact.py": "7a37a8de4c02b7acba1c675742de210c36d967d6cc26db1b57892f4dc2b29856",
+    "checker/test_exact.py": "b5ceec2c450fd11d0ae15e5657fb25f7fd2e1b6851b10c2ce9d61902a56034dd",
     "racer/audit.py": "33587fd2e119d0fe1dcae286ed1d5d24494468b7ef1504e322056098f860e753",
     "racer/bessel.py": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
     "racer/build.rs": "38e1a78b1bd1d9bb8455e1aee6d596531c37be8e4e8c712c3496ca2f768724db",
     "racer/corpus_cases.py": "9b3442645e8cd23abf0ec98b4aa96cd34e09a1d6fcab686164caa8f662e6de1f",
-    "racer/corpus_fuzz.py": "eeba93ae6b692318e4a2c38aae7b474389a75e75094c06ec4931bcf964ad280b",
+    "racer/corpus_fuzz.py": "2e4edaf37f37ef5f9ebb18a600f730e15ca43077425161a4d5973f82164cfb35",
     "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
     "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
     "racer/src/bond_solver.rs": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",

@@ -1,0 +1,91 @@
+diff --git a/crates/calc-func/src/catalogue/math.rs b/crates/calc-func/src/catalogue/math.rs
+index f24be0f6..ad0b75cb 100644
+--- a/crates/calc-func/src/catalogue/math.rs
++++ b/crates/calc-func/src/catalogue/math.rs
+@@ -46,7 +46,8 @@ ported_family! {
+     3 acot "ACOT" (1, 1) [V "number"] |s, a, sv| { unary(s, a, k::acot::acot_kernel) }
+     4 acoth "ACOTH" (1, 1) [V "number"] |s, a, sv| { unary(s, a, k::acoth::acoth_kernel) }
+     5 asin "ASIN" (1, 1) [V "number"] |s, a, sv| { unary(s, a, k::asin::asin_kernel) }
+-    6 asinh "ASINH" (1, 1) [V "number"] |s, a, sv| { unary(s, a, k::asinh::asinh_kernel) }
++    // Every subnormal rounds the ASINH identity to LN(1), hence positive zero.
++    6 asinh "ASINH" (1, 1) [V "number"] |s, a, sv| { out(s, k::asinh::asinh_kernel(num_with_subnormal(s, a, 0)?)) }
+     7 atan "ATAN" (1, 1) [V "number"] |s, a, sv| {
+         raw(s, a, ExcelRealPolicy::PASS, k::atan::atan_kernel)
+     }
+diff --git a/crates/calc-func/src/ported/asinh.rs b/crates/calc-func/src/ported/asinh.rs
+index c89ae9a8..c5b3c3b7 100644
+--- a/crates/calc-func/src/ported/asinh.rs
++++ b/crates/calc-func/src/ported/asinh.rs
+@@ -1,4 +1,5 @@
+ use crate::value::WorksheetErrorCode;
++use crate::ported::excel_numeric::{excel_sqrt_staged, excel_x87_add, excel_x87_mul};
+ 
+ pub fn asinh_kernel(n: f64) -> Result<f64, WorksheetErrorCode> {
+     // Excel computes `ln(x + sqrt(x² + 1))` and overflows when the `x²` intermediate
+@@ -17,11 +18,14 @@ pub fn asinh_kernel(n: f64) -> Result<f64, WorksheetErrorCode> {
+     // is not the graph. When x*x+1 overflows (x*x == f64::MAX), SQRT
+     // cannot be formed; the published finite value is LN(2*|x|).
+     let a = n.abs();
+-    let sq = a * a;
+-    let inner = if !(sq + 1.0).is_finite() {
+-        a + a
++    // The recorded identity stores each operation from PC64, including SQRT.
++    // Retaining the entire expression in the registers loses recorded matches.
++    let sq = excel_x87_mul(a, a);
++    let radicand = excel_x87_add(sq, 1.0);
++    let inner = if !radicand.is_finite() {
++        excel_x87_add(a, a)
+     } else {
+-        a + (sq + 1.0).sqrt()
++        excel_x87_add(a, excel_sqrt_staged(radicand))
+     };
+     Ok(n.signum() * crate::ported::excel_numeric::excel_log(inner))
+ }
+diff --git a/crates/calc-func/tests/f1_math.rs b/crates/calc-func/tests/f1_math.rs
+index 5850357f..f7647ecc 100644
+--- a/crates/calc-func/tests/f1_math.rs
++++ b/crates/calc-func/tests/f1_math.rs
+@@ -11,6 +11,30 @@ use f1_support::*;
+ 
+ const PI: f64 = std::f64::consts::PI;
+ 
++/// Original Excel20430 observations oc1418, oc1065 and oc1762.
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn asinh_stores_each_identity_operation_from_pc64() {
++    for (input, expected) in [
++        (0x3e73_4f4b_587c_834b, 0x3e73_4f4b_5859_1206),
++        (0x3ed0_51e2_e324_9a58, 0x3ed0_51e2_e326_b736),
++        (0xbeb0_32f7_6bce_6f24, 0xbeb0_32f7_6bdb_73b3),
++    ] {
++        exact(call("ASINH", vec![n(f64::from_bits(input))]), f64::from_bits(expected));
++    }
++}
++
++/// Every subnormal has x*x rounding to zero and 1+abs(x) rounding to one.
++/// Both signs therefore reach LN(1), whose published result is positive zero.
++#[cfg_attr(not(target_arch = "wasm32"), test)]
++#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
++fn asinh_admits_subnormal_inputs_whose_identity_is_exact_zero() {
++    for input in [0x0000_0000_0000_0001, 0x8000_0000_0000_0001,
++                  0x000f_ffff_ffff_ffff, 0x800f_ffff_ffff_ffff] {
++        exact(call("ASINH", vec![n(f64::from_bits(input))]), 0.0);
++    }
++}
++
+ #[cfg_attr(not(target_arch = "wasm32"), test)]
+ #[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
+ fn circular_functions() {
+diff --git a/crates/calc-func/tests/witnesses/ASINH.json b/crates/calc-func/tests/witnesses/ASINH.json
+index ed3abbec..40ab597d 100644
+--- a/crates/calc-func/tests/witnesses/ASINH.json
++++ b/crates/calc-func/tests/witnesses/ASINH.json
+@@ -68,7 +68,7 @@
+     {"args":["0xf4657251f47da0ee"],"expected_bits":"error:Num","id":"oc2768","reading":"r0"},
+     {"args":["0xf879a91f82fb437a"],"expected_bits":"error:Num","id":"oc2989","reading":"r0"},
+     {"args":["0x0000000000000000"],"expected_bits":"0x0000000000000000","id":"w1115-ASINH-00000","reading":"r1"},
+-    {"args":["0x0000000000000001"],"calc_func":"fault:NotImplemented","expected_bits":"0x0000000000000000","id":"w1115-ASINH-00002","reading":"r1"},
++    {"args":["0x0000000000000001"],"expected_bits":"0x0000000000000000","id":"w1115-ASINH-00002","reading":"r1"},
+     {"args":["0x0010000000000000"],"expected_bits":"0x0000000000000000","id":"w1115-ASINH-00004","reading":"r1"},
+     {"args":["0x01a56e1fc2f8f359"],"expected_bits":"0x0000000000000000","id":"w1115-ASINH-00005","reading":"r1"},
+     {"args":["0x01e0c4e8286167a1"],"expected_bits":"0x0000000000000000","id":"w1115-ASINH-00783","reading":"r1"},

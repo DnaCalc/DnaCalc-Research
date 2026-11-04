@@ -401,6 +401,38 @@ class ExactArithmetic(unittest.TestCase):
                          ['INDEX({-100;40;80},1,1)', 'INDEX({-100;40;80},2,1)', 'INDEX({-100;40;80},3,1)'])
         self.assertTrue(all(q['role'] == 'operand_echo' for q in echoes))
 
+    def test_r24_targets_larger_errors_even_when_last_bit_work_is_parked(self):
+        from racer.corpus_fuzz import choose_functions, build_questions, seed_candidates
+        def row(name, larger, last):
+            return dict(function=name, corpus=dict(larger_numeric=larger, last_bit=last),
+                        bank=dict(larger_numeric=0, last_bit=0))
+        problem=dict(functions=[row('PMT',0,1),row('VAR.S',44,32),row('LINEST',49,8),row('BINOM.DIST',10,61)])
+        self.assertEqual(choose_functions(problem,24), ['LINEST','BINOM.DIST'])
+        self.assertEqual(choose_functions(problem,24,True), ['LINEST','VAR.S','BINOM.DIST'])
+        candidates=[dict(id=label,function='VAR.S',verdict='mismatched',expected='0x3ff0000000000000',actual=actual)
+                    for label,actual in [('first-lastbit','0x3ff0000000000001'),('later-larger','0x3ff0000000000020')]]
+        self.assertEqual([r['id']for r in seed_candidates(candidates,'VAR.S',23)],['first-lastbit','later-larger'])
+        self.assertEqual([r['id']for r in seed_candidates(candidates,'VAR.S',24)],['later-larger'])
+        seed=dict(id='SYNTHETIC-variance',function='VAR.S',result_index=None,
+                  argument_sources=['{3.5,2.67,3.44}'],
+                  args=[[['0x400c000000000000','0x40055c28f5c28f5c','0x400b851eb851eb85']]])
+        original=copy.deepcopy(seed)
+        questions,counts=build_questions([seed],8,24)
+        self.assertEqual(seed,original)
+        calls=[q for q in questions if q['role']=='question']
+        self.assertEqual(counts['VAR.S'],8)
+        self.assertEqual(sum(q['mutation'].startswith('numeric_array_') for q in calls),7)
+        by_cell={f"D{q['row']}":q for q in questions}
+        for q in calls:
+            if q['mutation'].startswith('numeric_array_'):
+                self.assertTrue(q['operand_echoes'])
+                for cell in q['operand_echoes']:
+                    echo=by_cell[cell]
+                    self.assertLess(echo['row'],q['row'])
+                    self.assertEqual(echo['seed_id'],seed['id'])
+                    self.assertEqual(echo['role'],'operand_echo')
+                    self.assertRegex(echo['intended_bits'],r'^0x[0-9a-f]{16}$')
+
     def test_rounded_rank_programs_preserve_exact_simple_rank_controls(self):
         from checker.regression import rounded_rank, rounded_rank_profiles
         profiles = rounded_rank_profiles()

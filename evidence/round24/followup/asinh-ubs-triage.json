@@ -1,0 +1,7 @@
+{
+  "complete": true,
+  "critical": 0,
+  "warnings": 22,
+  "findings_on_added_lines": [],
+  "limits": "Scan of three changed Rust files; no warning/critical finding lies on an added line. Existing warnings are not a proof of unchanged legacy bodies. Added source reuses existing numeric/coercion helpers and adds no unsafe block or suppression."
+}

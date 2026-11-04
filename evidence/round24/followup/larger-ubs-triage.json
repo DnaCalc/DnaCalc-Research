@@ -1,0 +1,12 @@
+{
+  "complete": true,
+  "status": "ok",
+  "files": 2,
+  "critical": 0,
+  "warnings": 16,
+  "triage": {
+    "json_loads_no_try_15": "Malformed frozen input or test receipt must abort the packet/test rather than silently recover; fail-closed research use.",
+    "open_missing_with_1": "Existing FIFO corruption test uses os.open returning a numeric descriptor and closes it in a finally block; no missing close. No new resource-opening code in this change."
+  },
+  "limits": "Successful scan of the two changed Python files in this follow-up. The earlier broader round24 scan remains partial and retains its stated SQLFlowLimit limitation."
+}

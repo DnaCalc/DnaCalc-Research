@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "critical": 0,
+  "warnings": 351,
+  "added_line_warnings": 60,
+  "added_production_warnings": 0,
+  "triage": "All60 added-line findings are in incoming calc-host circular tests:17unwrap/expect,4panic,21assert,17index,1string allocation. They deliberately fail if fixed fixture/engine results differ; test setup and published observation indices bound the fixed accesses. No warning is on an added recalc production line; unchanged code findings are not claimed proved.",
+  "scope": "Incoming staged iteration-stopping merge only; ASINH source scan is recorded separately."
+}

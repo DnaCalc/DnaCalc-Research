@@ -7,8 +7,9 @@
   "calls": 813,
   "formula_cells": 3674,
   "functions": 24,
-  "external_packet": "/home/ubuntu/codex-runs/excel-questions-r24",
+  "external_packet": "/home/ubuntu/codex-runs/excel-questions-r24/frozen-v1",
   "restore": "python3 -m zipfile -e packets/round24/packet.zip /path/to/restored-packet",
   "predecessor_for_later_round": "Pass /path/to/restored-packet to the existing corpus_fuzz.py --extend-from option; its original manifest hashes validate every restored file.",
-  "limits": "Lossless ZIP packaging only. The uncompressed external packet remains the capture input; no Excel answers or cached values were introduced."
+  "limits": "Lossless ZIP packaging only. The uncompressed external packet remains the capture input; no Excel answers or cached values were introduced. This first packet is retained for reproducibility and is superseded by the larger-error-first packet.",
+  "superseded_by": "larger-first/archive.json"
 }
