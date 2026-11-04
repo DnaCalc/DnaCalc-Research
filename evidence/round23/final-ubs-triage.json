@@ -1,0 +1,32 @@
+{
+  "rust": {
+    "complete": true,
+    "critical": 0,
+    "scope": "Reviewed changed research Rust; final scan retained in studies-ubs-rust-final.log.gz."
+  },
+  "python": {
+    "complete": false,
+    "exit_code": 2,
+    "status": "partial",
+    "findings": [
+      {
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/regression.py",
+        "line": 210,
+        "rule_id": "python.ctcompare.secret_eq",
+        "message": "Secret, signature, or token compared with ==/!=; use hmac.compare_digest() or secrets.compare_digest()"
+      },
+      {
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py",
+        "line": 406,
+        "rule_id": "python.taint.command",
+        "message": "User input reaches subprocess/os.system (sys.argv -> round22_questions() -> executable -> subprocess executable)"
+      }
+    ],
+    "analysis_error": "SQLFlowLimit: SQL list mutation aliasing unsupported",
+    "triage": [
+      "Public source digests bind reproducibility, not secrets or authentication.",
+      "Operator-selected local executable is deliberately invoked as argv without a shell; checked exit and timeout."
+    ]
+  },
+  "limits": "No clean or complete Python scan claim. The final alias-only classifier change is separately reviewed and tested after this scan."
+}

@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "gains",
+    "losses"
+  ],
+  "counts": [
+    [
+      532,
+      12,
+      12,
+      0,
+      0
+    ],
+    [
+      532,
+      13,
+      12,
+      1,
+      0
+    ],
+    [
+      532,
+      12,
+      12,
+      0,
+      0
+    ],
+    [
+      532,
+      13,
+      12,
+      1,
+      0
+    ]
+  ],
+  "excluded_still_fail": 0,
+  "first_losses": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "limits": "Four complete declared date-factor/discount combinations with the original product solve and unchanged caller domain, single-coupon and par identities. Original solver, schedule and discount remain conditional numerical leaves. Baseline program0 equals every original registered numeric return. No fitted constant/tolerance/selector or complete YIELD identification.",
+  "original_rows": 532,
+  "program_labels": 4,
+  "source": "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 bonds.fs getPriceYieldFactors uses DaysBetween(...,Numerator); Apache2 notice retained. Current cleared days_between_num implements that public date rule."
+}

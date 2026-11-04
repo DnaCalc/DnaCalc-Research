@@ -1,0 +1,1602 @@
+{
+  "complete": true,
+  "verified": [
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/questions_r13.py",
+      "sha256": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+      "archive": "evidence/round23/source-snapshots/d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/test_domains.py",
+      "sha256": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+      "archive": "evidence/round23/source-snapshots/15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "checker/test_exact.py",
+      "sha256": "11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0",
+      "archive": "evidence/round23/source-snapshots/11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/build.rs",
+      "sha256": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+      "archive": "evidence/round23/source-snapshots/225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122",
+      "archive": "evidence/round23/source-snapshots/85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+      "archive": "evidence/round23/source-snapshots/1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-context.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/questions_r13.py",
+      "sha256": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+      "archive": "evidence/round23/source-snapshots/d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/test_domains.py",
+      "sha256": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+      "archive": "evidence/round23/source-snapshots/15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "checker/test_exact.py",
+      "sha256": "11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0",
+      "archive": "evidence/round23/source-snapshots/11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/build.rs",
+      "sha256": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+      "archive": "evidence/round23/source-snapshots/225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "9317655b20259a7672a43adc0cdf1927d4d2e1878041afa8f4337c8178e00916",
+      "archive": "evidence/round23/source-snapshots/9317655b20259a7672a43adc0cdf1927d4d2e1878041afa8f4337c8178e00916.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+      "archive": "evidence/round23/source-snapshots/1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "evidence/round23/final-unit-before-rates.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/questions_r13.py",
+      "sha256": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+      "archive": "evidence/round23/source-snapshots/d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/test_domains.py",
+      "sha256": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+      "archive": "evidence/round23/source-snapshots/15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "checker/test_exact.py",
+      "sha256": "556070afe078e827c7ba8db99b7135212a4fc6a0f6985948af7e8ace1c3195ac",
+      "archive": "evidence/round23/source-snapshots/556070afe078e827c7ba8db99b7135212a4fc6a0f6985948af7e8ace1c3195ac.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/build.rs",
+      "sha256": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+      "archive": "evidence/round23/source-snapshots/225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "db89d8ab953cc315e81c142a212398ee50393de0608831ccd11cf20e66aaf701",
+      "archive": "evidence/round23/source-snapshots/db89d8ab953cc315e81c142a212398ee50393de0608831ccd11cf20e66aaf701.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+      "archive": "evidence/round23/source-snapshots/1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "evidence/round23/publication-unit-before-alias.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "c5297baa34de1a2785b22539e39121f276f48ac01ddb10e4a47e7163e6d0a6ee",
+      "archive": "evidence/round23/source-snapshots/c5297baa34de1a2785b22539e39121f276f48ac01ddb10e4a47e7163e6d0a6ee.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "578f76da1b3ecd8fdbb0ebff2670b69522e695180c91c91741aa4ffe000c57d5",
+      "archive": "evidence/round23/source-snapshots/578f76da1b3ecd8fdbb0ebff2670b69522e695180c91c91741aa4ffe000c57d5.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760",
+      "archive": "evidence/round23/source-snapshots/e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "2746de452105cfcaf42fed27771fcba719660aeddf7258189ecd63e183c283c6",
+      "archive": "evidence/round23/source-snapshots/2746de452105cfcaf42fed27771fcba719660aeddf7258189ecd63e183c283c6.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "59b988421c3dff1dc341f7f72887f0030dfade6d57bfbf2757016beeed82c68b",
+      "archive": "evidence/round23/source-snapshots/59b988421c3dff1dc341f7f72887f0030dfade6d57bfbf2757016beeed82c68b.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53",
+      "archive": "evidence/round23/source-snapshots/4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760",
+      "archive": "evidence/round23/source-snapshots/e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "6b2e2ab8183cacde7cc0a815e7cee9c99bd8d497dbdf9372b48d9ddfe8f5af0f",
+      "archive": "evidence/round23/source-snapshots/6b2e2ab8183cacde7cc0a815e7cee9c99bd8d497dbdf9372b48d9ddfe8f5af0f.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "59b988421c3dff1dc341f7f72887f0030dfade6d57bfbf2757016beeed82c68b",
+      "archive": "evidence/round23/source-snapshots/59b988421c3dff1dc341f7f72887f0030dfade6d57bfbf2757016beeed82c68b.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53",
+      "archive": "evidence/round23/source-snapshots/4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760",
+      "archive": "evidence/round23/source-snapshots/e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "6b2e2ab8183cacde7cc0a815e7cee9c99bd8d497dbdf9372b48d9ddfe8f5af0f",
+      "archive": "evidence/round23/source-snapshots/6b2e2ab8183cacde7cc0a815e7cee9c99bd8d497dbdf9372b48d9ddfe8f5af0f.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/questions_r13.py",
+      "sha256": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+      "archive": "evidence/round23/source-snapshots/d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/test_domains.py",
+      "sha256": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+      "archive": "evidence/round23/source-snapshots/15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0",
+      "archive": "evidence/round23/source-snapshots/11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+      "archive": "evidence/round23/source-snapshots/225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122",
+      "archive": "evidence/round23/source-snapshots/85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+      "archive": "evidence/round23/source-snapshots/1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-final-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "dc528ec6fa50f2a9f44e0b8e0f914c9db783e079f9cfedf8b34eb2bd1108d2f4",
+      "archive": "evidence/round23/source-snapshots/dc528ec6fa50f2a9f44e0b8e0f914c9db783e079f9cfedf8b34eb2bd1108d2f4.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "578f76da1b3ecd8fdbb0ebff2670b69522e695180c91c91741aa4ffe000c57d5",
+      "archive": "evidence/round23/source-snapshots/578f76da1b3ecd8fdbb0ebff2670b69522e695180c91c91741aa4ffe000c57d5.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-irr-poi-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "6b652e7d7910d62e3b783d9c5e70a9cb32ba036b5d73dc71818a609a0aaef7e3",
+      "archive": "evidence/round23/source-snapshots/6b652e7d7910d62e3b783d9c5e70a9cb32ba036b5d73dc71818a609a0aaef7e3.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "d417737778fe92c4fbb47d617c1021cd18ef87e1cf98ed19da58f7f490f78ad2",
+      "archive": "evidence/round23/source-snapshots/d417737778fe92c4fbb47d617c1021cd18ef87e1cf98ed19da58f7f490f78ad2.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "756a2dd8559206ebf1a74b084c8d46531e77409dc4ff0fe37c8662664d2220b3",
+      "archive": "evidence/round23/source-snapshots/756a2dd8559206ebf1a74b084c8d46531e77409dc4ff0fe37c8662664d2220b3.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-k-precision-fixed-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "df7d0c96992eb3c03961a19ad9cb8c2e0b3bda386f40d07bc2f566a4eed47b21",
+      "archive": "evidence/round23/source-snapshots/df7d0c96992eb3c03961a19ad9cb8c2e0b3bda386f40d07bc2f566a4eed47b21.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "d417737778fe92c4fbb47d617c1021cd18ef87e1cf98ed19da58f7f490f78ad2",
+      "archive": "evidence/round23/source-snapshots/d417737778fe92c4fbb47d617c1021cd18ef87e1cf98ed19da58f7f490f78ad2.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "36d269cb52198cfc956f1009b0fa61eaa08e48021300dc9c0a5355a86c7518ab",
+      "archive": "evidence/round23/source-snapshots/36d269cb52198cfc956f1009b0fa61eaa08e48021300dc9c0a5355a86c7518ab.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-k-precision-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "df7d0c96992eb3c03961a19ad9cb8c2e0b3bda386f40d07bc2f566a4eed47b21",
+      "archive": "evidence/round23/source-snapshots/df7d0c96992eb3c03961a19ad9cb8c2e0b3bda386f40d07bc2f566a4eed47b21.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "364683b98414dd1d86ab36534f133a94db1c20333cf72a6cef33f7f762a03496",
+      "archive": "evidence/round23/source-snapshots/364683b98414dd1d86ab36534f133a94db1c20333cf72a6cef33f7f762a03496.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-mat-bill-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "55ced5e93cf66fbb344affbbd513dc5e3270daedbf6c8c62981caa7a3500c4e7",
+      "archive": "evidence/round23/source-snapshots/55ced5e93cf66fbb344affbbd513dc5e3270daedbf6c8c62981caa7a3500c4e7.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "364683b98414dd1d86ab36534f133a94db1c20333cf72a6cef33f7f762a03496",
+      "archive": "evidence/round23/source-snapshots/364683b98414dd1d86ab36534f133a94db1c20333cf72a6cef33f7f762a03496.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "55ced5e93cf66fbb344affbbd513dc5e3270daedbf6c8c62981caa7a3500c4e7",
+      "archive": "evidence/round23/source-snapshots/55ced5e93cf66fbb344affbbd513dc5e3270daedbf6c8c62981caa7a3500c4e7.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-product-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/questions_r13.py",
+      "sha256": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+      "archive": "evidence/round23/source-snapshots/d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/test_domains.py",
+      "sha256": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+      "archive": "evidence/round23/source-snapshots/15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "556070afe078e827c7ba8db99b7135212a4fc6a0f6985948af7e8ace1c3195ac",
+      "archive": "evidence/round23/source-snapshots/556070afe078e827c7ba8db99b7135212a4fc6a0f6985948af7e8ace1c3195ac.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+      "archive": "evidence/round23/source-snapshots/225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "db89d8ab953cc315e81c142a212398ee50393de0608831ccd11cf20e66aaf701",
+      "archive": "evidence/round23/source-snapshots/db89d8ab953cc315e81c142a212398ee50393de0608831ccd11cf20e66aaf701.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+      "archive": "evidence/round23/source-snapshots/1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-publication-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/check.py",
+      "sha256": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+      "archive": "evidence/round23/source-snapshots/a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/normal.py",
+      "sha256": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+      "archive": "evidence/round23/source-snapshots/2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/questions_r13.py",
+      "sha256": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+      "archive": "evidence/round23/source-snapshots/d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/test_domains.py",
+      "sha256": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+      "archive": "evidence/round23/source-snapshots/15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "556070afe078e827c7ba8db99b7135212a4fc6a0f6985948af7e8ace1c3195ac",
+      "archive": "evidence/round23/source-snapshots/556070afe078e827c7ba8db99b7135212a4fc6a0f6985948af7e8ace1c3195ac.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/audit.py",
+      "sha256": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+      "archive": "evidence/round23/source-snapshots/1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+      "archive": "evidence/round23/source-snapshots/225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "02a1797a75c294ac24763faa5471c076460cb9e435f5f554790644020aa73270",
+      "archive": "evidence/round23/source-snapshots/02a1797a75c294ac24763faa5471c076460cb9e435f5f554790644020aa73270.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+      "archive": "evidence/round23/source-snapshots/1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/dsl.rs",
+      "sha256": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+      "archive": "evidence/round23/source-snapshots/982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/eval.rs",
+      "sha256": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+      "archive": "evidence/round23/source-snapshots/6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+      "archive": "evidence/round23/source-snapshots/98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-publication-work-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352",
+      "archive": "evidence/round23/source-snapshots/5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352.gz"
+    },
+    {
+      "unit": "round23-rank-unit.json",
+      "path": "checker/regression.py",
+      "sha256": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+      "archive": "evidence/round23/source-snapshots/be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b.gz"
+    },
+    {
+      "unit": "round23-rank-unit.json",
+      "path": "checker/exact.py",
+      "sha256": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+      "archive": "evidence/round23/source-snapshots/842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "39abb628e53901562113616925cd3ce9bbfad7b0721ed024196621b417c7c82f",
+      "archive": "evidence/round23/source-snapshots/39abb628e53901562113616925cd3ce9bbfad7b0721ed024196621b417c7c82f.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "c0349b63da3550c93b8af6053935f967053f3540b4db070b5723eab4b8066a85",
+      "archive": "evidence/round23/source-snapshots/c0349b63da3550c93b8af6053935f967053f3540b4db070b5723eab4b8066a85.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-security-1900-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "df7d0c96992eb3c03961a19ad9cb8c2e0b3bda386f40d07bc2f566a4eed47b21",
+      "archive": "evidence/round23/source-snapshots/df7d0c96992eb3c03961a19ad9cb8c2e0b3bda386f40d07bc2f566a4eed47b21.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "39abb628e53901562113616925cd3ce9bbfad7b0721ed024196621b417c7c82f",
+      "archive": "evidence/round23/source-snapshots/39abb628e53901562113616925cd3ce9bbfad7b0721ed024196621b417c7c82f.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "c0349b63da3550c93b8af6053935f967053f3540b4db070b5723eab4b8066a85",
+      "archive": "evidence/round23/source-snapshots/c0349b63da3550c93b8af6053935f967053f3540b4db070b5723eab4b8066a85.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44",
+      "archive": "evidence/round23/source-snapshots/52ce6445eea4811e7385485ea7e0dec508adafd9c9a27630a9d020a9ae3eeb44.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    },
+    {
+      "unit": "round23-security-unit.json",
+      "path": "racer/src/bond_solver.rs",
+      "sha256": "7483d85f7739c3c0bc13b9483b115c88caa9d97672bfada6db2d203c531f7d0c",
+      "archive": "evidence/round23/source-snapshots/7483d85f7739c3c0bc13b9483b115c88caa9d97672bfada6db2d203c531f7d0c.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/src/discrete.rs",
+      "sha256": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+      "archive": "evidence/round23/source-snapshots/c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/src/normal.rs",
+      "sha256": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+      "archive": "evidence/round23/source-snapshots/12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/src/main.rs",
+      "sha256": "3e8d5b161f809e4931701b8eff242219b88d0ff3ba8c0215d3744383a59e51bf",
+      "archive": "evidence/round23/source-snapshots/3e8d5b161f809e4931701b8eff242219b88d0ff3ba8c0215d3744383a59e51bf.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/build.rs",
+      "sha256": "4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53",
+      "archive": "evidence/round23/source-snapshots/4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/src/route_audit.rs",
+      "sha256": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+      "archive": "evidence/round23/source-snapshots/07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/regression.py",
+      "sha256": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+      "archive": "evidence/round23/source-snapshots/09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/bessel.py",
+      "sha256": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+      "archive": "evidence/round23/source-snapshots/66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/corpus_cases.py",
+      "sha256": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+      "archive": "evidence/round23/source-snapshots/b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "checker/test_exact.py",
+      "sha256": "e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760",
+      "archive": "evidence/round23/source-snapshots/e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/src/bessel_rational.rs",
+      "sha256": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+      "archive": "evidence/round23/source-snapshots/f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31.gz"
+    },
+    {
+      "unit": "round23-unit.json",
+      "path": "racer/corpus_fuzz.py",
+      "sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+      "archive": "evidence/round23/source-snapshots/9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db.gz"
+    }
+  ],
+  "limits": "Exact declared bytes; deduplicated by SHA256. Historical reconstructed bytes accepted only on exact declared hash equality."
+}

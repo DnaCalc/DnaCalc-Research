@@ -214,6 +214,129 @@ def check_rank(input_path,directory,output):
     print(json.dumps(result))
 
 
+def rounded_rank_profiles():
+    """Physical precision/centering/normalization programs; no fitted tolerance."""
+    axes=itertools.product(('binary32','binary64','extended64','stored_pc64','decimal15'),
+        ('raw_moments','centered'),('none','power2','largest'),('largest','original'),
+        ('keep','drop'),('schur','ldl'))
+    return [dict(id=i,precision=p,centering=c,normalization=n,pivot=v,zero=z,factor=f)
+            for i,(p,c,n,v,z,f) in enumerate(axes)]
+
+
+def decimal15(value):
+    """Exact nearest/even decimal quantization, with no floating logarithm."""
+    if value==0:return R(0)
+    sign=-1 if value<0 else 1
+    value=abs(value)
+    exponent=len(str(value.numerator))-len(str(value.denominator))
+    power=lambda e:R(10**e) if e>=0 else R(1,10**-e)
+    if value<power(exponent):exponent-=1
+    quantum=power(exponent-14)
+    scaled=value/quantum
+    whole,remainder=divmod(scaled.numerator,scaled.denominator)
+    if 2*remainder>scaled.denominator or 2*remainder==scaled.denominator and whole%2:whole+=1
+    return sign*whole*quantum
+
+
+def rounded_rank(profile,data):
+    from exact import Lattice,EXTENDED64,exponent_of
+    columns,constant,_=data;n=len(columns[0]);p=len(columns)
+    lattice={'binary32':Lattice(24,-126,127),'binary64':B,'extended64':EXTENDED64}
+    def store(value):
+        mode=profile['precision']
+        if mode=='decimal15':return decimal15(value)
+        if mode=='stored_pc64':
+            first=EXTENDED64.round(value)
+            rounded=None if first is None else B.round(first)
+        else:rounded=lattice[mode].round(value)
+        if rounded is None:raise ArithmeticError('finite lattice overflow')
+        return rounded
+    add=lambda a,b:store(a+b)
+    mul=lambda a,b:store(a*b)
+    div=lambda a,b:store(a/b)
+    def total(values):
+        result=R(0)
+        for value in values:result=add(result,value)
+        return result
+    values=[]
+    for column in columns:
+        largest=max(map(abs,column))
+        scale=(two(exponent_of(largest)) if profile['normalization']=='power2' and largest else
+               largest if profile['normalization']=='largest' and largest else R(1))
+        values.append([store(x/scale)for x in column])
+    sums=[total(c)for c in values]
+    if constant and profile['centering']=='centered':
+        means=[div(s,R(n))for s in sums]
+        values=[[add(x,-mean)for x in c]for c,mean in zip(values,means)]
+    matrix=[[total(mul(a,b)for a,b in zip(values[i],values[j]))for j in range(p)]for i in range(p)]
+    if constant and profile['centering']=='raw_moments':
+        matrix=[[add(matrix[i][j],-div(mul(sums[i],sums[j]),R(n)))for j in range(p)]for i in range(p)]
+    diagonal=[matrix[i][i]for i in range(p)];remaining=list(range(p));kept=[];dropped=[]
+    lower=[];pivots=[];pivot_values=[]
+    while remaining and len(kept)+int(constant)<n:
+        index=max(remaining,key=lambda i:matrix[i][i]) if profile['pivot']=='largest' else remaining[0]
+        remaining.remove(index)
+        row=[]
+        if profile['factor']=='ldl':
+            for k in range(len(kept)):
+                value=matrix[index][kept[k]]
+                for j in range(k):value=add(value,-mul(mul(row[j],lower[k][j]),pivots[j]))
+                row.append(div(value,pivots[k]))
+            pivot=matrix[index][index]
+            for j in range(len(kept)):pivot=add(pivot,-mul(mul(row[j],row[j]),pivots[j]))
+        else:pivot=matrix[index][index]
+        pivot_values.append([index,str(pivot)])
+        if diagonal[index]==0:
+            # Preserve the separately observed zero-column count convention.
+            if profile['zero']=='keep':kept.append(index);lower.append([R(0)]*len(lower));pivots.append(R(1))
+            else:dropped.append(index)
+        elif pivot<=0:dropped.append(index)
+        else:
+            kept.append(index);lower.append(row);pivots.append(pivot)
+            if profile['factor']=='schur':
+                for i in remaining:
+                    for j in remaining:matrix[i][j]=add(matrix[i][j],-div(mul(matrix[i][index],matrix[index][j]),pivot))
+    return n-len(kept)-int(constant),dict(kept=kept,dropped=dropped+remaining,pivots=pivot_values)
+
+
+def run_rounded_rank(input_path,output):
+    """Necessary rank constraints only; every label is killed or fully replayed."""
+    import gzip
+    output=Path(output);output.mkdir()
+    source=Path(input_path);raw=source.read_bytes()
+    if source.suffix=='.gz':raw=gzip.decompress(raw)
+    loaded=json.loads(raw)
+    rows=[];scope=Counter()
+    for entry in loaded:
+        original=entry['raw'];data,reason=rank_data(original)
+        if reason:scope[reason]+=1
+        else:rows.append((entry['trace_index'],original,data));scope['scoped']+=1
+    require(rows,'empty rounded-rank scope')
+    ps=rounded_rank_profiles();alive=list(range(len(ps)));executions=0;kills=[]
+    (output/'profiles.json').write_text(json.dumps(ps,indent=2)+'\n')
+    for order,(index,original,data)in enumerate(rows):
+        following=[]
+        for identity in alive:
+            try:got,trace=rounded_rank(ps[identity],data)
+            except (ArithmeticError,ValueError)as error:got=None;trace=dict(refusal=str(error))
+            executions+=1
+            if got==data[2]:following.append(identity)
+            else:kills.append(dict(candidate_id=identity,order=order,trace_index=index,
+                got=got,expected=data[2],trace=trace,original=original))
+        alive=following
+    (output/'first-kills.jsonl').write_text(''.join(json.dumps(r)+'\n'for r in kills))
+    result=dict(complete=True,program_labels=len(ps),observations=len(rows),scope=dict(scope),
+        survivors=alive,executions=executions,input_sha256={str(source):digest(source)},
+        source_sha256={str(p):digest(p)for p in (Path(__file__),Path(__file__).with_name('exact.py'))},
+        sources='IEEE754 binary32/binary64/x87 precision; published decimal15 precision as an explicitly hypothetical internal arithmetic; centered/raw Gram identities and Schur/LDL factorizations. Original MIT rational implementation, no external code copied.',
+        limits='Degrees-of-freedom constraints only, not a coefficient/QR program. No fitted tolerance: pivots are compared only with zero. '
+            'Physical precision, centering, scaling, pivot and zero-column labels are fixed before evaluation. '
+            'Decimal arithmetic is a hypothesis, not an observed Excel intermediate. Scope is the unchanged original rank corpus; all existing answers are discovery. '
+            'First contradictions exclude only these finite programs; no complete rank algorithm family or numerical leaf is ruled out or adopted.')
+    (output/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='rank-rounded':run_rounded_rank(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='rank':check_rank(*sys.argv[2:])
     else:check(*sys.argv[1:])

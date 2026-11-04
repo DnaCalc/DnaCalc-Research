@@ -1,0 +1,403 @@
+{
+  "complete": true,
+  "counts": {
+    "sessions": 25,
+    "formula_cells": 22339,
+    "evaluations": 79272,
+    "before_matched": 19973,
+    "after_matched": 19974,
+    "gains": 1,
+    "losses": 0,
+    "changed_values": 5,
+    "external_or_circular": 87,
+    "awaiting_capture": 1265,
+    "workbooks": 24
+  },
+  "changes": [
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        354,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "cell": "D354",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "kind",
+          "expected": "error",
+          "actual": "number"
+        },
+        "expected": {
+          "error": "num"
+        },
+        "actual": {
+          "number": "bed7ff19ed9c47a0"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "cell": "D354",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "bed7ff19ed9c47a0"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "error": "num"
+          }
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json",
+      "formula_cells": 17
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json",
+      "formula_cells": 1436
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json",
+      "formula_cells": 22
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json",
+      "formula_cells": 17
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_l3_oracle.xlsx/report.json",
+      "formula_cells": 112
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json",
+      "formula_cells": 183
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json",
+      "formula_cells": 83
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json",
+      "formula_cells": 57
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json",
+      "formula_cells": 783
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json",
+      "formula_cells": 850
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json",
+      "formula_cells": 234
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json",
+      "formula_cells": 810
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "formula_cells": 11876
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json",
+      "formula_cells": 1526
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json",
+      "formula_cells": 234
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json",
+      "formula_cells": 218
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json",
+      "formula_cells": 112
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json",
+      "formula_cells": 136
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json",
+      "formula_cells": 596
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json",
+      "formula_cells": 1144
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json",
+      "formula_cells": 115
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json",
+      "formula_cells": 186
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json",
+      "formula_cells": 86
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json",
+      "formula_cells": 167
+    },
+    {
+      "before": "../DnaCalc/target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json",
+      "after": "../DnaCalc/target/corpus-r23-complete/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json",
+      "formula_cells": 74
+    }
+  ],
+  "inputs_sha256": {
+    "../DnaCalc/target/corpus-r23-before/summary.json": "dc7783d03c3ecf508f06592ee10c5c5ee378142fc554c4513cb27c2fb87a1ca9",
+    "../DnaCalc/target/corpus-r23-complete/summary.json": "a8f6fb858815422686d2a888ecbb3f4d830edc8e320023cd0729dabb375fb164",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "886e51628009ed3aba429d7097d2299b95317fd4f62072fffeb1c4f9f909d27f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "15976888272568cd434c6792a4a954fe172ba6c76a52839fa80be4153c56cdad",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "ddbeb218273989cf5772fb83c885feece0741670ea8942fd05927f00e3936263",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "4ac3c2ac8a38e5bf6b62dcb57e6fd029deffa1386d9c6ae1061c11a3215b20e0",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "ec614167770a47ab0693578fd86c7be5f1548074a8917bc6384a2266ad2dd160",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "951524cc060076f5e544af08b5540eeb9a67118fc2aea1c4aba4f780517a9df2",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "bc9100cfaf2ae2b7a9296c18a77139b16ddbc925e6bad4185c800cd7d9954c5a",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "8c73e3f29b89985970d4d9c9b058b04c1eceb56e27baecfb57bbcee812a3f542",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "8497de3f11fd40dd5bc80839596a9444438af903162c1f62d4e4b766b14cf067",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "279381984f966dba3f50157ecfbef15905ad08a7a274414e2af323cd452782a2",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "323db38e0e41aba7e2dbc39e4bd7b91ff1084ae0f3010cd0edfb21e7ae7cd7cc",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "a4735ca207a571564970c57061767ceca7208e2008684c318f3846f3fab8ca2f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "2de86c225aa118a58b1c24927eba8b4a9c6f9194fb88f026ea94c40228cda809",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "f05917ce241759839629a428b92b09a175e90d8e4a83cbc309bdbf353ceaaa4e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "6291ea7807c3c00cadbc4b9f50a46d2a14667321a0ac46852c57de39739dd946",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "aba6853a0e920e282793a60eb2154de08edde1041b6ede3b00a6e5c97d5f6b0d",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "5ce32a05b28d63da006a842a98c78ade8b526050b15bc9c1fd351d27bfd1087b",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "5ce32a05b28d63da006a842a98c78ade8b526050b15bc9c1fd351d27bfd1087b",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "b74fe938216b18cedd5cdfd4bb58cac6dd7034b098081848536e425ed457221f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "772ab82007454a829139e6233db825e3148ac9163319e6308dc239e756fcfd59",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "6e3c3664e13d997888832042f5fb05232f18d1eb911278dcdd3c719112d2944d",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "6e3c3664e13d997888832042f5fb05232f18d1eb911278dcdd3c719112d2944d",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "c42fea08f8737c64c89b1a61b224f47950b2699a5988527c8a66dced4b0a40cc",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "a8448a381e9b5b5f3e368dd8893dd1337ce14e66067a3ec653b9d9c1a1f8cd12",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2.capture.json": "59a567927936be915693e2bc58ae047e8aad14512773abf9a3f83d0eebff4c54",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-2.capture.json": "59a567927936be915693e2bc58ae047e8aad14512773abf9a3f83d0eebff4c54",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "9a9b47ef667f719c914dc04410f3441337db0def00a51dca8d2fe1a4dccb1af3",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "d05b657aac3469a440dae257028aaf62a1c0cea77b722e633b23688a26621165",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "4b6bc9cd88a68ec893efe3342695834a6a08cfa6e15ef6904b47a3e3602c22cf",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "4b6bc9cd88a68ec893efe3342695834a6a08cfa6e15ef6904b47a3e3602c22cf",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "b6bc92d36060d86be413e7322eaaaac8e18f0f08e271e6c2183b4bdb4c5f0cc0",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "c5052327bfb17275ccff311d7f2d5f142e6d78b535010f59efff403f0bd14d49",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json": "a2e07ca8bb7175326f1c4caec6ff9b1ceffbe73024ea0f2beda91c681deec079",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json": "a2e07ca8bb7175326f1c4caec6ff9b1ceffbe73024ea0f2beda91c681deec079",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "ee7db224bd1e77260654b2581114af1aced25fa6558b4e17d4057b9c52218366",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "0e6453e2382088503e6048ca60c5dbb2fffc9072149207ba349b34ad43140969",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "3c409f5d9e0216eb0eb3209619416a6690b07b6a1c70a25686871c5e0d0fd109",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "3c409f5d9e0216eb0eb3209619416a6690b07b6a1c70a25686871c5e0d0fd109",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "29087a281002270f99ecec5fc2d5050135a5da2f0550dc956b7acfc96f1ea705",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "87453e9ab45508265dc1137da3776a9a7d5e384f9eaa1a48d0c456641d79ee4d",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json": "25ff7e1febf24a2b006d8edad6ca2a8cd066cc28cf51d0f23b091dc7f6dff5ab",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json": "25ff7e1febf24a2b006d8edad6ca2a8cd066cc28cf51d0f23b091dc7f6dff5ab",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/triage.json": "2028c4b1ad49f1f2c96d09ef098ca06271765dc88ba524bac8436927d8b4572e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-4/triage.json": "0ce880dd4321873c2ad1a011ea3817014298d39421bb13f11951385bef11fb6e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json": "c026cc6b61aa0b80f08cba4eae4c7dd746f4704e5f16059cb0c7f30cca90190e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json": "c026cc6b61aa0b80f08cba4eae4c7dd746f4704e5f16059cb0c7f30cca90190e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/evaluations.json": "b80f046e263821a6ac97c7b04dd6bce12d216740a563ca86911f6fa737f2fa14",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-4/evaluations.json": "7e257597f5721b309cc27ee9f84b29491c8775044efdad917586b38d74515c51",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5.capture.json": "17cdfb5723921f8adb5d381086c0b3f3979cbd2e0e8b3260cdc599b49062182f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-5.capture.json": "17cdfb5723921f8adb5d381086c0b3f3979cbd2e0e8b3260cdc599b49062182f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/triage.json": "af51e2671f0258d904ad098581da9f917733aa0e07860a48c4328ac4b8abc0d4",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-5/triage.json": "d6944541b8b705d0b4dcf28c4456bdbfa24468a02835414ec9204204bd973092",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json": "7c550a27d0f2c1e8d63ce073fa80c73aa648cf03830128a29736c9a2034c4094",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json": "a634978c0b042d9b8ba70e3f8ba27aca1dae62e1c1103f34260966e5de8d8a05",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/evaluations.json": "d5a785eac41bf231a6524f238cf5e42765c3e316f4189f3e972f999c37b1c74e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_catalogue_oracle.xlsx/session-5/evaluations.json": "e8af79f6a49c2b5d4a003d8fbd1a4bc1e1eb5e613c0ab6d40957a5f14cff7773",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "fd1dea7d23a7310d8080f4d8b66c22792c37263fac3a3e91951963cfc502ff2e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "5f4c6a0792b45a3889367d9126c8edbb9eae9a605b896d2ac75e2ba86bcfe8c4",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "404e43c48fb87eee42f0f41de27bb6e05637a94dc3267f5adf6047c174c41b77",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "4bd73414a6d3bc162d4263cbe6822c0395351ef6eb6a03e18325a415025e6450",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "ce0ac8fe96b73c30c7e8b8fa479e9196daa0c6c1e2023f903932629c9ee2d2f7",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "4d3093480a3b3d6b510580c47339ed0edacd68e8d23338f3d0b8f11550133e51",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "f5c032d9f7d457697187f602dc03d39b9cae3adc7a2b809ca87e3b8ca568db6d",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "d4ae6a777307487407e9a3a102eb9f94c644f3314c884d5952382472939e6b39",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "09df79fd477ed74cbd8cedc4882f4e1e7efb981730de0c37898fdabf3b91ece7",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "0a11ec882d799e0c8900710b58062a403685f4bb91521a1cec62cf154c43ca8a",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "764f10796feaaa381cc2b272673be11eb5478cb9eee9acab3155aca4d6140e8b",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "42030e157b2f8b8b546a301737ef55e2834a00f87f531cd4c8e0e0a9e9cf557a",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "2196a11077ce2819672dd189bb3d4a879e2024eaad87f86d486ddb85489df82f",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "ea62eacf6ab581bc421dce11c446423f026eec68650130c178e506e8d3220adb",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "8aeda1ca61ff9b53151e5e263fd48487d405b0612102acb4392391841e5d43cd",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "74245b23566301818a4904c62e4de6d90db29ec8959449b6ed132a6891cb191e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "a3161313e1dd7ea861f9d6e6d6e77b4ebe13d858acd77886b983f4812ad79b79",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "77a5e966c8081c8f48bc23d76b1d6d969842f265a881e71d1580e465a418a7d1",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "954318c76e30b6b4d1f77a1f169f3490046da2d66a4a01293af7f7440ae54fb8",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "160802d287be1dcdf216b02503b342c1fa4c9ef92e666ea1068d9846346b82f3",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "e67c815d99280b87b8dbfaf2ffe47f22854313f601b748813973951d1f639a04",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "62519f5e0b6615d0bf08a7f0464a04fef1b52258367275c93f8bf7dd8430695d",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "ec46b876568bbbdd64c07975450c5b678015c034dad679714de4bc26b084b49b",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "5e131e3c3ccc22f7bc1ac349c5dc6ad3feaf18e2d64aba566314da6e5b2c0de1",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "../DnaCalc/target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+    "../DnaCalc/target/corpus-r23-complete/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614"
+  },
+  "pending_coverage": [
+    {
+      "workbook": "calc-func/dcj9k_r21/oracle.xlsx",
+      "cells": 204,
+      "source_sha256": "d3e3f469aad6dcad09edd92021aad4e71157e5b62ba92a99399872f725bfdf53"
+    },
+    {
+      "workbook": "calc-func/dcj9k_r22/oracle.xlsx",
+      "cells": 105,
+      "source_sha256": "7c97260e239506e0255c9c6930229ce97b4678ef805d0945380a00fc56309317"
+    },
+    {
+      "workbook": "calc-func/fn2_questions/oracle.xlsx",
+      "cells": 956,
+      "source_sha256": "c5d039de7df3898ba23938d1fd3ce0185d4aadb0162fed571419322cb04adfbc"
+    }
+  ],
+  "inclusive_before_failed": 2366,
+  "inclusive_after_failed": 2365,
+  "external": 73,
+  "circular": 14,
+  "before_fail": 1014,
+  "after_fail": 1013,
+  "limits": "Fixed formula inventory, answers and workbook contexts, including every comparison session. New capture coverage is separate from product gains; no answer or scope-dependent pass is synthesized."
+}

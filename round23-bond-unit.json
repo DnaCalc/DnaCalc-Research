@@ -1,0 +1,50 @@
+{
+  "id": "dc-j9k-r23-bond",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "17994963d3c0dac66fab5ba1136950bb774552e2",
+  "scope": "Ten complete fixed published Newton/bounds/bisection programs, conditional current schedule/price leaves; no product change.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy.",
+      "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs/bonds.fs, Apache2; existing pinned source and notice retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "racer/src/discrete.rs": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+    "racer/src/normal.rs": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+    "racer/src/main.rs": "59b988421c3dff1dc341f7f72887f0030dfade6d57bfbf2757016beeed82c68b",
+    "racer/build.rs": "4827d835b3b595b522ef56b7eb2a1a496eb9242a46d0e2462906ff77ded99e53",
+    "racer/src/route_audit.rs": "07966f46cb2e3006d9aea311cdf2f93257d408ac79b35e22e92085d45bff0fb4",
+    "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+    "racer/bessel.py": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+    "racer/corpus_cases.py": "b04c1a517b316cf937cc451cdf44342f01a89c331e8b04c73b1104a49bae5507",
+    "checker/test_exact.py": "e3f85af708b36b24c1093d28c4c14859032de31c53947ac8272d698723d7e760",
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+    "racer/corpus_fuzz.py": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+    "racer/src/bond_solver.rs": "6b2e2ab8183cacde7cc0a815e7cee9c99bd8d497dbdf9372b48d9ddfe8f5af0f"
+  },
+  "regression_audit": true,
+  "regression_inverse_audit": true,
+  "programs": "10labels:2reflector representations\u00d75coherent arithmetic modes; normalized reciprocal/tau and allarraywrites binary64.",
+  "limits": "All declared numerical leaves remain conditional; no fitted coefficient/tolerance/selector. Source/control rows are separately identified from complete canonical readings.",
+  "unit": "round23-bond",
+  "regression_householder_audit": false,
+  "bond_solver_audit": true
+}

@@ -1,0 +1,352 @@
+{
+  "round": 23,
+  "status": "R23 bounded run completed; remaining work explicit",
+  "application_source_revision": "0afaa67b5dba724db0c52a911c4793eb66ed6970",
+  "fixed_scope_bank": {
+    "before_matched": 3232943,
+    "matched": 3233049,
+    "total": 3875673,
+    "failed": 642624,
+    "unread": 116,
+    "gains": 106,
+    "losses": 0,
+    "changed_outputs": 106,
+    "pass_rate": 0.8341903457799459
+  },
+  "fixed_scope_corpus": {
+    "sessions": 25,
+    "formula_cells": 22339,
+    "evaluations": 79272,
+    "before_matched": 19973,
+    "after_matched": 19974,
+    "gains": 1,
+    "losses": 0,
+    "changed_values": 5,
+    "external_or_circular": 87,
+    "awaiting_capture": 1265,
+    "workbooks": 24
+  },
+  "fixed_scope_problem_list": {
+    "before": 165,
+    "after": 157,
+    "larger_numeric_before": 196,
+    "larger_numeric_after": 196,
+    "last_bit_before": 747,
+    "last_bit_after": 747
+  },
+  "recorded_completed_groups": {
+    "functions": [
+      "DISC",
+      "INTRATE",
+      "RECEIVED",
+      "PRICEDISC",
+      "TBILLYIELD",
+      "BESSELK",
+      "PRICEMAT",
+      "TBILLEQ"
+    ],
+    "rows": 18040,
+    "matched": 18040,
+    "gains": 13,
+    "losses": 0,
+    "actual_registered_software_route": true,
+    "pass_rate": 1.0
+  },
+  "phase_admission": {
+    "bank_gains": 93,
+    "bank_losses": 0,
+    "corpus_gains": 1,
+    "corpus_losses": 0
+  },
+  "current_problem_list": {
+    "entries": 180,
+    "application": {
+      "revision": "0afaa67b5dba724db0c52a911c4793eb66ed6970",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "corpus": {
+      "formula_cells": 22830,
+      "matched": 21215,
+      "inclusive_failed": 1615,
+      "awaiting_capture": 0,
+      "pass_rate": 0.9292597459483136,
+      "other_failed_verdicts": {
+        "not_modeled": 372,
+        "not_run": 5,
+        "unproven": 5
+      },
+      "mismatches": 1146,
+      "counts": {
+        "larger_numeric": 286,
+        "last_bit": 747,
+        "other_mismatch": 113
+      }
+    },
+    "bank": {
+      "rows": 3910050,
+      "matched": 3267168,
+      "failed": 642882,
+      "counts": {
+        "matched": 3267168,
+        "refused": 1407,
+        "larger_numeric": 66192,
+        "last_bit": 568638,
+        "other_mismatch": 6529,
+        "unread": 116
+      },
+      "pass_rate": 0.8355821536808993,
+      "canonical_trace_sha256": "4c78aa45287b55233306ed296d6700664705b342d1e3d12f3426e922d51a41c9"
+    },
+    "generator_sha256": "85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122"
+  },
+  "intake": {
+    "scalar_observations": 93,
+    "scalar_matched": 61,
+    "scalar_failed": 32,
+    "raw_files": 94,
+    "supplied_hash_entries": 182,
+    "canonical_exports": 3,
+    "evidence_revision": "4cb48d15",
+    "joint_input_delta": {
+      "shared_inputs": 3875557,
+      "unchanged_outputs": 3875557,
+      "changed_outputs": 0,
+      "changed_expected": 0,
+      "representative_metadata_changes": 4,
+      "shared_before_matches": 3233049,
+      "shared_after_matches": 3233049,
+      "shared_gains": 0,
+      "shared_losses": 0,
+      "added_inputs": 188,
+      "added_matched": 125,
+      "added_failed": 63
+    },
+    "scalar_pass_rate": 0.6559139784946236
+  },
+  "expanded_corpus": {
+    "formula_cells": 22830,
+    "matched": 21215,
+    "failed": 1615,
+    "awaiting_capture": 0,
+    "mismatched": 1146,
+    "refused": 372,
+    "failed_or_missing": 10,
+    "external_links": 73,
+    "circular_rule": 14,
+    "coverage_added_matches": 1241,
+    "added_formula_cells": 491,
+    "R21": {
+      "matched": 122,
+      "total": 204
+    },
+    "R22_QR": {
+      "matched": 105,
+      "total": 105
+    },
+    "pass_rate": 0.9292597459483136
+  },
+  "frozen_packet": {
+    "path": "packets/round23",
+    "external": "~/codex-runs/excel-questions-r23/frozen-v3",
+    "seeds": 21,
+    "functions": 12,
+    "calls": 568,
+    "operand_echoes": 400,
+    "formula_cells": 968,
+    "calculated_predictions": 967,
+    "typed_refusals": 1,
+    "new_excel_answers": 0
+  },
+  "tests": {
+    "main_required": {
+      "passed": 1835,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "harnesses": 98,
+      "packages": 28
+    },
+    "research_rust_passed": 134,
+    "research_rust_ignored": 2,
+    "python_passed": 101,
+    "lattice_controls": 1504,
+    "failing_first_product": true,
+    "failing_first_missing_alias": true,
+    "metadata_check": {
+      "passed": 1597,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "harnesses": 69,
+      "packages": 14
+    },
+    "last_required_check": {
+      "passed": 1610,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "harnesses": 69,
+      "packages": 14
+    }
+  },
+  "source_binding": "round23-final-unit.json",
+  "unchanged_original_workbook_capture_files": 54,
+  "limits": [
+    "Fixed-scope gains and added evidence coverage are separate.",
+    "Original196 larger errors remain; expanded corpus now has286 larger numeric mismatches.",
+    "Finite-reject variants of the published EFF YIELD solver and Apache POI IRR programmes lose existing matches and are rejected.",
+    "240 finite rounded rank labels contradicted; no complete rank/QR-family exclusion.",
+    "Classifier follows only exact recorded single-cell aliases; missing expressions stay unresolved; other labels are spelling inferences, not root-cause proof.",
+    "No corpus download, fitting, changed expected answer or excluded-checkout filesystem access.",
+    "Python UBS remains partial; final-ubs-triage.json records both false positives and analysis failure."
+  ],
+  "pre_context_problem_list": {
+    "entries": 182,
+    "application": {
+      "revision": "615e598dc93008850d3a921c9628e23e2ea8dcae",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "corpus": {
+      "formula_cells": 22830,
+      "matched": 21215,
+      "inclusive_failed": 1615,
+      "awaiting_capture": 0,
+      "pass_rate": 0.9292597459483136,
+      "other_failed_verdicts": {
+        "not_modeled": 372,
+        "not_run": 5,
+        "unproven": 5
+      },
+      "mismatches": 1146,
+      "counts": {
+        "larger_numeric": 286,
+        "last_bit": 747,
+        "other_mismatch": 113
+      }
+    },
+    "bank": {
+      "rows": 3875861,
+      "matched": 3233174,
+      "failed": 642687,
+      "counts": {
+        "matched": 3233174,
+        "refused": 1405,
+        "larger_numeric": 65721,
+        "last_bit": 567698,
+        "other_mismatch": 7747,
+        "unread": 116
+      },
+      "pass_rate": 0.834182133982617,
+      "canonical_trace_sha256": "1a74d43fcba140a64db94f14f8f67e13daaabd4385a9efd504a133a686338ad2"
+    },
+    "generator_sha256": "85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122"
+  },
+  "context_bank_scope_change": {
+    "before_rows": 3875861,
+    "after_rows": 3910050,
+    "before_matched": 3233174,
+    "after_matched": 3267168,
+    "before_failed": 642687,
+    "after_failed": 642882,
+    "upstream": "0afaa67b",
+    "limits": "Invocation facts now participate in identity and calls preserve recorded reference context. Aggregate count differences are not paired product gains or losses. Original R23 fixed-scope gain proofs remain separate."
+  },
+  "context_native_completed_groups": {
+    "complete": true,
+    "route": "Current canonical context-aware native full-bank judge",
+    "rows": 20444,
+    "matched": 20444,
+    "failed": 0,
+    "pass_rate": 1,
+    "functions": [
+      {
+        "function": "BESSELK",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "1236",
+        "matched": "1236",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "DISC",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "2400",
+        "matched": "2400",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "INTRATE",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "2400",
+        "matched": "2400",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "PRICEDISC",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "2400",
+        "matched": "2400",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "PRICEMAT",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "3608",
+        "matched": "3608",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "RECEIVED",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "2400",
+        "matched": "2400",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "TBILLEQ",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "3600",
+        "matched": "3600",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      },
+      {
+        "function": "TBILLYIELD",
+        "bank": "full",
+        "excel_builds": "20430",
+        "rows": "2400",
+        "matched": "2400",
+        "worst_ulp": "-",
+        "class": "exact",
+        "calc_func_commit": "0afaa67b5d"
+      }
+    ],
+    "limits": "Current context-aware native scope; original registered software proof remains18040 original observations."
+  },
+  "last_corpus_recheck": {
+    "evaluation_files": 58,
+    "all_payload_bytes_unchanged": true,
+    "matched": 21215,
+    "formula_cells": 22830,
+    "failed": 1615
+  }
+}

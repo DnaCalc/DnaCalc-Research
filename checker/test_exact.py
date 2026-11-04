@@ -31,6 +31,31 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_formula_labels_follow_aliases_without_reading_values(self):
+        from racer.corpus_cases import formula_label
+        formulas = {('question',20,10):dict(formula='=NORM.S.DIST(A1,FALSE)'),
+                    ("a'b",1,1):dict(formula='=question!$J$20'),
+                    ('loop',1,1):dict(formula='=A1')}
+        self.assertEqual(formula_label("='a''b'!A1",formulas,('echo',1,1)),'NORM.S.DIST')
+        self.assertEqual(formula_label('=A1',formulas,('loop',1,1)),'Cell reference (cycle)')
+        self.assertEqual(formula_label('=missing!A1',formulas,('echo',1,1)),'Cell reference (unresolved)')
+        formulas[('missing',1,1)] = dict(kind='ordinary')
+        self.assertEqual(formula_label('=missing!A1',formulas,('echo',1,1)),'Cell reference (unresolved)')
+        self.assertEqual(formula_label('="SUM("<>"A&B"',formulas,('echo',1,1)),'Infix <>')
+        self.assertEqual(formula_label('=INDEX(LINEST(A1:A3,B1:B3),1,1)',formulas,('echo',1,1)),'LINEST')
+
+    def test_corpus_directory_uses_content_key_and_legacy_layout(self):
+        from racer.corpus_cases import workbook_directory
+        with tempfile.TemporaryDirectory()as scratch:
+            root=Path(scratch);workbook=dict(name='a b/oracle.xlsx',sha256='f'*64)
+            legacy=root/'workbooks/a_b_oracle.xlsx';legacy.mkdir(parents=True)
+            self.assertEqual(workbook_directory(root,workbook),legacy)
+            keyed=root/'workbooks'/('a_b_oracle.xlsx-'+'f'*64);keyed.mkdir()
+            self.assertEqual(workbook_directory(root,workbook,2),keyed)
+            self.assertEqual(workbook_directory(root,workbook),legacy)
+            other={**workbook,'sha256':'a'*64}
+            self.assertEqual(workbook_directory(root,other,2),root/'workbooks'/('a_b_oracle.xlsx-'+'a'*64))
+
     def test_householder_normalized_and_unnormalized_reflectors(self):
         for a in range(2,8):
             for b in range(1,a):
@@ -77,7 +102,7 @@ class ExactArithmetic(unittest.TestCase):
                                 self.assertEqual(sum((a[i][k]*b[k][j] for k in range(size)), R(0)), R(i == j))
 
     def test_pending_workbooks_remain_failed_in_classification_and_fixed_scope_audit(self):
-        from racer.corpus_cases import classify
+        from racer.corpus_cases import classify, failed_comparisons
         from racer.audit import corpus_delta
         counts = dict(awaiting_capture=204, circular_rule=0, external_links=0, fail=0,
                       formula_cells=204, pass_rate=0.0)
@@ -96,6 +121,16 @@ class ExactArithmetic(unittest.TestCase):
             delta = corpus_delta(root/'before', root/'after', '-', root/'delta.json')
             self.assertEqual(delta['inclusive_after_failed'], 204)
             self.assertEqual(delta['counts']['gains'], 0)
+            # Current xtask summaries already include every nonpass in fail.
+            counts['fail']=204
+            for side in ('before','after'):
+                (root/side/'summary.json').write_text(json.dumps(summary))
+            current=classify(root/'before',root/'classified-inclusive')
+            self.assertEqual((current['matched'],current['inclusive_failed']),(0,204))
+            self.assertEqual(failed_comparisons(dict(formula_cells=12,**{'pass':5},fail=7,
+                awaiting_capture=3,external_links=1,circular_rule=1)),2)
+            with self.assertRaisesRegex(ValueError,'failure counts do not reconcile'):
+                failed_comparisons({**counts,'fail':1})
             workbook['sha256'] = 'changed-source'
             (root/'after'/'summary.json').write_text(json.dumps(summary))
             with self.assertRaisesRegex(ValueError, 'pending workbook context changed'):
@@ -341,6 +376,23 @@ class ExactArithmetic(unittest.TestCase):
         self.assertEqual([q['formula'] for q in echoes],
                          ['INDEX({-100;40;80},1,1)', 'INDEX({-100;40;80},2,1)', 'INDEX({-100;40;80},3,1)'])
         self.assertTrue(all(q['role'] == 'operand_echo' for q in echoes))
+
+    def test_rounded_rank_programs_preserve_exact_simple_rank_controls(self):
+        from checker.regression import rounded_rank, rounded_rank_profiles
+        profiles = rounded_rank_profiles()
+        self.assertEqual(len(profiles), 240)
+        controls = [([[R(1), R(0), R(0), R(0)], [R(0), R(1), R(0), R(0)]], False, 2),
+                    ([list(map(R, (1, 2, 4, 5))), list(map(R, (2, 4, 8, 10)))], False, 3)]
+        for profile in profiles:
+            for columns, constant, expected in controls:
+                self.assertEqual(rounded_rank(profile, (columns, constant, expected))[0], expected)
+
+    def test_decimal15_rank_quantizer_ties_and_sign_are_exact(self):
+        from checker.regression import decimal15
+        self.assertEqual(decimal15(R(1000000000000005, 10)), R(100000000000000))
+        self.assertEqual(decimal15(R(1000000000000015, 10)), R(100000000000002))
+        self.assertEqual(decimal15(-R(1000000000000015, 10)), -R(100000000000002))
+        self.assertEqual(decimal15(R(1, 10**300)), R(1, 10**300))
 
     @unittest.skipUnless(__import__('os').name == 'posix', 'Linux FIFO report generator')
     def test_problem_table_child_failure_before_fifo_open_returns(self):

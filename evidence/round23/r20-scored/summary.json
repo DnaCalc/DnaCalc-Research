@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "total": 44,
+  "failed": 32,
+  "matched": 12,
+  "functions": {
+    "BINOM.DIST": {
+      "total": 36,
+      "matched": 4,
+      "failed": 32
+    },
+    "HYPGEOM.DIST": {
+      "total": 8,
+      "matched": 8,
+      "failed": 0
+    }
+  },
+  "executable_sha256": "4cfba07b07aaf24baa7b19b8da9284d261be074363f7be9a2be50dbf2790083a",
+  "observations_sha256": "7da15bdfe30e9a87e1bf2142dc329e5827ffb918842193063786bb5abbbb5d6b",
+  "intake_sha256": "7ee6a1c79c2f8686ca66cd5655263b49efcb69687ac5722e480f5b341869d4c0",
+  "limits": "Every supplied observation is scored, including repeated inputs. Existing registered invoke route; typed failures count as failures. Value2 read-back does not expose effective callee inputs. Predictions never become answers."
+}

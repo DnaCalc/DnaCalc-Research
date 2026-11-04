@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "total": 49,
+  "matched": 49,
+  "functions": {
+    "BESSELI": {
+      "total": 49,
+      "matched": 49,
+      "failed": 0
+    }
+  },
+  "executable_sha256": "4cfba07b07aaf24baa7b19b8da9284d261be074363f7be9a2be50dbf2790083a",
+  "observations_sha256": "e1687f38ae0ce7650539a03ff1768b83b5ee353cb33a5dc1c1a94789565fb2be",
+  "intake_sha256": "ab14ea9971d91f67e9c31fcfff556698a46678a8d819ef7f0edaedb34c4cb8a8",
+  "limits": "Every supplied observation is scored, including repeated inputs. Existing registered invoke route; typed failures count as failures. Value2 read-back does not expose effective callee inputs. Predictions never become answers."
+}

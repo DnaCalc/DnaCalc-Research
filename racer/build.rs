@@ -83,7 +83,11 @@ fn main() {
     let output = PathBuf::from(env::var_os("OUT_DIR").unwrap());
     // Freeze the admitted unit inside the executable. Packet metadata must
     // describe its compiled application sources rather than the current HEAD.
-    fs::write(output.join("research-unit.json"),fs::read(&unit_path).unwrap()).unwrap();
+    let mut binding=unit.clone();
+    binding["compiled_features"]=serde_json::json!({
+        "soft_x87":env::var_os("CARGO_FEATURE_SOFT_X87").is_some()
+    });
+    fs::write(output.join("research-unit.json"),serde_json::to_vec_pretty(&binding).unwrap()).unwrap();
     for module in [
         "tables",
         "x87",
@@ -180,11 +184,27 @@ fn main() {
             println!("cargo:rerun-if-changed={}", day_count.display());
             let original = source.parent().unwrap().join("bond_core_family.rs");
             let mut bond = fs::read_to_string(&original).unwrap();
+            // A separately named diagnostic price copy changes one date-factor
+            // producer only. The original registered body remains untouched.
+            let begin=bond.find("fn pcomp_disc(").unwrap();
+            let end=bond[begin..].find("\nfn solve(").unwrap()+begin;
+            let alternative=bond[begin..end].replace("fn pcomp_disc(","fn research_pcomp_days_num(")
+                .replace("let a = dd(p.prev, c.settlement, c.basis)?;",
+                         "let a = days_between_num(p.prev, c.settlement, c.basis)?;");
+            assert!(alternative.contains("let a = days_between_num(p.prev, c.settlement, c.basis)?;"));
+            bond.push_str(&alternative);
             // The current price/date bodies are unchanged. This appended
             // wrapper exposes their existing private schedule inside the same
             // module, solely for the research solver comparison.
             bond.push_str(r#"
 pub(crate) struct ResearchPrice { context: Ctx, coupons: Period, coupon_rate: f64, redemption: f64 }
+pub(crate) fn research_mat_factors(a:&[f64],numerator_days:bool)->Result<(f64,f64,f64),BondCoreEvalError> {
+    let settlement=dser(a[0])?;let maturity=dser(a[1])?;let issue=dser(a[2])?;
+    let basis=basis(a.get(5).copied().unwrap_or(0.0))?;
+    let b=days_in_year_for_mat(issue,settlement,basis)?;
+    let days=if numerator_days {days_between_num} else {dd};
+    Ok((b,days(issue,maturity,basis)?,days(issue,settlement,basis)?))
+}
 impl ResearchPrice {
     pub(crate) fn new(a: &[f64]) -> Result<Self, BondCoreEvalError> {
         let context = ctx(a[0], a[1], a[5], a.get(6).copied())?;
@@ -194,6 +214,17 @@ impl ResearchPrice {
     pub(crate) fn value(&self, y: f64, staged: bool) -> Result<f64, BondCoreEvalError> {
         Ok(pcomp_disc(self.coupon_rate, y, self.redemption, self.context, self.coupons, staged)?.0)
     }
+    pub(crate) fn is_par(&self, target: f64) -> bool {
+        self.coupons.n > 1 && self.context.settlement == self.coupons.prev
+            && target == 100.0 && self.redemption == 100.0
+            && (100.0*self.coupon_rate/self.context.frequency as f64).is_finite()
+    }
+    pub(crate) fn original_root(&self, target: f64, staged: bool, numerator_days: bool) -> Result<f64, BondCoreEvalError> {
+        solve(target,self.context.frequency,|y| {
+            let price=if numerator_days {research_pcomp_days_num} else {pcomp_disc};
+            Ok(price(self.coupon_rate,y,self.redemption,self.context,self.coupons,staged)?.0)
+        })
+    }
 }
 "#);
             let path = output.join("bond-research.rs");
@@ -202,10 +233,62 @@ impl ResearchPrice {
             println!("cargo:rerun-if-changed={}", original.display());
             println!("cargo:rustc-cfg=bond_solver_audit");
         }
+        if unit["closed_security_audit"].as_bool() == Some(true) {
+            let original=source.parent().unwrap().join("discount_bill_yearfrac_family.rs");
+            let mut body=fs::read_to_string(&original).unwrap();
+            body.push_str(r#"
+pub(crate) fn research_security_days(a:&[f64],bill:bool)->Result<(f64,f64),DiscountBillYearfracEvalError> {
+    if bill {Ok((tbill_days(a[0],a[1])?,360.0))}
+    else {security_days_and_year(a[0],a[1],a.get(4).copied())}
+}
+"#);
+            let path=output.join("security-research.rs");fs::write(&path,body).unwrap();
+            writeln!(bridge,"#[path = {:?}] pub mod discount_bill_yearfrac_family;",path).unwrap();
+            println!("cargo:rerun-if-changed={}",original.display());
+            println!("cargo:rustc-cfg=closed_security_audit");
+        }
+        if unit["bessel_k_audit"].as_bool() == Some(true) {
+            let original=source.parent().unwrap().join("bessel.rs");
+            let original_body=fs::read_to_string(&original).unwrap();
+            // Numerical research templates only. The registered module and
+            // its full application tests remain the original source above.
+            let (body,_)=original_body.split_once("\n#[cfg(test)]\nmod tests {").unwrap();
+            let start=body.find("macro_rules! flushing_op").unwrap();
+            let end=body.find("\nimpl Neg for D").unwrap();
+            let replacement=r#"macro_rules! flushing_op {
+    ($tr:ident, $f:ident, $helper:ident) => {
+        impl $tr for D {
+            type Output = D;
+            fn $f(self, rhs: D) -> D {
+                D::new(super::excel_numeric::$helper(D::new(self.0).0, D::new(rhs.0).0))
+            }
+        }
+    };
+}
+flushing_op!(Add, add, excel_x87_add);
+flushing_op!(Sub, sub, excel_x87_sub);
+flushing_op!(Mul, mul, excel_x87_mul);
+flushing_op!(Div, div, excel_x87_div);
+"#;
+            let body=format!("{}{}{}",&body[..start],replacement,&body[end..]);
+            for (name,staged_sqrt) in [("bessel_k_pc64",false),("bessel_k_pc64_sqrt",true)] {
+                let mut text=body.clone();
+                if staged_sqrt {
+                    assert_eq!(text.matches("D::new(self.0.sqrt())").count(),1);
+                    text=text.replace("D::new(self.0.sqrt())","D::new(super::excel_numeric::excel_sqrt_staged(self.0))");
+                }
+                let path=output.join(format!("{name}.rs"));fs::write(&path,text).unwrap();
+                writeln!(bridge,"#[path = {:?}] pub mod {name};",path).unwrap();
+            }
+            println!("cargo:rerun-if-changed={}",original.display());
+            println!("cargo:rustc-cfg=bessel_k_audit");
+        }
         println!("cargo:rustc-cfg=route_audit");
     }
     println!("cargo:rustc-check-cfg=cfg(route_audit)");
     println!("cargo:rustc-check-cfg=cfg(bond_solver_audit)");
+    println!("cargo:rustc-check-cfg=cfg(closed_security_audit)");
+    println!("cargo:rustc-check-cfg=cfg(bessel_k_audit)");
     if unit["discrete_audit"].as_bool() == Some(true) {
         use std::io::Write;
         let original = source.parent().unwrap().join("discrete_dist.rs");

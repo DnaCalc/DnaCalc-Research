@@ -1,0 +1,62 @@
+{
+  "id": "dc-ztvv-r23-publication-final",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "615e598dc93008850d3a921c9628e23e2ea8dcae",
+  "scope": "Final R23 source publication, verified scalar intake and expanded upstream workbook captures. List labels additionally follow exact captured single-cell aliases; missing target expressions stay unresolved. No additional numerical candidate is declared.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics"
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy.",
+      "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs/bonds.fs, Apache2; existing pinned source and notice retained.",
+      "Apache POI3.17 ab700dc2ae3a880f66a10075cbf1a502da928afb Irr.java, Apache2; original source, full LICENSE and NOTICE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "2347d17cba8907da3dcb8bf0c816b760e97ad08eefcd8f5f0db82d3a1dbd9233",
+    "checker/questions_r13.py": "d0c4b1a136913b2d6c0b4c4931fd82af63367d13d9c76fec1b1b4bd40830bbcc",
+    "checker/regression.py": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+    "checker/test_domains.py": "15f82b872bb183c5baa2fa976911b1c0bd944bd8455e070aa443e0d53ac50ca7",
+    "checker/test_exact.py": "11609af28054eabcfaf2c8532d99e79581e95af98e5de91ac9e26e836924f0e0",
+    "racer/audit.py": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+    "racer/bessel.py": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+    "racer/build.rs": "225ea2c9cbafb05b41b9bb5d6d6384a552f0fc6fef8ab57add171836166f4417",
+    "racer/corpus_cases.py": "85e30e721473951f95965bd9e0fb3313981bc4946b1e7839e9249ccc69661122",
+    "racer/corpus_fuzz.py": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db",
+    "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+    "racer/src/bond_solver.rs": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+    "racer/src/discrete.rs": "c9177782552147f6632e8424c4bf77c5bd26e91a405842165f941c84589c877b",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/main.rs": "98424071eb76c27b363180b1880927a3c8c32765458a4038602fcdae636bf0fa",
+    "racer/src/normal.rs": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+    "racer/src/route_audit.rs": "5300e3a79971a9592f4c72dcbd5a922e29203a686a9d85b29ef462dc37c89352"
+  },
+  "regression_audit": true,
+  "regression_inverse_audit": true,
+  "programs": "Publication/product build. No new model search or additional formula association is declared by this unit.",
+  "limits": "All declared numerical leaves remain conditional; no fitted coefficient/tolerance/selector. Source/control rows are separately identified from complete canonical readings.",
+  "unit": "round23-publication-final",
+  "regression_householder_audit": false,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "bessel_k_audit": false
+}

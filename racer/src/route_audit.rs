@@ -8,6 +8,40 @@ use calc_host::value::{CalcValue, CellKey, CoreRef, NumericMode};
 use calc_host::{CellEdit, CellInput, CellText, FiniteNumber, ProjectedValue, SkinIntent};
 use dna_calc_worker::workbook::Workbook;
 use serde_json::{Value, json};
+
+/// Coherent stored-PC64 arithmetic in the existing A&S K program. Two
+/// templates retain or stage SQRT; EXP/LOG and coefficient tables stay fixed.
+#[cfg(bessel_k_audit)]
+pub fn bessel_k_precision(input:&str,output:&str) {
+    let destination=std::path::Path::new(output);std::fs::create_dir(destination).unwrap();
+    let rows=crate::lines::<Value>(input);let mut counts=[[0_usize;5];2];
+    let mut changes=Vec::new();let mut excluded=0;
+    for row in &rows {
+        assert_eq!(row["function"],"BESSELK");
+        let args:Vec<_>=row["args"].as_array().unwrap().iter()
+            .map(|v|calc_verdict::decode_argument(v,"K precision").unwrap()).collect();
+        let Some(numbers)=args.iter().map(|a|a.as_number()).collect::<Option<Vec<_>>>() else {excluded+=1;continue;};
+        let baseline=crate::invoke_control("BESSELK",args).0;
+        assert_eq!(baseline,row["actual"],"original registered K return");
+        let format=|answer:Result<f64,calc_func::value::WorksheetErrorCode>| {
+            answer.map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(|_|"error:Num".into())
+        };
+        assert_eq!(format(crate::ported::bessel::besselk_kernel(numbers[0],numbers[1])),baseline,"unchanged K body");
+        let predictions=[crate::ported::bessel_k_pc64::besselk_kernel(numbers[0],numbers[1]),
+                         crate::ported::bessel_k_pc64_sqrt::besselk_kernel(numbers[0],numbers[1])];
+        for (id,prediction)in predictions.into_iter().map(format).enumerate() {
+            let now=prediction==row["expected"].as_str().unwrap();let old=baseline==row["expected"].as_str().unwrap();
+            for (j,v) in [true,now,old,now&&!old,old&&!now].into_iter().enumerate(){counts[id][j]+=usize::from(v);}
+            if prediction!=baseline {changes.push(json!({"program":id,"original":row,"prediction":prediction}));}
+        }
+    }
+    crate::json_write(destination.join("changed-predictions.json").to_str().unwrap(),&changes);
+    let summary=json!({"complete":true,"program_labels":2,"original_rows":rows.len(),"excluded_still_fail":excluded,
+        "count_order":["all","exact","baseline_exact","gains","losses"],"counts":counts,
+        "sources":"Existing original A&S9.8 K program and original Excel readings; shared IEEE754/x87 arithmetic. No coefficient or row selector changed.",
+        "limits":"All D add/subtract/multiply/divide operations store from PC64; square root is either the current correctly-rounded binary64 leaf or shared staged SQRT. Existing fixed EXP/LOG and seed tables remain conditional numerical leaves. Application admission/flush/order/recurrence rules retained. Complete baseline-change records are retained, including losses. This is a finite candidate comparison, not whole-family exclusion."});
+    crate::json_write(destination.join("summary.json").to_str().unwrap(),&summary);println!("{summary}");
+}
 use std::{fs, path::Path};
 
 #[cfg(regression_audit)]

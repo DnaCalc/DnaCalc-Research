@@ -1,0 +1,67 @@
+{
+  "complete": true,
+  "backend": "actual registered CalcFunc with soft-x87 feature, NumericMode Fast, date-system1900",
+  "counts": {
+    "BESSELK": {
+      "rows": 1236,
+      "matched": 1236,
+      "failed": 0
+    },
+    "DISC": {
+      "rows": 2400,
+      "matched": 2400,
+      "failed": 0
+    },
+    "INTRATE": {
+      "rows": 2400,
+      "matched": 2400,
+      "failed": 0
+    },
+    "PRICEDISC": {
+      "rows": 2400,
+      "matched": 2400,
+      "failed": 0
+    },
+    "PRICEMAT": {
+      "rows": 2404,
+      "matched": 2404,
+      "failed": 0
+    },
+    "RECEIVED": {
+      "rows": 2400,
+      "matched": 2400,
+      "failed": 0
+    },
+    "TBILLEQ": {
+      "rows": 2400,
+      "matched": 2400,
+      "failed": 0
+    },
+    "TBILLYIELD": {
+      "rows": 2400,
+      "matched": 2400,
+      "failed": 0
+    }
+  },
+  "total_rows": 18040,
+  "matched": 18040,
+  "failed": 0,
+  "original_trace_sha256": {
+    "security-combined.jsonl": "8a94fca22a6dab132f130a5569dbc4cb1b3e1718988da889c1cc7c509da04722",
+    "besselk-before.jsonl": "82e28484518090326cbc2c70c4f6b8d0a84e16bc7fc487bfd4e8ae659cbdc700",
+    "pricemat-bank-before.jsonl": "b4839fa88ebd27898664b84b840d5c47e5d346bb37b15f7b75205d66648faaae",
+    "tbilleq-bank-before.jsonl": "3ade4d947f1ff40117dbe9c5742d2726fbe1e92bc784ae002b3782227ba76038"
+  },
+  "predictions_sha256": {
+    "BESSELK": "bf2bcc3654dec9d24ab65e1a0f31c493fd6af7cab9a333587094dd7be529a4e0",
+    "DISC": "f9739135de3107af49af92fa8700140c8400d30284506e0f8103e935bdcba8b8",
+    "INTRATE": "b5d5ba644224ac5e3c0882ecdd8d1d2ed85804835cde1f70d5e88aa34158e10a",
+    "PRICEDISC": "39a8980591a7776c04e8d0834e345a6c0112212ca74370850ce64e7fe58821ce",
+    "PRICEMAT": "3246ef2c17ebb37de892d8646cec490bfb256e95530738e2ebcd2d9c0e2da155",
+    "RECEIVED": "ee2a6a3309a2c4d80006b04cd189c82f49dadbef3d7b2d661aab1a46932058e7",
+    "TBILLEQ": "16aa825ff02d6fc6a2655afb96c621939a0e1ba008a369d8b61cb6ba0b64a402",
+    "TBILLYIELD": "a8f7afea5bea68f0d92e830ee7c389adc10318e30de82ba28ba1f440064368ba"
+  },
+  "executable_sha256": "4cfba07b07aaf24baa7b19b8da9284d261be074363f7be9a2be50dbf2790083a",
+  "limits": "Finite original bank scope for eight completed functions, including original domain errors; no global backend, processor, Windows or browser equivalence claim."
+}

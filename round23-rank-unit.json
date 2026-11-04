@@ -1,0 +1,35 @@
+{
+  "id": "dc-j9k-r23-rounded-rank",
+  "role": "implementer",
+  "application_revision": "8173029ca63ce5f5ccd439de6b686cb81534f516",
+  "sources": {
+    "tier1": [
+      "Original R21 degrees-of-freedom captures; exact Gram/Schur/LDL mathematics; IEEE754 binary32/binary64/x87 formats; decimal15 as an explicitly hypothetical internal precision"
+    ],
+    "tier2": [
+      "Existing original MIT exact-rational checker"
+    ],
+    "banned": [
+      "Tier3/4 numerical implementation",
+      "Excluded engine checkout, including listings/history"
+    ]
+  },
+  "model": "gpt-6.1-sol requested by session launcher; no override",
+  "machine": "dna-firehorse Linux x86_64 AMD EPYC",
+  "grammar": {
+    "program_labels": 240,
+    "precision": 5,
+    "centering": 2,
+    "normalization": 3,
+    "pivot": 2,
+    "zero_column": 2,
+    "factorization": 2,
+    "threshold": "zero only; no fitted tolerance"
+  },
+  "exposure": "All existing observations are discovery; grammar written before comparison; no preregistration or held-out claim.",
+  "limits": "Necessary degrees-of-freedom hypotheses only; no full floating QR, coefficient program, producer identification or product adoption.",
+  "source_sha256": {
+    "checker/regression.py": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  }
+}

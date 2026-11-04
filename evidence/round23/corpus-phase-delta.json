@@ -1,0 +1,403 @@
+{
+  "complete": true,
+  "counts": {
+    "sessions": 25,
+    "formula_cells": 22339,
+    "evaluations": 79272,
+    "before_matched": 19973,
+    "after_matched": 19974,
+    "gains": 1,
+    "losses": 0,
+    "changed_values": 5,
+    "external_or_circular": 87,
+    "awaiting_capture": 1265,
+    "workbooks": 24
+  },
+  "changes": [
+    {
+      "workbook": "workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "cell": [
+        "dc96l3_bessel",
+        354,
+        4
+      ],
+      "before": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "cell": "D354",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "mismatched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target",
+        "mismatch": {
+          "class": "kind",
+          "expected": "error",
+          "actual": "number"
+        },
+        "expected": {
+          "error": "num"
+        },
+        "actual": {
+          "number": "bed7ff19ed9c47a0"
+        }
+      },
+      "after": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "cell": "D354",
+        "kind": "ordinary",
+        "sheet_visibility": "visible",
+        "observation": "excel_raw",
+        "verdict": "matched",
+        "certainty": "uncertified",
+        "uncertified": "no_exact_target"
+      },
+      "original_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "number": "bed7ff19ed9c47a0"
+          }
+        }
+      },
+      "current_evaluation": {
+        "sheet": "dc96l3_bessel",
+        "row": 354,
+        "column": 4,
+        "tick": 1,
+        "revision": 0,
+        "context": "excel-calc-context/1;date1904=false;iteration=false;max_iterations=100;max_change=3f50624dd2f1a9fc;precision_as_displayed=false",
+        "returned": {
+          "value": {
+            "error": "num"
+          }
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json",
+      "formula_cells": 17
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json",
+      "formula_cells": 1436
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json",
+      "formula_cells": 22
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json",
+      "formula_cells": 17
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-engine_l3_oracle.xlsx/report.json",
+      "formula_cells": 112
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json",
+      "formula_cells": 183
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json",
+      "formula_cells": 83
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json",
+      "formula_cells": 57
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json",
+      "formula_cells": 783
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json",
+      "formula_cells": 850
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json",
+      "formula_cells": 234
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json",
+      "formula_cells": 810
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json",
+      "formula_cells": 11876
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json",
+      "formula_cells": 1526
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json",
+      "formula_cells": 234
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json",
+      "formula_cells": 218
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json",
+      "formula_cells": 112
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json",
+      "formula_cells": 136
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json",
+      "formula_cells": 596
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json",
+      "formula_cells": 1144
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json",
+      "formula_cells": 115
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json",
+      "formula_cells": 186
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json",
+      "formula_cells": 86
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json",
+      "formula_cells": 167
+    },
+    {
+      "before": "target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json",
+      "after": "target/corpus-r23-phase/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json",
+      "formula_cells": 74
+    }
+  ],
+  "inputs_sha256": {
+    "target/corpus-r23-before/summary.json": "dc7783d03c3ecf508f06592ee10c5c5ee378142fc554c4513cb27c2fb87a1ca9",
+    "target/corpus-r23-phase/summary.json": "eaa8039289f4bd0c3fbfb97702f32e8c846e70f6c25e07eef89e073f66b5291b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/../DnaCalc-Research/racer/audit.py": "1d046c9e32dee620a0ec55c8f2ba7961e5a21fb71eb4f7ea460422a471400448",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "886e51628009ed3aba429d7097d2299b95317fd4f62072fffeb1c4f9f909d27f",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/triage.json": "691266f4b8373f2c22c6c8cb708eba4c80223aec7af83ac78839e910e065fb34",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/report.json": "85072e2f5b3c8045ec90e9bfe31ce4c10520e6f64e503753dc652a4e9c8b8e7f",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_iteration_oracle.xlsx/evaluations.json": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "ddbeb218273989cf5772fb83c885feece0741670ea8942fd05927f00e3936263",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_oracle.xlsx/triage.json": "6cef5c14810f59824109cb0f98c661cf5c5b95d0da3452a228bd8ed6358af039",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_oracle.xlsx/report.json": "1f3454f9700c488be00d807a2d5112ad8be96ba3120a5938b57e64c48b6950d5",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_10y_oracle.xlsx/evaluations.json": "260791d7bd8e1b420f5ce6f25a06769bd150a8a3fcbe371684fa069285ac218c",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "ec614167770a47ab0693578fd86c7be5f1548074a8917bc6384a2266ad2dd160",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_86f_oracle.xlsx/triage.json": "dbab8cdebe5571d9c40f7a611721984b0d1c5e1df233a53e754bd2d26aaddd25",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_86f_oracle.xlsx/report.json": "4baf85b81fa1a6fc7cc76a73706f5e0400e581f578bf0f75164dbdd9bbd9729e",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_86f_oracle.xlsx/evaluations.json": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "bc9100cfaf2ae2b7a9296c18a77139b16ddbc925e6bad4185c800cd7d9954c5a",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_y2o_oracle.xlsx/triage.json": "012fa4c94043649cc369bad7b178b23fe35bf9aad273de01c93b4f2ed27270ec",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_y2o_oracle.xlsx/report.json": "bd92747be99a27486a705b39a0bf833856a4c6a97c84efd094dc40fba9caba0e",
+    "target/corpus-r23-before/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "target/corpus-r23-phase/workbooks/calc-engine_dc_y2o_oracle.xlsx/evaluations.json": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+    "target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "8497de3f11fd40dd5bc80839596a9444438af903162c1f62d4e4b766b14cf067",
+    "target/corpus-r23-phase/workbooks/calc-engine_l3_oracle.xlsx/triage.json": "3fd78f1a20ebcba957b19af1b937209becbffab63467f87a978624f25ac3fd5c",
+    "target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "target/corpus-r23-phase/workbooks/calc-engine_l3_oracle.xlsx/report.json": "1c840ad0464a910ca04c71556fb24d875fe4a2b778a7cab54859f1ef432ea75c",
+    "target/corpus-r23-before/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "target/corpus-r23-phase/workbooks/calc-engine_l3_oracle.xlsx/evaluations.json": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "323db38e0e41aba7e2dbc39e4bd7b91ff1084ae0f3010cd0edfb21e7ae7cd7cc",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_51ka_oracle.xlsx/triage.json": "096c61f3b054ef473596bcbb4286f0e45a07f793c681097481bb42f8d1d32181",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_51ka_oracle.xlsx/report.json": "e93c39d2b529068920ea3e56c91845de796937dfc40557f7a068521a98fd63f6",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_51ka_oracle.xlsx/evaluations.json": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "2de86c225aa118a58b1c24927eba8b4a9c6f9194fb88f026ea94c40228cda809",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_ibp2_oracle.xlsx/triage.json": "6d11dcfaa4f9be71cfa326455321f349f0374b48329a35126dd373a294c2cfeb",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_ibp2_oracle.xlsx/report.json": "89bcceaa14a0cd35f80c11169f30a37d9cded7eb4ba659bf4a3a60e53dc7b6d7",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_ibp2_oracle.xlsx/evaluations.json": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "6291ea7807c3c00cadbc4b9f50a46d2a14667321a0ac46852c57de39739dd946",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_l10u_oracle.xlsx/triage.json": "f3d23cbce4d6699fee0cdf210ebcf60f81461408778346b1c096683a2c489836",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_l10u_oracle.xlsx/report.json": "e5682946855d71c21165d10e6806dc54634bddc25f4a3b5c61b00ff08772a00f",
+    "target/corpus-r23-before/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "target/corpus-r23-phase/workbooks/calc-fml_dc_l10u_oracle.xlsx/evaluations.json": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "5ce32a05b28d63da006a842a98c78ade8b526050b15bc9c1fd351d27bfd1087b",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-1.capture.json": "5ce32a05b28d63da006a842a98c78ade8b526050b15bc9c1fd351d27bfd1087b",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "b74fe938216b18cedd5cdfd4bb58cac6dd7034b098081848536e425ed457221f",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-1/triage.json": "81502dca7d464dc9211d00cfb4a27c6cfcb8815d5452b8e41e8aa18fe9ac0dc6",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "6e3c3664e13d997888832042f5fb05232f18d1eb911278dcdd3c719112d2944d",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-1/report.json": "6e3c3664e13d997888832042f5fb05232f18d1eb911278dcdd3c719112d2944d",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "c42fea08f8737c64c89b1a61b224f47950b2699a5988527c8a66dced4b0a40cc",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-1/evaluations.json": "a8448a381e9b5b5f3e368dd8893dd1337ce14e66067a3ec653b9d9c1a1f8cd12",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2.capture.json": "59a567927936be915693e2bc58ae047e8aad14512773abf9a3f83d0eebff4c54",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-2.capture.json": "59a567927936be915693e2bc58ae047e8aad14512773abf9a3f83d0eebff4c54",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "9a9b47ef667f719c914dc04410f3441337db0def00a51dca8d2fe1a4dccb1af3",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-2/triage.json": "c8311ec76e5e94f33a3c30570fb8346df29d912ace480fff329dfba2f53b379a",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "4b6bc9cd88a68ec893efe3342695834a6a08cfa6e15ef6904b47a3e3602c22cf",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-2/report.json": "4b6bc9cd88a68ec893efe3342695834a6a08cfa6e15ef6904b47a3e3602c22cf",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "b6bc92d36060d86be413e7322eaaaac8e18f0f08e271e6c2183b4bdb4c5f0cc0",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-2/evaluations.json": "c5052327bfb17275ccff311d7f2d5f142e6d78b535010f59efff403f0bd14d49",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json": "a2e07ca8bb7175326f1c4caec6ff9b1ceffbe73024ea0f2beda91c681deec079",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-3.capture.json": "a2e07ca8bb7175326f1c4caec6ff9b1ceffbe73024ea0f2beda91c681deec079",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "ee7db224bd1e77260654b2581114af1aced25fa6558b4e17d4057b9c52218366",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-3/triage.json": "fa7aca09ab6725f6262c4a67acf0b297a0930b76a6fc41058502d8f2a8e87ebc",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "3c409f5d9e0216eb0eb3209619416a6690b07b6a1c70a25686871c5e0d0fd109",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-3/report.json": "3c409f5d9e0216eb0eb3209619416a6690b07b6a1c70a25686871c5e0d0fd109",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "29087a281002270f99ecec5fc2d5050135a5da2f0550dc956b7acfc96f1ea705",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-3/evaluations.json": "87453e9ab45508265dc1137da3776a9a7d5e384f9eaa1a48d0c456641d79ee4d",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json": "25ff7e1febf24a2b006d8edad6ca2a8cd066cc28cf51d0f23b091dc7f6dff5ab",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-4.capture.json": "25ff7e1febf24a2b006d8edad6ca2a8cd066cc28cf51d0f23b091dc7f6dff5ab",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/triage.json": "2028c4b1ad49f1f2c96d09ef098ca06271765dc88ba524bac8436927d8b4572e",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-4/triage.json": "a30252bb9061dc173db5970081f3052366bb8eee5ec1395ec77c2e020ab67775",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json": "c026cc6b61aa0b80f08cba4eae4c7dd746f4704e5f16059cb0c7f30cca90190e",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-4/report.json": "c026cc6b61aa0b80f08cba4eae4c7dd746f4704e5f16059cb0c7f30cca90190e",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-4/evaluations.json": "b80f046e263821a6ac97c7b04dd6bce12d216740a563ca86911f6fa737f2fa14",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-4/evaluations.json": "7e257597f5721b309cc27ee9f84b29491c8775044efdad917586b38d74515c51",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5.capture.json": "17cdfb5723921f8adb5d381086c0b3f3979cbd2e0e8b3260cdc599b49062182f",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-5.capture.json": "17cdfb5723921f8adb5d381086c0b3f3979cbd2e0e8b3260cdc599b49062182f",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/triage.json": "af51e2671f0258d904ad098581da9f917733aa0e07860a48c4328ac4b8abc0d4",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-5/triage.json": "86065a44102c3365aa827e502c0536166837c6213b566bf6f6d8a25e85d77564",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json": "7c550a27d0f2c1e8d63ce073fa80c73aa648cf03830128a29736c9a2034c4094",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-5/report.json": "a634978c0b042d9b8ba70e3f8ba27aca1dae62e1c1103f34260966e5de8d8a05",
+    "target/corpus-r23-before/workbooks/calc-func_catalogue_oracle.xlsx/session-5/evaluations.json": "d5a785eac41bf231a6524f238cf5e42765c3e316f4189f3e972f999c37b1c74e",
+    "target/corpus-r23-phase/workbooks/calc-func_catalogue_oracle.xlsx/session-5/evaluations.json": "e8af79f6a49c2b5d4a003d8fbd1a4bc1e1eb5e613c0ab6d40957a5f14cff7773",
+    "target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "fd1dea7d23a7310d8080f4d8b66c22792c37263fac3a3e91951963cfc502ff2e",
+    "target/corpus-r23-phase/workbooks/calc-func_cdoc_jpha_oracle.xlsx/triage.json": "0c8e4a6fb89527dc60e86f43e2ac13acf15b023600ce5579a771c9c73cf47121",
+    "target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "target/corpus-r23-phase/workbooks/calc-func_cdoc_jpha_oracle.xlsx/report.json": "e80c2de46cc8b418f9a633cc1c7590554a71e3a4f85fd484c11f1a52d6a131d7",
+    "target/corpus-r23-before/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "target/corpus-r23-phase/workbooks/calc-func_cdoc_jpha_oracle.xlsx/evaluations.json": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "404e43c48fb87eee42f0f41de27bb6e05637a94dc3267f5adf6047c174c41b77",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/triage.json": "eccee151f6b9966b016f9c92f1529a932011ebc4b60d9f92a0106bc83f5c3a94",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/report.json": "b78536d01f5d9424f59796aef4ec9479219d514d7f8ce9b7a59aa2e8e4dc89fe",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m1_2_oracle.xlsx/evaluations.json": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "ce0ac8fe96b73c30c7e8b8fa479e9196daa0c6c1e2023f903932629c9ee2d2f7",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/triage.json": "788fab73376facc2342287b08761eab2be4e18bb26b19c1aef32449fba2d7252",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/report.json": "ede9819c63aff0dc8b4a47ad4cbbc2d4d9c22cc2461dd07b18bc84595471e178",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_2_oracle.xlsx/evaluations.json": "c82d9946d6e1cc8faf1264abcb07e4930316e326df04068b8a098c7d0b3bd7ee",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "f5c032d9f7d457697187f602dc03d39b9cae3adc7a2b809ca87e3b8ca568db6d",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/triage.json": "8ca2426928bfe72c1a99d8dfb648aef6b9c92e85a88c7716de71be1c090579dc",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/report.json": "81ab45de2e6718f78e1326110ca7f6d7db7b1bc44e3ecafc5420737fd54fe92f",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_4_oracle.xlsx/evaluations.json": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "09df79fd477ed74cbd8cedc4882f4e1e7efb981730de0c37898fdabf3b91ece7",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/triage.json": "07ecbdd0648c53fdac6dd88c9a93a54791de5e2a70d3015fb0737904fac61c7a",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/report.json": "7e45c7a14afc92b96541e95ea848ef8f716d4befd6678f4d8776b41166b07169",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_5_oracle.xlsx/evaluations.json": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "764f10796feaaa381cc2b272673be11eb5478cb9eee9acab3155aca4d6140e8b",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/triage.json": "cfa3767cac11967391e6dfff501f3f984f119aaa578c489945494917f0a11eba",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/report.json": "654d5d269a91f2e96d2ed52629c8c9b8de75188d338108bd15d336d7e4d317d3",
+    "target/corpus-r23-before/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "target/corpus-r23-phase/workbooks/calc-func_cfunc_m3_6_oracle.xlsx/evaluations.json": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+    "target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "2196a11077ce2819672dd189bb3d4a879e2024eaad87f86d486ddb85489df82f",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_e00t_oracle.xlsx/triage.json": "a472754f5b1c233b05cf51ed13ad181d3ff5f867df8c635e55b0ea4b1b11d690",
+    "target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_e00t_oracle.xlsx/report.json": "fd5847a8e4c263f36f4e16d823a67fcc3ae558353eeb545cfcec06d11a425bef",
+    "target/corpus-r23-before/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_e00t_oracle.xlsx/evaluations.json": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+    "target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "8aeda1ca61ff9b53151e5e263fd48487d405b0612102acb4392391841e5d43cd",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_fwpz_oracle.xlsx/triage.json": "36c2db6dfeb2d264c4b9534f901bf439a9275457c60f68dea87b282d3a4652db",
+    "target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_fwpz_oracle.xlsx/report.json": "c6c88697fe7b6756aa9f5fa356664305009d9e57b5dd0ae7158eb0df0aebc9ab",
+    "target/corpus-r23-before/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_fwpz_oracle.xlsx/evaluations.json": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+    "target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "a3161313e1dd7ea861f9d6e6d6e77b4ebe13d858acd77886b983f4812ad79b79",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_nzpw_oracle.xlsx/triage.json": "529f1e7d283f647de56f55aeaf3edeb7c60948d0f57842c34bb0f163f6dcdabf",
+    "target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_nzpw_oracle.xlsx/report.json": "650090bc12cf65a95e5378e7d2135b93da01897556eeb414ffad3487364dbe7e",
+    "target/corpus-r23-before/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_nzpw_oracle.xlsx/evaluations.json": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+    "target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "954318c76e30b6b4d1f77a1f169f3490046da2d66a4a01293af7f7440ae54fb8",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_q9rb_oracle.xlsx/triage.json": "373f255e42d282d8c4a9ebadeb03642c86cdecf9fadb61cdb58afa5d56c85f14",
+    "target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_q9rb_oracle.xlsx/report.json": "83f24e4d734938842969a59e45ada0b843b8ea60b90d642816244afb8068b43d",
+    "target/corpus-r23-before/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_q9rb_oracle.xlsx/evaluations.json": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+    "target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "e67c815d99280b87b8dbfaf2ffe47f22854313f601b748813973951d1f639a04",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_xrxb_oracle.xlsx/triage.json": "8e551cc8220e4cfceebadaeda210e929a10947951825e4afef285539033aa1c1",
+    "target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_xrxb_oracle.xlsx/report.json": "d69cfbe148a4b317776ea6a866d56c9d6ab9d344baf3fa72246e04111e7e43f7",
+    "target/corpus-r23-before/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "target/corpus-r23-phase/workbooks/calc-func_dc_xrxb_oracle.xlsx/evaluations.json": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+    "target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "ec46b876568bbbdd64c07975450c5b678015c034dad679714de4bc26b084b49b",
+    "target/corpus-r23-phase/workbooks/calc-host_dc_ylr_oracle.xlsx/triage.json": "48f8e9dec47289f39049debab652960ef770c41d5f68db184398031eff9696e5",
+    "target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "target/corpus-r23-phase/workbooks/calc-host_dc_ylr_oracle.xlsx/report.json": "9175a5a5f19904a0614500e2a19ecc59ea334eb450baa6ba5fc7ade47de256dd",
+    "target/corpus-r23-before/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+    "target/corpus-r23-phase/workbooks/calc-host_dc_ylr_oracle.xlsx/evaluations.json": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614"
+  },
+  "pending_coverage": [
+    {
+      "workbook": "calc-func/dcj9k_r21/oracle.xlsx",
+      "cells": 204,
+      "source_sha256": "d3e3f469aad6dcad09edd92021aad4e71157e5b62ba92a99399872f725bfdf53"
+    },
+    {
+      "workbook": "calc-func/dcj9k_r22/oracle.xlsx",
+      "cells": 105,
+      "source_sha256": "7c97260e239506e0255c9c6930229ce97b4678ef805d0945380a00fc56309317"
+    },
+    {
+      "workbook": "calc-func/fn2_questions/oracle.xlsx",
+      "cells": 956,
+      "source_sha256": "c5d039de7df3898ba23938d1fd3ce0185d4aadb0162fed571419322cb04adfbc"
+    }
+  ],
+  "inclusive_before_failed": 2366,
+  "inclusive_after_failed": 2365,
+  "external": 73,
+  "circular": 14,
+  "before_fail": 1014,
+  "after_fail": 1013,
+  "limits": "Fixed formula inventory, answers and workbook contexts, including every comparison session. New capture coverage is separate from product gains; no answer or scope-dependent pass is synthesized."
+}

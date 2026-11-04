@@ -1,0 +1,329 @@
+{
+  "complete": true,
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "gains",
+    "losses"
+  ],
+  "counts": {
+    "DISC": [
+      [
+        2400,
+        2398,
+        2398,
+        0,
+        0
+      ],
+      [
+        2400,
+        2400,
+        2398,
+        2,
+        0
+      ],
+      [
+        2400,
+        1063,
+        2398,
+        0,
+        1335
+      ],
+      [
+        2400,
+        2398,
+        2398,
+        0,
+        0
+      ],
+      [
+        2400,
+        2398,
+        2398,
+        0,
+        0
+      ]
+    ],
+    "INTRATE": [
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2400,
+        2399,
+        1,
+        0
+      ],
+      [
+        2400,
+        1461,
+        2399,
+        0,
+        938
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ]
+    ],
+    "PRICEDISC": [
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2400,
+        2399,
+        1,
+        0
+      ],
+      [
+        2400,
+        1924,
+        2399,
+        0,
+        475
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ]
+    ],
+    "RECEIVED": [
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2400,
+        2399,
+        1,
+        0
+      ],
+      [
+        2400,
+        1866,
+        2399,
+        1,
+        534
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ]
+    ],
+    "TBILLYIELD": [
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2400,
+        2399,
+        1,
+        0
+      ],
+      [
+        2400,
+        1873,
+        2399,
+        0,
+        526
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ],
+      [
+        2400,
+        2399,
+        2399,
+        0,
+        0
+      ]
+    ]
+  },
+  "excluded_still_fail": 0,
+  "first_losses": {
+    "DISC:2": {
+      "original": {
+        "actual": "0x3fc51bce666128b6",
+        "args": [
+          "0x4063000000000000",
+          "0x4082b80000000000",
+          "0x4061510b041667ea",
+          "0x4065b34dbc64bfbd",
+          "0x4010000000000000"
+        ],
+        "expected": "0x3fc51bce666128b6",
+        "function": "DISC",
+        "id": "oc1537",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle-20430/build-20430/DISC.jsonl"
+      },
+      "prediction": "0x3fc51bce666128b8"
+    },
+    "INTRATE:2": {
+      "original": {
+        "actual": "0x40691594176d28ac",
+        "args": [
+          "0x4056c00000000000",
+          "0x40a2d80000000000",
+          "0x4062cfc285917e1c",
+          "0x4107c943d02598c1",
+          "0x4000000000000000"
+        ],
+        "expected": "0x40691594176d28ac",
+        "function": "INTRATE",
+        "id": "oc39",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle-20430/build-20430/INTRATE.jsonl"
+      },
+      "prediction": "0x40691594176d28ad"
+    },
+    "PRICEDISC:2": {
+      "original": {
+        "actual": "0x4044d6e7176f8d7a",
+        "args": [
+          "0x405bc00000000000",
+          "0x40a3020000000000",
+          "0x3fbdb10e4727ca25",
+          "0x4064ae72a2337d60",
+          "0x4000000000000000"
+        ],
+        "expected": "0x4044d6e7176f8d7a",
+        "function": "PRICEDISC",
+        "id": "oc1550",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle-20430/build-20430/PRICEDISC.jsonl"
+      },
+      "prediction": "0x4044d6e7176f8d7b"
+    },
+    "RECEIVED:2": {
+      "original": {
+        "actual": "0x401fd90aff21150c",
+        "args": [
+          "0x4052400000000000",
+          "0x4080200000000000",
+          "0x401d5093a7fcb84d",
+          "0x3fb0c610947af6ce",
+          "0x0000000000000000"
+        ],
+        "expected": "0x401fd90aff21150c",
+        "function": "RECEIVED",
+        "id": "oc420",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle-20430/build-20430/RECEIVED.jsonl"
+      },
+      "prediction": "0x401fd90aff21150d"
+    },
+    "TBILLYIELD:2": {
+      "original": {
+        "actual": "0x4082fd5eb5903f67",
+        "args": [
+          "0x40e00ea000000000",
+          "0x40e00ec000000000",
+          "0x404299f2a6111b2a"
+        ],
+        "expected": "0x4082fd5eb5903f67",
+        "function": "TBILLYIELD",
+        "id": "oc781",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+          "excel_build": "20430",
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "cache/oracle-20430/build-20430/TBILLYIELD.jsonl"
+      },
+      "prediction": "0x4082fd5eb5903f68"
+    }
+  },
+  "limits": "Five coherent arithmetic models retain the equation association and original date helper. Each program applies uniformly within each named function. Registered error branches unchanged; nonnumeric rows remain excluded failures. Original recorded answers are discovery, not proof about unmeasured inputs.",
+  "models": [
+    "strict",
+    "stored_pc64",
+    "resident_pc64",
+    "stored_pc53",
+    "resident_pc53"
+  ],
+  "original_rows": 12000,
+  "programs_per_function": 5,
+  "source": "Published discount-security equations, as in cleared registered bodies; IEEE754/Intel arithmetic precision. Original MIT implementation; no coefficients or thresholds fitted."
+}

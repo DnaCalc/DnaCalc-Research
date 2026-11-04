@@ -1,0 +1,159 @@
+{
+  "complete": true,
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "gains",
+    "losses",
+    "finite_program_failed"
+  ],
+  "limits": "Current original product schedule and price/discount helpers are conditional. Ten coherent arithmetic/discount labels; every local/helper boundary stores binary64. Published constants and stopping order remain fixed. Nonfinite intermediate/leaf errors yield a typed NUM hypothesis, not a claim to reproduce all F# exceptional behavior. Nonnumeric rows are outside this finite diagnostic scope. Single-coupon/domain baseline routes are preserved. No fitted constant, threshold or row-specific program selector; all answers are discovery.",
+  "program_labels": 10,
+  "programs": [
+    {
+      "counts": [
+        532,
+        1,
+        12,
+        1,
+        12,
+        0
+      ],
+      "id": 0,
+      "inclusive_failures_all_original_rows": 531,
+      "model": "strict",
+      "staged_discount": false
+    },
+    {
+      "counts": [
+        532,
+        6,
+        12,
+        5,
+        11,
+        0
+      ],
+      "id": 1,
+      "inclusive_failures_all_original_rows": 526,
+      "model": "strict",
+      "staged_discount": true
+    },
+    {
+      "counts": [
+        532,
+        1,
+        12,
+        1,
+        12,
+        0
+      ],
+      "id": 2,
+      "inclusive_failures_all_original_rows": 531,
+      "model": "stored_pc64",
+      "staged_discount": false
+    },
+    {
+      "counts": [
+        532,
+        6,
+        12,
+        5,
+        11,
+        0
+      ],
+      "id": 3,
+      "inclusive_failures_all_original_rows": 526,
+      "model": "stored_pc64",
+      "staged_discount": true
+    },
+    {
+      "counts": [
+        532,
+        1,
+        12,
+        1,
+        12,
+        0
+      ],
+      "id": 4,
+      "inclusive_failures_all_original_rows": 531,
+      "model": "resident_pc64",
+      "staged_discount": false
+    },
+    {
+      "counts": [
+        532,
+        6,
+        12,
+        5,
+        11,
+        0
+      ],
+      "id": 5,
+      "inclusive_failures_all_original_rows": 526,
+      "model": "resident_pc64",
+      "staged_discount": true
+    },
+    {
+      "counts": [
+        532,
+        1,
+        12,
+        1,
+        12,
+        0
+      ],
+      "id": 6,
+      "inclusive_failures_all_original_rows": 531,
+      "model": "stored_pc53",
+      "staged_discount": false
+    },
+    {
+      "counts": [
+        532,
+        6,
+        12,
+        5,
+        11,
+        0
+      ],
+      "id": 7,
+      "inclusive_failures_all_original_rows": 526,
+      "model": "stored_pc53",
+      "staged_discount": true
+    },
+    {
+      "counts": [
+        532,
+        1,
+        12,
+        1,
+        12,
+        0
+      ],
+      "id": 8,
+      "inclusive_failures_all_original_rows": 531,
+      "model": "resident_pc53",
+      "staged_discount": false
+    },
+    {
+      "counts": [
+        532,
+        6,
+        12,
+        5,
+        11,
+        0
+      ],
+      "id": 9,
+      "inclusive_failures_all_original_rows": 526,
+      "model": "resident_pc53",
+      "staged_discount": true
+    }
+  ],
+  "rows": 532,
+  "scoped_numeric_rows": 532,
+  "source": "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs findRoot/newton/findBounds/bisection; Apache2.0, notice retained.",
+  "unscoped_rows_still_fail": 0
+}

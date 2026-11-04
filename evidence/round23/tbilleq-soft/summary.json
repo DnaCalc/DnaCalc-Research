@@ -1,0 +1,88 @@
+{
+  "complete": true,
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "gains",
+    "losses"
+  ],
+  "counts": [
+    [
+      2400,
+      2399,
+      2399,
+      0,
+      0
+    ],
+    [
+      2400,
+      2400,
+      2399,
+      1,
+      0
+    ],
+    [
+      2400,
+      2399,
+      2399,
+      0,
+      0
+    ],
+    [
+      2400,
+      2400,
+      2399,
+      1,
+      0
+    ],
+    [
+      2400,
+      2014,
+      2399,
+      1,
+      386
+    ],
+    [
+      2400,
+      2014,
+      2399,
+      1,
+      386
+    ],
+    [
+      2400,
+      2399,
+      2399,
+      0,
+      0
+    ],
+    [
+      2400,
+      2400,
+      2399,
+      1,
+      0
+    ],
+    [
+      2400,
+      2399,
+      2399,
+      0,
+      0
+    ],
+    [
+      2400,
+      2400,
+      2399,
+      1,
+      0
+    ]
+  ],
+  "excluded_still_fail": 0,
+  "limits": "Date helper and registered error branches are conditional. Complete baseline-change predictions retained. No fitted tolerance, coefficient or per-input selector, and no whole-family exclusion claim.",
+  "original_rows": 2400,
+  "program_labels": 10,
+  "programs": "Five coherent arithmetic modes times two fixed SQRT leaves. Named local values store binary64; all original equation associations preserved.",
+  "source": "The existing published short-bill discount equation and long-bill quadratic identity; IEEE754 and shared x87 PC64 SQRT. No coefficient or cutoff changed."
+}

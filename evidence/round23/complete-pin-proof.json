@@ -1,0 +1,47 @@
+[
+  {
+    "function": "PRICEDISC",
+    "original_rows": 120,
+    "changed_predictions": [
+      {
+        "id": "oc1791",
+        "old_prediction": "0x4045cbf4a29698fd",
+        "original_expected": "0x4045cbf4a29698fc",
+        "new_prediction": null
+      }
+    ],
+    "all_original_fields_and_sample_unchanged": true
+  },
+  {
+    "function": "BESSELK",
+    "original_rows": 120,
+    "changed_predictions": [
+      {
+        "id": "w111extended-2026092903-BESSELK-00698",
+        "old_prediction": "0x3fc1aa1445c5bb36",
+        "original_expected": "0x3fc1aa1445c5bb34",
+        "new_prediction": null
+      }
+    ],
+    "all_original_fields_and_sample_unchanged": true
+  },
+  {
+    "function": "PRICEMAT",
+    "original_rows": 120,
+    "changed_predictions": [],
+    "all_original_fields_and_sample_unchanged": true
+  },
+  {
+    "function": "TBILLEQ",
+    "original_rows": 120,
+    "changed_predictions": [
+      {
+        "id": "w1115-TBILLEQ-01109",
+        "old_prediction": "0x3fcedc78c550cf08",
+        "original_expected": "0x3fcedc78c550cec1",
+        "new_prediction": null
+      }
+    ],
+    "all_original_fields_and_sample_unchanged": true
+  }
+]

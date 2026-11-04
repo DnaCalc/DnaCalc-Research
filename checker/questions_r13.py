@@ -15,6 +15,16 @@ def read(path):return json.loads(Path(path).read_text())
 def records(path):return [json.loads(line)for line in Path(path).read_text().splitlines()]
 
 
+def frozen_prediction_path(results,name,expected_hash):
+    """Locate one original worker model, including retained nested retries."""
+    require(Path(name).name==name and name.endswith('.json') and
+            not any(c in name for c in '*?[]'), 'invalid frozen worker name')
+    found=list(Path(results).rglob('worker/frozen/'+name))
+    require(len(found)==1, 'missing or ambiguous original frozen worker')
+    require(sha(found[0])==expected_hash, 'frozen worker prediction changed')
+    return found[0]
+
+
 def score_readings(packet, results, executable, output):
     """Recalculate verified WitnessSets through the existing registered route."""
     import subprocess
@@ -105,6 +115,17 @@ def check_readings(packet, results, output):
                 'R18 packet scope differs')
         batch_list = read(packet/'batches.json')
         file_hashes = manifest['files_sha256']
+    elif manifest.get('format') == 'dnacalc-r20-discrete-questions/1':
+        packet_round,expected_calls,expected_batches=20,44,2
+        require(manifest['calls']==expected_calls and manifest['functions']==
+                {'BINOM.DIST':36,'HYPGEOM.DIST':8}, 'R20 packet scope differs')
+        batch_list=read(packet/'batches.json');file_hashes=manifest['files_sha256']
+    elif manifest.get('format') == 'dnacalc-research-questions-r22/1':
+        packet_round,expected_calls,expected_batches=22,49,1
+        require(manifest['scalar_calls']==expected_calls, 'R22 scalar packet scope differs')
+        batch_list=read(packet/'batches.json');file_hashes=manifest['files_sha256']
+        require(batch_list==[dict(function='BESSELI',path='requests-BESSELI.json',calls=49)],
+                'R22 scalar batch scope differs')
     elif manifest.get('calls') == 236 and manifest.get('calls_by_function') == {
             'PMT': 24, 'IPMT': 26, 'PPMT': 26, 'CUMPRINC': 38, 'CUMIPMT': 38,
             'FV': 30, 'PV': 30, 'NPER': 8, 'RATE': 16}:
@@ -141,13 +162,12 @@ def check_readings(packet, results, output):
         provenance = doc['capture_provenance']
         model = provenance['frozen_model_predictions']
         model_name = model['frozen_path'].replace('\\', '/').split('/')[-1]
-        model_path = results/'worker/frozen'/model_name
-        require(sha(model_path) == model['frozen_sha256'], 'frozen worker prediction changed')
+        model_path = frozen_prediction_path(results,model_name,model['frozen_sha256'])
         frozen_worker = read(model_path)
         require(frozen_worker['function'] == function, 'frozen worker prediction function differs')
         require(frozen_worker['inputs_sha256'] == request_hash and frozen_worker['input_document'] == request,
                 'frozen worker input document differs')
-        worker = results/'worker/read'/(model_name[:-5]+'-1')
+        worker = model_path.parent.parent/'read'/(model_name[:-5]+'-1')
         raw, submitted = read(worker/'result.json'), read(worker/'request.json')
         require(raw['fatal'] is None and not raw['failures'], 'worker failed')
         require(submitted['function'] == function, 'submitted function differs')
@@ -175,7 +195,7 @@ def check_readings(packet, results, output):
             require(environment['excel_bitness'] == bitness, 'environment bitness differs')
         count = batch['calls']
         frozen_packet_predictions = None
-        if packet_round in (15, 16, 18):
+        if packet_round in (15, 16, 18, 20, 22):
             frozen_packet_predictions = records(packet/f'application-predictions-{function}.jsonl')
             require(len(frozen_packet_predictions) == count, 'frozen packet prediction coverage differs')
         require(all(len(rows) == count for rows in (request['witnesses'], doc['witnesses'],
@@ -250,6 +270,7 @@ def check_readings(packet, results, output):
         total += count
         batches.append(dict(**batch, reading=path.relative_to(results).as_posix(),
                             reading_sha256=sha(path), request_sha256=sha(request_path),
+                            worker_root=model_path.parent.parent.relative_to(results).as_posix(),
                             original_request_ids=original_ids, runtime_ids=runtime_ids[0],
                             reader_reordered=original_ids != runtime_ids[0]))
     require(not exports and total == expected_calls and len(batches) == expected_batches, 'missing/excess batch')

@@ -7,7 +7,7 @@
   "python": {
     "complete": false,
     "exit_code": 2,
-    "critical": 2,
+    "critical": 1,
     "reason": "Scanner returned a partial/error status; doctor --fix reports environment healthy.",
     "findings": [
       {
@@ -19,10 +19,12 @@
       {
         "path": "racer/corpus_cases.py",
         "line": 926,
-        "status": "false positive",
+        "status": "annotation accepted on final scan",
         "reason": "Fixed product judge subpath below operator-selected local checkout; argv only and no shell."
       }
-    ]
+    ],
+    "initial_critical": 2,
+    "final_critical": 1
   },
   "limits": "No clean or complete Python scan is claimed. Tests, source review and immutable provenance checks are separate evidence."
 }

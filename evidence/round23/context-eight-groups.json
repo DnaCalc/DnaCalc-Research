@@ -1,0 +1,91 @@
+{
+  "complete": true,
+  "route": "Current canonical context-aware native full-bank judge",
+  "rows": 20444,
+  "matched": 20444,
+  "failed": 0,
+  "pass_rate": 1,
+  "functions": [
+    {
+      "function": "BESSELK",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "1236",
+      "matched": "1236",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "DISC",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "2400",
+      "matched": "2400",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "INTRATE",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "2400",
+      "matched": "2400",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "PRICEDISC",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "2400",
+      "matched": "2400",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "PRICEMAT",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "3608",
+      "matched": "3608",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "RECEIVED",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "2400",
+      "matched": "2400",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "TBILLEQ",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "3600",
+      "matched": "3600",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    },
+    {
+      "function": "TBILLYIELD",
+      "bank": "full",
+      "excel_builds": "20430",
+      "rows": "2400",
+      "matched": "2400",
+      "worst_ulp": "-",
+      "class": "exact",
+      "calc_func_commit": "0afaa67b5d"
+    }
+  ],
+  "limits": "Current context-aware native scope; original registered software proof remains18040 original observations."
+}

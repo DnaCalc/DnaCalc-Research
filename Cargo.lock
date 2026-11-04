@@ -238,6 +238,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "calc-host-vba"
+version = "0.1.0"
+dependencies = [
+ "calc-host",
+ "calc-value",
+ "calc-vba",
+]
+
+[[package]]
 name = "calc-syntax"
 version = "0.1.0"
 
@@ -260,6 +269,7 @@ dependencies = [
  "oxvba-oxir",
  "oxvba-runtime",
  "oxvba-symbol",
+ "oxvba-syntax",
  "scoped-tls-hkt",
  "thiserror 2.0.21",
 ]
@@ -665,6 +675,7 @@ version = "0.1.0"
 dependencies = [
  "calc-func",
  "calc-host",
+ "calc-host-vba",
  "calc-value",
  "calc-vba",
  "dna-calc-model",

@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "exports": [
+    {
+      "round": "20",
+      "calls": 36,
+      "function": "BINOM.DIST",
+      "source": "OxFunc-Evidence/readings/excel-20527/BINOM.DIST.json",
+      "canonical": "readings/excel-20527/r20-BINOM.DIST.json",
+      "sha256": "97280bf79370b52c961ef59bdccb80fa629965e614be7ce3bddb30b85cbee057"
+    },
+    {
+      "round": "20",
+      "calls": 8,
+      "function": "HYPGEOM.DIST",
+      "source": "OxFunc-Evidence/readings/excel-20527/HYPGEOM.DIST.json",
+      "canonical": "readings/excel-20527/r20-HYPGEOM.DIST.json",
+      "sha256": "5238046f1dea8be1840bd160992a8456b31688e7ca5964608142f7ec31c2a750"
+    },
+    {
+      "round": "22",
+      "calls": 49,
+      "function": "BESSELI",
+      "source": "OxFunc-Evidence/readings/excel-20527/BESSELI-4.json",
+      "canonical": "readings/excel-20527/r22-BESSELI-4.json",
+      "sha256": "25e6e7ea2c49ea5eb9a821c493ae3129199d63b4523b911065705b56771ea722"
+    }
+  ],
+  "raw_files": 94,
+  "originals_unchanged": true
+}

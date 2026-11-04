@@ -1,0 +1,43 @@
+{
+  "complete": true,
+  "application": {
+    "revision": "615e598dc93008850d3a921c9628e23e2ea8dcae",
+    "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "corpus": {
+    "formula_cells": 22830,
+    "matched": 21215,
+    "inclusive_failed": 1615,
+    "awaiting_capture": 0,
+    "other_failed_verdicts": {
+      "not_modeled": 372,
+      "not_run": 5,
+      "unproven": 5
+    },
+    "mismatches": 1146,
+    "counts": {
+      "larger_numeric": 286,
+      "last_bit": 747,
+      "other_mismatch": 113
+    }
+  },
+  "bank": {
+    "rows": 3875861,
+    "matched": 3233174,
+    "failed": 642687,
+    "counts": {
+      "matched": 3233174,
+      "refused": 1405,
+      "larger_numeric": 65721,
+      "last_bit": 567698,
+      "other_mismatch": 7747,
+      "unread": 116
+    },
+    "canonical_trace_sha256": "1a74d43fcba140a64db94f14f8f67e13daaabd4385a9efd504a133a686338ad2"
+  },
+  "functions": 182,
+  "outputs_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.json": "20b2a72679ed47389dc39021a537a90767f0af1ab5267cd3f7962a307b8e3b55",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.md": "64b8bc4793990f47b33cf05de54db965f24a1cfd31b2e373d9806770d0e994a0"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "status": "descriptive metadata erratum; historical unit bytes and compiled bindings retained",
+  "corrections": [
+    {
+      "unit": "round23-unit.json",
+      "original_sha256": "d427b68872a10e017d32caa3689f601673e72132c1dccbfd031172f04df31d96",
+      "incorrect_field": "programs",
+      "original_value": "10labels:2reflector representations\u00d75coherent arithmetic modes; normalized reciprocal/tau and allarraywrites binary64.",
+      "correct_description": "Tooling and first corpus-seeded packet; no numerical program search is represented by this unit."
+    },
+    {
+      "unit": "round23-bond-unit.json",
+      "original_sha256": "6414a5157367664edcec52bdb9c13f3426ece69bd0a412f40a95ca0c32de17b7",
+      "incorrect_field": "programs",
+      "original_value": "10labels:2reflector representations\u00d75coherent arithmetic modes; normalized reciprocal/tau and allarraywrites binary64.",
+      "correct_description": "10 finite-reject root variants: 5 coherent precisions x 2 conditional discount leaves."
+    },
+    {
+      "unit": "round23-bond-phase-unit.json",
+      "original_sha256": "ff2f981bbc0f2b71dad1764067349de583e5d6c31cb89c747035baaf02a8be19",
+      "incorrect_field": "programs",
+      "original_value": "10labels:2reflector representations\u00d75coherent arithmetic modes; normalized reciprocal/tau and allarraywrites binary64.",
+      "correct_description": "Same 10 finite-reject root variants, source-bound pending Bessel guard and merged product."
+    },
+    {
+      "unit": "round23-bond-factors-unit.json",
+      "original_sha256": "cd4096652e4bdc5de7b36ee2c6b88ee6cf572250c8a00e6213f3d05dcbb6ad72",
+      "incorrect_field": "programs",
+      "original_value": "10labels:2reflector representations\u00d75coherent arithmetic modes; normalized reciprocal/tau and allarraywrites binary64.",
+      "correct_description": "4 date-factor/discount combinations with original solver and caller branches."
+    }
+  ],
+  "limits": "The EFF studies explicitly reject a nonfinite Newton intermediate instead of reproducing every F# exceptional/fallback behavior. Their finite-program-failure counts are zero across all 532 studied numeric rows. The results reject these 10 finite variants in this recorded scope, not the entire published solver or algorithm family. Old working-source units are reproducible with the archived phase-source-used-by-studies.rs.gz, whose original Git blob matches the declared working source.",
+  "rank_pivot_conventions": "Rounded-rank Schur largest pivots use updated Schur diagonals; LDL largest pivots use the original Gram diagonals. All pivots are tested against zero, including nonpositive pivots. The240-label negative result excludes exactly these programs, not all pivoting or rank methods."
+}

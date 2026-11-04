@@ -12,6 +12,41 @@ domain = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(domain)
 
 
+class ReadingRetries(unittest.TestCase):
+    def test_r22_rejects_wrong_scalar_batch(self):
+        import hashlib
+        import shutil
+        from checker.questions_r13 import check_readings
+        with tempfile.TemporaryDirectory() as scratch:
+            root=Path(scratch);packet=root/'packet';packet.mkdir()
+            batch=packet/'batches.json'
+            batch.write_text(json.dumps([dict(function='OTHER',path='requests-BESSELI.json',calls=49)]))
+            digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+            (packet/'manifest.json').write_text(json.dumps(dict(format='dnacalc-research-questions-r22/1',
+                scalar_calls=49,files_sha256={'batches.json':digest(batch)})))
+            result=root/'result';result.mkdir();shutil.copytree(packet,result/'packet')
+            (result/'packet-sha256.json').write_text(json.dumps({p.name:digest(p)for p in packet.iterdir()}))
+            with self.assertRaisesRegex(ValueError,'R22 scalar batch scope'):
+                check_readings(packet,result,root/'out.json')
+
+    def test_nested_retry_is_unique_and_hash_bound(self):
+        import hashlib
+        from checker.questions_r13 import frozen_prediction_path
+        with tempfile.TemporaryDirectory() as scratch:
+            root=Path(scratch);path=root/'retry/worker/frozen/model.json'
+            path.parent.mkdir(parents=True);path.write_bytes(b'constructed model')
+            digest=hashlib.sha256(path.read_bytes()).hexdigest()
+            self.assertEqual(frozen_prediction_path(root,'model.json',digest),path)
+            with self.assertRaisesRegex(ValueError,'prediction changed'):
+                frozen_prediction_path(root,'model.json','0'*64)
+            with self.assertRaisesRegex(ValueError,'invalid frozen worker name'):
+                frozen_prediction_path(root,'../model.json',digest)
+            duplicate=root/'worker/frozen/model.json';duplicate.parent.mkdir(parents=True)
+            duplicate.write_bytes(path.read_bytes())
+            with self.assertRaisesRegex(ValueError,'ambiguous'):
+                frozen_prediction_path(root,'model.json',digest)
+
+
 class DomainQuestions(unittest.TestCase):
     def plan(self,negative=False):
         return dict(brackets=[dict(id='synthetic',function='BESSELJ',order=domain.bits(0),negative=negative,

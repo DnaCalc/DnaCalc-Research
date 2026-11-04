@@ -10,6 +10,8 @@ mod ported {
 mod annuity;
 mod annuity_early;
 mod boundary;
+#[cfg(bond_solver_audit)]
+mod bond_solver;
 mod bessel_rational;
 mod cumulative;
 mod cumulative_balance;
@@ -646,10 +648,39 @@ fn main() {
         Some("function-routes") => route_audit::function_routes(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("bessel-asymptotic") => route_audit::bessel_asymptotic(&a[2], &a[3], &a[4]),
+        #[cfg(bessel_k_audit)]
+        Some("bessel-k-precision") => route_audit::bessel_k_precision(&a[2], &a[3]),
         #[cfg(route_audit)]
         Some("bessel-amplitudes") => route_audit::bessel_amplitudes(&a[2], &a[3], &a[4]),
         #[cfg(bond_solver_audit)]
         Some("yield-newton") => route_audit::yield_newton(&a[2], &a[3]),
+        #[cfg(bond_solver_audit)]
+        Some("yield-root-programs") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::run::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::run::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(bond_solver_audit)]
+        Some("yield-factor-programs") => bond_solver::components(&a[2], &a[3]),
+        #[cfg(bond_solver_audit)]
+        Some("pricemat-programs") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::mat::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::mat::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(bond_solver_audit)]
+        Some("irr-poi-programs") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::periodic::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::periodic::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(closed_security_audit)]
+        Some("security-programs") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::securities::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::securities::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(closed_security_audit)]
+        Some("tbilleq-programs") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::bill_equivalent::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::bill_equivalent::<Hard>(&a[2], &a[3]),
+        },
         #[cfg(route_audit)]
         Some("sheet-predictions") => route_audit::sheet_predictions(&a[2], &a[3]),
         #[cfg(route_audit)]

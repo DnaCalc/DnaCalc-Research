@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "program_labels": 240,
+  "observations": 241,
+  "scope": {
+    "scoped": 241
+  },
+  "survivors": [],
+  "executions": 3000,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261103-round21/regression-rank/scoped.json.gz": "b414fc95bd27ea81fe170f96871b04e9d8b62f40978c88c548949a7e76c900f6"
+  },
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/regression.py": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "sources": "IEEE754 binary32/binary64/x87 precision; published decimal15 precision as an explicitly hypothetical internal arithmetic; centered/raw Gram identities and Schur/LDL factorizations. Original MIT rational implementation, no external code copied.",
+  "limits": "Degrees-of-freedom constraints only, not a coefficient/QR program. No fitted tolerance: pivots are compared only with zero. Physical precision, centering, scaling, pivot and zero-column labels are fixed before evaluation. Decimal arithmetic is a hypothesis, not an observed Excel intermediate. Scope is the unchanged original rank corpus; all existing answers are discovery. First contradictions exclude only these finite programs; no complete rank algorithm family or numerical leaf is ruled out or adopted."
+}

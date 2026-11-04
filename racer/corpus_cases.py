@@ -598,6 +598,56 @@ def outcome(value):
     raise ValueError('unsupported result encoding')
 
 
+def failed_comparisons(counts):
+    """Validate old or inclusive summary counts; keep every obligation counted."""
+    inclusive=counts['formula_cells']-counts['pass']
+    unavailable=sum(counts.get(k,0)for k in ('awaiting_capture','external_links','circular_rule'))
+    compared=inclusive-unavailable
+    if compared<0 or counts['fail'] not in (compared,inclusive):
+        raise ValueError('failure counts do not reconcile with the complete formula inventory')
+    return compared
+
+
+def workbook_directory(corpus,workbook,version=1):
+    """Resolve the content-keyed v2 layout or its historical directory."""
+    label=re.sub(r'[^A-Za-z0-9_.-]','_',workbook['name'])
+    if version>=2:
+        if not re.fullmatch(r'[0-9a-f]{64}',workbook['sha256']):
+            raise ValueError('invalid content-keyed workbook hash')
+        return Path(corpus)/'workbooks'/(label[:96]+'-'+workbook['sha256'])
+    return Path(corpus)/'workbooks'/label
+
+
+def formula_label(formula, formulas, cell):
+    """Follow only exact single-cell aliases; infer a label, never a value."""
+    seen = {cell}
+    while True:
+        body = formula.strip().removeprefix('=')
+        reference = re.fullmatch(r"(?:(?:'((?:[^']|'')+)'|([A-Za-z_][A-Za-z0-9_.]*))!)?\$?([A-Za-z]{1,3})\$?([1-9][0-9]*)", body)
+        if reference is None:
+            break
+        quoted, sheet, column, row = reference.groups()
+        sheet = quoted.replace("''", "'") if quoted is not None else sheet or cell[0]
+        index = 0
+        for letter in column.upper():
+            index = index*26+ord(letter)-ord('A')+1
+        target = (sheet, int(row), index)
+        if target in seen:
+            return 'Cell reference (cycle)'
+        target_formula = formulas.get(target, {}).get('formula')
+        if not isinstance(target_formula, str) or not target_formula.strip():
+            return 'Cell reference (unresolved)'
+        seen.add(target)
+        cell, formula = target, target_formula
+    # Text that looks like a call or operator is not a formula token.
+    tokens = re.sub(r'"(?:[^"]|"")*"', '', body)
+    names = re.findall(r'([A-Za-z][A-Za-z0-9_.]*)\s*\(', tokens.upper())
+    if names:
+        return names[1] if len(names)>1 and names[0]=='INDEX' else names[0]
+    operator = re.search(r'<>|<=|>=|[<>=&+*/^%\-]', tokens)
+    return 'Infix '+operator.group() if operator else 'Formula without function'
+
+
 def classify(corpus, output, after=None, original_catalogue_after=None, scope_receipt=None):
     """Account for every failed formula without changing the verdict policy.
 
@@ -631,8 +681,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
     runs = []
     pending_workbooks = []
     for workbook in summary['workbooks']:
-        label = workbook['name'].replace('/', '_').replace('\\', '_')
-        directory = corpus/'workbooks'/label
+        directory = workbook_directory(corpus,workbook,summary.get('version',1))
         captures = sorted(directory.glob('*.capture.json'))
         if captures:
             runs.extend((capture, directory/capture.name.removesuffix('.capture.json'), workbook['name'])
@@ -641,7 +690,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
             runs.append((Path(workbook['capture'].removeprefix('committed capture ')), directory, workbook['name']))
         elif workbook['capture'].startswith('awaiting capture:'):
             c = workbook['counts']
-            if c['awaiting_capture'] != c['formula_cells'] or c['pass'] or c['fail']:
+            if c['awaiting_capture'] != c['formula_cells'] or c['pass'] or failed_comparisons(c):
                 raise ValueError('inconsistent wholly pending workbook '+workbook['name'])
             pending_workbooks.append(dict(workbook=workbook['name'], cells=c['formula_cells'],
                                           source_sha256=workbook['sha256']))
@@ -655,7 +704,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
     for capture_path, directory, workbook in runs:
         if compared is not None:
             relative = directory.relative_to(corpus)
-            directory = (original_catalogue_after if 'calc-func_catalogue_oracle.xlsx' in relative.parts
+            directory = (original_catalogue_after if workbook == 'calc-func/catalogue/oracle.xlsx'
                          else after/relative)
             for name in ('report.json', 'evaluations.json', 'triage.json'):
                 path = directory/name
@@ -676,8 +725,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
                 raise ValueError('unknown nonpass '+str(verdict))
             k = key(verdict)
             formula = formulas.get(k, {}).get('formula', '')
-            names = re.findall(r'([A-Za-z][A-Za-z0-9_.]*)\s*\(', formula)
-            function = (names[1] if len(names) > 1 and names[0] == 'INDEX' else names[0]) if names else ('Infix &' if '&' in formula else formula)
+            function = formula_label(formula, formulas, k)
             if verdict.get('class') == 'not-modelled':
                 function = verdict['key']
             e, a = expected.get(k), actual.get(k)
@@ -716,7 +764,10 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
                 **magnitude,
                 original_verdict=verdict, expected=e, actual=a,
                 capture=str(capture_path), evaluation=str(paths[1])))
-    require_count = compared['after_fail'] if compared is not None else summary['totals']['counts']['fail']
+    expected_counts=dict(summary['totals']['counts'])
+    if compared is not None:
+        expected_counts.update({'pass':compared['counts']['after_matched'],'fail':compared['after_fail']})
+    require_count = failed_comparisons(expected_counts)
     if len(rows) != require_count:
         raise ValueError(f'nonpass accounting differs: {len(rows)} != {require_count}')
     (output/'cells.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
@@ -980,15 +1031,17 @@ def problem_functions(checkout, output, run=None, corpus=None):
         application=before, executable_sha256=executable_hash, bank_source=bank_source,
         corpus=dict(formula_cells=corpus_summary['formula_cells'], matched=corpus_summary['matched'],
             inclusive_failed=corpus_summary['inclusive_failed'], awaiting_capture=corpus_summary['awaiting_capture'],
+            pass_rate=corpus_summary['pass_rate'],
             other_failed_verdicts=table['other_verdicts'], mismatches=table['mismatches'],
             counts={k:sum(f['corpus'][k] for f in functions) for k in fields[:3]}),
         bank=dict(rows=total, matched=matched, failed=failed, counts=dict(bank_totals),
+                  pass_rate=matched/total if total else 0,
                   canonical_trace_sha256=trace_hash), functions=functions,
         corpus_inputs_sha256=corpus_summary['inputs_sha256'],
         generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         rule='Last-bit: finite numeric mismatches <=16 ULP; larger numeric: >16 ULP. This split is triage, not a relaxed verdict. '
              'Every mismatch, refusal, unread, missing, pending, external and circular-policy cell remains an inclusive failure. '
-             'Corpus functions are inferred from formula spelling, unwrapping INDEX selections; bank functions use canonical judge identities. '
+             'Corpus labels follow exact single-cell aliases, infer calls from formula spelling and unwrap INDEX selections; unresolved references and infix operators remain explicit. Bank functions use canonical judge identities. '
              'Counts are observations per source; corpus and bank may overlap and must not be added as unique calls. '
              'Bank reference/locale context gaps remain failures, not proven numerical defects.')
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -997,8 +1050,8 @@ def problem_functions(checkout, output, run=None, corpus=None):
         'Generated by one command from DnaCalc-Research (Linux; both checkouts required):', '',
         '```sh', 'python3 racer/corpus_cases.py problem-functions ../DnaCalc ../DnaCalc/docs/generated/problem-functions', '```', '',
         result['rule'], '',
-        f"Corpus: {result['corpus']['matched']:,}/{result['corpus']['formula_cells']:,} matched; {result['corpus']['inclusive_failed']:,} inclusive failures, including {result['corpus']['awaiting_capture']:,} pending.",
-        f"Bank: {matched:,}/{total:,} matched; {failed:,} failures, including {unread:,} unread.", '',
+        f"Corpus: {result['corpus']['matched']:,}/{result['corpus']['formula_cells']:,} matched ({result['corpus']['pass_rate']:.5%}); {result['corpus']['inclusive_failed']:,} inclusive failures, including {result['corpus']['awaiting_capture']:,} pending.",
+        f"Bank: {matched:,}/{total:,} matched ({result['bank']['pass_rate']:.5%}); {failed:,} failures, including {unread:,} unread.", '',
         'Larger numeric and last-bit columns count numeric mismatches; other columns count remaining mismatches. Bank refusals and unread rows are separate. Corpus refusals/missing are recorded in the JSON, outside the mismatch table.', '',
         '| Function | Corpus larger | Corpus last-bit | Corpus other | Bank larger | Bank last-bit | Bank other | Bank refused | Bank unread |',
         '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
@@ -1020,21 +1073,30 @@ def freeze(corpus, output, functions):
     wanted = set(functions.split(','))
     counts = Counter()
     inputs = {}
-    runs = [(capture, capture.parent/capture.name.removesuffix('.capture.json')/'evaluations.json', capture.parent.name)
-            for capture in sorted(corpus.glob('workbooks/*/*.capture.json'))]
+    runs = []
     # Sectioned catalogues have merged capture copies in the corpus output.
     # Ordinary oracles instead name their committed capture in summary.json.
     summary_path=corpus/'summary.json'
     if summary_path.is_file():
         inputs[str(summary_path)]=hashlib.sha256(summary_path.read_bytes()).hexdigest()
-        for workbook in json.loads(summary_path.read_text())['workbooks']:
+        summary=json.loads(summary_path.read_text())
+        for workbook in summary['workbooks']:
+            directory=workbook_directory(corpus,workbook,summary.get('version',1))
+            captures=sorted(directory.glob('*.capture.json'))
+            if captures:
+                runs.extend((p,directory/p.name.removesuffix('.capture.json')/'evaluations.json',directory.name)
+                            for p in captures)
+                continue
             source=workbook['capture']
             if not source.startswith('committed capture '):continue
             capture=Path(source.removeprefix('committed capture '))
-            label=workbook['name'].replace('/','_').replace('\\','_')
-            evaluation=corpus/'workbooks'/label/'evaluations.json'
+            label=directory.name
+            evaluation=directory/'evaluations.json'
             if not evaluation.is_file():raise ValueError('missing corpus evaluation '+str(evaluation))
             runs.append((capture,evaluation,label))
+    else:
+        runs=[(p,p.parent/p.name.removesuffix('.capture.json')/'evaluations.json',p.parent.name)
+              for p in sorted(corpus.glob('workbooks/*/*.capture.json'))]
     with (output/'cases.jsonl').open('x') as out, (output/'excluded.jsonl').open('x') as excluded:
         for capture_path,evaluation_path,label in runs:
             capture = json.loads(capture_path.read_text())

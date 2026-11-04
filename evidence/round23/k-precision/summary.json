@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "gains",
+    "losses"
+  ],
+  "counts": [
+    [
+      1236,
+      1236,
+      1235,
+      1,
+      0
+    ],
+    [
+      1236,
+      1236,
+      1235,
+      1,
+      0
+    ]
+  ],
+  "excluded_still_fail": 0,
+  "limits": "All D add/subtract/multiply/divide operations store from PC64; square root is either the current correctly-rounded binary64 leaf or shared staged SQRT. Existing fixed EXP/LOG and seed tables remain conditional numerical leaves. Application admission/flush/order/recurrence rules retained. Complete baseline-change records are retained, including losses. This is a finite candidate comparison, not whole-family exclusion.",
+  "original_rows": 1236,
+  "program_labels": 2,
+  "sources": "Existing original A&S9.8 K program and original Excel readings; shared IEEE754/x87 arithmetic. No coefficient or row selector changed."
+}

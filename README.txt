@@ -1,5 +1,42 @@
 DNA Calc arithmetic program research
 
+R23 publication uses DNA_RESEARCH_UNIT=round23-final-unit.json for cargo test
+and cargo build --release. It pins guarded application sources to0afaa67b;
+reproduction needs those sources, and changed guarded sources need a new unit.
+Later unrelated master changes are distinct from the measured bank snapshot.
+Historical units retain their own original source
+bindings; evidence/round23/source-snapshots preserves each declared version.
+round23-result.json and evidence/round23/index.json record the measured scope.
+
+The product phase admission and eight completed recorded function groups gain
+106 bank matches with zero losses on the unchanged3,875,673-row bank. The
+original corpus gains one match with zero losses over22,339 formula cells;
+its196 larger numeric and747 last-bit mismatches remain. The eight groups
+(DISC, INTRATE, RECEIVED, PRICEDISC, TBILLYIELD, BESSELK, PRICEMAT, TBILLEQ)
+match all18,040 original outcomes through native and actual registered soft-x87
+routes. Original-answer regressions fail before implementation, and independent
+rational checks verify changed arithmetic. Expected answers remain unchanged.
+
+R20/R22 scalar intake preserves94 raw files and3 canonical exports in the one
+OxFunc-Evidence bank:93 observations score61 matched and32 failed. Jointly
+with upstream Fn1 evidence,188 distinct inputs are added:125 matched63 failed.
+On that unchanged invocation scope, shared outputs and answers stay unchanged; four representative capture
+metadata selections change. These additions are coverage, not product gains.
+Incoming R21/R22/fn2/fn3 workbook captures expand the corpus to21,215/22,830
+matched,1,615 inclusive failures,zero pending. R21 scores122/204; R22 QR105/105.
+The upstream captures and added formulas account for1,241 new measured matches.
+The later incoming witness-context implementation preserves reference origin
+and includes invocation facts in bank identity. Its current bank measures
+3,267,168/3,910,050 matched(83.55822%),642,882 failed,including116 unread.
+These counts use a changed scope and are separate from the106 R23 kernel gains.
+
+The finite-reject variants of the published EFF YIELD solver and Apache POI3.17 IRR programmes lose
+existing matches and are rejected. Original-solver/date-factor/discount YIELD
+variants are also incomplete. All240 declared rounded Gram/LDL rank labels
+are contradicted by the original241 degree-of-freedom constraints; this does
+not exclude an entire rank or QR family. No coefficient, tolerance or row
+selector is fitted. Sources, full licences, notices and limits are retained.
+
 Round 23 adds the maintained corpus/full-bank problem list in the sibling
 DnaCalc checkout, docs/generated/problem-functions.{md,json}. From here,
 regenerate it with one Linux command (both checkouts and the existing local
