@@ -545,12 +545,52 @@ pub fn sheet_predictions(input: &str, out: &str) {
         let at = CellKey::new(sheet, question["row"].as_u64().unwrap() as u32,
             question["column"].as_u64().unwrap() as u32).unwrap();
         let cell = book.cell(at).unwrap();
-        let ProjectedValue::Calculated { value, .. } = cell.value() else {
-            panic!("question prediction was not calculated") // ubs:ignore — missing calculated provenance must abort this research packet, never become an answer
+        let (prediction, provenance) = match cell.value() {
+            ProjectedValue::Calculated { value, .. } => (encoded(value), "calculated"),
+            ProjectedValue::NotModeled { refusal, .. } if doc["allow_refusals"] == true => {
+                (format!("fault:{refusal:?}"), "not_modeled")
+            }
+            _ => panic!("question prediction was not calculated"), // ubs:ignore — missing provenance aborts; only explicitly requested typed refusals can be frozen
         };
         writeln!(output, "{}", json!({"id":question["id"],"formula":question["formula"],
-            "row":question["row"],"column":question["column"],"calc_func_prediction":encoded(value),
+            "row":question["row"],"column":question["column"],"calc_func_prediction":prediction,
+            "prediction_provenance":provenance,
             "not_excel_evidence":true,"route":"ordinary Workbook::enter on the whole question sheet"})).unwrap();
+    }
+}
+
+#[cfg(test)]
+mod question_tests {
+    use super::*;
+
+    /// Native-only: the research command writes its prediction files.
+    #[test]
+    fn question_sheet_keeps_refusal_provenance_and_strict_default() {
+        let folder = std::env::temp_dir().join(format!("dnacalc-question-test-{}-{}",
+            std::process::id(), std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos()));
+        fs::create_dir(&folder).unwrap();
+        let input = folder.join("questions.json");
+        let output = folder.join("predictions.jsonl");
+        let mut document = json!({"questions":[
+            {"id":"synthetic-calculated","row":1,"column":4,"formula":"1+1"},
+            {"id":"synthetic-refusal","row":2,"column":4,"formula":"IRR()"}
+        ],"allow_refusals":true});
+        fs::write(&input, document.to_string()).unwrap();
+        sheet_predictions(input.to_str().unwrap(), output.to_str().unwrap());
+        let rows = crate::lines::<Value>(output.to_str().unwrap());
+        assert_eq!(rows.len(), 2);
+        assert_eq!(rows[0]["calc_func_prediction"], "0x4000000000000000");
+        assert_eq!(rows[0]["prediction_provenance"], "calculated");
+        assert_eq!(rows[1]["prediction_provenance"], "not_modeled");
+        assert!(rows[1]["calc_func_prediction"].as_str().unwrap().starts_with("fault:"));
+        document.as_object_mut().unwrap().remove("allow_refusals");
+        fs::write(&input, document.to_string()).unwrap();
+        assert!(std::panic::catch_unwind(|| sheet_predictions(input.to_str().unwrap(),
+            folder.join("strict.jsonl").to_str().unwrap())).is_err());
+        for name in ["questions.json", "predictions.jsonl", "strict.jsonl"] {
+            fs::remove_file(folder.join(name)).unwrap();
+        }
+        fs::remove_dir(folder).unwrap();
     }
 }
 

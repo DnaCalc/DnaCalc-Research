@@ -1,0 +1,1357 @@
+{
+  "totals": {
+    "matched": 3232943,
+    "refused": 1375,
+    "larger_numeric": 65704,
+    "other_mismatch": 7832,
+    "last_bit": 567703,
+    "unread": 116
+  },
+  "functions": {
+    "ABS": {
+      "matched": 1225,
+      "refused": 2,
+      "unread": 0
+    },
+    "ACCRINT": {
+      "matched": 145908,
+      "unread": 0
+    },
+    "ACCRINTM": {
+      "matched": 2406,
+      "unread": 0
+    },
+    "ACOS": {
+      "matched": 13962,
+      "unread": 0
+    },
+    "ACOSH": {
+      "matched": 4223,
+      "unread": 0
+    },
+    "ACOT": {
+      "matched": 16924,
+      "unread": 0
+    },
+    "ACOTH": {
+      "matched": 269987,
+      "unread": 0
+    },
+    "ADDRESS": {
+      "matched": 1284,
+      "unread": 0
+    },
+    "AND": {
+      "matched": 1210,
+      "unread": 0
+    },
+    "ASIN": {
+      "matched": 21610,
+      "unread": 0
+    },
+    "ASINH": {
+      "matched": 3012,
+      "refused": 2,
+      "larger_numeric": 3,
+      "unread": 0
+    },
+    "ATAN": {
+      "matched": 181409,
+      "unread": 0
+    },
+    "ATANH": {
+      "matched": 21999,
+      "unread": 0
+    },
+    "AVEDEV": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "AVERAGE": {
+      "matched": 1222,
+      "unread": 0
+    },
+    "AVERAGEA": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "BAHTTEXT": {
+      "matched": 1983,
+      "unread": 0
+    },
+    "BASE": {
+      "matched": 3560,
+      "unread": 0
+    },
+    "BESSELI": {
+      "matched": 1318,
+      "unread": 0
+    },
+    "BESSELJ": {
+      "larger_numeric": 832,
+      "matched": 42,
+      "other_mismatch": 72,
+      "unread": 0
+    },
+    "BESSELK": {
+      "matched": 1235,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "BESSELY": {
+      "matched": 25,
+      "other_mismatch": 21,
+      "unread": 0
+    },
+    "BETA.DIST": {
+      "last_bit": 1363,
+      "matched": 885,
+      "larger_numeric": 574,
+      "unread": 0
+    },
+    "BETADIST": {
+      "last_bit": 137,
+      "matched": 140,
+      "larger_numeric": 17,
+      "unread": 0
+    },
+    "BETAINV": {
+      "last_bit": 44,
+      "matched": 18,
+      "unread": 0
+    },
+    "BIN2DEC": {
+      "matched": 313,
+      "unread": 0
+    },
+    "BIN2HEX": {
+      "matched": 748,
+      "unread": 0
+    },
+    "BIN2OCT": {
+      "matched": 742,
+      "unread": 0
+    },
+    "BINOM.DIST": {
+      "matched": 32011,
+      "last_bit": 27723,
+      "larger_numeric": 10587,
+      "unread": 0
+    },
+    "BINOM.DIST.RANGE": {
+      "matched": 740,
+      "last_bit": 321,
+      "larger_numeric": 163,
+      "unread": 0
+    },
+    "BINOM.INV": {
+      "matched": 2149,
+      "larger_numeric": 3,
+      "unread": 0
+    },
+    "BITAND": {
+      "matched": 5989,
+      "unread": 0
+    },
+    "BITLSHIFT": {
+      "matched": 8131,
+      "unread": 0
+    },
+    "BITOR": {
+      "matched": 5989,
+      "unread": 0
+    },
+    "BITRSHIFT": {
+      "matched": 8128,
+      "unread": 0
+    },
+    "BITXOR": {
+      "matched": 5989,
+      "unread": 0
+    },
+    "CEILING": {
+      "matched": 1323,
+      "refused": 10,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "CEILING.MATH": {
+      "matched": 1350,
+      "refused": 12,
+      "unread": 0
+    },
+    "CEILING.PRECISE": {
+      "matched": 1323,
+      "refused": 10,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "CHIDIST": {
+      "matched": 234,
+      "last_bit": 152,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "CHIINV": {
+      "last_bit": 66,
+      "matched": 31,
+      "larger_numeric": 3,
+      "unread": 0
+    },
+    "CHISQ.DIST.RT": {
+      "matched": 5,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "CHISQ.INV": {
+      "last_bit": 27,
+      "matched": 12,
+      "larger_numeric": 1,
+      "unread": 0
+    },
+    "CHISQ.TEST": {
+      "matched": 3,
+      "last_bit": 2,
+      "unread": 0
+    },
+    "COMBIN": {
+      "matched": 24696,
+      "unread": 0
+    },
+    "COMBINA": {
+      "matched": 40991,
+      "unread": 0
+    },
+    "COMPLEX": {
+      "matched": 10644,
+      "other_mismatch": 40,
+      "refused": 10,
+      "unread": 0
+    },
+    "CONCAT": {
+      "matched": 15,
+      "other_mismatch": 5,
+      "unread": 0
+    },
+    "CONCATENATE": {
+      "other_mismatch": 5,
+      "matched": 5,
+      "unread": 0
+    },
+    "CONVERT": {
+      "matched": 33972,
+      "unread": 0
+    },
+    "COS": {
+      "matched": 3680,
+      "unread": 0
+    },
+    "COSH": {
+      "matched": 33550,
+      "unread": 0
+    },
+    "COT": {
+      "matched": 2129,
+      "unread": 0
+    },
+    "COTH": {
+      "matched": 40185,
+      "last_bit": 56,
+      "unread": 0
+    },
+    "COUNT": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "COUNTA": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "COUPDAYBS": {
+      "matched": 4072,
+      "unread": 0
+    },
+    "COUPDAYS": {
+      "matched": 4023,
+      "larger_numeric": 49,
+      "unread": 0
+    },
+    "COUPDAYSNC": {
+      "larger_numeric": 9,
+      "matched": 4063,
+      "unread": 0
+    },
+    "COUPNCD": {
+      "matched": 4072,
+      "unread": 0
+    },
+    "COUPNUM": {
+      "other_mismatch": 1,
+      "matched": 4071,
+      "unread": 0
+    },
+    "COUPPCD": {
+      "matched": 4072,
+      "unread": 0
+    },
+    "CRITBINOM": {
+      "matched": 1263,
+      "larger_numeric": 1,
+      "unread": 0
+    },
+    "CSC": {
+      "matched": 2135,
+      "unread": 0
+    },
+    "CSCH": {
+      "matched": 33300,
+      "last_bit": 6,
+      "unread": 0
+    },
+    "CUMIPMT": {
+      "larger_numeric": 15,
+      "matched": 12,
+      "last_bit": 11,
+      "unread": 0
+    },
+    "CUMPRINC": {
+      "last_bit": 350,
+      "matched": 230,
+      "unread": 0
+    },
+    "DATE": {
+      "matched": 22250,
+      "unread": 0
+    },
+    "DAY": {
+      "matched": 10153,
+      "unread": 0
+    },
+    "DAYS": {
+      "matched": 9565,
+      "unread": 0
+    },
+    "DAYS360": {
+      "matched": 3061,
+      "unread": 0
+    },
+    "DB": {
+      "matched": 2034,
+      "unread": 0
+    },
+    "DDB": {
+      "matched": 1761,
+      "unread": 0
+    },
+    "DEC2BIN": {
+      "matched": 4807,
+      "unread": 0
+    },
+    "DEC2HEX": {
+      "matched": 4807,
+      "unread": 0
+    },
+    "DEC2OCT": {
+      "matched": 4807,
+      "unread": 0
+    },
+    "DECIMAL": {
+      "matched": 1230,
+      "unread": 0
+    },
+    "DEGREES": {
+      "matched": 1225,
+      "refused": 2,
+      "unread": 0
+    },
+    "DELTA": {
+      "matched": 1088,
+      "refused": 4,
+      "unread": 0
+    },
+    "DEVSQ": {
+      "matched": 23106,
+      "unread": 0
+    },
+    "DISC": {
+      "matched": 2398,
+      "last_bit": 2,
+      "unread": 0
+    },
+    "DOLLARDE": {
+      "matched": 3641,
+      "unread": 0
+    },
+    "DOLLARFR": {
+      "matched": 3641,
+      "unread": 0
+    },
+    "DURATION": {
+      "matched": 7551,
+      "last_bit": 333,
+      "unread": 0
+    },
+    "EDATE": {
+      "matched": 9838,
+      "unread": 0
+    },
+    "EFFECT": {
+      "matched": 2583,
+      "unread": 0
+    },
+    "EOMONTH": {
+      "matched": 9838,
+      "unread": 0
+    },
+    "ERF.PRECISE": {
+      "last_bit": 365857,
+      "matched": 252580,
+      "unread": 0
+    },
+    "ERFC": {
+      "matched": 125,
+      "last_bit": 151,
+      "larger_numeric": 268,
+      "unread": 0
+    },
+    "ERFC.PRECISE": {
+      "matched": 734,
+      "last_bit": 756,
+      "larger_numeric": 373,
+      "unread": 0
+    },
+    "ERROR.TYPE": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "EVEN": {
+      "matched": 1225,
+      "refused": 2,
+      "unread": 0
+    },
+    "EXP": {
+      "matched": 2444,
+      "refused": 12,
+      "unread": 0
+    },
+    "EXPON.DIST": {
+      "matched": 49345,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "EXPONDIST": {
+      "matched": 9740,
+      "unread": 0
+    },
+    "F.DIST": {
+      "last_bit": 197,
+      "matched": 172,
+      "unread": 0
+    },
+    "F.DIST.RT": {
+      "matched": 5,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "F.TEST": {
+      "last_bit": 48,
+      "matched": 17,
+      "larger_numeric": 13,
+      "unread": 0
+    },
+    "FACT": {
+      "matched": 2709,
+      "unread": 0
+    },
+    "FACTDOUBLE": {
+      "matched": 2710,
+      "unread": 0
+    },
+    "FALSE": {
+      "matched": 1,
+      "unread": 0
+    },
+    "FDIST": {
+      "matched": 641,
+      "last_bit": 3743,
+      "larger_numeric": 13,
+      "unread": 0
+    },
+    "FINV": {
+      "last_bit": 27,
+      "matched": 2,
+      "larger_numeric": 3,
+      "unread": 0
+    },
+    "FISHER": {
+      "matched": 34166,
+      "unread": 0
+    },
+    "FIXED": {
+      "refused": 989,
+      "unread": 0
+    },
+    "FLOOR": {
+      "matched": 1324,
+      "refused": 10,
+      "larger_numeric": 1,
+      "unread": 0
+    },
+    "FLOOR.MATH": {
+      "matched": 1350,
+      "refused": 12,
+      "unread": 0
+    },
+    "FLOOR.PRECISE": {
+      "matched": 1323,
+      "refused": 10,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "FORECAST": {
+      "matched": 70,
+      "unread": 0
+    },
+    "FV": {
+      "matched": 2265,
+      "larger_numeric": 15,
+      "last_bit": 281,
+      "unread": 0
+    },
+    "GAMMA": {
+      "last_bit": 6992,
+      "matched": 436,
+      "larger_numeric": 5078,
+      "unread": 0
+    },
+    "GAMMA.DIST": {
+      "matched": 23212,
+      "last_bit": 48335,
+      "larger_numeric": 6428,
+      "unread": 0
+    },
+    "GAMMA.INV": {
+      "last_bit": 148,
+      "matched": 49,
+      "larger_numeric": 7,
+      "unread": 0
+    },
+    "GAMMADIST": {
+      "last_bit": 2,
+      "matched": 4,
+      "unread": 0
+    },
+    "GAMMALN": {
+      "matched": 1999,
+      "last_bit": 2526,
+      "unread": 0
+    },
+    "GAMMALN.PRECISE": {
+      "matched": 10193,
+      "last_bit": 4085,
+      "unread": 0
+    },
+    "GAUSS": {
+      "matched": 8569,
+      "last_bit": 1159,
+      "unread": 0
+    },
+    "GCD": {
+      "matched": 7966,
+      "unread": 0
+    },
+    "GEOMEAN": {
+      "matched": 1167,
+      "refused": 1,
+      "last_bit": 57,
+      "unread": 0
+    },
+    "GESTEP": {
+      "matched": 1092,
+      "refused": 4,
+      "unread": 0
+    },
+    "GROWTH": {
+      "matched": 1247,
+      "last_bit": 6,
+      "refused": 7,
+      "unread": 0
+    },
+    "HARMEAN": {
+      "matched": 19214,
+      "unread": 0
+    },
+    "HEX2BIN": {
+      "matched": 1214,
+      "unread": 0
+    },
+    "HEX2DEC": {
+      "matched": 1025,
+      "unread": 0
+    },
+    "HEX2OCT": {
+      "matched": 1218,
+      "unread": 0
+    },
+    "HOUR": {
+      "matched": 14631,
+      "unread": 0
+    },
+    "HYPGEOM.DIST": {
+      "matched": 3460,
+      "last_bit": 190,
+      "larger_numeric": 3,
+      "unread": 0
+    },
+    "HYPGEOMDIST": {
+      "last_bit": 3,
+      "unread": 0
+    },
+    "IFS": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "IMABS": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMAGINARY": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMARGUMENT": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMCONJUGATE": {
+      "matched": 3245,
+      "unread": 0
+    },
+    "IMCOS": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMCOSH": {
+      "matched": 1202,
+      "other_mismatch": 7,
+      "unread": 0
+    },
+    "IMCOT": {
+      "matched": 1085,
+      "other_mismatch": 124,
+      "unread": 0
+    },
+    "IMCSC": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMCSCH": {
+      "matched": 1200,
+      "other_mismatch": 9,
+      "unread": 0
+    },
+    "IMDIV": {
+      "matched": 2066,
+      "other_mismatch": 1,
+      "unread": 0
+    },
+    "IMLN": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMLOG10": {
+      "matched": 1198,
+      "other_mismatch": 11,
+      "unread": 0
+    },
+    "IMLOG2": {
+      "matched": 1155,
+      "other_mismatch": 54,
+      "unread": 0
+    },
+    "IMPRODUCT": {
+      "matched": 3260,
+      "unread": 0
+    },
+    "IMREAL": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMSECH": {
+      "matched": 1204,
+      "other_mismatch": 5,
+      "unread": 0
+    },
+    "IMSIN": {
+      "matched": 1209,
+      "unread": 0
+    },
+    "IMSINH": {
+      "matched": 1200,
+      "other_mismatch": 9,
+      "unread": 0
+    },
+    "IMSQRT": {
+      "matched": 2029,
+      "unread": 0
+    },
+    "IMSUB": {
+      "matched": 1216,
+      "unread": 0
+    },
+    "IMSUM": {
+      "matched": 3260,
+      "unread": 0
+    },
+    "IMTAN": {
+      "matched": 1065,
+      "other_mismatch": 144,
+      "unread": 0
+    },
+    "INT": {
+      "matched": 124399,
+      "refused": 2,
+      "last_bit": 2,
+      "unread": 0
+    },
+    "INTERCEPT": {
+      "matched": 4,
+      "unread": 0
+    },
+    "INTRATE": {
+      "matched": 2399,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "IPMT": {
+      "matched": 30,
+      "last_bit": 27,
+      "unread": 0
+    },
+    "IRR": {
+      "larger_numeric": 299,
+      "matched": 323,
+      "last_bit": 95,
+      "other_mismatch": 17,
+      "unread": 0
+    },
+    "ISBLANK": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISERR": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISERROR": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISEVEN": {
+      "matched": 57064,
+      "refused": 2,
+      "unread": 0
+    },
+    "ISLOGICAL": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISNA": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISNONTEXT": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISNUMBER": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "ISO.CEILING": {
+      "matched": 1323,
+      "refused": 10,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "ISODD": {
+      "matched": 57014,
+      "refused": 2,
+      "unread": 0
+    },
+    "ISOWEEKNUM": {
+      "matched": 10153,
+      "unread": 0
+    },
+    "ISREF": {
+      "other_mismatch": 1227,
+      "unread": 0
+    },
+    "ISTEXT": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "KURT": {
+      "matched": 2147,
+      "last_bit": 765,
+      "larger_numeric": 92,
+      "unread": 0
+    },
+    "LCM": {
+      "matched": 7967,
+      "unread": 0
+    },
+    "LN": {
+      "matched": 1685,
+      "unread": 0
+    },
+    "LOG": {
+      "matched": 25233,
+      "unread": 0
+    },
+    "LOG10": {
+      "matched": 2823,
+      "unread": 0
+    },
+    "LOGEST": {
+      "matched": 358,
+      "refused": 2,
+      "unread": 0
+    },
+    "LOGNORM.DIST": {
+      "matched": 2440,
+      "larger_numeric": 1229,
+      "last_bit": 2635,
+      "unread": 0
+    },
+    "LOGNORMDIST": {
+      "larger_numeric": 753,
+      "last_bit": 1880,
+      "matched": 666,
+      "unread": 0
+    },
+    "MAX": {
+      "matched": 1211,
+      "unread": 0
+    },
+    "MAXA": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "MDURATION": {
+      "last_bit": 157,
+      "matched": 1103,
+      "unread": 0
+    },
+    "MEDIAN": {
+      "matched": 43245,
+      "refused": 167,
+      "unread": 0
+    },
+    "MIN": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "MINA": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "MINUTE": {
+      "matched": 14631,
+      "unread": 0
+    },
+    "MINVERSE": {
+      "matched": 1683,
+      "unread": 112
+    },
+    "MOD": {
+      "matched": 147458,
+      "other_mismatch": 1606,
+      "last_bit": 772,
+      "larger_numeric": 2596,
+      "unread": 0
+    },
+    "MONTH": {
+      "matched": 10153,
+      "unread": 0
+    },
+    "MROUND": {
+      "matched": 45071,
+      "larger_numeric": 5704,
+      "unread": 0
+    },
+    "N": {
+      "matched": 1225,
+      "refused": 2,
+      "unread": 0
+    },
+    "NA": {
+      "matched": 1,
+      "unread": 0
+    },
+    "NEGBINOM.DIST": {
+      "matched": 356,
+      "larger_numeric": 50,
+      "last_bit": 104,
+      "unread": 0
+    },
+    "NEGBINOMDIST": {
+      "last_bit": 1281,
+      "matched": 167,
+      "larger_numeric": 356,
+      "unread": 0
+    },
+    "NETWORKDAYS": {
+      "matched": 2400,
+      "unread": 0
+    },
+    "NETWORKDAYS.INTL": {
+      "matched": 2400,
+      "unread": 0
+    },
+    "NOMINAL": {
+      "matched": 2085,
+      "unread": 0
+    },
+    "NORM.DIST": {
+      "matched": 23913,
+      "last_bit": 116,
+      "larger_numeric": 217,
+      "unread": 0
+    },
+    "NORM.S.DIST": {
+      "matched": 13766,
+      "last_bit": 9724,
+      "larger_numeric": 3999,
+      "unread": 0
+    },
+    "NORMDIST": {
+      "matched": 2703,
+      "last_bit": 182,
+      "larger_numeric": 120,
+      "unread": 0
+    },
+    "NOT": {
+      "matched": 1225,
+      "refused": 2,
+      "unread": 0
+    },
+    "NPER": {
+      "matched": 2509,
+      "unread": 0
+    },
+    "NPV": {
+      "matched": 190,
+      "last_bit": 94,
+      "unread": 0
+    },
+    "OCT2BIN": {
+      "matched": 1201,
+      "unread": 0
+    },
+    "OCT2DEC": {
+      "matched": 998,
+      "unread": 0
+    },
+    "OCT2HEX": {
+      "matched": 1198,
+      "unread": 0
+    },
+    "ODD": {
+      "matched": 1225,
+      "refused": 2,
+      "unread": 0
+    },
+    "OR": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "PDURATION": {
+      "matched": 1205,
+      "unread": 0
+    },
+    "PERMUT": {
+      "matched": 3432,
+      "unread": 0
+    },
+    "PERMUTATIONA": {
+      "matched": 71911,
+      "last_bit": 4,
+      "unread": 0
+    },
+    "PHI": {
+      "matched": 14400,
+      "unread": 0
+    },
+    "PI": {
+      "matched": 1,
+      "unread": 0
+    },
+    "PMT": {
+      "refused": 7,
+      "last_bit": 68866,
+      "matched": 222799,
+      "larger_numeric": 232,
+      "other_mismatch": 4,
+      "unread": 0
+    },
+    "POISSON.DIST": {
+      "matched": 39403,
+      "last_bit": 8064,
+      "larger_numeric": 2240,
+      "unread": 4
+    },
+    "POWER": {
+      "matched": 62590,
+      "refused": 5,
+      "last_bit": 2,
+      "other_mismatch": 36,
+      "unread": 0
+    },
+    "PPMT": {
+      "matched": 9,
+      "last_bit": 24,
+      "unread": 0
+    },
+    "PRICE": {
+      "matched": 9101,
+      "last_bit": 50,
+      "unread": 0
+    },
+    "PRICEDISC": {
+      "matched": 2399,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "PRICEMAT": {
+      "matched": 2399,
+      "last_bit": 4,
+      "larger_numeric": 1,
+      "unread": 0
+    },
+    "PRODUCT": {
+      "matched": 1211,
+      "unread": 0
+    },
+    "PV": {
+      "matched": 1146,
+      "last_bit": 147,
+      "larger_numeric": 15,
+      "unread": 0
+    },
+    "QUOTIENT": {
+      "matched": 1350,
+      "refused": 12,
+      "unread": 0
+    },
+    "RADIANS": {
+      "matched": 32923,
+      "refused": 2,
+      "unread": 0
+    },
+    "RATE": {
+      "larger_numeric": 339,
+      "last_bit": 20,
+      "matched": 5,
+      "other_mismatch": 13,
+      "unread": 0
+    },
+    "RECEIVED": {
+      "matched": 2399,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "ROUND": {
+      "matched": 31480,
+      "larger_numeric": 4849,
+      "last_bit": 186,
+      "other_mismatch": 424,
+      "unread": 0
+    },
+    "ROUNDDOWN": {
+      "matched": 53812,
+      "larger_numeric": 5734,
+      "last_bit": 338,
+      "other_mismatch": 97,
+      "unread": 0
+    },
+    "ROUNDUP": {
+      "matched": 41400,
+      "larger_numeric": 5900,
+      "other_mismatch": 3362,
+      "last_bit": 2173,
+      "unread": 0
+    },
+    "RRI": {
+      "matched": 5442,
+      "refused": 45,
+      "unread": 0
+    },
+    "SEC": {
+      "matched": 2137,
+      "unread": 0
+    },
+    "SECH": {
+      "matched": 30423,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "SECOND": {
+      "matched": 14631,
+      "unread": 0
+    },
+    "SIGN": {
+      "matched": 1224,
+      "refused": 2,
+      "unread": 0
+    },
+    "SIN": {
+      "matched": 2126,
+      "unread": 0
+    },
+    "SINH": {
+      "matched": 33420,
+      "last_bit": 130,
+      "unread": 0
+    },
+    "SKEW": {
+      "matched": 3000,
+      "larger_numeric": 1,
+      "last_bit": 3,
+      "unread": 0
+    },
+    "SLN": {
+      "matched": 1205,
+      "unread": 0
+    },
+    "SLOPE": {
+      "matched": 4,
+      "unread": 0
+    },
+    "SQRT": {
+      "matched": 42801,
+      "refused": 2,
+      "unread": 0
+    },
+    "SQRTPI": {
+      "matched": 1224,
+      "unread": 0
+    },
+    "STANDARDIZE": {
+      "matched": 10302,
+      "refused": 8,
+      "unread": 0
+    },
+    "STDEV": {
+      "matched": 944,
+      "last_bit": 268,
+      "unread": 0
+    },
+    "STDEV.P": {
+      "matched": 920,
+      "last_bit": 289,
+      "larger_numeric": 12,
+      "unread": 0
+    },
+    "STDEV.S": {
+      "matched": 952,
+      "last_bit": 262,
+      "larger_numeric": 8,
+      "unread": 0
+    },
+    "STDEVA": {
+      "matched": 949,
+      "last_bit": 259,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "STDEVP": {
+      "matched": 936,
+      "last_bit": 271,
+      "larger_numeric": 5,
+      "unread": 0
+    },
+    "STDEVPA": {
+      "matched": 926,
+      "last_bit": 277,
+      "larger_numeric": 9,
+      "unread": 0
+    },
+    "SUM": {
+      "matched": 1211,
+      "unread": 0
+    },
+    "SUMSQ": {
+      "matched": 1211,
+      "unread": 0
+    },
+    "SWITCH": {
+      "matched": 1223,
+      "refused": 2,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "SYD": {
+      "matched": 1207,
+      "unread": 0
+    },
+    "T": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "T.DIST.RT": {
+      "last_bit": 4,
+      "matched": 1,
+      "larger_numeric": 1,
+      "unread": 0
+    },
+    "TAN": {
+      "matched": 2113,
+      "unread": 0
+    },
+    "TANH": {
+      "matched": 38970,
+      "last_bit": 58,
+      "unread": 0
+    },
+    "TBILLEQ": {
+      "matched": 2399,
+      "larger_numeric": 1,
+      "unread": 0
+    },
+    "TBILLPRICE": {
+      "matched": 2400,
+      "unread": 0
+    },
+    "TBILLYIELD": {
+      "matched": 2399,
+      "last_bit": 1,
+      "unread": 0
+    },
+    "TDIST": {
+      "matched": 24,
+      "last_bit": 66,
+      "larger_numeric": 2,
+      "unread": 0
+    },
+    "TIME": {
+      "matched": 1296,
+      "unread": 0
+    },
+    "TINV": {
+      "matched": 15,
+      "last_bit": 13,
+      "larger_numeric": 4,
+      "unread": 0
+    },
+    "TREND": {
+      "last_bit": 2,
+      "matched": 10,
+      "unread": 0
+    },
+    "TRUE": {
+      "matched": 1,
+      "unread": 0
+    },
+    "TRUNC": {
+      "matched": 44913,
+      "larger_numeric": 5969,
+      "last_bit": 340,
+      "other_mismatch": 95,
+      "unread": 0
+    },
+    "TYPE": {
+      "matched": 1227,
+      "unread": 0
+    },
+    "VAR": {
+      "matched": 800,
+      "last_bit": 403,
+      "larger_numeric": 9,
+      "unread": 0
+    },
+    "VAR.P": {
+      "matched": 771,
+      "last_bit": 438,
+      "larger_numeric": 13,
+      "unread": 0
+    },
+    "VAR.S": {
+      "matched": 912,
+      "last_bit": 395,
+      "larger_numeric": 16,
+      "unread": 0
+    },
+    "VARA": {
+      "matched": 792,
+      "last_bit": 411,
+      "larger_numeric": 8,
+      "unread": 0
+    },
+    "VARP": {
+      "matched": 791,
+      "last_bit": 407,
+      "larger_numeric": 12,
+      "unread": 0
+    },
+    "VARPA": {
+      "matched": 766,
+      "last_bit": 433,
+      "larger_numeric": 13,
+      "unread": 0
+    },
+    "VDB": {
+      "matched": 2201,
+      "unread": 0
+    },
+    "WEEKDAY": {
+      "matched": 19523,
+      "unread": 0
+    },
+    "WEEKNUM": {
+      "matched": 12889,
+      "other_mismatch": 443,
+      "unread": 0
+    },
+    "WEIBULL.DIST": {
+      "matched": 31481,
+      "last_bit": 2,
+      "unread": 0
+    },
+    "WORKDAY": {
+      "matched": 2400,
+      "unread": 0
+    },
+    "WORKDAY.INTL": {
+      "matched": 4800,
+      "unread": 0
+    },
+    "XNPV": {
+      "matched": 3406,
+      "unread": 0
+    },
+    "XOR": {
+      "matched": 1212,
+      "unread": 0
+    },
+    "YEAR": {
+      "matched": 10153,
+      "unread": 0
+    },
+    "YEARFRAC": {
+      "matched": 3003,
+      "unread": 0
+    },
+    "YIELD": {
+      "last_bit": 95,
+      "larger_numeric": 423,
+      "matched": 12,
+      "unread": 0
+    },
+    "YIELDMAT": {
+      "matched": 1085,
+      "unread": 0
+    }
+  },
+  "trace_sha256": "be98d485626ee6485fe2633e83fbc66038277b658211ec7c99b5ed7dd2cfb58e"
+}

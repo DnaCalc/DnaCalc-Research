@@ -1,0 +1,79 @@
+{
+  "format": "dnacalc-corpus-fuzz-questions/1",
+  "new_excel_answers": 0,
+  "seeds": 21,
+  "seeded_functions": {
+    "BESSELJ": 2,
+    "BINOM.DIST": 2,
+    "LINEST": 2,
+    "LOGEST": 2,
+    "RATE": 2,
+    "HYPGEOM.DIST": 2,
+    "YIELD": 1,
+    "IRR": 1,
+    "ODDFYIELD": 1,
+    "POISSON.DIST": 2,
+    "NEGBINOM.DIST": 2,
+    "GAMMA.DIST": 2
+  },
+  "calls_by_function": {
+    "BESSELJ": 50,
+    "BINOM.DIST": 50,
+    "LINEST": 50,
+    "LOGEST": 50,
+    "RATE": 50,
+    "HYPGEOM.DIST": 50,
+    "YIELD": 50,
+    "IRR": 18,
+    "ODDFYIELD": 50,
+    "POISSON.DIST": 50,
+    "NEGBINOM.DIST": 50,
+    "GAMMA.DIST": 50
+  },
+  "selected_calls": 568,
+  "formula_cells": 968,
+  "prediction_provenance": {
+    "calculated": 967,
+    "not_modeled": 1
+  },
+  "mutations": {
+    "original_control": 21,
+    "neighbor": 86,
+    "boundary": 171,
+    "text_number": 43,
+    "boolean_true": 26,
+    "boolean_false": 25,
+    "omitted": 25,
+    "blank_reference": 25,
+    "blank_range": 25,
+    "empty_text": 25,
+    "error_na": 25,
+    "error_div0": 25,
+    "range_values": 23,
+    "array_values": 23
+  },
+  "sources": {
+    "problem_list": "problem-functions.json",
+    "problem_list_sha256": "e35e9288c17c4fc8ea840d060d7e70f508e1deebf701eb1848405ac7df3de8aa",
+    "steering_report_original_path": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.json",
+    "corpus_summary_sha256": "dc7783d03c3ecf508f06592ee10c5c5ee378142fc554c4513cb27c2fb87a1ca9",
+    "generator_sha256": "eda217accd040a6494c4b8e8e4a3de74c8518d6cd28c3b76751511fe25053200",
+    "prediction_executable_sha256": "489d4f8358f253b602d14de0122e91f5663cbee601252c46e8fb1e7220f8e4e0",
+    "fuzzer_sha256": "9297a0f8067407f81194251c8be6b8e99b3011d84e95d7307d787e19dd2a04db"
+  },
+  "limits": "First bounded slice: direct scalar/literal-array calls accepted by the existing corpus freezer, up to two argument-class/verdict seeds per function. Reference/nested-expression seeds are excluded and counted by that freezer. One argument changes at a time; arrays may be explicitly reshaped to a column. Finite binary64 neighbors use exact small-integer expressions; underflow, signed zero and array decimal transport require echoes. Application predictions are not Excel evidence. Original controls are intentional rechecks. No corpus download, captured workbook edit, fitted numerical constant or answer-bearing request.",
+  "files_sha256": {
+    "README.txt": "2adda2d0c71d0017a22d94e0b9cf86b725ef4d7e3e8bf553620e803584f33633",
+    "application-predictions-workbook.jsonl": "0e7b6f5a8aed026d778749834f231216327faf784c7e2847dd49b39aa36276e2",
+    "corpus-seeds/excluded.jsonl.gz": "58c2abb022457825aa5e1ba8083cf63bddff069799fb00ae52999324667cefc1",
+    "corpus-seeds/pool-receipt.json": "e7d6a46179e0ed075bd8f377c6175397ba9d0747d1d1712a4fc0fe339678480c",
+    "corpus-seeds/summary.json": "fe92bc81aebb1acb9d3b935bbd806d7b9a67fcab03be806bf5a1271a52bf6d07",
+    "prediction-binding.json": "e0c8528538fe3bfe059a7a73fef2c8c2b1381c20a1309211af9766f7a6cd4e0e",
+    "problem-functions.json": "e35e9288c17c4fc8ea840d060d7e70f508e1deebf701eb1848405ac7df3de8aa",
+    "seed-route-audit.jsonl": "c5956cb0d08dfbfa39214a61b23122363b385ea5839287ab2ac39f61d16a09ad",
+    "seeds.jsonl": "ae2f0a0ac10af4887c3b4744b0acc098c9011c8ab35c23b1b5c54bde5d3cca2c",
+    "sheet-dcztvv_r23.txt": "adad68152aa2748a149d98fa50b54a33be4676ef48f5d188b7f2d3edb46741b3",
+    "workbook-questions.json": "c498c587f2f470d6aaeb93601d56a1c9436b585ac8e532997234f1ba32e262a1",
+    "workbooks/dcztvv_r23/oracle.xlsx": "dee3f5aa173900b76bf81182f5148843f633a5c8d8570ddca6df7c01e49b3980"
+  }
+}

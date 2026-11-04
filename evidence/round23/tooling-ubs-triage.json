@@ -1,0 +1,28 @@
+{
+  "rust": {
+    "complete": true,
+    "critical": 0,
+    "scope": "Changed route audit file; existing numerical assertions/static tables dominate warnings."
+  },
+  "python": {
+    "complete": false,
+    "exit_code": 2,
+    "critical": 2,
+    "reason": "Scanner returned a partial/error status; doctor --fix reports environment healthy.",
+    "findings": [
+      {
+        "path": "racer/corpus_cases.py",
+        "line": 406,
+        "status": "false positive",
+        "reason": "Existing operator-selected trusted local executable, argv only and no shell."
+      },
+      {
+        "path": "racer/corpus_cases.py",
+        "line": 926,
+        "status": "false positive",
+        "reason": "Fixed product judge subpath below operator-selected local checkout; argv only and no shell."
+      }
+    ]
+  },
+  "limits": "No clean or complete Python scan is claimed. Tests, source review and immutable provenance checks are separate evidence."
+}

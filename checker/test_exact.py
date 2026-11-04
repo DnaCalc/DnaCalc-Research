@@ -271,6 +271,96 @@ class ExactArithmetic(unittest.TestCase):
             audit.variance_scope(root/'bank',root/'corpus',root/'observations',root/'out','LINEST')
             self.assertEqual(json.loads((root/'out/different-answers.json').read_text()),[])
 
+    def test_problem_table_keeps_numeric_boundary_and_structural_failures(self):
+        from racer.corpus_cases import numeric_mismatch, bank_problem_counts
+        one = '0x3ff0000000000000'
+        self.assertEqual(numeric_mismatch(one, one), 'matched')
+        self.assertEqual(numeric_mismatch(one, '0x3ff0000000000010'), 'last_bit')
+        self.assertEqual(numeric_mismatch(one, '0x3ff0000000000011'), 'larger_numeric')
+        self.assertEqual(numeric_mismatch('0x0000000000000000', '0x8000000000000000'), 'last_bit')
+        self.assertEqual(numeric_mismatch(one, '0x7ff0000000000000'), 'other_mismatch')
+        rows = [dict(function='SYNTHETIC', expected=one, actual=a) for a in
+                (one, '0x3ff0000000000010', '0x3ff0000000000011', 'error:Num', 'fault:NotImplemented')]
+        counts, digest = bank_problem_counts([json.dumps(r)+'\n' for r in rows])
+        self.assertEqual(dict(counts['SYNTHETIC']), dict(matched=1, last_bit=1,
+                         larger_numeric=1, other_mismatch=1, refused=1))
+        self.assertEqual(len(digest), 64)
+
+    def test_fuzzer_neighbor_expressions_are_exact_rationals(self):
+        import ast
+        from racer.corpus_fuzz import exact_expression
+        def rational(node):
+            if isinstance(node, ast.Constant):
+                return R(node.value)
+            if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub):
+                return -rational(node.operand)
+            if isinstance(node, ast.BinOp):
+                a, b = rational(node.left), rational(node.right)
+                if isinstance(node.op, ast.Add): return a+b
+                if isinstance(node.op, ast.Mult): return a*b
+                if isinstance(node.op, ast.Div): return a/b
+                if isinstance(node.op, ast.Pow): return a**int(b)
+            raise ValueError('unexpected numeric expression')
+        for value in (math.nextafter(8, 0), math.nextafter(8, math.inf), -33.3,
+                      float.fromhex('0x1p-1022'), float.fromhex('0x1p-1074'),
+                      float.fromhex('0x1.fffffffffffffp1023'), 0.0):
+            expression = ast.parse(exact_expression(value).replace('^', '**'), mode='eval')
+            self.assertEqual(rational(expression.body), R(value))
+
+    def test_fuzzer_budget_retains_two_original_seed_controls_and_type_swaps(self):
+        from racer.corpus_fuzz import build_questions
+        seeds = [dict(id=f'SYNTHETIC-{i}', function='BINOM.DIST', result_index=None,
+                      argument_sources=['1', '100', '0.3', 'TRUE'],
+                      args=['0x3ff0000000000000', '0x4059000000000000', '0x3fd3333333333333', True])
+                 for i in range(2)]
+        questions, counts = build_questions(seeds, 50)
+        # Identical controls are intentionally deduplicated; use a distinct real shape.
+        seeds[1]['argument_sources'][3] = 'FALSE'
+        seeds[1]['args'][3] = False
+        questions, counts = build_questions(seeds, 50)
+        calls = [q for q in questions if q['role'] == 'question']
+        self.assertLessEqual(len(calls), 50)
+        self.assertEqual(sum(q['mutation'] == 'original_control' for q in calls), 2)
+        for mutation in ('neighbor', 'boundary', 'text_number', 'boolean_true', 'boolean_false',
+                         'omitted', 'blank_reference', 'blank_range', 'empty_text', 'error_na',
+                         'error_div0', 'range_values', 'array_values'):
+            self.assertIn(mutation, {q['mutation'] for q in calls})
+        self.assertEqual(dict(counts), {'BINOM.DIST':len(calls)})
+        self.assertTrue(all(q['seed_id'] in {'SYNTHETIC-0', 'SYNTHETIC-1'} for q in questions))
+
+    def test_fuzzer_array_transport_echoes_every_mutated_element(self):
+        from racer.corpus_fuzz import build_questions
+        seeds = [dict(id='SYNTHETIC-array', function='IRR', result_index=None,
+                      argument_sources=['{-100,40,80}'],
+                      args=[[['0xc059000000000000', '0x4044000000000000', '0x4054000000000000']]])]
+        questions, _ = build_questions(seeds)
+        mutation = next(q for q in questions if q['mutation'] == 'array_values')
+        by_cell = {f"D{q['row']}":q for q in questions}
+        self.assertEqual(len(mutation['operand_echoes']), 3)
+        echoes = [by_cell[c] for c in mutation['operand_echoes']]
+        self.assertEqual([q['formula'] for q in echoes],
+                         ['INDEX({-100;40;80},1,1)', 'INDEX({-100;40;80},2,1)', 'INDEX({-100;40;80},3,1)'])
+        self.assertTrue(all(q['role'] == 'operand_echo' for q in echoes))
+
+    @unittest.skipUnless(__import__('os').name == 'posix', 'Linux FIFO report generator')
+    def test_problem_table_child_failure_before_fifo_open_returns(self):
+        import os
+        import subprocess
+        from racer.corpus_cases import judge_fifo_lines
+        with tempfile.TemporaryDirectory() as scratch:
+            fifo = Path(scratch)/'empty.fifo'
+            os.mkfifo(fifo)
+            descriptor = os.open(fifo, os.O_RDONLY | os.O_NONBLOCK)
+            child = subprocess.Popen([__import__('sys').executable, '-c', 'raise SystemExit(7)'])
+            try:
+                self.assertEqual(list(judge_fifo_lines(descriptor, child, timeout=5)), [])
+                self.assertEqual(child.wait(timeout=5), 7)
+            finally:
+                os.close(descriptor)
+                if child.poll() is None:
+                    child.terminate()
+                    child.wait(timeout=5)
+
     def test_corpus_freeze_reads_ordinary_committed_capture_and_excludes_intersection(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location('corpus_audit',Path(__file__).resolve().parents[1]/'racer/corpus_cases.py')

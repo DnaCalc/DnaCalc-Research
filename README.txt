@@ -1,5 +1,29 @@
 DNA Calc arithmetic program research
 
+Round 23 adds the maintained corpus/full-bank problem list in the sibling
+DnaCalc checkout, docs/generated/problem-functions.{md,json}. From here,
+regenerate it with one Linux command (both checkouts and the existing local
+OxFunc-Evidence bank are required; no download or Excel session):
+  python3 racer/corpus_cases.py problem-functions ../DnaCalc ../DnaCalc/docs/generated/problem-functions
+The command reuses cargo xtask corpus and the canonical full-bank judge. It
+streams the bank through a FIFO, retaining counts and hashes, not a bulk trace.
+Finite numeric mismatches split at16 ULP. Other mismatches, refusals, unread
+and pending obligations remain failures. Corpus/bank counts can overlap.
+
+The first deterministic corpus-seeded fuzzer extends the existing freezer,
+workbook generator and Workbook prediction route. It selects real calls from
+the maintained list, excluding the owner's parked numerical producers:
+  python3 racer/corpus_fuzz.py ../DnaCalc/target/corpus-r23-before ../DnaCalc/docs/generated/problem-functions.json target/release/symbolic-racer /path/to/pwsh /new/question-directory
+The R23 frozen packet contains21 seeds across12 functions,568 selected calls
+and400 operand echoes in one new workbook. Neighbor expressions use exact
+small integer limbs; decimal array transport, subnormals and signed zero need
+Excel operand echoes. One typed refusal remains explicit among968 predictions.
+Original captures and workbooks are unchanged; no new Excel answer is claimed.
+The local packet is ~/codex-runs/excel-questions-r23/frozen-v3/. The incomplete
+root-level draft is retained separately and has no capture input workbook.
+Sources are original MIT tooling, original Excel captures and IEEE754 binary
+arithmetic; no third-party numerical body is added by the list or fuzzer.
+
 Round 22 restores all 25 original catalogue sections by moving R21 and incoming
 fn2 questions to separate workbooks. The catalogue bytes are identical to those
 before R21: 1,633 cells restored, including 1,561 matches and 72 failures, without

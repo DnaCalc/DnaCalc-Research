@@ -806,6 +806,214 @@ def function_table(classification, output):
     return result
 
 
+def numeric_mismatch(expected, actual):
+    """The corpus table's 16-ULP triage, also applied to canonical bank rows."""
+    import math
+    if expected == actual:
+        return 'matched'
+    try:
+        if not all(isinstance(v, str) and re.fullmatch(r'0x[0-9a-fA-F]{16}', v)
+                   for v in (expected, actual)):
+            return 'other_mismatch'
+        numbers = [struct.unpack('>d', bytes.fromhex(v[2:]))[0] for v in (expected, actual)]
+        if not all(map(math.isfinite, numbers)):
+            return 'other_mismatch'
+        def ordered(v):
+            n = int(v, 16)
+            return (~n & ((1 << 64)-1)) if n >> 63 else n | (1 << 63)
+        return 'last_bit' if abs(ordered(expected)-ordered(actual)) <= 16 else 'larger_numeric'
+    except (ValueError, struct.error):
+        return 'other_mismatch'
+
+
+def bank_problem_counts(lines):
+    """Consume the existing judge's trace once, retaining counts and its hash only."""
+    counts, digest = {}, hashlib.sha256()
+    for line in lines:
+        digest.update(line.encode('utf-8'))
+        row = json.loads(line)
+        tally = counts.setdefault(row['function'], Counter())
+        actual = row['actual']
+        kind = ('refused' if actual.startswith('fault:') else
+                numeric_mismatch(row['expected'], actual))
+        tally[kind] += 1
+    return counts, digest.hexdigest()
+
+
+def judge_fifo_lines(descriptor, child, timeout=3600):
+    """Drain an owned judge without blocking if it fails before opening its FIFO."""
+    import os
+    import select
+    import time
+    deadline, pending = time.monotonic()+timeout, b''
+    while True:
+        if time.monotonic() >= deadline:
+            raise TimeoutError('bank judge timed out')
+        select.select([descriptor], [], [], 0.25)
+        try:
+            chunk = os.read(descriptor, 65536)
+        except BlockingIOError:
+            chunk = b''
+        if chunk:
+            pending += chunk
+            while b'\n' in pending:
+                line, pending = pending.split(b'\n', 1)
+                yield (line+b'\n').decode('utf-8')
+        elif child.poll() is not None:
+            break
+        else:
+            # A read-only FIFO is readable at EOF before the writer opens it.
+            time.sleep(0.01)
+    if pending:
+        raise ValueError('incomplete bank trace line')
+
+
+def problem_functions(checkout, output, run=None, corpus=None):
+    """Regenerate the corpus/bank list through the existing corpus and witness routes.
+
+    No bank trace is retained. The output contains no answers or executable policy.
+    Run directories are new; published tables may be replaced after reconciliation.
+    """
+    import os
+    import subprocess
+    import tempfile
+    checkout, output = map(lambda p: Path(p).resolve(), (checkout, output))
+    if run is None:
+        (checkout/'target').mkdir(exist_ok=True)
+        run = Path(tempfile.mkdtemp(prefix='problem-functions-', dir=checkout/'target'))
+    else:
+        run = Path(run).resolve()
+        run.mkdir(parents=True, exist_ok=False)
+    def git(root, *args):
+        return subprocess.check_output(['git', '-C', str(root), *args], text=True, timeout=60).strip()
+    def state():
+        return dict(revision=git(checkout, 'rev-parse', 'HEAD'),
+                    source_diff_sha256=hashlib.sha256(subprocess.check_output(
+                        ['git', '-C', str(checkout), 'diff', 'HEAD', '--', 'crates', 'apps', 'tools',
+                         ':(exclude)crates/calc-func/witness-status.tsv',
+                         ':(exclude)crates/calc-func/witness-differences.tsv'],
+                        timeout=60)).hexdigest())
+    before = state()
+    if corpus is None:
+        corpus = run/'corpus'
+        with (run/'corpus.log').open('x') as log:
+            subprocess.run(['cargo', 'xtask', 'corpus', '--oracle', '--no-capture',
+                            '--cache', str(run/'capture-cache'), '--out', str(corpus)],
+                           cwd=checkout, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=3600)
+    corpus = Path(corpus).resolve()
+    classification = run/'classification'
+    classify(corpus, classification)
+    table = function_table(classification, run/'corpus-functions')
+    corpus_summary = json.loads((classification/'summary.json').read_text())
+    # The corpus command builds this release binary before comparing any workbook.
+    executable = checkout/'target/xtask-corpus/release'/('xtask-harness.exe' if os.name == 'nt' else 'xtask-harness')
+    executable_hash = hashlib.sha256(executable.read_bytes()).hexdigest()
+    if os.name == 'nt':
+        raise ValueError('the streaming list generator currently requires Linux FIFOs')
+    setting = os.environ.get('DNACALC_LEGACY_ROOT')
+    legacy = Path(setting) if setting else checkout.parent
+    if not legacy.is_absolute():
+        legacy = checkout/legacy
+    evidence = legacy.resolve()/'OxFunc-Evidence'
+    def evidence_state():
+        return dict(revision=git(evidence, 'rev-parse', 'HEAD'),
+                    status=git(evidence, 'status', '--porcelain=v1', '--untracked-files=all'),
+                    readings_sha256={str(p.relative_to(evidence)):hashlib.sha256(p.read_bytes()).hexdigest()
+                                     for p in sorted((evidence/'readings').rglob('*.json'))})
+    bank_source = evidence_state()
+    with tempfile.TemporaryDirectory(prefix='dnacalc-problems-') as scratch:
+        fifo = Path(scratch)/'bank.fifo'
+        os.mkfifo(fifo, 0o600)
+        descriptor = os.open(fifo, os.O_RDONLY | os.O_NONBLOCK)
+        with (run/'bank.log').open('x') as log:
+            # ubs:ignore — fixed local product judge below the operator-selected checkout, argv only and no shell; the FIFO stores no bulk bank artefact.
+            child = subprocess.Popen([str(executable), 'witness', 'judge', '--bank', 'full',
+                                      '--trace', str(fifo)], cwd=checkout,
+                                     stdout=log, stderr=subprocess.STDOUT)
+            try:
+                bank, trace_hash = bank_problem_counts(judge_fifo_lines(descriptor, child))
+                if child.wait(timeout=3600):
+                    raise ValueError('bank judge failed; retain its log')
+            finally:
+                os.close(descriptor)
+                if child.poll() is None:
+                    child.terminate()
+                    try:
+                        child.wait(timeout=5)
+                    except subprocess.TimeoutExpired:
+                        child.kill()
+                        child.wait()
+    text = (run/'bank.log').read_text()
+    match = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)', text)
+    if match is None or 'bank files could not be decoded' in text:
+        raise ValueError('incomplete bank inventory')
+    matched, total, failed, unread = map(int, match.groups())
+    # The existing judge's status table supplies per-function unread counts.
+    import csv
+    with (checkout/'crates/calc-func/witness-status.tsv').open() as stream:
+        for status in csv.DictReader(stream, delimiter='\t'):
+            if status['bank'] != 'full':
+                continue
+            tally = bank.setdefault(status['function'], Counter())
+            missing = int(status['rows'])-sum(tally.values())
+            if missing < 0 or tally['matched'] != int(status['matched']):
+                raise ValueError('bank status differs from streamed rows')
+            tally['unread'] = missing
+    bank_totals = sum(bank.values(), Counter())
+    if (bank_totals['matched'], sum(bank_totals.values()), total-matched, bank_totals['unread']) != (matched, total, failed, unread):
+        raise ValueError('bank totals do not reconcile')
+    fields = ('larger_numeric', 'last_bit', 'other_mismatch', 'refused', 'unread')
+    corpus_counts = {}
+    for function in table['functions']:
+        corpus_counts[function['function']] = dict(larger_numeric=function['larger_numeric'],
+            last_bit=function['within_16_ulp'], other_mismatch=sum(function['other'].values()))
+    names = set(corpus_counts) | {f for f, c in bank.items() if sum(c[k] for k in fields)}
+    functions = [dict(function=f, corpus={k:corpus_counts.get(f, {}).get(k, 0) for k in fields[:3]},
+                      bank={k:bank.get(f, Counter())[k] for k in fields}) for f in names]
+    functions.sort(key=lambda r: (-sum(r[s]['larger_numeric'] for s in ('corpus','bank')),
+                                 -sum(r[s]['last_bit'] for s in ('corpus','bank')), r['function']))
+    (run/'bank-counts.json').write_text(json.dumps(dict(totals=dict(bank_totals),
+        functions={f:dict(c) for f,c in bank.items()}, trace_sha256=trace_hash), indent=2)+'\n')
+    if before != state() or bank_source != evidence_state() or executable_hash != hashlib.sha256(executable.read_bytes()).hexdigest():
+        raise ValueError('application, binary or evidence changed during report')
+    result = dict(format='dnacalc-problem-functions/1', complete=True,
+        application=before, executable_sha256=executable_hash, bank_source=bank_source,
+        corpus=dict(formula_cells=corpus_summary['formula_cells'], matched=corpus_summary['matched'],
+            inclusive_failed=corpus_summary['inclusive_failed'], awaiting_capture=corpus_summary['awaiting_capture'],
+            other_failed_verdicts=table['other_verdicts'], mismatches=table['mismatches'],
+            counts={k:sum(f['corpus'][k] for f in functions) for k in fields[:3]}),
+        bank=dict(rows=total, matched=matched, failed=failed, counts=dict(bank_totals),
+                  canonical_trace_sha256=trace_hash), functions=functions,
+        corpus_inputs_sha256=corpus_summary['inputs_sha256'],
+        generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        rule='Last-bit: finite numeric mismatches <=16 ULP; larger numeric: >16 ULP. This split is triage, not a relaxed verdict. '
+             'Every mismatch, refusal, unread, missing, pending, external and circular-policy cell remains an inclusive failure. '
+             'Corpus functions are inferred from formula spelling, unwrapping INDEX selections; bank functions use canonical judge identities. '
+             'Counts are observations per source; corpus and bank may overlap and must not be added as unique calls. '
+             'Bank reference/locale context gaps remain failures, not proven numerical defects.')
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.with_suffix('.json').write_text(json.dumps(result, indent=2)+'\n')
+    lines = ['# Problem functions', '',
+        'Generated by one command from DnaCalc-Research (Linux; both checkouts required):', '',
+        '```sh', 'python3 racer/corpus_cases.py problem-functions ../DnaCalc ../DnaCalc/docs/generated/problem-functions', '```', '',
+        result['rule'], '',
+        f"Corpus: {result['corpus']['matched']:,}/{result['corpus']['formula_cells']:,} matched; {result['corpus']['inclusive_failed']:,} inclusive failures, including {result['corpus']['awaiting_capture']:,} pending.",
+        f"Bank: {matched:,}/{total:,} matched; {failed:,} failures, including {unread:,} unread.", '',
+        'Larger numeric and last-bit columns count numeric mismatches; other columns count remaining mismatches. Bank refusals and unread rows are separate. Corpus refusals/missing are recorded in the JSON, outside the mismatch table.', '',
+        '| Function | Corpus larger | Corpus last-bit | Corpus other | Bank larger | Bank last-bit | Bank other | Bank refused | Bank unread |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+    for row in functions:
+        values = [row['corpus'][k] for k in fields[:3]]+[row['bank'][k] for k in fields]
+        lines.append('| '+row['function'].replace('|', '\\|')+' | '+' | '.join(f'{v:,}' for v in values)+' |')
+    output.with_suffix('.md').write_text('\n'.join(lines)+'\n')
+    (run/'receipt.json').write_text(json.dumps(dict(complete=True, application=before,
+        corpus=result['corpus'], bank=result['bank'], functions=len(functions),
+        outputs_sha256={str(output.with_suffix(ext)):hashlib.sha256(output.with_suffix(ext).read_bytes()).hexdigest()
+                        for ext in ('.json', '.md')}), indent=2)+'\n')
+    print(json.dumps(dict(corpus=result['corpus'], bank=result['bank'], functions=len(functions))))
+    return result
+
+
 def freeze(corpus, output, functions):
     corpus, output = Path(corpus), Path(output)
     output.mkdir()
@@ -1324,6 +1532,9 @@ or changed-input obligations fail. Use the existing capture lineage only.
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'problem-functions':
+        problem_functions(*sys.argv[2:])
+        sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'round22-qr-questions':
         round22_qr_questions(*sys.argv[2:])
         sys.exit(0)
