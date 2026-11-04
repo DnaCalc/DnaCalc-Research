@@ -1,0 +1,355 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      2459,
+      2351,
+      2351,
+      0,
+      0
+    ],
+    [
+      2459,
+      2246,
+      2351,
+      2,
+      107
+    ],
+    [
+      2459,
+      2247,
+      2351,
+      1,
+      105
+    ],
+    [
+      2459,
+      2182,
+      2351,
+      2,
+      171
+    ],
+    [
+      2459,
+      2350,
+      2351,
+      0,
+      1
+    ],
+    [
+      2459,
+      2245,
+      2351,
+      2,
+      108
+    ],
+    [
+      2459,
+      2246,
+      2351,
+      1,
+      106
+    ],
+    [
+      2459,
+      2181,
+      2351,
+      2,
+      172
+    ],
+    [
+      2459,
+      2331,
+      2351,
+      0,
+      20
+    ],
+    [
+      2459,
+      2229,
+      2351,
+      2,
+      124
+    ],
+    [
+      2459,
+      2232,
+      2351,
+      1,
+      120
+    ],
+    [
+      2459,
+      2170,
+      2351,
+      2,
+      183
+    ],
+    [
+      2459,
+      2330,
+      2351,
+      0,
+      21
+    ],
+    [
+      2459,
+      2228,
+      2351,
+      2,
+      125
+    ],
+    [
+      2459,
+      2231,
+      2351,
+      1,
+      121
+    ],
+    [
+      2459,
+      2169,
+      2351,
+      2,
+      184
+    ]
+  ],
+  "excluded": {},
+  "first_gains": [
+    null,
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 1,
+      "trace_index": 457
+    },
+    {
+      "baseline": "0x4011921cf61bf42f",
+      "expected": "0x4011921cf61bf430",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:1608:4",
+      "prediction": "0x4011921cf61bf430",
+      "program": 2,
+      "trace_index": 1949
+    },
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 3,
+      "trace_index": 457
+    },
+    null,
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 5,
+      "trace_index": 457
+    },
+    {
+      "baseline": "0x4011921cf61bf42f",
+      "expected": "0x4011921cf61bf430",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:1608:4",
+      "prediction": "0x4011921cf61bf430",
+      "program": 6,
+      "trace_index": 1949
+    },
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 7,
+      "trace_index": 457
+    },
+    null,
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 9,
+      "trace_index": 457
+    },
+    {
+      "baseline": "0x4011921cf61bf42f",
+      "expected": "0x4011921cf61bf430",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:1608:4",
+      "prediction": "0x4011921cf61bf430",
+      "program": 10,
+      "trace_index": 1949
+    },
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 11,
+      "trace_index": 457
+    },
+    null,
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 13,
+      "trace_index": 457
+    },
+    {
+      "baseline": "0x4011921cf61bf42f",
+      "expected": "0x4011921cf61bf430",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:1608:4",
+      "prediction": "0x4011921cf61bf430",
+      "program": 14,
+      "trace_index": 1949
+    },
+    {
+      "baseline": "0x3fdfe120dd2c7985",
+      "expected": "0x3fdfe120dd2c7984",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:116:4",
+      "prediction": "0x3fdfe120dd2c7984",
+      "program": 15,
+      "trace_index": 457
+    }
+  ],
+  "first_losses": [
+    null,
+    {
+      "baseline": "0x402a524e5ea37619",
+      "expected": "0x402a524e5ea37619",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:87:4",
+      "prediction": "0x402a524e5ea37612",
+      "program": 1,
+      "trace_index": 428
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 2,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 3,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x3fc9cf5b8766b97a",
+      "expected": "0x3fc9cf5b8766b97a",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:708:4",
+      "prediction": "0x3fc9cf5b8766b976",
+      "program": 4,
+      "trace_index": 1049
+    },
+    {
+      "baseline": "0x402a524e5ea37619",
+      "expected": "0x402a524e5ea37619",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:87:4",
+      "prediction": "0x402a524e5ea37612",
+      "program": 5,
+      "trace_index": 428
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 6,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 7,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x4007fffffffffff8",
+      "expected": "0x4007fffffffffff8",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:172:4",
+      "prediction": "0x4007fffffffffff7",
+      "program": 8,
+      "trace_index": 513
+    },
+    {
+      "baseline": "0x402a524e5ea37619",
+      "expected": "0x402a524e5ea37619",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:87:4",
+      "prediction": "0x402a524e5ea37612",
+      "program": 9,
+      "trace_index": 428
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 10,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 11,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x4007fffffffffff8",
+      "expected": "0x4007fffffffffff8",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:172:4",
+      "prediction": "0x4007fffffffffff7",
+      "program": 12,
+      "trace_index": 513
+    },
+    {
+      "baseline": "0x402a524e5ea37619",
+      "expected": "0x402a524e5ea37619",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_linest_stats:87:4",
+      "prediction": "0x402a524e5ea37612",
+      "program": 13,
+      "trace_index": 428
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 14,
+      "trace_index": 5
+    },
+    {
+      "baseline": "0x4000000000000000",
+      "expected": "0x4000000000000000",
+      "id": "corpus:calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f:Er:113:4",
+      "prediction": "0x4000000000000001",
+      "program": 15,
+      "trace_index": 5
+    }
+  ],
+  "folds": true,
+  "groups": [
+    "mean loop",
+    "squared norm loop",
+    "back substitution dot",
+    "intercept loop"
+  ],
+  "input_rows": 2459,
+  "limits": "16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector.",
+  "programs": 16,
+  "source": "Existing cleared Householder QR, IEEE754 and Intel SDM stored PC64 arithmetic. All reflector operations, rank, pivot/tie, logarithms and statistics consumers unchanged.",
+  "zero_loss_improvements": []
+}

@@ -16,7 +16,11 @@ struct Profile {
     store_correction: bool,
     normalizer_association: usize,
     normalizer_log: usize,
+    #[serde(default, skip_serializing_if="Option::is_none")]
+    series: Option<SeriesProgram>,
 }
+#[derive(Clone,Copy,Debug,Serialize,Deserialize)]
+struct SeriesProgram {model:EvalModel,local_store:bool}
 
 fn profiles() -> Vec<Profile> {
     let mut ps = Vec::new();
@@ -30,7 +34,7 @@ fn profiles() -> Vec<Profile> {
                                 for normalizer_log in 0..2 {
                                     ps.push(Profile {id:ps.len(), direct_model, log, association,
                                         store_ratio, correction_model, store_correction,
-                                        normalizer_association, normalizer_log});
+                                        normalizer_association, normalizer_log, series:None});
                                 }
                             }
                         }
@@ -54,6 +58,7 @@ fn deviance<F:Fpu>(x:f64,mean:f64,p:&Profile)->Val {
     let difference=(x-mean).abs();
     let boundary=0.1*(x+mean);
     if difference<=boundary {
+        if let Some(program)=p.series{return Val::f64(series_deviance::<F>(x,mean,program));}
         return Val::f64(current::deviance(x,mean));
     }
     let m=p.direct_model;
@@ -74,6 +79,33 @@ fn deviance<F:Fpu>(x:f64,mean:f64,p:&Profile)->Val {
         4=>sub::<F>(m,mul::<F>(m,a,log),sub::<F>(m,a,b)),
         _=>unreachable!(),
     }
+}
+
+fn series_deviance<F:Fpu>(x:f64,mean:f64,p:SeriesProgram)->f64 {
+    let m=p.model;let local=|v:Val|if p.local_store{Val::f64(v.to_f64::<F>())}else{v};
+    let a=Val::f64(x);let b=Val::f64(mean);let d=local(sub::<F>(m,a,b));
+    let mut v=local(div::<F>(m,d,add::<F>(m,a,b)));
+    let mut sum=local(mul::<F>(m,d,v));
+    let mut term=local(mul::<F>(m,mul::<F>(m,Val::f64(2.0),a),v));
+    v=local(mul::<F>(m,v,v));
+    for j in 1..10000 {
+        term=local(mul::<F>(m,term,v));
+        let denominator=add::<F>(m,mul::<F>(m,Val::f64(2.0),Val::f64(j as f64)),Val::f64(1.0));
+        let next=local(add::<F>(m,sum,div::<F>(m,term,denominator)));
+        if next.exact_encoding()==sum.exact_encoding(){return next.to_f64::<F>();}
+        sum=next;
+    }
+    panic!("deviance series failed its geometric convergence bound"); // ubs:ignore — standalone research receipt must fail closed on a nonconverging candidate.
+}
+
+pub fn binomial_series<F:Fpu>(input:&str,output:&str) {
+    let mut programs=vec![None];for model in crate::dsl::WIDE_MODELS{for local_store in [false,true]{programs.push(Some(SeriesProgram{model,local_store}));}}
+    binomial_study::<F,_>(input,output,&programs,false,|x,n,p,series|{
+        let profile=Profile{id:0,direct_model:EvalModel::Strict,log:0,association:0,store_ratio:true,
+            correction_model:EvalModel::Strict,store_correction:true,normalizer_association:0,normalizer_log:0,series:*series};
+        mass::<F>(x,n,p,&profile)
+    },"Loader published deviance near-mean power series; existing cleared Stirling, far-deviance, CRT log and exponential program unchanged.",
+      "11 fixed policies: original control plus5 coherent arithmetic models with local stores on/off. The original near-mean branch boundary and all coefficients remain fixed. Interior integer PMFs n<=1e6 are a research resource scope. Discovery; no fitted constant or selector.");
 }
 
 fn mass<F:Fpu>(x:f64,n:f64,prob:f64,p:&Profile)->String {
@@ -288,7 +320,7 @@ fn binomial_study<F:Fpu,P:Serialize>(input:&str,output:&str,ps:&[P],gamma:bool,p
             if gamma{assert_eq!(predictions[0],registered,"strict original gamma density {}",row["id"]);}
             (registered,predictions)
         });
-        if gamma{assert_eq!(*baseline,row["actual"].as_str().unwrap(),"frozen gamma density {}",row["id"]);}
+        assert_eq!(*baseline,row["actual"].as_str().unwrap(),"frozen registered numeric return {}",row["id"]);
         let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
         for (id,got) in predictions.iter().enumerate() {
             let now=got==expected;
@@ -525,4 +557,92 @@ pub fn cdf(input:&str,output:&str) {
         "programs":["bratio(a,b,z,w).p","bratio(b,a,w,z).q","1-bratio(b,a,w,z).p","0.5+(0.5-bratio(b,a,w,z).p)","regularized_beta(z,a,b)"],
         "limits":"Existing incomplete-beta body; fixed defining identities, no fitted constants or answers. Integer nonendpoint counts/shapes <=10000 are a research resource scope. All rows are discovery. Exact rejection means any recorded mismatch; scores never authorize a row-specific program selector."});
     crate::json_write(destination.join("summary.json"),&result);println!("{result}");
+}
+
+#[cfg(gamma_exponent_audit)]
+std::thread_local! {
+    static GAMMA_EXPONENT_PROGRAM:std::cell::Cell<Option<(EvalModel,bool)>>=const{std::cell::Cell::new(None)};
+    static GAMMA_TEMME_PROGRAM:std::cell::Cell<Option<(u8,bool)>>=const{std::cell::Cell::new(None)};
+    static GAMMA_TEMME_VISITS:std::cell::Cell<usize>=const{std::cell::Cell::new(0)};
+    static GAMMA_TEMME_LEAF:std::cell::Cell<Option<[u64;6]>>=const{std::cell::Cell::new(None)};
+}
+/// The unchanged Temme correction, with fixed binary64 or stored PC64 operations.
+#[cfg(gamma_exponent_audit)]
+pub fn gamma_temme_finish(l:f64,c:f64,w:f64,t:f64,a:f64,rt2pin:f64)->Option<(f64,f64)> {
+    let (mask,software)=GAMMA_TEMME_PROGRAM.with(|p|p.get())?;
+    GAMMA_TEMME_VISITS.with(|v|v.set(v.get()+1));
+    GAMMA_TEMME_LEAF.with(|v|v.set(Some([l,c,w,t,a,rt2pin].map(f64::to_bits))));
+    fn calculate<F:Fpu>(l:f64,c:f64,w:f64,t:f64,a:f64,rt2pin:f64,mask:u8)->(f64,f64) {
+        let model=|bit:u8|if mask>=32{crate::dsl::WIDE_MODELS[(mask-32)as usize]}else if mask&(1u8<<bit)==0{EvalModel::Strict}else{EvalModel::StoredPc64};
+        let v=Val::f64;
+        let correction=div::<F>(model(1),mul::<F>(model(0),v(rt2pin),v(t)),v(a.sqrt()));
+        let inner=if l>=1.0{add::<F>(model(2),v(w),correction)}else{sub::<F>(model(2),v(w),correction)};
+        let answer=mul::<F>(model(3),v(c),inner).to_f64::<F>();
+        let complement=add::<F>(model(4),v(0.5),sub::<F>(model(4),v(0.5),v(answer))).to_f64::<F>();
+        if l>=1.0{(complement,answer)}else{(answer,complement)}
+    }
+    Some(if software{calculate::<Soft>(l,c,w,t,a,rt2pin,mask)}else{calculate::<Hard>(l,c,w,t,a,rt2pin,mask)})
+}
+/// Fixed evaluation of a*log(x)-x before its original EXP helper boundary.
+#[cfg(gamma_exponent_audit)]
+pub fn gamma_exponent(a:f64,x:f64)->f64 {
+    let Some((model,software))=GAMMA_EXPONENT_PROGRAM.with(|p|p.get())else{return a*crt_log(x)-x;};
+    fn calculate<F:Fpu>(a:f64,x:f64,model:EvalModel)->f64 {
+        sub::<F>(model,mul::<F>(model,Val::f64(a),Val::f64(crt_log(x))),Val::f64(x)).to_f64::<F>()
+    }
+    if software{calculate::<Soft>(a,x,model)}else{calculate::<Hard>(a,x,model)}
+}
+
+#[cfg(gamma_exponent_audit)]
+pub fn gamma_exponents(input:&str,output:&str,software:bool) {
+    gamma_cdf_arithmetic(input,output,software,false);
+}
+#[cfg(gamma_exponent_audit)]
+pub fn gamma_temme(input:&str,output:&str,software:bool) {
+    gamma_cdf_arithmetic(input,output,software,true);
+}
+#[cfg(gamma_exponent_audit)]
+fn gamma_cdf_arithmetic(input:&str,output:&str,software:bool,temme:bool) {
+    let dest=Path::new(output);fs::create_dir(dest).unwrap();let rows=crate::lines::<Value>(input);
+    let programs=if temme{(0u8..37).map(|mask|if mask<32{json!({"mask":mask})}else{json!({"coherent_model":crate::dsl::WIDE_MODELS[(mask-32)as usize]})}).collect::<Vec<_>>()}else{crate::dsl::WIDE_MODELS.iter().map(|p|json!(p)).collect()};
+    let mut visited_rows=0;
+    let mut counts=vec![[0usize;5];programs.len()];let mut first=vec![None;programs.len()];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let mut file=BufWriter::new(fs::File::create_new(dest.join("changes.jsonl")).unwrap());
+    for(index,row)in rows.iter().enumerate(){
+        let name=row["function"].as_str().unwrap();let Some(a)=row["args"].as_array()else{*excluded.entry("shape".into()).or_default()+=1;continue;};
+        let flag=|v:&Value|v==true||numeric(v).is_some_and(|v|v!=0.0);
+        let args:Option<(f64,f64,bool)>=match name {
+            "GAMMA.DIST"|"GAMMADIST" if a.len()==4&&flag(&a[3])=>{
+                numeric(&a[0]).zip(numeric(&a[1])).zip(numeric(&a[2])).and_then(|((x,shape),scale)|
+                    (x.is_finite()&&shape.is_finite()&&scale.is_finite()&&x>=0.0&&shape>0.0&&shape!=0.5&&shape!=1.0&&scale>0.0).then_some((shape,x/scale,false)))
+            },
+            "POISSON.DIST"|"POISSON" if a.len()==3&&flag(&a[2])=>{
+                numeric(&a[0]).zip(numeric(&a[1])).and_then(|(k,mean)|
+                    (k.is_finite()&&k>=1.0&&mean.is_finite()&&mean>0.0).then_some((k.trunc()+1.0,mean,true)))
+            },
+            _=>None,
+        };
+        let Some((shape,x,upper))=args.filter(|(shape,x,_)|shape.is_finite()&&x.is_finite())else{*excluded.entry("outside_gamma_prefactor_cdf_route".into()).or_default()+=1;continue;};
+        let args=a.iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();let baseline=crate::invoke_control(name,args).0;assert_eq!(baseline,row["actual"],"frozen gamma exponent baseline {}",row["id"]);
+        let evaluate=||{
+            let value=if upper{crate::ported::special_math_common::regularized_gamma_q(shape,x)}else{crate::ported::special_math_common::regularized_gamma_p(shape,x)};
+            if upper&&value.is_subnormal(){"0x0000000000000000".into()}else{crate::eval::outcome::<Hard>(Val::f64(value))}
+        };
+        GAMMA_EXPONENT_PROGRAM.with(|p|p.set(None));GAMMA_TEMME_PROGRAM.with(|p|p.set(None));assert_eq!(evaluate(),baseline,"unchanged gamma copy {}",row["id"]);
+        let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
+        GAMMA_TEMME_VISITS.with(|v|v.set(0));
+        for id in 0..programs.len(){
+            if temme{GAMMA_TEMME_PROGRAM.with(|p|p.set(Some((id as u8,software))));}
+            else{GAMMA_EXPONENT_PROGRAM.with(|p|p.set(Some((crate::dsl::WIDE_MODELS[id],software))));}
+            let got=evaluate();let now=got==expected;
+            for(slot,b)in counts[id].iter_mut().zip([true,now,was,now&&!was,was&&!now]){*slot+=usize::from(b);}
+            if was&&!now&&first[id].is_none(){first[id]=Some(json!({"id":row["id"],"expected":expected,"prediction":got}));}
+            if got!=baseline{writeln!(file,"{}",json!({"trace_index":index,"id":row["id"],"program":id,"expected":expected,"baseline":baseline,"prediction":got,"temme_leaf_l_c_w_t_a_rt2pin":if temme{GAMMA_TEMME_LEAF.with(|v|v.get()).map(|leaf|leaf.map(|bits|format!("0x{bits:016x}")))}else{None}})).unwrap();}
+        }
+        visited_rows+=usize::from(GAMMA_TEMME_VISITS.with(|v|v.get())>0);
+    }
+    GAMMA_EXPONENT_PROGRAM.with(|p|p.set(None));GAMMA_TEMME_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]>0);assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    let result=json!({"complete":true,"input_rows":rows.len(),"programs":programs,"temme_visited_rows":visited_rows,"counts_all_exact_baseline_gains_losses":counts,"first_losses":first,"excluded":excluded,
+        "source":"Existing retained TOMS654 gamma algorithms; IEEE754 and Intel SDM precision/store models. The CRT logarithm, EXP helpers, normalizer, branches and loops remain original conditional producers.","limits":if temme{"32 fixed Temme finish programs: binary64 or storedPC64 for correction multiply, divide, add/subtract, scaling and complement groups, plus five coherent arithmetic models. Original square-root and polynomial producers retained. No fitted coefficient/threshold/row selector or complete gamma identification."}else{"Five coherent evaluations of a*log(x)-x at the existing three helper sites; output crosses the original binary64 exponential boundary. No fitted coefficient/threshold/row selector or complete gamma identification."}});
+    crate::json_write(dest.join("summary.json"),&result);println!("{}",result);
 }

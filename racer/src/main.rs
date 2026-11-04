@@ -381,8 +381,14 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        #[cfg(regression_outer_audit)]
+        Some("regression-folds")=>route_audit::regression_folds(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         #[cfg(regression_audit)]
         Some("regression-stat-leaves") => route_audit::regression_stat_leaves(&a[2], &a[3]),
+        #[cfg(gamma_exponent_audit)]
+        Some("gamma-exponents")=>discrete::gamma_exponents(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
+        #[cfg(gamma_exponent_audit)]
+        Some("gamma-temme")=>discrete::gamma_temme(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         #[cfg(discrete_audit)]
         Some("poisson-one-cdf") => match a.get(4).map(String::as_str) {
             Some("soft") => discrete::poisson_one_cdf::<Soft>(&a[2], &a[3]),
@@ -582,6 +588,8 @@ fn main() {
         }
         Some("precision-test") => eval::precision_controls(),
         #[cfg(discrete_audit)]
+        Some("binomial-series") => match a.get(4).map(String::as_str){Some("soft")=>discrete::binomial_series::<Soft>(&a[2],&a[3]),_=>discrete::binomial_series::<Hard>(&a[2],&a[3])},
+        #[cfg(discrete_audit)]
         Some("binomial-direct") => match a.get(4).map(String::as_str) {
             Some("soft") => discrete::run::<Soft>(&a[2], &a[3]),
             _ => discrete::run::<Hard>(&a[2], &a[3]),
@@ -752,6 +760,8 @@ fn main() {
             let unit:serde_json::Value=serde_json::from_str(include_str!(concat!(env!("OUT_DIR"),"/research-unit.json"))).unwrap();
             println!("{unit}");
         },
+        #[cfg(regression_outer_audit)]
+        Some("regression-outer")=>route_audit::regression_outer(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         #[cfg(regression_householder_audit)]
         Some("regression-householder")=>route_audit::regression_householder(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         Some("normal-inverse-programs") => match a.get(4).map(String::as_str) {

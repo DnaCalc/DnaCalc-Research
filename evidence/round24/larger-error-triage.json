@@ -1,0 +1,196 @@
+{
+  "complete": true,
+  "original_larger": 196,
+  "remaining_original_larger": 196,
+  "current_expanded_larger": 270,
+  "current_last_bit": 746,
+  "prior_last_bit": 747,
+  "functions": [
+    {
+      "function": "VAR.S",
+      "original_larger": 44,
+      "remaining_larger": 44,
+      "blocked_on": "Prior independent finite variance/stddev program studies have no surviving producer. No new published compatible replacement has been established; larger errors remain failures. Parked last-bit work unchanged.",
+      "evidence": [
+        "../round16/variance/VAR.S-checked.json",
+        "../round18/variance-corpus-mixed-fma/summary.json"
+      ]
+    },
+    {
+      "function": "VAR.P",
+      "original_larger": 40,
+      "remaining_larger": 40,
+      "blocked_on": "Prior independent finite variance/stddev program studies have no surviving producer. No new published compatible replacement has been established; larger errors remain failures. Parked last-bit work unchanged.",
+      "evidence": [
+        "../round16/variance/VAR.P-checked.json",
+        "../round18/variance-corpus-mixed-fma/summary.json"
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "original_larger": 29,
+      "remaining_larger": 29,
+      "blocked_on": "Permitted fixed published high-argument bodies do not reproduce the recorded answers. Checked analyst facts authorize no altered coefficient; no coefficient fitting.",
+      "evidence": [
+        "../round21/bessel-high-facts-review.json"
+      ]
+    },
+    {
+      "function": "VARP",
+      "original_larger": 14,
+      "remaining_larger": 14,
+      "blocked_on": "Prior independent finite variance/stddev program studies have no surviving producer. No new published compatible replacement has been established; larger errors remain failures. Parked last-bit work unchanged.",
+      "evidence": [
+        "../round16/variance/VARP-checked.json",
+        "../round18/variance-corpus-mixed-fma/summary.json"
+      ]
+    },
+    {
+      "function": "PPMT",
+      "original_larger": 12,
+      "remaining_larger": 12,
+      "blocked_on": "Remaining counts are measured. This amortization work is parked in the existing fuzzer scope; its deeper arithmetic producer is an open research question, not an identified root cause.",
+      "evidence": [
+        "list-final/corpus-functions/table.json",
+        "../../racer/corpus_fuzz.py"
+      ]
+    },
+    {
+      "function": "STDEV",
+      "original_larger": 12,
+      "remaining_larger": 12,
+      "blocked_on": "Prior independent finite variance/stddev program studies have no surviving producer. No new published compatible replacement has been established; larger errors remain failures. Parked last-bit work unchanged.",
+      "evidence": [
+        "../round16/variance/STDEV-checked.json",
+        "../round18/variance-corpus-mixed-fma/summary.json"
+      ]
+    },
+    {
+      "function": "BINOM.DIST",
+      "original_larger": 10,
+      "remaining_larger": 10,
+      "blocked_on": "All9000 direct Loader labels contradicted by scoped R20 calls;11 near-mean series policies give no zero-loss gain. Conditional Stirling/log/EXP producers and other algorithms remain open.",
+      "evidence": [
+        "studies/binomial-r20-hard/summary.json",
+        "studies/binomial-series-hard/summary.json"
+      ]
+    },
+    {
+      "function": "LINEST",
+      "original_larger": 7,
+      "remaining_larger": 7,
+      "blocked_on": "Rank decision and full QR arithmetic remain unidentified: prior240 rank labels contradicted,64 outer policies unchanged,16 retained product/sum loop policies have no zero-loss gain.",
+      "evidence": [
+        "../round23/rank-rounded/summary.json",
+        "studies/qr-outer-hard/summary.json",
+        "studies/qr-fold-hard/summary.json"
+      ]
+    },
+    {
+      "function": "LOGEST",
+      "original_larger": 5,
+      "remaining_larger": 5,
+      "blocked_on": "Rank decision and full QR arithmetic remain unidentified: prior240 rank labels contradicted,64 outer policies unchanged,16 retained product/sum loop policies have no zero-loss gain.",
+      "evidence": [
+        "../round23/rank-rounded/summary.json",
+        "studies/qr-outer-hard/summary.json",
+        "studies/qr-fold-hard/summary.json"
+      ]
+    },
+    {
+      "function": "VAR",
+      "original_larger": 5,
+      "remaining_larger": 5,
+      "blocked_on": "Prior independent finite variance/stddev program studies have no surviving producer. No new published compatible replacement has been established; larger errors remain failures. Parked last-bit work unchanged.",
+      "evidence": [
+        "../round16/variance/VAR-checked.json",
+        "../round18/variance-corpus-mixed-fma/summary.json"
+      ]
+    },
+    {
+      "function": "CUMPRINC",
+      "original_larger": 4,
+      "remaining_larger": 4,
+      "blocked_on": "Remaining counts are measured. This amortization work is parked in the existing fuzzer scope; its deeper arithmetic producer is an open research question, not an identified root cause.",
+      "evidence": [
+        "list-final/corpus-functions/table.json",
+        "../../racer/corpus_fuzz.py"
+      ]
+    },
+    {
+      "function": "RATE",
+      "original_larger": 3,
+      "remaining_larger": 3,
+      "blocked_on": "Remaining counts are measured. No R24 zero-loss replacement was demonstrated. Root selection and stopping arithmetic are open hypotheses, not an isolated root-cause diagnosis.",
+      "evidence": [
+        "list-final/corpus-functions/table.json"
+      ]
+    },
+    {
+      "function": "HYPGEOM.DIST",
+      "original_larger": 2,
+      "remaining_larger": 2,
+      "blocked_on": "Conditional binomial mass producer remains unresolved; the8 R20 scalar controls already match but do not fix the2 original larger errors.",
+      "evidence": [
+        "delivery-binding.json"
+      ]
+    },
+    {
+      "function": "IRR",
+      "original_larger": 2,
+      "remaining_larger": 2,
+      "blocked_on": "R23 fixed Apache2 POI programs lose existing matches; the Excel root selection/stopping sequence remains unresolved.",
+      "evidence": [
+        "../round23/irr-poi-hard/summary.json"
+      ]
+    },
+    {
+      "function": "ODDFYIELD",
+      "original_larger": 2,
+      "remaining_larger": 2,
+      "blocked_on": "Two larger errors remain; their schedule/discount/solver cause is not isolated sufficiently to authorize a numerical change.",
+      "evidence": [
+        "list-final/corpus-functions/table.json"
+      ]
+    },
+    {
+      "function": "YIELD",
+      "original_larger": 2,
+      "remaining_larger": 2,
+      "blocked_on": "R23 fixed Apache2 EFF root/discount programs lose existing matches; the Excel discount/price leaves and stopping/root selection remain unresolved.",
+      "evidence": [
+        "../round23/yield-root-hard/summary.json"
+      ]
+    },
+    {
+      "function": "CUMIPMT",
+      "original_larger": 1,
+      "remaining_larger": 1,
+      "blocked_on": "Remaining counts are measured. This amortization work is parked in the existing fuzzer scope; its deeper arithmetic producer is an open research question, not an identified root cause.",
+      "evidence": [
+        "list-final/corpus-functions/table.json",
+        "../../racer/corpus_fuzz.py"
+      ]
+    },
+    {
+      "function": "IPMT",
+      "original_larger": 1,
+      "remaining_larger": 1,
+      "blocked_on": "Remaining counts are measured. This amortization work is parked in the existing fuzzer scope; its deeper arithmetic producer is an open research question, not an identified root cause.",
+      "evidence": [
+        "list-final/corpus-functions/table.json",
+        "../../racer/corpus_fuzz.py"
+      ]
+    },
+    {
+      "function": "POISSON.DIST",
+      "original_larger": 1,
+      "remaining_larger": 1,
+      "blocked_on": "Temme gains one last-bit corpus cell; the original larger low-shape CDF error remains. Private prefactor/EXP and scaled-erfc producers are still conditional.",
+      "evidence": [
+        "temme/gamma-temme-leaf-hard/summary.json"
+      ]
+    }
+  ],
+  "limits": "Count order from the original196 larger-error cohort. The expanded corpus adds74 larger R21 regression failures. Rejected finite programs do not rule out all mathematical algorithms. This table records blockers, not fixes."
+}

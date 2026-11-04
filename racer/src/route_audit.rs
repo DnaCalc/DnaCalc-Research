@@ -106,27 +106,7 @@ pub fn regression_householder(input:&str,out:&str,software:bool) {
     let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=crate::lines::<Value>(input);
     let mut programs=Vec::new();for shape in 0..2{for model in crate::dsl::WIDE_MODELS{programs.push((shape,model));}}
     let mut counts=vec![[0usize;5];programs.len()];let mut first_losses=vec![None;programs.len()];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
-    let evaluate=|name:&str,args:&[CalcValue],selected:Option<(usize,usize)>| {
-        REGRESSION_LEAVES.with(|v|v.borrow_mut().clear());REGRESSION_FACTORS.with(|v|*v.borrow_mut()=None);REGRESSION_TRIANGULAR.with(|v|*v.borrow_mut()=None);
-        let result=match name{
-            "LINEST"=>crate::ported::regression_forecast_family::eval_linest_surface(args),
-            "LOGEST"=>crate::ported::regression_forecast_family::eval_logest_surface(args),
-            "TREND"=>crate::ported::regression_forecast_family::eval_trend_surface(args),
-            "GROWTH"=>crate::ported::regression_forecast_family::eval_growth_surface(args),
-            _=>unreachable!(),
-        };
-        let value=result.unwrap_or_else(CalcValue::error);
-        // The original statistics adapter refuses any subnormal array cell,
-        // converts a nonfinite selected number to NUM, and normalizes zero.
-        // Reuse the existing research publication rule after the array check.
-        let subnormal=|cell:&CalcValue|cell.as_number().is_some_and(f64::is_subnormal);
-        if value.as_array().map_or_else(||subnormal(&value),|a|a.iter_row_major().any(subnormal)){
-            return Some("fault:NotImplemented".into());
-        }
-        calc_verdict::select_result(&value,selected).and_then(|chosen|chosen.as_number().map_or_else(
-            ||calc_verdict::encode_result(&chosen),
-            |n|Some(crate::eval::outcome::<crate::ported::excel_numeric::Hard>(crate::eval::Val::f64(n)))))
-    };
+    let evaluate=regression_evaluate;
     let mut file=std::io::BufWriter::new(fs::File::create_new(destination.join("predictions.jsonl")).unwrap());
     for(index,row)in rows.iter().enumerate(){
         let name=row["function"].as_str().unwrap();if !matches!(name,"LINEST"|"LOGEST"|"TREND"|"GROWTH"){*excluded.entry("other_surface".into()).or_default()+=1;continue;}
@@ -153,6 +133,119 @@ pub fn regression_householder(input:&str,out:&str,software:bool) {
         "source":"Householder I-2vv'/v'v and LAPACK3.12.1 DLARFG ordinary normalized-vector/tau formulas,6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca,modifiedBSD.",
         "limits":"10 fixed reflector labels. Original rank,mean,pivot and binary64 squared norms remain conditional; arrays store binary64, normalized reciprocal/tau cross binary64 helper boundaries. This is not a full LAPACK QR implementation. No fitted threshold/coefficient/row selector or new Excel answer."});
     json_write(destination.join("summary.json"),&result);println!("{result}");
+}
+
+#[cfg(regression_audit)]
+fn regression_evaluate(name:&str,args:&[CalcValue],selected:Option<(usize,usize)>)->Option<String> {
+        REGRESSION_LEAVES.with(|v|v.borrow_mut().clear());REGRESSION_FACTORS.with(|v|*v.borrow_mut()=None);REGRESSION_TRIANGULAR.with(|v|*v.borrow_mut()=None);
+        let result=match name{
+            "LINEST"=>crate::ported::regression_forecast_family::eval_linest_surface(args),
+            "LOGEST"=>crate::ported::regression_forecast_family::eval_logest_surface(args),
+            "TREND"=>crate::ported::regression_forecast_family::eval_trend_surface(args),
+            "GROWTH"=>crate::ported::regression_forecast_family::eval_growth_surface(args),
+            _=>unreachable!(),
+        };
+        let value=result.unwrap_or_else(CalcValue::error);
+        // The original statistics adapter refuses any subnormal array cell,
+        // converts a nonfinite selected number to NUM, and normalizes zero.
+        // Reuse the existing research publication rule after the array check.
+        let subnormal=|cell:&CalcValue|cell.as_number().is_some_and(f64::is_subnormal);
+        if value.as_array().map_or_else(||subnormal(&value),|a|a.iter_row_major().any(subnormal)){
+            return Some("fault:NotImplemented".into());
+        }
+        calc_verdict::select_result(&value,selected).and_then(|chosen|chosen.as_number().map_or_else(
+            ||calc_verdict::encode_result(&chosen),
+            |n|Some(crate::eval::outcome::<crate::ported::excel_numeric::Hard>(crate::eval::Val::f64(n)))))
+
+}
+
+#[cfg(regression_outer_audit)]
+std::thread_local! {
+    static REGRESSION_OUTER_PROGRAM:std::cell::Cell<Option<(usize,bool)>>=const{std::cell::Cell::new(None)};
+    static REGRESSION_FOLD_PROGRAM:std::cell::Cell<Option<(usize,bool)>>=const{std::cell::Cell::new(None)};
+}
+
+/// A fixed PC64 product/sum loop, with binary64 publication at the loop result.
+#[cfg(regression_outer_audit)]
+pub fn regression_outer_fold(site:usize,initial:f64,terms:impl Iterator<Item=(f64,f64)>)->f64 {
+    use crate::{dsl::{EvalModel,Op},eval::{Val,binop},ported::excel_numeric::{Fpu,Hard,Soft}};
+    let bit=match site{0=>0,2=>1,4=>2,5=>3,_=>unreachable!()};
+    let (mask,software)=REGRESSION_FOLD_PROGRAM.with(|p|p.get()).unwrap_or((0,false));
+    if mask&(1<<bit)==0 {
+        return terms.fold(initial,|sum,(a,b)|regression_outer_op(site,if site==5{1}else{0},sum,regression_outer_op(site,2,a,b)));
+    }
+    fn calculate<F:Fpu>(site:usize,initial:f64,terms:impl Iterator<Item=(f64,f64)>)->f64 {
+        let model=EvalModel::ResidentPc64;
+        terms.fold(Val::f64(initial),|sum,(a,b)|{
+            let product=binop::<F>(Op::Mul(0,1),model,Val::f64(a),Val::f64(b));
+            let product=if site==5{match product{Val::F64(b)=>Val::F64(b^(1<<63)),Val::Ext(mut v)=>{v.0[9]^=0x80;Val::Ext(v)}}}else{product};
+            binop::<F>(Op::Add(0,1),model,sum,product)
+        }).to_f64::<F>()
+    }
+    if software{calculate::<Soft>(site,initial,terms)}else{calculate::<Hard>(site,initial,terms)}
+}
+
+/// Operations outside the reflector: all sites in a group use one precision.
+#[cfg(regression_outer_audit)]
+pub fn regression_outer_op(site:usize,operation:usize,a:f64,b:f64)->f64 {
+    use crate::ported::excel_numeric::{Fpu,Hard,Soft,research_load,excel_sqrt_staged};
+    let (mask,software)=REGRESSION_OUTER_PROGRAM.with(|p|p.get()).unwrap_or((0,false));
+    if mask & (1<<site)==0 {return match operation{0=>a+b,1=>a-b,2=>a*b,3=>a/b,4=>a.sqrt(),_=>unreachable!()};}
+    fn calculate<F:Fpu>(operation:usize,a:f64,b:f64)->f64 {
+        use crate::eval::CW;
+        let (a,b)=(research_load(a),research_load(b));
+        let value=match operation{0=>F::add(&a,&b,CW),1=>F::sub(&a,&b,CW),2=>F::mul(&a,&b,CW),3=>F::div(&a,&b,CW),4=>F::sqrt(&a,CW),_=>unreachable!()};
+        F::store(&value,CW)
+    }
+    if software{calculate::<Soft>(operation,a,b)}else{calculate::<Hard>(operation,a,b)}
+}
+
+#[cfg(regression_outer_audit)]
+pub fn regression_outer(input:&str,out:&str,software:bool) {
+    regression_outer_study(input,out,software,false);
+}
+#[cfg(regression_outer_audit)]
+pub fn regression_folds(input:&str,out:&str,software:bool) {
+    regression_outer_study(input,out,software,true);
+}
+#[cfg(regression_outer_audit)]
+fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
+    use std::io::Write;
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=crate::lines::<Value>(input);
+    let programs=if folds{16}else{64};
+    let mut counts=vec![[0usize;5];programs];let mut first_losses=vec![None;programs];let mut first_gains=vec![None;programs];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let mut changes=std::io::BufWriter::new(fs::File::create_new(destination.join("changes.jsonl")).unwrap());
+    for(index,row)in rows.iter().enumerate(){
+        let name=row["function"].as_str().unwrap();if !matches!(name,"LINEST"|"LOGEST"|"TREND"|"GROWTH"){*excluded.entry("other_surface".into()).or_default()+=1;continue;}
+        let selected=if row["result_index"].is_null(){None}else{let v=row["result_index"].as_array().unwrap();Some((v[0].as_u64().unwrap()as usize,v[1].as_u64().unwrap()as usize))};
+        let args:Vec<_>=row["args"].as_array().unwrap().iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
+        REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));
+        REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));
+        let Some(observed)=regression_evaluate(name,&args,selected)else{*excluded.entry("outside_selectable_result_shape".into()).or_default()+=1;continue;};
+        let(baseline,_)=crate::invoke_selected_control(name,args.clone(),selected);
+        assert_eq!(baseline,row["actual"].as_str().unwrap(),"frozen registered outer QR {}",row["id"]);
+        assert_eq!(observed,baseline,"unmodified outer/registered QR {}",row["id"]);
+        let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
+        for mask in 0..programs {
+            if folds{REGRESSION_FOLD_PROGRAM.with(|p|p.set(Some((mask,software))));}
+            else{REGRESSION_OUTER_PROGRAM.with(|p|p.set(Some((mask,software))));}
+            let got=regression_evaluate(name,&args,selected).unwrap_or_else(||"error:Ref".into());
+            if mask==0{assert_eq!(got,baseline,"original outer QR {}",row["id"]);}
+            let now=got==expected;for(slot,b)in counts[mask].iter_mut().zip([true,now,was,now&&!was,was&&!now]){*slot+=usize::from(b);}
+            if got!=baseline {
+                let change=json!({"trace_index":index,"id":row["id"],"program":mask,"prediction":got,"expected":expected,"baseline":baseline});
+                if was&&!now&&first_losses[mask].is_none(){first_losses[mask]=Some(change.clone());}
+                if now&&!was&&first_gains[mask].is_none(){first_gains[mask]=Some(change.clone());}
+                writeln!(changes,"{}",change).unwrap();
+            }
+        }
+    }
+    REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]>0);assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    let safe:Vec<_>=counts.iter().enumerate().filter(|(_,v)|v[3]>0&&v[4]==0).map(|(i,_)|i).collect();
+    let result=json!({"complete":true,"input_rows":rows.len(),"programs":programs,"folds":folds,"groups":if folds{vec!["mean loop","squared norm loop","back substitution dot","intercept loop"]}else{vec!["mean","centering","squared norms","square root","back substitution","intercept"]},"counts_all_exact_baseline_gains_losses":counts,"first_losses":first_losses,"first_gains":first_gains,"excluded":excluded,"zero_loss_improvements":safe,
+        "source":"Existing cleared Householder QR, IEEE754 and Intel SDM stored PC64 arithmetic. All reflector operations, rank, pivot/tie, logarithms and statistics consumers unchanged.",
+        "limits":if folds{"16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector."}else{"64 coherent group policies, no fitted parameter or data-dependent selector. Every changed program must preserve prior matches. Discovery only, no new Excel answers."}});
+    json_write(destination.join("summary.json"),&result);println!("{}",json!({"complete":true,"rows":counts[0][0],"zero_loss_improvements":safe}));
 }
 
 /// Observe the original R input and inverse output without changing either.

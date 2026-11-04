@@ -503,9 +503,39 @@ def question_check(trace,packet,output):
         limitations='Profile/build and negative-anchor prerequisites remain unobserved on20527; the five survivors are reconstruction constraints, not full CDF programs.'))
 
 
+def temme_check(trace, changes, output):
+    """Exact replay of the final gamma correction, conditional on original leaves."""
+    originals = list(records(trace))
+    checked = []
+    for row in records(changes):
+        if row['program'] != 34:
+            continue
+        original = originals[row['trace_index']]
+        require(all(row[k] == original[k] for k in ('id', 'expected')), 'Temme original binding')
+        require(row['baseline'] == original['actual'], 'Temme original calculation binding')
+        l, c, w, t, a, coefficient = map(binary64, row['temme_leaf_l_c_w_t_a_rt2pin'])
+        root = sqrt_round(a, 'strict')
+        def finish(model):
+            correction = operation(operation(coefficient, t, 'mul', model), root, 'div', model)
+            inner = operation(w, correction if l >= 1 else -correction, 'add', model)
+            answer = B.round(operation(c, inner, 'mul', model))
+            complement = operation(R(1, 2), operation(R(1, 2), -answer, 'add', model), 'add', model)
+            p, q = (complement, answer) if l >= 1 else (answer, complement)
+            return encoding(q if original['function'] in ('POISSON', 'POISSON.DIST') else p)
+        require(finish('strict') == row['baseline'], 'original Temme arithmetic differs')
+        require(finish('resident_pc64') == row['prediction'] == row['expected'], 'retained Temme arithmetic differs')
+        checked.append(dict(id=row['id'], original=row['baseline'], retained=row['prediction']))
+    require(checked, 'empty Temme proof')
+    write_result(output, dict(complete=True, conditional_corrections=checked,
+        inputs_sha256={str(p):digest(p) for p in (trace, changes)},
+        normal_checker_sha256=SOURCE_HASH,
+        limits='Independent rational PC64/PC53 rounding and exact squared-midpoint square root. Polynomial, EXP and scaled-erfc leaves are conditional original producer outputs; this does not identify their internal algorithms.'))
+
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1]=='linear':linear_check(*sys.argv[2:])
     elif sys.argv[1]=='symmetry':symmetry_check(*sys.argv[2:])
     elif sys.argv[1]=='questions':question_check(*sys.argv[2:])
+    elif sys.argv[1]=='temme':temme_check(*sys.argv[2:])
     else:check(*sys.argv[1:])

@@ -1108,6 +1108,13 @@ def freeze(corpus, output, functions):
             actual = {key(r): r for r in evaluations['evaluations']}
             verdicts = {key(r): r for r in triage['cells']}
             for f in capture['formulas']:
+                if not isinstance(f.get('formula'), str):
+                    # Entry failures retain a cell identity without an expression.
+                    # They remain failed corpus obligations and cannot seed a call.
+                    excluded.write(json.dumps(dict(raw=f, source=str(capture_path),
+                        reason='captured cell has no formula expression'))+'\n')
+                    counts['missing_expression_excluded'] += 1
+                    continue
                 formula = f['formula'].lstrip('=')
                 selected = None
                 if formula.startswith('INDEX(') and formula.endswith(')'):

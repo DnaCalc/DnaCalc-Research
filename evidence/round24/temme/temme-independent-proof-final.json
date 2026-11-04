@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "conditional_corrections": [
+    {
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dc96l3_discrete:178:4",
+      "original": "0x3fe0cfa49a2403b7",
+      "retained": "0x3fe0cfa49a2403b8"
+    }
+  ],
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/gamma-poisson-all.jsonl": "3f6adccf82c01034a8f4a3417e369d8b1b4f9b169420314a6cf97a80c18e2575",
+    "/home/ubuntu/codex-runs/dna-firehorse-20261104-round24/gamma-temme-leaf-hard/changes.jsonl": "cd5f8b34c487425ba510dff351bb86fd45742289d3c683a418ba85f04bb32af3"
+  },
+  "normal_checker_sha256": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a",
+  "limits": "Independent rational PC64/PC53 rounding and exact squared-midpoint square root. Polynomial, EXP and scaled-erfc leaves are conditional original producer outputs; this does not identify their internal algorithms.",
+  "checker_sha256": {
+    "exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74"
+  }
+}

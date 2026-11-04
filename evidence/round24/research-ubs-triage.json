@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "rust": {
+    "critical": 0,
+    "warnings": 1162,
+    "new_line_findings": 94,
+    "triage": {
+      "unwrap_expect_19": "Research compiler/output IO and frozen-row parsing deliberately abort receipts on malformed/missing input. No application panic path added.",
+      "unreachable_3": "Only fixed operation/site enum labels emitted at the declared audited source sites.",
+      "assert_19": "Required source-count, registered-baseline and full-scope reconciliation checks.",
+      "indexing_47": "Five-element model array uses ids0..4; masks32..36 map0..4; tuple arrays are fixed5/10bytes; decoded numeric args indexed only after arity guards; CLI/source records are trusted research inputs and fail closed.",
+      "clones_3_allocations_3": "Owned registered controls, first contradiction records and receipt serialization; research-only and bounded."
+    }
+  },
+  "python": {
+    "status": "partial",
+    "critical": 1,
+    "warnings": 92,
+    "new_line_warnings": 2,
+    "critical_triage": "Existing round22_questions receives an operator-selected local executable via argv and passes a list to subprocess without a shell; intended CLI capability, not network/server user input. Existing source comment already documents this.",
+    "two_new_warnings": "Malformed predecessor JSON aborts generation before publication; no recovery/default is permitted.",
+    "incomplete_reason": "SQLFlowLimit: SQL list mutation aliasing unsupported. Doctor output retained; no clean Python scan claim and no dependency downloads."
+  }
+}

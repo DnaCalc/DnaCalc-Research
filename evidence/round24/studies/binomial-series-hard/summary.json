@@ -1,0 +1,215 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      52665,
+      14389,
+      14389,
+      0,
+      0
+    ],
+    [
+      52665,
+      14388,
+      14389,
+      0,
+      1
+    ],
+    [
+      52665,
+      14388,
+      14389,
+      0,
+      1
+    ],
+    [
+      52665,
+      14389,
+      14389,
+      0,
+      0
+    ],
+    [
+      52665,
+      14389,
+      14389,
+      0,
+      0
+    ],
+    [
+      52665,
+      14374,
+      14389,
+      94,
+      109
+    ],
+    [
+      52665,
+      14386,
+      14389,
+      32,
+      35
+    ],
+    [
+      52665,
+      14388,
+      14389,
+      0,
+      1
+    ],
+    [
+      52665,
+      14388,
+      14389,
+      0,
+      1
+    ],
+    [
+      52665,
+      14388,
+      14389,
+      0,
+      1
+    ],
+    [
+      52665,
+      14388,
+      14389,
+      0,
+      1
+    ]
+  ],
+  "excluded": {
+    "cdf_or_shape": 1110,
+    "outside_interior_integer_domain_or_resource_bound": 16768,
+    "surface_or_selection": 8
+  },
+  "first_contradictions": [
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fca3fffffffffff",
+      "expected": "0x3fca400000000002",
+      "got": "0x3fca3fffffffffff",
+      "id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:prefix_metadata:25:1",
+      "trace_index": 0
+    }
+  ],
+  "input_rows": 70551,
+  "limits": "11 fixed policies: original control plus5 coherent arithmetic models with local stores on/off. The original near-mean branch boundary and all coefficients remain fixed. Interior integer PMFs n<=1e6 are a research resource scope. Discovery; no fitted constant or selector.",
+  "profiles": [
+    null,
+    {
+      "local_store": false,
+      "model": "strict"
+    },
+    {
+      "local_store": true,
+      "model": "strict"
+    },
+    {
+      "local_store": false,
+      "model": "stored_pc64"
+    },
+    {
+      "local_store": true,
+      "model": "stored_pc64"
+    },
+    {
+      "local_store": false,
+      "model": "resident_pc64"
+    },
+    {
+      "local_store": true,
+      "model": "resident_pc64"
+    },
+    {
+      "local_store": false,
+      "model": "stored_pc53"
+    },
+    {
+      "local_store": true,
+      "model": "stored_pc53"
+    },
+    {
+      "local_store": false,
+      "model": "resident_pc53"
+    },
+    {
+      "local_store": true,
+      "model": "resident_pc53"
+    }
+  ],
+  "scoped": 52665,
+  "source": "Loader published deviance near-mean power series; existing cleared Stirling, far-deviance, CRT log and exponential program unchanged.",
+  "unique_registered_controls": 52641,
+  "zero_loss_improvements": []
+}

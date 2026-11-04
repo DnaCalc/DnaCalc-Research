@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "reviewer": "/root/r24_review",
+  "mode": "read-only",
+  "approved": true,
+  "application_revision": "3a9d54adee9c1c8f7d032d63cb6b185cfb757c71",
+  "required_check": {
+    "passed": 1634,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "packages": 14
+  },
+  "corpus": {
+    "gains": 1,
+    "losses": 0,
+    "matched": 21481,
+    "total": 22830,
+    "failed": 1349
+  },
+  "bank": {
+    "gains": 81,
+    "losses": 0,
+    "matched": 3267249,
+    "total": 3910050,
+    "failed": 642801,
+    "unread": 116,
+    "changed_still_failing_gamma_inv": 3
+  },
+  "packet": {
+    "verified_manifest_files": 12,
+    "seeds": 45,
+    "calls": 813,
+    "formula_cells": 3674,
+    "functions": 24,
+    "paired_regression_mutations": 40,
+    "exclusions": 109,
+    "missing_expression_exclusions": 7,
+    "cached_formula_values": 0,
+    "original_r23_question_texts_excluded": 568
+  },
+  "tests": {
+    "rust_passed": 134,
+    "rust_failed": 0,
+    "python_passed": 102,
+    "python_failed": 0
+  },
+  "limits": "Reviewed source, original readings, hashes, full-bank and corpus receipts, an independent Fraction replay, required check and frozen packet. Only4 direct CDF rows visit the Temme finish; D186 remains4ULP apart. Site-level software studies are not complete registered soft-x87 route proofs. The separate registered original-answer soft test passed. Python UBS scan remains partial."
+}

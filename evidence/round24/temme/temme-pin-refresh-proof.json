@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "rows_changed": 2,
+  "changes": [
+    {
+      "id": "oc185",
+      "original_unchanged": {
+        "args": [
+          "0x3fd3333333333333",
+          "0x4034000000000000",
+          "0x3fe0000000000000"
+        ],
+        "expected_bits": "0x40216f9bb536acdf",
+        "id": "oc185",
+        "reading": "r0"
+      },
+      "before_prediction": "0x40216f9bb536acea",
+      "after_prediction": "0x40216f9bb536aceb"
+    },
+    {
+      "id": "oc201",
+      "original_unchanged": {
+        "args": [
+          "0x3fd3333333333333",
+          "0x4034000000000000",
+          "0x4008000000000000"
+        ],
+        "expected_bits": "0x404a27698fd2034e",
+        "id": "oc201",
+        "reading": "r0"
+      },
+      "before_prediction": "0x404a27698fd2035f",
+      "after_prediction": "0x404a27698fd20360"
+    }
+  ],
+  "inputs_answers_readings_selection_unchanged": true,
+  "limits": "Only obsolete current-calculation predictions are refreshed. Both rows remain failures against unchanged Excel answers; no gain is claimed."
+}

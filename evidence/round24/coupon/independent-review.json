@@ -1,0 +1,42 @@
+{
+  "approved": true,
+  "reviewer": "/root/r24_review",
+  "read_only": true,
+  "source_review": true,
+  "honesty_review": true,
+  "registered_rows": 5584,
+  "bank_gains": 81,
+  "bank_losses": 0,
+  "bank_total": 3910050,
+  "bank_matched": 3267249,
+  "corpus_formula_cells": 22830,
+  "corpus_matched": 21480,
+  "corpus_inclusive_failed": 1350,
+  "corpus_evaluation_files": 58,
+  "corpus_evaluation_records": 162054,
+  "corpus_whole_record_changes": 0,
+  "check": {
+    "passed": 1632,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "packages": 14
+  },
+  "pins": {
+    "rows": 120,
+    "only_three_calculated_predictions_removed": true,
+    "all_input_expected_provenance_preserved": true
+  },
+  "ubs": {
+    "critical": 0,
+    "warnings": 49,
+    "new_production_findings": 0,
+    "triage": "10 existing unwraps/expect on valid constant or test fixtures;1 clone-in-loop,36assert macros,2 string allocations in existing tests.29 information items; no required suppression."
+  },
+  "limits": [
+    "Discovery evidence; no new Excel readings.",
+    "Independent Python Gregorian calendar proof covers965 numeric ActualActual records with serial dates>=61.",
+    "No identification claim for Excel internal code.",
+    "Other coupon and numerical families remain open."
+  ]
+}

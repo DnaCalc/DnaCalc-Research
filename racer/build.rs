@@ -307,13 +307,23 @@ flushing_op!(Div, div, excel_x87_div);
         let special_text=fs::read_to_string(&special).unwrap();
         assert_eq!(special_text.matches("fn bratio_brcomp(").count(),1);
         let generated_special=output.join("special-research.rs");
-        fs::write(&generated_special,special_text.replace("fn bratio_brcomp(","pub(crate) fn bratio_brcomp(")).unwrap();
+        let mut special_text=special_text.replace("fn bratio_brcomp(","pub(crate) fn bratio_brcomp(");
+        if unit["gamma_exponent_audit"].as_bool()==Some(true) {
+            assert_eq!(special_text.matches("a * crt_log(x) - x").count(),3,"changed gamma exponent sites");
+            special_text=special_text.replace("a * crt_log(x) - x","crate::discrete::gamma_exponent(a,x)");
+            let finish="fn gratio_temme_finish(l: f64, c: f64, w: f64, t: f64, a: f64) -> (f64, f64) {";
+            assert_eq!(special_text.matches(finish).count(),1,"changed Temme finish site");
+            special_text=special_text.replace(finish,&format!("{finish}\n    if let Some(result)=crate::discrete::gamma_temme_finish(l,c,w,t,a,GRATIO_RT2PIN) {{ return result; }}"));
+            println!("cargo:rustc-cfg=gamma_exponent_audit");
+        }
+        fs::write(&generated_special,special_text).unwrap();
         writeln!(bridge, "#[path = {:?}] pub mod special_math_common;", generated_special).unwrap();
         println!("cargo:rerun-if-changed={}", original.display());
         println!("cargo:rerun-if-changed={}", special.display());
         println!("cargo:rustc-cfg=discrete_audit");
     }
     println!("cargo:rustc-check-cfg=cfg(discrete_audit)");
+    println!("cargo:rustc-check-cfg=cfg(gamma_exponent_audit)");
     if unit["regression_audit"].as_bool() == Some(true) {
         use std::io::Write;
         let original=source.parent().unwrap().join("regression_forecast_family.rs");
@@ -338,6 +348,33 @@ flushing_op!(Div, div, excel_x87_div);
             text = text.replace(site, &format!(
                 "    crate::route_audit::regression_triangular(&fit.r, nz, &inverse, &fit.order, fit.model.coefficients.len());\n{site}"));
         }
+        if unit["regression_outer_audit"].as_bool() == Some(true) {
+            // Six coherent operation groups surrounding the unchanged reflector.
+            // No rank threshold, coefficient, pivot tie or data-dependent selector changes.
+            for (old, new) in [
+                ("values.iter().fold(0.0, |sum, v| sum + v) / n as f64", "crate::route_audit::regression_outer_op(0, 3, values.iter().fold(0.0, |sum, v| crate::route_audit::regression_outer_op(0, 0, sum, *v)), n as f64)"),
+                ("column.iter().map(|v| v - means[index]).collect()", "column.iter().map(|v| crate::route_audit::regression_outer_op(1, 1, *v, means[index])).collect()"),
+                ("y.iter().map(|v| v - y_mean).collect()", "y.iter().map(|v| crate::route_audit::regression_outer_op(1, 1, *v, y_mean)).collect()"),
+                ("values[from..].iter().fold(0.0, |sum, v| sum + v * v)", "values[from..].iter().fold(0.0, |sum, v| crate::route_audit::regression_outer_op(2, 0, sum, crate::route_audit::regression_outer_op(2, 2, *v, *v)))"),
+                ("let norm = squares.sqrt();", "let norm = crate::route_audit::regression_outer_op(3, 4, squares, 0.0);"),
+                ("((j + 1)..rank).fold(0.0, |sum, k| sum + matrix[k].1[j] * solution[k])", "((j + 1)..rank).fold(0.0, |sum, k| crate::route_audit::regression_outer_op(4, 0, sum, crate::route_audit::regression_outer_op(4, 2, matrix[k].1[j], solution[k])))"),
+                ("(target[j] - d) / diagonal[j]", "crate::route_audit::regression_outer_op(4, 3, crate::route_audit::regression_outer_op(4, 1, target[j], d), diagonal[j])"),
+                (".fold(y_mean, |a, (b, m)| a - b * m)", ".fold(y_mean, |a, (b, m)| crate::route_audit::regression_outer_op(5, 1, a, crate::route_audit::regression_outer_op(5, 2, *b, *m)))"),
+            ] {
+                assert_eq!(text.matches(old).count(), 1, "changed outer QR audit site: {old}");
+                text = text.replace(old, new);
+            }
+            for (old,new) in [
+                ("values.iter().fold(0.0, |sum, v| crate::route_audit::regression_outer_op(0, 0, sum, *v))", "crate::route_audit::regression_outer_fold(0, 0.0, values.iter().map(|v| (*v,1.0)))"),
+                ("values[from..].iter().fold(0.0, |sum, v| crate::route_audit::regression_outer_op(2, 0, sum, crate::route_audit::regression_outer_op(2, 2, *v, *v)))", "crate::route_audit::regression_outer_fold(2, 0.0, values[from..].iter().map(|v| (*v,*v)))"),
+                ("((j + 1)..rank).fold(0.0, |sum, k| crate::route_audit::regression_outer_op(4, 0, sum, crate::route_audit::regression_outer_op(4, 2, matrix[k].1[j], solution[k])))", "crate::route_audit::regression_outer_fold(4, 0.0, ((j+1)..rank).map(|k| (matrix[k].1[j],solution[k])))"),
+                ("coefficients\n            .iter()\n            .zip(means.iter())\n            .fold(y_mean, |a, (b, m)| crate::route_audit::regression_outer_op(5, 1, a, crate::route_audit::regression_outer_op(5, 2, *b, *m)))", "crate::route_audit::regression_outer_fold(5, y_mean, coefficients.iter().zip(means.iter()).map(|(b,m)| (*b,*m)))"),
+            ] {
+                assert_eq!(text.matches(old).count(),1,"changed QR fold site: {old}");
+                text=text.replace(old,new);
+            }
+            println!("cargo:rustc-cfg=regression_outer_audit");
+        }
         if unit["regression_householder_audit"].as_bool() == Some(true) {
             let first="        let norm = squares.sqrt();";
             let last="        diagonal[j] = alpha;";
@@ -355,4 +392,5 @@ flushing_op!(Div, div, excel_x87_div);
     }
     println!("cargo:rustc-check-cfg=cfg(regression_audit)");
     println!("cargo:rustc-check-cfg=cfg(regression_householder_audit)");
+    println!("cargo:rustc-check-cfg=cfg(regression_outer_audit)");
 }

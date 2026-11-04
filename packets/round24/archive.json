@@ -1,0 +1,14 @@
+{
+  "complete": true,
+  "archive_sha256": "121561c05055df5cd9d09659ac67de57af3147e1b89d5a78e905aa8e562e0acd",
+  "original_manifest_sha256": "cf771706dde695a34c3498df2b17d23f8e3b76154cb22aba5f6456ea93972911",
+  "uncompressed_bytes": 7763096,
+  "archive_bytes": 258944,
+  "calls": 813,
+  "formula_cells": 3674,
+  "functions": 24,
+  "external_packet": "/home/ubuntu/codex-runs/excel-questions-r24",
+  "restore": "python3 -m zipfile -e packets/round24/packet.zip /path/to/restored-packet",
+  "predecessor_for_later_round": "Pass /path/to/restored-packet to the existing corpus_fuzz.py --extend-from option; its original manifest hashes validate every restored file.",
+  "limits": "Lossless ZIP packaging only. The uncompressed external packet remains the capture input; no Excel answers or cached values were introduced."
+}

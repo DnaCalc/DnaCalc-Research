@@ -1,0 +1,7 @@
+{
+  "complete": true,
+  "critical": 0,
+  "warnings": 412,
+  "findings_on_added_lines": [],
+  "limits": "UBS scan of three changed Rust files. All warning findings occur outside the added lines; this is not a claim to have proved unchanged legacy bodies. The added arithmetic uses the existing Fpu backend and no indexing, unwrap, unsafe block, or suppression."
+}

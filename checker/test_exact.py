@@ -136,6 +136,30 @@ class ExactArithmetic(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'pending workbook context changed'):
                 corpus_delta(root/'before', root/'after', '-', root/'changed.json')
 
+    def test_corpus_delta_counts_published_reports_once_with_retry_artifacts(self):
+        from racer.audit import corpus_delta
+        cell = dict(sheet='s', row=1, column=1)
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            for side, verdict, matched in [('before', 'mismatched', 0), ('after', 'matched', 1)]:
+                directory = root/side/'workbooks'/'calc-func_questions_oracle.xlsx'
+                directory.mkdir(parents=True)
+                counts = dict(formula_cells=1, awaiting_capture=0, external_links=0, circular_rule=0,
+                              fail=1-matched, **{'pass':matched})
+                workbook = dict(name='calc-func/questions/oracle.xlsx', sha256='fixed', counts=counts)
+                (root/side/'summary.json').write_text(json.dumps(dict(workbooks=[workbook], totals=dict(workbooks=1, counts=counts))))
+                documents = {'report.json':dict(cells=[dict(cell, verdict=verdict)]),
+                    'triage.json':dict(cells=[dict(cell, verdict=verdict)]),
+                    'evaluations.json':dict(evaluations=[dict(cell, returned=dict(value=matched))])}
+                retry = directory/'attempt-1'
+                retry.mkdir()
+                for name, document in documents.items():
+                    for destination in (directory, retry):
+                        (destination/name).write_text(json.dumps(document))
+            result = corpus_delta(root/'before', root/'after', '-', root/'delta.json')
+            self.assertEqual((result['counts']['formula_cells'], result['counts']['gains'], result['counts']['losses']), (1, 1, 0))
+            self.assertEqual(result['counts']['sessions'], 1)
+
     def test_corpus_error_sizes_handle_zero_and_extreme_exponents(self):
         from racer.corpus_cases import error_size
         self.assertEqual(error_size('0000000000000000', '3ff0000000000000'),

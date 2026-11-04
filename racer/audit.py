@@ -719,6 +719,10 @@ def corpus_delta(before, after, original_catalogue_after, output):
     hashes = {str(before/'summary.json'): sha(before/'summary.json'),
               str(after/'summary.json'): sha(after/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
     for old_report in sorted(before.glob('workbooks/**/report.json')):
+        # xtask publishes the selected comparison beside retained retry evidence.
+        # Retry reports are not additional formula obligations in summary.json.
+        if old_report.parent.name.startswith('attempt-'):
+            continue
         relative = old_report.relative_to(before)
         new_report = original_catalogue_after/'report.json' if override_catalogue and 'calc-func_catalogue_oracle.xlsx' in relative.parts else after/relative
         if not override_catalogue:

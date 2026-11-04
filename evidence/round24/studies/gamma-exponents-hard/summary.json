@@ -1,0 +1,64 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      65931,
+      14557,
+      14557,
+      0,
+      0
+    ],
+    [
+      65931,
+      14557,
+      14557,
+      0,
+      0
+    ],
+    [
+      65931,
+      14113,
+      14557,
+      392,
+      836
+    ],
+    [
+      65931,
+      14557,
+      14557,
+      0,
+      0
+    ],
+    [
+      65931,
+      14557,
+      14557,
+      0,
+      0
+    ]
+  ],
+  "excluded": {
+    "outside_gamma_prefactor_cdf_route": 61801
+  },
+  "first_losses": [
+    null,
+    null,
+    {
+      "expected": "0x3ad2e2cda69ce8e4",
+      "id": "oc893",
+      "prediction": "0x3ad2e2cda69ce8be"
+    },
+    null,
+    null
+  ],
+  "input_rows": 127732,
+  "limits": "Five coherent evaluations of a*log(x)-x at the existing three helper sites; output crosses the original binary64 exponential boundary. No fitted coefficient/threshold/row selector or complete gamma identification.",
+  "programs": [
+    "strict",
+    "stored_pc64",
+    "resident_pc64",
+    "stored_pc53",
+    "resident_pc53"
+  ],
+  "source": "Existing retained TOMS654 gamma algorithms; IEEE754 and Intel SDM precision/store models. The CRT logarithm, EXP helpers, normalizer, branches and loops remain original conditional producers."
+}

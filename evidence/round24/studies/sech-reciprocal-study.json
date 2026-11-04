@@ -1,0 +1,149 @@
+{
+  "complete": true,
+  "counts": {
+    "scoped": 25891,
+    "matched": 25885,
+    "gains": 0,
+    "losses": 5
+  },
+  "outside_published_finite_cosh": 4533,
+  "changes": [
+    {
+      "original": {
+        "actual": "0x2055e19a88518c66",
+        "args": [
+          "0x4075f1cd1f1fb498"
+        ],
+        "expected": "0x2055e19a88518c66",
+        "function": "SECH",
+        "id": "staged-heldout2-SECH-06200",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "invocation": {
+            "compatibility_version": "2",
+            "input_sheet_state": "visible-constant-inputs",
+            "input_transport": "cell_value2_bulk"
+          },
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-radians-sech-heldout2-20260929/answers/answers-sech.json"
+      },
+      "cosh": "0x1.76625c1e94a58p+505",
+      "cosh_bits": "0x5f876625c1e94a58",
+      "prediction": "0x2055e19a88518c65"
+    },
+    {
+      "original": {
+        "actual": "0x00e74a8c150f294c",
+        "args": [
+          "0x4085dda01539582b"
+        ],
+        "expected": "0x00e74a8c150f294c",
+        "function": "SECH",
+        "id": "w111pub-heldout-SECH-001662",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "invocation": {
+            "compatibility_version": "2",
+            "input_sheet_state": "visible-constant-inputs",
+            "input_transport": "cell_value2_bulk"
+          },
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-numeric-publication-heldout-20260929/answers/answers-sech.json"
+      },
+      "cosh": "0x1.5fb887c744c26p+1008",
+      "cosh_bits": "0x7ef5fb887c744c26",
+      "prediction": "0x00e74a8c150f294b"
+    },
+    {
+      "original": {
+        "actual": "0x00357a8bdc499a16",
+        "args": [
+          "0x40861b453823f7fa"
+        ],
+        "expected": "0x00357a8bdc499a16",
+        "function": "SECH",
+        "id": "w111pub-heldout-SECH-000067",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "invocation": {
+            "compatibility_version": "2",
+            "input_sheet_state": "visible-constant-inputs",
+            "input_transport": "cell_value2_bulk"
+          },
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-numeric-publication-heldout-20260929/answers/answers-sech.json"
+      },
+      "cosh": "0x1.7d66b308cb689p+1019",
+      "cosh_bits": "0x7fa7d66b308cb689",
+      "prediction": "0x00357a8bdc499a17"
+    },
+    {
+      "original": {
+        "actual": "0x1c12f03792d64b2c",
+        "args": [
+          "0xc078e641a74b0d3e"
+        ],
+        "expected": "0x1c12f03792d64b2c",
+        "function": "SECH",
+        "id": "staged-heldout2-SECH-03440",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "invocation": {
+            "compatibility_version": "2",
+            "input_sheet_state": "visible-constant-inputs",
+            "input_transport": "cell_value2_bulk"
+          },
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-radians-sech-heldout2-20260929/answers/answers-sech.json"
+      },
+      "cosh": "0x1.b08fbdbad5845p+573",
+      "cosh_bits": "0x63cb08fbdbad5845",
+      "prediction": "0x1c12f03792d64b2d"
+    },
+    {
+      "original": {
+        "actual": "0x07035359a33f6c2c",
+        "args": [
+          "0xc083bfb0ebe72083"
+        ],
+        "expected": "0x07035359a33f6c2c",
+        "function": "SECH",
+        "id": "staged-heldout2-SECH-00040",
+        "reading": {
+          "bitness": "64-bit",
+          "cpu": null,
+          "excel_build": "20430",
+          "invocation": {
+            "compatibility_version": "2",
+            "input_sheet_state": "visible-constant-inputs",
+            "input_transport": "cell_value2_bulk"
+          },
+          "platform": "Windows"
+        },
+        "result_index": null,
+        "source": "runs/w111-radians-sech-heldout2-20260929/answers/answers-sech.json"
+      },
+      "cosh": "0x1.a7e4dc9c42124p+910",
+      "cosh_bits": "0x78da7e4dc9c42124",
+      "prediction": "0x07035359a33f6c2b"
+    }
+  ],
+  "executable_sha256": "b75e382d41aaea140a2cd22188d049b87aefde40e683c71f9b5a5ee18716e236",
+  "scope": "Registered COSH result then ordinary RN53 reciprocal; existing tiny-result flush. Other COSH/domain returns remain outside this diagnostic."
+}
