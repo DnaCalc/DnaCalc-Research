@@ -1,0 +1,126 @@
+{
+  "complete": true,
+  "files": {
+    "r23": {
+      "files": 132,
+      "bytes": 23679360,
+      "manifest_sha256": "370497e0e492e44522b7d1cb609b95ce4a639c689e19dfe5e0ac09f9168300cb"
+    },
+    "eng12": {
+      "files": 37881,
+      "bytes": 214252992,
+      "manifest_sha256": "8fb3b0998536aee3c760008cc771c85f157d520cf23b4d7c6cd48dbf9727f87e"
+    }
+  },
+  "r23": {
+    "roles": {
+      "question": 568,
+      "operand_echo": 400
+    },
+    "statuses": {
+      "observed": 967,
+      "entry_refused": 1
+    },
+    "intended_operand_echoes": {
+      "equal": 256,
+      "different": 2
+    },
+    "capture_sha256": "4b56b0cade48e84ab2a9e74c0bb79978b9cb8df58322a75fc07b625fb645c010"
+  },
+  "eng12": {
+    "statuses": {
+      "confirmed_frozen_mismatch": 1129,
+      "observed_with_capture_failures": 3,
+      "refuted_frozen_mismatch": 5,
+      "excel_open_refused": 8,
+      "frozen_array_elements_unavailable": 1
+    },
+    "refuted": [
+      {
+        "case": "d2ce0f29f282e11924b17e300930b16ccae2f713e0bbed8a3b2b1bf6cf5f8d03",
+        "observer_sheet": "fn2_o031",
+        "observer_formula": "'fn2_q031'!J20",
+        "producer_sheet": "fn2_q031",
+        "original_producer_formula": "_xlfn.MAP(NA(),_xlfn.LAMBDA(_xlpm.xx,IFERROR(_xlpm.xx,3)))",
+        "reduced_constant_type": "n",
+        "reduced_constant": "3",
+        "inherited_reference": {
+          "error": "NA"
+        },
+        "measured_reduced_answer": {
+          "number": "4008000000000000"
+        },
+        "cause": "The reduction froze the differing producer to the DNA value. Excel confirms that constant in the reduced file; the original call remains open."
+      },
+      {
+        "case": "db4f8b6f28bc2c29800cf9c0592deb9461128d91a60fc524c3dea9ec9ae1fca1",
+        "observer_sheet": "fn2_o123",
+        "observer_formula": "'fn2_q123'!J20",
+        "producer_sheet": "fn2_q123",
+        "original_producer_formula": "_xlfn.LET(_xlpm.xx,1,_xlpm.XX,2,_xlpm.xx)",
+        "reduced_constant_type": "n",
+        "reduced_constant": "2",
+        "inherited_reference": {
+          "decimal": "0.0",
+          "number": "0000000000000000"
+        },
+        "measured_reduced_answer": {
+          "number": "4000000000000000"
+        },
+        "cause": "The reduction froze the differing producer to the DNA value. Excel confirms that constant in the reduced file; the original call remains open."
+      },
+      {
+        "case": "16d063a72eea8307328bae6e507b43b7ae5d7ce2fbb5215e0931596f6261de30",
+        "observer_sheet": "fn2_o124",
+        "observer_formula": "'fn2_q124'!J20",
+        "producer_sheet": "fn2_q124",
+        "original_producer_formula": "_xlfn.LET(_xlpm.xx,1,_xlpm.xx,_xlpm.xx+1,_xlpm.xx)",
+        "reduced_constant_type": "n",
+        "reduced_constant": "2",
+        "inherited_reference": {
+          "decimal": "0.0",
+          "number": "0000000000000000"
+        },
+        "measured_reduced_answer": {
+          "number": "4000000000000000"
+        },
+        "cause": "The reduction froze the differing producer to the DNA value. Excel confirms that constant in the reduced file; the original call remains open."
+      },
+      {
+        "case": "ba9fbe7f229dd46511d5cf397de182ef023ff691668970f61257ff7e1acad1df",
+        "observer_sheet": "fn2_o184",
+        "observer_formula": "'fn2_q184'!J20",
+        "producer_sheet": "fn2_q184",
+        "original_producer_formula": "COUNTBLANK(2)",
+        "reduced_constant_type": "e",
+        "reduced_constant": "#VALUE!",
+        "inherited_reference": {
+          "decimal": "0.0",
+          "number": "0000000000000000"
+        },
+        "measured_reduced_answer": {
+          "error": "value"
+        },
+        "cause": "The reduction froze the differing producer to the DNA value. Excel confirms that constant in the reduced file; the original call remains open."
+      },
+      {
+        "case": "7f1d2294156d4bac3c475b9ce9a9a27d96c3be6b8a9a17c91cbf50602a464cb4",
+        "observer_sheet": "fn2_o185",
+        "observer_formula": "'fn2_q185'!J20",
+        "producer_sheet": "fn2_q185",
+        "original_producer_formula": "COUNTBLANK({\"\",1,#N/A})",
+        "reduced_constant_type": "e",
+        "reduced_constant": "#VALUE!",
+        "inherited_reference": {
+          "decimal": "0.0",
+          "number": "0000000000000000"
+        },
+        "measured_reduced_answer": {
+          "error": "value"
+        },
+        "cause": "The reduction froze the differing producer to the DNA value. Excel confirms that constant in the reduced file; the original call remains open."
+      }
+    ]
+  },
+  "limits": "Measurements of the authored inputs only. Original answers remain unchanged; refutations do not repair the original corpus. Capture failures and missing answers fail. R23 effective operands require the associated echoes; intended bits are not observations."
+}

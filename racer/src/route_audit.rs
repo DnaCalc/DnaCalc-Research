@@ -44,6 +44,73 @@ pub fn bessel_k_precision(input:&str,output:&str) {
 }
 use std::{fs, path::Path};
 
+/// Fixed product-root and natural-log helper boundaries. No coefficients,
+/// thresholds or per-observation choices occur in these mathematical paths.
+pub fn geomean_stored<F:crate::ported::excel_numeric::Fpu>(input:&str,out:&str) {
+    use crate::{dsl::{EvalModel,Op},eval::{Val,binop}};
+    use crate::ported::excel_numeric::*;
+    let rows=crate::lines::<Value>(input);
+    let mut counts=[[0usize;5];20];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let mut answers=Vec::new();
+    fn flatten(v:&Value,values:&mut Vec<f64>)->bool {
+        if let Some(array)=v.as_array(){return array.iter().all(|v|flatten(v,values));}
+        let Some(s)=v.as_str()else{return false;};
+        let Some(s)=s.strip_prefix("0x")else{return false;};
+        let Ok(bits)=u64::from_str_radix(s,16)else{return false;};
+        let x=f64::from_bits(bits);if !(x>0.0&&x.is_finite()){return false;}
+        values.push(x);true
+    }
+    for (index,row)in rows.iter().enumerate() {
+        if row["function"]!="GEOMEAN"{continue;}
+        let mut xs=Vec::new();
+        if !row["result_index"].is_null()||!flatten(&row["args"],&mut xs)||xs.is_empty(){
+            *excluded.entry("nonpositive_or_unresolved_argument".into()).or_default()+=1;continue;
+        }
+        let baseline=crate::invoke_control("GEOMEAN",xs.iter().map(|&x|CalcValue::number(x)).collect()).0;
+        assert_eq!(baseline,row["actual"],"registered GEOMEAN {}",row["id"]);
+        let mut outputs=Vec::new();
+        for product_model in [EvalModel::Strict,EvalModel::StoredPc64] {
+            let product=xs.iter().fold(Val::f64(1.0),|p,&x|binop::<F>(Op::Mul(0,1),product_model,p,Val::f64(x))).to_f64::<F>();
+            if !product.is_normal(){break;}
+            let p=Val::f64(product).to_ext();let n=Val::f64(xs.len() as f64).to_ext();
+            let store=|x|Val::f64(F::store(&x,0x133f)).to_ext();
+            // A separately stored log(product) or quotient is a helper-call
+            // boundary, not an adjustment of the mathematical logarithm.
+            for (log_store,quotient_store)in [(false,false),(true,false),(false,true),(true,true)] {
+                let log=research_log::<F>(&p);let log=if log_store{store(log)}else{log};
+                let q=F::div(&log,&n,0x133f);let q=if quotient_store{store(q)}else{q};
+                outputs.push(F::store(&research_exp::<F>(&q),0x133f));
+            }
+            let base2=F::fyl2x(&Val::f64(1.0).to_ext(),&p,0x133f);
+            for quotient_store in [false,true] {
+                let q=F::div(&base2,&n,0x133f);let q=if quotient_store{store(q)}else{q};
+                outputs.push(F::store(&research_pow2::<F>(&q),0x133f));
+            }
+            let reciprocal=F::store(&F::div(&Val::f64(1.0).to_ext(),&n,0x133f),0x133f);
+            outputs.push(F::store(&research_pow::<F>(product,reciprocal),0x133f));
+            outputs.push(crt_pow(product,1.0/xs.len() as f64));
+            outputs.push(crt_exp(crt_log(product)/xs.len() as f64));
+            let logs=xs.iter().map(|&x|F::store(&research_log::<F>(&Val::f64(x).to_ext()),0x133f));
+            let sum=logs.fold(Val::f64(0.0),|s,x|binop::<F>(Op::Add(0,1),product_model,s,Val::f64(x)));
+            let q=F::store(&F::div(&sum.to_ext(),&n,0x133f),0x133f);
+            outputs.push(F::store(&research_exp::<F>(&Val::f64(q).to_ext()),0x133f));
+        }
+        if outputs.len()!=20{*excluded.entry("product_range".into()).or_default()+=1;continue;}
+        let outputs:Vec<_>=outputs.into_iter().map(|x|format!("0x{:016x}",x.to_bits())).collect();
+        for (i,got)in outputs.iter().enumerate(){
+            let now=*got==row["expected"];let old=baseline==row["expected"];
+            for(j,v)in [true,now,old,now&&!old,old&&!now].into_iter().enumerate(){counts[i][j]+=usize::from(v);}
+        }
+        answers.push(json!({"trace_index":index,"id":row["id"],"expected":row["expected"],"baseline":baseline,"predictions":outputs}));
+    }
+    fs::create_dir(out).unwrap();crate::json_write(Path::new(out).join("predictions.json"),&answers);
+    let summary=json!({"complete":true,"counts_all_exact_baseline_gains_losses":counts,"excluded":excluded,
+        "programs":"Two product policies (strict,storedPC64), each with natural product log and quotient store flags00,10,01,11; base2 quotient store0,1; stored reciprocal POW; CRT POW; CRT EXP(LOG(P)/n); stored sum of LN inputs and quotient.",
+        "sources":"Defining product-root and exponential/logarithm identities, Intel SDM; existing cleared numerical helpers and original captures. No fitted constants or answer-dependent selector.",
+        "limits":"Positive finite numeric operands and normal binary64 products. Helper microcode and CRT bodies remain conditional leaves. Counts are diagnostics; no changing program is adopted solely from these observations."});
+    crate::json_write(Path::new(out).join("summary.json"),&summary);println!("{summary}");
+}
+
 #[cfg(regression_audit)]
 std::thread_local! {
     static REGRESSION_LEAVES: std::cell::RefCell<Vec<Value>> = const { std::cell::RefCell::new(Vec::new()) };
@@ -209,11 +276,20 @@ pub fn regression_folds(input:&str,out:&str,software:bool) {
     regression_outer_study(input,out,software,true);
 }
 #[cfg(regression_outer_audit)]
+fn regression_expectation(row:&Value)->Option<&str> {
+    if row["unobserved_question"]==true {
+        assert!(row["expected"].is_null(),"an unanswered question must not discard a recorded expectation");
+        None
+    }else{Some(row["expected"].as_str().expect("recorded QR expectation"))}
+}
+
+#[cfg(regression_outer_audit)]
 fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
     use std::io::Write;
     let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=crate::lines::<Value>(input);
     let programs=if folds{16}else{64};
     let mut counts=vec![[0usize;5];programs];let mut first_losses=vec![None;programs];let mut first_gains=vec![None;programs];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
+    let mut unobserved=0usize;
     let mut changes=std::io::BufWriter::new(fs::File::create_new(destination.join("changes.jsonl")).unwrap());
     for(index,row)in rows.iter().enumerate(){
         let name=row["function"].as_str().unwrap();if !matches!(name,"LINEST"|"LOGEST"|"TREND"|"GROWTH"){*excluded.entry("other_surface".into()).or_default()+=1;continue;}
@@ -225,13 +301,15 @@ fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
         let(baseline,_)=crate::invoke_selected_control(name,args.clone(),selected);
         assert_eq!(baseline,row["actual"].as_str().unwrap(),"frozen registered outer QR {}",row["id"]);
         assert_eq!(observed,baseline,"unmodified outer/registered QR {}",row["id"]);
-        let expected=row["expected"].as_str().unwrap();let was=baseline==expected;
+        let expected=regression_expectation(row);
+        unobserved+=usize::from(expected.is_none());
+        let was=expected.is_some_and(|e|baseline==e);
         for mask in 0..programs {
             if folds{REGRESSION_FOLD_PROGRAM.with(|p|p.set(Some((mask,software))));}
             else{REGRESSION_OUTER_PROGRAM.with(|p|p.set(Some((mask,software))));}
             let got=regression_evaluate(name,&args,selected).unwrap_or_else(||"error:Ref".into());
             if mask==0{assert_eq!(got,baseline,"original outer QR {}",row["id"]);}
-            let now=got==expected;for(slot,b)in counts[mask].iter_mut().zip([true,now,was,now&&!was,was&&!now]){*slot+=usize::from(b);}
+            let now=expected.is_some_and(|e|got==e);for(slot,b)in counts[mask].iter_mut().zip([expected.is_some(),now,was,now&&!was,was&&!now]){*slot+=usize::from(b);}
             if got!=baseline {
                 let change=json!({"trace_index":index,"id":row["id"],"program":mask,"prediction":got,"expected":expected,"baseline":baseline});
                 if was&&!now&&first_losses[mask].is_none(){first_losses[mask]=Some(change.clone());}
@@ -240,11 +318,11 @@ fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
             }
         }
     }
-    REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]>0);assert_eq!(counts[0][0]+excluded.values().sum::<usize>(),rows.len());
+    REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]+unobserved>0);assert_eq!(counts[0][0]+unobserved+excluded.values().sum::<usize>(),rows.len());
     let safe:Vec<_>=counts.iter().enumerate().filter(|(_,v)|v[3]>0&&v[4]==0).map(|(i,_)|i).collect();
-    let result=json!({"complete":true,"input_rows":rows.len(),"programs":programs,"folds":folds,"groups":if folds{vec!["mean loop","squared norm loop","back substitution dot","intercept loop"]}else{vec!["mean","centering","squared norms","square root","back substitution","intercept"]},"counts_all_exact_baseline_gains_losses":counts,"first_losses":first_losses,"first_gains":first_gains,"excluded":excluded,"zero_loss_improvements":safe,
+    let result=json!({"complete":true,"input_rows":rows.len(),"unobserved_questions_not_scored":unobserved,"programs":programs,"folds":folds,"groups":if folds{vec!["mean loop","squared norm loop","back substitution dot","intercept loop"]}else{vec!["mean","centering","squared norms","square root","back substitution","intercept"]},"counts_all_exact_baseline_gains_losses":counts,"first_losses":first_losses,"first_gains":first_gains,"excluded":excluded,"zero_loss_improvements":safe,
         "source":"Existing cleared Householder QR, IEEE754 and Intel SDM stored PC64 arithmetic. All reflector operations, rank, pivot/tie, logarithms and statistics consumers unchanged.",
-        "limits":if folds{"16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector."}else{"64 coherent group policies, no fitted parameter or data-dependent selector. Every changed program must preserve prior matches. Discovery only, no new Excel answers."}});
+        "limits":if folds{"16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector. Unanswered questions are not scored."}else{"64 coherent group policies, no fitted parameter or data-dependent selector. Counts are diagnostic; adoption requires structural evidence and classification of every loss. Unanswered questions are not scored. Discovery only, no new Excel answers."}});
     json_write(destination.join("summary.json"),&result);println!("{}",json!({"complete":true,"rows":counts[0][0],"zero_loss_improvements":safe}));
 }
 
@@ -689,6 +767,20 @@ pub fn sheet_predictions(input: &str, out: &str) {
 #[cfg(test)]
 mod question_tests {
     use super::*;
+
+    #[cfg(regression_outer_audit)]
+    #[test]
+    fn unanswered_qr_questions_have_no_scored_expectation() {
+        assert_eq!(regression_expectation(&json!({"expected":null,"unobserved_question":true})),None);
+        assert_eq!(regression_expectation(&json!({"expected":"0x3ff0000000000000"})),Some("0x3ff0000000000000"));
+    }
+
+    #[cfg(regression_outer_audit)]
+    #[test]
+    #[should_panic(expected="must not discard a recorded expectation")]
+    fn a_question_flag_cannot_hide_a_recorded_qr_answer() {
+        regression_expectation(&json!({"expected":"0x3ff0000000000000","unobserved_question":true}));
+    }
 
     /// Native-only: the research command writes its prediction files.
     #[test]

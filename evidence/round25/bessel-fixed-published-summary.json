@@ -1,0 +1,190 @@
+{
+  "best": {
+    "counts": [
+      248,
+      139,
+      106,
+      33,
+      0
+    ],
+    "program": {
+      "assignment_stores": false,
+      "association": 0,
+      "group_y0_log": true,
+      "helpers": 0,
+      "id": 900,
+      "polynomial": "strict",
+      "reconstruction": "strict",
+      "reduction": 0
+    },
+    "regions": {
+      "BESSELJ:0:high": [
+        61,
+        20,
+        0,
+        20,
+        0
+      ],
+      "BESSELJ:0:low": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "BESSELJ:1:high": [
+        61,
+        13,
+        0,
+        13,
+        0
+      ],
+      "BESSELJ:1:low": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "BESSELY:0:high": [
+        61,
+        52,
+        52,
+        0,
+        0
+      ],
+      "BESSELY:0:low": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "BESSELY:1:high": [
+        61,
+        51,
+        51,
+        0,
+        0
+      ],
+      "BESSELY:1:low": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  "count_order": [
+    "all",
+    "exact",
+    "baseline_exact",
+    "new_exact",
+    "lost_exact"
+  ],
+  "discovery": "All captured readings are discovery. No held-out or product parity claim.",
+  "input": "/home/ubuntu/codex-runs/round25/live-bessel/scoped.jsonl",
+  "programs": 1,
+  "region_top": {
+    "BESSELJ:0:high": [
+      {
+        "counts": [
+          61,
+          20,
+          0,
+          20,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELJ:0:low": [
+      {
+        "counts": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELJ:1:high": [
+      {
+        "counts": [
+          61,
+          13,
+          0,
+          13,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELJ:1:low": [
+      {
+        "counts": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELY:0:high": [
+      {
+        "counts": [
+          61,
+          52,
+          52,
+          0,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELY:0:low": [
+      {
+        "counts": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELY:1:high": [
+      {
+        "counts": [
+          61,
+          51,
+          51,
+          0,
+          0
+        ],
+        "id": 900
+      }
+    ],
+    "BESSELY:1:low": [
+      {
+        "counts": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "id": 900
+      }
+    ]
+  },
+  "rows": 248,
+  "scope": "J0/J1/Y0/Y1; every unsupported and numeric/type mismatch remains a failure in overall counts",
+  "source": "SheetJS/bessel 2e2331329891dc5c16bda3461db0b9fe590ff2e9 (Apache-2.0), approved R20 facts; IEEE754/Intel x87; original unchanged Excel readings"
+}

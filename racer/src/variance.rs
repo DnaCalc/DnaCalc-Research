@@ -244,6 +244,242 @@ fn population(function: &str) -> bool {
     )
 }
 
+/// Compare finite tagged values without inserting a binary64 store. Stored
+/// policies already contain binary64; a resident guard must keep its low bits.
+fn finite_less(a:Val,b:Val)->bool {
+    let parts=|v:Val| {
+        let x=v.to_ext().0;
+        let exponent=u16::from_le_bytes([x[8],x[9]])&0x7fff;
+        assert_ne!(exponent,0x7fff,"variance counterfactual outside finite comparison scope");
+        let significand=u64::from_le_bytes(x[..8].try_into().unwrap());
+        (x[9]&0x80!=0,(exponent,significand))
+    };
+    let (sa,ma)=parts(a);let (sb,mb)=parts(b);
+    if ma==(0,0)&&mb==(0,0){return false;}
+    if sa!=sb{return sa;}
+    if sa{ma>mb}else{ma<mb}
+}
+
+#[cfg(test)]
+mod guard_tests {
+    use super::*;
+    #[test]
+    fn resident_guard_keeps_bits_that_a_double_store_would_lose() {
+        let one=Val::f64(1.0);
+        let above=eval::binop::<crate::ported::excel_numeric::Soft>(Op::Add(0,1),
+            EvalModel::ResidentPc64,one,Val::f64(2f64.powi(-60)));
+        assert_eq!(one.to_f64::<crate::ported::excel_numeric::Soft>(),
+                   above.to_f64::<crate::ported::excel_numeric::Soft>());
+        assert!(finite_less(one,above));assert!(!finite_less(above,one));
+        assert!(finite_less(neg(above),neg(one)));
+        assert!(!finite_less(Val::f64(-0.0),Val::f64(0.0)));
+    }
+}
+
+/// Raw moments with the previously measured cancellation fallback. This is a
+/// structural counterfactual, not a per-row choice between expected answers.
+pub fn stored_steps<F: Fpu>(input: &str, output: &str) {
+    stored_steps_guard::<F>(input,output,false);
+}
+
+/// Retain only inputs on which the final square-root store gives different
+/// complete STDEV bits. Selection never reads an Excel answer or match count.
+pub fn sqrt_questions<F:Fpu>(output:&str) {
+    use calc_func::value::CalcValue;
+    let mut state=0x35c612e9a74b08dfu64;
+    let mut selected=Vec::new();let mut tried=0usize;
+    for _ in 0..1_000_000 {
+        state^=state<<13;state^=state>>7;state^=state<<17;
+        let x=f64::from_bits(0x3ff0000000000000|(state&0x000fffffffffffff));
+        for (variance,stdev)in[("VAR.S","STDEV.S"),("VAR.P","STDEV.P")] {
+            let args=vec![0.0,1.0,x];tried+=1;
+            let (_,Some(v))=crate::invoke_control(variance,args.iter().map(|&x|CalcValue::number(x)).collect())else{panic!("normal variance construction refused")}; // ubs:ignore — an unexpected refusal must abort question generation, never become a fabricated numeric prediction
+            let strict=v.sqrt();let staged=F::store(&F::sqrt(&Val::f64(v).to_ext(),0x133f),0x133f);
+            if strict.to_bits()==staged.to_bits(){continue;}
+            let (baseline,_)=crate::invoke_control(stdev,args.iter().map(|&x|CalcValue::number(x)).collect());
+            selected.push(json!({"id":format!("r25-sqrt-{}",selected.len()),"function":stdev,
+                "args":args.iter().map(|x|format!("0x{:016x}",x.to_bits())).collect::<Vec<_>>(),
+                "variance":format!("0x{:016x}",v.to_bits()),"baseline":baseline,
+                "strict_root":format!("0x{:016x}",strict.to_bits()),"staged_root":format!("0x{:016x}",staged.to_bits()),
+                "expected":null,"unobserved_question":true}));
+        }
+        if selected.len()>=16{break;}
+    }
+    assert!(selected.len()>=16,"no sqrt discriminants found in fixed construction");
+    crate::json_write(Path::new(output),&json!({"tried":tried,"questions":selected,
+        "limits":"Fixed normal dyadic inputs, selected only by distinct single/double-rounding predictions. No Excel answers or scored outcomes."}));
+}
+
+/// Center/dispersion coordinates make equivalent real-valued guard forms
+/// choose different complete variance results after their binary64 stores.
+pub fn guard_questions<F:Fpu>(output:&str) {
+    let raw=Profile{id:0,algorithm:7,linear_order:0,square_order:0,models:[EvalModel::StoredPc64;5]};
+    let center=Profile{algorithm:0,..raw.clone()};
+    let mut state=0x7149c5e3b20a86dfu64;let mut questions=Vec::new();let mut tried=0usize;
+    for _ in 0..100_000 {
+        state^=state<<13;state^=state>>7;state^=state<<17;
+        let d=f64::from_bits(0x3f10000000000000|(state&0x000fffffffffffff));
+        let initial=d*d*1000.0;
+        for offset in -4i64..=4 {
+            let m=f64::from_bits(initial.to_bits().checked_add_signed(offset).unwrap());
+            let bits=vec![(m-d).to_bits(),m.to_bits(),(m+d).to_bits()];tried+=1;
+            let v=evaluate::<F>(&raw,&bits,"VAR.S",false).0.to_f64::<F>();
+            let centered=evaluate::<F>(&center,&bits,"VAR.S",false).0.to_f64::<F>();
+            if v.to_bits()==centered.to_bits(){continue;}
+            let mut a=Arithmetic::<F>{p:&raw,trace:None,marker:std::marker::PhantomData};
+            let xs:Vec<_>=bits.iter().copied().map(Val::F64).collect();let total=a.sum(&xs,0,0);
+            let mean=a.div(1,total,Val::f64(3.0));
+            let product=a.mul(4,Val::f64(v),Val::f64(1000.0));
+            let quotient=a.div(4,mean,Val::f64(1000.0));
+            let constant=a.mul(4,mean,Val::f64(0.001));
+            let product_centered=!finite_less(mean,product);
+            let quotient_centered=!finite_less(quotient,Val::f64(v));
+            let constant_centered=!finite_less(constant,Val::f64(v));
+            if product_centered==quotient_centered&&product_centered==constant_centered{continue;}
+            for negative in [false,true] {
+                questions.push(json!({"id":format!("r25-guard-op-{}",questions.len()),"function":"VAR.S",
+                    "args":bits.iter().map(|&b|format!("0x{:016x}",if negative{b^0x8000000000000000}else{b})).collect::<Vec<_>>(),
+                    "raw":format!("0x{:016x}",v.to_bits()),"centered":format!("0x{:016x}",centered.to_bits()),
+                    "product_centered":product_centered,"quotient_centered":quotient_centered,"constant_centered":constant_centered,
+                    "negative_mean":negative,"expected":null,"unobserved_question":true}));
+            }
+            if questions.len()>=16{break;}
+        }
+        if questions.len()>=16{break;}
+    }
+    assert!(questions.len()>=16,"no complete guard discriminants in fixed construction");
+    crate::json_write(Path::new(output),&json!({"tried":tried,"questions":questions,
+        "limits":"Questions selected only by unequal guard decisions and unequal complete raw/centered outputs. No Excel answers or scored outcomes."}));
+}
+
+pub fn relative_guard_questions<F:Fpu>(output:&str) {
+    let raw=Profile{id:0,algorithm:7,linear_order:0,square_order:0,models:[EvalModel::StoredPc64;5]};
+    let center=Profile{algorithm:0,..raw.clone()};
+    let mut state=0x5e31ac9628d407bfu64;let mut questions=Vec::new();let mut tried=0usize;
+    let mut seen=std::collections::BTreeSet::new();
+    for _ in 0..100_000 {
+        state^=state<<13;state^=state>>7;state^=state<<17;
+        let m=f64::from_bits(0x3ff0000000000000|(state&0x000fffffffffffff));
+        let initial=m/66.0f64.sqrt();
+        for offset in -4i64..=4 {
+            let d=f64::from_bits(initial.to_bits().checked_add_signed(offset).unwrap());
+            let bits=vec![(m-d).to_bits(),m.to_bits(),(m+d).to_bits()];tried+=1;
+            if !seen.insert(bits.clone()){continue;}
+            let v=evaluate::<F>(&raw,&bits,"VAR.S",false).0.to_f64::<F>();
+            let centered=evaluate::<F>(&center,&bits,"VAR.S",false).0.to_f64::<F>();
+            if v.to_bits()==centered.to_bits(){continue;}
+            let mut a=Arithmetic::<F>{p:&raw,trace:None,marker:std::marker::PhantomData};
+            let xs:Vec<_>=bits.iter().copied().map(Val::F64).collect();let total=a.sum(&xs,0,0);
+            let terms:Vec<_>=xs.iter().map(|&x|a.mul(2,x,x)).collect();let q=a.sum(&terms,0,3);
+            let r=a.mul(2,total,total);let n=Val::f64(3.0);let c=a.div(1,r,n);let k=Val::f64(0.99);
+            let q99=a.mul(4,q,k);let c99=a.div(4,c,k);let cq=a.div(4,c,q);
+            let n99=a.mul(4,n,k);let n99q=a.mul(4,n99,q);let nq99=a.mul(4,n,q99);
+            let decisions=[finite_less(q99,c),finite_less(q,c99),finite_less(k,cq),finite_less(n99q,r),finite_less(nq99,r)];
+            // Target the three still-indistinguishable comparison forms;
+            // the earlier four unique constructions only split n-products.
+            if decisions[0]==decisions[1]&&decisions[0]==decisions[2]{continue;}
+            questions.push(json!({"id":format!("r25-relative-op-{}",questions.len()),"function":"VAR.S",
+                "args":bits.iter().map(|b|format!("0x{b:016x}")).collect::<Vec<_>>(),
+                "raw":format!("0x{:016x}",v.to_bits()),"centered":format!("0x{:016x}",centered.to_bits()),
+                "guard_decisions":decisions,"expected":null,"unobserved_question":true}));
+            if questions.len()>=16{break;}
+        }
+        if questions.len()>=16{break;}
+    }
+    assert_eq!(questions.len(),16,"no relative guard discriminants in fixed construction");
+    crate::json_write(Path::new(output),&json!({"tried":tried,"questions":questions,
+        "guards":["stored(.99*Q)<stored(S*S/n)","Q<stored(correction/.99)",".99<stored(correction/Q)","stored(stored(n*.99)*Q)<S*S","stored(n*stored(Q*.99))<S*S"],
+        "limits":"Equivalent real-valued99%-correction tests; unequal stored guard decisions and complete outputs only. No Excel answers or scoring."}));
+}
+
+/// R25 observed scale transitions distinguish a mean-based guard from the
+/// earlier relative-squares hypothesis. The old program remains replayable.
+pub fn stored_steps_guard<F: Fpu>(input: &str, output: &str, mean_guard:bool) {
+    use EvalModel::{Strict, StoredPc64, ResidentPc64};
+    let rows = crate::lines::<Value>(input);
+    let mut counts = [[0usize; 6]; 9];
+    let mut changes = Vec::new();
+    let mut predictions = Vec::new();
+    let mut excluded = BTreeMap::<String,usize>::new();
+    for (index, raw) in rows.iter().enumerate() {
+        let (raw, bits) = if raw.get("values_bits").is_some() {
+            (&raw["raw"], serde_json::from_value::<Vec<u64>>(raw["values_bits"].clone()).unwrap())
+        } else {
+            match numeric_values(raw) {
+                Ok(bits) => (raw, bits),
+                Err(reason) => { *excluded.entry(reason.into()).or_default() += 1; continue; }
+            }
+        };
+        let function = raw["function"].as_str().unwrap();
+        let pop = population(function);
+        let mut outputs = Vec::new();
+        for (id, (sum, step)) in [Strict,StoredPc64,ResidentPc64].into_iter()
+            .flat_map(|sum| [Strict,StoredPc64,ResidentPc64].map(|step|(sum,step))).enumerate() {
+            let p = Profile { id, algorithm: if pop {8} else {7}, linear_order:0,
+                square_order:0, models:[sum,step,step,sum,step] };
+            let mut a = Arithmetic::<F> {p:&p,trace:None,marker:std::marker::PhantomData};
+            let xs:Vec<_> = bits.iter().copied().map(Val::F64).collect();
+            let total = a.sum(&xs,0,0);
+            let terms:Vec<_> = xs.iter().map(|&x|a.mul(2,x,x)).collect();
+            let q = a.sum(&terms,0,3);
+            let n = Val::f64(bits.len() as f64);
+            let square = a.mul(2,total,total);
+            let left = if pop {a.mul(4,n,q)} else {q};
+            let right = if pop {square} else {a.div(1,square,n)};
+            let numerator = a.sub(4,left,right);
+            let relative_fallback=if mean_guard {
+                let correction=a.div(1,square,n);
+                if q.to_ext().0[..8].iter().all(|&b|b==0) {
+                    finite_less(Val::f64(0.0),correction)
+                } else {finite_less(Val::f64(0.99),a.div(4,correction,q))}
+            } else {finite_less(numerator,a.mul(4,left,Val::f64(0.01)))};
+            let fallback = if mean_guard {
+                let variance=evaluate::<F>(&p,&bits,if pop {"VAR.P"}else{"VAR.S"},false).0;
+                let mean=a.div(1,total,n);
+                let absolute_mean=if mean.to_ext().0[9]&0x80!=0 {neg(mean)}else{mean};
+                // The edge readings distinguish a stored multiply and <=
+                // from the resident comparison and variance/mean<=0.001.
+                // variance<=stored(abs(mean)/1000) remains indistinguishable.
+                relative_fallback || !finite_less(absolute_mean,a.mul(4,variance,Val::f64(1000.0)))
+            } else {
+                relative_fallback
+            };
+            let mut p = p;
+            if fallback {p.algorithm=0;}
+            let prediction = evaluate::<F>(&p,&bits,function,false).0.to_f64::<F>();
+            let actual = if prediction.is_finite() && !prediction.is_subnormal() {
+                format!("0x{:016x}", if prediction==0.0 {0} else {prediction.to_bits()})
+            } else {"error:Num".into()};
+            let old = raw["actual"] == raw["expected"];
+            let now = raw["expected"] == actual;
+            for (i, flag) in [true,now,old,now&&!old,old&&!now,fallback].into_iter().enumerate() {
+                counts[id][i] += usize::from(flag);
+            }
+            if actual != raw["actual"] {
+                changes.push(json!({"program":id,"trace_index":index,"id":raw["id"],
+                    "function":function,"args":raw["args"],"expected":raw["expected"],
+                    "baseline":raw["actual"],"prediction":actual,"fallback":fallback,
+                    "ratio":numerator.to_f64::<F>()/left.to_f64::<F>()}));
+            }
+            outputs.push(actual);
+        }
+        let center = Profile {id:0,algorithm:0,linear_order:0,square_order:0,
+            models:[StoredPc64;5]};
+        let centered = evaluate::<F>(&center,&bits,function,false).0.to_f64::<F>();
+        predictions.push(json!({"trace_index":index,"id":raw["id"],"predictions":outputs,
+            "centered_pc64":format!("0x{:016x}",centered.to_bits())}));
+    }
+    let destination = Path::new(output); fs::create_dir(destination).unwrap();
+    crate::json_write(destination.join("changes.json"),&changes);
+    crate::json_write(destination.join("predictions.json"),&predictions);
+    let summary=json!({"complete":true,"counts_all_exact_baseline_gains_losses_fallback":counts,
+        "excluded":excluded,"mean_guard":mean_guard,
+        "guard_program":if mean_guard {"r25-stored-ratio"}else{"early-relative-left"},
+        "programs":"Cartesian (sum,step) of strict, stored-PC64, resident-PC64; forward folds; sample (Q-S*S/n)/(n-1), population (n*Q-S*S)/(n*n). R25 guard: stored(variance*1000) <=abs(S/n) OR stored(stored(S*S/n)/Q) >.99. Earlier guard: numerator <0.01*left.",
+        "limits":"Mean guard follows independently observed power-of-two scale transitions; exact operation order needs the edge receipts. Earlier near1% interpretation is superseded if that structure is confirmed. No answer-dependent dispatch; resident models are counterfactuals. Original answers remain unchanged."});
+    crate::json_write(destination.join("summary.json"),&summary); println!("{summary}");
+}
+
 /// Every region applies the same declared precision/store policy at every loop iteration.
 pub fn evaluate<F: Fpu>(
     p: &Profile,

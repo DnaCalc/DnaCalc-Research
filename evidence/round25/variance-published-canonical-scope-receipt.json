@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "counts": {
+    "rows": 14679,
+    "before_matched": 10459,
+    "after_matched": 14679,
+    "gains": 4220,
+    "losses": 0,
+    "changed_outputs": 4220
+  },
+  "identity_answer_environment_source_sha256": "cd39280b94bb2176b41cf1d29b49aa85b4bd1e3b9f6af95ed9870029b8aa3811",
+  "inputs_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round25/verify_variance_scope.py": "c376450cbbe525b92cf54abc4f80057244db73f755905aefad63a981a12902de",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/target/xtask-corpus/release/xtask-harness": "7e2ec975431b0e7a6650dec59122f5e54c86ba4c127ea129a05984a46acef4ac",
+    "/home/ubuntu/codex-runs/round25/variance-bank-before.jsonl": "7d12ec45d42f55963d4d8ae875c5e8eee4aae25597923f1e561bcbaa8796e052"
+  },
+  "limits": "All twelve original function cohorts, including nonnumeric/error controls, through the existing canonical judge with source invocation context. Exact identity equality is required. No changing global denominator is used for gains or losses."
+}

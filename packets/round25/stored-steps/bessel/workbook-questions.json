@@ -1,0 +1,2486 @@
+{
+  "sheet": "dcj9k_r25_bessel",
+  "allow_refusals": true,
+  "questions": [
+    {
+      "id": "r25-bessel-00001",
+      "row": 1,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x401fffffffffffff"
+    },
+    {
+      "id": "r25-bessel-00002",
+      "row": 2,
+      "column": 4,
+      "formula": "BESSELJ(D1,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00003",
+      "row": 3,
+      "column": 4,
+      "formula": "BESSELJ(D1,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00004",
+      "row": 4,
+      "column": 4,
+      "formula": "BESSELY(D1,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00005",
+      "row": 5,
+      "column": 4,
+      "formula": "BESSELY(D1,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00006",
+      "row": 6,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000001"
+    },
+    {
+      "id": "r25-bessel-00007",
+      "row": 7,
+      "column": 4,
+      "formula": "BESSELJ(D6,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00008",
+      "row": 8,
+      "column": 4,
+      "formula": "BESSELJ(D6,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00009",
+      "row": 9,
+      "column": 4,
+      "formula": "BESSELY(D6,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00010",
+      "row": 10,
+      "column": 4,
+      "formula": "BESSELY(D6,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00011",
+      "row": 11,
+      "column": 4,
+      "formula": "((85649165*67108864+8163753)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40246b9c347c91a9"
+    },
+    {
+      "id": "r25-bessel-00012",
+      "row": 12,
+      "column": 4,
+      "formula": "BESSELJ(D11,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00013",
+      "row": 13,
+      "column": 4,
+      "formula": "BESSELJ(D11,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00014",
+      "row": 14,
+      "column": 4,
+      "formula": "BESSELY(D11,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00015",
+      "row": 15,
+      "column": 4,
+      "formula": "BESSELY(D11,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00016",
+      "row": 16,
+      "column": 4,
+      "formula": "((42824582*67108864+37636309)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x40246b9c347c91aa"
+    },
+    {
+      "id": "r25-bessel-00017",
+      "row": 17,
+      "column": 4,
+      "formula": "BESSELJ(D16,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00018",
+      "row": 18,
+      "column": 4,
+      "formula": "BESSELJ(D16,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00019",
+      "row": 19,
+      "column": 4,
+      "formula": "BESSELY(D16,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00020",
+      "row": 20,
+      "column": 4,
+      "formula": "BESSELY(D16,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00021",
+      "row": 21,
+      "column": 4,
+      "formula": "((85649165*67108864+8163755)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40246b9c347c91ab"
+    },
+    {
+      "id": "r25-bessel-00022",
+      "row": 22,
+      "column": 4,
+      "formula": "BESSELJ(D21,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00023",
+      "row": 23,
+      "column": 4,
+      "formula": "BESSELJ(D21,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00024",
+      "row": 24,
+      "column": 4,
+      "formula": "BESSELY(D21,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00025",
+      "row": 25,
+      "column": 4,
+      "formula": "BESSELY(D21,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00026",
+      "row": 26,
+      "column": 4,
+      "formula": "((24706489*67108864+62997971)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x40278fdb9f05174c"
+    },
+    {
+      "id": "r25-bessel-00027",
+      "row": 27,
+      "column": 4,
+      "formula": "BESSELJ(D26,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00028",
+      "row": 28,
+      "column": 4,
+      "formula": "BESSELJ(D26,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00029",
+      "row": 29,
+      "column": 4,
+      "formula": "BESSELY(D26,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00030",
+      "row": 30,
+      "column": 4,
+      "formula": "BESSELY(D26,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00031",
+      "row": 31,
+      "column": 4,
+      "formula": "((98825959*67108864+50665293)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40278fdb9f05174d"
+    },
+    {
+      "id": "r25-bessel-00032",
+      "row": 32,
+      "column": 4,
+      "formula": "BESSELJ(D31,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00033",
+      "row": 33,
+      "column": 4,
+      "formula": "BESSELJ(D31,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00034",
+      "row": 34,
+      "column": 4,
+      "formula": "BESSELY(D31,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00035",
+      "row": 35,
+      "column": 4,
+      "formula": "BESSELY(D31,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00036",
+      "row": 36,
+      "column": 4,
+      "formula": "((49412979*67108864+58887079)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x40278fdb9f05174e"
+    },
+    {
+      "id": "r25-bessel-00037",
+      "row": 37,
+      "column": 4,
+      "formula": "BESSELJ(D36,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00038",
+      "row": 38,
+      "column": 4,
+      "formula": "BESSELJ(D36,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00039",
+      "row": 39,
+      "column": 4,
+      "formula": "BESSELY(D36,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00040",
+      "row": 40,
+      "column": 4,
+      "formula": "BESSELY(D36,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00041",
+      "row": 41,
+      "column": 4,
+      "formula": "((98825959*67108864+50780755)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40278fdb9f06da53"
+    },
+    {
+      "id": "r25-bessel-00042",
+      "row": 42,
+      "column": 4,
+      "formula": "BESSELJ(D41,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00043",
+      "row": 43,
+      "column": 4,
+      "formula": "BESSELJ(D41,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00044",
+      "row": 44,
+      "column": 4,
+      "formula": "BESSELY(D41,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00045",
+      "row": 45,
+      "column": 4,
+      "formula": "BESSELY(D41,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00046",
+      "row": 46,
+      "column": 4,
+      "formula": "((24706489*67108864+63026837)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x40278fdb9f06da54"
+    },
+    {
+      "id": "r25-bessel-00047",
+      "row": 47,
+      "column": 4,
+      "formula": "BESSELJ(D46,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00048",
+      "row": 48,
+      "column": 4,
+      "formula": "BESSELJ(D46,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00049",
+      "row": 49,
+      "column": 4,
+      "formula": "BESSELY(D46,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00050",
+      "row": 50,
+      "column": 4,
+      "formula": "BESSELY(D46,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00051",
+      "row": 51,
+      "column": 4,
+      "formula": "((98825959*67108864+50780757)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40278fdb9f06da55"
+    },
+    {
+      "id": "r25-bessel-00052",
+      "row": 52,
+      "column": 4,
+      "formula": "BESSELJ(D51,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00053",
+      "row": 53,
+      "column": 4,
+      "formula": "BESSELJ(D51,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00054",
+      "row": 54,
+      "column": 4,
+      "formula": "BESSELY(D51,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00055",
+      "row": 55,
+      "column": 4,
+      "formula": "BESSELY(D51,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00056",
+      "row": 56,
+      "column": 4,
+      "formula": "((112002754*67108864+26057967)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x402ab41b098d9cef"
+    },
+    {
+      "id": "r25-bessel-00057",
+      "row": 57,
+      "column": 4,
+      "formula": "BESSELJ(D56,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00058",
+      "row": 58,
+      "column": 4,
+      "formula": "BESSELJ(D56,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00059",
+      "row": 59,
+      "column": 4,
+      "formula": "BESSELY(D56,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00060",
+      "row": 60,
+      "column": 4,
+      "formula": "BESSELY(D56,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00061",
+      "row": 61,
+      "column": 4,
+      "formula": "((7000172*67108864+10017231)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x402ab41b098d9cf0"
+    },
+    {
+      "id": "r25-bessel-00062",
+      "row": 62,
+      "column": 4,
+      "formula": "BESSELJ(D61,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00063",
+      "row": 63,
+      "column": 4,
+      "formula": "BESSELJ(D61,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00064",
+      "row": 64,
+      "column": 4,
+      "formula": "BESSELY(D61,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00065",
+      "row": 65,
+      "column": 4,
+      "formula": "BESSELY(D61,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00066",
+      "row": 66,
+      "column": 4,
+      "formula": "((112002754*67108864+26057969)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x402ab41b098d9cf1"
+    },
+    {
+      "id": "r25-bessel-00067",
+      "row": 67,
+      "column": 4,
+      "formula": "BESSELJ(D66,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00068",
+      "row": 68,
+      "column": 4,
+      "formula": "BESSELJ(D66,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00069",
+      "row": 69,
+      "column": 4,
+      "formula": "BESSELY(D66,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00070",
+      "row": 70,
+      "column": 4,
+      "formula": "BESSELY(D66,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00071",
+      "row": 71,
+      "column": 4,
+      "formula": "((56001377*67108864+13086715)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x402ab41b098f5ff6"
+    },
+    {
+      "id": "r25-bessel-00072",
+      "row": 72,
+      "column": 4,
+      "formula": "BESSELJ(D71,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00073",
+      "row": 73,
+      "column": 4,
+      "formula": "BESSELJ(D71,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00074",
+      "row": 74,
+      "column": 4,
+      "formula": "BESSELY(D71,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00075",
+      "row": 75,
+      "column": 4,
+      "formula": "BESSELY(D71,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00076",
+      "row": 76,
+      "column": 4,
+      "formula": "((112002754*67108864+26173431)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x402ab41b098f5ff7"
+    },
+    {
+      "id": "r25-bessel-00077",
+      "row": 77,
+      "column": 4,
+      "formula": "BESSELJ(D76,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00078",
+      "row": 78,
+      "column": 4,
+      "formula": "BESSELJ(D76,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00079",
+      "row": 79,
+      "column": 4,
+      "formula": "BESSELY(D76,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00080",
+      "row": 80,
+      "column": 4,
+      "formula": "BESSELY(D76,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00081",
+      "row": 81,
+      "column": 4,
+      "formula": "((14000344*67108864+20048895)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x402ab41b098f5ff8"
+    },
+    {
+      "id": "r25-bessel-00082",
+      "row": 82,
+      "column": 4,
+      "formula": "BESSELJ(D81,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00083",
+      "row": 83,
+      "column": 4,
+      "formula": "BESSELJ(D81,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00084",
+      "row": 84,
+      "column": 4,
+      "formula": "BESSELY(D81,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00085",
+      "row": 85,
+      "column": 4,
+      "formula": "BESSELY(D81,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00086",
+      "row": 86,
+      "column": 4,
+      "formula": "((62589774*67108864+34279753)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x402dd85a74162292"
+    },
+    {
+      "id": "r25-bessel-00087",
+      "row": 87,
+      "column": 4,
+      "formula": "BESSELJ(D86,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00088",
+      "row": 88,
+      "column": 4,
+      "formula": "BESSELJ(D86,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00089",
+      "row": 89,
+      "column": 4,
+      "formula": "BESSELY(D86,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00090",
+      "row": 90,
+      "column": 4,
+      "formula": "BESSELY(D86,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00091",
+      "row": 91,
+      "column": 4,
+      "formula": "((125179549*67108864+1450643)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x402dd85a74162293"
+    },
+    {
+      "id": "r25-bessel-00092",
+      "row": 92,
+      "column": 4,
+      "formula": "BESSELJ(D91,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00093",
+      "row": 93,
+      "column": 4,
+      "formula": "BESSELJ(D91,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00094",
+      "row": 94,
+      "column": 4,
+      "formula": "BESSELY(D91,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00095",
+      "row": 95,
+      "column": 4,
+      "formula": "BESSELY(D91,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00096",
+      "row": 96,
+      "column": 4,
+      "formula": "((31294887*67108864+17139877)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x402dd85a74162294"
+    },
+    {
+      "id": "r25-bessel-00097",
+      "row": 97,
+      "column": 4,
+      "formula": "BESSELJ(D96,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00098",
+      "row": 98,
+      "column": 4,
+      "formula": "BESSELJ(D96,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00099",
+      "row": 99,
+      "column": 4,
+      "formula": "BESSELY(D96,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00100",
+      "row": 100,
+      "column": 4,
+      "formula": "BESSELY(D96,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00101",
+      "row": 101,
+      "column": 4,
+      "formula": "((125179549*67108864+1566105)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x402dd85a7417e599"
+    },
+    {
+      "id": "r25-bessel-00102",
+      "row": 102,
+      "column": 4,
+      "formula": "BESSELJ(D101,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00103",
+      "row": 103,
+      "column": 4,
+      "formula": "BESSELJ(D101,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00104",
+      "row": 104,
+      "column": 4,
+      "formula": "BESSELY(D101,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00105",
+      "row": 105,
+      "column": 4,
+      "formula": "BESSELY(D101,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00106",
+      "row": 106,
+      "column": 4,
+      "formula": "((62589774*67108864+34337485)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x402dd85a7417e59a"
+    },
+    {
+      "id": "r25-bessel-00107",
+      "row": 107,
+      "column": 4,
+      "formula": "BESSELJ(D106,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00108",
+      "row": 108,
+      "column": 4,
+      "formula": "BESSELJ(D106,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00109",
+      "row": 109,
+      "column": 4,
+      "formula": "BESSELY(D106,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00110",
+      "row": 110,
+      "column": 4,
+      "formula": "BESSELY(D106,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00111",
+      "row": 111,
+      "column": 4,
+      "formula": "((125179549*67108864+1566107)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x402dd85a7417e59b"
+    },
+    {
+      "id": "r25-bessel-00112",
+      "row": 112,
+      "column": 4,
+      "formula": "BESSELJ(D111,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00113",
+      "row": 113,
+      "column": 4,
+      "formula": "BESSELJ(D111,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00114",
+      "row": 114,
+      "column": 4,
+      "formula": "BESSELY(D111,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00115",
+      "row": 115,
+      "column": 4,
+      "formula": "BESSELY(D111,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00116",
+      "row": 116,
+      "column": 4,
+      "formula": "((69178171*67108864+55588253)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x40307e4cef50359d"
+    },
+    {
+      "id": "r25-bessel-00117",
+      "row": 117,
+      "column": 4,
+      "formula": "BESSELJ(D116,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00118",
+      "row": 118,
+      "column": 4,
+      "formula": "BESSELJ(D116,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00119",
+      "row": 119,
+      "column": 4,
+      "formula": "BESSELY(D116,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00120",
+      "row": 120,
+      "column": 4,
+      "formula": "BESSELY(D116,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00121",
+      "row": 121,
+      "column": 4,
+      "formula": "((34589085*67108864+61348559)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x40307e4cef50359e"
+    },
+    {
+      "id": "r25-bessel-00122",
+      "row": 122,
+      "column": 4,
+      "formula": "BESSELJ(D121,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00123",
+      "row": 123,
+      "column": 4,
+      "formula": "BESSELJ(D121,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00124",
+      "row": 124,
+      "column": 4,
+      "formula": "BESSELY(D121,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00125",
+      "row": 125,
+      "column": 4,
+      "formula": "BESSELY(D121,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00126",
+      "row": 126,
+      "column": 4,
+      "formula": "((69178171*67108864+55588255)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x40307e4cef50359f"
+    },
+    {
+      "id": "r25-bessel-00127",
+      "row": 127,
+      "column": 4,
+      "formula": "BESSELJ(D126,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00128",
+      "row": 128,
+      "column": 4,
+      "formula": "BESSELJ(D126,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00129",
+      "row": 129,
+      "column": 4,
+      "formula": "BESSELY(D126,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00130",
+      "row": 130,
+      "column": 4,
+      "formula": "BESSELY(D126,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00131",
+      "row": 131,
+      "column": 4,
+      "formula": "((2985367*67108864+35848955)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x4036c6cbc4605f60"
+    },
+    {
+      "id": "r25-bessel-00132",
+      "row": 132,
+      "column": 4,
+      "formula": "BESSELJ(D131,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00133",
+      "row": 133,
+      "column": 4,
+      "formula": "BESSELJ(D131,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00134",
+      "row": 134,
+      "column": 4,
+      "formula": "BESSELY(D131,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00135",
+      "row": 135,
+      "column": 4,
+      "formula": "BESSELY(D131,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00136",
+      "row": 136,
+      "column": 4,
+      "formula": "((95531761*67108864+6315873)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x4036c6cbc4605f61"
+    },
+    {
+      "id": "r25-bessel-00137",
+      "row": 137,
+      "column": 4,
+      "formula": "BESSELJ(D136,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00138",
+      "row": 138,
+      "column": 4,
+      "formula": "BESSELJ(D136,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00139",
+      "row": 139,
+      "column": 4,
+      "formula": "BESSELY(D136,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00140",
+      "row": 140,
+      "column": 4,
+      "formula": "BESSELY(D136,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00141",
+      "row": 141,
+      "column": 4,
+      "formula": "((47765880*67108864+36712369)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x4036c6cbc4605f62"
+    },
+    {
+      "id": "r25-bessel-00142",
+      "row": 142,
+      "column": 4,
+      "formula": "BESSELJ(D141,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00143",
+      "row": 143,
+      "column": 4,
+      "formula": "BESSELJ(D141,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00144",
+      "row": 144,
+      "column": 4,
+      "formula": "BESSELY(D141,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00145",
+      "row": 145,
+      "column": 4,
+      "formula": "BESSELY(D141,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00146",
+      "row": 146,
+      "column": 4,
+      "formula": "((102120158*67108864+27566641)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403858eb79a4a231"
+    },
+    {
+      "id": "r25-bessel-00147",
+      "row": 147,
+      "column": 4,
+      "formula": "BESSELJ(D146,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00148",
+      "row": 148,
+      "column": 4,
+      "formula": "BESSELJ(D146,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00149",
+      "row": 149,
+      "column": 4,
+      "formula": "BESSELY(D146,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00150",
+      "row": 150,
+      "column": 4,
+      "formula": "BESSELY(D146,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00151",
+      "row": 151,
+      "column": 4,
+      "formula": "((51060079*67108864+13783321)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x403858eb79a4a232"
+    },
+    {
+      "id": "r25-bessel-00152",
+      "row": 152,
+      "column": 4,
+      "formula": "BESSELJ(D151,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00153",
+      "row": 153,
+      "column": 4,
+      "formula": "BESSELJ(D151,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00154",
+      "row": 154,
+      "column": 4,
+      "formula": "BESSELY(D151,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00155",
+      "row": 155,
+      "column": 4,
+      "formula": "BESSELY(D151,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00156",
+      "row": 156,
+      "column": 4,
+      "formula": "((102120158*67108864+27566643)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403858eb79a4a233"
+    },
+    {
+      "id": "r25-bessel-00157",
+      "row": 157,
+      "column": 4,
+      "formula": "BESSELJ(D156,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00158",
+      "row": 158,
+      "column": 4,
+      "formula": "BESSELJ(D156,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00159",
+      "row": 159,
+      "column": 4,
+      "formula": "BESSELY(D156,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00160",
+      "row": 160,
+      "column": 4,
+      "formula": "BESSELY(D156,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00161",
+      "row": 161,
+      "column": 4,
+      "formula": "((102120158*67108864+27624373)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403858eb79a583b5"
+    },
+    {
+      "id": "r25-bessel-00162",
+      "row": 162,
+      "column": 4,
+      "formula": "BESSELJ(D161,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00163",
+      "row": 163,
+      "column": 4,
+      "formula": "BESSELJ(D161,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00164",
+      "row": 164,
+      "column": 4,
+      "formula": "BESSELY(D161,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00165",
+      "row": 165,
+      "column": 4,
+      "formula": "BESSELY(D161,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00166",
+      "row": 166,
+      "column": 4,
+      "formula": "((51060079*67108864+13812187)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x403858eb79a583b6"
+    },
+    {
+      "id": "r25-bessel-00167",
+      "row": 167,
+      "column": 4,
+      "formula": "BESSELJ(D166,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00168",
+      "row": 168,
+      "column": 4,
+      "formula": "BESSELJ(D166,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00169",
+      "row": 169,
+      "column": 4,
+      "formula": "BESSELY(D166,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00170",
+      "row": 170,
+      "column": 4,
+      "formula": "BESSELY(D166,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00171",
+      "row": 171,
+      "column": 4,
+      "formula": "((102120158*67108864+27624375)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403858eb79a583b7"
+    },
+    {
+      "id": "r25-bessel-00172",
+      "row": 172,
+      "column": 4,
+      "formula": "BESSELJ(D171,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00173",
+      "row": 173,
+      "column": 4,
+      "formula": "BESSELJ(D171,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00174",
+      "row": 174,
+      "column": 4,
+      "formula": "BESSELY(D171,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00175",
+      "row": 175,
+      "column": 4,
+      "formula": "BESSELY(D171,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00176",
+      "row": 176,
+      "column": 4,
+      "formula": "((54354277*67108864+57992003)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x4039eb0b2ee9c686"
+    },
+    {
+      "id": "r25-bessel-00177",
+      "row": 177,
+      "column": 4,
+      "formula": "BESSELJ(D176,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00178",
+      "row": 178,
+      "column": 4,
+      "formula": "BESSELJ(D176,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00179",
+      "row": 179,
+      "column": 4,
+      "formula": "BESSELY(D176,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00180",
+      "row": 180,
+      "column": 4,
+      "formula": "BESSELY(D176,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00181",
+      "row": 181,
+      "column": 4,
+      "formula": "((108708555*67108864+48875143)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x4039eb0b2ee9c687"
+    },
+    {
+      "id": "r25-bessel-00182",
+      "row": 182,
+      "column": 4,
+      "formula": "BESSELJ(D181,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00183",
+      "row": 183,
+      "column": 4,
+      "formula": "BESSELJ(D181,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00184",
+      "row": 184,
+      "column": 4,
+      "formula": "BESSELY(D181,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00185",
+      "row": 185,
+      "column": 4,
+      "formula": "BESSELY(D181,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00186",
+      "row": 186,
+      "column": 4,
+      "formula": "((13588569*67108864+31275217)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x4039eb0b2ee9c688"
+    },
+    {
+      "id": "r25-bessel-00187",
+      "row": 187,
+      "column": 4,
+      "formula": "BESSELJ(D186,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00188",
+      "row": 188,
+      "column": 4,
+      "formula": "BESSELJ(D186,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00189",
+      "row": 189,
+      "column": 4,
+      "formula": "BESSELY(D186,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00190",
+      "row": 190,
+      "column": 4,
+      "formula": "BESSELY(D186,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00191",
+      "row": 191,
+      "column": 4,
+      "formula": "((107061456*67108864+26642701)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404986834196890d"
+    },
+    {
+      "id": "r25-bessel-00192",
+      "row": 192,
+      "column": 4,
+      "formula": "BESSELJ(D191,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00193",
+      "row": 193,
+      "column": 4,
+      "formula": "BESSELJ(D191,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00194",
+      "row": 194,
+      "column": 4,
+      "formula": "BESSELY(D191,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00195",
+      "row": 195,
+      "column": 4,
+      "formula": "BESSELY(D191,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00196",
+      "row": 196,
+      "column": 4,
+      "formula": "((53530728*67108864+13321351)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x404986834196890e"
+    },
+    {
+      "id": "r25-bessel-00197",
+      "row": 197,
+      "column": 4,
+      "formula": "BESSELJ(D196,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00198",
+      "row": 198,
+      "column": 4,
+      "formula": "BESSELJ(D196,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00199",
+      "row": 199,
+      "column": 4,
+      "formula": "BESSELY(D196,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00200",
+      "row": 200,
+      "column": 4,
+      "formula": "BESSELY(D196,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00201",
+      "row": 201,
+      "column": 4,
+      "formula": "((107061456*67108864+26642703)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404986834196890f"
+    },
+    {
+      "id": "r25-bessel-00202",
+      "row": 202,
+      "column": 4,
+      "formula": "BESSELJ(D201,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00203",
+      "row": 203,
+      "column": 4,
+      "formula": "BESSELJ(D201,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00204",
+      "row": 204,
+      "column": 4,
+      "formula": "BESSELY(D201,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00205",
+      "row": 205,
+      "column": 4,
+      "formula": "BESSELY(D201,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00206",
+      "row": 206,
+      "column": 4,
+      "formula": "((55177827*67108864+35411259)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x404a4f931c38aa76"
+    },
+    {
+      "id": "r25-bessel-00207",
+      "row": 207,
+      "column": 4,
+      "formula": "BESSELJ(D206,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00208",
+      "row": 208,
+      "column": 4,
+      "formula": "BESSELJ(D206,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00209",
+      "row": 209,
+      "column": 4,
+      "formula": "BESSELY(D206,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00210",
+      "row": 210,
+      "column": 4,
+      "formula": "BESSELY(D206,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00211",
+      "row": 211,
+      "column": 4,
+      "formula": "((110355655*67108864+3713655)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404a4f931c38aa77"
+    },
+    {
+      "id": "r25-bessel-00212",
+      "row": 212,
+      "column": 4,
+      "formula": "BESSELJ(D211,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00213",
+      "row": 213,
+      "column": 4,
+      "formula": "BESSELJ(D211,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00214",
+      "row": 214,
+      "column": 4,
+      "formula": "BESSELY(D211,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00215",
+      "row": 215,
+      "column": 4,
+      "formula": "BESSELY(D211,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00216",
+      "row": 216,
+      "column": 4,
+      "formula": "((13794456*67108864+59184463)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x404a4f931c38aa78"
+    },
+    {
+      "id": "r25-bessel-00217",
+      "row": 217,
+      "column": 4,
+      "formula": "BESSELJ(D216,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00218",
+      "row": 218,
+      "column": 4,
+      "formula": "BESSELJ(D216,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00219",
+      "row": 219,
+      "column": 4,
+      "formula": "BESSELY(D216,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00220",
+      "row": 220,
+      "column": 4,
+      "formula": "BESSELY(D216,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00221",
+      "row": 221,
+      "column": 4,
+      "formula": "((110355655*67108864+3742519)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404a4f931c391b37"
+    },
+    {
+      "id": "r25-bessel-00222",
+      "row": 222,
+      "column": 4,
+      "formula": "BESSELJ(D221,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00223",
+      "row": 223,
+      "column": 4,
+      "formula": "BESSELJ(D221,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00224",
+      "row": 224,
+      "column": 4,
+      "formula": "BESSELY(D221,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00225",
+      "row": 225,
+      "column": 4,
+      "formula": "BESSELY(D221,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00226",
+      "row": 226,
+      "column": 4,
+      "formula": "((13794456*67108864+59188071)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x404a4f931c391b38"
+    },
+    {
+      "id": "r25-bessel-00227",
+      "row": 227,
+      "column": 4,
+      "formula": "BESSELJ(D226,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00228",
+      "row": 228,
+      "column": 4,
+      "formula": "BESSELJ(D226,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00229",
+      "row": 229,
+      "column": 4,
+      "formula": "BESSELY(D226,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00230",
+      "row": 230,
+      "column": 4,
+      "formula": "BESSELY(D226,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00231",
+      "row": 231,
+      "column": 4,
+      "formula": "((110355655*67108864+3742521)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404a4f931c391b39"
+    },
+    {
+      "id": "r25-bessel-00232",
+      "row": 232,
+      "column": 4,
+      "formula": "BESSELJ(D231,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00233",
+      "row": 233,
+      "column": 4,
+      "formula": "BESSELJ(D231,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00234",
+      "row": 234,
+      "column": 4,
+      "formula": "BESSELY(D231,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00235",
+      "row": 235,
+      "column": 4,
+      "formula": "BESSELY(D231,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00236",
+      "row": 236,
+      "column": 4,
+      "formula": "((113649853*67108864+47922337)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404b18a2f6db3ca1"
+    },
+    {
+      "id": "r25-bessel-00237",
+      "row": 237,
+      "column": 4,
+      "formula": "BESSELJ(D236,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00238",
+      "row": 238,
+      "column": 4,
+      "formula": "BESSELJ(D236,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00239",
+      "row": 239,
+      "column": 4,
+      "formula": "BESSELY(D236,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00240",
+      "row": 240,
+      "column": 4,
+      "formula": "BESSELY(D236,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00241",
+      "row": 241,
+      "column": 4,
+      "formula": "((56824926*67108864+57515601)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x404b18a2f6db3ca2"
+    },
+    {
+      "id": "r25-bessel-00242",
+      "row": 242,
+      "column": 4,
+      "formula": "BESSELJ(D241,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00243",
+      "row": 243,
+      "column": 4,
+      "formula": "BESSELJ(D241,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00244",
+      "row": 244,
+      "column": 4,
+      "formula": "BESSELY(D241,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00245",
+      "row": 245,
+      "column": 4,
+      "formula": "BESSELY(D241,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00246",
+      "row": 246,
+      "column": 4,
+      "formula": "((113649853*67108864+47922339)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404b18a2f6db3ca3"
+    },
+    {
+      "id": "r25-bessel-00247",
+      "row": 247,
+      "column": 4,
+      "formula": "BESSELJ(D246,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00248",
+      "row": 248,
+      "column": 4,
+      "formula": "BESSELJ(D246,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00249",
+      "row": 249,
+      "column": 4,
+      "formula": "BESSELY(D246,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00250",
+      "row": 250,
+      "column": 4,
+      "formula": "BESSELY(D246,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00251",
+      "row": 251,
+      "column": 4,
+      "formula": "((26456532*67108864+65417477)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x40693b1d4f98c414"
+    },
+    {
+      "id": "r25-bessel-00252",
+      "row": 252,
+      "column": 4,
+      "formula": "BESSELJ(D251,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00253",
+      "row": 253,
+      "column": 4,
+      "formula": "BESSELJ(D251,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00254",
+      "row": 254,
+      "column": 4,
+      "formula": "BESSELY(D251,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00255",
+      "row": 255,
+      "column": 4,
+      "formula": "BESSELY(D251,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00256",
+      "row": 256,
+      "column": 4,
+      "formula": "((105826131*67108864+60343317)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40693b1d4f98c415"
+    },
+    {
+      "id": "r25-bessel-00257",
+      "row": 257,
+      "column": 4,
+      "formula": "BESSELJ(D256,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00258",
+      "row": 258,
+      "column": 4,
+      "formula": "BESSELJ(D256,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00259",
+      "row": 259,
+      "column": 4,
+      "formula": "BESSELY(D256,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00260",
+      "row": 260,
+      "column": 4,
+      "formula": "BESSELY(D256,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00261",
+      "row": 261,
+      "column": 4,
+      "formula": "((52913065*67108864+63726091)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x40693b1d4f98c416"
+    },
+    {
+      "id": "r25-bessel-00262",
+      "row": 262,
+      "column": 4,
+      "formula": "BESSELJ(D261,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00263",
+      "row": 263,
+      "column": 4,
+      "formula": "BESSELJ(D261,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00264",
+      "row": 264,
+      "column": 4,
+      "formula": "BESSELY(D261,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00265",
+      "row": 265,
+      "column": 4,
+      "formula": "BESSELY(D261,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00266",
+      "row": 266,
+      "column": 4,
+      "formula": "((53324840*67108864+52471351)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x40696d6146414c6e"
+    },
+    {
+      "id": "r25-bessel-00267",
+      "row": 267,
+      "column": 4,
+      "formula": "BESSELJ(D266,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00268",
+      "row": 268,
+      "column": 4,
+      "formula": "BESSELJ(D266,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00269",
+      "row": 269,
+      "column": 4,
+      "formula": "BESSELY(D266,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00270",
+      "row": 270,
+      "column": 4,
+      "formula": "BESSELY(D266,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00271",
+      "row": 271,
+      "column": 4,
+      "formula": "((106649681*67108864+37833839)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40696d6146414c6f"
+    },
+    {
+      "id": "r25-bessel-00272",
+      "row": 272,
+      "column": 4,
+      "formula": "BESSELJ(D271,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00273",
+      "row": 273,
+      "column": 4,
+      "formula": "BESSELJ(D271,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00274",
+      "row": 274,
+      "column": 4,
+      "formula": "BESSELY(D271,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00275",
+      "row": 275,
+      "column": 4,
+      "formula": "BESSELY(D271,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00276",
+      "row": 276,
+      "column": 4,
+      "formula": "((6665605*67108864+6558919)/2^41)",
+      "role": "operand_echo",
+      "intended_bits": "0x40696d6146414c70"
+    },
+    {
+      "id": "r25-bessel-00277",
+      "row": 277,
+      "column": 4,
+      "formula": "BESSELJ(D276,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00278",
+      "row": 278,
+      "column": 4,
+      "formula": "BESSELJ(D276,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00279",
+      "row": 279,
+      "column": 4,
+      "formula": "BESSELY(D276,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00280",
+      "row": 280,
+      "column": 4,
+      "formula": "BESSELY(D276,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00281",
+      "row": 281,
+      "column": 4,
+      "formula": "((106649681*67108864+37841055)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40696d614641689f"
+    },
+    {
+      "id": "r25-bessel-00282",
+      "row": 282,
+      "column": 4,
+      "formula": "BESSELJ(D281,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00283",
+      "row": 283,
+      "column": 4,
+      "formula": "BESSELJ(D281,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00284",
+      "row": 284,
+      "column": 4,
+      "formula": "BESSELY(D281,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00285",
+      "row": 285,
+      "column": 4,
+      "formula": "BESSELY(D281,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00286",
+      "row": 286,
+      "column": 4,
+      "formula": "((3332802*67108864+36834117)/2^40)",
+      "role": "operand_echo",
+      "intended_bits": "0x40696d61464168a0"
+    },
+    {
+      "id": "r25-bessel-00287",
+      "row": 287,
+      "column": 4,
+      "formula": "BESSELJ(D286,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00288",
+      "row": 288,
+      "column": 4,
+      "formula": "BESSELJ(D286,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00289",
+      "row": 289,
+      "column": 4,
+      "formula": "BESSELY(D286,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00290",
+      "row": 290,
+      "column": 4,
+      "formula": "BESSELY(D286,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00291",
+      "row": 291,
+      "column": 4,
+      "formula": "((106649681*67108864+37841057)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40696d61464168a1"
+    },
+    {
+      "id": "r25-bessel-00292",
+      "row": 292,
+      "column": 4,
+      "formula": "BESSELJ(D291,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00293",
+      "row": 293,
+      "column": 4,
+      "formula": "BESSELJ(D291,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00294",
+      "row": 294,
+      "column": 4,
+      "formula": "BESSELY(D291,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00295",
+      "row": 295,
+      "column": 4,
+      "formula": "BESSELY(D291,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00296",
+      "row": 296,
+      "column": 4,
+      "formula": "((107473231*67108864+15331577)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40699fa53ce9f0f9"
+    },
+    {
+      "id": "r25-bessel-00297",
+      "row": 297,
+      "column": 4,
+      "formula": "BESSELJ(D296,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00298",
+      "row": 298,
+      "column": 4,
+      "formula": "BESSELJ(D296,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00299",
+      "row": 299,
+      "column": 4,
+      "formula": "BESSELY(D296,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00300",
+      "row": 300,
+      "column": 4,
+      "formula": "BESSELY(D296,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00301",
+      "row": 301,
+      "column": 4,
+      "formula": "((53736615*67108864+41220221)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x40699fa53ce9f0fa"
+    },
+    {
+      "id": "r25-bessel-00302",
+      "row": 302,
+      "column": 4,
+      "formula": "BESSELJ(D301,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00303",
+      "row": 303,
+      "column": 4,
+      "formula": "BESSELJ(D301,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00304",
+      "row": 304,
+      "column": 4,
+      "formula": "BESSELY(D301,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00305",
+      "row": 305,
+      "column": 4,
+      "formula": "BESSELY(D301,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00306",
+      "row": 306,
+      "column": 4,
+      "formula": "((107473231*67108864+15331579)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40699fa53ce9f0fb"
+    },
+    {
+      "id": "r25-bessel-00307",
+      "row": 307,
+      "column": 4,
+      "formula": "BESSELJ(D306,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00308",
+      "row": 308,
+      "column": 4,
+      "formula": "BESSELJ(D306,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00309",
+      "row": 309,
+      "column": 4,
+      "formula": "BESSELY(D306,0)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    },
+    {
+      "id": "r25-bessel-00310",
+      "row": 310,
+      "column": 4,
+      "formula": "BESSELY(D306,1)",
+      "role": "question",
+      "hypothesis": "Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds."
+    }
+  ]
+}

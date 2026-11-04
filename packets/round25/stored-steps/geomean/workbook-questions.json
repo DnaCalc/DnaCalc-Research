@@ -1,0 +1,3171 @@
+{
+  "sheet": "dcj9k_r25_geomean",
+  "allow_refusals": true,
+  "questions": [
+    {
+      "id": "r25-geomean-00001",
+      "row": 1,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f5fffffffffffff",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00002",
+      "row": 2,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00003",
+      "row": 3,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00004",
+      "row": 4,
+      "column": 4,
+      "formula": "GEOMEAN(D1:D3)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00005",
+      "row": 5,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D1:D3,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00006",
+      "row": 6,
+      "column": 4,
+      "formula": "((0*67108864+1)/2^9)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f60000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00007",
+      "row": 7,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00008",
+      "row": 8,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00009",
+      "row": 9,
+      "column": 4,
+      "formula": "GEOMEAN(D6:D8)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00010",
+      "row": 10,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D6:D8,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00011",
+      "row": 11,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f60000000000001",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00012",
+      "row": 12,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00013",
+      "row": 13,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00014",
+      "row": 14,
+      "column": 4,
+      "formula": "GEOMEAN(D11:D13)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00015",
+      "row": 15,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D11:D13,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00016",
+      "row": 16,
+      "column": 4,
+      "formula": "((33554432*67108864+1)/2^60)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f60000000000002",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00017",
+      "row": 17,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00018",
+      "row": 18,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00019",
+      "row": 19,
+      "column": 4,
+      "formula": "GEOMEAN(D16:D18)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00020",
+      "row": 20,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D16:D18,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00021",
+      "row": 21,
+      "column": 4,
+      "formula": "((67108864*67108864+3)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f60000000000003",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00022",
+      "row": 22,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00023",
+      "row": 23,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00024",
+      "row": 24,
+      "column": 4,
+      "formula": "GEOMEAN(D21:D23)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00025",
+      "row": 25,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D21:D23,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00026",
+      "row": 26,
+      "column": 4,
+      "formula": "((16777216*67108864+1)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f60000000000004",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00027",
+      "row": 27,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00028",
+      "row": 28,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00029",
+      "row": 29,
+      "column": 4,
+      "formula": "GEOMEAN(D26:D28)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00030",
+      "row": 30,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D26:D28,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00031",
+      "row": 31,
+      "column": 4,
+      "formula": "((67108864*67108864+5)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f60000000000005",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00032",
+      "row": 32,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00033",
+      "row": 33,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "374144419156711147060143317175368453031918731001856"
+      ]
+    },
+    {
+      "id": "r25-geomean-00034",
+      "row": 34,
+      "column": 4,
+      "formula": "GEOMEAN(D31:D33)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00035",
+      "row": 35,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D31:D33,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00036",
+      "row": 36,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^56)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fbfffffffffffff",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00037",
+      "row": 37,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00038",
+      "row": 38,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00039",
+      "row": 39,
+      "column": 4,
+      "formula": "GEOMEAN(D36:D38)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00040",
+      "row": 40,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D36:D38,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00041",
+      "row": 41,
+      "column": 4,
+      "formula": "((0*67108864+1)/2^3)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fc0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00042",
+      "row": 42,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00043",
+      "row": 43,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00044",
+      "row": 44,
+      "column": 4,
+      "formula": "GEOMEAN(D41:D43)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00045",
+      "row": 45,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D41:D43,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00046",
+      "row": 46,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^55)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fc0000000000001",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00047",
+      "row": 47,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00048",
+      "row": 48,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00049",
+      "row": 49,
+      "column": 4,
+      "formula": "GEOMEAN(D46:D48)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00050",
+      "row": 50,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D46:D48,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00051",
+      "row": 51,
+      "column": 4,
+      "formula": "((33554432*67108864+1)/2^54)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fc0000000000002",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00052",
+      "row": 52,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00053",
+      "row": 53,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00054",
+      "row": 54,
+      "column": 4,
+      "formula": "GEOMEAN(D51:D53)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00055",
+      "row": 55,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D51:D53,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00056",
+      "row": 56,
+      "column": 4,
+      "formula": "((67108864*67108864+3)/2^55)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fc0000000000003",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00057",
+      "row": 57,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00058",
+      "row": 58,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00059",
+      "row": 59,
+      "column": 4,
+      "formula": "GEOMEAN(D56:D58)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00060",
+      "row": 60,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D56:D58,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00061",
+      "row": 61,
+      "column": 4,
+      "formula": "((16777216*67108864+1)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fc0000000000004",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00062",
+      "row": 62,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00063",
+      "row": 63,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00064",
+      "row": 64,
+      "column": 4,
+      "formula": "GEOMEAN(D61:D63)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00065",
+      "row": 65,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D61:D63,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00066",
+      "row": 66,
+      "column": 4,
+      "formula": "((67108864*67108864+5)/2^55)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fc0000000000005",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00067",
+      "row": 67,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00068",
+      "row": 68,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "5846006549323611672814739330865132078623730171904"
+      ]
+    },
+    {
+      "id": "r25-geomean-00069",
+      "row": 69,
+      "column": 4,
+      "formula": "GEOMEAN(D66:D68)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00070",
+      "row": 70,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D66:D68,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00071",
+      "row": 71,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fefffffffffffff",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00072",
+      "row": 72,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00073",
+      "row": 73,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00074",
+      "row": 74,
+      "column": 4,
+      "formula": "GEOMEAN(D71:D73)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00075",
+      "row": 75,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D71:D73,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00076",
+      "row": 76,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00077",
+      "row": 77,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00078",
+      "row": 78,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00079",
+      "row": 79,
+      "column": 4,
+      "formula": "GEOMEAN(D76:D78)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00080",
+      "row": 80,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D76:D78,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00081",
+      "row": 81,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000001",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00082",
+      "row": 82,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00083",
+      "row": 83,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00084",
+      "row": 84,
+      "column": 4,
+      "formula": "GEOMEAN(D81:D83)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00085",
+      "row": 85,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D81:D83,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00086",
+      "row": 86,
+      "column": 4,
+      "formula": "((33554432*67108864+1)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000002",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00087",
+      "row": 87,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00088",
+      "row": 88,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00089",
+      "row": 89,
+      "column": 4,
+      "formula": "GEOMEAN(D86:D88)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00090",
+      "row": 90,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D86:D88,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00091",
+      "row": 91,
+      "column": 4,
+      "formula": "((67108864*67108864+3)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000003",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00092",
+      "row": 92,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00093",
+      "row": 93,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00094",
+      "row": 94,
+      "column": 4,
+      "formula": "GEOMEAN(D91:D93)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00095",
+      "row": 95,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D91:D93,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00096",
+      "row": 96,
+      "column": 4,
+      "formula": "((16777216*67108864+1)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000004",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00097",
+      "row": 97,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00098",
+      "row": 98,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00099",
+      "row": 99,
+      "column": 4,
+      "formula": "GEOMEAN(D96:D98)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00100",
+      "row": 100,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D96:D98,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00101",
+      "row": 101,
+      "column": 4,
+      "formula": "((67108864*67108864+5)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000005",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00102",
+      "row": 102,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00103",
+      "row": 103,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "730750818665451459101842416358141509827966271488"
+      ]
+    },
+    {
+      "id": "r25-geomean-00104",
+      "row": 104,
+      "column": 4,
+      "formula": "GEOMEAN(D101:D103)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00105",
+      "row": 105,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D101:D103,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00106",
+      "row": 106,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x401fffffffffffff",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00107",
+      "row": 107,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00108",
+      "row": 108,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00109",
+      "row": 109,
+      "column": 4,
+      "formula": "GEOMEAN(D106:D108)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00110",
+      "row": 110,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D106:D108,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00111",
+      "row": 111,
+      "column": 4,
+      "formula": "(0*67108864+8)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00112",
+      "row": 112,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00113",
+      "row": 113,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00114",
+      "row": 114,
+      "column": 4,
+      "formula": "GEOMEAN(D111:D113)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00115",
+      "row": 115,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D111:D113,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00116",
+      "row": 116,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000001",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00117",
+      "row": 117,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00118",
+      "row": 118,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00119",
+      "row": 119,
+      "column": 4,
+      "formula": "GEOMEAN(D116:D118)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00120",
+      "row": 120,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D116:D118,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00121",
+      "row": 121,
+      "column": 4,
+      "formula": "((33554432*67108864+1)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000002",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00122",
+      "row": 122,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00123",
+      "row": 123,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00124",
+      "row": 124,
+      "column": 4,
+      "formula": "GEOMEAN(D121:D123)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00125",
+      "row": 125,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D121:D123,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00126",
+      "row": 126,
+      "column": 4,
+      "formula": "((67108864*67108864+3)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000003",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00127",
+      "row": 127,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00128",
+      "row": 128,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00129",
+      "row": 129,
+      "column": 4,
+      "formula": "GEOMEAN(D126:D128)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00130",
+      "row": 130,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D126:D128,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00131",
+      "row": 131,
+      "column": 4,
+      "formula": "((16777216*67108864+1)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000004",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00132",
+      "row": 132,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00133",
+      "row": 133,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00134",
+      "row": 134,
+      "column": 4,
+      "formula": "GEOMEAN(D131:D133)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00135",
+      "row": 135,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D131:D133,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00136",
+      "row": 136,
+      "column": 4,
+      "formula": "((67108864*67108864+5)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4020000000000005",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00137",
+      "row": 137,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00138",
+      "row": 138,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00139",
+      "row": 139,
+      "column": 4,
+      "formula": "GEOMEAN(D136:D138)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00140",
+      "row": 140,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D136:D138,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00141",
+      "row": 141,
+      "column": 4,
+      "formula": "((103737343*67108864+67108863)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bb9fffffffff",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00142",
+      "row": 142,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00143",
+      "row": 143,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00144",
+      "row": 144,
+      "column": 4,
+      "formula": "GEOMEAN(D141:D143)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00145",
+      "row": 145,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D141:D143,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00146",
+      "row": 146,
+      "column": 4,
+      "formula": "((0*67108864+50653)/2^12)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bba000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00147",
+      "row": 147,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00148",
+      "row": 148,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00149",
+      "row": 149,
+      "column": 4,
+      "formula": "GEOMEAN(D146:D148)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00150",
+      "row": 150,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D146:D148,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00151",
+      "row": 151,
+      "column": 4,
+      "formula": "((103737344*67108864+1)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bba000000001",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00152",
+      "row": 152,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00153",
+      "row": 153,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00154",
+      "row": 154,
+      "column": 4,
+      "formula": "GEOMEAN(D151:D153)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00155",
+      "row": 155,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D151:D153,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00156",
+      "row": 156,
+      "column": 4,
+      "formula": "((51868672*67108864+1)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bba000000002",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00157",
+      "row": 157,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00158",
+      "row": 158,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00159",
+      "row": 159,
+      "column": 4,
+      "formula": "GEOMEAN(D156:D158)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00160",
+      "row": 160,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D156:D158,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00161",
+      "row": 161,
+      "column": 4,
+      "formula": "((103737344*67108864+3)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bba000000003",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00162",
+      "row": 162,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00163",
+      "row": 163,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00164",
+      "row": 164,
+      "column": 4,
+      "formula": "GEOMEAN(D161:D163)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00165",
+      "row": 165,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D161:D163,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00166",
+      "row": 166,
+      "column": 4,
+      "formula": "((25934336*67108864+1)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bba000000004",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00167",
+      "row": 167,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00168",
+      "row": 168,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00169",
+      "row": 169,
+      "column": 4,
+      "formula": "GEOMEAN(D166:D168)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00170",
+      "row": 170,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D166:D168,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00171",
+      "row": 171,
+      "column": 4,
+      "formula": "((103737344*67108864+5)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x4028bba000000005",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00172",
+      "row": 172,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00173",
+      "row": 173,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1129599646541171979378272183748123195769844924417",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00174",
+      "row": 174,
+      "column": 4,
+      "formula": "GEOMEAN(D171:D173)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00175",
+      "row": 175,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D171:D173,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00176",
+      "row": 176,
+      "column": 4,
+      "formula": "((65024875*67108864+10243773)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d7a",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00177",
+      "row": 177,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00178",
+      "row": 178,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00179",
+      "row": 179,
+      "column": 4,
+      "formula": "GEOMEAN(D176:D178)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00180",
+      "row": 180,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D176:D178,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00181",
+      "row": 181,
+      "column": 4,
+      "formula": "((130049750*67108864+20487547)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d7b",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00182",
+      "row": 182,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00183",
+      "row": 183,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00184",
+      "row": 184,
+      "column": 4,
+      "formula": "GEOMEAN(D181:D183)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00185",
+      "row": 185,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D181:D183,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00186",
+      "row": 186,
+      "column": 4,
+      "formula": "((32512437*67108864+38676319)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d7c",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00187",
+      "row": 187,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00188",
+      "row": 188,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00189",
+      "row": 189,
+      "column": 4,
+      "formula": "GEOMEAN(D186:D188)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00190",
+      "row": 190,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D186:D188,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00191",
+      "row": 191,
+      "column": 4,
+      "formula": "((130049750*67108864+20487549)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d7d",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00192",
+      "row": 192,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00193",
+      "row": 193,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00194",
+      "row": 194,
+      "column": 4,
+      "formula": "GEOMEAN(D191:D193)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00195",
+      "row": 195,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D191:D193,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00196",
+      "row": 196,
+      "column": 4,
+      "formula": "((65024875*67108864+10243775)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d7e",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00197",
+      "row": 197,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00198",
+      "row": 198,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00199",
+      "row": 199,
+      "column": 4,
+      "formula": "GEOMEAN(D196:D198)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00200",
+      "row": 200,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D196:D198,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00201",
+      "row": 201,
+      "column": 4,
+      "formula": "((130049750*67108864+20487551)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d7f",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00202",
+      "row": 202,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00203",
+      "row": 203,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00204",
+      "row": 204,
+      "column": 4,
+      "formula": "GEOMEAN(D201:D203)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00205",
+      "row": 205,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D201:D203,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00206",
+      "row": 206,
+      "column": 4,
+      "formula": "((1016013*67108864+45248827)/2^41)",
+      "role": "operand_echo",
+      "intended_bits": "0x403f019b59389d80",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00207",
+      "row": 207,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00208",
+      "row": 208,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "2832232758487074036410074249442603583079958845841",
+        "91343852333181432387730302044767688728495783936"
+      ]
+    },
+    {
+      "id": "r25-geomean-00209",
+      "row": 209,
+      "column": 4,
+      "formula": "GEOMEAN(D206:D208)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00210",
+      "row": 210,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D206:D208,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00211",
+      "row": 211,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x404fffffffffffff",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00212",
+      "row": 212,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00213",
+      "row": 213,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00214",
+      "row": 214,
+      "column": 4,
+      "formula": "GEOMEAN(D211:D213)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00215",
+      "row": 215,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D211:D213,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00216",
+      "row": 216,
+      "column": 4,
+      "formula": "(0*67108864+64)",
+      "role": "operand_echo",
+      "intended_bits": "0x4050000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00217",
+      "row": 217,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00218",
+      "row": 218,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00219",
+      "row": 219,
+      "column": 4,
+      "formula": "GEOMEAN(D216:D218)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00220",
+      "row": 220,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D216:D218,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00221",
+      "row": 221,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x4050000000000001",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00222",
+      "row": 222,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00223",
+      "row": 223,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00224",
+      "row": 224,
+      "column": 4,
+      "formula": "GEOMEAN(D221:D223)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00225",
+      "row": 225,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D221:D223,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00226",
+      "row": 226,
+      "column": 4,
+      "formula": "((33554432*67108864+1)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x4050000000000002",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00227",
+      "row": 227,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00228",
+      "row": 228,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00229",
+      "row": 229,
+      "column": 4,
+      "formula": "GEOMEAN(D226:D228)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00230",
+      "row": 230,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D226:D228,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00231",
+      "row": 231,
+      "column": 4,
+      "formula": "((67108864*67108864+3)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x4050000000000003",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00232",
+      "row": 232,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00233",
+      "row": 233,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00234",
+      "row": 234,
+      "column": 4,
+      "formula": "GEOMEAN(D231:D233)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00235",
+      "row": 235,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D231:D233,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00236",
+      "row": 236,
+      "column": 4,
+      "formula": "((16777216*67108864+1)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x4050000000000004",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00237",
+      "row": 237,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00238",
+      "row": 238,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00239",
+      "row": 239,
+      "column": 4,
+      "formula": "GEOMEAN(D236:D238)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00240",
+      "row": 240,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D236:D238,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00241",
+      "row": 241,
+      "column": 4,
+      "formula": "((67108864*67108864+5)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x4050000000000005",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00242",
+      "row": 242,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00243",
+      "row": 243,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "730750818665451702490757660178213618792745926657",
+        "11417981541647679048466287755595961091061972992"
+      ]
+    },
+    {
+      "id": "r25-geomean-00244",
+      "row": 244,
+      "column": 4,
+      "formula": "GEOMEAN(D241:D243)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00245",
+      "row": 245,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D241:D243,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00246",
+      "row": 246,
+      "column": 4,
+      "formula": "((131071999*67108864+67108863)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f3fffffffffff",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00247",
+      "row": 247,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00248",
+      "row": 248,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00249",
+      "row": 249,
+      "column": 4,
+      "formula": "GEOMEAN(D246:D248)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00250",
+      "row": 250,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D246:D248,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -3
+    },
+    {
+      "id": "r25-geomean-00251",
+      "row": 251,
+      "column": 4,
+      "formula": "(0*67108864+1000)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f400000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00252",
+      "row": 252,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00253",
+      "row": 253,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00254",
+      "row": 254,
+      "column": 4,
+      "formula": "GEOMEAN(D251:D253)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00255",
+      "row": 255,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D251:D253,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -2
+    },
+    {
+      "id": "r25-geomean-00256",
+      "row": 256,
+      "column": 4,
+      "formula": "((131072000*67108864+1)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f400000000001",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00257",
+      "row": 257,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00258",
+      "row": 258,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00259",
+      "row": 259,
+      "column": 4,
+      "formula": "GEOMEAN(D256:D258)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00260",
+      "row": 260,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D256:D258,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": -1
+    },
+    {
+      "id": "r25-geomean-00261",
+      "row": 261,
+      "column": 4,
+      "formula": "((65536000*67108864+1)/2^42)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f400000000002",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00262",
+      "row": 262,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00263",
+      "row": 263,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00264",
+      "row": 264,
+      "column": 4,
+      "formula": "GEOMEAN(D261:D263)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00265",
+      "row": 265,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D261:D263,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 0
+    },
+    {
+      "id": "r25-geomean-00266",
+      "row": 266,
+      "column": 4,
+      "formula": "((131072000*67108864+3)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f400000000003",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00267",
+      "row": 267,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00268",
+      "row": 268,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00269",
+      "row": 269,
+      "column": 4,
+      "formula": "GEOMEAN(D266:D268)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00270",
+      "row": 270,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D266:D268,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 1
+    },
+    {
+      "id": "r25-geomean-00271",
+      "row": 271,
+      "column": 4,
+      "formula": "((32768000*67108864+1)/2^41)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f400000000004",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00272",
+      "row": 272,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00273",
+      "row": 273,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00274",
+      "row": 274,
+      "column": 4,
+      "formula": "GEOMEAN(D271:D273)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00275",
+      "row": 275,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D271:D273,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 2
+    },
+    {
+      "id": "r25-geomean-00276",
+      "row": 276,
+      "column": 4,
+      "formula": "((131072000*67108864+5)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x408f400000000005",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00277",
+      "row": 277,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00278",
+      "row": 278,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000",
+      "root_midpoint_cube": [
+        "1427247692705960261353466037918349362390913515521",
+        "1427247692705959881058285969449495136382746624"
+      ]
+    },
+    {
+      "id": "r25-geomean-00279",
+      "row": 279,
+      "column": 4,
+      "formula": "GEOMEAN(D276:D278)",
+      "role": "question",
+      "hypothesis": "Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00280",
+      "row": 280,
+      "column": 4,
+      "formula": "EXP(LN(INDEX(D276:D278,1))/3)",
+      "role": "question",
+      "hypothesis": "Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.",
+      "offset": 3
+    },
+    {
+      "id": "r25-geomean-00281",
+      "row": 281,
+      "column": 4,
+      "formula": "((66322198*67108864+14109457)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x401f9ff8b1ae9622",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00282",
+      "row": 282,
+      "column": 4,
+      "formula": "((66322198*67108864+14109457)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x401f9ff8b1ae9622",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00283",
+      "row": 283,
+      "column": 4,
+      "formula": "((0*67108864+1)/2^1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe0000000000000",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00284",
+      "row": 284,
+      "column": 4,
+      "formula": "GEOMEAN(D281:D283)",
+      "role": "question",
+      "hypothesis": "Different stored-PC64/binary64 products AND different final roots under the same resident base2 reconstruction.",
+      "square_predictions": {
+        "strict": "0x404f41118f34bfc3",
+        "stored_pc64": "0x404f41118f34bfc2"
+      },
+      "product_predictions": {
+        "strict": "0x403f41118f34bfc3",
+        "stored_pc64": "0x403f41118f34bfc2"
+      },
+      "candidate_predictions": {
+        "strict_product_root": "0x400933153e4fb154",
+        "stored_product_root": "0x400933153e4fb153"
+      }
+    },
+    {
+      "id": "r25-geomean-00285",
+      "row": 285,
+      "column": 4,
+      "formula": "((66322198*67108864+14109457)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x401f9ff8b1ae9622",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00286",
+      "row": 286,
+      "column": 4,
+      "formula": "((66322198*67108864+14109457)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x401f9ff8b1ae9622",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00287",
+      "row": 287,
+      "column": 4,
+      "formula": "(0*67108864+2)",
+      "role": "operand_echo",
+      "intended_bits": "0x4000000000000000",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00288",
+      "row": 288,
+      "column": 4,
+      "formula": "GEOMEAN(D285:D287)",
+      "role": "question",
+      "hypothesis": "Different stored-PC64/binary64 products AND different final roots under the same resident base2 reconstruction.",
+      "square_predictions": {
+        "strict": "0x404f41118f34bfc3",
+        "stored_pc64": "0x404f41118f34bfc2"
+      },
+      "product_predictions": {
+        "strict": "0x405f41118f34bfc3",
+        "stored_pc64": "0x405f41118f34bfc2"
+      },
+      "candidate_predictions": {
+        "strict_product_root": "0x4014003a5b535263",
+        "stored_product_root": "0x4014003a5b535262"
+      }
+    },
+    {
+      "id": "r25-geomean-00289",
+      "row": 289,
+      "column": 4,
+      "formula": "((66322198*67108864+14109457)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x401f9ff8b1ae9622",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00290",
+      "row": 290,
+      "column": 4,
+      "formula": "((66322198*67108864+14109457)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x401f9ff8b1ae9622",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00291",
+      "row": 291,
+      "column": 4,
+      "formula": "(0*67108864+4)",
+      "role": "operand_echo",
+      "intended_bits": "0x4010000000000000",
+      "product_edge": true
+    },
+    {
+      "id": "r25-geomean-00292",
+      "row": 292,
+      "column": 4,
+      "formula": "GEOMEAN(D289:D291)",
+      "role": "question",
+      "hypothesis": "Different stored-PC64/binary64 products AND different final roots under the same resident base2 reconstruction.",
+      "square_predictions": {
+        "strict": "0x404f41118f34bfc3",
+        "stored_pc64": "0x404f41118f34bfc2"
+      },
+      "product_predictions": {
+        "strict": "0x406f41118f34bfc3",
+        "stored_pc64": "0x406f41118f34bfc2"
+      },
+      "candidate_predictions": {
+        "strict_product_root": "0x401933153e4fb154",
+        "stored_product_root": "0x401933153e4fb153"
+      }
+    }
+  ]
+}

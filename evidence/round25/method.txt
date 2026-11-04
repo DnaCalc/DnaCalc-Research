@@ -1,0 +1,48 @@
+R25 models a short raw-moment loop with a binary64 store after each x87 PC64
+operation. Sample uses (Q-S*S/n)/(n-1); population uses (n*Q-S*S)/(n*n).
+The old zero-loss veto was explicitly reconsidered: the first commit adopted
+that structurally evidenced step despite451 classified small-magnitude losses.
+Those losses became the next target, rather than reasons to tune a selector.
+
+Power-of-two scaling holds relative conditioning fixed and reveals a separate
+magnitude switch. Bisections support stored(variance*1000)<=abs(stored(S/n)).
+Seven brackets are adjacent; one has an indistinguishable interior. The store
+and inclusive comparison are distinguished. Multiplication by1000 has at most
+60 significant product bits, so ordinary double and PC64-then-double products
+agree here. The rearrangement variance<=stored(abs(mean)/1000) remains open.
+Negative-mean bank controls and eight new negative readings support abs(mean).
+
+Four cancellation bisections at unit and2^20 scales locate adjacent switches.
+The first16 operation readings cover only four unique triples, and distinguish
+some n-product arrangements. A second construction deduplicates tuples and
+requires the still-equivalent guard forms to choose different complete values.
+All16 new unique readings require stored(stored(S*S/n)/Q)>0.99. The initially
+plausible0.99*Q comparison misses all16, although both graphs matched every
+original numeric control. Thus the final change follows new discriminants,
+not a higher original match count. Four new application tests fail first.
+
+Sixteen normal dyadic STDEV constructions distinguish one binary64 square-root
+rounding from PC64 SQRT followed by a double store. All16 live scalar answers
+require the latter; exact rational squared-midpoint comparisons independently
+verify both predictions. The existing shared staged helper implements it.
+
+Every live request uses separate Value2 cell references through the existing
+canonical worker. Scalarized packet replies are not range-workbook captures.
+The final guard-transfer workbook pairs76 measured scalar replays and76
+unanswered ranges. Unanswered formulas remain outside the measured corpus.
+
+QR still needs a coherent rank decision and full arithmetic producer. Known
+square-rounding edges in full-rank orthogonal columns separate norm stores;
+all200 unknown discovery outputs have null expectations and score zero rows.
+GEOMEAN needs its root publication sequence:20 fixed conditional programs and
+three complete product/root discriminants do not identify a complete path.
+Bessel retains permitted published tables; quadrature pairs isolate amplitude
+from correction without fitting coefficients. The fixed published high-J body
+still misses89/122 new high-J readings. BINOM/POISSON deviance, Stirling and
+cumulative leaves remain conditional; the32 R20 failures remain failures.
+
+No coefficient, tolerance, cutoff or row selector is selected from match counts.
+The global reader collapses43 sheet-state-only duplicate contexts in unrelated
+families; old/new filtered reads preserve every other input, answer, output and
+environment field. That scope change is not a calculation gain. Frozen family
+comparisons retain original identities and count all refusals/missing outcomes.

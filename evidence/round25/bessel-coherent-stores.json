@@ -1,0 +1,161 @@
+{
+  "complete": true,
+  "selection": "Predeclared coherent strict and stored-PC64 programs; ranked winner is not selected for adoption.",
+  "programs": [
+    {
+      "counts": [
+        248,
+        139,
+        106,
+        33,
+        0
+      ],
+      "program": {
+        "assignment_stores": false,
+        "association": 0,
+        "group_y0_log": false,
+        "helpers": 0,
+        "id": 0,
+        "polynomial": "strict",
+        "reconstruction": "strict",
+        "reduction": 0
+      },
+      "regions": {
+        "BESSELJ:0:high": [
+          61,
+          20,
+          0,
+          20,
+          0
+        ],
+        "BESSELJ:0:low": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "BESSELJ:1:high": [
+          61,
+          13,
+          0,
+          13,
+          0
+        ],
+        "BESSELJ:1:low": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "BESSELY:0:high": [
+          61,
+          52,
+          52,
+          0,
+          0
+        ],
+        "BESSELY:0:low": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "BESSELY:1:high": [
+          61,
+          51,
+          51,
+          0,
+          0
+        ],
+        "BESSELY:1:low": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "counts": [
+        248,
+        138,
+        106,
+        33,
+        1
+      ],
+      "program": {
+        "assignment_stores": true,
+        "association": 0,
+        "group_y0_log": false,
+        "helpers": 0,
+        "id": 234,
+        "polynomial": "stored_pc64",
+        "reconstruction": "stored_pc64",
+        "reduction": 0
+      },
+      "regions": {
+        "BESSELJ:0:high": [
+          61,
+          20,
+          0,
+          20,
+          0
+        ],
+        "BESSELJ:0:low": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "BESSELJ:1:high": [
+          61,
+          13,
+          0,
+          13,
+          0
+        ],
+        "BESSELJ:1:low": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "BESSELY:0:high": [
+          61,
+          51,
+          52,
+          0,
+          1
+        ],
+        "BESSELY:0:low": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "BESSELY:1:high": [
+          61,
+          51,
+          51,
+          0,
+          0
+        ],
+        "BESSELY:1:low": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "limits": "Published tables and helper leaves remain conditional; fresh scalarized readings are discovery, not workbook captures. No coefficient, table, operation order or implementation is chosen by match counts."
+}

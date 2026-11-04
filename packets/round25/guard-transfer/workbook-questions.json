@@ -1,0 +1,3509 @@
+{
+  "sheet": "dcj9k_r25_guard_transfer",
+  "questions": [
+    {
+      "id": "r25-guard-transfer-00001",
+      "row": 1,
+      "column": 4,
+      "formula": "((68650713*67108864+23167649)/2^82)",
+      "role": "operand_echo",
+      "intended_bits": "0x3e105e1b656182a1"
+    },
+    {
+      "id": "r25-guard-transfer-00002",
+      "row": 2,
+      "column": 4,
+      "formula": "((68719673*67108864+9866135)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f506250e4968b97"
+    },
+    {
+      "id": "r25-guard-transfer-00003",
+      "row": 3,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D1,D2)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3ea0c6fbd160850c",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:40077ea09ff7fb38"
+    },
+    {
+      "id": "r25-guard-transfer-00004",
+      "row": 4,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D1:D2)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00005",
+      "row": 5,
+      "column": 4,
+      "formula": "((68650713*67108864+23167649)/2^82)",
+      "role": "operand_echo",
+      "intended_bits": "0x3e105e1b656182a1"
+    },
+    {
+      "id": "r25-guard-transfer-00006",
+      "row": 6,
+      "column": 4,
+      "formula": "((8589959*67108864+9621875)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f506250e4968b98"
+    },
+    {
+      "id": "r25-guard-transfer-00007",
+      "row": 7,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D5,D6)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3ea0c6fbd160850d",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:40077ea09ff7fb39"
+    },
+    {
+      "id": "r25-guard-transfer-00008",
+      "row": 8,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D5:D6)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00009",
+      "row": 9,
+      "column": 4,
+      "formula": "((4494292*67108864+12227727)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa124f50ba948f0"
+    },
+    {
+      "id": "r25-guard-transfer-00010",
+      "row": 10,
+      "column": 4,
+      "formula": "((12359222*67108864+51935565)/2^54)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa792c6d8c3ca68"
+    },
+    {
+      "id": "r25-guard-transfer-00011",
+      "row": 11,
+      "column": 4,
+      "formula": "((22225748*67108864+52553731)/2^55)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa532354c87a00c"
+    },
+    {
+      "id": "r25-guard-transfer-00012",
+      "row": 12,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D9,D10,D11)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f05221d141fa454",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:40cf4af949e0a50e"
+    },
+    {
+      "id": "r25-guard-transfer-00013",
+      "row": 13,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D9:D11)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00014",
+      "row": 14,
+      "column": 4,
+      "formula": "((4494292*67108864+12227727)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa124f50ba948f0"
+    },
+    {
+      "id": "r25-guard-transfer-00015",
+      "row": 15,
+      "column": 4,
+      "formula": "((12359222*67108864+51935565)/2^54)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa792c6d8c3ca68"
+    },
+    {
+      "id": "r25-guard-transfer-00016",
+      "row": 16,
+      "column": 4,
+      "formula": "((88902995*67108864+8888333)/2^57)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa532354c87a00d"
+    },
+    {
+      "id": "r25-guard-transfer-00017",
+      "row": 17,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D14,D15,D16)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f05221d141fa480",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:40cf4af949e0a50f"
+    },
+    {
+      "id": "r25-guard-transfer-00018",
+      "row": 18,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D14:D16)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00019",
+      "row": 19,
+      "column": 4,
+      "formula": "((73717220*67108864+37457399)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f619357923b8df7"
+    },
+    {
+      "id": "r25-guard-transfer-00020",
+      "row": 20,
+      "column": 4,
+      "formula": "((71374528*67108864+35685113)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f31045b022082f9"
+    },
+    {
+      "id": "r25-guard-transfer-00021",
+      "row": 21,
+      "column": 4,
+      "formula": "((17290316*67108864+26089927)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f607d44c638671c"
+    },
+    {
+      "id": "r25-guard-transfer-00022",
+      "row": 22,
+      "column": 4,
+      "formula": "((32277914*67108864+59401267)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f6ec859ae2990cc"
+    },
+    {
+      "id": "r25-guard-transfer-00023",
+      "row": 23,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D19,D20,D21,D22)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3ec1253fd8cd34c9",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:40a7f96a0c7fe9b3"
+    },
+    {
+      "id": "r25-guard-transfer-00024",
+      "row": 24,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D19:D22)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00025",
+      "row": 25,
+      "column": 4,
+      "formula": "((9214652*67108864+38236607)/2^58)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f619357923b8df8"
+    },
+    {
+      "id": "r25-guard-transfer-00026",
+      "row": 26,
+      "column": 4,
+      "formula": "((71374528*67108864+35685115)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f31045b022082fb"
+    },
+    {
+      "id": "r25-guard-transfer-00027",
+      "row": 27,
+      "column": 4,
+      "formula": "((69161265*67108864+37250845)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f607d44c638671d"
+    },
+    {
+      "id": "r25-guard-transfer-00028",
+      "row": 28,
+      "column": 4,
+      "formula": "((64555829*67108864+51693671)/2^60)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f6ec859ae2990ce"
+    },
+    {
+      "id": "r25-guard-transfer-00029",
+      "row": 29,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D25,D26,D27,D28)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3ec1253fd8cd34d0",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:40a7f96a0c7fe9b5"
+    },
+    {
+      "id": "r25-guard-transfer-00030",
+      "row": 30,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D25:D28)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00031",
+      "row": 31,
+      "column": 4,
+      "formula": "((93315433*67108864+12444393)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f363f85a4bde2e9"
+    },
+    {
+      "id": "r25-guard-transfer-00032",
+      "row": 32,
+      "column": 4,
+      "formula": "((131467523*67108864+54104311)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f2f58240f3990f7"
+    },
+    {
+      "id": "r25-guard-transfer-00033",
+      "row": 33,
+      "column": 4,
+      "formula": "-((86830200*67108864+28647755)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf34b3b1e1b5214b"
+    },
+    {
+      "id": "r25-guard-transfer-00034",
+      "row": 34,
+      "column": 4,
+      "formula": "((47810951*67108864+29529433)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f36cc4c3b852ab2"
+    },
+    {
+      "id": "r25-guard-transfer-00035",
+      "row": 35,
+      "column": 4,
+      "formula": "-((46104883*67108864+34544807)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf25fc099c1e394e"
+    },
+    {
+      "id": "r25-guard-transfer-00036",
+      "row": 36,
+      "column": 4,
+      "formula": "((18636306*67108864+45539559)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f21c5e12adb839c"
+    },
+    {
+      "id": "r25-guard-transfer-00037",
+      "row": 37,
+      "column": 4,
+      "formula": "-((130847897*67108864+13549219)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf2f325264cebea3"
+    },
+    {
+      "id": "r25-guard-transfer-00038",
+      "row": 38,
+      "column": 4,
+      "formula": "((17005484*67108864+11473529)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f3037bac2bc49e4"
+    },
+    {
+      "id": "r25-guard-transfer-00039",
+      "row": 39,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D31,D32,D33,D34,D35,D36,D37,D38)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e73ba34ec79fe36",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:408ae73eab74326d"
+    },
+    {
+      "id": "r25-guard-transfer-00040",
+      "row": 40,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D31:D38)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00041",
+      "row": 41,
+      "column": 4,
+      "formula": "((93315433*67108864+12444393)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f363f85a4bde2e9"
+    },
+    {
+      "id": "r25-guard-transfer-00042",
+      "row": 42,
+      "column": 4,
+      "formula": "((16433440*67108864+31928863)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f2f58240f3990f8"
+    },
+    {
+      "id": "r25-guard-transfer-00043",
+      "row": 43,
+      "column": 4,
+      "formula": "-((21707550*67108864+7161939)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf34b3b1e1b5214c"
+    },
+    {
+      "id": "r25-guard-transfer-00044",
+      "row": 44,
+      "column": 4,
+      "formula": "((95621902*67108864+59058867)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f36cc4c3b852ab3"
+    },
+    {
+      "id": "r25-guard-transfer-00045",
+      "row": 45,
+      "column": 4,
+      "formula": "-((92209767*67108864+1980751)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf25fc099c1e394f"
+    },
+    {
+      "id": "r25-guard-transfer-00046",
+      "row": 46,
+      "column": 4,
+      "formula": "((18636306*67108864+45539559)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f21c5e12adb839c"
+    },
+    {
+      "id": "r25-guard-transfer-00047",
+      "row": 47,
+      "column": 4,
+      "formula": "-((32711974*67108864+20164521)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf2f325264cebea4"
+    },
+    {
+      "id": "r25-guard-transfer-00048",
+      "row": 48,
+      "column": 4,
+      "formula": "((68021936*67108864+45894117)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f3037bac2bc49e5"
+    },
+    {
+      "id": "r25-guard-transfer-00049",
+      "row": 49,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D41,D42,D43,D44,D45,D46,D47,D48)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e73ba34ec79fe38",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:408ae73eab74326e"
+    },
+    {
+      "id": "r25-guard-transfer-00050",
+      "row": 50,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D41:D48)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00051",
+      "row": 51,
+      "column": 4,
+      "formula": "((68650713*67108864+23167649)/2^81)",
+      "role": "operand_echo",
+      "intended_bits": "0x3e205e1b656182a1"
+    },
+    {
+      "id": "r25-guard-transfer-00052",
+      "row": 52,
+      "column": 4,
+      "formula": "((68719673*67108864+9866135)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f606250e4968b97"
+    },
+    {
+      "id": "r25-guard-transfer-00053",
+      "row": 53,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D51,D52)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3eb0c6fbd160850c",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:40177ea09ff7fb38"
+    },
+    {
+      "id": "r25-guard-transfer-00054",
+      "row": 54,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D51:D52)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00055",
+      "row": 55,
+      "column": 4,
+      "formula": "((68650713*67108864+23167649)/2^81)",
+      "role": "operand_echo",
+      "intended_bits": "0x3e205e1b656182a1"
+    },
+    {
+      "id": "r25-guard-transfer-00056",
+      "row": 56,
+      "column": 4,
+      "formula": "((8589959*67108864+9621875)/2^58)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f606250e4968b98"
+    },
+    {
+      "id": "r25-guard-transfer-00057",
+      "row": 57,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D55,D56)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3eb0c6fbd160850d",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:40177ea09ff7fb39"
+    },
+    {
+      "id": "r25-guard-transfer-00058",
+      "row": 58,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D55:D56)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00059",
+      "row": 59,
+      "column": 4,
+      "formula": "((107863012*67108864+25030069)/2^57)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa9b76f917dedb5"
+    },
+    {
+      "id": "r25-guard-transfer-00060",
+      "row": 60,
+      "column": 4,
+      "formula": "((74155336*67108864+43177987)/2^56)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fb1ae152292d803"
+    },
+    {
+      "id": "r25-guard-transfer-00061",
+      "row": 61,
+      "column": 4,
+      "formula": "((66677246*67108864+23443513)/2^56)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fafcb4ff2cb7072"
+    },
+    {
+      "id": "r25-guard-transfer-00062",
+      "row": 62,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D59,D60,D61)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f0fb32b9e2f773f",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:40d7783af7687c11"
+    },
+    {
+      "id": "r25-guard-transfer-00063",
+      "row": 63,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D59:D61)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00064",
+      "row": 64,
+      "column": 4,
+      "formula": "((53931506*67108864+12515035)/2^56)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fa9b76f917dedb6"
+    },
+    {
+      "id": "r25-guard-transfer-00065",
+      "row": 65,
+      "column": 4,
+      "formula": "((18538834*67108864+10794497)/2^54)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fb1ae152292d804"
+    },
+    {
+      "id": "r25-guard-transfer-00066",
+      "row": 66,
+      "column": 4,
+      "formula": "((133354492*67108864+46887027)/2^57)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fafcb4ff2cb7073"
+    },
+    {
+      "id": "r25-guard-transfer-00067",
+      "row": 67,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D64,D65,D66)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f0fb32b9e2f778e",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:40d7783af7687c12"
+    },
+    {
+      "id": "r25-guard-transfer-00068",
+      "row": 68,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D64:D66)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00069",
+      "row": 69,
+      "column": 4,
+      "formula": "((98289627*67108864+27573579)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f676f1f6da4bd4b"
+    },
+    {
+      "id": "r25-guard-transfer-00070",
+      "row": 70,
+      "column": 4,
+      "formula": "((95166038*67108864+2840911)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f36b079582b594f"
+    },
+    {
+      "id": "r25-guard-transfer-00071",
+      "row": 71,
+      "column": 4,
+      "formula": "((46107510*67108864+24833897)/2^60)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f65fc5bb2f5ded2"
+    },
+    {
+      "id": "r25-guard-transfer-00072",
+      "row": 72,
+      "column": 4,
+      "formula": "((43037219*67108864+56832069)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f7485911ec6608a"
+    },
+    {
+      "id": "r25-guard-transfer-00073",
+      "row": 73,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D69,D70,D71,D72)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3ec6dc5521119bbc",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:40aff73810aa8cf2"
+    },
+    {
+      "id": "r25-guard-transfer-00074",
+      "row": 74,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D69:D72)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00075",
+      "row": 75,
+      "column": 4,
+      "formula": "((24572406*67108864+57225043)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f676f1f6da4bd4c"
+    },
+    {
+      "id": "r25-guard-transfer-00076",
+      "row": 76,
+      "column": 4,
+      "formula": "((95166038*67108864+2840911)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f36b079582b594f"
+    },
+    {
+      "id": "r25-guard-transfer-00077",
+      "row": 77,
+      "column": 4,
+      "formula": "((92215020*67108864+49667795)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f65fc5bb2f5ded3"
+    },
+    {
+      "id": "r25-guard-transfer-00078",
+      "row": 78,
+      "column": 4,
+      "formula": "((43037219*67108864+56832069)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f7485911ec6608a"
+    },
+    {
+      "id": "r25-guard-transfer-00079",
+      "row": 79,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D75,D76,D77,D78)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3ec6dc5521119bbe",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:40aff73810aa8cf3"
+    },
+    {
+      "id": "r25-guard-transfer-00080",
+      "row": 80,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D75:D78)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00081",
+      "row": 81,
+      "column": 4,
+      "formula": "((13330776*67108864+11364751)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f396d2b056b4c78"
+    },
+    {
+      "id": "r25-guard-transfer-00082",
+      "row": 82,
+      "column": 4,
+      "formula": "((75124299*67108864+21329769)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f31e9392d457769"
+    },
+    {
+      "id": "r25-guard-transfer-00083",
+      "row": 83,
+      "column": 4,
+      "formula": "-((99234514*67108864+51914253)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf37a8cb4b18260d"
+    },
+    {
+      "id": "r25-guard-transfer-00084",
+      "row": 84,
+      "column": 4,
+      "formula": "((54641087*67108864+24160943)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f3a0e0dfae1555e"
+    },
+    {
+      "id": "r25-guard-transfer-00085",
+      "row": 85,
+      "column": 4,
+      "formula": "-((52691295*67108864+29892799)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf29200afb90417e"
+    },
+    {
+      "id": "r25-guard-transfer-00086",
+      "row": 86,
+      "column": 4,
+      "formula": "((2662329*67108864+35266593)/2^60)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f244fdcc3440420"
+    },
+    {
+      "id": "r25-guard-transfer-00087",
+      "row": 87,
+      "column": 4,
+      "formula": "-((37385113*67108864+32632147)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf31d39ccbe3daa6"
+    },
+    {
+      "id": "r25-guard-transfer-00088",
+      "row": 88,
+      "column": 4,
+      "formula": "((2429354*67108864+59160959)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f3288d570d72fe0"
+    },
+    {
+      "id": "r25-guard-transfer-00089",
+      "row": 89,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D81,D82,D83,D84,D85,D86,D87,D88)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e768baa32d4903f",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "low:408ebf230d17150f"
+    },
+    {
+      "id": "r25-guard-transfer-00090",
+      "row": 90,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D81:D88)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00091",
+      "row": 91,
+      "column": 4,
+      "formula": "((13330776*67108864+11364751)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f396d2b056b4c78"
+    },
+    {
+      "id": "r25-guard-transfer-00092",
+      "row": 92,
+      "column": 4,
+      "formula": "((75124299*67108864+21329769)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f31e9392d457769"
+    },
+    {
+      "id": "r25-guard-transfer-00093",
+      "row": 93,
+      "column": 4,
+      "formula": "-((99234514*67108864+51914253)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf37a8cb4b18260d"
+    },
+    {
+      "id": "r25-guard-transfer-00094",
+      "row": 94,
+      "column": 4,
+      "formula": "((54641087*67108864+24160943)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f3a0e0dfae1555e"
+    },
+    {
+      "id": "r25-guard-transfer-00095",
+      "row": 95,
+      "column": 4,
+      "formula": "-((105382590*67108864+59785599)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf29200afb90417f"
+    },
+    {
+      "id": "r25-guard-transfer-00096",
+      "row": 96,
+      "column": 4,
+      "formula": "((85194544*67108864+54789153)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f244fdcc3440421"
+    },
+    {
+      "id": "r25-guard-transfer-00097",
+      "row": 97,
+      "column": 4,
+      "formula": "-((74770226*67108864+65264295)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf31d39ccbe3daa7"
+    },
+    {
+      "id": "r25-guard-transfer-00098",
+      "row": 98,
+      "column": 4,
+      "formula": "((77739356*67108864+14102497)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f3288d570d72fe1"
+    },
+    {
+      "id": "r25-guard-transfer-00099",
+      "row": 99,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D91,D92,D93,D94,D95,D96,D97,D98)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e768baa32d4903f",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json",
+      "source_id": "high:408ebf230d171510"
+    },
+    {
+      "id": "r25-guard-transfer-00100",
+      "row": 100,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D91:D98)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00101",
+      "row": 101,
+      "column": 4,
+      "formula": "((29424166*67108864+62824325)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fec0fa26efa7e14"
+    },
+    {
+      "id": "r25-guard-transfer-00102",
+      "row": 102,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00103",
+      "row": 103,
+      "column": 4,
+      "formula": "((37684697*67108864+4284539)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff1f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00104",
+      "row": 104,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D101,D102,D103)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f8f07c1f07c1e94",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "low:3ff1f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00105",
+      "row": 105,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D101:D103)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00106",
+      "row": 106,
+      "column": 4,
+      "formula": "((58848333*67108864+58539785)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fec0fa26efa7e12"
+    },
+    {
+      "id": "r25-guard-transfer-00107",
+      "row": 107,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00108",
+      "row": 108,
+      "column": 4,
+      "formula": "((75369394*67108864+8569079)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff1f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00109",
+      "row": 109,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D106,D107,D108)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f8f07c1f07c1f00",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "high:3ff1f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00110",
+      "row": 110,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D106:D108)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00111",
+      "row": 111,
+      "column": 4,
+      "formula": "((29424166*67108864+62824325)/2^31)",
+      "role": "operand_echo",
+      "intended_bits": "0x412c0fa26efa7e14"
+    },
+    {
+      "id": "r25-guard-transfer-00112",
+      "row": 112,
+      "column": 4,
+      "formula": "(0*67108864+1048576)",
+      "role": "operand_echo",
+      "intended_bits": "0x4130000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00113",
+      "row": 113,
+      "column": 4,
+      "formula": "((37684697*67108864+4284539)/2^31)",
+      "role": "operand_echo",
+      "intended_bits": "0x4131f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00114",
+      "row": 114,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D111,D112,D113)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "420f07c1f07c1e94",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "low:3ff1f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00115",
+      "row": 115,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D111:D113)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00116",
+      "row": 116,
+      "column": 4,
+      "formula": "((58848333*67108864+58539785)/2^32)",
+      "role": "operand_echo",
+      "intended_bits": "0x412c0fa26efa7e12"
+    },
+    {
+      "id": "r25-guard-transfer-00117",
+      "row": 117,
+      "column": 4,
+      "formula": "(0*67108864+1048576)",
+      "role": "operand_echo",
+      "intended_bits": "0x4130000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00118",
+      "row": 118,
+      "column": 4,
+      "formula": "((75369394*67108864+8569079)/2^32)",
+      "role": "operand_echo",
+      "intended_bits": "0x4131f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00119",
+      "row": 119,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D116,D117,D118)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "420f07c1f07c1f00",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "high:3ff1f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00120",
+      "row": 120,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D116:D118)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00121",
+      "row": 121,
+      "column": 4,
+      "formula": "((29424166*67108864+62824325)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fec0fa26efa7e14"
+    },
+    {
+      "id": "r25-guard-transfer-00122",
+      "row": 122,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00123",
+      "row": 123,
+      "column": 4,
+      "formula": "((37684697*67108864+4284539)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff1f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00124",
+      "row": 124,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D121,D122,D123)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f84afd6a052bf0d",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "low:3ff1f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00125",
+      "row": 125,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D121:D123)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00126",
+      "row": 126,
+      "column": 4,
+      "formula": "((58848333*67108864+58539785)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fec0fa26efa7e12"
+    },
+    {
+      "id": "r25-guard-transfer-00127",
+      "row": 127,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00128",
+      "row": 128,
+      "column": 4,
+      "formula": "((75369394*67108864+8569079)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff1f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00129",
+      "row": 129,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D126,D127,D128)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f84afd6a052bf1c",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "high:3ff1f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00130",
+      "row": 130,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D126:D128)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00131",
+      "row": 131,
+      "column": 4,
+      "formula": "((29424166*67108864+62824325)/2^31)",
+      "role": "operand_echo",
+      "intended_bits": "0x412c0fa26efa7e14"
+    },
+    {
+      "id": "r25-guard-transfer-00132",
+      "row": 132,
+      "column": 4,
+      "formula": "(0*67108864+1048576)",
+      "role": "operand_echo",
+      "intended_bits": "0x4130000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00133",
+      "row": 133,
+      "column": 4,
+      "formula": "((37684697*67108864+4284539)/2^31)",
+      "role": "operand_echo",
+      "intended_bits": "0x4131f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00134",
+      "row": 134,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D131,D132,D133)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "4204afd6a052bf0d",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "low:3ff1f82ec882c0f6"
+    },
+    {
+      "id": "r25-guard-transfer-00135",
+      "row": 135,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D131:D133)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00136",
+      "row": 136,
+      "column": 4,
+      "formula": "((58848333*67108864+58539785)/2^32)",
+      "role": "operand_echo",
+      "intended_bits": "0x412c0fa26efa7e12"
+    },
+    {
+      "id": "r25-guard-transfer-00137",
+      "row": 137,
+      "column": 4,
+      "formula": "(0*67108864+1048576)",
+      "role": "operand_echo",
+      "intended_bits": "0x4130000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00138",
+      "row": 138,
+      "column": 4,
+      "formula": "((75369394*67108864+8569079)/2^32)",
+      "role": "operand_echo",
+      "intended_bits": "0x4131f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00139",
+      "row": 139,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D136,D137,D138)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "4204afd6a052bf1c",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json",
+      "source_id": "high:3ff1f82ec882c0f7"
+    },
+    {
+      "id": "r25-guard-transfer-00140",
+      "row": 140,
+      "column": 4,
+      "formula": "_xlfn.VAR.P(D136:D138)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00141",
+      "row": 141,
+      "column": 4,
+      "formula": "-((54090101*67108864+64957757)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf19cacbafbe5a7a"
+    },
+    {
+      "id": "r25-guard-transfer-00142",
+      "row": 142,
+      "column": 4,
+      "formula": "((26912788*67108864+44906943)/2^67)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ee9aa814ab4e6fc"
+    },
+    {
+      "id": "r25-guard-transfer-00143",
+      "row": 143,
+      "column": 4,
+      "formula": "((16886624*67108864+5075591)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f201ab60135ca1c"
+    },
+    {
+      "id": "r25-guard-transfer-00144",
+      "row": 144,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D141,D142,D143)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e4a4832798e3c66",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-0"
+    },
+    {
+      "id": "r25-guard-transfer-00145",
+      "row": 145,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D141:D143)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00146",
+      "row": 146,
+      "column": 4,
+      "formula": "((54090101*67108864+64957757)/2^65)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f19cacbafbe5a7a"
+    },
+    {
+      "id": "r25-guard-transfer-00147",
+      "row": 147,
+      "column": 4,
+      "formula": "-((26912788*67108864+44906943)/2^67)",
+      "role": "operand_echo",
+      "intended_bits": "0xbee9aa814ab4e6fc"
+    },
+    {
+      "id": "r25-guard-transfer-00148",
+      "row": 148,
+      "column": 4,
+      "formula": "-((16886624*67108864+5075591)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf201ab60135ca1c"
+    },
+    {
+      "id": "r25-guard-transfer-00149",
+      "row": 149,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D146,D147,D148)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e4a4832798e3c66",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-1"
+    },
+    {
+      "id": "r25-guard-transfer-00150",
+      "row": 150,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D146:D148)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00151",
+      "row": 151,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00152",
+      "row": 152,
+      "column": 4,
+      "formula": "((29587781*67108864+64282095)/2^68)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377bc"
+    },
+    {
+      "id": "r25-guard-transfer-00153",
+      "row": 153,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00154",
+      "row": 154,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D151,D152,D153)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-2"
+    },
+    {
+      "id": "r25-guard-transfer-00155",
+      "row": 155,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D151:D153)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00156",
+      "row": 156,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00157",
+      "row": 157,
+      "column": 4,
+      "formula": "-((29587781*67108864+64282095)/2^68)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377bc"
+    },
+    {
+      "id": "r25-guard-transfer-00158",
+      "row": 158,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00159",
+      "row": 159,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D156,D157,D158)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-3"
+    },
+    {
+      "id": "r25-guard-transfer-00160",
+      "row": 160,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D156:D158)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00161",
+      "row": 161,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00162",
+      "row": 162,
+      "column": 4,
+      "formula": "((118351127*67108864+55801789)/2^70)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377bd"
+    },
+    {
+      "id": "r25-guard-transfer-00163",
+      "row": 163,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00164",
+      "row": 164,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D161,D162,D163)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-4"
+    },
+    {
+      "id": "r25-guard-transfer-00165",
+      "row": 165,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D161:D163)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00166",
+      "row": 166,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00167",
+      "row": 167,
+      "column": 4,
+      "formula": "-((118351127*67108864+55801789)/2^70)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377bd"
+    },
+    {
+      "id": "r25-guard-transfer-00168",
+      "row": 168,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00169",
+      "row": 169,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D166,D167,D168)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-5"
+    },
+    {
+      "id": "r25-guard-transfer-00170",
+      "row": 170,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D166:D168)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00171",
+      "row": 171,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00172",
+      "row": 172,
+      "column": 4,
+      "formula": "((59175563*67108864+61455327)/2^69)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377be"
+    },
+    {
+      "id": "r25-guard-transfer-00173",
+      "row": 173,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00174",
+      "row": 174,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D171,D172,D173)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-6"
+    },
+    {
+      "id": "r25-guard-transfer-00175",
+      "row": 175,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D171:D173)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00176",
+      "row": 176,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00177",
+      "row": 177,
+      "column": 4,
+      "formula": "-((59175563*67108864+61455327)/2^69)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377be"
+    },
+    {
+      "id": "r25-guard-transfer-00178",
+      "row": 178,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00179",
+      "row": 179,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D176,D177,D178)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-7"
+    },
+    {
+      "id": "r25-guard-transfer-00180",
+      "row": 180,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D176:D178)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00181",
+      "row": 181,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00182",
+      "row": 182,
+      "column": 4,
+      "formula": "((118351127*67108864+55801791)/2^70)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377bf"
+    },
+    {
+      "id": "r25-guard-transfer-00183",
+      "row": 183,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00184",
+      "row": 184,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D181,D182,D183)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-8"
+    },
+    {
+      "id": "r25-guard-transfer-00185",
+      "row": 185,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D181:D183)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00186",
+      "row": 186,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00187",
+      "row": 187,
+      "column": 4,
+      "formula": "-((118351127*67108864+55801791)/2^70)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377bf"
+    },
+    {
+      "id": "r25-guard-transfer-00188",
+      "row": 188,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00189",
+      "row": 189,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D186,D187,D188)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-9"
+    },
+    {
+      "id": "r25-guard-transfer-00190",
+      "row": 190,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D186:D188)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00191",
+      "row": 191,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00192",
+      "row": 192,
+      "column": 4,
+      "formula": "((1849236*67108864+24989151)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377c0"
+    },
+    {
+      "id": "r25-guard-transfer-00193",
+      "row": 193,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00194",
+      "row": 194,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D191,D192,D193)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-10"
+    },
+    {
+      "id": "r25-guard-transfer-00195",
+      "row": 195,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D191:D193)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00196",
+      "row": 196,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00197",
+      "row": 197,
+      "column": 4,
+      "formula": "-((1849236*67108864+24989151)/2^64)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377c0"
+    },
+    {
+      "id": "r25-guard-transfer-00198",
+      "row": 198,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00199",
+      "row": 199,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D196,D197,D198)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-11"
+    },
+    {
+      "id": "r25-guard-transfer-00200",
+      "row": 200,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D196:D198)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00201",
+      "row": 201,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00202",
+      "row": 202,
+      "column": 4,
+      "formula": "((118351127*67108864+55801793)/2^70)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377c1"
+    },
+    {
+      "id": "r25-guard-transfer-00203",
+      "row": 203,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00204",
+      "row": 204,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D201,D202,D203)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-12"
+    },
+    {
+      "id": "r25-guard-transfer-00205",
+      "row": 205,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D201:D203)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00206",
+      "row": 206,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00207",
+      "row": 207,
+      "column": 4,
+      "formula": "-((118351127*67108864+55801793)/2^70)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377c1"
+    },
+    {
+      "id": "r25-guard-transfer-00208",
+      "row": 208,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00209",
+      "row": 209,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D206,D207,D208)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-13"
+    },
+    {
+      "id": "r25-guard-transfer-00210",
+      "row": 210,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D206:D208)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00211",
+      "row": 211,
+      "column": 4,
+      "formula": "-((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00212",
+      "row": 212,
+      "column": 4,
+      "formula": "((59175563*67108864+61455329)/2^69)",
+      "role": "operand_echo",
+      "intended_bits": "0x3edc37945f5377c2"
+    },
+    {
+      "id": "r25-guard-transfer-00213",
+      "row": 213,
+      "column": 4,
+      "formula": "((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00214",
+      "row": 214,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D211,D212,D213)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-14"
+    },
+    {
+      "id": "r25-guard-transfer-00215",
+      "row": 215,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D211:D213)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00216",
+      "row": 216,
+      "column": 4,
+      "formula": "((82786354*67108864+25631691)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f13bce0c9871bcb"
+    },
+    {
+      "id": "r25-guard-transfer-00217",
+      "row": 217,
+      "column": 4,
+      "formula": "-((59175563*67108864+61455329)/2^69)",
+      "role": "operand_echo",
+      "intended_bits": "0xbedc37945f5377c2"
+    },
+    {
+      "id": "r25-guard-transfer-00218",
+      "row": 218,
+      "column": 4,
+      "formula": "-((97580245*67108864+24218307)/2^66)",
+      "role": "operand_echo",
+      "intended_bits": "0xbf1743d355718ac3"
+    },
+    {
+      "id": "r25-guard-transfer-00219",
+      "row": 219,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D216,D217,D218)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3e3ce4f20b990e15",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json",
+      "source_id": "r25-guard-op-15"
+    },
+    {
+      "id": "r25-guard-transfer-00220",
+      "row": 220,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D216:D218)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00221",
+      "row": 221,
+      "column": 4,
+      "formula": "((68484765*67108864+3741417)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff053fa743916e9"
+    },
+    {
+      "id": "r25-guard-transfer-00222",
+      "row": 222,
+      "column": 4,
+      "formula": "((9762244*67108864+61317497)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff29eb89d3d0bc8"
+    },
+    {
+      "id": "r25-guard-transfer-00223",
+      "row": 223,
+      "column": 4,
+      "formula": "((87711153*67108864+37814439)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff4e976c64100a7"
+    },
+    {
+      "id": "r25-guard-transfer-00224",
+      "row": 224,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D221,D222,D223)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f95032c841c1600",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-relative-operations/reply.json",
+      "source_id": "r25-relative-op-0"
+    },
+    {
+      "id": "r25-guard-transfer-00225",
+      "row": 225,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D221:D223)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00226",
+      "row": 226,
+      "column": 4,
+      "formula": "((8560595*67108864+42410717)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff053fa743916e8"
+    },
+    {
+      "id": "r25-guard-transfer-00227",
+      "row": 227,
+      "column": 4,
+      "formula": "((9762244*67108864+61317497)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff29eb89d3d0bc8"
+    },
+    {
+      "id": "r25-guard-transfer-00228",
+      "row": 228,
+      "column": 4,
+      "formula": "((10963894*67108864+13115413)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff4e976c64100a8"
+    },
+    {
+      "id": "r25-guard-transfer-00229",
+      "row": 229,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D226,D227,D228)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f95032c841c1600",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-relative-operations/reply.json",
+      "source_id": "r25-relative-op-6"
+    },
+    {
+      "id": "r25-guard-transfer-00230",
+      "row": 230,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D226:D228)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00231",
+      "row": 231,
+      "column": 4,
+      "formula": "((30718482*67108864+4982391)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fed4ba1213019dc"
+    },
+    {
+      "id": "r25-guard-transfer-00232",
+      "row": 232,
+      "column": 4,
+      "formula": "((8757607*67108864+32264739)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0b42cef629118"
+    },
+    {
+      "id": "r25-guard-transfer-00233",
+      "row": 233,
+      "column": 4,
+      "formula": "((39342377*67108864+51808929)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff2c2894e2d1542"
+    },
+    {
+      "id": "r25-guard-transfer-00234",
+      "row": 234,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D231,D232,D233)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f90e8fedb71ef14",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-relative-operations/reply.json",
+      "source_id": "r25-relative-op-9"
+    },
+    {
+      "id": "r25-guard-transfer-00235",
+      "row": 235,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D231:D233)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00236",
+      "row": 236,
+      "column": 4,
+      "formula": "((122873928*67108864+19929563)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fed4ba1213019db"
+    },
+    {
+      "id": "r25-guard-transfer-00237",
+      "row": 237,
+      "column": 4,
+      "formula": "((8757607*67108864+32264739)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0b42cef629118"
+    },
+    {
+      "id": "r25-guard-transfer-00238",
+      "row": 238,
+      "column": 4,
+      "formula": "((39342377*67108864+51808929)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff2c2894e2d1542"
+    },
+    {
+      "id": "r25-guard-transfer-00239",
+      "row": 239,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D236,D237,D238)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f90e8fedb71ef18",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-relative-operations/reply.json",
+      "source_id": "r25-relative-op-14"
+    },
+    {
+      "id": "r25-guard-transfer-00240",
+      "row": 240,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D236:D238)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00241",
+      "row": 241,
+      "column": 4,
+      "formula": "((102069174*67108864+47378333)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff855cedad2ef9d"
+    },
+    {
+      "id": "r25-guard-transfer-00242",
+      "row": 242,
+      "column": 4,
+      "formula": "((116396606*67108864+36999141)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffbc048fa348fe5"
+    },
+    {
+      "id": "r25-guard-transfer-00243",
+      "row": 243,
+      "column": 4,
+      "formula": "((130724038*67108864+26619949)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fff2ac31996302d"
+    },
+    {
+      "id": "r25-guard-transfer-00244",
+      "row": 244,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D241,D242,D243)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa7564c31110ea2",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-0"
+    },
+    {
+      "id": "r25-guard-transfer-00245",
+      "row": 245,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D241:D243)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00246",
+      "row": 246,
+      "column": 4,
+      "formula": "((98475093*67108864+10690847)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff77a7154a3211f"
+    },
+    {
+      "id": "r25-guard-transfer-00247",
+      "row": 247,
+      "column": 4,
+      "formula": "((112298024*67108864+28124297)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffac620a1ad2489"
+    },
+    {
+      "id": "r25-guard-transfer-00248",
+      "row": 248,
+      "column": 4,
+      "formula": "((126120955*67108864+45557747)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffe11cfeeb727f3"
+    },
+    {
+      "id": "r25-guard-transfer-00249",
+      "row": 249,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D246,D247,D248)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa5b8f7fad4bab8",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-1"
+    },
+    {
+      "id": "r25-guard-transfer-00250",
+      "row": 250,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D246:D248)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00251",
+      "row": 251,
+      "column": 4,
+      "formula": "((49237546*67108864+38899855)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff77a7154a3211e"
+    },
+    {
+      "id": "r25-guard-transfer-00252",
+      "row": 252,
+      "column": 4,
+      "formula": "((112298024*67108864+28124297)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffac620a1ad2489"
+    },
+    {
+      "id": "r25-guard-transfer-00253",
+      "row": 253,
+      "column": 4,
+      "formula": "((31530238*67108864+61721085)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffe11cfeeb727f4"
+    },
+    {
+      "id": "r25-guard-transfer-00254",
+      "row": 254,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D251,D252,D253)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa5b8f7fad4bac5",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-2"
+    },
+    {
+      "id": "r25-guard-transfer-00255",
+      "row": 255,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D251:D253)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00256",
+      "row": 256,
+      "column": 4,
+      "formula": "((117062264*67108864+17627611)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffbe8e9e10cf9db"
+    },
+    {
+      "id": "r25-guard-transfer-00257",
+      "row": 257,
+      "column": 4,
+      "formula": "((133494273*67108864+27813975)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fffd3d805a86857"
+    },
+    {
+      "id": "r25-guard-transfer-00258",
+      "row": 258,
+      "column": 4,
+      "formula": "((74963141*67108864+19000169)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x4001df631521eb69"
+    },
+    {
+      "id": "r25-guard-transfer-00259",
+      "row": 259,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D256,D257,D258)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3faeb25a2831a638",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-3"
+    },
+    {
+      "id": "r25-guard-transfer-00260",
+      "row": 260,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D256:D258)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00261",
+      "row": 261,
+      "column": 4,
+      "formula": "((107117659*67108864+22083761)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff989f16d50f8b1"
+    },
+    {
+      "id": "r25-guard-transfer-00262",
+      "row": 262,
+      "column": 4,
+      "formula": "((122153746*67108864+4050247)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffd1fac483dcd47"
+    },
+    {
+      "id": "r25-guard-transfer-00263",
+      "row": 263,
+      "column": 4,
+      "formula": "((34297458*67108864+13281399)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x40005ab3919550ee"
+    },
+    {
+      "id": "r25-guard-transfer-00264",
+      "row": 264,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D261,D262,D263)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa9b3e8598f0ca8",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-4"
+    },
+    {
+      "id": "r25-guard-transfer-00265",
+      "row": 265,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D261:D263)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00266",
+      "row": 266,
+      "column": 4,
+      "formula": "((19026069*67108864+3997521)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff2250950f3fd44"
+    },
+    {
+      "id": "r25-guard-transfer-00267",
+      "row": 267,
+      "column": 4,
+      "formula": "((43393509*67108864+64343261)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff4b10f2fab99ba"
+    },
+    {
+      "id": "r25-guard-transfer-00268",
+      "row": 268,
+      "column": 4,
+      "formula": "((6091860*67108864+15086435)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff73d150e633630"
+    },
+    {
+      "id": "r25-guard-transfer-00269",
+      "row": 269,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D266,D267,D268)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f99f2b79a66e7a1",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-5"
+    },
+    {
+      "id": "r25-guard-transfer-00270",
+      "row": 270,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D266:D268)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00271",
+      "row": 271,
+      "column": 4,
+      "formula": "((105186477*67108864+62732015)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff91412b7bd36ef"
+    },
+    {
+      "id": "r25-guard-transfer-00272",
+      "row": 272,
+      "column": 4,
+      "formula": "((59975742*67108864+36179945)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffc9941f4501fd2"
+    },
+    {
+      "id": "r25-guard-transfer-00273",
+      "row": 273,
+      "column": 4,
+      "formula": "((67358246*67108864+7439451)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x40000f389871845b"
+    },
+    {
+      "id": "r25-guard-transfer-00274",
+      "row": 274,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D271,D272,D273)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa8c8cb1232cf30",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-6"
+    },
+    {
+      "id": "r25-guard-transfer-00275",
+      "row": 275,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D271:D273)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00276",
+      "row": 276,
+      "column": 4,
+      "formula": "((52593238*67108864+64920439)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff91412b7bd36ee"
+    },
+    {
+      "id": "r25-guard-transfer-00277",
+      "row": 277,
+      "column": 4,
+      "formula": "((59975742*67108864+36179945)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffc9941f4501fd2"
+    },
+    {
+      "id": "r25-guard-transfer-00278",
+      "row": 278,
+      "column": 4,
+      "formula": "((67358246*67108864+7439451)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x40000f389871845b"
+    },
+    {
+      "id": "r25-guard-transfer-00279",
+      "row": 279,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D276,D277,D278)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa8c8cb1232cf37",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-7"
+    },
+    {
+      "id": "r25-guard-transfer-00280",
+      "row": 280,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D276:D278)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00281",
+      "row": 281,
+      "column": 4,
+      "formula": "((122669174*67108864+24531957)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fed3f21d97653f5"
+    },
+    {
+      "id": "r25-guard-transfer-00282",
+      "row": 282,
+      "column": 4,
+      "formula": "((69944112*67108864+16383523)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0ad0cc0f9fe23"
+    },
+    {
+      "id": "r25-guard-transfer-00283",
+      "row": 283,
+      "column": 4,
+      "formula": "((19638409*67108864+21902483)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff2ba889538d24c"
+    },
+    {
+      "id": "r25-guard-transfer-00284",
+      "row": 284,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D281,D282,D283)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f90da9481bd5a1c",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-8"
+    },
+    {
+      "id": "r25-guard-transfer-00285",
+      "row": 285,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D281:D283)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00286",
+      "row": 286,
+      "column": 4,
+      "formula": "((53646678*67108864+24716385)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff994aab2f248c2"
+    },
+    {
+      "id": "r25-guard-transfer-00287",
+      "row": 287,
+      "column": 4,
+      "formula": "((30588526*67108864+34924089)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffd2be6e85398e4"
+    },
+    {
+      "id": "r25-guard-transfer-00288",
+      "row": 288,
+      "column": 4,
+      "formula": "((68707427*67108864+47871107)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x400061918eda7483"
+    },
+    {
+      "id": "r25-guard-transfer-00289",
+      "row": 289,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D286,D287,D288)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fa9c982aad37c26",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-9"
+    },
+    {
+      "id": "r25-guard-transfer-00290",
+      "row": 290,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D286:D288)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00291",
+      "row": 291,
+      "column": 4,
+      "formula": "((32054913*67108864+21234915)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fee91e81510138c"
+    },
+    {
+      "id": "r25-guard-transfer-00292",
+      "row": 292,
+      "column": 4,
+      "formula": "((18277227*67108864+59739255)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff16e36be3e31dc"
+    },
+    {
+      "id": "r25-guard-transfer-00293",
+      "row": 293,
+      "column": 4,
+      "formula": "((41053998*67108864+16395513)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff3937971f459f2"
+    },
+    {
+      "id": "r25-guard-transfer-00294",
+      "row": 294,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D291,D292,D293)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f9269dca0b1c00d",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-10"
+    },
+    {
+      "id": "r25-guard-transfer-00295",
+      "row": 295,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D291:D293)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00296",
+      "row": 296,
+      "column": 4,
+      "formula": "((128219653*67108864+17830795)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fee91e81510138b"
+    },
+    {
+      "id": "r25-guard-transfer-00297",
+      "row": 297,
+      "column": 4,
+      "formula": "((18277227*67108864+59739255)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff16e36be3e31dc"
+    },
+    {
+      "id": "r25-guard-transfer-00298",
+      "row": 298,
+      "column": 4,
+      "formula": "((41053998*67108864+16395513)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff3937971f459f2"
+    },
+    {
+      "id": "r25-guard-transfer-00299",
+      "row": 299,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D296,D297,D298)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f9269dca0b1c012",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-11"
+    },
+    {
+      "id": "r25-guard-transfer-00300",
+      "row": 300,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D296:D298)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00301",
+      "row": 301,
+      "column": 4,
+      "formula": "((64109826*67108864+42469829)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fee91e81510138a"
+    },
+    {
+      "id": "r25-guard-transfer-00302",
+      "row": 302,
+      "column": 4,
+      "formula": "((18277227*67108864+59739255)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff16e36be3e31dc"
+    },
+    {
+      "id": "r25-guard-transfer-00303",
+      "row": 303,
+      "column": 4,
+      "formula": "((82107996*67108864+32791027)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff3937971f459f3"
+    },
+    {
+      "id": "r25-guard-transfer-00304",
+      "row": 304,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D301,D302,D303)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f9269dca0b1c01e",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-12"
+    },
+    {
+      "id": "r25-guard-transfer-00305",
+      "row": 305,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D301:D303)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00306",
+      "row": 306,
+      "column": 4,
+      "formula": "((18537419*67108864+20576349)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff1adbcb4e7e174"
+    },
+    {
+      "id": "r25-guard-transfer-00307",
+      "row": 307,
+      "column": 4,
+      "formula": "((42279027*67108864+6413771)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff4290398c3bb96"
+    },
+    {
+      "id": "r25-guard-transfer-00308",
+      "row": 308,
+      "column": 4,
+      "formula": "((11870803*67108864+60027575)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff6a44a7c9f95b8"
+    },
+    {
+      "id": "r25-guard-transfer-00309",
+      "row": 309,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D306,D307,D308)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3f98a1e308184cbe",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-13"
+    },
+    {
+      "id": "r25-guard-transfer-00310",
+      "row": 310,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D306:D308)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00311",
+      "row": 311,
+      "column": 4,
+      "formula": "((14292229*67108864+42000159)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffb42a0b406f8f8"
+    },
+    {
+      "id": "r25-guard-transfer-00312",
+      "row": 312,
+      "column": 4,
+      "formula": "((130387418*67108864+53063211)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fff16376b29ae2b"
+    },
+    {
+      "id": "r25-guard-transfer-00313",
+      "row": 313,
+      "column": 4,
+      "formula": "((73218500*67108864+19280303)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x400174e7112631af"
+    },
+    {
+      "id": "r25-guard-transfer-00314",
+      "row": 314,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D311,D312,D313)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fad48d42add2b26",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-14"
+    },
+    {
+      "id": "r25-guard-transfer-00315",
+      "row": 315,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D311:D313)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00316",
+      "row": 316,
+      "column": 4,
+      "formula": "((114337837*67108864+456951)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffb42a0b406f8f7"
+    },
+    {
+      "id": "r25-guard-transfer-00317",
+      "row": 317,
+      "column": 4,
+      "formula": "((130387418*67108864+53063211)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fff16376b29ae2b"
+    },
+    {
+      "id": "r25-guard-transfer-00318",
+      "row": 318,
+      "column": 4,
+      "formula": "((73218500*67108864+19280303)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x400174e7112631af"
+    },
+    {
+      "id": "r25-guard-transfer-00319",
+      "row": 319,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D316,D317,D318)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fad48d42add2b2e",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json",
+      "source_id": "r25-relative-op-15"
+    },
+    {
+      "id": "r25-guard-transfer-00320",
+      "row": 320,
+      "column": 4,
+      "formula": "_xlfn.VAR.S(D316:D318)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00321",
+      "row": 321,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00322",
+      "row": 322,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00323",
+      "row": 323,
+      "column": 4,
+      "formula": "((17298190*67108864+9583699)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff07f30e248f14c"
+    },
+    {
+      "id": "r25-guard-transfer-00324",
+      "row": 324,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D321,D322,D323)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe2c4c55ae2d85e",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.S.json",
+      "source_id": "r25-sqrt-8"
+    },
+    {
+      "id": "r25-guard-transfer-00325",
+      "row": 325,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D321:D323)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00326",
+      "row": 326,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00327",
+      "row": 327,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00328",
+      "row": 328,
+      "column": 4,
+      "formula": "((71929125*67108864+11244799)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff1263494ab94ff"
+    },
+    {
+      "id": "r25-guard-transfer-00329",
+      "row": 329,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D326,D327,D328)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe32c5695fa57ce",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.S.json",
+      "source_id": "r25-sqrt-10"
+    },
+    {
+      "id": "r25-guard-transfer-00330",
+      "row": 330,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D326:D328)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00331",
+      "row": 331,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00332",
+      "row": 332,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00333",
+      "row": 333,
+      "column": 4,
+      "formula": "((10812599*67108864+25011471)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff49f96ebed2878"
+    },
+    {
+      "id": "r25-guard-transfer-00334",
+      "row": 334,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D331,D332,D333)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe5a4e36c272774",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.S.json",
+      "source_id": "r25-sqrt-11"
+    },
+    {
+      "id": "r25-guard-transfer-00335",
+      "row": 335,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D331:D333)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00336",
+      "row": 336,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00337",
+      "row": 337,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00338",
+      "row": 338,
+      "column": 4,
+      "formula": "((122745638*67108864+29923737)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffd43cc99c89999"
+    },
+    {
+      "id": "r25-guard-transfer-00339",
+      "row": 339,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D336,D337,D338)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fed4eb2c7738c78",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.S.json",
+      "source_id": "r25-sqrt-14"
+    },
+    {
+      "id": "r25-guard-transfer-00340",
+      "row": 340,
+      "column": 4,
+      "formula": "_xlfn.STDEV.S(D336:D338)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00341",
+      "row": 341,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00342",
+      "row": 342,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00343",
+      "row": 343,
+      "column": 4,
+      "formula": "((30186708*67108864+3140469)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffcc9cd40bfadd4"
+    },
+    {
+      "id": "r25-guard-transfer-00344",
+      "row": 344,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D341,D342,D343)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe78de332b83efa",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-0"
+    },
+    {
+      "id": "r25-guard-transfer-00345",
+      "row": 345,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D341:D343)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00346",
+      "row": 346,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00347",
+      "row": 347,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00348",
+      "row": 348,
+      "column": 4,
+      "formula": "((15046259*67108864+43005253)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffcb2ce7481aa28"
+    },
+    {
+      "id": "r25-guard-transfer-00349",
+      "row": 349,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D346,D347,D348)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe77bdc0a81553c",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-1"
+    },
+    {
+      "id": "r25-guard-transfer-00350",
+      "row": 350,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D346:D348)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00351",
+      "row": 351,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00352",
+      "row": 352,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00353",
+      "row": 353,
+      "column": 4,
+      "formula": "((66471662*67108864+64536041)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fffb23777b17bd2"
+    },
+    {
+      "id": "r25-guard-transfer-00354",
+      "row": 354,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D351,D352,D353)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe9e154e60eb9d8",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-2"
+    },
+    {
+      "id": "r25-guard-transfer-00355",
+      "row": 355,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D351:D353)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00356",
+      "row": 356,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00357",
+      "row": 357,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00358",
+      "row": 358,
+      "column": 4,
+      "formula": "((80297175*67108864+6710719)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff324f35c6665bf"
+    },
+    {
+      "id": "r25-guard-transfer-00359",
+      "row": 359,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D356,D357,D358)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe0c3d36444b288",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-3"
+    },
+    {
+      "id": "r25-guard-transfer-00360",
+      "row": 360,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D356:D358)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00361",
+      "row": 361,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00362",
+      "row": 362,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00363",
+      "row": 363,
+      "column": 4,
+      "formula": "((60572683*67108864+2042139)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffce220583e5236"
+    },
+    {
+      "id": "r25-guard-transfer-00364",
+      "row": 364,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D361,D362,D363)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe7a0fbd200b1b8",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-4"
+    },
+    {
+      "id": "r25-guard-transfer-00365",
+      "row": 365,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D361:D363)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00366",
+      "row": 366,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00367",
+      "row": 367,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00368",
+      "row": 368,
+      "column": 4,
+      "formula": "((75852737*67108864+46839881)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff215af06cab849"
+    },
+    {
+      "id": "r25-guard-transfer-00369",
+      "row": 369,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D366,D367,D368)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe02857e1518712",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-5"
+    },
+    {
+      "id": "r25-guard-transfer-00370",
+      "row": 370,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D366:D368)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00371",
+      "row": 371,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00372",
+      "row": 372,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00373",
+      "row": 373,
+      "column": 4,
+      "formula": "((60934117*67108864+30646443)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffd0e3f2ba74156"
+    },
+    {
+      "id": "r25-guard-transfer-00374",
+      "row": 374,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D371,D372,D373)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe7c3b038a94eae",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-6"
+    },
+    {
+      "id": "r25-guard-transfer-00375",
+      "row": 375,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D371:D373)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00376",
+      "row": 376,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00377",
+      "row": 377,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00378",
+      "row": 378,
+      "column": 4,
+      "formula": "((80938826*67108864+263717)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff34c1d28040625"
+    },
+    {
+      "id": "r25-guard-transfer-00379",
+      "row": 379,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D376,D377,D378)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe0db0ffee686b8",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-7"
+    },
+    {
+      "id": "r25-guard-transfer-00380",
+      "row": 380,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D376:D378)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00381",
+      "row": 381,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00382",
+      "row": 382,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00383",
+      "row": 383,
+      "column": 4,
+      "formula": "((82020291*67108864+37991173)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff38e1f0e43b305"
+    },
+    {
+      "id": "r25-guard-transfer-00384",
+      "row": 384,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D381,D382,D383)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe102a793581ba8",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-9"
+    },
+    {
+      "id": "r25-guard-transfer-00385",
+      "row": 385,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D381:D383)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00386",
+      "row": 386,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00387",
+      "row": 387,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00388",
+      "row": 388,
+      "column": 4,
+      "formula": "((23905832*67108864+54735561)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff6cc628d0ccb24"
+    },
+    {
+      "id": "r25-guard-transfer-00389",
+      "row": 389,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D386,D387,D388)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe31d0ef0c15e4e",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-12"
+    },
+    {
+      "id": "r25-guard-transfer-00390",
+      "row": 390,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D386:D388)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00391",
+      "row": 391,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00392",
+      "row": 392,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00393",
+      "row": 393,
+      "column": 4,
+      "formula": "((60304242*67108864+22902769)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffcc15b92baefe2"
+    },
+    {
+      "id": "r25-guard-transfer-00394",
+      "row": 394,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D391,D392,D393)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe78743c24dd5b0",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-13"
+    },
+    {
+      "id": "r25-guard-transfer-00395",
+      "row": 395,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D391:D393)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    },
+    {
+      "id": "r25-guard-transfer-00396",
+      "row": 396,
+      "column": 4,
+      "formula": "0",
+      "role": "operand_echo",
+      "intended_bits": "0x0000000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00397",
+      "row": 397,
+      "column": 4,
+      "formula": "(0*67108864+1)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "r25-guard-transfer-00398",
+      "row": 398,
+      "column": 4,
+      "formula": "((97899235*67108864+25462109)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff7574b8d84855d"
+    },
+    {
+      "id": "r25-guard-transfer-00399",
+      "row": 399,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D396,D397,D398)",
+      "role": "question",
+      "route": "scalar_replay",
+      "prior_scalar_observation": "3fe37d75f75d6766",
+      "prior_source": "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json",
+      "source_id": "r25-sqrt-15"
+    },
+    {
+      "id": "r25-guard-transfer-00400",
+      "row": 400,
+      "column": 4,
+      "formula": "_xlfn.STDEV.P(D396:D398)",
+      "role": "question",
+      "route": "range_transfer",
+      "hypothesis": "Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer."
+    }
+  ]
+}

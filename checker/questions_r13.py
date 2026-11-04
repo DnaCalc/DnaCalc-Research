@@ -15,6 +15,132 @@ def read(path):return json.loads(Path(path).read_text())
 def records(path):return [json.loads(line)for line in Path(path).read_text().splitlines()]
 
 
+def delivery_files(root):
+    """Check an immutable owner delivery without importing its claimed verdicts."""
+    root = Path(root).resolve()
+    manifest = read(root/'delivery-sha256.json')
+    total = 0
+    for relative, expected in manifest.items():
+        path = (root/relative).resolve()
+        require(path.is_relative_to(root), 'delivery path escapes root')
+        require(path.is_file() and sha(path) == expected, 'delivery file changed: '+relative)
+        total += path.stat().st_size
+    return dict(files=len(manifest), bytes=total,
+                manifest_sha256=sha(root/'delivery-sha256.json'))
+
+
+def check_r25_deliveries(r23, eng12, checkout, output):
+    """Preserve entry observations and distinguish reduced from original answers.
+
+    No witness, capture or expected value is authored by this intake. The five
+    refuted reductions are checked against their actual constant dependencies.
+    """
+    import collections
+    import posixpath
+    import zipfile
+    import xml.etree.ElementTree as ET
+    roots = dict(r23=Path(r23), eng12=Path(eng12))
+    files = {name:delivery_files(path) for name,path in roots.items()}
+    entry = read(roots['r23']/'r23-entry-v2.capture.json')
+    observations = {(r['sheet'],r['row'],r['column']):r for r in entry['observations']}
+    require(len(observations) == len(entry['observations']), 'duplicate entry observation')
+    questions = read(roots['r23']/'packet/workbook-questions.json')['questions']
+    answers = records(roots['r23']/'answers.jsonl')
+    require(len(questions) == len(answers) == 968, 'R23 question count changed')
+    roles, statuses, echoes = collections.Counter(), collections.Counter(), collections.Counter()
+    seen = set()
+    for question, answer in zip(questions, answers):
+        require(question == answer['question'], 'R23 question identity changed')
+        key = ('dcztvv_r23',question['row'],question['column'])
+        require(key not in seen, 'duplicate R23 question')
+        seen.add(key)
+        roles[question['role']] += 1
+        statuses[answer['status']] += 1
+        if answer['status'] == 'observed':
+            require(answer['observation'] == observations[key], 'R23 answer differs from capture')
+            raw_value = answer['raw_cell']['value']
+            if 'error_code' in raw_value:
+                errors = {2000:'null',2007:'div0',2015:'value',2023:'ref',2029:'name',2036:'num',2042:'na'}
+                require(raw_value['error_code'] in errors, 'unknown raw Excel error')
+                raw_value = {'error':errors[raw_value['error_code']]}
+            require(raw_value == answer['observation']['excel_raw'],
+                    'R23 canonical answer differs from raw worker')
+            intended = question.get('intended_bits')
+            if question['role'] == 'operand_echo' and intended:
+                actual = answer['observation']['excel_raw']
+                echoes['equal' if actual == {'number':intended.removeprefix('0x')} else 'different'] += 1
+        else:
+            require(answer['status'] == 'entry_refused' and key not in observations,
+                    'unsupported R23 answer status')
+    require(set(observations) <= seen, 'uncounted R23 observations')
+
+    manifest = read(roots['eng12']/'packet/corpus-cases.json')
+    cases = {r['sha256']:r for r in manifest['cases']}
+    confirmations = records(roots['eng12']/'independent-confirmations.jsonl')
+    require(len(cases) == len(confirmations) == 1146, 'ENG12 case count changed')
+    ns = {'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+    def cells(path):
+        result = {}
+        with zipfile.ZipFile(path) as archive:
+            rels = {r.attrib['Id']:r.attrib['Target'] for r in
+                    ET.fromstring(archive.read('xl/_rels/workbook.xml.rels'))}
+            for sheet in ET.fromstring(archive.read('xl/workbook.xml')).find('m:sheets',ns):
+                target = rels[sheet.attrib['{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id']]
+                part = posixpath.normpath(target.lstrip('/') if target.startswith('/') else 'xl/'+target)
+                require(part.startswith('xl/'), 'worksheet relationship escapes package folder')
+                result[sheet.attrib['name']] = {c.attrib['r']:c for c in
+                    ET.fromstring(archive.read(part)).findall('.//m:c',ns)}
+        return result
+    original = cells(Path(checkout)/'crates/calc-func/tests/fixtures/fn2_questions/oracle.xlsx')
+    statuses12, refuted, seen12 = collections.Counter(), [], set()
+    for confirmation in confirmations:
+        identity = confirmation['sha256']
+        require(identity not in seen12 and identity in cases, 'duplicate/unknown ENG12 identity')
+        seen12.add(identity)
+        case = cases[identity]
+        package = roots['eng12']/'packet/corpus-cases'/case['case']
+        require(sha(package) == identity, 'ENG12 reduced package changed')
+        require(confirmation['inherited_reference'] == case['source_reference_observation'],
+                'ENG12 inherited answer changed')
+        statuses12[confirmation['status']] += 1
+        if confirmation.get('capture'):
+            capture = roots['eng12']/confirmation['capture']
+            require(sha(capture) == confirmation['capture_sha256'], 'ENG12 capture changed')
+            record = read(capture)
+            target = (confirmation['sheet'],confirmation['row'],confirmation['column'])
+            rows = [r for r in record['observations'] if (r['sheet'],r['row'],r['column']) == target]
+            if confirmation.get('excel_raw') is not None:
+                require(len(rows) == 1 and rows[0]['excel_raw'] == confirmation['excel_raw'],
+                        'ENG12 answer differs from canonical capture')
+        if confirmation['status'] != 'refuted_frozen_mismatch':
+            continue
+        reduced = cells(package)
+        observer = reduced[confirmation['sheet']]['D1'].find('m:f',ns).text
+        producer_sheet = observer.split('!')[0].strip("'")
+        producer = reduced[producer_sheet]['J20']
+        require(producer.find('m:f',ns) is None, 'refuted dependency was not frozen')
+        refuted.append(dict(case=identity, observer_sheet=confirmation['sheet'],
+            observer_formula=observer, producer_sheet=producer_sheet,
+            original_producer_formula=original[producer_sheet]['J20'].find('m:f',ns).text,
+            reduced_constant_type=producer.attrib.get('t','n'),
+            reduced_constant=producer.find('m:v',ns).text,
+            inherited_reference=confirmation['inherited_reference'],
+            measured_reduced_answer=confirmation['excel_raw'],
+            cause='The reduction froze the differing producer to the DNA value. '
+                  'Excel confirms that constant in the reduced file; the original call remains open.'))
+    require(len(refuted) == 5, 'ENG12 refutation count changed')
+    result = dict(complete=True, files=files,
+        r23=dict(roles=roles,statuses=statuses,intended_operand_echoes=echoes,
+                 capture_sha256=sha(roots['r23']/'r23-entry-v2.capture.json')),
+        eng12=dict(statuses=statuses12, refuted=refuted),
+        limits='Measurements of the authored inputs only. Original answers remain unchanged; '
+               'refutations do not repair the original corpus. Capture failures and missing answers fail. '
+               'R23 effective operands require the associated echoes; intended bits are not observations.')
+    with Path(output).open('x') as stream:
+        json.dump(result,stream,indent=2);stream.write('\n')
+    return result
+
+
 def frozen_prediction_path(results,name,expected_hash):
     """Locate one original worker model, including retained nested retries."""
     require(Path(name).name==name and name.endswith('.json') and

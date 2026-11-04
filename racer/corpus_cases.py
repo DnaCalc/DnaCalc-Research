@@ -403,7 +403,7 @@ def round22_questions(executable, output):
     executable, output = Path(executable).resolve(), Path(output)
     # ubs:ignore — trusted local executable, argv only. Its compiled unit binds
     # the application sources; the working checkout may have advanced since.
-    binding=json.loads(subprocess.check_output([str(executable),'provenance'],timeout=60))
+    binding=json.loads(subprocess.check_output([str(executable),'provenance'],timeout=60))  # ubs:ignore — operator selects a local research binary; argv only, no shell
     output.mkdir(parents=True, exist_ok=False)
     bits = lambda v: '0x'+struct.pack('>d', float(v)).hex()
     questions, reasons = [], []
@@ -1600,7 +1600,440 @@ or changed-input obligations fail. Use the existing capture lineage only.
     print(json.dumps({k:v for k,v in summary.items() if 'sha256' not in k}))
 
 
+def round25_store_questions(executable, powershell, output):
+    """Choose QR questions by conflicting arithmetic predictions, without answers.
+
+    Orthogonal columns and response basis vectors separate the norm producer
+    from the unresolved near-collinear rank rule. The square witness is an
+    existing VAR.S operand; the LINEST/LOGEST calls are new questions.
+    """
+    import gzip
+    import subprocess
+    from corpus_fuzz import exact_expression,bits,number
+    executable=Path(executable).resolve();powershell=Path(powershell).resolve();output=Path(output).resolve()
+    output.mkdir(parents=True,exist_ok=False)
+    generator=Path(__file__).resolve().parents[2]/'DnaCalc/crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1'
+    frozen={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in
+            (executable,powershell,generator,Path(__file__).resolve(),Path(__file__).with_name('corpus_fuzz.py'))}
+    discovery=[]
+    def emit(book,formula,role='operand_echo',**metadata):
+        row=len(book)+1
+        book.append(dict(id=f'r25-qr-store-{row:05d}',row=row,column=4,formula=formula,role=role,**metadata))
+        return f'D{row}'
+    def vector(book,values):
+        refs=[emit(book,exact_expression(x),intended_bits=bits(x))for x in values]
+        return refs[0]+':'+refs[-1]
+    a=number('0x401f9ff8b1ae9622')
+    for predictors in (1,2):
+        first=[a,0.0,0.0,0.5];second=[0.0,a,0.5,0.0]
+        x1=vector(discovery,first);x2=vector(discovery,second)if predictors==2 else None
+        matrix=[[bits(first[i])]+([bits(second[i])]if predictors==2 else[])for i in range(4)]
+        for function in ('LINEST','LOGEST'):
+            responses=([[float(i==j)for i in range(4)]for j in range(4)]+[[1.0,2.0,4.0,7.0]] if function=='LINEST' else
+                       [[2.0 if i==j else 1.0 for i in range(4)]for j in range(4)]+[[1.0,2.0,4.0,8.0]])
+            for response in responses:
+                y=vector(discovery,response)
+                for constant in (False,True):
+                    x=x1 if predictors==1 else f'CHOOSE({{1,2}},{x1},{x2})'
+                    call=f'{function}({y},{x},{str(constant).upper()},TRUE)'
+                    for r,c in ((1,1),(1,2),(2,1),(3,1),(5,2)):
+                        emit(discovery,f'INDEX({call},{r},{c})','question',function=function,
+                             args=[[[bits(v)]for v in response],matrix,constant,True],result_index=[r,c])
+    doc=output/'discovery-questions.json'
+    doc.write_text(json.dumps(dict(sheet='r25_qr_discovery',questions=discovery),indent=2)+'\n')
+    subprocess.run([str(executable),'sheet-predictions',str(doc),str(output/'discovery-predictions.jsonl')],check=True,timeout=300)  # ubs:ignore — frozen local producer with explicit argv and bounded runtime
+    actual=[json.loads(line)for line in (output/'discovery-predictions.jsonl').open()]
+    rows=[]
+    for q,p in zip(discovery,actual):
+        if p['id']!=q['id']or p['prediction_provenance']!='calculated':raise ValueError('QR discovery route refused or changed identity')
+        if q['role']=='question':rows.append(dict(q,actual=p['calc_func_prediction'],expected=None,unobserved_question=True))
+    candidate=output/'discovery-inputs.jsonl';candidate.write_text(''.join(json.dumps(r)+'\n'for r in rows))
+    for kind,command in (('outer','regression-outer'),('folds','regression-folds')):
+        subprocess.run([str(executable),command,str(candidate),str(output/kind)],check=True,timeout=300)  # ubs:ignore — fixed subcommand and frozen local producer; no shell
+    selected={}
+    for kind,program,name in [('outer',4,'stored_norm'),('folds',2,'resident_norm_loop'),('folds',8,'resident_intercept_loop')]:
+        for line in (output/kind/'changes.jsonl').open():
+            change=json.loads(line)
+            if change['program']!=program:continue
+            selected.setdefault(change['id'],{})[name]=change['prediction']
+    if not selected:raise ValueError('no QR programs disagree on the constructed norm boundary')
+    book=[];cache={}
+    def reference(values):
+        key=tuple(values)
+        if key not in cache:cache[key]=vector(book,list(map(number,values)))
+        return cache[key]
+    for raw in rows:
+        if raw['id']not in selected:continue
+        y,matrix,constant,_=raw['args'];y=reference([r[0]for r in y])
+        columns=[reference([r[c]for r in matrix])for c in range(len(matrix[0]))]
+        x=columns[0]if len(columns)==1 else f'CHOOSE({{1,2}},{columns[0]},{columns[1]})'
+        r,c=raw['result_index'];call=f"{raw['function']}({y},{x},{str(constant).upper()},TRUE)"
+        predictions=dict(strict=raw['actual'],**selected[raw['id']])
+        if len(set(predictions.values()))<2:raise ValueError('selected QR call has no differing candidate bits')
+        emit(book,f'INDEX({call},{r},{c})','question',function=raw['function'],source_id=raw['id'],
+             args=raw['args'],result_index=raw['result_index'],candidate_predictions=predictions,
+             hypothesis='Full-rank orthogonal-column/basis-response probe. The known multiplication edge changes the stored norm; no numerical rank tolerance is fitted.')
+    case='dcj9k_r25_qr_stores';questions=output/'workbook-questions.json'
+    questions.write_text(json.dumps(dict(sheet=case,questions=book),indent=2)+'\n')
+    section=output/f'sheet-{case}.txt';section.write_text('# R25 QR stored-step questions; no Excel answers.\n'+'\n'.join(q['formula']for q in book)+'\n')
+    subprocess.run([str(executable),'sheet-predictions',str(questions),str(output/'application-predictions.jsonl')],check=True,timeout=300)  # ubs:ignore — frozen local producer, argv only, output remains a prediction
+    final=[json.loads(line)for line in (output/'application-predictions.jsonl').open()]
+    if len(final)!=len(book):raise ValueError('missing QR question predictions')
+    for q,p in zip(book,final):
+        wanted=q.get('intended_bits')if q['role']=='operand_echo'else q['candidate_predictions']['strict']
+        if p['id']!=q['id']or p['prediction_provenance']!='calculated'or p['calc_func_prediction']!=wanted:
+            raise ValueError('QR question changes the constructed inputs or registered return')
+    subprocess.run([str(powershell),'-NoProfile','-File',str(generator),'-OutDir',str(output/'workbooks'),  # ubs:ignore — operator selects local PowerShell; repository generator and explicit argv, no shell
+                    '-QuestionSectionFile',str(section),'-QuestionCase',case],check=True,timeout=300)
+    # Discovery material is a compact, explicitly unobserved counterfactual
+    # record; it is never an input workbook or a capture.
+    for p in [doc,candidate,output/'discovery-predictions.jsonl',output/'outer/changes.jsonl',output/'folds/changes.jsonl']:
+        p.with_suffix(p.suffix+'.gz').write_bytes(gzip.compress(p.read_bytes(),mtime=0));p.unlink()
+    (output/'prediction-binding.json').write_bytes(subprocess.check_output([str(executable),'provenance'],timeout=60))  # ubs:ignore — frozen local producer returns its compiled unit; argv only
+    (output/'README.txt').write_text(f'''R25 additional QR store questions: capture only workbooks/dcj9k_r25_qr_stores/oracle.xlsx.
+The{len(selected)} selected calls have at least two different complete candidate result bits.
+They were selected without Excel answers. Discovery exact/match counts exclude
+all200 construction calls because they have no observed expectation; they are not a
+performance measurement. The orthogonal columns share a known square-rounding
+edge; response basis vectors expose the least-squares operator. All matrices are
+full rank over the exact inputs, with and without an intercept. Degrees of freedom
+are not used to select a numerical tolerance. Every input cell is echoed.
+Use only the existing capture/compare route. Preserve the raw worker evidence,
+canonical capture, workbook bytes and full environment; no downloads or publishing.
+The stored-norm and resident-loop alternatives remain conditional programs until
+Excel answers the questions. No new numerical behaviour is claimed here.
+''')
+    if frozen!={p:hashlib.sha256(Path(p).read_bytes()).hexdigest()for p in frozen}:raise ValueError('QR question inputs changed')
+    manifest=dict(format='dnacalc-research-questions-r25-qr-stores/1',new_excel_answers=0,formula_cells=len(book),
+        calls=len(selected),constructed_calls=len(rows),inputs_sha256=frozen,
+        files_sha256={str(p.relative_to(output)):hashlib.sha256(p.read_bytes()).hexdigest()for p in sorted(output.rglob('*'))if p.is_file()},
+        limits='Candidate disagreements only, not matched Excel. Existing cleared QR producer and rank rule remain conditional; no coefficient, tolerance or answer-dependent selector fitted.')
+    (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps({k:v for k,v in manifest.items()if not k.endswith('sha256')}))
+
+
+def round25_guard_packet(executable,powershell,inputs,output):
+    """Replay measured scalar edges beside explicitly unobserved ranges."""
+    import subprocess
+    from corpus_fuzz import exact_expression,number
+    executable=Path(executable).resolve();powershell=Path(powershell).resolve()
+    inputs=Path(inputs).resolve();output=Path(output).resolve();output.mkdir(exist_ok=False)
+    generator=Path(__file__).resolve().parents[2]/'DnaCalc/crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1'
+    sources=[executable,powershell,generator,Path(__file__).resolve(),Path(__file__).with_name('corpus_fuzz.py')]
+    readings={}
+    def retain(function,args,answer,source,identity):
+        if answer['type']!='number':raise ValueError('guard reading is not numeric')
+        args=[x.removeprefix('0x')for x in args]
+        readings.setdefault((function,tuple(args)),dict(function=function,args=args,
+            scalar_observation=answer['bits'],source=str(source),source_id=identity))
+    for directory in ('live-variance-edges','live-variance-cancellation-v2'):
+        p=inputs/directory/'states.json';sources.append(p)
+        for state in json.loads(p.read_text()):
+            key='scale'if directory=='live-variance-edges'else't'
+            for side in ('low','high'):
+                row=next(r for r in state['history']if int(r[key],16)==state[side])
+                retain(state['function'],row['args'],row['answer'],p,side+':'+row[key])
+    for directory in ('live-guard-operations','live-relative-operations','live-unique-relative-operations'):
+        q=inputs/directory/'questions.json';p=inputs/directory/'reply.json';sources.extend([q,p])
+        questions=json.loads(q.read_text())['questions'];reply=json.loads(p.read_text())
+        if not reply['ok']or len(questions)!=len(reply['rows']):raise ValueError('incomplete guard observation')
+        for question,answer in zip(questions,reply['rows']):retain('VAR.S',question['args'],answer,p,question['id'])
+    for function in ('STDEV.S','STDEV.P'):
+        p=inputs/'live-variance-sqrt'/(function+'.json');sources.append(p);v=json.loads(p.read_text())
+        for question,answer in zip(v['questions'],v['reply']['rows']):retain(function,question['args'],answer,p,question['id'])
+    book=[]
+    def emit(formula,role,**metadata):
+        row=len(book)+1;book.append(dict(id=f'r25-guard-transfer-{row:05d}',row=row,column=4,formula=formula,role=role,**metadata));return f'D{row}'
+    for reading in readings.values():
+        refs=[emit(exact_expression(number('0x'+x)),'operand_echo',intended_bits='0x'+x)for x in reading['args']]
+        prefix='_xlfn.'if'.'in reading['function']else'';function=prefix+reading['function']
+        emit(function+'('+','.join(refs)+')','question',route='scalar_replay',
+             prior_scalar_observation=reading['scalar_observation'],prior_source=reading['source'],source_id=reading['source_id'])
+        emit(function+'('+refs[0]+':'+refs[-1]+')','question',route='range_transfer',
+             hypothesis='Unobserved range route at an observed scalar guard or square-root edge; do not copy the scalar answer.')
+    case='dcj9k_r25_guard_transfer';doc=output/'workbook-questions.json';doc.write_text(json.dumps(dict(sheet=case,questions=book),indent=2)+'\n')
+    section=output/f'sheet-{case}.txt';section.write_text('# New R25 workbook; scalar replays and unobserved range transfers.\n'+'\n'.join(q['formula']for q in book)+'\n',encoding='ascii')
+    subprocess.run([str(executable),'sheet-predictions',str(doc),str(output/'application-predictions.jsonl')],check=True,timeout=600)  # ubs:ignore — frozen local producer and explicit argv; predictions are not answers
+    predictions=[json.loads(line)for line in (output/'application-predictions.jsonl').read_text().splitlines()]
+    if len(predictions)!=len(book):raise ValueError('incomplete guard packet predictions')
+    for question,prediction in zip(book,predictions):
+        if question['id']!=prediction['id']or prediction['prediction_provenance']!='calculated':raise ValueError('guard packet refused or reordered')
+        expected=question.get('intended_bits')if question['role']=='operand_echo'else'0x'+question['prior_scalar_observation']if question.get('route')=='scalar_replay'else None
+        if expected is not None and prediction['calc_func_prediction']!=expected:raise ValueError('producer differs from the exact operand or measured scalar reading')
+    subprocess.run([str(powershell),'-NoProfile','-File',str(generator),'-OutDir',str(output/'workbooks'),'-QuestionSectionFile',str(section),'-QuestionCase',case],check=True,timeout=300)  # ubs:ignore — local PowerShell and existing repository generator, no shell
+    (output/'prediction-binding.json').write_bytes(subprocess.check_output([str(executable),'provenance'],timeout=60))  # ubs:ignore — frozen local executable, argv only, bounded runtime
+    (output/'README.txt').write_text('R25 new workbook: scalar replays and paired range transfer questions.\nOnly the prior separate-cell service observations are measured; this workbook is not captured.\nRange answers are unknown. Retain every operand echo, canonical capture and raw worker record.\n')
+    manifest=dict(format='dnacalc-r25-guard-transfer/1',formula_cells=len(book),calls=2*len(readings),
+        scalar_replays=len(readings),unobserved_range_transfers=len(readings),new_workbook_captures=0,
+        inputs_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in sources},
+        files_sha256={str(p.relative_to(output)):hashlib.sha256(p.read_bytes()).hexdigest()for p in output.rglob('*')if p.is_file()})
+    (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps({k:v for k,v in manifest.items()if'sha256'not in k}))
+
+
+def round25_questions(executable, powershell, inputs, output):
+    """Separate, exact-operand workbooks for the R25 unresolved arithmetic.
+
+    Boundaries come from identities, existing measured rank brackets and
+    rounding midpoints. Neither answers nor match counts choose a parameter.
+    """
+    import gzip
+    import itertools
+    import math
+    import subprocess
+    from fractions import Fraction as Q
+    from corpus_fuzz import exact_expression, bits, number
+    # Reuse the independent integer/rational checker for actual stored
+    # predicates, including rounding the three input cells themselves.
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
+    from variance import arithmetic, evaluate
+    from exact import binary64
+    from normal import encoding
+    sys.path.pop(0)
+    executable=Path(executable).resolve();powershell=Path(powershell).resolve()
+    inputs=Path(inputs).resolve();output=Path(output).resolve()
+    output.mkdir(parents=True,exist_ok=False)
+    generator=Path(__file__).resolve().parents[2]/'DnaCalc/crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1'
+    checker=Path(__file__).resolve().parents[1]/'checker'
+    bindings={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in
+        (executable,powershell,generator,Path(__file__).resolve(),inputs/'variance-guard-constraints.json',
+         inputs/'regression-rank-sources.json',inputs/'r20-observations.jsonl.gz',
+         inputs/'geomean-product-probes.json',Path(__file__).with_name('corpus_fuzz.py'),
+         checker/'variance.py',checker/'exact.py',checker/'normal.py',checker/'check.py')}
+    packet=[]
+    def emit(book,formula,role='question',**metadata):
+        row=len(book)+1
+        book.append(dict(id=f'r25-{current}-{row:05d}',row=row,column=4,formula=formula,role=role,**metadata))
+        return f'D{row}'
+    def vector(book,values,**metadata):
+        refs=[emit(book,exact_expression(x),'operand_echo',intended_bits=bits(x),**metadata) for x in values]
+        return refs[0]+':'+refs[-1]
+    def make(current,book,purpose):
+        directory=output/current;directory.mkdir()
+        case='dcj9k_r25_'+current
+        question=directory/'workbook-questions.json'
+        question.write_text(json.dumps(dict(sheet=case,allow_refusals=True,questions=book),indent=2)+'\n')
+        section=directory/f'sheet-{case}.txt'
+        section.write_text('# R25 unanswered questions; exact operand expressions and echoes.\n'+
+                           '\n'.join(q['formula'] for q in book)+'\n',encoding='ascii')
+        subprocess.run([str(executable),'sheet-predictions',str(question),str(directory/'application-predictions.jsonl')],
+            check=True,timeout=600)  # ubs:ignore — frozen local executable and argv only; results are predictions, never answers
+        subprocess.run([str(powershell),'-NoProfile','-File',str(generator),'-OutDir',str(directory/'workbooks'),  # ubs:ignore — local runtime and repository generator; no shell interpolation
+            '-QuestionSectionFile',str(section),'-QuestionCase',case],check=True,timeout=300)
+        packet.append(dict(name=current,purpose=purpose,formula_cells=len(book),
+            calls=sum(q['role']=='question' for q in book),workbook=f'{current}/workbooks/{case}/oracle.xlsx'))
+
+    current='variance';book=[]
+    constraints=json.loads((inputs/'variance-guard-constraints.json').read_text())
+    # One missing-branch example per public alias, plus one small raw-moment
+    # control per alias. Zero scaling is deliberately not asked again.
+    def flatten(value):return [x for v in value for x in flatten(v)] if isinstance(value,list) else [value]
+    selected={}
+    for kind in ('centered_required','raw_required'):
+        for source in sorted(constraints[kind],key=lambda r:r['id']):
+            if kind=='raw_required' and source['q']>=0.001:continue
+            selected.setdefault((kind,source['function']),source)
+    for (kind,function),source in selected.items():
+        for exponent in (-12,-6,6,12):
+            xs=[math.ldexp(number(v),exponent) for v in flatten(source['args'])]
+            ref=vector(book,xs,seed=source['id'],scale_exponent=exponent)
+            call=('_xlfn.' if function in ('VAR.S','VAR.P','STDEV.S','STDEV.P') else '')+function
+            emit(book,f'{call}({ref})',hypothesis='Power-of-two scaling preserves relative conditioning; test the missing small-magnitude branch.',
+                 seed=source['id'],branch_constraint=kind,scale_exponent=exponent)
+    # The exact identity suggests d^2=1/66, but rounded input cells move
+    # the guard. Bisect its actual stored predicate in t=1+d instead.
+    # The other input2-t is exact by Sterbenz here. This avoids duplicate
+    # triples from many adjacent d values rounding to the same1 +/-d.
+    edges=[]
+    def guard_values(t,exponent,population):
+        xs=[Q(math.ldexp(x,exponent))for x in (2-t,1.0,t)]
+        op=lambda k,x,y:arithmetic(k,'stored_pc64',x,y)
+        s=q=Q(0)
+        for x in xs:s=op('add',s,x);q=op('add',q,op('mul',x,x))
+        square=op('mul',s,s)
+        left=op('mul',Q(3),q) if population else q
+        correction=square if population else op('div',square,Q(3))
+        numerator=op('add',left,-correction)
+        return xs,numerator<op('mul',Q(0.01),left)
+    for population,exponent in itertools.product((False,True),(-20,0,20)):
+        lo,hi=int(bits(1.12),16),int(bits(1.13),16)
+        if not guard_values(number(f'0x{lo:016x}'),exponent,population)[1] or guard_values(number(f'0x{hi:016x}'),exponent,population)[1]:
+            raise ValueError('variance stored predicate does not bracket the model edge')
+        while hi-lo>1:
+            mid=(lo+hi)//2
+            if guard_values(number(f'0x{mid:016x}'),exponent,population)[1]:lo=mid
+            else:hi=mid
+        edges.append(dict(population=population,scale_exponent=exponent,low=bits(number(f'0x{lo:016x}')),
+                          high=bits(number(f'0x{hi:016x}')),adjacent=True,low_centered=True,high_centered=False))
+        sides=set()
+        for coordinate in range(lo-2,hi+3):
+            t=number(f'0x{coordinate:016x}');xs,fallback=guard_values(t,exponent,population)
+            ref=vector(book,list(map(float,xs)),edge='actual stored1% predicate',offset=coordinate-lo)
+            for function in (('VAR.P','STDEV.P')if population else('VAR.S','STDEV.S')):
+                profile=dict(algorithm=8 if population else 7,linear_order=0,square_order=0,models=['stored_pc64']*5)
+                raw=encoding(evaluate(profile,xs,function));profile['algorithm']=0
+                centered=encoding(evaluate(profile,xs,function))
+                if raw==centered:continue
+                sides.add(fallback)
+                emit(book,f'_xlfn.{function}({ref})',hypothesis='Bisected adjacent stored-predicate edge; raw and centered candidates give different bits. Excel guard remains unmeasured.',
+                     candidate_predictions=dict(raw_pc64=raw,centered_pc64=centered),model_takes_centered=fallback,
+                     edge_low=f'0x{lo:016x}',edge_high=f'0x{hi:016x}',offset=coordinate-lo,scale_exponent=exponent)
+        if sides!={False,True}:raise ValueError('variance edge lacks discriminating calls on both sides')
+    make(current,book,'Identify the missing small-magnitude path and locate the relative cancellation boundary. Every input is echoed.')
+    (output/'variance/guard-edges.json').write_text(json.dumps(edges,indent=2)+'\n')
+
+    current='regression';book=[]
+    rank=json.loads((inputs/'regression-rank-sources.json').read_text())
+    groups={}
+    for source in rank:
+        a=source['args'];x=[[number(v) for v in row]for row in a[1]]
+        if [r[0]for r in x]!=[1,2,5,4] or [r[1]for r in x[:3]]!=[2,4,10]:continue
+        groups.setdefault((source['function'],a[2]),{})[x[-1][1]]=number(source['expected'])
+    brackets=[]
+    for (function,constant),observations in groups.items():
+        ordered=sorted(observations.items())
+        for (low,ldf),(high,hdf) in zip(ordered,ordered[1:]):
+            if ldf==hdf:continue
+            brackets.append(dict(function=function,constant=constant,low=bits(low),high=bits(high),
+                                 low_df=ldf,high_df=hdf,qualification='Original decimal-array operands; new reference cells expose exact operand bits.'))
+            # Four levels of a bisection tree. A returned capture can choose
+            # one interval; it does not imply an unmeasured monotone rule.
+            points=set();intervals=[(low,high)]
+            for _ in range(4):
+                following=[]
+                for a,b in intervals:
+                    m=number(f'0x{(int(bits(a),16)+int(bits(b),16))//2:016x}');points.add(m)
+                    following.extend(((a,m),(m,b)))
+                intervals=following
+            for endpoint in (low,high):
+                points.update((math.nextafter(endpoint,-math.inf),math.nextafter(endpoint,math.inf)))
+            for changed in sorted(points):
+                for reverse in (False,True):
+                    ys=[1.0,2.0,4.0,7.0];x1=[1.0,2.0,5.0,4.0];x2=[2.0,4.0,10.0,changed]
+                    if reverse:ys.reverse();x1.reverse();x2.reverse()
+                    yr=vector(book,ys);a=vector(book,x1);b=vector(book,x2)
+                    call=f'{function}({yr},CHOOSE({{1,2}},{a},{b}),{str(constant).upper()},TRUE)'
+                    for r,c in ((4,2),(1,1),(1,2)):
+                        emit(book,f'INDEX({call},{r},{c})',hypothesis='Rank bracket bisection and paired row reversal; coefficients and degrees of freedom are observed together.',
+                             bracket_low=bits(low),bracket_high=bits(high),changed_operand=bits(changed),reverse=reverse)
+    make(current,book,'Separate rank selection from coefficient rounding inside the four original LINEST/LOGEST rank brackets.')
+    (output/'regression/rank-brackets.json').write_text(json.dumps(brackets,indent=2)+'\n')
+
+    current='geomean';book=[]
+    for result in (0.125,0.5,1.0,2.0,2.3125,math.pi,4.0,10.0):
+        midpoint=(Q(result)+Q(math.nextafter(result,math.inf)))/2
+        cube=midpoint**3;center=int(bits(float(cube)),16)
+        for offset in range(-3,4):
+            product=number(f'0x{center+offset:016x}')
+            ref=vector(book,[product,1.0,1.0],root_midpoint_cube=[str(cube.numerator),str(cube.denominator)])
+            emit(book,f'GEOMEAN({ref})',hypothesis='Exact inverse cube-root rounding boundary; distinguish base2 reconstruction and stored LN/division/EXP.',offset=offset)
+            emit(book,f'EXP(LN(INDEX({ref},1))/3)',hypothesis='Public LN/EXP companion, without assuming that GEOMEAN calls those helpers.',offset=offset)
+    # The unperturbed square is a VAR.S multiplication witness, not a
+    # settled GEOMEAN call. Exact powers of two retain that product edge;
+    # the frozen native study also verifies different final cube-root bits.
+    probes=json.loads((inputs/'geomean-product-probes.json').read_text())
+    for probe in probes:
+        xs=list(map(number,probe['args']))
+        strict=encoding(arithmetic('mul','strict',binary64(probe['args'][0]),binary64(probe['args'][1])))
+        stored=encoding(arithmetic('mul','stored_pc64',binary64(probe['args'][0]),binary64(probe['args'][1])))
+        if strict==stored or probe['strict_product_root']==probe['stored_product_root']:
+            raise ValueError('GEOMEAN product probe does not distinguish the complete candidate outputs')
+        whole_strict=whole_stored=Q(1)
+        for x in xs:
+            whole_strict=arithmetic('mul','strict',whole_strict,Q(x))
+            whole_stored=arithmetic('mul','stored_pc64',whole_stored,Q(x))
+        if whole_strict==whole_stored:raise ValueError('GEOMEAN complete products coincide')
+        ref=vector(book,xs,product_edge=True)
+        emit(book,f'GEOMEAN({ref})',hypothesis='Different stored-PC64/binary64 products AND different final roots under the same resident base2 reconstruction.',
+             square_predictions=dict(strict=strict,stored_pc64=stored),
+             product_predictions=dict(strict=encoding(whole_strict),stored_pc64=encoding(whole_stored)),
+             candidate_predictions=dict(strict_product_root=probe['strict_product_root'],stored_product_root=probe['stored_product_root']))
+    make(current,book,'Locate root publication transitions using exact midpoint cubes and expose product-store boundaries.')
+
+    current='bessel';book=[]
+    magnitudes={math.nextafter(8.0,-math.inf),math.nextafter(8.0,math.inf)}
+    for order,cycle,quadrature in itertools.product((0,1),(3,4,7,16,64),(0.0,0.5)):
+        phase=0.785398164 if order==0 else 2.356194491
+        x=phase+(cycle+quadrature)*math.pi
+        magnitudes.update((math.nextafter(x,-math.inf),x,math.nextafter(x,math.inf)))
+    for x in sorted(magnitudes):
+        ref=emit(book,exact_expression(x),'operand_echo',intended_bits=bits(x))
+        for function,order in itertools.product(('BESSELJ','BESSELY'),(0,1)):
+            emit(book,f'{function}({ref},{order})',hypothesis='Near sine/cosine phase zeros isolate amplitude versus phase-correction errors; retain the published tables and test stored-step error bounds.')
+    make(current,book,'Resolve the large-J amplitude/correction structure and the remaining Y rounding; no coefficient is fitted or submitted.')
+
+    current='discrete';book=[]
+    observed=[json.loads(l)for l in gzip.open(inputs/'r20-observations.jsonl.gz','rt')]
+    pairs=sorted({(number(r['args'][0]),number(r['args'][1]))for r in observed
+                  if r['function']=='BINOM.DIST' and r['expected']!=r['actual'] and 0<number(r['args'][0])<number(r['args'][1])})
+    for k,n in pairs:
+        for rational in (Q(9)*Q(k)/(Q(11)*Q(n)),Q(11)*Q(k)/(Q(9)*Q(n))):
+            if not 0<rational<1:continue
+            center=int(bits(float(rational)),16)
+            for offset in (-1,0,1):
+                p=number(f'0x{center+offset:016x}');ref=emit(book,exact_expression(p),'operand_echo',intended_bits=bits(p))
+                for cumulative in ('FALSE','TRUE'):
+                    emit(book,f'_xlfn.BINOM.DIST({int(k)},{int(n)},{ref},{cumulative})',
+                        hypothesis='Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).',
+                        exact_boundary=[str(rational.numerator),str(rational.denominator)],offset=offset)
+    endpoint_counts=sorted({int(number(r['args'][1]))for r in observed if r['function']=='BINOM.DIST'
+                           and r['expected']!=r['actual'] and number(r['args'][0])in(0,number(r['args'][1]))})
+    for n,p in itertools.product(endpoint_counts,(math.nextafter(0.1,0.0),0.1,math.nextafter(0.1,1.0))):
+        ref=emit(book,exact_expression(p),'operand_echo',intended_bits=bits(p))
+        for k,cumulative in itertools.product((0,n),('FALSE','TRUE')):
+            emit(book,f'_xlfn.BINOM.DIST({k},{n},{ref},{cumulative})',
+                 hypothesis='Endpoint n*LN(p) versus zero-count deviance, across the published0.1 branch; no interior Stirling term enters.')
+    for count in (1,2,5,33,100,1000):
+        for rational in (Q(9*count,11),Q(11*count,9)):
+            center=int(bits(float(rational)),16)
+            for offset in (-1,0,1):
+                mean=number(f'0x{center+offset:016x}');ref=emit(book,exact_expression(mean),'operand_echo',intended_bits=bits(mean))
+                for cumulative in ('FALSE','TRUE'):
+                    emit(book,f'_xlfn.POISSON.DIST({count},{ref},{cumulative})',hypothesis='Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm.')
+    for mean in (math.nextafter(1.0,0.0),math.nextafter(1.0,math.inf),2.0,10.0,20.0):
+        ref=emit(book,exact_expression(mean),'operand_echo',intended_bits=bits(mean))
+        for formula in (f'EXP(-{ref})',f'_xlfn.POISSON.DIST(0,{ref},FALSE)',
+                        f'_xlfn.POISSON.DIST(1,{ref},FALSE)',f'_xlfn.POISSON.DIST(1,{ref},TRUE)',
+                        f'{ref}*EXP(-{ref})',f'(1+{ref})*EXP(-{ref})'):
+            emit(book,formula,hypothesis='Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF.')
+    make(current,book,'Distinguish stored deviance steps at analytically derived boundaries and isolate count-one Poisson helpers.')
+    (output/'prediction-binding.json').write_bytes(subprocess.check_output([str(executable),'provenance'],timeout=60))  # ubs:ignore — frozen local producer returns its compiled unit with bounded runtime
+    (output/'README.txt').write_text('''R25: five new, unanswered workbooks. No download or Excel execution is requested here.
+Use the existing cargo xtask capture/compare route on Windows, with these files in
+new fixture directories, or supply each workbook to the existing capture command.
+Keep each complete canonical capture, raw worker result, workbook and environment.
+Do not append to a captured workbook. Do not copy predictions into an oracle.
+Every formula cell and every operand echo awaits capture and fails until observed.
+The packet uses exact binary64 operand expressions; captures must confirm their bits.
+Variance: missing small-magnitude branch; relative-only cancellation is incomplete.
+Regression: rank producer and coefficient arithmetic remain distinct questions.
+GEOMEAN: root publication sequence is unknown; stored helper calls are hypotheses.
+Bessel: published large-J coefficient bodies remain unidentified; phase-quadrature
+pairs separate amplitude/correction errors before any inverse coefficient study.
+BINOM/POISSON: the deviance/normalizer and cumulative leaves remain conditional.
+The rank book contains four levels of bisection within original observed brackets.
+Return the capture, then select the next interval only from observed integer df;
+reversals must be retained, not forced into a monotone cutoff. Future rounds need
+new workbooks. Variance and cube-root questions already straddle derived rounding
+or conditioning edges on the adjacent binary64 lattice; these are model edges,
+not claims that Excel changes there. No parked ERF, normal or annuity producer is changed.
+''')
+    if bindings!={p:hashlib.sha256(Path(p).read_bytes()).hexdigest()for p in bindings}:
+        raise ValueError('question sources or executables changed')
+    manifest=dict(format='dnacalc-research-questions-r25/1',new_excel_answers=0,workbooks=packet,
+        formula_cells=sum(w['formula_cells']for w in packet),calls=sum(w['calls']for w in packet),
+        inputs_sha256=bindings,files_sha256={str(p.relative_to(output)):hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(output.rglob('*'))if p.is_file()},
+        limits='Unanswered questions and application predictions only. No result was chosen to maximize a match count; no coefficient or numerical threshold is fitted.')
+    (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in manifest.items()if not k.endswith('sha256')},indent=2))
+
+
 if __name__ == '__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='round25-guard-packet':
+        round25_guard_packet(*sys.argv[2:]);sys.exit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='round25-store-questions':
+        round25_store_questions(*sys.argv[2:]);sys.exit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='round25-questions':
+        round25_questions(*sys.argv[2:]);sys.exit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'problem-functions':
         problem_functions(*sys.argv[2:])
         sys.exit(0)

@@ -794,7 +794,147 @@ def corpus_delta(before, after, original_catalogue_after, output):
     return result
 
 
+def variance_stored_replay(inputs, native, output):
+    """Replay every fixed variance policy with the existing rational checker."""
+    import itertools
+    from fractions import Fraction as Q
+    checker=Path(__file__).resolve().parents[1]/'checker'
+    sys.path.insert(0,str(checker))
+    from variance import arithmetic,evaluate
+    from exact import binary64
+    from normal import encoding
+    sys.path.pop(0)
+    inputs,native,output=map(Path,(inputs,native,output))
+    predictions=json.loads((native/'predictions.json').read_text())
+    summary=json.loads((native/'summary.json').read_text())
+    mean_guard=summary.get('mean_guard',False)
+    rows=list(stream(inputs))
+    frozen={str(p):sha(p)for p in(inputs,native/'predictions.json',native/'summary.json',Path(__file__),checker/'variance.py',checker/'exact.py',checker/'normal.py')}
+    if len(rows)!=len(predictions):raise ValueError('variance prediction scope differs')
+    count=0;policies=[]
+    for program,(sum_model,step_model)in enumerate(itertools.product(('strict','stored_pc64','resident_pc64'),repeat=2)):
+        tally=collections.Counter()
+        for row,prediction in zip(rows,predictions):
+            raw=row['raw'];xs=list(map(binary64,row['values_bits']));n=Q(len(xs))
+            pop=raw['function']in('VAR.P','VARP','VARPA','STDEV.P','STDEVP','STDEVPA')
+            op=lambda kind,a,b:arithmetic(kind,step_model,a,b)
+            total=squares=Q(0)
+            for x in xs:
+                total=arithmetic('add',sum_model,total,x)
+                squares=arithmetic('add',sum_model,squares,op('mul',x,x))
+            square=op('mul',total,total)
+            left=op('mul',n,squares)if pop else squares
+            right=square if pop else op('div',square,n)
+            numerator=op('add',left,-right)
+            fallback=numerator<op('mul',left,Q(0.01))
+            if mean_guard:
+                if summary.get('guard_program')not in('r25-stored-products','r25-stored-ratio'):raise ValueError('unsupported historical guard program')
+                denominator=op('mul',n,n)if pop else n-1
+                variance=op('div',numerator,denominator)
+                mean=op('div',total,n)
+                correction=op('div',square,n)
+                cancellation=(op('div',correction,squares)>Q(.99)if squares else correction>0)if summary['guard_program']=='r25-stored-ratio'else op('mul',squares,Q(.99))<correction
+                fallback=cancellation or op('mul',variance,Q(1000))<=abs(mean)
+            profile=dict(algorithm=0 if fallback else 8 if pop else 7,linear_order=0,square_order=0,
+                         models=[sum_model,step_model,step_model,sum_model,step_model])
+            result=evaluate(profile,xs,raw['function']);got='error:Num'if result is None else encoding(result)
+            if prediction['id']!=raw['id']or prediction['predictions'][program]!=got:
+                raise ValueError('native/rational variance disagreement: '+raw['id']+' program'+str(program))
+            was=raw['actual']==raw['expected'];now=got==raw['expected']
+            for key,flag in [('all',True),('matched',now),('baseline',was),('gains',now and not was),('losses',was and not now),('fallback',fallback)]:tally[key]+=flag
+            count+=1
+        policies.append(dict(program=program,sum_model=sum_model,step_model=step_model,counts=tally))
+        print('verified variance program',program,'rows',len(rows),flush=True)
+    if frozen!={p:sha(Path(p))for p in frozen}:raise ValueError('variance replay sources changed')
+    result=dict(complete=True,rows=len(rows),policies=policies,native_rational_equal_predictions=count,
+        inputs_sha256=frozen,mean_guard=mean_guard,
+        limits='Independent rational arithmetic and square-root checker replay, including resident comparisons before any store. Only the declared fixed programs and recorded scope are checked; no complete Excel guard is identified.')
+    with output.open('x')as f:json.dump(result,f,indent=2);f.write('\n')
+    return result
+
+
+def bank_match_bits(executable, checkout, output, before=None):
+    """Stream the canonical judge; retain one old match bit per ordered row.
+
+    Full identity/answer/environment hashes bind the two streams. This avoids
+    keeping a multi-gigabyte trace while still counting every lost old match.
+    """
+    import os
+    import re
+    import subprocess
+    import tempfile
+    from corpus_cases import judge_fifo_lines
+    executable,checkout,output = (Path(p).resolve() for p in (executable,checkout,output))
+    output.mkdir(parents=True,exist_ok=False)
+    frozen={str(executable):sha(executable),str(Path(__file__).resolve()):sha(Path(__file__))}
+    baseline=json.loads((Path(before)/'summary.json').read_text()) if before else None
+    old=(Path(before)/'matched.bits').read_bytes() if before else None
+    if baseline and (baseline.get('complete') is not True or sha(Path(before)/'matched.bits')!=baseline['match_bits_sha256']):
+        raise ValueError('incomplete or changed match baseline')
+    bits=bytearray();identity=hashlib.sha256();counts=collections.defaultdict(collections.Counter)
+    actual_hashes={};index=0;changed_outcomes=0
+    with tempfile.TemporaryDirectory(prefix='dnacalc-match-bits-') as scratch:
+        fifo=Path(scratch)/'judge.fifo';os.mkfifo(fifo,0o600)
+        descriptor=os.open(fifo,os.O_RDONLY|os.O_NONBLOCK)
+        with (output/'judge.log').open('x')as log,gzip.open(output/'changed-outcomes.jsonl.gz','xt')as changes:
+            # ubs:ignore — fixed argv to the selected local executable; owned child is bounded and reaped below.
+            child=subprocess.Popen([str(executable),'witness','judge','--bank','full','--trace',str(fifo)],
+                cwd=checkout,stdout=log,stderr=subprocess.STDOUT)
+            try:
+                for line in judge_fifo_lines(descriptor,child):
+                    row=json.loads(line);actual=row.pop('actual');function=row['function']
+                    identity.update(json.dumps(row,sort_keys=True,separators=(',',':')).encode()+b'\n')
+                    actual_hashes.setdefault(function,hashlib.sha256()).update(actual.encode()+b'\n')
+                    matched=actual==row['expected'];counts[function]['rows']+=1;counts[function]['matched']+=matched
+                    if index%8==0:bits.append(0)
+                    bits[index//8] |= int(matched)<<(index%8)
+                    if old is not None:
+                        if index>=baseline['decoded_rows']:raise ValueError('extra row in current bank')
+                        was=bool(old[index//8]&(1<<(index%8)))
+                        counts[function]['gains']+=matched and not was
+                        counts[function]['losses']+=was and not matched
+                        if was!=matched:
+                            changes.write(json.dumps(dict(row,actual=actual,before_matched=was))+'\n');changed_outcomes+=1
+                    index+=1
+                if child.wait(timeout=60):raise ValueError('canonical judge failed')
+            finally:
+                os.close(descriptor)
+                if child.poll() is None:
+                    child.terminate()
+                    try:child.wait(timeout=5)
+                    except subprocess.TimeoutExpired:child.kill();child.wait()
+    text=(output/'judge.log').read_text()
+    match=re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)',text)
+    if match is None:raise ValueError('missing canonical judge totals')
+    matched,total,failed,unread=map(int,match.groups())
+    if index+unread!=total or sum(c['matched']for c in counts.values())!=matched or total-matched!=failed:
+        raise ValueError('stream and inclusive judge totals differ')
+    digest=identity.hexdigest()
+    if baseline and (baseline['identity_answer_environment_sha256']!=digest or baseline['decoded_rows']!=index or baseline['unread']!=unread):
+        raise ValueError('bank input/answer/context stream changed')
+    if frozen!={p:sha(Path(p))for p in frozen}:raise ValueError('executable/audit changed during streaming')
+    (output/'matched.bits').write_bytes(bits)
+    hashes={name:h.hexdigest()for name,h in actual_hashes.items()}
+    result=dict(complete=True,decoded_rows=index,total=total,matched=matched,failed=failed,unread=unread,
+        match_bits_sha256=sha(output/'matched.bits'),identity_answer_environment_sha256=digest,
+        functions=counts,actual_sha256_by_function=hashes,inputs_sha256=frozen,
+        changed_outcomes=changed_outcomes,
+        limits='Canonical full-bank judge only; every unread row remains an inclusive failure. '
+               'The ordered identity/answer/environment digest must agree before match bits can be compared. '
+               'Output hashes detect changed functions, but cannot locate failures that remain failures.')
+    if baseline:
+        result['before']={k:baseline[k]for k in ('total','matched','failed','unread')}
+        result['changed_functions']=[f for f,h in hashes.items()if baseline['actual_sha256_by_function'].get(f)!=h]
+        result['gains']=sum(c['gains']for c in counts.values());result['losses']=sum(c['losses']for c in counts.values())
+        if matched-baseline['matched']!=result['gains']-result['losses']:raise ValueError('match delta does not reconcile')
+    (output/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in result.items()if k not in ('functions','actual_sha256_by_function')}))
+    return result
+
+
 if __name__ == "__main__":
+    if sys.argv[1]=="variance-stored-replay":variance_stored_replay(*sys.argv[2:]);raise SystemExit(0)
+    if sys.argv[1]=="bank-match-bits":bank_match_bits(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-intake":bank_intake(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="corpus-delta":corpus_delta(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-delta":bank_delta(*sys.argv[2:]);raise SystemExit(0)

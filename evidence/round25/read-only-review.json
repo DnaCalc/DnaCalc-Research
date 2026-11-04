@@ -1,0 +1,61 @@
+{
+  "status": "source approved; packet blockers resolved on independent re-review",
+  "source_findings": [
+    "Original pin fields retained in all12 sets",
+    "All four R23 files identical to delivery",
+    "Full-bank identity digest unchanged,4220 gains451 losses,only twelve aliases change",
+    "Every loss has sum(x*x)<0.00065"
+  ],
+  "limitations": [
+    "0.01 is a partial guard supported near1%, not a proven exact threshold",
+    "A missing small-magnitude path is inferred",
+    "GEOMEAN Soft replay retains conditional helper leaves"
+  ],
+  "first_packet_blockers": [
+    "Analytic d^2=1/66 points did not straddle actual rounded-input guard",
+    "Perturbed GEOMEAN square did not discriminate products"
+  ],
+  "resolved": [
+    "Actual stored-predicate bisection gives six adjacent endpoint pairs,72 differing raw/centered calls covering both sides",
+    "Three complete GEOMEAN product/root discriminants validated independently",
+    "3847 formulas,1149 calls,all payload hashes/formulas/operand echoes agree,zero cached answers"
+  ],
+  "minor_followups_completed": [
+    "Bind independent checker sources and corpus_fuzz in packet inputs",
+    "Label first-square and full-product predictions separately"
+  ],
+  "final_review": "approved: no remaining publication blocker",
+  "final_packet_review": {
+    "producer_sha256": "0f62453b31cd070f704b55a4eedd9c517edfc6707c72468fb99bb21d2a8704d5",
+    "formula_cells": 3947,
+    "calls": 1201,
+    "unobserved_qr_construction": 200,
+    "scored_qr_construction": 0,
+    "qr_candidate_disagreements": 52,
+    "all_matrices_exact_full_rank": true,
+    "independent_variance_equal_predictions": 113265
+  },
+  "final_ratio_review": {
+    "status": "approved, no remaining issue",
+    "native_soft_statistics_tests": [
+      43,
+      43
+    ],
+    "canonical_frozen_variance_rows": 14679,
+    "gains": 4220,
+    "losses": 0,
+    "independent_ratio_predictions": 113265,
+    "live_readings": 1364,
+    "unique_live_inputs": 1352,
+    "variance_live_verified": 910,
+    "packet_cells": 4347,
+    "packet_calls": 1353,
+    "unanswered_ranges": 76,
+    "limits": [
+      "Magnitude mean/1000 rearrangement remains indistinguishable",
+      "Scalar service replies are not range workbook captures"
+    ],
+    "scope43_reconciled": true
+  },
+  "historical_fields_note": "source_findings, limitations, first_packet_blockers, resolved, minor_followups_completed and final_packet_review record earlier phases. Their451 losses and0.01 partial guard are superseded by final_ratio_review and the final stored-ratio/magnitude guards; keep them as the audit trail."
+}

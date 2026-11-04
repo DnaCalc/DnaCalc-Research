@@ -1,0 +1,80 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses_fallback": [
+    [
+      12585,
+      12128,
+      8365,
+      4216,
+      453,
+      1427
+    ],
+    [
+      12585,
+      12131,
+      8365,
+      4219,
+      453,
+      1427
+    ],
+    [
+      12585,
+      9972,
+      8365,
+      2879,
+      1272,
+      1439
+    ],
+    [
+      12585,
+      12131,
+      8365,
+      4217,
+      451,
+      1427
+    ],
+    [
+      12585,
+      12134,
+      8365,
+      4220,
+      451,
+      1427
+    ],
+    [
+      12585,
+      8981,
+      8365,
+      2317,
+      1701,
+      1439
+    ],
+    [
+      12585,
+      10194,
+      8365,
+      2983,
+      1154,
+      1427
+    ],
+    [
+      12585,
+      9189,
+      8365,
+      2178,
+      1354,
+      1427
+    ],
+    [
+      12585,
+      8276,
+      8365,
+      1452,
+      1541,
+      1439
+    ]
+  ],
+  "excluded": {},
+  "limits": "The existing corpus brackets the guard near1%; its exact transition needs new Excel questions. No answer-dependent dispatch; resident models are counterfactuals. Original answers remain unchanged.",
+  "programs": "Cartesian (sum,step) of strict, stored-PC64, resident-PC64; forward folds; sample (Q-S*S/n)/(n-1), population (n*Q-S*S)/(n*n); centered two-pass when the numerator <0.01*left."
+}

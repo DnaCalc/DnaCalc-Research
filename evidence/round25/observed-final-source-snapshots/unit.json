@@ -1,0 +1,73 @@
+{
+  "id": "dc-j9k-r25-observed-final",
+  "role": "implementer",
+  "route_audit": true,
+  "discrete_audit": true,
+  "bessel_rational_audit": true,
+  "application_revision": "1799070a9f9c8377aabdfb74fdf31d0e350a8657",
+  "scope": "R25 stored raw moments, measured magnitude/cancellation guard graphs and staged square root, all-original bank and new scalar edge observations. Range/array transfer at new edges remains unanswered.",
+  "sources": {
+    "tier1": [
+      "Excel original captures and canonical witness sets; IEEE754; Intel SDM; DLMF and A&S published mathematics",
+      "Gregorian integer calendar/month-clamping definitions and original965 Actual/Actual COUPDAYS readings; coherent42-calendar-program study, no fitted scalar or threshold."
+    ],
+    "tier2": [
+      "Existing cleared product sources and existing research models; pinned MIT PhpSpreadsheet and Apache-2.0 Kornia0.6.4 higher-I programs with retained notices",
+      "ITK v5.4.0 commit311b7060ef39e371f3cd209ec135284ff5fde735 itkGaussianOperator.hxx, Apache-2.0, NumFOCUS; LICENSE and NOTICE retained.",
+      "LAPACK3.12.1 commit6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca DTRTI2/DTRMV/DSCAL, modifiedBSD; original source/LICENSE retained.",
+      "Apache Commons Math3.6.1 16abfe5de688cc52fb0396e0609cb33044b15653 SaddlePointExpansion, Apache2; originalsource/LICENSE/NOTICE retained.",
+      "CPython3.13.0 60403a5409ff2c3f3b07dd2ca91a7a3e096839c7 Modules/_statisticsmodule.c, PSF2; full source/LICENSE retained. AS241 coefficients and mathematics also permitted by owner source policy.",
+      "ExcelFinancialFunctions97756a375769e45059c7d58fc51fc7e391bc4984 common.fs/bonds.fs, Apache2; existing pinned source and notice retained.",
+      "Apache POI3.17 ab700dc2ae3a880f66a10075cbf1a502da928afb Irr.java, Apache2; original source, full LICENSE and NOTICE retained."
+    ],
+    "banned": [
+      "Tier3/4 implementations",
+      "Excluded engine checkout, including listings"
+    ]
+  },
+  "model": "gpt-6.1-sol (session launcher; no model override)",
+  "machine": "dna-firehorse Linux x86_64",
+  "exposure": "Discovery answers; no fitted coefficient, threshold or row selector; existing cleaned product bodies may be read. No tier3 or tier4 implementation read.",
+  "source_sha256": {
+    "checker/check.py": "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74",
+    "checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "checker/normal.py": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a",
+    "checker/questions_r13.py": "40749e3584b8696a76470d318541460d7c6d11ca4be4b34067f5f3dd504e303c",
+    "checker/regression.py": "be6130faf6789252d49cd7dc24f3620ec10f5a75b5e885c2474546011980435b",
+    "checker/test_domains.py": "442baae7c198de3cd24f8891dc90c439d1547bd702bb52478e1800a6b2ba4f6b",
+    "checker/test_exact.py": "b5ceec2c450fd11d0ae15e5657fb25f7fd2e1b6851b10c2ce9d61902a56034dd",
+    "checker/variance.py": "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718",
+    "evidence/round24/followup/asinh-identity-study.py": "fd5aeb4e9d915e1c506f31c5565935b4f8ea972c3731ab0902092aff8e1051f8",
+    "evidence/round24/followup/variance-current-counterfactuals.py": "7d52c2ac3f8ec28c0f0fc1e8db3d4a4950937581153c85261a223bb52d8d1988",
+    "racer/audit.py": "ee1e60b62e2594a1360144161147171f9a65a077ec929004d951afbeaa6a4c17",
+    "racer/bessel.py": "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9",
+    "racer/build.rs": "38e1a78b1bd1d9bb8455e1aee6d596531c37be8e4e8c712c3496ca2f768724db",
+    "racer/corpus_cases.py": "ad1d3f8c7a50adecbe8df08711445cc54d73e2b6f4b6d564341a8045445fd465",
+    "racer/corpus_fuzz.py": "2e4edaf37f37ef5f9ebb18a600f730e15ca43077425161a4d5973f82164cfb35",
+    "racer/regression.py": "09decdab0515a22edc218f08109b5c2fb6550a9e69c6d8cf58b239115828731e",
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+    "racer/src/bond_solver.rs": "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163",
+    "racer/src/discrete.rs": "65658ea5e945839a02592c554d8ee67a481561e0f0d4a1d12ced025b2f400d11",
+    "racer/src/dsl.rs": "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8",
+    "racer/src/eval.rs": "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be",
+    "racer/src/main.rs": "63e36f705091f7ceba3345278314881685e7ab87c47196e7ae3b0452f82a5bae",
+    "racer/src/normal.rs": "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884",
+    "racer/src/route_audit.rs": "291b8366f660639e8eddb8784b4b91a9cbba7a6e4e7c1fdd8c5043d9ec08fbc6",
+    "racer/src/variance.rs": "92e638f31b150690523734c0ba891c24a1b27c8bf77032bc82d0f4c9cd544656"
+  },
+  "regression_audit": true,
+  "regression_inverse_audit": true,
+  "programs": "64 outer QR policies; existing9000 Loader labels;42 Gregorian calendar programs;5 gamma exponent-store policies. The prior3 Poisson gamma identities were redundant controls and are retained externally only.;11 near-mean Loader series arithmetic policies.;37 fixed Temme finish arithmetic policies.;16 fixed PC64 fold-accumulator QR policies.; final published ASINH operations and whole-subnormal admission; five independent identity models remain in their frozen Python study.",
+  "limits": "All declared numerical leaves remain conditional; no fitted coefficient/tolerance/selector. Source/control rows are separately identified from complete canonical readings.",
+  "unit": "round25-final",
+  "regression_householder_audit": false,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "bessel_k_audit": false,
+  "regression_outer_audit": true,
+  "gamma_exponent_audit": true,
+  "revision_note": "Fresh source table for this executable; earlier exploratory executables retain their original bindings and source snapshots, not an inferred later build.",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/variance_common.rs": "4fe473d01db451eb857d34ff7f3f34d5917f4cbc"
+  }
+}

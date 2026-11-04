@@ -1,0 +1,82 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses_fallback": [
+    [
+      12585,
+      12579,
+      8365,
+      4216,
+      2,
+      2267
+    ],
+    [
+      12585,
+      12582,
+      8365,
+      4219,
+      2,
+      2267
+    ],
+    [
+      12585,
+      10233,
+      8365,
+      2879,
+      1011,
+      2267
+    ],
+    [
+      12585,
+      12582,
+      8365,
+      4217,
+      0,
+      2267
+    ],
+    [
+      12585,
+      12585,
+      8365,
+      4220,
+      0,
+      2267
+    ],
+    [
+      12585,
+      9178,
+      8365,
+      2317,
+      1504,
+      2267
+    ],
+    [
+      12585,
+      10446,
+      8365,
+      2983,
+      902,
+      2267
+    ],
+    [
+      12585,
+      9362,
+      8365,
+      2178,
+      1181,
+      2267
+    ],
+    [
+      12585,
+      8278,
+      8365,
+      1452,
+      1539,
+      2267
+    ]
+  ],
+  "excluded": {},
+  "guard_program": "r25-stored-ratio",
+  "limits": "Mean guard follows independently observed power-of-two scale transitions; exact operation order needs the edge receipts. Earlier near1% interpretation is superseded if that structure is confirmed. No answer-dependent dispatch; resident models are counterfactuals. Original answers remain unchanged.",
+  "mean_guard": true,
+  "programs": "Cartesian (sum,step) of strict, stored-PC64, resident-PC64; forward folds; sample (Q-S*S/n)/(n-1), population (n*Q-S*S)/(n*n). R25 guard: stored(variance*1000) <=abs(S/n) OR stored(stored(S*S/n)/Q) >.99. Earlier guard: numerator <0.01*left."
+}

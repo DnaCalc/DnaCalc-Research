@@ -1,0 +1,36 @@
+{
+  "rust_main": {
+    "status": "ok",
+    "critical": 0,
+    "warnings": 35,
+    "scope": "production and existing/new tests; no production findings"
+  },
+  "rust_research": {
+    "status": "ok",
+    "critical": 0,
+    "warnings": 1027,
+    "triage": "Fixed-scope research assertions, checked unwraps, source-table literals and style warnings; unexpected refusal abort is explicitly documented."
+  },
+  "python_audit": {
+    "status": "ok",
+    "critical": 0,
+    "warnings": 22
+  },
+  "python_checker": {
+    "status": "ok",
+    "critical": 0,
+    "warnings": 17
+  },
+  "python_live_verifiers": {
+    "status": "ok",
+    "critical": 0,
+    "warnings": 3
+  },
+  "python_corpus_cases": {
+    "status": "partial",
+    "critical_after_documented_local_exec_annotations": 0,
+    "warnings": 58,
+    "limitation": "sql_injection detector reports SQLFlowLimit: list mutation aliasing unsupported. No SQL APIs occur in the changed functions. Full-file SQL analysis is incomplete; no partial-success override used."
+  },
+  "earlier_false_positives": "Operator-selected local executable paths flow to explicit argv subprocess calls without shell=True. Each is bounded and provenance-hashed; inline justifications are retained."
+}

@@ -13,6 +13,21 @@ SPEC.loader.exec_module(domain)
 
 
 class ReadingRetries(unittest.TestCase):
+    def test_delivery_files_reject_changed_bytes_and_escaping_paths(self):
+        import hashlib
+        from checker.questions_r13 import delivery_files
+        with tempfile.TemporaryDirectory() as scratch:
+            root=Path(scratch);payload=root/'answer.json';payload.write_bytes(b'constructed answer')
+            manifest=root/'delivery-sha256.json'
+            manifest.write_text(json.dumps({'answer.json':hashlib.sha256(payload.read_bytes()).hexdigest()}))
+            self.assertEqual(delivery_files(root)['files'],1)
+            payload.write_bytes(b'changed answer')
+            with self.assertRaisesRegex(ValueError,'file changed'):
+                delivery_files(root)
+            manifest.write_text(json.dumps({'../outside.json':'0'*64}))
+            with self.assertRaisesRegex(ValueError,'escapes root'):
+                delivery_files(root)
+
     def test_r22_rejects_wrong_scalar_batch(self):
         import hashlib
         import shutil
@@ -45,6 +60,39 @@ class ReadingRetries(unittest.TestCase):
             duplicate.write_bytes(path.read_bytes())
             with self.assertRaisesRegex(ValueError,'ambiguous'):
                 frozen_prediction_path(root,'model.json',digest)
+
+
+class MatchBitIntegrity(unittest.TestCase):
+    def test_inclusive_counts_losses_and_changed_identity(self):
+        import sys
+        from racer.audit import bank_match_bits
+        import racer.corpus_cases as corpus_cases
+        with tempfile.TemporaryDirectory() as scratch,patch.dict(sys.modules,{'corpus_cases':corpus_cases}):
+            root=Path(scratch);binary=root/'judge';data=root/'rows.json'
+            binary.write_text('''#!/usr/bin/env python3
+import json,sys
+from pathlib import Path
+rows=json.loads(Path(__file__).with_name('rows.json').read_text())
+with open(sys.argv[sys.argv.index('--trace')+1],'w') as out:
+    for row in rows:out.write(json.dumps(row)+'\\n')
+matches=sum(r['actual']==r['expected'] for r in rows)
+print(f'xtask witness: constructed control; {matches} of {len(rows)+1} rows matched, {len(rows)+1-matches} failed (mismatched, refused or unread; 1 unread)')
+''')
+            binary.chmod(0o755)
+            rows=[dict(function='CONTROL',args=['0x3ff0000000000000'],id=str(i),
+                expected='0x3ff0000000000000',actual=value,source='constructed control',
+                reading={},result_index=None) for i,value in enumerate(['0x3ff0000000000000','0x4000000000000000'])]
+            data.write_text(json.dumps(rows))
+            before=bank_match_bits(binary,root,root/'before')
+            self.assertEqual((before['total'],before['matched'],before['failed'],before['unread']),(3,1,2,1))
+            rows[0]['actual'],rows[1]['actual']=rows[1]['actual'],rows[0]['actual']
+            data.write_text(json.dumps(rows))
+            after=bank_match_bits(binary,root,root/'after',root/'before')
+            self.assertEqual((after['gains'],after['losses']),(1,1))
+            rows[0]['args']=['0x4000000000000000'];data.write_text(json.dumps(rows))
+            with self.assertRaisesRegex(ValueError,'input/answer/context stream changed'):
+                bank_match_bits(binary,root,root/'corrupt',root/'before')
+            self.assertFalse((root/'corrupt/summary.json').exists())
 
 
 class DomainQuestions(unittest.TestCase):

@@ -1,0 +1,186 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      5,
+      9,
+      0,
+      4
+    ],
+    [
+      11,
+      5,
+      9,
+      0,
+      4
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ],
+    [
+      11,
+      6,
+      9,
+      0,
+      3
+    ]
+  ],
+  "excluded": {
+    "outside_one_count_positive_cdf": 76,
+    "surface_or_selection": 60
+  },
+  "first_contradictions": [
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00099",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 65
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00096",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 63
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00099",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 65
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00096",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 63
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00096",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 63
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00096",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 63
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00099",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 65
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00096",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 63
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00099",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 65
+    },
+    {
+      "expected": "0x3fe9abf7ac53c261",
+      "id": "r25-discrete-00096",
+      "prediction": "0x3fe9abf7ac53c260",
+      "trace_index": 63
+    }
+  ],
+  "input_rows": 147,
+  "limits": "Ten fixed expressions, positive finite means, original count in[1,2), cumulative only. EXP leaf is conditional. Discovery, no parameter fitting, row selection or complete gamma/Poisson algorithm identification.",
+  "profiles": [
+    [
+      "strict",
+      0
+    ],
+    [
+      "strict",
+      1
+    ],
+    [
+      "stored_pc64",
+      0
+    ],
+    [
+      "stored_pc64",
+      1
+    ],
+    [
+      "resident_pc64",
+      0
+    ],
+    [
+      "resident_pc64",
+      1
+    ],
+    [
+      "stored_pc53",
+      0
+    ],
+    [
+      "stored_pc53",
+      1
+    ],
+    [
+      "resident_pc53",
+      0
+    ],
+    [
+      "resident_pc53",
+      1
+    ]
+  ],
+  "source": "Defining Poisson finite sum at count1; DLMF8.4.8; IEEE754 and Intel x87 coherent arithmetic models; existing cleared EXP helper."
+}

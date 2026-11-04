@@ -1,0 +1,202 @@
+{
+  "round": 25,
+  "product_change": "Stored-PC64 raw variance moments, stored ratio/magnitude fallback comparisons, staged PC64 square root.",
+  "first_commit": "c760cbfb",
+  "final_application_commit": "657bc170979770c4c5afa5ecccd984200afffffa",
+  "original_corpus_delta": {
+    "sessions": 29,
+    "formula_cells": 22830,
+    "evaluations": 81027,
+    "before_matched": 21583,
+    "after_matched": 21815,
+    "gains": 232,
+    "losses": 0,
+    "changed_values": 1160,
+    "external_or_circular": 87,
+    "awaiting_capture": 0,
+    "workbooks": 25,
+    "before_pass_rate": 0.9453788874288217,
+    "after_pass_rate": 0.9555409548839247
+  },
+  "frozen_canonical_variance": {
+    "complete": true,
+    "counts": {
+      "rows": 14679,
+      "before_matched": 10459,
+      "after_matched": 14679,
+      "gains": 4220,
+      "losses": 0,
+      "changed_outputs": 4220
+    },
+    "identity_answer_environment_source_sha256": "cd39280b94bb2176b41cf1d29b49aa85b4bd1e3b9f6af95ed9870029b8aa3811",
+    "inputs_sha256": {
+      "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round25/verify_variance_scope.py": "c376450cbbe525b92cf54abc4f80057244db73f755905aefad63a981a12902de",
+      "/home/ubuntu/projects/DnaCalc/DnaCalc/target/xtask-corpus/release/xtask-harness": "278d1569cb620cc5282792533786f095c4ef1abf027a6696be05b8d721ffcfeb",
+      "/home/ubuntu/codex-runs/round25/variance-bank-before.jsonl": "7d12ec45d42f55963d4d8ae875c5e8eee4aae25597923f1e561bcbaa8796e052"
+    },
+    "limits": "All twelve original function cohorts, including nonnumeric/error controls, through the existing canonical judge with source invocation context. Exact identity equality is required. No changing global denominator is used for gains or losses.",
+    "pass_rate": 1.0,
+    "post_merge_receipt": "evidence/round25/variance-published-canonical-scope-receipt.json"
+  },
+  "latest_measured": {
+    "complete": true,
+    "application": {
+      "revision": "1799070a9f9c8377aabdfb74fdf31d0e350a8657",
+      "source_diff_sha256": "1db7b86995918070cca02d11f98158afccf22798502b12f390f815d908aa42d1"
+    },
+    "corpus": {
+      "formula_cells": 23798,
+      "matched": 22561,
+      "inclusive_failed": 1237,
+      "awaiting_capture": 0,
+      "pass_rate": 0.9480208420875704,
+      "other_failed_verdicts": {
+        "not_modeled": 189,
+        "not_run": 5
+      },
+      "mismatches": 956,
+      "counts": {
+        "larger_numeric": 218,
+        "last_bit": 630,
+        "other_mismatch": 108
+      },
+      "external_or_circular": 87
+    },
+    "bank": {
+      "rows": 3910007,
+      "matched": 3656484,
+      "failed": 253523,
+      "counts": {
+        "matched": 3656484,
+        "refused": 1202,
+        "larger_numeric": 36657,
+        "last_bit": 214578,
+        "other_mismatch": 970,
+        "unread": 116
+      },
+      "pass_rate": 0.9351604741372586,
+      "canonical_trace_sha256": "1cd815d7e0473f38a6ffa2f434b3077d115a3df710ee484928ad505b4d868e5d"
+    },
+    "functions": 149,
+    "outputs_sha256": {
+      "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.json": "f302e1d83bcef54a84db00e1433a0e068fb32c64bbf1cbaddf37945bb7469bdd",
+      "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.md": "570c3b4114559412e6a81119edd614d31818d398a5b6a936a97fde57d958d95c"
+    },
+    "limits": "Measured at9c23b24e before final upstream merges; global totals are not an isolated R25 gain or final integrated-master remeasurement."
+  },
+  "global_scope_change": {
+    "complete": true,
+    "functions": {
+      "BESSELI": {
+        "old_rows": 1383,
+        "current_rows": 1365,
+        "old_matched": 1383,
+        "current_matched": 1365,
+        "normalized_inputs_answers_actuals_environment_equal": true,
+        "normalized_rows": 1365
+      },
+      "BESSELJ": {
+        "old_rows": 961,
+        "current_rows": 946,
+        "old_matched": 121,
+        "current_matched": 114,
+        "normalized_inputs_answers_actuals_environment_equal": true,
+        "normalized_rows": 946
+      },
+      "BESSELY": {
+        "old_rows": 51,
+        "current_rows": 46,
+        "old_matched": 51,
+        "current_matched": 46,
+        "normalized_inputs_answers_actuals_environment_equal": true,
+        "normalized_rows": 46
+      },
+      "CONCAT": {
+        "old_rows": 25,
+        "current_rows": 20,
+        "old_matched": 15,
+        "current_matched": 15,
+        "normalized_inputs_answers_actuals_environment_equal": true,
+        "normalized_rows": 20
+      }
+    },
+    "removed_duplicate_contexts": 43,
+    "removed_matched_duplicates": 30,
+    "removed_failed_duplicates": 13,
+    "bank_commit": "4cb48d15eb9cb2a06becb443b306d637d84e6092",
+    "normalization": "Exclude representative id/source and invocation.input_sheet_state; retain function, arguments, selection, expected, actual and every other environment field.",
+    "limits": "This reconciles a reader identity change, not a product gain or discarded failures. Current totals use the smaller canonical denominator; frozen original variance comparisons retain their complete old scope."
+  },
+  "live_scalar_readings": 1364,
+  "unique_scalar_identities": 1352,
+  "live_variance_exact_replay": 910,
+  "independent_nine_program_predictions": 113265,
+  "tests": {
+    "statistics_native": 43,
+    "statistics_soft": 43,
+    "research_rust": 138,
+    "research_rust_ignored": 2,
+    "python": 105,
+    "independent_small_lattice": 1504,
+    "required_main_check": {
+      "before_merge": {
+        "passed": 1693,
+        "failed": 0,
+        "ignored": 5,
+        "not_run": 3
+      },
+      "merged": {
+        "application_commit": "657bc170979770c4c5afa5ecccd984200afffffa",
+        "passed": 1707,
+        "failed": 0,
+        "ignored": 5,
+        "not_run": 3,
+        "log": "evidence/round25/validation/check-ui-merge-publication.log.gz"
+      }
+    }
+  },
+  "questions": {
+    "active": [
+      "stored-steps/manifest.json",
+      "qr-stores/manifest.json",
+      "guard-transfer/manifest.json"
+    ],
+    "workbooks": 7,
+    "formula_cells": 4347,
+    "calls": 1353,
+    "operand_echoes": 2994,
+    "measured_scalar_replays": 76,
+    "unobserved_range_transfers": 76,
+    "new_workbook_captures": 0
+  },
+  "still_open": {
+    "variance": "Range/array transfer at new guards and sqrt edges; magnitude mean/1000 rearrangement.",
+    "LINEST_LOGEST": "Rank decision and complete QR arithmetic;108 original failures.",
+    "GEOMEAN": "Root publication sequence and helper arithmetic;84 original failures.",
+    "BESSELJ_Y": "Large-J coefficient/reconstruction and Y helper/stores;30 original failures.",
+    "BINOM_POISSON": "Deviance, Stirling and cumulative helper leaves;32 R20 failures."
+  },
+  "intake": "evidence/round25/intake.json",
+  "honesty": "Original answers and complete frozen identities retained. Scope normalization is separate from product gains. No unanswered workbook is scored.",
+  "measurement_application_commit": "9c23b24e",
+  "additional_conditional_studies": {
+    "bessel_coherent_stored": "Same33/122 high-J exact outcomes as strict; still no complete coefficient/reconstruction body. One additional Y high discrepancy is retained.",
+    "poisson_count_one_cdf": "All10 conditional finite-sum programs remain incomplete on11 fresh CDF readings; EXP and cumulative leaves are not identified."
+  },
+  "main_commit_archive": {
+    "path": "evidence/round25/main-r25-publication.bundle",
+    "ref": "657bc170979770c4c5afa5ecccd984200afffffa",
+    "public_prerequisite_tip": "f5e42e68bf9f12b34aa156491eb0d256627fcd7b",
+    "bytes": 103728,
+    "limits": "Verified compact bundle of the R25 main commits, with prerequisites in the public main history. The bundle preserves source even if a concurrent master push rejects publication; it is not proof of a successful main push."
+  },
+  "main_publication": {
+    "status": "not_pushed",
+    "reason": "The final push was rejected after concurrent master advanced during the12min41s passing check. Stopped the retry loop to honor the requested approximate four-hour stop; numerical work ended earlier.",
+    "local_commit": "657bc170979770c4c5afa5ecccd984200afffffa",
+    "observed_origin_master": "fc3ce11a967333e1c0f3f56f2c46087ffa92868c",
+    "local_ahead": 13,
+    "local_behind": 1,
+    "source_backup": "evidence/round25/main-r25-publication.bundle"
+  }
+}

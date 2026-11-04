@@ -1,5 +1,44 @@
 DNA Calc arithmetic program research
 
+R25 preserves the R23 and Eng12 deliveries and adopts stored-PC64 raw variance
+identities, measured fallback comparisons and a staged square root. The first
+commit cleared232 corpus failures while retaining451 classified bank losses.
+New scale/rounding questions then identified the missing magnitude path and
+restored those451 matches. The frozen numeric cohort matches12585/12585,
+gaining4220 and losing zero from its original baseline. Counts did not select
+the algorithm. Original answers and input identities remain unchanged.
+The five Eng12 refutations are minimizer errors: the frozen observers contain
+constants, not the original formulas. They are not application fixes.
+
+R25 source, evidence, limitations and reproduction commands are recorded in
+round25-result.json and evidence/round25/index.json. The frozen question
+producer has its own historical unit and source snapshots; later publication
+units do not retroactively describe it. The independent rational checker agrees
+with the declared nine-program variance studies and their12585 controls.
+GEOMEAN helper studies remain conditional and do not establish its root path.
+
+The active question archive is packets/round25/{stored-steps,qr-stores,guard-transfer}:
+seven new workbooks,4347 formula cells,1353 calls and2994 operand echoes.
+Unknown QR construction outputs are explicitly unobserved and never scored.
+The questions distinguish cancellation stores, QR norm stores and rank,
+GEOMEAN product/root stores, Bessel amplitude/correction, and deviance leaves.
+No unanswered question is added to the application's measured corpus.
+The canonical Excel queue supplied1364 separate-cell readings (1352 distinct
+function/argument-mode combinations), including910 variance/STDEV readings
+independently checked by exact rational arithmetic. These are not captures of
+the range workbooks. Guard-transfer pairs76 measured scalar replays with76
+unanswered ranges. Some magnitude-guard rearrangements remain indistinguishable.
+Sixteen later unique triples separate the cancellation ratio from the initially
+indistinguishable multiplied forms. The ratio graph replaces that provisional
+choice even though both graphs matched the original numeric cohort.
+For the published source, use DNA_RESEARCH_UNIT=round25-publication-unit.json
+with cargo test or cargo build --release. Historical question producers retain
+their original units and exact source snapshots under evidence/round25; their
+packet manifests deliberately bind those historical tools, not today's files.
+The compact raw-input archives can be restored at the paths recorded by each
+receipt. Run verify_live_guards.py against the extracted live-answers archive
+to reproduce the independent scalar checks without another Excel session.
+
 R23 publication uses DNA_RESEARCH_UNIT=round23-final-unit.json for cargo test
 and cargo build --release. It pins guarded application sources to0afaa67b;
 reproduction needs those sources, and changed guarded sources need a new unit.

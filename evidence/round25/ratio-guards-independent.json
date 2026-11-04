@@ -1,0 +1,135 @@
+{
+  "complete": true,
+  "rows": 12585,
+  "policies": [
+    {
+      "program": 0,
+      "sum_model": "strict",
+      "step_model": "strict",
+      "counts": {
+        "all": 12585,
+        "matched": 12579,
+        "baseline": 8365,
+        "gains": 4216,
+        "losses": 2,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 1,
+      "sum_model": "strict",
+      "step_model": "stored_pc64",
+      "counts": {
+        "all": 12585,
+        "matched": 12582,
+        "baseline": 8365,
+        "gains": 4219,
+        "losses": 2,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 2,
+      "sum_model": "strict",
+      "step_model": "resident_pc64",
+      "counts": {
+        "all": 12585,
+        "matched": 10233,
+        "baseline": 8365,
+        "gains": 2879,
+        "losses": 1011,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 3,
+      "sum_model": "stored_pc64",
+      "step_model": "strict",
+      "counts": {
+        "all": 12585,
+        "matched": 12582,
+        "baseline": 8365,
+        "gains": 4217,
+        "losses": 0,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 4,
+      "sum_model": "stored_pc64",
+      "step_model": "stored_pc64",
+      "counts": {
+        "all": 12585,
+        "matched": 12585,
+        "baseline": 8365,
+        "gains": 4220,
+        "losses": 0,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 5,
+      "sum_model": "stored_pc64",
+      "step_model": "resident_pc64",
+      "counts": {
+        "all": 12585,
+        "matched": 9178,
+        "baseline": 8365,
+        "gains": 2317,
+        "losses": 1504,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 6,
+      "sum_model": "resident_pc64",
+      "step_model": "strict",
+      "counts": {
+        "all": 12585,
+        "matched": 10446,
+        "baseline": 8365,
+        "gains": 2983,
+        "losses": 902,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 7,
+      "sum_model": "resident_pc64",
+      "step_model": "stored_pc64",
+      "counts": {
+        "all": 12585,
+        "matched": 9362,
+        "baseline": 8365,
+        "gains": 2178,
+        "losses": 1181,
+        "fallback": 2267
+      }
+    },
+    {
+      "program": 8,
+      "sum_model": "resident_pc64",
+      "step_model": "resident_pc64",
+      "counts": {
+        "all": 12585,
+        "matched": 8278,
+        "baseline": 8365,
+        "gains": 1452,
+        "losses": 1539,
+        "fallback": 2267
+      }
+    }
+  ],
+  "native_rational_equal_predictions": 113265,
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/round25/variance-bank-scoped.jsonl": "a06f7682b01ea040ef9e16d6cc6ed1d4a5ea83d36267350de592223baa7ac155",
+    "/home/ubuntu/codex-runs/round25/ratio-guards-native/predictions.json": "145875fc812d7e39aadd2616f433e96cd4342e15ec6a0160f5ae8123c9281342",
+    "/home/ubuntu/codex-runs/round25/ratio-guards-native/summary.json": "d2cbab5aa09268cfb71afe04706bf625d77a49388fdd2822b7867f96c5c74aec",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "062c313ecde04a6166d9803fe8f5aaafb4a9f6b49030dd0caff23493a1971a78",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/variance.py": "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a"
+  },
+  "mean_guard": true,
+  "limits": "Independent rational arithmetic and square-root checker replay, including resident comparisons before any store. Only the declared fixed programs and recorded scope are checked; no complete Excel guard is identified."
+}

@@ -381,6 +381,19 @@ fn self_test(rows: &[Row]) {
 fn main() {
     let a: Vec<_> = std::env::args().collect();
     match a.get(1).map(String::as_str) {
+        #[cfg(route_audit)]
+        Some("geomean-stored") => if a.get(4).is_some_and(|v|v=="soft") {
+            route_audit::geomean_stored::<Soft>(&a[2],&a[3])
+        } else {route_audit::geomean_stored::<Hard>(&a[2],&a[3])},
+        Some("variance-relative-guard-questions") => variance::relative_guard_questions::<Hard>(&a[2]),
+        Some("variance-guard-questions") => variance::guard_questions::<Hard>(&a[2]),
+        Some("variance-sqrt-questions") => variance::sqrt_questions::<Hard>(&a[2]),
+        Some("variance-mean-guard") => if a.get(4).is_some_and(|v|v=="soft") {
+            variance::stored_steps_guard::<Soft>(&a[2],&a[3],true)
+        } else {variance::stored_steps_guard::<Hard>(&a[2],&a[3],true)},
+        Some("variance-stored") => if a.get(4).is_some_and(|v|v=="soft") {
+            variance::stored_steps::<Soft>(&a[2],&a[3])
+        } else {variance::stored_steps::<Hard>(&a[2],&a[3])},
         #[cfg(regression_outer_audit)]
         Some("regression-folds")=>route_audit::regression_folds(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         #[cfg(regression_audit)]

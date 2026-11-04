@@ -1,0 +1,33 @@
+{
+  "format": "dnacalc-r25-guard-transfer/1",
+  "formula_cells": 400,
+  "calls": 152,
+  "scalar_replays": 76,
+  "unobserved_range_transfers": 76,
+  "new_workbook_captures": 0,
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/round25/producer-final-ratio": "05ea1fb916e54992b2b8d30336a2c0624a9d9f1d115d0577fdf4846e220a294d",
+    "/tmp/dnacalc-powershell-r21/runtime/pwsh": "c561baa659f1d0a5e9482684fc26e377b6fb8178b74f5e4fbb0ba0ea38f6a126",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1": "30a50dd3e9ae6237ba3f6438fb8487d5d40fdb032696196f4051218e493733a2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py": "060d65ad7e554f5c976ad5a79840b46ceb0eb63d442c5d8994df250c30d3450d",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_fuzz.py": "2e4edaf37f37ef5f9ebb18a600f730e15ca43077425161a4d5973f82164cfb35",
+    "/home/ubuntu/codex-runs/round25/live-variance-edges/states.json": "58e908842351648c1fb7988f53cd55db40b1f93116bf0de7555b4bfe11e90aea",
+    "/home/ubuntu/codex-runs/round25/live-variance-cancellation-v2/states.json": "5ad2f3b2949033a8b46222f60fc0dffe1b1e11cda631a631d811924272270c78",
+    "/home/ubuntu/codex-runs/round25/live-guard-operations/questions.json": "3cb4ffa751723d48a236ce84fb5d38e2eed1e563c695a9ccd45d9c391a798bf7",
+    "/home/ubuntu/codex-runs/round25/live-guard-operations/reply.json": "12d345c3c74985d3788ebc9ef9efe97d7008b71f77283ae16279a9c4a0adb550",
+    "/home/ubuntu/codex-runs/round25/live-relative-operations/questions.json": "ddf65e40e6838d41ca3adda12cee082e357770564ebe229b51439a0dae36a77c",
+    "/home/ubuntu/codex-runs/round25/live-relative-operations/reply.json": "ca2a7600e717dc3c197029a788303d06c203b91982002812c8b3c921d765ce0a",
+    "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/questions.json": "2b9410b32805fc2035aef364d33e44c506f0573d43389782a25091b7410bf7ae",
+    "/home/ubuntu/codex-runs/round25/live-unique-relative-operations/reply.json": "82d1104a4a7d8f95f5b67243a7ed3cfb15babe84f0ad3c924c501a03183bca9b",
+    "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.S.json": "89cc8da50c8b4638ed52de8553a2eab21d7bab2377a79c4d5a13f94ba3c6466b",
+    "/home/ubuntu/codex-runs/round25/live-variance-sqrt/STDEV.P.json": "eb3138199077d286fa577156f338d35da0bcc3643acc69cbb7e7e27a54d59c03"
+  },
+  "files_sha256": {
+    "README.txt": "28984335254c8702a016ac08efc840536c98d940cce613345d283424d7d1919a",
+    "prediction-binding.json": "5b0bd3b87150ac98d9a166934bec213aa60b2b45ec759d1d0c967d3be21dd1f3",
+    "sheet-dcj9k_r25_guard_transfer.txt": "7c2da7f3dea2f78d690a2725046ae05c549d9a924c885e7b6a0afd792455a796",
+    "application-predictions.jsonl": "20a187553f5459873950a5ab32293b6df63fb42ab3767ffb0167e62c70529817",
+    "workbook-questions.json": "2a982119f90fc169f02a87aa1de5a553f4f79bdba65d00fb6c4c568b71baab33",
+    "workbooks/dcj9k_r25_guard_transfer/oracle.xlsx": "279077b0ed145ce4cf45035cedad0a7df5f74bec2fd4312b79c4526ba396c62c"
+  }
+}

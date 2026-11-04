@@ -1,0 +1,38 @@
+[
+  {
+    "function": "LINEST",
+    "constant": false,
+    "low": "0x402000007ffffffd",
+    "high": "0x40200001ffffffff",
+    "low_df": 3.0,
+    "high_df": 2.0,
+    "qualification": "Original decimal-array operands; new reference cells expose exact operand bits."
+  },
+  {
+    "function": "LOGEST",
+    "constant": false,
+    "low": "0x402000007ffffffd",
+    "high": "0x40200001ffffffff",
+    "low_df": 3.0,
+    "high_df": 2.0,
+    "qualification": "Original decimal-array operands; new reference cells expose exact operand bits."
+  },
+  {
+    "function": "LINEST",
+    "constant": true,
+    "low": "0x402000007ffffffd",
+    "high": "0x40200001ffffffff",
+    "low_df": 2.0,
+    "high_df": 1.0,
+    "qualification": "Original decimal-array operands; new reference cells expose exact operand bits."
+  },
+  {
+    "function": "LOGEST",
+    "constant": true,
+    "low": "0x402000007ffffffd",
+    "high": "0x40200001ffffffff",
+    "low_df": 2.0,
+    "high_df": 1.0,
+    "qualification": "Original decimal-array operands; new reference cells expose exact operand bits."
+  }
+]

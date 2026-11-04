@@ -1,0 +1,2170 @@
+{
+  "sheet": "dcj9k_r25_discrete",
+  "allow_refusals": true,
+  "questions": [
+    {
+      "id": "r25-discrete-00001",
+      "row": 1,
+      "column": 4,
+      "formula": "((70281283*67108864+1708225)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f80c1a10c1a10c1"
+    },
+    {
+      "id": "r25-discrete-00002",
+      "row": 2,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D1,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "1100"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00003",
+      "row": 3,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D1,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "1100"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00004",
+      "row": 4,
+      "column": 4,
+      "formula": "((35140641*67108864+34408545)/2^58)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f80c1a10c1a10c2"
+    },
+    {
+      "id": "r25-discrete-00005",
+      "row": 5,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D4,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "1100"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00006",
+      "row": 6,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D4,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "1100"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00007",
+      "row": 7,
+      "column": 4,
+      "formula": "((70281283*67108864+1708227)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f80c1a10c1a10c3"
+    },
+    {
+      "id": "r25-discrete-00008",
+      "row": 8,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D7,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "1100"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00009",
+      "row": 9,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D7,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "1100"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00010",
+      "row": 10,
+      "column": 4,
+      "formula": "((52494044*67108864+48914905)/2^58)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f8907f6e5d4c3b2"
+    },
+    {
+      "id": "r25-discrete-00011",
+      "row": 11,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D10,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "900"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00012",
+      "row": 12,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D10,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "900"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00013",
+      "row": 13,
+      "column": 4,
+      "formula": "((104988089*67108864+30720947)/2^59)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f8907f6e5d4c3b3"
+    },
+    {
+      "id": "r25-discrete-00014",
+      "row": 14,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D13,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "900"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00015",
+      "row": 15,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D13,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "900"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00016",
+      "row": 16,
+      "column": 4,
+      "formula": "((26247022*67108864+24457453)/2^57)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f8907f6e5d4c3b4"
+    },
+    {
+      "id": "r25-discrete-00017",
+      "row": 17,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D16,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "900"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00018",
+      "row": 18,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,100,D16,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "900"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00019",
+      "row": 19,
+      "column": 4,
+      "formula": "((112450052*67108864+56420251)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f4acf68135ce79b"
+    },
+    {
+      "id": "r25-discrete-00020",
+      "row": 20,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D19,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00021",
+      "row": 21,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D19,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00022",
+      "row": 22,
+      "column": 4,
+      "formula": "((28112513*67108864+14105063)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f4acf68135ce79c"
+    },
+    {
+      "id": "r25-discrete-00023",
+      "row": 23,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D22,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00024",
+      "row": 24,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D22,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00025",
+      "row": 25,
+      "column": 4,
+      "formula": "((112450052*67108864+56420253)/2^63)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f4acf68135ce79d"
+    },
+    {
+      "id": "r25-discrete-00026",
+      "row": 26,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D25,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00027",
+      "row": 27,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D25,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "9",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00028",
+      "row": 28,
+      "column": 4,
+      "formula": "((83990471*67108864+37998529)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f54065f1e43cfc1"
+    },
+    {
+      "id": "r25-discrete-00029",
+      "row": 29,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D28,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "9000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00030",
+      "row": 30,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D28,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "9000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00031",
+      "row": 31,
+      "column": 4,
+      "formula": "((41995235*67108864+52553697)/2^61)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f54065f1e43cfc2"
+    },
+    {
+      "id": "r25-discrete-00032",
+      "row": 32,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D31,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "9000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00033",
+      "row": 33,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D31,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "9000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00034",
+      "row": 34,
+      "column": 4,
+      "formula": "((83990471*67108864+37998531)/2^62)",
+      "role": "operand_echo",
+      "intended_bits": "0x3f54065f1e43cfc3"
+    },
+    {
+      "id": "r25-discrete-00035",
+      "row": 35,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D34,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "9000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00036",
+      "row": 36,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(1,1000,D34,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "11",
+        "9000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00037",
+      "row": 37,
+      "column": 4,
+      "formula": "((108716359*67108864+45634027)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe9eb851eb851eb"
+    },
+    {
+      "id": "r25-discrete-00038",
+      "row": 38,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(99,100,D37,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "81",
+        "100"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00039",
+      "row": 39,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(99,100,D37,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "81",
+        "100"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00040",
+      "row": 40,
+      "column": 4,
+      "formula": "((27179089*67108864+61740155)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe9eb851eb851ec"
+    },
+    {
+      "id": "r25-discrete-00041",
+      "row": 41,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(99,100,D40,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "81",
+        "100"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00042",
+      "row": 42,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(99,100,D40,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "81",
+        "100"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00043",
+      "row": 43,
+      "column": 4,
+      "formula": "((108716359*67108864+45634029)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe9eb851eb851ed"
+    },
+    {
+      "id": "r25-discrete-00044",
+      "row": 44,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(99,100,D43,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "81",
+        "100"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00045",
+      "row": 45,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(99,100,D43,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "81",
+        "100"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00046",
+      "row": 46,
+      "column": 4,
+      "formula": "((36568230*67108864+4978257)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fd16fe53097eca2"
+    },
+    {
+      "id": "r25-discrete-00047",
+      "row": 47,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D46,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "2997",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00048",
+      "row": 48,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D46,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "2997",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00049",
+      "row": 49,
+      "column": 4,
+      "formula": "((73136460*67108864+9956515)/2^54)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fd16fe53097eca3"
+    },
+    {
+      "id": "r25-discrete-00050",
+      "row": 50,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D49,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "2997",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00051",
+      "row": 51,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D49,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "2997",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00052",
+      "row": 52,
+      "column": 4,
+      "formula": "((18284115*67108864+2489129)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fd16fe53097eca4"
+    },
+    {
+      "id": "r25-discrete-00053",
+      "row": 53,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D52,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "2997",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00054",
+      "row": 54,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D52,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "2997",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00055",
+      "row": 55,
+      "column": 4,
+      "formula": "((54626615*67108864+19864223)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fda0c49ba5e353e"
+    },
+    {
+      "id": "r25-discrete-00056",
+      "row": 56,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D55,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "407",
+        "1000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00057",
+      "row": 57,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D55,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "407",
+        "1000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00058",
+      "row": 58,
+      "column": 4,
+      "formula": "((109253230*67108864+39728447)/2^54)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fda0c49ba5e353f"
+    },
+    {
+      "id": "r25-discrete-00059",
+      "row": 59,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D58,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "407",
+        "1000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00060",
+      "row": 60,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D58,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "407",
+        "1000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00061",
+      "row": 61,
+      "column": 4,
+      "formula": "((1707081*67108864+48855253)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fda0c49ba5e3540"
+    },
+    {
+      "id": "r25-discrete-00062",
+      "row": 62,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D61,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "407",
+        "1000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00063",
+      "row": 63,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(333,1000,D61,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "407",
+        "1000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00064",
+      "row": 64,
+      "column": 4,
+      "formula": "((18311568*67108864+44511479)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe176990a9cc3dc"
+    },
+    {
+      "id": "r25-discrete-00065",
+      "row": 65,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D64,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "6003",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00066",
+      "row": 66,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D64,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "6003",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00067",
+      "row": 67,
+      "column": 4,
+      "formula": "((73246274*67108864+43828189)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe176990a9cc3dd"
+    },
+    {
+      "id": "r25-discrete-00068",
+      "row": 68,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D67,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "6003",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00069",
+      "row": 69,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D67,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "6003",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00070",
+      "row": 70,
+      "column": 4,
+      "formula": "((36623137*67108864+21914095)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fe176990a9cc3de"
+    },
+    {
+      "id": "r25-discrete-00071",
+      "row": 71,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D70,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "6003",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00072",
+      "row": 72,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D70,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "6003",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00073",
+      "row": 73,
+      "column": 4,
+      "formula": "((54708637*67108864+16165779)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea164ce9ed5726"
+    },
+    {
+      "id": "r25-discrete-00074",
+      "row": 74,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D73,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "7337",
+        "9000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00075",
+      "row": 75,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D73,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "7337",
+        "9000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00076",
+      "row": 76,
+      "column": 4,
+      "formula": "((109417274*67108864+32331559)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea164ce9ed5727"
+    },
+    {
+      "id": "r25-discrete-00077",
+      "row": 77,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D76,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "7337",
+        "9000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00078",
+      "row": 78,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D76,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "7337",
+        "9000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00079",
+      "row": 79,
+      "column": 4,
+      "formula": "((13677159*67108864+20818661)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea164ce9ed5728"
+    },
+    {
+      "id": "r25-discrete-00080",
+      "row": 80,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D79,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "7337",
+        "9000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00081",
+      "row": 81,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(667,1000,D79,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "7337",
+        "9000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00082",
+      "row": 82,
+      "column": 4,
+      "formula": "((27426172*67108864+37288125)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea27d7c8e3e2f4"
+    },
+    {
+      "id": "r25-discrete-00083",
+      "row": 83,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(999,1000,D82,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "8991",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00084",
+      "row": 84,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(999,1000,D82,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "8991",
+        "11000"
+      ],
+      "offset": -1
+    },
+    {
+      "id": "r25-discrete-00085",
+      "row": 85,
+      "column": 4,
+      "formula": "((109704690*67108864+14934773)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea27d7c8e3e2f5"
+    },
+    {
+      "id": "r25-discrete-00086",
+      "row": 86,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(999,1000,D85,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "8991",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00087",
+      "row": 87,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(999,1000,D85,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "8991",
+        "11000"
+      ],
+      "offset": 0
+    },
+    {
+      "id": "r25-discrete-00088",
+      "row": 88,
+      "column": 4,
+      "formula": "((54852345*67108864+7467387)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea27d7c8e3e2f6"
+    },
+    {
+      "id": "r25-discrete-00089",
+      "row": 89,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(999,1000,D88,FALSE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "8991",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00090",
+      "row": 90,
+      "column": 4,
+      "formula": "_xlfn.BINOM.DIST(999,1000,D88,TRUE)",
+      "role": "question",
+      "hypothesis": "Deviance series/direct-log branch: |k-np|=(k+np)/10 gives p=9k/(11n) or11k/(9n).",
+      "exact_boundary": [
+        "8991",
+        "11000"
+      ],
+      "offset": 1
+    },
+    {
+      "id": "r25-discrete-00091",
+      "row": 91,
+      "column": 4,
+      "formula": "((54907252*67108864+24403223)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea2e8ba2e8ba2e"
+    },
+    {
+      "id": "r25-discrete-00092",
+      "row": 92,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D91,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00093",
+      "row": 93,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D91,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00094",
+      "row": 94,
+      "column": 4,
+      "formula": "((109814504*67108864+48806447)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea2e8ba2e8ba2f"
+    },
+    {
+      "id": "r25-discrete-00095",
+      "row": 95,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D94,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00096",
+      "row": 96,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D94,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00097",
+      "row": 97,
+      "column": 4,
+      "formula": "((6863406*67108864+36604835)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fea2e8ba2e8ba30"
+    },
+    {
+      "id": "r25-discrete-00098",
+      "row": 98,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D97,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00099",
+      "row": 99,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D97,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00100",
+      "row": 100,
+      "column": 4,
+      "formula": "((82021944*67108864+59652323)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff38e38e38e38e3"
+    },
+    {
+      "id": "r25-discrete-00101",
+      "row": 101,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D100,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00102",
+      "row": 102,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D100,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00103",
+      "row": 103,
+      "column": 4,
+      "formula": "((20505486*67108864+14913081)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff38e38e38e38e4"
+    },
+    {
+      "id": "r25-discrete-00104",
+      "row": 104,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D103,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00105",
+      "row": 105,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D103,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00106",
+      "row": 106,
+      "column": 4,
+      "formula": "((82021944*67108864+59652325)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff38e38e38e38e5"
+    },
+    {
+      "id": "r25-discrete-00107",
+      "row": 107,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D106,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00108",
+      "row": 108,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D106,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00109",
+      "row": 109,
+      "column": 4,
+      "formula": "((54907252*67108864+24403223)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffa2e8ba2e8ba2e"
+    },
+    {
+      "id": "r25-discrete-00110",
+      "row": 110,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D109,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00111",
+      "row": 111,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D109,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00112",
+      "row": 112,
+      "column": 4,
+      "formula": "((109814504*67108864+48806447)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffa2e8ba2e8ba2f"
+    },
+    {
+      "id": "r25-discrete-00113",
+      "row": 113,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D112,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00114",
+      "row": 114,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D112,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00115",
+      "row": 115,
+      "column": 4,
+      "formula": "((6863406*67108864+36604835)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ffa2e8ba2e8ba30"
+    },
+    {
+      "id": "r25-discrete-00116",
+      "row": 116,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D115,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00117",
+      "row": 117,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D115,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00118",
+      "row": 118,
+      "column": 4,
+      "formula": "((82021944*67108864+59652323)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x40038e38e38e38e3"
+    },
+    {
+      "id": "r25-discrete-00119",
+      "row": 119,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D118,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00120",
+      "row": 120,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D118,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00121",
+      "row": 121,
+      "column": 4,
+      "formula": "((20505486*67108864+14913081)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40038e38e38e38e4"
+    },
+    {
+      "id": "r25-discrete-00122",
+      "row": 122,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D121,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00123",
+      "row": 123,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D121,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00124",
+      "row": 124,
+      "column": 4,
+      "formula": "((82021944*67108864+59652325)/2^51)",
+      "role": "operand_echo",
+      "intended_bits": "0x40038e38e38e38e5"
+    },
+    {
+      "id": "r25-discrete-00125",
+      "row": 125,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D124,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00126",
+      "row": 126,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(2,D124,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00127",
+      "row": 127,
+      "column": 4,
+      "formula": "((17158516*67108864+24403223)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x40105d1745d1745c"
+    },
+    {
+      "id": "r25-discrete-00128",
+      "row": 128,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D127,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00129",
+      "row": 129,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D127,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00130",
+      "row": 130,
+      "column": 4,
+      "formula": "((68634065*67108864+30504029)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x40105d1745d1745d"
+    },
+    {
+      "id": "r25-discrete-00131",
+      "row": 131,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D130,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00132",
+      "row": 132,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D130,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00133",
+      "row": 133,
+      "column": 4,
+      "formula": "((34317032*67108864+48806447)/2^49)",
+      "role": "operand_echo",
+      "intended_bits": "0x40105d1745d1745e"
+    },
+    {
+      "id": "r25-discrete-00134",
+      "row": 134,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D133,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00135",
+      "row": 135,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D133,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00136",
+      "row": 136,
+      "column": 4,
+      "formula": "((102527431*67108864+7456539)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x401871c71c71c71b"
+    },
+    {
+      "id": "r25-discrete-00137",
+      "row": 137,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D136,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00138",
+      "row": 138,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D136,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00139",
+      "row": 139,
+      "column": 4,
+      "formula": "((25631857*67108864+52195783)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x401871c71c71c71c"
+    },
+    {
+      "id": "r25-discrete-00140",
+      "row": 140,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D139,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00141",
+      "row": 141,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D139,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00142",
+      "row": 142,
+      "column": 4,
+      "formula": "((102527431*67108864+7456541)/2^50)",
+      "role": "operand_echo",
+      "intended_bits": "0x401871c71c71c71d"
+    },
+    {
+      "id": "r25-discrete-00143",
+      "row": 143,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D142,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00144",
+      "row": 144,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(5,D142,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00145",
+      "row": 145,
+      "column": 4,
+      "formula": "((113246207*67108864+67108863)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403affffffffffff"
+    },
+    {
+      "id": "r25-discrete-00146",
+      "row": 146,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D145,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00147",
+      "row": 147,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D145,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00148",
+      "row": 148,
+      "column": 4,
+      "formula": "(0*67108864+27)",
+      "role": "operand_echo",
+      "intended_bits": "0x403b000000000000"
+    },
+    {
+      "id": "r25-discrete-00149",
+      "row": 149,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D148,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00150",
+      "row": 150,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D148,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00151",
+      "row": 151,
+      "column": 4,
+      "formula": "((113246208*67108864+1)/2^48)",
+      "role": "operand_echo",
+      "intended_bits": "0x403b000000000001"
+    },
+    {
+      "id": "r25-discrete-00152",
+      "row": 152,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D151,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00153",
+      "row": 153,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D151,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00154",
+      "row": 154,
+      "column": 4,
+      "formula": "((42292565*67108864+22369621)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x40442aaaaaaaaaaa"
+    },
+    {
+      "id": "r25-discrete-00155",
+      "row": 155,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D154,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00156",
+      "row": 156,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D154,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00157",
+      "row": 157,
+      "column": 4,
+      "formula": "((84585130*67108864+44739243)/2^47)",
+      "role": "operand_echo",
+      "intended_bits": "0x40442aaaaaaaaaab"
+    },
+    {
+      "id": "r25-discrete-00158",
+      "row": 158,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D157,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00159",
+      "row": 159,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D157,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00160",
+      "row": 160,
+      "column": 4,
+      "formula": "((21146282*67108864+44739243)/2^45)",
+      "role": "operand_echo",
+      "intended_bits": "0x40442aaaaaaaaaac"
+    },
+    {
+      "id": "r25-discrete-00161",
+      "row": 161,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D160,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00162",
+      "row": 162,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(33,D160,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00163",
+      "row": 163,
+      "column": 4,
+      "formula": "((85792581*67108864+54907251)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x4054745d1745d173"
+    },
+    {
+      "id": "r25-discrete-00164",
+      "row": 164,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D163,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00165",
+      "row": 165,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D163,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00166",
+      "row": 166,
+      "column": 4,
+      "formula": "((21448145*67108864+30504029)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x4054745d1745d174"
+    },
+    {
+      "id": "r25-discrete-00167",
+      "row": 167,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D166,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00168",
+      "row": 168,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D166,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00169",
+      "row": 169,
+      "column": 4,
+      "formula": "((85792581*67108864+54907253)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x4054745d1745d175"
+    },
+    {
+      "id": "r25-discrete-00170",
+      "row": 170,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D169,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00171",
+      "row": 171,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D169,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00172",
+      "row": 172,
+      "column": 4,
+      "formula": "((128159288*67108864+59652323)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x405e8e38e38e38e3"
+    },
+    {
+      "id": "r25-discrete-00173",
+      "row": 173,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D172,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00174",
+      "row": 174,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D172,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00175",
+      "row": 175,
+      "column": 4,
+      "formula": "((32039822*67108864+14913081)/2^44)",
+      "role": "operand_echo",
+      "intended_bits": "0x405e8e38e38e38e4"
+    },
+    {
+      "id": "r25-discrete-00176",
+      "row": 176,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D175,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00177",
+      "row": 177,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D175,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00178",
+      "row": 178,
+      "column": 4,
+      "formula": "((128159288*67108864+59652325)/2^46)",
+      "role": "operand_echo",
+      "intended_bits": "0x405e8e38e38e38e5"
+    },
+    {
+      "id": "r25-discrete-00179",
+      "row": 179,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D178,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00180",
+      "row": 180,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(100,D178,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00181",
+      "row": 181,
+      "column": 4,
+      "formula": "((6702545*67108864+30504029)/2^39)",
+      "role": "operand_echo",
+      "intended_bits": "0x408991745d1745d0"
+    },
+    {
+      "id": "r25-discrete-00182",
+      "row": 182,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D181,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00183",
+      "row": 183,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D181,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00184",
+      "row": 184,
+      "column": 4,
+      "formula": "((107240727*67108864+18302417)/2^43)",
+      "role": "operand_echo",
+      "intended_bits": "0x408991745d1745d1"
+    },
+    {
+      "id": "r25-discrete-00185",
+      "row": 185,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D184,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00186",
+      "row": 186,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D184,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00187",
+      "row": 187,
+      "column": 4,
+      "formula": "((53620363*67108864+42705641)/2^42)",
+      "role": "operand_echo",
+      "intended_bits": "0x408991745d1745d2"
+    },
+    {
+      "id": "r25-discrete-00188",
+      "row": 188,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D187,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00189",
+      "row": 189,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D187,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00190",
+      "row": 190,
+      "column": 4,
+      "formula": "((80099555*67108864+37282701)/2^42)",
+      "role": "operand_echo",
+      "intended_bits": "0x409318e38e38e38d"
+    },
+    {
+      "id": "r25-discrete-00191",
+      "row": 191,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D190,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00192",
+      "row": 192,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D190,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00193",
+      "row": 193,
+      "column": 4,
+      "formula": "((40049777*67108864+52195783)/2^41)",
+      "role": "operand_echo",
+      "intended_bits": "0x409318e38e38e38e"
+    },
+    {
+      "id": "r25-discrete-00194",
+      "row": 194,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D193,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00195",
+      "row": 195,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D193,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00196",
+      "row": 196,
+      "column": 4,
+      "formula": "((80099555*67108864+37282703)/2^42)",
+      "role": "operand_echo",
+      "intended_bits": "0x409318e38e38e38f"
+    },
+    {
+      "id": "r25-discrete-00197",
+      "row": 197,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D196,FALSE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00198",
+      "row": 198,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1000,D196,TRUE)",
+      "role": "question",
+      "hypothesis": "Same exact deviance boundary for the Poisson mass; CDF is a separately observed algorithm."
+    },
+    {
+      "id": "r25-discrete-00199",
+      "row": 199,
+      "column": 4,
+      "formula": "((134217727*67108864+67108863)/2^53)",
+      "role": "operand_echo",
+      "intended_bits": "0x3fefffffffffffff"
+    },
+    {
+      "id": "r25-discrete-00200",
+      "row": 200,
+      "column": 4,
+      "formula": "EXP(-D199)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00201",
+      "row": 201,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(0,D199,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00202",
+      "row": 202,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D199,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00203",
+      "row": 203,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D199,TRUE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00204",
+      "row": 204,
+      "column": 4,
+      "formula": "D199*EXP(-D199)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00205",
+      "row": 205,
+      "column": 4,
+      "formula": "(1+D199)*EXP(-D199)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00206",
+      "row": 206,
+      "column": 4,
+      "formula": "((67108864*67108864+1)/2^52)",
+      "role": "operand_echo",
+      "intended_bits": "0x3ff0000000000001"
+    },
+    {
+      "id": "r25-discrete-00207",
+      "row": 207,
+      "column": 4,
+      "formula": "EXP(-D206)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00208",
+      "row": 208,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(0,D206,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00209",
+      "row": 209,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D206,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00210",
+      "row": 210,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D206,TRUE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00211",
+      "row": 211,
+      "column": 4,
+      "formula": "D206*EXP(-D206)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00212",
+      "row": 212,
+      "column": 4,
+      "formula": "(1+D206)*EXP(-D206)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00213",
+      "row": 213,
+      "column": 4,
+      "formula": "(0*67108864+2)",
+      "role": "operand_echo",
+      "intended_bits": "0x4000000000000000"
+    },
+    {
+      "id": "r25-discrete-00214",
+      "row": 214,
+      "column": 4,
+      "formula": "EXP(-D213)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00215",
+      "row": 215,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(0,D213,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00216",
+      "row": 216,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D213,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00217",
+      "row": 217,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D213,TRUE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00218",
+      "row": 218,
+      "column": 4,
+      "formula": "D213*EXP(-D213)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00219",
+      "row": 219,
+      "column": 4,
+      "formula": "(1+D213)*EXP(-D213)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00220",
+      "row": 220,
+      "column": 4,
+      "formula": "(0*67108864+10)",
+      "role": "operand_echo",
+      "intended_bits": "0x4024000000000000"
+    },
+    {
+      "id": "r25-discrete-00221",
+      "row": 221,
+      "column": 4,
+      "formula": "EXP(-D220)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00222",
+      "row": 222,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(0,D220,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00223",
+      "row": 223,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D220,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00224",
+      "row": 224,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D220,TRUE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00225",
+      "row": 225,
+      "column": 4,
+      "formula": "D220*EXP(-D220)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00226",
+      "row": 226,
+      "column": 4,
+      "formula": "(1+D220)*EXP(-D220)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00227",
+      "row": 227,
+      "column": 4,
+      "formula": "(0*67108864+20)",
+      "role": "operand_echo",
+      "intended_bits": "0x4034000000000000"
+    },
+    {
+      "id": "r25-discrete-00228",
+      "row": 228,
+      "column": 4,
+      "formula": "EXP(-D227)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00229",
+      "row": 229,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(0,D227,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00230",
+      "row": 230,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D227,FALSE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00231",
+      "row": 231,
+      "column": 4,
+      "formula": "_xlfn.POISSON.DIST(1,D227,TRUE)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00232",
+      "row": 232,
+      "column": 4,
+      "formula": "D227*EXP(-D227)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    },
+    {
+      "id": "r25-discrete-00233",
+      "row": 233,
+      "column": 4,
+      "formula": "(1+D227)*EXP(-D227)",
+      "role": "question",
+      "hypothesis": "Count0/1 helper boundaries: compare public EXP and staged products with the independently observed mass and CDF."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "format": "dnacalc-research-questions-r25-qr-stores/1",
+  "new_excel_answers": 0,
+  "formula_cells": 100,
+  "calls": 52,
+  "constructed_calls": 200,
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/round25/producer-checked": "0f62453b31cd070f704b55a4eedd9c517edfc6707c72468fb99bb21d2a8704d5",
+    "/tmp/dnacalc-powershell-r21/runtime/pwsh": "c561baa659f1d0a5e9482684fc26e377b6fb8178b74f5e4fbb0ba0ea38f6a126",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1": "30a50dd3e9ae6237ba3f6438fb8487d5d40fdb032696196f4051218e493733a2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_cases.py": "2f29eb6a679afe92156454f321ada8ab0fac5d6d06e80c1ddd470785805215dc",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/corpus_fuzz.py": "2e4edaf37f37ef5f9ebb18a600f730e15ca43077425161a4d5973f82164cfb35"
+  },
+  "files_sha256": {
+    "README.txt": "371878a29b6eb48263d8dadf26e9510eacdfbda58906d35fd80af0c0d1d3bf0c",
+    "application-predictions.jsonl": "b7ae65d23f38858029a552205fcead875a60baf73ea00f33888cf45abed20e6c",
+    "discovery-inputs.jsonl.gz": "2fad10332ac07e9b7da07ccfdcb9a374bade4b9917a22561879e0d6e7e7f99f3",
+    "discovery-predictions.jsonl.gz": "25a770e95cb2fe8dc2176e164eb56b7767bef6b4497717af60ece4ccd76e210b",
+    "discovery-questions.json.gz": "0f865bfb1fc5685b94458d9661ce27711003167cffe3180ff92f894e7de0b938",
+    "folds/changes.jsonl.gz": "2111323f3f203919d188438cc098b13029b5de199e97d525d1e126406249fbf3",
+    "folds/summary.json": "577c2f9e2a26e4efd0033f5401c1e7434995b7255ccbbab25c00b0922236976f",
+    "outer/changes.jsonl.gz": "e66d30365bebee9a56d8de26487d4be2dd40d5ddeb670820667bdf0e57856418",
+    "outer/summary.json": "544b1549c405333e4dd9e259956f0594a5f1e7c6a4b8cf39ffe6b5a7bbd805ca",
+    "prediction-binding.json": "6440f885cd7fdb093f870bc3729b6ad438677e321b5e9f7f2c3b7f2b6be9d890",
+    "sheet-dcj9k_r25_qr_stores.txt": "176841dfd51d119b59b2c3bd380d1b160b181b32b1d6938e60636f9656b3b6b0",
+    "workbook-questions.json": "5b11ff3b93cdbc08364d1fa414c1e19ba081d9cea929b77c6010c3a55386ab2e",
+    "workbooks/dcj9k_r25_qr_stores/oracle.xlsx": "4e4c807e554b36d9765411f3c6d6638fcfdf7e1ecf2a45bd056b806b80c174aa"
+  },
+  "limits": "Candidate disagreements only, not matched Excel. Existing cleared QR producer and rank rule remain conditional; no coefficient, tolerance or answer-dependent selector fitted."
+}

@@ -1,0 +1,43 @@
+{
+  "complete": true,
+  "functions": {
+    "BESSELI": {
+      "old_rows": 1383,
+      "current_rows": 1365,
+      "old_matched": 1383,
+      "current_matched": 1365,
+      "normalized_inputs_answers_actuals_environment_equal": true,
+      "normalized_rows": 1365
+    },
+    "BESSELJ": {
+      "old_rows": 961,
+      "current_rows": 946,
+      "old_matched": 121,
+      "current_matched": 114,
+      "normalized_inputs_answers_actuals_environment_equal": true,
+      "normalized_rows": 946
+    },
+    "BESSELY": {
+      "old_rows": 51,
+      "current_rows": 46,
+      "old_matched": 51,
+      "current_matched": 46,
+      "normalized_inputs_answers_actuals_environment_equal": true,
+      "normalized_rows": 46
+    },
+    "CONCAT": {
+      "old_rows": 25,
+      "current_rows": 20,
+      "old_matched": 15,
+      "current_matched": 15,
+      "normalized_inputs_answers_actuals_environment_equal": true,
+      "normalized_rows": 20
+    }
+  },
+  "removed_duplicate_contexts": 43,
+  "removed_matched_duplicates": 30,
+  "removed_failed_duplicates": 13,
+  "bank_commit": "4cb48d15eb9cb2a06becb443b306d637d84e6092",
+  "normalization": "Exclude representative id/source and invocation.input_sheet_state; retain function, arguments, selection, expected, actual and every other environment field.",
+  "limits": "This reconciles a reader identity change, not a product gain or discarded failures. Current totals use the smaller canonical denominator; frozen original variance comparisons retain their complete old scope."
+}
