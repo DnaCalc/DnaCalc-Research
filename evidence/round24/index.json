@@ -119,6 +119,7 @@
     "followup/list-latest/corpus-functions/table.json": "e522fb74974eb1cfbd3b2cedf0ece1eda4aef9667eb4e567c4aec622d1485d2a",
     "followup/list-latest/receipt.json": "fd514bcf19476691e486ededb74e3457125a3683e192d6f9736167010923f6e8",
     "followup/locale-merge-corpus-delta.json": "ee67503621a73b40766974a0c22194551f8e0f2c8aa0fa719630edcd8db6159d",
+    "followup/publication-receipt.json": "e16c2d6ad0c9c44d70c73f444317112e89c9aba2dc8dddbbb7e12e6287c8f6a2",
     "followup/read-only-review.json": "5b1718b500ae2b4eca9c211ddebabdd3305ac3ab99d9a3294cfbc17bcca2fdf9",
     "followup/validation/asinh-admission-failing-first.log.gz": "86f89f00fc1c985946afb634df5c55d299517c07ea7661049b2bccc7fa6989d5",
     "followup/validation/asinh-failing-first.log.gz": "ada24d1f88a690ceca265c352f0bbe1b1fc7f4aff577ee67cbec39b5e5093b33",
@@ -213,7 +214,7 @@
     "validation/temme-ubs.log.gz": "35bba2961ea398123b71998da5d5bf3b179b59297839e1ce9da5bd3ba943247c",
     "validation/ubs-doctor.log.gz": "d4ec002426c4f121e74022ae6fe6e4d40abf2cd1b9ecd359806252e485ac5a62"
   },
-  "publication_status": "Final checked master merge; exact fast-forward publication in progress.",
+  "publication_status": "Main master published and verified; exact original commit objects and force=false fast-forward update, followed by successful git push.",
   "asinh_source_commit": "b28be666",
   "superseded_packet_archive": "../../packets/round24/archive.json",
   "followup_review": "followup/read-only-review.json",
@@ -224,5 +225,6 @@
     "not_run": 3,
     "packages": 14,
     "log": "followup/validation/last-merge-main-check.log.gz"
-  }
+  },
+  "publication_receipt": "followup/publication-receipt.json"
 }
