@@ -1,0 +1,50 @@
+{
+  "complete": true,
+  "counts": {
+    "rows": 32768,
+    "matched": 32768
+  },
+  "failures": [],
+  "sources": [
+    {
+      "file": "evidence/round26/fingerprints/484fd8f408dc4aa196b3949ed94a2b8a25eae65246026f1fe5dd62cd267893a0.json.gz",
+      "sha256": "3d24d129d3ab09e90595a96a1884c3366af95a6a288aa9392f96be408bb524c6"
+    },
+    {
+      "file": "evidence/round26/fingerprints/ea1227d93ae26694cac1aa762b817a848b675a2e0f0bfa21daa6a8c853e9dede.json.gz",
+      "sha256": "a6fdbd0609a4d305f37ec33bcf9db83b81a75b75b39fa0fb8399b312724e2d4d"
+    },
+    {
+      "file": "evidence/round26/fingerprints/32952debfa129317f0351f71413b47991917aca800eec47ba265b0c0ce2d5227.json.gz",
+      "sha256": "7261dd431efc40039868a1e778c147b9e11fec7b9234355fbd0fc5c36f111249"
+    },
+    {
+      "file": "evidence/round26/fingerprints/748132f3f155538c9bcb9a61e2ad227ac8b61fef6167e3168474bb0f2414bf15.json.gz",
+      "sha256": "da83457c795fba0aaf9d1be16887bd6efa77c423b8d2d22eb35e53b32e06b1c7"
+    }
+  ],
+  "archives": [
+    {
+      "original": "/home/ubuntu/codex-runs/round26/log-live-inputs.json",
+      "archive": "evidence/round26/replay-inputs/log-live-inputs.json.gz",
+      "sha256": "dfea9fe6b30c2cb8b17c2ae54dcbf9200a65d8c7026a303cf88163cd0d419fb6",
+      "archive_sha256": "3cec35c992ed37fc21fb632f205eb2ef6295b28afa78bacca1a37c5993150386"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/log-live-original.json",
+      "archive": "evidence/round26/replay-inputs/log-live-original.json.gz",
+      "sha256": "24e4b21470ab635f7933c89168a15f7af499420defb72b17f3e5fb78c3b54773",
+      "archive_sha256": "1f81af2f4b3a5a59d947b8a389a018f7dd54c86041768eda76f9ce83bb09488d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/log-live-actual.jsonl",
+      "archive": "evidence/round26/replay-inputs/log-live-actual.jsonl.gz",
+      "sha256": "f91e9bab961972a61b1c4218fcd3c3a17ffcebc95f5e03a069d6f58b8b2370e0",
+      "archive_sha256": "1f71f605de68d62baccc526b9934744292a6253241cbc6342971478f02100a78"
+    }
+  ],
+  "application_revision": "0a0c9ea2c8f2e6d4cba0601081c079d5617ccc86",
+  "unit_sha256": "3d6e6c2c782ef32398eda0d5cc17ea7c7f6aab489fb785173cab91b9b79b3321",
+  "executable_sha256": "caba85cfeee3bae4535c34c4220b68e8047ae6b480a092131bb15b9a4ff0480c",
+  "limits": "New scalar coverage through the existing registered function route; existing LOG implementation unchanged. This is not a kernel gain and includes previously retained control values."
+}

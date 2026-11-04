@@ -88,6 +88,30 @@
       "archive_sha256": "9d35243866586caad97a99a6f1a54f33ea86cd99626975ea9859cbff3594b4c7",
       "bytes": 222,
       "compressed_bytes": 172
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/log-live-inputs.json",
+      "archive": "evidence/round26/replay-inputs/log-live-inputs.json.gz",
+      "sha256": "dfea9fe6b30c2cb8b17c2ae54dcbf9200a65d8c7026a303cf88163cd0d419fb6",
+      "archive_sha256": "3cec35c992ed37fc21fb632f205eb2ef6295b28afa78bacca1a37c5993150386",
+      "bytes": 2741437,
+      "compressed_bytes": 176366
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/log-live-original.json",
+      "archive": "evidence/round26/replay-inputs/log-live-original.json.gz",
+      "sha256": "24e4b21470ab635f7933c89168a15f7af499420defb72b17f3e5fb78c3b54773",
+      "archive_sha256": "1f81af2f4b3a5a59d947b8a389a018f7dd54c86041768eda76f9ce83bb09488d",
+      "bytes": 2873274,
+      "compressed_bytes": 183584
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/log-live-actual.jsonl",
+      "archive": "evidence/round26/replay-inputs/log-live-actual.jsonl.gz",
+      "sha256": "f91e9bab961972a61b1c4218fcd3c3a17ffcebc95f5e03a069d6f58b8b2370e0",
+      "archive_sha256": "1f71f605de68d62baccc526b9934744292a6253241cbc6342971478f02100a78",
+      "bytes": 7722138,
+      "compressed_bytes": 282122
     }
   ],
   "limits": "Lossless compression of actual replay inputs and predictions. Historical absolute paths are preserved; restore to their recorded locations to rerun original checker receipts."

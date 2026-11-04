@@ -428,6 +428,7 @@ def scan(checkout, output, cache, count=512, offline=False, only=None):
         raise ValueError('fingerprint producer changed during run; cache remains valid, regenerate report')
     edge_path=Path(cache).resolve().parent/'edges.json'
     bands_path=Path(cache).resolve().parent/'bessel-bands.json'
+    log_path=Path(cache).resolve().parent/'log-consumers.json'
     auxiliary={}
     if edge_path.exists():
         edge_doc=json.loads(edge_path.read_text());auxiliary[str(edge_path)]=sha(edge_path)
@@ -437,6 +438,20 @@ def scan(checkout, output, cache, count=512, offline=False, only=None):
         band_doc=json.loads(bands_path.read_text());auxiliary[str(bands_path)]=sha(bands_path)
         for record in results:
             record['observed_approximation_boundaries']=[b for b in band_doc.get('bands',[])if b['function']==record['function']]
+    if log_path.exists():
+        log_doc=json.loads(log_path.read_text())
+        if log_doc.get('complete'):
+            auxiliary[str(log_path)]=sha(log_path)
+            for record in results:
+                if record['function']!='LOG':continue
+                record['conditional_consumer_study']=log_doc
+                division=Counter()
+                for row in log_doc['records']:division.update(row['division_rounding'])
+                record['consumer_division_rounding']=division
+                coherent=all(any(p['shape']=='divide'and p['model']=='stored_pc64'and p['consistent']
+                                 for p in row['profiles'])for row in log_doc['records'])
+                if coherent and division['double_only']and not(division['single_only']or division['neither']):
+                    record['rounding']='double division in the public-LN quotient model; ideal leaf rejected'
     result = dict(format='dnacalc-numeric-fingerprints/1', complete=True,inventory_complete=not bool(only),
         coverage=dict(problem_functions=len(inventory['functions']), reported=len(results),
                       statuses=Counter(r['status'] for r in results)),
@@ -940,6 +955,62 @@ def binomial_study(checkout,output,cache,offline=False,count=512):
     return result
 
 
+def log_consumer_study(checkout,output,cache,offline=False,count=4096):
+    """Textbook change-of-base consumers with independently measured LN leaves.
+
+    Default decimal base first, then binary, ternary and the binary64 e anchor.
+    This structural order is fixed before measurement, irrespective of counts.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=900),cache,offline)
+    centers=(1.3,1.625);bases=(10.,2.,3.,math.e)
+    xs=[f'{b:016x}'for x in centers for b in range(int(bits(x),16)-count//2,int(bits(x),16)+count//2)]
+    logarithms=service.ask('LN',[[client.number(x)]for x in xs])['rows']
+    denominators=service.ask('LN',[[client.number(b)]for b in bases])['rows']
+    if any(a['type']!='number'for a in logarithms+denominators):raise ValueError('non-numeric logarithm control')
+    records=[]
+    for base,denominator in zip(bases,denominators):
+        target=service.ask('LOG',[[client.number(x),client.number(base)]for x in xs])['rows']
+        profiles=[];division_predictions={}
+        for shape in ('divide','reciprocal_then_multiply'):
+            for model in ('binary64','stored_pc64','resident_pc64'):
+                op=lambda q:BINARY64.round(q)if model=='binary64'else BINARY64.round(EXTENDED64.round(q))if model=='stored_pc64'else EXTENDED64.round(q)
+                tally=Counter();first=None;predictions=[];d=Q(value(denominator['bits']))
+                for x,leaf,a in zip(xs,logarithms,target):
+                    numerator=Q(value(leaf['bits']))
+                    q=op(numerator/d)if shape=='divide'else op(numerator*op(1/d))
+                    predicted=bits(float(BINARY64.round(q)));predictions.append(predicted)
+                    key='matched'if a==dict(type='number',bits=predicted)else'mismatched';tally[key]+=1
+                    if key=='mismatched'and first is None:first=dict(input=x,excel=a,candidate=predicted)
+                profiles.append(dict(shape=shape,model=model,counts=tally,first_contradiction=first,
+                                     consistent=tally['matched']==len(xs)))
+                if shape=='divide':division_predictions[model]=predictions
+        discriminants=Counter()
+        for a,s,d in zip(target,division_predictions['binary64'],division_predictions['stored_pc64']):
+            if s==d:discriminants['indistinguishable']+=1
+            else:discriminants['single_only'if a==dict(type='number',bits=s)else'double_only'if a==dict(type='number',bits=d)else'neither']+=1
+        alias=None
+        if base==10.:
+            values=service.ask('LOG10',[[client.number(x)]for x in xs])['rows']
+            alias=dict(shape='public LOG10(x)',counts=Counter('matched'if a==b else'mismatched'for a,b in zip(values,target)))
+        records.append(dict(base=bits(base),denominator=denominator,profiles=profiles,
+                            division_rounding=discriminants,log10_alias=alias,
+                            ideal_leaf=rounding_evidence('LOG',[[client.number(x),client.number(base)]for x in xs],target)))
+        print('LOG consumers',base,[(p['shape'],p['model'],dict(p['counts']))for p in profiles],dict(discriminants),flush=True)
+        write(output,dict(complete=False,records=records,receipts=service.receipts,requested_bases=list(bases)))
+    result=dict(format='dnacalc-log-change-of-base-consumers/1',complete=True,records=records,receipts=service.receipts,
+        centers=centers,consecutive_inputs_per_center=count,
+        limitations='Public LN outputs are measured binary64 leaves. Agreement identifies only the stated consumer on these windows and bases; private extended leaves and general store counts remain open. Equivalent arithmetic labels are not independent rounding evidence. No coefficient, threshold or selector is fit, and no candidate ranked by matches.')
+    write(output,result)
+    return result
+
+
+def append_question(book,name,formula,role,**fields):
+    row=len(book)+1
+    book.append(dict(id=f'r26-{name}-{row:05}',row=row,column=4,formula=formula,role=role,**fields))
+    return 'D'+str(row)
+
+
 def workbook_questions(checkout,count=64):
     """Questions for entries outside the existing scalar service, no answers.
 
@@ -956,9 +1027,7 @@ def workbook_questions(checkout,count=64):
     books={'scalar':[],'regression':[]};requests={};constants={}
     current='scalar'
     def emit(formula,role,**fields):
-        book=books[current];r=len(book)+1
-        book.append(dict(id=f'r26-{current}-{r:05}',row=r,column=4,formula=formula,role=role,**fields))
-        return 'D'+str(r)
+        return append_question(books[current],current,formula,role,**fields)
     def argument(arg):
         key=json.dumps(arg,sort_keys=True)
         bucket=constants.setdefault(current,{})
@@ -1037,10 +1106,46 @@ def workbook_questions(checkout,count=64):
     return books,requests
 
 
-def make_workbooks(checkout,output,executable,powershell):
+def root_transfer_questions(count=16):
+    """Unanswered range/array checks around the observed scalar arity change.
+
+    All routes share explicit source operands. A decimal-array INDEX echo
+    measures that parser separately; no intended decimal value is an answer.
+    Separate LN, reciprocal, mean and EXP cells expose publication boundaries.
+    """
+    try:
+        from .corpus_fuzz import exact_expression
+    except ImportError:
+        from corpus_fuzz import exact_expression
+    book=[]
+    def emit(formula,role,**fields):return append_question(book,'root_transfer',formula,role,**fields)
+    for n in (9,10,11,32):
+        for center in (1.3,1000.):
+            first=int(bits(center),16)-count//2
+            for raw in range(first,first+count):
+                input_bits=f'{raw:016x}';p=value(input_bits)
+                group=dict(count=n,input_bits=input_bits)
+                refs=[emit(exact_expression(p),'operand_echo',intended_bits='0x'+input_bits,**group)]
+                refs += [emit('1','operand_echo',intended_bits='0x3ff0000000000000',**group)for _ in range(n-1)]
+                array='{'+','.join([format(p,'.17g')]+['1']*(n-1))+'}'
+                echo=emit('INDEX('+array+',1,1)','operand_echo',intended_array_operand_bits='0x'+input_bits,**group)
+                for route,arguments in [('range',refs[0]+':'+refs[-1]),('scalar_cells',','.join(refs)),('decimal_array',array)]:
+                    emit('GEOMEAN('+arguments+')','question',function='GEOMEAN',route=route,
+                         source_cells=refs,array_operand_echo=echo if route=='decimal_array'else None,
+                         purpose='Compare input routes at fixed arities; scalar agreement is not range/array evidence.',**group)
+                logarithm=emit('LN('+refs[0]+')','question',function='LN',route='stored_helper_leaf',**group)
+                reciprocal=emit('1/'+str(n),'arithmetic_control',operation='/',route='stored_reciprocal',**group)
+                mean=emit(logarithm+'*'+reciprocal,'arithmetic_control',operation='*',route='stored_mean',**group)
+                emit('EXP('+mean+')','question',function='EXP',route='staged_composition',
+                     logarithm=logarithm,reciprocal=reciprocal,mean=mean,**group)
+                emit('POWER('+refs[0]+','+reciprocal+')','question',function='POWER',route='stored_reciprocal_control',**group)
+    return {'root_transfer':book},{}
+
+
+def make_workbooks(checkout,output,executable,powershell,root_transfer=False):
     checkout,output,executable,powershell=map(lambda p:Path(p).resolve(),(checkout,output,executable,powershell))
     output.mkdir(parents=True,exist_ok=False)
-    books,requests=workbook_questions(checkout)
+    books,requests=root_transfer_questions()if root_transfer else workbook_questions(checkout)
     generator=checkout/'crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1'
     provenance=subprocess.check_output([str(executable),'provenance'],timeout=60)
     (output/'prediction-binding.json').write_bytes(provenance)
@@ -1070,9 +1175,13 @@ def make_workbooks(checkout,output,executable,powershell):
                   scalar_requests=requests,generator_sha256=sha(generator),producer_sha256=sha(__file__),
                   executable_sha256=sha(executable),
                   files_sha256={str(p.relative_to(output)):sha(p)for p in output.rglob('*')if p.is_file()},
-                  limits='New workbooks only. Every numerical operand uses exact small integer limbs and is echoed. Predictions are application calculations, not Excel readings. QR rank thresholds and complete arithmetic remain unknown; no tolerance or coefficient fitted.')
+                  limits=('New workbook only. Reference-cell inputs use exact integer limbs and echoes. Decimal arrays have their own INDEX operand echo, without an assumed binary64 value. LN, reciprocal, mean and EXP occupy separate cells. Every workbook outcome awaits capture; scalar observations do not establish input-route transfer. Predictions are application calculations, not Excel readings.'if root_transfer else
+                          'New workbooks only. Every numerical operand uses exact small integer limbs and is echoed. Predictions are application calculations, not Excel readings. QR rank thresholds and complete arithmetic remain unknown; no tolerance or coefficient fitted.'))
     write(output/'manifest.json',manifest)
-    (output/'README.txt').write_text('R26 unanswered scalar fingerprint and regression workbooks.\nCapture only the two workbooks listed in manifest.json through the existing cargo xtask capture/compare route.\nReturn complete canonical captures, raw worker values/settings, operand echoes and original workbook bytes.\nThe scalar book covers service-unavailable entries; text/structural controls do not identify numerical stages.\nThe regression book separates full-rank norm stores from rank-bracket decisions. No new answer is supplied.\n')
+    if root_transfer:
+        (output/'README.txt').write_text('R26 unanswered GEOMEAN input-route and stored-mean workbook.\nCapture only the workbook listed in manifest.json through the existing cargo xtask capture/compare route.\nCompare range, scalar-cell and decimal-array GEOMEAN calls at arities9,10,11,32.\nThe decimal-array operand has its own INDEX echo; its intended bits are not assumed.\nLN, reciprocal, mean and EXP occupy separate cells; POWER uses the stored reciprocal.\nAll workbook outcomes await capture. Existing scalar readings do not answer these route questions.\nReturn canonical captures, raw worker values/settings and original workbook bytes.\n')
+    else:
+        (output/'README.txt').write_text('R26 unanswered scalar fingerprint and regression workbooks.\nCapture only the two workbooks listed in manifest.json through the existing cargo xtask capture/compare route.\nReturn complete canonical captures, raw worker values/settings, operand echoes and original workbook bytes.\nThe scalar book covers service-unavailable entries; text/structural controls do not identify numerical stages.\nThe regression book separates full-rank norm stores from rank-bracket decisions. No new answer is supplied.\n')
     print(json.dumps(inventory),flush=True)
     return manifest
 
@@ -1145,8 +1254,14 @@ if __name__ == '__main__':
     binomial_parser.add_argument('output',type=Path)
     binomial_parser.add_argument('--cache',required=True)
     binomial_parser.add_argument('--offline',action='store_true')
+    log_parser=commands.add_parser('log-consumers')
+    log_parser.add_argument('checkout')
+    log_parser.add_argument('output',type=Path)
+    log_parser.add_argument('--cache',required=True)
+    log_parser.add_argument('--offline',action='store_true')
     book_parser=commands.add_parser('workbooks')
     for name in ('checkout','output','executable','powershell'):book_parser.add_argument(name)
+    book_parser.add_argument('--root-transfer',action='store_true')
     args = parser.parse_args()
     if args.command=='edges':
         edges(args.checkout,args.output,args.cache,args.offline)
@@ -1172,8 +1287,11 @@ if __name__ == '__main__':
     if args.command=='binomial':
         binomial_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
+    if args.command=='log-consumers':
+        log_consumer_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
     if args.command=='workbooks':
-        make_workbooks(args.checkout,args.output,args.executable,args.powershell)
+        make_workbooks(args.checkout,args.output,args.executable,args.powershell,args.root_transfer)
         raise SystemExit
     if args.count < 32 or args.count > 4096 or args.count & (args.count-1):
         parser.error('--count must be a power of two from32 through4096')

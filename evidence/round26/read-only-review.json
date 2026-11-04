@@ -3,7 +3,7 @@
   "reviewer": "/root/r26_review",
   "role": "read-only independent reviewer",
   "source_sha256": {
-    "racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "racer/fingerprint.py": "a263a4abad93695314b7e04b3a85e2d68ad9072b3109da684f2bed1f1f884418",
     "checker/geomean.py": "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6",
     "checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
     "checker/questions_r13.py": "5c473cfc785fe1a6a2021f73aa47d739645e02351ab11daed442718eb2ae75b3",
@@ -25,5 +25,11 @@
     "Obsolete private Soft root test caller corrected.",
     "Hypothetical LOG1P profiles use a generic complement label in shape text."
   ],
-  "limits": "Review confirms the declared finite family and measured scopes, not a complete Excel kernel. Final index and report are separate publication checks."
+  "limits": "Review confirms the declared finite family and measured scopes, not a complete Excel kernel. Final index and report are separate publication checks.",
+  "additional_review": [
+    "All3136 root-transfer formulas,128 route/helper groups,1984 exact reference operands, manifest/source/unit/executable bindings independently checked.",
+    "All24 LOG profiles and49156 raw readings independently checked;32768/32768 stored divide,32760/32768 strict,8 double-only discriminants.",
+    "Resident and stored divide are indistinguishable after one final publication; no intermediate-stage count identified.",
+    "Successful replies retain readbacks; refusal wording corrected."
+  ]
 }

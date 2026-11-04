@@ -69,5 +69,9 @@
       "retained_sha256": "3ed9e3f14269b9c073d6537fbc40d0709e447b6607a707e5333aa455bd8de1f7"
     }
   ],
-  "answers": "awaiting capture; application predictions are not Excel answers"
+  "answers": "awaiting capture; application predictions are not Excel answers",
+  "additional_packets": [
+    "root-transfer/archive.json"
+  ],
+  "notes": "The original README describes the scalar/regression packet. The additional GEOMEAN packet retains its own README and manifest."
 }

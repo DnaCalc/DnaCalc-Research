@@ -3,8 +3,9 @@ No match-count ranking, fitted coefficient, tolerance, threshold or row selector
 
 fingerprint.py is the one new reusable analysis tool. It uses the existing
 Excel scalar service and existing registered application prediction route.
-All original success/refusal replies retain exact requested operands, actual
-Value2 readbacks, typed answers and worker provenance in small gzip files.
+Successful replies retain exact requested operands, actual Value2 readbacks,
+typed answers and worker provenance in small gzip files. Refused requests and
+their raw replies are retained as failures, without measured input windows.
 Ideal mathematical leaf bounds come from the installed official MPFR API;
 they are not private Excel instructions or observations.
 
@@ -42,6 +43,13 @@ Every profile and first contradiction is retained, including all losses.
 GEOMEAN unit-factor root programs vary arity2..32 with all products exact.
 The native x87 root grammar exclusions are conditional on this AMD EPYC CPU,
 its measured single-instruction leaves and the declared grammar only.
+
+The explicit-base LOG study corroborates its existing staged implementation.
+Across32768 readings at four standard bases, eight quotient publications
+distinguish direct binary64 from PC64 followed by a double store; all eight
+choose the latter. Its two public LN leaves and quotient are a conditional
+outer consumer. This does not count hidden stores inside either logarithm.
+The generic map stage count remains unresolved.
 
 Bessel windows straddle the predeclared published approximation boundary8.
 Residual jumps support an approximation-route change inference, not proof of

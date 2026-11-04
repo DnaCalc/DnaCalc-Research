@@ -335,11 +335,130 @@
         "reason": "Existing fixed-size test fixtures use indices within their explicit shape."
       }
     ],
-    "research-commit-ubs": [
+    "final2-ubs": [
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 63,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 64,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 65,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 219,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
       {
         "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/test_fingerprint.py",
-        "line": 94,
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 73,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 140,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 162,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 233,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 240,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 330,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 375,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 409,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 468,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 512,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 201,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 204,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.json-load-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 354,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.json-load-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 416,
         "classification": "intentional or false positive",
         "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
       },
@@ -470,163 +589,44 @@
         "reason": "The grammar requires an actual bool and deliberately excludes integer/subclass coercion."
       },
       {
-        "rule": "py.perf.io-in-loop",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 63,
-        "classification": "intentional or false positive",
-        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
-      },
-      {
-        "rule": "py.perf.io-in-loop",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 64,
-        "classification": "intentional or false positive",
-        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
-      },
-      {
-        "rule": "py.perf.io-in-loop",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 65,
-        "classification": "intentional or false positive",
-        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
-      },
-      {
-        "rule": "py.regex.nested-quantifiers",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 219,
-        "classification": "intentional or false positive",
-        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
-      },
-      {
         "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 73,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 140,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 162,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 233,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 240,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 330,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 375,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 409,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 468,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 512,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 201,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.parsing.json-loads-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 204,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.json-load-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 354,
-        "classification": "intentional or false positive",
-        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
-      },
-      {
-        "rule": "py.json-load-no-try",
-        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
-        "line": 416,
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/test_fingerprint.py",
+        "line": 94,
         "classification": "intentional or false positive",
         "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
       },
       {
         "rule": "py.regex.nested-quantifiers",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 643,
+        "line": 658,
         "classification": "intentional or false positive",
         "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
       },
       {
         "rule": "py.regex.nested-quantifiers",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 871,
+        "line": 886,
         "classification": "intentional or false positive",
         "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
       },
       {
         "rule": "py.regex.nested-quantifiers",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 916,
+        "line": 931,
         "classification": "intentional or false positive",
         "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
       },
       {
         "rule": "py.regex.nested-quantifiers",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 986,
+        "line": 1055,
         "classification": "intentional or false positive",
         "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
       },
       {
         "rule": "py.regex.nested-quantifiers",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 1053,
+        "line": 1158,
         "classification": "intentional or false positive",
         "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
       },
@@ -640,7 +640,7 @@
       {
         "rule": "py.parsing.json-loads-no-try",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 954,
+        "line": 1025,
         "classification": "intentional or false positive",
         "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
       },
@@ -654,14 +654,21 @@
       {
         "rule": "py.parsing.json-loads-no-try",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 433,
+        "line": 434,
         "classification": "intentional or false positive",
         "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
       },
       {
         "rule": "py.parsing.json-loads-no-try",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 437,
+        "line": 438,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 442,
         "classification": "intentional or false positive",
         "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
       },
@@ -675,7 +682,7 @@
       {
         "rule": "py.parsing.json-loads-no-try",
         "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
-        "line": 1058,
+        "line": 1163,
         "classification": "intentional or false positive",
         "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
       },
@@ -742,10 +749,10 @@
         "timestamp": "2026-11-04 21:42:33"
       }
     },
-    "research-commit-ubs": {
-      "file": "evidence/round26/validation/research-commit-ubs.jsonl.gz",
-      "sha256": "f91795e68936a560398a8e3e8aa0e452394cab9a4d7b37236383ef8585ff555a",
-      "gzip_sha256": "e46b189615d2cd86643295fa2f557e05a6e4cd1d3ce639feb59b585c4a2a40e9",
+    "final2-ubs": {
+      "file": "evidence/round26/validation/final2-ubs.jsonl.gz",
+      "sha256": "85bcfe8b5d31e1b76dd52a796a8b057298accf8f319523841e00d72892a03a92",
+      "gzip_sha256": "9d786d08a8406b7193232b0bed411d915874ed2255dc771670cb7bed6e829de0",
       "totals": {
         "type": "totals",
         "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
@@ -753,15 +760,15 @@
         "failed_modules": [],
         "files": 5,
         "critical": 0,
-        "warning": 53,
-        "info": 233,
-        "timestamp": "2026-11-04 22:32:40"
+        "warning": 54,
+        "info": 246,
+        "timestamp": "2026-11-04 23:12:14"
       }
     }
   },
   "limitations": "UBS flags are reviewed findings, not a proof of numerical equivalence. Public-content-hash timing findings were explicitly suppressed with reasons; no authentication material is compared.",
   "source_sha256": {
-    "racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "racer/fingerprint.py": "a263a4abad93695314b7e04b3a85e2d68ad9072b3109da684f2bed1f1f884418",
     "checker/geomean.py": "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6",
     "checker/questions_r13.py": "5c473cfc785fe1a6a2021f73aa47d739645e02351ab11daed442718eb2ae75b3",
     "checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",

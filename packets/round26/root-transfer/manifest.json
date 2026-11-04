@@ -1,0 +1,32 @@
+{
+  "format": "dnacalc-r26-fingerprint-questions/1",
+  "new_excel_answers": 0,
+  "workbooks": [
+    {
+      "name": "root_transfer",
+      "case": "dcj9k_r26_root_transfer",
+      "formula_cells": 3136,
+      "selected_calls": 768,
+      "workbook": "root_transfer/workbooks/dcj9k_r26_root_transfer/oracle.xlsx"
+    }
+  ],
+  "scalar_requests": {},
+  "generator_sha256": "30a50dd3e9ae6237ba3f6438fb8487d5d40fdb032696196f4051218e493733a2",
+  "producer_sha256": "0fe731fa9ecb4fa1d89abe7771aa3efc01c48db3a5549de46492a38c40d2690e",
+  "executable_sha256": "97c0505c7c8274198e93805ac2c9f277b0848498f6341e85307247cb17af22bd",
+  "files_sha256": {
+    "prediction-binding.json": "e824f8cd87a2e95ed9c9ead7aa907c73dd5e1f8bc8c537f62f1798829a98a2e1",
+    "root_transfer/application-predictions.jsonl": "00b1e9364e8d6df301d55523745bbef0d9226ca8c827a12c152b2a041c1f5f8d",
+    "root_transfer/workbook-questions.json": "64fd0f1e72a17b3488a370a374d97b4068c5ce8310152789e92d1ed1ff191f34",
+    "root_transfer/sheet-dcj9k_r26_root_transfer.txt": "07778c2443d8476b67cf1963df54af410883d27261f9335c0aad8bd00eaca645",
+    "root_transfer/workbooks/dcj9k_r26_root_transfer/oracle.xlsx": "0a8a34107861200e7e535a0f2d184899f8bd0475096f492d816b3d1d490fd9fc"
+  },
+  "limits": "New workbook only. Reference-cell inputs use exact integer limbs and echoes. Decimal arrays have their own INDEX operand echo, without an assumed binary64 value. LN, reciprocal, mean and EXP occupy separate cells. Every workbook outcome awaits capture; scalar observations do not establish input-route transfer. Predictions are application calculations, not Excel readings.",
+  "producer_bindings": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "0fe731fa9ecb4fa1d89abe7771aa3efc01c48db3a5549de46492a38c40d2690e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "analysis_model": "gpt-6.1-sol (session launcher)",
+  "sources": "Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read."
+}

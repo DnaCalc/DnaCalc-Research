@@ -27,9 +27,12 @@ R24 intake checks47 original delivery files, workbook bytes, canonical/raw
 answers, effective operand echoes and Excel's formula spelling changes.
 The current registered application matches581/822 questions and3225/3225
 echoes. Newly measured coverage is separate from kernel gains. R25 delivery
-has not arrived at this publication. Two unanswered R26 workbooks retain6555
-formula cells (4228 calls,2327 echoes) under packets/round26 and the operator's
-excel-questions-r26/fingerprints directory. No predictions count as answers.
+has not arrived at this publication. Three unanswered R26 workbooks retain9691
+formula cells (4996 selected calls,4439 echoes,256 arithmetic controls) under
+packets/round26 and the operator's excel-questions-r26 directory. The additional
+GEOMEAN book compares range, scalar-cell and decimal-array input routes at
+arities9,10,11,32, with separate LN/reciprocal/mean/EXP cells. It retains its
+own exact producer snapshot. No predictions count as answers.
 
 evidence/round26/index.json records reproduction commands, bindings and limits.
 The question and exploratory product producers retain separate historical
