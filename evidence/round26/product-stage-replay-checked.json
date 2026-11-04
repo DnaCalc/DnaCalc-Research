@@ -1,0 +1,1531 @@
+{
+  "complete": true,
+  "all_reading_counts": {
+    "rows": 2048,
+    "before_matched": 1742,
+    "after_matched": 1843,
+    "gains": 108,
+    "losses": 7,
+    "changed_outputs": 115
+  },
+  "original_counts": {
+    "rows": 512,
+    "before_matched": 361,
+    "after_matched": 462,
+    "gains": 108,
+    "losses": 7,
+    "changed_outputs": 115
+  },
+  "losses": [
+    {
+      "index": 257,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999991b"
+      ],
+      "expected": "0x40188d98db18a27d",
+      "before": "0x40188d98db18a27d",
+      "after": "0x40188d98db18a27c",
+      "stored_product": "406ce8fd0add974b",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a27d"
+      }
+    },
+    {
+      "index": 275,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999992d"
+      ],
+      "expected": "0x40188d98db18a282",
+      "before": "0x40188d98db18a282",
+      "after": "0x40188d98db18a281",
+      "stored_product": "406ce8fd0add975d",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a282"
+      }
+    },
+    {
+      "index": 330,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999964"
+      ],
+      "expected": "0x40188d98db18a291",
+      "before": "0x40188d98db18a291",
+      "after": "0x40188d98db18a290",
+      "stored_product": "406ce8fd0add9792",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a291"
+      }
+    },
+    {
+      "index": 351,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999979"
+      ],
+      "expected": "0x40188d98db18a297",
+      "before": "0x40188d98db18a297",
+      "after": "0x40188d98db18a296",
+      "stored_product": "406ce8fd0add97a7",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a297"
+      }
+    },
+    {
+      "index": 413,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999b7"
+      ],
+      "expected": "0x40188d98db18a2a8",
+      "before": "0x40188d98db18a2a8",
+      "after": "0x40188d98db18a2a7",
+      "stored_product": "406ce8fd0add97e3",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a2a8"
+      }
+    },
+    {
+      "index": 496,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a0a"
+      ],
+      "expected": "0x40188d98db18a2bf",
+      "before": "0x40188d98db18a2bf",
+      "after": "0x40188d98db18a2be",
+      "stored_product": "406ce8fd0add9834",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a2bf"
+      }
+    },
+    {
+      "index": 507,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a15"
+      ],
+      "expected": "0x40188d98db18a2c2",
+      "before": "0x40188d98db18a2c2",
+      "after": "0x40188d98db18a2c1",
+      "stored_product": "406ce8fd0add983f",
+      "classification": "unresolved root helper at independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40188d98db18a2c2"
+      }
+    }
+  ],
+  "changes": [
+    {
+      "index": 1,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc4e"
+      ],
+      "expected": "0x401153577896429f",
+      "before": "0x40115357789642a0",
+      "after": "0x401153577896429f",
+      "stored_product": "405450b1d048af5c"
+    },
+    {
+      "index": 20,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc61"
+      ],
+      "expected": "0x40115357789642a4",
+      "before": "0x40115357789642a5",
+      "after": "0x40115357789642a4",
+      "stored_product": "405450b1d048af6e"
+    },
+    {
+      "index": 23,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc64"
+      ],
+      "expected": "0x40115357789642a5",
+      "before": "0x40115357789642a6",
+      "after": "0x40115357789642a5",
+      "stored_product": "405450b1d048af71"
+    },
+    {
+      "index": 27,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc68"
+      ],
+      "expected": "0x40115357789642a6",
+      "before": "0x40115357789642a7",
+      "after": "0x40115357789642a6",
+      "stored_product": "405450b1d048af75"
+    },
+    {
+      "index": 30,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc6b"
+      ],
+      "expected": "0x40115357789642a7",
+      "before": "0x40115357789642a8",
+      "after": "0x40115357789642a7",
+      "stored_product": "405450b1d048af78"
+    },
+    {
+      "index": 34,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc6f"
+      ],
+      "expected": "0x40115357789642a8",
+      "before": "0x40115357789642a9",
+      "after": "0x40115357789642a8",
+      "stored_product": "405450b1d048af7c"
+    },
+    {
+      "index": 37,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc72"
+      ],
+      "expected": "0x40115357789642a9",
+      "before": "0x40115357789642aa",
+      "after": "0x40115357789642a9",
+      "stored_product": "405450b1d048af7f"
+    },
+    {
+      "index": 41,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc76"
+      ],
+      "expected": "0x40115357789642aa",
+      "before": "0x40115357789642ab",
+      "after": "0x40115357789642aa",
+      "stored_product": "405450b1d048af83"
+    },
+    {
+      "index": 44,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc79"
+      ],
+      "expected": "0x40115357789642ab",
+      "before": "0x40115357789642ac",
+      "after": "0x40115357789642ab",
+      "stored_product": "405450b1d048af86"
+    },
+    {
+      "index": 63,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc8c"
+      ],
+      "expected": "0x40115357789642b0",
+      "before": "0x40115357789642b1",
+      "after": "0x40115357789642b0",
+      "stored_product": "405450b1d048af98"
+    },
+    {
+      "index": 66,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc8f"
+      ],
+      "expected": "0x40115357789642b1",
+      "before": "0x40115357789642b2",
+      "after": "0x40115357789642b1",
+      "stored_product": "405450b1d048af9b"
+    },
+    {
+      "index": 70,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc93"
+      ],
+      "expected": "0x40115357789642b2",
+      "before": "0x40115357789642b3",
+      "after": "0x40115357789642b2",
+      "stored_product": "405450b1d048af9f"
+    },
+    {
+      "index": 73,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc96"
+      ],
+      "expected": "0x40115357789642b3",
+      "before": "0x40115357789642b4",
+      "after": "0x40115357789642b3",
+      "stored_product": "405450b1d048afa2"
+    },
+    {
+      "index": 77,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc9a"
+      ],
+      "expected": "0x40115357789642b4",
+      "before": "0x40115357789642b5",
+      "after": "0x40115357789642b4",
+      "stored_product": "405450b1d048afa6"
+    },
+    {
+      "index": 80,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccc9d"
+      ],
+      "expected": "0x40115357789642b5",
+      "before": "0x40115357789642b6",
+      "after": "0x40115357789642b5",
+      "stored_product": "405450b1d048afa9"
+    },
+    {
+      "index": 84,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccca1"
+      ],
+      "expected": "0x40115357789642b6",
+      "before": "0x40115357789642b7",
+      "after": "0x40115357789642b6",
+      "stored_product": "405450b1d048afad"
+    },
+    {
+      "index": 87,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccca4"
+      ],
+      "expected": "0x40115357789642b7",
+      "before": "0x40115357789642b8",
+      "after": "0x40115357789642b7",
+      "stored_product": "405450b1d048afb0"
+    },
+    {
+      "index": 106,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccb7"
+      ],
+      "expected": "0x40115357789642bc",
+      "before": "0x40115357789642bd",
+      "after": "0x40115357789642bc",
+      "stored_product": "405450b1d048afc2"
+    },
+    {
+      "index": 109,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccba"
+      ],
+      "expected": "0x40115357789642bd",
+      "before": "0x40115357789642be",
+      "after": "0x40115357789642bd",
+      "stored_product": "405450b1d048afc5"
+    },
+    {
+      "index": 113,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccbe"
+      ],
+      "expected": "0x40115357789642be",
+      "before": "0x40115357789642bf",
+      "after": "0x40115357789642be",
+      "stored_product": "405450b1d048afc9"
+    },
+    {
+      "index": 117,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccc2"
+      ],
+      "expected": "0x40115357789642bf",
+      "before": "0x40115357789642c0",
+      "after": "0x40115357789642bf",
+      "stored_product": "405450b1d048afcd"
+    },
+    {
+      "index": 120,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccc5"
+      ],
+      "expected": "0x40115357789642c0",
+      "before": "0x40115357789642c1",
+      "after": "0x40115357789642c0",
+      "stored_product": "405450b1d048afd0"
+    },
+    {
+      "index": 124,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccc9"
+      ],
+      "expected": "0x40115357789642c1",
+      "before": "0x40115357789642c2",
+      "after": "0x40115357789642c1",
+      "stored_product": "405450b1d048afd4"
+    },
+    {
+      "index": 127,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccccc"
+      ],
+      "expected": "0x40115357789642c2",
+      "before": "0x40115357789642c3",
+      "after": "0x40115357789642c2",
+      "stored_product": "405450b1d048afd7"
+    },
+    {
+      "index": 146,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccdf"
+      ],
+      "expected": "0x40115357789642c7",
+      "before": "0x40115357789642c8",
+      "after": "0x40115357789642c7",
+      "stored_product": "405450b1d048afe9"
+    },
+    {
+      "index": 149,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccce2"
+      ],
+      "expected": "0x40115357789642c8",
+      "before": "0x40115357789642c9",
+      "after": "0x40115357789642c8",
+      "stored_product": "405450b1d048afec"
+    },
+    {
+      "index": 153,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccce6"
+      ],
+      "expected": "0x40115357789642c9",
+      "before": "0x40115357789642ca",
+      "after": "0x40115357789642c9",
+      "stored_product": "405450b1d048aff0"
+    },
+    {
+      "index": 156,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccce9"
+      ],
+      "expected": "0x40115357789642ca",
+      "before": "0x40115357789642cb",
+      "after": "0x40115357789642ca",
+      "stored_product": "405450b1d048aff3"
+    },
+    {
+      "index": 160,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccced"
+      ],
+      "expected": "0x40115357789642cb",
+      "before": "0x40115357789642cc",
+      "after": "0x40115357789642cb",
+      "stored_product": "405450b1d048aff7"
+    },
+    {
+      "index": 163,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccf0"
+      ],
+      "expected": "0x40115357789642cc",
+      "before": "0x40115357789642cd",
+      "after": "0x40115357789642cc",
+      "stored_product": "405450b1d048affa"
+    },
+    {
+      "index": 167,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccf4"
+      ],
+      "expected": "0x40115357789642cd",
+      "before": "0x40115357789642ce",
+      "after": "0x40115357789642cd",
+      "stored_product": "405450b1d048affe"
+    },
+    {
+      "index": 170,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4ccccccccccf7"
+      ],
+      "expected": "0x40115357789642ce",
+      "before": "0x40115357789642cf",
+      "after": "0x40115357789642ce",
+      "stored_product": "405450b1d048b001"
+    },
+    {
+      "index": 189,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd0a"
+      ],
+      "expected": "0x40115357789642d3",
+      "before": "0x40115357789642d4",
+      "after": "0x40115357789642d3",
+      "stored_product": "405450b1d048b013"
+    },
+    {
+      "index": 192,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd0d"
+      ],
+      "expected": "0x40115357789642d4",
+      "before": "0x40115357789642d5",
+      "after": "0x40115357789642d4",
+      "stored_product": "405450b1d048b016"
+    },
+    {
+      "index": 196,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd11"
+      ],
+      "expected": "0x40115357789642d5",
+      "before": "0x40115357789642d6",
+      "after": "0x40115357789642d5",
+      "stored_product": "405450b1d048b01a"
+    },
+    {
+      "index": 199,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd14"
+      ],
+      "expected": "0x40115357789642d6",
+      "before": "0x40115357789642d7",
+      "after": "0x40115357789642d6",
+      "stored_product": "405450b1d048b01d"
+    },
+    {
+      "index": 203,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd18"
+      ],
+      "expected": "0x40115357789642d7",
+      "before": "0x40115357789642d8",
+      "after": "0x40115357789642d7",
+      "stored_product": "405450b1d048b021"
+    },
+    {
+      "index": 206,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd1b"
+      ],
+      "expected": "0x40115357789642d8",
+      "before": "0x40115357789642d9",
+      "after": "0x40115357789642d8",
+      "stored_product": "405450b1d048b024"
+    },
+    {
+      "index": 210,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd1f"
+      ],
+      "expected": "0x40115357789642d9",
+      "before": "0x40115357789642da",
+      "after": "0x40115357789642d9",
+      "stored_product": "405450b1d048b028"
+    },
+    {
+      "index": 213,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd22"
+      ],
+      "expected": "0x40115357789642da",
+      "before": "0x40115357789642db",
+      "after": "0x40115357789642da",
+      "stored_product": "405450b1d048b02b"
+    },
+    {
+      "index": 232,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd35"
+      ],
+      "expected": "0x40115357789642df",
+      "before": "0x40115357789642e0",
+      "after": "0x40115357789642df",
+      "stored_product": "405450b1d048b03d"
+    },
+    {
+      "index": 236,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd39"
+      ],
+      "expected": "0x40115357789642e0",
+      "before": "0x40115357789642e1",
+      "after": "0x40115357789642e0",
+      "stored_product": "405450b1d048b041"
+    },
+    {
+      "index": 239,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd3c"
+      ],
+      "expected": "0x40115357789642e1",
+      "before": "0x40115357789642e2",
+      "after": "0x40115357789642e1",
+      "stored_product": "405450b1d048b044"
+    },
+    {
+      "index": 243,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd40"
+      ],
+      "expected": "0x40115357789642e2",
+      "before": "0x40115357789642e3",
+      "after": "0x40115357789642e2",
+      "stored_product": "405450b1d048b048"
+    },
+    {
+      "index": 246,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd43"
+      ],
+      "expected": "0x40115357789642e3",
+      "before": "0x40115357789642e4",
+      "after": "0x40115357789642e3",
+      "stored_product": "405450b1d048b04b"
+    },
+    {
+      "index": 250,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd47"
+      ],
+      "expected": "0x40115357789642e4",
+      "before": "0x40115357789642e5",
+      "after": "0x40115357789642e4",
+      "stored_product": "405450b1d048b04f"
+    },
+    {
+      "index": 253,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ff4cccccccccd4a"
+      ],
+      "expected": "0x40115357789642e5",
+      "before": "0x40115357789642e6",
+      "after": "0x40115357789642e5",
+      "stored_product": "405450b1d048b052"
+    },
+    {
+      "index": 257,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999991b"
+      ],
+      "expected": "0x40188d98db18a27d",
+      "before": "0x40188d98db18a27d",
+      "after": "0x40188d98db18a27c",
+      "stored_product": "406ce8fd0add974b"
+    },
+    {
+      "index": 260,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999991e"
+      ],
+      "expected": "0x40188d98db18a27d",
+      "before": "0x40188d98db18a27e",
+      "after": "0x40188d98db18a27d",
+      "stored_product": "406ce8fd0add974e"
+    },
+    {
+      "index": 264,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999922"
+      ],
+      "expected": "0x40188d98db18a27e",
+      "before": "0x40188d98db18a27f",
+      "after": "0x40188d98db18a27e",
+      "stored_product": "406ce8fd0add9752"
+    },
+    {
+      "index": 267,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999925"
+      ],
+      "expected": "0x40188d98db18a27f",
+      "before": "0x40188d98db18a280",
+      "after": "0x40188d98db18a27f",
+      "stored_product": "406ce8fd0add9755"
+    },
+    {
+      "index": 271,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999929"
+      ],
+      "expected": "0x40188d98db18a280",
+      "before": "0x40188d98db18a281",
+      "after": "0x40188d98db18a280",
+      "stored_product": "406ce8fd0add9759"
+    },
+    {
+      "index": 275,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999992d"
+      ],
+      "expected": "0x40188d98db18a282",
+      "before": "0x40188d98db18a282",
+      "after": "0x40188d98db18a281",
+      "stored_product": "406ce8fd0add975d"
+    },
+    {
+      "index": 279,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999931"
+      ],
+      "expected": "0x40188d98db18a282",
+      "before": "0x40188d98db18a283",
+      "after": "0x40188d98db18a282",
+      "stored_product": "406ce8fd0add9760"
+    },
+    {
+      "index": 283,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999935"
+      ],
+      "expected": "0x40188d98db18a283",
+      "before": "0x40188d98db18a284",
+      "after": "0x40188d98db18a283",
+      "stored_product": "406ce8fd0add9764"
+    },
+    {
+      "index": 286,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999938"
+      ],
+      "expected": "0x40188d98db18a284",
+      "before": "0x40188d98db18a285",
+      "after": "0x40188d98db18a284",
+      "stored_product": "406ce8fd0add9767"
+    },
+    {
+      "index": 290,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999993c"
+      ],
+      "expected": "0x40188d98db18a285",
+      "before": "0x40188d98db18a286",
+      "after": "0x40188d98db18a285",
+      "stored_product": "406ce8fd0add976b"
+    },
+    {
+      "index": 293,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999993f"
+      ],
+      "expected": "0x40188d98db18a286",
+      "before": "0x40188d98db18a287",
+      "after": "0x40188d98db18a286",
+      "stored_product": "406ce8fd0add976e"
+    },
+    {
+      "index": 297,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999943"
+      ],
+      "expected": "0x40188d98db18a287",
+      "before": "0x40188d98db18a288",
+      "after": "0x40188d98db18a287",
+      "stored_product": "406ce8fd0add9772"
+    },
+    {
+      "index": 300,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999946"
+      ],
+      "expected": "0x40188d98db18a288",
+      "before": "0x40188d98db18a289",
+      "after": "0x40188d98db18a288",
+      "stored_product": "406ce8fd0add9775"
+    },
+    {
+      "index": 304,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999994a"
+      ],
+      "expected": "0x40188d98db18a289",
+      "before": "0x40188d98db18a28a",
+      "after": "0x40188d98db18a289",
+      "stored_product": "406ce8fd0add9779"
+    },
+    {
+      "index": 307,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999994d"
+      ],
+      "expected": "0x40188d98db18a28a",
+      "before": "0x40188d98db18a28b",
+      "after": "0x40188d98db18a28a",
+      "stored_product": "406ce8fd0add977c"
+    },
+    {
+      "index": 311,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999951"
+      ],
+      "expected": "0x40188d98db18a28b",
+      "before": "0x40188d98db18a28c",
+      "after": "0x40188d98db18a28b",
+      "stored_product": "406ce8fd0add9780"
+    },
+    {
+      "index": 314,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999954"
+      ],
+      "expected": "0x40188d98db18a28c",
+      "before": "0x40188d98db18a28d",
+      "after": "0x40188d98db18a28c",
+      "stored_product": "406ce8fd0add9783"
+    },
+    {
+      "index": 318,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999958"
+      ],
+      "expected": "0x40188d98db18a28d",
+      "before": "0x40188d98db18a28e",
+      "after": "0x40188d98db18a28d",
+      "stored_product": "406ce8fd0add9787"
+    },
+    {
+      "index": 322,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999995c"
+      ],
+      "expected": "0x40188d98db18a28e",
+      "before": "0x40188d98db18a28f",
+      "after": "0x40188d98db18a28e",
+      "stored_product": "406ce8fd0add978a"
+    },
+    {
+      "index": 326,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999960"
+      ],
+      "expected": "0x40188d98db18a28f",
+      "before": "0x40188d98db18a290",
+      "after": "0x40188d98db18a28f",
+      "stored_product": "406ce8fd0add978e"
+    },
+    {
+      "index": 330,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999964"
+      ],
+      "expected": "0x40188d98db18a291",
+      "before": "0x40188d98db18a291",
+      "after": "0x40188d98db18a290",
+      "stored_product": "406ce8fd0add9792"
+    },
+    {
+      "index": 333,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999967"
+      ],
+      "expected": "0x40188d98db18a291",
+      "before": "0x40188d98db18a292",
+      "after": "0x40188d98db18a291",
+      "stored_product": "406ce8fd0add9795"
+    },
+    {
+      "index": 337,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999996b"
+      ],
+      "expected": "0x40188d98db18a292",
+      "before": "0x40188d98db18a293",
+      "after": "0x40188d98db18a292",
+      "stored_product": "406ce8fd0add9799"
+    },
+    {
+      "index": 340,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999996e"
+      ],
+      "expected": "0x40188d98db18a293",
+      "before": "0x40188d98db18a294",
+      "after": "0x40188d98db18a293",
+      "stored_product": "406ce8fd0add979c"
+    },
+    {
+      "index": 344,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999972"
+      ],
+      "expected": "0x40188d98db18a294",
+      "before": "0x40188d98db18a295",
+      "after": "0x40188d98db18a294",
+      "stored_product": "406ce8fd0add97a0"
+    },
+    {
+      "index": 347,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999975"
+      ],
+      "expected": "0x40188d98db18a295",
+      "before": "0x40188d98db18a296",
+      "after": "0x40188d98db18a295",
+      "stored_product": "406ce8fd0add97a3"
+    },
+    {
+      "index": 351,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999979"
+      ],
+      "expected": "0x40188d98db18a297",
+      "before": "0x40188d98db18a297",
+      "after": "0x40188d98db18a296",
+      "stored_product": "406ce8fd0add97a7"
+    },
+    {
+      "index": 354,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999997c"
+      ],
+      "expected": "0x40188d98db18a297",
+      "before": "0x40188d98db18a298",
+      "after": "0x40188d98db18a297",
+      "stored_product": "406ce8fd0add97aa"
+    },
+    {
+      "index": 358,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999980"
+      ],
+      "expected": "0x40188d98db18a298",
+      "before": "0x40188d98db18a299",
+      "after": "0x40188d98db18a298",
+      "stored_product": "406ce8fd0add97ae"
+    },
+    {
+      "index": 361,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999983"
+      ],
+      "expected": "0x40188d98db18a299",
+      "before": "0x40188d98db18a29a",
+      "after": "0x40188d98db18a299",
+      "stored_product": "406ce8fd0add97b1"
+    },
+    {
+      "index": 366,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999988"
+      ],
+      "expected": "0x40188d98db18a29a",
+      "before": "0x40188d98db18a29b",
+      "after": "0x40188d98db18a29a",
+      "stored_product": "406ce8fd0add97b5"
+    },
+    {
+      "index": 369,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999998b"
+      ],
+      "expected": "0x40188d98db18a29b",
+      "before": "0x40188d98db18a29c",
+      "after": "0x40188d98db18a29b",
+      "stored_product": "406ce8fd0add97b8"
+    },
+    {
+      "index": 373,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999998f"
+      ],
+      "expected": "0x40188d98db18a29c",
+      "before": "0x40188d98db18a29d",
+      "after": "0x40188d98db18a29c",
+      "stored_product": "406ce8fd0add97bc"
+    },
+    {
+      "index": 376,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999992"
+      ],
+      "expected": "0x40188d98db18a29d",
+      "before": "0x40188d98db18a29e",
+      "after": "0x40188d98db18a29d",
+      "stored_product": "406ce8fd0add97bf"
+    },
+    {
+      "index": 380,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999996"
+      ],
+      "expected": "0x40188d98db18a29e",
+      "before": "0x40188d98db18a29f",
+      "after": "0x40188d98db18a29e",
+      "stored_product": "406ce8fd0add97c3"
+    },
+    {
+      "index": 384,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999999a"
+      ],
+      "expected": "0x40188d98db18a29f",
+      "before": "0x40188d98db18a2a0",
+      "after": "0x40188d98db18a29f",
+      "stored_product": "406ce8fd0add97c7"
+    },
+    {
+      "index": 387,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d99999999999d"
+      ],
+      "expected": "0x40188d98db18a2a0",
+      "before": "0x40188d98db18a2a1",
+      "after": "0x40188d98db18a2a0",
+      "stored_product": "406ce8fd0add97ca"
+    },
+    {
+      "index": 391,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999a1"
+      ],
+      "expected": "0x40188d98db18a2a1",
+      "before": "0x40188d98db18a2a2",
+      "after": "0x40188d98db18a2a1",
+      "stored_product": "406ce8fd0add97ce"
+    },
+    {
+      "index": 394,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999a4"
+      ],
+      "expected": "0x40188d98db18a2a2",
+      "before": "0x40188d98db18a2a3",
+      "after": "0x40188d98db18a2a2",
+      "stored_product": "406ce8fd0add97d1"
+    },
+    {
+      "index": 398,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999a8"
+      ],
+      "expected": "0x40188d98db18a2a3",
+      "before": "0x40188d98db18a2a4",
+      "after": "0x40188d98db18a2a3",
+      "stored_product": "406ce8fd0add97d5"
+    },
+    {
+      "index": 401,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999ab"
+      ],
+      "expected": "0x40188d98db18a2a4",
+      "before": "0x40188d98db18a2a5",
+      "after": "0x40188d98db18a2a4",
+      "stored_product": "406ce8fd0add97d8"
+    },
+    {
+      "index": 409,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999b3"
+      ],
+      "expected": "0x40188d98db18a2a6",
+      "before": "0x40188d98db18a2a7",
+      "after": "0x40188d98db18a2a6",
+      "stored_product": "406ce8fd0add97df"
+    },
+    {
+      "index": 413,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999b7"
+      ],
+      "expected": "0x40188d98db18a2a8",
+      "before": "0x40188d98db18a2a8",
+      "after": "0x40188d98db18a2a7",
+      "stored_product": "406ce8fd0add97e3"
+    },
+    {
+      "index": 416,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999ba"
+      ],
+      "expected": "0x40188d98db18a2a8",
+      "before": "0x40188d98db18a2a9",
+      "after": "0x40188d98db18a2a8",
+      "stored_product": "406ce8fd0add97e6"
+    },
+    {
+      "index": 420,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999be"
+      ],
+      "expected": "0x40188d98db18a2a9",
+      "before": "0x40188d98db18a2aa",
+      "after": "0x40188d98db18a2a9",
+      "stored_product": "406ce8fd0add97ea"
+    },
+    {
+      "index": 423,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999c1"
+      ],
+      "expected": "0x40188d98db18a2aa",
+      "before": "0x40188d98db18a2ab",
+      "after": "0x40188d98db18a2aa",
+      "stored_product": "406ce8fd0add97ed"
+    },
+    {
+      "index": 427,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999c5"
+      ],
+      "expected": "0x40188d98db18a2ab",
+      "before": "0x40188d98db18a2ac",
+      "after": "0x40188d98db18a2ab",
+      "stored_product": "406ce8fd0add97f1"
+    },
+    {
+      "index": 430,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999c8"
+      ],
+      "expected": "0x40188d98db18a2ac",
+      "before": "0x40188d98db18a2ad",
+      "after": "0x40188d98db18a2ac",
+      "stored_product": "406ce8fd0add97f4"
+    },
+    {
+      "index": 434,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999cc"
+      ],
+      "expected": "0x40188d98db18a2ad",
+      "before": "0x40188d98db18a2ae",
+      "after": "0x40188d98db18a2ad",
+      "stored_product": "406ce8fd0add97f8"
+    },
+    {
+      "index": 438,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999d0"
+      ],
+      "expected": "0x40188d98db18a2ae",
+      "before": "0x40188d98db18a2af",
+      "after": "0x40188d98db18a2ae",
+      "stored_product": "406ce8fd0add97fc"
+    },
+    {
+      "index": 441,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999d3"
+      ],
+      "expected": "0x40188d98db18a2af",
+      "before": "0x40188d98db18a2b0",
+      "after": "0x40188d98db18a2af",
+      "stored_product": "406ce8fd0add97ff"
+    },
+    {
+      "index": 445,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999d7"
+      ],
+      "expected": "0x40188d98db18a2b0",
+      "before": "0x40188d98db18a2b1",
+      "after": "0x40188d98db18a2b0",
+      "stored_product": "406ce8fd0add9803"
+    },
+    {
+      "index": 453,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999df"
+      ],
+      "expected": "0x40188d98db18a2b2",
+      "before": "0x40188d98db18a2b3",
+      "after": "0x40188d98db18a2b2",
+      "stored_product": "406ce8fd0add980a"
+    },
+    {
+      "index": 456,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999e2"
+      ],
+      "expected": "0x40188d98db18a2b3",
+      "before": "0x40188d98db18a2b4",
+      "after": "0x40188d98db18a2b3",
+      "stored_product": "406ce8fd0add980d"
+    },
+    {
+      "index": 460,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999e6"
+      ],
+      "expected": "0x40188d98db18a2b4",
+      "before": "0x40188d98db18a2b5",
+      "after": "0x40188d98db18a2b4",
+      "stored_product": "406ce8fd0add9811"
+    },
+    {
+      "index": 463,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999e9"
+      ],
+      "expected": "0x40188d98db18a2b5",
+      "before": "0x40188d98db18a2b6",
+      "after": "0x40188d98db18a2b5",
+      "stored_product": "406ce8fd0add9814"
+    },
+    {
+      "index": 467,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999ed"
+      ],
+      "expected": "0x40188d98db18a2b6",
+      "before": "0x40188d98db18a2b7",
+      "after": "0x40188d98db18a2b6",
+      "stored_product": "406ce8fd0add9818"
+    },
+    {
+      "index": 470,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999f0"
+      ],
+      "expected": "0x40188d98db18a2b7",
+      "before": "0x40188d98db18a2b8",
+      "after": "0x40188d98db18a2b7",
+      "stored_product": "406ce8fd0add981b"
+    },
+    {
+      "index": 474,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999f4"
+      ],
+      "expected": "0x40188d98db18a2b8",
+      "before": "0x40188d98db18a2b9",
+      "after": "0x40188d98db18a2b8",
+      "stored_product": "406ce8fd0add981f"
+    },
+    {
+      "index": 477,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999f7"
+      ],
+      "expected": "0x40188d98db18a2b9",
+      "before": "0x40188d98db18a2ba",
+      "after": "0x40188d98db18a2b9",
+      "stored_product": "406ce8fd0add9822"
+    },
+    {
+      "index": 481,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999fb"
+      ],
+      "expected": "0x40188d98db18a2ba",
+      "before": "0x40188d98db18a2bb",
+      "after": "0x40188d98db18a2ba",
+      "stored_product": "406ce8fd0add9826"
+    },
+    {
+      "index": 484,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d9999999999fe"
+      ],
+      "expected": "0x40188d98db18a2bb",
+      "before": "0x40188d98db18a2bc",
+      "after": "0x40188d98db18a2bb",
+      "stored_product": "406ce8fd0add9829"
+    },
+    {
+      "index": 488,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a02"
+      ],
+      "expected": "0x40188d98db18a2bc",
+      "before": "0x40188d98db18a2bd",
+      "after": "0x40188d98db18a2bc",
+      "stored_product": "406ce8fd0add982d"
+    },
+    {
+      "index": 496,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a0a"
+      ],
+      "expected": "0x40188d98db18a2bf",
+      "before": "0x40188d98db18a2bf",
+      "after": "0x40188d98db18a2be",
+      "stored_product": "406ce8fd0add9834"
+    },
+    {
+      "index": 500,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a0e"
+      ],
+      "expected": "0x40188d98db18a2bf",
+      "before": "0x40188d98db18a2c0",
+      "after": "0x40188d98db18a2bf",
+      "stored_product": "406ce8fd0add9838"
+    },
+    {
+      "index": 503,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a11"
+      ],
+      "expected": "0x40188d98db18a2c0",
+      "before": "0x40188d98db18a2c1",
+      "after": "0x40188d98db18a2c0",
+      "stored_product": "406ce8fd0add983b"
+    },
+    {
+      "index": 507,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a15"
+      ],
+      "expected": "0x40188d98db18a2c2",
+      "before": "0x40188d98db18a2c2",
+      "after": "0x40188d98db18a2c1",
+      "stored_product": "406ce8fd0add983f"
+    },
+    {
+      "index": 510,
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x400d999999999a18"
+      ],
+      "expected": "0x40188d98db18a2c2",
+      "before": "0x40188d98db18a2c3",
+      "after": "0x40188d98db18a2c2",
+      "stored_product": "406ce8fd0add9842"
+    }
+  ],
+  "input_sha256": {
+    "evidence/round26/product-stages.json": "eef85efbcdd7523ad1c55cbcd2aad0ef1c5ea1d91eade93215f9e69270fa5700",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "evidence/round26/fingerprints/8d3b2aa38d06b54ceb1d3d8ffa00ebd87d3a7bbe84d5466509500425e600cfc9.json.gz": "dcccab210ccd76387d592ef302fe1a0b4927c9e043423c09e8ee781c82a6efb7",
+    "/home/ubuntu/codex-runs/round26/product-stage-full-before.jsonl": "92f14a2b5794c0b75c50b2b8c1be0c077746e4cc29883aceafde4f1a4c53cb63",
+    "/home/ubuntu/codex-runs/round26/product-stage-full-after.jsonl": "1001b3743173fa5fc85fdfa95efac3745269de35a04bd18baecbdec66cf0d951"
+  },
+  "limits": "All512 original triples and1536 independently measured root controls counted. Controls include duplicate arguments and are not added to other cohorts as unique calls. Every changed original result agrees with the corresponding current stored-product root invocation; the root remains unresolved."
+}

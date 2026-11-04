@@ -55,7 +55,7 @@ def verify_static_reference(row):
     import zipfile
     import xml.etree.ElementTree as ET
     binding=row['reference_binding'];package=Path(binding['package']);capture=Path(row['source'])
-    require(digest(package)==binding['package_sha256']and digest(capture)==binding['capture_sha256'],'reference source changed')
+    require(digest(package)==binding['package_sha256']and digest(capture)==binding['capture_sha256'],'reference source changed') # ubs:ignore — public file digests, no authentication secret or timing boundary.
     require(row['formula'].lstrip('=')in('GEOMEAN(Data!A1:A3)','_xlfn.GEOMEAN(Data!A1:A3)')and
             binding['sheet']=='Data'and binding['cells']==['A1','A2','A3'],'unsupported reference binding')
     ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'};rid='{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id'
@@ -238,10 +238,11 @@ def check_exact_roots(input_path, directory, output):
             require(verifies(product(ps[identity],row),len(row['inputs']),row['raw']['expected']), 'invalid root survivor')
             executions+=1
     summary=json.loads((directory/'summary.json').read_text())
+    require(summary['scope']==scope,'wrong public root scope') # ubs:ignore — a public numerical-study label, not an OAuth or authentication secret.
     require(summary['complete'] and summary['programs']==len(ps) and summary['survivors']==len(survivors)
-            and summary['observations']==len(rows) and summary['scope']==scope and summary['executions']==executions,
+            and summary['observations']==len(rows) and summary['executions']==executions,
             'wrong root summary')
-    require(all(digest(p)==h for p,h in frozen.items()), 'root proof/source changed')
+    require(all(digest(p)==h for p,h in frozen.items()), 'root proof/source changed') # ubs:ignore — equality of public file digests, not an authentication secret.
     result=dict(complete=True,programs=len(ps),observations=len(rows),survivors=len(survivors),executions=executions,
                 input_sha256=frozen,limits='Exact inverse midpoint-power verification of the specified rounded-product/correct-root programs. No native transcendental instruction, fitted answer or Excel internal precision is assumed.')
     with open(output,'x')as out:json.dump(result,out,indent=2);out.write('\n')
@@ -345,7 +346,211 @@ def check_product_closure(input_path, directory, output, staged=False):
     print(json.dumps(receipt))
 
 
+def verified_service_batch(cache,receipt):
+    """Read the one existing scalar-worker lineage, with exact input echoes."""
+    import gzip
+    path=Path(cache)/receipt['file']
+    require(Path(receipt['file']).name==receipt['file']and digest(path)==receipt['sha256'],'service reply bytes changed') # ubs:ignore — public evidence digest and filename, not secrets.
+    with gzip.open(path,'rt')as stream:raw=json.load(stream)
+    reply=raw['reply'];request=raw['request']
+    require(request['function']=='GEOMEAN'and reply['ok']and reply['version']==1,'wrong/failed service reply')
+    require(reply['inputs']==request['rows']and len(reply['rows'])==len(request['rows']),'service operands/answers incomplete')
+    require(reply['automation_security_before']==reply['automation_security_after'],'service worker changed security')
+    require(all(reply[k]==receipt[k]for k in ('request_sha256','excel_build','machine','timestamp')),'service provenance changed')
+    return raw,path
+
+
+def check_stored_products(study,cache,before,after,originals,output):
+    """Independent product/store proof and exhaustive changed-result audit.
+
+    Exact rounding is the checker's integer/rational arithmetic. The root
+    controls are independent Excel observations. Neither a native root nor
+    a mathematical root supplies their expected values.
+    """
+    import gzip
+    from exact import BINARY64 as B,EXTENDED64 as E
+    from x87 import bits64
+    study,cache,before,after,originals,output=map(Path,(study,cache,before,after,originals,output))
+    frozen={str(p):digest(p)for p in (study,before,after,originals,Path(__file__),Path(__file__).with_name('exact.py'))}
+    doc=json.loads(study.read_text())
+    require(doc['complete']and len(doc['records'])==61,'incomplete product study')
+    require([r['scale_exponent']for r in doc['records']]==list(range(-30,31)),'changed predeclared scale grid')
+    require(len(doc['receipts'])==1,'unexpected product-control batch inventory')
+    receipt=doc['receipts'][0];raw,path=verified_service_batch(cache,receipt)
+    frozen[str(path)]=digest(path)
+    require(raw['request']['function']=='GEOMEAN'and len(raw['request']['rows'])==183,'wrong product questions')
+    reply=raw['reply']
+    require(reply['ok']and reply['inputs']==raw['request']['rows']and len(reply['rows'])==183,'product operands/answers incomplete')
+    require(reply['automation_security_before']==reply['automation_security_after'],'product worker changed security')
+    require(all(reply[k]==receipt[k]for k in ('request_sha256','excel_build','machine','timestamp')),'product provenance changed')
+    key=lambda args:tuple(a.removeprefix('0x')for a in args)
+    controls={};counts=Counter()
+    for i,r in enumerate(doc['records']):
+        require(r['args'][:2]==['401f9ff8b1ae9622']*2,'changed independently known square input')
+        require(binary64(r['args'][2])==two(r['scale_exponent']),'scale is not the declared exact power of two')
+        strict=stored=Q(1)
+        for arg in r['args']:
+            x=binary64(arg);strict=B.round(strict*x);stored=B.round(E.round(stored*x))
+        require(f'{bits64(strict):016x}'==r['strict']and f'{bits64(stored):016x}'==r['stored_pc64'],'incorrect independently rounded products')
+        expected_questions=[[dict(type='number',bits=b)for b in r['args']]]
+        expected_questions += [[dict(type='number',bits=r[k]),dict(type='number',bits='3ff0000000000000'),dict(type='number',bits='3ff0000000000000')]for k in ('strict','stored_pc64')]
+        require(raw['request']['rows'][3*i:3*i+3]==expected_questions,'product/root question operands changed')
+        target,old_root,new_root=reply['rows'][3*i:3*i+3]
+        require([target,old_root,new_root]==[r['original'],r['strict_root_control'],r['stored_root_control']],'reported root controls differ from worker')
+        require(all(a['type']=='number'for a in (target,old_root,new_root)),'unread product control')
+        outcome=('root publications indistinguishable'if old_root==new_root else'strict product only'if target==old_root
+                 else'storedPC64 product only'if target==new_root else'neither product root control')
+        require(outcome==r['outcome'],'incorrect product classification');counts[outcome]+=1
+        controls[key(r['args'])]=dict(original=target,stored_root=new_root,
+            stored_root_args=key([r['stored_pc64'],'3ff0000000000000','3ff0000000000000']),record=i)
+    require(dict(counts)==doc['counts']and counts['storedPC64 product only']and not counts['strict product only']
+            and not counts['neither product root control'],'product evidence does not isolate stored-PC64')
+    old_rows,new_rows=list(records(before)),list(records(after))
+    original_rows=json.loads(originals.read_text())
+    require(len(old_rows)==len(new_rows)==len(original_rows),'missing before/after live predictions')
+    source_answers={}
+    for name in sorted({s for r in original_rows for s in r['sources']}):
+        source=Path(name).resolve()
+        require(source.is_relative_to(cache.resolve()),'live source escapes the retained service cache')
+        frozen[str(source)]=digest(source)
+        with gzip.open(source,'rt')as stream:reading=json.load(stream)
+        request,response=reading['request'],reading['reply']
+        require(request['function']=='GEOMEAN'and response['ok']and response['inputs']==request['rows']
+                and len(response['rows'])==len(request['rows']),'live source operands/answers changed')
+        require(response['automation_security_before']==response['automation_security_after'],'live source security differs')
+        values={}
+        for args,answer in zip(request['rows'],response['rows']):
+            require(all(a['type']=='number'for a in args),'non-numeric live replay source')
+            k=key([a['bits']for a in args])
+            require(k not in values or values[k]==answer,'conflicting repeated source answer')
+            values[k]=answer
+        source_answers[name]=values
+    predictions={key(r['args']):r['calc_func_prediction']for r in new_rows}
+    require(len(predictions)==len(new_rows),'duplicate replay arguments')
+    totals=Counter();losses=[];changed=[]
+    for old,new,original in zip(old_rows,new_rows,original_rows):
+        request=original['request'];args=key(request['args']);answer=original['answer']
+        require(old['id']==new['id']==request['id']and old['args']==new['args']==request['args'],'changed original replay identity')
+        require(original['sources']and all(source_answers[s].get(args)==answer for s in original['sources']),
+                'live expectation differs from its exact raw Excel question/answer')
+        require(answer['type']=='number','unsupported live result type')
+        expected='0x'+answer['bits'];was=old['calc_func_prediction']==expected;now=new['calc_func_prediction']==expected
+        for name,v in dict(rows=1,before_matched=was,after_matched=now,gains=now and not was,losses=was and not now,
+                           changed_outputs=old['calc_func_prediction']!=new['calc_func_prediction']).items():totals[name]+=v
+        if old['calc_func_prediction']!=new['calc_func_prediction']:
+            require(args in controls,'changed output outside the isolated product study')
+            control=controls[args]
+            require(answer==control['original']==control['stored_root'],'original/root-control answer changed')
+            require(new['calc_func_prediction']==predictions[control['stored_root_args']],
+                    'new original call differs from its stored-product root control')
+            entry=dict(id=request['id'],args=request['args'],expected=expected,before=old['calc_func_prediction'],after=new['calc_func_prediction'],
+                       product_study_record=control['record'])
+            changed.append(entry)
+            if was and not now:
+                entry=dict(entry,classification='unresolved root helper at the independently measured stored product',
+                           measured_stored_product_root=control['stored_root'])
+                losses.append(entry)
+    require(totals['losses']==len(losses),'unclassified live loss')
+    require(frozen=={p:digest(Path(p))for p in frozen},'product evidence/checker changed during verification')
+    result=dict(complete=True,product_control_counts=counts,live_counts=totals,losses=losses,changed=changed,input_sha256=frozen,
+        limits='Sixty-one normal scalar square-tie controls isolate only the product loop; no private root is identified. Every changed result is tied to an independent actual root control. Other recorded bank/corpus scopes need their own comparison. No coefficient, tolerance, expected answer or selector is fitted.')
+    with output.open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(dict(product_control_counts=counts,live_counts=totals,classified_losses=len(losses))))
+    return result
+
+
+def check_intermediate_stores(study,cache,output):
+    """Independently distinguish per-step stores from one final product store."""
+    from exact import BINARY64 as B,EXTENDED64 as E
+    from x87 import bits64
+    study,cache,output=map(Path,(study,cache,output))
+    frozen={str(p):digest(p)for p in (study,Path(__file__),Path(__file__).with_name('exact.py'))}
+    doc=json.loads(study.read_text());models=['strict','stored_each','resident_final']
+    require(doc['complete'] and doc['models']==models and len(doc['records'])==512,'incomplete intermediate-store study')
+    require(doc['consecutive_inputs_per_center']==256 and len(doc['receipts'])==1,'changed predeclared window size')
+    raw,path=verified_service_batch(cache,doc['receipts'][0]);frozen[str(path)]=digest(path)
+    require(len(raw['request']['rows'])==2048,'incomplete intermediate-store questions')
+    centers=[bits64(B.round(Q(13,10))),bits64(B.round(Q(37,10)))]
+    counts=Counter();product_differences=Counter()
+    for i,r in enumerate(doc['records']):
+        require(r['args'][:2]==['401f9ff8b1ae9622']*2,'changed square witness')
+        require(r['args'][2]==f'{centers[i//256]-128+i%256:016x}','changed consecutive input window')
+        calculated={}
+        for model in models:
+            p=Q(1)
+            for arg in r['args']:
+                x=binary64(arg)
+                p=(E.round(p*x)if model=='resident_final'else B.round(E.round(p*x))if model=='stored_each'else B.round(p*x))
+            calculated[model]=f'{bits64(B.round(p)):016x}'
+        require(r['products']==calculated,'incorrect independently computed intermediate products')
+        product_differences['stored_vs_resident']+=calculated['stored_each']!=calculated['resident_final']
+        product_differences['stored_vs_strict']+=calculated['stored_each']!=calculated['strict']
+        questions=[[dict(type='number',bits=a)for a in r['args']]]
+        questions += [[dict(type='number',bits=calculated[m]),dict(type='number',bits='3ff0000000000000'),dict(type='number',bits='3ff0000000000000')]for m in models]
+        require(raw['request']['rows'][4*i:4*i+4]==questions,'changed candidate root operands')
+        actual,*roots=raw['reply']['rows'][4*i:4*i+4]
+        require(actual==r['original']and dict(zip(models,roots))==r['root_controls'],'reported controls differ from raw worker')
+        require(all(x['type']=='number'for x in [actual,*roots]),'non-numeric intermediate-store control')
+        compatible=[m for m,root in zip(models,roots)if root==actual]
+        require(compatible==r['compatible'],'incorrect model compatibility')
+        require('stored_each'in compatible,'measured contradiction to stored-each program')
+        label='only '+compatible[0] if len(compatible)==1 else 'ambiguous '+','.join(compatible)
+        counts[label]+=1
+    require(dict(counts)==doc['counts']and counts['only stored_each']>0,'no distinguishing per-step-store observation')
+    require(frozen=={p:digest(Path(p))for p in frozen},'intermediate-store evidence changed')
+    result=dict(complete=True,counts=counts,product_differences=product_differences,input_sha256=frozen,
+        limits='Three declared complete product programs, three positive normal factors, one known square tie, fixed512 third-factor inputs. The per-step stored program is consistent;55 sole-model publications distinguish it from the alternatives. Controls assume binary64 publication before the unknown root; an unpublished resident extended-root producer remains outside this certificate.')
+    with output.open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(dict(counts=counts,product_differences=product_differences)))
+    return result
+
+
+def check_stage_replay(study,cache,before,after,output):
+    """Count every stage question and classify all changed original results."""
+    study,cache,before,after,output=map(Path,(study,cache,before,after,output))
+    proof=check_intermediate_stores(study,cache,output.with_suffix('.products.json'))
+    doc=json.loads(study.read_text());raw,path=verified_service_batch(cache,doc['receipts'][0])
+    old_rows,new_rows=list(records(before)),list(records(after))
+    require(len(old_rows)==len(new_rows)==2048,'missing full stage replay')
+    frozen=dict(proof['input_sha256'],**{str(p):digest(p)for p in (before,after)})
+    totals=Counter();original_counts=Counter();losses=[];changes=[]
+    for i,(old,new,question,answer)in enumerate(zip(old_rows,new_rows,raw['request']['rows'],raw['reply']['rows'])):
+        args=['0x'+a['bits']for a in question]
+        require(old['id']==new['id']==f'stage-full/{i}'and old['args']==new['args']==args,'stage replay identity changed')
+        expected='0x'+answer['bits'];a,b=old['calc_func_prediction'],new['calc_func_prediction']
+        was,now=a==expected,b==expected
+        delta=dict(rows=1,before_matched=was,after_matched=now,gains=now and not was,losses=was and not now,changed_outputs=a!=b)
+        for k,v in delta.items():totals[k]+=v
+        if i%4==0:
+            for k,v in delta.items():original_counts[k]+=v
+        else:require(a==b,'unit-factor root control changed with the product step')
+        if a!=b:
+            require(i%4==0,'changed non-original stage control')
+            root_index=i+2
+            require(answer==raw['reply']['rows'][root_index],'original stage answer differs from measured stored-product root')
+            require(b==new_rows[root_index]['calc_func_prediction'],'new stage result differs from the independently invoked stored-product root')
+            entry=dict(index=i//4,args=args,expected=expected,before=a,after=b,
+                       stored_product=doc['records'][i//4]['products']['stored_each'])
+            changes.append(entry)
+            if was and not now:
+                losses.append(dict(entry,classification='unresolved root helper at independently measured stored product',
+                                   measured_stored_product_root=raw['reply']['rows'][root_index]))
+    require(len(losses)==totals['losses'],'unclassified stage loss')
+    require(frozen=={p:digest(Path(p))for p in frozen},'stage replay inputs changed')
+    result=dict(complete=True,all_reading_counts=totals,original_counts=original_counts,losses=losses,changes=changes,input_sha256=frozen,
+        limits='All512 original triples and1536 independently measured root controls counted. Controls include duplicate arguments and are not added to other cohorts as unique calls. Every changed original result agrees with the corresponding current stored-product root invocation; the root remains unresolved.')
+    with output.open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(dict(all_reading_counts=totals,original_counts=original_counts,classified_losses=len(losses))))
+    return result
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='stage-replay':
+        check_stage_replay(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='intermediate-stores':
+        check_intermediate_stores(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='stored-products':
+        check_stored_products(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='product-closure-staged':
         check_product_closure(*sys.argv[2:], staged=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='product-closure':

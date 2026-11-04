@@ -1,5 +1,40 @@
 DNA Calc arithmetic program research
 
+R26 adds one consecutive-double fingerprint tool, racer/fingerprint.py, with
+the maintained map in DnaCalc/docs/generated/numeric-fingerprints.{md,json}.
+It retains scalar-worker input readbacks, raw answers, request hashes, spectra,
+ideal single/double publication discriminants and measured adjacent edges.
+Spectral lines do not by themselves count hidden stores. Unidentified stores,
+unsupported workbook routes and service refusals remain explicit unknowns.
+Regenerate from this directory:
+  python3 racer/fingerprint.py map ../DnaCalc ../DnaCalc/docs/generated/numeric-fingerprints --cache evidence/round26/fingerprints
+Use --offline to replay the retained success/refusal records without Excel.
+
+R26 identifies a stored-PC64 GEOMEAN product within the declared three-product
+family, with independently observed GEOMEAN(product,1,1) root controls. The
+61 scale controls separate strict from stored products; 512 non-power third
+factors distinguish an intermediate store from a resident-final accumulator.
+All observed changes and losses are independently checked. The fixed11456-call
+live cohort gains28 and loses12 (10036 ->10052 matches). The additional512
+original triples gain108 and lose7 (361 ->462). Their1536 root-control calls
+include duplicate arguments and are not added as new unique observations.
+Every loss is the still unresolved root reconstruction at an independently
+measured stored product. The canonical1225-row GEOMEAN bank and frozen27845-cell
+corpus retain all outputs, gains0/losses0. No claim of a complete GEOMEAN root,
+overflow fallback or arbitrary extended-root consumer follows from this step.
+
+R24 intake checks47 original delivery files, workbook bytes, canonical/raw
+answers, effective operand echoes and Excel's formula spelling changes.
+The current registered application matches581/822 questions and3225/3225
+echoes. Newly measured coverage is separate from kernel gains. R25 delivery
+has not arrived at this publication. Two unanswered R26 workbooks retain6555
+formula cells (4228 calls,2327 echoes) under packets/round26 and the operator's
+excel-questions-r26/fingerprints directory. No predictions count as answers.
+
+evidence/round26/index.json records reproduction commands, bindings and limits.
+The question and exploratory product producers retain separate historical
+units/snapshots; they are not inferred from the final publication sources.
+
 R25 preserves the R23 and Eng12 deliveries and adopts stored-PC64 raw variance
 identities, measured fallback comparisons and a staged square root. The first
 commit cleared232 corpus failures while retaining451 classified bank losses.

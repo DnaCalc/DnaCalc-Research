@@ -1,0 +1,761 @@
+{
+  "complete": true,
+  "counts": {
+    "question": {
+      "total": 822,
+      "mismatched": 241,
+      "matched": 581
+    },
+    "operand_echo": {
+      "total": 3225,
+      "matched": 3225
+    }
+  },
+  "source": "../DnaCalc/target/problem-functions-ay6oqzqu/corpus/workbooks/calc-func_dcztvv_r24_oracle.xlsx-748c64dfaabd37bf0ae8f321dc3905add1f64102620355ac8fe0a69c81e0a4cf/report.json",
+  "limits": "New captured R24 scope, not an isolated kernel gain; actual operand echoes retain all differences from intended inputs.",
+  "application_revision": "af74247e1ed54f0b535143f1305261b98d80d18e",
+  "source_sha256": "47cb73cced009b3f1cfd38781a413b140a484a796753f10323116cc0b0a9889b",
+  "packet_sha256": "bec95a301bc6c35a47ff96f7be6f0d502678016d27c5e40ec61cf7576fc4302a",
+  "counts_by_question_function": {
+    "LINEST": {
+      "mismatched": 36
+    },
+    "VAR.S": {
+      "matched": 36
+    },
+    "VAR.P": {
+      "matched": 36
+    },
+    "LOGEST": {
+      "mismatched": 35,
+      "matched": 1
+    },
+    "BESSELJ": {
+      "mismatched": 10,
+      "matched": 12
+    },
+    "VARP": {
+      "matched": 36
+    },
+    "PPMT": {
+      "mismatched": 13,
+      "matched": 23
+    },
+    "STDEV": {
+      "matched": 36
+    },
+    "BINOM.DIST": {
+      "matched": 36
+    },
+    "VAR": {
+      "matched": 36
+    },
+    "CUMPRINC": {
+      "mismatched": 19,
+      "matched": 17
+    },
+    "RATE": {
+      "mismatched": 17,
+      "matched": 19
+    },
+    "HYPGEOM.DIST": {
+      "matched": 36
+    },
+    "YIELD": {
+      "mismatched": 22,
+      "matched": 14
+    },
+    "IRR": {
+      "mismatched": 8
+    },
+    "ODDFYIELD": {
+      "mismatched": 25,
+      "matched": 11
+    },
+    "IPMT": {
+      "mismatched": 14,
+      "matched": 22
+    },
+    "CUMIPMT": {
+      "mismatched": 16,
+      "matched": 20
+    },
+    "POISSON.DIST": {
+      "matched": 36
+    },
+    "NEGBINOM.DIST": {
+      "matched": 36
+    },
+    "GAMMA.DIST": {
+      "matched": 36
+    },
+    "NEGBINOMDIST": {
+      "mismatched": 16,
+      "matched": 20
+    },
+    "BINOM.DIST.RANGE": {
+      "matched": 36
+    },
+    "BETADIST": {
+      "mismatched": 10,
+      "matched": 26
+    }
+  },
+  "rank_observations": [
+    {
+      "question": {
+        "id": "r24-fuzz-00394",
+        "row": 394,
+        "column": 4,
+        "formula": "INDEX(LINEST({1;2;4;7},{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "original_control",
+        "role": "question"
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00407",
+        "row": 407,
+        "column": 4,
+        "formula": "INDEX(LINEST({7;4;2;1},{4,8.0000038146972603;5,10;2,4;1,2},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "reverse_observations",
+        "role": "question",
+        "operand_echoes": [
+          "D395",
+          "D396",
+          "D397",
+          "D398",
+          "D399",
+          "D400",
+          "D401",
+          "D402",
+          "D403",
+          "D404",
+          "D405",
+          "D406"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00432",
+        "row": 432,
+        "column": 4,
+        "formula": "INDEX(LINEST({1;2;4;7;1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "repeat_observations_2",
+        "role": "question",
+        "operand_echoes": [
+          "D408",
+          "D409",
+          "D410",
+          "D411",
+          "D412",
+          "D413",
+          "D414",
+          "D415",
+          "D416",
+          "D417",
+          "D418",
+          "D419",
+          "D420",
+          "D421",
+          "D422",
+          "D423",
+          "D424",
+          "D425",
+          "D426",
+          "D427",
+          "D428",
+          "D429",
+          "D430",
+          "D431"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "401c000000000000"
+      },
+      "application": {
+        "number": "4018000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 8,
+      "constant": false,
+      "degrees_of_freedom": 7,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00481",
+        "row": 481,
+        "column": 4,
+        "formula": "INDEX(LINEST({1;2;4;7;1;2;4;7;1;2;4;7;1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "repeat_observations_4",
+        "role": "question",
+        "operand_echoes": [
+          "D433",
+          "D434",
+          "D435",
+          "D436",
+          "D437",
+          "D438",
+          "D439",
+          "D440",
+          "D441",
+          "D442",
+          "D443",
+          "D444",
+          "D445",
+          "D446",
+          "D447",
+          "D448",
+          "D449",
+          "D450",
+          "D451",
+          "D452",
+          "D453",
+          "D454",
+          "D455",
+          "D456",
+          "D457",
+          "D458",
+          "D459",
+          "D460",
+          "D461",
+          "D462",
+          "D463",
+          "D464",
+          "D465",
+          "D466",
+          "D467",
+          "D468",
+          "D469",
+          "D470",
+          "D471",
+          "D472",
+          "D473",
+          "D474",
+          "D475",
+          "D476",
+          "D477",
+          "D478",
+          "D479",
+          "D480"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "402e000000000000"
+      },
+      "application": {
+        "number": "402c000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 16,
+      "constant": false,
+      "degrees_of_freedom": 15,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00494",
+        "row": 494,
+        "column": 4,
+        "formula": "INDEX(LINEST({1;2;4;7},{9.5367431640625e-07,2;1.9073486328125e-06,4;4.76837158203125e-06,10;3.814697265625e-06,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "first_predictor_scale_2^-20",
+        "role": "question",
+        "operand_echoes": [
+          "D482",
+          "D483",
+          "D484",
+          "D485",
+          "D486",
+          "D487",
+          "D488",
+          "D489",
+          "D490",
+          "D491",
+          "D492",
+          "D493"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00507",
+        "row": 507,
+        "column": 4,
+        "formula": "INDEX(LINEST({1;2;4;7},{1048576,2;2097152,4;5242880,10;4194304,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "first_predictor_scale_2^20",
+        "role": "question",
+        "operand_echoes": [
+          "D495",
+          "D496",
+          "D497",
+          "D498",
+          "D499",
+          "D500",
+          "D501",
+          "D502",
+          "D503",
+          "D504",
+          "D505",
+          "D506"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00522",
+        "row": 522,
+        "column": 4,
+        "formula": "INDEX(LINEST(((134217727*67108864+67108863)/2^53),{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "neighbor",
+        "role": "question",
+        "argument_index": 0,
+        "intended_bits": "0x3fefffffffffffff",
+        "operand_echo": "D508"
+      },
+      "excel": {
+        "error": "ref"
+      },
+      "application": {
+        "number": "0000000000000000"
+      },
+      "verdict": "mismatched"
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00523",
+        "row": 523,
+        "column": 4,
+        "formula": "INDEX(LINEST(((67108864*67108864+1)/2^52),{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "neighbor",
+        "role": "question",
+        "argument_index": 0,
+        "intended_bits": "0x3ff0000000000001",
+        "operand_echo": "D509"
+      },
+      "excel": {
+        "error": "ref"
+      },
+      "application": {
+        "number": "0000000000000000"
+      },
+      "verdict": "mismatched"
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-00524",
+        "row": 524,
+        "column": 4,
+        "formula": "INDEX(LINEST(0,{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:447:4",
+        "function": "LINEST",
+        "mutation": "boundary",
+        "role": "question",
+        "argument_index": 0,
+        "intended_bits": "0x0000000000000000",
+        "operand_echo": "D510"
+      },
+      "excel": {
+        "error": "ref"
+      },
+      "application": {
+        "number": "0000000000000000"
+      },
+      "verdict": "mismatched"
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01531",
+        "row": 1531,
+        "column": 4,
+        "formula": "INDEX(LOGEST({1;2;4;7},{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "original_control",
+        "role": "question"
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01544",
+        "row": 1544,
+        "column": 4,
+        "formula": "INDEX(LOGEST({7;4;2;1},{4,8.0000038146972603;5,10;2,4;1,2},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "reverse_observations",
+        "role": "question",
+        "operand_echoes": [
+          "D1532",
+          "D1533",
+          "D1534",
+          "D1535",
+          "D1536",
+          "D1537",
+          "D1538",
+          "D1539",
+          "D1540",
+          "D1541",
+          "D1542",
+          "D1543"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01569",
+        "row": 1569,
+        "column": 4,
+        "formula": "INDEX(LOGEST({1;2;4;7;1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "repeat_observations_2",
+        "role": "question",
+        "operand_echoes": [
+          "D1545",
+          "D1546",
+          "D1547",
+          "D1548",
+          "D1549",
+          "D1550",
+          "D1551",
+          "D1552",
+          "D1553",
+          "D1554",
+          "D1555",
+          "D1556",
+          "D1557",
+          "D1558",
+          "D1559",
+          "D1560",
+          "D1561",
+          "D1562",
+          "D1563",
+          "D1564",
+          "D1565",
+          "D1566",
+          "D1567",
+          "D1568"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "401c000000000000"
+      },
+      "application": {
+        "number": "4018000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 8,
+      "constant": false,
+      "degrees_of_freedom": 7,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01618",
+        "row": 1618,
+        "column": 4,
+        "formula": "INDEX(LOGEST({1;2;4;7;1;2;4;7;1;2;4;7;1;2;4;7},{1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603;1,2;2,4;5,10;4,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "repeat_observations_4",
+        "role": "question",
+        "operand_echoes": [
+          "D1570",
+          "D1571",
+          "D1572",
+          "D1573",
+          "D1574",
+          "D1575",
+          "D1576",
+          "D1577",
+          "D1578",
+          "D1579",
+          "D1580",
+          "D1581",
+          "D1582",
+          "D1583",
+          "D1584",
+          "D1585",
+          "D1586",
+          "D1587",
+          "D1588",
+          "D1589",
+          "D1590",
+          "D1591",
+          "D1592",
+          "D1593",
+          "D1594",
+          "D1595",
+          "D1596",
+          "D1597",
+          "D1598",
+          "D1599",
+          "D1600",
+          "D1601",
+          "D1602",
+          "D1603",
+          "D1604",
+          "D1605",
+          "D1606",
+          "D1607",
+          "D1608",
+          "D1609",
+          "D1610",
+          "D1611",
+          "D1612",
+          "D1613",
+          "D1614",
+          "D1615",
+          "D1616",
+          "D1617"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "402e000000000000"
+      },
+      "application": {
+        "number": "402c000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 16,
+      "constant": false,
+      "degrees_of_freedom": 15,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01631",
+        "row": 1631,
+        "column": 4,
+        "formula": "INDEX(LOGEST({1;2;4;7},{9.5367431640625e-07,2;1.9073486328125e-06,4;4.76837158203125e-06,10;3.814697265625e-06,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "first_predictor_scale_2^-20",
+        "role": "question",
+        "operand_echoes": [
+          "D1619",
+          "D1620",
+          "D1621",
+          "D1622",
+          "D1623",
+          "D1624",
+          "D1625",
+          "D1626",
+          "D1627",
+          "D1628",
+          "D1629",
+          "D1630"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01644",
+        "row": 1644,
+        "column": 4,
+        "formula": "INDEX(LOGEST({1;2;4;7},{1048576,2;2097152,4;5242880,10;4194304,8.0000038146972603},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "first_predictor_scale_2^20",
+        "role": "question",
+        "operand_echoes": [
+          "D1632",
+          "D1633",
+          "D1634",
+          "D1635",
+          "D1636",
+          "D1637",
+          "D1638",
+          "D1639",
+          "D1640",
+          "D1641",
+          "D1642",
+          "D1643"
+        ],
+        "transport": "Paired decimal arrays; interpret only the captured operand echoes."
+      },
+      "excel": {
+        "number": "4008000000000000"
+      },
+      "application": {
+        "number": "4000000000000000"
+      },
+      "verdict": "mismatched",
+      "observations": 4,
+      "constant": false,
+      "degrees_of_freedom": 3,
+      "inferred_predictor_rank": 1
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01659",
+        "row": 1659,
+        "column": 4,
+        "formula": "INDEX(LOGEST(((134217727*67108864+67108863)/2^53),{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "neighbor",
+        "role": "question",
+        "argument_index": 0,
+        "intended_bits": "0x3fefffffffffffff",
+        "operand_echo": "D1645"
+      },
+      "excel": {
+        "error": "ref"
+      },
+      "application": {
+        "number": "0000000000000000"
+      },
+      "verdict": "mismatched"
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01660",
+        "row": 1660,
+        "column": 4,
+        "formula": "INDEX(LOGEST(((67108864*67108864+1)/2^52),{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "neighbor",
+        "role": "question",
+        "argument_index": 0,
+        "intended_bits": "0x3ff0000000000001",
+        "operand_echo": "D1646"
+      },
+      "excel": {
+        "error": "ref"
+      },
+      "application": {
+        "number": "0000000000000000"
+      },
+      "verdict": "mismatched"
+    },
+    {
+      "question": {
+        "id": "r24-fuzz-01661",
+        "row": 1661,
+        "column": 4,
+        "formula": "INDEX(LOGEST(0,{1,2;2,4;5,10;4,8.00000381469726},FALSE,TRUE),4,2)",
+        "seed_id": "corpus:calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a:dcj9k_r16:450:4",
+        "function": "LOGEST",
+        "mutation": "boundary",
+        "role": "question",
+        "argument_index": 0,
+        "intended_bits": "0x0000000000000000",
+        "operand_echo": "D1647"
+      },
+      "excel": {
+        "error": "ref"
+      },
+      "application": {
+        "error": "num"
+      },
+      "verdict": "mismatched"
+    }
+  ],
+  "rank_limits": "Degrees-of-freedom observations only. Response shape and const flag use the existing source parser; no parsed floating coefficient is treated as an exact operand. Numeric observations imply n-const-df retained predictors under the LINEST/LOGEST df definition; shape-error observations stay separate. This does not identify a QR or rank threshold. New coverage is not a kernel gain."
+}

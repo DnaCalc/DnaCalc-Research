@@ -29,6 +29,83 @@ def delivery_files(root):
                 manifest_sha256=sha(root/'delivery-sha256.json'))
 
 
+def check_workbook_delivery(root, output):
+    """Preserve and verify a corpus-fuzzer workbook delivery (R24 and later).
+
+    Checks original question identities, canonical observations, raw worker
+    values, actual workbook bytes and operand echoes. Reported prediction
+    counts in a delivery are not trusted or copied into observation counts.
+    """
+    import zipfile
+    import xml.etree.ElementTree as ET
+    root=Path(root)
+    files=delivery_files(root)
+    packet=root/'packet'
+    document=read(packet/'workbook-questions.json')
+    sheet=document['sheet'];questions=document['questions']
+    workbooks=list((packet/'workbooks').glob('*/oracle.xlsx'))
+    require(len(workbooks)==1,'expected one original question workbook')
+    workbook=workbooks[0]
+    captures=[p for p in root.glob('*.capture.json')]
+    require(len(captures)==1,'expected one canonical workbook capture')
+    capture=read(captures[0])
+    require(capture['source']=='sha256:'+sha(workbook),'capture is for different workbook bytes')
+    require(capture['acquisition']['kind']=='live_capture','not a live capture')
+    observations={(r['sheet'],r['row'],r['column']):r for r in capture['observations']}
+    require(len(observations)==len(capture['observations']),'duplicate capture observation')
+    formulas={(r['sheet'],r['row'],r['column']):r['formula']for r in capture['formulas']}
+    answers=records(root/'answers.jsonl')
+    require(len(answers)==len(questions),'missing or additional workbook answers')
+    ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+    with zipfile.ZipFile(workbook)as archive:
+        relationships={r.attrib['Id']:r.attrib['Target']for r in ET.fromstring(archive.read('xl/_rels/workbook.xml.rels'))}
+        sheets=ET.fromstring(archive.read('xl/workbook.xml')).find('m:sheets',ns)
+        selected=[s for s in sheets if s.attrib['name']==sheet]
+        require(len(selected)==1,'missing question worksheet')
+        target=relationships[selected[0].attrib['{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id']]
+        part=target.lstrip('/')if target.startswith('/')else'xl/'+target
+        require('..' not in Path(part).parts,'worksheet relationship escapes package')
+        cells={c.attrib['r']:c.find('m:f',ns).text for c in ET.fromstring(archive.read(part)).findall('.//m:c',ns)
+               if c.find('m:f',ns)is not None}
+    roles,statuses,echoes,functions=Counter(),Counter(),Counter(),Counter()
+    formula_changes=[]
+    seen=set()
+    errors={2000:'null',2007:'div0',2015:'value',2023:'ref',2029:'name',2036:'num',2042:'na'}
+    for question,answer in zip(questions,answers):
+        require(question==answer['question'],'changed workbook question identity')
+        key=(sheet,question['row'],question['column'])
+        require(key not in seen,'duplicate workbook question')
+        seen.add(key);roles[question['role']]+=1;statuses[answer['status']]+=1
+        require(question['column']==4,'unsupported question column')
+        require(cells['D'+str(question['row'])]==question['formula'],'workbook formula differs from question')
+        if answer['status']!='observed':
+            require(key not in observations,'unobserved question has a capture value')
+            continue
+        require(answer['observation']==observations[key],'answer differs from canonical capture')
+        worker_formula=answer['raw_cell']['formula']
+        worker_formula=''.join(chr(int(worker_formula[i:i+4],16))for i in range(0,len(worker_formula),4))
+        require(formulas[key]==worker_formula,'canonical formula differs from raw worker')
+        if formulas[key]!='='+question['formula']:
+            formula_changes.append(dict(id=question['id'],requested=question['formula'],observed=formulas[key]))
+        raw=answer['raw_cell']['value']
+        if 'error_code'in raw:
+            require(raw['error_code']in errors,'unknown raw error')
+            raw={'error':errors[raw['error_code']]}
+        require(raw==answer['observation']['excel_raw'],'raw worker differs from capture')
+        if question['role']=='operand_echo'and question.get('intended_bits'):
+            echoes['equal'if raw=={'number':question['intended_bits'].removeprefix('0x')}else'different']+=1
+        if question['role']=='question':functions[question['function']]+=1
+    require(set(observations)<=seen,'uncounted canonical observations')
+    result=dict(complete=True,files=files,formula_cells=len(questions),roles=roles,statuses=statuses,
+        observed_calls_by_function=functions,intended_operand_echoes=echoes,
+        observed_formula_spelling_changes=len(formula_changes),first_formula_changes=formula_changes[:8],
+        workbook=str(workbook),workbook_sha256=sha(workbook),capture=str(captures[0]),capture_sha256=sha(captures[0]),
+        capture_failures=capture.get('session',{}).get('failures',[]),
+        limitations='Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay.')
+    with Path(output).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    return result
+
+
 def check_r25_deliveries(r23, eng12, checkout, output):
     """Preserve entry observations and distinguish reduced from original answers.
 
@@ -801,6 +878,9 @@ def check(packet,trace,gaps,library,output):
 
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='workbook-delivery':
+        print(json.dumps(check_workbook_delivery(*sys.argv[2:])))
+        raise SystemExit(0)
     if len(sys.argv) > 1 and sys.argv[1] == 'round16-questions':
         print(json.dumps(check_round16_questions(*sys.argv[2:])))
         raise SystemExit(0)

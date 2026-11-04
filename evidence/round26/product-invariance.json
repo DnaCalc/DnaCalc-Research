@@ -1,0 +1,243 @@
+{
+  "format": "dnacalc-geomean-product-invariance/1",
+  "complete": true,
+  "records": [
+    {
+      "pattern": "p,1",
+      "count": 2,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "2p,1/2",
+      "count": 2,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "1/2,2p",
+      "count": 2,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "1,p",
+      "count": 2,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,1,1",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "2p,1/2,1",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,2,1/2",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "4p,1/4,1",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,4,1/4",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "1,p,1",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "1,1,p",
+      "count": 3,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,1,1,1",
+      "count": 4,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,2,1/2,1",
+      "count": 4,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,ones n=9",
+      "count": 9,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "2p,half,ones n=9",
+      "count": 9,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "half,ones,2p n=9",
+      "count": 9,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,ones n=10",
+      "count": 10,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "2p,half,ones n=10",
+      "count": 10,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "half,ones,2p n=10",
+      "count": 10,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,ones n=17",
+      "count": 17,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "2p,half,ones n=17",
+      "count": 17,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "half,ones,2p n=17",
+      "count": 17,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "p,ones n=32",
+      "count": 32,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "2p,half,ones n=32",
+      "count": 32,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    },
+    {
+      "pattern": "half,ones,2p n=32",
+      "count": 32,
+      "counts": {
+        "equal": 512
+      },
+      "first_difference": null
+    }
+  ],
+  "receipts": [
+    {
+      "function": "GEOMEAN",
+      "file": "f7c09761fb0f44b8acfdbe4b06b3f6134fa5c8fbd6cd72a65c7f4c4dcdb52d47.json.gz",
+      "sha256": "009b18e774234416904d49d5c52ced4c6bd65e5890f2def3bcbaeb7c6d411c8d",
+      "calls": 6656,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:58:59.316560+00:00",
+      "request_sha256": "7f53b6d0cbc3604bf35766dcd6d8956cce7962035115ed10d48b25bfd7af8aff"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "4bde13edd5ba77ed5b4dfec6344c3740af6f3f1e00666701aeb3d4cab950ac4c.json.gz",
+      "sha256": "b3bf55fdde892eb34646f5368f6f4adfe076fe027bfbc0e30d48d51e6693b9e3",
+      "calls": 6144,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:08:40.825289+00:00",
+      "request_sha256": "fea86956d3efcca262854492c869a0177355038fb01074ac7ff7d812987d93df"
+    }
+  ],
+  "consecutive_inputs_per_center": 128,
+  "centers": [
+    0.13,
+    1.3,
+    7.0,
+    1000.0
+  ],
+  "limitations": "Separate scalar Value2 cells, normal finite numbers only. A difference refutes the specified pure product-plus-root composition; it does not identify a logarithm, branch, or alternate root. Identical publications do not prove the composition generally. No expected answer, threshold or coefficient fitted.",
+  "producer_bindings": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "analysis_model": "gpt-6.1-sol (session launcher)",
+  "sources": "Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read."
+}

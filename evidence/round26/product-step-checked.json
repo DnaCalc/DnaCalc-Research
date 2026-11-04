@@ -1,0 +1,722 @@
+{
+  "complete": true,
+  "product_control_counts": {
+    "root publications indistinguishable": 21,
+    "storedPC64 product only": 40
+  },
+  "live_counts": {
+    "rows": 11456,
+    "before_matched": 10036,
+    "after_matched": 10052,
+    "gains": 28,
+    "losses": 12,
+    "changed_outputs": 40
+  },
+  "losses": [
+    {
+      "id": "live-geomean/8920",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3fb0000000000000"
+      ],
+      "expected": "0x3ff933153e4fb154",
+      "before": "0x3ff933153e4fb154",
+      "after": "0x3ff933153e4fb153",
+      "product_study_record": 26,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "3ff933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8923",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3fe0000000000000"
+      ],
+      "expected": "0x400933153e4fb154",
+      "before": "0x400933153e4fb154",
+      "after": "0x400933153e4fb153",
+      "product_study_record": 29,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "400933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8926",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4010000000000000"
+      ],
+      "expected": "0x401933153e4fb154",
+      "before": "0x401933153e4fb154",
+      "after": "0x401933153e4fb153",
+      "product_study_record": 32,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "401933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8929",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4040000000000000"
+      ],
+      "expected": "0x402933153e4fb154",
+      "before": "0x402933153e4fb154",
+      "after": "0x402933153e4fb153",
+      "product_study_record": 35,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "402933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8932",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4070000000000000"
+      ],
+      "expected": "0x403933153e4fb154",
+      "before": "0x403933153e4fb154",
+      "after": "0x403933153e4fb153",
+      "product_study_record": 38,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "403933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8935",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x40a0000000000000"
+      ],
+      "expected": "0x404933153e4fb154",
+      "before": "0x404933153e4fb154",
+      "after": "0x404933153e4fb153",
+      "product_study_record": 41,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "404933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8938",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x40d0000000000000"
+      ],
+      "expected": "0x405933153e4fb154",
+      "before": "0x405933153e4fb154",
+      "after": "0x405933153e4fb153",
+      "product_study_record": 44,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "405933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8941",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4100000000000000"
+      ],
+      "expected": "0x406933153e4fb154",
+      "before": "0x406933153e4fb154",
+      "after": "0x406933153e4fb153",
+      "product_study_record": 47,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "406933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8944",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4130000000000000"
+      ],
+      "expected": "0x407933153e4fb154",
+      "before": "0x407933153e4fb154",
+      "after": "0x407933153e4fb153",
+      "product_study_record": 50,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "407933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8947",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4160000000000000"
+      ],
+      "expected": "0x408933153e4fb154",
+      "before": "0x408933153e4fb154",
+      "after": "0x408933153e4fb153",
+      "product_study_record": 53,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "408933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8950",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4190000000000000"
+      ],
+      "expected": "0x409933153e4fb154",
+      "before": "0x409933153e4fb154",
+      "after": "0x409933153e4fb153",
+      "product_study_record": 56,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "409933153e4fb154"
+      }
+    },
+    {
+      "id": "live-geomean/8953",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x41c0000000000000"
+      ],
+      "expected": "0x40a933153e4fb154",
+      "before": "0x40a933153e4fb154",
+      "after": "0x40a933153e4fb153",
+      "product_study_record": 59,
+      "classification": "unresolved root helper at the independently measured stored product",
+      "measured_stored_product_root": {
+        "type": "number",
+        "bits": "40a933153e4fb154"
+      }
+    }
+  ],
+  "changed": [
+    {
+      "id": "live-geomean/8895",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3e20000000000000"
+      ],
+      "expected": "0x3f74003a5b535262",
+      "before": "0x3f74003a5b535263",
+      "after": "0x3f74003a5b535262",
+      "product_study_record": 1
+    },
+    {
+      "id": "live-geomean/8896",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3e30000000000000"
+      ],
+      "expected": "0x3f7933153e4fb153",
+      "before": "0x3f7933153e4fb154",
+      "after": "0x3f7933153e4fb153",
+      "product_study_record": 2
+    },
+    {
+      "id": "live-geomean/8898",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3e50000000000000"
+      ],
+      "expected": "0x3f84003a5b535262",
+      "before": "0x3f84003a5b535263",
+      "after": "0x3f84003a5b535262",
+      "product_study_record": 4
+    },
+    {
+      "id": "live-geomean/8899",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3e60000000000000"
+      ],
+      "expected": "0x3f8933153e4fb153",
+      "before": "0x3f8933153e4fb154",
+      "after": "0x3f8933153e4fb153",
+      "product_study_record": 5
+    },
+    {
+      "id": "live-geomean/8901",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3e80000000000000"
+      ],
+      "expected": "0x3f94003a5b535262",
+      "before": "0x3f94003a5b535263",
+      "after": "0x3f94003a5b535262",
+      "product_study_record": 7
+    },
+    {
+      "id": "live-geomean/8902",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3e90000000000000"
+      ],
+      "expected": "0x3f9933153e4fb153",
+      "before": "0x3f9933153e4fb154",
+      "after": "0x3f9933153e4fb153",
+      "product_study_record": 8
+    },
+    {
+      "id": "live-geomean/8904",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3eb0000000000000"
+      ],
+      "expected": "0x3fa4003a5b535262",
+      "before": "0x3fa4003a5b535263",
+      "after": "0x3fa4003a5b535262",
+      "product_study_record": 10
+    },
+    {
+      "id": "live-geomean/8905",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ec0000000000000"
+      ],
+      "expected": "0x3fa933153e4fb153",
+      "before": "0x3fa933153e4fb154",
+      "after": "0x3fa933153e4fb153",
+      "product_study_record": 11
+    },
+    {
+      "id": "live-geomean/8907",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ee0000000000000"
+      ],
+      "expected": "0x3fb4003a5b535262",
+      "before": "0x3fb4003a5b535263",
+      "after": "0x3fb4003a5b535262",
+      "product_study_record": 13
+    },
+    {
+      "id": "live-geomean/8908",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3ef0000000000000"
+      ],
+      "expected": "0x3fb933153e4fb153",
+      "before": "0x3fb933153e4fb154",
+      "after": "0x3fb933153e4fb153",
+      "product_study_record": 14
+    },
+    {
+      "id": "live-geomean/8910",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3f10000000000000"
+      ],
+      "expected": "0x3fc4003a5b535262",
+      "before": "0x3fc4003a5b535263",
+      "after": "0x3fc4003a5b535262",
+      "product_study_record": 16
+    },
+    {
+      "id": "live-geomean/8911",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3f20000000000000"
+      ],
+      "expected": "0x3fc933153e4fb153",
+      "before": "0x3fc933153e4fb154",
+      "after": "0x3fc933153e4fb153",
+      "product_study_record": 17
+    },
+    {
+      "id": "live-geomean/8913",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3f40000000000000"
+      ],
+      "expected": "0x3fd4003a5b535262",
+      "before": "0x3fd4003a5b535263",
+      "after": "0x3fd4003a5b535262",
+      "product_study_record": 19
+    },
+    {
+      "id": "live-geomean/8914",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3f50000000000000"
+      ],
+      "expected": "0x3fd933153e4fb153",
+      "before": "0x3fd933153e4fb154",
+      "after": "0x3fd933153e4fb153",
+      "product_study_record": 20
+    },
+    {
+      "id": "live-geomean/8916",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3f70000000000000"
+      ],
+      "expected": "0x3fe4003a5b535262",
+      "before": "0x3fe4003a5b535263",
+      "after": "0x3fe4003a5b535262",
+      "product_study_record": 22
+    },
+    {
+      "id": "live-geomean/8917",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3f80000000000000"
+      ],
+      "expected": "0x3fe933153e4fb153",
+      "before": "0x3fe933153e4fb154",
+      "after": "0x3fe933153e4fb153",
+      "product_study_record": 23
+    },
+    {
+      "id": "live-geomean/8919",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3fa0000000000000"
+      ],
+      "expected": "0x3ff4003a5b535262",
+      "before": "0x3ff4003a5b535263",
+      "after": "0x3ff4003a5b535262",
+      "product_study_record": 25
+    },
+    {
+      "id": "live-geomean/8920",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3fb0000000000000"
+      ],
+      "expected": "0x3ff933153e4fb154",
+      "before": "0x3ff933153e4fb154",
+      "after": "0x3ff933153e4fb153",
+      "product_study_record": 26
+    },
+    {
+      "id": "live-geomean/8922",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3fd0000000000000"
+      ],
+      "expected": "0x4004003a5b535262",
+      "before": "0x4004003a5b535263",
+      "after": "0x4004003a5b535262",
+      "product_study_record": 28
+    },
+    {
+      "id": "live-geomean/8923",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x3fe0000000000000"
+      ],
+      "expected": "0x400933153e4fb154",
+      "before": "0x400933153e4fb154",
+      "after": "0x400933153e4fb153",
+      "product_study_record": 29
+    },
+    {
+      "id": "live-geomean/8925",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4000000000000000"
+      ],
+      "expected": "0x4014003a5b535262",
+      "before": "0x4014003a5b535263",
+      "after": "0x4014003a5b535262",
+      "product_study_record": 31
+    },
+    {
+      "id": "live-geomean/8926",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4010000000000000"
+      ],
+      "expected": "0x401933153e4fb154",
+      "before": "0x401933153e4fb154",
+      "after": "0x401933153e4fb153",
+      "product_study_record": 32
+    },
+    {
+      "id": "live-geomean/8928",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4030000000000000"
+      ],
+      "expected": "0x4024003a5b535262",
+      "before": "0x4024003a5b535263",
+      "after": "0x4024003a5b535262",
+      "product_study_record": 34
+    },
+    {
+      "id": "live-geomean/8929",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4040000000000000"
+      ],
+      "expected": "0x402933153e4fb154",
+      "before": "0x402933153e4fb154",
+      "after": "0x402933153e4fb153",
+      "product_study_record": 35
+    },
+    {
+      "id": "live-geomean/8931",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4060000000000000"
+      ],
+      "expected": "0x4034003a5b535262",
+      "before": "0x4034003a5b535263",
+      "after": "0x4034003a5b535262",
+      "product_study_record": 37
+    },
+    {
+      "id": "live-geomean/8932",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4070000000000000"
+      ],
+      "expected": "0x403933153e4fb154",
+      "before": "0x403933153e4fb154",
+      "after": "0x403933153e4fb153",
+      "product_study_record": 38
+    },
+    {
+      "id": "live-geomean/8934",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4090000000000000"
+      ],
+      "expected": "0x4044003a5b535262",
+      "before": "0x4044003a5b535263",
+      "after": "0x4044003a5b535262",
+      "product_study_record": 40
+    },
+    {
+      "id": "live-geomean/8935",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x40a0000000000000"
+      ],
+      "expected": "0x404933153e4fb154",
+      "before": "0x404933153e4fb154",
+      "after": "0x404933153e4fb153",
+      "product_study_record": 41
+    },
+    {
+      "id": "live-geomean/8937",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x40c0000000000000"
+      ],
+      "expected": "0x4054003a5b535262",
+      "before": "0x4054003a5b535263",
+      "after": "0x4054003a5b535262",
+      "product_study_record": 43
+    },
+    {
+      "id": "live-geomean/8938",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x40d0000000000000"
+      ],
+      "expected": "0x405933153e4fb154",
+      "before": "0x405933153e4fb154",
+      "after": "0x405933153e4fb153",
+      "product_study_record": 44
+    },
+    {
+      "id": "live-geomean/8940",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x40f0000000000000"
+      ],
+      "expected": "0x4064003a5b535262",
+      "before": "0x4064003a5b535263",
+      "after": "0x4064003a5b535262",
+      "product_study_record": 46
+    },
+    {
+      "id": "live-geomean/8941",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4100000000000000"
+      ],
+      "expected": "0x406933153e4fb154",
+      "before": "0x406933153e4fb154",
+      "after": "0x406933153e4fb153",
+      "product_study_record": 47
+    },
+    {
+      "id": "live-geomean/8943",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4120000000000000"
+      ],
+      "expected": "0x4074003a5b535262",
+      "before": "0x4074003a5b535263",
+      "after": "0x4074003a5b535262",
+      "product_study_record": 49
+    },
+    {
+      "id": "live-geomean/8944",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4130000000000000"
+      ],
+      "expected": "0x407933153e4fb154",
+      "before": "0x407933153e4fb154",
+      "after": "0x407933153e4fb153",
+      "product_study_record": 50
+    },
+    {
+      "id": "live-geomean/8946",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4150000000000000"
+      ],
+      "expected": "0x4084003a5b535262",
+      "before": "0x4084003a5b535263",
+      "after": "0x4084003a5b535262",
+      "product_study_record": 52
+    },
+    {
+      "id": "live-geomean/8947",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4160000000000000"
+      ],
+      "expected": "0x408933153e4fb154",
+      "before": "0x408933153e4fb154",
+      "after": "0x408933153e4fb153",
+      "product_study_record": 53
+    },
+    {
+      "id": "live-geomean/8949",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4180000000000000"
+      ],
+      "expected": "0x4094003a5b535262",
+      "before": "0x4094003a5b535263",
+      "after": "0x4094003a5b535262",
+      "product_study_record": 55
+    },
+    {
+      "id": "live-geomean/8950",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x4190000000000000"
+      ],
+      "expected": "0x409933153e4fb154",
+      "before": "0x409933153e4fb154",
+      "after": "0x409933153e4fb153",
+      "product_study_record": 56
+    },
+    {
+      "id": "live-geomean/8952",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x41b0000000000000"
+      ],
+      "expected": "0x40a4003a5b535262",
+      "before": "0x40a4003a5b535263",
+      "after": "0x40a4003a5b535262",
+      "product_study_record": 58
+    },
+    {
+      "id": "live-geomean/8953",
+      "args": [
+        "0x401f9ff8b1ae9622",
+        "0x401f9ff8b1ae9622",
+        "0x41c0000000000000"
+      ],
+      "expected": "0x40a933153e4fb154",
+      "before": "0x40a933153e4fb154",
+      "after": "0x40a933153e4fb153",
+      "product_study_record": 59
+    }
+  ],
+  "input_sha256": {
+    "evidence/round26/product-stores.json": "3e2138453b0234d29973d2c88d028022e5254575db2154854ff92e44fd6e6d48",
+    "/home/ubuntu/codex-runs/round26/geomean-live-before.jsonl": "732e17a884da28ab8ecc5f688166b23d4e72f655941a0228f85a93c25fbbf088",
+    "/home/ubuntu/codex-runs/round26/geomean-live-after.jsonl": "4b7fd63ac56c5615b46101a409af0fdd3e354f9b992764711876f178f3351800",
+    "/home/ubuntu/codex-runs/round26/geomean-live-original.json": "030f286928a5b556a688eaf56dec60f6a06f1792a59641492b61118218bccd36",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "evidence/round26/fingerprints/bd6d5ce43437412d70955d8342c5f5740d0abfce75a5b504294ebf9effdd231d.json.gz": "b24e5b1be45518a408bf809b24ae81b106e71936cb5dc500ffedf4f3ff55505d",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/097dbb5c166b406e43f9d79e5a855d0e2eade4836a309eb0076d021e716ba429.json.gz": "e98e4f2238ed9115731508bf1b776bc3f69ba6dfcfc1020550f0ca361583353f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/26038d8f64ea0507ca17d53eef3e810be43617dfa626befe4519814ff878c531.json.gz": "8d20e3663f95b82adb10bbde9a7fba8f701bbf2ce65055ecaa938af1432f1163",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/2b0a00dc61b19376d322a8fa21ee574e54c96b226db3d493cf5ccb0f2c9de475.json.gz": "1ec046af525eb9364cd24b134e93bd786943adb61afc572d95a8545a7be7b3d1",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/3018ba70d93fc19f54b46081aa1fc9b315ece5dffd68f377689eb4b0234e0e33.json.gz": "9370c41904d2902216ba3316215fdee1d3fd340dc2a2daf9f50e592e383880dd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/4f0fee8e29451591d79990cd5e1b6b84a6b565f13ccbe8774336ffc4154a263c.json.gz": "2826232f1ee39d0e89ab467ab98daf73ebbd1c2c809a65e78eeb435a7edbca4f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/bd6d5ce43437412d70955d8342c5f5740d0abfce75a5b504294ebf9effdd231d.json.gz": "b24e5b1be45518a408bf809b24ae81b106e71936cb5dc500ffedf4f3ff55505d",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/e501ace1ce909110cfc4e02879bbf92e03d1ff8cc8ef80b2275a2e6ba56b253d.json.gz": "c4a96be00047aaa9bde028cf786a5b6e0cd22f630b16ebbab614f2e8cd6a02c1",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/f7c09761fb0f44b8acfdbe4b06b3f6134fa5c8fbd6cd72a65c7f4c4dcdb52d47.json.gz": "009b18e774234416904d49d5c52ced4c6bd65e5890f2def3bcbaeb7c6d411c8d",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round26/fingerprints/fe9a02d986fcc878bad25857b590b041108e79b846bf1e4f7b0ba6d2e164869e.json.gz": "684b2f9ff376b9f08b49b8e42e061318ac63120f745c5cd85acb6e5d5fe13bdc"
+  },
+  "limits": "Sixty-one normal scalar square-tie controls isolate only the product loop; no private root is identified. Every changed result is tied to an independent actual root control. Other recorded bank/corpus scopes need their own comparison. No coefficient, tolerance, expected answer or selector is fitted."
+}

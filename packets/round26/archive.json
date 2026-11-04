@@ -1,0 +1,73 @@
+{
+  "format": "dnacalc-question-archive/1",
+  "source": "/home/ubuntu/codex-runs/excel-questions-r26/fingerprints",
+  "files": [
+    {
+      "original": "README.txt",
+      "retained": "README.txt",
+      "sha256": "20f8f952c26a700a68caca55aaf8958c362800cbabd34887a374ea7c07af769e",
+      "retained_sha256": "20f8f952c26a700a68caca55aaf8958c362800cbabd34887a374ea7c07af769e"
+    },
+    {
+      "original": "manifest.json",
+      "retained": "manifest.json.gz",
+      "sha256": "391ef7c7d02f885fe1e0610247b314c5305c235408e83add6f44292fc11c90cc",
+      "retained_sha256": "4c1b7d556a9ba8f2e0dd32919d28ab61871a2343923266008cc11f5e6c8c20b6"
+    },
+    {
+      "original": "prediction-binding.json",
+      "retained": "prediction-binding.json",
+      "sha256": "fc028619dbf3a7c827117af5c88d5a947dbeff9c0c14de58f5aadcf6539a2f3f",
+      "retained_sha256": "fc028619dbf3a7c827117af5c88d5a947dbeff9c0c14de58f5aadcf6539a2f3f"
+    },
+    {
+      "original": "regression/application-predictions.jsonl",
+      "retained": "regression/application-predictions.jsonl.gz",
+      "sha256": "fdff396135fd4acba5554041d2d3d11a79e8ce270fbd863683c7737e666d3439",
+      "retained_sha256": "42eeeadf5ba078e80767ac5967b2f00c40f6a601c6e05c3ce355ba75dee55846"
+    },
+    {
+      "original": "regression/sheet-dcj9k_r26_regression.txt",
+      "retained": "regression/sheet-dcj9k_r26_regression.txt.gz",
+      "sha256": "bf9c80fb321a0eff80a46aefac1bc247b6cf0f05e562123cf1fd4f41182ace91",
+      "retained_sha256": "1f642636b0703a47ceeee99b8f5c37ae1c5d5b007914b712c89678abea015da2"
+    },
+    {
+      "original": "regression/workbook-questions.json",
+      "retained": "regression/workbook-questions.json.gz",
+      "sha256": "6ddae16d10cab3f4b916a2690c86b95d14e23e52f06daa1004753640f5a83a31",
+      "retained_sha256": "19aae1bb40de7b45e84de8fa2e623001d27f7fe85da0b43874a8484db0a242c3"
+    },
+    {
+      "original": "regression/workbooks/dcj9k_r26_regression/oracle.xlsx",
+      "retained": "regression/workbooks/dcj9k_r26_regression/oracle.xlsx",
+      "sha256": "52ab13a3a5eb860c007efdd637573a517918f137c2db5afcc1be17807a70bd54",
+      "retained_sha256": "52ab13a3a5eb860c007efdd637573a517918f137c2db5afcc1be17807a70bd54"
+    },
+    {
+      "original": "scalar/application-predictions.jsonl",
+      "retained": "scalar/application-predictions.jsonl.gz",
+      "sha256": "1f7b2d9cfedfac097bc8b7ca2d937cf48e5e75a7bbd49b25179dd73c0e306d11",
+      "retained_sha256": "2f2db563971ba1614b518a9c7ccfd3bb008b9d26f777b516b6c5cb15caea88f3"
+    },
+    {
+      "original": "scalar/sheet-dcj9k_r26_scalar.txt",
+      "retained": "scalar/sheet-dcj9k_r26_scalar.txt.gz",
+      "sha256": "120b844c3d4fda5db4fa0fe94f98b900dd5cadcdc94baf99342497ff666bab96",
+      "retained_sha256": "3c2364f8836a274c79a8d391ef21a681a6db7f5c47a6a19a1881a9e595b9e1a1"
+    },
+    {
+      "original": "scalar/workbook-questions.json",
+      "retained": "scalar/workbook-questions.json.gz",
+      "sha256": "b1b3c3952b70d508b343406d97a07193776bb3ba60bdb256a37b7aa508ca0c31",
+      "retained_sha256": "7f334afc8d3e6a844e3f9a58d679da362169eb0113912b9ea9632971312aaae6"
+    },
+    {
+      "original": "scalar/workbooks/dcj9k_r26_scalar/oracle.xlsx",
+      "retained": "scalar/workbooks/dcj9k_r26_scalar/oracle.xlsx",
+      "sha256": "3ed9e3f14269b9c073d6537fbc40d0709e447b6607a707e5333aa455bd8de1f7",
+      "retained_sha256": "3ed9e3f14269b9c073d6537fbc40d0709e447b6607a707e5333aa455bd8de1f7"
+    }
+  ],
+  "answers": "awaiting capture; application predictions are not Excel answers"
+}

@@ -1,0 +1,770 @@
+{
+  "complete": true,
+  "unresolved_findings": 0,
+  "scans": {
+    "service-ubs": [
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/tools/excel-service/test_service.py",
+        "line": 125,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/tools/excel-service/test_service.py",
+        "line": 168,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/tools/excel-service/test_service.py",
+        "line": 72,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      }
+    ],
+    "product-final-ubs": [
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 281,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 284,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 285,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 286,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 302,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 304,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 282,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 303,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 792,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 794,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 812,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 818,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 820,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.ownership.unwrap-expect",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 843,
+        "classification": "intentional or false positive",
+        "reason": "Existing tests must fail on an unexpected missing value."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs",
+        "line": 451,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs",
+        "line": 468,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 281,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 284,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 285,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 286,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 302,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.collections.clone-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 304,
+        "classification": "intentional or false positive",
+        "reason": "Bounded existing test vectors preserve original arguments for independent calls."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 168,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 264,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 269,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 162,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 163,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 164,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 165,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 166,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 167,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 179,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 248,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 254,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 263,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 283,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 418,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 813,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.assert-macros",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs",
+        "line": 844,
+        "classification": "intentional or false positive",
+        "reason": "Registered-route tests must fail when an original answer differs."
+      },
+      {
+        "rule": "rust.panic.direct-indexing",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+        "line": 43,
+        "classification": "intentional or false positive",
+        "reason": "Existing fixed-size test fixtures use indices within their explicit shape."
+      },
+      {
+        "rule": "rust.panic.direct-indexing",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs",
+        "line": 66,
+        "classification": "intentional or false positive",
+        "reason": "Existing fixed-size test fixtures use indices within their explicit shape."
+      },
+      {
+        "rule": "rust.panic.direct-indexing",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs",
+        "line": 71,
+        "classification": "intentional or false positive",
+        "reason": "Existing fixed-size test fixtures use indices within their explicit shape."
+      },
+      {
+        "rule": "rust.panic.direct-indexing",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs",
+        "line": 504,
+        "classification": "intentional or false positive",
+        "reason": "Existing fixed-size test fixtures use indices within their explicit shape."
+      },
+      {
+        "rule": "rust.panic.direct-indexing",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/catalogue/statistics.rs",
+        "line": 508,
+        "classification": "intentional or false positive",
+        "reason": "Existing fixed-size test fixtures use indices within their explicit shape."
+      }
+    ],
+    "research-commit-ubs": [
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/test_fingerprint.py",
+        "line": 94,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.comparison.type-equality",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 768,
+        "classification": "intentional or false positive",
+        "reason": "The grammar requires an actual bool and deliberately excludes integer/subclass coercion."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 61,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 68,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 164,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 533,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 545,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 546,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 591,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 592,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 621,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 638,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 678,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 440,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 566,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 14,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 15,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 825,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.type-equality",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/questions_r13.py",
+        "line": 768,
+        "classification": "intentional or false positive",
+        "reason": "The grammar requires an actual bool and deliberately excludes integer/subclass coercion."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 63,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 64,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.perf.io-in-loop",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 65,
+        "classification": "intentional or false positive",
+        "reason": "Bounded local evidence and ZIP reads check each declared source. These are required provenance checks."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 219,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 73,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 140,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 162,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 233,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 240,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 330,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 375,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 409,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 468,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 512,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 201,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 204,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.json-load-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 354,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.json-load-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py",
+        "line": 416,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 643,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 871,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 916,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 986,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.regex.nested-quantifiers",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 1053,
+        "classification": "intentional or false positive",
+        "reason": "This expression builds formula text or computes exact rational arithmetic; it does not execute a regex."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 365,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 954,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 151,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 433,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 437,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 297,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 1058,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 302,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.parsing.json-loads-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 338,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.json-load-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 314,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      },
+      {
+        "rule": "py.json-load-no-try",
+        "file": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py",
+        "line": 323,
+        "classification": "intentional or false positive",
+        "reason": "Malformed evidence aborts before a success receipt; exception propagation is deliberate."
+      }
+    ]
+  },
+  "scan_bindings": {
+    "service-ubs": {
+      "file": "evidence/round26/validation/service-ubs.jsonl.gz",
+      "sha256": "1d91da27eb7a451a597fd42747497c6dc2f2df296b553004234f90a2f93181d8",
+      "gzip_sha256": "37d66fcc883f6cf01fba89fe569d3e9be7b377a2b26713b04f57a7dde445b7f1",
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+        "status": "ok",
+        "failed_modules": [],
+        "files": 2,
+        "critical": 0,
+        "warning": 3,
+        "info": 22,
+        "timestamp": "2026-11-04 20:59:50"
+      }
+    },
+    "product-final-ubs": {
+      "file": "evidence/round26/validation/product-final-ubs.jsonl.gz",
+      "sha256": "196145d07e93b78dff10b8b5585fd9784e5cd83b19019baf91fbf00f719e0971",
+      "gzip_sha256": "a5e6a1e916c7c65eb93430a07ba54ff4888bb96610b4f8b94b48298dd8beb738",
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc",
+        "status": "ok",
+        "failed_modules": [],
+        "files": 3,
+        "critical": 0,
+        "warning": 44,
+        "info": 29,
+        "timestamp": "2026-11-04 21:42:33"
+      }
+    },
+    "research-commit-ubs": {
+      "file": "evidence/round26/validation/research-commit-ubs.jsonl.gz",
+      "sha256": "f91795e68936a560398a8e3e8aa0e452394cab9a4d7b37236383ef8585ff555a",
+      "gzip_sha256": "e46b189615d2cd86643295fa2f557e05a6e4cd1d3ce639feb59b585c4a2a40e9",
+      "totals": {
+        "type": "totals",
+        "project": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research",
+        "status": "ok",
+        "failed_modules": [],
+        "files": 5,
+        "critical": 0,
+        "warning": 53,
+        "info": 233,
+        "timestamp": "2026-11-04 22:32:40"
+      }
+    }
+  },
+  "limitations": "UBS flags are reviewed findings, not a proof of numerical equivalence. Public-content-hash timing findings were explicitly suppressed with reasons; no authentication material is compared.",
+  "source_sha256": {
+    "racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "checker/geomean.py": "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6",
+    "checker/questions_r13.py": "5c473cfc785fe1a6a2021f73aa47d739645e02351ab11daed442718eb2ae75b3",
+    "checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "checker/test_fingerprint.py": "0ba658a24aa99af5eff7475c401562c80e11e24c400e3e90bf1911594b70ff02"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "format": "dnacalc-r26-replay-archive/1",
+  "files": [
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-live-inputs.json",
+      "archive": "evidence/round26/replay-inputs/geomean-live-inputs.json.gz",
+      "sha256": "948e0e17ef366eb334d8e4f1626fffbbf2413704211f70f189083405dc6bef7e",
+      "archive_sha256": "1e2cdfef61667eb26b617873d969485525dfe4ec199fb17e7cf1799e249602b5",
+      "bytes": 1383093,
+      "compressed_bytes": 62629
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-live-original.json",
+      "archive": "evidence/round26/replay-inputs/geomean-live-original.json.gz",
+      "sha256": "030f286928a5b556a688eaf56dec60f6a06f1792a59641492b61118218bccd36",
+      "archive_sha256": "13c26657416d8bde7b53d739502612b9a3c65869f28753e746ddb7b44dd2e4cd",
+      "bytes": 3722511,
+      "compressed_bytes": 90078
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-live-before.jsonl",
+      "archive": "evidence/round26/replay-inputs/geomean-live-before.jsonl.gz",
+      "sha256": "732e17a884da28ab8ecc5f688166b23d4e72f655941a0228f85a93c25fbbf088",
+      "archive_sha256": "a22b7978b15579496912caa12d9dd79d6a5829e189e913b24edfbc2c811cee2e",
+      "bytes": 3104736,
+      "compressed_bytes": 82645
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-live-after.jsonl",
+      "archive": "evidence/round26/replay-inputs/geomean-live-after.jsonl.gz",
+      "sha256": "4b7fd63ac56c5615b46101a409af0fdd3e354f9b992764711876f178f3351800",
+      "archive_sha256": "c6d9e7305223c368401f874e15f821b6a7de80e39fba722485748e2db3c9d183",
+      "bytes": 3104736,
+      "compressed_bytes": 82640
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/product-stage-full-inputs.json",
+      "archive": "evidence/round26/replay-inputs/product-stage-full-inputs.json.gz",
+      "sha256": "0cfe6352db020c5d15a08137311088df673807d9e1e60aae7e9623b2b2070a1b",
+      "archive_sha256": "b69d942675683ba751c50d210e9191aa7f3d4e891e9e7d7a474230f6c8748d5e",
+      "bytes": 209873,
+      "compressed_bytes": 9018
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/product-stage-full-before.jsonl",
+      "archive": "evidence/round26/replay-inputs/product-stage-full-before.jsonl.gz",
+      "sha256": "92f14a2b5794c0b75c50b2b8c1be0c077746e4cc29883aceafde4f1a4c53cb63",
+      "archive_sha256": "d76066f2e5119d9972b0338e3d040336d08e3ba477e9cb612668a6adf7163603",
+      "bytes": 519082,
+      "compressed_bytes": 10751
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/product-stage-full-after.jsonl",
+      "archive": "evidence/round26/replay-inputs/product-stage-full-after.jsonl.gz",
+      "sha256": "1001b3743173fa5fc85fdfa95efac3745269de35a04bd18baecbdec66cf0d951",
+      "archive_sha256": "35bb8e0fda6c4feca53bd35a3b943a841e481f4bbd2df700a26fba282a251cd7",
+      "bytes": 519082,
+      "compressed_bytes": 10473
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-bank-before-current.jsonl",
+      "archive": "evidence/round26/replay-inputs/geomean-bank-before-current.jsonl.gz",
+      "sha256": "ad16ac2ee7105b9db3c1fb1539b54ef656fd636c868184c95b803a443618def3",
+      "archive_sha256": "1ba8aeeb5e9b02925bc208fbaba1ec4f7c836545a028aa4317b0ea9b72c1cefc",
+      "bytes": 666182,
+      "compressed_bytes": 75793
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-bank-after.jsonl",
+      "archive": "evidence/round26/replay-inputs/geomean-bank-after.jsonl.gz",
+      "sha256": "ad16ac2ee7105b9db3c1fb1539b54ef656fd636c868184c95b803a443618def3",
+      "archive_sha256": "1ba8aeeb5e9b02925bc208fbaba1ec4f7c836545a028aa4317b0ea9b72c1cefc",
+      "bytes": 666182,
+      "compressed_bytes": 75793
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/before-product-binding.json",
+      "archive": "evidence/round26/replay-inputs/before-product-binding.json.gz",
+      "sha256": "9f5ac44e118694addd7823319782f01ac015dca2a48a03a55ba3371d90786603",
+      "archive_sha256": "94991dbffe68e17cd67ab6cad5bd070b78ff1b2d464ba014b32569b9c8ea2475",
+      "bytes": 449,
+      "compressed_bytes": 314
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-bank-compare.log",
+      "archive": "evidence/round26/replay-inputs/geomean-bank-compare.log.gz",
+      "sha256": "62b080f37f1db7512ed043396d8d369ad075fd96a3dbdcb12566e9fc1b26831f",
+      "archive_sha256": "9d35243866586caad97a99a6f1a54f33ea86cd99626975ea9859cbff3594b4c7",
+      "bytes": 222,
+      "compressed_bytes": 172
+    }
+  ],
+  "limits": "Lossless compression of actual replay inputs and predictions. Historical absolute paths are preserved; restore to their recorded locations to rerun original checker receipts."
+}

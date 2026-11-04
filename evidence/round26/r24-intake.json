@@ -1,0 +1,95 @@
+{
+  "complete": true,
+  "files": {
+    "files": 47,
+    "bytes": 25385390,
+    "manifest_sha256": "d02ca9eaffca0a09bfa7e6b8d94bc9c0f458ebbdfdeb2bf33984a1eade020d9a"
+  },
+  "formula_cells": 4047,
+  "roles": {
+    "question": 822,
+    "operand_echo": 3225
+  },
+  "statuses": {
+    "observed": 4047
+  },
+  "observed_calls_by_function": {
+    "LINEST": 36,
+    "VAR.S": 36,
+    "VAR.P": 36,
+    "LOGEST": 36,
+    "BESSELJ": 22,
+    "VARP": 36,
+    "PPMT": 36,
+    "STDEV": 36,
+    "BINOM.DIST": 36,
+    "VAR": 36,
+    "CUMPRINC": 36,
+    "RATE": 36,
+    "HYPGEOM.DIST": 36,
+    "YIELD": 36,
+    "IRR": 8,
+    "ODDFYIELD": 36,
+    "IPMT": 36,
+    "CUMIPMT": 36,
+    "POISSON.DIST": 36,
+    "NEGBINOM.DIST": 36,
+    "GAMMA.DIST": 36,
+    "NEGBINOMDIST": 36,
+    "BINOM.DIST.RANGE": 36,
+    "BETADIST": 36
+  },
+  "intended_operand_echoes": {
+    "equal": 2158,
+    "different": 621
+  },
+  "observed_formula_spelling_changes": 2415,
+  "first_formula_changes": [
+    {
+      "id": "r24-fuzz-00006",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},1,1)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},1,1)"
+    },
+    {
+      "id": "r24-fuzz-00007",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},1,2)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},1,2)"
+    },
+    {
+      "id": "r24-fuzz-00008",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},2,1)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},2,1)"
+    },
+    {
+      "id": "r24-fuzz-00009",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},2,2)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},2,2)"
+    },
+    {
+      "id": "r24-fuzz-00010",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},3,1)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},3,1)"
+    },
+    {
+      "id": "r24-fuzz-00011",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},3,2)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},3,2)"
+    },
+    {
+      "id": "r24-fuzz-00012",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},4,1)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},4,1)"
+    },
+    {
+      "id": "r24-fuzz-00013",
+      "requested": "INDEX({4,8.0000999999999998;5,10;2,4;1,2},4,2)",
+      "observed": "=INDEX({4,8.00009999999999;5,10;2,4;1,2},4,2)"
+    }
+  ],
+  "workbook": "/home/ubuntu/codex-runs/excel-results-r24/packet/workbooks/dcztvv_r24/oracle.xlsx",
+  "workbook_sha256": "748c64dfaabd37bf0ae8f321dc3905add1f64102620355ac8fe0a69c81e0a4cf",
+  "capture": "/home/ubuntu/codex-runs/excel-results-r24/r24.capture.json",
+  "capture_sha256": "0cff9111666b7e647e1cb98021a4e8d8d5d8b31c9395a62791889029628f4e7a",
+  "capture_failures": [],
+  "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+}

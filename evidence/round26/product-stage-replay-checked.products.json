@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "counts": {
+    "ambiguous strict,stored_each,resident_final": 400,
+    "ambiguous stored_each,resident_final": 57,
+    "only stored_each": 55
+  },
+  "product_differences": {
+    "stored_vs_resident": 200,
+    "stored_vs_strict": 401
+  },
+  "input_sha256": {
+    "evidence/round26/product-stages.json": "eef85efbcdd7523ad1c55cbcd2aad0ef1c5ea1d91eade93215f9e69270fa5700",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "evidence/round26/fingerprints/8d3b2aa38d06b54ceb1d3d8ffa00ebd87d3a7bbe84d5466509500425e600cfc9.json.gz": "dcccab210ccd76387d592ef302fe1a0b4927c9e043423c09e8ee781c82a6efb7"
+  },
+  "limits": "Three declared complete product programs, three positive normal factors, one known square tie, fixed512 third-factor inputs. The per-step stored program is consistent;55 sole-model publications distinguish it from the alternatives. Controls assume binary64 publication before the unknown root; an unpublished resident extended-root producer remains outside this certificate."
+}

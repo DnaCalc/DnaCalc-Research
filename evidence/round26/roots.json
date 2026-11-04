@@ -1,0 +1,5024 @@
+{
+  "format": "dnacalc-geomean-unit-factor-study/1",
+  "complete": true,
+  "roots": [
+    {
+      "count": 2,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 906,
+            "mismatched": 118
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7025",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 906,
+            "mismatched": 118
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7025",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 906,
+            "mismatched": 118
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7025",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public SQRT(p)",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 906,
+            "mismatched": 118
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7025",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 339,
+            "matched": 685
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 339,
+            "matched": 685
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 339,
+            "matched": 685
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 339,
+            "matched": 685
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fd71355d04de137",
+            "candidate": "3fd71355d04de138"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 3,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 892,
+            "mismatched": 132
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7083",
+            "excel": "3fe035e6a290ae1e",
+            "candidate": "3fe035e6a290ae1d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 892,
+            "mismatched": 132
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7083",
+            "excel": "3fe035e6a290ae1e",
+            "candidate": "3fe035e6a290ae1d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 810,
+            "mismatched": 214
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7029",
+            "excel": "3fe035e6a290ae00",
+            "candidate": "3fe035e6a290ae01"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 738,
+            "mismatched": 286
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702a",
+            "excel": "3fe035e6a290ae01",
+            "candidate": "3fe035e6a290ae00"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 738,
+            "mismatched": 286
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702a",
+            "excel": "3fe035e6a290ae01",
+            "candidate": "3fe035e6a290ae00"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 810,
+            "mismatched": 214
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7029",
+            "excel": "3fe035e6a290ae00",
+            "candidate": "3fe035e6a290ae01"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 810,
+            "mismatched": 214
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7029",
+            "excel": "3fe035e6a290ae00",
+            "candidate": "3fe035e6a290ae01"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 4,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 933,
+            "mismatched": 91
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fe336fcfb63cab3",
+            "candidate": "3fe336fcfb63cab4"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 933,
+            "mismatched": 91
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fe336fcfb63cab3",
+            "candidate": "3fe336fcfb63cab4"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 930,
+            "mismatched": 94
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff85",
+            "excel": "40167e600b23460f",
+            "candidate": "40167e600b234610"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 930,
+            "mismatched": 94
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff85",
+            "excel": "40167e600b23460f",
+            "candidate": "40167e600b234610"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 930,
+            "mismatched": 94
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff85",
+            "excel": "40167e600b23460f",
+            "candidate": "40167e600b234610"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 930,
+            "mismatched": 94
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff85",
+            "excel": "40167e600b23460f",
+            "candidate": "40167e600b234610"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 930,
+            "mismatched": 94
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff85",
+            "excel": "40167e600b23460f",
+            "candidate": "40167e600b234610"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 5,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 874,
+            "mismatched": 150
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7025",
+            "excel": "3fe5474431faf249",
+            "candidate": "3fe5474431faf24a"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 874,
+            "mismatched": 150
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7025",
+            "excel": "3fe5474431faf249",
+            "candidate": "3fe5474431faf24a"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 845,
+            "mismatched": 179
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff83",
+            "excel": "400fd93c1f526dc7",
+            "candidate": "400fd93c1f526dc6"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 251,
+            "matched": 773
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fe5474431faf249",
+            "candidate": "3fe5474431faf24a"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 251,
+            "matched": 773
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fe5474431faf249",
+            "candidate": "3fe5474431faf24a"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 845,
+            "mismatched": 179
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff83",
+            "excel": "400fd93c1f526dc7",
+            "candidate": "400fd93c1f526dc6"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 845,
+            "mismatched": 179
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff83",
+            "excel": "400fd93c1f526dc7",
+            "candidate": "400fd93c1f526dc6"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 6,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 900,
+            "mismatched": 124
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fe6c69b9e6b3dea",
+            "candidate": "3fe6c69b9e6b3deb"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 899,
+            "mismatched": 125
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fe6c69b9e6b3dea",
+            "candidate": "3fe6c69b9e6b3deb"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 891,
+            "mismatched": 133
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff80",
+            "excel": "40094c583ada5b41",
+            "candidate": "40094c583ada5b40"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 853,
+            "mismatched": 171
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702f",
+            "excel": "3fe6c69b9e6b3ded",
+            "candidate": "3fe6c69b9e6b3dec"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 853,
+            "mismatched": 171
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702f",
+            "excel": "3fe6c69b9e6b3ded",
+            "candidate": "3fe6c69b9e6b3dec"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 891,
+            "mismatched": 133
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff80",
+            "excel": "40094c583ada5b41",
+            "candidate": "40094c583ada5b40"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 891,
+            "mismatched": 133
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff80",
+            "excel": "40094c583ada5b41",
+            "candidate": "40094c583ada5b40"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 7,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 912,
+            "mismatched": 112
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702d",
+            "excel": "3fe7e8d4dbd4d11c",
+            "candidate": "3fe7e8d4dbd4d11b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 912,
+            "mismatched": 112
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702d",
+            "excel": "3fe7e8d4dbd4d11c",
+            "candidate": "3fe7e8d4dbd4d11b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 922,
+            "mismatched": 102
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff86",
+            "excel": "40057629368ebeb1",
+            "candidate": "40057629368ebeb0"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 897,
+            "mismatched": 127
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7031",
+            "excel": "3fe7e8d4dbd4d11d",
+            "candidate": "3fe7e8d4dbd4d11c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 897,
+            "mismatched": 127
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7031",
+            "excel": "3fe7e8d4dbd4d11d",
+            "candidate": "3fe7e8d4dbd4d11c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 922,
+            "mismatched": 102
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff86",
+            "excel": "40057629368ebeb1",
+            "candidate": "40057629368ebeb0"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 922,
+            "mismatched": 102
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff86",
+            "excel": "40057629368ebeb1",
+            "candidate": "40057629368ebeb0"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 8,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 973,
+            "mismatched": 51
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fe8cbf0d33a4b7b",
+            "candidate": "3fe8cbf0d33a4b7c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 973,
+            "mismatched": 51
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fe8cbf0d33a4b7b",
+            "candidate": "3fe8cbf0d33a4b7c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "4002f892c70349fb",
+            "candidate": "4002f892c70349fa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "4002f892c70349fb",
+            "candidate": "4002f892c70349fa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "4002f892c70349fb",
+            "candidate": "4002f892c70349fa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "4002f892c70349fb",
+            "candidate": "4002f892c70349fa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "4002f892c70349fb",
+            "candidate": "4002f892c70349fa"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 9,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 960,
+            "mismatched": 64
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fe982642c52fe80",
+            "candidate": "3fe982642c52fe81"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 960,
+            "mismatched": 64
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fe982642c52fe80",
+            "candidate": "3fe982642c52fe81"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 980,
+            "mismatched": 44
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "40013c4841387048",
+            "candidate": "40013c4841387047"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 943,
+            "mismatched": 81
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7033",
+            "excel": "3fe982642c52fe83",
+            "candidate": "3fe982642c52fe82"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 943,
+            "mismatched": 81
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7033",
+            "excel": "3fe982642c52fe83",
+            "candidate": "3fe982642c52fe82"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 980,
+            "mismatched": 44
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "40013c4841387048",
+            "candidate": "40013c4841387047"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 980,
+            "mismatched": 44
+          },
+          "first_contradiction": {
+            "input": "408f3fffffffff8a",
+            "excel": "40013c4841387048",
+            "candidate": "40013c4841387047"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "count": 10,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 774,
+            "mismatched": 250
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fea181ec732cc27",
+            "candidate": "3fea181ec732cc28"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 774,
+            "mismatched": 250
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fea181ec732cc27",
+            "candidate": "3fea181ec732cc28"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 148,
+            "matched": 876
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fea181ec732cc27",
+            "candidate": "3fea181ec732cc28"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 148,
+            "matched": 876
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fea181ec732cc27",
+            "candidate": "3fea181ec732cc28"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 11,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "mismatched": 129,
+            "matched": 895
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fea952cf754b6fd",
+            "candidate": "3fea952cf754b6fc"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "mismatched": 129,
+            "matched": 895
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fea952cf754b6fd",
+            "candidate": "3fea952cf754b6fc"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 953,
+            "mismatched": 71
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7063",
+            "excel": "3fea952cf754b705",
+            "candidate": "3fea952cf754b706"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 953,
+            "mismatched": 71
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7063",
+            "excel": "3fea952cf754b705",
+            "candidate": "3fea952cf754b706"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 12,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 909,
+            "mismatched": 115
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7031",
+            "excel": "3feaff2ccc6dcf1e",
+            "candidate": "3feaff2ccc6dcf1d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 908,
+            "mismatched": 116
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7031",
+            "excel": "3feaff2ccc6dcf1e",
+            "candidate": "3feaff2ccc6dcf1d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 918,
+            "mismatched": 106
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d704e",
+            "excel": "3feaff2ccc6dcf22",
+            "candidate": "3feaff2ccc6dcf21"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 918,
+            "mismatched": 106
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d704e",
+            "excel": "3feaff2ccc6dcf22",
+            "candidate": "3feaff2ccc6dcf21"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 13,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 906,
+            "mismatched": 118
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702f",
+            "excel": "3feb5a27c31262da",
+            "candidate": "3feb5a27c31262db"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 905,
+            "mismatched": 119
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702f",
+            "excel": "3feb5a27c31262da",
+            "candidate": "3feb5a27c31262db"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 939,
+            "mismatched": 85
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702f",
+            "excel": "3feb5a27c31262da",
+            "candidate": "3feb5a27c31262db"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 939,
+            "mismatched": 85
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702f",
+            "excel": "3feb5a27c31262da",
+            "candidate": "3feb5a27c31262db"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 14,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 928,
+            "mismatched": 96
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7039",
+            "excel": "3feba91753c67ae6",
+            "candidate": "3feba91753c67ae5"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 928,
+            "mismatched": 96
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7039",
+            "excel": "3feba91753c67ae6",
+            "candidate": "3feba91753c67ae5"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 946,
+            "mismatched": 78
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7042",
+            "excel": "3feba91753c67ae7",
+            "candidate": "3feba91753c67ae6"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 946,
+            "mismatched": 78
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7042",
+            "excel": "3feba91753c67ae7",
+            "candidate": "3feba91753c67ae6"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 15,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 960,
+            "mismatched": 64
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702b",
+            "excel": "3febee38b972b4c1",
+            "candidate": "3febee38b972b4c0"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 960,
+            "mismatched": 64
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702b",
+            "excel": "3febee38b972b4c1",
+            "candidate": "3febee38b972b4c0"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1013,
+            "mismatched": 11
+          },
+          "first_contradiction": {
+            "input": "401bffffffffffbb",
+            "excel": "3ff2375e900f963b",
+            "candidate": "3ff2375e900f963c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1013,
+            "mismatched": 11
+          },
+          "first_contradiction": {
+            "input": "401bffffffffffbb",
+            "excel": "3ff2375e900f963b",
+            "candidate": "3ff2375e900f963c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 16,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 982,
+            "mismatched": 42
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fec2b439e4133b7",
+            "candidate": "3fec2b439e4133b8"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 982,
+            "mismatched": 42
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fec2b439e4133b7",
+            "candidate": "3fec2b439e4133b8"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 17,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 969,
+            "mismatched": 55
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702a",
+            "excel": "3fec618ece78be1b",
+            "candidate": "3fec618ece78be1c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 969,
+            "mismatched": 55
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702a",
+            "excel": "3fec618ece78be1b",
+            "candidate": "3fec618ece78be1c"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1000,
+            "mismatched": 24
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70b4",
+            "excel": "3fec618ece78be2a",
+            "candidate": "3fec618ece78be29"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1000,
+            "mismatched": 24
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70b4",
+            "excel": "3fec618ece78be2a",
+            "candidate": "3fec618ece78be29"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 18,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "mismatched": 69,
+            "matched": 955
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fec922977d6b3b8",
+            "candidate": "3fec922977d6b3b7"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "mismatched": 69,
+            "matched": 955
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7024",
+            "excel": "3fec922977d6b3b8",
+            "candidate": "3fec922977d6b3b7"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 975,
+            "mismatched": 49
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d704e",
+            "excel": "3fec922977d6b3bc",
+            "candidate": "3fec922977d6b3bb"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 975,
+            "mismatched": 49
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d704e",
+            "excel": "3fec922977d6b3bc",
+            "candidate": "3fec922977d6b3bb"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 19,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 966,
+            "mismatched": 58
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702a",
+            "excel": "3fecbdecea3cc997",
+            "candidate": "3fecbdecea3cc998"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 966,
+            "mismatched": 58
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d702a",
+            "excel": "3fecbdecea3cc997",
+            "candidate": "3fecbdecea3cc998"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 967,
+            "mismatched": 57
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7040",
+            "excel": "3fecbdecea3cc99a",
+            "candidate": "3fecbdecea3cc999"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 967,
+            "mismatched": 57
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7040",
+            "excel": "3fecbdecea3cc99a",
+            "candidate": "3fecbdecea3cc999"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 20,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 958,
+            "mismatched": 66
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703e",
+            "excel": "3fece58951fff12c",
+            "candidate": "3fece58951fff12d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 958,
+            "mismatched": 66
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703e",
+            "excel": "3fece58951fff12c",
+            "candidate": "3fece58951fff12d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 967,
+            "mismatched": 57
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703d",
+            "excel": "3fece58951fff12c",
+            "candidate": "3fece58951fff12d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 967,
+            "mismatched": 57
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703d",
+            "excel": "3fece58951fff12c",
+            "candidate": "3fece58951fff12d"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 21,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 957,
+            "mismatched": 67
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7039",
+            "excel": "3fed098f01035610",
+            "candidate": "3fed098f0103560f"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 957,
+            "mismatched": 67
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7039",
+            "excel": "3fed098f01035610",
+            "candidate": "3fed098f0103560f"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 974,
+            "mismatched": 50
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7039",
+            "excel": "3fed098f01035610",
+            "candidate": "3fed098f0103560f"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 974,
+            "mismatched": 50
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7039",
+            "excel": "3fed098f01035610",
+            "candidate": "3fed098f0103560f"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 22,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 978,
+            "mismatched": 46
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70a1",
+            "excel": "3fed2a755063198c",
+            "candidate": "3fed2a755063198b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 978,
+            "mismatched": 46
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70a1",
+            "excel": "3fed2a755063198c",
+            "candidate": "3fed2a755063198b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 995,
+            "mismatched": 29
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70ba",
+            "excel": "3fed2a755063198d",
+            "candidate": "3fed2a755063198e"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 995,
+            "mismatched": 29
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70ba",
+            "excel": "3fed2a755063198d",
+            "candidate": "3fed2a755063198e"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 23,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fed489fccb800a0",
+            "candidate": "3fed489fccb800a1"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fed489fccb800a0",
+            "candidate": "3fed489fccb800a1"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1013,
+            "mismatched": 11
+          },
+          "first_contradiction": {
+            "input": "401bffffffffffe3",
+            "excel": "3ff1699f809518b3",
+            "candidate": "3ff1699f809518b4"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1013,
+            "mismatched": 11
+          },
+          "first_contradiction": {
+            "input": "401bffffffffffe3",
+            "excel": "3ff1699f809518b3",
+            "candidate": "3ff1699f809518b4"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 24,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 953,
+            "mismatched": 71
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703b",
+            "excel": "3fed646226846dfb",
+            "candidate": "3fed646226846dfa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 953,
+            "mismatched": 71
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703b",
+            "excel": "3fed646226846dfb",
+            "candidate": "3fed646226846dfa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 977,
+            "mismatched": 47
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703b",
+            "excel": "3fed646226846dfb",
+            "candidate": "3fed646226846dfa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 977,
+            "mismatched": 47
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703b",
+            "excel": "3fed646226846dfb",
+            "candidate": "3fed646226846dfa"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 25,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 961,
+            "mismatched": 63
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7027",
+            "excel": "3fed7e033b3fc2af",
+            "candidate": "3fed7e033b3fc2ae"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 961,
+            "mismatched": 63
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7027",
+            "excel": "3fed7e033b3fc2af",
+            "candidate": "3fed7e033b3fc2ae"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1004,
+            "mismatched": 20
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7050",
+            "excel": "3fed7e033b3fc2b1",
+            "candidate": "3fed7e033b3fc2b2"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1004,
+            "mismatched": 20
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7050",
+            "excel": "3fed7e033b3fc2b1",
+            "candidate": "3fed7e033b3fc2b2"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 26,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 985,
+            "mismatched": 39
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7065",
+            "excel": "3fed95bf729d990f",
+            "candidate": "3fed95bf729d9910"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 984,
+            "mismatched": 40
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7056",
+            "excel": "3fed95bf729d990f",
+            "candidate": "3fed95bf729d990e"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 987,
+            "mismatched": 37
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7065",
+            "excel": "3fed95bf729d990f",
+            "candidate": "3fed95bf729d9910"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 987,
+            "mismatched": 37
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7065",
+            "excel": "3fed95bf729d990f",
+            "candidate": "3fed95bf729d9910"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 27,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 978,
+            "mismatched": 46
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703d",
+            "excel": "3fedabca9ac2f943",
+            "candidate": "3fedabca9ac2f942"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 978,
+            "mismatched": 46
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d703d",
+            "excel": "3fedabca9ac2f943",
+            "candidate": "3fedabca9ac2f942"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 980,
+            "mismatched": 44
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7088",
+            "excel": "3fedabca9ac2f948",
+            "candidate": "3fedabca9ac2f947"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 980,
+            "mismatched": 44
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7088",
+            "excel": "3fedabca9ac2f948",
+            "candidate": "3fedabca9ac2f947"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 28,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 982,
+            "mismatched": 42
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7035",
+            "excel": "3fedc0516266fd9c",
+            "candidate": "3fedc0516266fd9b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 982,
+            "mismatched": 42
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7035",
+            "excel": "3fedc0516266fd9c",
+            "candidate": "3fedc0516266fd9b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 989,
+            "mismatched": 35
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70c3",
+            "excel": "3fedc0516266fda5",
+            "candidate": "3fedc0516266fda4"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 989,
+            "mismatched": 35
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70c3",
+            "excel": "3fedc0516266fda5",
+            "candidate": "3fedc0516266fda4"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 29,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 998,
+            "mismatched": 26
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7048",
+            "excel": "3fedd37a87a4cc6c",
+            "candidate": "3fedd37a87a4cc6b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 997,
+            "mismatched": 27
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7048",
+            "excel": "3fedd37a87a4cc6c",
+            "candidate": "3fedd37a87a4cc6b"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1011,
+            "mismatched": 13
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70fb",
+            "excel": "3fedd37a87a4cc77",
+            "candidate": "3fedd37a87a4cc76"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1011,
+            "mismatched": 13
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70fb",
+            "excel": "3fedd37a87a4cc77",
+            "candidate": "3fedd37a87a4cc76"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 30,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 991,
+            "mismatched": 33
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7054",
+            "excel": "3fede567cc6c4145",
+            "candidate": "3fede567cc6c4144"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 990,
+            "mismatched": 34
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7054",
+            "excel": "3fede567cc6c4145",
+            "candidate": "3fede567cc6c4144"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1020,
+            "mismatched": 4
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70b8",
+            "excel": "3fede567cc6c414b",
+            "candidate": "3fede567cc6c414a"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1020,
+            "mismatched": 4
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d70b8",
+            "excel": "3fede567cc6c414b",
+            "candidate": "3fede567cc6c414a"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 31,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 985,
+            "mismatched": 39
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fedf636bd489b9d",
+            "candidate": "3fedf636bd489b9e"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 986,
+            "mismatched": 38
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7028",
+            "excel": "3fedf636bd489b9d",
+            "candidate": "3fedf636bd489b9e"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1001,
+            "mismatched": 23
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d705b",
+            "excel": "3fedf636bd489ba1",
+            "candidate": "3fedf636bd489ba0"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1001,
+            "mismatched": 23
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d705b",
+            "excel": "3fedf636bd489ba1",
+            "candidate": "3fedf636bd489ba0"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    },
+    {
+      "count": 32,
+      "observations": 1024,
+      "candidates": [
+        {
+          "name": "correct real root, one final rounding",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 1005,
+            "mismatched": 19
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fee06015422fbfc",
+            "candidate": "3fee06015422fbfd"
+          },
+          "consistent": false
+        },
+        {
+          "name": "correct real root, extended64 then binary64",
+          "kind": "mathematical",
+          "counts": {
+            "matched": 1005,
+            "mismatched": 19
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d7026",
+            "excel": "3fee06015422fbfc",
+            "candidate": "3fee06015422fbfd"
+          },
+          "consistent": false
+        },
+        {
+          "name": "public POWER(p, binary64(1/n))",
+          "kind": "conditional helper",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) divide n))",
+          "kind": "conditional helper",
+          "association": "divide",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(binary64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "binary64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        },
+        {
+          "name": "public EXP(stored_pc64(public LN(p) reciprocal_multiply n))",
+          "kind": "conditional helper",
+          "association": "reciprocal_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1024
+          },
+          "first_contradiction": null,
+          "consistent": true
+        }
+      ]
+    }
+  ],
+  "receipts": [
+    {
+      "function": "LN",
+      "file": "ce4c74b1ad8ee54943ff1405047a39aa0a4e8f19c20627d6b616e98904bb0752.json.gz",
+      "sha256": "d0e698253220e840e3c8acdd55d28ce93e9ae9c7270067fae9a92e89cd0074cb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:25:00.154223+00:00",
+      "request_sha256": "be7f7dc888b4c66073767f02e4efd267a24cf415ef93453365bfd0a6c48bf667"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "3018ba70d93fc19f54b46081aa1fc9b315ece5dffd68f377689eb4b0234e0e33.json.gz",
+      "sha256": "9370c41904d2902216ba3316215fdee1d3fd340dc2a2daf9f50e592e383880dd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:25:10.769164+00:00",
+      "request_sha256": "bea1640e3ba2eae3caf1b06e2ff538b2afae50ba998a28e5c2eae78e244f25f9"
+    },
+    {
+      "function": "POWER",
+      "file": "7ad9cf4981bd84ef97de1097428788e9612dd61bbbbd567f979f995ce5f5b0a3.json.gz",
+      "sha256": "544795fde2bafd9fa0857c2cfd5ac875d11baa36f3880513099319b74538565a",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:25:21.198801+00:00",
+      "request_sha256": "2ee3186161c35b8da56636735eb52d5d4434252ed25bc6241e6232210e6be8ff"
+    },
+    {
+      "function": "SQRT",
+      "file": "8451b41ddf812427b2f8bf8de1e2af8e601a3202ed21fb51b36b23f9810ceb0d.json.gz",
+      "sha256": "2519168c6a9eb0511e74f5ebdf569cb65ff99df52339236ac62cee570d0ab5c1",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:25:37.556064+00:00",
+      "request_sha256": "65e80be1e9fb00dc7fe06899681cfd85c904227d6f3a7f6a109fa03943c1fe04"
+    },
+    {
+      "function": "EXP",
+      "file": "0ea1710a69225cfa3e643fab4da5f773ffeeb59610f4e07fe4331360ed7cdb55.json.gz",
+      "sha256": "3235e29db4edb75846adac1806a1cf4d3d190fa5501af2d9f0ab494b0696cd90",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:28:23.030098+00:00",
+      "request_sha256": "68384379f6dec33d985b056b97e6d44219db26b06eecf483bfd7cef421fbcbb6"
+    },
+    {
+      "function": "EXP",
+      "file": "0ea1710a69225cfa3e643fab4da5f773ffeeb59610f4e07fe4331360ed7cdb55.json.gz",
+      "sha256": "3235e29db4edb75846adac1806a1cf4d3d190fa5501af2d9f0ab494b0696cd90",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:28:23.030098+00:00",
+      "request_sha256": "68384379f6dec33d985b056b97e6d44219db26b06eecf483bfd7cef421fbcbb6"
+    },
+    {
+      "function": "EXP",
+      "file": "0ea1710a69225cfa3e643fab4da5f773ffeeb59610f4e07fe4331360ed7cdb55.json.gz",
+      "sha256": "3235e29db4edb75846adac1806a1cf4d3d190fa5501af2d9f0ab494b0696cd90",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:28:23.030098+00:00",
+      "request_sha256": "68384379f6dec33d985b056b97e6d44219db26b06eecf483bfd7cef421fbcbb6"
+    },
+    {
+      "function": "EXP",
+      "file": "0ea1710a69225cfa3e643fab4da5f773ffeeb59610f4e07fe4331360ed7cdb55.json.gz",
+      "sha256": "3235e29db4edb75846adac1806a1cf4d3d190fa5501af2d9f0ab494b0696cd90",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:28:23.030098+00:00",
+      "request_sha256": "68384379f6dec33d985b056b97e6d44219db26b06eecf483bfd7cef421fbcbb6"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "26038d8f64ea0507ca17d53eef3e810be43617dfa626befe4519814ff878c531.json.gz",
+      "sha256": "8d20e3663f95b82adb10bbde9a7fba8f701bbf2ce65055ecaa938af1432f1163",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:45.678993+00:00",
+      "request_sha256": "421c8d9bb8d6ed1c23dc18ba93bb35c51cbd56163677958d12dd32ea832c4d68"
+    },
+    {
+      "function": "POWER",
+      "file": "08d160e9fd04dc6118c8dd93e3d8e195d50ddee1f2f4e83ef67dbdb653f2c1de.json.gz",
+      "sha256": "05cef6b3eaf742a7523f9de43b5c4e83bac32baad3d878c3ec4496e023bd7896",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:51.097187+00:00",
+      "request_sha256": "dcc2449777a759cf21047a33d13279992e93ffef183d2fe89160dd5880194b97"
+    },
+    {
+      "function": "EXP",
+      "file": "f6effe72ae000998717348ac845e7dc1ac21480d8b12a64fa370802560d04cdb.json.gz",
+      "sha256": "10fa716d525dabf94012602d4962cdf9ec04a38365005dfc17716a51f9da8e97",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:00.794561+00:00",
+      "request_sha256": "a7c0f98d74da9e66c205eb2b01b2fc66158ff9d40767bb8ea933299c8d246ba3"
+    },
+    {
+      "function": "EXP",
+      "file": "f6effe72ae000998717348ac845e7dc1ac21480d8b12a64fa370802560d04cdb.json.gz",
+      "sha256": "10fa716d525dabf94012602d4962cdf9ec04a38365005dfc17716a51f9da8e97",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:00.794561+00:00",
+      "request_sha256": "a7c0f98d74da9e66c205eb2b01b2fc66158ff9d40767bb8ea933299c8d246ba3"
+    },
+    {
+      "function": "EXP",
+      "file": "23a6a3c166b845ad9eb2ae07684f5700e918c76a558908cc9661682ebb520ab4.json.gz",
+      "sha256": "0c401c4e54068ebf081cd6f871aea96760e39f90f061a59ac7990e7f3c74d630",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:07.014549+00:00",
+      "request_sha256": "0631ed9989a41dca3a39753e08c2f8f81891714b2ca480475fbe1435b8e93a24"
+    },
+    {
+      "function": "EXP",
+      "file": "23a6a3c166b845ad9eb2ae07684f5700e918c76a558908cc9661682ebb520ab4.json.gz",
+      "sha256": "0c401c4e54068ebf081cd6f871aea96760e39f90f061a59ac7990e7f3c74d630",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:07.014549+00:00",
+      "request_sha256": "0631ed9989a41dca3a39753e08c2f8f81891714b2ca480475fbe1435b8e93a24"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "097dbb5c166b406e43f9d79e5a855d0e2eade4836a309eb0076d021e716ba429.json.gz",
+      "sha256": "e98e4f2238ed9115731508bf1b776bc3f69ba6dfcfc1020550f0ca361583353f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:23.616055+00:00",
+      "request_sha256": "10de8588547e09bbbcc4d7c6c9386311d5ce5cd04bb4b7e8e135017d5efbd824"
+    },
+    {
+      "function": "POWER",
+      "file": "9b8322611f72cf1ac4dd9210477af9b80bd96d3527efb4f1b638194b6e1fc4f9.json.gz",
+      "sha256": "da0eb35aee4affad6ffaa83789cf1fc011d746e4797b679d88eca0653a487cdc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:29.182896+00:00",
+      "request_sha256": "b948b38f901e0992f040a195a19fe7058b767f457e6c97220127d54821560cda"
+    },
+    {
+      "function": "EXP",
+      "file": "0cf303e36f3145b79f396a8b469048854dea00bc0f269c7260e3740ade57b8b5.json.gz",
+      "sha256": "67ec6a42daade9e663341be212fe3ad62a4b613e51a15c4da1b15efeca12b9cb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:56.081326+00:00",
+      "request_sha256": "ebdbf58a021db6d9456b88cdb63d6b43d0c9418b4800323fc8161fc21bdbd707"
+    },
+    {
+      "function": "EXP",
+      "file": "0cf303e36f3145b79f396a8b469048854dea00bc0f269c7260e3740ade57b8b5.json.gz",
+      "sha256": "67ec6a42daade9e663341be212fe3ad62a4b613e51a15c4da1b15efeca12b9cb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:56.081326+00:00",
+      "request_sha256": "ebdbf58a021db6d9456b88cdb63d6b43d0c9418b4800323fc8161fc21bdbd707"
+    },
+    {
+      "function": "EXP",
+      "file": "0cf303e36f3145b79f396a8b469048854dea00bc0f269c7260e3740ade57b8b5.json.gz",
+      "sha256": "67ec6a42daade9e663341be212fe3ad62a4b613e51a15c4da1b15efeca12b9cb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:56.081326+00:00",
+      "request_sha256": "ebdbf58a021db6d9456b88cdb63d6b43d0c9418b4800323fc8161fc21bdbd707"
+    },
+    {
+      "function": "EXP",
+      "file": "0cf303e36f3145b79f396a8b469048854dea00bc0f269c7260e3740ade57b8b5.json.gz",
+      "sha256": "67ec6a42daade9e663341be212fe3ad62a4b613e51a15c4da1b15efeca12b9cb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:31:56.081326+00:00",
+      "request_sha256": "ebdbf58a021db6d9456b88cdb63d6b43d0c9418b4800323fc8161fc21bdbd707"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "2b0a00dc61b19376d322a8fa21ee574e54c96b226db3d493cf5ccb0f2c9de475.json.gz",
+      "sha256": "1ec046af525eb9364cd24b134e93bd786943adb61afc572d95a8545a7be7b3d1",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:07.338436+00:00",
+      "request_sha256": "275b4b99e3beb79979650f9fb5b06d94f8f6ad810b1b3646de3be9ebee203fb0"
+    },
+    {
+      "function": "POWER",
+      "file": "ed037ed18c1004fbe75e0301d09ee3b9ba7803c8251c79ec6b1ddeaaf2429339.json.gz",
+      "sha256": "f1c24bc7fe31826939f0c3d3f1a2283a1bde963324241f0cadf6cd5faa60c0c3",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:12.553532+00:00",
+      "request_sha256": "0e8281e470db76cb199cc938a604852f9847499de4d38e2867a478c9f33355dd"
+    },
+    {
+      "function": "EXP",
+      "file": "a3844bf4bc6bf3fe0908642fcee54c30260f3367f6a7a1902116c1b911b8e1ec.json.gz",
+      "sha256": "3506366ba1c1273f702cdd4546221f6ee56ea75ded218b9042eceda131813d78",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:23.986325+00:00",
+      "request_sha256": "27825c629ede1b1289f23884464ac250e49f5b053df76fdc546938d2cbd9ba0d"
+    },
+    {
+      "function": "EXP",
+      "file": "a3844bf4bc6bf3fe0908642fcee54c30260f3367f6a7a1902116c1b911b8e1ec.json.gz",
+      "sha256": "3506366ba1c1273f702cdd4546221f6ee56ea75ded218b9042eceda131813d78",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:23.986325+00:00",
+      "request_sha256": "27825c629ede1b1289f23884464ac250e49f5b053df76fdc546938d2cbd9ba0d"
+    },
+    {
+      "function": "EXP",
+      "file": "311ab83470454ce1f3fd79ce8bae28278b79aa118353ad0a7eb7dc9d4a775066.json.gz",
+      "sha256": "b95772b0709d190c8da57174510e6f2184539a2e6860a4ba3609c003f8bc13bc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:29.262049+00:00",
+      "request_sha256": "f4ef77378b5f0a6687ec50ef6ed1b16855747b311bb9d3704df1086c2c5b5158"
+    },
+    {
+      "function": "EXP",
+      "file": "311ab83470454ce1f3fd79ce8bae28278b79aa118353ad0a7eb7dc9d4a775066.json.gz",
+      "sha256": "b95772b0709d190c8da57174510e6f2184539a2e6860a4ba3609c003f8bc13bc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:29.262049+00:00",
+      "request_sha256": "f4ef77378b5f0a6687ec50ef6ed1b16855747b311bb9d3704df1086c2c5b5158"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "99d79e4a549b29c7b65fc8f29812128d1767b47c928b97846d7d5f44caf24307.json.gz",
+      "sha256": "0cbeb163771b48a3aa10005c35897e349a04e939c9aa8d04e073b30c591eddd1",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:57:32.142032+00:00",
+      "request_sha256": "601488e7220e2f529f95c20fd219756a72b6855e446b630b193e5c97dda004f6"
+    },
+    {
+      "function": "POWER",
+      "file": "c66053e535a82422c82bb290457e5c53087359c8e05c03252a554075b83b5502.json.gz",
+      "sha256": "157ae8cba3e61e53233727a98552b5890e6b6f9167eea10d5608ca723e4c84f0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:57:39.831362+00:00",
+      "request_sha256": "4c035c5b1ef739173a0df9490e50fcf688ce699cc7fae70e4222d882df9f4c6d"
+    },
+    {
+      "function": "EXP",
+      "file": "399c5f859c14b08221773ae1058ee32b9711bb9da6c8b0c193ccad9e2bdadd1f.json.gz",
+      "sha256": "3e5ef906c6efd60e9f4d367801de80718156c6910f7221b2b3c38c74e15a4ba9",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:57:46.781664+00:00",
+      "request_sha256": "44c28ce83433e62244d878e7d23b36ec1774bd9c18a436db50fcb9e799a1c955"
+    },
+    {
+      "function": "EXP",
+      "file": "399c5f859c14b08221773ae1058ee32b9711bb9da6c8b0c193ccad9e2bdadd1f.json.gz",
+      "sha256": "3e5ef906c6efd60e9f4d367801de80718156c6910f7221b2b3c38c74e15a4ba9",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:57:46.781664+00:00",
+      "request_sha256": "44c28ce83433e62244d878e7d23b36ec1774bd9c18a436db50fcb9e799a1c955"
+    },
+    {
+      "function": "EXP",
+      "file": "1cf285840dcd4ce7d1cb76eda3f8b63f947ac54c808a799ab16e16ac2503e3cb.json.gz",
+      "sha256": "77fff469b3b475cfbb86c1c59a526a4798cfc832927ffd824a107c5fec668394",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:57:55.198425+00:00",
+      "request_sha256": "5dcfe65ba590c246f9a23920f12cb8623da444559aece3927066d53c336bcc77"
+    },
+    {
+      "function": "EXP",
+      "file": "1cf285840dcd4ce7d1cb76eda3f8b63f947ac54c808a799ab16e16ac2503e3cb.json.gz",
+      "sha256": "77fff469b3b475cfbb86c1c59a526a4798cfc832927ffd824a107c5fec668394",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:57:55.198425+00:00",
+      "request_sha256": "5dcfe65ba590c246f9a23920f12cb8623da444559aece3927066d53c336bcc77"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "dfe5aa6ae021d854fafa796e7ff0b1d5ee2c8c0a9d0c5016ff794f4de8023c13.json.gz",
+      "sha256": "1750d01664cea16e546d14f38d0db8c1e634feee59c6afdc8446fc48db691e6f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:19.945414+00:00",
+      "request_sha256": "ada1c524028bf7eb0db7534e71af651d871337a3ce35604c795e70555ddc13ad"
+    },
+    {
+      "function": "POWER",
+      "file": "185bde220cd7665cd9ef76985a1755e6c4ca91f3aefea7899a92dd020ed4d30c.json.gz",
+      "sha256": "f513e47a6284c266b6afcad58dbba950aebad6b6369f8ee6a64626e7941b63fd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:33.627849+00:00",
+      "request_sha256": "b5a2fb7db558f9f77883da08831bba73e83105a4f1b74d35d0897a4a1e375bf2"
+    },
+    {
+      "function": "EXP",
+      "file": "de3dd654e28358f87eda144efd6967fa54be83f43bbbe5b7fa334fefb5b0fcc5.json.gz",
+      "sha256": "07c12bf0605979c907f68755b50ab88feaec6c282e526eac0833206a5adbce5a",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:39.225575+00:00",
+      "request_sha256": "eea5fd537fe282e2996ed876d97db86b365e3cba238e3aa71f97ca4873bdc165"
+    },
+    {
+      "function": "EXP",
+      "file": "de3dd654e28358f87eda144efd6967fa54be83f43bbbe5b7fa334fefb5b0fcc5.json.gz",
+      "sha256": "07c12bf0605979c907f68755b50ab88feaec6c282e526eac0833206a5adbce5a",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:39.225575+00:00",
+      "request_sha256": "eea5fd537fe282e2996ed876d97db86b365e3cba238e3aa71f97ca4873bdc165"
+    },
+    {
+      "function": "EXP",
+      "file": "b4cd21ee8842ff3050b1fb060b1be42b7583e0e7b45f189f6b96205a62c89f62.json.gz",
+      "sha256": "a2d8ddc855f9f163f1deb332c57ecf5ccea0eb61c1bb599dce5b8c83078fda58",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:44.721756+00:00",
+      "request_sha256": "ecb489c0b726e247594b1a8bd5a84067c07dc81a5443a72f9102b158aaccc715"
+    },
+    {
+      "function": "EXP",
+      "file": "b4cd21ee8842ff3050b1fb060b1be42b7583e0e7b45f189f6b96205a62c89f62.json.gz",
+      "sha256": "a2d8ddc855f9f163f1deb332c57ecf5ccea0eb61c1bb599dce5b8c83078fda58",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:44.721756+00:00",
+      "request_sha256": "ecb489c0b726e247594b1a8bd5a84067c07dc81a5443a72f9102b158aaccc715"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "9e2a8cb91115f7298cec145a5d56ede15a4b3dcfa963e526a16ce1af8a9f18d6.json.gz",
+      "sha256": "18929291308d524d8fe6bc9e78db34dca27e3e388fc536ac399073e6d0b3822c",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:52.480094+00:00",
+      "request_sha256": "27c61a773cab141f795c43a624b3c5ad331d95eb8e1ed85cdced1d5d2055328d"
+    },
+    {
+      "function": "POWER",
+      "file": "6399487c1a62895741a7ab1c88a3f0bbc6e7d748e0e14db760624f788b701e0d.json.gz",
+      "sha256": "818dbd89e107caa2203a2996d00a4e71da502dde516909a72b4a65029b2aab73",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:58:59.008966+00:00",
+      "request_sha256": "70ea3f9fb52667482ebad9856542f25e3595449c62ccae7eb4c01905b2c1db21"
+    },
+    {
+      "function": "EXP",
+      "file": "7fca2467dcb69991975fa03cb389221ee38f84f3fbb20f1a49667e4ee48d2006.json.gz",
+      "sha256": "2fb5f10284c95d138c7b0711bbe7f6e702f14c86d9dab04a6cb187926f5fcee5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:59:12.605680+00:00",
+      "request_sha256": "9407325bf003505d70d4f64cd738be3b067f202a387b4c7091710e6967d610c8"
+    },
+    {
+      "function": "EXP",
+      "file": "7fca2467dcb69991975fa03cb389221ee38f84f3fbb20f1a49667e4ee48d2006.json.gz",
+      "sha256": "2fb5f10284c95d138c7b0711bbe7f6e702f14c86d9dab04a6cb187926f5fcee5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:59:12.605680+00:00",
+      "request_sha256": "9407325bf003505d70d4f64cd738be3b067f202a387b4c7091710e6967d610c8"
+    },
+    {
+      "function": "EXP",
+      "file": "7fca2467dcb69991975fa03cb389221ee38f84f3fbb20f1a49667e4ee48d2006.json.gz",
+      "sha256": "2fb5f10284c95d138c7b0711bbe7f6e702f14c86d9dab04a6cb187926f5fcee5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:59:12.605680+00:00",
+      "request_sha256": "9407325bf003505d70d4f64cd738be3b067f202a387b4c7091710e6967d610c8"
+    },
+    {
+      "function": "EXP",
+      "file": "7fca2467dcb69991975fa03cb389221ee38f84f3fbb20f1a49667e4ee48d2006.json.gz",
+      "sha256": "2fb5f10284c95d138c7b0711bbe7f6e702f14c86d9dab04a6cb187926f5fcee5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:59:12.605680+00:00",
+      "request_sha256": "9407325bf003505d70d4f64cd738be3b067f202a387b4c7091710e6967d610c8"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "f1843fb26748f9ae793aff50cd23e35c25f1b5e1cf337f7fd276332f202e24e5.json.gz",
+      "sha256": "bae33547d9866c680d47011c25a24d2a872bd497f55c70e7889acd89681e4720",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:59:22.246593+00:00",
+      "request_sha256": "2e36b4d9ed3f5ce49eb3f9f8022ade85311b0aa9a028f1dce2874358704842fe"
+    },
+    {
+      "function": "POWER",
+      "file": "e40f7cf38020c49fa610da8957f2429599db54cfea2c8e97b54a6682e6e6ed96.json.gz",
+      "sha256": "4cba4710062446e37491168e6d17046535590cce8dd276b125c4ec8d0ff6cfbd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:59:31.036469+00:00",
+      "request_sha256": "42866e48708a2e7cece799defd52414e0f68e49d2b80b0363c534bfdd47e559c"
+    },
+    {
+      "function": "EXP",
+      "file": "35be26d11afa679e5e4c0a9762dbda5877b58ead278ab19596cebc4368a1a450.json.gz",
+      "sha256": "eb1c3c6348fe34ba28e5d90c05ad7cd02d5642da34e9c0c7a5545cacd477a5bd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:00:11.716601+00:00",
+      "request_sha256": "9f6a21a4c6deaaa7e6d3cbcf3b3e3f82757cc4d47428d3db1c59c441d4755cf8"
+    },
+    {
+      "function": "EXP",
+      "file": "35be26d11afa679e5e4c0a9762dbda5877b58ead278ab19596cebc4368a1a450.json.gz",
+      "sha256": "eb1c3c6348fe34ba28e5d90c05ad7cd02d5642da34e9c0c7a5545cacd477a5bd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:00:11.716601+00:00",
+      "request_sha256": "9f6a21a4c6deaaa7e6d3cbcf3b3e3f82757cc4d47428d3db1c59c441d4755cf8"
+    },
+    {
+      "function": "EXP",
+      "file": "da53d7caba113651ed17200a91def0817d02d9fd81fbb45fdb2e55e78fbea8c2.json.gz",
+      "sha256": "a29f8a7bd4be14589e083c83471a50ebcdb6d09bab40d9be94683af0b89b1b1d",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:00:18.390837+00:00",
+      "request_sha256": "46c0ca7408e45ed87ef26431c3e87e6e59b96bc83ad2c35bc935c11d7d04fcbe"
+    },
+    {
+      "function": "EXP",
+      "file": "da53d7caba113651ed17200a91def0817d02d9fd81fbb45fdb2e55e78fbea8c2.json.gz",
+      "sha256": "a29f8a7bd4be14589e083c83471a50ebcdb6d09bab40d9be94683af0b89b1b1d",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:00:18.390837+00:00",
+      "request_sha256": "46c0ca7408e45ed87ef26431c3e87e6e59b96bc83ad2c35bc935c11d7d04fcbe"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "fe9a02d986fcc878bad25857b590b041108e79b846bf1e4f7b0ba6d2e164869e.json.gz",
+      "sha256": "684b2f9ff376b9f08b49b8e42e061318ac63120f745c5cd85acb6e5d5fe13bdc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:37.944279+00:00",
+      "request_sha256": "8ca59f017c5ccdbfeec59f97da68b42796acbb4238f35480e853de5fe377a4cd"
+    },
+    {
+      "function": "POWER",
+      "file": "d52442e370509ffdc2e574046af47243b85f30f0408f57e26d2e819c8eed0b73.json.gz",
+      "sha256": "a6afc6fd08933fc3b9459040cbc7d5a7bb7d2e1d917402a3022cbf953e00e758",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:32:53.766459+00:00",
+      "request_sha256": "e80059d90794d83732da60c1ca14d9a6fd5d656756cb1861d4efeec0a81c70c7"
+    },
+    {
+      "function": "EXP",
+      "file": "cee2a1ed1f14152bafcf3cd52b5620dcd1c4f190e226645bd5099bcd04afc5cb.json.gz",
+      "sha256": "3ff3352ca846a1638bf1d399ff4cf38b02fff939206773f8eee18a4ee4cf3fd7",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:33:11.370941+00:00",
+      "request_sha256": "e88819fe5c1556f9980a7e59e1da659b21691d4672b3126d424720b26ddb99c6"
+    },
+    {
+      "function": "EXP",
+      "file": "cee2a1ed1f14152bafcf3cd52b5620dcd1c4f190e226645bd5099bcd04afc5cb.json.gz",
+      "sha256": "3ff3352ca846a1638bf1d399ff4cf38b02fff939206773f8eee18a4ee4cf3fd7",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:33:11.370941+00:00",
+      "request_sha256": "e88819fe5c1556f9980a7e59e1da659b21691d4672b3126d424720b26ddb99c6"
+    },
+    {
+      "function": "EXP",
+      "file": "ea3da818538ae582a3362d68ab2cdf2740b002803aa6ba71214e8933ac9e4e08.json.gz",
+      "sha256": "02aa866cdb158f1bcc17fb681f01b3fa83465c54a31e448ce2071da8729972e8",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:07.747383+00:00",
+      "request_sha256": "b69c0a4b670586177f3843fa465303820de759646f05e41ce8250eab9d4ddd8c"
+    },
+    {
+      "function": "EXP",
+      "file": "ea3da818538ae582a3362d68ab2cdf2740b002803aa6ba71214e8933ac9e4e08.json.gz",
+      "sha256": "02aa866cdb158f1bcc17fb681f01b3fa83465c54a31e448ce2071da8729972e8",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:07.747383+00:00",
+      "request_sha256": "b69c0a4b670586177f3843fa465303820de759646f05e41ce8250eab9d4ddd8c"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "3b7cba23384f48591b97d1a638faf39a55c801447e025adcbf9cfc9323ac3f5b.json.gz",
+      "sha256": "9d12282d57b1beba72384fcc0b2b1f834915b00beb113a1daa8c6942b6955d54",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:03:39.751870+00:00",
+      "request_sha256": "f71f29684efce39dce04395bbcabeeb8613fe035b2bf1e1d3004920c54249f1d"
+    },
+    {
+      "function": "POWER",
+      "file": "bccbb7668a0e8058eb8e9a629e3f248f9865e76996c3eb5db9edf89e0182c2ec.json.gz",
+      "sha256": "4698b96c7091d85750d845687e3f53c0247a98e67878c437e93df333ee31fd4e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:03:49.915134+00:00",
+      "request_sha256": "de3df94189834cf6e37d39c87ab5f18a14691b1e8b79651ec298ccea19ac3a69"
+    },
+    {
+      "function": "EXP",
+      "file": "0afd70373262284449e234f8db4c419127af5f3d472d0abd76fdb9dfb2b74e01.json.gz",
+      "sha256": "acc1e50a00ad6e0e69550df2176e196f221796210169e47cd122383289ab63b2",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:20.284092+00:00",
+      "request_sha256": "054cb5b0affc6a5d504ab2e0707a13e74114a7150cf6a8d6fd0d22a79fef8687"
+    },
+    {
+      "function": "EXP",
+      "file": "0afd70373262284449e234f8db4c419127af5f3d472d0abd76fdb9dfb2b74e01.json.gz",
+      "sha256": "acc1e50a00ad6e0e69550df2176e196f221796210169e47cd122383289ab63b2",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:20.284092+00:00",
+      "request_sha256": "054cb5b0affc6a5d504ab2e0707a13e74114a7150cf6a8d6fd0d22a79fef8687"
+    },
+    {
+      "function": "EXP",
+      "file": "61d2d070935b9b53ea92705888a6159e79fd292ddab2a89cbdadf526ea2ef00b.json.gz",
+      "sha256": "6fd76b8f616e92ed7305c25f06eb796fa994d8da0bda5474b83ea0a9f5f8abf0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:39.627747+00:00",
+      "request_sha256": "031e80a6ea6197fe926a3052ca0647e96f58f7dc4e002e8db766387430718198"
+    },
+    {
+      "function": "EXP",
+      "file": "61d2d070935b9b53ea92705888a6159e79fd292ddab2a89cbdadf526ea2ef00b.json.gz",
+      "sha256": "6fd76b8f616e92ed7305c25f06eb796fa994d8da0bda5474b83ea0a9f5f8abf0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:39.627747+00:00",
+      "request_sha256": "031e80a6ea6197fe926a3052ca0647e96f58f7dc4e002e8db766387430718198"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "ba8105fce8b59c2ab14ae47b9b3208f088c535778aaeef5471112379727c204f.json.gz",
+      "sha256": "4e3f1be606d8e9c5ecd52a73dcbd3ab87aef996e86310e714c0ddaa3acb7e6d0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:50.727552+00:00",
+      "request_sha256": "701f5abaa2bd203e669a034513814667cfca9d4db4321f3f32ca7a5380300ee7"
+    },
+    {
+      "function": "POWER",
+      "file": "38219bcf9c80a24ba596caf45007643b293b2647bc529fc67de82d449bd7c9be.json.gz",
+      "sha256": "0dddcbd2286a0381e2794b20fa638999e520cdfa612b6974388e441da6acec33",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:05:12.545444+00:00",
+      "request_sha256": "cc89d3111b3704fb99b8dcfc26221067d571f4c854a09473aefc6bd9695ad63f"
+    },
+    {
+      "function": "EXP",
+      "file": "bddbf661c6ff196529047183c87a742b465267102cabfbdf94a28b7b09cd4c4c.json.gz",
+      "sha256": "6f733038bc5e54934cbacedc812323f3d52ef555e0219410f8e7d7b8a1058734",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:23.928625+00:00",
+      "request_sha256": "363df923b502f225118c6960f08498fb8d04be9a7e140ca5e6445b1f11159a2f"
+    },
+    {
+      "function": "EXP",
+      "file": "bddbf661c6ff196529047183c87a742b465267102cabfbdf94a28b7b09cd4c4c.json.gz",
+      "sha256": "6f733038bc5e54934cbacedc812323f3d52ef555e0219410f8e7d7b8a1058734",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:23.928625+00:00",
+      "request_sha256": "363df923b502f225118c6960f08498fb8d04be9a7e140ca5e6445b1f11159a2f"
+    },
+    {
+      "function": "EXP",
+      "file": "ebe96af2ab6e0b5550aa864b7ccf56dc06f82ddff1c88ab89287f5a7a8fa23a3.json.gz",
+      "sha256": "d5023d018b5520b287201c8e4e88dba3685a6ba8e5c87929985349a943c0a9fc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:43.755920+00:00",
+      "request_sha256": "06a33d3ddf578ebaf0619607a0b5bbacd4db68594a3c6559c9e29c5d27fee410"
+    },
+    {
+      "function": "EXP",
+      "file": "ebe96af2ab6e0b5550aa864b7ccf56dc06f82ddff1c88ab89287f5a7a8fa23a3.json.gz",
+      "sha256": "d5023d018b5520b287201c8e4e88dba3685a6ba8e5c87929985349a943c0a9fc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:43.755920+00:00",
+      "request_sha256": "06a33d3ddf578ebaf0619607a0b5bbacd4db68594a3c6559c9e29c5d27fee410"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "2b52b93edf6959d27cb30a0f922039e3aa285544f4c0b0b231940ada994faaa5.json.gz",
+      "sha256": "e7e6dcfefdfeac81046d5d20ddeaf8395e18044b10bc8237ac8c701b05263714",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:52.607687+00:00",
+      "request_sha256": "572522b4b78334107d02d62202a3e7dba125473cfa47db8718403646976aa4e3"
+    },
+    {
+      "function": "POWER",
+      "file": "ab6dd7fa035473027b2674e75604b788e92222837bfbac4a258eab1720ee65b9.json.gz",
+      "sha256": "d88b73a8b7ad622522d30748d6939538d861f39546584fdb587f872f04be174f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:58.951637+00:00",
+      "request_sha256": "1098529139bc402b929d0ced666e20a858061737e229e66b2edcc4e2c375dc89"
+    },
+    {
+      "function": "EXP",
+      "file": "76fdb56cbd4cb140c6b755ac21a59dd3ff137536dbc2c9a96fb1b505e9158f4c.json.gz",
+      "sha256": "44d3fd1bb634fcd3eb6d6aa3618a6f5704a7d8662e6dc023063b0ccca26bb7a1",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:08:53.933644+00:00",
+      "request_sha256": "0432dde4d0f114d40c3552fd6d8e509c6526279ec6b16efb36ec945f0f0bb59f"
+    },
+    {
+      "function": "EXP",
+      "file": "76fdb56cbd4cb140c6b755ac21a59dd3ff137536dbc2c9a96fb1b505e9158f4c.json.gz",
+      "sha256": "44d3fd1bb634fcd3eb6d6aa3618a6f5704a7d8662e6dc023063b0ccca26bb7a1",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:08:53.933644+00:00",
+      "request_sha256": "0432dde4d0f114d40c3552fd6d8e509c6526279ec6b16efb36ec945f0f0bb59f"
+    },
+    {
+      "function": "EXP",
+      "file": "620b14b882ccd54e066a65acc5c6b84e267127d86c01d7b26b5db8a283cd83f0.json.gz",
+      "sha256": "17f1060a8e8bafb8e39deff4a51abc1fe8378fd47d690b8e1b3def5b188c99eb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:01.053857+00:00",
+      "request_sha256": "01e25a8e99d7eb78f508041cc5d4161530cf0504d65af59ab60593dd47e2871e"
+    },
+    {
+      "function": "EXP",
+      "file": "620b14b882ccd54e066a65acc5c6b84e267127d86c01d7b26b5db8a283cd83f0.json.gz",
+      "sha256": "17f1060a8e8bafb8e39deff4a51abc1fe8378fd47d690b8e1b3def5b188c99eb",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:01.053857+00:00",
+      "request_sha256": "01e25a8e99d7eb78f508041cc5d4161530cf0504d65af59ab60593dd47e2871e"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "13cdd5408dea39782fc31a3ca3c6f6f111e1c3b68ace42761b7b020e9be988bb.json.gz",
+      "sha256": "24626cbace23cae67263875ed4c99e9b6e59ad706fe22db0ff170279bb408b99",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:15.384730+00:00",
+      "request_sha256": "8406470b1e5ec5bb350f56b00818ae148b645f86a49302df7fa413f55998170e"
+    },
+    {
+      "function": "POWER",
+      "file": "5854dac351514a3a63394032c7ef31f4cde959102ab1d9d9a9295045fd9f8cd4.json.gz",
+      "sha256": "83c24c847cea8fa37d694c3c9a28af251f6a5025865fdd59b17c8b986cf4bc7b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:17.872175+00:00",
+      "request_sha256": "9908a0cb56599851a0a349cdcff6587cf62d527c499e9695d654439c5b2ecaab"
+    },
+    {
+      "function": "EXP",
+      "file": "c0bdf11c0ef2b3b72a6e59122bc4906c37215b27a595497ec02fd8d54eccbf0a.json.gz",
+      "sha256": "ef7a66ec6a989c10d8d7d261482de4e7b3ad6c9942918d849041c6465f7520f5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:28.370184+00:00",
+      "request_sha256": "9953833da6715dc3ff190f67f422b418186decacf5f0088dddf1c33cdb9909db"
+    },
+    {
+      "function": "EXP",
+      "file": "c0bdf11c0ef2b3b72a6e59122bc4906c37215b27a595497ec02fd8d54eccbf0a.json.gz",
+      "sha256": "ef7a66ec6a989c10d8d7d261482de4e7b3ad6c9942918d849041c6465f7520f5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:28.370184+00:00",
+      "request_sha256": "9953833da6715dc3ff190f67f422b418186decacf5f0088dddf1c33cdb9909db"
+    },
+    {
+      "function": "EXP",
+      "file": "77c7c2786888ca0b26b1adc978b469e3720dc5488f7d53021d84ccc84e3c030a.json.gz",
+      "sha256": "99e457142d0769ae3b57c5054a9512517b3af128ccbf5e2d7a2c434c0b905a07",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:34.828540+00:00",
+      "request_sha256": "4e85c52aa5ae5f60c68a44f400d49a6df9866cc4159c67800116987e960bcfb1"
+    },
+    {
+      "function": "EXP",
+      "file": "77c7c2786888ca0b26b1adc978b469e3720dc5488f7d53021d84ccc84e3c030a.json.gz",
+      "sha256": "99e457142d0769ae3b57c5054a9512517b3af128ccbf5e2d7a2c434c0b905a07",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:34.828540+00:00",
+      "request_sha256": "4e85c52aa5ae5f60c68a44f400d49a6df9866cc4159c67800116987e960bcfb1"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "b8588e95e7b9759407273dd1092979c60a52e49794ebd5ec46beec8c028b7058.json.gz",
+      "sha256": "f6b92f1b61f3470de0dae67731427a5b5287d5222cbb5bf7a3141f984fc61f76",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:48.550075+00:00",
+      "request_sha256": "6393d2c9c82f4da3854f2f16b1051d985e12569790af70605f4afd8d8c61cc25"
+    },
+    {
+      "function": "POWER",
+      "file": "de839065107b6eac97b6c129bb815ecaf74cefca20367e788c8bebf75707a22d.json.gz",
+      "sha256": "10610dc4bb8a079fbf37e8f37b640a2f57d45050bbccecf4ce1fa40bb210269c",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:59.677164+00:00",
+      "request_sha256": "9cb6d3140033c655f6ec719eeddda44866ddaaee563af356bab1e0dbece4d78c"
+    },
+    {
+      "function": "EXP",
+      "file": "ac84d1f085b57d6241c4015277ac4cfef086ffa487d65846cb4c19199f8ff0bb.json.gz",
+      "sha256": "d46bfe39618d08ebafdfb0d1fa260fd5a893b9a5dd7ca8416b195826c51275ae",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:14:37.232809+00:00",
+      "request_sha256": "5c74e2a0816288927ccfe8013a165c8c52bb4435ca0c4a9ba63c309373a06271"
+    },
+    {
+      "function": "EXP",
+      "file": "ac84d1f085b57d6241c4015277ac4cfef086ffa487d65846cb4c19199f8ff0bb.json.gz",
+      "sha256": "d46bfe39618d08ebafdfb0d1fa260fd5a893b9a5dd7ca8416b195826c51275ae",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:14:37.232809+00:00",
+      "request_sha256": "5c74e2a0816288927ccfe8013a165c8c52bb4435ca0c4a9ba63c309373a06271"
+    },
+    {
+      "function": "EXP",
+      "file": "739679adfe0601268625a964e9ff8524c3446f06b6e2088ae0dfbd18c10f6856.json.gz",
+      "sha256": "ce85c5c3c5d5cfd181fa78a774680c0a7a2dacaec265bad05bb3162558bbbaa0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:14:43.157978+00:00",
+      "request_sha256": "a7cf0f568523e754cf64377d7ceaf2df966e57d0d0dcfd4c141333b0f0745921"
+    },
+    {
+      "function": "EXP",
+      "file": "739679adfe0601268625a964e9ff8524c3446f06b6e2088ae0dfbd18c10f6856.json.gz",
+      "sha256": "ce85c5c3c5d5cfd181fa78a774680c0a7a2dacaec265bad05bb3162558bbbaa0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:14:43.157978+00:00",
+      "request_sha256": "a7cf0f568523e754cf64377d7ceaf2df966e57d0d0dcfd4c141333b0f0745921"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "96e97a77726aba405e9343f1e953c6fc4c4cd2be0f3d78af62af68d94bdc71a0.json.gz",
+      "sha256": "214ed9e98a496ee076d93e87439f1542d84a873e53c8f117e9c15d3047a35c6e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:14:53.560036+00:00",
+      "request_sha256": "348d6468382a6051893f0da35d7225686802b1cbb8a6a03519d49b075aa506be"
+    },
+    {
+      "function": "POWER",
+      "file": "823b66b0f1f98d9047b817cde770ae5a7507cfdca665004d9160fa7f8409d151.json.gz",
+      "sha256": "6216472c3585642ca31d945b336e0187256a979b5f78751e9743a4e03d607610",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:14:58.966473+00:00",
+      "request_sha256": "8bce162c85766ce92e77c7eb16d2478acac43b263a64eacf98f1c49f7808fbf4"
+    },
+    {
+      "function": "EXP",
+      "file": "8631576e8bb3584f0b2e453ac2573364ce2a5bd1f9776e27db1797ce3a898065.json.gz",
+      "sha256": "16b82f41977512580de57283e2cfda9c985cd3fc1a32979bffbfe4dd6167b687",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:15:08.617535+00:00",
+      "request_sha256": "bce0cca4e5f84076e51952b63bac878d0526508a1004b246efbaf72f797141b9"
+    },
+    {
+      "function": "EXP",
+      "file": "8631576e8bb3584f0b2e453ac2573364ce2a5bd1f9776e27db1797ce3a898065.json.gz",
+      "sha256": "16b82f41977512580de57283e2cfda9c985cd3fc1a32979bffbfe4dd6167b687",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:15:08.617535+00:00",
+      "request_sha256": "bce0cca4e5f84076e51952b63bac878d0526508a1004b246efbaf72f797141b9"
+    },
+    {
+      "function": "EXP",
+      "file": "8631576e8bb3584f0b2e453ac2573364ce2a5bd1f9776e27db1797ce3a898065.json.gz",
+      "sha256": "16b82f41977512580de57283e2cfda9c985cd3fc1a32979bffbfe4dd6167b687",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:15:08.617535+00:00",
+      "request_sha256": "bce0cca4e5f84076e51952b63bac878d0526508a1004b246efbaf72f797141b9"
+    },
+    {
+      "function": "EXP",
+      "file": "8631576e8bb3584f0b2e453ac2573364ce2a5bd1f9776e27db1797ce3a898065.json.gz",
+      "sha256": "16b82f41977512580de57283e2cfda9c985cd3fc1a32979bffbfe4dd6167b687",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:15:08.617535+00:00",
+      "request_sha256": "bce0cca4e5f84076e51952b63bac878d0526508a1004b246efbaf72f797141b9"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "c733c61877bc990f1fde1deb8ac9f224ae5466a48b8760f8d6371b062388d14b.json.gz",
+      "sha256": "eb2647894c57b6eb958920b47c17aed563a2dd7ec2181141755526b734b5bfc1",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:49:01.303489+00:00",
+      "request_sha256": "806278754cb790672e55c6647bdb8f2217a9f73fee13de2af060ee4364580987"
+    },
+    {
+      "function": "POWER",
+      "file": "4b978031cfc178247afd201d78602abfa4f99d0d289662ac47d5929bfcd632f8.json.gz",
+      "sha256": "4c0ec2898499ec4bf5bf34648a90993f57593a83b565472ba2cd439c754b7bed",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:51:08.372342+00:00",
+      "request_sha256": "500098b3810308bdb765a04a0db0b0e86a3e38b3c189f929ee7f7ab7263f4c93"
+    },
+    {
+      "function": "EXP",
+      "file": "53e3a3385cf36f96d41b41a53e756a15cf9e3cb98ee9500684f44f008cf5e65a.json.gz",
+      "sha256": "88bc2ecdb85e68efe4736ae1d5cc824e4571df1fba0bdf774ec0d340cc89e0a0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:52:11.748975+00:00",
+      "request_sha256": "1b6c90cb8da176f20b98e60355b701a3e9106d84ce033b23ef065e00f113c362"
+    },
+    {
+      "function": "EXP",
+      "file": "53e3a3385cf36f96d41b41a53e756a15cf9e3cb98ee9500684f44f008cf5e65a.json.gz",
+      "sha256": "88bc2ecdb85e68efe4736ae1d5cc824e4571df1fba0bdf774ec0d340cc89e0a0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:52:11.748975+00:00",
+      "request_sha256": "1b6c90cb8da176f20b98e60355b701a3e9106d84ce033b23ef065e00f113c362"
+    },
+    {
+      "function": "EXP",
+      "file": "effa13f637e1b5454d72e5f6fc6176b468ed796e3de0e7232686caec9c13c51c.json.gz",
+      "sha256": "7ef29eb1254f0790155a79e5de30ab5aa857e01325999bbbfa31f340643a727c",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:52:17.864127+00:00",
+      "request_sha256": "23d03fab87d7c8e5a18412f0c5265f3755877a62b1d2c2c7d49c08844c6c150c"
+    },
+    {
+      "function": "EXP",
+      "file": "effa13f637e1b5454d72e5f6fc6176b468ed796e3de0e7232686caec9c13c51c.json.gz",
+      "sha256": "7ef29eb1254f0790155a79e5de30ab5aa857e01325999bbbfa31f340643a727c",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:52:17.864127+00:00",
+      "request_sha256": "23d03fab87d7c8e5a18412f0c5265f3755877a62b1d2c2c7d49c08844c6c150c"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "2d86cf00fc21fd27ee477a95479ee0fa6201d13968fa520a0d3bf787461b423d.json.gz",
+      "sha256": "6b3d60f60dad1ad1cb8d5ce9fc77c41be97d6adc9a923f2f5d4c7c00af36df09",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:18:02.956838+00:00",
+      "request_sha256": "bf853708a97b7ea20752f86df54832267e6e25baeadaa43aa66096764d0b9041"
+    },
+    {
+      "function": "POWER",
+      "file": "636980136cd2f8224a3d303945355a73a4b88078ea02d4c02a340c7a87e6082f.json.gz",
+      "sha256": "c1d1857d588585e959e802c9afb58039893cefd150347983671e8da34644d20b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:22:40.446827+00:00",
+      "request_sha256": "aed78dbeb47c5127a889010a745adc8828aa181263bc5ef432218d6f8cac21c4"
+    },
+    {
+      "function": "EXP",
+      "file": "b9f19c3a18058e377818cb8387eaf24e7710bc5e9fc00e4163aaf32441b06c4b.json.gz",
+      "sha256": "c026dc221ce201a25023d7570db2f4b4d16a0225fddcc19c5283da8b2be70a16",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:08.846078+00:00",
+      "request_sha256": "53c632da103ad232685f851afff4d14139bbf470edee0c1d60e85b2cd9a67dfd"
+    },
+    {
+      "function": "EXP",
+      "file": "b9f19c3a18058e377818cb8387eaf24e7710bc5e9fc00e4163aaf32441b06c4b.json.gz",
+      "sha256": "c026dc221ce201a25023d7570db2f4b4d16a0225fddcc19c5283da8b2be70a16",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:08.846078+00:00",
+      "request_sha256": "53c632da103ad232685f851afff4d14139bbf470edee0c1d60e85b2cd9a67dfd"
+    },
+    {
+      "function": "EXP",
+      "file": "9d2fb1612806421833ac56c84de941366953ee79444ffbb633e36cba560c960f.json.gz",
+      "sha256": "254d177ff60052b8167b54e9eccede14dbad2f81262e225155d4e5650756fc68",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:15.220809+00:00",
+      "request_sha256": "bb54bed62c14a787237b515544c20834c181b9cc5345d3d246ffc693f7e7f181"
+    },
+    {
+      "function": "EXP",
+      "file": "9d2fb1612806421833ac56c84de941366953ee79444ffbb633e36cba560c960f.json.gz",
+      "sha256": "254d177ff60052b8167b54e9eccede14dbad2f81262e225155d4e5650756fc68",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:15.220809+00:00",
+      "request_sha256": "bb54bed62c14a787237b515544c20834c181b9cc5345d3d246ffc693f7e7f181"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "52f9d80b814b5e0cb11e88cfa2113d245033e9a54c2df457f0934555e072a519.json.gz",
+      "sha256": "467e50042c863d209a0ada11ddeec2e68ef0f02c4f35d3775dc4cdaf24b0a0b4",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:39.453735+00:00",
+      "request_sha256": "0a56a4f91e5e2fb6d19f61f5907c2ae71543b8e80b207596ad4b489993036727"
+    },
+    {
+      "function": "POWER",
+      "file": "fb02bf10a0b4a1ba59b7a97c7018623775b972c2e738394de1ce2bfe993c2f23.json.gz",
+      "sha256": "87a5043237ce7d05bcbcbd2751e4c873a303c81394c024084e546f3b66e5a136",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:47.580789+00:00",
+      "request_sha256": "0a68da41d238f4453e41d3fbe0e12452377165cca364807a16f446ec1949899c"
+    },
+    {
+      "function": "EXP",
+      "file": "d3e647796024d3f5fa2d98883c5e10588d9abb22cda94cb195b07a2dec2cc6c3.json.gz",
+      "sha256": "79a282d0281248f48fa08415bfd34405fdd76f6adec44550c4190ba3c4d70330",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:56.693260+00:00",
+      "request_sha256": "11afa96de01e0b5d2defd9513c02590c9848e657acb9590d6bc69f8dc92c3b5c"
+    },
+    {
+      "function": "EXP",
+      "file": "d3e647796024d3f5fa2d98883c5e10588d9abb22cda94cb195b07a2dec2cc6c3.json.gz",
+      "sha256": "79a282d0281248f48fa08415bfd34405fdd76f6adec44550c4190ba3c4d70330",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:56.693260+00:00",
+      "request_sha256": "11afa96de01e0b5d2defd9513c02590c9848e657acb9590d6bc69f8dc92c3b5c"
+    },
+    {
+      "function": "EXP",
+      "file": "bbfdf36281bd5c53c042c6d6b1645e81b51b582a71eb4946bcd1abfddc5318c2.json.gz",
+      "sha256": "f56ce69089767bddf349e54227f9fdc5a2249a84a0ed40347305869c6a4e46fd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:05.892080+00:00",
+      "request_sha256": "285c2a33828a83b2a1e5bd003f4d55ea3ca341f01c41cef83a325c1fb7558f59"
+    },
+    {
+      "function": "EXP",
+      "file": "bbfdf36281bd5c53c042c6d6b1645e81b51b582a71eb4946bcd1abfddc5318c2.json.gz",
+      "sha256": "f56ce69089767bddf349e54227f9fdc5a2249a84a0ed40347305869c6a4e46fd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:05.892080+00:00",
+      "request_sha256": "285c2a33828a83b2a1e5bd003f4d55ea3ca341f01c41cef83a325c1fb7558f59"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "6faa4e545f59fec3dcd534bbec08f6f407ad031957543c11ce92419e43af3a23.json.gz",
+      "sha256": "01cf1e4c1e95dcc34acfc195243e09e321a4f799fd6a22531a27bc8facab04fd",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:16.721127+00:00",
+      "request_sha256": "5a13079181cd081376ef22de1aa153ebc14670b64ae34b99fb661f445ee0b362"
+    },
+    {
+      "function": "POWER",
+      "file": "3886af00133a7e0a3b6910702fc28033edbbeef7beb45ded63e62dfa710f14b6.json.gz",
+      "sha256": "b64d56acabd2a0347459f0abb7850cc11185de2172531ab2b6e4bdf589aefe3a",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:22.366799+00:00",
+      "request_sha256": "e67e2ce26862009d2593c091e2e16162d0edbae40fe2db8600f4471ea87bd55c"
+    },
+    {
+      "function": "EXP",
+      "file": "08d41dda6ce964f1655fa62987b5fd767454434a0eb61837965d5d5340c810bf.json.gz",
+      "sha256": "2b504d734ee763d1477776fee5b6177e8583cf690ab39836f452dca45c81cdda",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:59.150462+00:00",
+      "request_sha256": "9b9d3f17698c0542f4d092f9defc210ea5eb54fba0790f1a50fa8052253a7a40"
+    },
+    {
+      "function": "EXP",
+      "file": "08d41dda6ce964f1655fa62987b5fd767454434a0eb61837965d5d5340c810bf.json.gz",
+      "sha256": "2b504d734ee763d1477776fee5b6177e8583cf690ab39836f452dca45c81cdda",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:59.150462+00:00",
+      "request_sha256": "9b9d3f17698c0542f4d092f9defc210ea5eb54fba0790f1a50fa8052253a7a40"
+    },
+    {
+      "function": "EXP",
+      "file": "f5cdc1e20605a883fa61c6c50348e8c3972df3f82a30950d8a56d71c8ca74c39.json.gz",
+      "sha256": "fac0e8ae994b15eef56478cc43e31c752a4142563bd91b0ac2b1368835d3f12b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:04.662370+00:00",
+      "request_sha256": "9633a56e21ca8a254aef18e19b0cbca1a7063e80ad109ca7bb6b28ab2642b7a0"
+    },
+    {
+      "function": "EXP",
+      "file": "f5cdc1e20605a883fa61c6c50348e8c3972df3f82a30950d8a56d71c8ca74c39.json.gz",
+      "sha256": "fac0e8ae994b15eef56478cc43e31c752a4142563bd91b0ac2b1368835d3f12b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:04.662370+00:00",
+      "request_sha256": "9633a56e21ca8a254aef18e19b0cbca1a7063e80ad109ca7bb6b28ab2642b7a0"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "8cc776fc315f7778e2ea422277b84efe80313cc238bb151467d9d19c2734c1ee.json.gz",
+      "sha256": "a28a8be9ca90795a749f22354fdaa9786e2923b76a956e85de0450bfd1a37c28",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:16.944562+00:00",
+      "request_sha256": "8e7024bd9b2d7d48bb561b4f9a21753b731e8064c5d29cca065312e0293ea31c"
+    },
+    {
+      "function": "POWER",
+      "file": "debd940e3c703e63e2f46a2cf56171bbd41a86d6ec0ec6871586fcb3fd111c4e.json.gz",
+      "sha256": "cdf40eaf612c17c575f3077ea68d84bfdae6b5870d41cfee5d61446645be74b6",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:31.478805+00:00",
+      "request_sha256": "8b9bc4783fddea4d4992f5feaee0ca7e79a352f1280e6e7682b209bea279cc11"
+    },
+    {
+      "function": "EXP",
+      "file": "b967e7e5b0444cb8c55d5ef5c8f467e2d0315481e035ddf2b8b36191abf7e9d9.json.gz",
+      "sha256": "c454d79e5bbd1ddbd9b99ace9bd6b51183b3dc47fb9859b2b7bfb667bca45545",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:01.559867+00:00",
+      "request_sha256": "73194be0f1dc6b91bd0ff4af9f48bd1ea6ca83fab9c01e1f9bc22c1594d7c448"
+    },
+    {
+      "function": "EXP",
+      "file": "b967e7e5b0444cb8c55d5ef5c8f467e2d0315481e035ddf2b8b36191abf7e9d9.json.gz",
+      "sha256": "c454d79e5bbd1ddbd9b99ace9bd6b51183b3dc47fb9859b2b7bfb667bca45545",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:01.559867+00:00",
+      "request_sha256": "73194be0f1dc6b91bd0ff4af9f48bd1ea6ca83fab9c01e1f9bc22c1594d7c448"
+    },
+    {
+      "function": "EXP",
+      "file": "94dfbc67f1c9dbd8cf4cf77d55ff6d4a687286070b5e19d7622392b1f3d3c092.json.gz",
+      "sha256": "253f4f987f7c9df422d10f2f96416fae199467086d3d076b5b8e9c744fb77509",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:07.043595+00:00",
+      "request_sha256": "d947e99959854b7810382bc203b3acbc2bba3fa2c40aa04454e89a9598a92785"
+    },
+    {
+      "function": "EXP",
+      "file": "94dfbc67f1c9dbd8cf4cf77d55ff6d4a687286070b5e19d7622392b1f3d3c092.json.gz",
+      "sha256": "253f4f987f7c9df422d10f2f96416fae199467086d3d076b5b8e9c744fb77509",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:07.043595+00:00",
+      "request_sha256": "d947e99959854b7810382bc203b3acbc2bba3fa2c40aa04454e89a9598a92785"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "1f957411256e31953d6f674d30e02e1e9ea58c553c47baf18e7ebfd4e86c0b89.json.gz",
+      "sha256": "4d9f6f2c4bd6275afaa5a2324cbafefb02bb256acc24e628bd353dee7946cbda",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:21.370904+00:00",
+      "request_sha256": "e7193ad21c920835bafb04375ec38f8c4330259739e9ed63b5bdea363858373c"
+    },
+    {
+      "function": "POWER",
+      "file": "3cea642ac116265b940cfcdbc26ace80dc4a8b9063e68ec8256515ade3c05597.json.gz",
+      "sha256": "b411125beb775f18895ddf9f958282f3e9f2fbc769f5bbe756e9152ce0db5c54",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:29.771810+00:00",
+      "request_sha256": "854d1d8b3630f42ef67dc6c42b898e2083a4e916ac8676bf9f6ec3b79557b4b8"
+    },
+    {
+      "function": "EXP",
+      "file": "4b374cfc261890c6343b3647c87ff04ac01ba28af1a43a6982bd4be714f299f8.json.gz",
+      "sha256": "df76f4a6f2d4cea0264c6925ac280ce45df236c7084af451d44e274e346809cc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:35.374643+00:00",
+      "request_sha256": "802a457e6df391189073887495d4b96fbbc5b2b25d826527b7940d12c7ef6b5b"
+    },
+    {
+      "function": "EXP",
+      "file": "4b374cfc261890c6343b3647c87ff04ac01ba28af1a43a6982bd4be714f299f8.json.gz",
+      "sha256": "df76f4a6f2d4cea0264c6925ac280ce45df236c7084af451d44e274e346809cc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:35.374643+00:00",
+      "request_sha256": "802a457e6df391189073887495d4b96fbbc5b2b25d826527b7940d12c7ef6b5b"
+    },
+    {
+      "function": "EXP",
+      "file": "16f20803436e7677e91d6d9f92f6d4d47f377afcf65bb1da1ff838f3ff05dcc1.json.gz",
+      "sha256": "f3541f14d46e4645a6208ad311d32a87191d9ccb1561b705838b3618c86d075f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:40.156641+00:00",
+      "request_sha256": "96993424205e962b1fcfb09cfdf8b6a302d056165620b8df1d7a12a393dc4bf5"
+    },
+    {
+      "function": "EXP",
+      "file": "16f20803436e7677e91d6d9f92f6d4d47f377afcf65bb1da1ff838f3ff05dcc1.json.gz",
+      "sha256": "f3541f14d46e4645a6208ad311d32a87191d9ccb1561b705838b3618c86d075f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:40.156641+00:00",
+      "request_sha256": "96993424205e962b1fcfb09cfdf8b6a302d056165620b8df1d7a12a393dc4bf5"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "10c6d1ee5ddfea44b8eeded5dbf7c9cca1c586964a605f7921e64ff10c909cb6.json.gz",
+      "sha256": "080e080b76abbb6c8517848269440862ca1f2ad1db94fb34130b80af6f343f3e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:50.508610+00:00",
+      "request_sha256": "27105f27dc46e5f1bff9e4163ff35a0e7faa67365fbb940814eba6a7c2d8398c"
+    },
+    {
+      "function": "POWER",
+      "file": "3260c6d4c9617be4dd019816244fd73d1da175612139c68e558c473719f0da2e.json.gz",
+      "sha256": "87741f889f0f0b7edd2565739365835b0d9f6dc9c621e148d08272880b10ab45",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:30:55.805224+00:00",
+      "request_sha256": "9e07d6dd96223fecfe15b2da95e22023d961a9d26419174c1c0470ac5b947772"
+    },
+    {
+      "function": "EXP",
+      "file": "ef94a2b6caa794d441e780cc0863994eb06aa7d5b814d64f0734db5d8438fb81.json.gz",
+      "sha256": "3ba5d0c8e73476951990563df16c0a8e4d2c3b397c7aae9ccb55b61a53bb1b6b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:00.630555+00:00",
+      "request_sha256": "e246dce021dbac24cb80f50989fab775ec37f90d69708248ecdb47e1d8a95e22"
+    },
+    {
+      "function": "EXP",
+      "file": "ef94a2b6caa794d441e780cc0863994eb06aa7d5b814d64f0734db5d8438fb81.json.gz",
+      "sha256": "3ba5d0c8e73476951990563df16c0a8e4d2c3b397c7aae9ccb55b61a53bb1b6b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:00.630555+00:00",
+      "request_sha256": "e246dce021dbac24cb80f50989fab775ec37f90d69708248ecdb47e1d8a95e22"
+    },
+    {
+      "function": "EXP",
+      "file": "5164a27a6d466554c682f5224f4a3b849277acebe277da8a876bde7d64e3e988.json.gz",
+      "sha256": "e9d2097f5452f978e18e70741ddd82541394a971b87aa3271109eb51d6ce3265",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:04.913372+00:00",
+      "request_sha256": "235b0bbc6aca5121d5d392df6052b09f4e74d1837511efab2d878e759bab82f3"
+    },
+    {
+      "function": "EXP",
+      "file": "5164a27a6d466554c682f5224f4a3b849277acebe277da8a876bde7d64e3e988.json.gz",
+      "sha256": "e9d2097f5452f978e18e70741ddd82541394a971b87aa3271109eb51d6ce3265",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:04.913372+00:00",
+      "request_sha256": "235b0bbc6aca5121d5d392df6052b09f4e74d1837511efab2d878e759bab82f3"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "5629b51e8d6518f8e532f944cc82ea8b65f2fea29e1bf1a3406282f000f6aae9.json.gz",
+      "sha256": "d26e7f46bbec0c90f3b37b7e67a7bfb8e683dd9854c037088340c3e043580398",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:20.848251+00:00",
+      "request_sha256": "de089a57bd3532f97ab26ad020778aee98b69ffe948316dc3707736593495c01"
+    },
+    {
+      "function": "POWER",
+      "file": "64e295d2045c0d743b0da9c67921608811578ab09da5758d60a63cc85d65b5fd.json.gz",
+      "sha256": "5bbf58cb396aa2f1a54f385d3db38c543ebe099c0d142a6a2568deb9392b2d94",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:26.311156+00:00",
+      "request_sha256": "a4febbfa25a636ed7caa654897f919ac2869772819caf3be2880a721bfe8f6c9"
+    },
+    {
+      "function": "EXP",
+      "file": "d30aec05fa8258a28a78ebc3a4aea17fd4c3053505cf44f63d43a411ce60f5dc.json.gz",
+      "sha256": "457eb5ab994a2a7c45d8a4960c282678d05a1019cf4c534bcc9169f7a10eb88e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:31.147257+00:00",
+      "request_sha256": "80180178f4362750420a950bd54c9632628f5b33b8efb1a23ced705662eb79ee"
+    },
+    {
+      "function": "EXP",
+      "file": "d30aec05fa8258a28a78ebc3a4aea17fd4c3053505cf44f63d43a411ce60f5dc.json.gz",
+      "sha256": "457eb5ab994a2a7c45d8a4960c282678d05a1019cf4c534bcc9169f7a10eb88e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:31.147257+00:00",
+      "request_sha256": "80180178f4362750420a950bd54c9632628f5b33b8efb1a23ced705662eb79ee"
+    },
+    {
+      "function": "EXP",
+      "file": "fd81f4d8f21aeac43316ebab61f5e1c48c48ed3564a79412c484a49d57fea523.json.gz",
+      "sha256": "6cc3f985b556d70cb3975e96ac79f7a2e7c3136966c1e73c95bc51b438270c86",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:35.785161+00:00",
+      "request_sha256": "07180863d0f330f9aae82f3cb7f6e6f65bcf7b22a7210d3754d01928df0dd891"
+    },
+    {
+      "function": "EXP",
+      "file": "fd81f4d8f21aeac43316ebab61f5e1c48c48ed3564a79412c484a49d57fea523.json.gz",
+      "sha256": "6cc3f985b556d70cb3975e96ac79f7a2e7c3136966c1e73c95bc51b438270c86",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:35.785161+00:00",
+      "request_sha256": "07180863d0f330f9aae82f3cb7f6e6f65bcf7b22a7210d3754d01928df0dd891"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "829994ce53d5bd01106dcc17dfd688c6be45aee4fca506d86f6157eddc02813a.json.gz",
+      "sha256": "e1a1f109c508038f259b7de7a8e0e313e6244b02ecd74a80e93fa25a116d3a99",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:47.912862+00:00",
+      "request_sha256": "7376bbf24dcdb31fe6b3cc001864c84721b17264ff7fac6b514f08d7968334dd"
+    },
+    {
+      "function": "POWER",
+      "file": "2b87623748598d2fdc7f78c9cad63ca72033b43d79f20586bd09379b214f3108.json.gz",
+      "sha256": "8c00c75a10e768b6a2e548c667a97156d90ed7861e4632405c20260b4acb60e5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:31:59.070753+00:00",
+      "request_sha256": "9d97ea6060898dc2becc794480e689494352759ce226fc37df87f9113f7c8008"
+    },
+    {
+      "function": "EXP",
+      "file": "c44b263808823f64fe726d73d6dec6d543122207203da5888e49fe188a875b2e.json.gz",
+      "sha256": "f8b2804335a4f080f73234e537cd7febf66effc252f168dbe41190b25676af93",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:32:04.737449+00:00",
+      "request_sha256": "16d6c366ee9cdda0aa9a727b0afafca33d6817056b0d84fdeabde596ab081bb7"
+    },
+    {
+      "function": "EXP",
+      "file": "c44b263808823f64fe726d73d6dec6d543122207203da5888e49fe188a875b2e.json.gz",
+      "sha256": "f8b2804335a4f080f73234e537cd7febf66effc252f168dbe41190b25676af93",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:32:04.737449+00:00",
+      "request_sha256": "16d6c366ee9cdda0aa9a727b0afafca33d6817056b0d84fdeabde596ab081bb7"
+    },
+    {
+      "function": "EXP",
+      "file": "7bb43b7a09bd4e6220a4094ff7cf378f259201e1186d5ae2b3edce9e2e807fa3.json.gz",
+      "sha256": "b23d144b11a5b95c21af154b2c148b91dbce3837b000ee0c08beff2a29263fdc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:32:15.559205+00:00",
+      "request_sha256": "bb6e2a760508b918174436405e86b3fe1dfa87c2dddf40411cee0fd66c21445d"
+    },
+    {
+      "function": "EXP",
+      "file": "7bb43b7a09bd4e6220a4094ff7cf378f259201e1186d5ae2b3edce9e2e807fa3.json.gz",
+      "sha256": "b23d144b11a5b95c21af154b2c148b91dbce3837b000ee0c08beff2a29263fdc",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:32:15.559205+00:00",
+      "request_sha256": "bb6e2a760508b918174436405e86b3fe1dfa87c2dddf40411cee0fd66c21445d"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "7a37e69d0e29d13f646367657d2d6a015a0ca3e40fd573458b495c28f5b5f9c0.json.gz",
+      "sha256": "ef7106dad6e3bb14e8c9e88adee215e329a48442d1d58c4bf3bd8227a6535531",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:32:39.076876+00:00",
+      "request_sha256": "a387d6b2b86778580fc05aeae14e26d0bbd2c0276b497889c3a9b3f7d465da47"
+    },
+    {
+      "function": "POWER",
+      "file": "19727b17ea057472c7f096b792065250b9c0aad102fe3c25d9e063e80e61965d.json.gz",
+      "sha256": "7f280764fa3ae3a7b6fb70608095e9d4ab06c435381dd03e91adff1d46ba78b9",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:32:45.428701+00:00",
+      "request_sha256": "b82c58bd7a4ef144620a63b3fedb0b6c22f50abd14b853fc6b20149a8fd2c254"
+    },
+    {
+      "function": "EXP",
+      "file": "e30bc053cfd7434c93c2637d39096671db6eade4c9eda5d71da728340f420230.json.gz",
+      "sha256": "9cbbef2df2a0d94f335796e8a8ca7c20f0ba91b154a29194b0fe2078d3c515db",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:33:24.964163+00:00",
+      "request_sha256": "1cb288f64e1a0d501a994105db5c28e72c73af937100a839e3825e70f0487398"
+    },
+    {
+      "function": "EXP",
+      "file": "e30bc053cfd7434c93c2637d39096671db6eade4c9eda5d71da728340f420230.json.gz",
+      "sha256": "9cbbef2df2a0d94f335796e8a8ca7c20f0ba91b154a29194b0fe2078d3c515db",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:33:24.964163+00:00",
+      "request_sha256": "1cb288f64e1a0d501a994105db5c28e72c73af937100a839e3825e70f0487398"
+    },
+    {
+      "function": "EXP",
+      "file": "95c91db9171572095b74bb18ddc8b9e6908b5e028dda183e081fc0b98323638c.json.gz",
+      "sha256": "64c103b6165d14d6be6ebb05ef5881a7eefba5692190531c1a48445968d5a48f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:34:05.460508+00:00",
+      "request_sha256": "8f5737550357625e8305df21c242a0d6f13517cbe14d7d1d9821bf132d0c02ba"
+    },
+    {
+      "function": "EXP",
+      "file": "95c91db9171572095b74bb18ddc8b9e6908b5e028dda183e081fc0b98323638c.json.gz",
+      "sha256": "64c103b6165d14d6be6ebb05ef5881a7eefba5692190531c1a48445968d5a48f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:34:05.460508+00:00",
+      "request_sha256": "8f5737550357625e8305df21c242a0d6f13517cbe14d7d1d9821bf132d0c02ba"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "5a29d325cea5f6c7405139c7ee27c46b1e46a5316a912806e867605e2f4f1683.json.gz",
+      "sha256": "967ec55ec87d6c79f660fcc950cd8bad7c518fc408d99bc1a7fae18758be1599",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:34:31.724713+00:00",
+      "request_sha256": "26569fc761bb04a138f8d3fd9e24308209348e01090d9f8c254187b16727adf4"
+    },
+    {
+      "function": "POWER",
+      "file": "4e61bf28343d7aea69e060ce25172ad992e3b1fc81cac0a7ba6b7ea6919b767d.json.gz",
+      "sha256": "60a608de8264e6e7eb910b65e51ee1a6a8f2fdc4f613d558a4bc9c7e95326ee0",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:34:45.406979+00:00",
+      "request_sha256": "b9f91319cf31bcd5c44f8d7d2739bb7096bf849c3cf7ab085b5f6d8e79074cca"
+    },
+    {
+      "function": "EXP",
+      "file": "1e3370b9af73cdc38569ca2ed44c223a17e8bddaf58490949e02fbcd56207985.json.gz",
+      "sha256": "b1a158e11e9961bcd0349c39f591d6424c3bf42d57455c4b944c847f4af1978e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:34:58.262223+00:00",
+      "request_sha256": "81c0c46f913662765e7475aefb3c9da8a117dc6eddf3e1503d40f930655011d1"
+    },
+    {
+      "function": "EXP",
+      "file": "1e3370b9af73cdc38569ca2ed44c223a17e8bddaf58490949e02fbcd56207985.json.gz",
+      "sha256": "b1a158e11e9961bcd0349c39f591d6424c3bf42d57455c4b944c847f4af1978e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:34:58.262223+00:00",
+      "request_sha256": "81c0c46f913662765e7475aefb3c9da8a117dc6eddf3e1503d40f930655011d1"
+    },
+    {
+      "function": "EXP",
+      "file": "9ecc3dab14cc7579d89fafc92516c61b5ce833f59899eab78d4f8dd2749b57eb.json.gz",
+      "sha256": "dd3321b9f3b45f9c1fa671d7c4ab2e9d308cc4aacf3abac24743a901d627c72f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:35:10.453282+00:00",
+      "request_sha256": "0c74eb60b3f8a922d734bac4aa762415d03aab48b614d518d137df318bbdd456"
+    },
+    {
+      "function": "EXP",
+      "file": "9ecc3dab14cc7579d89fafc92516c61b5ce833f59899eab78d4f8dd2749b57eb.json.gz",
+      "sha256": "dd3321b9f3b45f9c1fa671d7c4ab2e9d308cc4aacf3abac24743a901d627c72f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:35:10.453282+00:00",
+      "request_sha256": "0c74eb60b3f8a922d734bac4aa762415d03aab48b614d518d137df318bbdd456"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "761ee282aee70c97ae62d5fcd86b88216e1b4f8078ff23520b96e6ad6c545176.json.gz",
+      "sha256": "bf3b6b412c3b64be25d8682c27c2874c8499b87cd55d969927e415241a6a0849",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:35:25.971276+00:00",
+      "request_sha256": "e29592abd73d6dc56fa9833b12f0cb03f67298ceb1869139c62036204a5daeca"
+    },
+    {
+      "function": "POWER",
+      "file": "87664bfff897fe6bfa3f79c2110b6f914a96923565af17b81ded1bd194baf67c.json.gz",
+      "sha256": "cfae8ba3444c514d3f72e82a1ee1d181e1b302d52f46337c461ebdf85eb7ff19",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:35:37.958816+00:00",
+      "request_sha256": "9d67fa086bfd71baf8767863b5b7953a1e975fca9631470353cf14775cc7e957"
+    },
+    {
+      "function": "EXP",
+      "file": "ab1c8ed33e9aa36d823628d543f75b76b55b65f98ca09504e0766daa43d69cd7.json.gz",
+      "sha256": "918b49472f63071b2f3c767c5129c5fd80640189b3a6a3b1c8d70c897bda4187",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:35:50.864949+00:00",
+      "request_sha256": "81455642b04f6cb29d999618e3d5d2c5a182d072a6850e3234e62ce91929f3fd"
+    },
+    {
+      "function": "EXP",
+      "file": "ab1c8ed33e9aa36d823628d543f75b76b55b65f98ca09504e0766daa43d69cd7.json.gz",
+      "sha256": "918b49472f63071b2f3c767c5129c5fd80640189b3a6a3b1c8d70c897bda4187",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:35:50.864949+00:00",
+      "request_sha256": "81455642b04f6cb29d999618e3d5d2c5a182d072a6850e3234e62ce91929f3fd"
+    },
+    {
+      "function": "EXP",
+      "file": "d655b54ceb446f376cd802bfa4f2a0fd950f9248a1c3d680179a8d970dba9b2c.json.gz",
+      "sha256": "d3744e40e6c47bceabb23f514eab5eb5492c30aeb533a436e468bb6cd3d5ad2f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:05.907363+00:00",
+      "request_sha256": "84aa207dda9f9c0cf64a949d1b2cfd63e4a49e3177325a923717e9e329f52ad2"
+    },
+    {
+      "function": "EXP",
+      "file": "d655b54ceb446f376cd802bfa4f2a0fd950f9248a1c3d680179a8d970dba9b2c.json.gz",
+      "sha256": "d3744e40e6c47bceabb23f514eab5eb5492c30aeb533a436e468bb6cd3d5ad2f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:05.907363+00:00",
+      "request_sha256": "84aa207dda9f9c0cf64a949d1b2cfd63e4a49e3177325a923717e9e329f52ad2"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "4c4e17f13ed94b6011d20ac64556b8ce8ffb8b86afc6d8ad4c94bf4fc409b7e0.json.gz",
+      "sha256": "d756a4caff52c05a579bd0a464e99ee619ac0ae578c59166588bbb0b3252681d",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:24.284891+00:00",
+      "request_sha256": "bfd969531d497f16589dd7e9078c97da9f5ff0ccad8765e9866bb54f75c7f6b6"
+    },
+    {
+      "function": "POWER",
+      "file": "152bf8895a39aaa5ceb88a68df97c6c7c5cf1fba941a44794f73f8eaa0b57744.json.gz",
+      "sha256": "1e00428b48ddf22eddeeb06e02e3f5bea4b572d918d0e5d8f6b4768d43e4c9c2",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:32.814668+00:00",
+      "request_sha256": "51714ae6c28a157bf083c7c3bbe8ea71f83c39dbdb5b023e7d0fdbd72061a9fb"
+    },
+    {
+      "function": "EXP",
+      "file": "caab6bbabbb98809f6517cdd3cb52f66d5e2da33a9c8efbc58250aebdfc548e2.json.gz",
+      "sha256": "b4fd994a50372a0550ccb11d9fb78d75eeccfae0747f7ed43a37621050223826",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:43.804976+00:00",
+      "request_sha256": "2e19c4bfe08a4421de5994752ad192387c994fd3e72c76887927364c417731bc"
+    },
+    {
+      "function": "EXP",
+      "file": "caab6bbabbb98809f6517cdd3cb52f66d5e2da33a9c8efbc58250aebdfc548e2.json.gz",
+      "sha256": "b4fd994a50372a0550ccb11d9fb78d75eeccfae0747f7ed43a37621050223826",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:43.804976+00:00",
+      "request_sha256": "2e19c4bfe08a4421de5994752ad192387c994fd3e72c76887927364c417731bc"
+    },
+    {
+      "function": "EXP",
+      "file": "880705542f98a9fc79ae0c3880b0a26b311f577a82bcfd73960d158abebaa4f0.json.gz",
+      "sha256": "a6c21d4fa3cea8a3aff0b9af8c1c906a79124567f3606f087220dbf0b3b2b54e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:54.975302+00:00",
+      "request_sha256": "23e1daa7dea8956257a0d476bf0c97d7a9e2e5eb87dc2f01448c5ac16434d46c"
+    },
+    {
+      "function": "EXP",
+      "file": "880705542f98a9fc79ae0c3880b0a26b311f577a82bcfd73960d158abebaa4f0.json.gz",
+      "sha256": "a6c21d4fa3cea8a3aff0b9af8c1c906a79124567f3606f087220dbf0b3b2b54e",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:36:54.975302+00:00",
+      "request_sha256": "23e1daa7dea8956257a0d476bf0c97d7a9e2e5eb87dc2f01448c5ac16434d46c"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "f21033790169830e5571be8a31b67af9b18a421fa08390fbe6f204b075cbc976.json.gz",
+      "sha256": "68fa354f8184eda5040fc33c32653d088943b5360a37b7b557de5bff100acd13",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:37:15.968192+00:00",
+      "request_sha256": "712a1bf15c46480b2b6300f8384fa68f71599d2ed0a09fe6117dba0d58e5f0fe"
+    },
+    {
+      "function": "POWER",
+      "file": "dec4b233febd25ba7bd18cba8288bea0c7b60d10b0ee5a0ad805e8f10572df3d.json.gz",
+      "sha256": "4e5a4bfed81530cfe78a7cb6390c3a853f4d68e95dbb254fc0182acaf52384a4",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:37:46.793828+00:00",
+      "request_sha256": "99be8b427877c596b8a058d31468f9e32c661a55ec7df2f3331865b94ea09ece"
+    },
+    {
+      "function": "EXP",
+      "file": "3ad7817bf9a376358711c6d81bc21561b02c4eebafe96612a89302c10092fb57.json.gz",
+      "sha256": "3145ba4f193ef0875a9f1c20e08673993408dc611a989db3cd6251fe1f85a311",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:01.147374+00:00",
+      "request_sha256": "1f183feb0c0a4ac00b0a810bce2b10e21221f18693f8e8bab2b5038a6c9176e4"
+    },
+    {
+      "function": "EXP",
+      "file": "3ad7817bf9a376358711c6d81bc21561b02c4eebafe96612a89302c10092fb57.json.gz",
+      "sha256": "3145ba4f193ef0875a9f1c20e08673993408dc611a989db3cd6251fe1f85a311",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:01.147374+00:00",
+      "request_sha256": "1f183feb0c0a4ac00b0a810bce2b10e21221f18693f8e8bab2b5038a6c9176e4"
+    },
+    {
+      "function": "EXP",
+      "file": "d1deec9bb811c0a1aaa25acacc35b3beead5b659da2b6fc0b9076c3f82a07317.json.gz",
+      "sha256": "d5c5bfdb100b0fabfbb62576abd7b9c1c75e1c2709e0e76e85a8c79c8417dd1f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:07.796258+00:00",
+      "request_sha256": "e92ff1b151cd12fcd4ec3099c0f65a033e107c3ce6996d71720b61012a9e78ca"
+    },
+    {
+      "function": "EXP",
+      "file": "d1deec9bb811c0a1aaa25acacc35b3beead5b659da2b6fc0b9076c3f82a07317.json.gz",
+      "sha256": "d5c5bfdb100b0fabfbb62576abd7b9c1c75e1c2709e0e76e85a8c79c8417dd1f",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:07.796258+00:00",
+      "request_sha256": "e92ff1b151cd12fcd4ec3099c0f65a033e107c3ce6996d71720b61012a9e78ca"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "3cc4a5b2427d7d244d87c935cc7876268bdade2d6845144c84495bd273406783.json.gz",
+      "sha256": "f35096542bce60e96786d8d23df8f378da706611a162a9266b98cca33cafcec5",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:28.492778+00:00",
+      "request_sha256": "cbefebb1d7dd950bd85b079f707d986ece56026ba9776e26b8c1e7efb8d047f7"
+    },
+    {
+      "function": "POWER",
+      "file": "5df7ca5829c3cd0083b6b8f86bf88034fee56d42e841025f63d5d0112d272e33.json.gz",
+      "sha256": "d8c61e69451afd13639ba9a409e36294f76ed32e7f85b6590e58658f87b95bfe",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:41.645453+00:00",
+      "request_sha256": "beac242f67202dd3e21e8abcb3caad5af6eeb2d62b20b8364f48960beb193ff3"
+    },
+    {
+      "function": "EXP",
+      "file": "06593795d47c0e057257e7ea11e659e2af57a384293ff75f7ddbf82ed9ed327f.json.gz",
+      "sha256": "414cee3d5dcc85e7509513f5a4700708bc9ecf5ab86c35d6215d658bbf8129d4",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:52.829308+00:00",
+      "request_sha256": "d2a88e0200062b4902613f3c0161b9de410c5da41987e7fe9656a0d33506913f"
+    },
+    {
+      "function": "EXP",
+      "file": "06593795d47c0e057257e7ea11e659e2af57a384293ff75f7ddbf82ed9ed327f.json.gz",
+      "sha256": "414cee3d5dcc85e7509513f5a4700708bc9ecf5ab86c35d6215d658bbf8129d4",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:38:52.829308+00:00",
+      "request_sha256": "d2a88e0200062b4902613f3c0161b9de410c5da41987e7fe9656a0d33506913f"
+    },
+    {
+      "function": "EXP",
+      "file": "2ae169629684059e7b450a49550e92b16aee94112962b81bd4e03e1e0ee20784.json.gz",
+      "sha256": "7040df95eb07c2a06aa5108c373528e3bb179d6bad91646af7b2db69b46b7120",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:39:04.220285+00:00",
+      "request_sha256": "558e7e6deb631ef4cb105a3dfa95b88872d228ad0d8c0867999f8a6b8fa601f1"
+    },
+    {
+      "function": "EXP",
+      "file": "2ae169629684059e7b450a49550e92b16aee94112962b81bd4e03e1e0ee20784.json.gz",
+      "sha256": "7040df95eb07c2a06aa5108c373528e3bb179d6bad91646af7b2db69b46b7120",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:39:04.220285+00:00",
+      "request_sha256": "558e7e6deb631ef4cb105a3dfa95b88872d228ad0d8c0867999f8a6b8fa601f1"
+    },
+    {
+      "function": "GEOMEAN",
+      "file": "a03f2ff1580c5a98e20f848e01398e679a657afacdd8828aae7a21c018f8eaa1.json.gz",
+      "sha256": "20b068f97a3fbd4cb89d62c07f4b68f1b95911857752e25f371f299b7399a58b",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:52:36.964466+00:00",
+      "request_sha256": "164c5d7e9e49da70b885cc987fac9d4ba5192551b260088a4cc4d5dec99ef81a"
+    },
+    {
+      "function": "POWER",
+      "file": "252b27591ab6f37a1afb8d94d81a46721a58285e994509dd9e83fa49541f5e98.json.gz",
+      "sha256": "3d46dd10f6558a2df75c53f5d8729b723cdf5b77c9e1e8061d74ccd20b518cae",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:53:19.996573+00:00",
+      "request_sha256": "e18522b1420d78611ec408768dda9097864e6faf588f865851093b86fc712d55"
+    },
+    {
+      "function": "EXP",
+      "file": "6a2e25f05fe88005bb23c451d565ae858755103866ff9570c50294c62c7fbcda.json.gz",
+      "sha256": "17d30307493f109a76a66abb7abf53ad9ca151d88af74f332676ef45750b2b51",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:54:17.086066+00:00",
+      "request_sha256": "8430828447da67f50860b36005124ff925abcc65787e547beb39432d0055baef"
+    },
+    {
+      "function": "EXP",
+      "file": "6a2e25f05fe88005bb23c451d565ae858755103866ff9570c50294c62c7fbcda.json.gz",
+      "sha256": "17d30307493f109a76a66abb7abf53ad9ca151d88af74f332676ef45750b2b51",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:54:17.086066+00:00",
+      "request_sha256": "8430828447da67f50860b36005124ff925abcc65787e547beb39432d0055baef"
+    },
+    {
+      "function": "EXP",
+      "file": "6a2e25f05fe88005bb23c451d565ae858755103866ff9570c50294c62c7fbcda.json.gz",
+      "sha256": "17d30307493f109a76a66abb7abf53ad9ca151d88af74f332676ef45750b2b51",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:54:17.086066+00:00",
+      "request_sha256": "8430828447da67f50860b36005124ff925abcc65787e547beb39432d0055baef"
+    },
+    {
+      "function": "EXP",
+      "file": "6a2e25f05fe88005bb23c451d565ae858755103866ff9570c50294c62c7fbcda.json.gz",
+      "sha256": "17d30307493f109a76a66abb7abf53ad9ca151d88af74f332676ef45750b2b51",
+      "calls": 1024,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:54:17.086066+00:00",
+      "request_sha256": "8430828447da67f50860b36005124ff925abcc65787e547beb39432d0055baef"
+    }
+  ],
+  "input_centers": [
+    0.13,
+    1.3,
+    7.0,
+    1000.0
+  ],
+  "consecutive_inputs_per_center": 256,
+  "limits": "All but one argument equal one, so every product stage is exact. Public helper compositions are specified conditional programs; their failure does not refute an unpublished extended helper. Four fixed windows are discovery, not universal equivalence. No fitted constant, store mask, tolerance, row selector or accuracy ranking.",
+  "producer_bindings": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "analysis_model": "gpt-6.1-sol (session launcher)",
+  "sources": "Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read."
+}

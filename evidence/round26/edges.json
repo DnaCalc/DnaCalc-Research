@@ -1,0 +1,2327 @@
+{
+  "format": "dnacalc-fingerprint-edges/1",
+  "complete": true,
+  "edges": [
+    {
+      "function": "EXP",
+      "low": 709.0,
+      "high": 710.0,
+      "arguments": [],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "40862e42fefa39ef",
+        "high": "40862e42fefa39f0",
+        "low_answer": {
+          "type": "number",
+          "bits": "7fefffffffffff2a"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 45
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "7feffffffffff72a"
+        },
+        {
+          "type": "number",
+          "bits": "7feffffffffffb2a"
+        },
+        {
+          "type": "number",
+          "bits": "7fefffffffffff2a"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "COS",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffffffffff",
+        "high": "41a0000000000000",
+        "low_answer": {
+          "type": "number",
+          "bits": "3fe4ab650b8c26e2"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "3fe4ab64ff55408f"
+        },
+        {
+          "type": "number",
+          "bits": "3fe4ab650570b3b9"
+        },
+        {
+          "type": "number",
+          "bits": "3fe4ab650b8c26e2"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "SIN",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffffffffff",
+        "high": "41a0000000000000",
+        "low_answer": {
+          "type": "number",
+          "bits": "bfe86dcca0d6ba9d"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "bfe86dccab2c6d20"
+        },
+        {
+          "type": "number",
+          "bits": "bfe86dcca60193df"
+        },
+        {
+          "type": "number",
+          "bits": "bfe86dcca0d6ba9d"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "0000000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "bef52ffa727d724f"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "bef52ffa9502584e"
+        },
+        {
+          "type": "number",
+          "bits": "bef52ffa83bfe550"
+        },
+        {
+          "type": "number",
+          "bits": "bef52ffa727d724f"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "3ff0000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "41a0000002b65f20",
+        "high": "41a0000002b65f21",
+        "low_answer": {
+          "type": "number",
+          "bits": "bef52ffa6c185620"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "bef52ffab1222213"
+        },
+        {
+          "type": "number",
+          "bits": "bef52ffa8e9d3c1b"
+        },
+        {
+          "type": "number",
+          "bits": "bef52ffa6c185620"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "4000000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "3ef52ffa613aff4d"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "3ef52ffa83bfe54f"
+        },
+        {
+          "type": "number",
+          "bits": "3ef52ffa727d7250"
+        },
+        {
+          "type": "number",
+          "bits": "3ef52ffa613aff4d"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "4008000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "3f11427303be3099"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "3f11427301183150"
+        },
+        {
+          "type": "number",
+          "bits": "3f114273026b30f4"
+        },
+        {
+          "type": "number",
+          "bits": "3f11427303be3099"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELJ",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "4024000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "3ef52ff8c300359a"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "3ef52ff8e5851bdb"
+        },
+        {
+          "type": "number",
+          "bits": "3ef52ff8d442a8bd"
+        },
+        {
+          "type": "number",
+          "bits": "3ef52ff8c300359a"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELY",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "0000000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "bf11427300acdf7c"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "bf114272fe06e02c"
+        },
+        {
+          "type": "number",
+          "bits": "bf114272ff59dfd5"
+        },
+        {
+          "type": "number",
+          "bits": "bf11427300acdf7c"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELY",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "3ff0000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "41a0000002b65f20",
+        "high": "41a0000002b65f21",
+        "low_answer": {
+          "type": "number",
+          "bits": "bf114272ff4fd7a9"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "bf114272fa03d906"
+        },
+        {
+          "type": "number",
+          "bits": "bf114272fca9d859"
+        },
+        {
+          "type": "number",
+          "bits": "bf114272ff4fd7a9"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELY",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "4000000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "3f11427301ffdf23"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "3f114272ff59dfd5"
+        },
+        {
+          "type": "number",
+          "bits": "3f11427300acdf7d"
+        },
+        {
+          "type": "number",
+          "bits": "3f11427301ffdf23"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELY",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "4008000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "bef52ffa4a81c352"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "bef52ffa6d06a958"
+        },
+        {
+          "type": "number",
+          "bits": "bef52ffa5bc43656"
+        },
+        {
+          "type": "number",
+          "bits": "bef52ffa4a81c352"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    },
+    {
+      "function": "BESSELY",
+      "low": 134217726.0,
+      "high": 134217732.0,
+      "arguments": [
+        {
+          "type": "number",
+          "bits": "4024000000000000"
+        }
+      ],
+      "index": 0,
+      "status": "adjacent observed edge",
+      "edge": {
+        "low": "419fffffff243f6b",
+        "high": "419fffffff243f6c",
+        "low_answer": {
+          "type": "number",
+          "bits": "3f11427321c7d583"
+        },
+        "high_answer": {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        "questions": 30
+      },
+      "neighbors": [
+        {
+          "type": "number",
+          "bits": "3f1142731f21d66a"
+        },
+        {
+          "type": "number",
+          "bits": "3f1142732074d5f7"
+        },
+        {
+          "type": "number",
+          "bits": "3f11427321c7d583"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        },
+        {
+          "type": "error",
+          "code": "#NUM!"
+        }
+      ]
+    }
+  ],
+  "receipts": [
+    {
+      "function": "EXP",
+      "file": "2d42a6e44ff8d33629f67deee0262be4594af5da75f8eddc16a55010f92be298.json.gz",
+      "sha256": "e5ecb5eb252f00a72a8014faf9b646d12af3c6c05fb6945748458b649e2c594a",
+      "calls": 2,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:07.163057+00:00",
+      "request_sha256": "c97e397dcf83f06223556bf9ff61e7afcbe6ae2aee129e1d8746d3059154a7d9"
+    },
+    {
+      "function": "EXP",
+      "file": "88da0f9b4ea7d6ebad1dfe084574d676ffa7771a13958fd254dcd4eea1c63348.json.gz",
+      "sha256": "840cb6ce0ffa12566ab5c6dee56f75e79a2ab6985419f4e94c581a3f3223aa37",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:11.423125+00:00",
+      "request_sha256": "702d564eae4e788fb7c162a132493e2c04942f68a54968f59ab52f0ec0a77124"
+    },
+    {
+      "function": "EXP",
+      "file": "6bdc42ad01227be5f15af4bbbea90c3db4a5455266f8a1a0bd87dbdb84395d1f.json.gz",
+      "sha256": "3c585341bd48da78f777307ad26c1e2675a94a440b96b10dde873c81be6e7860",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:14.992603+00:00",
+      "request_sha256": "d1094e0df48da2e24aecdd9fcbc3f47fb3cdd51f1261370e74e285029038a9e2"
+    },
+    {
+      "function": "EXP",
+      "file": "18eeeb35fbd1c6922465d2f0c82769aabd35af4a3a9095b99474ef8e44d7a18f.json.gz",
+      "sha256": "77d63d9a320baf53bb56150cf88707699ca463440ef9969034accc133440b8a8",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:18.977034+00:00",
+      "request_sha256": "fbbc2a80aeb17cbc38209ce17369d12bc332907a5989fe8fe1cb4858600f470c"
+    },
+    {
+      "function": "EXP",
+      "file": "4eb2c8238773f4925ce4aafcecabb1f086e136495f58dde0a5d54446f9cd2c2c.json.gz",
+      "sha256": "7c1ac445867fc701430c22c893d118f3f4989659d3ed1f316110cdb73c865a6b",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:22.800641+00:00",
+      "request_sha256": "a72c1581332bd71ae4f8a8707c39b755a3de398b11a8e107dadbf324977cb0ab"
+    },
+    {
+      "function": "EXP",
+      "file": "e0c3880a38df32a04ebc7a9784bc9b3a213aa8e8890f1db605125f1c08ac2e44.json.gz",
+      "sha256": "65f212a332e7cf38fdf81e6b94c951aac574daa632d94991c240a4f45cc57353",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:26.429881+00:00",
+      "request_sha256": "a68157ed676fe8bdec08eea3bcad5c13ceb6e0dbbfd25a0db00a4285b2ccab03"
+    },
+    {
+      "function": "EXP",
+      "file": "a741d93c44747b9f0c139b607650508d6fdf924efaab87605ae80d59b43d703e.json.gz",
+      "sha256": "a562374b07ceb743f2c992e0250eab8601e5746e568df5776bc1687808817c79",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:51.555308+00:00",
+      "request_sha256": "69b94f5b6578cb760650e2a8548b8b4b5e897e0a6232a0b94200f1284ce929a1"
+    },
+    {
+      "function": "EXP",
+      "file": "aec208a05cfe84cbec4484697e0a46c191d3388a702b3cf0f16aae2d15870b81.json.gz",
+      "sha256": "d1f351537dce28c950d7aff3cc804792135f9c473b52f9e7187a4e84cddeab13",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:55.434955+00:00",
+      "request_sha256": "4b515ced5c5387d1f01b0a656982213daadbc5dcc14ac5fc977f44c587005870"
+    },
+    {
+      "function": "EXP",
+      "file": "062eafd13323d90fbc33c8f8462687fe2657d92d645bfeef4483aab761fe9898.json.gz",
+      "sha256": "0ca0d0b9a2676aaa12aa3a38f4274b7d12b382e4b533f33e761539a07dc98061",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:23:59.897712+00:00",
+      "request_sha256": "158f9b328258fa0cbc48323944cb4bb102639d8751ddd9a01fc1b81ee676b2f3"
+    },
+    {
+      "function": "EXP",
+      "file": "d22c391771d40af7ca1d74d9f6d2f552935135d5a8b1706e7d16eeeac7cc0c2e.json.gz",
+      "sha256": "ec22849be8d0227fe15d852613d0e2d3a5a6d46d8b9bc4e683ebfd8bf75309b1",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:24:06.517962+00:00",
+      "request_sha256": "a9f92a00aaaa6127d38d0485f4adbd12f0c7f48afd036fe1e43024b45ab9ceff"
+    },
+    {
+      "function": "EXP",
+      "file": "c543526eab4980f5c1df6b9f6661035d0488a3e29cbed641f0ed0a0055f8ed02.json.gz",
+      "sha256": "2a843ebc2b53f7beb2c412fcf0459d051d2136f58b16536fdb98e59114481b4d",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:24:12.492486+00:00",
+      "request_sha256": "4f5c6700957603a5708c921f9a3ce930c9f639a2a2e7a89bcd871c3f1c73eccf"
+    },
+    {
+      "function": "EXP",
+      "file": "3e4cf3033921ab5a06df68bd50b56f88dc07c3b94f1554ffce290b1b838c616a.json.gz",
+      "sha256": "284b2708b249429508dc646132a7b184123640a34f0aa8e77315a245067f7b24",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:24:17.652997+00:00",
+      "request_sha256": "ffc4488059ecfa619b24dc0cd6618e9df9ab168e55fdc434f2d94cdd2cd4532f"
+    },
+    {
+      "function": "EXP",
+      "file": "ba41d3e6fc1dc82e4086eca12261e40f8acf2785488eb1b4c3ed5e31c4de6e92.json.gz",
+      "sha256": "487f6cf7d5da7fd74ed89d304cecca541bec88f8fab4f45849a795b6cab72b43",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:24:23.683034+00:00",
+      "request_sha256": "fd151a0b0e7a24f990dc49350ca4075903e8b9016460ff75c7af3cd8aac08d70"
+    },
+    {
+      "function": "EXP",
+      "file": "8291d5f7cc4210b49afb690744f973e4fe84846a20e46f14b037fcbd853dda0b.json.gz",
+      "sha256": "a1a629461d4a92d6113ee421ac5eaf41d2a13b6ac5c5b1d1cc3c8e431d74abcc",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:24:27.981645+00:00",
+      "request_sha256": "3a375b7533da0f3be7fa3a64bf812488009772377838834ca802377f710a4e5b"
+    },
+    {
+      "function": "EXP",
+      "file": "f3921f68e2ef96667d0c14e21ac2b84211a780400656aa0f657cfa9658e460e0.json.gz",
+      "sha256": "e8cc5216ad2a433569fb2fc1a8958e89864ea72bc6a0ab961018e15c653aac66",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:25:27.894628+00:00",
+      "request_sha256": "7c6136f2bc1c970c8e67b1eeb0b40a027d1196b6809b897925ec106265fcf238"
+    },
+    {
+      "function": "EXP",
+      "file": "9ba9145979061d001de98a2dd43518ec07f53d6c12c0ce9f416c60c8b4f70120.json.gz",
+      "sha256": "1b71e75f357de14863ae62d4d77ef69429d8711aa439fa12d989c79f7d3d13c2",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:25:51.725134+00:00",
+      "request_sha256": "462cef4610763f64d36527add82b4fd43f5a859503a5beffdf5e84be87973a91"
+    },
+    {
+      "function": "EXP",
+      "file": "8e92d33c3e5edcda556bac5f0dcd0d86d3987b0c0f60cc304bf1124df8fa7815.json.gz",
+      "sha256": "70cbcd43c6b4d7e9d7877f3b749f9a3b1ef13b59fddc8bc1083a8cef1dfe40ac",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:26:09.737479+00:00",
+      "request_sha256": "e79cfb9c7de66f0d5e7bab06c2b2f04a1f37b22042c8d1f8b396a4070cdf78b5"
+    },
+    {
+      "function": "EXP",
+      "file": "9ccda1129576ffb57866742cd64e0a267d2413100f0f4a7ff5950d54aa647a2c.json.gz",
+      "sha256": "ca3bc31dc37a9515ca1f39710676d8fa6ba3ba843c39c41f58ef23c86b23c76c",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:26:24.950673+00:00",
+      "request_sha256": "b2be40223c9a7bb348f6b9c84053580ff05cf55ac26f887a85b497b5408983f8"
+    },
+    {
+      "function": "EXP",
+      "file": "2648b7469415b46d80f1f67758e1c3ccc6537ea90b086c137e73194635c4c936.json.gz",
+      "sha256": "9129664c39ef1de85febef56008bf4551e932c45a82f58b40186ef01fef0ac1f",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:26:40.949508+00:00",
+      "request_sha256": "7532c78890a841741332a576dea918b04d096b4c4b9243a536ad28c06310a06a"
+    },
+    {
+      "function": "EXP",
+      "file": "e3d02f1f930a1bee54ec2f64b41121cb6518276a7eae3c03c323b8d09266ece4.json.gz",
+      "sha256": "39e3d4caea08e2e7fe3540d3a7663a26fd4b3a276f89f175694f03bf6bcbcbfe",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:26:55.668757+00:00",
+      "request_sha256": "f5ed6f85209bf9790fe5af94b90fa52d540aeec42485dbda2d424efa52e76489"
+    },
+    {
+      "function": "EXP",
+      "file": "30413c9ff27ae466b27b7f88499f2ddebaeb795d1d8ed80eacb04e4a4224d74d.json.gz",
+      "sha256": "33cf0cd5f3c79ba0e2098dbe3f143a508a4b09678322bb8bad1ab3bede4b28bd",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:27:08.716025+00:00",
+      "request_sha256": "948baa337172de3e6295c82be67ffb509578be6bdfcc93bb0f70b9c27d6f5e15"
+    },
+    {
+      "function": "EXP",
+      "file": "bb6dbd044c87add1d1c67b05ebb997da1aa45f9ad19d966a521963d610581478.json.gz",
+      "sha256": "7e73766a9d953650160ef72906026c68a35fda3437930f1729b8929215e22310",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:27:21.300086+00:00",
+      "request_sha256": "a502ddd92f48fe9d877c735e7ff88cd0fa6b27026a5ec90f9bbd65bcadb2b987"
+    },
+    {
+      "function": "EXP",
+      "file": "4d760908bd4946ed16500f51808b9a5082a108219fc321eb8b98e55f2a5e3088.json.gz",
+      "sha256": "c14cb750e977f4701e3b6b91a284d8228c9dab08e85d8e53f8fda6d4cffcaf47",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:27:36.493290+00:00",
+      "request_sha256": "3072b41435900d18033b1651840ea46bb4da27653ea455f215528ce1b0db6dc2"
+    },
+    {
+      "function": "EXP",
+      "file": "99c228e6cd6ddb860755e3a370f0a06cede094c0c55e20f85d012742393c0ef8.json.gz",
+      "sha256": "2b8295b6376ea7c4d2579f9720fe6cc7fa4048a3cc1d21e077ed0bb39c69e067",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:27:48.568300+00:00",
+      "request_sha256": "3e6397ede02118c8dfe541040ebe8786ee82f281559d6ff37c784d795a82636a"
+    },
+    {
+      "function": "EXP",
+      "file": "1ecfa1fbaae24929d8b7cf438fb35e270d782ddd5eeb05fa92e06b73c2f0c256.json.gz",
+      "sha256": "175758a30d2395e5a89537cb8a68b27f32530596485be8ab05ef51894894c44f",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:28:03.050067+00:00",
+      "request_sha256": "e816f6767aa8311b1c33bb7ff49039eadee7b914e72ea17749ff685219707a6b"
+    },
+    {
+      "function": "EXP",
+      "file": "06d17999aa57491e61cbd8713af05c565579a33886edaef5a26ca0ab0683f746.json.gz",
+      "sha256": "9cad3599067b057451425866ffada848a7885ce9fb12bd7eb651d28d0fe570b8",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:28:49.050555+00:00",
+      "request_sha256": "3abfaf63a22eede459ab2947308b7e205fdb69eb83c9bdadbced1312fcc7cfdc"
+    },
+    {
+      "function": "EXP",
+      "file": "572d8d931c8a53cd41478c38c80dd567c2886b5a2a5dbd217130a83c83a6df93.json.gz",
+      "sha256": "0349adec92aaa3ec2fbef0e2988844548d09c3e45c43ff242e9755ef4d4057a4",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:29:05.524264+00:00",
+      "request_sha256": "bb523cdeb01d414cac029a10225e0a5881589537a13368fc26cc496ae6c54a3f"
+    },
+    {
+      "function": "EXP",
+      "file": "b5d542273898c18720045dc37d36f7938f4ddcb4746ad6c9db47b8261a78315a.json.gz",
+      "sha256": "832712a8a1433055ede54a1b4e80c1ee2476bc7dc49877b7812713b8cd8e1915",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:29:20.431434+00:00",
+      "request_sha256": "c28486e3e42a3a15319c071a52eb3c32b877b9413c928707c11252e50945ecd1"
+    },
+    {
+      "function": "EXP",
+      "file": "386700b582a78f64bf36b0044fabba6d7af9626c28db5e3974515d779942282c.json.gz",
+      "sha256": "071b1debd4ec9f3eba84416a717e1ccfd8fb92d667e2480a739bed11091f6f3f",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:29:39.668444+00:00",
+      "request_sha256": "461de75291a8efa59cc026a4882d8eb1b0c001f19b03e00b573f48b3c323d0fd"
+    },
+    {
+      "function": "EXP",
+      "file": "0d699d58294c2afff9c489a38636395b3558d4d96f3a4489f180036ba8ded66c.json.gz",
+      "sha256": "5afe9426b5199af8071443bb8fedd1fcd3677f9317aa85a607784b6b5f04a84b",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:29:48.948417+00:00",
+      "request_sha256": "345c4ce60a88da403c7bbd69623c74f8bafbde067a3d7ac7ddf52e48e8ec2e38"
+    },
+    {
+      "function": "EXP",
+      "file": "4a0db97b0441113edf3f1576477193d88930dbbe4eb40854e35a49ce9ed4fad0.json.gz",
+      "sha256": "2787497442cd0d7703e41742b1398bf93e37be397795d78b9c23b2ba4dae9e2a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:29:59.409096+00:00",
+      "request_sha256": "f70e090299c14d415bc2ce4a9510702033ae6bae1b66e976884d9ebf726db760"
+    },
+    {
+      "function": "EXP",
+      "file": "fdf5ece1dc7c3d52d83013c1e2475fbf69b4b88c8e952a39642998ae55ab5364.json.gz",
+      "sha256": "16791cb9155991b93646a97b1b97932dbcd847cfaedf0fca36cc477c611c9fb3",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:04.908454+00:00",
+      "request_sha256": "769af1f40c74353f248d759bbe05d84d07daa51711b60327a11f960f7cb022fe"
+    },
+    {
+      "function": "EXP",
+      "file": "6ca0c7f27380626d37c758344387f62f6c4c8f2a55b32938b002088b9939ce54.json.gz",
+      "sha256": "a16697eb7678d062fd7fc6cf956ebbb130033eb2946eb6e7a7aa570a9971a48e",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:11.107642+00:00",
+      "request_sha256": "70a8a8899e957777f6e6277a9c5595a233a9db58a2a02987a091e0611a5efd55"
+    },
+    {
+      "function": "EXP",
+      "file": "cfcf55ea14a9e270d1b14528411bbed84f2844bcc15ee15befd92d0d82b1486a.json.gz",
+      "sha256": "53d56ca6a7e22269ab8a99388107a335d92bcfbd0a9d6500d9a0756f13673c92",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:22.445866+00:00",
+      "request_sha256": "8c3ec70a93f905f8cbfd2b9d2263503aeefe8aee970da03c1c434784210de81f"
+    },
+    {
+      "function": "EXP",
+      "file": "8a5e1abea36e59ca3d10fc69164884ce2d1f9326acf9b5dfc41b37092dcc3cf3.json.gz",
+      "sha256": "b033fac37b35812301305929929ca1101e40c1deb5172cdb53eaa384e6f28e6a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:29.193522+00:00",
+      "request_sha256": "788e642e279efa37828555d0b2be2def84645e0b85c17f84c5c093936ff1727b"
+    },
+    {
+      "function": "EXP",
+      "file": "37bceda592f13bbeb02dccf614b45c4698dd3dfcd54c8298677ed81df13617ef.json.gz",
+      "sha256": "1ed1f4a52096a68c15624454fbdbaf8e46f461bb317f7d4a69c3092d0dc930cb",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:30:35.829310+00:00",
+      "request_sha256": "97299fe8afb7d104e2faab04b0f9642b738eceb2be90cc1e154380ecf2d157b8"
+    },
+    {
+      "function": "EXP",
+      "file": "aa76b77851ee602ab2b31307ca463b8bb3316e7332a8a8c5c5e5a9244e0dd829.json.gz",
+      "sha256": "e100757a7b66c9f46718009db2812ad01fb10bd5d1270e37fbbb20d08864af2c",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:00.282297+00:00",
+      "request_sha256": "bd748b688134d656394a8c23a2b8e6851af1344f482b12cab00cf769e053f681"
+    },
+    {
+      "function": "EXP",
+      "file": "cdd749da1ee11bddb4791e8211b5ee256abfc154570764694c04117c2437f43c.json.gz",
+      "sha256": "7d1a9c79e7b8509c944ef27a6a4740fe779d28a972a40601502345d1b4aff187",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:14.357439+00:00",
+      "request_sha256": "9dfb848bbba4949261b68a2ec36cd76d1563015e38dc03921b8a22c06ec3e41e"
+    },
+    {
+      "function": "EXP",
+      "file": "aa142c94f7d7ebe2c58a08718d277cc6a2a18f351c79a9fe7d7b2801ab7b2365.json.gz",
+      "sha256": "43f4135bcb436638819dcc5292f2ea18397eb5eef56cfdcccbe415ec027c8d09",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:28.042126+00:00",
+      "request_sha256": "eb86654075cb1ab836c3c024a5b8cb60c5baaf9039fe93abdcc845de47404b5e"
+    },
+    {
+      "function": "EXP",
+      "file": "fc27aad2d2a42fd605643d5a7411aecb16d936fe22d512b849b57cc5278c1303.json.gz",
+      "sha256": "79aa9f944255f30c72832998e29c63142b7fbbe6e4292b4b89e8f6de4018e307",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:33.671606+00:00",
+      "request_sha256": "f73edf781d68d601106a598dffa6e2fe28d56dfc4b3a44dbb313dd637c5f28bc"
+    },
+    {
+      "function": "EXP",
+      "file": "8b6bf52a55cb50363424863b1bd1b057b8f9801c60813bc0a3c4e95615d707a3.json.gz",
+      "sha256": "c46da001801db9e1edc617a192493ff50bc2c94487dd252173c8f90af158942d",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:40.007402+00:00",
+      "request_sha256": "e92f47033bf95f9f5b32638277fefd520d68ac67e255ec36d9fd8ec51238b95a"
+    },
+    {
+      "function": "EXP",
+      "file": "a1a359930aac4d65192e8202c9be343138063a3aaa9d58d9bbee3242a115d492.json.gz",
+      "sha256": "36229e32ad5e4a4c045d5382e02fa9bcfe923e58f8b7169dcced90b6f3c9da3b",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:44.901226+00:00",
+      "request_sha256": "a0e6a22669876d33a270a0ebab8801db320602d7a57b4782b4a30cce455af1c3"
+    },
+    {
+      "function": "EXP",
+      "file": "8f08f88556944da2e4d07f1f789440634e50f235fb92a3e67a9b5bae4f934509.json.gz",
+      "sha256": "8a352ea3b6e2bd359932a642f8b5b27236c9f9bab3a0a1f7a45518ccc6a37139",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:40:49.644879+00:00",
+      "request_sha256": "817eb8f3541518915e9b997bb0be0201e38bd4e0dd53caf3c9ce11fd224b458f"
+    },
+    {
+      "function": "EXP",
+      "file": "6ac53858020a162c345b1daa6d1ca40939a843f50830b74db036306b22ebdabf.json.gz",
+      "sha256": "2c9fdfd3af79aa00776c3420adae93d7b7cf1d1e8bf93b6549c6897fc3ffe506",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:42:13.185389+00:00",
+      "request_sha256": "8204184768123c84f6bd93c7d1045bd09e4a06d79ae7402b59d7c3fb8c61ff1b"
+    },
+    {
+      "function": "EXP",
+      "file": "39cc29e2900764babe7f73adc1ac81f61f38901d512390699e73578baa83550f.json.gz",
+      "sha256": "b88d6f9bc5fc9aa3171e0de1c21ff90d4b5199a501e96bdf590d5f3f8c47bb58",
+      "calls": 6,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:42:25.820322+00:00",
+      "request_sha256": "299dd7bf92949e2f760be2ddae61aa64385d15b560ae1149dbf0ff463cd6187d"
+    },
+    {
+      "function": "COS",
+      "file": "ea277bd7703a62f603c0a3c413927394efbcac6f61f99055bfd551ed6fbb1460.json.gz",
+      "sha256": "4eb6c0a50c0a6bd8042356fcef7403d9d5bd86e33572bfba8b28ec11b5480059",
+      "calls": 2,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:03:57.505643+00:00",
+      "request_sha256": "0e98183695d955a2497ae15cc8f882114312dd5411ca878da46febe6a73224ec"
+    },
+    {
+      "function": "COS",
+      "file": "f056dd622494941f7c14bb9e308b54c5f1bea02e31869a3e15462bc97b69e467.json.gz",
+      "sha256": "10e91182aa926613661f3aebee202ea369068e3cc298a97e825c3ab05e6ab9cf",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:03.955126+00:00",
+      "request_sha256": "0fb43566f620b9c5cd3c639d9c69c3d2172881f6afcd994263a45f85dcac27bd"
+    },
+    {
+      "function": "COS",
+      "file": "8e308580a5064135bf91231dea303e6d8e583fd8be2749e7d3fe15af119a1a3a.json.gz",
+      "sha256": "d33d1ddbede6f116fe05b84bf7d25d7d731602136ff85ad7c9416159d2cf56ee",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:11.756100+00:00",
+      "request_sha256": "b48103abbe0a7708663eeceae6b6a4fa1a9b601922518b37fd8a4aaf13523c8d"
+    },
+    {
+      "function": "COS",
+      "file": "8f765465a48ff98b453cd035c74b32a3bf017a239ed61e17163af18d3afdf8d8.json.gz",
+      "sha256": "8d21e927981500e55c2e5a1b3d5bbe56ef83e2e617522c8291b624460b7cb197",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:26.772492+00:00",
+      "request_sha256": "0c7d1cb013747eb0a03fda551d0d8f63c5f2bb32869f24a90e4c92229a09d78d"
+    },
+    {
+      "function": "COS",
+      "file": "fc336173362edbfe94eb61dfb18f724c5c7aa195a576ac420f84efc746f1488a.json.gz",
+      "sha256": "117ee6566c2c0cdf5b4466d5bf61c768abfc714538ebe3a8b6e800a86a116397",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:04:33.088096+00:00",
+      "request_sha256": "792124bd51cf69bc30c53ea0428c147f369fb823d330b8a4bce9f2b17cd9176f"
+    },
+    {
+      "function": "COS",
+      "file": "25f29441ea558b0703da2c55d8211005060b241466453faafb3e77ca2c38cac8.json.gz",
+      "sha256": "080c648823807307aed5419e7ba8ac877dc1ce93d92452c8f1e772197be579eb",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:05:20.742766+00:00",
+      "request_sha256": "c4f06b5c7872d044b38559a5c297f7b1fefda95d1baaebfce31a043a003bfdeb"
+    },
+    {
+      "function": "COS",
+      "file": "3b1e574cf992bd6efc6b36e255794fd5fadf2cf0e64125ac7a894cf3b232a485.json.gz",
+      "sha256": "371a174299c5888663a4078716383edbdf17ec2cf578d2046bdd4d5e41859178",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:05:31.440056+00:00",
+      "request_sha256": "6c1cf46abc759e61791f8eb58258d729c27a9d8cb4f0f5ca5e10ece728c7117a"
+    },
+    {
+      "function": "COS",
+      "file": "c6a0d104274a505d29ddadf13e32c622cb6405491697c2fae2f191af3020d12d.json.gz",
+      "sha256": "18b0e1c1146518542db8e929b7ad31ea5a5f786af5b6a66e4a60f99713b8da48",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:05:39.806902+00:00",
+      "request_sha256": "567dfdc54416c0a68a7cb72bfe2bfc3a175fc07481173425dc19d356f42c21a9"
+    },
+    {
+      "function": "COS",
+      "file": "edcb0d31e6e0905e7e82160fbdd96da75fc720747a7a224ab00490c537517659.json.gz",
+      "sha256": "6d0be07a3e4d8aed237371acd599e596857a0dd8bd22426e3c7ab77be92fa279",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:05:49.392890+00:00",
+      "request_sha256": "b37267bcc88fba1f54335a341a0b3fc6501adc3e34cc51ebabcdae35c74705f0"
+    },
+    {
+      "function": "COS",
+      "file": "7edc125f31b823d5d60816a2734fdb5a5179d2f58e7433295993c8053f77dd71.json.gz",
+      "sha256": "427aa41d1453e593f70386260d15b32d52fa995bee4985968436c6f23d09c866",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:01.649219+00:00",
+      "request_sha256": "d709c2d43613cec479c414562ff1bb3edc3bd0113bf9729f337c45b11dd77941"
+    },
+    {
+      "function": "COS",
+      "file": "bad24289b0d5e7f321ec166af644524968ded44d559219c16a6b3868c3810b44.json.gz",
+      "sha256": "87342f49d08436e07b9154d1c73a725186a372fd65bc6cfadc3a5c89d7319a64",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:12.532494+00:00",
+      "request_sha256": "ce985e2b1fa27a92a0923b932412464af22cf3814077f9c57c67543ce5e7b055"
+    },
+    {
+      "function": "COS",
+      "file": "1e5f78917592ee890bd7034a6b28b22ce40c2ee3a5b16e563e04f4703c2bf230.json.gz",
+      "sha256": "827ded2c301f90b1a5926c8d7f273b80ec4677d5e407c71d21a8c0d35e9db790",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:33.620588+00:00",
+      "request_sha256": "7c0e2d1848ecd7d3f7806f02820e209d459d6f2f5fb62904d27120ea93d87820"
+    },
+    {
+      "function": "COS",
+      "file": "86c5af69368e7874d3f67e35f53e34471bd4c9e7ef0ca0a0905c072f8206141d.json.gz",
+      "sha256": "adbb010cc8ec85de474862074c01746abf6b5ba49dc900331c341c22e34f1ac1",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:40.418000+00:00",
+      "request_sha256": "4df3e4a8a60c1ed2662788ef968bc445a5e4f402ab8befcc86638ac6d0af4a66"
+    },
+    {
+      "function": "COS",
+      "file": "ffdddd7e6b008725d04a34fee29d172538d00be4d8c4b4a4ce43f868ec77e580.json.gz",
+      "sha256": "fc43194ce80a9cad29486e188859670ed3013defd0afa8d55da8bbf70cba0998",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:46.962341+00:00",
+      "request_sha256": "952a953afc6fd3baac1503fd803f2567cfde151cb7555bcf271ce4d96d071394"
+    },
+    {
+      "function": "COS",
+      "file": "d5ccd191055c3d1d39d0ff673503cc69266bfdc0a7f7948f02efd9137af2c60a.json.gz",
+      "sha256": "76a2d55e25ef36d406b2fee2a1b60605e3ac4ae936fdf63069f546cb35b66a6f",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:06:53.937267+00:00",
+      "request_sha256": "acc2614295e08907967c66a88a77f4f19e0cb7cd406f62b49bdaa2ca093fd616"
+    },
+    {
+      "function": "COS",
+      "file": "000c0605299b3cea4b61a07e6983021321dcaa856d3c95529cf84e72990be1ea.json.gz",
+      "sha256": "1051b1d7e9cb7b53495299c14ad15309000933fe9216554599dcdff9b40169ed",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:14.647363+00:00",
+      "request_sha256": "6b163fd7d62d0abb8ccfd81f90cdb4d8ba062ae1aa3082761aa31463a899f565"
+    },
+    {
+      "function": "COS",
+      "file": "3ea354f9c5d724de3406d01a8645a1e8c13f998ec896c3ece6b6006220b0d7bf.json.gz",
+      "sha256": "b9420f26ec0ae1c173680771c44215f081ad43e67e53fea42a09c4c4c978dffa",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:22.301546+00:00",
+      "request_sha256": "20e7092f8385a9d894d411d8b111b6d9054f774189b70484ecf939fa5b5f5da7"
+    },
+    {
+      "function": "COS",
+      "file": "b3b0db1eb2f56cb94e2bb496f1ea6b0e905cfb4b32ae4aa95ab0e1b63e1f6ad3.json.gz",
+      "sha256": "fd025a09233569dc29184c26cba751ec4314026a43853b0c985e5512146e4a5a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:28.313818+00:00",
+      "request_sha256": "bee264cd4715dc89b64ee1483a409dc5cb65cb8371797fb28256458b3c88e9f7"
+    },
+    {
+      "function": "COS",
+      "file": "78f923e53923b5169b5e544060ac4b99656e2fa0c6539f18b2b2c480e94b26f4.json.gz",
+      "sha256": "11af79d10d282071e42f4b458b2da29ae0ee92301cc63a4d188e26e8d4c49c2c",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:33.175353+00:00",
+      "request_sha256": "fc6f577c0d27b6c985ecb119fa18fa75a69efd2a35dd7a9823b70b70c17fee84"
+    },
+    {
+      "function": "COS",
+      "file": "8a17e73a4fe51bfdc1b9787a65a5911a1c601de597b593538cbfd395e53f81d3.json.gz",
+      "sha256": "ea0cdff3be93db4fb906e5236249b4757c1f6988c4e4d0f93ce1906d7c910780",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:07:38.407374+00:00",
+      "request_sha256": "6da68c646f389ea0583121f79d0bc20c8e63c15ffa627e29e59da55538699728"
+    },
+    {
+      "function": "COS",
+      "file": "1fa9aedc7a0f53e9b73e85facf2a97da4c17d6d2e185a2069bfb44deb3279929.json.gz",
+      "sha256": "905d1869ade74bad3799d261126c39915075805de12e346056f19fe66dc8fc24",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:22.256037+00:00",
+      "request_sha256": "9b9a613a59c6fd4f38f99462281c9cf1b7f5771dd164ef313e181fbbb7bcda14"
+    },
+    {
+      "function": "COS",
+      "file": "281415b6359389f71c2cd9dc8da9ca2e5d9a911cca950680b3b68c622ce4c129.json.gz",
+      "sha256": "740f463b355d911c946762ead3584d1236f3fdb95988eefed60a48b38fca4347",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:28.468999+00:00",
+      "request_sha256": "2b8e7b6ee8d7da33308031da9503000277d24d0612168061aff76846c70cf107"
+    },
+    {
+      "function": "COS",
+      "file": "ad47ace8bb3f73ad523a832ec966b324b962e93d2ebf552c921994542f7f33eb.json.gz",
+      "sha256": "5b449b3e361b5d2580e171f15b61669f8cafd91a660e9eef00f06ee2bc836c49",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:38.551591+00:00",
+      "request_sha256": "6d7152a7792df6ede17f0aa684acc51c3915c349d63343d2c5fed209d76abcc3"
+    },
+    {
+      "function": "COS",
+      "file": "e91cd6a79a99226820427c5f96cc54f181f47434f3bfe966fb0a33f9f0f28c2d.json.gz",
+      "sha256": "3d76e6138acf1660879c5af50f491c9bd727370151503b92a580ff5fc43ffebd",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:09:52.676689+00:00",
+      "request_sha256": "7d3e67daa31da28e08747ba65f0304e2db32bd6a34c1fd26508c68e26d8da5d5"
+    },
+    {
+      "function": "COS",
+      "file": "1ca10f0b2ff5a06dc02b6992e2ff2cbf9e25deb54bfb077b8a1a516bda5f23c5.json.gz",
+      "sha256": "dfb292dc8fef8f6cf513eaea0e9c32ecdf123a3e142832229af412e940a40977",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:10:12.884117+00:00",
+      "request_sha256": "feecb6c12bddc76418cbfa9e6564d3d9d674ea0842b31986c3965a7ae5afa06e"
+    },
+    {
+      "function": "COS",
+      "file": "f6ca8b11f50dec3e7258755fcda75c069d9dc8f012c1c3cd8ad286210917983f.json.gz",
+      "sha256": "e5fb76160e0154147ffeaf660b463ff1d4c9ee43b39d3c7578be8e8c5e547d1b",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:10:21.290405+00:00",
+      "request_sha256": "46e589cabad2222262910b279e89c1d50d06e8a10a8022196cc6e5778f2e7fdb"
+    },
+    {
+      "function": "COS",
+      "file": "8a80b3b4858437f5fef244a6624e67ae83e3749024eb437b8adfb219fa2e88b5.json.gz",
+      "sha256": "732006ecbd9b732174d2c44e73d4520c03f8a960bc58cb62dd4a435e5ae423a6",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:10:29.455654+00:00",
+      "request_sha256": "a577709c78f02c0261c6f3d0fef52d8d8e81edae6c645e2a4d0fd0a06579ff70"
+    },
+    {
+      "function": "COS",
+      "file": "86c67a631d7eace198c3db8bd60b785444cb6c27d3a2cb99fa578e908dfcfc4d.json.gz",
+      "sha256": "c41f4adca7702fbb1b0c356e4bf947de5c4fe59daf3d0079585cb8194c78a6a6",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:10:36.489128+00:00",
+      "request_sha256": "126238919e20b318eec58e049ae480faa079b0c105912af86268e0bb7116b0a8"
+    },
+    {
+      "function": "COS",
+      "file": "2b9d9b96e0d99cfb2266efaf85b093cf9d7a92b801078e9ae70135a637bab62f.json.gz",
+      "sha256": "30a6f55e7a5615aa1c6807da67c4c0513df7263a25ca4eab8018ac442abfa3fb",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:10:44.555249+00:00",
+      "request_sha256": "5359a623999ed4a35feae3740d357ac123c2804871cc929fc2e660a2ca456c06"
+    },
+    {
+      "function": "COS",
+      "file": "737b95ca31f16aed8e658ec0916e7a8f6d5f657fc9ceb04ae0d301490f48c660.json.gz",
+      "sha256": "9b28c6b969cfbec30525c23bd24ea79ece5568ce8a736130e5b30a031a8834ce",
+      "calls": 6,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:10:55.568359+00:00",
+      "request_sha256": "e3dc8ab2756bf9961ad3a6d197f6a62aeec03a78a102aea04e2fd77c4be785c8"
+    },
+    {
+      "function": "SIN",
+      "file": "0837b01d39c3887fbb2c0adb858757252affa1c23ce9959d36c79a721ee69eb0.json.gz",
+      "sha256": "0349d19d0a8fe14ebcd15ada2cd47a935a0f7629586534d954714a8c380abc23",
+      "calls": 2,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:04.200345+00:00",
+      "request_sha256": "9c567c2649b6ebbfae68060f641b8a57b65873e671c93eac783ee1a9ed85c9e1"
+    },
+    {
+      "function": "SIN",
+      "file": "8b5f26b78de1c46f07bd51bd933fa5120026dbaf90fee306ed47a07ffefcc70f.json.gz",
+      "sha256": "e6ab86a4dc86ff44ae3b1d88d5908a401fb75bb4eaa854989852540f4d8f4df6",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:11:10.232197+00:00",
+      "request_sha256": "355aba967cf97aae65c406d339207964a9726cf9cecaa12be99d35cef9cd6f01"
+    },
+    {
+      "function": "SIN",
+      "file": "21168b9d6a131fa885e671d83494e26d8868f1943f007ea4bc6254247e7000f4.json.gz",
+      "sha256": "e019edaafbeea3fb6d3e206d580f0c1d1c8f87c0fe9deeb02f8d62b64f1b2278",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:02.873273+00:00",
+      "request_sha256": "6b91ef208a3d686b8f36724ca21edc865fea810b7775c915555e300c0008a000"
+    },
+    {
+      "function": "SIN",
+      "file": "269fc8d479c82869eb74ea7da5acc10e7d4e7dd56e9c8a944ba34eb1e4d754b1.json.gz",
+      "sha256": "249d62b66ec35258be19fc36d73e7d9ad04810f8aeda48816286dea17ae8536e",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:21.497782+00:00",
+      "request_sha256": "d501f35a43fef078e49e98f08531b6a5cdaa732c3c328ffac1845f197a336768"
+    },
+    {
+      "function": "SIN",
+      "file": "7db2392b08c1fa381768b3ddc0da18e02aab05e26b1283ff2154cf2417405819.json.gz",
+      "sha256": "75992baeff48e88622646f0549964e97faefb1eef2bede1076f3e32caf7cf483",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:23:51.819552+00:00",
+      "request_sha256": "a5fe264d131fc647f90ae60cabc93e5cf407bee5b9dda604a3cda7a79e25ee17"
+    },
+    {
+      "function": "SIN",
+      "file": "5bdce57c7566994dd868c60ddafbc42ef50fc8149760b0cb791e68355e23ba1b.json.gz",
+      "sha256": "9d9810511b06382c1e19c2c4ebe56d35cf5070f9000d2b6286a3f9aebee0ed49",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:00.551491+00:00",
+      "request_sha256": "ec8833983125a022efd4aa5b422fc4aca9fd91f9b3e570ab04cd7f505f163374"
+    },
+    {
+      "function": "SIN",
+      "file": "2664e43c78552ebd92a5c455b692d0f18baa26ef85117ea189d4df983c5465c4.json.gz",
+      "sha256": "721a4faf593d3b6ee9d340140520f1ac39ae2d9885fcb23ab8d5524b9b5c30b7",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:26.720583+00:00",
+      "request_sha256": "7f7d60070c06c6f8cfdca29509432fce22b60dfae530cb8bd8571952037d3bec"
+    },
+    {
+      "function": "SIN",
+      "file": "f8a534bcc820c5a433ce20a77ac6e3413b68406322df849240bfe482468996ba.json.gz",
+      "sha256": "b350449d3c2c297425206f63c5b434a3938f02a05b58284de58eea04c7e4a0fb",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:30.421946+00:00",
+      "request_sha256": "18cf2fca4f9f0b72c5f40231f5d6f66b8ca6948b34a3a97800462478b4735c46"
+    },
+    {
+      "function": "SIN",
+      "file": "2d43da4a9a559f832f4ae4ddc0ad16b6093036973564f4416c9e127595c131d6.json.gz",
+      "sha256": "710c1fee25ce191ff8725de83441b456259f8d41c3e3d40e9cc3e41ddc24539f",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:34.294216+00:00",
+      "request_sha256": "6d67ab486a180f068a0dfe39a8c272d44a530ee06ba3944725afe1c1af44955d"
+    },
+    {
+      "function": "SIN",
+      "file": "3836718f6fc0bd83270dcc543879447100e488ce0e0b58242d5b7a92f86c7c77.json.gz",
+      "sha256": "368f079a31d1d631498559da0d35c449349b0ad5d5219ce30ac0de6fa08160ac",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:38.276985+00:00",
+      "request_sha256": "f9faac86c79012acafeb91d40b575fc1791c46cd2a4ec0392fabc4c28c061ad6"
+    },
+    {
+      "function": "SIN",
+      "file": "98864d502706cc664d0e20fc16f0328cd8171209e398a13d804c878605990f0c.json.gz",
+      "sha256": "9bf453d5506b17a98e0f0f01f60d0b7db30b0c4674b5d397e868d91df9b71a72",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:42.346222+00:00",
+      "request_sha256": "c65bc479fa5101b10080fb35549db69f7808a55affa549f6eaa9fd4b67b4b2f3"
+    },
+    {
+      "function": "SIN",
+      "file": "291a0ca3158f5eb2edf130eca5f6791b382f75cee2484aaec969235cd91fd1e6.json.gz",
+      "sha256": "6dfd376931f69badc035192bd10e3bb57e5f989b64a1d5e8f36d334e85c1ec8f",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:46.211776+00:00",
+      "request_sha256": "62a058470287c92e8ce6e7e3a5f69c16122faf5439066ce59341e6bb7672d023"
+    },
+    {
+      "function": "SIN",
+      "file": "8c5b8a1241a2e2073173d66ed687f42b679b1949b3b1f589d4fbad58c972808a.json.gz",
+      "sha256": "7c10fbf6907e70cb90780b6ee53ec267e37337993bd81e61f3e227478c65414a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:50.362490+00:00",
+      "request_sha256": "aedc546bb1c0c3f9cc2511584c026dddd5f04819f2a439f2e6d0780be020f1f4"
+    },
+    {
+      "function": "SIN",
+      "file": "d176c5fa23d76bb58a38afc5a1c2f71116d1fcc6a069840e18b896533498131a.json.gz",
+      "sha256": "5457a08f4083b9f4eb4ea0b0c3396ee72885e76b1d36aa333d567a348662f389",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:24:54.769471+00:00",
+      "request_sha256": "3ec6033a4c204e2fdd28b5408d5d2719110c4ac01c019ff76a6d288b3e88d319"
+    },
+    {
+      "function": "SIN",
+      "file": "59926292ab3abb9821ac326d12ca2c054e3ac26cc35a5a5a77191e120d7c8693.json.gz",
+      "sha256": "2af7712335a5efeb933f741fa1fafafd2d7aa3dbdb33f30a027c981d568fe66a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:21.601432+00:00",
+      "request_sha256": "69b0306cdf29d5f6eb4ba7f9168760d561a1d9b7b7141ae2f870891d4d3f3f51"
+    },
+    {
+      "function": "SIN",
+      "file": "a17a43fe2afd3180a7ec066be914459ef8d378cac8671c367322ec8a575920c4.json.gz",
+      "sha256": "a7d3287da832b7ae8ee546d9322821e099db95516ed74f1eb2b748b168e4b5d4",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:26.021206+00:00",
+      "request_sha256": "092ae923959a59d43adc0086bd05d99edb6d0b3633f0c05959069af1bd432500"
+    },
+    {
+      "function": "SIN",
+      "file": "99cdd2abf42611c5bdc37dc8e9e958ef28e5e82fae9280556c59537f557724a9.json.gz",
+      "sha256": "14b5daa3ecc09d17f3d73cf15519b7deb21a4ef325a17e5b43d30e389a3a2071",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:30.782987+00:00",
+      "request_sha256": "2229b07eab85eb957cbd928facb410fc6dd572ef6984a4b603ee11375b69b395"
+    },
+    {
+      "function": "SIN",
+      "file": "f7607bb8fc7417a5cce59a595ba0904811853ab9962efc3b2a50c332163b9eb2.json.gz",
+      "sha256": "a9de10af42a702780ea3515341efa6a77fea46ca588154665e485507e9d7713a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:34.648642+00:00",
+      "request_sha256": "49af0a761db07df7078db4759eb3c753f1627f3ddac38e37af288e2294c18307"
+    },
+    {
+      "function": "SIN",
+      "file": "bc2a887a558c8a8fe6691db3cdf53f59fa2ba65f32f78c4481425b8547784041.json.gz",
+      "sha256": "2e479aabbc0164d06441dbfcaac168582c7881006ab60d5f8c67d4d46fb38d4e",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:38.744149+00:00",
+      "request_sha256": "e5c66a98e8da890680e9de4d26d70498632e5e5375e7a0c5f96103937d6b1061"
+    },
+    {
+      "function": "SIN",
+      "file": "8628ed89f379ab6f2406f21708f7f5e66cdf1477c3d02a3a0a0211848b317771.json.gz",
+      "sha256": "6c180fcda374829edfed9f4c546bb2bb3d804397f687fabc57df8358bf2d157a",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:42.565557+00:00",
+      "request_sha256": "a28001d38bf80cdec20bd82390bd92b99dc5c444247df6f53be9d5394bc6a7ea"
+    },
+    {
+      "function": "SIN",
+      "file": "c63fb65244c7566cd9e771b943ec9e62b97d8bac1d4b097535f3226e59fa9f04.json.gz",
+      "sha256": "8b729ff9cbd04148b7c0f67c5030ffd5e18300649886441ff780b285c699f833",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:46.407811+00:00",
+      "request_sha256": "06ba941da4c346a6642190f36bf2b850b5c3df3bcb378e2983cc39ab8bd0b256"
+    },
+    {
+      "function": "SIN",
+      "file": "6228b9b181aa0a2d3aedd6b410b8e4edc6ff20c7eed4a117646ee05857e61aca.json.gz",
+      "sha256": "8f488b496f67acfbe5d439dbd7b5b8d53c195bba747f1eb66302ea61e0e0cea5",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:50.413860+00:00",
+      "request_sha256": "5971899924f5535dc424adb4d3e9c86543d164d9262d81bb3d8244f9ba534ab7"
+    },
+    {
+      "function": "SIN",
+      "file": "419ed760eaa34d45628434cc0f1b94771cbeae2132378ddf3a10d425b9721f7b.json.gz",
+      "sha256": "a0f761fb2802d704c39f5b5950e921f99b5ccde40a072f48a95309321feff053",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:54.555015+00:00",
+      "request_sha256": "337150525b31581f908ef5f8bafcdb9cf5c58bd88901103873e0937dc17159e4"
+    },
+    {
+      "function": "SIN",
+      "file": "c9ee965b6f6a5280438889d923806b4624dc1c521a01f3bede298a16840b28ad.json.gz",
+      "sha256": "0ed0187a9da9460ba6b5dad6ac55a2f1adf1500c11b2ee5c2d227cbd71bb3c93",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:25:58.398028+00:00",
+      "request_sha256": "889c6e370de7382c92fc7dc28d2371c7d61b0ee924b11e8be2193e7d7de29a8c"
+    },
+    {
+      "function": "SIN",
+      "file": "cbec665377d84844040efbdb67957e058262d1fd29501f7fd9b153c03b0856ee.json.gz",
+      "sha256": "a607a4393dc9cde1a728519c778aa31d6bffd1d0779468f3a17b6f8702a6567b",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:02.527684+00:00",
+      "request_sha256": "ff88dba6649929b4f49b0026896e089763c6c3646668312bbc54cdf3d82fba45"
+    },
+    {
+      "function": "SIN",
+      "file": "246c9e9092729b32dd5d6526bb15e09f2ee6de94f1cd32f4d985b929c76622e8.json.gz",
+      "sha256": "67f24a921e0654850ab4eae80e9008e149f1d084d06456b1d25e048d523c8609",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:07.018139+00:00",
+      "request_sha256": "18cf13c86ed8e62d9f4550653e1da38f352cba4720c5df8472e0c47e70317c92"
+    },
+    {
+      "function": "SIN",
+      "file": "70c83bfb631a3434781e64a6b07c292c5ef46140b2ae14be7c0b7b089868f1c5.json.gz",
+      "sha256": "c408a3e442decb1e07fd2291efc77e5f71ea82db3af3150b01115111d622db94",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:12.134562+00:00",
+      "request_sha256": "b048cd6e0e98521864ef8d2eb68d159c0c5c23428fcd2b8605e3887e3b480964"
+    },
+    {
+      "function": "SIN",
+      "file": "fddee26a9cefc0ae0a6e3938bc8f4fc2e8846f0d307ca49f224894645a03f897.json.gz",
+      "sha256": "630da8f339b1206abf63d45ede1aaad7acb66a3f768a45a1c0c5a483402fa1d2",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:17.529114+00:00",
+      "request_sha256": "dc02fe343dde239c83b8f6f7c69c52afe1dffee65c779f011f61af11db0019b0"
+    },
+    {
+      "function": "SIN",
+      "file": "7317bc66276b95492e11c35c065f9babbf58314e1548ce4a41f8e45d039c3fa7.json.gz",
+      "sha256": "94dd57f26e61eae84c5cb82295ae431385a519d098ab149ce41ffdee0ba5ea93",
+      "calls": 1,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:21.398314+00:00",
+      "request_sha256": "cd36d15036aaa0d143ad3560e48fe31c5930961196df573f26d963a625ec25e4"
+    },
+    {
+      "function": "SIN",
+      "file": "921cbf636ef9e72405bacdc6ee62e6d09e78bd6d32df4def440c146776c8450f.json.gz",
+      "sha256": "5e6536b5760e4174e28d82067430d4af82b911f89b0564536c5601f348156138",
+      "calls": 6,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:26:26.095518+00:00",
+      "request_sha256": "365c72146bef926cb2311ac504c8948d3fdafbdfbf44050c8e029b0f3e5e898e"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "7d1383366723b0880e9c2bdf8d09af05f714fd065218d00a0ea1abad3fcbdf73.json.gz",
+      "sha256": "37c75870ea150456b30b5612197de3fec79e3d348e4da7d710dea5502ef10854",
+      "calls": 10,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:42:32.060609+00:00",
+      "request_sha256": "6d3dc0eabf314738c65b3f6ebb2902ecda6b3788cf88e9a8bceb782c0672acf5"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "48cef767e8557a9dbeb2250c9cc07b77167d1795d1585506a384e68748246e23.json.gz",
+      "sha256": "8f281c3ab7797ccfecfec5fcfd635b1171a5a4f8e3b65d0d31cb0ab6d0cf0238",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:42:38.675925+00:00",
+      "request_sha256": "9d87d892cc87c6f34b88f27378acbf22eb15e873d574cfc071ede9a5e8bbf44e"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "a4c653d3696e6b537dba6165f2e4cab7be10f8c7f3a99a452bbea255e4f1d1d0.json.gz",
+      "sha256": "96907c848671f6a79b8fa34165fc5f4b1369d0fa38484830e617f020ccf41c2d",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:42:43.037761+00:00",
+      "request_sha256": "56a47b040f10478fb5d2eec7a4b052b9d794c706147f4cc0e65c8ddd8f93d8d4"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "e02d28c9f30d40f4d43c06dc435fe2d01c08c0fd36522c3af8af63cefa620fd6.json.gz",
+      "sha256": "8108c804cbefd980e3a4bf557326b694c6da9ab20446d2d1735deec134a4413f",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:42:49.754576+00:00",
+      "request_sha256": "5ce23cbf59bde9ae0f70e57b2082eab0e82ed1418ae057b640c1e15f06469291"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "7ce94aadeabce08c9a47d50c20d72c43e5f92a062f477ebe4db6b960d8f197d7.json.gz",
+      "sha256": "a11e9ed7eccbae10da661d56cc05d6dce411fc59d03b8eb07b1b3e3c4b115896",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:43:29.452775+00:00",
+      "request_sha256": "9c1e7193539fb00f4ac93c8bf8023cc859b79fd5d1e26f074e94ff5ca4029bac"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "bfa50e9f628a134c7ec808cb5a18b25d2b4e98bf145fa178d347a26a6e5ce77f.json.gz",
+      "sha256": "52f085708b4b3bdeae96e21d313fb8417e6f9c17e082dc0598a745da5786991d",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:43:35.069154+00:00",
+      "request_sha256": "bf5d7d5e82d09be8858b8a2cd6332eb4ffa9225b9b2f09a7fce58b116d34b1bc"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "273dd7eb09f817e8680a76fd580ef0b0ec379e7a76dc79b06553fd4bc3d6182e.json.gz",
+      "sha256": "b0118a99fd6090ed58017670747ff4e9ba7ee10f550f723b6f982a5b3f7a4cf9",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:43:41.635384+00:00",
+      "request_sha256": "869b8b51d0b59475343d4be051ad3bce22e0317f45dd85aa35842331815e6d4a"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "a44a0d917e90e49df175a27a6a2846bb9bd4b65587d10250a20646f37d09d53d.json.gz",
+      "sha256": "65279def30182ac7f3be616e88dfd4473c55b662909cd6dbb0642dfdb00716d7",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:43:47.064970+00:00",
+      "request_sha256": "2a8cdfdb6bb964a71e993c3ea65c840ea914b4eb8f4fd6f14f309eb0c7847e50"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "e16ed2ebe64c3e8b366e915fdd7979fbb1c3a7b3266daeea05de1078767eb753.json.gz",
+      "sha256": "26bca23da41a70ea3846f39d40f116781316c9895451194cdebd7feb2d144b32",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:02.854449+00:00",
+      "request_sha256": "0019b967f51f6435cdde92c8d32f2dd891097d4034d828a94672c4d470b462a2"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "b0a4894b86fe624ba66a9ccd78b498d72f2cc921c4c3d79df4c6c66620c24804.json.gz",
+      "sha256": "1dad5c37229eeb8d0701b97217441658ece433e98912f75b6754f19974542334",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:07.202497+00:00",
+      "request_sha256": "1c5ab5e64aae34430ba3a68c4158131a5841da69dbd7794fd6fb72af93034d99"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "39787fcd1fe843e54620c366451fc08c6c05ea56398b7ff1a12681262db1f951.json.gz",
+      "sha256": "d1bdce429894d88fb92e3e62b14038f2db707e33d01297fb7566aa636c6be1fe",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:14.652446+00:00",
+      "request_sha256": "722a4efece5d8c13ca20bbed0d5db82aabcb9ce6da0072f053beac64dfbfd720"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "7163975f8f1fd22b1e0f7bdedc1c0cb678ee75f3754ed4376d722ca35c6d537c.json.gz",
+      "sha256": "a6d3403ddc3ee7411c9b417ab48e26423494cc40b8c70b3e16a435976c8019c1",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:19.340162+00:00",
+      "request_sha256": "bf2b1436e8acc292b55b87687bb7bccd3179bc754fc3fcb5629eccb83f3037fd"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "a41d4cf511ae51289f56225cbba83f2fb33474343df25429dff9f21ab88b36dc.json.gz",
+      "sha256": "68a4e77fda5adf2acaf24616ce56b5a15330ecff7e9169a530575a6e97e9db31",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:24.285268+00:00",
+      "request_sha256": "a130682d6837cc67b47cffb0fcb2975605049625d4d6a7da2327b88c18925b82"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "e7437ba457e755a6228e8b5f8d94a45a75d8aff18e239c4bb925fffe2aeb72ef.json.gz",
+      "sha256": "87bc3808ebed538dc4caaf647b1ebf8645399dc53095ee95adf508309fb321bf",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:30.788741+00:00",
+      "request_sha256": "dfe29d92bd245b8eea7e1c7675634a8bdfc7952286c6c04068aa34531303cd34"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "36c3a8e150de2d54ae843daab6a002eb4592eea0ca2bca9144a7c90711f2129c.json.gz",
+      "sha256": "11724441c5d903c336fda8899aee73aa5691f1e6a69373e705d9abc5e5088e4f",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:37.256984+00:00",
+      "request_sha256": "cdd38b3de34ff55a38164f7e499ed6960f6346fb009959cddb526f4527435dbd"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "221aa8986feeebe757b1432c4b27f5bd43183723d8cedb991bf3c8dac1b228e3.json.gz",
+      "sha256": "091ff927d279622cda0cf6b0c016eb25ddfa30be372ce492a4956f1e9c7cf99b",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:42.325184+00:00",
+      "request_sha256": "773fc7f3d2c447574c365c01a9a2c54d9402e29c516ed18bc9f71418773f7f00"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "a9572871792eb7c97060f9d0b5b26f67b1b9259678b83e35b96b107a782b755d.json.gz",
+      "sha256": "1186b7486d8f046d7c0bf522eab079e244a93796a60d11a754e5ca543ba9d9ce",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:44:49.280341+00:00",
+      "request_sha256": "718dc3d4f423a3096d8ca11139a4cfc9143907fa39b4d725ad6c1fbc7b2831af"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "f55abc5089c3183cfbc86436d35d00dea647f4dead87e986c1048002f13c6fd0.json.gz",
+      "sha256": "3d8b3bcfc2b85cf01a66ee43b923b825e374b613584ecb65b8b18bf19762fd54",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:49:55.408877+00:00",
+      "request_sha256": "c2494f2e35dc8c6a79619964b76e0da9080e01c6de7046925efd97e51a568378"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "ae0799c7bd5797a16a15a1d0a8cd20fd771e57558525e70bafc49e4e47e1c548.json.gz",
+      "sha256": "8fe2fe39003cfb2130748fbba7c6a65fe968a7fa51699791e5bdeb6dfc3adbe9",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:01.417409+00:00",
+      "request_sha256": "55a3d0bb05d8c0c0d677083d3c4cfb56152c724609908ff2eec2a17aa5a7f78c"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "38205491b971b3f8ab1761eb3b9b0d34f21ec8a1b4b9e6f1d10a0efe74bfc8ac.json.gz",
+      "sha256": "1a256f2be3ece8e6219332fb143aab69f13a2c0df75037afa60decb27bed5428",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:07.625937+00:00",
+      "request_sha256": "9fab69e9aceb3fa88983c32d03bba363c464ae7220e6c556dc36c1fbeac54b29"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "bfaba71fdc1f57e9910cf10a7b994bc46541c186543a0f31023a2cb53ec2c801.json.gz",
+      "sha256": "861798d141bd484df47e3300d11a6f0684fac57eabea9a77c152518e940dd24d",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:14.334589+00:00",
+      "request_sha256": "d0dd72a62ec459e44a269b11a6c3d1810c7573812a7ed4172f8f2799b2705dfd"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "e3faf55a102817d23998714f9e52d0c90a1dab279cde6e3731beb41c6b3ffc16.json.gz",
+      "sha256": "cd38c5e0ea59abf38bdaf7fca934f564481782bff518963ed35bfecde9aae8c5",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:20.350942+00:00",
+      "request_sha256": "35acbc4b71ce091be9282470a2ab1e0dbd4f451e756e810ea200b04828fa84bb"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "9927b31691959ad8ccab3c868db838174f5b6af421124ebdd6137975f8c23675.json.gz",
+      "sha256": "f5e5129594f634761bfc592826ff3b4a62327a67d8b72570de7c9185d36bea99",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:26.613646+00:00",
+      "request_sha256": "eb2cdc5de8bd6c8c822153f04e1257da8445d2ebed317e7bb3a361538b43d631"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "90d84c796204f2e9bd22c7c92d27ffb37465773993e42c0868f1f08eeaef3a5f.json.gz",
+      "sha256": "4459a5986a35df12f497e6017c9e28b14795a0bcb1b0cafc048e6bc9e287be54",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:33.128453+00:00",
+      "request_sha256": "6a2dca322117d3957a7b106a707db3dec6ecc64ec4c233b1036fce57b7a6de52"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "99ef51ef5480bc1173d900861ae8273d6949b165674d67ffae9321d5a691a402.json.gz",
+      "sha256": "f2d5a764fef42550490d7cee5c74c8716e7f2f59678471e1318ac97866c24365",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:38.484600+00:00",
+      "request_sha256": "f223ddc1e6708502a74cb7a5088a424f74a50dc032f1a8ca82422b3fa3ee842f"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "4a369b52b24759ce535640a77bdeec9444d0f0d858bb355d6e06217d18592ba4.json.gz",
+      "sha256": "ec1911d04b5b8936559a4a2ad2235618737a8c3aeaad5fc07c9d079a52d9b28c",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:45.002691+00:00",
+      "request_sha256": "fb89e9837dabcb4423a99d56d6338f19abc2ad4dd8a31875a9eec3b562de429c"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "6891104a62bb8c1866fd80d26025dbc0fb79083314665135376140a2cb4d71f9.json.gz",
+      "sha256": "1de7745ef6e11fcfc06be1eb0f1f536e3a7c7a4e321d79ef4487f898b707b15d",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:52.281232+00:00",
+      "request_sha256": "f4b6d662126e4381f38cedb873d938773890ab19bb7c4f88bd85b350788cfbb0"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "35015a37a2b8b0d49752f4cd27bd31cf3df465988044fc091cb5811c8d6151d2.json.gz",
+      "sha256": "8cee757271248e9ff34b04cfe587038ca9c5b264e863c106b42e9cb3e796be91",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:50:57.587034+00:00",
+      "request_sha256": "6545ebd86f823eaf7e09b7ad1928c0175eaa5787294e9c72546611c2e5085cf5"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "66e8986941ea12b4055b8dde3d02c2b16bb899c2b146db6dd298875834601b9d.json.gz",
+      "sha256": "6f306a7802055f9e6621b0df61c582ac29e2808618003490b3506c9a1127b45a",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:51:02.823014+00:00",
+      "request_sha256": "66b2eacc6f36357c69df4d0b06f8e681a020c893e505155fceacea3431bb51f6"
+    },
+    {
+      "function": "BESSELJ",
+      "file": "ca35c94fb9e17bd687ac98152ee6a81b26e303032531139d5612dcd613ea39ca.json.gz",
+      "sha256": "b374343b94a92ef358e91f06b78ecb4a3db77dd8bb218e2eca7549a1832edf6d",
+      "calls": 30,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:51:08.447131+00:00",
+      "request_sha256": "148b2d6a79761d9730176619ae30a6db3eb5bc796aae5e18a2f9715f8885341e"
+    },
+    {
+      "function": "BESSELY",
+      "file": "4c2b2e844fd5ad545da608300fc1682e884424c3bcae9c958bed26e9457b0c80.json.gz",
+      "sha256": "b5e75c5e3f18e458d4aa4c2eb2a88e6d2641ef946b7327e9e0d586ef4c868cc1",
+      "calls": 10,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:51:13.516281+00:00",
+      "request_sha256": "8f1961778d6e99c0848016aa9b00d7d931c28a362bea2b604e173a35fd143dff"
+    },
+    {
+      "function": "BESSELY",
+      "file": "57a86e2a59213bbaff06abd55acaa5cea3a43c7cbf84fe88db01552a6fdac448.json.gz",
+      "sha256": "12fb5bfa0d8539e9dbac87be8943777cae471619acfa95f10165e2ade1b7e656",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:51:19.248674+00:00",
+      "request_sha256": "75f1dcd056130c4ecd75c8a7f296fc683218d98c44aeb82bfe819e64238ef991"
+    },
+    {
+      "function": "BESSELY",
+      "file": "50f3f3639e71c29a13b10c5843765124173372e5c863e941f45678fd6aabebcc.json.gz",
+      "sha256": "e0f3be656584a1622f789502efc744d6c94b9441c21e3f1966c44938054d98c7",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:51:37.402469+00:00",
+      "request_sha256": "2de5f5f617ba049a774247574632c6814c7e551fe2655a97499c4023e7e8e280"
+    },
+    {
+      "function": "BESSELY",
+      "file": "d5b53538e008eb61d11ecd31ec89d5f281aae317bc96b53b6e3be1c0f85a40b6.json.gz",
+      "sha256": "945a27d9dc44c43c4d7ab5f0163a939fd7d8c87cc9cff5135c47fd0dc76d437f",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:51:43.548944+00:00",
+      "request_sha256": "c4aa1885e23b868ffba42be556a151461a9851284fc3287a8e609bfa63d63cfc"
+    },
+    {
+      "function": "BESSELY",
+      "file": "fbc320f943c9c9c69d270a1f29923b6185953dfae2e245266b5d43943642ecde.json.gz",
+      "sha256": "2ccad06e5b327e7dafb610be129f3ac74e6e28ba3c3debb5ac44ec509e2695bc",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:55:21.302651+00:00",
+      "request_sha256": "88f7d3c4393c8c68c8f7b0301fb6d7aab4174b12b11a4fa5a5b46a1485594c33"
+    },
+    {
+      "function": "BESSELY",
+      "file": "4d43342e7bd4b1c6d877c84eef6045a169e21f9d402c054e0f9d83e0c87bf8f3.json.gz",
+      "sha256": "84c53ba6dfd0d4e4db7036b282f9733f6475a9e390c1eff5bc2835d0559f94fc",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:55:29.280715+00:00",
+      "request_sha256": "184f8da47e564f67c09fb635102317e4029663da8c432afe20b9824c79f1824b"
+    },
+    {
+      "function": "BESSELY",
+      "file": "3a1dd1b9654303209e14feedde19564c52a3eee4d0884b7ead966eae1ec77e6b.json.gz",
+      "sha256": "3d65c5d0f8305ed6598d77be9ae2121c3251a45c02ce508e66da9b51dc3c100c",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:55:38.215905+00:00",
+      "request_sha256": "29a5a129e8a8b023facfc11ac7e6eae7c3c2ba2c0d6842e5e69b462dfe4c7e1b"
+    },
+    {
+      "function": "BESSELY",
+      "file": "2db1230388f4227e466266b3d4f93840700fb92834f5b5aa8c93fdd0601dad64.json.gz",
+      "sha256": "cb1221f4f419a7e57dd388fec8a705fa769a84f9aabce88b75f466e5b6198601",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:55:47.003597+00:00",
+      "request_sha256": "a1e4f1d274f6e31c8d94a758014040be0be554811950619defe1d834226306e2"
+    },
+    {
+      "function": "BESSELY",
+      "file": "6fa84a8f064ac380c1c94453075894008ddd464142945294c0d9d870310546f6.json.gz",
+      "sha256": "42a0425f99ea594d3ab0fc4ee286bf12f11cfc1e742acbe0f255c3fb3b3af798",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:55:56.640929+00:00",
+      "request_sha256": "425f56d8ed7c19c9289ae985cb8a6ae117f8ddedb3359f9e5a38875905a91eeb"
+    },
+    {
+      "function": "BESSELY",
+      "file": "b1477f9f2830eba22091ab8362c53e05a41a98a2502badf0aca427697ec1e478.json.gz",
+      "sha256": "f4f61086300badffebfa68b9adcf16b6f185582592616a579cf97df33058d66e",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:04.580076+00:00",
+      "request_sha256": "b5b49f720d849db00d541bbb17d47bcccb792378770ec4a7a0af4f0fdc2dae95"
+    },
+    {
+      "function": "BESSELY",
+      "file": "84cd85f74d284e7e0a39efb6358ccdb7df071b1c2240c623d7a0168daf47ef49.json.gz",
+      "sha256": "eab6444b5a43c958d18379bae0525e698a73d604f51b6fd4efa8be12b66114c2",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:12.970194+00:00",
+      "request_sha256": "5e697c71fd72bd8cd670c28a0e127ada6e2e9e31de7021845f0fd611d1670533"
+    },
+    {
+      "function": "BESSELY",
+      "file": "c682fe9950e1f01c7d474873d364640c92485064b3f8bee2038f3fd09e42344a.json.gz",
+      "sha256": "226582f9cb871152b8c1f95bd38b6f56c2859e6edf86b23ad59acce8046bdf3e",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:20.603406+00:00",
+      "request_sha256": "11669850f7395ee328f200e7ddad4bbaae14bf1fba1bdcffa4cb3dae2f973fae"
+    },
+    {
+      "function": "BESSELY",
+      "file": "45cbd0d3dd25d1844c15bd42e23f452f093346b11cc101465c7099ee680e47b0.json.gz",
+      "sha256": "9b2732767454242d35ae74fc992495cf6642ed657b8ee18024ad8cb729d494bd",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:28.929327+00:00",
+      "request_sha256": "3a3303f1343a6b150ce44c7324a3850af11d19ea19c7e3688abb1e0de880eb6e"
+    },
+    {
+      "function": "BESSELY",
+      "file": "bbda001fc92e30e7f1cba91cfabf8ea989e700f5371e381783e7e091b9a53148.json.gz",
+      "sha256": "df1bd8b63d7e995a5efdddf5898e9312624b65ebb9419b5a173f2525e5e221fa",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:36.565754+00:00",
+      "request_sha256": "e40853a5b808f781707d98decf8599d6a255f9b7d628b2078bb549ae4bc75954"
+    },
+    {
+      "function": "BESSELY",
+      "file": "05a7b993a32f0edc6b5a0b916069b34766bca80370cf2e65ffecc558b6a694c2.json.gz",
+      "sha256": "22e671253f8392f83a3d7ad0092118630236c1bbc1bc8eaa7741b3ef4de6f288",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:42.694215+00:00",
+      "request_sha256": "5f3ae0654b0c70dafe57b7e3c1edd2cfe3cdcd4aa53e74cca9fde4f6144cff06"
+    },
+    {
+      "function": "BESSELY",
+      "file": "560b324723d18f5e36fdb0e07e7b43ae7ddb1e86564cbfdeda78ec50d9a97fdf.json.gz",
+      "sha256": "9b3626e9a9031fb9fc6cf824d06efe1e41cd0c0834870bcf2840cc4b4c8144e9",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:49.197846+00:00",
+      "request_sha256": "8ca3508d768f3948e9f9c8735b8667ff27142b902aee99cfb58abf9de6c73786"
+    },
+    {
+      "function": "BESSELY",
+      "file": "488aa31092439ffe6913448c7e8cae4762da3d03590e8aeaa91ad81f551cb48f.json.gz",
+      "sha256": "79fb4691c28d14c1a32b88ff8b776142d52659797c531418dfeec69fb5a436bb",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:56:55.118517+00:00",
+      "request_sha256": "87c37013c0a70656e58bb09442689f8ff8aa20ca0319d6830561cdac529980b5"
+    },
+    {
+      "function": "BESSELY",
+      "file": "9ac3de6284191f46968032348f5570d4de8ad6dfe4454f14abe4f5ab0e3ea81c.json.gz",
+      "sha256": "ec677fc8a1858dd1d711f2e82b97a1a6d948a2554de0d0fbf770e90012e13eaf",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:57:00.729199+00:00",
+      "request_sha256": "5c3a483f1a678a6e62b57df335bea2cfd08120f50513fc8297c9a548c393ef59"
+    },
+    {
+      "function": "BESSELY",
+      "file": "c9a62fa19507f9b2aa102c60f49e5ae5f0244c0ab14ddf900deb6511c4b0e5f8.json.gz",
+      "sha256": "cfaf87caee208bf2bd542e19f24cfa4158728d0e1106dd36ac589c394051c697",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:57:19.995187+00:00",
+      "request_sha256": "5dca957c7e7e4ae0fcffaa23f2d0d9e29b558b871fcb52194bf6ebc4ceabe4f8"
+    },
+    {
+      "function": "BESSELY",
+      "file": "3dfc49db37483c6f9ebd0f42cfa506357c2f1d6675041781105c4ddf305c099a.json.gz",
+      "sha256": "84664e13ca59440919c6513f6cae17a35d28cc1038d079ea04c628cfe7e8cd15",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:57:28.874079+00:00",
+      "request_sha256": "149021eb84fdc86f152912d3da733cc020743ff96018551eb4b6ca19ee87c2ec"
+    },
+    {
+      "function": "BESSELY",
+      "file": "c582e8f4681180bdb01b40c746c6f488e24d252270d921380908935926d17159.json.gz",
+      "sha256": "6608cf18ef469b629ae935dbf0bdcfced9a6f7100cc0f43b8838da33cf0422bb",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:57:38.234457+00:00",
+      "request_sha256": "c02f78ca98013ea138cafb920dd8514ca103480468feab3a96949b7e5fe310da"
+    },
+    {
+      "function": "BESSELY",
+      "file": "bbbdc6c5b955e8ad7935df49a5d427f7752d5b2beea7c85e75ae3bc3fbaa3af8.json.gz",
+      "sha256": "121cb12e61e31491ae629affc1de4aff3780f74d2caa3b24c5d65c80915118ec",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:57:47.783561+00:00",
+      "request_sha256": "127555579bbfea8fb145c65f3646a01040d1a8774e20880c8d3261c038b7e6c2"
+    },
+    {
+      "function": "BESSELY",
+      "file": "cc8dd7cb1df60037b4c7aaa843558d97b7b190401d2833b4a21f54289a81e5b9.json.gz",
+      "sha256": "7d6ccd54ba8a1663e8359779ff46b89fed19ce6c04d88c3671e990bd1c622dd2",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:57:58.378082+00:00",
+      "request_sha256": "505f3c575abd210e6015e80ab073a985baf6b25382365758d998428cacf06da6"
+    },
+    {
+      "function": "BESSELY",
+      "file": "c254363f8a4330ef0a1105d236741678163ed8e69bc7dd6180c0a72b6017412d.json.gz",
+      "sha256": "31df53cba15680e2d16e3d607908d80d4c032a5bc80ef40c8d28ac2f70e6f8a2",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:58:08.944728+00:00",
+      "request_sha256": "c114a8db509f21dc9fb6d549fb06290e45fb5fb4f2c3f86b127e9e4f4402f0ff"
+    },
+    {
+      "function": "BESSELY",
+      "file": "59a397d2de38c30238c78c67e956283ebbbd0cd7560dd922e3af18f574d5be7d.json.gz",
+      "sha256": "0558d0bc61b2a00b4f0f27db5e6b821b5baa98aa85918e5bd464e92e654d9b7d",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:58:19.862682+00:00",
+      "request_sha256": "6d0d9b4b6b68e2821db7bb65584c2d54527b23572862cd59be58042a94d9ad85"
+    },
+    {
+      "function": "BESSELY",
+      "file": "6f4ec7e1c916c20cb2841124f95bff10082139e03cc08d073fd4036d9f9c89e2.json.gz",
+      "sha256": "ff452f48f5eb36831f1291354d8c80797bd19ac66181e6792d0c1d6db6f43783",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:58:27.472597+00:00",
+      "request_sha256": "87ae4d07efb655332e3873a7b2f523745a287a4e06dbb681937a2dbc67170a62"
+    },
+    {
+      "function": "BESSELY",
+      "file": "b86a7986cdbe085d81443e473997c0a841be1593140e011cba9a6070d6bff1de.json.gz",
+      "sha256": "1935f609facbf0d088e5c163a97821421ca427a5566243f6f2ccc1b5b955bf20",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:58:35.680970+00:00",
+      "request_sha256": "e2667a61f9a3255b0e55b0e08e9fca5b340c898a803559b1159b3d78426772f7"
+    },
+    {
+      "function": "BESSELY",
+      "file": "786f8d7f167990dfd143e894dddfdcef0fb293e0493878ba19001220f0bd2d7d.json.gz",
+      "sha256": "2578e4d01e2130e8e1dffbedb3c92c5d42fc15371b1e3e6c847af09ae6f1df65",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:59:07.121706+00:00",
+      "request_sha256": "963feaef906a00ee17021b8a065f6ff655e3c0a4fde656a0865d4a5266625a45"
+    },
+    {
+      "function": "BESSELY",
+      "file": "c63e4d983d6a90d50b1c113f16e0c8b589865941223e1258b2c88b03a2125f5e.json.gz",
+      "sha256": "5a38a3943bc4679c0e7d57e879032002c06ee7d75631a269a5c67f06666578e8",
+      "calls": 5,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:59:13.029546+00:00",
+      "request_sha256": "94187b229667effc91d7e65bb7714dfc468083508265db8eda41067c2264d3ba"
+    },
+    {
+      "function": "BESSELY",
+      "file": "744f6ef316e497452c9526f89408d5d864da07269d0701f542edd7973ce9af21.json.gz",
+      "sha256": "337e2d7e4383085b0511eaf2a72efed77808719ff0f3f96e19fa4d47f5ad89a7",
+      "calls": 30,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T18:59:21.977235+00:00",
+      "request_sha256": "bb90464c9eaed427448a110f73be993060e83d92c24278b37c0dbfdb3e93b134"
+    }
+  ],
+  "limitations": "Exact local numeric/#NUM transitions only, under one-transition bracket assumption with two exterior neighbors rechecked. No global monotonicity, hidden algorithm, or threshold rounding expression inferred.",
+  "producer_bindings": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "analysis_model": "gpt-6.1-sol (session launcher)",
+  "sources": "Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read."
+}

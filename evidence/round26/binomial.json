@@ -1,0 +1,1699 @@
+{
+  "format": "dnacalc-binomial-textbook-consumers/1",
+  "complete": true,
+  "program_order": "Direct polynomial, plain product loop, square then multiply; binary64, storedPC64, residentPC64; public POWER control. Fixed structural order.",
+  "centers": [
+    0.13,
+    0.3,
+    0.7
+  ],
+  "consecutive_inputs_per_center": 512,
+  "records": [
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "profiles": [
+        {
+          "shape": "direct_polynomial",
+          "model": "binary64",
+          "counts": {
+            "matched": 615,
+            "mismatched": 921
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa6",
+            "excel": {
+              "type": "number",
+              "bits": "3fe83886594af55f"
+            },
+            "candidate": "3fe83886594af55e"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 615,
+            "mismatched": 921
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa6",
+            "excel": {
+              "type": "number",
+              "bits": "3fe83886594af55f"
+            },
+            "candidate": "3fe83886594af55e"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "resident_pc64",
+          "counts": {
+            "matched": 924,
+            "mismatched": 612
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa8",
+            "excel": {
+              "type": "number",
+              "bits": "3fe83886594af55f"
+            },
+            "candidate": "3fe83886594af55e"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "public_POWER_of_published_base",
+          "model": "measured_binary64_leaf",
+          "counts": {
+            "matched": 615,
+            "mismatched": 921
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa6",
+            "excel": {
+              "type": "number",
+              "bits": "3fe83886594af55f"
+            },
+            "candidate": {
+              "type": "number",
+              "bits": "3fe83886594af55e"
+            }
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "profiles": [
+        {
+          "shape": "direct_polynomial",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 913,
+            "matched": 623
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fccf41f212d75b6"
+            },
+            "candidate": "3fccf41f212d75b7"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 913,
+            "matched": 623
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fccf41f212d75b6"
+            },
+            "candidate": "3fccf41f212d75b7"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "resident_pc64",
+          "counts": {
+            "mismatched": 831,
+            "matched": 705
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fccf41f212d75b6"
+            },
+            "candidate": "3fccf41f212d75b7"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "trials": 2,
+      "successes": 2,
+      "cumulative": false,
+      "profiles": [
+        {
+          "shape": "direct_polynomial",
+          "model": "binary64",
+          "counts": {
+            "matched": 672,
+            "mismatched": 864
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa5",
+            "excel": {
+              "type": "number",
+              "bits": "3f914e3bcd35a644"
+            },
+            "candidate": "3f914e3bcd35a646"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 672,
+            "mismatched": 864
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa5",
+            "excel": {
+              "type": "number",
+              "bits": "3f914e3bcd35a644"
+            },
+            "candidate": "3f914e3bcd35a646"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "resident_pc64",
+          "counts": {
+            "matched": 672,
+            "mismatched": 864
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa5",
+            "excel": {
+              "type": "number",
+              "bits": "3f914e3bcd35a644"
+            },
+            "candidate": "3f914e3bcd35a646"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "public_POWER_of_published_base",
+          "model": "measured_binary64_leaf",
+          "counts": {
+            "matched": 672,
+            "mismatched": 864
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa5",
+            "excel": {
+              "type": "number",
+              "bits": "3f914e3bcd35a644"
+            },
+            "candidate": {
+              "type": "number",
+              "bits": "3f914e3bcd35a646"
+            }
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": true,
+      "profiles": [
+        {
+          "shape": "direct_polynomial",
+          "model": "binary64",
+          "counts": {
+            "matched": 1284,
+            "mismatched": 252
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6faa",
+            "excel": {
+              "type": "number",
+              "bits": "3fef758e219652ce"
+            },
+            "candidate": "3fef758e219652cd"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 1284,
+            "mismatched": 252
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6faa",
+            "excel": {
+              "type": "number",
+              "bits": "3fef758e219652ce"
+            },
+            "candidate": "3fef758e219652cd"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "direct_polynomial",
+          "model": "resident_pc64",
+          "counts": {
+            "matched": 1187,
+            "mismatched": 349
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6faa",
+            "excel": {
+              "type": "number",
+              "bits": "3fef758e219652ce"
+            },
+            "candidate": "3fef758e219652cd"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "sum_two_masses",
+          "model": "binary64",
+          "counts": {
+            "matched": 948,
+            "mismatched": 588
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa6",
+            "excel": {
+              "type": "number",
+              "bits": "3fef758e219652ce"
+            },
+            "candidate": "3fef758e219652cc"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "sum_two_masses",
+          "model": "stored_pc64",
+          "counts": {
+            "matched": 948,
+            "mismatched": 588
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa6",
+            "excel": {
+              "type": "number",
+              "bits": "3fef758e219652ce"
+            },
+            "candidate": "3fef758e219652cc"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "sum_two_masses",
+          "model": "resident_pc64",
+          "counts": {
+            "matched": 1186,
+            "mismatched": 350
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6faa",
+            "excel": {
+              "type": "number",
+              "bits": "3fef758e219652ce"
+            },
+            "candidate": "3fef758e219652cd"
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "profiles": [
+        {
+          "shape": "product_loop",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 1269,
+            "matched": 267
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": "3fdfe620dc831f7d"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "product_loop",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 1269,
+            "matched": 267
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": "3fdfe620dc831f7d"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "product_loop",
+          "model": "resident_pc64",
+          "counts": {
+            "mismatched": 1030,
+            "matched": 506
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": "3fdfe620dc831f7d"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "square_then_multiply",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 1277,
+            "matched": 259
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": "3fdfe620dc831f7d"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "square_then_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 1276,
+            "matched": 260
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": "3fdfe620dc831f7d"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "square_then_multiply",
+          "model": "resident_pc64",
+          "counts": {
+            "mismatched": 1030,
+            "matched": 506
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": "3fdfe620dc831f7d"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "public_POWER_of_published_base",
+          "model": "measured_binary64_leaf",
+          "counts": {
+            "mismatched": 1276,
+            "matched": 260
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7e"
+            },
+            "candidate": {
+              "type": "number",
+              "bits": "3fdfe620dc831f7d"
+            }
+          },
+          "consistent": false
+        }
+      ]
+    },
+    {
+      "trials": 5,
+      "successes": 5,
+      "cumulative": false,
+      "profiles": [
+        {
+          "shape": "product_loop",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 1187,
+            "matched": 349
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": "3f03776908a63da7"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "product_loop",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 1187,
+            "matched": 349
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": "3f03776908a63da7"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "product_loop",
+          "model": "resident_pc64",
+          "counts": {
+            "mismatched": 1161,
+            "matched": 375
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": "3f03776908a63da8"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "square_then_multiply",
+          "model": "binary64",
+          "counts": {
+            "mismatched": 1195,
+            "matched": 341
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": "3f03776908a63da7"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "square_then_multiply",
+          "model": "stored_pc64",
+          "counts": {
+            "mismatched": 1195,
+            "matched": 341
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": "3f03776908a63da7"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "square_then_multiply",
+          "model": "resident_pc64",
+          "counts": {
+            "mismatched": 1161,
+            "matched": 375
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": "3f03776908a63da8"
+          },
+          "consistent": false
+        },
+        {
+          "shape": "public_POWER_of_published_base",
+          "model": "measured_binary64_leaf",
+          "counts": {
+            "mismatched": 1195,
+            "matched": 341
+          },
+          "first_contradiction": {
+            "input": "3fc0a3d70a3d6fa4",
+            "excel": {
+              "type": "number",
+              "bits": "3f03776908a63dab"
+            },
+            "candidate": {
+              "type": "number",
+              "bits": "3f03776908a63da7"
+            }
+          },
+          "consistent": false
+        }
+      ]
+    }
+  ],
+  "log_profiles": [
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 963,
+        "mismatched": 573
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa9",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55f"
+        },
+        "exponent": "bfd1d356e462a74e"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 963,
+        "mismatched": 573
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa9",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55f"
+        },
+        "exponent": "bfd1d356e462a74e"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 963,
+        "mismatched": 573
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa9",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55f"
+        },
+        "exponent": "bfd1d356e462a74e"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "matched": 1297,
+        "mismatched": 239
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fe83886594af55e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fe83886594af55d"
+        },
+        "exponent": "bfd1d356e462a751"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "mismatched": 884,
+        "matched": 652
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "mismatched": 884,
+        "matched": 652
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 671,
+        "mismatched": 865
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa5",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75ba"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "exponent": "bff7c807f581749c"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "mismatched": 821,
+        "matched": 715
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "mismatched": 821,
+        "matched": 715
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "matched": 734,
+        "mismatched": 802
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa5",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75ba"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "exponent": "bff7c807f581749c"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "mismatched": 821,
+        "matched": 715
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "mismatched": 821,
+        "matched": 715
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "matched": 734,
+        "mismatched": 802
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa5",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75ba"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "exponent": "bff7c807f581749c"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "mismatched": 816,
+        "matched": 720
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "mismatched": 816,
+        "matched": 720
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b8"
+        },
+        "exponent": "bff7c807f581749b"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "matched": 741,
+        "mismatched": 795
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa5",
+        "excel": {
+          "type": "number",
+          "bits": "3fccf41f212d75ba"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fccf41f212d75b6"
+        },
+        "exponent": "bff7c807f581749c"
+      },
+      "consistent": false,
+      "shape": "EXP((public LN(2)+public LN(p))+complement_logarithm)"
+    },
+    {
+      "trials": 2,
+      "successes": 2,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1536
+      },
+      "first_contradiction": null,
+      "consistent": true,
+      "shape": "EXP(n*public LN(p))"
+    },
+    {
+      "trials": 2,
+      "successes": 2,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1536
+      },
+      "first_contradiction": null,
+      "consistent": true,
+      "shape": "EXP(n*public LN(p))"
+    },
+    {
+      "trials": 2,
+      "successes": 2,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1536
+      },
+      "first_contradiction": null,
+      "consistent": true,
+      "shape": "EXP(n*public LN(p))"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": true,
+      "model": "binary64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1356,
+        "mismatched": 180
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fef758e219652ce"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fef758e219652cd"
+        },
+        "exponent": "c010525f4c391e52"
+      },
+      "consistent": false,
+      "shape": "1-EXP(2*public LN(p))"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": true,
+      "model": "stored_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1356,
+        "mismatched": 180
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fef758e219652ce"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fef758e219652cd"
+        },
+        "exponent": "c010525f4c391e52"
+      },
+      "consistent": false,
+      "shape": "1-EXP(2*public LN(p))"
+    },
+    {
+      "trials": 2,
+      "successes": 1,
+      "cumulative": true,
+      "model": "resident_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1356,
+        "mismatched": 180
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6faa",
+        "excel": {
+          "type": "number",
+          "bits": "3fef758e219652ce"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fef758e219652cd"
+        },
+        "exponent": "c010525f4c391e52"
+      },
+      "consistent": false,
+      "shape": "1-EXP(2*public LN(p))"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "mismatched": 755,
+        "matched": 781
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "mismatched": 755,
+        "matched": 781
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "mismatched": 755,
+        "matched": 781
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "mismatched": 333,
+        "matched": 1203
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "mismatched": 333,
+        "matched": 1203
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) single",
+      "counts": {
+        "mismatched": 333,
+        "matched": 1203
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "mismatched": 333,
+        "matched": 1203
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "mismatched": 333,
+        "matched": 1203
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) double",
+      "counts": {
+        "mismatched": 333,
+        "matched": 1203
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "mismatched": 718,
+        "matched": 818
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "mismatched": 718,
+        "matched": 818
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 0,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "mathematical LOG1P(-p) resident64",
+      "counts": {
+        "mismatched": 718,
+        "matched": 818
+      },
+      "first_contradiction": {
+        "input": "3fc0a3d70a3d6fa4",
+        "excel": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7e"
+        },
+        "candidate": {
+          "type": "number",
+          "bits": "3fdfe620dc831f7d"
+        },
+        "exponent": "bfe6482c9d7b511c"
+      },
+      "consistent": false,
+      "shape": "EXP(n*complement_logarithm)"
+    },
+    {
+      "trials": 5,
+      "successes": 5,
+      "cumulative": false,
+      "model": "binary64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1536
+      },
+      "first_contradiction": null,
+      "consistent": true,
+      "shape": "EXP(n*public LN(p))"
+    },
+    {
+      "trials": 5,
+      "successes": 5,
+      "cumulative": false,
+      "model": "stored_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1536
+      },
+      "first_contradiction": null,
+      "consistent": true,
+      "shape": "EXP(n*public LN(p))"
+    },
+    {
+      "trials": 5,
+      "successes": 5,
+      "cumulative": false,
+      "model": "resident_pc64",
+      "complement_logarithm": "public LN(binary64(1-p))",
+      "counts": {
+        "matched": 1536
+      },
+      "first_contradiction": null,
+      "consistent": true,
+      "shape": "EXP(n*public LN(p))"
+    }
+  ],
+  "receipts": [
+    {
+      "function": "BINOM.DIST",
+      "file": "4f95339a21f0df05d24b93df740dffcfc8e36e2324f6a5e2f41b7c1069831393.json.gz",
+      "sha256": "c39c1df1d4834c66829f88b0849b7d24003a5720281b7f940d79d3a040e26cb0",
+      "calls": 9216,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:47:49.811381+00:00",
+      "request_sha256": "6c97f31c831932c7468069b195154948408f88c05313c2a1220d6080acc01ecd"
+    },
+    {
+      "function": "POWER",
+      "file": "17e84c0e0b18709d9c74fc1303e37f1efe54eaa79b3dd1d5bd98036c58f6a8f9.json.gz",
+      "sha256": "e9a4bb1c6028c33eccca868950299f2409212f15abf8e56f61fa5fa65608fac6",
+      "calls": 6144,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:48:27.814660+00:00",
+      "request_sha256": "9fa40dbfe3fcd098fb4c570d089c3cdad8bb2ea63211b03ca73f3ffb85f5e42f"
+    },
+    {
+      "function": "LN",
+      "file": "792ff39f354651d0d38ec5d7f48d030c51946583cefdcc979d3de78f46a5559d.json.gz",
+      "sha256": "eb03a26cb0d14fff98e7e141388a53def8b1a5e134c8cc3c33def1576dd9df74",
+      "calls": 3073,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T19:56:00.584076+00:00",
+      "request_sha256": "4a289a417f447703f3d3b37cb9ddb87cd246000836486ab2ac662baf156346c5"
+    },
+    {
+      "function": "EXP",
+      "file": "dee15f9949043057fc86a40be17cf5d6b6c117b752214d0f9ebdbc1566da2543.json.gz",
+      "sha256": "d7693ac73f2cae7ae4a371ac3d4c816f9e6a892b835e5aa044c2d98786d99788",
+      "calls": 6137,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-04T20:05:03.237182+00:00",
+      "request_sha256": "fffbadb6da61871e682c61588f51c201dc8ed909bfdde012fed52935af799a68"
+    }
+  ],
+  "limitations": "Only n=2 and n=5 tail masses and n=2 one-count CDF. Public POWER and LN controls use a binary64 complement. Polynomial resident arithmetic retains the complement until final publication. Log trees use public binary64 LN(p) and EXP leaves, with a binary64 exponent at the service boundary. Mathematical LOG1P(-p) leaves are labelled conditional candidates, never private Excel observations. A surviving tree is conditional on this scope; no hidden general kernel or branch is identified. No coefficients or thresholds fit.",
+  "producer_bindings": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "551149f2fb8d9bbdf73166da584042945d71b9525f8d9707bd4fd582dff3a554",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "analysis_model": "gpt-6.1-sol (session launcher)",
+  "sources": "Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read."
+}

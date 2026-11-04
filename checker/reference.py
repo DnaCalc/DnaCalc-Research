@@ -66,6 +66,115 @@ def log_bounds(bits, precision=256):
         for item in raw:LIB.mpfr_clear(C.byref(item))
 
 
+def elementary_bounds(function, arguments, precision=256):
+    """Directed mathematical bounds, independent of Excel's program shape.
+
+    This extends the existing installed-MPFR reference. References never count
+    as Excel observations, and correctly rounded single/double publication is
+    only a candidate for a leaf, not a model of its surrounding computation.
+    Rational products and finite sums are exact before transcendental calls.
+    """
+    import math
+    allowed = {'EXP','LN','LOG','LOG10','LOG1P','POWER','SQRT','GEOMEAN',
+               'SINH','COSH','TANH','COTH','CSCH','SECH',
+               'BINOM.DIST','BINOMDIST','POISSON.DIST','POISSON',
+               'BESSELJ','BESSELY','ABS','STANDARDIZE'}
+    if function not in allowed:
+        return None
+    if any(a['type'] not in ('number','boolean') for a in arguments):
+        return None
+    xs = [R(struct.unpack('>d', bytes.fromhex(a['bits']))[0]) if a['type']=='number'
+          else R(a['value']) for a in arguments]
+    if function in ('BESSELJ','BESSELY'):
+        if len(xs)!=2 or xs[0]<=0 or not 0<=xs[1]<=64:
+            return None
+        return bessel_bounds(function, arguments[0]['bits'], math.trunc(xs[1]), precision)
+    if function=='ABS':
+        return abs(xs[0]),abs(xs[0])
+    if function=='STANDARDIZE':
+        if len(xs)!=3 or xs[2]<=0:return None
+        y=(xs[0]-xs[1])/xs[2]
+        return y,y
+    # These official MPFR entry points operate only on the installed library;
+    # no MPFR source code or private Excel implementation is inspected.
+    for name,args in [('set_str',[PTR,C.c_char_p,C.c_int,C.c_int]),
+                      ('exp',[PTR,PTR,C.c_int]), ('log10',[PTR,PTR,C.c_int]),
+                      ('pow',[PTR,PTR,PTR,C.c_int]),
+                      ('rootn_ui',[PTR,PTR,C.c_ulong,C.c_int]),
+                      ('sinh',[PTR,PTR,C.c_int]), ('cosh',[PTR,PTR,C.c_int]),
+                      ('tanh',[PTR,PTR,C.c_int])]:
+        f=getattr(LIB,'mpfr_'+name);f.argtypes=args;f.restype=C.c_int
+    raw=[]
+    def new(q=None):
+        # Exact rational values below have power-of-two denominators. Reserve
+        # enough significand bits for products of every supplied binary64.
+        p=precision if q is None else max(precision,abs(q.numerator).bit_length())
+        r=Raw();LIB.mpfr_init2(C.byref(r),p);raw.append(r)
+        if q is not None:
+            require(q.denominator & (q.denominator-1)==0,'non-dyadic MPFR input')
+            binary=(('-' if q<0 else '')+bin(abs(q.numerator))[2:]
+                    +'@'+str(-(q.denominator.bit_length()-1))).encode()
+            require(LIB.mpfr_set_str(C.byref(r),binary,2,0)==0,'invalid exact binary reference')
+        return r
+    def unary(name,q):
+        x,lo,hi=new(q),new(),new()
+        operation=getattr(LIB,'mpfr_'+name)
+        operation(C.byref(lo),C.byref(x),3)
+        operation(C.byref(hi),C.byref(x),2)
+        return rational(lo),rational(hi)
+    try:
+        x=xs[0]
+        if function=='LOG1P':
+            if x<=-1:return None
+            # Form the complement as an exact dyadic, before the logarithm.
+            # This models a mathematical private leaf, never an Excel answer.
+            return unary('log',1+x)
+        if function in ('EXP','LN','LOG10','SQRT','SINH','COSH','TANH'):
+            if function in ('LN','LOG10','SQRT') and x<=0:return None
+            return unary({'EXP':'exp','LN':'log','LOG10':'log10','SQRT':'sqrt',
+                          'SINH':'sinh','COSH':'cosh','TANH':'tanh'}[function],x)
+        if function=='LOG':
+            base=xs[1] if len(xs)>1 else R(10)
+            if x<=0 or base<=0 or base==1:return None
+            a,b=unary('log',x);c,d=unary('log',base)
+            quotients=[v/w for v in (a,b) for w in (c,d)]
+            return min(quotients),max(quotients)
+        if function=='POWER':
+            if len(xs)!=2 or x<=0:return None
+            a,b,lo,hi=new(x),new(xs[1]),new(),new()
+            LIB.mpfr_pow(C.byref(lo),C.byref(a),C.byref(b),3)
+            LIB.mpfr_pow(C.byref(hi),C.byref(a),C.byref(b),2)
+            return rational(lo),rational(hi)
+        if function=='GEOMEAN':
+            if any(x<=0 for x in xs):return None
+            product=math.prod(xs);a,lo,hi=new(product),new(),new()
+            LIB.mpfr_rootn_ui(C.byref(lo),C.byref(a),len(xs),3)
+            LIB.mpfr_rootn_ui(C.byref(hi),C.byref(a),len(xs),2)
+            return rational(lo),rational(hi)
+        if function in ('COTH','CSCH','SECH'):
+            a,b=unary({'COTH':'tanh','CSCH':'sinh','SECH':'cosh'}[function],x)
+            if a*b<=0:return None
+            return min(1/a,1/b),max(1/a,1/b)
+        if function in ('BINOM.DIST','BINOMDIST'):
+            if len(xs)!=4 or not 0<=xs[2]<=1:return None
+            k,n=map(math.trunc,xs[:2]);p=xs[2]
+            if not 0<=k<=n<=512:return None
+            pmf=lambda j:math.comb(n,j)*p**j*(1-p)**(n-j)
+            y=sum((pmf(j)for j in range(k+1)),R(0)) if xs[3]else pmf(k)
+            return y,y
+        if function in ('POISSON.DIST','POISSON'):
+            if len(xs)!=3 or xs[0]<0 or xs[1]<=0:return None
+            k=math.trunc(xs[0]);mean=xs[1]
+            if k>256 or mean>700:return None
+            factors=[mean**j/math.factorial(j)for j in range(k+1)]
+            factor=sum(factors,R(0)) if xs[2]else factors[-1]
+            a,b=unary('exp',-mean)
+            return a*factor,b*factor
+        return None
+    finally:
+        for r in raw:LIB.mpfr_clear(C.byref(r))
+
+
 def bessel_bounds(function, bits, order, precision=256):
     """Directed real-function bounds through the official MPFR jn/yn API.
 

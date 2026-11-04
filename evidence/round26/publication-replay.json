@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "application_revision": "af74247e1ed54f0b535143f1305261b98d80d18e",
+  "unit_sha256": "3419e174dd8863450850c6f60e1e7eb392728fe1b57a189dea953eb3f34b0ce9",
+  "executable_sha256": "83479c1250c47726a6a71fa25b42d3c93eab2c6a2e37d978ffcc531ad1eee0ee",
+  "comparisons": [
+    {
+      "original": "/home/ubuntu/codex-runs/round26/geomean-live-after.jsonl",
+      "publication": "/home/ubuntu/codex-runs/round26/geomean-live-final-metadata.jsonl",
+      "sha256": "4b7fd63ac56c5615b46101a409af0fdd3e354f9b992764711876f178f3351800",
+      "rows": 11456,
+      "byte_identical": true
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round26/product-stage-full-after.jsonl",
+      "publication": "/home/ubuntu/codex-runs/round26/product-stage-full-final-metadata.jsonl",
+      "sha256": "1001b3743173fa5fc85fdfa95efac3745269de35a04bd18baecbdec66cf0d951",
+      "rows": 2048,
+      "byte_identical": true
+    }
+  ],
+  "limits": "The final merged registered-route executable reproduces every retained after prediction exactly. The original before and measured Excel answers are unchanged. This is replay validation, not new Excel coverage."
+}
