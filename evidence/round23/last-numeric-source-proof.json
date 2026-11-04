@@ -7,5 +7,6 @@
     "tools/calc-verdict/src": "77aaa46c61fed862428907cabb7b0ac92558daf2"
   },
   "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "limits": "Later master changes include VBA and case reduction. Bank calculation sources above are unchanged. The bank is measured at0af, not relabelled as a new observation."
+  "limits": "The source-tree equality was checked through bc754f89, before the late f4930602 formatting update. The bank remains measured at0af; later formatting changes are outside that snapshot.",
+  "compared_revision": "bc754f89"
 }

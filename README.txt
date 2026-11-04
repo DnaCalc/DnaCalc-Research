@@ -26,7 +26,7 @@ Incoming R21/R22/fn2/fn3 workbook captures expand the corpus to21,215/22,830
 matched,1,615 inclusive failures,zero pending. R21 scores122/204; R22 QR105/105.
 The upstream captures and added formulas account for1,241 new measured matches.
 The later incoming witness-context implementation preserves reference origin
-and includes invocation facts in bank identity. Its current bank measures
+and includes invocation facts in bank identity. At measured0af its bank records
 3,267,168/3,910,050 matched(83.55822%),642,882 failed,including116 unread.
 These counts use a changed scope and are separate from the106 R23 kernel gains.
 
