@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "application_revision": "0124256d529b8cf5580364487d751f1feee5933c",
+  "compiled_unit_sha256": "8344b07867b68cf2f4ad9d01aeac4faf54922ba91baf203a5e6ca434a10e80b6",
+  "known_normalized_only_binary_sha256": "fc6b8321b52d285ace5a5e7a52a3dafc5fd16f172eaf2522368ce032b496b337",
+  "bindings": {
+    "crates/calc-func/src/catalogue/statistics.rs": {
+      "compiled_unit_git_blob": "df1e76509ddd552440a8713678f24c5ae844cd40",
+      "current_sha256": "85181f41e3a65ceb20142df4d8e7f782fb08a7c7029556d537a60b269d6fdb64",
+      "byte_identical": true
+    },
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": {
+      "compiled_unit_git_blob": "d5d7e717a778ccb02fccacd1474a5470752a4393",
+      "current_sha256": "b466f6eb4b5748a013db4e895ea43c079b5497cbc6266f49899b2f1e15accb41",
+      "byte_identical": true
+    }
+  },
+  "limits": "Byte equality of the GEOMEAN catalogue route and numeric helper against the prior binary unit. Fresh corpus/bank baselines separately account for other merged functions."
+}

@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "unchanged_witness_rows": 120,
+  "only_removed_calculation_pins": [
+    "w111broad-20260929-GEOMEAN-00571",
+    "w111broad-20260929-GEOMEAN-00879",
+    "w111broad-20260929-GEOMEAN-00623",
+    "w111broad-20260929-GEOMEAN-01042",
+    "w111broad-20260929-GEOMEAN-00707",
+    "w111broad-20260929-GEOMEAN-00327",
+    "w111broad-20260929-GEOMEAN-00202",
+    "w111broad-20260929-GEOMEAN-00609"
+  ],
+  "all8_now_match_original_Excel": true,
+  "remaining_refusal_unchanged": true,
+  "all295_full_status_rows_exactly_restored": true,
+  "refreshed_pinned_status": [
+    [
+      {
+        "function": "GEOMEAN",
+        "bank": "pinned",
+        "excel_builds": "20430",
+        "rows": "120",
+        "matched": "111",
+        "worst_ulp": "1",
+        "class": "structural",
+        "calc_func_commit": "34a9d9d5f8"
+      },
+      {
+        "function": "GEOMEAN",
+        "bank": "pinned",
+        "excel_builds": "20430",
+        "rows": "120",
+        "matched": "119",
+        "worst_ulp": "-",
+        "class": "structural",
+        "calc_func_commit": "0124256d52+changes"
+      }
+    ]
+  ],
+  "full_status_total": 3910007,
+  "full_status_matched": 3769119,
+  "unread_by_function": {
+    "MINVERSE": 112,
+    "POISSON.DIST": 4
+  },
+  "source": "/home/ubuntu/codex-runs/r28/reviewer_pin_refresh.py",
+  "hashes": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/witnesses/GEOMEAN.json": "17d0f4a66470633e20bb1f6ae3e38c5f10380ee6488e9ac18bc1cb2e506db3e3",
+    "/home/ubuntu/codex-runs/r28/reviewer-geomean-pins-before.json": "401a6b54b3aa50645215322d6d1f6d0c1f9ef8800df164ac060cb060c533a73b",
+    "/home/ubuntu/codex-runs/r28/full-status-before-pin-refresh.tsv": "17d0195c20d8f8b5f08864da274462834887cd142bd0ce80996d2b400aba0b0d",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/witness-status.tsv": "ce6459e9ba920a3ccd667ea040d1c41cd37a594f2eea89e59380f27a351082d4",
+    "/home/ubuntu/codex-runs/r28/bank-after-core-final/changed-outcomes.jsonl.gz": "ad478ea20811e663d2d14b77793a8ee9d94928c80c104a716441ab1b831492d7",
+    "/home/ubuntu/codex-runs/r28/bank-after-core-final/summary.json": "83d83c37e7e3e9c161718047b51d4ce64c5876ad4cbae48522b6d826dcc822a5",
+    "/home/ubuntu/codex-runs/r28/pin-refresh-reconciliation.json": "a7a3e428b9140332484546db713b085cbf16ca840f28642bdfa0b8d223c7aa7d",
+    "/home/ubuntu/codex-runs/r28/geomean-pin-refresh.log": "6df48a206c6bcd37735a0a4c01fe742209d7bbcabcda9e1db33dec39f172aa3f",
+    "/home/ubuntu/codex-runs/r28/reviewer_pin_refresh.py": "958cd4991bcaf14f2889c48633038aee42f2f51c3f0ff7c403e5d074cc51c6e6"
+  }
+}

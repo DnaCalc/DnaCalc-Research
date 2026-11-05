@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "studies": [
+    {
+      "selection": "log-constant-refinement.json.selection.json",
+      "sha256": "86bfbeb2e4fb7525f99f640055b6174aefd04475606ddaef3ed40fb7a6a067bc",
+      "centers": 4,
+      "inputs_scanned": 262144,
+      "selected": 0,
+      "seconds": 46.566520001972094
+    },
+    {
+      "selection": "log-constant-refinement-spread.json.selection.json",
+      "sha256": "557c63ed076977f65428ed5e0ca0afabde81fa9210b43cfaca44cf29be43e34d",
+      "centers": 255,
+      "inputs_scanned": 130560,
+      "selected": 670,
+      "seconds": 22.19512534001842
+    }
+  ],
+  "library_sha256": "8111f1cfadee54dfdfe417c1457f71ba672487d56400e8fc2b25fbd03dac4ae1",
+  "scope": "Independent single-instruction replay of the entire declared input windows; no Excel call and no fitted constant."
+}

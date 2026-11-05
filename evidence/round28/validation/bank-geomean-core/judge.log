@@ -1,0 +1,9 @@
+xtask witness: 6067 readings of 6 bank files
+xtask witness: import: readings/excel-20527/r16-GEOMEAN.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: CompatibilityVersion is retained in source identity and applied by the context-aware caller
+xtask witness: GEOMEAN                    1225 rows     1224 matched  worst      - ULP  structural
+xtask witness: 1 functions, 0 exact on every counted row; 1224 of 1225 rows matched, 1 failed (mismatched, refused or unread; 0 unread)
+xtask witness: 0 inputs read differently: 0 across builds or platforms, 0 within one environment
+xtask witness: wrote crates/calc-func/witness-status.tsv (full)
+xtask witness: wrote crates/calc-func/witness-differences.tsv
+xtask witness: wrote target/witness/full-vs-oxfunc.tsv

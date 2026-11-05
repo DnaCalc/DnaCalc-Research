@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "actual_route": "registered calc-func invocation",
+  "counts": {
+    "total": 19200,
+    "before_pass": 17435,
+    "after_pass": 17438,
+    "gains": 9,
+    "losses": 6,
+    "changed_outputs": 15
+  },
+  "all_changed_predictions_equal_counterfactual": true,
+  "normalized_core_unchanged": true,
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/r28/root-original-before.jsonl": "11e2b6605d07f5458962b5a3a099fad2b07d2fc7939ca02300f38d61f136b3af",
+    "/home/ubuntu/codex-runs/r28/root-original-after.jsonl": "4e04b40d51dc0faf7dc97612864a0b8a6fdb83e03e7c2f55c85791a45920d89e",
+    "/home/ubuntu/codex-runs/r28/root-normalized-before.jsonl": "8043ed029e2df2d12c924a57599d487e3a998304c6432453ff79d7f642c2d4d6",
+    "/home/ubuntu/codex-runs/r28/root-normalized-after.jsonl": "8043ed029e2df2d12c924a57599d487e3a998304c6432453ff79d7f642c2d4d6",
+    "/home/ubuntu/codex-runs/r28/root-after-racer": "fc6b8321b52d285ace5a5e7a52a3dafc5fd16f172eaf2522368ce032b496b337",
+    "/home/ubuntu/codex-runs/r28/root-counterfactual-delta.json": "6f8834de20da7e5f09bd21f7a17ee54157009913dc308e9aa6ef2419a8a39c84"
+  }
+}

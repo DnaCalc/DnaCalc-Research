@@ -1,0 +1,178 @@
+{
+  "complete": true,
+  "original_calls": 5376,
+  "primitive_counts": {
+    "EXP_ROM80_resident_reduction": {
+      "matched": 1024
+    },
+    "EXP_constant53_resident_reduction": {
+      "matched": 483,
+      "mismatched": 541
+    },
+    "EXP_ROM80_stored_reduction": {
+      "matched": 414,
+      "mismatched": 610
+    },
+    "LN_ROM80": {
+      "matched": 1024
+    },
+    "LN_constant53": {
+      "mismatched": 226,
+      "matched": 798
+    }
+  },
+  "inverse_boundary_checks": 18432,
+  "root_stage_counts": {
+    "EXP": {
+      "shared_log_possible": 762,
+      "registered_resident_log_in_intersection": 616,
+      "binary64_log_in_intersection": 515,
+      "registered_resident_log_excluded": 146,
+      "binary64_log_excluded": 247,
+      "shared_log_impossible": 6
+    },
+    "EXP2": {
+      "shared_log_possible": 762,
+      "registered_resident_log_in_intersection": 615,
+      "binary64_log_in_intersection": 443,
+      "binary64_log_excluded": 319,
+      "registered_resident_log_excluded": 147,
+      "shared_log_impossible": 6
+    }
+  },
+  "constant_boundary_checks": 8192,
+  "constant_families": [
+    {
+      "function": "LN",
+      "observations": 1024,
+      "common_coefficient_interval": {
+        "lower": [
+          "6393154322601327825",
+          "9223372036854775808"
+        ],
+        "upper": [
+          "12786308645202655661",
+          "18446744073709551616"
+        ],
+        "lower_closed": true,
+        "upper_closed": true
+      },
+      "pc64_candidate_count": 12,
+      "first_pc64_candidates": [
+        "a279cfd1f71772b1fe3f",
+        "a379cfd1f71772b1fe3f",
+        "a479cfd1f71772b1fe3f",
+        "a579cfd1f71772b1fe3f",
+        "a679cfd1f71772b1fe3f",
+        "a779cfd1f71772b1fe3f",
+        "a879cfd1f71772b1fe3f",
+        "a979cfd1f71772b1fe3f",
+        "aa79cfd1f71772b1fe3f",
+        "ab79cfd1f71772b1fe3f",
+        "ac79cfd1f71772b1fe3f",
+        "ad79cfd1f71772b1fe3f"
+      ],
+      "published_rom": "ac79cfd1f71772b1fe3f",
+      "rom_in_intersection": true
+    },
+    {
+      "function": "EXP",
+      "observations": 1024,
+      "common_coefficient_interval": {
+        "lower": [
+          "36384996751918471145",
+          "25220157913275056128"
+        ],
+        "upper": [
+          "36384996751917389747",
+          "25220157913274306560"
+        ],
+        "lower_closed": false,
+        "upper_closed": false
+      },
+      "pc64_candidate_count": 1,
+      "first_pc64_candidates": [
+        "bcf0175c293baab8ff3f"
+      ],
+      "published_rom": "bcf0175c293baab8ff3f",
+      "rom_in_intersection": true
+    }
+  ],
+  "contradictions": [
+    {
+      "input": "401bffffffffffb3",
+      "primitive": "EXP",
+      "gap": "39/9223372036854775808"
+    },
+    {
+      "input": "401bffffffffffb3",
+      "primitive": "EXP2",
+      "gap": "7/1152921504606846976"
+    },
+    {
+      "input": "401bffffffffffbd",
+      "primitive": "EXP",
+      "gap": "231/9223372036854775808"
+    },
+    {
+      "input": "401bffffffffffbd",
+      "primitive": "EXP2",
+      "gap": "167/4611686018427387904"
+    },
+    {
+      "input": "401bffffffffffd5",
+      "primitive": "EXP",
+      "gap": "5/9223372036854775808"
+    },
+    {
+      "input": "401bffffffffffd5",
+      "primitive": "EXP2",
+      "gap": "1/1152921504606846976"
+    },
+    {
+      "input": "401c00000000000a",
+      "primitive": "EXP",
+      "gap": "11/1152921504606846976"
+    },
+    {
+      "input": "401c00000000000a",
+      "primitive": "EXP2",
+      "gap": "1/72057594037927936"
+    },
+    {
+      "input": "401c00000000003c",
+      "primitive": "EXP",
+      "gap": "15/1152921504606846976"
+    },
+    {
+      "input": "401c00000000003c",
+      "primitive": "EXP2",
+      "gap": "87/4611686018427387904"
+    },
+    {
+      "input": "401c000000000079",
+      "primitive": "EXP",
+      "gap": "293/4611686018427387904"
+    },
+    {
+      "input": "401c000000000079",
+      "primitive": "EXP2",
+      "gap": "423/4611686018427387904"
+    }
+  ],
+  "input_sha256": {
+    "evidence/round28/resident-stages-corrected.json": "db766492ad2e66f149d838ca25a1557d2077aeb707706945fe8df8abd03f15dd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "0e77d551ceaf61955531d94af5bec006ed4807a7f2fa867425f49cd2d2183db2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/x87.py": "4fee9beca49836f88a7c402e8c85ca641a4f1747f81154adac28409a4ca8bb72",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/codex-runs/r28/independent-x87.so": "8111f1cfadee54dfdfe417c1457f71ba672487d56400e8fc2b25fbd03dac4ae1",
+    "evidence/round28/resident-service/7be563d248cce7673004afb230e60a6386cc4b18ad67ed6409320b0e0b9fe693.json.gz": "ea47bce0b316843db5cd6e53a185449e8ff5ec98af2bf55731cdb102ab329e8b",
+    "evidence/round28/resident-service/98144b2d0621d63e935a195dff0ac01e9d47a19f73b7c3445b0f02286b53907a.json.gz": "2f8296cd953904465f0a860fb964722fd04695dcec7a0de962a5aaffe6710686",
+    "evidence/round28/resident-service/b92a125b1ba1c5570641bce279c14bb4f2ff8f07a2aa2c6fa6cd2e13ce8229af.json.gz": "1f46710b6e5f517e7d562790e732340e854ecc0987f78c6218120dc888da149f",
+    "evidence/round28/resident-service/6ef283b53b40dabeb68907b49351158b9715233c27167133aacb52e6f9481520.json.gz": "33dae4f8855d80b251aad173ada5941afaa26b6ce5240a1205de360497b8ced4",
+    "evidence/round28/resident-service/ae9974fe1b04f36af0c16665da69b1e6d5b4b75a87da00e16a8888bc1f7c71b8.json.gz": "8028c170564ff4cb13cfa004ef8265a0a085e3620f15190697501494e62f8486",
+    "evidence/round28/resident-service/781caadbe92c266e4787d88cc28e69d6fc91d54c654e920928a6ac15d4481b45.json.gz": "bf39f3cb3cffcc099ea717d7fb2226ee214ec3eb6bdccc0ac8c32885a3d2a5f9",
+    "evidence/round28/reduction-constants.json": "2161073406cae33640863474a81808ded8632fe55143845c3029460adf37aff3"
+  },
+  "limits": "Independent rational PC64 arithmetic and native single-instruction leaves. Exact output-cell endpoints and their immediate neighbors verified; local monotonicity is conditional. The intersections bound an unknown shared logarithm, never fit one. No private algorithm or global table/polynomial identification follows."
+}

@@ -1,0 +1,243 @@
+{
+  "complete": true,
+  "files": {
+    "files": 98,
+    "bytes": 51627398,
+    "manifest_sha256": "4f7c7bf9c65ab2375eed29f0ffcbe59a1f5998cee54326e617aa013e5e6f3b9d"
+  },
+  "formula_cells": 9691,
+  "roles": {
+    "operand_echo": 4439,
+    "question": 4996,
+    "arithmetic_control": 256
+  },
+  "statuses": {
+    "observed": 9691
+  },
+  "observed_calls_by_function": {
+    "LINEST": 864,
+    "LOGEST": 864,
+    "TREND": 64,
+    "GROWTH": 64,
+    "MINVERSE": 64,
+    "ROUNDDOWN": 128,
+    "TRUNC": 128,
+    "ROUNDUP": 128,
+    "CEILING": 128,
+    "SWITCH": 128,
+    "FLOOR": 128,
+    "ROUND": 128,
+    "INT": 128,
+    "ABS": 128,
+    "EUROCONVERT": 128,
+    "EVEN": 128,
+    "ISEVEN": 128,
+    "ISODD": 128,
+    "N": 128,
+    "NOT": 128,
+    "ODD": 128,
+    "QUOTIENT": 128,
+    "SIGN": 128,
+    "ROWS": 1,
+    "COLUMNS": 1,
+    "JIS": 1,
+    "TEXTSPLIT": 1,
+    "GEOMEAN": 384,
+    "LN": 128,
+    "EXP": 128,
+    "POWER": 128
+  },
+  "intended_operand_echoes": {
+    "equal": 4309
+  },
+  "workbooks": [
+    {
+      "complete": true,
+      "formula_cells": 3984,
+      "roles": {
+        "operand_echo": 2064,
+        "question": 1920
+      },
+      "statuses": {
+        "observed": 3984
+      },
+      "observed_calls_by_function": {
+        "LINEST": 864,
+        "LOGEST": 864,
+        "TREND": 64,
+        "GROWTH": 64,
+        "MINVERSE": 64
+      },
+      "intended_operand_echoes": {
+        "equal": 2064
+      },
+      "observed_formula_spelling_changes": 0,
+      "first_formula_changes": [],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r26/packet/fingerprints/regression/workbooks/dcj9k_r26_regression/oracle.xlsx",
+      "workbook_sha256": "52ab13a3a5eb860c007efdd637573a517918f137c2db5afcc1be17807a70bd54",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r26/r26-regression.capture.json",
+      "capture_sha256": "4073f638d3e2b8c0f71d58d5237c6e207a2006ecb3c6f1cea8bdcc69705be03c",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 2571,
+      "roles": {
+        "operand_echo": 263,
+        "question": 2308
+      },
+      "statuses": {
+        "observed": 2571
+      },
+      "observed_calls_by_function": {
+        "ROUNDDOWN": 128,
+        "TRUNC": 128,
+        "ROUNDUP": 128,
+        "CEILING": 128,
+        "SWITCH": 128,
+        "FLOOR": 128,
+        "ROUND": 128,
+        "INT": 128,
+        "ABS": 128,
+        "EUROCONVERT": 128,
+        "EVEN": 128,
+        "ISEVEN": 128,
+        "ISODD": 128,
+        "N": 128,
+        "NOT": 128,
+        "ODD": 128,
+        "QUOTIENT": 128,
+        "SIGN": 128,
+        "ROWS": 1,
+        "COLUMNS": 1,
+        "JIS": 1,
+        "TEXTSPLIT": 1
+      },
+      "intended_operand_echoes": {
+        "equal": 261
+      },
+      "observed_formula_spelling_changes": 257,
+      "first_formula_changes": [
+        {
+          "id": "r26-scalar-00773",
+          "requested": "SWITCH(D514,D771,D2,D772)",
+          "observed": "=@SWITCH(D514,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00774",
+          "requested": "SWITCH(D517,D771,D2,D772)",
+          "observed": "=@SWITCH(D517,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00775",
+          "requested": "SWITCH(D519,D771,D2,D772)",
+          "observed": "=@SWITCH(D519,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00776",
+          "requested": "SWITCH(D521,D771,D2,D772)",
+          "observed": "=@SWITCH(D521,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00777",
+          "requested": "SWITCH(D523,D771,D2,D772)",
+          "observed": "=@SWITCH(D523,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00778",
+          "requested": "SWITCH(D525,D771,D2,D772)",
+          "observed": "=@SWITCH(D525,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00779",
+          "requested": "SWITCH(D527,D771,D2,D772)",
+          "observed": "=@SWITCH(D527,D771,D2,D772)"
+        },
+        {
+          "id": "r26-scalar-00780",
+          "requested": "SWITCH(D529,D771,D2,D772)",
+          "observed": "=@SWITCH(D529,D771,D2,D772)"
+        }
+      ],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r26/packet/fingerprints/scalar/workbooks/dcj9k_r26_scalar/oracle.xlsx",
+      "workbook_sha256": "3ed9e3f14269b9c073d6537fbc40d0709e447b6607a707e5333aa455bd8de1f7",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r26/r26-scalar.capture.json",
+      "capture_sha256": "a6432ad53e47cec104a65cde2817130434d58fbe82915244cf0620a9583c2200",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 3136,
+      "roles": {
+        "operand_echo": 2112,
+        "question": 768,
+        "arithmetic_control": 256
+      },
+      "statuses": {
+        "observed": 3136
+      },
+      "observed_calls_by_function": {
+        "GEOMEAN": 384,
+        "LN": 128,
+        "EXP": 128,
+        "POWER": 128
+      },
+      "intended_operand_echoes": {
+        "equal": 1984
+      },
+      "observed_formula_spelling_changes": 240,
+      "first_formula_changes": [
+        {
+          "id": "r26-root_transfer-00010",
+          "requested": "INDEX({1.2999999999999983,1,1,1,1,1,1,1,1},1,1)",
+          "observed": "=INDEX({1.29999999999999,1,1,1,1,1,1,1,1},1,1)"
+        },
+        {
+          "id": "r26-root_transfer-00013",
+          "requested": "GEOMEAN({1.2999999999999983,1,1,1,1,1,1,1,1})",
+          "observed": "=GEOMEAN({1.29999999999999,1,1,1,1,1,1,1,1})"
+        },
+        {
+          "id": "r26-root_transfer-00028",
+          "requested": "INDEX({1.2999999999999985,1,1,1,1,1,1,1,1},1,1)",
+          "observed": "=INDEX({1.29999999999999,1,1,1,1,1,1,1,1},1,1)"
+        },
+        {
+          "id": "r26-root_transfer-00031",
+          "requested": "GEOMEAN({1.2999999999999985,1,1,1,1,1,1,1,1})",
+          "observed": "=GEOMEAN({1.29999999999999,1,1,1,1,1,1,1,1})"
+        },
+        {
+          "id": "r26-root_transfer-00046",
+          "requested": "INDEX({1.2999999999999987,1,1,1,1,1,1,1,1},1,1)",
+          "observed": "=INDEX({1.29999999999999,1,1,1,1,1,1,1,1},1,1)"
+        },
+        {
+          "id": "r26-root_transfer-00049",
+          "requested": "GEOMEAN({1.2999999999999987,1,1,1,1,1,1,1,1})",
+          "observed": "=GEOMEAN({1.29999999999999,1,1,1,1,1,1,1,1})"
+        },
+        {
+          "id": "r26-root_transfer-00064",
+          "requested": "INDEX({1.2999999999999989,1,1,1,1,1,1,1,1},1,1)",
+          "observed": "=INDEX({1.29999999999999,1,1,1,1,1,1,1,1},1,1)"
+        },
+        {
+          "id": "r26-root_transfer-00067",
+          "requested": "GEOMEAN({1.2999999999999989,1,1,1,1,1,1,1,1})",
+          "observed": "=GEOMEAN({1.29999999999999,1,1,1,1,1,1,1,1})"
+        }
+      ],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r26/packet/root-transfer/root_transfer/workbooks/dcj9k_r26_root_transfer/oracle.xlsx",
+      "workbook_sha256": "0a8a34107861200e7e535a0f2d184899f8bd0475096f492d816b3d1d490fd9fc",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r26/r26-root_transfer.capture.json",
+      "capture_sha256": "5e8b0b5ff7762a7bfdf162b16731d7e2269948f023a061388daa98181552e521",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    }
+  ],
+  "observed_formula_spelling_changes": 497,
+  "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+}

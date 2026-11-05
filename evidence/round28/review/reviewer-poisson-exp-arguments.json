@@ -1,0 +1,35 @@
+{
+  "complete": true,
+  "original_source_calls": 7304,
+  "original_PMF_targets": 2048,
+  "inverse_boundary_checks": 8192,
+  "counts": {
+    "no binary64 argument": 682,
+    "public bracket verified": 682,
+    "binary64 argument possible": 1366
+  },
+  "projection_sizes": {
+    "0": 682,
+    "1": 1366
+  },
+  "public_calls": 618,
+  "public_unique_calls": 618,
+  "repeated_neighbor_checks": 1364,
+  "source": "/home/ubuntu/codex-runs/r28/reviewer_poisson_exp_arguments.py",
+  "hashes": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-exp-arguments.json": "4040adbcd2fff03b78211d490006d85dbff6fc383c3c8dfcc57d6a3d23d46261",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-seeds.json": "432726f86926b8fcf800b300a50eed18660c869cab623f25e69f21dde887af2c",
+    "/home/ubuntu/codex-runs/r28/independent-x87.so": "8111f1cfadee54dfdfe417c1457f71ba672487d56400e8fc2b25fbd03dac4ae1",
+    "/home/ubuntu/codex-runs/r28/reviewer_poisson_exp_arguments.py": "122c67703342465a55f24b1a0adae806c1b22dcacde1b481431053c98c7959bf",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "bbcd7b3f4adef8eb048facfad154053c343ce02ed3739b2b56af3b80d3db0ab8",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/x87.py": "4fee9beca49836f88a7c402e8c85ca641a4f1747f81154adac28409a4ca8bb72",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "1eaf001b5ce2605ccf86950562d5e73f1620928a6bd1c309042c68841cba5431",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-service/cd8e70d2409ea66d3ce97ab9620b56ceff1df4599ba22fdbd261c7eb33785285.json.gz": "2060a6598feee9644d97228ce1e57ec278f66b189a35f626613dcd10377e0875",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-service/e73bae03a7c60c3db28d670aa42abc3308b9688e85ab9bf4888a6d5a16ba01b0.json.gz": "0c25dacc9e58c3652f31ddd83eeb62733d106886a37e726d16f43be4466a8e93",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-service/9107f5222499ecbc18d15860bf69eec46ec6d47942c02975e91402a9d81b8d12.json.gz": "1c5d4b3d5f810e3e927ad748dff9105cc79883616c448d4a2cd57549c1e30939",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-service/5008945b62ef94f41aa148cb35228e9ebaa301f7b3b1e365c3c3dd7dfd9f2fa3.json.gz": "f1bbd4859573872ae93ba1fdfe14ee727d0d765b8a0896d156c7d9a2e81554d2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-exp-service/404c8d396d533c533ffbf10777a652d3c007ab5c3a89e43b3f31a93bc8086ddd.json.gz": "e7715a1e47c56b12d865fec1d13514e8d4e71da20733ca187c7df3f14e6e116e"
+  },
+  "limits": "Original PMF1/2 and alias identities, all closed PC64 inverse endpoints and immediate lattice neighbors, exact binary64 projection, complete public EXP gap controls. Conditional on the declared native EXP primitive and monotone-preimage premise. This excludes a stored argument within that model for682 targets; it identifies no resident argument, private exponential, or full Poisson algorithm."
+}

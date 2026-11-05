@@ -1,0 +1,33 @@
+{
+  "complete": true,
+  "source_original_calls": 19200,
+  "selected_function": "GEOMEAN",
+  "original_calls": 19200,
+  "unique_original_calls": 19200,
+  "counts": {
+    "GEOMEAN": {
+      "matched": 19200
+    }
+  },
+  "mismatches": [],
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/r28/after-core-racer": "8b6503a1c97469c9d45844f94b04ed478ef138a2e78933964910c65aa124fd1e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales.json": "f5ab13f74bcafd043a280aac0c4b5e1210796e82c28fe05e1374dcd364cd7125",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "d772a32f0d8330cc49868b1d56817ba2fbd6f4a498de27467d85b3e2405c9f7a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/9d4ff038b1f7cc03e5e9cd38d86b671c5f62a35784856f088571f2ebafb18b96.json.gz": "00f752e6edb716b0e23fae58af4010b3beb6eb021addb64930bfcd771865b56f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/452f47c4f1a686479fbf4a432ff6b43d3d4d293005ffc34f2d551b091f7a5888.json.gz": "e526e6e02d66dad88510cd5725b00ec7bb0fac6b8a9f74fd469faec3f4078382",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/bdd1259638758d0146646726c723b15ab3d1528c53db23d9a2539a9fc6d29ac5.json.gz": "5e71cd7d3767c0eb93b9c1040c8b67805884c09ca1ec0acf3bf6944aa7fbe48e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/c3b1ad025cceb16bc8a804b91689e66665191e6254a880277b9f57b8c42ee2d5.json.gz": "b2cad680bd4a3a1dc0e9878fbaa6e6efbe97da81a82a5dc284758bea5403c97e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/2c0c854c60d1496455df9e0d42ab45e5d1fa95f46e48b9616743c3fa24d9de0a.json.gz": "5c56f1878bda58228cee5985b194d014a510cbbebcc3cfd9c8285b599d29a68e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/ea7b865af8240325e695b3b7b63b080f5cf00fe671449e58f4c5981e91eae3b8.json.gz": "b76857fea8e57322351fe34cf9cb264f4e634cd7b55513dfd11b57f33f41f1aa",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/fa1da41ec617ee7c322fc2e367c49c81c0799739f8d2efbf03d527387ac2735f.json.gz": "d0ed429b34f8bee5835aacdfc9d0c2d428e77ae0dfebea5fe3bef3c7fee76c92",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/1374a4694eab96c79bb19c38ad0217fc9682924ee4665f7e46f4511a14846664.json.gz": "fe479dfcbc871512f07a3070e863e269f24522007cce92d1ec12ccb4234fc989",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/0518a0d0b4b460a800eb54508021fae048a87a92ecc08b050e2ad4619df1d70a.json.gz": "dbd4ff3fa68297da5014634a724530da9a110e6728bdc2206cb0ffe5d2eb0456",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-scales-service/e33acf98aed2b8ef8a142c9d08e1afa1c547c128039032b2bf34ec3c29f6209e.json.gz": "914375d108fa7bf1f608ef826f1ec068baa9c0a9010dac04ed2df91478315148"
+  },
+  "output_sha256": {
+    "GEOMEAN.actuals.jsonl": "70172409543df7d118f2750e3ba6245effeb3150bb3d0823ff04af9f99b5068c",
+    "GEOMEAN.inputs.json": "b712a808b86523f1d03764b5cf96e218daa25276b917dd7edd6f92b3afc94b6f"
+  },
+  "limits": "Every original service observation is replayed through the registered calc-func invocation. Calculations remain distinct from Excel evidence."
+}

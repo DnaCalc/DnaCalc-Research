@@ -1,0 +1,106 @@
+{
+  "complete": true,
+  "verified_graphs": 20,
+  "verified_outputs": 24064,
+  "masks": {
+    "stored": 7,
+    "resident_log": 6,
+    "resident_reciprocal": 5,
+    "resident_argument": 3
+  },
+  "counts": {
+    "stored": {
+      "matched": 6016
+    },
+    "resident_log": {
+      "matched": 5774,
+      "mismatched": 242
+    },
+    "resident_reciprocal": {
+      "matched": 5670,
+      "mismatched": 346
+    },
+    "resident_argument": {
+      "matched": 5767,
+      "mismatched": 249
+    }
+  },
+  "prior_signed_exp_counts": {
+    "stored": {
+      "matched": 6016
+    },
+    "resident_log": {
+      "matched": 5774,
+      "mismatched": 242
+    },
+    "resident_reciprocal": {
+      "matched": 5670,
+      "mismatched": 346
+    },
+    "resident_argument": {
+      "matched": 5771,
+      "mismatched": 245
+    }
+  },
+  "negative_branch_differences": {
+    "stored": [],
+    "resident_log": [],
+    "resident_reciprocal": [],
+    "resident_argument": [
+      {
+        "index": 2532,
+        "count": 7,
+        "input": "3faf400000000024",
+        "plain": "3fe57629368ebec0",
+        "reciprocal": "3fe57629368ebec1",
+        "excel": {
+          "type": "number",
+          "bits": "3fe57629368ebec0"
+        }
+      },
+      {
+        "index": 2533,
+        "count": 7,
+        "input": "3faf400000000025",
+        "plain": "3fe57629368ebec0",
+        "reciprocal": "3fe57629368ebec1",
+        "excel": {
+          "type": "number",
+          "bits": "3fe57629368ebec0"
+        }
+      },
+      {
+        "index": 2534,
+        "count": 7,
+        "input": "3faf400000000026",
+        "plain": "3fe57629368ebec0",
+        "reciprocal": "3fe57629368ebec1",
+        "excel": {
+          "type": "number",
+          "bits": "3fe57629368ebec0"
+        }
+      },
+      {
+        "index": 2535,
+        "count": 7,
+        "input": "3faf400000000027",
+        "plain": "3fe57629368ebec0",
+        "reciprocal": "3fe57629368ebec1",
+        "excel": {
+          "type": "number",
+          "bits": "3fe57629368ebec0"
+        }
+      }
+    ]
+  },
+  "source": "/home/ubuntu/codex-runs/r28/reviewer_root_store_contrasts_public_exp.py",
+  "hashes": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-store-contrasts-public-exp.json": "79ef52c015e4e9f2d3560b77dad43b7965c9ae83d8aed84936d69b89107c8f4b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-public-stages.json": "e0a41e875e48dd47a03e0f9170afd7eaaf7e37d216e743268bc5e6a0c2441fa3",
+    "/home/ubuntu/codex-runs/r28/independent-x87.so": "8111f1cfadee54dfdfe417c1457f71ba672487d56400e8fc2b25fbd03dac4ae1",
+    "/home/ubuntu/codex-runs/r28/reviewer_root_store_contrasts_public_exp.py": "ba9a89d6744c7857755d126228f54086fa480b7f91f5322910dd7c82c7f92976",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/x87.py": "4fee9beca49836f88a7c402e8c85ca641a4f1747f81154adac28409a4ca8bb72",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "limits": "Exactly four fixed single-stage contrasts, all other graph nodes unchanged. The declared graph uses the actual public EXP reciprocal-negative branch. Prior signed-FRNDINT counts remain an explicitly separate diagnostic. No private algorithm identification follows."
+}

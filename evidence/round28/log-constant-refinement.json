@@ -1,0 +1,56 @@
+{
+  "format": "dnacalc-log-constant-refinement/1",
+  "complete": true,
+  "prior_sha256": "2161073406cae33640863474a81808ded8632fe55143845c3029460adf37aff3",
+  "selection_sha256": "86bfbeb2e4fb7525f99f640055b6174aefd04475606ddaef3ed40fb7a6a067bc",
+  "original_candidates": [
+    "a279cfd1f71772b1fe3f",
+    "a379cfd1f71772b1fe3f",
+    "a479cfd1f71772b1fe3f",
+    "a579cfd1f71772b1fe3f",
+    "a679cfd1f71772b1fe3f",
+    "a779cfd1f71772b1fe3f",
+    "a879cfd1f71772b1fe3f",
+    "a979cfd1f71772b1fe3f",
+    "aa79cfd1f71772b1fe3f",
+    "ab79cfd1f71772b1fe3f",
+    "ac79cfd1f71772b1fe3f",
+    "ad79cfd1f71772b1fe3f"
+  ],
+  "remaining_pc64_candidates": [
+    "a279cfd1f71772b1fe3f",
+    "a379cfd1f71772b1fe3f",
+    "a479cfd1f71772b1fe3f",
+    "a579cfd1f71772b1fe3f",
+    "a679cfd1f71772b1fe3f",
+    "a779cfd1f71772b1fe3f",
+    "a879cfd1f71772b1fe3f",
+    "a979cfd1f71772b1fe3f",
+    "aa79cfd1f71772b1fe3f",
+    "ab79cfd1f71772b1fe3f",
+    "ac79cfd1f71772b1fe3f",
+    "ad79cfd1f71772b1fe3f"
+  ],
+  "common_coefficient_interval": {
+    "lower": [
+      "6393154322601327825",
+      "9223372036854775808"
+    ],
+    "upper": [
+      "12786308645202655661",
+      "18446744073709551616"
+    ],
+    "lower_closed": true,
+    "upper_closed": true
+  },
+  "records": [],
+  "receipts": [],
+  "limits": "Conditional coefficient identification for the declared native FYL2X leaf only. No table/polynomial or private Excel logarithm is identified; no coefficient is fitted into product code. Selected questions are new observed coverage, not kernel gains.",
+  "producer_bindings": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "871f6ea0c5945a5410068dba6fa0f56fcb9fdbc07b754c668f3043239e0715a9",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/reference.py": "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+  },
+  "analysis_model": "gpt-6.1-sol (session launcher)",
+  "sources": "Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read."
+}

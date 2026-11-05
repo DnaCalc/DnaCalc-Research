@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "checks": [
+    {
+      "study": "root-anchors.json",
+      "sha256": "c772791f132c6544921fab728a3c2d881937eb60dafb775c6309cac722c189dd",
+      "raw_calls": 614,
+      "unique_raw_calls": 614,
+      "records": 307,
+      "rational_root_cell_checks": 614
+    },
+    {
+      "study": "root-equivalence.json",
+      "sha256": "b9f5f08c45c2cfc282a0ffe0af3dd5b8876e6ee728f4f2738159f716dab88018",
+      "raw_calls": 468,
+      "unique_raw_calls": 468,
+      "records": 234,
+      "equal_ratio_groups": 18,
+      "contradicted_groups": 7,
+      "reciprocal_pairs": 117
+    }
+  ],
+  "limits": "Original scalar observations and exact rational publication domains only. No private algorithm identification, global invariance or implemented kernel gain."
+}

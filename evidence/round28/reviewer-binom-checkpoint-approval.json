@@ -1,0 +1,61 @@
+{
+  "format": "dnacalc-r28-readonly-binom-checkpoint/1",
+  "reviewed_utc": "2026-11-05T03:42:37.056610+00:00",
+  "approved": true,
+  "scope": "Concrete BINOM count admission change and unchanged original R26 fixture/capture intake only. Further numerical studies and final R28 report remain outside this checkpoint approval.",
+  "source_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/discrete_dist.rs": "b9454b35c9c14a4f77dfdd86acb5a277ea7488337f3a6963d8ae809f7b1ce1cc",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs": "641f609e0d2fed9bdd369f764bf5cab3ade43df5c940b722146df09d086211f2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/migration/licence-ledger.json": "2b6d5e1ac003e2a35f5756d8ebab2cbcbf1fd9a21bfeeddd938434a26421527d"
+  },
+  "evidence_sha256": {
+    "/home/ubuntu/codex-runs/r28/binom-required-check.log": "ff50f8e05f08992ed73ebeb7e21bd3ceb80f8676a8a6be34cb502e6ea94063e7",
+    "/home/ubuntu/codex-runs/r28/binom-fail-first.log": "f26c7e9779b33e112561c1eea72304a2e7ccf29ef9a4495bfea642b2354b206f",
+    "/home/ubuntu/codex-runs/r28/binom-native-tests.log": "00c3c4455e088c960e87952bb3396fb179dd7d99547b7dd1d21c224c16177bc2",
+    "/home/ubuntu/codex-runs/r28/binom-soft-tests.log": "4646a1b8368875ee6965f09a4cb1e2ba7ca15c9da95790c575be0170c9cdd037",
+    "/home/ubuntu/codex-runs/r28/bank-before/summary.json": "4174b4459cf67f738ee1501c010d47a7836c6be102583cafa9ccb64ea9b442cd",
+    "/home/ubuntu/codex-runs/r28/bank-after-binom/summary.json": "1a96e7baa2265e8960300b03ceb027bdb729aaa39dab018a497db8737efaaef7",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/binomial-admission.json": "508386a2631308b713b9bfb40b8746f4ca27ae12a69c54ebffacac6d98b689d5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/binom-original-delta.json": "f9299e040ddd382666ea5224810610847a586493eaa14a4df81b98064d03f78b",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/admission-application-replay.json": "8b95993c19d244507fed2f41a449d84d0c88996061da1515c9c4c03c2536ccb4",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/r26-intake.json": "d24cdbb2eefd1b90fdf2ecc88c4e525dd60c12c2aac305e6113f4b5a80bdba65"
+  },
+  "original_r27": {
+    "rows": 1132,
+    "matched_before": 556,
+    "matched_after": 1132,
+    "gains": 576,
+    "losses": 0
+  },
+  "admission_controls_per_alias": 666,
+  "corpus": {
+    "formula_cells": 44739,
+    "matched": 42840,
+    "inclusive_failed": 1899,
+    "changed_evaluation_documents": 0,
+    "changed_report_documents": 0,
+    "documents_each": 100
+  },
+  "full_bank": {
+    "total": 3910007,
+    "decoded_rows": 3909891,
+    "matched": 3769062,
+    "inclusive_failed": 140945,
+    "unread": 116,
+    "gains": 0,
+    "losses": 0,
+    "changed_functions": [],
+    "same_per_function_output_hashes": true,
+    "same_match_bits": true,
+    "same_ordered_input_answer_context_digest": true
+  },
+  "required_check": {
+    "passed": 1770,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "harnesses": 69,
+    "packages": 14
+  },
+  "remaining": "Private log/exp/pow and distribution/regression arithmetic remain open. No unobserved answer or claimed global algorithm identification approved."
+}

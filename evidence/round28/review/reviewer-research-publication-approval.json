@@ -1,0 +1,55 @@
+{
+  "complete": true,
+  "decision": "APPROVE current Research commit and push; no remaining required numerical/provenance/reproduction correction.",
+  "research_base": "05903f03b43c063c64032973a7f7b56f498f22ca",
+  "payload": {
+    "artifacts": 439,
+    "bytes": 8425221,
+    "restoration_reports": 34,
+    "restored_bytes": 69323606,
+    "canonical_producer_bindings": 72,
+    "source_epochs": 104,
+    "authoritative_proofs": 12
+  },
+  "reproduction": {
+    "published_application_base": "c07d07e695ac21f9a90bddf8f207d3545232a0ea",
+    "exact_working_blobs": {
+      "crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "f82d6964371dd6a579685d5171364269c3f74485"
+    },
+    "all_guarded_changes_accounted_for": true,
+    "guards_unchanged": true,
+    "unit_research_source_hashes_verified": true,
+    "Rust_passed": 137,
+    "Rust_failed": 0,
+    "Rust_ignored": 2,
+    "Python_passed": 123
+  },
+  "main_required_check": {
+    "passed": 1814,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3
+  },
+  "results": "Fixed R28 corpus+138/-0 and bank+57/-0 remain separate from incoming publication snapshot totals; all84original cells match; one bank fallback refusal explicitly retained. All647 returned UBS findings triaged, SQL detector limitation explicit.",
+  "remaining": "Actual pushed commit hashes, main push completion/remaining state, bead close and under30-line work report need final reporting. This approves Research publication, not a false claim that main already pushed.",
+  "sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/.gitignore": "1cf5c0d5932b564e408ed101d8f0ef3c5ac21b67d5a614fc740104a27076c60c",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/README.txt": "2e6830ffa082a9f026d502ede16c41a78b09f62cf90672ec635335a80e1c358a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "e6a5566af3c35709a91d756d50db65003bb8d327837244bb9827401a856fca93",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/test_fingerprint.py": "b68a6ae272d961ff71e2644a700ea0fdddbea5542e4a1dc79ec411a07e63b2a7",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "d772a32f0d8330cc49868b1d56817ba2fbd6f4a498de27467d85b3e2405c9f7a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "bbdf8b35ab9e9e711888c55d6ca1e99704d1cfff830c4743d84d4df1caeebe36",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/regression.py": "66aae7d61112569d4763265ee631e0a4641926fa3ba61ef3288e9c6df19ee5ad",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/round28-result.json": "1d8a8867b41f7363a01924fa4ae60011525872a5ea60b827cd1ff3277b770eee",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/round28-reproducible-publication-unit.json": "2a9fd7733e24cb8b19fb0677722c01f39ad3e129ea02af4b1f3de64208509312",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/index.json": "22e8e03b2bbf4c11c885634387033a4d51e4acd24877a300ff9d81cae1eefa69",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/compression.json": "7777ac49a911ef86c6e3bbc8cc08b3ebc0656867188ae602a1d037c26f4e3ec2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/producer-bindings.json": "e0a0448ba6aa1ce6f6312b69d2fcc0ca284d4c6e618d7610a53aa8fd2450cbf3",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/producers/application-core/binding.json": "cdbe1bb009b982b3ff3e74c4cfa365cbf23c4606b4cd187b2cdc0153dc8999ca",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/producers/application-core/x87_chains.rs.gz": "21f4be24cad67afa5d284ec46ecd4799f4c8e454a0bdd9e3e00f3e29f11f7c42",
+    "/home/ubuntu/codex-runs/r28/research-reproducible-publication-tests.log": "b2be8340ab18dd99aae4cf161c18ab0cddf52864dca1dffbc917a10a2ff0b6bb",
+    "/home/ubuntu/codex-runs/r28/core-final-merged-check.log": "b22261d20939e04077971d0d74fd61e8124e2e9045a948dc8bd1156086a9b4e9",
+    "/home/ubuntu/codex-runs/r28/reviewer-final-archive-rebuilt.json": "861482ba21436600c9df5f2b958a9b15f4fe30e7e584d3b23b5558fae95fa40f",
+    "/home/ubuntu/codex-runs/r28/reviewer-final-ubs-triage.json.gz": "6cf1558af1f95ecb3f834c51008376ceab4c56297d5db8a5c47dd092e830d95f"
+  }
+}

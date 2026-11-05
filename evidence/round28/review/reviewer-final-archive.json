@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "artifact_count": 432,
+  "artifact_bytes": 8407721,
+  "restoration_reports": 34,
+  "restored_bytes": 69323606,
+  "compressed_bytes": 1712757,
+  "canonical_producer_bindings": 72,
+  "source_epochs": 103,
+  "authoritative_proofs": 12,
+  "copied_review_files_verified": 55,
+  "extras_only_ignored_restorations": [
+    "evidence/round28/hypergeom-returns.json",
+    "evidence/round28/poisson-seeds.json"
+  ],
+  "restore_command": "README command was simulated in memory: exact gzip hash/content, parent directories, existing-copy equality and all34 ignore entries verified; repository files were not written.",
+  "hashes": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/index.json": "6cbdfd46bbfb2573bd7bc988a748ceafa614bcf9f101c659d564c36f76dd34a3",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/compression.json": "7777ac49a911ef86c6e3bbc8cc08b3ebc0656867188ae602a1d037c26f4e3ec2",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/producer-bindings.json": "db1ea4badead7f1a250224c14cfc2457897d351d9f63a366b63eb7498b25b09f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/README.txt": "afbb28d96ce71bbd7524e42706f268fec20cdf9fb54f366938cdf9a37511fcf7",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/.gitignore": "1cf5c0d5932b564e408ed101d8f0ef3c5ac21b67d5a614fc740104a27076c60c",
+    "/home/ubuntu/codex-runs/r28/reviewer_archive.py": "2985f5c57495e8d4dbfecde182e2220405b043f7864abf61863ff99efac3092e"
+  }
+}

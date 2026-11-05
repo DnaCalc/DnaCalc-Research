@@ -1,0 +1,34 @@
+{
+  "complete": true,
+  "original_calls": 9356,
+  "unique_original_calls": 9356,
+  "counts": {
+    "EXP": {
+      "matched": 3468
+    },
+    "GEOMEAN": {
+      "matched": 2944
+    },
+    "LN": {
+      "matched": 2944
+    }
+  },
+  "mismatches": [],
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/r28/root-after-racer": "fc6b8321b52d285ace5a5e7a52a3dafc5fd16f172eaf2522368ce032b496b337",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-public-stages.json": "e0a41e875e48dd47a03e0f9170afd7eaaf7e37d216e743268bc5e6a0c2441fa3",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "57653ec159eadc1b767b6109f38d31d3e9f2ee53ed5120d2c48328c5438c2ecd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-public-service/73a6d1378fec028b189815b4dafe640ae69e0b06ad4cd6f1272ab243dc589a57.json.gz": "1ef85697bbb7171f1354108c733a12daf286f21b7d1cadab46d281676afa3856",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-public-service/0cf48b2fd578c431bbfd06bd8f82b06f1dbe5c74b1cdaaa44c3f61820373955c.json.gz": "7013976d2d999a249fa2537aaed3647a08a785ef12c891f0687a18786e3b5d83",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/root-public-service/b644e9c237cf4f37e64af60503c4a026dc99e21f7a8bb39c31405e4e30935cfb.json.gz": "c8de3238a50e6e049a6d51753b3716e8346bbe068db3cde81f71461833acdca2"
+  },
+  "output_sha256": {
+    "LN.inputs.json": "8d879043d7d9e986220af2c9e7130be64929db75050d267cd57d4b8746a54c01",
+    "LN.actuals.jsonl": "e448fe14f7f44836b77f38249e37b329b1b5736c46f2ea0feeab1e372de5f1f1",
+    "EXP.inputs.json": "ec57ac431e26fea6526b27a1cae6ab6576b42479be0ab70558fda1c136ffa7ff",
+    "GEOMEAN.actuals.jsonl": "4c9297c8a3a56dbc2629b393932dc0e49ca24ae56c94ebd013ed4856061de0ce",
+    "GEOMEAN.inputs.json": "7e4a1cf7c4cd77764dde1562b189189af85fbbc05f0b66b65d49e4b55b56efce",
+    "EXP.actuals.jsonl": "b4a8848c184be236c66a336db0f21f5a6ae465710759e882388b8fbc5da9c197"
+  },
+  "limits": "Every original service observation is replayed through the registered calc-func invocation. Calculations remain distinct from Excel evidence."
+}

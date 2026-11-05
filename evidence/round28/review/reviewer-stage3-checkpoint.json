@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "review_scope": "Read-only R28 normalization/source/math/provenance checkpoint. Not final whole-session approval.",
+  "actionable_findings": [],
+  "normalization": {
+    "original_calls": 19200,
+    "independent_normalized_controls": 7680,
+    "unique_unchanged_application_core_calls": 6016,
+    "gains": 9,
+    "losses": 6,
+    "changed_outputs": 15,
+    "before_pass": 17435,
+    "after_pass": 17438,
+    "loss_classification": "Each original Excel root exactly equals independently observed reduced root times2^q; the unchanged computed reduced root differs1ULP in all6 losses."
+  },
+  "verification": [
+    "Integer exponent reconstruction; all original question grid and raw service provenance; all15 counterfactual and actual outputs; software and native full outputs byte-identical.",
+    "Constructed native domain controls99, including69 mathematical n1 identities and n2/3/255/1023/1024 endpoint routes. Not Excel observations.",
+    "All90 output edges,12780 original calls, bisection updates,129-double windows and rational midpoint-power/common-ULP metadata.",
+    "Fresh corpus54books/54600cells:51373pass,3227inclusivefail; all116 evaluation documents identical.",
+    "13 fingerprint controls pass; producer package import and graph metadata corruption controls fixed. All producer bindings resolved to exact archived epochs/current source.",
+    "63 root-main scanner findings individually triaged;0critical45warning18info, no actionable defect. Separate complete stage2 Python scanner triage retained."
+  ],
+  "interpretation": "Public ROM coefficients remain conditional on declared native instruction models. Prior shared-log and single-spill contradictions test only the unreduced direct factorization; normalization can differ across arities. No private log/exp/pow/table/polynomial is identified.",
+  "pending": [
+    "Final global bank before/after delta and classification of any additional losses.",
+    "Required cargo xtask check result for final main commit.",
+    "Final README/map/index and compressed archive selection plus under30-line report.",
+    "Final researcher-source checks/scanner if subsequently changed."
+  ],
+  "sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "b466f6eb4b5748a013db4e895ea43c079b5497cbc6266f49899b2f1e15accb41",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs": "134abbc9f497656c24d1eb655879d02cd0496760bb000121b44c76dfed612b2f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "8d84c32ecb96c1e0ae0f30134b31fba12c97e94ed031e0363f8eec2088238620",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/test_fingerprint.py": "548bb07ab16dd0c21ad262fb4eddb4dc31c2129d1735791ef3bfcc53c9011399",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "aa81fd3321e75ecff33b56c9b625924973a15fe6f1e428f948915df79913ccd4",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-normalization-independent.json": "765d8b7cf8ab779ce3ea7db5a573269ec09fcdbc5a623c8cc7c916d590410d74",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-normalization-actual.json": "19aa23988c4cf4f4b27c7317367b9b4b3ddd62c72a0af31321a1294c9b67e25c",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-scales.json": "5aa0523d193f8c472170efa3b84b4e1b2abb73ec5ae336589833379ce14e5274",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-output-edges.json": "b9ed1af03d37c7d03424459f55373d67a21634dfe84dea418d5019f98d044d17",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-domain.json": "0a34dada8ee00b6fd4b219d09a104e0961bf13b159f843d7803003df5e997208",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-corpus.json": "c09abdaa31feac4c8b3be82b7ee9e9f5642949387476d0a0865accf96b21d9af",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-main-ubs-triage.json": "49029b99321fa6147820812e952b3d88a8cd4c0962581f3c44cb7738e848598d"
+  }
+}

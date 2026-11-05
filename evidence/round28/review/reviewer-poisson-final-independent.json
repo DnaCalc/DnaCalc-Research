@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "original_calls": 7304,
+  "unique_original_calls": 7302,
+  "counts": {
+    "zero_equals_EXP": 1024,
+    "zero_to_one_impossible": 182,
+    "one_to_two_possible": 587,
+    "zero_to_one_possible": 842,
+    "one_to_two_impossible": 437,
+    "exact_mode_step_equal": 31,
+    "exact_mode_step_different": 37
+  },
+  "alias_counts": {
+    "equal": 3072
+  },
+  "inputs_sha256": {
+    "/home/ubuntu/codex-runs/r28/reviewer-final-discrete/poisson-seeds.json": "432726f86926b8fcf800b300a50eed18660c869cab623f25e69f21dde887af2c",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "e6a5566af3c35709a91d756d50db65003bb8d327837244bb9827401a856fca93",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "evidence/round28/poisson-service/cd8e70d2409ea66d3ce97ab9620b56ceff1df4599ba22fdbd261c7eb33785285.json.gz": "2060a6598feee9644d97228ce1e57ec278f66b189a35f626613dcd10377e0875",
+    "evidence/round28/poisson-service/e73bae03a7c60c3db28d670aa42abc3308b9688e85ab9bf4888a6d5a16ba01b0.json.gz": "0c25dacc9e58c3652f31ddd83eeb62733d106886a37e726d16f43be4466a8e93",
+    "evidence/round28/poisson-service/9107f5222499ecbc18d15860bf69eec46ec6d47942c02975e91402a9d81b8d12.json.gz": "1c5d4b3d5f810e3e927ad748dff9105cc79883616c448d4a2cd57549c1e30939",
+    "evidence/round28/poisson-service/5008945b62ef94f41aa148cb35228e9ebaa301f7b3b1e365c3c3dd7dfd9f2fa3.json.gz": "f1bbd4859573872ae93ba1fdfe14ee727d0d765b8a0896d156c7d9a2e81554d2"
+  },
+  "limits": "Independent rational inversion of one stored-PC64 node using the complete original scalar-worker readings. Every question and alias observation accounted for. Conditional seed intervals do not identify a private seed or authorize a correction."
+}

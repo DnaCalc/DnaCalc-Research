@@ -1,0 +1,34 @@
+{
+  "complete": true,
+  "decision": "No actionable source/math/provenance defect found in the prepared concrete core step. Final adoption approval awaits actual new application outputs and broader loss accounting/checks.",
+  "source_review": "Generic Fpu LN publication, reciprocal PC64->binary64, product PC64->binary64, existing public EXP with reciprocal-negative branch, exact exponent restoration; separately observed count1 identity. The6 old Excel expectations are retained as exact assertions.",
+  "verified": {
+    "reduced_paired": 6016,
+    "public_originals": 9356,
+    "singletons": 2944,
+    "contrast_graphs": 20,
+    "contrast_outputs": 24064,
+    "contrast_losses": {
+      "log": 242,
+      "reciprocal": 346,
+      "argument": 249
+    },
+    "r26": {
+      "total": 31744,
+      "before_pass": 29310,
+      "after_counterfactual_pass": 31744,
+      "gains": 2434,
+      "losses": 0
+    }
+  },
+  "limits": "Sampled functional stages and the fixed code, not a private implementation/table/polynomial identification. Full corpus/bank and actual post-change replay still required. UBS returned635 findings, all triaged, but its SQL detector failed; no complete scanner claim.",
+  "sha256": {
+    "/home/ubuntu/codex-runs/r28/core-x87_chains.rs": "ae45e13bb0ec424943ee8f6ccebe4e3ec61c9c7eff1df8b54c6c43f2b28608a6",
+    "/home/ubuntu/codex-runs/r28/core-f1_stats.rs": "7305b38191988bb2a023813bc8fdf2420efa6f89a1930e87aaddb5cf9562c36e",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-public-stages-independent.json": "72067750ed9e09f7bdcd1c35b04a00078ae66182254f7148be08425f11a20900",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-public-vs-native.json": "4a13f7a71ccbeb013c18903a843c178f5d30ab292b4cf380f2b19e42b85b625e",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-store-contrasts-public-exp.json": "178dc8b3c046bb41540790a217059881df841e79bad4566234f9d3d4a3692630",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-r26-counterfactual.json": "f018321b2249df0fe3be82e8cbbfa9303c7c26921e51e72d1d4ff0245a7b7275",
+    "/home/ubuntu/codex-runs/r28/reviewer-public-stages-ubs-triage.json.gz": "f87eb9bf27395d4fe17899b68a73b30d37fecf6e3c4fb4ca148c45b4b3d2c656"
+  }
+}

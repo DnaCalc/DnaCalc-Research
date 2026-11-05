@@ -1,0 +1,92 @@
+{
+  "format": "dnacalc-r28-readonly-stage-review-checkpoint/1",
+  "reviewed_utc": "2026-11-05T04:18:41.908429+00:00",
+  "final": false,
+  "findings": [
+    {
+      "severity": "P2",
+      "status": "resolved",
+      "description": "Primitive/spill graph metadata now validated against independently constructed fixed ISA grammar, with corruption controls."
+    },
+    {
+      "severity": "P2",
+      "status": "resolved",
+      "description": "Zero-refinement producer epoch871f6ea0c5945a5410068dba6fa0f56fcb9fdbc07b754c668f3043239e0715a9 preserved and independently hash-verified."
+    },
+    {
+      "severity": "P2",
+      "status": "resolved",
+      "description": "Refinement raw response checks now reuse complete verified_service_batch worker/security provenance."
+    },
+    {
+      "severity": "P2",
+      "status": "pending",
+      "description": "New corruption controls exposed the producer absolute x87_programs import failing under package imports. Parent will fix after live acquisition source epochs finish and rerun controls/proofs."
+    },
+    {
+      "severity": "count-correction",
+      "status": "reported",
+      "description": "Current root-equivalence artifact has7/18 contradicted private equal-ratio groups, not8. Groups are -1/4, plus/minus1/2, plus/minus3/2, plus/minus5/2."
+    }
+  ],
+  "verified": {
+    "refinement": {
+      "original_windows_inputs": 262144,
+      "original_discriminants": 0,
+      "spread_centers": 255,
+      "spread_inputs": 130560,
+      "spread_discriminants": 670,
+      "complete_selection_lists_replayed": true
+    },
+    "root_anchors": {
+      "original_calls": 614,
+      "records": 307,
+      "rational_single_and_double_publication_checks": 614
+    },
+    "root_equivalence": {
+      "original_calls": 468,
+      "records": 234,
+      "groups": 18,
+      "contradicted_private_groups": 7,
+      "reciprocal_pairs": 117
+    },
+    "hypergeom": {
+      "original_calls": 273,
+      "dyadic_pairs": 39,
+      "zero_all_differences": 7,
+      "pmf_one_differences": 7,
+      "cdf_one_differences": 7,
+      "conditional_return_impossible_each": 1
+    },
+    "poisson": {
+      "original_calls": 7304,
+      "unique_original_calls": 7302,
+      "zero_EXP_equal": 1024,
+      "zero_to_one_impossible": 182,
+      "one_to_two_impossible": 437,
+      "integer_modes": 68,
+      "differing_mode_pairs": 37,
+      "alias_controls": 3072
+    },
+    "source_math": "One-node inverse domains, exact dyadic/power root anchors, equal rational log2 ratios, binary exponent scaling and adjacent-output-edge generators reviewed on declared positive normal ranges."
+  },
+  "linked_receipts_sha256": {
+    "reviewer-refinement-selection-coverage.json": "f16fd2f8165e80ce642834aa37fcf50acbf700f36072ae7af8a26e1c0b5c9af9",
+    "reviewer-root-anchor-equivalence.json": "21a51f8c3f993b6994f7caebc3b50b24fec54b8d282f1c074791ffef8cb2868e",
+    "reviewer-hypergeom-stages.json": "a581f9c679f4fae755eaf6dc32b38371d724b93ff98ba00217adea981c77804e",
+    "reviewer-poisson-stages.json": "847b7ec62727f4850c7a462058e348d93f5e4dea5a146ac0e67ab3b2e6826635",
+    "reviewer-stage2-ubs-triage-corrected.json.gz": "dcf3a0437f5cb537f0c24a609e8a7030cf9ff6756ee7dddc322e78eae24251d1"
+  },
+  "current_source_sha256": {
+    "racer/fingerprint.py": "8fc6f4f4120302c538c740ce9b9c07ba32eda8f9cfec1e5de43d16171f26862d",
+    "checker/geomean.py": "2b0c1880a1ed2d86e981276f544f28a18faa18dcfe9b99eaec46e47469853ea6",
+    "checker/test_fingerprint.py": "548bb07ab16dd0c21ad262fb4eddb4dc31c2129d1735791ef3bfcc53c9011399"
+  },
+  "pending": [
+    "Final import fix and current source tests/proof reruns",
+    "Completed root-scales and root-output-edges observation review",
+    "Final compressed artifact index and retained producer binding audit",
+    "Final main/research source checkpoints and under30-line work report review"
+  ],
+  "limits": "Public ROM coefficient uniqueness is conditional on native FYL2X/EXP2 primitives. No private log, exp, pow, polynomial/table, complete recurrence or global route identification; no new product change beyond the already approved BINOM checkpoint. This is not whole-session approval."
+}

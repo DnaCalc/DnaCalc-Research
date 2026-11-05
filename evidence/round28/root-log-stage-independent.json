@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "original_subset": 112,
+  "public_calls": 31,
+  "boundary_checks": 1792,
+  "counts": {
+    "divide/False": {
+      "groups": 31,
+      "impossible": 2,
+      "public_LN_excluded": 4
+    },
+    "divide/True": {
+      "groups": 31,
+      "impossible": 2,
+      "public_LN_excluded": 3
+    },
+    "stored_reciprocal/False": {
+      "groups": 31,
+      "impossible": 1,
+      "public_LN_excluded": 3
+    },
+    "stored_reciprocal/True": {
+      "groups": 31,
+      "impossible": 0,
+      "public_LN_excluded": 0
+    }
+  },
+  "inputs_sha256": {
+    "evidence/round28/root-log-stage.json": "6a240493b71f24dd8d28d2994bf948ca79b8427c3c93433f7cd6e87cb921e8cc",
+    "evidence/round28/root-anchors.json": "c772791f132c6544921fab728a3c2d881937eb60dafb775c6309cac722c189dd",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "375ed08461c27af51807bdb26b40cae881c7eef80b7fbf21ff6961db349ef793",
+    "/home/ubuntu/codex-runs/r28/independent-x87.so": "8111f1cfadee54dfdfe417c1457f71ba672487d56400e8fc2b25fbd03dac4ae1",
+    "evidence/round28/root-anchors-service/8f987195505888d7dd32c2fc041586b76c5de6c46768058c4d4f0b0bc388665a.json.gz": "312bd97d937885cb5a47d7fc8fe18b2b777ff5e7ef2c75281fd8f665a211933a",
+    "evidence/round28/root-anchors-service/8576bae1577a615eee700efe30a99a4f9105766794f127b4b8736ac2405c4886.json.gz": "f22f2a9baa6ae535f1544941f702c55a882f65411c56fb7dd9ce2adbcd89ace4",
+    "evidence/round28/root-log-service/a6330450c28f8f9d7565405e6ee9923b90b97261fe5b05b54a55ad367dfb41f7.json.gz": "2eb160a8463ba86252bf3ff0a0ddbf65146f3a9b161b0d41ff7acd480e1dd36b"
+  },
+  "limits": "Independent exact quotient operations and separate ISA leaves. The public EXP primitive is conditional; no private log or exp implementation is identified."
+}

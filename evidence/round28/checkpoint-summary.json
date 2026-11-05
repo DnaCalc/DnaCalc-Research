@@ -1,0 +1,50 @@
+{
+  "format": "dnacalc-round28-checkpoint/1",
+  "product_commit": "a5aafe89",
+  "original_r27": {
+    "total": 1132,
+    "before": 556,
+    "after": 1132,
+    "gains": 576,
+    "losses": 0,
+    "changed_outputs": 576
+  },
+  "admission_controls_per_alias": {
+    "total": 666,
+    "matched": 666,
+    "failed": 0
+  },
+  "frozen_corpus": {
+    "total": 44739,
+    "pass_count": 42840,
+    "fail": 1899,
+    "gains": 0,
+    "losses": 0,
+    "changed_outputs": 0
+  },
+  "frozen_bank": {
+    "total": 3910007,
+    "pass_count": 3769062,
+    "fail": 140945,
+    "unread_failures": 116,
+    "gains": 0,
+    "losses": 0,
+    "changed_functions": []
+  },
+  "r26_new_coverage": {
+    "total": 9691,
+    "pass_count": 9501,
+    "fail": 190,
+    "mismatched": 126,
+    "refused": 64
+  },
+  "required_check": {
+    "passed": 1770,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "harnesses": 69,
+    "packages": 14
+  },
+  "limits": "Only the measured BINOM count admission is adopted. Remaining root/distribution stages are constraints, not identified private implementations. New R26 observations are coverage, separate from calculation gains."
+}

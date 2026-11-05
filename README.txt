@@ -1,5 +1,85 @@
 DNA Calc arithmetic program research
 
+R28 reconstructs normal-product GEOMEAN by exact integer exponent reduction,
+stored LN, a stored reciprocal, a product stored from PC64, and the public EXP
+core, followed by exact power-of-two restoration. Singleton identity has its
+own 2944 original controls. This identifies the measured functional composition;
+it does not claim the literal private implementation or the product fallback.
+
+The fixed 54-workbook corpus improves 51693 to 51831 of 54600 formulas,
+gaining 138 and losing zero. The full bank improves 3769062 to 3769119 of
+3910007, gaining 57 and losing zero; only GEOMEAN outputs change. Inclusive
+failures remain 2769 corpus and 140888 bank, including 116 unread bank rows.
+GEOMEAN matches 1224/1225 bank rows. Its remaining typed refusal occurs when
+three minimum-normal inputs underflow the product; that fallback stays open.
+
+All 31744 original R26 unit-factor calls now match (+2434/-0), as do all
+19200 scale-window calls (+1765/-0). These cohorts may overlap and are not
+added as unique observations. Native and software outputs are byte-identical
+on both cohorts and the 6016 adjusted reduced-root controls. Independent LN
+and EXP calls verify all 6016 compositions. Removing one log, reciprocal or
+argument publication gives 242, 346 or 249 contradictions in the fixed model.
+The normalization-only checkpoint's six classified losses are all recovered.
+
+BINOM's directly bisected count boundary is 2^31-1, before shortcuts. The
+unchanged 1132 R27 readings improve 556 to 1132 (+576/-0), and both aliases
+match all 666 surrounding admission controls. Main a5aafe89 contains that
+comparison and the original R26 capture intake; the initial frozen corpus
+and whole bank retain every output at that checkpoint.
+
+The R26 intake checks 98 original delivery hashes and all 9691 formula
+observations. Initial measured coverage is 9501/9691; the root change raises
+it to 9549, leaving 78 mismatches and 64 refusals. Coverage is separate from
+calculation gains. The R28 adaptive rank workbook asks 176 questions in 1292
+formula cells using exact integer bisections and Excel's preceding df values.
+All its answers remain pending under ~/codex-runs/excel-questions-r28/rank-edges.
+
+Public EXP/LN preimages isolate the x87 log2(e) and ln(2) ROM constants within
+the declared native primitive models, including 670 preselected LN readings.
+Earlier shared-log and single-spill refutations concern unreduced direct root
+factorizations. They do not refute an arbitrary log inside the reduced root.
+General private power and the distribution helpers remain unidentified.
+
+POISSON's zero mass matches public EXP on 1024 controls. One seed multiply
+fails 182 and 437 necessary constraints; 37/68 exact mode pairs differ.
+Among 2048 PMF1/2 EXP-input preimages, 682 lack a binary64 argument; 618 new
+public EXP calls verify every adjacent gap. One subtraction's private-log
+intervals exclude public LN at 240 inputs and resident FYL2X at 373, with
+166 containing no binary64 log. These are conditional stage constraints, not
+a PMF implementation. HYPGEOM zero/all-population controls differ in seven
+dyadic pairs; one declared resident/stored quotient is impossible. No
+mathematical-one correction, private coefficient or selector based on counts lands.
+
+evidence/round28/index.json binds the raw replies, exact producer epochs,
+independent proofs, actual comparisons, review and restoration metadata.
+Large derived reports are gzip files; compression.json records their exact
+uncompressed hashes. Restore only the listed reports before replaying the
+historical analysis commands; restored files are ignored by Git:
+
+python3 - <<'PYRESTORE'
+import gzip, hashlib, json
+from pathlib import Path
+for row in json.loads(Path('evidence/round28/compression.json').read_text())['compressed']:
+    data = gzip.decompress(Path(row['archive']).read_bytes())
+    assert hashlib.sha256(data).hexdigest() == row['uncompressed_sha256']
+    path = Path(row['original'])
+    if path.exists(): assert path.read_bytes() == data
+    else: path.write_bytes(data)
+PYRESTORE
+
+The maintained map reads the canonical gzip reports directly. Reproduce new
+calculations through the existing registered-call, corpus and witness routes;
+no cached Excel value is counted as an application calculation. Final commit
+identities, exact test results and remaining work are in round28-result.json.
+
+The reproducible publication unit freezes published application base c07d07e6
+plus the exact root blob archived in producers/application-core. That source
+epoch is not another evaluator. The unit accepts only that recorded source
+state across all guarded trees, even when its root change is now committed.
+Use round28-reproducible-publication-unit.json for the current reproduction;
+older units and their inherited revision notes remain historical snapshots.
+The six normalization-only losses are all recovered in the stored-leaf route.
+
 R26 adds one consecutive-double fingerprint tool, racer/fingerprint.py, with
 the maintained map in DnaCalc/docs/generated/numeric-fingerprints.{md,json}.
 It retains scalar-worker input readbacks, raw answers, request hashes, spectra,

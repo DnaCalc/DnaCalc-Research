@@ -1,0 +1,29 @@
+{
+  "total": 1225,
+  "mismatches": [
+    {
+      "actual": "fault:NotImplemented",
+      "args": [
+        "0x0010000000000000",
+        "0x0010000000000000",
+        "0x0010000000000000"
+      ],
+      "expected": "0x0010000000000000",
+      "function": "GEOMEAN",
+      "id": "w111broad-20260929-GEOMEAN-00008",
+      "reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20430",
+        "invocation": {
+          "compatibility_version": "2",
+          "input_sheet_state": "visible-constant-inputs",
+          "input_transport": "cell_value2_bulk"
+        },
+        "platform": "Windows"
+      },
+      "result_index": null,
+      "source": "runs/w111-broad-20260929/answers/answers-geomean.json"
+    }
+  ]
+}

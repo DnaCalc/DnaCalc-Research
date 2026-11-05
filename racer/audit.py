@@ -867,6 +867,47 @@ def variance_stored_replay(inputs, native, output):
     return result
 
 
+def scalar_service_replay(executable,study,cache,output,function=None):
+    """Replay complete original service arguments through registered application calls."""
+    import subprocess
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
+    from geomean import verified_study_answers
+    executable,study,cache,output=map(lambda p:Path(p).resolve(),(executable,study,cache,output))
+    output.mkdir(parents=True,exist_ok=False);doc=json.loads(study.read_text())
+    answers,bindings,ordered=verified_study_answers(doc,cache)
+    source_calls=len(ordered)
+    if function is not None:
+        ordered=[r for r in ordered if r[0]==function]
+        if not ordered:raise ValueError('requested function has no original observations')
+    frozen={str(p):sha(p)for p in (executable,study,Path(__file__).resolve())};frozen.update(bindings)
+    grouped=collections.defaultdict(list)
+    for i,(name,args,answer)in enumerate(ordered):
+        if any(a['type']!='number'for a in args):raise ValueError('numeric scalar replay only')
+        grouped[name].append(dict(id=f'original-service-{i}',args=['0x'+a['bits']for a in args],expected=answer))
+    counts={};changes=[]
+    for name,rows in sorted(grouped.items()):
+        inputs=output/(name+'.inputs.json');actuals=output/(name+'.actuals.jsonl')
+        with inputs.open('x')as destination:json.dump(dict(function=name,witnesses=[{k:v for k,v in r.items()if k!='expected'}for r in rows]),destination)
+        # ubs:ignore — selected local executable and fixed argv, no shell; bounded registered invocation.
+        subprocess.run([str(executable),'invoke-inputs',str(inputs),str(actuals)],check=True,timeout=600)
+        computed=list(stream(actuals))
+        if len(computed)!=len(rows):raise ValueError('incomplete application replay')
+        tally=collections.Counter()
+        for expected,actual in zip(rows,computed):
+            if any(actual[k]!=expected[k]for k in ('id','args')):raise ValueError('application replay identity changed')
+            answer=expected['expected'];want='0x'+answer['bits']if answer['type']=='number'else answer['code']
+            match=actual['calc_func_prediction']==want;tally['matched'if match else'mismatched']+=1
+            if not match:changes.append(dict(function=name,original=expected,actual=actual))
+        counts[name]=tally
+    if frozen!={p:sha(Path(p))for p in frozen}:raise ValueError('scalar replay sources changed')
+    result=dict(complete=True,source_original_calls=source_calls,selected_function=function,
+        original_calls=len(ordered),unique_original_calls=len({(name,json.dumps(args,sort_keys=True))for name,args,_ in ordered}),counts=counts,
+        mismatches=changes,inputs_sha256=frozen,output_sha256={p.name:sha(p)for p in output.iterdir()if p.is_file()},
+        limits='Every original service observation is replayed through the registered calc-func invocation. Calculations remain distinct from Excel evidence.')
+    with(output/'receipt.json').open('x')as destination:json.dump(result,destination,indent=2);destination.write('\n')
+    print(json.dumps({k:v for k,v in result.items()if k not in('inputs_sha256','output_sha256','mismatches')}));return result
+
+
 def bank_match_bits(executable, checkout, output, before=None):
     """Stream the canonical judge; retain one old match bit per ordered row.
 
@@ -947,6 +988,7 @@ def bank_match_bits(executable, checkout, output, before=None):
 
 
 if __name__ == "__main__":
+    if sys.argv[1]=="scalar-service-replay":scalar_service_replay(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="variance-stored-replay":variance_stored_replay(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-match-bits":bank_match_bits(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-intake":bank_intake(*sys.argv[2:]);raise SystemExit(0)

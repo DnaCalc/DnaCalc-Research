@@ -1,0 +1,57 @@
+{
+  "complete": true,
+  "total": 3910007,
+  "before_pass": 3769062,
+  "after_pass": 3769119,
+  "inclusive_fail": 140888,
+  "unread": 116,
+  "gains": 57,
+  "losses": 0,
+  "changed_functions": [
+    "GEOMEAN"
+  ],
+  "geomean": {
+    "total": 1225,
+    "before_pass": 1167,
+    "after_pass": 1224,
+    "failure": {
+      "actual": "fault:NotImplemented",
+      "args": [
+        "0x0010000000000000",
+        "0x0010000000000000",
+        "0x0010000000000000"
+      ],
+      "expected": "0x0010000000000000",
+      "function": "GEOMEAN",
+      "id": "w111broad-20260929-GEOMEAN-00008",
+      "reading": {
+        "bitness": "64-bit",
+        "cpu": null,
+        "excel_build": "20430",
+        "invocation": {
+          "compatibility_version": "2",
+          "input_sheet_state": "visible-constant-inputs",
+          "input_transport": "cell_value2_bulk"
+        },
+        "platform": "Windows"
+      },
+      "result_index": null,
+      "source": "runs/w111-broad-20260929/answers/answers-geomean.json"
+    }
+  },
+  "remaining_classification": "Unchanged out-of-scope fallback: three minimum-normal inputs make the stored product zero, selecting the preexisting fallback. The typed refusal remains one inclusive failure under the parent package.",
+  "source": "/home/ubuntu/codex-runs/r28/reviewer_core_bank.py",
+  "hashes": {
+    "/home/ubuntu/codex-runs/r28/bank-before-core-final/summary.json": "d878522f4b8c9b8b64cb752537493db0c4e8a1d4659dac0cbd42491652e1b7bc",
+    "/home/ubuntu/codex-runs/r28/bank-after-core-final/summary.json": "83d83c37e7e3e9c161718047b51d4ce64c5876ad4cbae48522b6d826dcc822a5",
+    "/home/ubuntu/codex-runs/r28/bank-before-core-final/matched.bits": "01f522076b93ec9398c26e5f9d778bc2ce5aa739c342baa67b0259061422b6cd",
+    "/home/ubuntu/codex-runs/r28/bank-after-core-final/matched.bits": "48017a6c1fa8e7f368bb6bd27f9682865a3b266bfc9e178b80889ec53a44787f",
+    "/home/ubuntu/codex-runs/r28/bank-after-core-final/changed-outcomes.jsonl.gz": "ad478ea20811e663d2d14b77793a8ee9d94928c80c104a716441ab1b831492d7",
+    "/home/ubuntu/codex-runs/r28/before-core-final-harness": "945411d0f2737a40e5cfd0dd96f4681b564a410f061b5e3fa0d4fa7b5d6abd28",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "d772a32f0d8330cc49868b1d56817ba2fbd6f4a498de27467d85b3e2405c9f7a",
+    "/home/ubuntu/codex-runs/r28/after-core-harness": "e530a3b927cbf37befe038c449fc9d58a4e00bca48f02b0dcdf8c4dc0e4d0a90",
+    "/home/ubuntu/codex-runs/r28/geomean-final-remaining.json": "d9f17e9dfb81a4a71a502bc74bb6cf52f6f382ce2ff254f7605511f09ceeb274",
+    "/home/ubuntu/codex-runs/r28/geomean-final-trace.jsonl": "8219f6bbfabfe1fe8d5f1dcb3b6f97b548f47bb00fdf9e8ad969d4e4fb368f49",
+    "/home/ubuntu/codex-runs/r28/reviewer_core_bank.py": "38c3bda51022f07a5abfefea048a8249f9b101dc2ad3a422d6803735362e5ecb"
+  }
+}

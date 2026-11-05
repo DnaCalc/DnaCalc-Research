@@ -504,7 +504,7 @@ def inverse_run(input_path, destination, mode='original_consumers'):
 
 
 def delivered_rank_constraints(delivery, destination):
-    """Bind the R25 rank readings to their exact reference-cell operands.
+    """Bind delivered rank readings to their exact reference-cell operands.
 
     Report necessary intervals for simple relative-residual comparisons.
     An interval is an observed constraint, never a fitted implementation.
@@ -516,14 +516,17 @@ def delivered_rank_constraints(delivery, destination):
     from corpus_cases import outcome
     delivery=Path(delivery);dest=Path(destination);dest.mkdir(exist_ok=False)
     files=delivery_files(delivery)
-    question_path=delivery/'packet/stored-steps/regression/workbook-questions.json'
+    question_paths=[p for p in(delivery/'packet').rglob('workbook-questions.json')
+                    if json.loads(p.read_text())['sheet'].endswith('_regression')]
+    require(len(question_paths)==1,'expected one delivered regression question book')
+    question_path=question_paths[0]
     questions=json.loads(question_path.read_text())
     answers=[json.loads(line)for line in(delivery/'answers.jsonl').read_text().splitlines()
-             if json.loads(line)['condition'].endswith('_regression')]
+             if json.loads(line).get('observation',{}).get('sheet')==questions['sheet']]
     checked=check_workbook_readings(delivery,question_path,answers)
     values={a['question']['row']:a['observation']['excel_raw']for a in answers}
     predictions={p['id']:p for p in map(json.loads,(question_path.parent/'application-predictions.jsonl').read_text().splitlines())}
-    rows=[];observations=[];groups={}
+    rows=[];observations=[];groups={};unselected=Counter()
     expression=r'INDEX\((LINEST|LOGEST)\((D\d+:D\d+),CHOOSE\(\{1,2\},(D\d+:D\d+),(D\d+:D\d+)\),(TRUE|FALSE),TRUE\),([1-5]),([1-3])\)'
     def vector(reference):
         first,last=map(lambda x:int(x[1:]),reference.split(':'))
@@ -532,7 +535,9 @@ def delivered_rank_constraints(delivery, destination):
         q=answer['question']
         if q['role']!='question':continue
         match=re.fullmatch(expression,q['formula'])
-        require(match is not None,'rank question outside the declared reference grammar')
+        if match is None:
+            unselected[q.get('function','unidentified')]+=1
+            continue
         name,y,x1,x2,constant,r,c=match.groups();constant=constant=='TRUE';r,c=int(r),int(c)
         a,b=vector(x1),vector(x2);matrix=[a[i]+b[i]for i in range(len(a))];response=vector(y)
         require(len(a)==len(b)==len(response)==4,'rank reference shape changed')
@@ -550,11 +555,12 @@ def delivered_rank_constraints(delivery, destination):
         require(0<xx<yy and xy*xy<xx*yy,'not the expected exact full-rank pivot geometry')
         residual=xx-xy*xy/yy
         metrics=dict(column=residual/xx,largest=residual/yy,absolute=residual)
-        observation=dict(id=q['id'],function=name,constant=constant,reverse=q['reverse'],
-                         changed_operand=q['changed_operand'],df=int(df),retained_predictors=retained,
+        reverse=q.get('reverse',False)
+        observation=dict(id=q['id'],function=name,constant=constant,reverse=reverse,
+                         changed_operand=q.get('changed_operand',q.get('input_bits')),df=int(df),retained_predictors=retained,
                          necessary_threshold_coordinates={k:[str(v.numerator),str(v.denominator)]for k,v in metrics.items()})
         observations.append(observation)
-        group=(name,constant,q['reverse']);bounds=groups.setdefault(group,{k:dict(drop=[],keep=[])for k in metrics})
+        group=(name,constant,reverse);bounds=groups.setdefault(group,{k:dict(drop=[],keep=[])for k in metrics})
         for k,v in metrics.items():bounds[k]['drop'if retained==1 else'keep'].append((v,q['id']))
     intervals=[]
     for group,bounds in groups.items():
@@ -566,7 +572,7 @@ def delivered_rank_constraints(delivery, destination):
                 consistent=high[0]is None or low[0]<high[0],drop_observations=len(values_['drop']),keep_observations=len(values_['keep'])))
     (dest/'inputs.jsonl').write_text(''.join(json.dumps(r)+'\n'for r in rows))
     result=dict(complete=True,delivery=files,workbook=checked,rank_observations=len(observations),selected_calls=len(rows),
-        observations=observations,necessary_intervals=intervals,
+        observations=observations,necessary_intervals=intervals,unselected_questions=unselected,
         limits='Exact four-row, two-predictor residual geometry and observed degrees of freedom only. Each threshold interval is a necessary constraint on one predeclared comparison; it is not a fitted tolerance or a QR/coefficient implementation. Row reversal and const modes stay separate. All original numeric answers, predictions and echoes remain unchanged.')
     (dest/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(dict(selected_calls=len(rows),rank_observations=len(observations),consistent_intervals=sum(i['consistent']for i in intervals),intervals=len(intervals))))

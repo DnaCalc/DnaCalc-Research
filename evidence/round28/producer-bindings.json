@@ -1,0 +1,329 @@
+{
+  "format": "dnacalc-producer-binding-index/1",
+  "complete": true,
+  "binding_count": 72,
+  "canonical_only": true,
+  "unresolved": [],
+  "source_epochs": {
+    "1027f4853859e5a8d0d740764b1d14ee323ceeb1cee326f4a782caaaf5d8c5d6": [
+      "racer/constants.py"
+    ],
+    "84a9c00a296ccb7fed57de62b38c43b2c04d0a96f1388ace8ab0006011543278": [
+      "racer/geomean.py"
+    ],
+    "66ce4b192b2cd4d37786a806571fa642e5268003f052c98bf59021c7ac3b4ac9": [
+      "racer/bessel.py"
+    ],
+    "0528c059e3294733b5b9f129b12353467f3d09fe3f5a114021f8d70963e20e79": [
+      "racer/cumulative_projection.py"
+    ],
+    "4a9ccaea0da31aa40269adf180a5e42a2f5c56e192bbb88075183ac78ace0382": [
+      "racer/variance_closure.py"
+    ],
+    "c263797ced59f9bd1deed6c6bf1439ced8f0395035efca59508ae244bb996c6e": [
+      "racer/x87_probe.rs"
+    ],
+    "28424ed38b11390ce2d3fda2ff265abbb1e592ac117cb8ac4b3e80b129db9510": [
+      "racer/build.rs"
+    ],
+    "400f8752f53b0a1e6341b858683313b89723e295bc65fcc52b86079974fe0f17": [
+      "racer/certify.py"
+    ],
+    "0964a2c44111f84319543a03534eb2779836f24ac4ded388ef3f1181b0b6ad45": [
+      "racer/blind_score.py"
+    ],
+    "f151488e3efcdcb3fe21d5b5b8507a63bbae3e56d6390d8121e29d3d0b2c9163": [
+      "racer/number_conversion.py"
+    ],
+    "11f43fb8c0f66fc2f98bf08e2c8038484cb35df514fd53343c0342eeb63c4850": [
+      "racer/intervals.py"
+    ],
+    "a0ccacc0ff13a9191906891111ddf73ebd9e4cd82d226701e0e7f4ec4c69d5a3": [
+      "racer/annuity_structure.py"
+    ],
+    "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7": [
+      "racer/x87_programs.py",
+      "evidence/round28/producers/shared/racer/x87_programs.py.gz"
+    ],
+    "36a29a0865f2a810026928db7f1869ddb0a716b7130379bfd8a8654314309fa8": [
+      "racer/bessel_seeds.py"
+    ],
+    "c1a20702b9732ceb0039741085d53e072828a2af598cf9ca7a43d867492ca63c": [
+      "racer/questions_r13.py"
+    ],
+    "66aae7d61112569d4763265ee631e0a4641926fa3ba61ef3288e9c6df19ee5ad": [
+      "racer/regression.py"
+    ],
+    "d772a32f0d8330cc49868b1d56817ba2fbd6f4a498de27467d85b3e2405c9f7a": [
+      "racer/audit.py"
+    ],
+    "4ef85ace52fb6126e1c30ece7bdd266ac9b000cedbfc38e6a793a574a8baf557": [
+      "racer/group_eliminate.py"
+    ],
+    "f80d14c0fd86eadfa7f4f2793db44593304cf129fedf61e3153efe64b9bd43fb": [
+      "racer/normalizer_intersect.py"
+    ],
+    "060d65ad7e554f5c976ad5a79840b46ceb0eb63d442c5d8994df250c30d3450d": [
+      "racer/corpus_cases.py"
+    ],
+    "099a546fc850e09b9e04a3cb4b17cbc7a6d83f0517429644bb03b558b5bd4d0d": [
+      "racer/verify_inverse.py"
+    ],
+    "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1": [
+      "racer/x87_native.c",
+      "evidence/round28/producers/shared/racer/x87_native.c.gz"
+    ],
+    "213fdcabe5fe24de5dfa7bce6f40cd83ddbf046e5b9e467bf0dd8f4fb721441c": [
+      "racer/intersect.py"
+    ],
+    "5a5ec44e642297b9c4311617ddd8df8cc9ff28e9181ec67f1484e03762e18942": [
+      "racer/binomial.py"
+    ],
+    "1f48e0d691b227e279273d9e9d75fc1ec85638c9a6972f7d602feddf82811261": [
+      "racer/record.py"
+    ],
+    "bbdf8b35ab9e9e711888c55d6ca1e99704d1cfff830c4743d84d4df1caeebe36": [
+      "racer/fingerprint.py"
+    ],
+    "ea969e07be01a225bb6ef56a112f35ff29df58e251bea5d8d46398474e0d084a": [
+      "racer/domain_bisection.py"
+    ],
+    "2e4edaf37f37ef5f9ebb18a600f730e15ca43077425161a4d5973f82164cfb35": [
+      "racer/corpus_fuzz.py"
+    ],
+    "4aae4906580750a2c69c939899cc6d198001dee6119c8c57e8adb0db050a3526": [
+      "racer/growth_preimages.py"
+    ],
+    "ff8e6508b30174c324c27fc8886cb3c0e4d47cb52d1630aa12483623e1257e70": [
+      "racer/x87_consumers.py"
+    ],
+    "9504f940c9d6bfc540a5e14b92812f5b352f91d73c76fb687b456fee2cd64119": [
+      "racer/src/route_audit.rs"
+    ],
+    "2907befcd01e35d36d38ffb7d07d8da3cb736801d2503a715bdf50f4deaf2223": [
+      "racer/src/scheduler.rs"
+    ],
+    "12ee6576785e5c0417e98cfc73bdfed0bb37ee936a3868338759742c91b5d884": [
+      "racer/src/normal.rs"
+    ],
+    "817f6c780a47347624d1db3a2912f18207c0dcaf3a1e512d38d7dd7661ff151d": [
+      "racer/src/fdlibm_pow_core.rs"
+    ],
+    "982475c3d9603ff52d4de05cb979b9624ce4207f68559139ddc6b667166ea6b8": [
+      "racer/src/dsl.rs"
+    ],
+    "130db6b877a0fc10fd0ca2d8de3903803fd055ba88504900986a62b848e526a7": [
+      "racer/src/variance.rs"
+    ],
+    "052801b977b31953b6fa7f159d26ed7aadbafd4a998545ae5bb638ffa15ba68a": [
+      "racer/src/discrete.rs"
+    ],
+    "be039df8ea57f4a20f2ffb8c0c9c097137bea5517a7815dca8af1796b9599bc5": [
+      "racer/src/identity.rs"
+    ],
+    "6adba12fbe9142ab02da7e12bd26458a05db47ee0ec873fdb0eaaada0f8e51be": [
+      "racer/src/eval.rs"
+    ],
+    "8aae6e2648822bb87ebb2f80735297b58f07af725b63dedfcf45ffb59f451287": [
+      "racer/src/saddle.rs"
+    ],
+    "a8cba90ebe174e7526ec7bd74092528344976ef502b4a12958419dca36853299": [
+      "racer/src/annuity.rs"
+    ],
+    "462f7088dec073a9808a4563c49f44bf3998c2787487118ce967f9dbdd049a7f": [
+      "racer/src/poisson.rs"
+    ],
+    "549e9ce4c74fc7cd0bac29baf9c8527b2a9dbc83d58a841ff866ae4bc2a1d3ec": [
+      "racer/src/cumulative_balance.rs"
+    ],
+    "d155883c18e29accf6b5393f8f944ba39940eccc2a0744dfc6548d7f3634fbdd": [
+      "racer/src/enumerate.rs"
+    ],
+    "3b1bb9f467030dab6a5eb36d14b059cedb9c62c5ffa1d21a4e7440a13d503689": [
+      "racer/src/main.rs"
+    ],
+    "3450185e7d49d484e191cf788d6aaf2df579f62f255e518ea32ccde123bc877a": [
+      "racer/src/boundary.rs"
+    ],
+    "1a394ac6b867dcd949ff841a7953242b77d0c63febf0bc35decce668ceb28163": [
+      "racer/src/bond_solver.rs"
+    ],
+    "00905478e3e3b427ac6878f349353490a79737ea54a5a986f30454140a938db7": [
+      "racer/src/bessel_rational.rs"
+    ],
+    "5afa6fa733c2c414549b8ec4e8a42593f0f3652ced0bff21d9a06b3c771b1a90": [
+      "racer/src/annuity_early.rs"
+    ],
+    "1ae49aac9d9ecd78331541338ce53b4a9d9d79ee37316024ab03c4613fdceaa7": [
+      "racer/src/cumulative.rs"
+    ],
+    "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f": [
+      "checker/exact.py",
+      "evidence/round28/producers/shared/checker/exact.py.gz"
+    ],
+    "e6a5566af3c35709a91d756d50db65003bb8d327837244bb9827401a856fca93": [
+      "checker/geomean.py"
+    ],
+    "fdda19f360bb21353d1317180ff93946f4bb8d95b045283fd416d075368d694f": [
+      "checker/bessel.py"
+    ],
+    "94f91d7cb8f3c6cf19ebf91b66891a1d7d650196d711e9481f9da0518d256fc8": [
+      "checker/cumulative_projection.py"
+    ],
+    "7f28e749e613e9b8480f62f36f1646dba04a21cd53c226268e91d4e89765cb6f": [
+      "checker/variance_closure.py"
+    ],
+    "27532b727a2a3059842a2abf54d31bdb71954068676bbf1cc117e284f7a333f7": [
+      "checker/cumulative_balance.py"
+    ],
+    "2dbb71cf1612e9cb0ff25dff98059a1892f5ccd6a604409691c113fb7aba0718": [
+      "checker/variance.py"
+    ],
+    "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a": [
+      "checker/normal.py"
+    ],
+    "927ffacd8365989c941c7169536dd4a843c1c461433f7b6b2d71d169c5cc824f": [
+      "checker/test_domains.py"
+    ],
+    "3af3c469dd076cdbe563cf1eac7faff2ce4ea37043b259b3ce0d9cdc8dff9735": [
+      "checker/r13_controls.py"
+    ],
+    "b68a6ae272d961ff71e2644a700ea0fdddbea5542e4a1dc79ec411a07e63b2a7": [
+      "checker/test_fingerprint.py"
+    ],
+    "a30337c59b351a40dbc12d6ea8a11dd820ead42ea4be34b883fdff1d6d769417": [
+      "checker/test_x87.py"
+    ],
+    "a7177a421402c5de6569016e9315334c2abc7f0f9877d00be3b46cb4b6559c74": [
+      "checker/check.py"
+    ],
+    "d7759d1b589aabb289d3c30a6a88c711c40312489ffb6c9c39d370f73156547d": [
+      "checker/bessel_seeds.py"
+    ],
+    "25658222e2e301739f96753cce51ec335dc936b672c4db79661364f62d208dde": [
+      "checker/test_exact.py"
+    ],
+    "151badac5506e80ee0e67c37fe0c81fd3c810d54a2997b826a24b495f61cc78a": [
+      "checker/questions_r13.py"
+    ],
+    "d85be77c7c20cfff08f498de001b2d2aaadd846211d73a5ede169965f56a4a47": [
+      "checker/regression.py"
+    ],
+    "b34fb31455348e7cf56a58f6fdafd8d9fc7f20afc5d2b85b7a409fac7aee4bdd": [
+      "checker/reference.py",
+      "evidence/round28/producers/shared/checker/reference.py.gz"
+    ],
+    "065ecb8a99c566914d0017bff7fd60e1474c32b53acd5d24c268989049001085": [
+      "checker/compare_x87_probe.py"
+    ],
+    "00bbe78af4f827f11bddbb59c7a004d9ff1b0ab5ff17eee10759887e568d2a83": [
+      "checker/x87_isa.c",
+      "evidence/round28/producers/shared/checker/x87_isa.c.gz"
+    ],
+    "6dca04e9a29be86c58012b503b6e6ce21de2afea88b98abaec8beff0ab98de42": [
+      "checker/binomial.py"
+    ],
+    "933747df666ad1d2d4731aaf41c6b4d5dc3ee00bf2294d63313ac91c1672e140": [
+      "checker/timing.py"
+    ],
+    "e68b2d90eacc345f4a0b7dcbfcd8f04cb093ca825e7f07126865d336157b4064": [
+      "checker/x87_shells.py"
+    ],
+    "5b54016f694d635fc02c0cf0d7174f2a653abc111088ddc1f9abf80db1617d51": [
+      "checker/x87_consumer_grammar.py"
+    ],
+    "4fee9beca49836f88a7c402e8c85ca641a4f1747f81154adac28409a4ca8bb72": [
+      "checker/x87.py",
+      "evidence/round28/producers/shared/checker/x87.py.gz"
+    ],
+    "0215c2738f9764fc8f1b7132dc19764ec5bd18410950391e61c2aedcefc59bd7": [
+      "checker/cumulative.py"
+    ],
+    "a42df611e822f2cb7ac71cae05490749c3db9e47f8db6db3cf52498ee3339ef1": [
+      "evidence/round28/producers/store-contrasts-public/fingerprint.py"
+    ],
+    "1eaf001b5ce2605ccf86950562d5e73f1620928a6bd1c309042c68841cba5431": [
+      "evidence/round28/producers/poisson-exp/fingerprint.py"
+    ],
+    "c32a95c82bf4c713b857add2c56da8e93abd2922a5651728eec0c45cfb71dbed": [
+      "evidence/round28/producers/store-contrasts-signed/fingerprint.py"
+    ],
+    "aba4ec97e366127db64cc891cb22d17856e826a1e0ec07695622267be8f3ef21": [
+      "evidence/round28/producers/poisson-log/fingerprint.py"
+    ],
+    "4f71496c1e85a46aec4115ef48cc8716a13cf349b6f626125b11bdb7dda0d8b7": [
+      "evidence/round28/producers/root-edges-corrected/fingerprint.py",
+      "evidence/round28/producers/root-normalization/racer/fingerprint.py.gz"
+    ],
+    "8d84c32ecb96c1e0ae0f30134b31fba12c97e94ed031e0363f8eec2088238620": [
+      "evidence/round28/producers/quotient-stage/geomean-before.py"
+    ],
+    "6a5c4273a5c88c00985e2e77a29beddf21c01f6623c14e576c7d9307c83d505a": [
+      "evidence/round28/producers/quotient-stage/fingerprint.py"
+    ],
+    "ae45e13bb0ec424943ee8f6ccebe4e3ec61c9c7eff1df8b54c6c43f2b28608a6": [
+      "evidence/round28/producers/application-core/x87_chains.rs.gz"
+    ],
+    "83ad72c2af62c6cc16c143728735dfc5606b478143e87384b059e067e8fe122d": [
+      "evidence/round28/producers/shared/audit-checkpoint.py",
+      "git:05903f03b43c063c64032973a7f7b56f498f22ca:racer/audit.py"
+    ],
+    "bbcd7b3f4adef8eb048facfad154053c343ce02ed3739b2b56af3b80d3db0ab8": [
+      "evidence/round28/producers/public-stages/geomean.py"
+    ],
+    "b2487c4b1df5266eeeaa3b28e66065140f708643b360b1f50cb77bf6fd5b284c": [
+      "evidence/round28/producers/public-stages/fingerprint.py"
+    ],
+    "5108ba5d2e71258cd4d9b0f164314b95c7642f345f4a4180a8a82642c350efe7": [
+      "evidence/round28/producers/publication-metadata/fingerprint-before-canonical-gzip.py.gz"
+    ],
+    "c87645223f2d68363c205e325e2ef7f43ce54553093662deb694e822f29256e2": [
+      "evidence/round28/producers/publication-metadata/fingerprint-before-final-discrete-proofs.py.gz"
+    ],
+    "6f7806ec2adc958a03f1df36f0ea78085fcb78432ae4fbd2a40b8f406c123bb7": [
+      "evidence/round28/producers/root-anchors/racer/fingerprint.py.gz"
+    ],
+    "2d1c198c17ac31f8eba6a7d5367741fc5b57e582fc89ef51c8ee39441bfa1367": [
+      "evidence/round28/producers/log-refinement/racer/fingerprint.py.gz"
+    ],
+    "ac5334ea3ffe1eef551436d0eeca52b58010c80ca8552e0139e0690366baee8d": [
+      "evidence/round28/producers/reduction-constants/racer/fingerprint.py.gz"
+    ],
+    "49872b61a9c45621c54f9b080174ff03efcde9fa4b28b197fb9d9ccdbcf64003": [
+      "evidence/round28/producers/stage-initial/racer/fingerprint.py.gz"
+    ],
+    "8fc6f4f4120302c538c740ce9b9c07ba32eda8f9cfec1e5de43d16171f26862d": [
+      "evidence/round28/producers/root-scales-and-edges/racer/fingerprint.py.gz"
+    ],
+    "78b244d54424ebca12664802fbbf739c12c532a4108ed83ed537a547e0262917": [
+      "evidence/round28/producers/root-equivalence/racer/fingerprint.py.gz"
+    ],
+    "919e001d41a0c4eb0d3ef61ee3233b46732f7d6e0567983a484a31353f7d300a": [
+      "evidence/round28/producers/rank-workbook/racer/fingerprint.py.gz"
+    ],
+    "231d092e9071a0e1944ffaec5681967e481034caad3049b316dc3d628ad37544": [
+      "evidence/round28/producers/poisson-seeds/racer/fingerprint.py.gz"
+    ],
+    "871f6ea0c5945a5410068dba6fa0f56fcb9fdbc07b754c668f3043239e0715a9": [
+      "evidence/round28/producers/log-refinement-zero/racer/fingerprint.py.gz"
+    ],
+    "73f80fb5533332647f6edd29ce9024d08c297515ff6a10169d010e9801b7a351": [
+      "evidence/round28/producers/stage-corrected/racer/fingerprint.py.gz"
+    ],
+    "91b178f413e05e6524ce08d3bed686b8f48e13fd7ed78c34d3c9d3c99809b54e": [
+      "evidence/round28/producers/primitive-stores-and-hypergeom/racer/fingerprint.py.gz"
+    ],
+    "75a24e6c144e16eb5a38531aeca3b8bb83f8ae8e61393b09c4e768dec2163bf8": [
+      "git:05903f03b43c063c64032973a7f7b56f498f22ca:racer/fingerprint.py"
+    ],
+    "59309132559c0adc1a24351e02518964beaa4919bdbb8bb50239285bc63945e6": [
+      "git:05903f03b43c063c64032973a7f7b56f498f22ca:racer/regression.py"
+    ],
+    "14584e9b6fe646ce70d1eeb824ca11f2dbb14ca8d294de29d99b095b78387de6": [
+      "git:05903f03b43c063c64032973a7f7b56f498f22ca:checker/geomean.py"
+    ],
+    "0ba658a24aa99af5eff7475c401562c80e11e24c400e3e90bf1911594b70ff02": [
+      "git:05903f03b43c063c64032973a7f7b56f498f22ca:checker/test_fingerprint.py"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "complete": true,
+  "decision": "APPROVE the concrete current numerical/documentation commit, bound to the exact nine tracked changed files below.",
+  "actionable_findings": [],
+  "reviewed_head": "0124256d529b8cf5580364487d751f1feee5933c",
+  "numeric_helper_git_blob": "f82d6964371dd6a579685d5171364269c3f74485",
+  "required_check": {
+    "passed": 1788,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "harnesses": 69,
+    "packages": 14
+  },
+  "measurements": {
+    "r26": {
+      "total": 31744,
+      "initial_pass": 29310,
+      "final_pass": 31744,
+      "gains": 2434,
+      "losses": 0
+    },
+    "scales": {
+      "total": 19200,
+      "initial_pass": 17435,
+      "final_pass": 19200
+    },
+    "reduced": 6016,
+    "native_software_equal": true,
+    "corpus": {
+      "total": 54600,
+      "before_pass": 51693,
+      "after_pass": 51831,
+      "inclusive_fail": 2769,
+      "gains": 138,
+      "losses": 0,
+      "original_bead_matched": 84
+    },
+    "bank": {
+      "total": 3910007,
+      "before_pass": 3769062,
+      "after_pass": 3769119,
+      "inclusive_fail": 140888,
+      "unread": 116,
+      "gains": 57,
+      "losses": 0,
+      "changed_functions": [
+        "GEOMEAN"
+      ],
+      "GEOMEAN_pass": 1224,
+      "GEOMEAN_total": 1225
+    }
+  },
+  "pins": "Same120 original rows, inputs, answers and readings; exactly8 obsolete calculated mismatch fields removed; one existing fallback refusal retained. Pinned status119/120 and295 full-status rows independently reconciled.",
+  "docs": "149 problem functions,152 fingerprint reports,118 observed34 workbook-only; one GEOMEAN bank refusal remains explicitly counted. Functional composition claims remain scoped; no private implementation/table/polynomial identification.",
+  "bead": "Original dc-j9k.15 scope84/84 satisfied; close only after committed/pushed hash is available, with the separate product underflow fallback retained on parent dc-j9k.",
+  "excluded": "Untracked numeric-fingerprints.partial.json is outside this approval. Research final archive, README/index and under30-line work report remain separately pending review.",
+  "sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/.beads/issues.jsonl": "a49c074f0c8a3b56728af66dd53bd18a96fcd16403627d17e0a7749faf3c1422",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "ae45e13bb0ec424943ee8f6ccebe4e3ec61c9c7eff1df8b54c6c43f2b28608a6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs": "7305b38191988bb2a023813bc8fdf2420efa6f89a1930e87aaddb5cf9562c36e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/witnesses/GEOMEAN.json": "17d0f4a66470633e20bb1f6ae3e38c5f10380ee6488e9ac18bc1cb2e506db3e3",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/witness-status.tsv": "ce6459e9ba920a3ccd667ea040d1c41cd37a594f2eea89e59380f27a351082d4",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/numeric-fingerprints.json": "8644098d0bc8e9ace3f34da44982c6b849b79018125cbd7f944882e6b9eb0d65",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/numeric-fingerprints.md": "c5dd728097b15e5b059622b466c6301ebf16694be78cba196fa4a6b37f19830a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.json": "2b5e808f7819aae933d95915b5ca1f6f5d2ab6b2adbcbab4231fdece6b587c02",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.md": "ef8dbb5d5fc50a12ea86f8d3b9d115a9b824e317082c4955593dd438383bb54e",
+    "/home/ubuntu/codex-runs/r28/core-main-check-pins.log": "62b4052f80704ed8a599715eda35318574f8e1d2a4264181b9013c5f73a6116c",
+    "/home/ubuntu/codex-runs/r28/reviewer-core-source-review.json": "fe3308818d69f3452dd6540f2c6c1d62ce28b9e043486db7782ecf303028fb96",
+    "/home/ubuntu/codex-runs/r28/reviewer-core-actual.json": "fbf961cdcc403d6380cc95441549f3f3695ca7fa52379851ea67cf61930363fe",
+    "/home/ubuntu/codex-runs/r28/reviewer-core-corpus.json": "5d2d243863add303e00cc98e676acbcaa75bf9ee57b6dae3715bd398a6f5b079",
+    "/home/ubuntu/codex-runs/r28/reviewer-core-bank.json": "34071e69eddc1f25d329e0f0c604d893f5c435d3c8b993c46d141dcefa2d3d40",
+    "/home/ubuntu/codex-runs/r28/reviewer-pin-refresh.json": "dccf848c589abd18c5a5263214c210edd4925c64a3b08f880ef91f7a31e7c0fe"
+  }
+}

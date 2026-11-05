@@ -1,0 +1,219 @@
+{
+  "format": "dnacalc-round28-result/1",
+  "status": "validated measurements; publishing",
+  "product_commits": {
+    "BINOM_and_R26_intake": "a5aafe89",
+    "exponent_normalization": "4f0eee2c",
+    "stored_root": "083e1629",
+    "publication_snapshot": "916e10bb"
+  },
+  "research_base_revision": "05903f03b43c063c64032973a7f7b56f498f22ca",
+  "fixed_core_corpus": {
+    "sessions": 58,
+    "formula_cells": 54600,
+    "evaluations": 112796,
+    "before_matched": 51693,
+    "after_matched": 51831,
+    "gains": 138,
+    "losses": 0,
+    "external_or_circular": 87,
+    "changed_values": 474,
+    "awaiting_capture": 0,
+    "workbooks": 54,
+    "inclusive_failures": 2769
+  },
+  "fixed_core_bank": {
+    "total": 3910007,
+    "matched": 3769119,
+    "failed": 140888,
+    "unread": 116,
+    "before": {
+      "total": 3910007,
+      "matched": 3769062,
+      "failed": 140945,
+      "unread": 116
+    },
+    "gains": 57,
+    "losses": 0,
+    "changed_functions": [
+      "GEOMEAN"
+    ],
+    "identity_answer_environment_sha256": "a3691cced3206a65f6744b7957fe3ce638f29cb7af201394e714c357b5c570c3"
+  },
+  "GEOMEAN_bank": {
+    "total": 1225,
+    "before": 1167,
+    "after": 1224,
+    "gains": 57,
+    "losses": 0,
+    "remaining": "w111broad-20260929-GEOMEAN-00008: typed product-underflow fallback refusal"
+  },
+  "original_R26_unit_factor_calls": {
+    "total": 31744,
+    "before": 29310,
+    "after": 31744,
+    "gains": 2434,
+    "losses": 0
+  },
+  "original_R28_scale_calls": {
+    "total": 19200,
+    "before": 17435,
+    "after": 19200,
+    "gains": 1765,
+    "losses": 0
+  },
+  "normalization_checkpoint": {
+    "gains": 9,
+    "losses": 6,
+    "classification": "Every loss was a measured bounded-root error; all six recovered by the independently paired stored-leaf step."
+  },
+  "paired_reduced_roots": {
+    "matched": 6016,
+    "original_public_calls": 9356,
+    "singleton_identity_calls": 2944,
+    "removed_store_contradictions": {
+      "log": 242,
+      "reciprocal": 346,
+      "argument": 249
+    }
+  },
+  "BINOM_R27": {
+    "total": 1132,
+    "before": 556,
+    "after": 1132,
+    "gains": 576,
+    "losses": 0,
+    "admission_controls_per_alias": 666,
+    "first_rejected_bits": "41dfffffffc00000"
+  },
+  "R26_intake": {
+    "delivery_hashes_checked": 98,
+    "formula_cells": 9691,
+    "initial_pass": 9501,
+    "after_root_pass": 9549,
+    "remaining_mismatches": 78,
+    "remaining_refusals": 64,
+    "rule": "New coverage is separate from kernel gains."
+  },
+  "rank_questions": {
+    "formulas": 1292,
+    "questions": 176,
+    "status": "awaiting original workbook answers",
+    "operator_directory": "~/codex-runs/excel-questions-r28/rank-edges"
+  },
+  "public_reduction_constants": {
+    "EXP_log2e_PC64_little_endian": "bcf0175c293baab8ff3f",
+    "LN_ln2_PC64_little_endian": "ac79cfd1f71772b1fe3f",
+    "new_LN_discriminants": 670,
+    "scope": "Unique within the declared native instruction models, not identification of all private implementations."
+  },
+  "POISSON_constraints": {
+    "PMF1_PMF2_preimages": 2048,
+    "no_binary64_EXP_argument": 682,
+    "new_adjacent_public_EXP_calls": 618,
+    "public_LN_excluded_in_one_difference": 240,
+    "resident_LN_excluded": 373,
+    "no_binary64_private_log": 166,
+    "scope": "Conditional primitives and one-node inverses only; no private PMF implementation adopted."
+  },
+  "publication_snapshot": {
+    "application": {
+      "revision": "2773a608d5231df28fb298b2849ddf8ea1c99e87",
+      "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "corpus": {
+      "formula_cells": 54694,
+      "matched": 52171,
+      "inclusive_failed": 2523,
+      "awaiting_capture": 0,
+      "pass_rate": 0.9538706256627784,
+      "other_failed_verdicts": {
+        "not_modeled": 968,
+        "not_run": 7
+      },
+      "mismatches": 1461,
+      "counts": {
+        "larger_numeric": 558,
+        "last_bit": 687,
+        "other_mismatch": 216
+      }
+    },
+    "bank": {
+      "rows": 3910007,
+      "matched": 3769137,
+      "failed": 140870,
+      "counts": {
+        "matched": 3769137,
+        "refused": 1195,
+        "last_bit": 120865,
+        "larger_numeric": 17726,
+        "other_mismatch": 968,
+        "unread": 116
+      },
+      "pass_rate": 0.963971931508051,
+      "canonical_trace_sha256": "f9d75185a6232123f03996143296eae49033ef9cbd61cd2ef7de8902fa33713c"
+    },
+    "problem_functions": 150,
+    "fingerprint_coverage": {
+      "problem_functions": 150,
+      "reported": 153,
+      "statuses": {
+        "observed": 118,
+        "workbook-only": 34,
+        "service-refused": 1
+      }
+    },
+    "rule": "Includes upstream changes; not credited as R28 kernel gains."
+  },
+  "validation": {
+    "required_core_check": {
+      "passed": 1788,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 14,
+      "harnesses": 69
+    },
+    "merged_check": {
+      "passed": 1796,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3
+    },
+    "latest_completed_check": {
+      "application": "06b96dab",
+      "passed": 1814,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 14,
+      "harnesses": 69,
+      "dev_debug_symbols": false,
+      "test_debug_symbols": false
+    },
+    "research_python": {
+      "passed": 123
+    },
+    "research_Rust_historical_277_snapshot": {
+      "passed": 137,
+      "failed": 0,
+      "ignored": 2
+    },
+    "research_Rust_reproducible_snapshot": {
+      "unit": "round28-reproducible-publication-unit.json",
+      "published_base": "c07d07e695ac21f9a90bddf8f207d3545232a0ea",
+      "working_root_blob": "f82d6964371dd6a579685d5171364269c3f74485",
+      "passed": 137,
+      "failed": 0,
+      "ignored": 2
+    },
+    "UBS": "All 647 returned Python findings reviewed; public SHA comparisons are false criticals, SQL detector remains partial. Main Rust findings reviewed."
+  },
+  "limits": [
+    "Cohorts can overlap and are not added as unique observations.",
+    "Measured normalized functional composition is not a claim about literal private source, a global table/polynomial, or the underflow/overflow fallback.",
+    "General private power, POISSON/HYPGEOM helpers and QR rank remain open.",
+    "ERF/ERFC/NORM.S.DIST and GAMMA/GAMMALN algorithm work was left to the other agents.",
+    "No restricted implementation or excluded sibling checkout was read; native/software replay is not a browser/Windows sweep."
+  ]
+}

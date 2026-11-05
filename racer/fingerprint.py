@@ -27,6 +27,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'checker'))
 from exact import BINARY64, EXTENDED64
 from reference import elementary_bounds
+try:
+    from .x87_programs import Builder,Native,build_library
+except ImportError:
+    from x87_programs import Builder,Native,build_library
 
 PRODUCER_BINDINGS={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in
                    (Path(__file__),ROOT/'checker/reference.py',ROOT/'checker/exact.py')}
@@ -460,6 +464,48 @@ def scan(checkout, output, cache, count=512, offline=False, only=None):
             for record in results:
                 record['broader_primitive_windows']=[r for r in primitive_doc['leaves']
                     if r['function']==record['function']]
+    stage_path=ROOT/'evidence/round28/primitives-final-independent.json'
+    if stage_path.is_file():
+        stage_paths=[stage_path,ROOT/'evidence/round28/root-normalization-independent.json',
+                     ROOT/'evidence/round28/hypergeom-final-independent.json',
+                     ROOT/'evidence/round28/poisson-final-independent.json',
+                     ROOT/'evidence/round28/root-public-stages-independent.json',
+                     ROOT/'evidence/round28/root-store-contrasts-public-exp.json',
+                     ROOT/'evidence/round28/poisson-exp-arguments.json',
+                     ROOT/'evidence/round28/poisson-log-difference.json']
+        stages=[]
+        for i,p in enumerate(stage_paths):
+            archived=p.with_suffix(p.suffix+'.gz')
+            if archived.is_file():p=archived;stage_paths[i]=p
+            with (gzip.open(p,'rt')if p.suffix=='.gz'else p.open())as stream:
+                stages.append(json.load(stream))
+        if not all(d.get('complete')is True for d in stages):
+            raise ValueError('incomplete independently checked R28 stages')
+        auxiliary.update({str(p):sha(p)for p in stage_paths})
+        primitive,normalization,hypergeom,poisson,paired,contrasts,poisson_exp,poisson_log=stages
+        for record in results:
+            name=record['function']
+            if name in ('EXP','LN'):
+                constants=(primitive['refined_log_constants']if name=='LN'else
+                    next(f['first_pc64_candidates']for f in primitive['constant_families']if f['function']==name))
+                record['isolated_stage']=dict(constant_pc64_little_endian=constants,
+                    model=('FYL2X with resident ln(2)'if name=='LN'else
+                           'resident multiply by log2(e), F2XM1 reduction and FSCALE'),
+                    scope='Unique coefficient within the declared native instruction model on the measured windows; no private helper identification.')
+            elif name=='GEOMEAN':
+                record['isolated_stage']=dict(normalization='e=ilogb(P); q=trunc(e/n); M=P*2^(-q*n); root(M,n)*2^q',
+                    original_calls=normalization['original_calls'],normalized_controls=normalization['normalized_calls'],
+                    convention_counts=normalization['counts'],
+                    bounded_core='Store LN(M), store 1/n from PC64, store their product from PC64, call the measured public EXP; singleton identity.',
+                    paired_counts=paired['counts'],singleton_counts=paired['singleton_counts'],
+                    store_contrasts=contrasts['counts'],
+                    scope='Measured positive normal stored products and unit factors. The sampled normalized functional composition is identified; literal private implementation internals and the product underflow/overflow fallback remain open. Earlier shared-log contradictions concern the unreduced direct factorization only.')
+            elif name in ('HYPGEOM.DIST','HYPGEOMDIST'):
+                record['isolated_stage']=dict(counts=hypergeom['counts'],scope=hypergeom['limits'])
+            elif name in ('POISSON.DIST','POISSON'):
+                record['isolated_stage']=dict(counts=poisson['counts'],exp_argument_counts=poisson_exp['counts'],
+                    log_difference_counts=poisson_log['counts'],
+                    scope='Conditional public EXP preimages and one subtraction isolate necessary stage constraints. Confirmed adjacent public EXP gaps exclude a stored binary64 exponential input within that primitive. Neither the private PMF nor its log/exp implementation is identified.')
     result = dict(format='dnacalc-numeric-fingerprints/1', complete=True,inventory_complete=not bool(only),
         coverage=dict(problem_functions=len(inventory['functions']), reported=len(results),
                       statuses=Counter(r['status'] for r in results)),
@@ -1105,6 +1151,950 @@ def primitive_study(checkout,output,cache,offline=False,count=256):
     return result
 
 
+def bisect_observed_edges(service, function, brackets, make_row, side):
+    """Find adjacent false/true observations, retaining every original reply.
+
+    Endpoints and every interior observation are checked; an indistinguishable
+    answer stops that bracket. Uniqueness requires a separately justified
+    monotone predicate. No unobserved midpoint is assigned a side.
+    """
+    states=[dict(b,low=int(b['low'],16),high=int(b['high'],16),trace=[])for b in brackets]
+    for s in states:
+        if not 0<=s['low']<s['high']<0x7ff0000000000000:
+            raise ValueError('positive finite increasing edge bracket required')
+    def query(points):
+        rows=[make_row(s,f'{x:016x}')for s,x in points]
+        answers=service.ask(function,rows)['rows']
+        for (s,x),answer in zip(points,answers):
+            result=side(s,x,answer)
+            if result is not True and result is not False:
+                raise ValueError('edge predicate cannot distinguish a measured input')
+            s['trace'].append(dict(input=f'{x:016x}',answer=answer,side=result))
+        return answers
+    endpoints=[(s,x)for s in states for x in (s['low'],s['high'])]
+    query(endpoints)
+    for s in states:
+        if s['trace'][0]['side'] or not s['trace'][1]['side']:
+            raise ValueError('edge endpoints must be false then true')
+    while any(s['high']-s['low']>1 for s in states):
+        active=[s for s in states if s['high']-s['low']>1]
+        points=[(s,(s['low']+s['high'])//2)for s in active]
+        query(points)
+        for s,x in points:
+            s['high'if s['trace'][-1]['side']else'low']=x
+    return [dict(s,low=f'{s["low"]:016x}',high=f'{s["high"]:016x}')for s in states]
+
+
+def binomial_admission_study(checkout,output,cache,offline=False):
+    """Isolate the count admission boundary before any mass primitive.
+
+    The bracket comes from the R27 numeric/error observations, not a fitted
+    cutoff. Endpoint probabilities and cumulative all-success calls make the
+    answer independent of LN, EXP and the interior probability algorithm.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    probabilities=(0.,1.,1.-2.**-24)
+    brackets=[dict(low=bits(2.**30),high=bits(2.**31),probability=bits(p),
+                   cumulative=cumulative)
+              for p in probabilities for cumulative in (False,True)]
+    def row(s,b):
+        return [client.number(b),client.number(b),client.number(s['probability']),
+                client.boolean(s['cumulative'])]
+    def side(s,x,a):
+        if a['type']=='number':return False
+        if a==dict(type='error',code='#NUM!'):return True
+        return None
+    edges=bisect_observed_edges(service,'BINOM.DIST',brackets,row,side)
+    window=[]
+    for edge in sorted({int(e['high'],16)for e in edges}):
+        window.extend(f'{b:016x}'for b in range(edge-16,edge+16))
+    controls=[]
+    # Adjacent raw count operands separate truncation from nearest-integer
+    # conversion. k=0/1/all-success and p=0/1 expose validation before leaves.
+    for n in window+[bits(x)for x in (0.,1.,2.**32-1,2.**32,2.**40)]:
+        for k in ('zero','one','all'):
+            for p in probabilities:
+                for cumulative in (False,True):
+                    b=n if k=='all'else bits(0. if k=='zero'else 1.)
+                    controls.append(dict(trials=n,successes=b,probability=bits(p),cumulative=cumulative))
+    rows=[[client.number(r['successes']),client.number(r['trials']),
+           client.number(r['probability']),client.boolean(r['cumulative'])]for r in controls]
+    aliases={name:service.ask(name,rows)['rows']for name in ('BINOM.DIST','BINOMDIST')}
+    result=dict(format='dnacalc-binomial-admission-edge/1',complete=True,edges=edges,
+                controls=[dict(r,answers={name:a[i]for name,a in aliases.items()})for i,r in enumerate(controls)],
+                receipts=service.receipts,
+                limits='Measured count admission, separate from numerical primitive identification. Binary64 inputs are read back exactly. No candidate threshold chosen by pass counts; the adjacent transition is directly observed. Other discrete functions need their own admission observations.')
+    write(output,result)
+    print('BINOM admission',[(e['probability'],e['cumulative'],e['low'],e['high'])for e in edges],flush=True)
+    return result
+
+
+def primitive_stage_graph(kind, constant='rom', stored_reduction=False):
+    """One declared ISA primitive; no outer consumer or store-mask search."""
+    g=Builder(1)
+    if kind in ('LN','LOG2'):
+        c=(g.one if kind=='LOG2'else
+           g.op('fldln2',store=False)if constant=='rom'else g.constant(bits(math.log(2.))))
+        out=g.op('fyl2x',c,0,store=False)
+    else:
+        if kind=='EXP':
+            c=g.op('fldl2e',store=False)if constant=='rom'else g.constant(bits(math.log2(math.e)))
+            t=g.op('mul',0,c,store=stored_reduction)
+        elif kind=='EXP2':t=0
+        else:raise ValueError('unknown primitive stage')
+        whole=g.op('frndint',t,store=False)
+        fraction=g.op('sub',t,whole,store=False)
+        small=g.op('f2xm1',fraction,store=False)
+        mantissa=g.op('add',g.one,small,store=False)
+        out=g.op('fscale',mantissa,whole,store=False)
+    return g.graph(out,out)
+
+
+def positive_extended_cell(native, graph, answer, center,decreasing=False):
+    """Conditional inverse of one fixed positive extended-input primitive.
+
+    Find both ends of an output's preimage on the PC64 input lattice. The
+    local monotonicity of this fixed instruction chain is a declared premise;
+    Excel is never queried with an inferred extended operand. No logarithm
+    producer is assumed. Empty preimages are kept as contradictions.
+    """
+    from x87 import encode,decode
+    significand=EXTENDED64.floor_coordinate(EXTENDED64.round(center))
+    radius=1<<18
+    lo,hi=significand-radius,significand+radius
+    if not 0<lo<hi<EXTENDED64.last:
+        raise ValueError('inverse bracket leaves positive finite extended values')
+    def pack(sig):return encode(EXTENDED64.value(sig))
+    def evaluate(sig):
+        return native.publish(native.evaluate(graph,[],0x133f,extended=pack(sig))[:10])
+    direction=-1 if decreasing else 1
+    target=direction*int(answer,16)
+    if not direction*evaluate(lo)<target<direction*evaluate(hi):
+        raise ValueError('inverse bracket does not enclose requested output')
+    def first(strict):
+        a,b=lo,hi
+        while b-a>1:
+            m=(a+b)//2;got=direction*evaluate(m)
+            if got>target if strict else got>=target:b=m
+            else:a=m
+        return b
+    lower,upper=first(False),first(True)-1
+    if lower>upper:return None
+    if direction*evaluate(lower)!=target or direction*evaluate(upper)!=target:
+        raise ValueError('inverse endpoint does not publish requested output')
+    return dict(low=pack(lower).hex(),high=pack(upper).hex(),
+                predecessor_output=f'{evaluate(lower-1):016x}',
+                successor_output=f'{evaluate(upper+1):016x}')
+
+
+def resident_stage_study(checkout,output,cache,library,offline=False,count=256):
+    """Isolate reduction precision and invert root observations one stage at a time.
+
+    GEOMEAN(x,1,...,1) has an exact product. Arity2/4/8 makes division
+    by the count exact in PC64 and removes reciprocal-rounding uncertainty.
+    Shared-log interval intersections test an unknown resident logarithm,
+    rather than enumerating complete logarithm/root programs.
+    """
+    from x87 import decode
+    library=Path(library)
+    if not library.exists():build_library(library)
+    native=Native(library)
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    graphs={
+        'LN_ROM80':primitive_stage_graph('LN'),
+        'LN_constant53':primitive_stage_graph('LN','binary64'),
+        'EXP_ROM80_resident_reduction':primitive_stage_graph('EXP'),
+        'EXP_constant53_resident_reduction':primitive_stage_graph('EXP','binary64'),
+        'EXP_ROM80_stored_reduction':primitive_stage_graph('EXP',stored_reduction=True),
+        'EXP2':primitive_stage_graph('EXP2'),'LOG2':primitive_stage_graph('LOG2')}
+    def window(centers):
+        return [f'{b:016x}'for center in centers for b in
+                range(int(bits(center),16)-count//2,int(bits(center),16)+count//2)]
+    exp_inputs=window((.7,1.,50.,700.))
+    log_inputs=window((1.3,3.7,7.,1000.))
+    observations={};primitive_checks=[]
+    for name,xs,programs in [('EXP',exp_inputs,list(graphs)[2:5]),('LN',log_inputs,list(graphs)[:2])]:
+        answers=service.ask(name,[[client.number(x)]for x in xs])['rows']
+        observations[name]=dict(inputs=xs,answers=answers)
+        for program in programs:
+            tally=Counter();first=None
+            for x,a in zip(xs,answers):
+                raw=native.evaluate(graphs[program],[int(x,16)],0x133f,mask=1 if program.endswith('stored_reduction')else 0)[:10]
+                predicted=f'{native.publish(raw):016x}'
+                key='matched'if a==dict(type='number',bits=predicted)else'mismatched'
+                tally[key]+=1
+                if key=='mismatched'and first is None:first=dict(input=x,excel=a,predicted=predicted,resident_output=raw.hex())
+            primitive_checks.append(dict(program=program,counts=tally,first_contradiction=first))
+    power_answers=service.ask('POWER',[[client.number(math.e),client.number(x)]for x in exp_inputs])['rows']
+    power_counts=Counter('matched'if a==b else'mismatched'for a,b in zip(power_answers,observations['EXP']['answers']))
+    power_routes={route:Counter()for route in ('integer','fractional')}
+    power_contradictions=[]
+    for x,a,b in zip(exp_inputs,power_answers,observations['EXP']['answers']):
+        route='integer'if value(x).is_integer()else'fractional'
+        power_routes[route]['matched'if a==b else'mismatched']+=1
+        if a!=b:power_contradictions.append(dict(exponent=x,route=route,power=a,exp=b))
+    # Natural and base2 argument inversions are distinct conditional primitive
+    # studies. Neither is allowed to invent a per-row logarithm or correction.
+    xs=window((1.3,7.,1000.))
+    roots={n:service.ask('GEOMEAN',[[client.number(x)]+[client.number(1.)]*(n-1)for x in xs])['rows']for n in (2,4,8)}
+    intervals=[];tallies={kind:Counter()for kind in ('EXP','EXP2')}
+    for index,x in enumerate(xs):
+        log=decode(native.evaluate(graphs['LN_ROM80'],[int(x,16)],0x133f)[:10])
+        log2=decode(native.evaluate(graphs['LOG2'],[int(x,16)],0x133f)[:10])
+        for kind,center in [('EXP',log),('EXP2',log2)]:
+            graph=graphs['EXP_ROM80_resident_reduction'if kind=='EXP'else'EXP2']
+            cells=[];lower=[];upper=[]
+            for n in (2,4,8):
+                a=roots[n][index]
+                if a['type']!='number':raise ValueError('non-numeric root in positive stage window')
+                cell=positive_extended_cell(native,graph,a['bits'],center/n)
+                cells.append(dict(count=n,excel=a,cell=cell))
+                if cell:
+                    lower.append(decode(bytes.fromhex(cell['low']))*n)
+                    upper.append(decode(bytes.fromhex(cell['high']))*n)
+            common_low=max(lower)if len(lower)==3 else None
+            common_high=min(upper)if len(upper)==3 else None
+            feasible=common_low is not None and common_low<=common_high
+            label='shared_log_possible'if feasible else'shared_log_impossible'
+            tallies[kind][label]+=1
+            candidate=center
+            if feasible:
+                tallies[kind]['registered_resident_log_in_intersection'if common_low<=candidate<=common_high else'registered_resident_log_excluded']+=1
+                published=BINARY64.round(candidate)
+                tallies[kind]['binary64_log_in_intersection'if common_low<=published<=common_high else'binary64_log_excluded']+=1
+            intervals.append(dict(input=x,primitive=kind,cells=cells,shared_log_possible=feasible,
+                                  common_log_interval=[str(common_low),str(common_high)]if feasible else None))
+    result=dict(format='dnacalc-resident-primitive-stage-inverses/1',complete=True,
+        primitive_checks=primitive_checks,power_e_equals_public_exp=power_counts,
+        power_routes=power_routes,power_contradictions=power_contradictions,
+        root_stage_counts=tallies,root_intervals=intervals,
+        graphs=graphs,consecutive_inputs_per_center=count,receipts=service.receipts,
+        native_bindings={str(p):sha(p)for p in (library,ROOT/'racer/x87_native.c',ROOT/'racer/x87_programs.py',ROOT/'checker/x87.py')},
+        reduction_constants=dict(ln2_rom80='ac79cfd1f71772b1fe3f',log2e_rom80='bcf0175c293baab8ff3f',
+                                 ln2_binary64=bits(math.log(2.)),log2e_binary64=bits(math.log2(math.e))),
+        limitations='Positive normal scalar windows only. Public EXP/LN agreement is a conditional ISA-chain observation, not a global software implementation or microcode identification. Root inverse cells condition on one fixed monotone EXP or EXP2 primitive with resident PC64 input and no later correction. Empty shared-log intersections refute that factorization even with an arbitrary common logarithm. Nonempty intersections only bound a hidden stage; they never identify a logarithm polynomial/table or authorize fitted values. Arity2/4/8 eliminates reciprocal precision, not private route differences. No whole-program enumeration, count ranking or answer-dependent algorithm selection.')
+    write(output,result)
+    print('primitive stages',primitive_checks,dict(power_counts),{k:dict(v)for k,v in tallies.items()},flush=True)
+    return result
+
+
+def reduction_constant_study(checkout,output,cache,library,offline=False,count=256):
+    """Intersect stage preimages to constrain one shared reduction constant.
+
+    LN uses a fused native FYL2X primitive with an unknown PC64 coefficient.
+    EXP uses one PC64 multiplication followed by the fixed EXP2 primitive.
+    Constants are recovered as necessary intervals, then compared to the
+    published x87 ROM values. No fitted coefficient is installed.
+    """
+    from exact import Span
+    from x87 import decode,encode
+    native=Native(library)
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    ln2=native.leaf('fldln2',bytes(10),bytes(10),0x133f)
+    l2e=native.leaf('fldl2e',bytes(10),bytes(10),0x133f)
+    ln_graph=Builder(2);out=ln_graph.op('fyl2x',1,0,store=False);ln_graph=ln_graph.graph(out,out)
+    exp_graph=primitive_stage_graph('EXP2')
+    class Coefficient:
+        def __init__(self,x):self.x=x
+        def evaluate(self,graph,inputs,cw,extended):return native.evaluate(graph,[self.x],cw,extended=extended)
+        def publish(self,raw):return native.publish(raw)
+    def neighbor(raw,delta):
+        n=int.from_bytes(raw[:8],'little')+delta
+        if not 1<<63<=n<1<<64:raise ValueError('constant inverse crosses extended binade')
+        return n.to_bytes(8,'little')+raw[8:]
+    records=[];families=[]
+    for function,centers,coefficient in [('LN',(1.3,3.7,7.,1000.),ln2),('EXP',(.7,1.,50.,700.),l2e)]:
+        xs=[f'{b:016x}'for center in centers for b in range(int(bits(center),16)-count//2,int(bits(center),16)+count//2)]
+        answers=service.ask(function,[[client.number(x)]for x in xs])['rows']
+        common=None;first=True
+        for x,a in zip(xs,answers):
+            if a['type']!='number':raise ValueError('constant probe must be positive numeric')
+            q=Q(value(x));center=decode(coefficient)
+            if function=='LN':
+                cell=positive_extended_cell(Coefficient(int(x,16)),ln_graph,a['bits'],center)
+            else:
+                cell=positive_extended_cell(native,exp_graph,a['bits'],EXTENDED64.round(q*center))
+            if cell is None:raise ValueError('empty stage preimage for reduction-constant control')
+            lo,hi=(bytes.fromhex(cell[k])for k in ('low','high'))
+            if function=='LN':
+                domain=Span(decode(lo),decode(hi))
+            else:
+                # Invert the single RN64 multiply at both extreme input
+                # cells. Exact midpoint ownership comes from tie parity.
+                a0=(decode(neighbor(lo,-1))+decode(lo))/2/q
+                b0=(decode(hi)+decode(neighbor(hi,1)))/2/q
+                domain=Span(a0,b0,not(int.from_bytes(lo[:8],'little')&1),not(int.from_bytes(hi[:8],'little')&1))
+            common=domain if first else common.meet(domain)if common is not None else None
+            first=False
+            records.append(dict(function=function,input=x,excel=a,cell=cell,coefficient_interval=domain.json()))
+        if common is None:
+            candidates=[];total=0
+        else:
+            lower=EXTENDED64.ceiling_coordinate(common.low)
+            upper=EXTENDED64.floor_coordinate(common.high)
+            if not common.left and EXTENDED64.value(lower)==common.low:lower+=1
+            if not common.right and EXTENDED64.value(upper)==common.high:upper-=1
+            total=max(0,upper-lower+1)
+            candidates=[encode(EXTENDED64.value(k)).hex()for k in range(lower,min(upper+1,lower+16))]
+        families.append(dict(function=function,observations=len(xs),
+            common_coefficient_interval=common.json()if common is not None else None,
+            pc64_candidate_count=total,first_pc64_candidates=candidates,
+            published_rom=coefficient.hex(),rom_in_intersection=common is not None and common.contains(decode(coefficient))))
+    result=dict(format='dnacalc-primitive-reduction-constant-preimages/1',complete=True,
+        families=families,records=records,receipts=service.receipts,
+        native_bindings={str(p):sha(p)for p in (Path(library),ROOT/'racer/x87_native.c',ROOT/'racer/x87_programs.py',ROOT/'checker/x87.py')},
+        limits='Necessary coefficient intervals under the explicitly fixed positive native FYL2X and EXP2 primitives and local monotonicity. EXP assumes one resident RN64 multiply, not a binary64 spill. Each coefficient must be common to every input. Published ROM values are controls, not fitted implementations. Public scalar probes do not identify GEOMEAN/private helper code, a software polynomial/table, or global route boundaries. Reuses original readings; no additional calls are counted.')
+    write(output,result);print('reduction constants',families,flush=True)
+    return result
+
+
+def refine_log_constant(checkout,prior,output,cache,library,offline=False,spread=False):
+    """Ask only preselected coefficient discriminants in fixed input windows.
+
+    The prior stage interval supplies two endpoint coefficients, not a fitted
+    numerical implementation. Inputs are chosen where those endpoints publish
+    different answers before any new Excel reading. The common constant must
+    satisfy every old and new observation.
+    """
+    from exact import Span
+    from x87 import decode,encode
+    prior=Path(prior);old=json.loads(prior.read_text())
+    family=next(r for r in old['families']if r['function']=='LN')
+    candidates=family['first_pc64_candidates']
+    if not 1<len(candidates)==family['pc64_candidate_count']<=16:
+        raise ValueError('refinement needs the complete bounded prior PC64 interval')
+    low,high=bytes.fromhex(candidates[0]),bytes.fromhex(candidates[-1])
+    native=Native(library);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    centers=tuple(1.+i/256 for i in range(1,256))if spread else(1.3,3.7,7.,1000.)
+    count=512 if spread else 65536
+    selected=[]
+    for center in centers:
+        start=int(bits(center),16)-count//2
+        for b in range(start,start+count):
+            x=encode(Q(value(f'{b:016x}')))
+            a,z=(native.publish(native.leaf('fyl2x',c,x,0x133f))for c in (low,high))
+            if a!=z:selected.append(dict(input=f'{b:016x}',lower_prediction=f'{a:016x}',upper_prediction=f'{z:016x}'))
+    # This frozen selection is written before a new observation is requested.
+    selection=dict(format='dnacalc-log-constant-refinement-selection/1',prior_sha256=sha(prior),
+        centers=centers,consecutive_inputs_per_center=count,coefficient_endpoints=[low.hex(),high.hex()],
+        selected=selected,selection='All endpoint disagreements in the fixed consecutive windows; chosen before new answers.')
+    selection_path=Path(str(output)+'.selection.json');write(selection_path,selection)
+    answers=[]
+    for start in range(0,len(selected),8192):
+        answers.extend(service.ask('LN',[[client.number(r['input'])]for r in selected[start:start+8192]])['rows'])
+    g=Builder(2);out=g.op('fyl2x',1,0,store=False);graph=g.graph(out,out)
+    class Coefficient:
+        def __init__(self,x):self.x=x
+        def evaluate(self,graph,inputs,cw,extended):return native.evaluate(graph,[self.x],cw,extended=extended)
+        def publish(self,raw):return native.publish(raw)
+    original=family['common_coefficient_interval']
+    common=Span(Q(*map(int,original['lower'])),Q(*map(int,original['upper'])),original['lower_closed'],original['upper_closed'])
+    records=[]
+    for r,a in zip(selected,answers):
+        if a['type']!='number':raise ValueError('nonnumeric LN refinement answer')
+        cell=positive_extended_cell(Coefficient(int(r['input'],16)),graph,a['bits'],decode(low))
+        if cell is None:raise ValueError('empty coefficient cell')
+        domain=Span(decode(bytes.fromhex(cell['low'])),decode(bytes.fromhex(cell['high'])))
+        common=common.meet(domain)if common is not None else None
+        records.append(dict(r,excel=a,cell=cell))
+    remaining=[c for c in candidates if common is not None and common.contains(decode(bytes.fromhex(c)))]
+    result=dict(format='dnacalc-log-constant-refinement/1',complete=True,prior_sha256=sha(prior),
+        selection_sha256=sha(selection_path),original_candidates=candidates,remaining_pc64_candidates=remaining,
+        common_coefficient_interval=common.json()if common is not None else None,
+        records=records,receipts=service.receipts,
+        limits='Conditional coefficient identification for the declared native FYL2X leaf only. No table/polynomial or private Excel logarithm is identified; no coefficient is fitted into product code. Selected questions are new observed coverage, not kernel gains.')
+    write(output,result);print('LN coefficient refinement',len(selected),'questions; remaining',remaining,flush=True)
+    return result
+
+
+def root_anchor_study(checkout,output,cache,offline=False):
+    """Exact product/root anchors separate the private root from public pow.
+
+    On product2^(n*j), the mathematical nth root is the exactly representable
+    2^j. No logarithm, exponential approximation or recurrence is needed for
+    that control. Neighbor exponents retain their directed mathematical bounds.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    keys=[]
+    for n in (*range(2,13),16,32):
+        for j in (-100,-10,-1,0,1,10,100):
+            if -1022<=n*j<=1023:keys.append((n,n*j,'exact_integer_log2_root'))
+        for k in range(-n+1,n):
+            if k:keys.append((n,k,'fractional_log2_root'))
+    questions=[[client.number(math.ldexp(1.,k))]+[client.number(1.)]*(n-1)for n,k,_ in keys]
+    answers=service.ask('GEOMEAN',questions)['rows']
+    powers=service.ask('POWER',[[row[0],client.number(1./n)]for (n,_,_),row in zip(keys,questions)])['rows']
+    records=[];counts={}
+    for (n,k,role),row,a,p in zip(keys,questions,answers,powers):
+        ideal=publication(elementary_bounds('GEOMEAN',row))
+        if ideal is None:raise ValueError('root anchor reference not enclosed')
+        target=dict(type='number',bits=ideal[0])
+        tally=counts.setdefault(str(n),Counter())
+        tally[role+'_matched'if a==target else role+'_mismatched']+=1
+        tally['public_POWER_equal'if a==p else'public_POWER_different']+=1
+        records.append(dict(count=n,product_power=k,role=role,input=row[0]['bits'],
+                            excel=a,public_power=p,mathematical_single=ideal[0],mathematical_double=ideal[1]))
+    result=dict(format='dnacalc-geomean-exact-power-anchors/1',complete=True,records=records,counts=counts,
+        receipts=service.receipts,
+        limits='Exact unit-factor products. Integer log2 roots are exact mathematical controls; noninteger roots are directed MPFR controls, never Excel answers. Public POWER uses a stored binary64 reciprocal and its own wrapper. Differences isolate routes but do not identify a private polynomial/table, a Newton loop or its stopping rule. No fitted coefficient, tolerance or selector.')
+    write(output,result);print('root anchors',{n:dict(c)for n,c in counts.items()},flush=True)
+    return result
+
+
+def poisson_log_difference_study(checkout,original,output,cache,library,offline=False):
+    """Invert one subtraction before the resident PMF1 exponential argument."""
+    from exact import Span
+    from x87 import decode,load64
+    prior=json.loads(Path(original).read_text())
+    if not prior.get('complete'):raise ValueError('incomplete exponential preimages')
+    rows=[r for r in prior['records']if r['stage']=='zero_to_one']
+    inputs=[r['input']for r in rows]
+    if len(set(inputs))!=len(inputs):raise ValueError('repeated original PMF1 input')
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    logs=dict(zip(inputs,service.ask('LN',[[client.number(x)]for x in inputs])['rows']))
+    native=Native(library);coefficient=native.leaf('fldln2',bytes(10),bytes(10),0x133f)
+    records=[];counts=Counter()
+    for r in rows:
+        x=r['input'];mean=Q(value(x));cell=r['cell']
+        lo,hi=(decode(bytes.fromhex(cell[k]))for k in ('low','high'))
+        argument=Span(-hi,-lo)
+        # t=RN64(L-mean): take every rounding cell of the permitted t lattice,
+        # then undo exactly one subtraction. Midpoint ownership is retained.
+        domain=EXTENDED64.pullback(argument).linear(Q(1),mean)
+        observed=logs[x]
+        if observed['type']!='number':raise ValueError('positive-mean public log must be numeric')
+        resident=native.leaf('fyl2x',coefficient,load64(int(x,16)),0x133f)
+        public_possible=domain.contains(Q(value(observed['bits'])))
+        resident_possible=domain.contains(decode(resident))
+        pc64=EXTENDED64.coordinates(domain);binary64=BINARY64.coordinates(domain)
+        counts['public_LN_possible'if public_possible else'public_LN_excluded']+=1
+        counts['resident_LN_possible'if resident_possible else'resident_LN_excluded']+=1
+        counts['binary64_log_possible'if binary64 is not None else'binary64_log_impossible']+=1
+        records.append(dict(index=r['index'],input=x,excel=r['excel'],cell=cell,
+            private_log_interval=domain.json(),public_LN=observed,resident_LN=resident.hex(),
+            public_LN_possible=public_possible,resident_LN_possible=resident_possible,
+            pc64_log_count=0 if pc64 is None else pc64[1]-pc64[0]+1,
+            binary64_log_count=0 if binary64 is None else binary64[1]-binary64[0]+1))
+    result=dict(format='dnacalc-poisson-log-difference-preimages/1',complete=True,
+        original_sha256=sha(original),original_receipts=prior['original_receipts'],records=records,counts=counts,receipts=service.receipts,
+        native_bindings={str(p):sha(p)for p in (Path(library),ROOT/'racer/x87_native.c',ROOT/'racer/x87_programs.py')},
+        limits='Necessary private-log intervals for one declared t=RN64(L-mean) stage and the earlier conditional resident public EXP primitive. Public LN is independently observed; resident FYL2X is an explicit comparison. No fitting, private logarithm identification or full PMF algorithm adoption follows from nonempty intervals.')
+    write(output,result);print(json.dumps(counts));return result
+
+
+def poisson_exp_argument_study(checkout,original,output,cache,library,offline=False):
+    """Project a single PMF exponential input onto the binary64 lattice.
+
+    The original mass is the target. No log, factorial or mass program is
+    selected. New public EXP calls bracket targets whose primitive preimage
+    contains no binary64 argument.
+    """
+    from x87 import decode
+    prior=json.loads(Path(original).read_text())
+    if not prior.get('complete'):raise ValueError('incomplete Poisson stage observations')
+    native=Native(library);g=Builder(1)
+    t=g.op('mul',0,g.op('fldl2e',store=False),store=False);whole=g.op('frndint',t,store=False)
+    small=g.op('f2xm1',g.op('sub',t,whole,store=False),store=False)
+    positive=g.op('fscale',g.op('add',g.one,small,store=False),whole,store=False)
+    out=g.op('div',g.one,positive,store=False);graph=g.graph(out,out)
+    rows=[];questions=set();counts=Counter()
+    for i,r in enumerate(prior['records']):
+        answer=r['published_output'];row=dict(index=i,input=r['input'],stage=r['stage'],excel=answer)
+        if answer['type']!='number' or value(answer['bits'])<=0.:
+            row['status']='no positive numeric target';counts[row['status']]+=1;rows.append(row);continue
+        cell=positive_extended_cell(native,graph,answer['bits'],Q(-math.log(value(answer['bits']))),decreasing=True)
+        if cell is None:raise ValueError('empty extended exponential preimage needs a separate certificate')
+        lo,hi=(decode(bytes.fromhex(cell[k]))for k in ('low','high'))
+        a=BINARY64.ceiling_coordinate(lo);b=BINARY64.floor_coordinate(hi)
+        count=max(0,b-a+1)
+        row.update(cell=cell,binary64_argument_count=count,
+            first_binary64_magnitudes=[bits(float(BINARY64.value(k)))for k in range(a,min(b+1,a+8))])
+        row['status']='binary64 argument possible'if count else'no binary64 argument'
+        if not count:
+            lower=BINARY64.floor_coordinate(lo);upper=BINARY64.ceiling_coordinate(hi)
+            if upper-lower!=1:raise ValueError('missing argument neighbors are not adjacent')
+            row['magnitude_neighbors']=[bits(float(BINARY64.value(k)))for k in (lower,upper)]
+            questions.update(row['magnitude_neighbors'])
+        counts[row['status']]+=1;rows.append(row)
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    magnitudes=sorted(questions)
+    actual=dict(zip(magnitudes,service.ask('EXP',[[client.number(-value(x))]for x in magnitudes])['rows']))if magnitudes else{}
+    for row in rows:
+        if'magnitude_neighbors'not in row:continue
+        lo,hi=[actual[x]for x in row['magnitude_neighbors']]
+        bracket=lo['type']==hi['type']=='number'and int(hi['bits'],16)<int(row['excel']['bits'],16)<int(lo['bits'],16)
+        row.update(public_EXP_neighbors=[lo,hi],public_bracket_verified=bracket)
+        counts['public bracket verified'if bracket else'public bracket contradicted']+=1
+    result=dict(format='dnacalc-poisson-exponential-input-preimages/1',complete=True,
+        original_sha256=sha(original),original_receipts=prior['receipts'],graph=graph,records=rows,counts=counts,receipts=service.receipts,
+        native_bindings={str(p):sha(p)for p in (Path(library),ROOT/'racer/x87_native.c',ROOT/'racer/x87_programs.py')},
+        limits='One conditional public EXP primitive, negative as reciprocal of positive exp. Original PMF outputs are inverted without assuming their exponent producer. A verified adjacent public bracket excludes a stored binary64 exponential argument within this primitive; it does not identify a resident argument, private exponential or full PMF algorithm. No coefficients or count-selected correction adopted.')
+    write(output,result);print(json.dumps(counts));return result
+
+
+def root_store_contrasts(original,output,library):
+    """Remove one publication at a time from the paired primitive composition."""
+    prior=json.loads(Path(original).read_text())
+    if not prior.get('complete'):raise ValueError('incomplete paired primitives')
+    native=Native(library);graphs={};counts={k:Counter()for k in ('stored','resident_log','resident_reciprocal','resident_argument')}
+    masks={'stored':7,'resident_log':6,'resident_reciprocal':5,'resident_argument':3}
+    for n in sorted({r['count']for r in prior['records']}):
+        for negative in (False,True):
+            g=Builder(1);log=g.op('fyl2x',g.op('fldln2',store=False),0)
+            reciprocal=g.op('div',g.one,g.constant(bits(n)))
+            t=g.op('mul',log,reciprocal)
+            if negative:t=g.op('neg',t,store=False)
+            t=g.op('mul',t,g.op('fldl2e',store=False),store=False)
+            whole=g.op('frndint',t,store=False);small=g.op('f2xm1',g.op('sub',t,whole,store=False),store=False)
+            out=g.op('fscale',g.op('add',g.one,small,store=False),whole,store=False)
+            if negative:out=g.op('div',g.one,out,store=False)
+            graphs[f'{n}/{negative}']=g.graph(out,out)
+    records=[]
+    for r in prior['records']:
+        graph=graphs[f'{r["count"]}/{value(r["input"])<1.}']
+        predictions={name:f'{native.publish(native.evaluate(graph,[int(r["input"],16)],0x133f,mask=mask)[:10]):016x}'for name,mask in masks.items()}
+        for name,prediction in predictions.items():counts[name]['matched'if r['excel']==dict(type='number',bits=prediction)else'mismatched']+=1
+        records.append(dict(count=r['count'],input=r['input'],excel=r['excel'],predictions=predictions))
+    result=dict(format='dnacalc-root-single-store-contrasts/1',complete=True,original_sha256=sha(original),
+        masks=masks,graphs=graphs,records=records,counts=counts,
+        native_bindings={str(p):sha(p)for p in (Path(library),ROOT/'racer/x87_native.c',ROOT/'racer/x87_programs.py')},
+        limits='One publication removed at a time, with all other paired stages fixed. Native FYL2X and the actual public EXP core (negative as the resident reciprocal of positive exp) are declared conditional primitives; no Cartesian store-mask or whole-program search. Original paired-study scope and provenance are unchanged. These contrasts distinguish sampled stages within this model, not all possible private algorithms.')
+    write(output,result);print(json.dumps(counts));return result
+
+
+def root_public_stages(checkout,original,output,cache,offline=False):
+    """Pair each measured reduced root with independent public leaf calls.
+
+    The quotient/publication shape is fixed by the exact-power stage study,
+    before these answers. This neither searches whole programs nor substitutes
+    a calculated value for an Excel observation.
+    """
+    prior=json.loads(Path(original).read_text())
+    if not prior.get('complete'):raise ValueError('incomplete normalization study')
+    roots={}
+    for row in prior['records']:
+        item=next(c for c in row['conventions']if c['convention']=='adjusted_frexp_truncation')
+        key=row['count'],item['reduced'];answer=item['measured_normalized_root']
+        if key in roots and roots[key]!=answer:raise ValueError('inconsistent original root control')
+        roots[key]=answer
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    inputs=sorted({x for _,x in roots})
+    logs=dict(zip(inputs,service.ask('LN',[[client.number(x)]for x in inputs])['rows']))
+    singletons=dict(zip(inputs,service.ask('GEOMEAN',[[client.number(x)]for x in inputs])['rows']))
+    arguments={};reciprocals={}
+    for n,x in roots:
+        a=logs[x]
+        if a['type']!='number':raise ValueError('reduced log must be numeric')
+        # Both assignments publish from PC64. The independently observed leaf
+        # is binary64; it is not an inferred resident logarithm.
+        reciprocal=BINARY64.round(EXTENDED64.round(Q(1,n)))
+        argument=BINARY64.round(EXTENDED64.round(Q(value(a['bits']))*reciprocal))
+        reciprocals[n]=bits(float(reciprocal));arguments[n,x]=bits(float(argument))
+    exp_inputs=sorted(set(arguments.values()))
+    exps=dict(zip(exp_inputs,service.ask('EXP',[[client.number(x)]for x in exp_inputs])['rows']))
+    records=[];counts=Counter()
+    for(n,x),answer in sorted(roots.items()):
+        argument=arguments[n,x];prediction=exps[argument]
+        counts['matched'if answer==prediction else'mismatched']+=1
+        records.append(dict(count=n,input=x,excel=answer,public_LN=logs[x],reciprocal=reciprocals[n],
+            stored_argument=argument,public_EXP=prediction,matched=answer==prediction))
+    singleton_counts=Counter('identity'if a==dict(type='number',bits=x)else'different'for x,a in singletons.items())
+    result=dict(format='dnacalc-root-paired-public-stages/1',complete=True,original_sha256=sha(original),
+        original_receipts=prior['receipts'],records=records,counts=counts,
+        singleton_controls=[dict(input=x,excel=a)for x,a in singletons.items()],singleton_counts=singleton_counts,
+        public_log_calls=len(inputs),public_exp_calls=len(exp_inputs),receipts=service.receipts,
+        limits='Adjusted normal reduced products only, with original unit-factor GEOMEAN controls. Every public LN and EXP is independently measured at its actual binary64 input. Assignments use PC64 then binary64 publication. Agreement establishes the declared sampled composition, not an arbitrary resident helper, table/polynomial internals or overflow fallback. One-element controls separately test identity.')
+    write(output,result);print(json.dumps(dict(counts=counts,singletons=singleton_counts,public_log_calls=len(inputs),public_exp_calls=len(exp_inputs))))
+    return result
+
+
+def root_log_stage(checkout,original,output,cache,library,offline=False):
+    """Invert one quotient stage, leaving each private logarithm arbitrary.
+
+    Positive fractional power anchors have q=0 in the measured normalization.
+    Group by the same exact product. Contrast one quotient publication and
+    division versus a stored reciprocal under a declared exponential primitive.
+    """
+    from exact import Span
+    from x87 import decode
+    prior=json.loads(Path(original).read_text())
+    if not prior.get('complete'):raise ValueError('incomplete original anchors')
+    rows=[r for r in prior['records']if r['role']=='fractional_log2_root'and r['product_power']>0]
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=180),cache,offline)
+    powers=sorted({r['product_power']for r in rows})
+    public=dict(zip(powers,service.ask('LN',[[client.number(math.ldexp(1.,k))]for k in powers])['rows']))
+    native=Native(library);ln2=decode(native.leaf('fldln2',bytes(10),bytes(10),0x133f))
+    records=[];models=[]
+    for quotient in ('divide','stored_reciprocal'):
+        for publish in (False,True):
+            groups={};used=[]
+            for row in rows:
+                n=row['count'];g=Builder(1)
+                operand=n if quotient=='divide'else 1./n
+                t=g.op('div'if quotient=='divide'else'mul',0,g.constant(bits(operand)),store=publish)
+                t=g.op('mul',t,g.op('fldl2e',store=False),store=False)
+                whole=g.op('frndint',t,store=False);fraction=g.op('sub',t,whole,store=False)
+                small=g.op('f2xm1',fraction,store=False)
+                out=g.op('fscale',g.op('add',g.one,small,store=False),whole,store=False)
+                graph=g.graph(out,out)
+                class Bound:
+                    def evaluate(self,graph,inputs,cw,extended):
+                        return native.evaluate(graph,inputs,cw,mask=int(publish),extended=extended)
+                    def publish(self,raw):return native.publish(raw)
+                cell=positive_extended_cell(Bound(),graph,row['excel']['bits'],ln2*row['product_power'])
+                domain=Span(decode(bytes.fromhex(cell['low'])),decode(bytes.fromhex(cell['high'])))if cell else None
+                k=row['product_power'];old=groups.get(k)
+                groups[k]=domain if k not in groups else old.meet(domain)if old is not None and domain is not None else None
+                used.append(k)
+                records.append(dict(quotient=quotient,published=publish,count=n,product_power=k,
+                    input=row['input'],excel=row['excel'],cell=cell,graph=graph))
+            summaries=[]
+            for k,domain in sorted(groups.items()):
+                answer=public[k]
+                summaries.append(dict(product_power=k,observations=used.count(k),
+                    common_private_log=domain.json()if domain is not None else None,public_LN=answer,
+                    public_LN_possible=domain is not None and answer['type']=='number'and domain.contains(Q(value(answer['bits'])))))
+            models.append(dict(quotient=quotient,published=publish,groups=summaries))
+    result=dict(format='dnacalc-private-log-quotient-stage/1',complete=True,
+        original_sha256=sha(original),original_receipts=prior['receipts'],records=records,models=models,
+        receipts=service.receipts,native_bindings={str(p):sha(p)for p in (Path(library),ROOT/'racer/x87_native.c',ROOT/'racer/x87_programs.py')},
+        limits='Complete positive fractional original anchor subset, q=0. Each same-input log is arbitrary and shared only across counts. The native public EXP model and monotone preimages are conditional premises. An impossible interval rejects this quotient/primitive factorization, not all logarithms or exponentials; possible intervals do not identify a private implementation.')
+    write(output,result)
+    print(json.dumps([dict(quotient=m['quotient'],published=m['published'],groups=len(m['groups']),
+        impossible=sum(g['common_private_log']is None for g in m['groups']),
+        excludes_public=sum(not g['public_LN_possible']for g in m['groups']))for m in models]))
+    return result
+
+
+def root_primitive_spill_study(checkout,output,cache,library,count=256):
+    """Perturb one primitive store at a time; leave the log producer unknown.
+
+    This inverts the same original roots, with a store either at the reduced
+    fraction or at F2XM1's return. There is no Cartesian store-mask search and
+    no candidate logarithm is fitted to the intervals.
+    """
+    from x87 import decode
+    native=Native(library);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,True)
+    xs=[f'{b:016x}'for x in (1.3,7.,1000.)for b in range(int(bits(x),16)-count//2,int(bits(x),16)+count//2)]
+    roots={n:service.ask('GEOMEAN',[[client.number(x)]+[client.number(1.)]*(n-1)for x in xs])['rows']for n in (2,4,8)}
+    log_graphs={k:primitive_stage_graph('LN'if k=='EXP'else'LOG2')for k in ('EXP','EXP2')}
+    class Stored:
+        def evaluate(self,graph,inputs,cw,extended):return native.evaluate(graph,inputs,cw,mask=1,extended=extended)
+        def publish(self,raw):return native.publish(raw)
+    stored=Stored();records=[];models=[]
+    for kind in ('EXP','EXP2'):
+        for site,operation in [('fraction','sub'),('f2xm1_return','f2xm1')]:
+            graph=primitive_stage_graph(kind)
+            nodes=[n for n in graph['nodes']if n['op']==operation]
+            if len(nodes)!=1:raise ValueError('primitive store site is not unique')
+            nodes[0]['site']=0;graph['sites']=1
+            tally=Counter()
+            for index,x in enumerate(xs):
+                center=decode(native.evaluate(log_graphs[kind],[int(x,16)],0x133f)[:10])
+                lows=[];highs=[];cells=[]
+                for n in (2,4,8):
+                    a=roots[n][index]
+                    cell=positive_extended_cell(stored,graph,a['bits'],center/n)
+                    cells.append(dict(count=n,excel=a,cell=cell))
+                    if cell:
+                        lows.append(decode(bytes.fromhex(cell['low']))*n)
+                        highs.append(decode(bytes.fromhex(cell['high']))*n)
+                possible=len(lows)==3 and max(lows)<=min(highs)
+                tally['shared_log_possible'if possible else'shared_log_impossible']+=1
+                if possible:
+                    tally['registered_log_possible'if max(lows)<=center<=min(highs)else'registered_log_excluded']+=1
+                records.append(dict(input=x,primitive=kind,store=site,cells=cells,shared_log_possible=possible,
+                                    common_log_interval=[str(max(lows)),str(min(highs))]if possible else None))
+            models.append(dict(primitive=kind,store=site,graph=graph,counts=tally))
+    result=dict(format='dnacalc-private-root-single-primitive-stores/1',complete=True,
+        models=models,records=records,receipts=service.receipts,
+        limits='Only one binary64 spill is changed inside each fixed EXP/EXP2 primitive. All three arities share an otherwise arbitrary resident logarithm; n2/4/8 scaling is exact. A feasible intersection is a necessary condition, never an identified logarithm. Local monotonicity is conditional. Refutations apply to these single-stage perturbations only, not to an entire root or polynomial/table family. Original readings reused; no new Excel calls or product change.')
+    write(output,result);print('single primitive stores',[(m['primitive'],m['store'],dict(m['counts']))for m in models],flush=True)
+    return result
+
+
+def hypergeom_return_study(checkout,output,cache,offline=False):
+    """Cancel identical mass factors to constrain one return/store boundary.
+
+    At zero/all population successes, the mathematical mass is exactly one.
+    Dyadic sampling probabilities also remove complement-rounding uncertainty.
+    A public BINOM reading supplies a conditional stored-mass control; it is
+    never substituted as an answer for the private HYPGEOM call.
+    """
+    from exact import Span,pull_rounding
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    keys=[]
+    for total in (2,4,8,16,32,64,128,256,1024):
+        for draws in sorted({1,2,3,total//2,total-1}):
+            if 0<draws<total:keys.append((draws,total))
+    binoms=service.ask('BINOM.DIST',[[client.number(d),client.number(n),client.number(d/n),client.boolean(False)]for d,n in keys])['rows']
+    queries=[]
+    for draws,total in keys:
+        for population_successes in (0,total):
+            successes=0 if population_successes==0 else draws
+            for cumulative in (False,True):
+                queries.append([client.number(successes),client.number(draws),client.number(population_successes),client.number(total),client.boolean(cumulative)])
+    answers=service.ask('HYPGEOM.DIST',queries)['rows']
+    legacy=service.ask('HYPGEOMDIST',[r[:4]for r in queries[::2]])['rows']
+    records=[];counts=Counter();alias=Counter();one=client.number(1.)
+    for index,((draws,total),b)in enumerate(zip(keys,binoms)):
+        group=answers[4*index:4*index+4]
+        counts['zero_all_same'if group[0]==group[2]else'zero_all_differ']+=1
+        for side in (0,1):
+            a,cdf=group[2*side:2*side+2]
+            alias['equal'if legacy[2*index+side]==a else'different']+=1
+            counts['pmf_mathematical_one'if a==one else'pmf_differs_from_one']+=1
+            counts['cdf_mathematical_one'if cdf==one else'cdf_differs_from_one']+=1
+            domains={}
+            if a['type']=='number'and b['type']=='number'and value(b['bits'])>0:
+                stored=Q(value(b['bits']));got=Q(value(a['bits']))
+                stored_cell=BINARY64.pullback(Span(stored,stored))
+                quotient_cell=pull_rounding(Span(got,got),'stored_pc64')
+                for orientation in ('resident_over_stored','stored_over_resident'):
+                    domain=(quotient_cell.linear(stored)if orientation=='resident_over_stored'else quotient_cell.reciprocal(stored))
+                    domain=stored_cell.meet(domain)
+                    domains[orientation]=domain.json()if domain is not None else None
+                    counts[orientation+'_possible'if domain is not None else orientation+'_impossible']+=1
+            records.append(dict(draws=draws,total=total,population_successes=0 if side==0 else total,
+                public_binom=b,pmf=a,cdf=cdf,legacy=legacy[2*index+side],conditional_resident_mass_intervals=domains))
+    result=dict(format='dnacalc-hypergeom-identical-factor-return-stage/1',complete=True,
+        records=records,counts=counts,alias_counts=alias,receipts=service.receipts,
+        limits='Dyadic n/N, zero/all population successes, exact identity factors. The return-stage intervals assume the private identical mass has the measured public BINOM binary64 publication and one RN64 then RN53 division. A contradiction rejects that return-stage premise, not a whole mass implementation. Mathematical one controls do not replace Excel outputs. No fitted correction or change is adopted.')
+    write(output,result);print('hypergeom return stage',dict(counts),dict(alias),flush=True)
+    return result
+
+
+def multiplication_seed_interval(seed,output,multiplier):
+    """Unknown resident seed publishing to seed, consumed by one stored multiply."""
+    from exact import Span,pull_rounding
+    if multiplier<=0:raise ValueError('positive multiplier required')
+    source=BINARY64.pullback(Span(seed,seed))
+    target=pull_rounding(Span(output,output),'stored_pc64').linear(1/multiplier)
+    return source.meet(target)
+
+
+def poisson_seed_study(checkout,output,cache,offline=False,count=256):
+    """Infer one seed-consumer boundary without specifying the seed producer.
+
+    P0, P1 and P2 separately constrain the unknown resident seed at the
+    next multiply. Mode pairs at integer means have multiplier exactly one,
+    removing multiplication precision from that necessary recurrence test.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    xs=[f'{b:016x}'for x in (.13,.7,1.,3.7)for b in range(int(bits(x),16)-count//2,int(bits(x),16)+count//2)]
+    rows=[[client.number(float(k)),client.number(x),client.boolean(False)]for k in (0,1,2)for x in xs]
+    answers=service.ask('POISSON.DIST',rows)['rows']
+    aliases=service.ask('POISSON',rows)['rows']
+    exps=service.ask('EXP',[[client.number(bits(-value(x)))]for x in xs])['rows']
+    records=[];counts=Counter();n=len(xs)
+    for i,x in enumerate(xs):
+        p0,p1,p2=[answers[k*n+i]for k in (0,1,2)]
+        counts['zero_equals_EXP'if p0==exps[i]else'zero_differs_from_EXP']+=1
+        for stage,seed,target,multiplier in [('zero_to_one',p0,p1,Q(value(x))),('one_to_two',p1,p2,Q(value(x))/2)]:
+            if any(a['type']!='number'for a in (seed,target)):
+                counts[stage+'_nonnumeric']+=1;domain=None
+            else:
+                domain=multiplication_seed_interval(Q(value(seed['bits'])),Q(value(target['bits'])),multiplier)
+                counts[stage+'_possible'if domain is not None else stage+'_impossible']+=1
+            records.append(dict(input=x,stage=stage,published_seed=seed,published_output=target,
+                                resident_seed_interval=domain.json()if domain is not None else None))
+    means=(*range(1,65),128,256,500,1000)
+    mode_rows=[[client.number(float(k)),client.number(float(mean)),client.boolean(False)]for mean in means for k in (mean-1,mean)]
+    modes=service.ask('POISSON.DIST',mode_rows)['rows'];mode_records=[]
+    for i,mean in enumerate(means):
+        a,b=modes[2*i:2*i+2]
+        counts['exact_mode_step_equal'if a==b else'exact_mode_step_different']+=1
+        mode_records.append(dict(mean=mean,previous_count=mean-1,previous=a,current=b))
+    result=dict(format='dnacalc-poisson-resident-seed-multiply-stage/1',complete=True,
+        records=records,mode_records=mode_records,counts=counts,
+        alias_counts=Counter('equal'if a==b else'different'for a,b in zip(answers,aliases)),receipts=service.receipts,
+        limits='One positive stored-PC64 multiplication at a time, with any resident seed whose publication is the independently measured prior mass. Empty intervals refute that factorization, not every PMF algorithm. Integer-mean mode pairs have exact multiplier one. Public EXP controls establish only the zero-count route on these windows. No recurrence, correction, threshold or leaf is adopted from counts; all outputs remain original Excel observations.')
+    write(output,result);print('poisson seed stage',dict(counts),flush=True)
+    return result
+
+
+def root_equivalence_study(checkout,output,cache,offline=False):
+    """Equal rational log2 arguments expose a shared primitive independently.
+
+    Product2^k and arityn have exact log2 ratio k/n. Equivalent fractions
+    must reach one common exponential under an exact-log2/direct-division
+    factorization, regardless of the exponential's numerical implementation.
+    """
+    from exact import Span,pull_rounding
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    fractions=(Q(1,7),Q(1,5),Q(1,4),Q(1,3),Q(1,2),Q(2,3),Q(1),Q(3,2),Q(5,2))
+    keys=[]
+    for q in fractions:
+        for sign in (1,-1):
+            for m in range(1,32//q.denominator+1):
+                n=q.denominator*m;k=sign*q.numerator*m
+                if n>=2:keys.append((q*sign,n,k))
+    questions=[[client.number(math.ldexp(1.,k))]+[client.number(1.)]*(n-1)for q,n,k in keys]
+    answers=service.ask('GEOMEAN',questions)['rows']
+    powers=service.ask('POWER',[[row[0],client.number(1./n)]for (q,n,k),row in zip(keys,questions)])['rows']
+    records=[];groups={};by_key={}
+    for (q,n,k),a,p in zip(keys,answers,powers):
+        if a['type']!='number':raise ValueError('nonnumeric exact-ratio root')
+        r=dict(ratio=str(q),count=n,product_power=k,excel=a,public_power=p)
+        records.append(r);groups.setdefault(str(q),[]).append(r);by_key[q,n]=a
+    group_records=[]
+    for ratio,rows in groups.items():
+        outputs={r['excel']['bits']for r in rows};public={r['public_power']['bits']for r in rows}
+        group_records.append(dict(ratio=ratio,observations=len(rows),private_outputs=sorted(outputs),
+                                  public_outputs=sorted(public),consistent_shared_exact_ratio=len(outputs)==1))
+    reciprocals=[];counts=Counter()
+    for (q,n),a in by_key.items():
+        if q<=0:continue
+        b=by_key[-q,n];positive=Q(value(a['bits']));negative=Q(value(b['bits']))
+        source=BINARY64.pullback(Span(positive,positive))
+        inverse=pull_rounding(Span(negative,negative),'stored_pc64').reciprocal(Q(1))
+        intersection=source.meet(inverse)
+        counts['resident_reciprocal_possible'if intersection is not None else'resident_reciprocal_impossible']+=1
+        reciprocals.append(dict(ratio=str(q),count=n,positive=a,negative=b,
+                                 resident_positive_interval=intersection.json()if intersection is not None else None))
+    result=dict(format='dnacalc-private-root-exact-ratio-equivalence/1',complete=True,
+        records=records,groups=group_records,reciprocals=reciprocals,counts=counts,receipts=service.receipts,
+        limits='Exact powers of two and unit-factor products. Equal-ratio agreement is a necessary condition, not a logarithm or exponential implementation identification. Disagreement refutes a common exponential fed by exact log2 and direct count division, even if that exponential is unknown. Reciprocal intervals allow any resident positive output with the observed publication; they test one final reciprocal only. No table, coefficient, threshold or programme is selected by counts.')
+    write(output,result);print('root equivalence',[(g['ratio'],len(g['private_outputs']),len(g['public_outputs']))for g in group_records],dict(counts),flush=True)
+    return result
+
+
+def root_scale_study(checkout,output,cache,offline=False,count=128):
+    """Move only the exact binary exponent by multiples of the root count."""
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    xs=[f'{b:016x}'for x in (1.3,7.,1000.)for b in range(int(bits(x),16)-count//2,int(bits(x),16)+count//2)]
+    scales=(0,-20,-1,1,20);records=[];counts={}
+    for n in (2,3,4,5,7,9,10,11,16,32):
+        rows=[[client.number(math.ldexp(value(x),n*s))]+[client.number(1.)]*(n-1)for s in scales for x in xs]
+        answers=service.ask('GEOMEAN',rows)['rows'];base=answers[:len(xs)];tally=Counter()
+        for j,s in enumerate(scales[1:],1):
+            for i,x in enumerate(xs):
+                a,b=base[i],answers[j*len(xs)+i]
+                if a['type']!='number'or b['type']!='number':raise ValueError('nonnumeric scaled root')
+                expected=bits(math.ldexp(value(a['bits']),s))
+                equal=b['bits']==expected;tally['equal'if equal else'different']+=1
+                records.append(dict(count=n,output_scale=s,input=x,scaled_input=bits(math.ldexp(value(x),n*s)),
+                    base=a,scaled=b,exact_rescaling_of_observed_base=expected))
+        counts[str(n)]=tally
+    result=dict(format='dnacalc-root-exact-exponent-transfer/1',complete=True,
+        consecutive_inputs_per_center=count,records=records,counts=counts,receipts=service.receipts,
+        limits='Exact power-of-two changes to the unit-factor product, with scale a multiple of arity. The compared base and scaled outputs are independent original observations. Agreement supports only the measured transfer; it does not identify an exponent-reduction algorithm or permit an unmeasured dispatch. No numerical implementation changes.')
+    write(output,result);print('root exponent transfer',{k:dict(v)for k,v in counts.items()},flush=True)
+    return result
+
+
+def root_output_edges(checkout,output,cache,offline=False):
+    """Bisect published output transitions without assuming a private primitive.
+
+    The rational midpoint-power supplies the initial neighborhood only. The
+    observed crossing and consecutive window are retained even if the local
+    function is nonmonotone or has multiple crossings.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    brackets=[]
+    for n in (2,3,4,5,7,9,10,11,16,32):
+        for y in (1.,1.125,1.25,1.375,1.5,1.625,1.75,1.875,2.):
+            target=int(bits(y),16);previous=value(f'{target-1:016x}')
+            midpoint=(Q(y)+Q(previous))/2
+            ideal_input=midpoint**n;center=int(bits(float(ideal_input)),16)
+            brackets.append(dict(count=n,target=bits(y),midpoint=str(midpoint),
+                                 ideal_input=str(ideal_input),low=f'{center-1024:016x}',high=f'{center+1024:016x}'))
+    def row(s,x):return [client.number(x)]+[client.number(1.)]*(s['count']-1)
+    def side(s,x,a):return int(a['bits'],16)>=int(s['target'],16)if a['type']=='number'else None
+    edges=bisect_observed_edges(service,'GEOMEAN',brackets,row,side)
+    requests=[(e,f'{b:016x}')for e in edges for b in range(int(e['high'],16)-64,int(e['high'],16)+65)]
+    windows=[]
+    for start in range(0,len(requests),4096):
+        part=requests[start:start+4096]
+        windows.extend(service.ask('GEOMEAN',[row(e,x)for e,x in part])['rows'])
+    records=[];counts=Counter()
+    for i,e in enumerate(edges):
+        xs=[x for _,x in requests[i*129:(i+1)*129]];answers=windows[i*129:(i+1)*129]
+        if any(a['type']!='number'for a in answers):raise ValueError('nonnumeric root edge window')
+        transitions=[];decreases=[]
+        for j in range(1,len(xs)):
+            a,b=answers[j-1:j+1]
+            if side(e,None,a)!=side(e,None,b):transitions.append(dict(low=xs[j-1],high=xs[j],low_answer=a,high_answer=b))
+            if int(a['bits'],16)>int(b['bits'],16):decreases.append(dict(low=xs[j-1],high=xs[j],low_answer=a,high_answer=b))
+        lo,hi=(Q(value(e[k]))for k in ('low','high'))
+        exact=Q(e['ideal_input'])
+        unit=Q(math.ulp(value(e['high'])))
+        offset=[(lo-exact)/unit,(hi-exact)/unit]
+        counts['unique_local_crossing'if len(transitions)==1 else'multiple_local_crossings']+=1
+        counts['monotone_local_window'if not decreases else'nonmonotone_local_window']+=1
+        records.append(dict(e,window=dict(inputs=xs,answers=answers,transitions=transitions,decreases=decreases),
+                            reference_input_ulp=str(unit),input_offset_from_exact_midpoint_power_in_input_ulps=list(map(str,offset))))
+    result=dict(format='dnacalc-root-observed-output-edges/1',complete=True,
+        records=records,counts=counts,receipts=service.receipts,
+        limits='One directly observed adjacent false/true crossing per bracket. The full local window records every reversal and threshold crossing; no uniqueness or global monotonicity is assumed. Exact mathematical midpoint powers locate questions but never supply Excel answers. Edge offsets are observations, not fitted coefficients or an identified private algorithm.')
+    write(output,result);print('root output edges',dict(counts),flush=True)
+    return result
+
+
+def root_normalization_study(checkout,original,output,cache,offline=False):
+    """Isolate binary-exponent reduction using independently measured core roots.
+
+    Test the three fixed exponent conventions without specifying the private
+    root body. Each normalized product gets its own original GEOMEAN reading.
+    The final power-of-two reconstruction is exact on this normal cohort.
+    """
+    original=Path(original);doc=json.loads(original.read_text())
+    if not doc['complete']or doc['format']!='dnacalc-root-exact-exponent-transfer/1':raise ValueError('complete exponent-transfer study required')
+    client,_=load_service(checkout)
+    prior=CachedService(client.Client(timeout=180),original.parent/'root-scales-service',True)
+    rows=[]
+    for receipt in doc['receipts']:
+        raw_path=prior.directory/receipt['file']
+        if sha(raw_path)!=receipt['sha256']:raise ValueError('original exponent-transfer reading changed')
+        with gzip.open(raw_path,'rt')as stream:raw=json.load(stream)
+        accept(raw['reply'],'GEOMEAN',raw['request']['rows'])
+        rows.extend(zip(raw['request']['rows'],raw['reply']['rows']))
+    conventions=('frexp_truncation','adjusted_frexp_truncation','adjusted_frexp_floor')
+    controls={};descriptions=[]
+    for i,(args,a)in enumerate(rows):
+        n=len(args);p=args[0]['bits'];b=int(p,16);e=((b>>52)&0x7ff)-1023
+        if not 0<(b>>52)&0x7ff<0x7ff or b>>63:raise ValueError('normal positive product required')
+        items=[]
+        for convention in conventions:
+            exponent=e+int(convention=='frexp_truncation')
+            q=exponent//n if convention.endswith('_floor')else(abs(exponent)//n)*(-1 if exponent<0 else 1)
+            reduced=bits(math.ldexp(value(p),-q*n));key=n,reduced
+            controls[key]=None
+            items.append(dict(convention=convention,exponent=exponent,quotient=q,reduced=reduced))
+        descriptions.append(dict(index=i,count=n,input=p,excel=a,conventions=items))
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    keys=sorted(controls)
+    for start in range(0,len(keys),4096):
+        part=keys[start:start+4096]
+        answers=service.ask('GEOMEAN',[[client.number(x)]+[client.number(1.)]*(n-1)for n,x in part])['rows']
+        for key,a in zip(part,answers):controls[key]=a
+    counts={name:Counter()for name in conventions}
+    for r in descriptions:
+        for item in r['conventions']:
+            a=controls[r['count'],item['reduced']]
+            if a['type']!='number'or r['excel']['type']!='number':raise ValueError('nonnumeric normalized root')
+            predicted=dict(type='number',bits=bits(math.ldexp(value(a['bits']),item['quotient'])))
+            item.update(measured_normalized_root=a,prediction=predicted)
+            counts[item['convention']]['matched'if predicted==r['excel']else'mismatched']+=1
+    result=dict(format='dnacalc-private-root-exponent-normalization/1',complete=True,
+        original_study_sha256=sha(original),original_receipts=doc['receipts'],
+        convention_order=conventions,counts=counts,records=descriptions,receipts=service.receipts,
+        limits='Exponent reduction only, with the private normalized root independently measured for each argument. Fixed source-shape order: frexp integer truncation, frexp adjusted to[1,2) then integer truncation, adjusted exponent then floor. No inner root formula or parameter is fitted. Agreement identifies the declared stage only on the normal unit-factor cohort; product accumulation, fallback and private root remain separate.')
+    write(output,result);print('root normalization',{k:dict(v)for k,v in counts.items()},'controls',len(controls),flush=True)
+    return result
+
+
 def integer_power_study(checkout,output,cache,offline=False,count=2048):
     """Choose multiplication/publication discriminants before observing masses.
 
@@ -1427,12 +2417,66 @@ def rank_dependency_questions():
         limits='Original measured drop/keep bracket endpoints choose inputs only. New reference/formula results all await Excel. Padding with an intercept changes centered geometry; it is a separate question, not an assumed invariant.')
 
 
-def make_workbooks(checkout,output,executable,powershell,root_transfer=False,rank_dependencies=False):
+def rank_bisection_questions(intake):
+    """Ask Excel to bisect its own rank edge using exact integer offsets.
+
+    A bit offset from8 is below2^53, so Excel can halve the integer interval
+    exactly. Each decision uses the preceding observed degrees of freedom.
+    The generated workbook carries questions and no predicted answers.
+    """
+    intake=Path(intake)
+    data=json.loads(intake.read_text());observed={r['id']:r for r in data['observations']}
+    book=[];seeds=[]
+    def emit(formula,role,**fields):
+        return append_question(book,'rank_edges',formula,role,round_number=28,**fields)
+    def vector(values,**fields):
+        refs=[emit(str(v),'operand_echo',intended_bits='0x'+bits(v),**fields)for v in values]
+        return refs[0]+':'+refs[-1]
+    for interval in data['necessary_intervals']:
+        if interval['normalizer']!='column'or interval['reverse']:continue
+        lower=observed[interval['lower_witness']];upper=observed[interval['upper_witness']]
+        low,high=(int(r['changed_operand'].removeprefix('0x'),16)for r in (lower,upper))
+        anchor=0x4020000000000000
+        if not anchor<low<high<anchor+2**40:raise ValueError('rank bracket outside exact offset construction')
+        if high-low>2**36:raise ValueError('rank bracket is too wide for36 bisections')
+        name,constant=interval['function'],interval['constant']
+        group=dict(function=name,constant=constant)
+        seeds.append(dict(group,low_witness=lower,high_witness=upper))
+        a=vector([1,2,5,4],**group);y=vector([1,2,4,7],**group)
+        lo=emit(str(low-anchor),'operand_echo',intended_bits='0x'+bits(low-anchor),**group)
+        hi=emit(str(high-anchor),'operand_echo',intended_bits='0x'+bits(high-anchor),**group)
+        def call(offset,phase):
+            b=[emit(str(v),'operand_echo',intended_bits='0x'+bits(v),phase=phase,**group)for v in (2,4,10)]
+            b.append(emit('8+'+offset+'/2^49','operand_echo',phase=phase,
+                          purpose='Effective adaptive rank operand; its bits await Excel.',**group))
+            expression=f'{name}({y},CHOOSE({{1,2}},{a},{b[0]}:{b[-1]}),{str(constant).upper()},TRUE)'
+            df=emit('INDEX('+expression+',4,2)','question',phase=phase,result_index=[4,2],
+                    purpose='Observed rank predicate for an adaptive integer-offset bisection.',**group)
+            return df,expression
+        call(lo,'initial_low');call(hi,'initial_high')
+        drop,keep=lower['df'],upper['df']
+        if drop!=keep+1:raise ValueError('rank bracket does not distinguish one predictor')
+        for step in range(36):
+            mid=emit(lo+'+INT(('+hi+'-'+lo+')/2)','arithmetic_control',step=step,operation='integer_midpoint',**group)
+            df,_=call(mid,'bisect_'+str(step))
+            lo=emit(f'IF({df}={drop},{mid},IF({df}={keep},{lo},NA()))','arithmetic_control',step=step,operation='lower_bracket',**group)
+            hi=emit(f'IF({df}={keep},{mid},IF({df}={drop},{hi},NA()))','arithmetic_control',step=step,operation='upper_bracket',**group)
+        width=emit(hi+'-'+lo,'arithmetic_control',operation='final_bracket_width',**group)
+        for offset,phase in ((lo,'final_low'),(hi,'final_high')):
+            df,expression=call(offset,phase)
+            for column in (1,2):
+                emit(f'INDEX({expression},1,{column})','question',phase=phase,result_index=[1,column],
+                     final_width=width,purpose='Coefficient together with the observed adjacent rank edge.',**group)
+    return {'rank_edges':book},dict(intake_sha256=sha(intake),seeds=seeds,
+        limits='Four rank brackets from original R26 observations. Each Excel midpoint is chosen from its own preceding measured df. Local monotonicity is a premise to check against the returned trace.36 exact integer bisections suffice for each declared bracket; final endpoints and width are separate observations. No tolerance, QR producer or coefficient is fitted.')
+
+
+def make_workbooks(checkout,output,executable,powershell,root_transfer=False,rank_dependencies=False,rank_edges=None):
     checkout,output,executable,powershell=map(lambda p:Path(p).resolve(),(checkout,output,executable,powershell))
     output.mkdir(parents=True,exist_ok=False)
-    if root_transfer and rank_dependencies:raise ValueError('choose one workbook study')
-    round_name='r27'if rank_dependencies else'r26'
-    books,requests=(rank_dependency_questions()if rank_dependencies else
+    if sum(map(bool,(root_transfer,rank_dependencies,rank_edges)))>1:raise ValueError('choose one workbook study')
+    round_name='r28'if rank_edges else'r27'if rank_dependencies else'r26'
+    books,requests=(rank_bisection_questions(rank_edges)if rank_edges else rank_dependency_questions()if rank_dependencies else
                     root_transfer_questions()if root_transfer else workbook_questions(checkout))
     generator=checkout/'crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1'
     provenance=subprocess.check_output([str(executable),'provenance'],timeout=60)
@@ -1466,7 +2510,9 @@ def make_workbooks(checkout,output,executable,powershell,root_transfer=False,ran
                   limits=('New workbook only. Reference-cell inputs use exact integer limbs and echoes. Decimal arrays have their own INDEX operand echo, without an assumed binary64 value. LN, reciprocal, mean and EXP occupy separate cells. Every workbook outcome awaits capture; scalar observations do not establish input-route transfer. Predictions are application calculations, not Excel readings.'if root_transfer else
                           'New workbooks only. Every numerical operand uses exact small integer limbs and is echoed. Predictions are application calculations, not Excel readings. QR rank thresholds and complete arithmetic remain unknown; no tolerance or coefficient fitted.'))
     write(output/'manifest.json',manifest)
-    if rank_dependencies:
+    if rank_edges:
+        (output/'README.txt').write_text('R28 unanswered adaptive rank bisection workbook.\nCapture only the new workbook listed in manifest.json through the existing capture route.\nExcel chooses exact integer-offset midpoints from its own preceding degrees-of-freedom answers.\nReturn every helper cell, input echo, df, coefficient, final bracket width and original worker/canonical capture.\nPredictions use the application route and are never Excel answers. No rank tolerance is inferred or fitted.\n')
+    elif rank_dependencies:
         (output/'README.txt').write_text('R27 unanswered rank dependency workbook.\nCapture only the new workbook listed in manifest.json through the existing capture route.\nR25 measured bracket endpoints are reused as inputs; no new answer is supplied.\nSeparate padding, repeated observations, reversed rows, predictor swap, exact column scaling and a third orthogonal predictor.\nAll numerical operands use exact integer limbs and have unchanged bit echoes.\nReturn canonical captures, raw worker values/settings and original workbook bytes.\n')
     elif root_transfer:
         (output/'README.txt').write_text('R26 unanswered GEOMEAN input-route and stored-mean workbook.\nCapture only the workbook listed in manifest.json through the existing cargo xtask capture/compare route.\nCompare range, scalar-cell and decimal-array GEOMEAN calls at arities9,10,11,32.\nThe decimal-array operand has its own INDEX echo; its intended bits are not assumed.\nLN, reciprocal, mean and EXP occupy separate cells; POWER uses the stored reciprocal.\nAll workbook outcomes await capture. Existing scalar readings do not answer these route questions.\nReturn canonical captures, raw worker values/settings and original workbook bytes.\n')
@@ -1483,9 +2529,23 @@ def render(result, path):
         'python3 racer/fingerprint.py map ../DnaCalc ../DnaCalc/docs/generated/numeric-fingerprints --cache evidence/round26/fingerprints',
         '```', '',
         'Add `--offline` to require existing answers. The JSON retains exact windows, spectra, request identities and worker provenance.', '',
-        *[s+'\n' for s in result['limitations']],
+        *[s+'\n' for s in result['limitations']]]
+    isolated=[r for r in result['functions']if 'isolated_stage'in r]
+    if isolated:
+        lines.extend(['R28 isolates the public LN/EXP reduction constants within the declared native instruction models, '
+            'and GEOMEAN\'s exact integer exponent normalization followed by stored LN, reciprocal and EXP-argument stages. '
+            'The sampled normalized composition is identified; private implementation internals and the product fallback remain open. '
+            'The JSON binds the independent proofs and retains each stage\'s scope.', '',
+            '| Function | Isolated stage |', '|---|---|'])
+        for row in isolated:
+            stage=row['isolated_stage']
+            label=stage.get('model',stage.get('normalization','Conditional return/seed constraints; no algorithm adopted'))
+            if row['function']=='GEOMEAN':label+='; '+stage['bounded_core']
+            lines.append('| '+row['function']+' | '+label+' |')
+        lines.append('')
+    lines.extend([
         '| Function | Status | Rounding | Stored stages | Window peaks | Route edges |',
-        '|---|---|---|---|---|---|']
+        '|---|---|---|---|---|---|'])
     for row in result['functions']:
         peaks = ', '.join(str(len(w['spectrum']['lines'])) for w in row['windows']) or '—'
         lines.append('| '+' | '.join([row['function'], row['status'], row['rounding'],
@@ -1554,6 +2614,103 @@ if __name__ == '__main__':
     power_parser.add_argument('output',type=Path)
     power_parser.add_argument('--cache',required=True)
     power_parser.add_argument('--offline',action='store_true')
+    admission_parser=commands.add_parser('binomial-admission')
+    admission_parser.add_argument('checkout')
+    admission_parser.add_argument('output',type=Path)
+    admission_parser.add_argument('--cache',required=True)
+    admission_parser.add_argument('--offline',action='store_true')
+    resident_parser=commands.add_parser('resident-stages')
+    resident_parser.add_argument('checkout')
+    resident_parser.add_argument('output',type=Path)
+    resident_parser.add_argument('--cache',required=True)
+    resident_parser.add_argument('--library',required=True)
+    resident_parser.add_argument('--offline',action='store_true')
+    constant_parser=commands.add_parser('reduction-constants')
+    constant_parser.add_argument('checkout')
+    constant_parser.add_argument('output',type=Path)
+    constant_parser.add_argument('--cache',required=True)
+    constant_parser.add_argument('--library',required=True)
+    constant_parser.add_argument('--offline',action='store_true')
+    refine_parser=commands.add_parser('refine-log-constant')
+    refine_parser.add_argument('checkout')
+    refine_parser.add_argument('prior')
+    refine_parser.add_argument('output',type=Path)
+    refine_parser.add_argument('--cache',required=True)
+    refine_parser.add_argument('--library',required=True)
+    refine_parser.add_argument('--offline',action='store_true')
+    refine_parser.add_argument('--spread',action='store_true')
+    anchor_parser=commands.add_parser('root-anchors')
+    anchor_parser.add_argument('checkout')
+    anchor_parser.add_argument('output',type=Path)
+    anchor_parser.add_argument('--cache',required=True)
+    anchor_parser.add_argument('--offline',action='store_true')
+    spill_parser=commands.add_parser('root-primitive-stores')
+    spill_parser.add_argument('checkout')
+    spill_parser.add_argument('output',type=Path)
+    spill_parser.add_argument('--cache',required=True)
+    spill_parser.add_argument('--library',required=True)
+    hyper_return_parser=commands.add_parser('hypergeom-returns')
+    hyper_return_parser.add_argument('checkout')
+    hyper_return_parser.add_argument('output',type=Path)
+    hyper_return_parser.add_argument('--cache',required=True)
+    hyper_return_parser.add_argument('--offline',action='store_true')
+    poisson_seed_parser=commands.add_parser('poisson-seeds')
+    poisson_seed_parser.add_argument('checkout')
+    poisson_seed_parser.add_argument('output',type=Path)
+    poisson_seed_parser.add_argument('--cache',required=True)
+    poisson_seed_parser.add_argument('--offline',action='store_true')
+    equivalence_parser=commands.add_parser('root-equivalence')
+    equivalence_parser.add_argument('checkout')
+    equivalence_parser.add_argument('output',type=Path)
+    equivalence_parser.add_argument('--cache',required=True)
+    equivalence_parser.add_argument('--offline',action='store_true')
+    scale_parser=commands.add_parser('root-scales')
+    scale_parser.add_argument('checkout')
+    scale_parser.add_argument('output',type=Path)
+    scale_parser.add_argument('--cache',required=True)
+    scale_parser.add_argument('--offline',action='store_true')
+    output_edge_parser=commands.add_parser('root-output-edges')
+    output_edge_parser.add_argument('checkout')
+    output_edge_parser.add_argument('output',type=Path)
+    output_edge_parser.add_argument('--cache',required=True)
+    output_edge_parser.add_argument('--offline',action='store_true')
+    normalization_parser=commands.add_parser('root-normalization')
+    normalization_parser.add_argument('checkout')
+    normalization_parser.add_argument('original')
+    normalization_parser.add_argument('output',type=Path)
+    normalization_parser.add_argument('--cache',required=True)
+    normalization_parser.add_argument('--offline',action='store_true')
+    log_stage_parser=commands.add_parser('root-log-stage')
+    log_stage_parser.add_argument('checkout')
+    log_stage_parser.add_argument('original')
+    log_stage_parser.add_argument('output',type=Path)
+    log_stage_parser.add_argument('--cache',required=True)
+    log_stage_parser.add_argument('--library',required=True)
+    log_stage_parser.add_argument('--offline',action='store_true')
+    public_stage_parser=commands.add_parser('root-public-stages')
+    public_stage_parser.add_argument('checkout')
+    public_stage_parser.add_argument('original')
+    public_stage_parser.add_argument('output',type=Path)
+    public_stage_parser.add_argument('--cache',required=True)
+    public_stage_parser.add_argument('--offline',action='store_true')
+    store_contrast_parser=commands.add_parser('root-store-contrasts')
+    store_contrast_parser.add_argument('original')
+    store_contrast_parser.add_argument('output',type=Path)
+    store_contrast_parser.add_argument('--library',required=True)
+    poisson_argument_parser=commands.add_parser('poisson-exp-arguments')
+    poisson_argument_parser.add_argument('checkout')
+    poisson_argument_parser.add_argument('original')
+    poisson_argument_parser.add_argument('output',type=Path)
+    poisson_argument_parser.add_argument('--cache',required=True)
+    poisson_argument_parser.add_argument('--library',required=True)
+    poisson_argument_parser.add_argument('--offline',action='store_true')
+    poisson_log_parser=commands.add_parser('poisson-log-difference')
+    poisson_log_parser.add_argument('checkout')
+    poisson_log_parser.add_argument('original')
+    poisson_log_parser.add_argument('output',type=Path)
+    poisson_log_parser.add_argument('--cache',required=True)
+    poisson_log_parser.add_argument('--library',required=True)
+    poisson_log_parser.add_argument('--offline',action='store_true')
     hypergeom_parser=commands.add_parser('hypergeom-products')
     hypergeom_parser.add_argument('input')
     hypergeom_parser.add_argument('output')
@@ -1566,6 +2723,7 @@ if __name__ == '__main__':
     for name in ('checkout','output','executable','powershell'):book_parser.add_argument(name)
     book_parser.add_argument('--root-transfer',action='store_true')
     book_parser.add_argument('--rank-dependencies',action='store_true')
+    book_parser.add_argument('--rank-edges')
     args = parser.parse_args()
     if args.command=='edges':
         edges(args.checkout,args.output,args.cache,args.offline)
@@ -1597,6 +2755,57 @@ if __name__ == '__main__':
     if args.command=='integer-powers':
         integer_power_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
+    if args.command=='binomial-admission':
+        binomial_admission_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='resident-stages':
+        resident_stage_study(args.checkout,args.output,args.cache,args.library,args.offline)
+        raise SystemExit
+    if args.command=='reduction-constants':
+        reduction_constant_study(args.checkout,args.output,args.cache,args.library,args.offline)
+        raise SystemExit
+    if args.command=='refine-log-constant':
+        refine_log_constant(args.checkout,args.prior,args.output,args.cache,args.library,args.offline,args.spread)
+        raise SystemExit
+    if args.command=='root-anchors':
+        root_anchor_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-primitive-stores':
+        root_primitive_spill_study(args.checkout,args.output,args.cache,args.library)
+        raise SystemExit
+    if args.command=='hypergeom-returns':
+        hypergeom_return_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='poisson-seeds':
+        poisson_seed_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-equivalence':
+        root_equivalence_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-scales':
+        root_scale_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-output-edges':
+        root_output_edges(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-normalization':
+        root_normalization_study(args.checkout,args.original,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-log-stage':
+        root_log_stage(args.checkout,args.original,args.output,args.cache,args.library,args.offline)
+        raise SystemExit
+    if args.command=='root-public-stages':
+        root_public_stages(args.checkout,args.original,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='root-store-contrasts':
+        root_store_contrasts(args.original,args.output,args.library)
+        raise SystemExit
+    if args.command=='poisson-exp-arguments':
+        poisson_exp_argument_study(args.checkout,args.original,args.output,args.cache,args.library,args.offline)
+        raise SystemExit
+    if args.command=='poisson-log-difference':
+        poisson_log_difference_study(args.checkout,args.original,args.output,args.cache,args.library,args.offline)
+        raise SystemExit
     if args.command=='hypergeom-products':
         hypergeom_product_constraints(args.input,args.output)
         raise SystemExit
@@ -1604,7 +2813,7 @@ if __name__ == '__main__':
         log_consumer_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
     if args.command=='workbooks':
-        make_workbooks(args.checkout,args.output,args.executable,args.powershell,args.root_transfer,args.rank_dependencies)
+        make_workbooks(args.checkout,args.output,args.executable,args.powershell,args.root_transfer,args.rank_dependencies,args.rank_edges)
         raise SystemExit
     if args.count < 32 or args.count > 4096 or args.count & (args.count-1):
         parser.error('--count must be a power of two from32 through4096')

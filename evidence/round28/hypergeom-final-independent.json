@@ -1,0 +1,29 @@
+{
+  "complete": true,
+  "original_calls": 273,
+  "unique_original_calls": 273,
+  "counts": {
+    "pmf_differs_from_one": 7,
+    "cdf_differs_from_one": 7,
+    "resident_over_stored_impossible": 1,
+    "stored_over_resident_impossible": 1,
+    "pmf_mathematical_one": 71,
+    "cdf_mathematical_one": 71,
+    "resident_over_stored_possible": 77,
+    "stored_over_resident_possible": 77,
+    "zero_all_differ": 7,
+    "zero_all_same": 32
+  },
+  "alias_counts": {
+    "equal": 78
+  },
+  "inputs_sha256": {
+    "evidence/round28/hypergeom-returns.json": "f15884b6f5ed1d3400b9cf956d0eddec95b4e72d733e7796b96611a726e1c5cb",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "e6a5566af3c35709a91d756d50db65003bb8d327837244bb9827401a856fca93",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "evidence/round28/hypergeom-service/a87a8973d59de20c434c732b81760dbd9b600d9fc92658924232dc4d3ec93bce.json.gz": "3cf996fc53d5177f99a372645a6e1f65e0738caf57a01786ccbe1eb6940c138b",
+    "evidence/round28/hypergeom-service/95d7bd2ea9028bca07bfdeb8c2c124c679da0bf4102038e615824bdd3e04a364.json.gz": "fef343f93cda6bab7c418becd3c44a28a2a7697be87f92e52a659583c5da3f65",
+    "evidence/round28/hypergeom-service/04b0da58d8cea5be9d0357144f5404c8a91378a59ce308f05bbac72ccc4bf8df.json.gz": "14b5b173eefb54f42530365e90e504315e240b55e2b083582116224acceff335"
+  },
+  "limits": "Independent rational inversion of one stored-PC64 node using the complete original scalar-worker readings. Every question and alias observation accounted for. Conditional seed intervals do not identify a private seed or authorize a correction."
+}

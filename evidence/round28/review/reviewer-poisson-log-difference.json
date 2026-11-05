@@ -1,0 +1,33 @@
+{
+  "complete": true,
+  "original_PMF1_targets": 1024,
+  "public_LN_calls": 1024,
+  "exact_subtraction_inverse_domains": 1024,
+  "counts": {
+    "public_LN_possible": 784,
+    "resident_LN_excluded": 373,
+    "binary64_log_possible": 858,
+    "public_LN_excluded": 240,
+    "binary64_log_impossible": 166,
+    "resident_LN_possible": 651
+  },
+  "direct_native_countermodel_outputs": {
+    "public_LN_matched": 784,
+    "resident_LN_contradicted": 373,
+    "public_LN_contradicted": 240,
+    "resident_LN_matched": 651
+  },
+  "source": "/home/ubuntu/codex-runs/r28/reviewer_poisson_log_difference.py",
+  "hashes": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-log-difference.json": "b11e4f10564e2695575a0e55d5eb34892f2889441b7b5cf459c927b4131fc2a4",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-exp-arguments.json": "4040adbcd2fff03b78211d490006d85dbff6fc383c3c8dfcc57d6a3d23d46261",
+    "/home/ubuntu/codex-runs/r28/reviewer-poisson-exp-arguments.json": "a768efd13723d290b2d2b3a89b6fe1bad6c9573a2b89ebbce017684232c9ef34",
+    "/home/ubuntu/codex-runs/r28/reviewer_poisson_log_difference.py": "fb4836a280844a716b35125b07e40b62791daf4c116608fb5086d489b6b69fe2",
+    "/home/ubuntu/codex-runs/r28/independent-x87.so": "8111f1cfadee54dfdfe417c1457f71ba672487d56400e8fc2b25fbd03dac4ae1",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "e6a5566af3c35709a91d756d50db65003bb8d327837244bb9827401a856fca93",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/x87.py": "4fee9beca49836f88a7c402e8c85ca641a4f1747f81154adac28409a4ca8bb72",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round28/poisson-log-service/d6e4a62d819557870fd339537489e4659dfc34706f8b3ef76f406e1d806dabfe.json.gz": "93244ba698e10b48b5fd7f3685631641ea9ac2f5b7b39216615c2a4e58b18f45"
+  },
+  "limits": "Uses independently checked original EXP preimages and manually constructed signed PC64 midpoint ownership, then exact translation by the observed mean. Registered public LN and native resident FYL2X are comparisons only.166 domains exclude every binary64 log for this single RN64 subtraction/declared EXP model; no private logarithm or full PMF implementation is identified."
+}

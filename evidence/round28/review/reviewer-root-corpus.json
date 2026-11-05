@@ -1,0 +1,734 @@
+{
+  "complete": true,
+  "formula_cells": 54600,
+  "pass_count": 51373,
+  "inclusive_fail": 3227,
+  "workbooks": 54,
+  "evaluation_documents": 116,
+  "identical_evaluation_documents": 116,
+  "counts": {
+    "awaiting_capture": 0,
+    "circular_rule": 14,
+    "external_links": 73,
+    "fail": 3227,
+    "failed_or_missing": 7,
+    "failed_or_missing_by_verdict": {
+      "not_run": 7
+    },
+    "formula_cells": 54600,
+    "mismatched": 1713,
+    "pass": 51373,
+    "pass_rate": 0.9408974358974359,
+    "refused": 1420,
+    "saved_excel_oracle": {},
+    "source_cache_classes": {
+      "array-cache-shape-unclassified": 3,
+      "different": 667,
+      "no-live-excel-observation": 9,
+      "same": 1646,
+      "source-cache-missing": 52275
+    }
+  },
+  "summary_sha256": {
+    "/home/ubuntu/codex-runs/r28/corpus-before-root/summary.json": "b772710f07a4a1d143b12299b0a9e906a4712271302753f85eba89cdf1d47184",
+    "/home/ubuntu/codex-runs/r28/corpus-after-root/summary.json": "9970232db64f5d82d8727061d6f8efaee94577a70b1acf78e28eb98a1e4ba3a5"
+  },
+  "files": [
+    {
+      "file": "workbooks/calc-engine_dc_10y_iteration_oracle.xlsx-dd3d66a85327aaa2cfef12f54607821482babdb4947655ba31aa0fccd9fce87f/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+      "after_sha256": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_10y_iteration_oracle.xlsx-dd3d66a85327aaa2cfef12f54607821482babdb4947655ba31aa0fccd9fce87f/evaluations.json",
+      "identical": true,
+      "before_sha256": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48",
+      "after_sha256": "7b61ab1fd6191bd8b711591465913eba631fcf166f28c7d5bf40cdfd66515b48"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "32bd676943ede0355b8b75f443521e8cf63521291f22578cb9e8985c670e2b48",
+      "after_sha256": "32bd676943ede0355b8b75f443521e8cf63521291f22578cb9e8985c670e2b48"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_10y_oracle.xlsx-c85ad10a6fbceb8d4230fcadd6d1fbba7a95272ecdf5cc6aa2c95ccef4764f6f/evaluations.json",
+      "identical": true,
+      "before_sha256": "32bd676943ede0355b8b75f443521e8cf63521291f22578cb9e8985c670e2b48",
+      "after_sha256": "32bd676943ede0355b8b75f443521e8cf63521291f22578cb9e8985c670e2b48"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_86f_oracle.xlsx-7c8887848b182706ca8aefb53418ce66a234d768fec1bd48acfa39a525935da9/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+      "after_sha256": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_86f_oracle.xlsx-7c8887848b182706ca8aefb53418ce66a234d768fec1bd48acfa39a525935da9/evaluations.json",
+      "identical": true,
+      "before_sha256": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f",
+      "after_sha256": "033ec0ea448c28176de15214412e81e05e002e7378a40a785483ce7f6a85994f"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_y2o_oracle.xlsx-a96155346bd3ce9df1ff00adb646d79770d0b83ab60a0b1db33bb816c2df69f9/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+      "after_sha256": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9"
+    },
+    {
+      "file": "workbooks/calc-engine_dc_y2o_oracle.xlsx-a96155346bd3ce9df1ff00adb646d79770d0b83ab60a0b1db33bb816c2df69f9/evaluations.json",
+      "identical": true,
+      "before_sha256": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9",
+      "after_sha256": "f43f8a2cdcc8256d4921e703e0c670e7fa068b016b23b4b96a27538597630ea9"
+    },
+    {
+      "file": "workbooks/calc-engine_eng14-raw-nonfinite_oracle.xlsx-240bd72aba9f1471a99d4de4208a75015a53f0d627019b7a15aef08cff055ac3/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "1e32bfbba6af62f9073b12d5938c083a84e0b12816ca61475e112b1bbce655e6",
+      "after_sha256": "1e32bfbba6af62f9073b12d5938c083a84e0b12816ca61475e112b1bbce655e6"
+    },
+    {
+      "file": "workbooks/calc-engine_eng14-raw-nonfinite_oracle.xlsx-240bd72aba9f1471a99d4de4208a75015a53f0d627019b7a15aef08cff055ac3/evaluations.json",
+      "identical": true,
+      "before_sha256": "1e32bfbba6af62f9073b12d5938c083a84e0b12816ca61475e112b1bbce655e6",
+      "after_sha256": "1e32bfbba6af62f9073b12d5938c083a84e0b12816ca61475e112b1bbce655e6"
+    },
+    {
+      "file": "workbooks/calc-engine_l3_oracle.xlsx-96830c147c9f3a6cd5fe91dfb1910db59aeffa41a9f8995f9fb1130b698c808a/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+      "after_sha256": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598"
+    },
+    {
+      "file": "workbooks/calc-engine_l3_oracle.xlsx-96830c147c9f3a6cd5fe91dfb1910db59aeffa41a9f8995f9fb1130b698c808a/evaluations.json",
+      "identical": true,
+      "before_sha256": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598",
+      "after_sha256": "6989737aab4e0206ed2dfffcaf6ff82f3df002af2eafba87cc86b7b4b0911598"
+    },
+    {
+      "file": "workbooks/calc-fml_dc_51ka_oracle.xlsx-7a7fd9aa13bb8310d82e17977b434006b6ab41c1abd1591baf1129b4e76b34a1/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+      "after_sha256": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04"
+    },
+    {
+      "file": "workbooks/calc-fml_dc_51ka_oracle.xlsx-7a7fd9aa13bb8310d82e17977b434006b6ab41c1abd1591baf1129b4e76b34a1/evaluations.json",
+      "identical": true,
+      "before_sha256": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04",
+      "after_sha256": "bfc695363600b20462806854aead22b1e792fb16f9c34b01b1058dbb73a96b04"
+    },
+    {
+      "file": "workbooks/calc-fml_dc_ibp2_oracle.xlsx-59082b145c9a0aa0096dcdd596a54d4b222abea54377c8b575372cc54044dec0/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+      "after_sha256": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218"
+    },
+    {
+      "file": "workbooks/calc-fml_dc_ibp2_oracle.xlsx-59082b145c9a0aa0096dcdd596a54d4b222abea54377c8b575372cc54044dec0/evaluations.json",
+      "identical": true,
+      "before_sha256": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218",
+      "after_sha256": "b70153a4c8a6d2925b9dfb3cd11dddc8baeab73d22b11ff1b7a55e9cf425c218"
+    },
+    {
+      "file": "workbooks/calc-fml_dc_l10u_oracle.xlsx-9e65fa7e8567ae06d19fb45ac5cdb57bfe7b50f646470ef3b0d6ef7d719673a2/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+      "after_sha256": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f"
+    },
+    {
+      "file": "workbooks/calc-fml_dc_l10u_oracle.xlsx-9e65fa7e8567ae06d19fb45ac5cdb57bfe7b50f646470ef3b0d6ef7d719673a2/evaluations.json",
+      "identical": true,
+      "before_sha256": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f",
+      "after_sha256": "dd154932723312d9706fbd5c75cf7afacd3e7edf17f098e5db0d11f3f88d6e1f"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-1/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "0a6ddbbed30bfddc22f85eb7d9e0bb6c35da18d63ebe34bf1aec450877bf79e6",
+      "after_sha256": "0a6ddbbed30bfddc22f85eb7d9e0bb6c35da18d63ebe34bf1aec450877bf79e6"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "0a6ddbbed30bfddc22f85eb7d9e0bb6c35da18d63ebe34bf1aec450877bf79e6",
+      "after_sha256": "0a6ddbbed30bfddc22f85eb7d9e0bb6c35da18d63ebe34bf1aec450877bf79e6"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-2/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "cf8f2b155a839fc7a531f83a0affe2fa5bc48261813c93041ff612e6d30ee9ab",
+      "after_sha256": "cf8f2b155a839fc7a531f83a0affe2fa5bc48261813c93041ff612e6d30ee9ab"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-2/evaluations.json",
+      "identical": true,
+      "before_sha256": "cf8f2b155a839fc7a531f83a0affe2fa5bc48261813c93041ff612e6d30ee9ab",
+      "after_sha256": "cf8f2b155a839fc7a531f83a0affe2fa5bc48261813c93041ff612e6d30ee9ab"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-3/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "a0b3df91cfe117db3d6ad082e04717e561bd89b7f5311751e4bcdc6ca9e548ec",
+      "after_sha256": "a0b3df91cfe117db3d6ad082e04717e561bd89b7f5311751e4bcdc6ca9e548ec"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-3/evaluations.json",
+      "identical": true,
+      "before_sha256": "a0b3df91cfe117db3d6ad082e04717e561bd89b7f5311751e4bcdc6ca9e548ec",
+      "after_sha256": "a0b3df91cfe117db3d6ad082e04717e561bd89b7f5311751e4bcdc6ca9e548ec"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-4/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "69075105d068c56132e054739df91684b4d9eda883937e1f09a0f11ff1e22de4",
+      "after_sha256": "69075105d068c56132e054739df91684b4d9eda883937e1f09a0f11ff1e22de4"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-4/evaluations.json",
+      "identical": true,
+      "before_sha256": "69075105d068c56132e054739df91684b4d9eda883937e1f09a0f11ff1e22de4",
+      "after_sha256": "69075105d068c56132e054739df91684b4d9eda883937e1f09a0f11ff1e22de4"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-5/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "776cc0ff5aaa3dd31bca660fc33dee2468c62fbfad02b476944d417cff3ca4e6",
+      "after_sha256": "776cc0ff5aaa3dd31bca660fc33dee2468c62fbfad02b476944d417cff3ca4e6"
+    },
+    {
+      "file": "workbooks/calc-func_catalogue_oracle.xlsx-ca0cce8580aebe2c88e50b145d17a115df942d25a9f3f90e9dfd6d922430c10a/session-5/evaluations.json",
+      "identical": true,
+      "before_sha256": "776cc0ff5aaa3dd31bca660fc33dee2468c62fbfad02b476944d417cff3ca4e6",
+      "after_sha256": "776cc0ff5aaa3dd31bca660fc33dee2468c62fbfad02b476944d417cff3ca4e6"
+    },
+    {
+      "file": "workbooks/calc-func_cdoc_jpha_oracle.xlsx-3174ffda41b22f19274f53baf66d60b742c1c0a8ec8ae8ca453f2707198df760/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+      "after_sha256": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd"
+    },
+    {
+      "file": "workbooks/calc-func_cdoc_jpha_oracle.xlsx-3174ffda41b22f19274f53baf66d60b742c1c0a8ec8ae8ca453f2707198df760/evaluations.json",
+      "identical": true,
+      "before_sha256": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd",
+      "after_sha256": "e80822bf51f3909882c3e18d349765be29ac60d1fdb350773ffa2cebecc874cd"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m1_2_oracle.xlsx-f37656d9c0a1f2cebc11d82eab48fd932a68bfcb29a852780ce7a1b45a6e4d7f/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+      "after_sha256": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m1_2_oracle.xlsx-f37656d9c0a1f2cebc11d82eab48fd932a68bfcb29a852780ce7a1b45a6e4d7f/evaluations.json",
+      "identical": true,
+      "before_sha256": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8",
+      "after_sha256": "f61ca3d65f7686038a79b99600d3c843858bdf75e1ee72597493ea62efa7ebb8"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_2_oracle.xlsx-1e3fb218fe5ca44271799b8befe850e34fa12bc9b15e44b4007f19104fb64724/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "b871d83cdf8e954e49d3f6db7f06d128f05acf33205faba8a5f762bc447578ec",
+      "after_sha256": "b871d83cdf8e954e49d3f6db7f06d128f05acf33205faba8a5f762bc447578ec"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_2_oracle.xlsx-1e3fb218fe5ca44271799b8befe850e34fa12bc9b15e44b4007f19104fb64724/evaluations.json",
+      "identical": true,
+      "before_sha256": "b871d83cdf8e954e49d3f6db7f06d128f05acf33205faba8a5f762bc447578ec",
+      "after_sha256": "b871d83cdf8e954e49d3f6db7f06d128f05acf33205faba8a5f762bc447578ec"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_4_oracle.xlsx-bcafc5cd895033e2a6cd386a4b89638128a689523e00530ebcd5b4a663692200/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+      "after_sha256": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_4_oracle.xlsx-bcafc5cd895033e2a6cd386a4b89638128a689523e00530ebcd5b4a663692200/evaluations.json",
+      "identical": true,
+      "before_sha256": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f",
+      "after_sha256": "ea1a3b6b81b2055fdf89ab53229a4c96437cedbd872ff414d5526e085a195a8f"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_5_oracle.xlsx-3be4a5eb6556cd7ef3f0eaced4d6f0fc68382ca9cfdeb76d767e844b3686b40d/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+      "after_sha256": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_5_oracle.xlsx-3be4a5eb6556cd7ef3f0eaced4d6f0fc68382ca9cfdeb76d767e844b3686b40d/evaluations.json",
+      "identical": true,
+      "before_sha256": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4",
+      "after_sha256": "8ece82e9512dec40a1e64639409b27597f286a90979d825cb483e3c268be55c4"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_6_oracle.xlsx-caa237a0a87d04fd4036dee6e0ca1b84bdd285aa237ccc93d362503494ce0e8b/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+      "after_sha256": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212"
+    },
+    {
+      "file": "workbooks/calc-func_cfunc_m3_6_oracle.xlsx-caa237a0a87d04fd4036dee6e0ca1b84bdd285aa237ccc93d362503494ce0e8b/evaluations.json",
+      "identical": true,
+      "before_sha256": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212",
+      "after_sha256": "55abaabcb36a1aaf3bfd71253b5d646d92e1d1b9f416874813f5f5f001ad2212"
+    },
+    {
+      "file": "workbooks/calc-func_dc_e00t_oracle.xlsx-88538be54c1ff8759661981fb415a7f46d2cc5f76c4c6b46631f2886d9fdff3c/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+      "after_sha256": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a"
+    },
+    {
+      "file": "workbooks/calc-func_dc_e00t_oracle.xlsx-88538be54c1ff8759661981fb415a7f46d2cc5f76c4c6b46631f2886d9fdff3c/evaluations.json",
+      "identical": true,
+      "before_sha256": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a",
+      "after_sha256": "0225c8790f638eb1dcd62eb31846bc38e24808b69d2fca7c49fcaff3c344d24a"
+    },
+    {
+      "file": "workbooks/calc-func_dc_fwpz_oracle.xlsx-8c72b027a901d5263eed14b8aa26c773e39645bd236c3cde0c61aad8c7a1776e/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+      "after_sha256": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492"
+    },
+    {
+      "file": "workbooks/calc-func_dc_fwpz_oracle.xlsx-8c72b027a901d5263eed14b8aa26c773e39645bd236c3cde0c61aad8c7a1776e/evaluations.json",
+      "identical": true,
+      "before_sha256": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492",
+      "after_sha256": "b59a8bb4cd021367c3075599508bfceaaf0d1e2c077bef90e977ad639cfb6492"
+    },
+    {
+      "file": "workbooks/calc-func_dc_nzpw_oracle.xlsx-a00beb0092961e06082007939d1d8d92c53e7f7f6f2f73e8d7048ec9b3875460/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+      "after_sha256": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7"
+    },
+    {
+      "file": "workbooks/calc-func_dc_nzpw_oracle.xlsx-a00beb0092961e06082007939d1d8d92c53e7f7f6f2f73e8d7048ec9b3875460/evaluations.json",
+      "identical": true,
+      "before_sha256": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7",
+      "after_sha256": "9ecf726b00e5abafecd6f9c59c3724f6bee2b9f8b809499c0ca2d6bc0ef5aaa7"
+    },
+    {
+      "file": "workbooks/calc-func_dc_q9rb_oracle.xlsx-fae71399bb394a4782cdf69bf96557984ac46123f5e36bcfd7bdfe398331f844/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+      "after_sha256": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897"
+    },
+    {
+      "file": "workbooks/calc-func_dc_q9rb_oracle.xlsx-fae71399bb394a4782cdf69bf96557984ac46123f5e36bcfd7bdfe398331f844/evaluations.json",
+      "identical": true,
+      "before_sha256": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897",
+      "after_sha256": "30b4b00b733dd130aecf5ebf7bdb6258b4a6c0de01affaa95453ffef46be3897"
+    },
+    {
+      "file": "workbooks/calc-func_dc_xrxb_oracle.xlsx-573037bf3f1d1bda3dd67b5d2724e257e7a80f43e97571fc8b20ad3c6230fdde/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+      "after_sha256": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b"
+    },
+    {
+      "file": "workbooks/calc-func_dc_xrxb_oracle.xlsx-573037bf3f1d1bda3dd67b5d2724e257e7a80f43e97571fc8b20ad3c6230fdde/evaluations.json",
+      "identical": true,
+      "before_sha256": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b",
+      "after_sha256": "48a568ea8fc909821f7cdebd3c39cc7301cadbaaf7a5ee3cb23dbddedd1e190b"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r21_oracle.xlsx-d3e3f469aad6dcad09edd92021aad4e71157e5b62ba92a99399872f725bfdf53/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "492a55be7b1b039dd3e9d0508352901aac6c57fe8585cb63f5c9ac24e0994cec",
+      "after_sha256": "492a55be7b1b039dd3e9d0508352901aac6c57fe8585cb63f5c9ac24e0994cec"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r21_oracle.xlsx-d3e3f469aad6dcad09edd92021aad4e71157e5b62ba92a99399872f725bfdf53/evaluations.json",
+      "identical": true,
+      "before_sha256": "492a55be7b1b039dd3e9d0508352901aac6c57fe8585cb63f5c9ac24e0994cec",
+      "after_sha256": "492a55be7b1b039dd3e9d0508352901aac6c57fe8585cb63f5c9ac24e0994cec"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r22_oracle.xlsx-7c97260e239506e0255c9c6930229ce97b4678ef805d0945380a00fc56309317/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "0cbaf454a41d4a9d71e3b3d33a7c6427ac2ef3e65d8adc36c29ac9fb01cb4f20",
+      "after_sha256": "0cbaf454a41d4a9d71e3b3d33a7c6427ac2ef3e65d8adc36c29ac9fb01cb4f20"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r22_oracle.xlsx-7c97260e239506e0255c9c6930229ce97b4678ef805d0945380a00fc56309317/evaluations.json",
+      "identical": true,
+      "before_sha256": "0cbaf454a41d4a9d71e3b3d33a7c6427ac2ef3e65d8adc36c29ac9fb01cb4f20",
+      "after_sha256": "0cbaf454a41d4a9d71e3b3d33a7c6427ac2ef3e65d8adc36c29ac9fb01cb4f20"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_bessel_oracle.xlsx-45d0006cf4068fb997f83e61ca51131dd55e0c020b44c11de79c28db95389f36/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "46db1f2b3cf5565d53f8c0647eecb3ff24a95d8d7d9be3750b2d6a6fdcc5a622",
+      "after_sha256": "46db1f2b3cf5565d53f8c0647eecb3ff24a95d8d7d9be3750b2d6a6fdcc5a622"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_bessel_oracle.xlsx-45d0006cf4068fb997f83e61ca51131dd55e0c020b44c11de79c28db95389f36/evaluations.json",
+      "identical": true,
+      "before_sha256": "46db1f2b3cf5565d53f8c0647eecb3ff24a95d8d7d9be3750b2d6a6fdcc5a622",
+      "after_sha256": "46db1f2b3cf5565d53f8c0647eecb3ff24a95d8d7d9be3750b2d6a6fdcc5a622"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_discrete_oracle.xlsx-5dc95ca7ab30a0adc77658cae357fe51bf1931712be3a11f2c80fbbdde0b7dec/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "5af85b122571b6a7f56fc423c0330b067685ceea583322107d78d2cb7bae87a8",
+      "after_sha256": "5af85b122571b6a7f56fc423c0330b067685ceea583322107d78d2cb7bae87a8"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_discrete_oracle.xlsx-5dc95ca7ab30a0adc77658cae357fe51bf1931712be3a11f2c80fbbdde0b7dec/evaluations.json",
+      "identical": true,
+      "before_sha256": "5af85b122571b6a7f56fc423c0330b067685ceea583322107d78d2cb7bae87a8",
+      "after_sha256": "5af85b122571b6a7f56fc423c0330b067685ceea583322107d78d2cb7bae87a8"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_geomean_oracle.xlsx-f1807f921c34ef82b146d918dbaf94aa82e4c67c739ad8a42cd969df0b428fec/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "74d479fbf11303399d328f31d050262ae18d1b8e67b86bae4208f868add8bce2",
+      "after_sha256": "74d479fbf11303399d328f31d050262ae18d1b8e67b86bae4208f868add8bce2"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_geomean_oracle.xlsx-f1807f921c34ef82b146d918dbaf94aa82e4c67c739ad8a42cd969df0b428fec/evaluations.json",
+      "identical": true,
+      "before_sha256": "74d479fbf11303399d328f31d050262ae18d1b8e67b86bae4208f868add8bce2",
+      "after_sha256": "74d479fbf11303399d328f31d050262ae18d1b8e67b86bae4208f868add8bce2"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_guard_transfer_oracle.xlsx-279077b0ed145ce4cf45035cedad0a7df5f74bec2fd4312b79c4526ba396c62c/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "4465938f095beee9f9520b6f40574c63584dfd62d7f07ed7ff029868ab64756e",
+      "after_sha256": "4465938f095beee9f9520b6f40574c63584dfd62d7f07ed7ff029868ab64756e"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_guard_transfer_oracle.xlsx-279077b0ed145ce4cf45035cedad0a7df5f74bec2fd4312b79c4526ba396c62c/evaluations.json",
+      "identical": true,
+      "before_sha256": "4465938f095beee9f9520b6f40574c63584dfd62d7f07ed7ff029868ab64756e",
+      "after_sha256": "4465938f095beee9f9520b6f40574c63584dfd62d7f07ed7ff029868ab64756e"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_qr_stores_oracle.xlsx-4e4c807e554b36d9765411f3c6d6638fcfdf7e1ecf2a45bd056b806b80c174aa/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "073e4c479a571bab04dbe9b205fd3599ca379a2b55934b17fe3f97e70c4bec76",
+      "after_sha256": "073e4c479a571bab04dbe9b205fd3599ca379a2b55934b17fe3f97e70c4bec76"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_qr_stores_oracle.xlsx-4e4c807e554b36d9765411f3c6d6638fcfdf7e1ecf2a45bd056b806b80c174aa/evaluations.json",
+      "identical": true,
+      "before_sha256": "073e4c479a571bab04dbe9b205fd3599ca379a2b55934b17fe3f97e70c4bec76",
+      "after_sha256": "073e4c479a571bab04dbe9b205fd3599ca379a2b55934b17fe3f97e70c4bec76"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_regression_oracle.xlsx-76d56d5636f3081372a1c19f27b5b03ddc0ad6e480bb11d76a1897f3fdd0cdb7/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "3c65a6602c88f5d039b35810e1dbf389ca1b941a957fc9f5c6be6bf8a42eb8b1",
+      "after_sha256": "3c65a6602c88f5d039b35810e1dbf389ca1b941a957fc9f5c6be6bf8a42eb8b1"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_regression_oracle.xlsx-76d56d5636f3081372a1c19f27b5b03ddc0ad6e480bb11d76a1897f3fdd0cdb7/evaluations.json",
+      "identical": true,
+      "before_sha256": "3c65a6602c88f5d039b35810e1dbf389ca1b941a957fc9f5c6be6bf8a42eb8b1",
+      "after_sha256": "3c65a6602c88f5d039b35810e1dbf389ca1b941a957fc9f5c6be6bf8a42eb8b1"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_variance_oracle.xlsx-dbe41c03b3c8633132cc8206989a818a3d8e218dae2d4075790228e1752dd413/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "d1b6facbeacbf33049fc4e9cfa9b9dd317fe4571680717f07434e1f1ff76902c",
+      "after_sha256": "d1b6facbeacbf33049fc4e9cfa9b9dd317fe4571680717f07434e1f1ff76902c"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r25_variance_oracle.xlsx-dbe41c03b3c8633132cc8206989a818a3d8e218dae2d4075790228e1752dd413/evaluations.json",
+      "identical": true,
+      "before_sha256": "d1b6facbeacbf33049fc4e9cfa9b9dd317fe4571680717f07434e1f1ff76902c",
+      "after_sha256": "d1b6facbeacbf33049fc4e9cfa9b9dd317fe4571680717f07434e1f1ff76902c"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r26_regression_oracle.xlsx-52ab13a3a5eb860c007efdd637573a517918f137c2db5afcc1be17807a70bd54/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "dc394bdc9ee8793573f80320732779dbeb29b72f638b10295fcb87e062954bdd",
+      "after_sha256": "dc394bdc9ee8793573f80320732779dbeb29b72f638b10295fcb87e062954bdd"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r26_regression_oracle.xlsx-52ab13a3a5eb860c007efdd637573a517918f137c2db5afcc1be17807a70bd54/evaluations.json",
+      "identical": true,
+      "before_sha256": "dc394bdc9ee8793573f80320732779dbeb29b72f638b10295fcb87e062954bdd",
+      "after_sha256": "dc394bdc9ee8793573f80320732779dbeb29b72f638b10295fcb87e062954bdd"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r26_root_transfer_oracle.xlsx-0a8a34107861200e7e535a0f2d184899f8bd0475096f492d816b3d1d490fd9fc/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "5c83e5c54c5acee56c57eb95c4acecfbc310fafee96723de9fcc7e32e8ba387b",
+      "after_sha256": "5c83e5c54c5acee56c57eb95c4acecfbc310fafee96723de9fcc7e32e8ba387b"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r26_root_transfer_oracle.xlsx-0a8a34107861200e7e535a0f2d184899f8bd0475096f492d816b3d1d490fd9fc/evaluations.json",
+      "identical": true,
+      "before_sha256": "5c83e5c54c5acee56c57eb95c4acecfbc310fafee96723de9fcc7e32e8ba387b",
+      "after_sha256": "5c83e5c54c5acee56c57eb95c4acecfbc310fafee96723de9fcc7e32e8ba387b"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r26_scalar_oracle.xlsx-3ed9e3f14269b9c073d6537fbc40d0709e447b6607a707e5333aa455bd8de1f7/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "32c3f0c7c4fff76fe23f6289ddce90939cf56ac513766fe53510678efa1c75c1",
+      "after_sha256": "32c3f0c7c4fff76fe23f6289ddce90939cf56ac513766fe53510678efa1c75c1"
+    },
+    {
+      "file": "workbooks/calc-func_dcj9k_r26_scalar_oracle.xlsx-3ed9e3f14269b9c073d6537fbc40d0709e447b6607a707e5333aa455bd8de1f7/evaluations.json",
+      "identical": true,
+      "before_sha256": "32c3f0c7c4fff76fe23f6289ddce90939cf56ac513766fe53510678efa1c75c1",
+      "after_sha256": "32c3f0c7c4fff76fe23f6289ddce90939cf56ac513766fe53510678efa1c75c1"
+    },
+    {
+      "file": "workbooks/calc-func_dcztvv_r23_oracle.xlsx-3dc7ec2b5c4cdbe36a357a329ee80bd3f66295a4a6d5ff8ba81051acefecaac0/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "4f50f1dc4dbc4fa3b7682a8aba2a10b0bf408a3e83be363bbbbf8e0a29054752",
+      "after_sha256": "4f50f1dc4dbc4fa3b7682a8aba2a10b0bf408a3e83be363bbbbf8e0a29054752"
+    },
+    {
+      "file": "workbooks/calc-func_dcztvv_r23_oracle.xlsx-3dc7ec2b5c4cdbe36a357a329ee80bd3f66295a4a6d5ff8ba81051acefecaac0/evaluations.json",
+      "identical": true,
+      "before_sha256": "4f50f1dc4dbc4fa3b7682a8aba2a10b0bf408a3e83be363bbbbf8e0a29054752",
+      "after_sha256": "4f50f1dc4dbc4fa3b7682a8aba2a10b0bf408a3e83be363bbbbf8e0a29054752"
+    },
+    {
+      "file": "workbooks/calc-func_dcztvv_r24_oracle.xlsx-748c64dfaabd37bf0ae8f321dc3905add1f64102620355ac8fe0a69c81e0a4cf/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "4e428d57efeb280e0be17bb0b732d96b29f689c093f11c01b2f46dd48a39e549",
+      "after_sha256": "4e428d57efeb280e0be17bb0b732d96b29f689c093f11c01b2f46dd48a39e549"
+    },
+    {
+      "file": "workbooks/calc-func_dcztvv_r24_oracle.xlsx-748c64dfaabd37bf0ae8f321dc3905add1f64102620355ac8fe0a69c81e0a4cf/evaluations.json",
+      "identical": true,
+      "before_sha256": "4e428d57efeb280e0be17bb0b732d96b29f689c093f11c01b2f46dd48a39e549",
+      "after_sha256": "4e428d57efeb280e0be17bb0b732d96b29f689c093f11c01b2f46dd48a39e549"
+    },
+    {
+      "file": "workbooks/calc-func_fn2_questions_oracle.xlsx-c5d039de7df3898ba23938d1fd3ce0185d4aadb0162fed571419322cb04adfbc/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "06984eac73239ebbab545d6f61b5c0e53993e63ac7d15b62fdc9573b80623734",
+      "after_sha256": "06984eac73239ebbab545d6f61b5c0e53993e63ac7d15b62fdc9573b80623734"
+    },
+    {
+      "file": "workbooks/calc-func_fn2_questions_oracle.xlsx-c5d039de7df3898ba23938d1fd3ce0185d4aadb0162fed571419322cb04adfbc/evaluations.json",
+      "identical": true,
+      "before_sha256": "06984eac73239ebbab545d6f61b5c0e53993e63ac7d15b62fdc9573b80623734",
+      "after_sha256": "06984eac73239ebbab545d6f61b5c0e53993e63ac7d15b62fdc9573b80623734"
+    },
+    {
+      "file": "workbooks/calc-func_fn3_questions_oracle.xlsx-49e3f891055b7b1b2120fb05c566401ec77bda39d12801f19296caa6203a12d2/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "74737ccac73d03d89731b17d84cc57d358d1f550c740e31f9dcda8b002fd1df9",
+      "after_sha256": "74737ccac73d03d89731b17d84cc57d358d1f550c740e31f9dcda8b002fd1df9"
+    },
+    {
+      "file": "workbooks/calc-func_fn3_questions_oracle.xlsx-49e3f891055b7b1b2120fb05c566401ec77bda39d12801f19296caa6203a12d2/evaluations.json",
+      "identical": true,
+      "before_sha256": "74737ccac73d03d89731b17d84cc57d358d1f550c740e31f9dcda8b002fd1df9",
+      "after_sha256": "74737ccac73d03d89731b17d84cc57d358d1f550c740e31f9dcda8b002fd1df9"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_dates_1900_oracle.xlsx-a73ea4711618b0d57f03adf9f2cfaca3be6177929722982d1ff09d66619e686a/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "57677e9b51fdd62ae081bc63334f6a8e50798c57dcf4b25ce744a81237e70064",
+      "after_sha256": "57677e9b51fdd62ae081bc63334f6a8e50798c57dcf4b25ce744a81237e70064"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_dates_1900_oracle.xlsx-a73ea4711618b0d57f03adf9f2cfaca3be6177929722982d1ff09d66619e686a/evaluations.json",
+      "identical": true,
+      "before_sha256": "57677e9b51fdd62ae081bc63334f6a8e50798c57dcf4b25ce744a81237e70064",
+      "after_sha256": "57677e9b51fdd62ae081bc63334f6a8e50798c57dcf4b25ce744a81237e70064"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_digits_zero_oracle.xlsx-af27a476db02ac72b310c854e9f807fb717b3f8ace920a0e6eb40bcfbba2bfd3/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "fba3f5f90a6baeb2ee947cb6124f4c78da77221135ee443213976b4951e95b57",
+      "after_sha256": "fba3f5f90a6baeb2ee947cb6124f4c78da77221135ee443213976b4951e95b57"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_digits_zero_oracle.xlsx-af27a476db02ac72b310c854e9f807fb717b3f8ace920a0e6eb40bcfbba2bfd3/evaluations.json",
+      "identical": true,
+      "before_sha256": "fba3f5f90a6baeb2ee947cb6124f4c78da77221135ee443213976b4951e95b57",
+      "after_sha256": "fba3f5f90a6baeb2ee947cb6124f4c78da77221135ee443213976b4951e95b57"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_helper_boundaries_oracle.xlsx-e2595564c88dd5b5d9f99cc17d17129d90fda92fbc2cef90cead08eb0f70d6f9/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "45b59969fa3e4341891e18e2fcab5a8cae98f67390243c65e8eb2f68a7af9602",
+      "after_sha256": "45b59969fa3e4341891e18e2fcab5a8cae98f67390243c65e8eb2f68a7af9602"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_helper_boundaries_oracle.xlsx-e2595564c88dd5b5d9f99cc17d17129d90fda92fbc2cef90cead08eb0f70d6f9/evaluations.json",
+      "identical": true,
+      "before_sha256": "45b59969fa3e4341891e18e2fcab5a8cae98f67390243c65e8eb2f68a7af9602",
+      "after_sha256": "45b59969fa3e4341891e18e2fcab5a8cae98f67390243c65e8eb2f68a7af9602"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_regex_results_oracle.xlsx-cbc209818933a243de35d5a0d0b700d92308a280b3326c560cdb7987a07e6bc3/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "0b8339c8291b6637dbf6fdba29074da30cd9b116e4c609e522f8a6ffe349d415",
+      "after_sha256": "0b8339c8291b6637dbf6fdba29074da30cd9b116e4c609e522f8a6ffe349d415"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_regex_results_oracle.xlsx-cbc209818933a243de35d5a0d0b700d92308a280b3326c560cdb7987a07e6bc3/evaluations.json",
+      "identical": true,
+      "before_sha256": "0b8339c8291b6637dbf6fdba29074da30cd9b116e4c609e522f8a6ffe349d415",
+      "after_sha256": "0b8339c8291b6637dbf6fdba29074da30cd9b116e4c609e522f8a6ffe349d415"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_selection_boundaries_oracle.xlsx-44859955bf386f1d44af13ec2b59442af19b06d22cec16cdc1f9f43914f834fe/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "cb88c65f949851659c7a025763675524b0c588e5019a6905baa885ed886091a0",
+      "after_sha256": "cb88c65f949851659c7a025763675524b0c588e5019a6905baa885ed886091a0"
+    },
+    {
+      "file": "workbooks/calc-func_fn5_selection_boundaries_oracle.xlsx-44859955bf386f1d44af13ec2b59442af19b06d22cec16cdc1f9f43914f834fe/evaluations.json",
+      "identical": true,
+      "before_sha256": "cb88c65f949851659c7a025763675524b0c588e5019a6905baa885ed886091a0",
+      "after_sha256": "cb88c65f949851659c7a025763675524b0c588e5019a6905baa885ed886091a0"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_iteration_primary_oracle.xlsx-a37c6a1b10992b9132a29bacb5c0237a6b30814d1bc5e61703defd129420c8db/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "5594678522af5814bb1cef6899eabd5f12afbafc82ce5962041d9f903f826cf5",
+      "after_sha256": "5594678522af5814bb1cef6899eabd5f12afbafc82ce5962041d9f903f826cf5"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_iteration_primary_oracle.xlsx-a37c6a1b10992b9132a29bacb5c0237a6b30814d1bc5e61703defd129420c8db/evaluations.json",
+      "identical": true,
+      "before_sha256": "5594678522af5814bb1cef6899eabd5f12afbafc82ce5962041d9f903f826cf5",
+      "after_sha256": "5594678522af5814bb1cef6899eabd5f12afbafc82ce5962041d9f903f826cf5"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_jamo_suffix_oracle.xlsx-c1d641e57150dcd6de4331dabeb06c7082207d9edd225a724a15be4e533fa922/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "f0abb6abcd9ec37101fb407016e46fced42b816e3f3c31fdfb7771c70644705a",
+      "after_sha256": "f0abb6abcd9ec37101fb407016e46fced42b816e3f3c31fdfb7771c70644705a"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_jamo_suffix_oracle.xlsx-c1d641e57150dcd6de4331dabeb06c7082207d9edd225a724a15be4e533fa922/evaluations.json",
+      "identical": true,
+      "before_sha256": "f0abb6abcd9ec37101fb407016e46fced42b816e3f3c31fdfb7771c70644705a",
+      "after_sha256": "f0abb6abcd9ec37101fb407016e46fced42b816e3f3c31fdfb7771c70644705a"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_utf16_needles_compat1_oracle.xlsx-e6f7528044f964fb88a32e6a411c33ee5e826e97daabdb570d5461c4e59863d6/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "1d25e23fa50bd0ce397338229b366679f5d1160a71ba92cb1fcb054019c0781a",
+      "after_sha256": "1d25e23fa50bd0ce397338229b366679f5d1160a71ba92cb1fcb054019c0781a"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_utf16_needles_compat1_oracle.xlsx-e6f7528044f964fb88a32e6a411c33ee5e826e97daabdb570d5461c4e59863d6/evaluations.json",
+      "identical": true,
+      "before_sha256": "1d25e23fa50bd0ce397338229b366679f5d1160a71ba92cb1fcb054019c0781a",
+      "after_sha256": "1d25e23fa50bd0ce397338229b366679f5d1160a71ba92cb1fcb054019c0781a"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_utf16_needles_compat2_oracle.xlsx-c40902dc4fe2e84131a6de577817ddee8e701c64d060a02f88bb23547a6566a7/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "09f5692734940dbabecc44fe19d4a2f18d32187fdce821d31d7711fa10b48dd7",
+      "after_sha256": "09f5692734940dbabecc44fe19d4a2f18d32187fdce821d31d7711fa10b48dd7"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_utf16_needles_compat2_oracle.xlsx-c40902dc4fe2e84131a6de577817ddee8e701c64d060a02f88bb23547a6566a7/evaluations.json",
+      "identical": true,
+      "before_sha256": "09f5692734940dbabecc44fe19d4a2f18d32187fdce821d31d7711fa10b48dd7",
+      "after_sha256": "09f5692734940dbabecc44fe19d4a2f18d32187fdce821d31d7711fa10b48dd7"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_utf16_needles_oracle.xlsx-cba2a74fb563c1b27ec2184437c794532b7e5c671ca5957a9ac23bd1f258c5b2/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "fc2b1459b0a323fea66ac1b6042b61ed930a9357e78bccc71c1d9a1c5637b6e1",
+      "after_sha256": "fc2b1459b0a323fea66ac1b6042b61ed930a9357e78bccc71c1d9a1c5637b6e1"
+    },
+    {
+      "file": "workbooks/calc-func_fn6_utf16_needles_oracle.xlsx-cba2a74fb563c1b27ec2184437c794532b7e5c671ca5957a9ac23bd1f258c5b2/evaluations.json",
+      "identical": true,
+      "before_sha256": "fc2b1459b0a323fea66ac1b6042b61ed930a9357e78bccc71c1d9a1c5637b6e1",
+      "after_sha256": "fc2b1459b0a323fea66ac1b6042b61ed930a9357e78bccc71c1d9a1c5637b6e1"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_argument_origins_oracle.xlsx-e4acfbdb26a9e6b674d8219b82c50ea353638c5436a2c0e91bafa6211789442a/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "c07c0c104c57fb12070a865e84c133113635e9986fb5122fa3dd34a3e7d41e93",
+      "after_sha256": "c07c0c104c57fb12070a865e84c133113635e9986fb5122fa3dd34a3e7d41e93"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_argument_origins_oracle.xlsx-e4acfbdb26a9e6b674d8219b82c50ea353638c5436a2c0e91bafa6211789442a/evaluations.json",
+      "identical": true,
+      "before_sha256": "c07c0c104c57fb12070a865e84c133113635e9986fb5122fa3dd34a3e7d41e93",
+      "after_sha256": "c07c0c104c57fb12070a865e84c133113635e9986fb5122fa3dd34a3e7d41e93"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_collation_context_oracle.xlsx-224686b5aaf5808b413fbb803fcc0dcfba6589ed241c9629fbd9887157709765/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "6e2e49e4c886d0573c593a47aacde678932edc8d1b04af75c020427f0c70922f",
+      "after_sha256": "6e2e49e4c886d0573c593a47aacde678932edc8d1b04af75c020427f0c70922f"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_collation_context_oracle.xlsx-224686b5aaf5808b413fbb803fcc0dcfba6589ed241c9629fbd9887157709765/evaluations.json",
+      "identical": true,
+      "before_sha256": "6e2e49e4c886d0573c593a47aacde678932edc8d1b04af75c020427f0c70922f",
+      "after_sha256": "6e2e49e4c886d0573c593a47aacde678932edc8d1b04af75c020427f0c70922f"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_collation_contractions_oracle.xlsx-5b3d420e80fa3dbc66a7e56c5769568d450e6edae00bc48ca66b7e018ed93fab/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "988bf9d96d812a76dc2a34a70ab606267e2eab1cf25a462f4113c72da082d1c4",
+      "after_sha256": "988bf9d96d812a76dc2a34a70ab606267e2eab1cf25a462f4113c72da082d1c4"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_collation_contractions_oracle.xlsx-5b3d420e80fa3dbc66a7e56c5769568d450e6edae00bc48ca66b7e018ed93fab/evaluations.json",
+      "identical": true,
+      "before_sha256": "988bf9d96d812a76dc2a34a70ab606267e2eab1cf25a462f4113c72da082d1c4",
+      "after_sha256": "988bf9d96d812a76dc2a34a70ab606267e2eab1cf25a462f4113c72da082d1c4"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_date_argument_origins_oracle.xlsx-0cf95c91e645a79a50770c44785b8a74b090705a568ae9d983df8062502b4abf/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "8ad20bf8eb76f8a6a50e5a48de3ec8de22f0280c10002f233205ec5079563913",
+      "after_sha256": "8ad20bf8eb76f8a6a50e5a48de3ec8de22f0280c10002f233205ec5079563913"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_date_argument_origins_oracle.xlsx-0cf95c91e645a79a50770c44785b8a74b090705a568ae9d983df8062502b4abf/evaluations.json",
+      "identical": true,
+      "before_sha256": "8ad20bf8eb76f8a6a50e5a48de3ec8de22f0280c10002f233205ec5079563913",
+      "after_sha256": "8ad20bf8eb76f8a6a50e5a48de3ec8de22f0280c10002f233205ec5079563913"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_format_context_oracle.xlsx-523e67060ace83b9388785e51be693616de310823d7e1ce2873940059c6e4f82/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "40fd4ede8bd8a72ce091d426486d3af90b8f4ee2f78383ba65792403ee045580",
+      "after_sha256": "40fd4ede8bd8a72ce091d426486d3af90b8f4ee2f78383ba65792403ee045580"
+    },
+    {
+      "file": "workbooks/calc-func_fn7_format_context_oracle.xlsx-523e67060ace83b9388785e51be693616de310823d7e1ce2873940059c6e4f82/evaluations.json",
+      "identical": true,
+      "before_sha256": "40fd4ede8bd8a72ce091d426486d3af90b8f4ee2f78383ba65792403ee045580",
+      "after_sha256": "40fd4ede8bd8a72ce091d426486d3af90b8f4ee2f78383ba65792403ee045580"
+    },
+    {
+      "file": "workbooks/calc-host_dc_ylr_oracle.xlsx-5265fccb7365b8828c74c46b774a807d9e6a45bdfbf9b05967e151465b7b502d/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+      "after_sha256": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614"
+    },
+    {
+      "file": "workbooks/calc-host_dc_ylr_oracle.xlsx-5265fccb7365b8828c74c46b774a807d9e6a45bdfbf9b05967e151465b7b502d/evaluations.json",
+      "identical": true,
+      "before_sha256": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614",
+      "after_sha256": "0d4f14707c6b3bd3f2303619780c493e61ed9f21d56639ff20c775f9e4766614"
+    },
+    {
+      "file": "workbooks/calc-host_eng13_legacy_oracle.xlsx-a6693aa8643841a8505e310472ed4cd9bf99d520ee217327231d2a7afdb0a3ed/attempt-1/evaluations.json",
+      "identical": true,
+      "before_sha256": "ccdfc506db39a33b2a32c615030b7745b39e6f65e778cb759f5372aa7929a57c",
+      "after_sha256": "ccdfc506db39a33b2a32c615030b7745b39e6f65e778cb759f5372aa7929a57c"
+    },
+    {
+      "file": "workbooks/calc-host_eng13_legacy_oracle.xlsx-a6693aa8643841a8505e310472ed4cd9bf99d520ee217327231d2a7afdb0a3ed/evaluations.json",
+      "identical": true,
+      "before_sha256": "ccdfc506db39a33b2a32c615030b7745b39e6f65e778cb759f5372aa7929a57c",
+      "after_sha256": "ccdfc506db39a33b2a32c615030b7745b39e6f65e778cb759f5372aa7929a57c"
+    }
+  ]
+}

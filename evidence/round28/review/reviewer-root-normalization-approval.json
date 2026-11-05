@@ -1,0 +1,55 @@
+{
+  "complete": true,
+  "decision": "Approve the concrete numerical exponent-normalization checkpoint only.",
+  "actionable_findings": [],
+  "main_scope": [
+    "crates/calc-func/src/ported/excel_numeric/x87_chains.rs",
+    "crates/calc-func/tests/f1_stats.rs",
+    "crates/calc-func/witness-status.tsv",
+    "docs/generated/problem-functions.json",
+    "docs/generated/problem-functions.md"
+  ],
+  "behavior": "For positive normal GEOMEAN stored products, extract ilogb exponentE; divideE/count towardzero, evaluate unchanged core at exact reduced product, restore2^q exactly. No fitted coefficient/threshold and no private-core replacement.",
+  "evidence": {
+    "independent_originals": 19200,
+    "independent_normalized_controls": 7680,
+    "native_software_equal": true,
+    "application_gains": 9,
+    "application_losses": 6,
+    "all_losses_classified": true,
+    "unchanged_reduced_core_calls": 6016,
+    "corpus": {
+      "total": 54600,
+      "pass_count": 51373,
+      "inclusive_fail": 3227,
+      "evaluation_documents_identical": 116
+    },
+    "bank": {
+      "total": 3910007,
+      "pass_count": 3769062,
+      "inclusive_fail": 140945,
+      "unread": 116,
+      "gains": 0,
+      "losses": 0,
+      "changed_functions": 0
+    },
+    "required_check": "1785 passed,0failed,5ignored,3notrun;69harnesses14packages"
+  },
+  "limits": "All6 discovery-cohort losses remain explicit Excel mismatches in the unchanged reduced core, independently observed and retained by new tests. Earlier shared-log contradictions concern the unreduced direct factorization. New quotient/log/exp research, final archive/report and later edits are outside this checkpoint.",
+  "sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/excel_numeric/x87_chains.rs": "b466f6eb4b5748a013db4e895ea43c079b5497cbc6266f49899b2f1e15accb41",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs": "134abbc9f497656c24d1eb655879d02cd0496760bb000121b44c76dfed612b2f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/witness-status.tsv": "a2e370f6fe1fa52dfbb0e3b5fe968af30fc9351a8e90f0d35d36c91f91738142",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.json": "a125b606572e4575c9aaae1e6d887c2379fe9623c901417995dd2307e2adecab",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.md": "8ce8af5d123a8b87f674c4c11187ff732410881e1347350adb176f3065c3bc5d",
+    "/home/ubuntu/codex-runs/r28/root-main-check.log": "56ac7be8bce1e2d4d639954e36050b8aa03a53c6db1f91a40cfa635aa6603f98",
+    "/home/ubuntu/codex-runs/r28/root-native-tests.log": "161051a2486f9218d4378200a6dc8bf2dd1668fd149879b348c06155afb4272d",
+    "/home/ubuntu/codex-runs/r28/root-soft-tests.log": "c888a66320ba83aa94f527bd2aee36bd2ada91326435692976dda616e77ddbca",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-normalization-actual.json": "19aa23988c4cf4f4b27c7317367b9b4b3ddd62c72a0af31321a1294c9b67e25c",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-corpus.json": "c09abdaa31feac4c8b3be82b7ee9e9f5642949387476d0a0865accf96b21d9af",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-bank.json": "f51f03dfb66bf902bfff07d922be8e81e7de4a0d72c59645aef8c4ce57fd166c",
+    "/home/ubuntu/codex-runs/r28/reviewer-root-main-ubs-triage.json": "49029b99321fa6147820812e952b3d88a8cd4c0962581f3c44cb7738e848598d",
+    "/home/ubuntu/codex-runs/r28/root-original-after-soft.jsonl": "4e04b40d51dc0faf7dc97612864a0b8a6fdb83e03e7c2f55c85791a45920d89e",
+    "/home/ubuntu/codex-runs/r28/root-normalized-after-soft.jsonl": "8043ed029e2df2d12c924a57599d487e3a998304c6432453ff79d7f642c2d4d6"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "reduced_roots": 6016,
+  "public_calls": 9356,
+  "counts": {
+    "matched": 6016
+  },
+  "singleton_counts": {
+    "identity": 2944
+  },
+  "inputs_sha256": {
+    "evidence/round28/root-public-stages.json": "e0a41e875e48dd47a03e0f9170afd7eaaf7e37d216e743268bc5e6a0c2441fa3",
+    "evidence/round28/root-normalization.json": "ae534b89f50f778f7360b08fca09314ddfcb534aff2caee66277b77c414f5ec5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/geomean.py": "bbcd7b3f4adef8eb048facfad154053c343ce02ed3739b2b56af3b80d3db0ab8",
+    "evidence/round28/root-normalization-service/54147a4ee55a0558a28b0a0fbcd1b6ebd627ccd233a2cea37c1c84f793eb4466.json.gz": "91b12d8168fc69f5570b8ef27aecb5e8b42dd52b1b7646c147561fd2fc769fad",
+    "evidence/round28/root-normalization-service/8ec8281c152a74eae96f622da5c64da363d2e5a05c9b9b8d9c04feddedb036b5.json.gz": "1432a224ac47a5a4764dc832ef4dc031e2103b44f8f84b9a53b2202c65160cc2",
+    "evidence/round28/root-public-service/73a6d1378fec028b189815b4dafe640ae69e0b06ad4cd6f1272ab243dc589a57.json.gz": "1ef85697bbb7171f1354108c733a12daf286f21b7d1cadab46d281676afa3856",
+    "evidence/round28/root-public-service/0cf48b2fd578c431bbfd06bd8f82b06f1dbe5c74b1cdaaa44c3f61820373955c.json.gz": "7013976d2d999a249fa2537aaed3647a08a785ef12c891f0687a18786e3b5d83",
+    "evidence/round28/root-public-service/b644e9c237cf4f37e64af60503c4a026dc99e21f7a8bb39c31405e4e30935cfb.json.gz": "c8de3238a50e6e049a6d51753b3716e8346bbe068db3cde81f71461833acdca2"
+  },
+  "limits": "Complete declared reduced-root subset and independently measured LN/EXP/singleton calls. Exact PC64 then binary64 assignments. This identifies the sampled composition only; private implementation internals and fallback remain open."
+}

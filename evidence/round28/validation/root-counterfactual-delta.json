@@ -1,0 +1,336 @@
+{
+  "complete": true,
+  "counts": {
+    "total": 19200,
+    "before_pass": 17435,
+    "after_pass": 17438,
+    "gains": 9,
+    "losses": 6,
+    "changed_outputs": 15
+  },
+  "changed": [
+    {
+      "index": 752,
+      "count": 2,
+      "input": "3e0f400000000030",
+      "expected": "0x3eff9f6e4990f23f",
+      "before": "0x3eff9f6e4990f240",
+      "after": "0x3eff9f6e4990f23f",
+      "reduced": "3fef400000000030",
+      "quotient": -15,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fef9f6e4990f23f"
+      },
+      "calculated_reduced_root": "0x3fef9f6e4990f23f"
+    },
+    {
+      "index": 1904,
+      "count": 2,
+      "input": "430f400000000030",
+      "expected": "0x417f9f6e4990f240",
+      "before": "0x417f9f6e4990f240",
+      "after": "0x417f9f6e4990f23f",
+      "reduced": "400f400000000030",
+      "quotient": 24,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fff9f6e4990f240"
+      },
+      "calculated_reduced_root": "0x3fff9f6e4990f23f"
+    },
+    {
+      "index": 2553,
+      "count": 3,
+      "input": "3c5c000000000039",
+      "expected": "0x3ebe9b5dba5818b3",
+      "before": "0x3ebe9b5dba5818b2",
+      "after": "0x3ebe9b5dba5818b3",
+      "reduced": "3fec000000000039",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fee9b5dba5818b3"
+      },
+      "calculated_reduced_root": "0x3fee9b5dba5818b3"
+    },
+    {
+      "index": 3705,
+      "count": 3,
+      "input": "43dc000000000039",
+      "expected": "0x413e9b5dba5818b2",
+      "before": "0x413e9b5dba5818b2",
+      "after": "0x413e9b5dba5818b3",
+      "reduced": "401c000000000039",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ffe9b5dba5818b2"
+      },
+      "calculated_reduced_root": "0x3ffe9b5dba5818b3"
+    },
+    {
+      "index": 8221,
+      "count": 7,
+      "input": "375bffffffffffdd",
+      "expected": "0x3eb520a45ca7c7c3",
+      "before": "0x3eb520a45ca7c7c3",
+      "after": "0x3eb520a45ca7c7c2",
+      "reduced": "3fabffffffffffdd",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fe520a45ca7c7c3"
+      },
+      "calculated_reduced_root": "0x3fe520a45ca7c7c2"
+    },
+    {
+      "index": 9373,
+      "count": 7,
+      "input": "48dbffffffffffdd",
+      "expected": "0x413520a45ca7c7c2",
+      "before": "0x413520a45ca7c7c3",
+      "after": "0x413520a45ca7c7c2",
+      "reduced": "401bffffffffffdd",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ff520a45ca7c7c2"
+      },
+      "calculated_reduced_root": "0x3ff520a45ca7c7c2"
+    },
+    {
+      "index": 12176,
+      "count": 10,
+      "input": "340f3fffffffffd0",
+      "expected": "0x3ebfec982d5bb8aa",
+      "before": "0x3ebfec982d5bb8ab",
+      "after": "0x3ebfec982d5bb8aa",
+      "reduced": "3fef3fffffffffd0",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fefec982d5bb8aa"
+      },
+      "calculated_reduced_root": "0x3fefec982d5bb8aa"
+    },
+    {
+      "index": 12225,
+      "count": 10,
+      "input": "340f400000000001",
+      "expected": "0x3ebfec982d5bb8af",
+      "before": "0x3ebfec982d5bb8b0",
+      "after": "0x3ebfec982d5bb8af",
+      "reduced": "3fef400000000001",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fefec982d5bb8af"
+      },
+      "calculated_reduced_root": "0x3fefec982d5bb8af"
+    },
+    {
+      "index": 13377,
+      "count": 10,
+      "input": "4d0f400000000001",
+      "expected": "0x413fec982d5bb8b0",
+      "before": "0x413fec982d5bb8b0",
+      "after": "0x413fec982d5bb8af",
+      "reduced": "408f400000000001",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fffec982d5bb8b0"
+      },
+      "calculated_reduced_root": "0x3fffec982d5bb8af"
+    },
+    {
+      "index": 13892,
+      "count": 11,
+      "input": "3234ccccccccccd1",
+      "expected": "0x3eb062de8ac72091",
+      "before": "0x3eb062de8ac72090",
+      "after": "0x3eb062de8ac72091",
+      "reduced": "3ff4ccccccccccd1",
+      "quotient": -20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ff062de8ac72091"
+      },
+      "calculated_reduced_root": "0x3ff062de8ac72091"
+    },
+    {
+      "index": 14084,
+      "count": 11,
+      "input": "32cf3fffffffffc4",
+      "expected": "0x3ebdfb27fa5dc3fb",
+      "before": "0x3ebdfb27fa5dc3fc",
+      "after": "0x3ebdfb27fa5dc3fb",
+      "reduced": "3fdf3fffffffffc4",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fedfb27fa5dc3fb"
+      },
+      "calculated_reduced_root": "0x3fedfb27fa5dc3fb"
+    },
+    {
+      "index": 15044,
+      "count": 11,
+      "input": "4db4ccccccccccd1",
+      "expected": "0x413062de8ac72091",
+      "before": "0x413062de8ac72090",
+      "after": "0x413062de8ac72091",
+      "reduced": "3ff4ccccccccccd1",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ff062de8ac72091"
+      },
+      "calculated_reduced_root": "0x3ff062de8ac72091"
+    },
+    {
+      "index": 15236,
+      "count": 11,
+      "input": "4e4f3fffffffffc4",
+      "expected": "0x413dfb27fa5dc3fc",
+      "before": "0x413dfb27fa5dc3fc",
+      "after": "0x413dfb27fa5dc3fb",
+      "reduced": "408f3fffffffffc4",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ffdfb27fa5dc3fc"
+      },
+      "calculated_reduced_root": "0x3ffdfb27fa5dc3fb"
+    },
+    {
+      "index": 15928,
+      "count": 16,
+      "input": "2c1bfffffffffff8",
+      "expected": "0x3eb211b63ba0196d",
+      "before": "0x3eb211b63ba0196e",
+      "after": "0x3eb211b63ba0196d",
+      "reduced": "3f1bfffffffffff8",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fe211b63ba0196d"
+      },
+      "calculated_reduced_root": "0x3fe211b63ba0196d"
+    },
+    {
+      "index": 17080,
+      "count": 16,
+      "input": "541bfffffffffff8",
+      "expected": "0x413211b63ba0196e",
+      "before": "0x413211b63ba0196e",
+      "after": "0x413211b63ba0196d",
+      "reduced": "401bfffffffffff8",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ff211b63ba0196e"
+      },
+      "calculated_reduced_root": "0x3ff211b63ba0196d"
+    }
+  ],
+  "losses": [
+    {
+      "index": 1904,
+      "count": 2,
+      "input": "430f400000000030",
+      "expected": "0x417f9f6e4990f240",
+      "before": "0x417f9f6e4990f240",
+      "after": "0x417f9f6e4990f23f",
+      "reduced": "400f400000000030",
+      "quotient": 24,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fff9f6e4990f240"
+      },
+      "calculated_reduced_root": "0x3fff9f6e4990f23f",
+      "classification": "current private core differs from independently measured root at the exact reduced product"
+    },
+    {
+      "index": 3705,
+      "count": 3,
+      "input": "43dc000000000039",
+      "expected": "0x413e9b5dba5818b2",
+      "before": "0x413e9b5dba5818b2",
+      "after": "0x413e9b5dba5818b3",
+      "reduced": "401c000000000039",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ffe9b5dba5818b2"
+      },
+      "calculated_reduced_root": "0x3ffe9b5dba5818b3",
+      "classification": "current private core differs from independently measured root at the exact reduced product"
+    },
+    {
+      "index": 8221,
+      "count": 7,
+      "input": "375bffffffffffdd",
+      "expected": "0x3eb520a45ca7c7c3",
+      "before": "0x3eb520a45ca7c7c3",
+      "after": "0x3eb520a45ca7c7c2",
+      "reduced": "3fabffffffffffdd",
+      "quotient": -19,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fe520a45ca7c7c3"
+      },
+      "calculated_reduced_root": "0x3fe520a45ca7c7c2",
+      "classification": "current private core differs from independently measured root at the exact reduced product"
+    },
+    {
+      "index": 13377,
+      "count": 10,
+      "input": "4d0f400000000001",
+      "expected": "0x413fec982d5bb8b0",
+      "before": "0x413fec982d5bb8b0",
+      "after": "0x413fec982d5bb8af",
+      "reduced": "408f400000000001",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3fffec982d5bb8b0"
+      },
+      "calculated_reduced_root": "0x3fffec982d5bb8af",
+      "classification": "current private core differs from independently measured root at the exact reduced product"
+    },
+    {
+      "index": 15236,
+      "count": 11,
+      "input": "4e4f3fffffffffc4",
+      "expected": "0x413dfb27fa5dc3fc",
+      "before": "0x413dfb27fa5dc3fc",
+      "after": "0x413dfb27fa5dc3fb",
+      "reduced": "408f3fffffffffc4",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ffdfb27fa5dc3fc"
+      },
+      "calculated_reduced_root": "0x3ffdfb27fa5dc3fb",
+      "classification": "current private core differs from independently measured root at the exact reduced product"
+    },
+    {
+      "index": 17080,
+      "count": 16,
+      "input": "541bfffffffffff8",
+      "expected": "0x413211b63ba0196e",
+      "before": "0x413211b63ba0196e",
+      "after": "0x413211b63ba0196d",
+      "reduced": "401bfffffffffff8",
+      "quotient": 20,
+      "measured_reduced_root": {
+        "type": "number",
+        "bits": "3ff211b63ba0196e"
+      },
+      "calculated_reduced_root": "0x3ff211b63ba0196d",
+      "classification": "current private core differs from independently measured root at the exact reduced product"
+    }
+  ]
+}

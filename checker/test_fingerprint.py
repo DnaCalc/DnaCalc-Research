@@ -11,6 +11,123 @@ from racer import fingerprint as f
 
 
 class FingerprintControls(unittest.TestCase):
+    def test_quotient_summary_cannot_repeat_a_measured_group(self):
+        from checker.geomean import quotient_summary_coverage
+        models=[dict(quotient=q,published=p,groups=[dict(product_power=1)])
+                for q in ('divide','stored_reciprocal')for p in (False,True)]
+        groups={(m['quotient'],m['published'],1)for m in models}
+        quotient_summary_coverage(models,groups)
+        changed=copy.deepcopy(models);changed[0]['groups']*=2
+        with self.assertRaisesRegex(ValueError,'repeated'):
+            quotient_summary_coverage(changed,groups)
+        with self.assertRaisesRegex(ValueError,'model order'):
+            quotient_summary_coverage(models[::-1],groups)
+
+    def test_independent_primitive_grammar_rejects_changed_store_metadata(self):
+        from checker.geomean import check_stage_graph_metadata,primitive_stage_grammar
+        doc=dict(LN_ROM80=f.primitive_stage_graph('LN'),LN_constant53=f.primitive_stage_graph('LN','binary64'),
+            EXP_ROM80_resident_reduction=f.primitive_stage_graph('EXP'),
+            EXP_constant53_resident_reduction=f.primitive_stage_graph('EXP','binary64'),
+            EXP_ROM80_stored_reduction=f.primitive_stage_graph('EXP',stored_reduction=True),
+            EXP2=f.primitive_stage_graph('EXP2'),LOG2=f.primitive_stage_graph('LOG2'))
+        check_stage_graph_metadata(doc)
+        bad=copy.deepcopy(doc);bad['EXP2']['nodes'][-2]['site']=0;bad['EXP2']['sites']=1
+        with self.assertRaisesRegex(ValueError,'graph metadata'):
+            check_stage_graph_metadata(bad)
+        bad=copy.deepcopy(doc);bad['LN_ROM80']['outputs']=[0,0]
+        with self.assertRaisesRegex(ValueError,'graph metadata'):
+            check_stage_graph_metadata(bad)
+        for kind in ('EXP','EXP2'):
+            for store in ('fraction','f2xm1_return'):
+                graph=f.primitive_stage_graph(kind)
+                next(n for n in graph['nodes']if n['op']==('sub'if store=='fraction'else'f2xm1'))['site']=0
+                graph['sites']=1
+                self.assertEqual(graph,primitive_stage_grammar(kind,spill=store))
+
+    def test_unknown_seed_cannot_change_on_an_exact_identity_multiply(self):
+        for seed in (Q(1),Q(1,2),Q(3,2)):
+            self.assertIsNotNone(f.multiplication_seed_interval(seed,seed,Q(1)))
+            neighbor=Q(math.nextafter(float(seed),0.))
+            self.assertIsNone(f.multiplication_seed_interval(seed,neighbor,Q(1)))
+        self.assertIsNotNone(f.multiplication_seed_interval(Q(3,2),Q(3),Q(2)))
+        with self.assertRaisesRegex(ValueError,'positive multiplier'):
+            f.multiplication_seed_interval(Q(1),Q(1),Q(0))
+
+    def test_rank_packet_refuses_a_bracket_wider_than_its_bisection_budget(self):
+        rows=[dict(id='low',changed_operand='4020000000000001',df=3),
+              dict(id='high',changed_operand=f'{0x4020000000000000+2**37:016x}',df=2)]
+        doc=dict(observations=rows,necessary_intervals=[dict(normalizer='column',reverse=False,
+            lower_witness='low',upper_witness='high',function='LINEST',constant=False)])
+        with tempfile.TemporaryDirectory()as directory:
+            path=Path(directory)/'intake.json';path.write_text(json.dumps(doc))
+            with self.assertRaisesRegex(ValueError,'too wide'):
+                f.rank_bisection_questions(path)
+
+    def test_independent_stage_check_rejects_dropped_pairs_and_missing_arities(self):
+        from checker.geomean import stage_observation_coverage
+        number=lambda x:dict(type='number',bits=f.bits(x))
+        answers={('GEOMEAN',json.dumps([number(x)]+[number(1.)]*(n-1),sort_keys=True)):number(2.)
+                 for x in (1.3,7.)for n in (2,4,8)}
+        doc=dict(primitive_checks=[dict(program='declared')],
+                 root_intervals=[dict(input=f.bits(x),primitive=k)for x in (1.3,7.)for k in ('EXP','EXP2')])
+        stage_observation_coverage(doc,answers,['declared'])
+        removed=copy.deepcopy(doc);removed['root_intervals']=removed['root_intervals'][2:]
+        with self.assertRaisesRegex(ValueError,'missing, extra or duplicated'):
+            stage_observation_coverage(removed,answers,['declared'])
+        missing=dict(answers);missing.pop(next(k for k in missing if len(json.loads(k[1]))==8))
+        with self.assertRaisesRegex(ValueError,'missing original root arity'):
+            stage_observation_coverage(doc,missing,['declared'])
+        with self.assertRaisesRegex(ValueError,'primitive programmes'):
+            stage_observation_coverage(doc,answers,['declared','omitted'])
+
+    def test_batched_edges_finish_at_observed_adjacent_inputs(self):
+        class Service:
+            def ask(self,name,rows):
+                return dict(rows=[dict(type='boolean',value=int(r[0],16)>=r[1])for r in rows])
+        brackets=[dict(low='0000000000000001',high='0000000000000064',threshold=t)for t in (23,79)]
+        edges=f.bisect_observed_edges(Service(),'constructed',brackets,
+            lambda s,x:[x,s['threshold']],lambda s,x,a:a['value'])
+        for edge,t in zip(edges,(23,79)):
+            self.assertEqual((int(edge['low'],16),int(edge['high'],16)),(t-1,t))
+            seen={r['input']:r['side']for r in edge['trace']}
+            self.assertIs(seen[edge['low']],False)
+            self.assertIs(seen[edge['high']],True)
+        with self.assertRaisesRegex(ValueError,'cannot distinguish'):
+            f.bisect_observed_edges(Service(),'constructed',brackets,
+                lambda s,x:[x,s['threshold']],lambda s,x,a:None)
+
+    def test_extended_preimage_keeps_tie_parity_and_empty_images(self):
+        from checker.x87 import encode,decode,bits64
+        class Identity:
+            def evaluate(self,graph,inputs,cw,extended):return extended*2
+            def publish(self,raw):return bits64(f.BINARY64.round(decode(raw)))
+        for x in (1.3,1.5):
+            cell=f.positive_extended_cell(Identity(),None,f.bits(x),Q(x))
+            raw=encode(Q(x));middle=int.from_bytes(raw[:8],'little')
+            radius=1023 if int(f.bits(x),16)&1 else 1024
+            self.assertEqual(int.from_bytes(bytes.fromhex(cell['low'])[:8],'little'),middle-radius)
+            self.assertEqual(int.from_bytes(bytes.fromhex(cell['high'])[:8],'little'),middle+radius)
+            self.assertEqual(int(cell['predecessor_output'],16),int(f.bits(x),16)-1)
+            self.assertEqual(int(cell['successor_output'],16),int(f.bits(x),16)+1)
+        class SkipsOdd(Identity):
+            def publish(self,raw):return super().publish(raw)&~1
+        self.assertIsNone(f.positive_extended_cell(SkipsOdd(),None,f.bits(1.3),Q(1.3)))
+
+    def test_decreasing_preimage_keeps_original_neighbor_outputs(self):
+        from checker.x87 import encode,decode,bits64
+        class Reciprocal:
+            def evaluate(self,graph,inputs,cw,extended):
+                return encode(f.EXTENDED64.round(1/decode(extended)))*2
+            def publish(self,raw):return bits64(f.BINARY64.round(decode(raw)))
+        for x in (1.,1.3):
+            model=Reciprocal();answer=f.bits(1/x)
+            cell=f.positive_extended_cell(model,None,answer,Q(x),decreasing=True)
+            self.assertIsNotNone(cell)
+            self.assertGreater(int(cell['predecessor_output'],16),int(answer,16))
+            self.assertLess(int(cell['successor_output'],16),int(answer,16))
+            for endpoint in ('low','high'):
+                self.assertEqual(model.publish(model.evaluate(None,[],0,bytes.fromhex(cell[endpoint]))[:10]),int(answer,16))
+
     def test_dft_reports_a_known_line_and_not_a_store_count(self):
         values=[math.cos(2*math.pi*7*i/64) for i in range(64)]
         powers=[abs(z)**2 for z in f.fft(values)]
