@@ -1,6 +1,6 @@
 {
   "format": "dnacalc-round28-result/1",
-  "status": "validated measurements; publishing",
+  "status": "published and independently reviewed",
   "product_commits": {
     "BINOM_and_R26_intake": "a5aafe89",
     "exponent_normalization": "4f0eee2c",
@@ -20,7 +20,9 @@
     "changed_values": 474,
     "awaiting_capture": 0,
     "workbooks": 54,
-    "inclusive_failures": 2769
+    "inclusive_failures": 2769,
+    "before_pass_rate": 0.9467582417582417,
+    "after_pass_rate": 0.9492857142857143
   },
   "fixed_core_bank": {
     "total": 3910007,
@@ -38,7 +40,9 @@
     "changed_functions": [
       "GEOMEAN"
     ],
-    "identity_answer_environment_sha256": "a3691cced3206a65f6744b7957fe3ce638f29cb7af201394e714c357b5c570c3"
+    "identity_answer_environment_sha256": "a3691cced3206a65f6744b7957fe3ce638f29cb7af201394e714c357b5c570c3",
+    "before_pass_rate": 0.9639527499567137,
+    "after_pass_rate": 0.96396732793573
   },
   "GEOMEAN_bank": {
     "total": 1225,
@@ -46,21 +50,33 @@
     "after": 1224,
     "gains": 57,
     "losses": 0,
-    "remaining": "w111broad-20260929-GEOMEAN-00008: typed product-underflow fallback refusal"
+    "remaining": "w111broad-20260929-GEOMEAN-00008: typed product-underflow fallback refusal",
+    "before_failed": 58,
+    "after_failed": 1,
+    "before_pass_rate": 0.9526530612244898,
+    "after_pass_rate": 0.9991836734693877
   },
   "original_R26_unit_factor_calls": {
     "total": 31744,
     "before": 29310,
     "after": 31744,
     "gains": 2434,
-    "losses": 0
+    "losses": 0,
+    "before_failed": 2434,
+    "after_failed": 0,
+    "before_pass_rate": 0.9233240927419355,
+    "after_pass_rate": 1.0
   },
   "original_R28_scale_calls": {
     "total": 19200,
     "before": 17435,
     "after": 19200,
     "gains": 1765,
-    "losses": 0
+    "losses": 0,
+    "before_failed": 1765,
+    "after_failed": 0,
+    "before_pass_rate": 0.9080729166666667,
+    "after_pass_rate": 1.0
   },
   "normalization_checkpoint": {
     "gains": 9,
@@ -84,7 +100,11 @@
     "gains": 576,
     "losses": 0,
     "admission_controls_per_alias": 666,
-    "first_rejected_bits": "41dfffffffc00000"
+    "first_rejected_bits": "41dfffffffc00000",
+    "before_failed": 576,
+    "after_failed": 0,
+    "before_pass_rate": 0.4911660777385159,
+    "after_pass_rate": 1.0
   },
   "R26_intake": {
     "delivery_hashes_checked": 98,
@@ -93,7 +113,11 @@
     "after_root_pass": 9549,
     "remaining_mismatches": 78,
     "remaining_refusals": 64,
-    "rule": "New coverage is separate from kernel gains."
+    "rule": "New coverage is separate from kernel gains.",
+    "initial_failed": 190,
+    "after_root_failed": 142,
+    "initial_pass_rate": 0.9803941801671654,
+    "after_root_pass_rate": 0.985347229388092
   },
   "rank_questions": {
     "formulas": 1292,
@@ -181,8 +205,8 @@
       "not_run": 3
     },
     "latest_completed_check": {
-      "application": "06b96dab",
-      "passed": 1814,
+      "application": "3433f60d42604f6e17421eea339e98b0a2ac16d4",
+      "passed": 1822,
       "failed": 0,
       "ignored": 5,
       "not_run": 3,
@@ -207,7 +231,22 @@
       "failed": 0,
       "ignored": 2
     },
-    "UBS": "All 647 returned Python findings reviewed; public SHA comparisons are false criticals, SQL detector remains partial. Main Rust findings reviewed."
+    "UBS": "All 647 returned Python findings reviewed; public SHA comparisons are false criticals, SQL detector remains partial. Main Rust findings reviewed.",
+    "research_Rust_final_committed_snapshot": {
+      "unit": "round28-pushed-unit.json",
+      "application_revision": "3433f60d42604f6e17421eea339e98b0a2ac16d4",
+      "passed": 137,
+      "failed": 0,
+      "ignored": 2,
+      "guard": "All existing guards retained; exact committed application source, no working blobs."
+    },
+    "closure_metadata_check": {
+      "application": "843add2a3826b64be47b3095b2c498f671e5cebb",
+      "passed": true,
+      "packages_touched": 0,
+      "tests_run": 0,
+      "reason": "Only the approved tracker close note changed; workspace build and provenance scan passed."
+    }
   },
   "limits": [
     "Cohorts can overlap and are not added as unique observations.",
@@ -215,5 +254,13 @@
     "General private power, POISSON/HYPGEOM helpers and QR rank remain open.",
     "ERF/ERFC/NORM.S.DIST and GAMMA/GAMMALN algorithm work was left to the other agents.",
     "No restricted implementation or excluded sibling checkout was read; native/software replay is not a browser/Windows sweep."
-  ]
+  ],
+  "publication": {
+    "application_kernel_commit": "3433f60d42604f6e17421eea339e98b0a2ac16d4",
+    "application_closure_commit": "843add2a3826b64be47b3095b2c498f671e5cebb",
+    "research_evidence_commit": "3c7e0957a4d2a0621b64b0fa791d9c8bc37aae53",
+    "closed_bead": "dc-j9k.15",
+    "scope": "84 original formula cells; parent dc-j9k retains product underflow, distributions and QR.",
+    "rule": "Published fixed measurements are distinct from incoming master improvements."
+  }
 }

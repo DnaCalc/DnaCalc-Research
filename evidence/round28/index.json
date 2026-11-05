@@ -1,7 +1,7 @@
 {
   "format": "dnacalc-round28-evidence-index/1",
   "complete": true,
-  "bytes": 8431485,
+  "bytes": 8439996,
   "artefacts": [
     {
       "path": "evidence/round28/BINOMDIST-admission-native.jsonl.gz",
@@ -1314,6 +1314,11 @@
       "sha256": "954fa055222ccdb422e1f32c862598eb9ffda5b5e8568a451747bd755d873a57"
     },
     {
+      "path": "evidence/round28/review/reviewer-final-report-draft-review.json",
+      "bytes": 1803,
+      "sha256": "7f6c478b7312b61983bdbbb06f1ef8e81ac71c809559a66ef611a2e9a662f12c"
+    },
+    {
       "path": "evidence/round28/review/reviewer-final-ubs-triage.json.gz",
       "bytes": 41617,
       "sha256": "6cf1558af1f95ecb3f834c51008376ceab4c56297d5db8a5c47dd092e830d95f"
@@ -1367,6 +1372,11 @@
       "path": "evidence/round28/review/reviewer-public-stages-ubs-triage.json.gz",
       "bytes": 37719,
       "sha256": "f87eb9bf27395d4fe17899b68a73b30d37fecf6e3c4fb4ca148c45b4b3d2c656"
+    },
+    {
+      "path": "evidence/round28/review/reviewer-pushed-unit-source-review.json",
+      "bytes": 1303,
+      "sha256": "e60598a50de62ad85dffa6146321df1519aa91266c95a8bd6bb7b646e99234b4"
     },
     {
       "path": "evidence/round28/review/reviewer-refinement-selection-coverage.json",
@@ -1969,6 +1979,11 @@
       "sha256": "43b0e714e66f5aa4a55e139f95a05f621bd0c19ba34b9396d5bf56ec4f2636f6"
     },
     {
+      "path": "evidence/round28/validation/core-close-check.log.gz",
+      "bytes": 403,
+      "sha256": "e740f25ae7fe345721fea970469450c7eaccba8be698a9ae07695afd19521a77"
+    },
+    {
       "path": "evidence/round28/validation/core-corpus-delta.json.gz",
       "bytes": 37740,
       "sha256": "4f2d607355f69ee8fd22e21b3a5f77efac9f832a7a7f3dfa5476198b0f8461e9"
@@ -1982,6 +1997,16 @@
       "path": "evidence/round28/validation/core-final-merged-check.log.gz",
       "bytes": 574,
       "sha256": "7b114e94ebdbc17133963b4fc4755f79b49d33d607175c102791baae12d80189"
+    },
+    {
+      "path": "evidence/round28/validation/core-final-push-check.log.gz",
+      "bytes": 528,
+      "sha256": "e2eb1488b1363045c2dc7f3eb42d082d6b7006c46df753f7c3805c5db5a84c26"
+    },
+    {
+      "path": "evidence/round28/validation/core-last-merged-check.log.gz",
+      "bytes": 528,
+      "sha256": "a21366c9933064259d25cdc2c66669a7b9df02f53bc341a094ca11078768f1cd"
     },
     {
       "path": "evidence/round28/validation/core-main-check-pins.log.gz",
@@ -2012,6 +2037,11 @@
       "path": "evidence/round28/validation/core-publication-merged-check.log.gz",
       "bytes": 533,
       "sha256": "b23f438f500c4afaf348a1417491e72a389a0edd50dcbe72909effc4a2be6784"
+    },
+    {
+      "path": "evidence/round28/validation/core-publish-check.log.gz",
+      "bytes": 528,
+      "sha256": "0130aa82458cfce4e067fcfc615e721d1e5422fe4748e42cc7d02f614f3959ea"
     },
     {
       "path": "evidence/round28/validation/core-soft-tests.log.gz",
@@ -2127,6 +2157,11 @@
       "path": "evidence/round28/validation/research-publication-rust-tests.log.gz",
       "bytes": 3202,
       "sha256": "f919cc10c36a9fad0b1e503a4fb3c4c326234b26899d973831de4ff82e2e9363"
+    },
+    {
+      "path": "evidence/round28/validation/research-pushed-unit-tests.log.gz",
+      "bytes": 3418,
+      "sha256": "e20fc7595cd15ac694add245d3a883eddb455a7d4776a0ee65c6306f489becf5"
     },
     {
       "path": "evidence/round28/validation/research-reproducible-publication-tests.log.gz",
@@ -2249,8 +2284,16 @@
     "python3 checker/geomean.py discrete-stages evidence/round28/poisson-seeds.json evidence/round28/poisson-service /tmp/r28-poisson-proof.json",
     "python3 checker/geomean.py discrete-stages evidence/round28/hypergeom-returns.json evidence/round28/hypergeom-service /tmp/r28-hypergeom-proof.json",
     "python3 -m unittest discover -s checker -p 'test_*.py'",
-    "DNA_RESEARCH_UNIT=round28-reproducible-publication-unit.json CARGO_TARGET_DIR=target/r28 cargo test --release --offline --locked",
+    "DNA_RESEARCH_UNIT=round28-pushed-unit.json CARGO_TARGET_DIR=target/r28 cargo test --release --offline --locked",
     "python3 racer/fingerprint.py map ../DnaCalc ../DnaCalc/docs/generated/numeric-fingerprints --cache evidence/round26/fingerprints --offline"
   ],
-  "limits": "Restore listed gzip reports before historical CLI analyses. Raw Excel replies remain immutable gzip files. Library/executable hashes in receipts identify the recorded runtime; binaries and bulk bank traces are not committed. Research unit guards require their recorded application sources. Each study retains its conditional premises; historical diagnostics are not product passes."
+  "limits": "Restore listed gzip reports before historical CLI analyses. Raw Excel replies remain immutable gzip files. Library/executable hashes in receipts identify the recorded runtime; binaries and bulk bank traces are not committed. Research unit guards require their recorded application sources. Each study retains its conditional premises; historical diagnostics are not product passes.",
+  "final_publication_unit": {
+    "path": "round28-pushed-unit.json",
+    "sha256": "a92422df10617610f01986a6b42de45bb3a5a8cc637952d6f0ead1f48dd4fbfe",
+    "application_revision": "3433f60d42604f6e17421eea339e98b0a2ac16d4",
+    "passed": 137,
+    "failed": 0,
+    "ignored": 2
+  }
 }

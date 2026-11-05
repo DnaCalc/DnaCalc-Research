@@ -1,0 +1,36 @@
+{
+  "complete": true,
+  "report_lines": 23,
+  "under30lines": true,
+  "required_wording_corrections": [
+    {
+      "line": 13,
+      "replace": "84 original dc-j9k.15 calls",
+      "with_text": "84 original dc-j9k.15 formula cells"
+    },
+    {
+      "line": 17,
+      "replace": "64 df intervals",
+      "with_text": "64 df observations yielding12 necessary intervals"
+    }
+  ],
+  "research_publication_verified": "3c7e0957a4d2a0621b64b0fa791d9c8bc37aae53",
+  "pushed_archive": {
+    "artifacts": 442,
+    "bytes": 8431485,
+    "canonical_producer_bindings": 72
+  },
+  "prospective_close_approval": {
+    "approved_after_main_push_and_green_final_check": true,
+    "scope": "All84original formula cells, not all possible GEOMEAN cases. The separate underflow fallback remains under dc-j9k.",
+    "native_software_scope": "31,744 original unit-factor calls,19,200 scale-window calls and6,016 adjusted reduced-root controls.",
+    "corpus": "Fixed54book baseline51,693\u219251,831/54,600,+138/-0; inclusive failures2,769.",
+    "bank": "Fixed3,769,062\u21923,769,119/3,910,007,+57/-0; failures140,888 including116unread. GEOMEAN1,224/1,225; existing minimum-normal product-underflow refusal remains counted.",
+    "required_actual_evidence": "Code083e1629 plus the actual pushed merge and final green check count/hash must be supplied before closure."
+  },
+  "limitations": "Draft correctly marks main push/close pending. Do not imply the full bank/corpus ran in software, or credit incoming merged gains as own R28 gains.",
+  "sha256": {
+    "/home/ubuntu/codex-runs/work-report-28.md": "5f03b31b587286b4afa834fffd9e2829db58dbba813279dda79bce6e48e74aca",
+    "/home/ubuntu/codex-runs/r28/reviewer-pushed-research-archive.json": "42e00d843a5ac7e0fd41f48f93f925d42bec85d63c80349e62c660cec54df5e5"
+  }
+}

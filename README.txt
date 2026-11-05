@@ -10,6 +10,8 @@ The fixed 54-workbook corpus improves 51693 to 51831 of 54600 formulas,
 gaining 138 and losing zero. The full bank improves 3769062 to 3769119 of
 3910007, gaining 57 and losing zero; only GEOMEAN outputs change. Inclusive
 failures remain 2769 corpus and 140888 bank, including 116 unread bank rows.
+The pass rates over all rows are 94.676% to 94.929% for the corpus and
+96.395% to 96.397% for the bank; refusals and unread rows remain failures.
 GEOMEAN matches 1224/1225 bank rows. Its remaining typed refusal occurs when
 three minimum-normal inputs underflow the product; that fallback stays open.
 
@@ -76,8 +78,11 @@ The reproducible publication unit freezes published application base c07d07e6
 plus the exact root blob archived in producers/application-core. That source
 epoch is not another evaluator. The unit accepts only that recorded source
 state across all guarded trees, even when its root change is now committed.
-Use round28-reproducible-publication-unit.json for the current reproduction;
-older units and their inherited revision notes remain historical snapshots.
+Use round28-pushed-unit.json for the final committed application source epoch;
+it retains every guard and needs no working blob. The older
+round28-reproducible-publication-unit.json and its archived root body reproduce
+the published-base-plus-root epoch. Earlier units and inherited revision notes
+remain historical snapshots. The exact frozen sources are required for each.
 The six normalization-only losses are all recovered in the stored-leaf route.
 
 R26 adds one consecutive-double fingerprint tool, racer/fingerprint.py, with
