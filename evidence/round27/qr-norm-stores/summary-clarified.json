@@ -1,0 +1,81 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      52,
+      9,
+      9,
+      0,
+      0
+    ],
+    [
+      52,
+      38,
+      9,
+      29,
+      0
+    ],
+    [
+      52,
+      9,
+      9,
+      0,
+      0
+    ],
+    [
+      52,
+      38,
+      9,
+      29,
+      0
+    ]
+  ],
+  "excluded": {},
+  "first_gains": [
+    null,
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 1,
+      "trace_index": 0
+    },
+    null,
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 3,
+      "trace_index": 0
+    }
+  ],
+  "first_losses": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "folds": false,
+  "groups": [
+    "strict",
+    "stored square products",
+    "stored norm additions",
+    "stored products and additions"
+  ],
+  "input_rows": 52,
+  "limits": "Four fixed programs: strict, stored square products, stored additions, stored products and additions. All other arithmetic, rank, pivot and leaves unchanged. Square-product precision has separate independent evidence; store placement remains conditional. No fitted parameter or selector.",
+  "norms": true,
+  "programs": 4,
+  "source": "Existing cleared Householder QR, IEEE754 and Intel SDM stored PC64 arithmetic. All reflector operations, rank, pivot/tie, logarithms and statistics consumers unchanged.",
+  "unobserved_questions_not_scored": 0,
+  "zero_loss_improvements": [
+    1,
+    3
+  ],
+  "metadata_correction": {
+    "original_summary_sha256": "abdfc5784e642d7bda2279df511adc7eaebf61e5095713b20dd008171c9744e6",
+    "reason": "The original frozen producer inherited64-group prose; programs=4, groups, all predictions and all counts were already correct. Only this explanatory label is clarified."
+  }
+}

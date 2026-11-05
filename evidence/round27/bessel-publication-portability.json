@@ -1,0 +1,2505 @@
+{
+  "complete": true,
+  "counts": {
+    "BESSELJ": {
+      "all": 124,
+      "native_exact": 124,
+      "software_exact": 124,
+      "changed_backend": 0
+    },
+    "BESSELY": {
+      "all": 124,
+      "native_exact": 123,
+      "software_exact": 123,
+      "changed_backend": 0
+    }
+  },
+  "records": [
+    {
+      "id": "r25-bessel-00002",
+      "args": [
+        "0x401fffffffffffff",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fc5f8a754204c00",
+      "native": "0x3fc5f8a754204c00",
+      "software": "0x3fc5f8a754204c00"
+    },
+    {
+      "id": "r25-bessel-00003",
+      "args": [
+        "0x401fffffffffffff",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fce08904b4fed86",
+      "native": "0x3fce08904b4fed86",
+      "software": "0x3fce08904b4fed86"
+    },
+    {
+      "id": "r25-bessel-00007",
+      "args": [
+        "0x4020000000000001",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fc5f8a755e1787e",
+      "native": "0x3fc5f8a755e1787e",
+      "software": "0x3fc5f8a755e1787e"
+    },
+    {
+      "id": "r25-bessel-00008",
+      "args": [
+        "0x4020000000000001",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fce084d8f616cd2",
+      "native": "0x3fce084d8f616cd2",
+      "software": "0x3fce084d8f616cd2"
+    },
+    {
+      "id": "r25-bessel-00012",
+      "args": [
+        "0x40246b9c347c91a9",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcff0d2eabd7d31",
+      "native": "0xbfcff0d2eabd7d31",
+      "software": "0xbfcff0d2eabd7d31"
+    },
+    {
+      "id": "r25-bessel-00013",
+      "args": [
+        "0x40246b9c347c91a9",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf82bbfe5f12dc86",
+      "native": "0xbf82bbfe5f12dc86",
+      "software": "0xbf82bbfe5f12dc86"
+    },
+    {
+      "id": "r25-bessel-00017",
+      "args": [
+        "0x40246b9c347c91aa",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcff0d2eabd7d30",
+      "native": "0xbfcff0d2eabd7d30",
+      "software": "0xbfcff0d2eabd7d30"
+    },
+    {
+      "id": "r25-bessel-00018",
+      "args": [
+        "0x40246b9c347c91aa",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf82bbfe5f12dd84",
+      "native": "0xbf82bbfe5f12dd84",
+      "software": "0xbf82bbfe5f12dd84"
+    },
+    {
+      "id": "r25-bessel-00022",
+      "args": [
+        "0x40246b9c347c91ab",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcff0d2eabd7d2f",
+      "native": "0xbfcff0d2eabd7d2f",
+      "software": "0xbfcff0d2eabd7d2f"
+    },
+    {
+      "id": "r25-bessel-00023",
+      "args": [
+        "0x40246b9c347c91ab",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf82bbfe5f12de82",
+      "native": "0xbf82bbfe5f12de82",
+      "software": "0xbf82bbfe5f12de82"
+    },
+    {
+      "id": "r25-bessel-00027",
+      "args": [
+        "0x40278fdb9f05174c",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf641f38065804b7",
+      "native": "0xbf641f38065804b7",
+      "software": "0xbf641f38065804b7"
+    },
+    {
+      "id": "r25-bessel-00028",
+      "args": [
+        "0x40278fdb9f05174c",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcdc79ed94e58e1",
+      "native": "0xbfcdc79ed94e58e1",
+      "software": "0xbfcdc79ed94e58e1"
+    },
+    {
+      "id": "r25-bessel-00032",
+      "args": [
+        "0x40278fdb9f05174d",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf641f38065800fe",
+      "native": "0xbf641f38065800fe",
+      "software": "0xbf641f38065800fe"
+    },
+    {
+      "id": "r25-bessel-00033",
+      "args": [
+        "0x40278fdb9f05174d",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcdc79ed94e58e1",
+      "native": "0xbfcdc79ed94e58e1",
+      "software": "0xbfcdc79ed94e58e1"
+    },
+    {
+      "id": "r25-bessel-00037",
+      "args": [
+        "0x40278fdb9f05174e",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf641f380657fd45",
+      "native": "0xbf641f380657fd45",
+      "software": "0xbf641f380657fd45"
+    },
+    {
+      "id": "r25-bessel-00038",
+      "args": [
+        "0x40278fdb9f05174e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcdc79ed94e58de",
+      "native": "0xbfcdc79ed94e58de",
+      "software": "0xbfcdc79ed94e58de"
+    },
+    {
+      "id": "r25-bessel-00042",
+      "args": [
+        "0x40278fdb9f06da53",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf641f37ffc91384",
+      "native": "0xbf641f37ffc91384",
+      "software": "0xbf641f37ffc91384"
+    },
+    {
+      "id": "r25-bessel-00043",
+      "args": [
+        "0x40278fdb9f06da53",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcdc79ed94c65be",
+      "native": "0xbfcdc79ed94c65be",
+      "software": "0xbfcdc79ed94c65be"
+    },
+    {
+      "id": "r25-bessel-00047",
+      "args": [
+        "0x40278fdb9f06da54",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf641f37ffc90fcb",
+      "native": "0xbf641f37ffc90fcb",
+      "software": "0xbf641f37ffc90fcb"
+    },
+    {
+      "id": "r25-bessel-00048",
+      "args": [
+        "0x40278fdb9f06da54",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcdc79ed94c65be",
+      "native": "0xbfcdc79ed94c65be",
+      "software": "0xbfcdc79ed94c65be"
+    },
+    {
+      "id": "r25-bessel-00052",
+      "args": [
+        "0x40278fdb9f06da55",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf641f37ffc90c13",
+      "native": "0xbf641f37ffc90c13",
+      "software": "0xbf641f37ffc90c13"
+    },
+    {
+      "id": "r25-bessel-00053",
+      "args": [
+        "0x40278fdb9f06da55",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcdc79ed94c65bd",
+      "native": "0xbfcdc79ed94c65bd",
+      "software": "0xbfcdc79ed94c65bd"
+    },
+    {
+      "id": "r25-bessel-00057",
+      "args": [
+        "0x402ab41b098d9cef",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcbf06209e7cdc8",
+      "native": "0x3fcbf06209e7cdc8",
+      "software": "0x3fcbf06209e7cdc8"
+    },
+    {
+      "id": "r25-bessel-00058",
+      "args": [
+        "0x402ab41b098d9cef",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f79150d1d69965a",
+      "native": "0x3f79150d1d69965a",
+      "software": "0x3f79150d1d69965a"
+    },
+    {
+      "id": "r25-bessel-00062",
+      "args": [
+        "0x402ab41b098d9cf0",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcbf06209e7cdc7",
+      "native": "0x3fcbf06209e7cdc7",
+      "software": "0x3fcbf06209e7cdc7"
+    },
+    {
+      "id": "r25-bessel-00063",
+      "args": [
+        "0x402ab41b098d9cf0",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f79150d1d699817",
+      "native": "0x3f79150d1d699817",
+      "software": "0x3f79150d1d699817"
+    },
+    {
+      "id": "r25-bessel-00067",
+      "args": [
+        "0x402ab41b098d9cf1",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcbf06209e7cdc7",
+      "native": "0x3fcbf06209e7cdc7",
+      "software": "0x3fcbf06209e7cdc7"
+    },
+    {
+      "id": "r25-bessel-00068",
+      "args": [
+        "0x402ab41b098d9cf1",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f79150d1d6999d5",
+      "native": "0x3f79150d1d6999d5",
+      "software": "0x3f79150d1d6999d5"
+    },
+    {
+      "id": "r25-bessel-00072",
+      "args": [
+        "0x402ab41b098f5ff6",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcbf06209e71d05",
+      "native": "0x3fcbf06209e71d05",
+      "software": "0x3fcbf06209e71d05"
+    },
+    {
+      "id": "r25-bessel-00073",
+      "args": [
+        "0x402ab41b098f5ff6",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f79150d207b8262",
+      "native": "0x3f79150d207b8262",
+      "software": "0x3f79150d207b8262"
+    },
+    {
+      "id": "r25-bessel-00077",
+      "args": [
+        "0x402ab41b098f5ff7",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcbf06209e71d06",
+      "native": "0x3fcbf06209e71d06",
+      "software": "0x3fcbf06209e71d06"
+    },
+    {
+      "id": "r25-bessel-00078",
+      "args": [
+        "0x402ab41b098f5ff7",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f79150d207b8420",
+      "native": "0x3f79150d207b8420",
+      "software": "0x3f79150d207b8420"
+    },
+    {
+      "id": "r25-bessel-00082",
+      "args": [
+        "0x402ab41b098f5ff8",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcbf06209e71d05",
+      "native": "0x3fcbf06209e71d05",
+      "software": "0x3fcbf06209e71d05"
+    },
+    {
+      "id": "r25-bessel-00083",
+      "args": [
+        "0x402ab41b098f5ff8",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f79150d207b85dd",
+      "native": "0x3f79150d207b85dd",
+      "software": "0x3f79150d207b85dd"
+    },
+    {
+      "id": "r25-bessel-00087",
+      "args": [
+        "0x402dd85a74162292",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5c45f4c3bbe726",
+      "native": "0x3f5c45f4c3bbe726",
+      "software": "0x3f5c45f4c3bbe726"
+    },
+    {
+      "id": "r25-bessel-00088",
+      "args": [
+        "0x402dd85a74162292",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fca73a8e4061fdb",
+      "native": "0x3fca73a8e4061fdb",
+      "software": "0x3fca73a8e4061fdb"
+    },
+    {
+      "id": "r25-bessel-00092",
+      "args": [
+        "0x402dd85a74162293",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5c45f4c3bbe08a",
+      "native": "0x3f5c45f4c3bbe08a",
+      "software": "0x3f5c45f4c3bbe08a"
+    },
+    {
+      "id": "r25-bessel-00093",
+      "args": [
+        "0x402dd85a74162293",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fca73a8e4061fd9",
+      "native": "0x3fca73a8e4061fd9",
+      "software": "0x3fca73a8e4061fd9"
+    },
+    {
+      "id": "r25-bessel-00097",
+      "args": [
+        "0x402dd85a74162294",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5c45f4c3bbd9ed",
+      "native": "0x3f5c45f4c3bbd9ed",
+      "software": "0x3f5c45f4c3bbd9ed"
+    },
+    {
+      "id": "r25-bessel-00098",
+      "args": [
+        "0x402dd85a74162294",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fca73a8e4061fd9",
+      "native": "0x3fca73a8e4061fd9",
+      "software": "0x3fca73a8e4061fd9"
+    },
+    {
+      "id": "r25-bessel-00102",
+      "args": [
+        "0x402dd85a7417e599",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5c45f4b815478d",
+      "native": "0x3f5c45f4b815478d",
+      "software": "0x3f5c45f4b815478d"
+    },
+    {
+      "id": "r25-bessel-00103",
+      "args": [
+        "0x402dd85a7417e599",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fca73a8e404c1ec",
+      "native": "0x3fca73a8e404c1ec",
+      "software": "0x3fca73a8e404c1ec"
+    },
+    {
+      "id": "r25-bessel-00107",
+      "args": [
+        "0x402dd85a7417e59a",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5c45f4b81540f3",
+      "native": "0x3f5c45f4b81540f3",
+      "software": "0x3f5c45f4b81540f3"
+    },
+    {
+      "id": "r25-bessel-00108",
+      "args": [
+        "0x402dd85a7417e59a",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fca73a8e404c1ec",
+      "native": "0x3fca73a8e404c1ec",
+      "software": "0x3fca73a8e404c1ec"
+    },
+    {
+      "id": "r25-bessel-00112",
+      "args": [
+        "0x402dd85a7417e59b",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5c45f4b8153a54",
+      "native": "0x3f5c45f4b8153a54",
+      "software": "0x3f5c45f4b8153a54"
+    },
+    {
+      "id": "r25-bessel-00113",
+      "args": [
+        "0x402dd85a7417e59b",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fca73a8e404c1eb",
+      "native": "0x3fca73a8e404c1eb",
+      "software": "0x3fca73a8e404c1eb"
+    },
+    {
+      "id": "r25-bessel-00117",
+      "args": [
+        "0x40307e4cef50359d",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc9241d689254d4",
+      "native": "0xbfc9241d689254d4",
+      "software": "0xbfc9241d689254d4"
+    },
+    {
+      "id": "r25-bessel-00118",
+      "args": [
+        "0x40307e4cef50359d",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf72473c6ffa326f",
+      "native": "0xbf72473c6ffa326f",
+      "software": "0xbf72473c6ffa326f"
+    },
+    {
+      "id": "r25-bessel-00122",
+      "args": [
+        "0x40307e4cef50359e",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc9241d689254d2",
+      "native": "0xbfc9241d689254d2",
+      "software": "0xbfc9241d689254d2"
+    },
+    {
+      "id": "r25-bessel-00123",
+      "args": [
+        "0x40307e4cef50359e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf72473c6ffa3592",
+      "native": "0xbf72473c6ffa3592",
+      "software": "0xbf72473c6ffa3592"
+    },
+    {
+      "id": "r25-bessel-00127",
+      "args": [
+        "0x40307e4cef50359f",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc9241d689254d2",
+      "native": "0xbfc9241d689254d2",
+      "software": "0xbfc9241d689254d2"
+    },
+    {
+      "id": "r25-bessel-00128",
+      "args": [
+        "0x40307e4cef50359f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf72473c6ffa38b6",
+      "native": "0xbf72473c6ffa38b6",
+      "software": "0xbf72473c6ffa38b6"
+    },
+    {
+      "id": "r25-bessel-00132",
+      "args": [
+        "0x4036c6cbc4605f60",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc5659016ca5c11",
+      "native": "0xbfc5659016ca5c11",
+      "software": "0xbfc5659016ca5c11"
+    },
+    {
+      "id": "r25-bessel-00133",
+      "args": [
+        "0x4036c6cbc4605f60",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf66898bb67bb7e4",
+      "native": "0xbf66898bb67bb7e4",
+      "software": "0xbf66898bb67bb7e4"
+    },
+    {
+      "id": "r25-bessel-00137",
+      "args": [
+        "0x4036c6cbc4605f61",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc5659016ca5c10",
+      "native": "0xbfc5659016ca5c10",
+      "software": "0xbfc5659016ca5c10"
+    },
+    {
+      "id": "r25-bessel-00138",
+      "args": [
+        "0x4036c6cbc4605f61",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf66898bb67bbd3d",
+      "native": "0xbf66898bb67bbd3d",
+      "software": "0xbf66898bb67bbd3d"
+    },
+    {
+      "id": "r25-bessel-00142",
+      "args": [
+        "0x4036c6cbc4605f62",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc5659016ca5c10",
+      "native": "0xbfc5659016ca5c10",
+      "software": "0xbfc5659016ca5c10"
+    },
+    {
+      "id": "r25-bessel-00143",
+      "args": [
+        "0x4036c6cbc4605f62",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf66898bb67bc295",
+      "native": "0xbf66898bb67bc295",
+      "software": "0xbf66898bb67bc295"
+    },
+    {
+      "id": "r25-bessel-00147",
+      "args": [
+        "0x403858eb79a4a231",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf4b2d36b9cbb894",
+      "native": "0xbf4b2d36b9cbb894",
+      "software": "0xbf4b2d36b9cbb894"
+    },
+    {
+      "id": "r25-bessel-00148",
+      "args": [
+        "0x403858eb79a4a231",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4b3aebc7f3e36",
+      "native": "0xbfc4b3aebc7f3e36",
+      "software": "0xbfc4b3aebc7f3e36"
+    },
+    {
+      "id": "r25-bessel-00152",
+      "args": [
+        "0x403858eb79a4a232",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf4b2d36b9cba3de",
+      "native": "0xbf4b2d36b9cba3de",
+      "software": "0xbf4b2d36b9cba3de"
+    },
+    {
+      "id": "r25-bessel-00153",
+      "args": [
+        "0x403858eb79a4a232",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4b3aebc7f3e35",
+      "native": "0xbfc4b3aebc7f3e35",
+      "software": "0xbfc4b3aebc7f3e35"
+    },
+    {
+      "id": "r25-bessel-00157",
+      "args": [
+        "0x403858eb79a4a233",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf4b2d36b9cb8f2a",
+      "native": "0xbf4b2d36b9cb8f2a",
+      "software": "0xbf4b2d36b9cb8f2a"
+    },
+    {
+      "id": "r25-bessel-00158",
+      "args": [
+        "0x403858eb79a4a233",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4b3aebc7f3e34",
+      "native": "0xbfc4b3aebc7f3e34",
+      "software": "0xbfc4b3aebc7f3e34"
+    },
+    {
+      "id": "r25-bessel-00162",
+      "args": [
+        "0x403858eb79a583b5",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf4b2d36a78f1f4b",
+      "native": "0xbf4b2d36a78f1f4b",
+      "software": "0xbf4b2d36a78f1f4b"
+    },
+    {
+      "id": "r25-bessel-00163",
+      "args": [
+        "0x403858eb79a583b5",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4b3aebc7e9666",
+      "native": "0xbfc4b3aebc7e9666",
+      "software": "0xbfc4b3aebc7e9666"
+    },
+    {
+      "id": "r25-bessel-00167",
+      "args": [
+        "0x403858eb79a583b6",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf4b2d36a78f0a97",
+      "native": "0xbf4b2d36a78f0a97",
+      "software": "0xbf4b2d36a78f0a97"
+    },
+    {
+      "id": "r25-bessel-00168",
+      "args": [
+        "0x403858eb79a583b6",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4b3aebc7e9665",
+      "native": "0xbfc4b3aebc7e9665",
+      "software": "0xbfc4b3aebc7e9665"
+    },
+    {
+      "id": "r25-bessel-00172",
+      "args": [
+        "0x403858eb79a583b7",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf4b2d36a78ef5e4",
+      "native": "0xbf4b2d36a78ef5e4",
+      "software": "0xbf4b2d36a78ef5e4"
+    },
+    {
+      "id": "r25-bessel-00173",
+      "args": [
+        "0x403858eb79a583b7",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4b3aebc7e9665",
+      "native": "0xbfc4b3aebc7e9665",
+      "software": "0xbfc4b3aebc7e9665"
+    },
+    {
+      "id": "r25-bessel-00177",
+      "args": [
+        "0x4039eb0b2ee9c686",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fc40f06ea65470e",
+      "native": "0x3fc40f06ea65470e",
+      "software": "0x3fc40f06ea65470e"
+    },
+    {
+      "id": "r25-bessel-00178",
+      "args": [
+        "0x4039eb0b2ee9c686",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f62919085f00c31",
+      "native": "0x3f62919085f00c31",
+      "software": "0x3f62919085f00c31"
+    },
+    {
+      "id": "r25-bessel-00182",
+      "args": [
+        "0x4039eb0b2ee9c687",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fc40f06ea65470e",
+      "native": "0x3fc40f06ea65470e",
+      "software": "0x3fc40f06ea65470e"
+    },
+    {
+      "id": "r25-bessel-00183",
+      "args": [
+        "0x4039eb0b2ee9c687",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f62919085f01135",
+      "native": "0x3f62919085f01135",
+      "software": "0x3f62919085f01135"
+    },
+    {
+      "id": "r25-bessel-00187",
+      "args": [
+        "0x4039eb0b2ee9c688",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fc40f06ea65470d",
+      "native": "0x3fc40f06ea65470d",
+      "software": "0x3fc40f06ea65470d"
+    },
+    {
+      "id": "r25-bessel-00188",
+      "args": [
+        "0x4039eb0b2ee9c688",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f62919085f01638",
+      "native": "0x3f62919085f01638",
+      "software": "0x3f62919085f01638"
+    },
+    {
+      "id": "r25-bessel-00192",
+      "args": [
+        "0x404986834196890d",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc963d816ee31f",
+      "native": "0x3fbc963d816ee31f",
+      "software": "0x3fbc963d816ee31f"
+    },
+    {
+      "id": "r25-bessel-00193",
+      "args": [
+        "0x404986834196890d",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f4ae05ad9ccd631",
+      "native": "0x3f4ae05ad9ccd631",
+      "software": "0x3f4ae05ad9ccd631"
+    },
+    {
+      "id": "r25-bessel-00197",
+      "args": [
+        "0x404986834196890e",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc963d816ee31f",
+      "native": "0x3fbc963d816ee31f",
+      "software": "0x3fbc963d816ee31f"
+    },
+    {
+      "id": "r25-bessel-00198",
+      "args": [
+        "0x404986834196890e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f4ae05ad9cd0f5e",
+      "native": "0x3f4ae05ad9cd0f5e",
+      "software": "0x3f4ae05ad9cd0f5e"
+    },
+    {
+      "id": "r25-bessel-00202",
+      "args": [
+        "0x404986834196890f",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc963d816ee31e",
+      "native": "0x3fbc963d816ee31e",
+      "software": "0x3fbc963d816ee31e"
+    },
+    {
+      "id": "r25-bessel-00203",
+      "args": [
+        "0x404986834196890f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f4ae05ad9cd0f5d",
+      "native": "0x3f4ae05ad9cd0f5d",
+      "software": "0x3f4ae05ad9cd0f5d"
+    },
+    {
+      "id": "r25-bessel-00207",
+      "args": [
+        "0x404a4f931c38aa76",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f311e97cda035e1",
+      "native": "0x3f311e97cda035e1",
+      "software": "0x3f311e97cda035e1"
+    },
+    {
+      "id": "r25-bessel-00208",
+      "args": [
+        "0x404a4f931c38aa76",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbc28af3e0eb857",
+      "native": "0x3fbc28af3e0eb857",
+      "software": "0x3fbc28af3e0eb857"
+    },
+    {
+      "id": "r25-bessel-00212",
+      "args": [
+        "0x404a4f931c38aa77",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f311e97cd9ffd8f",
+      "native": "0x3f311e97cd9ffd8f",
+      "software": "0x3f311e97cd9ffd8f"
+    },
+    {
+      "id": "r25-bessel-00213",
+      "args": [
+        "0x404a4f931c38aa77",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbc28af3e0eb856",
+      "native": "0x3fbc28af3e0eb856",
+      "software": "0x3fbc28af3e0eb856"
+    },
+    {
+      "id": "r25-bessel-00217",
+      "args": [
+        "0x404a4f931c38aa78",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f311e97cd9fc53e",
+      "native": "0x3f311e97cd9fc53e",
+      "software": "0x3f311e97cd9fc53e"
+    },
+    {
+      "id": "r25-bessel-00218",
+      "args": [
+        "0x404a4f931c38aa78",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbc28af3e0eb856",
+      "native": "0x3fbc28af3e0eb856",
+      "software": "0x3fbc28af3e0eb856"
+    },
+    {
+      "id": "r25-bessel-00222",
+      "args": [
+        "0x404a4f931c391b37",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f311e97b4d22732",
+      "native": "0x3f311e97b4d22732",
+      "software": "0x3f311e97b4d22732"
+    },
+    {
+      "id": "r25-bessel-00223",
+      "args": [
+        "0x404a4f931c391b37",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbc28af3e0e4ec0",
+      "native": "0x3fbc28af3e0e4ec0",
+      "software": "0x3fbc28af3e0e4ec0"
+    },
+    {
+      "id": "r25-bessel-00227",
+      "args": [
+        "0x404a4f931c391b38",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f311e97b4d1eee0",
+      "native": "0x3f311e97b4d1eee0",
+      "software": "0x3f311e97b4d1eee0"
+    },
+    {
+      "id": "r25-bessel-00228",
+      "args": [
+        "0x404a4f931c391b38",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbc28af3e0e4ebe",
+      "native": "0x3fbc28af3e0e4ebe",
+      "software": "0x3fbc28af3e0e4ebe"
+    },
+    {
+      "id": "r25-bessel-00232",
+      "args": [
+        "0x404a4f931c391b39",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f311e97b4d1b68f",
+      "native": "0x3f311e97b4d1b68f",
+      "software": "0x3f311e97b4d1b68f"
+    },
+    {
+      "id": "r25-bessel-00233",
+      "args": [
+        "0x404a4f931c391b39",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbc28af3e0e4ebd",
+      "native": "0x3fbc28af3e0e4ebd",
+      "software": "0x3fbc28af3e0e4ebd"
+    },
+    {
+      "id": "r25-bessel-00237",
+      "args": [
+        "0x404b18a2f6db3ca1",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfbbbef8e0d80d8b",
+      "native": "0xbfbbbef8e0d80d8b",
+      "software": "0xbfbbbef8e0d80d8b"
+    },
+    {
+      "id": "r25-bessel-00238",
+      "args": [
+        "0x404b18a2f6db3ca1",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf4892e4e052ef96",
+      "native": "0xbf4892e4e052ef96",
+      "software": "0xbf4892e4e052ef96"
+    },
+    {
+      "id": "r25-bessel-00242",
+      "args": [
+        "0x404b18a2f6db3ca2",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfbbbef8e0d80d8a",
+      "native": "0xbfbbbef8e0d80d8a",
+      "software": "0xbfbbbef8e0d80d8a"
+    },
+    {
+      "id": "r25-bessel-00243",
+      "args": [
+        "0x404b18a2f6db3ca2",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf4892e4e0532714",
+      "native": "0xbf4892e4e0532714",
+      "software": "0xbf4892e4e0532714"
+    },
+    {
+      "id": "r25-bessel-00247",
+      "args": [
+        "0x404b18a2f6db3ca3",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfbbbef8e0d80d8b",
+      "native": "0xbfbbbef8e0d80d8b",
+      "software": "0xbfbbbef8e0d80d8b"
+    },
+    {
+      "id": "r25-bessel-00248",
+      "args": [
+        "0x404b18a2f6db3ca3",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf4892e4e0532714",
+      "native": "0xbf4892e4e0532714",
+      "software": "0xbf4892e4e0532714"
+    },
+    {
+      "id": "r25-bessel-00252",
+      "args": [
+        "0x40693b1d4f98c414",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3facc103fbd1582c",
+      "native": "0x3facc103fbd1582c",
+      "software": "0x3facc103fbd1582c"
+    },
+    {
+      "id": "r25-bessel-00253",
+      "args": [
+        "0x40693b1d4f98c414",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b59dd7eb7db96",
+      "native": "0x3f1b59dd7eb7db96",
+      "software": "0x3f1b59dd7eb7db96"
+    },
+    {
+      "id": "r25-bessel-00257",
+      "args": [
+        "0x40693b1d4f98c415",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3facc103fbd1582c",
+      "native": "0x3facc103fbd1582c",
+      "software": "0x3facc103fbd1582c"
+    },
+    {
+      "id": "r25-bessel-00258",
+      "args": [
+        "0x40693b1d4f98c415",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b59dd7eb9a7a7",
+      "native": "0x3f1b59dd7eb9a7a7",
+      "software": "0x3f1b59dd7eb9a7a7"
+    },
+    {
+      "id": "r25-bessel-00262",
+      "args": [
+        "0x40693b1d4f98c416",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3facc103fbd1582b",
+      "native": "0x3facc103fbd1582b",
+      "software": "0x3facc103fbd1582b"
+    },
+    {
+      "id": "r25-bessel-00263",
+      "args": [
+        "0x40693b1d4f98c416",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b59dd7ebb73b6",
+      "native": "0x3f1b59dd7ebb73b6",
+      "software": "0x3f1b59dd7ebb73b6"
+    },
+    {
+      "id": "r25-bessel-00267",
+      "args": [
+        "0x40696d6146414c6e",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f0205e98ebdec70",
+      "native": "0x3f0205e98ebdec70",
+      "software": "0x3f0205e98ebdec70"
+    },
+    {
+      "id": "r25-bessel-00268",
+      "args": [
+        "0x40696d6146414c6e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3faca492af93a191",
+      "native": "0x3faca492af93a191",
+      "software": "0x3faca492af93a191"
+    },
+    {
+      "id": "r25-bessel-00272",
+      "args": [
+        "0x40696d6146414c6f",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f0205e98eba57dd",
+      "native": "0x3f0205e98eba57dd",
+      "software": "0x3f0205e98eba57dd"
+    },
+    {
+      "id": "r25-bessel-00273",
+      "args": [
+        "0x40696d6146414c6f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3faca492af93a190",
+      "native": "0x3faca492af93a190",
+      "software": "0x3faca492af93a190"
+    },
+    {
+      "id": "r25-bessel-00277",
+      "args": [
+        "0x40696d6146414c70",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f0205e98eb6c34a",
+      "native": "0x3f0205e98eb6c34a",
+      "software": "0x3f0205e98eb6c34a"
+    },
+    {
+      "id": "r25-bessel-00278",
+      "args": [
+        "0x40696d6146414c70",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3faca492af93a18f",
+      "native": "0x3faca492af93a18f",
+      "software": "0x3faca492af93a18f"
+    },
+    {
+      "id": "r25-bessel-00282",
+      "args": [
+        "0x40696d614641689f",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f0205e929ce7b06",
+      "native": "0x3f0205e929ce7b06",
+      "software": "0x3f0205e929ce7b06"
+    },
+    {
+      "id": "r25-bessel-00283",
+      "args": [
+        "0x40696d614641689f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3faca492af9385c8",
+      "native": "0x3faca492af9385c8",
+      "software": "0x3faca492af9385c8"
+    },
+    {
+      "id": "r25-bessel-00287",
+      "args": [
+        "0x40696d61464168a0",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f0205e929cae674",
+      "native": "0x3f0205e929cae674",
+      "software": "0x3f0205e929cae674"
+    },
+    {
+      "id": "r25-bessel-00288",
+      "args": [
+        "0x40696d61464168a0",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3faca492af9385c7",
+      "native": "0x3faca492af9385c7",
+      "software": "0x3faca492af9385c7"
+    },
+    {
+      "id": "r25-bessel-00292",
+      "args": [
+        "0x40696d61464168a1",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f0205e929c751e1",
+      "native": "0x3f0205e929c751e1",
+      "software": "0x3f0205e929c751e1"
+    },
+    {
+      "id": "r25-bessel-00293",
+      "args": [
+        "0x40696d61464168a1",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3faca492af9385c6",
+      "native": "0x3faca492af9385c6",
+      "software": "0x3faca492af9385c6"
+    },
+    {
+      "id": "r25-bessel-00297",
+      "args": [
+        "0x40699fa53ce9f0f9",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfac886454059140",
+      "native": "0xbfac886454059140",
+      "software": "0xbfac886454059140"
+    },
+    {
+      "id": "r25-bessel-00298",
+      "args": [
+        "0x40699fa53ce9f0f9",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf1ab985f37a8fee",
+      "native": "0xbf1ab985f37a8fee",
+      "software": "0xbf1ab985f37a8fee"
+    },
+    {
+      "id": "r25-bessel-00302",
+      "args": [
+        "0x40699fa53ce9f0fa",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfac886454059140",
+      "native": "0xbfac886454059140",
+      "software": "0xbfac886454059140"
+    },
+    {
+      "id": "r25-bessel-00303",
+      "args": [
+        "0x40699fa53ce9f0fa",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf1ab985f37c5874",
+      "native": "0xbf1ab985f37c5874",
+      "software": "0xbf1ab985f37c5874"
+    },
+    {
+      "id": "r25-bessel-00307",
+      "args": [
+        "0x40699fa53ce9f0fb",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfac886454059140",
+      "native": "0xbfac886454059140",
+      "software": "0xbfac886454059140"
+    },
+    {
+      "id": "r25-bessel-00308",
+      "args": [
+        "0x40699fa53ce9f0fb",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf1ab985f37e20fa",
+      "native": "0xbf1ab985f37e20fa",
+      "software": "0xbf1ab985f37e20fa"
+    },
+    {
+      "id": "r25-bessel-00004",
+      "args": [
+        "0x401fffffffffffff",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcc9c5a10ee6a8c",
+      "native": "0x3fcc9c5a10ee6acf",
+      "software": "0x3fcc9c5a10ee6acf"
+    },
+    {
+      "id": "r25-bessel-00005",
+      "args": [
+        "0x401fffffffffffff",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc43b535a4aeb64",
+      "native": "0xbfc43b535a4aeb64",
+      "software": "0xbfc43b535a4aeb64"
+    },
+    {
+      "id": "r25-bessel-00009",
+      "args": [
+        "0x4020000000000001",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fcc9c5a2723ea97",
+      "native": "0x3fcc9c5a2723ea97",
+      "software": "0x3fcc9c5a2723ea97"
+    },
+    {
+      "id": "r25-bessel-00010",
+      "args": [
+        "0x4020000000000001",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc43b53412fb197",
+      "native": "0xbfc43b53412fb197",
+      "software": "0xbfc43b53412fb197"
+    },
+    {
+      "id": "r25-bessel-00014",
+      "args": [
+        "0x40246b9c347c91a9",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f68e8085323a27c",
+      "native": "0x3f68e8085323a27c",
+      "software": "0x3f68e8085323a27c"
+    },
+    {
+      "id": "r25-bessel-00015",
+      "args": [
+        "0x40246b9c347c91a9",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fcfff5b12c9aff8",
+      "native": "0x3fcfff5b12c9aff8",
+      "software": "0x3fcfff5b12c9aff8"
+    },
+    {
+      "id": "r25-bessel-00019",
+      "args": [
+        "0x40246b9c347c91aa",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f68e80853239e7c",
+      "native": "0x3f68e80853239e7c",
+      "software": "0x3f68e80853239e7c"
+    },
+    {
+      "id": "r25-bessel-00020",
+      "args": [
+        "0x40246b9c347c91aa",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fcfff5b12c9aff7",
+      "native": "0x3fcfff5b12c9aff7",
+      "software": "0x3fcfff5b12c9aff7"
+    },
+    {
+      "id": "r25-bessel-00024",
+      "args": [
+        "0x40246b9c347c91ab",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f68e80853239a7c",
+      "native": "0x3f68e80853239a7c",
+      "software": "0x3f68e80853239a7c"
+    },
+    {
+      "id": "r25-bessel-00025",
+      "args": [
+        "0x40246b9c347c91ab",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fcfff5b12c9aff6",
+      "native": "0x3fcfff5b12c9aff6",
+      "software": "0x3fcfff5b12c9aff6"
+    },
+    {
+      "id": "r25-bessel-00029",
+      "args": [
+        "0x40278fdb9f05174c",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcdbd7488d9844f",
+      "native": "0xbfcdbd7488d9844f",
+      "software": "0xbfcdbd7488d9844f"
+    },
+    {
+      "id": "r25-bessel-00030",
+      "args": [
+        "0x40278fdb9f05174c",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf7e3fe305b17808",
+      "native": "0xbf7e3fe305b17808",
+      "software": "0xbf7e3fe305b17808"
+    },
+    {
+      "id": "r25-bessel-00034",
+      "args": [
+        "0x40278fdb9f05174d",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcdbd7488d9844f",
+      "native": "0xbfcdbd7488d9844f",
+      "software": "0xbfcdbd7488d9844f"
+    },
+    {
+      "id": "r25-bessel-00035",
+      "args": [
+        "0x40278fdb9f05174d",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf7e3fe305b179e3",
+      "native": "0xbf7e3fe305b179e3",
+      "software": "0xbf7e3fe305b179e3"
+    },
+    {
+      "id": "r25-bessel-00039",
+      "args": [
+        "0x40278fdb9f05174e",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcdbd7488d9844e",
+      "native": "0xbfcdbd7488d9844e",
+      "software": "0xbfcdbd7488d9844e"
+    },
+    {
+      "id": "r25-bessel-00040",
+      "args": [
+        "0x40278fdb9f05174e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf7e3fe305b17bbc",
+      "native": "0xbf7e3fe305b17bbc",
+      "software": "0xbf7e3fe305b17bbc"
+    },
+    {
+      "id": "r25-bessel-00044",
+      "args": [
+        "0x40278fdb9f06da53",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcdbd7488d8af21",
+      "native": "0xbfcdbd7488d8af21",
+      "software": "0xbfcdbd7488d8af21"
+    },
+    {
+      "id": "r25-bessel-00045",
+      "args": [
+        "0x40278fdb9f06da53",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf7e3fe308f58e41",
+      "native": "0xbf7e3fe308f58e41",
+      "software": "0xbf7e3fe308f58e41"
+    },
+    {
+      "id": "r25-bessel-00049",
+      "args": [
+        "0x40278fdb9f06da54",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcdbd7488d8af22",
+      "native": "0xbfcdbd7488d8af22",
+      "software": "0xbfcdbd7488d8af22"
+    },
+    {
+      "id": "r25-bessel-00050",
+      "args": [
+        "0x40278fdb9f06da54",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf7e3fe308f5901e",
+      "native": "0xbf7e3fe308f5901e",
+      "software": "0xbf7e3fe308f5901e"
+    },
+    {
+      "id": "r25-bessel-00054",
+      "args": [
+        "0x40278fdb9f06da55",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfcdbd7488d8af21",
+      "native": "0xbfcdbd7488d8af21",
+      "software": "0xbfcdbd7488d8af21"
+    },
+    {
+      "id": "r25-bessel-00055",
+      "args": [
+        "0x40278fdb9f06da55",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf7e3fe308f591f9",
+      "native": "0xbf7e3fe308f591f9",
+      "software": "0xbf7e3fe308f591f9"
+    },
+    {
+      "id": "r25-bessel-00059",
+      "args": [
+        "0x402ab41b098d9cef",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf60b15329482f2b",
+      "native": "0xbf60b15329482f2b",
+      "software": "0xbf60b15329482f2b"
+    },
+    {
+      "id": "r25-bessel-00060",
+      "args": [
+        "0x402ab41b098d9cef",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcbf7da368e0206",
+      "native": "0xbfcbf7da368e0206",
+      "software": "0xbfcbf7da368e0206"
+    },
+    {
+      "id": "r25-bessel-00064",
+      "args": [
+        "0x402ab41b098d9cf0",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf60b15329482bab",
+      "native": "0xbf60b15329482bab",
+      "software": "0xbf60b15329482bab"
+    },
+    {
+      "id": "r25-bessel-00065",
+      "args": [
+        "0x402ab41b098d9cf0",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcbf7da368e0205",
+      "native": "0xbfcbf7da368e0205",
+      "software": "0xbfcbf7da368e0205"
+    },
+    {
+      "id": "r25-bessel-00069",
+      "args": [
+        "0x402ab41b098d9cf1",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf60b1532948282c",
+      "native": "0xbf60b1532948282c",
+      "software": "0xbf60b1532948282c"
+    },
+    {
+      "id": "r25-bessel-00070",
+      "args": [
+        "0x402ab41b098d9cf1",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcbf7da368e0205",
+      "native": "0xbfcbf7da368e0205",
+      "software": "0xbfcbf7da368e0205"
+    },
+    {
+      "id": "r25-bessel-00074",
+      "args": [
+        "0x402ab41b098f5ff6",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf60b153231f6204",
+      "native": "0xbf60b153231f6204",
+      "software": "0xbf60b153231f6204"
+    },
+    {
+      "id": "r25-bessel-00075",
+      "args": [
+        "0x402ab41b098f5ff6",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcbf7da368c6474",
+      "native": "0xbfcbf7da368c6474",
+      "software": "0xbfcbf7da368c6474"
+    },
+    {
+      "id": "r25-bessel-00079",
+      "args": [
+        "0x402ab41b098f5ff7",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf60b153231f5e85",
+      "native": "0xbf60b153231f5e85",
+      "software": "0xbf60b153231f5e85"
+    },
+    {
+      "id": "r25-bessel-00080",
+      "args": [
+        "0x402ab41b098f5ff7",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcbf7da368c6474",
+      "native": "0xbfcbf7da368c6474",
+      "software": "0xbfcbf7da368c6474"
+    },
+    {
+      "id": "r25-bessel-00084",
+      "args": [
+        "0x402ab41b098f5ff8",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf60b153231f5b05",
+      "native": "0xbf60b153231f5b05",
+      "software": "0xbf60b153231f5b05"
+    },
+    {
+      "id": "r25-bessel-00085",
+      "args": [
+        "0x402ab41b098f5ff8",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfcbf7da368c6473",
+      "native": "0xbfcbf7da368c6473",
+      "software": "0xbfcbf7da368c6473"
+    },
+    {
+      "id": "r25-bessel-00089",
+      "args": [
+        "0x402dd85a74162292",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fca6e004965ef4d",
+      "native": "0x3fca6e004965ef4d",
+      "software": "0x3fca6e004965ef4d"
+    },
+    {
+      "id": "r25-bessel-00090",
+      "args": [
+        "0x402dd85a74162292",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f753bfd9a7f34ed",
+      "native": "0x3f753bfd9a7f34ed",
+      "software": "0x3f753bfd9a7f34ed"
+    },
+    {
+      "id": "r25-bessel-00094",
+      "args": [
+        "0x402dd85a74162293",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fca6e004965ef4d",
+      "native": "0x3fca6e004965ef4d",
+      "software": "0x3fca6e004965ef4d"
+    },
+    {
+      "id": "r25-bessel-00095",
+      "args": [
+        "0x402dd85a74162293",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f753bfd9a7f3694",
+      "native": "0x3f753bfd9a7f3694",
+      "software": "0x3f753bfd9a7f3694"
+    },
+    {
+      "id": "r25-bessel-00099",
+      "args": [
+        "0x402dd85a74162294",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fca6e004965ef4d",
+      "native": "0x3fca6e004965ef4d",
+      "software": "0x3fca6e004965ef4d"
+    },
+    {
+      "id": "r25-bessel-00100",
+      "args": [
+        "0x402dd85a74162294",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f753bfd9a7f383a",
+      "native": "0x3f753bfd9a7f383a",
+      "software": "0x3f753bfd9a7f383a"
+    },
+    {
+      "id": "r25-bessel-00104",
+      "args": [
+        "0x402dd85a7417e599",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fca6e00496559a9",
+      "native": "0x3fca6e00496559a9",
+      "software": "0x3fca6e00496559a9"
+    },
+    {
+      "id": "r25-bessel-00105",
+      "args": [
+        "0x402dd85a7417e599",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f753bfd9d66fc3f",
+      "native": "0x3f753bfd9d66fc3f",
+      "software": "0x3f753bfd9d66fc3f"
+    },
+    {
+      "id": "r25-bessel-00109",
+      "args": [
+        "0x402dd85a7417e59a",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fca6e00496559a9",
+      "native": "0x3fca6e00496559a9",
+      "software": "0x3fca6e00496559a9"
+    },
+    {
+      "id": "r25-bessel-00110",
+      "args": [
+        "0x402dd85a7417e59a",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f753bfd9d66fde7",
+      "native": "0x3f753bfd9d66fde7",
+      "software": "0x3f753bfd9d66fde7"
+    },
+    {
+      "id": "r25-bessel-00114",
+      "args": [
+        "0x402dd85a7417e59b",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fca6e00496559a8",
+      "native": "0x3fca6e00496559a8",
+      "software": "0x3fca6e00496559a8"
+    },
+    {
+      "id": "r25-bessel-00115",
+      "args": [
+        "0x402dd85a7417e59b",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f753bfd9d66ff8c",
+      "native": "0x3f753bfd9d66ff8c",
+      "software": "0x3f753bfd9d66ff8c"
+    },
+    {
+      "id": "r25-bessel-00119",
+      "args": [
+        "0x40307e4cef50359d",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5857e535974dbf",
+      "native": "0x3f5857e535974dbf",
+      "software": "0x3f5857e535974dbf"
+    },
+    {
+      "id": "r25-bessel-00120",
+      "args": [
+        "0x40307e4cef50359d",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fc92887bec9cfd9",
+      "native": "0x3fc92887bec9cfd9",
+      "software": "0x3fc92887bec9cfd9"
+    },
+    {
+      "id": "r25-bessel-00124",
+      "args": [
+        "0x40307e4cef50359e",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5857e53597412a",
+      "native": "0x3f5857e53597412a",
+      "software": "0x3f5857e53597412a"
+    },
+    {
+      "id": "r25-bessel-00125",
+      "args": [
+        "0x40307e4cef50359e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fc92887bec9cfd5",
+      "native": "0x3fc92887bec9cfd5",
+      "software": "0x3fc92887bec9cfd5"
+    },
+    {
+      "id": "r25-bessel-00129",
+      "args": [
+        "0x40307e4cef50359f",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f5857e535973496",
+      "native": "0x3f5857e535973496",
+      "software": "0x3f5857e535973496"
+    },
+    {
+      "id": "r25-bessel-00130",
+      "args": [
+        "0x40307e4cef50359f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fc92887bec9cfd5",
+      "native": "0x3fc92887bec9cfd5",
+      "software": "0x3fc92887bec9cfd5"
+    },
+    {
+      "id": "r25-bessel-00134",
+      "args": [
+        "0x4036c6cbc4605f60",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f4e081f27555146",
+      "native": "0x3f4e081f27555146",
+      "software": "0x3f4e081f27555146"
+    },
+    {
+      "id": "r25-bessel-00135",
+      "args": [
+        "0x4036c6cbc4605f60",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fc56789a7048a49",
+      "native": "0x3fc56789a7048a49",
+      "software": "0x3fc56789a7048a49"
+    },
+    {
+      "id": "r25-bessel-00139",
+      "args": [
+        "0x4036c6cbc4605f61",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f4e081f27553bde",
+      "native": "0x3f4e081f27553bde",
+      "software": "0x3f4e081f27553bde"
+    },
+    {
+      "id": "r25-bessel-00140",
+      "args": [
+        "0x4036c6cbc4605f61",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fc56789a7048a48",
+      "native": "0x3fc56789a7048a48",
+      "software": "0x3fc56789a7048a48"
+    },
+    {
+      "id": "r25-bessel-00144",
+      "args": [
+        "0x4036c6cbc4605f62",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f4e081f27552677",
+      "native": "0x3f4e081f27552677",
+      "software": "0x3f4e081f27552677"
+    },
+    {
+      "id": "r25-bessel-00145",
+      "args": [
+        "0x4036c6cbc4605f62",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fc56789a7048a48",
+      "native": "0x3fc56789a7048a48",
+      "software": "0x3fc56789a7048a48"
+    },
+    {
+      "id": "r25-bessel-00149",
+      "args": [
+        "0x403858eb79a4a231",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc4b202bcd09e41",
+      "native": "0xbfc4b202bcd09e41",
+      "software": "0xbfc4b202bcd09e41"
+    },
+    {
+      "id": "r25-bessel-00150",
+      "args": [
+        "0x403858eb79a4a231",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf6464a5daaf0b97",
+      "native": "0xbf6464a5daaf0b97",
+      "software": "0xbf6464a5daaf0b97"
+    },
+    {
+      "id": "r25-bessel-00154",
+      "args": [
+        "0x403858eb79a4a232",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc4b202bcd09e40",
+      "native": "0xbfc4b202bcd09e40",
+      "software": "0xbfc4b202bcd09e40"
+    },
+    {
+      "id": "r25-bessel-00155",
+      "args": [
+        "0x403858eb79a4a232",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf6464a5daaf10c2",
+      "native": "0xbf6464a5daaf10c2",
+      "software": "0xbf6464a5daaf10c2"
+    },
+    {
+      "id": "r25-bessel-00159",
+      "args": [
+        "0x403858eb79a4a233",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc4b202bcd09e40",
+      "native": "0xbfc4b202bcd09e40",
+      "software": "0xbfc4b202bcd09e40"
+    },
+    {
+      "id": "r25-bessel-00160",
+      "args": [
+        "0x403858eb79a4a233",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf6464a5daaf15ee",
+      "native": "0xbf6464a5daaf15ee",
+      "software": "0xbf6464a5daaf15ee"
+    },
+    {
+      "id": "r25-bessel-00164",
+      "args": [
+        "0x403858eb79a583b5",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc4b202bcd05665",
+      "native": "0xbfc4b202bcd05665",
+      "software": "0xbfc4b202bcd05665"
+    },
+    {
+      "id": "r25-bessel-00165",
+      "args": [
+        "0x403858eb79a583b5",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf6464a5df3d16bf",
+      "native": "0xbf6464a5df3d16bf",
+      "software": "0xbf6464a5df3d16bf"
+    },
+    {
+      "id": "r25-bessel-00169",
+      "args": [
+        "0x403858eb79a583b6",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc4b202bcd05664",
+      "native": "0xbfc4b202bcd05664",
+      "software": "0xbfc4b202bcd05664"
+    },
+    {
+      "id": "r25-bessel-00170",
+      "args": [
+        "0x403858eb79a583b6",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf6464a5df3d1beb",
+      "native": "0xbf6464a5df3d1beb",
+      "software": "0xbf6464a5df3d1beb"
+    },
+    {
+      "id": "r25-bessel-00174",
+      "args": [
+        "0x403858eb79a583b7",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbfc4b202bcd05664",
+      "native": "0xbfc4b202bcd05664",
+      "software": "0xbfc4b202bcd05664"
+    },
+    {
+      "id": "r25-bessel-00175",
+      "args": [
+        "0x403858eb79a583b7",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbf6464a5df3d2117",
+      "native": "0xbf6464a5df3d2117",
+      "software": "0xbf6464a5df3d2117"
+    },
+    {
+      "id": "r25-bessel-00179",
+      "args": [
+        "0x4039eb0b2ee9c686",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf48bf26abd569eb",
+      "native": "0xbf48bf26abd569eb",
+      "software": "0xbf48bf26abd569eb"
+    },
+    {
+      "id": "r25-bessel-00180",
+      "args": [
+        "0x4039eb0b2ee9c686",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4107522d6a96d",
+      "native": "0xbfc4107522d6a96d",
+      "software": "0xbfc4107522d6a96d"
+    },
+    {
+      "id": "r25-bessel-00184",
+      "args": [
+        "0x4039eb0b2ee9c687",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf48bf26abd555dc",
+      "native": "0xbf48bf26abd555dc",
+      "software": "0xbf48bf26abd555dc"
+    },
+    {
+      "id": "r25-bessel-00185",
+      "args": [
+        "0x4039eb0b2ee9c687",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4107522d6a96d",
+      "native": "0xbfc4107522d6a96d",
+      "software": "0xbfc4107522d6a96d"
+    },
+    {
+      "id": "r25-bessel-00189",
+      "args": [
+        "0x4039eb0b2ee9c688",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf48bf26abd541cb",
+      "native": "0xbf48bf26abd541cb",
+      "software": "0xbf48bf26abd541cb"
+    },
+    {
+      "id": "r25-bessel-00190",
+      "args": [
+        "0x4039eb0b2ee9c688",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfc4107522d6a96c",
+      "native": "0xbfc4107522d6a96c",
+      "software": "0xbfc4107522d6a96c"
+    },
+    {
+      "id": "r25-bessel-00194",
+      "args": [
+        "0x404986834196890d",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf31ea5aa30fa997",
+      "native": "0xbf31ea5aa30fa997",
+      "software": "0xbf31ea5aa30fa997"
+    },
+    {
+      "id": "r25-bessel-00195",
+      "args": [
+        "0x404986834196890d",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfbc96c43928322b",
+      "native": "0xbfbc96c43928322b",
+      "software": "0xbfbc96c43928322b"
+    },
+    {
+      "id": "r25-bessel-00199",
+      "args": [
+        "0x404986834196890e",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf31ea5aa30f706a",
+      "native": "0xbf31ea5aa30f706a",
+      "software": "0xbf31ea5aa30f706a"
+    },
+    {
+      "id": "r25-bessel-00200",
+      "args": [
+        "0x404986834196890e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfbc96c439283229",
+      "native": "0xbfbc96c439283229",
+      "software": "0xbfbc96c439283229"
+    },
+    {
+      "id": "r25-bessel-00204",
+      "args": [
+        "0x404986834196890f",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf31ea5aa30f373d",
+      "native": "0xbf31ea5aa30f373d",
+      "software": "0xbf31ea5aa30f373d"
+    },
+    {
+      "id": "r25-bessel-00205",
+      "args": [
+        "0x404986834196890f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfbc96c439283228",
+      "native": "0xbfbc96c439283228",
+      "software": "0xbfbc96c439283228"
+    },
+    {
+      "id": "r25-bessel-00209",
+      "args": [
+        "0x404a4f931c38aa76",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc283259f1cea6",
+      "native": "0x3fbc283259f1cea6",
+      "software": "0x3fbc283259f1cea6"
+    },
+    {
+      "id": "r25-bessel-00210",
+      "args": [
+        "0x404a4f931c38aa76",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f49aea1630d649f",
+      "native": "0x3f49aea1630d649f",
+      "software": "0x3f49aea1630d649f"
+    },
+    {
+      "id": "r25-bessel-00214",
+      "args": [
+        "0x404a4f931c38aa77",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc283259f1cea5",
+      "native": "0x3fbc283259f1cea5",
+      "software": "0x3fbc283259f1cea5"
+    },
+    {
+      "id": "r25-bessel-00215",
+      "args": [
+        "0x404a4f931c38aa77",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f49aea1630d649e",
+      "native": "0x3f49aea1630d649e",
+      "software": "0x3f49aea1630d649e"
+    },
+    {
+      "id": "r25-bessel-00219",
+      "args": [
+        "0x404a4f931c38aa78",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc283259f1cea5",
+      "native": "0x3fbc283259f1cea5",
+      "software": "0x3fbc283259f1cea5"
+    },
+    {
+      "id": "r25-bessel-00220",
+      "args": [
+        "0x404a4f931c38aa78",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f49aea1630d9ced",
+      "native": "0x3f49aea1630d9ced",
+      "software": "0x3f49aea1630d9ced"
+    },
+    {
+      "id": "r25-bessel-00224",
+      "args": [
+        "0x404a4f931c391b37",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc283259f1a166",
+      "native": "0x3fbc283259f1a166",
+      "software": "0x3fbc283259f1a166"
+    },
+    {
+      "id": "r25-bessel-00225",
+      "args": [
+        "0x404a4f931c391b37",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f49aea16f73aabc",
+      "native": "0x3f49aea16f73aabc",
+      "software": "0x3f49aea16f73aabc"
+    },
+    {
+      "id": "r25-bessel-00229",
+      "args": [
+        "0x404a4f931c391b38",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc283259f1a166",
+      "native": "0x3fbc283259f1a166",
+      "software": "0x3fbc283259f1a166"
+    },
+    {
+      "id": "r25-bessel-00230",
+      "args": [
+        "0x404a4f931c391b38",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f49aea16f73e30b",
+      "native": "0x3f49aea16f73e30b",
+      "software": "0x3f49aea16f73e30b"
+    },
+    {
+      "id": "r25-bessel-00234",
+      "args": [
+        "0x404a4f931c391b39",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3fbc283259f1a166",
+      "native": "0x3fbc283259f1a166",
+      "software": "0x3fbc283259f1a166"
+    },
+    {
+      "id": "r25-bessel-00235",
+      "args": [
+        "0x404a4f931c391b39",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f49aea16f73e30b",
+      "native": "0x3f49aea16f73e30b",
+      "software": "0x3f49aea16f73e30b"
+    },
+    {
+      "id": "r25-bessel-00239",
+      "args": [
+        "0x404b18a2f6db3ca1",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f30617bb35c54da",
+      "native": "0x3f30617bb35c54da",
+      "software": "0x3f30617bb35c54da"
+    },
+    {
+      "id": "r25-bessel-00240",
+      "args": [
+        "0x404b18a2f6db3ca1",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbbbf6ceb4acdfa",
+      "native": "0x3fbbbf6ceb4acdfa",
+      "software": "0x3fbbbf6ceb4acdfa"
+    },
+    {
+      "id": "r25-bessel-00244",
+      "args": [
+        "0x404b18a2f6db3ca2",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f30617bb35c1d5a",
+      "native": "0x3f30617bb35c1d5a",
+      "software": "0x3f30617bb35c1d5a"
+    },
+    {
+      "id": "r25-bessel-00245",
+      "args": [
+        "0x404b18a2f6db3ca2",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbbbf6ceb4acdf9",
+      "native": "0x3fbbbf6ceb4acdf9",
+      "software": "0x3fbbbf6ceb4acdf9"
+    },
+    {
+      "id": "r25-bessel-00249",
+      "args": [
+        "0x404b18a2f6db3ca3",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f30617bb35be5dd",
+      "native": "0x3f30617bb35be5dd",
+      "software": "0x3f30617bb35be5dd"
+    },
+    {
+      "id": "r25-bessel-00250",
+      "args": [
+        "0x404b18a2f6db3ca3",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fbbbf6ceb4acdf9",
+      "native": "0x3fbbbf6ceb4acdf9",
+      "software": "0x3fbbbf6ceb4acdf9"
+    },
+    {
+      "id": "r25-bessel-00254",
+      "args": [
+        "0x40693b1d4f98c414",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf023bdff617ff3e",
+      "native": "0xbf023bdff617ff3e",
+      "software": "0xbf023bdff617ff3e"
+    },
+    {
+      "id": "r25-bessel-00255",
+      "args": [
+        "0x40693b1d4f98c414",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfacc10ca7d7a5d6",
+      "native": "0xbfacc10ca7d7a5d6",
+      "software": "0xbfacc10ca7d7a5d6"
+    },
+    {
+      "id": "r25-bessel-00259",
+      "args": [
+        "0x40693b1d4f98c415",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf023bdff614671d",
+      "native": "0xbf023bdff614671d",
+      "software": "0xbf023bdff614671d"
+    },
+    {
+      "id": "r25-bessel-00260",
+      "args": [
+        "0x40693b1d4f98c415",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfacc10ca7d7a5d6",
+      "native": "0xbfacc10ca7d7a5d6",
+      "software": "0xbfacc10ca7d7a5d6"
+    },
+    {
+      "id": "r25-bessel-00264",
+      "args": [
+        "0x40693b1d4f98c416",
+        "0x0000000000000000"
+      ],
+      "expected": "0xbf023bdff610cefb",
+      "native": "0xbf023bdff610cefb",
+      "software": "0xbf023bdff610cefb"
+    },
+    {
+      "id": "r25-bessel-00265",
+      "args": [
+        "0x40693b1d4f98c416",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0xbfacc10ca7d7a5d5",
+      "native": "0xbfacc10ca7d7a5d5",
+      "software": "0xbfacc10ca7d7a5d5"
+    },
+    {
+      "id": "r25-bessel-00269",
+      "args": [
+        "0x40696d6146414c6e",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3faca48a2e291437",
+      "native": "0x3faca48a2e291437",
+      "software": "0x3faca48a2e291437"
+    },
+    {
+      "id": "r25-bessel-00270",
+      "args": [
+        "0x40696d6146414c6e",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b08eb85ac3cf4",
+      "native": "0x3f1b08eb85ac3cf4",
+      "software": "0x3f1b08eb85ac3cf4"
+    },
+    {
+      "id": "r25-bessel-00274",
+      "args": [
+        "0x40696d6146414c6f",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3faca48a2e291436",
+      "native": "0x3faca48a2e291436",
+      "software": "0x3faca48a2e291436"
+    },
+    {
+      "id": "r25-bessel-00275",
+      "args": [
+        "0x40696d6146414c6f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b08eb85ae073a",
+      "native": "0x3f1b08eb85ae073a",
+      "software": "0x3f1b08eb85ae073a"
+    },
+    {
+      "id": "r25-bessel-00279",
+      "args": [
+        "0x40696d6146414c70",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3faca48a2e291435",
+      "native": "0x3faca48a2e291435",
+      "software": "0x3faca48a2e291435"
+    },
+    {
+      "id": "r25-bessel-00280",
+      "args": [
+        "0x40696d6146414c70",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b08eb85afd181",
+      "native": "0x3f1b08eb85afd181",
+      "software": "0x3f1b08eb85afd181"
+    },
+    {
+      "id": "r25-bessel-00284",
+      "args": [
+        "0x40696d614641689f",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3faca48a2e29084e",
+      "native": "0x3faca48a2e29084e",
+      "software": "0x3faca48a2e29084e"
+    },
+    {
+      "id": "r25-bessel-00285",
+      "args": [
+        "0x40696d614641689f",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b08ebb823c8b1",
+      "native": "0x3f1b08ebb823c8b1",
+      "software": "0x3f1b08ebb823c8b1"
+    },
+    {
+      "id": "r25-bessel-00289",
+      "args": [
+        "0x40696d61464168a0",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3faca48a2e29084d",
+      "native": "0x3faca48a2e29084d",
+      "software": "0x3faca48a2e29084d"
+    },
+    {
+      "id": "r25-bessel-00290",
+      "args": [
+        "0x40696d61464168a0",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b08ebb82592f9",
+      "native": "0x3f1b08ebb82592f9",
+      "software": "0x3f1b08ebb82592f9"
+    },
+    {
+      "id": "r25-bessel-00294",
+      "args": [
+        "0x40696d61464168a1",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3faca48a2e29084c",
+      "native": "0x3faca48a2e29084c",
+      "software": "0x3faca48a2e29084c"
+    },
+    {
+      "id": "r25-bessel-00295",
+      "args": [
+        "0x40696d61464168a1",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3f1b08ebb8275d40",
+      "native": "0x3f1b08ebb8275d40",
+      "software": "0x3f1b08ebb8275d40"
+    },
+    {
+      "id": "r25-bessel-00299",
+      "args": [
+        "0x40699fa53ce9f0f9",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f01d0fae3c03dda",
+      "native": "0x3f01d0fae3c03dda",
+      "software": "0x3f01d0fae3c03dda"
+    },
+    {
+      "id": "r25-bessel-00300",
+      "args": [
+        "0x40699fa53ce9f0f9",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fac886cabf70f45",
+      "native": "0x3fac886cabf70f45",
+      "software": "0x3fac886cabf70f45"
+    },
+    {
+      "id": "r25-bessel-00304",
+      "args": [
+        "0x40699fa53ce9f0fa",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f01d0fae3bcaccd",
+      "native": "0x3f01d0fae3bcaccd",
+      "software": "0x3f01d0fae3bcaccd"
+    },
+    {
+      "id": "r25-bessel-00305",
+      "args": [
+        "0x40699fa53ce9f0fa",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fac886cabf70f45",
+      "native": "0x3fac886cabf70f45",
+      "software": "0x3fac886cabf70f45"
+    },
+    {
+      "id": "r25-bessel-00309",
+      "args": [
+        "0x40699fa53ce9f0fb",
+        "0x0000000000000000"
+      ],
+      "expected": "0x3f01d0fae3b91bbf",
+      "native": "0x3f01d0fae3b91bbf",
+      "software": "0x3f01d0fae3b91bbf"
+    },
+    {
+      "id": "r25-bessel-00310",
+      "args": [
+        "0x40699fa53ce9f0fb",
+        "0x3ff0000000000000"
+      ],
+      "expected": "0x3fac886cabf70f44",
+      "native": "0x3fac886cabf70f44",
+      "software": "0x3fac886cabf70f44"
+    }
+  ],
+  "application_revision": "622ee617ec3e17340ad4c4fb9534be18a498eeee",
+  "bindings": {
+    "/home/ubuntu/codex-runs/r27/publication-soft-before-binom-racer": "15a8f9c9e095a3c3a8b5f8f675d67b0650ba542fa2a6535ed778c972855c990f",
+    "/home/ubuntu/codex-runs/r27/publication-native-racer": "b1f525fb1f8694d352ae33a81baa9af2024749f0be22dff44e179a328d8bb2b7"
+  },
+  "limits": "Final grouped J/Y application bodies compiled natively and with actual soft-x87 feature. All original248answers/inputs retained. No new observation inferred from either backend. The low-Y seed failure remains counted. Later BINOM multiplication change cannot alter these bodies."
+}

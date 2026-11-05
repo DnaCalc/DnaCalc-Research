@@ -41,12 +41,47 @@ def check_workbook_delivery(root, output):
     root=Path(root)
     files=delivery_files(root)
     packet=root/'packet'
-    document=read(packet/'workbook-questions.json')
+    question_paths=sorted(packet.rglob('workbook-questions.json'))
+    require(question_paths,'missing workbook questions')
+    answers=records(root/'answers.jsonl')
+    summaries=[]
+    seen=set()
+    for question_path in question_paths:
+        document=read(question_path)
+        sheet=document['sheet']
+        require(sheet not in seen,'duplicate question worksheet')
+        seen.add(sheet)
+        selected=[a for a in answers if a.get('observation',{}).get('sheet')==sheet
+                  or a.get('raw_cell',{}).get('sheet')==sheet
+                  or a.get('condition','').endswith('-'+sheet)]
+        summaries.append(check_workbook_readings(root,question_path,selected))
+    require(sum(s['formula_cells']for s in summaries)==len(answers),'uncounted workbook answers')
+    if len(summaries)==1:
+        result=dict(summaries[0],files=files)
+    else:
+        keys=('roles','statuses','observed_calls_by_function','intended_operand_echoes')
+        totals={k:Counter()for k in keys}
+        for summary in summaries:
+            for k in keys:totals[k].update(summary[k])
+        result=dict(complete=True,files=files,formula_cells=len(answers),**totals,
+                    workbooks=summaries,
+                    observed_formula_spelling_changes=sum(s['observed_formula_spelling_changes']for s in summaries),
+                    limitations=summaries[0]['limitations'])
+    with Path(output).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    return result
+
+
+def check_workbook_readings(root, question_path, answers):
+    """Check one sheet in either a single-book or multi-book delivery."""
+    import re
+    import zipfile
+    import xml.etree.ElementTree as ET
+    document=read(question_path)
     sheet=document['sheet'];questions=document['questions']
-    workbooks=list((packet/'workbooks').glob('*/oracle.xlsx'))
+    workbooks=list((question_path.parent/'workbooks').glob('*/oracle.xlsx'))
     require(len(workbooks)==1,'expected one original question workbook')
     workbook=workbooks[0]
-    captures=[p for p in root.glob('*.capture.json')]
+    captures=[p for p in root.glob('*.capture.json') if read(p).get('source')=='sha256:'+sha(workbook)]
     require(len(captures)==1,'expected one canonical workbook capture')
     capture=read(captures[0])
     require(capture['source']=='sha256:'+sha(workbook),'capture is for different workbook bytes')
@@ -54,7 +89,6 @@ def check_workbook_delivery(root, output):
     observations={(r['sheet'],r['row'],r['column']):r for r in capture['observations']}
     require(len(observations)==len(capture['observations']),'duplicate capture observation')
     formulas={(r['sheet'],r['row'],r['column']):r['formula']for r in capture['formulas']}
-    answers=records(root/'answers.jsonl')
     require(len(answers)==len(questions),'missing or additional workbook answers')
     ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
     with zipfile.ZipFile(workbook)as archive:
@@ -94,15 +128,18 @@ def check_workbook_delivery(root, output):
         require(raw==answer['observation']['excel_raw'],'raw worker differs from capture')
         if question['role']=='operand_echo'and question.get('intended_bits'):
             echoes['equal'if raw=={'number':question['intended_bits'].removeprefix('0x')}else'different']+=1
-        if question['role']=='question':functions[question['function']]+=1
+        if question['role']=='question':
+            names=re.findall(r'([A-Za-z_][A-Za-z_0-9.]*)\s*\(',question['formula'])
+            name=question.get('function')or next((n.removeprefix('_xlfn.')for n in names
+                         if n.upper()not in ('INDEX','TRANSPOSE')), 'arithmetic_control')
+            functions[name]+=1
     require(set(observations)<=seen,'uncounted canonical observations')
-    result=dict(complete=True,files=files,formula_cells=len(questions),roles=roles,statuses=statuses,
+    result=dict(complete=True,formula_cells=len(questions),roles=roles,statuses=statuses,
         observed_calls_by_function=functions,intended_operand_echoes=echoes,
         observed_formula_spelling_changes=len(formula_changes),first_formula_changes=formula_changes[:8],
         workbook=str(workbook),workbook_sha256=sha(workbook),capture=str(captures[0]),capture_sha256=sha(captures[0]),
         capture_failures=capture.get('session',{}).get('failures',[]),
         limitations='Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay.')
-    with Path(output).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
     return result
 
 

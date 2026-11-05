@@ -1,0 +1,363 @@
+{
+  "complete": true,
+  "files": {
+    "files": 210,
+    "bytes": 20810873,
+    "manifest_sha256": "6e161d2537b34ce6461eb09e9ba561a4baca8eb34ecbd415c8fe9b34a35367be"
+  },
+  "formula_cells": 4347,
+  "roles": {
+    "operand_echo": 2994,
+    "question": 1353
+  },
+  "statuses": {
+    "observed": 4347
+  },
+  "observed_calls_by_function": {
+    "VAR.S": 122,
+    "VAR.P": 50,
+    "STDEV.S": 34,
+    "STDEV.P": 50,
+    "LINEST": 262,
+    "LOGEST": 246,
+    "BESSELJ": 124,
+    "BESSELY": 124,
+    "BINOM.DIST": 60,
+    "POISSON.DIST": 87,
+    "EXP": 71,
+    "GEOMEAN": 59,
+    "STDEV": 8,
+    "STDEVA": 8,
+    "STDEVP": 8,
+    "STDEVPA": 8,
+    "VAR": 8,
+    "VARA": 8,
+    "VARP": 8,
+    "VARPA": 8
+  },
+  "intended_operand_echoes": {
+    "equal": 2994
+  },
+  "workbooks": [
+    {
+      "complete": true,
+      "formula_cells": 400,
+      "roles": {
+        "operand_echo": 248,
+        "question": 152
+      },
+      "statuses": {
+        "observed": 400
+      },
+      "observed_calls_by_function": {
+        "VAR.S": 96,
+        "VAR.P": 24,
+        "STDEV.S": 8,
+        "STDEV.P": 24
+      },
+      "intended_operand_echoes": {
+        "equal": 248
+      },
+      "observed_formula_spelling_changes": 152,
+      "first_formula_changes": [
+        {
+          "id": "r25-guard-transfer-00003",
+          "requested": "_xlfn.VAR.S(D1,D2)",
+          "observed": "=VAR.S(D1,D2)"
+        },
+        {
+          "id": "r25-guard-transfer-00004",
+          "requested": "_xlfn.VAR.S(D1:D2)",
+          "observed": "=VAR.S(D1:D2)"
+        },
+        {
+          "id": "r25-guard-transfer-00007",
+          "requested": "_xlfn.VAR.S(D5,D6)",
+          "observed": "=VAR.S(D5,D6)"
+        },
+        {
+          "id": "r25-guard-transfer-00008",
+          "requested": "_xlfn.VAR.S(D5:D6)",
+          "observed": "=VAR.S(D5:D6)"
+        },
+        {
+          "id": "r25-guard-transfer-00012",
+          "requested": "_xlfn.VAR.S(D9,D10,D11)",
+          "observed": "=VAR.S(D9,D10,D11)"
+        },
+        {
+          "id": "r25-guard-transfer-00013",
+          "requested": "_xlfn.VAR.S(D9:D11)",
+          "observed": "=VAR.S(D9:D11)"
+        },
+        {
+          "id": "r25-guard-transfer-00017",
+          "requested": "_xlfn.VAR.S(D14,D15,D16)",
+          "observed": "=VAR.S(D14,D15,D16)"
+        },
+        {
+          "id": "r25-guard-transfer-00018",
+          "requested": "_xlfn.VAR.S(D14:D16)",
+          "observed": "=VAR.S(D14:D16)"
+        }
+      ],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/guard-transfer/workbooks/dcj9k_r25_guard_transfer/oracle.xlsx",
+      "workbook_sha256": "279077b0ed145ce4cf45035cedad0a7df5f74bec2fd4312b79c4526ba396c62c",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_guard_transfer.capture.json",
+      "capture_sha256": "8a3b3de6d0e262e75fe8222353252eb5b3e190931fdbdc71011f21e0e492288d",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 100,
+      "roles": {
+        "operand_echo": 48,
+        "question": 52
+      },
+      "statuses": {
+        "observed": 100
+      },
+      "observed_calls_by_function": {
+        "LINEST": 34,
+        "LOGEST": 18
+      },
+      "intended_operand_echoes": {
+        "equal": 48
+      },
+      "observed_formula_spelling_changes": 0,
+      "first_formula_changes": [],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/qr-stores/workbooks/dcj9k_r25_qr_stores/oracle.xlsx",
+      "workbook_sha256": "4e4c807e554b36d9765411f3c6d6638fcfdf7e1ecf2a45bd056b806b80c174aa",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_qr_stores.capture.json",
+      "capture_sha256": "f890edf79266855961b828c1868e4917c63cb8bdcae9bcc8858eb8c850a489ed",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 310,
+      "roles": {
+        "operand_echo": 62,
+        "question": 248
+      },
+      "statuses": {
+        "observed": 310
+      },
+      "observed_calls_by_function": {
+        "BESSELJ": 124,
+        "BESSELY": 124
+      },
+      "intended_operand_echoes": {
+        "equal": 62
+      },
+      "observed_formula_spelling_changes": 0,
+      "first_formula_changes": [],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/stored-steps/bessel/workbooks/dcj9k_r25_bessel/oracle.xlsx",
+      "workbook_sha256": "45d0006cf4068fb997f83e61ca51131dd55e0c020b44c11de79c28db95389f36",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_bessel.capture.json",
+      "capture_sha256": "279ac866121fd3f2225498a9d732db50fd17ed61a9fccca139469ba3250c0516",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 233,
+      "roles": {
+        "operand_echo": 71,
+        "question": 162
+      },
+      "statuses": {
+        "observed": 233
+      },
+      "observed_calls_by_function": {
+        "BINOM.DIST": 60,
+        "POISSON.DIST": 87,
+        "EXP": 15
+      },
+      "intended_operand_echoes": {
+        "equal": 71
+      },
+      "observed_formula_spelling_changes": 147,
+      "first_formula_changes": [
+        {
+          "id": "r25-discrete-00002",
+          "requested": "_xlfn.BINOM.DIST(1,100,D1,FALSE)",
+          "observed": "=BINOM.DIST(1,100,D1,FALSE)"
+        },
+        {
+          "id": "r25-discrete-00003",
+          "requested": "_xlfn.BINOM.DIST(1,100,D1,TRUE)",
+          "observed": "=BINOM.DIST(1,100,D1,TRUE)"
+        },
+        {
+          "id": "r25-discrete-00005",
+          "requested": "_xlfn.BINOM.DIST(1,100,D4,FALSE)",
+          "observed": "=BINOM.DIST(1,100,D4,FALSE)"
+        },
+        {
+          "id": "r25-discrete-00006",
+          "requested": "_xlfn.BINOM.DIST(1,100,D4,TRUE)",
+          "observed": "=BINOM.DIST(1,100,D4,TRUE)"
+        },
+        {
+          "id": "r25-discrete-00008",
+          "requested": "_xlfn.BINOM.DIST(1,100,D7,FALSE)",
+          "observed": "=BINOM.DIST(1,100,D7,FALSE)"
+        },
+        {
+          "id": "r25-discrete-00009",
+          "requested": "_xlfn.BINOM.DIST(1,100,D7,TRUE)",
+          "observed": "=BINOM.DIST(1,100,D7,TRUE)"
+        },
+        {
+          "id": "r25-discrete-00011",
+          "requested": "_xlfn.BINOM.DIST(1,100,D10,FALSE)",
+          "observed": "=BINOM.DIST(1,100,D10,FALSE)"
+        },
+        {
+          "id": "r25-discrete-00012",
+          "requested": "_xlfn.BINOM.DIST(1,100,D10,TRUE)",
+          "observed": "=BINOM.DIST(1,100,D10,TRUE)"
+        }
+      ],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/stored-steps/discrete/workbooks/dcj9k_r25_discrete/oracle.xlsx",
+      "workbook_sha256": "5dc95ca7ab30a0adc77658cae357fe51bf1931712be3a11f2c80fbbdde0b7dec",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_discrete.capture.json",
+      "capture_sha256": "caa3674b8518b49cc08a02be09bb63304ce01b1922ba37e750ec7b18f2e0794b",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 292,
+      "roles": {
+        "operand_echo": 177,
+        "question": 115
+      },
+      "statuses": {
+        "observed": 292
+      },
+      "observed_calls_by_function": {
+        "GEOMEAN": 59,
+        "EXP": 56
+      },
+      "intended_operand_echoes": {
+        "equal": 177
+      },
+      "observed_formula_spelling_changes": 0,
+      "first_formula_changes": [],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/stored-steps/geomean/workbooks/dcj9k_r25_geomean/oracle.xlsx",
+      "workbook_sha256": "f1807f921c34ef82b146d918dbaf94aa82e4c67c739ad8a42cd969df0b428fec",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_geomean.capture.json",
+      "capture_sha256": "f9a99918a24a5fb8627551c2a8aea8b3a0b7a285e35a8070bba5b84621b4ec81",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 2280,
+      "roles": {
+        "operand_echo": 1824,
+        "question": 456
+      },
+      "statuses": {
+        "observed": 2280
+      },
+      "observed_calls_by_function": {
+        "LINEST": 228,
+        "LOGEST": 228
+      },
+      "intended_operand_echoes": {
+        "equal": 1824
+      },
+      "observed_formula_spelling_changes": 0,
+      "first_formula_changes": [],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/stored-steps/regression/workbooks/dcj9k_r25_regression/oracle.xlsx",
+      "workbook_sha256": "76d56d5636f3081372a1c19f27b5b03ddc0ad6e480bb11d76a1897f3fdd0cdb7",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_regression.capture.json",
+      "capture_sha256": "f476117fb7d9a0b2f629240367b26566ba8345d3e25dddbeaccb5368f1ba0ff9",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    },
+    {
+      "complete": true,
+      "formula_cells": 732,
+      "roles": {
+        "operand_echo": 564,
+        "question": 168
+      },
+      "statuses": {
+        "observed": 732
+      },
+      "observed_calls_by_function": {
+        "STDEV": 8,
+        "STDEV.P": 26,
+        "STDEV.S": 26,
+        "STDEVA": 8,
+        "STDEVP": 8,
+        "STDEVPA": 8,
+        "VAR": 8,
+        "VAR.P": 26,
+        "VAR.S": 26,
+        "VARA": 8,
+        "VARP": 8,
+        "VARPA": 8
+      },
+      "intended_operand_echoes": {
+        "equal": 564
+      },
+      "observed_formula_spelling_changes": 104,
+      "first_formula_changes": [
+        {
+          "id": "r25-variance-00017",
+          "requested": "_xlfn.STDEV.P(D13:D16)",
+          "observed": "=STDEV.P(D13:D16)"
+        },
+        {
+          "id": "r25-variance-00022",
+          "requested": "_xlfn.STDEV.P(D18:D21)",
+          "observed": "=STDEV.P(D18:D21)"
+        },
+        {
+          "id": "r25-variance-00027",
+          "requested": "_xlfn.STDEV.P(D23:D26)",
+          "observed": "=STDEV.P(D23:D26)"
+        },
+        {
+          "id": "r25-variance-00032",
+          "requested": "_xlfn.STDEV.P(D28:D31)",
+          "observed": "=STDEV.P(D28:D31)"
+        },
+        {
+          "id": "r25-variance-00035",
+          "requested": "_xlfn.STDEV.S(D33:D34)",
+          "observed": "=STDEV.S(D33:D34)"
+        },
+        {
+          "id": "r25-variance-00038",
+          "requested": "_xlfn.STDEV.S(D36:D37)",
+          "observed": "=STDEV.S(D36:D37)"
+        },
+        {
+          "id": "r25-variance-00041",
+          "requested": "_xlfn.STDEV.S(D39:D40)",
+          "observed": "=STDEV.S(D39:D40)"
+        },
+        {
+          "id": "r25-variance-00044",
+          "requested": "_xlfn.STDEV.S(D42:D43)",
+          "observed": "=STDEV.S(D42:D43)"
+        }
+      ],
+      "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/stored-steps/variance/workbooks/dcj9k_r25_variance/oracle.xlsx",
+      "workbook_sha256": "dbe41c03b3c8633132cc8206989a818a3d8e218dae2d4075790228e1752dd413",
+      "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_variance.capture.json",
+      "capture_sha256": "cc75ef55e80c68402fcb267b2a3dfbd243b5f0c0af6687a23cf0f18d421af5e9",
+      "capture_failures": [],
+      "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+    }
+  ],
+  "observed_formula_spelling_changes": 403,
+  "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+}

@@ -1,0 +1,13 @@
+{
+  "source": "/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libm-0.2.16/src/math/pow.rs",
+  "source_sha256": "c5566d0f48682d107e8803b0ed204ff3521503348f18a4f26cbe3f47fef15192",
+  "version": "Rust libm0.2.16 (FreeBSD/Sun fdlibm)",
+  "license": "Sun permissive notice in source; Rust libm licence retained in notices/Rust-libm.txt",
+  "numeric_change": "Remove only exponent0.5 sqrt shortcut; all remaining operations/literals retained. Local safe indexing and word-bit adapters replace crate-private wrappers; tests/entry attribute omitted.",
+  "candidate_order": "Published libm wrapper, then same core without sqrt dispatch. No coefficient or store search.",
+  "source_snapshot": "racer/src/fdlibm_pow_core.rs",
+  "snapshot_sha256": "817f6c780a47347624d1db3a2912f18207c0dcaf3a1e512d38d7dd7661ff151d",
+  "prior_snapshot_sha256": "2bbc24c62f2054b5e3cc99dcd0ab081d2b8d53bad9eb5afcc937a3fb76b8561d",
+  "annotation_change": "Five comments identify public IEEE754 bit comparisons as non-secret; stripping only those comments reproduces the prior snapshot hash.",
+  "reproduce": "gzip -dc evidence/round27/private-pow-geomean.json.gz > /tmp/r27-private-pow.json; symbolic-racer pow-core /tmp/r27-private-pow.json OUTPUT_JSON; compare the8816 retained predictions."
+}

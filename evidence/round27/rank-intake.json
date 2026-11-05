@@ -1,0 +1,3993 @@
+{
+  "complete": true,
+  "delivery": {
+    "files": 210,
+    "bytes": 20810873,
+    "manifest_sha256": "6e161d2537b34ce6461eb09e9ba561a4baca8eb34ecbd415c8fe9b34a35367be"
+  },
+  "workbook": {
+    "complete": true,
+    "formula_cells": 2280,
+    "roles": {
+      "operand_echo": 1824,
+      "question": 456
+    },
+    "statuses": {
+      "observed": 2280
+    },
+    "observed_calls_by_function": {
+      "LINEST": 228,
+      "LOGEST": 228
+    },
+    "intended_operand_echoes": {
+      "equal": 1824
+    },
+    "observed_formula_spelling_changes": 0,
+    "first_formula_changes": [],
+    "workbook": "/home/ubuntu/codex-runs/excel-results-r25/packet/stored-steps/regression/workbooks/dcj9k_r25_regression/oracle.xlsx",
+    "workbook_sha256": "76d56d5636f3081372a1c19f27b5b03ddc0ad6e480bb11d76a1897f3fdd0cdb7",
+    "capture": "/home/ubuntu/codex-runs/excel-results-r25/r25-dcj9k_r25_regression.capture.json",
+    "capture_sha256": "f476117fb7d9a0b2f629240367b26566ba8345d3e25dddbeaccb5368f1ba0ff9",
+    "capture_failures": [],
+    "limitations": "Delivery observations only. No prediction is an Excel answer. Array/decimal neighbor intent requires its effective operand echoes. Product scores require a new application replay."
+  },
+  "rank_observations": 152,
+  "selected_calls": 456,
+  "observations": [
+    {
+      "id": "r25-regression-00013",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "864691125233909763",
+          "16764684749078419563534319249003"
+        ],
+        "largest": [
+          "34253944497337149668889183239418911876588765184",
+          "2656471216786224494542724258333273801926258071372713893350605"
+        ],
+        "absolute": [
+          "1729382250467819526",
+          "728899336916453024501492141261"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00028",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "864691125233909763",
+          "16764684749078419563534319249003"
+        ],
+        "largest": [
+          "34253944497337149668889183239418911876588765184",
+          "2656471216786224494542724258333273801926258071372713893350605"
+        ],
+        "absolute": [
+          "1729382250467819526",
+          "728899336916453024501492141261"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00043",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "17293822536890449935",
+          "335293694981568494853527206625303"
+        ],
+        "largest": [
+          "2740315564891207470194676984820341678184668856320",
+          "212517697342898090870311837744455765212710148311827375005368321"
+        ],
+        "absolute": [
+          "34587645073780899870",
+          "14577986738329064993631617679361"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00058",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "17293822536890449935",
+          "335293694981568494853527206625303"
+        ],
+        "largest": [
+          "2740315564891207470194676984820341678184668856320",
+          "212517697342898090870311837744455765212710148311827375005368321"
+        ],
+        "absolute": [
+          "34587645073780899870",
+          "14577986738329064993631617679361"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00073",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "6503197846622175241",
+          "89411657556146588695345671385921"
+        ],
+        "largest": [
+          "4121891326836764684954011372090997948803142647808",
+          "226685572030367449043355693296465667941341970422492472918251935"
+        ],
+        "absolute": [
+          "13006395693244350482",
+          "3887463372006373421536768321127"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00088",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "6503197846622175241",
+          "89411657556146588695345671385921"
+        ],
+        "largest": [
+          "4121891326836764684954011372090997948803142647808",
+          "226685572030367449043355693296465667941341970422492472918251935"
+        ],
+        "absolute": [
+          "13006395693244350482",
+          "3887463372006373421536768321127"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00103",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000affffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "43594844304362700845",
+          "447058315586043782190975294636101"
+        ],
+        "largest": [
+          "27631515274640792783855708402220577147804041871360",
+          "1133428001141573063753286360102028323461123538994194257364910107"
+        ],
+        "absolute": [
+          "87189688608725401690",
+          "19437318068958425312651099766787"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00118",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000affffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "43594844304362700845",
+          "447058315586043782190975294636101"
+        ],
+        "largest": [
+          "27631515274640792783855708402220577147804041871360",
+          "1133428001141573063753286360102028323461123538994194257364910107"
+        ],
+        "absolute": [
+          "87189688608725401690",
+          "19437318068958425312651099766787"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00133",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "56294995241467904045",
+          "447058343391357106892216540856389"
+        ],
+        "largest": [
+          "35681192253846053257303325841989801049787948072960",
+          "1133428142131330256768488456445806832397043537305530028439633947"
+        ],
+        "absolute": [
+          "112589990482935808090",
+          "19437319277885091604009414819843"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00148",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "56294995241467904045",
+          "447058343391357106892216540856389"
+        ],
+        "largest": [
+          "35681192253846053257303325841989801049787948072960",
+          "1133428142131330256768488456445806832397043537305530028439633947"
+        ],
+        "absolute": [
+          "112589990482935808090",
+          "19437319277885091604009414819843"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00163",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "70616442044426485805",
+          "447058371196672917580452095590469"
+        ],
+        "largest": [
+          "44758487571799604845112909179762661449967431843840",
+          "1133428283121108824264736788881077569977334895263778609718886427"
+        ],
+        "absolute": [
+          "141232884088852971610",
+          "19437320486811865981758786764803"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00178",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "70616442044426485805",
+          "447058371196672917580452095590469"
+        ],
+        "largest": [
+          "44758487571799604845112909179762661449967431843840",
+          "1133428283121108824264736788881077569977334895263778609718886427"
+        ],
+        "absolute": [
+          "141232884088852971610",
+          "19437320486811865981758786764803"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00193",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "163627948418220125",
+          "845100943292989062865183287029"
+        ],
+        "largest": [
+          "103711533513235250561974401541661925044125696000",
+          "2142586813064099747153843839292140382675847221250914998940523"
+        ],
+        "absolute": [
+          "7526885627238125750",
+          "845100943292989062865183287029"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00208",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "163627948418220125",
+          "845100943292989062865183287029"
+        ],
+        "largest": [
+          "103711533513235250561974401541661925044125696000",
+          "2142586813064099747153843839292140382675847221250914998940523"
+        ],
+        "absolute": [
+          "7526885627238125750",
+          "845100943292989062865183287029"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00223",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "20824644649580757001",
+          "89411685361462399383581226120001"
+        ],
+        "largest": [
+          "13199186644790316272763594709863858348982626418688",
+          "226685713020146016541956059309438131755158895553535087434373535"
+        ],
+        "absolute": [
+          "41649289299161514002",
+          "3887464580933147799286140266087"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00238",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "20824644649580757001",
+          "89411685361462399383581226120001"
+        ],
+        "largest": [
+          "13199186644790316272763594709863858348982626418688",
+          "226685713020146016541956059309438131755158895553535087434373535"
+        ],
+        "absolute": [
+          "41649289299161514002",
+          "3887464580933147799286140266087"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00253",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123308557648422502445",
+          "447058454612635265567124610875461"
+        ],
+        "largest": [
+          "78156083558150006294713454581103061639679348572160",
+          "1133428706090572773663279539564300530772995393525367053819576347"
+        ],
+        "absolute": [
+          "246617115296845004890",
+          "19437324113592837633353243951107"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00268",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123308557648422502445",
+          "447058454612635265567124610875461"
+        ],
+        "largest": [
+          "78156083558150006294713454581103061639679348572160",
+          "1133428706090572773663279539564300530772995393525367053819576347"
+        ],
+        "absolute": [
+          "246617115296845004890",
+          "19437324113592837633353243951107"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00283",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108086390976361267215",
+          "335293861813470816943960504664087"
+        ],
+        "largest": [
+          "17126972299710929815541084128945323985707970068480",
+          "212517908827581972986132791115567065089997636929417419434229761"
+        ],
+        "absolute": [
+          "216172781952722534430",
+          "14577993991890035519302630637569"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00298",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108086390976361267215",
+          "335293861813470816943960504664087"
+        ],
+        "largest": [
+          "17126972299710929815541084128945323985707970068480",
+          "212517908827581972986132791115567065089997636929417419434229761"
+        ],
+        "absolute": [
+          "216172781952722534430",
+          "14577993991890035519302630637569"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00313",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "124907335578550272015",
+          "335293882667466997411370458152983"
+        ],
+        "largest": [
+          "19792357364882265736452293748401515069500901294080",
+          "212517935263185492974285248283203889952758247722300827175485441"
+        ],
+        "absolute": [
+          "249814671157100544030",
+          "14577994898585521626581324267521"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00328",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "124907335578550272015",
+          "335293882667466997411370458152983"
+        ],
+        "largest": [
+          "19792357364882265736452293748401515069500901294080",
+          "212517935263185492974285248283203889952758247722300827175485441"
+        ],
+        "absolute": [
+          "249814671157100544030",
+          "14577994898585521626581324267521"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00343",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "142944252080129310735",
+          "335293903521465042369026143027223"
+        ],
+        "largest": [
+          "22650420868568906241306371973733387996705503313920",
+          "212517961698793020680279913085440265263697527248167195430092801"
+        ],
+        "absolute": [
+          "285888504160258621470",
+          "14577995805281088798653310566401"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00358",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "142944252080129310735",
+          "335293903521465042369026143027223"
+        ],
+        "largest": [
+          "22650420868568906241306371973733387996705503313920",
+          "212517961698793020680279913085440265263697527248167195430092801"
+        ],
+        "absolute": [
+          "285888504160258621470",
+          "14577995805281088798653310566401"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00373",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "162197140481098383375",
+          "335293924375464951816927559286807"
+        ],
+        "largest": [
+          "25701162810770851330103318804940942767321776128000",
+          "212517988134404556104557792054669290406517594565621107581255681"
+        ],
+        "absolute": [
+          "324394280962196766750",
+          "14577996711976737035518589534209"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00388",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "162197140481098383375",
+          "335293924375464951816927559286807"
+        ],
+        "largest": [
+          "25701162810770851330103318804940942767321776128000",
+          "212517988134404556104557792054669290406517594565621107581255681"
+        ],
+        "absolute": [
+          "324394280962196766750",
+          "14577996711976737035518589534209"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00403",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "36533200156291497987",
+          "67058789045893345151014941386347"
+        ],
+        "largest": [
+          "5788916638297620200568626848404835876269943947264",
+          "42503602914004019849511978352542613806883883207484120702438605"
+        ],
+        "absolute": [
+          "73066400312582995974",
+          "2915599523734493267435432234189"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00418",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "36533200156291497987",
+          "67058789045893345151014941386347"
+        ],
+        "largest": [
+          "5788916638297620200568626848404835876269943947264",
+          "42503602914004019849511978352542613806883883207484120702438605"
+        ],
+        "absolute": [
+          "73066400312582995974",
+          "2915599523734493267435432234189"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00433",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "204350832981206630415",
+          "335293966083470364183467585962007"
+        ],
+        "largest": [
+          "32380682010720655259525818284983097838789334138880",
+          "212518041005639650109727218820822709070102805330477179606138881"
+        ],
+        "absolute": [
+          "408701665962413260830",
+          "14577998525368276703629025476609"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00448",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "204350832981206630415",
+          "335293966083470364183467585962007"
+        ],
+        "largest": [
+          "32380682010720655259525818284983097838789334138880",
+          "212518041005639650109727218820822709070102805330477179606138881"
+        ],
+        "absolute": [
+          "408701665962413260830",
+          "14577998525368276703629025476609"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00463",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "227251637080345804815",
+          "335293986937475867102106196377623"
+        ],
+        "largest": [
+          "36009459268468514100151370933817698139640619335680",
+          "212518067441263208691500779879678322705766423415855788746342401"
+        ],
+        "absolute": [
+          "454503274160691609630",
+          "14577999432064168134874182451201"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00478",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "227251637080345804815",
+          "335293986937475867102106196377623"
+        ],
+        "largest": [
+          "36009459268468514100151370933817698139640619335680",
+          "212518067441263208691500779879678322705766423415855788746342401"
+        ],
+        "absolute": [
+          "454503274160691609630",
+          "14577999432064168134874182451201"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00493",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "251368413078875013135",
+          "335294007791483234510990538178583"
+        ],
+        "largest": [
+          "39830914964731677524719792188527980283903575326720",
+          "212518093876890774993321581629389026403107778568774840316067841"
+        ],
+        "absolute": [
+          "502736826157750026270",
+          "14578000338760140630912632094721"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00508",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "251368413078875013135",
+          "335294007791483234510990538178583"
+        ],
+        "largest": [
+          "39830914964731677524719792188527980283903575326720",
+          "212518093876890774993321581629389026403107778568774840316067841"
+        ],
+        "absolute": [
+          "502736826157750026270",
+          "14578000338760140630912632094721"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00523",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "276701160976794255375",
+          "335294028645492466410120611364887"
+        ],
+        "largest": [
+          "43845049099510145533231082049113944271578202112000",
+          "212518120312522349015630630799492940893323226368606200198594561"
+        ],
+        "absolute": [
+          "553402321953588510750",
+          "14578001245456194191744374407169"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00538",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "276701160976794255375",
+          "335294028645492466410120611364887"
+        ],
+        "largest": [
+          "43845049099510145533231082049113944271578202112000",
+          "212518120312522349015630630799492940893323226368606200198594561"
+        ],
+        "absolute": [
+          "553402321953588510750",
+          "14578001245456194191744374407169"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00553",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000200000000",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5",
+          "6058775237981"
+        ],
+        "largest": [
+          "42949672960",
+          "208178208228951171181227"
+        ],
+        "absolute": [
+          "10",
+          "263425010347"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00568",
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000200000000",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5",
+          "6058775237981"
+        ],
+        "largest": [
+          "42949672960",
+          "208178208228951171181227"
+        ],
+        "absolute": [
+          "10",
+          "263425010347"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00583",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "864691125233909763",
+          "16764684749078419563534319249003"
+        ],
+        "largest": [
+          "34253944497337149668889183239418911876588765184",
+          "2656471216786224494542724258333273801926258071372713893350605"
+        ],
+        "absolute": [
+          "1729382250467819526",
+          "728899336916453024501492141261"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00598",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "864691125233909763",
+          "16764684749078419563534319249003"
+        ],
+        "largest": [
+          "34253944497337149668889183239418911876588765184",
+          "2656471216786224494542724258333273801926258071372713893350605"
+        ],
+        "absolute": [
+          "1729382250467819526",
+          "728899336916453024501492141261"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00613",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "17293822536890449935",
+          "335293694981568494853527206625303"
+        ],
+        "largest": [
+          "2740315564891207470194676984820341678184668856320",
+          "212517697342898090870311837744455765212710148311827375005368321"
+        ],
+        "absolute": [
+          "34587645073780899870",
+          "14577986738329064993631617679361"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00628",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "17293822536890449935",
+          "335293694981568494853527206625303"
+        ],
+        "largest": [
+          "2740315564891207470194676984820341678184668856320",
+          "212517697342898090870311837744455765212710148311827375005368321"
+        ],
+        "absolute": [
+          "34587645073780899870",
+          "14577986738329064993631617679361"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00643",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "6503197846622175241",
+          "89411657556146588695345671385921"
+        ],
+        "largest": [
+          "4121891326836764684954011372090997948803142647808",
+          "226685572030367449043355693296465667941341970422492472918251935"
+        ],
+        "absolute": [
+          "13006395693244350482",
+          "3887463372006373421536768321127"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00658",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "6503197846622175241",
+          "89411657556146588695345671385921"
+        ],
+        "largest": [
+          "4121891326836764684954011372090997948803142647808",
+          "226685572030367449043355693296465667941341970422492472918251935"
+        ],
+        "absolute": [
+          "13006395693244350482",
+          "3887463372006373421536768321127"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00673",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000affffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "43594844304362700845",
+          "447058315586043782190975294636101"
+        ],
+        "largest": [
+          "27631515274640792783855708402220577147804041871360",
+          "1133428001141573063753286360102028323461123538994194257364910107"
+        ],
+        "absolute": [
+          "87189688608725401690",
+          "19437318068958425312651099766787"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00688",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000affffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "43594844304362700845",
+          "447058315586043782190975294636101"
+        ],
+        "largest": [
+          "27631515274640792783855708402220577147804041871360",
+          "1133428001141573063753286360102028323461123538994194257364910107"
+        ],
+        "absolute": [
+          "87189688608725401690",
+          "19437318068958425312651099766787"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00703",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "56294995241467904045",
+          "447058343391357106892216540856389"
+        ],
+        "largest": [
+          "35681192253846053257303325841989801049787948072960",
+          "1133428142131330256768488456445806832397043537305530028439633947"
+        ],
+        "absolute": [
+          "112589990482935808090",
+          "19437319277885091604009414819843"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00718",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "56294995241467904045",
+          "447058343391357106892216540856389"
+        ],
+        "largest": [
+          "35681192253846053257303325841989801049787948072960",
+          "1133428142131330256768488456445806832397043537305530028439633947"
+        ],
+        "absolute": [
+          "112589990482935808090",
+          "19437319277885091604009414819843"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00733",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "70616442044426485805",
+          "447058371196672917580452095590469"
+        ],
+        "largest": [
+          "44758487571799604845112909179762661449967431843840",
+          "1133428283121108824264736788881077569977334895263778609718886427"
+        ],
+        "absolute": [
+          "141232884088852971610",
+          "19437320486811865981758786764803"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00748",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "70616442044426485805",
+          "447058371196672917580452095590469"
+        ],
+        "largest": [
+          "44758487571799604845112909179762661449967431843840",
+          "1133428283121108824264736788881077569977334895263778609718886427"
+        ],
+        "absolute": [
+          "141232884088852971610",
+          "19437320486811865981758786764803"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00763",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "163627948418220125",
+          "845100943292989062865183287029"
+        ],
+        "largest": [
+          "103711533513235250561974401541661925044125696000",
+          "2142586813064099747153843839292140382675847221250914998940523"
+        ],
+        "absolute": [
+          "7526885627238125750",
+          "845100943292989062865183287029"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00778",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "163627948418220125",
+          "845100943292989062865183287029"
+        ],
+        "largest": [
+          "103711533513235250561974401541661925044125696000",
+          "2142586813064099747153843839292140382675847221250914998940523"
+        ],
+        "absolute": [
+          "7526885627238125750",
+          "845100943292989062865183287029"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00793",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "20824644649580757001",
+          "89411685361462399383581226120001"
+        ],
+        "largest": [
+          "13199186644790316272763594709863858348982626418688",
+          "226685713020146016541956059309438131755158895553535087434373535"
+        ],
+        "absolute": [
+          "41649289299161514002",
+          "3887464580933147799286140266087"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00808",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "20824644649580757001",
+          "89411685361462399383581226120001"
+        ],
+        "largest": [
+          "13199186644790316272763594709863858348982626418688",
+          "226685713020146016541956059309438131755158895553535087434373535"
+        ],
+        "absolute": [
+          "41649289299161514002",
+          "3887464580933147799286140266087"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00823",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123308557648422502445",
+          "447058454612635265567124610875461"
+        ],
+        "largest": [
+          "78156083558150006294713454581103061639679348572160",
+          "1133428706090572773663279539564300530772995393525367053819576347"
+        ],
+        "absolute": [
+          "246617115296845004890",
+          "19437324113592837633353243951107"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00838",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123308557648422502445",
+          "447058454612635265567124610875461"
+        ],
+        "largest": [
+          "78156083558150006294713454581103061639679348572160",
+          "1133428706090572773663279539564300530772995393525367053819576347"
+        ],
+        "absolute": [
+          "246617115296845004890",
+          "19437324113592837633353243951107"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00853",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108086390976361267215",
+          "335293861813470816943960504664087"
+        ],
+        "largest": [
+          "17126972299710929815541084128945323985707970068480",
+          "212517908827581972986132791115567065089997636929417419434229761"
+        ],
+        "absolute": [
+          "216172781952722534430",
+          "14577993991890035519302630637569"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00868",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108086390976361267215",
+          "335293861813470816943960504664087"
+        ],
+        "largest": [
+          "17126972299710929815541084128945323985707970068480",
+          "212517908827581972986132791115567065089997636929417419434229761"
+        ],
+        "absolute": [
+          "216172781952722534430",
+          "14577993991890035519302630637569"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00883",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "124907335578550272015",
+          "335293882667466997411370458152983"
+        ],
+        "largest": [
+          "19792357364882265736452293748401515069500901294080",
+          "212517935263185492974285248283203889952758247722300827175485441"
+        ],
+        "absolute": [
+          "249814671157100544030",
+          "14577994898585521626581324267521"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00898",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "124907335578550272015",
+          "335293882667466997411370458152983"
+        ],
+        "largest": [
+          "19792357364882265736452293748401515069500901294080",
+          "212517935263185492974285248283203889952758247722300827175485441"
+        ],
+        "absolute": [
+          "249814671157100544030",
+          "14577994898585521626581324267521"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00913",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "142944252080129310735",
+          "335293903521465042369026143027223"
+        ],
+        "largest": [
+          "22650420868568906241306371973733387996705503313920",
+          "212517961698793020680279913085440265263697527248167195430092801"
+        ],
+        "absolute": [
+          "285888504160258621470",
+          "14577995805281088798653310566401"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00928",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 3,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "142944252080129310735",
+          "335293903521465042369026143027223"
+        ],
+        "largest": [
+          "22650420868568906241306371973733387996705503313920",
+          "212517961698793020680279913085440265263697527248167195430092801"
+        ],
+        "absolute": [
+          "285888504160258621470",
+          "14577995805281088798653310566401"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00943",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "162197140481098383375",
+          "335293924375464951816927559286807"
+        ],
+        "largest": [
+          "25701162810770851330103318804940942767321776128000",
+          "212517988134404556104557792054669290406517594565621107581255681"
+        ],
+        "absolute": [
+          "324394280962196766750",
+          "14577996711976737035518589534209"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00958",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "162197140481098383375",
+          "335293924375464951816927559286807"
+        ],
+        "largest": [
+          "25701162810770851330103318804940942767321776128000",
+          "212517988134404556104557792054669290406517594565621107581255681"
+        ],
+        "absolute": [
+          "324394280962196766750",
+          "14577996711976737035518589534209"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00973",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "36533200156291497987",
+          "67058789045893345151014941386347"
+        ],
+        "largest": [
+          "5788916638297620200568626848404835876269943947264",
+          "42503602914004019849511978352542613806883883207484120702438605"
+        ],
+        "absolute": [
+          "73066400312582995974",
+          "2915599523734493267435432234189"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-00988",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "36533200156291497987",
+          "67058789045893345151014941386347"
+        ],
+        "largest": [
+          "5788916638297620200568626848404835876269943947264",
+          "42503602914004019849511978352542613806883883207484120702438605"
+        ],
+        "absolute": [
+          "73066400312582995974",
+          "2915599523734493267435432234189"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01003",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "204350832981206630415",
+          "335293966083470364183467585962007"
+        ],
+        "largest": [
+          "32380682010720655259525818284983097838789334138880",
+          "212518041005639650109727218820822709070102805330477179606138881"
+        ],
+        "absolute": [
+          "408701665962413260830",
+          "14577998525368276703629025476609"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01018",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "204350832981206630415",
+          "335293966083470364183467585962007"
+        ],
+        "largest": [
+          "32380682010720655259525818284983097838789334138880",
+          "212518041005639650109727218820822709070102805330477179606138881"
+        ],
+        "absolute": [
+          "408701665962413260830",
+          "14577998525368276703629025476609"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01033",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "227251637080345804815",
+          "335293986937475867102106196377623"
+        ],
+        "largest": [
+          "36009459268468514100151370933817698139640619335680",
+          "212518067441263208691500779879678322705766423415855788746342401"
+        ],
+        "absolute": [
+          "454503274160691609630",
+          "14577999432064168134874182451201"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01048",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "227251637080345804815",
+          "335293986937475867102106196377623"
+        ],
+        "largest": [
+          "36009459268468514100151370933817698139640619335680",
+          "212518067441263208691500779879678322705766423415855788746342401"
+        ],
+        "absolute": [
+          "454503274160691609630",
+          "14577999432064168134874182451201"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01063",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "251368413078875013135",
+          "335294007791483234510990538178583"
+        ],
+        "largest": [
+          "39830914964731677524719792188527980283903575326720",
+          "212518093876890774993321581629389026403107778568774840316067841"
+        ],
+        "absolute": [
+          "502736826157750026270",
+          "14578000338760140630912632094721"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01078",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "251368413078875013135",
+          "335294007791483234510990538178583"
+        ],
+        "largest": [
+          "39830914964731677524719792188527980283903575326720",
+          "212518093876890774993321581629389026403107778568774840316067841"
+        ],
+        "absolute": [
+          "502736826157750026270",
+          "14578000338760140630912632094721"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01093",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "276701160976794255375",
+          "335294028645492466410120611364887"
+        ],
+        "largest": [
+          "43845049099510145533231082049113944271578202112000",
+          "212518120312522349015630630799492940893323226368606200198594561"
+        ],
+        "absolute": [
+          "553402321953588510750",
+          "14578001245456194191744374407169"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01108",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "276701160976794255375",
+          "335294028645492466410120611364887"
+        ],
+        "largest": [
+          "43845049099510145533231082049113944271578202112000",
+          "212518120312522349015630630799492940893323226368606200198594561"
+        ],
+        "absolute": [
+          "553402321953588510750",
+          "14578001245456194191744374407169"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01123",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "changed_operand": "0x4020000200000000",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5",
+          "6058775237981"
+        ],
+        "largest": [
+          "42949672960",
+          "208178208228951171181227"
+        ],
+        "absolute": [
+          "10",
+          "263425010347"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01138",
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "changed_operand": "0x4020000200000000",
+      "df": 2,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5",
+          "6058775237981"
+        ],
+        "largest": [
+          "42949672960",
+          "208178208228951171181227"
+        ],
+        "absolute": [
+          "10",
+          "263425010347"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01153",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "3746994876013608973",
+          "15845638547486277788481764720655"
+        ],
+        "largest": [
+          "593735037953843927594079176149927805860871929856",
+          "10043370439103321413946783736638473043447807994733911607345161"
+        ],
+        "absolute": [
+          "7493989752027217946",
+          "3169127709497255557696352944131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01168",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "3746994876013608973",
+          "15845638547486277788481764720655"
+        ],
+        "largest": [
+          "593735037953843927594079176149927805860871929856",
+          "10043370439103321413946783736638473043447807994733911607345161"
+        ],
+        "absolute": [
+          "7493989752027217946",
+          "3169127709497255557696352944131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01183",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "14987979531971723277",
+          "63382554189945133671957407989775"
+        ],
+        "largest": [
+          "9499760624956185896674880214043851151040185368576",
+          "160693927025653256803170848035266347365316327299477400260182025"
+        ],
+        "absolute": [
+          "29975959063943446554",
+          "12676510837989026734391481597955"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01198",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "14987979531971723277",
+          "63382554189945133671957407989775"
+        ],
+        "largest": [
+          "9499760624956185896674880214043851151040185368576",
+          "160693927025653256803170848035266347365316327299477400260182025"
+        ],
+        "absolute": [
+          "29975959063943446554",
+          "12676510837989026734391481597955"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01213",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "84541572006088278133",
+          "253530234893696156548822749675655"
+        ],
+        "largest": [
+          "214338348995511763617608591348731893337763417686016",
+          "2571103200210109927525605941188894889148506045036266816307987161"
+        ],
+        "absolute": [
+          "169083144012176556266",
+          "50706046978739231309764549935131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01228",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "84541572006088278133",
+          "253530234893696156548822749675655"
+        ],
+        "largest": [
+          "214338348995511763617608591348731893337763417686016",
+          "2571103200210109927525605941188894889148506045036266816307987161"
+        ],
+        "absolute": [
+          "169083144012176556266",
+          "50706046978739231309764549935131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01243",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000affffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "113346595191343022197",
+          "253530253027616687333474125742215"
+        ],
+        "largest": [
+          "287367758856264244952099367383094002337162035462144",
+          "2571103568009893618164714494241201347137511248917784836985324249"
+        ],
+        "absolute": [
+          "226693190382686044394",
+          "50706050605523337466694825148443"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01258",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000affffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "113346595191343022197",
+          "253530253027616687333474125742215"
+        ],
+        "largest": [
+          "287367758856264244952099367383094002337162035462144",
+          "2571103568009893618164714494241201347137511248917784836985324249"
+        ],
+        "absolute": [
+          "226693190382686044394",
+          "50706050605523337466694825148443"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01273",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "146366987627816550517",
+          "253530271161542082005723061944455"
+        ],
+        "largest": [
+          "371084399439998953875954588756693930917794659958784",
+          "2571103935809802267349049086007947235139488461945602761820209881"
+        ],
+        "absolute": [
+          "292733975255633101034",
+          "50706054232308416401144612388891"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01288",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "146366987627816550517",
+          "253530271161542082005723061944455"
+        ],
+        "largest": [
+          "371084399439998953875954588756693930917794659958784",
+          "2571103935809802267349049086007947235139488461945602761820209881"
+        ],
+        "absolute": [
+          "292733975255633101034",
+          "50706054232308416401144612388891"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01303",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "183602749315508863093",
+          "253530289295472340565569558282375"
+        ],
+        "largest": [
+          "465488270746715890389174255469531679079661291175936",
+          "2571104303609835875099778046446467066781534770828830878409425625"
+        ],
+        "absolute": [
+          "367205498631017726186",
+          "50706057859094468113113911656475"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01318",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "183602749315508863093",
+          "253530289295472340565569558282375"
+        ],
+        "largest": [
+          "465488270746715890389174255469531679079661291175936",
+          "2571104303609835875099778046446467066781534770828830878409425625"
+        ],
+        "absolute": [
+          "367205498631017726186",
+          "50706057859094468113113911656475"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01333",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9002155210176798397",
+          "10141212297176298520520544590239"
+        ],
+        "largest": [
+          "22823174911056602179670334700864289872910477164544",
+          "102844186856399777657522788447674878819943250962987088414077121"
+        ],
+        "absolute": [
+          "90021552101767983970",
+          "10141212297176298520520544590239"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01348",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9002155210176798397",
+          "10141212297176298520520544590239"
+        ],
+        "largest": [
+          "22823174911056602179670334700864289872910477164544",
+          "102844186856399777657522788447674878819943250962987088414077121"
+        ],
+        "absolute": [
+          "90021552101767983970",
+          "10141212297176298520520544590239"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01363",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "270720380444549841013",
+          "253530325563347449348055231365255"
+        ],
+        "largest": [
+          "686357705529096446183706924912920634147096573771776",
+          "2571105039210277966385092421557049689533393081988447517248848601"
+        ],
+        "absolute": [
+          "541440760889099682026",
+          "50706065112669489869611046273051"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01378",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "270720380444549841013",
+          "253530325563347449348055231365255"
+        ],
+        "largest": [
+          "686357705529096446183706924912920634147096573771776",
+          "2571105039210277966385092421557049689533393081988447517248848601"
+        ],
+        "absolute": [
+          "541440760889099682026",
+          "50706065112669489869611046273051"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01393",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "320602249885898506357",
+          "253530343697292299570694408110215"
+        ],
+        "largest": [
+          "812823269004760065465019927643471841052665225150464",
+          "2571105407010686449962014524532664581936569316673545294703493849"
+        ],
+        "absolute": [
+          "641204499771797012714",
+          "50706068739458459914138881622043"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01408",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "320602249885898506357",
+          "253530343697292299570694408110215"
+        ],
+        "largest": [
+          "812823269004760065465019927643471841052665225150464",
+          "2571105407010686449962014524532664581936569316673545294703493849"
+        ],
+        "absolute": [
+          "641204499771797012714",
+          "50706068739458459914138881622043"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01423",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "93674872179513098253",
+          "63382590457810514679272119992335"
+        ],
+        "largest": [
+          "59373503972331223360542424980343789817120962904064",
+          "160694110925701300352041596428399126233269512770446336018350089"
+        ],
+        "absolute": [
+          "187349744359026196506",
+          "12676518091562102935854423998467"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01438",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "93674872179513098253",
+          "63382590457810514679272119992335"
+        ],
+        "largest": [
+          "59373503972331223360542424980343789817120962904064",
+          "160694110925701300352041596428399126233269512770446336018350089"
+        ],
+        "absolute": [
+          "187349744359026196506",
+          "12676518091562102935854423998467"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01453",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108253024168076902413",
+          "63382594991299159178733714145295"
+        ],
+        "largest": [
+          "68613505531591854553034618327791918907603124486144",
+          "160694133913242450408325114561240882270416607439281038894825481"
+        ],
+        "absolute": [
+          "216506048336153804826",
+          "12676518998259831835746742829059"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01468",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108253024168076902413",
+          "63382594991299159178733714145295"
+        ],
+        "largest": [
+          "68613505531591854553034618327791918907603124486144",
+          "160694133913242450408325114561240882270416607439281038894825481"
+        ],
+        "absolute": [
+          "216506048336153804826",
+          "12676518998259831835746742829059"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01483",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123885018469445402637",
+          "63382599524789019650094698332175"
+        ],
+        "largest": [
+          "78521459011038874969862089508942411721912411488256",
+          "160694156900791410382946411925436522318369022890064669065609225"
+        ],
+        "absolute": [
+          "247770036938890805274",
+          "12676519904957803930018939666435"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01498",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123885018469445402637",
+          "63382599524789019650094698332175"
+        ],
+        "largest": [
+          "78521459011038874969862089508942411721912411488256",
+          "160694156900791410382946411925436522318369022890064669065609225"
+        ],
+        "absolute": [
+          "247770036938890805274",
+          "12676519904957803930018939666435"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01513",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5622834203344743957",
+          "2535304162331203843734202902119"
+        ],
+        "largest": [
+          "3563894576426891384440993540951810730401952956416",
+          "6427767195533927211089140465093868933542185188113961894690161"
+        ],
+        "absolute": [
+          "56228342033447439570",
+          "2535304162331203843734202902119"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01528",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5622834203344743957",
+          "2535304162331203843734202902119"
+        ],
+        "largest": [
+          "3563894576426891384440993540951810730401952956416",
+          "6427767195533927211089140465093868933542185188113961894690161"
+        ],
+        "absolute": [
+          "56228342033447439570",
+          "2535304162331203843734202902119"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01543",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "158310534010596491277",
+          "63382608591772388508514836807695"
+        ],
+        "largest": [
+          "100341221730492083476522865372350488522012361752576",
+          "160694202875912760092494437128193200717890924195067103136448521"
+        ],
+        "absolute": [
+          "316621068021192982554",
+          "12676521718354477701702967361539"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01558",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "158310534010596491277",
+          "63382608591772388508514836807695"
+        ],
+        "largest": [
+          "100341221730492083476522865372350488522012361752576",
+          "160694202875912760092494437128193200717890924195067103136448521"
+        ],
+        "absolute": [
+          "316621068021192982554",
+          "12676521718354477701702967361539"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01573",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "177104055250379079693",
+          "63382613125265896895573991096335"
+        ],
+        "largest": [
+          "112253030970498271566356170054608072507803025014784",
+          "160694225863485149830067212244058708268785028421532874210017289"
+        ],
+        "absolute": [
+          "354208110500758159386",
+          "12676522625053179379114798219267"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01588",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "177104055250379079693",
+          "63382613125265896895573991096335"
+        ],
+        "largest": [
+          "112253030970498271566356170054608072507803025014784",
+          "160694225863485149830067212244058708268785028421532874210017289"
+        ],
+        "absolute": [
+          "354208110500758159386",
+          "12676522625053179379114798219267"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01603",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "196951418802966364173",
+          "63382617658760621254532535418895"
+        ],
+        "largest": [
+          "124832792130690848880524752570568020217420813697024",
+          "160694248851065349491269861145887038229133690174441506924920841"
+        ],
+        "absolute": [
+          "393902837605932728346",
+          "12676523531752124250906507083779"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01618",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "196951418802966364173",
+          "63382617658760621254532535418895"
+        ],
+        "largest": [
+          "124832792130690848880524752570568020217420813697024",
+          "160694248851065349491269861145887038229133690174441506924920841"
+        ],
+        "absolute": [
+          "393902837605932728346",
+          "12676523531752124250906507083779"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01633",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "217852624668358344717",
+          "63382622192256561585390469775375"
+        ],
+        "largest": [
+          "138080505211069815419028612920230331650865727799296",
+          "160694271838653359077425408359483021262323282983369256118255625"
+        ],
+        "absolute": [
+          "435705249336716689434",
+          "12676524438451312317078093955075"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01648",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "217852624668358344717",
+          "63382622192256561585390469775375"
+        ],
+        "largest": [
+          "138080505211069815419028612920230331650865727799296",
+          "160694271838653359077425408359483021262323282983369256118255625"
+        ],
+        "absolute": [
+          "435705249336716689434",
+          "12676524438451312317078093955075"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01663",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9592306913862200853",
+          "2535305069030148715525911766631"
+        ],
+        "largest": [
+          "6079846808465406847274710044143800272325510692864",
+          "6427771793049967143594275150620501058289192244610939405090161"
+        ],
+        "absolute": [
+          "95923069138622008530",
+          "2535305069030148715525911766631"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01678",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9592306913862200853",
+          "2535305069030148715525911766631"
+        ],
+        "largest": [
+          "6079846808465406847274710044143800272325510692864",
+          "6427771793049967143594275150620501058289192244610939405090161"
+        ],
+        "absolute": [
+          "95923069138622008530",
+          "2535305069030148715525911766631"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01693",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000200000000",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "13",
+          "3435979079695"
+        ],
+        "largest": [
+          "446676598784",
+          "472238089444067966451721"
+        ],
+        "absolute": [
+          "26",
+          "687195815939"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01708",
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000200000000",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "13",
+          "3435979079695"
+        ],
+        "largest": [
+          "446676598784",
+          "472238089444067966451721"
+        ],
+        "absolute": [
+          "26",
+          "687195815939"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01723",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "3746994876013608973",
+          "15845638547486277788481764720655"
+        ],
+        "largest": [
+          "593735037953843927594079176149927805860871929856",
+          "10043370439103321413946783736638473043447807994733911607345161"
+        ],
+        "absolute": [
+          "7493989752027217946",
+          "3169127709497255557696352944131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01738",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffc",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "3746994876013608973",
+          "15845638547486277788481764720655"
+        ],
+        "largest": [
+          "593735037953843927594079176149927805860871929856",
+          "10043370439103321413946783736638473043447807994733911607345161"
+        ],
+        "absolute": [
+          "7493989752027217946",
+          "3169127709497255557696352944131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01753",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "14987979531971723277",
+          "63382554189945133671957407989775"
+        ],
+        "largest": [
+          "9499760624956185896674880214043851151040185368576",
+          "160693927025653256803170848035266347365316327299477400260182025"
+        ],
+        "absolute": [
+          "29975959063943446554",
+          "12676510837989026734391481597955"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01768",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000007ffffffe",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "14987979531971723277",
+          "63382554189945133671957407989775"
+        ],
+        "largest": [
+          "9499760624956185896674880214043851151040185368576",
+          "160693927025653256803170848035266347365316327299477400260182025"
+        ],
+        "absolute": [
+          "29975959063943446554",
+          "12676510837989026734391481597955"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01783",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "84541572006088278133",
+          "253530234893696156548822749675655"
+        ],
+        "largest": [
+          "214338348995511763617608591348731893337763417686016",
+          "2571103200210109927525605941188894889148506045036266816307987161"
+        ],
+        "absolute": [
+          "169083144012176556266",
+          "50706046978739231309764549935131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01798",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000097fffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "84541572006088278133",
+          "253530234893696156548822749675655"
+        ],
+        "largest": [
+          "214338348995511763617608591348731893337763417686016",
+          "2571103200210109927525605941188894889148506045036266816307987161"
+        ],
+        "absolute": [
+          "169083144012176556266",
+          "50706046978739231309764549935131"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01813",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000affffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "113346595191343022197",
+          "253530253027616687333474125742215"
+        ],
+        "largest": [
+          "287367758856264244952099367383094002337162035462144",
+          "2571103568009893618164714494241201347137511248917784836985324249"
+        ],
+        "absolute": [
+          "226693190382686044394",
+          "50706050605523337466694825148443"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01828",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000affffffd",
+      "df": 2,
+      "retained_predictors": 1,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "113346595191343022197",
+          "253530253027616687333474125742215"
+        ],
+        "largest": [
+          "287367758856264244952099367383094002337162035462144",
+          "2571103568009893618164714494241201347137511248917784836985324249"
+        ],
+        "absolute": [
+          "226693190382686044394",
+          "50706050605523337466694825148443"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01843",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "146366987627816550517",
+          "253530271161542082005723061944455"
+        ],
+        "largest": [
+          "371084399439998953875954588756693930917794659958784",
+          "2571103935809802267349049086007947235139488461945602761820209881"
+        ],
+        "absolute": [
+          "292733975255633101034",
+          "50706054232308416401144612388891"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01858",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000c7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "146366987627816550517",
+          "253530271161542082005723061944455"
+        ],
+        "largest": [
+          "371084399439998953875954588756693930917794659958784",
+          "2571103935809802267349049086007947235139488461945602761820209881"
+        ],
+        "absolute": [
+          "292733975255633101034",
+          "50706054232308416401144612388891"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01873",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "183602749315508863093",
+          "253530289295472340565569558282375"
+        ],
+        "largest": [
+          "465488270746715890389174255469531679079661291175936",
+          "2571104303609835875099778046446467066781534770828830878409425625"
+        ],
+        "absolute": [
+          "367205498631017726186",
+          "50706057859094468113113911656475"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01888",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000dffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "183602749315508863093",
+          "253530289295472340565569558282375"
+        ],
+        "largest": [
+          "465488270746715890389174255469531679079661291175936",
+          "2571104303609835875099778046446467066781534770828830878409425625"
+        ],
+        "absolute": [
+          "367205498631017726186",
+          "50706057859094468113113911656475"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01903",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9002155210176798397",
+          "10141212297176298520520544590239"
+        ],
+        "largest": [
+          "22823174911056602179670334700864289872910477164544",
+          "102844186856399777657522788447674878819943250962987088414077121"
+        ],
+        "absolute": [
+          "90021552101767983970",
+          "10141212297176298520520544590239"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01918",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200000f7fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9002155210176798397",
+          "10141212297176298520520544590239"
+        ],
+        "largest": [
+          "22823174911056602179670334700864289872910477164544",
+          "102844186856399777657522788447674878819943250962987088414077121"
+        ],
+        "absolute": [
+          "90021552101767983970",
+          "10141212297176298520520544590239"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01933",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "270720380444549841013",
+          "253530325563347449348055231365255"
+        ],
+        "largest": [
+          "686357705529096446183706924912920634147096573771776",
+          "2571105039210277966385092421557049689533393081988447517248848601"
+        ],
+        "absolute": [
+          "541440760889099682026",
+          "50706065112669489869611046273051"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01948",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000010ffffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "270720380444549841013",
+          "253530325563347449348055231365255"
+        ],
+        "largest": [
+          "686357705529096446183706924912920634147096573771776",
+          "2571105039210277966385092421557049689533393081988447517248848601"
+        ],
+        "absolute": [
+          "541440760889099682026",
+          "50706065112669489869611046273051"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01963",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "320602249885898506357",
+          "253530343697292299570694408110215"
+        ],
+        "largest": [
+          "812823269004760065465019927643471841052665225150464",
+          "2571105407010686449962014524532664581936569316673545294703493849"
+        ],
+        "absolute": [
+          "641204499771797012714",
+          "50706068739458459914138881622043"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01978",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000127fffffd",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "320602249885898506357",
+          "253530343697292299570694408110215"
+        ],
+        "largest": [
+          "812823269004760065465019927643471841052665225150464",
+          "2571105407010686449962014524532664581936569316673545294703493849"
+        ],
+        "absolute": [
+          "641204499771797012714",
+          "50706068739458459914138881622043"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-01993",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "93674872179513098253",
+          "63382590457810514679272119992335"
+        ],
+        "largest": [
+          "59373503972331223360542424980343789817120962904064",
+          "160694110925701300352041596428399126233269512770446336018350089"
+        ],
+        "absolute": [
+          "187349744359026196506",
+          "12676518091562102935854423998467"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02008",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000013ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "93674872179513098253",
+          "63382590457810514679272119992335"
+        ],
+        "largest": [
+          "59373503972331223360542424980343789817120962904064",
+          "160694110925701300352041596428399126233269512770446336018350089"
+        ],
+        "absolute": [
+          "187349744359026196506",
+          "12676518091562102935854423998467"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02023",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108253024168076902413",
+          "63382594991299159178733714145295"
+        ],
+        "largest": [
+          "68613505531591854553034618327791918907603124486144",
+          "160694133913242450408325114561240882270416607439281038894825481"
+        ],
+        "absolute": [
+          "216506048336153804826",
+          "12676518998259831835746742829059"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02038",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000157fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "108253024168076902413",
+          "63382594991299159178733714145295"
+        ],
+        "largest": [
+          "68613505531591854553034618327791918907603124486144",
+          "160694133913242450408325114561240882270416607439281038894825481"
+        ],
+        "absolute": [
+          "216506048336153804826",
+          "12676518998259831835746742829059"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02053",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123885018469445402637",
+          "63382599524789019650094698332175"
+        ],
+        "largest": [
+          "78521459011038874969862089508942411721912411488256",
+          "160694156900791410382946411925436522318369022890064669065609225"
+        ],
+        "absolute": [
+          "247770036938890805274",
+          "12676519904957803930018939666435"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02068",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000016ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "123885018469445402637",
+          "63382599524789019650094698332175"
+        ],
+        "largest": [
+          "78521459011038874969862089508942411721912411488256",
+          "160694156900791410382946411925436522318369022890064669065609225"
+        ],
+        "absolute": [
+          "247770036938890805274",
+          "12676519904957803930018939666435"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02083",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5622834203344743957",
+          "2535304162331203843734202902119"
+        ],
+        "largest": [
+          "3563894576426891384440993540951810730401952956416",
+          "6427767195533927211089140465093868933542185188113961894690161"
+        ],
+        "absolute": [
+          "56228342033447439570",
+          "2535304162331203843734202902119"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02098",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000187fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "5622834203344743957",
+          "2535304162331203843734202902119"
+        ],
+        "largest": [
+          "3563894576426891384440993540951810730401952956416",
+          "6427767195533927211089140465093868933542185188113961894690161"
+        ],
+        "absolute": [
+          "56228342033447439570",
+          "2535304162331203843734202902119"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02113",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "158310534010596491277",
+          "63382608591772388508514836807695"
+        ],
+        "largest": [
+          "100341221730492083476522865372350488522012361752576",
+          "160694202875912760092494437128193200717890924195067103136448521"
+        ],
+        "absolute": [
+          "316621068021192982554",
+          "12676521718354477701702967361539"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02128",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x402000019ffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "158310534010596491277",
+          "63382608591772388508514836807695"
+        ],
+        "largest": [
+          "100341221730492083476522865372350488522012361752576",
+          "160694202875912760092494437128193200717890924195067103136448521"
+        ],
+        "absolute": [
+          "316621068021192982554",
+          "12676521718354477701702967361539"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02143",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "177104055250379079693",
+          "63382613125265896895573991096335"
+        ],
+        "largest": [
+          "112253030970498271566356170054608072507803025014784",
+          "160694225863485149830067212244058708268785028421532874210017289"
+        ],
+        "absolute": [
+          "354208110500758159386",
+          "12676522625053179379114798219267"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02158",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001b7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "177104055250379079693",
+          "63382613125265896895573991096335"
+        ],
+        "largest": [
+          "112253030970498271566356170054608072507803025014784",
+          "160694225863485149830067212244058708268785028421532874210017289"
+        ],
+        "absolute": [
+          "354208110500758159386",
+          "12676522625053179379114798219267"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02173",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "196951418802966364173",
+          "63382617658760621254532535418895"
+        ],
+        "largest": [
+          "124832792130690848880524752570568020217420813697024",
+          "160694248851065349491269861145887038229133690174441506924920841"
+        ],
+        "absolute": [
+          "393902837605932728346",
+          "12676523531752124250906507083779"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02188",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001cffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "196951418802966364173",
+          "63382617658760621254532535418895"
+        ],
+        "largest": [
+          "124832792130690848880524752570568020217420813697024",
+          "160694248851065349491269861145887038229133690174441506924920841"
+        ],
+        "absolute": [
+          "393902837605932728346",
+          "12676523531752124250906507083779"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02203",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "217852624668358344717",
+          "63382622192256561585390469775375"
+        ],
+        "largest": [
+          "138080505211069815419028612920230331650865727799296",
+          "160694271838653359077425408359483021262323282983369256118255625"
+        ],
+        "absolute": [
+          "435705249336716689434",
+          "12676524438451312317078093955075"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02218",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001e7fffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "217852624668358344717",
+          "63382622192256561585390469775375"
+        ],
+        "largest": [
+          "138080505211069815419028612920230331650865727799296",
+          "160694271838653359077425408359483021262323282983369256118255625"
+        ],
+        "absolute": [
+          "435705249336716689434",
+          "12676524438451312317078093955075"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02233",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9592306913862200853",
+          "2535305069030148715525911766631"
+        ],
+        "largest": [
+          "6079846808465406847274710044143800272325510692864",
+          "6427771793049967143594275150620501058289192244610939405090161"
+        ],
+        "absolute": [
+          "95923069138622008530",
+          "2535305069030148715525911766631"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02248",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x40200001fffffffe",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "9592306913862200853",
+          "2535305069030148715525911766631"
+        ],
+        "largest": [
+          "6079846808465406847274710044143800272325510692864",
+          "6427771793049967143594275150620501058289192244610939405090161"
+        ],
+        "absolute": [
+          "95923069138622008530",
+          "2535305069030148715525911766631"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02263",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "changed_operand": "0x4020000200000000",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "13",
+          "3435979079695"
+        ],
+        "largest": [
+          "446676598784",
+          "472238089444067966451721"
+        ],
+        "absolute": [
+          "26",
+          "687195815939"
+        ]
+      }
+    },
+    {
+      "id": "r25-regression-02278",
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "changed_operand": "0x4020000200000000",
+      "df": 1,
+      "retained_predictors": 2,
+      "necessary_threshold_coordinates": {
+        "column": [
+          "13",
+          "3435979079695"
+        ],
+        "largest": [
+          "446676598784",
+          "472238089444067966451721"
+        ],
+        "absolute": [
+          "26",
+          "687195815939"
+        ]
+      }
+    }
+  ],
+  "necessary_intervals": [
+    {
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "normalizer": "column",
+      "lower_closed": [
+        "142944252080129310735",
+        "335293903521465042369026143027223"
+      ],
+      "lower_witness": "r25-regression-00343",
+      "upper_open": [
+        "162197140481098383375",
+        "335293924375464951816927559286807"
+      ],
+      "upper_witness": "r25-regression-00373",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "normalizer": "largest",
+      "lower_closed": [
+        "22650420868568906241306371973733387996705503313920",
+        "212517961698793020680279913085440265263697527248167195430092801"
+      ],
+      "lower_witness": "r25-regression-00343",
+      "upper_open": [
+        "25701162810770851330103318804940942767321776128000",
+        "212517988134404556104557792054669290406517594565621107581255681"
+      ],
+      "upper_witness": "r25-regression-00373",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LINEST",
+      "constant": false,
+      "reverse": false,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "285888504160258621470",
+        "14577995805281088798653310566401"
+      ],
+      "lower_witness": "r25-regression-00343",
+      "upper_open": [
+        "324394280962196766750",
+        "14577996711976737035518589534209"
+      ],
+      "upper_witness": "r25-regression-00373",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "normalizer": "column",
+      "lower_closed": [
+        "142944252080129310735",
+        "335293903521465042369026143027223"
+      ],
+      "lower_witness": "r25-regression-00358",
+      "upper_open": [
+        "162197140481098383375",
+        "335293924375464951816927559286807"
+      ],
+      "upper_witness": "r25-regression-00388",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "normalizer": "largest",
+      "lower_closed": [
+        "22650420868568906241306371973733387996705503313920",
+        "212517961698793020680279913085440265263697527248167195430092801"
+      ],
+      "lower_witness": "r25-regression-00358",
+      "upper_open": [
+        "25701162810770851330103318804940942767321776128000",
+        "212517988134404556104557792054669290406517594565621107581255681"
+      ],
+      "upper_witness": "r25-regression-00388",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LINEST",
+      "constant": false,
+      "reverse": true,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "285888504160258621470",
+        "14577995805281088798653310566401"
+      ],
+      "lower_witness": "r25-regression-00358",
+      "upper_open": [
+        "324394280962196766750",
+        "14577996711976737035518589534209"
+      ],
+      "upper_witness": "r25-regression-00388",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "normalizer": "column",
+      "lower_closed": [
+        "142944252080129310735",
+        "335293903521465042369026143027223"
+      ],
+      "lower_witness": "r25-regression-00913",
+      "upper_open": [
+        "162197140481098383375",
+        "335293924375464951816927559286807"
+      ],
+      "upper_witness": "r25-regression-00943",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "normalizer": "largest",
+      "lower_closed": [
+        "22650420868568906241306371973733387996705503313920",
+        "212517961698793020680279913085440265263697527248167195430092801"
+      ],
+      "lower_witness": "r25-regression-00913",
+      "upper_open": [
+        "25701162810770851330103318804940942767321776128000",
+        "212517988134404556104557792054669290406517594565621107581255681"
+      ],
+      "upper_witness": "r25-regression-00943",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": false,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "285888504160258621470",
+        "14577995805281088798653310566401"
+      ],
+      "lower_witness": "r25-regression-00913",
+      "upper_open": [
+        "324394280962196766750",
+        "14577996711976737035518589534209"
+      ],
+      "upper_witness": "r25-regression-00943",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "normalizer": "column",
+      "lower_closed": [
+        "142944252080129310735",
+        "335293903521465042369026143027223"
+      ],
+      "lower_witness": "r25-regression-00928",
+      "upper_open": [
+        "162197140481098383375",
+        "335293924375464951816927559286807"
+      ],
+      "upper_witness": "r25-regression-00958",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "normalizer": "largest",
+      "lower_closed": [
+        "22650420868568906241306371973733387996705503313920",
+        "212517961698793020680279913085440265263697527248167195430092801"
+      ],
+      "lower_witness": "r25-regression-00928",
+      "upper_open": [
+        "25701162810770851330103318804940942767321776128000",
+        "212517988134404556104557792054669290406517594565621107581255681"
+      ],
+      "upper_witness": "r25-regression-00958",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LOGEST",
+      "constant": false,
+      "reverse": true,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "285888504160258621470",
+        "14577995805281088798653310566401"
+      ],
+      "lower_witness": "r25-regression-00928",
+      "upper_open": [
+        "324394280962196766750",
+        "14577996711976737035518589534209"
+      ],
+      "upper_witness": "r25-regression-00958",
+      "consistent": true,
+      "drop_observations": 12,
+      "keep_observations": 7
+    },
+    {
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "normalizer": "column",
+      "lower_closed": [
+        "113346595191343022197",
+        "253530253027616687333474125742215"
+      ],
+      "lower_witness": "r25-regression-01243",
+      "upper_open": [
+        "146366987627816550517",
+        "253530271161542082005723061944455"
+      ],
+      "upper_witness": "r25-regression-01273",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "normalizer": "largest",
+      "lower_closed": [
+        "287367758856264244952099367383094002337162035462144",
+        "2571103568009893618164714494241201347137511248917784836985324249"
+      ],
+      "lower_witness": "r25-regression-01243",
+      "upper_open": [
+        "371084399439998953875954588756693930917794659958784",
+        "2571103935809802267349049086007947235139488461945602761820209881"
+      ],
+      "upper_witness": "r25-regression-01273",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LINEST",
+      "constant": true,
+      "reverse": false,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "226693190382686044394",
+        "50706050605523337466694825148443"
+      ],
+      "lower_witness": "r25-regression-01243",
+      "upper_open": [
+        "292733975255633101034",
+        "50706054232308416401144612388891"
+      ],
+      "upper_witness": "r25-regression-01273",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "normalizer": "column",
+      "lower_closed": [
+        "113346595191343022197",
+        "253530253027616687333474125742215"
+      ],
+      "lower_witness": "r25-regression-01258",
+      "upper_open": [
+        "146366987627816550517",
+        "253530271161542082005723061944455"
+      ],
+      "upper_witness": "r25-regression-01288",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "normalizer": "largest",
+      "lower_closed": [
+        "287367758856264244952099367383094002337162035462144",
+        "2571103568009893618164714494241201347137511248917784836985324249"
+      ],
+      "lower_witness": "r25-regression-01258",
+      "upper_open": [
+        "371084399439998953875954588756693930917794659958784",
+        "2571103935809802267349049086007947235139488461945602761820209881"
+      ],
+      "upper_witness": "r25-regression-01288",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LINEST",
+      "constant": true,
+      "reverse": true,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "226693190382686044394",
+        "50706050605523337466694825148443"
+      ],
+      "lower_witness": "r25-regression-01258",
+      "upper_open": [
+        "292733975255633101034",
+        "50706054232308416401144612388891"
+      ],
+      "upper_witness": "r25-regression-01288",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "normalizer": "column",
+      "lower_closed": [
+        "113346595191343022197",
+        "253530253027616687333474125742215"
+      ],
+      "lower_witness": "r25-regression-01813",
+      "upper_open": [
+        "146366987627816550517",
+        "253530271161542082005723061944455"
+      ],
+      "upper_witness": "r25-regression-01843",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "normalizer": "largest",
+      "lower_closed": [
+        "287367758856264244952099367383094002337162035462144",
+        "2571103568009893618164714494241201347137511248917784836985324249"
+      ],
+      "lower_witness": "r25-regression-01813",
+      "upper_open": [
+        "371084399439998953875954588756693930917794659958784",
+        "2571103935809802267349049086007947235139488461945602761820209881"
+      ],
+      "upper_witness": "r25-regression-01843",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": false,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "226693190382686044394",
+        "50706050605523337466694825148443"
+      ],
+      "lower_witness": "r25-regression-01813",
+      "upper_open": [
+        "292733975255633101034",
+        "50706054232308416401144612388891"
+      ],
+      "upper_witness": "r25-regression-01843",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "normalizer": "column",
+      "lower_closed": [
+        "113346595191343022197",
+        "253530253027616687333474125742215"
+      ],
+      "lower_witness": "r25-regression-01828",
+      "upper_open": [
+        "146366987627816550517",
+        "253530271161542082005723061944455"
+      ],
+      "upper_witness": "r25-regression-01858",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "normalizer": "largest",
+      "lower_closed": [
+        "287367758856264244952099367383094002337162035462144",
+        "2571103568009893618164714494241201347137511248917784836985324249"
+      ],
+      "lower_witness": "r25-regression-01828",
+      "upper_open": [
+        "371084399439998953875954588756693930917794659958784",
+        "2571103935809802267349049086007947235139488461945602761820209881"
+      ],
+      "upper_witness": "r25-regression-01858",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    },
+    {
+      "function": "LOGEST",
+      "constant": true,
+      "reverse": true,
+      "normalizer": "absolute",
+      "lower_closed": [
+        "226693190382686044394",
+        "50706050605523337466694825148443"
+      ],
+      "lower_witness": "r25-regression-01828",
+      "upper_open": [
+        "292733975255633101034",
+        "50706054232308416401144612388891"
+      ],
+      "upper_witness": "r25-regression-01858",
+      "consistent": true,
+      "drop_observations": 4,
+      "keep_observations": 15
+    }
+  ],
+  "limits": "Exact four-row, two-predictor residual geometry and observed degrees of freedom only. Each threshold interval is a necessary constraint on one predeclared comparison; it is not a fitted tolerance or a QR/coefficient implementation. Row reversal and const modes stay separate. All original numeric answers, predictions and echoes remain unchanged."
+}

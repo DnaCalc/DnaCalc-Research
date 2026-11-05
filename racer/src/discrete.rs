@@ -351,6 +351,78 @@ mod commons_controls {
     }
 }
 
+/// Only the final EXP return is retained as PC64; all other cleared mass
+/// arithmetic stays fixed and its binary64 publication is checked below.
+fn binomial_exp_return<F:Fpu>(x:f64,n:f64,p:f64,q:f64)->Val {
+    let lc=if x==0.0 {
+        if n==0.0{return Val::f64(1.0);}
+        if p<0.1{-current::deviance(n,n*q)-n*p}else{n*excel_log(q)}
+    }else if x==n{crate::ported::excel_numeric::excel_x87_mul(n,excel_log(p))}else{
+        let lc=current::stirling_error(n)-current::stirling_error(x)-current::stirling_error(n-x)
+            -current::deviance(x,n*p)-current::deviance(n-x,n*q);
+        let lf=crt_log(2.0*core::f64::consts::PI*x*(n-x)/n);
+        let half=F::div(&Val::f64(lf).to_ext(),&Val::f64(2.0).to_ext(),CW);
+        let exponent=F::sub(&Val::f64(lc).to_ext(),&half,CW);
+        return Val::Ext(research_exp::<F>(&exponent));
+    };
+    Val::Ext(research_exp::<F>(&Val::f64(lc).to_ext()))
+}
+
+/// Conditional private EXP return, not a reconstruction of Excel's full mass.
+/// Named call-expression spill programs precede the all-stored control.
+pub fn hypergeom_exp_returns<F:Fpu>(input:&str,output:&str){
+    use calc_func::value::CalcValue;
+    let destination=Path::new(output);fs::create_dir(destination).unwrap();let rows=crate::lines::<Value>(input);
+    let mut counts=[[0_usize;5];5];let mut exclusions=std::collections::BTreeMap::<String,usize>::new();
+    let mut predictions=Vec::new();let mut boundary=Vec::new();
+    let store=|v:Val|Val::f64(v.to_f64::<F>());
+    for row in &rows{
+        let name=row["function"].as_str().unwrap();
+        if !matches!(name,"HYPGEOM.DIST"|"HYPGEOMDIST")||!row["result_index"].is_null(){*exclusions.entry("surface_or_selection".into()).or_default()+=1;continue;}
+        let args=row["args"].as_array().unwrap();
+        let values:Option<Vec<_>>=args.iter().enumerate().map(|(i,v)|if i==4{v.as_bool().map(|x|if x{1.0}else{0.0}).or_else(||numeric(v))}else{numeric(v)}).collect();
+        let Some(a)=values else{*exclusions.entry("non_numeric".into()).or_default()+=1;continue;};
+        if a.len()!=if name=="HYPGEOMDIST"{4}else{5}||!a[..4].iter().all(|v|v.is_finite()&&*v>=0.0&&*v==v.trunc()){
+            *exclusions.entry("shape_or_integer_domain".into()).or_default()+=1;continue;
+        }
+        let(s,n,k,total)=(a[0],a[1],a[2],a[3]);
+        if n>total||k>total||n==0.0||n==total||s>n||s>k||n-s>total-k||total>10000.0||a.get(4).is_some_and(|x|*x!=0.0)
+            ||!row["expected"].as_str().unwrap().starts_with("0x"){
+            *exclusions.entry("outside_nontrivial_numeric_pmf_scope".into()).or_default()+=1;continue;
+        }
+        let p=n/total;let q=(total-n)/total;
+        let leaves=[(s,k),(n-s,total-k),(n,total)].map(|(x,trials)|{
+            let v=binomial_exp_return::<F>(x,trials,p,q);
+            assert_eq!(v.to_f64::<F>().to_bits(),current::binom_mass(x,trials,p,q).to_bits(),"private EXP store control {}",row["id"]);
+            v
+        });
+        let[x,y,z]=leaves;let m=EvalModel::ResidentPc64;
+        let values=[
+            div::<F>(m,store(mul::<F>(m,store(x),y)),z),
+            div::<F>(m,mul::<F>(m,store(x),store(y)),z),
+            mul::<F>(m,store(x),div::<F>(m,store(y),z)),
+            mul::<F>(m,store(div::<F>(m,store(x),z)),y),
+            div::<F>(EvalModel::Strict,mul::<F>(EvalModel::Strict,store(x),store(y)),store(z)),
+        ];
+        let baseline=crate::invoke_control(name,args.iter().map(|v|calc_verdict::decode_argument(v,"hypergeom return").unwrap()).collect()).0;
+        assert_eq!(baseline,row["actual"],"registered frozen HYPGEOM baseline");
+        let mut strings=Vec::new();for(i,v)in values.into_iter().enumerate(){
+            let value=v.to_f64::<F>();let prediction=if value.is_finite(){calc_verdict::encode_result(&CalcValue::number(if value.is_subnormal(){0.0}else{value})).unwrap()}else{"refusal:nonfinite_return_program".into()};
+            let old=baseline==row["expected"];let now=prediction==row["expected"];
+            for(j,b)in[true,now,old,now&&!old,old&&!now].into_iter().enumerate(){counts[i][j]+=usize::from(b);}
+            if i==4{assert_eq!(prediction,baseline,"all-stored HYPGEOM control");}
+            strings.push(prediction);
+        }
+        let record=json!({"original":row,"predictions":strings,"private_exp_returns":leaves.map(|v|v.exact_encoding())});
+        if k==0.0{boundary.push(record.clone());}predictions.push(record);
+    }
+    crate::json_write(destination.join("predictions.json"),&predictions);crate::json_write(destination.join("zero_population_success_controls.json"),&boundary);
+    let summary=json!({"complete":true,"input_rows":rows.len(),"excluded":exclusions,"counts":counts,"count_order":["all","exact","baseline_exact","gains","losses"],
+        "programs":["a stored before b; numerator stored before resident c; divide","stored a,b locals; resident numerator and c","a stored; b stored; b/c resident then times a","a stored; a/c quotient stored before resident b; multiply","all leaves and outer operations binary64 control"],
+        "limits":"Conditional existing cleared Stirling/deviance/CRT-log bodies; only the final private EXP return remains PC64 instead of stored binary64. Every private return is asserted to store to the unchanged cleared binomial mass. The registered HYPGEOM baseline and all-stored control are separately asserted. These are call-expression/ABI hypotheses, not Excel private intermediates. Numeric integer PMFs only, total bounded10000 for research. All exclusions remain unscored obligations. No coefficient, cutoff, per-row mask or match-count ranking."});
+    crate::json_write(destination.join("summary.json"),&summary);println!("{summary}");
+}
+
 /// Fixed hypergeometric quotient programs from the conditional-binomial identity.
 /// Existing binomial masses are explicit conditional leaves; no table is changed.
 pub fn hypergeom_quotients<F:Fpu>(input:&str,output:&str) {

@@ -292,8 +292,68 @@ def product_closure_run(input_path, destination, staged=False):
     print(json.dumps(result))
 
 
+def newton_roots(input_path,destination):
+    """Fixed textbook Newton nth-root programs, without fitted tolerances.
+
+    Unit factors remove all product uncertainty. The sole epsilon is the
+    binary64 format's unit spacing; exhaustion is a candidate contradiction.
+    Programs retain first contradictions, never a match-count ordering.
+    """
+    import math
+    import sys
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
+    from exact import BINARY64 as B,EXTENDED64 as E,binary64,two,exponent_of
+    source=Path(input_path);dest=Path(destination);dest.mkdir(exist_ok=False)
+    rows=json.loads(source.read_text())['records']
+    rows=[r for r in rows if two(-20)<=binary64(r['input'])<=two(20)]
+    profiles=[dict(id=i,shape=shape,seed=seed,model=model,stop=stop)
+        for i,(shape,seed,model,stop)in enumerate(itertools.product(
+            ('weighted_mean','residual_correction','relative_correction'),
+            ('one','binade','host_power_guess'),('binary64','stored_pc64'),
+            ('one_step','fixed_point','epsilon_step')))]
+    def evaluate(profile,x,n):
+        def op(q):return B.round(q)if profile['model']=='binary64'else B.round(E.round(q))
+        if profile['seed']=='one':r=Q(1)
+        elif profile['seed']=='binade':r=two(exponent_of(x)//n)
+        else:r=Q(math.pow(float(x),1.0/n))
+        for iteration in range(128):
+            power=Q(1)
+            for _ in range(n-1):power=op(power*r)
+            if power==0:return None,'zero_power'
+            if profile['shape']=='weighted_mean':following=op(op(op((n-1)*r)+op(x/power))/n)
+            elif profile['shape']=='residual_correction':following=op(r-op(op(op(power*r)-x)/op(n*power)))
+            else:following=op(r*op(1+op(op(op(x/op(power*r))-1)/n)))
+            if following is None or following<=0:return None,'nonpositive_or_nonfinite'
+            if profile['stop']=='one_step'or following==r:return following,None
+            if profile['stop']=='epsilon_step'and abs(following-r)<=op(abs(r)*two(-52)):return following,None
+            r=following
+        return None,'no_fixed_point_within128_steps'
+    # Mathematical controls do not use any Excel answer.
+    controls=0
+    for p in profiles:
+        for n in (2,3,9):
+            q,reason=evaluate(dict(p,seed='binade'),two(n),n)
+            require(reason is None and q==2,'Newton exact-power control');controls+=1
+    alive=list(range(len(profiles)));kills=[];executions=0
+    for index,row in enumerate(rows):
+        following=[];x=binary64(row['input']);n=row['count']
+        for identity in alive:
+            value,reason=evaluate(profiles[identity],x,n);executions+=1
+            predicted=None if value is None else'0x'+struct.pack('>d',float(value)).hex()
+            if predicted=='0x'+row['expected']['bits']:following.append(identity)
+            else:kills.append(dict(program=identity,observation_index=index,original=row,prediction=predicted,contradiction=reason or'different_output_bits'))
+        alive=following
+    result=dict(complete=True,observations=len(rows),profiles=profiles,survivors=alive,first_contradictions=kills,
+        executions=executions,exact_power_controls=controls,
+        input_sha256={str(p):digest(p)for p in (source,Path(__file__),Path(__file__).resolve().parents[1]/'checker/exact.py')},
+        limits='54 fixed textbook Newton programs, code-shape order. Initial1, exact binade or explicitly conditional host-power guess; strict or storedPC64 arithmetic. One step, exact fixed point or IEEE epsilon step;128 iterations are a bounded research resource, not an Excel threshold. Only positive unit-factor inputs and arities2..9 in the source scope. Every rejection is a concrete first contradiction, not a rank by matching counts. No general Newton family or private root algorithm is ruled out.')
+    (dest/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({k:result[k]for k in ('observations','survivors','executions','exact_power_controls')}))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='newton-roots':newton_roots(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='product-closure-staged':
         product_closure_run(*sys.argv[2:], staged=True); raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='product-closure':

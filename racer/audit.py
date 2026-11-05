@@ -715,7 +715,7 @@ def corpus_delta(before, after, original_catalogue_after, output):
                 raise ValueError('pending workbook context changed: '+workbook['name'])
             pending.append(dict(workbook=workbook['name'], cells=count, source_sha256=workbook['sha256']))
     counts = collections.Counter()
-    changes, pairs, workbooks = [], [], set()
+    changes, calculated_changes, pairs, workbooks = [], [], [], set()
     hashes = {str(before/'summary.json'): sha(before/'summary.json'),
               str(after/'summary.json'): sha(after/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
     for old_report in sorted(before.glob('workbooks/**/report.json')):
@@ -767,7 +767,19 @@ def corpus_delta(before, after, original_catalogue_after, output):
                 changes.append(dict(workbook=str(relative), cell=k, before=a[k], after=b[k],
                                     original_evaluation=x.get(k), current_evaluation=y.get(k)))
         for k in x:
-            counts['changed_values'] += x[k].get('returned') != y[k].get('returned')
+            if x[k].get('returned') == y[k].get('returned'):continue
+            counts['changed_values'] += 1
+            scored = k in a
+            policy_failure = scored and bool(policy[k].get('external_links') or policy[k].get('circular_rule'))
+            was = scored and not policy_failure and a[k]['verdict'] == 'matched'
+            now = scored and not policy_failure and b[k]['verdict'] == 'matched'
+            classification = ('outside_scored_session_inventory' if not scored else
+                'changed_policy_failure' if policy_failure else
+                'gained_exact_match' if now and not was else
+                'lost_exact_match' if was and not now else
+                'changed_still_failing' if not now else 'changed_still_matched')
+            calculated_changes.append(dict(workbook=str(relative),cell=k,classification=classification,
+                before=x[k],after=y[k],before_verdict=a.get(k),after_verdict=b.get(k)))
         pairs.append(dict(before=str(old_report), after=str(new_report), formula_cells=len(a)))
     expected = summary['totals']['counts']
     for name in ('sessions', 'evaluations', 'before_matched', 'after_matched', 'gains', 'losses', 'changed_values'):
@@ -781,7 +793,9 @@ def corpus_delta(before, after, original_catalogue_after, output):
     if counts['workbooks'] != summary['totals']['workbooks'] or counts['formula_cells'] != expected['formula_cells'] or counts['before_matched'] != expected['pass']:
         raise ValueError('original corpus totals do not reconcile: '+str(dict(counts)))
     if any(sha(Path(p)) != h for p,h in hashes.items()): raise ValueError('corpus/source changed during comparison')
-    result = dict(complete=True, counts=dict(counts), changes=changes, pairs=pairs, inputs_sha256=hashes,
+    result = dict(complete=True, counts=dict(counts), changes=changes, calculated_changes=calculated_changes,
+        calculated_change_classes=dict(collections.Counter(r['classification']for r in calculated_changes)),
+        pairs=pairs, inputs_sha256=hashes,
         pending_coverage=pending,
         inclusive_before_failed=counts['formula_cells']-counts['before_matched'],
         inclusive_after_failed=counts['formula_cells']-counts['after_matched'],

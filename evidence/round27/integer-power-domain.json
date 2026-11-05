@@ -1,0 +1,144 @@
+{
+  "complete": true,
+  "records": [
+    {
+      "trials": 1073741823,
+      "excel": {
+        "type": "number",
+        "bits": "3fe368b2fc8cb316"
+      }
+    },
+    {
+      "trials": 1073741824,
+      "excel": {
+        "type": "number",
+        "bits": "3fe368b2fc65e1b1"
+      }
+    },
+    {
+      "trials": 1073741825,
+      "excel": {
+        "type": "number",
+        "bits": "3fe368b2fc3f104b"
+      }
+    },
+    {
+      "trials": 2147483647,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 2147483648,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 2147483649,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 4294967295,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 4294967296,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 4294967297,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 8589934591,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 8589934592,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 8589934593,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 17179869183,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 17179869184,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 17179869185,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 34359738367,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 34359738368,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    },
+    {
+      "trials": 34359738369,
+      "excel": {
+        "type": "error",
+        "code": "#NUM!"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "function": "BINOM.DIST",
+      "file": "9abc5379e90b15b0fa16b17f23f11e1e566884f5456c85d09b2b7bdb00b7e562.json.gz",
+      "sha256": "50f30032a924fc5e617cb4b4b2483a62cb54de809ab38cb42ce07cecbb71bc6e",
+      "calls": 18,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-05T01:58:26.482179+00:00",
+      "request_sha256": "f47b3baea22431c858836c445042b69dee612bba8cf7631d0584e447fd2d6991"
+    }
+  ],
+  "limits": "Fixed powers-of-two boundary controls for original #NUM obligations; no boundary or product guard adopted from one side only."
+}

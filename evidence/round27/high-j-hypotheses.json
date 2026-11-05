@@ -1,0 +1,23 @@
+{
+  "id": "dc-j9k-r27-high-j",
+  "role": "implementer",
+  "model": "Codex session (gpt-6.1-sol launcher)",
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "basis": "Original R25 paired J/Y phase windows and the R21 retained residual fact; pinned Apache2 SheetJS coefficients, already retained. No tier3/4 code read.",
+  "candidate_order": [
+    "Published high-J program control",
+    "J0 amplitude digit transposition plus J1 repeated coefficient",
+    "Same literal edits, sharing the published Y0 phase table in J0"
+  ],
+  "derivation": [
+    "J0 amplitude-scaled difference divided by y=(8/x)^2 is3.6e-10 across the retained cos-dominant windows. Swapping the final62/26 pair in -0.1098628627e-2 gives -0.1098628267e-2, the exact decimal difference3.6e-10; this is a fixed handwritten transcription hypothesis, not a constant chosen from match counts.",
+    "At x=8, J1 amplitude-scaled difference is exactly the published second nonconstant coefficient -0.3516396496e-4. At larger x it begins at degree3. Repeating that coefficient before the remaining two terms predicts deltaP=(a2-a3)*y^3+(a3-a4)*y^4+a4*y^5, including that exact y=1 difference. No new numeric coefficient is introduced.",
+    "The published J0/Y0 phase tables differ in their final coefficient. Both permitted literals are predeclared alternatives; phase-zero observations can distinguish them independently of amplitude. No fitted perturbation is admitted."
+  ],
+  "limits": "Structural discovery from existing observations. Not preregistered or held-out. Every candidate contradiction and loss remains retained; no profile ranked or selected by match counts. New product adoption requires exact full-program replay, independent arithmetic and loss classification; large-order recurrence remains separate.",
+  "source_sha256": {
+    "racer/src/bessel_rational.rs": "f0b4101e207de829bb4ef57ebc6b2e6c2676209a2aab3b10c731efbf05d88a31",
+    "bessel-high-r21-facts.json": "9a96418fca1930e6edbb04056773c1b7c2e3827fd4d0a92facef06b326abff3f",
+    "bessel-rational-r20-facts.json": "b8ea952239aae07cc1c5af48d7124c5dd36f6eb3b48cfffd17663981d254bfad"
+  }
+}

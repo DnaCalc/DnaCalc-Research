@@ -1,0 +1,75 @@
+{
+  "review": "R27 QR square-product arithmetic certificate and current source",
+  "reviewer": "/root/read_only_review",
+  "read_only": true,
+  "arithmetic_and_source_approved": true,
+  "approved_change": "Only squared-norm products use RN53(RN64(v*v)) through existing excel_x87_mul; accumulator additions remain existing binary64 operations. No rank, reflector, square-root, back substitution or intercept rule changed.",
+  "blocking_arithmetic_findings": [],
+  "verified": {
+    "original_typed_inputs_and_result_selections": 52,
+    "independent_full_rank_LINEST_coefficients": 9,
+    "strict_coefficient_matches": 0,
+    "products_only_coefficient_matches": 9,
+    "both_stores_coefficient_matches": 9,
+    "resident_coefficient_matches": 9,
+    "reviewer_norm_additions_checked": 684,
+    "discriminating_norm_additions": 0,
+    "native_software_changed_lines_equal": 58,
+    "rank_inputs": 456,
+    "rank_output_changes": 0,
+    "four_program_matches": [
+      9,
+      38,
+      9,
+      38
+    ],
+    "four_program_total": 52,
+    "products_only_gains": 29,
+    "products_only_losses": 0
+  },
+  "square": {
+    "input": "0x401f9ff8b1ae9622",
+    "strict": "0x404f41118f34bfc3",
+    "PC64_then_binary64": "0x404f41118f34bfc2"
+  },
+  "independent_method": "Fresh reviewer integer/Fraction nearest-even rounding and exact midpoint-squared square root replay, without importing product/racer/checker numeric arithmetic; all nine products-only, both-store and resident outputs equal original Excel and authoritative proof. Independently bound all52 typed arrays/const/result slots to original workbook operand-cell observations and frozen program4/program2 predictions.",
+  "scope_limits": [
+    "Nine coefficient probes require PC64 square rounding under the retained QR structure; they do not uniquely locate following binary64 stores.",
+    "All22 stored-versus-resident discriminants in the original52-call study have an intercept. Stored alone matches8, resident alone2, neither12. Their counts do not prove accumulator storage.",
+    "Only full-rank no-intercept LINEST coefficients have independent complete arithmetic certificates. Rank, intercept, LOGEST and statistics are outside that proof.",
+    "Typed registered-result totals do not become workbook matches; existing formula-route refusals remain failures.",
+    "No full corpus/bank gain, absence of losses, or final check approved by this receipt; those replays are pending."
+  ],
+  "first_failing_test": "Observed parent qr-failing-first.log: registered LINEST selected old0x3fc02012dd5f4df5 versus original Excel0x3fc02012dd5f4df4; test failed before source change. Current renamed test linest_stores_squared_norm_products retains nine original expectations.",
+  "publication_followups": [
+    "Regenerate four-program summary prose: inherited limits incorrectly says64 coherent group policies although programs=4.",
+    "Historical outer-QR instrumentation in racer/build.rs searches old strict norm text; final publication rebuild must adapt it or explicitly disable that historical audit when binding the changed product.",
+    "The two earlier QR proof JSONs are superseded audit drafts; use qr-products-proof.json with current producer binding."
+  ],
+  "ubs": {
+    "status": "completed with triaged finding",
+    "files": 1,
+    "exit_code": 1,
+    "critical": 1,
+    "warning": 7,
+    "info": 44,
+    "triage": "Pre-existing regression.py:210 public source/evidence SHA256 equality is falsely classified as secret comparison. No authentication secret or timing boundary exists. Seven parsing warnings are intentional fail-closed JSON checks. An earlier scan was invalidated by concurrent source edits and is not used as a clean scan."
+  },
+  "reviewed_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/regression.py": "8bfe245186c9b09a9e063770b0d49384979dafe8f6b17226ba0d33cd83f35383",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/src/route_audit.rs": "e0f0634819b864b734ecb7c27f914a9c3c846e6119e7b386239e6d834dbeb83e",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/src/main.rs": "aa1625456f52b33835daf9fb974a5d1603ad7bc97ef3997fab1adc08404a1c81",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/qr-products-proof.json": "d0d47b6f2c183f1b905a0e03bde7c80b421b4a1003aee6a9a60be7099d366b2a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/qr-inputs.jsonl.gz": "6c402deda62392ac446b7d2f9a6fbbac7f27de7120ecf9a5bfddbde44bbff245",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/r25-qr-predictions.json": "2b621d8bc5c09f9d6d3a20e9096fcad2760929984de62821784225b1dea56652",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/src/ported/regression_forecast_family.rs": "5e0fd846deab8d1e407896097eefbc220cc53143ae9533f0f1a3c2ee4b67cdac",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/crates/calc-func/tests/f1_stats.rs": "2fb3cb9b7dc995f7fbf47ab00d04cb7dde2be749deda1c6900821c313cfa67fa",
+    "/home/ubuntu/codex-runs/r27/qr-failing-first.log": "dd50b0ed94f23da0269defdf605371f5e58dbf8a094f7572355c4d11a297be53",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/qr-norm-stores/summary.json": "abdfc5784e642d7bda2279df511adc7eaebf61e5095713b20dd008171c9744e6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/qr-norm-stores/changes.jsonl.gz": "cd82b97ee875cef65189de88b26a889fdcfbc5619c4873b42ab6e3bfd151c5c5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/qr-norm-stores-soft/summary.json": "abdfc5784e642d7bda2279df511adc7eaebf61e5095713b20dd008171c9744e6",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/qr-norm-stores-soft/changes.jsonl.gz": "cd82b97ee875cef65189de88b26a889fdcfbc5619c4873b42ab6e3bfd151c5c5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/rank-norm-stores/summary.json": "a05a8dff0684c16e1ecb2e7bcab52cdbda6465a84a1d4d4c3c197770c4f9584a",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round27/rank-norm-stores/changes.jsonl.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  }
+}

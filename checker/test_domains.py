@@ -13,6 +13,44 @@ SPEC.loader.exec_module(domain)
 
 
 class ReadingRetries(unittest.TestCase):
+    def test_multi_workbook_delivery_keeps_every_raw_answer_bound(self):
+        import hashlib
+        import zipfile
+        from checker.questions_r13 import check_workbook_delivery
+        with tempfile.TemporaryDirectory()as scratch:
+            root=Path(scratch);answers=[]
+            for sheet in ('first','second'):
+                packet=root/'packet'/sheet;book=packet/'workbooks'/sheet/'oracle.xlsx'
+                book.parent.mkdir(parents=True)
+                question=dict(id=sheet,row=1,column=4,formula='EXP(0)',role='question')
+                (packet/'workbook-questions.json').write_text(json.dumps(dict(sheet=sheet,questions=[question])))
+                ns='http://schemas.openxmlformats.org/spreadsheetml/2006/main'
+                with zipfile.ZipFile(book,'w')as z:
+                    z.writestr('xl/workbook.xml',f'<workbook xmlns="{ns}" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="{sheet}" r:id="r1"/></sheets></workbook>')
+                    z.writestr('xl/_rels/workbook.xml.rels','<Relationships><Relationship Id="r1" Target="worksheets/sheet1.xml"/></Relationships>')
+                    z.writestr('xl/worksheets/sheet1.xml',f'<worksheet xmlns="{ns}"><sheetData><row r="1"><c r="D1"><f>EXP(0)</f></c></row></sheetData></worksheet>')
+                observation=dict(sheet=sheet,row=1,column=4,excel_raw={'number':'3ff0000000000000'})
+                capture=dict(source='sha256:'+hashlib.sha256(book.read_bytes()).hexdigest(),
+                             acquisition={'kind':'live_capture'},observations=[observation],
+                             formulas=[dict(sheet=sheet,row=1,column=4,formula='=EXP(0)')])
+                (root/(sheet+'.capture.json')).write_text(json.dumps(capture))
+                answers.append(dict(question=question,condition='r27-'+sheet,status='observed',
+                                    observation=observation,raw_cell=dict(sheet=sheet,
+                                    formula=''.join(f'{ord(c):04x}'for c in '=EXP(0)'),
+                                    value=observation['excel_raw'].copy())))
+            def bind():
+                (root/'answers.jsonl').write_text(''.join(json.dumps(a)+'\n'for a in answers))
+                (root/'delivery-sha256.json').write_text(json.dumps({str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in root.rglob('*')if p.is_file()and p.name!='delivery-sha256.json'}))
+            bind()
+            result=check_workbook_delivery(root,root/'valid.json')
+            self.assertEqual((result['formula_cells'],len(result['workbooks'])),(2,2))
+            self.assertEqual(result['observed_calls_by_function'],{'EXP':2})
+            answers[1]['raw_cell']['value']={'number':'4000000000000000'};bind()
+            with self.assertRaisesRegex(ValueError,'raw worker differs'):
+                check_workbook_delivery(root,root/'invalid.json')
+            self.assertFalse((root/'invalid.json').exists())
+
     def test_delivery_files_reject_changed_bytes_and_escaping_paths(self):
         import hashlib
         from checker.questions_r13 import delivery_files

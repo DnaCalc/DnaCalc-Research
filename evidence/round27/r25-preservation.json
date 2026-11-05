@@ -1,0 +1,440 @@
+{
+  "original_packet_files_verified": 48,
+  "retained": {
+    "README.txt": {
+      "original_sha256": "a9132f4ea8d1d878e8579146617a25361da97112a9984f0c0defde530be756ce",
+      "retained": "evidence/round27/r25/README.txt.gz",
+      "sha256": "d49972ab0b1742a4f64e1c1f5f1f8ee8498eeeb2ce8e18d6353a2851e9c35f74"
+    },
+    "answers.jsonl": {
+      "original_sha256": "844de59e737f316f361914757a32c9881276629f5f3b69dc6de6452ecfab8c7a",
+      "retained": "evidence/round27/r25/answers.jsonl.gz",
+      "sha256": "bad78a19fb79dd774c396e400c796a748c51cf6f949564cee148e50fd55ffc34"
+    },
+    "capture-results.json": {
+      "original_sha256": "9e590d3135b594ba87d39256418c60b29582a6b9a5a70349fa0f15553ce0f67c",
+      "retained": "evidence/round27/r25/capture-results.json.gz",
+      "sha256": "53e943f22ff570a7f569901beac3a54d58835190b4006838fc7acdd18be54948"
+    },
+    "command-executable.json": {
+      "original_sha256": "b1cbd85dc8b46ee5f78424301742251f50c5eff0d1d0f14d958ae6ca39ac1a4e",
+      "retained": "evidence/round27/r25/command-executable.json.gz",
+      "sha256": "9600eb54c2c1cd3c4d56b8dd043bf08994b60acbdc8b2760991bc43a46f4e5e6"
+    },
+    "compatibility-answers.jsonl": {
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained": "evidence/round27/r25/compatibility-answers.jsonl.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    "delivery-sha256.json": {
+      "original_sha256": "6e161d2537b34ce6461eb09e9ba561a4baca8eb34ecbd415c8fe9b34a35367be",
+      "retained": "evidence/round27/r25/delivery-sha256.json.gz",
+      "sha256": "2cf6addf46906f70c5606c821a4464728955f3466416907d449aef3dd65b1811"
+    },
+    "delivery-status.json": {
+      "original_sha256": "46eab639c058c4279a45a9c9b85995c24a9bff9b2dedc3a0d0525608ad4a65df",
+      "retained": "evidence/round27/r25/delivery-status.json.gz",
+      "sha256": "cd82c5da050b4449a533d66d637b19b92ae802b374209b24ace3d46cc755418a"
+    },
+    "executed-scripts/capture-worker.ps1": {
+      "original_sha256": "8a0ea57f14cd6e8198137d917f3df91a3f61a99197460aacdfabe398807551dd",
+      "retained": "evidence/round27/r25/executed-scripts/capture-worker.ps1.gz",
+      "sha256": "2d6d9a783b7ec46c1134f5dcc514c88f2b6a96958e810fedff25c60658eda8df"
+    },
+    "operand-echo-differences.json": {
+      "original_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "retained": "evidence/round27/r25/operand-echo-differences.json.gz",
+      "sha256": "9ee5a88c8d7dd7955e0f870eb72b92a69d3c4b7d43837f5eca5ead2e24fef6e2"
+    },
+    "packet/README.txt": {
+      "original_sha256": "2500c5e0ad561a1db5ff02497748f3610ede486bf3ca4bd7f19d2379b9540e55",
+      "retained": "evidence/round27/r25/packet/README.txt.gz",
+      "sha256": "e5b7b3e6f966f3e024b10d74a48620f59d0b212524ba11fbb9d65df2caac4dd8"
+    },
+    "packet/active.json": {
+      "original_sha256": "cc46cbfcdb1f33376fc1b147b3221cad5a4575ddc9a8b6e4ebbf23e54289c10e",
+      "retained": "evidence/round27/r25/packet/active.json.gz",
+      "sha256": "47ee7b3dbc2c048c39a9ba595d90b6bafef49b38e6449675093895007900ec20"
+    },
+    "packet/guard-transfer/README.txt": {
+      "original_sha256": "28984335254c8702a016ac08efc840536c98d940cce613345d283424d7d1919a",
+      "retained": "evidence/round27/r25/packet/guard-transfer/README.txt.gz",
+      "sha256": "9a70781858ba0949f00100909b063a3b7eb5beaaef0472a909217cecb388f399"
+    },
+    "packet/guard-transfer/application-predictions.jsonl": {
+      "original_sha256": "20a187553f5459873950a5ab32293b6df63fb42ab3767ffb0167e62c70529817",
+      "retained": "evidence/round27/r25/packet/guard-transfer/application-predictions.jsonl.gz",
+      "sha256": "dde657af4fb52da006dca30168fa0284fc351efc9629681de8c2b19acf1889b5"
+    },
+    "packet/guard-transfer/manifest.json": {
+      "original_sha256": "1a5e86b806550b64e4bf3d50e60cb472ba0e8c107dccbf978625776fd833faaf",
+      "retained": "evidence/round27/r25/packet/guard-transfer/manifest.json.gz",
+      "sha256": "b3e5da98216c6ad0925da533a7e98685ab377a5401861e28daa2b83e392c1109"
+    },
+    "packet/guard-transfer/prediction-binding.json": {
+      "original_sha256": "5b0bd3b87150ac98d9a166934bec213aa60b2b45ec759d1d0c967d3be21dd1f3",
+      "retained": "evidence/round27/r25/packet/guard-transfer/prediction-binding.json.gz",
+      "sha256": "f7b3c40576c7e1572d59514913518a2cc930df98c34dc8c1c3b36056c9535bad"
+    },
+    "packet/guard-transfer/sheet-dcj9k_r25_guard_transfer.txt": {
+      "original_sha256": "7c2da7f3dea2f78d690a2725046ae05c549d9a924c885e7b6a0afd792455a796",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_guard_transfer/sheet-dcj9k_r25_guard_transfer.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/guard-transfer/workbook-questions.json": {
+      "original_sha256": "2a982119f90fc169f02a87aa1de5a553f4f79bdba65d00fb6c4c568b71baab33",
+      "retained": "evidence/round27/r25/packet/guard-transfer/workbook-questions.json.gz",
+      "sha256": "193ba0912a189f2f6085bb8ddca216e476b0a283c123d34bde75b11dcf891bec"
+    },
+    "packet/qr-stores/README.txt": {
+      "original_sha256": "371878a29b6eb48263d8dadf26e9510eacdfbda58906d35fd80af0c0d1d3bf0c",
+      "retained": "evidence/round27/r25/packet/qr-stores/README.txt.gz",
+      "sha256": "d51669fd2d52fc37d5cfd17b8558507d5e3158caac332303f13f32577e4fcc91"
+    },
+    "packet/qr-stores/application-predictions.jsonl": {
+      "original_sha256": "b7ae65d23f38858029a552205fcead875a60baf73ea00f33888cf45abed20e6c",
+      "retained": "evidence/round27/r25/packet/qr-stores/application-predictions.jsonl.gz",
+      "sha256": "e35546cd30c1bc66f2e86dfd6e4009be56e1d29412d88be71f86e2cc2f6b7bc1"
+    },
+    "packet/qr-stores/folds/summary.json": {
+      "original_sha256": "577c2f9e2a26e4efd0033f5401c1e7434995b7255ccbbab25c00b0922236976f",
+      "retained": "evidence/round27/r25/packet/qr-stores/folds/summary.json.gz",
+      "sha256": "12179c9fc9fdb98866e04465a5167913fcb1df9353c355fb2eb633e3ede8b2a8"
+    },
+    "packet/qr-stores/manifest.json": {
+      "original_sha256": "4cceba6c1d38971b6bca7139d0639767cff7ee3f37fbe529a05bedc2d340fd49",
+      "retained": "evidence/round27/r25/packet/qr-stores/manifest.json.gz",
+      "sha256": "954c96e6a9738120a741d89bcf3e7c37ef390e2a189d11efa5259dd5aaf25226"
+    },
+    "packet/qr-stores/outer/summary.json": {
+      "original_sha256": "544b1549c405333e4dd9e259956f0594a5f1e7c6a4b8cf39ffe6b5a7bbd805ca",
+      "retained": "evidence/round27/r25/packet/qr-stores/outer/summary.json.gz",
+      "sha256": "89e8e1189c3bb652cbee5521e89127c490d4226e4a1f49743e5a8c116327f34f"
+    },
+    "packet/qr-stores/prediction-binding.json": {
+      "original_sha256": "6440f885cd7fdb093f870bc3729b6ad438677e321b5e9f7f2c3b7f2b6be9d890",
+      "retained": "evidence/round27/r25/packet/qr-stores/prediction-binding.json.gz",
+      "sha256": "7163ca62b87ecbcf003ed49ed7ab29074996754e4259209918cf1518b6b38208"
+    },
+    "packet/qr-stores/sheet-dcj9k_r25_qr_stores.txt": {
+      "original_sha256": "176841dfd51d119b59b2c3bd380d1b160b181b32b1d6938e60636f9656b3b6b0",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_qr_stores/sheet-dcj9k_r25_qr_stores.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/qr-stores/workbook-questions.json": {
+      "original_sha256": "5b11ff3b93cdbc08364d1fa414c1e19ba081d9cea929b77c6010c3a55386ab2e",
+      "retained": "evidence/round27/r25/packet/qr-stores/workbook-questions.json.gz",
+      "sha256": "bcec8f04d58c01e4b755ac7371008ff9138f2f83e4a74978aba1e49ccbaa7d4c"
+    },
+    "packet/stored-steps/README.txt": {
+      "original_sha256": "4b952e570a2cdf6c9062e1ac629e9267b32e8ff3e8f68d9c4f45511366c33003",
+      "retained": "evidence/round27/r25/packet/stored-steps/README.txt.gz",
+      "sha256": "02b485bdbc6f0943b38a51e37b41a9f29468ad5f42dd3ef2b57baa9ab38a7309"
+    },
+    "packet/stored-steps/bessel/application-predictions.jsonl": {
+      "original_sha256": "5bb224ef2c5e45012aa74d65ce58a118b7a616db844bc410d64185c1322d7bc8",
+      "retained": "evidence/round27/r25/packet/stored-steps/bessel/application-predictions.jsonl.gz",
+      "sha256": "9517f2a10d919d743673f9c4a9aefc289c451fd288c49ed95c20171c64382880"
+    },
+    "packet/stored-steps/bessel/sheet-dcj9k_r25_bessel.txt": {
+      "original_sha256": "2d9a99d7479fdd03f3071ce32285b5547f5edb9476fc1ee473e5f7aa389c958a",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_bessel/sheet-dcj9k_r25_bessel.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/bessel/workbook-questions.json": {
+      "original_sha256": "a16db2b959652d37b85b11654cf4fd872520e4d75f6b6e2c0c833adfc78fcf91",
+      "retained": "evidence/round27/r25/packet/stored-steps/bessel/workbook-questions.json.gz",
+      "sha256": "96fa429b99737b62d0934ff871eac2586bbeb183a5b2677b509e781aa46d0de9"
+    },
+    "packet/stored-steps/discrete/application-predictions.jsonl": {
+      "original_sha256": "77280c22409de02345f31ec22bb2cdabb27a49095bcbda339a4c8dda05355cde",
+      "retained": "evidence/round27/r25/packet/stored-steps/discrete/application-predictions.jsonl.gz",
+      "sha256": "ae73966c81a5f2e50509f72120ba1fa24740c4e075b22e3edb6c9fc30fad4c59"
+    },
+    "packet/stored-steps/discrete/sheet-dcj9k_r25_discrete.txt": {
+      "original_sha256": "8c88989d1ad6e3474869f8f6d01aa71333a552573cea413b4ec212cee67b5fa3",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_discrete/sheet-dcj9k_r25_discrete.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/discrete/workbook-questions.json": {
+      "original_sha256": "c04d5169904ab7773c38ac42433f81f73939fa32b9c654da46c18d17655e50b2",
+      "retained": "evidence/round27/r25/packet/stored-steps/discrete/workbook-questions.json.gz",
+      "sha256": "03048066967d01e9c00142eb8bce2da99ada5e1c1bb396f0f8e8653629af8ea9"
+    },
+    "packet/stored-steps/geomean/application-predictions.jsonl": {
+      "original_sha256": "3404aa054aaf5785e417fc4d0aee22a4dadd78fc87b4b35892097708c91ba912",
+      "retained": "evidence/round27/r25/packet/stored-steps/geomean/application-predictions.jsonl.gz",
+      "sha256": "63cc8b4d674e97e6313fe3b38e81b274ca93e31c18cf512ddc5a21ed80055a6e"
+    },
+    "packet/stored-steps/geomean/sheet-dcj9k_r25_geomean.txt": {
+      "original_sha256": "ef345bec441d93b543aa2b3a6b15552af48197971bd9a33fe54c41cd31fbc9c4",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_geomean/sheet-dcj9k_r25_geomean.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/geomean/workbook-questions.json": {
+      "original_sha256": "bc953b4149a1de586ee45a76a2ace86becf9190c9babc9bc264e096c8abd5aeb",
+      "retained": "evidence/round27/r25/packet/stored-steps/geomean/workbook-questions.json.gz",
+      "sha256": "080ba6a190de99c3e751e26e32df3d61d914663b5204e2cebfa6879b0883e034"
+    },
+    "packet/stored-steps/manifest.json": {
+      "original_sha256": "10c08de8566a874432cebc25c7dc37b6b6f0cef4048cdfabeeb04c1f3139c5a2",
+      "retained": "evidence/round27/r25/packet/stored-steps/manifest.json.gz",
+      "sha256": "782603845604afc61a478e6d871ea21a519f5f5d2eb09d808ff80397ed781fbb"
+    },
+    "packet/stored-steps/prediction-binding.json": {
+      "original_sha256": "6440f885cd7fdb093f870bc3729b6ad438677e321b5e9f7f2c3b7f2b6be9d890",
+      "retained": "evidence/round27/r25/packet/stored-steps/prediction-binding.json.gz",
+      "sha256": "7163ca62b87ecbcf003ed49ed7ab29074996754e4259209918cf1518b6b38208"
+    },
+    "packet/stored-steps/regression/application-predictions.jsonl": {
+      "original_sha256": "67d064f23bec96fdf97fb5b116a5a38fb08e7316db1693f4b26dda10f9c7ee59",
+      "retained": "evidence/round27/r25/packet/stored-steps/regression/application-predictions.jsonl.gz",
+      "sha256": "c6a7f2806d4e49400b1c6fc434e6f45ef1fff37a0ef06b5e4a1df887e5268119"
+    },
+    "packet/stored-steps/regression/rank-brackets.json": {
+      "original_sha256": "29eda60496a7a93ad2fc0282d709db2ca593dacb4cf19a80ec4ce850c135c973",
+      "retained": "evidence/round27/r25/packet/stored-steps/regression/rank-brackets.json.gz",
+      "sha256": "92b1312560a18d07897d1cd2657e195369f0850be8ebd862ea2ec3668580d0a3"
+    },
+    "packet/stored-steps/regression/sheet-dcj9k_r25_regression.txt": {
+      "original_sha256": "371e6fd04ba9b1b1656e1cd69c98229e4094bdd35ce301967bd2b5bab99b9a1a",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_regression/sheet-dcj9k_r25_regression.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/regression/workbook-questions.json": {
+      "original_sha256": "5ed72654d689ccac3622de5416436eb71f02ce906f93f43a0408bd1fca46863c",
+      "retained": "evidence/round27/r25/packet/stored-steps/regression/workbook-questions.json.gz",
+      "sha256": "621427faf6fc50e2e515b081d63f0e404cd1b7d0560ed7ec68ca1476cb15351d"
+    },
+    "packet/stored-steps/variance/application-predictions.jsonl": {
+      "original_sha256": "dce932558a91e811e14ac5d393557facc53369ff03c4ab8189a9176fd3b0f5f4",
+      "retained": "evidence/round27/r25/packet/stored-steps/variance/application-predictions.jsonl.gz",
+      "sha256": "290ad4a0cc3e4f79ab068f699edeadd1f8a8924cdd4e153b886ed0c72dcabb10"
+    },
+    "packet/stored-steps/variance/guard-edges.json": {
+      "original_sha256": "f2a4e3b04abffe315640d0acbb62d156671887ff975527f792b9cf2af19d15de",
+      "retained": "evidence/round27/r25/packet/stored-steps/variance/guard-edges.json.gz",
+      "sha256": "080658a98902c1b65438515c343bb7b18416d0eb6e92d201a5c44fe556c40af2"
+    },
+    "packet/stored-steps/variance/sheet-dcj9k_r25_variance.txt": {
+      "original_sha256": "50a69ea64ba1e4f7049728af1757d4f86835b6ad32d6d4dc4bcca12391076001",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_variance/sheet-dcj9k_r25_variance.txt",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/variance/workbook-questions.json": {
+      "original_sha256": "ad3fa246c8011d6c22f42b022910cf2b15b4f3204f2d811ecef2bd9146c10c71",
+      "retained": "evidence/round27/r25/packet/stored-steps/variance/workbook-questions.json.gz",
+      "sha256": "c2c0e10d8acb4f2909ae3743dbe503f66b8ce899bc1b14b23a2e5c725fd5e2c2"
+    },
+    "packet-sha256.json": {
+      "original_sha256": "b4e52b60a57c07c49aa8587a1c4f13679475331a884ddd4832527b66f444c82f",
+      "retained": "evidence/round27/r25/packet-sha256.json.gz",
+      "sha256": "558b31e55fc83bf9424ea63d2e15c261611bfd363e73a7748916960dd221ce36"
+    },
+    "r25-dcj9k_r25_bessel.capture.json": {
+      "original_sha256": "279ac866121fd3f2225498a9d732db50fd17ed61a9fccca139469ba3250c0516",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_bessel/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_bessel.capture.log": {
+      "original_sha256": "e59ed8cf7c273f15de1fdecab04d1c4773e7e6314ebdb6b86485dca2aebcc777",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_bessel.capture.log.gz",
+      "sha256": "b4f1b58602315eecd1d168b20298d3b03eb547d8b96e27163d04857f90f5a504"
+    },
+    "r25-dcj9k_r25_bessel.compare.log": {
+      "original_sha256": "8c532973d598f5519f97d2d44154efc1f83f75e88867191be6900d5003e0b5f4",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_bessel.compare.log.gz",
+      "sha256": "942e15a3756170d7ee54a1546c4d450241b12101b0ad70dd9f4be7b305327c37"
+    },
+    "r25-dcj9k_r25_discrete.capture.json": {
+      "original_sha256": "caa3674b8518b49cc08a02be09bb63304ce01b1922ba37e750ec7b18f2e0794b",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_discrete/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_discrete.capture.log": {
+      "original_sha256": "563e5290c446b66e1507aeda4a36080a4b17b45cfd76157343816b733792cc87",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_discrete.capture.log.gz",
+      "sha256": "938c13bb492501edb66775c1ccee1d1c2930efe06dfe02965f374d08d5b6bd32"
+    },
+    "r25-dcj9k_r25_discrete.compare.log": {
+      "original_sha256": "3d75f38425df5eb0387430f173b6d77d3be7ecb69da70a475705e1c04599ad95",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_discrete.compare.log.gz",
+      "sha256": "20bd82e66205c975e222bf8c920bb948a705666d78ef600af8800c5cd4eb3514"
+    },
+    "r25-dcj9k_r25_geomean.capture.json": {
+      "original_sha256": "f9a99918a24a5fb8627551c2a8aea8b3a0b7a285e35a8070bba5b84621b4ec81",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_geomean/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_geomean.capture.log": {
+      "original_sha256": "b95ba79002007994aee49a42b4f9ba93d7ded3d6b924c123f9b4526dc59359d1",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_geomean.capture.log.gz",
+      "sha256": "1cd74cbe0e6e8e2f598736a5c03a870f9ec0a670d8435046bbe125ceab0a95cd"
+    },
+    "r25-dcj9k_r25_geomean.compare.log": {
+      "original_sha256": "0ef4026cc3db37e76b62602b47fd59f80c05c407dc8431a8f87a83213381eed1",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_geomean.compare.log.gz",
+      "sha256": "22c21cd908ee26a0bb6c3a27251b5eaaf933b29e39e6de7d803317b24485a156"
+    },
+    "r25-dcj9k_r25_guard_transfer.capture.json": {
+      "original_sha256": "8a3b3de6d0e262e75fe8222353252eb5b3e190931fdbdc71011f21e0e492288d",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_guard_transfer/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_guard_transfer.capture.log": {
+      "original_sha256": "2d7eb903735235fa4145e7b0e7ccaf69a5237c24da5016a5ff17f5dbab1e0604",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_guard_transfer.capture.log.gz",
+      "sha256": "b87e67b923b795d54ef8af501aa3d4748cc3fb31f1295aa5b2498523bf2e02d1"
+    },
+    "r25-dcj9k_r25_guard_transfer.compare.log": {
+      "original_sha256": "b727fb4a21c19f6ee0ba42c3c09ff367696b1029b7c5caac0dfe0ad618a8a9a6",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_guard_transfer.compare.log.gz",
+      "sha256": "0a462ca9e98ad0bbc0063405eeca76433aa9a8d422499f0fe77babca6acc9292"
+    },
+    "r25-dcj9k_r25_qr_stores.capture.json": {
+      "original_sha256": "f890edf79266855961b828c1868e4917c63cb8bdcae9bcc8858eb8c850a489ed",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_qr_stores/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_qr_stores.capture.log": {
+      "original_sha256": "349977950b639231f37b5b142fdb5b71fc165db274a646fa24057e43c206094f",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_qr_stores.capture.log.gz",
+      "sha256": "38a2c6aa43a30a7dcd3df7a09d23af43bcc12d8e5970ed1246869df6ac74f9f9"
+    },
+    "r25-dcj9k_r25_qr_stores.compare.log": {
+      "original_sha256": "bf5f1ad17e57ba27a010f2ff3e183e68ddee2b6401cdd4fb842eaab33cf0b1de",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_qr_stores.compare.log.gz",
+      "sha256": "b8f48d4ca040694dc8310c9656858a17891c4389463e5bdcc652046d07a326ba"
+    },
+    "r25-dcj9k_r25_regression.capture.json": {
+      "original_sha256": "f476117fb7d9a0b2f629240367b26566ba8345d3e25dddbeaccb5368f1ba0ff9",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_regression/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_regression.capture.log": {
+      "original_sha256": "8960a424e1bf59409b11e383d1f5c8416933beb9c1b9197e9cd6e85d2e454d79",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_regression.capture.log.gz",
+      "sha256": "16e46930ba1a63c1cfa3db1febc997f612c4173994ea43278d52874370b4a960"
+    },
+    "r25-dcj9k_r25_regression.compare.log": {
+      "original_sha256": "ea280f886dbd1c8527cd9ff68d60aed281fd734a1d0828016d8841c83a221fdd",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_regression.compare.log.gz",
+      "sha256": "0b18e8b3192e581054a1e5955381523e3152985bbefc5bf25081506974a881fe"
+    },
+    "r25-dcj9k_r25_variance.capture.json": {
+      "original_sha256": "cc75ef55e80c68402fcb267b2a3dfbd243b5f0c0af6687a23cf0f18d421af5e9",
+      "retained": "crates/calc-func/tests/captures/dcj9k_r25_variance/oracle.capture.json",
+      "repository": "DnaCalc"
+    },
+    "r25-dcj9k_r25_variance.capture.log": {
+      "original_sha256": "080d6e5f9d1925ac884eed3c3f8c333246fd18b13d87c745db6e8d2a9bbfc32b",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_variance.capture.log.gz",
+      "sha256": "7349f128591fd50d4c1e05b815709e8aeaa4b997a662a3c7ba569baf6090ab9f"
+    },
+    "r25-dcj9k_r25_variance.compare.log": {
+      "original_sha256": "e54f68a24b8110677c3f7b09124a0129bd0502f2dc5ac651da056f993cd680d6",
+      "retained": "evidence/round27/r25/r25-dcj9k_r25_variance.compare.log.gz",
+      "sha256": "5e4d4bde3b938a8e2522f3a1e8ae14fd4a94ed5a90bcf3b4d0dc0e042916ffdc"
+    },
+    "run-evidence/audit-data-delivery.py": {
+      "original_sha256": "7a7dc6beb4208bc14ffb8f25e2b0e1b66996622cd405cfb06ea01d4b3946d8d7",
+      "retained": "evidence/round27/r25/run-evidence/audit-data-delivery.py.gz",
+      "sha256": "215e58fb7e53138890abe49059d5b5ed777395c7080bd09fb311851a49e863b4"
+    },
+    "run-evidence/check-publish-retry4.log": {
+      "original_sha256": "345a06d4e739e5673c6d054df41c6670502f7d76274484a9c1d1bcaf478342de",
+      "retained": "evidence/round27/r25/run-evidence/check-publish-retry4.log.gz",
+      "sha256": "f5b097766ef95eccadf3a3acee540971e5074169a6fc13adc8a107806a1b02b8"
+    },
+    "run-evidence/check-publish.log": {
+      "original_sha256": "0615c9c32b67b83ecd6b52714ff11d38170bb7b0f758dacbd4a3e51eb7acb7d1",
+      "retained": "evidence/round27/r25/run-evidence/check-publish.log.gz",
+      "sha256": "ce1fa80c518253719af2624e2f934ebaffcf0eae7d6115171b3f7bf65bbd8c64"
+    },
+    "run-evidence/prepare-input-audit.ps1": {
+      "original_sha256": "6ab7c3b549fdea5f24d5f249c5fc7ec162287877d1057e99d69056ccf753a2cc",
+      "retained": "evidence/round27/r25/run-evidence/prepare-input-audit.ps1.gz",
+      "sha256": "b0073f2b41426770b8290b17d68fd48988563733bd3f20ba12f7c1dee59f4c43"
+    },
+    "run-evidence/published-state.json": {
+      "original_sha256": "0e6a8aad943b078f05ac5af9c19e2fef794b978724dbaf05b6a563def5c68d06",
+      "retained": "evidence/round27/r25/run-evidence/published-state.json.gz",
+      "sha256": "3437e83cdc18143b2eba1ba0fbe74d095efd1af4387d234e61b9d5dd581324c0"
+    },
+    "run-evidence/run-data.py": {
+      "original_sha256": "ac3fd5569a18758c9f42bde1792f0f8594f7b230ff36488495d95c1076b16a89",
+      "retained": "evidence/round27/r25/run-evidence/run-data.py.gz",
+      "sha256": "ba0ba0f188938f4a149fa29e34bd058896154fd9a6780b16ec869f1d944b7bb6"
+    },
+    "selected-call-comparison.json": {
+      "original_sha256": "bbb37510c95250ae092af97e3ab70c9d3c7708a31db213496b7b1fed772cb67f",
+      "retained": "evidence/round27/r25/selected-call-comparison.json.gz",
+      "sha256": "d962bcdda8279ccea92534e6a7bf073a3ebee04a40ac0fcb1b84192afd3a8f45"
+    },
+    "session-events.jsonl": {
+      "original_sha256": "14a6d8d1fdb272398acf2f3d3ff6591321af874001017547158b48274a9909c4",
+      "retained": "evidence/round27/r25/session-events.jsonl.gz",
+      "sha256": "26daa67cc2931a0939978bf3f7f2ecf0c819022e1e2352f70e90ca5763e0dd05"
+    },
+    "session-host.stderr": {
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained": "evidence/round27/r25/session-host.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    "session-host.stdout": {
+      "original_sha256": "a5fa0c671061b271256c3f95ed2aac7ddd273c516ec0ef7912a5242c59e17c53",
+      "retained": "evidence/round27/r25/session-host.stdout.gz",
+      "sha256": "29f6db0523fc411060a9045f70af0596835a7be3a5a8bc7c3429eb7f2f6a1ce6"
+    },
+    "session-launches/1-host.ps1": {
+      "original_sha256": "0bb39b3d7fb081453ed883b97aa45403ba379818580ec65b5a6dd3f3c96d6140",
+      "retained": "evidence/round27/r25/session-launches/1-host.ps1.gz",
+      "sha256": "916fd89b48111d1d06a16c4cf3a9a28b42f6a566676ab732d832b14f07c817b8"
+    },
+    "session-launches/1.json": {
+      "original_sha256": "ee6dc75139cc4d8c1ed000aba84d8171ef3aa1afef2ba97221d2f6ed1eb13a26",
+      "retained": "evidence/round27/r25/session-launches/1.json.gz",
+      "sha256": "634a45c937fe21503cdbf7bb9bdd5910d36d89b98a23b1ae4116c90c3b50f95e"
+    },
+    "workbooks.json": {
+      "original_sha256": "09d6c0e9e1747122e7938efa0003d338e2355d8627baed5cd34f1c5da11ff365",
+      "retained": "evidence/round27/r25/workbooks.json.gz",
+      "sha256": "6fc6a527035b7ec880781866f3047db62ea54a7103234b97a7b4b8e051cd5f43"
+    },
+    "packet/guard-transfer/workbooks/dcj9k_r25_guard_transfer/oracle.xlsx": {
+      "original_sha256": "279077b0ed145ce4cf45035cedad0a7df5f74bec2fd4312b79c4526ba396c62c",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_guard_transfer/oracle.xlsx",
+      "repository": "DnaCalc"
+    },
+    "packet/qr-stores/workbooks/dcj9k_r25_qr_stores/oracle.xlsx": {
+      "original_sha256": "4e4c807e554b36d9765411f3c6d6638fcfdf7e1ecf2a45bd056b806b80c174aa",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_qr_stores/oracle.xlsx",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/bessel/workbooks/dcj9k_r25_bessel/oracle.xlsx": {
+      "original_sha256": "45d0006cf4068fb997f83e61ca51131dd55e0c020b44c11de79c28db95389f36",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_bessel/oracle.xlsx",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/discrete/workbooks/dcj9k_r25_discrete/oracle.xlsx": {
+      "original_sha256": "5dc95ca7ab30a0adc77658cae357fe51bf1931712be3a11f2c80fbbdde0b7dec",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_discrete/oracle.xlsx",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/geomean/workbooks/dcj9k_r25_geomean/oracle.xlsx": {
+      "original_sha256": "f1807f921c34ef82b146d918dbaf94aa82e4c67c739ad8a42cd969df0b428fec",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_geomean/oracle.xlsx",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/regression/workbooks/dcj9k_r25_regression/oracle.xlsx": {
+      "original_sha256": "76d56d5636f3081372a1c19f27b5b03ddc0ad6e480bb11d76a1897f3fdd0cdb7",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_regression/oracle.xlsx",
+      "repository": "DnaCalc"
+    },
+    "packet/stored-steps/variance/workbooks/dcj9k_r25_variance/oracle.xlsx": {
+      "original_sha256": "dbe41c03b3c8633132cc8206989a818a3d8e218dae2d4075790228e1752dd413",
+      "retained": "crates/calc-func/tests/fixtures/dcj9k_r25_variance/oracle.xlsx",
+      "repository": "DnaCalc"
+    }
+  }
+}

@@ -230,6 +230,7 @@ fn regression_evaluate(name:&str,args:&[CalcValue],selected:Option<(usize,usize)
 std::thread_local! {
     static REGRESSION_OUTER_PROGRAM:std::cell::Cell<Option<(usize,bool)>>=const{std::cell::Cell::new(None)};
     static REGRESSION_FOLD_PROGRAM:std::cell::Cell<Option<(usize,bool)>>=const{std::cell::Cell::new(None)};
+    static REGRESSION_NORM_PROGRAM:std::cell::Cell<Option<(usize,bool)>>=const{std::cell::Cell::new(None)};
 }
 
 /// A fixed PC64 product/sum loop, with binary64 publication at the loop result.
@@ -257,7 +258,12 @@ pub fn regression_outer_fold(site:usize,initial:f64,terms:impl Iterator<Item=(f6
 pub fn regression_outer_op(site:usize,operation:usize,a:f64,b:f64)->f64 {
     use crate::ported::excel_numeric::{Fpu,Hard,Soft,research_load,excel_sqrt_staged};
     let (mask,software)=REGRESSION_OUTER_PROGRAM.with(|p|p.get()).unwrap_or((0,false));
-    if mask & (1<<site)==0 {return match operation{0=>a+b,1=>a-b,2=>a*b,3=>a/b,4=>a.sqrt(),_=>unreachable!()};}
+    let norm=REGRESSION_NORM_PROGRAM.with(|p|p.get());
+    let (stored,software)=if site==2 {
+        norm.map(|(program,soft)|((operation==2&&program&1!=0)||(operation==0&&program&2!=0),soft))
+            .unwrap_or((mask&(1<<site)!=0,software))
+    }else{(mask&(1<<site)!=0,software)};
+    if !stored {return match operation{0=>a+b,1=>a-b,2=>a*b,3=>a/b,4=>a.sqrt(),_=>unreachable!()};}
     fn calculate<F:Fpu>(operation:usize,a:f64,b:f64)->f64 {
         use crate::eval::CW;
         let (a,b)=(research_load(a),research_load(b));
@@ -269,11 +275,15 @@ pub fn regression_outer_op(site:usize,operation:usize,a:f64,b:f64)->f64 {
 
 #[cfg(regression_outer_audit)]
 pub fn regression_outer(input:&str,out:&str,software:bool) {
-    regression_outer_study(input,out,software,false);
+    regression_outer_study(input,out,software,false,false);
 }
 #[cfg(regression_outer_audit)]
 pub fn regression_folds(input:&str,out:&str,software:bool) {
-    regression_outer_study(input,out,software,true);
+    regression_outer_study(input,out,software,true,false);
+}
+#[cfg(regression_outer_audit)]
+pub fn regression_norm_stores(input:&str,out:&str,software:bool) {
+    regression_outer_study(input,out,software,false,true);
 }
 #[cfg(regression_outer_audit)]
 fn regression_expectation(row:&Value)->Option<&str> {
@@ -284,10 +294,10 @@ fn regression_expectation(row:&Value)->Option<&str> {
 }
 
 #[cfg(regression_outer_audit)]
-fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
+fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool,norms:bool) {
     use std::io::Write;
     let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=crate::lines::<Value>(input);
-    let programs=if folds{16}else{64};
+    let programs=if norms{4}else if folds{16}else{64};
     let mut counts=vec![[0usize;5];programs];let mut first_losses=vec![None;programs];let mut first_gains=vec![None;programs];let mut excluded=std::collections::BTreeMap::<String,usize>::new();
     let mut unobserved=0usize;
     let mut changes=std::io::BufWriter::new(fs::File::create_new(destination.join("changes.jsonl")).unwrap());
@@ -297,6 +307,7 @@ fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
         let args:Vec<_>=row["args"].as_array().unwrap().iter().enumerate().map(|(i,v)|calc_verdict::decode_argument(v,&format!("args[{i}]")).unwrap()).collect();
         REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));
         REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));
+        REGRESSION_NORM_PROGRAM.with(|p|p.set(None));
         let Some(observed)=regression_evaluate(name,&args,selected)else{*excluded.entry("outside_selectable_result_shape".into()).or_default()+=1;continue;};
         let(baseline,_)=crate::invoke_selected_control(name,args.clone(),selected);
         assert_eq!(baseline,row["actual"].as_str().unwrap(),"frozen registered outer QR {}",row["id"]);
@@ -305,7 +316,8 @@ fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
         unobserved+=usize::from(expected.is_none());
         let was=expected.is_some_and(|e|baseline==e);
         for mask in 0..programs {
-            if folds{REGRESSION_FOLD_PROGRAM.with(|p|p.set(Some((mask,software))));}
+            if norms{REGRESSION_NORM_PROGRAM.with(|p|p.set(Some((mask,software))));}
+            else if folds{REGRESSION_FOLD_PROGRAM.with(|p|p.set(Some((mask,software))));}
             else{REGRESSION_OUTER_PROGRAM.with(|p|p.set(Some((mask,software))));}
             let got=regression_evaluate(name,&args,selected).unwrap_or_else(||"error:Ref".into());
             if mask==0{assert_eq!(got,baseline,"original outer QR {}",row["id"]);}
@@ -318,11 +330,11 @@ fn regression_outer_study(input:&str,out:&str,software:bool,folds:bool) {
             }
         }
     }
-    REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]+unobserved>0);assert_eq!(counts[0][0]+unobserved+excluded.values().sum::<usize>(),rows.len());
+    REGRESSION_OUTER_PROGRAM.with(|p|p.set(None));REGRESSION_FOLD_PROGRAM.with(|p|p.set(None));REGRESSION_NORM_PROGRAM.with(|p|p.set(None));assert!(counts[0][0]+unobserved>0);assert_eq!(counts[0][0]+unobserved+excluded.values().sum::<usize>(),rows.len());
     let safe:Vec<_>=counts.iter().enumerate().filter(|(_,v)|v[3]>0&&v[4]==0).map(|(i,_)|i).collect();
-    let result=json!({"complete":true,"input_rows":rows.len(),"unobserved_questions_not_scored":unobserved,"programs":programs,"folds":folds,"groups":if folds{vec!["mean loop","squared norm loop","back substitution dot","intercept loop"]}else{vec!["mean","centering","squared norms","square root","back substitution","intercept"]},"counts_all_exact_baseline_gains_losses":counts,"first_losses":first_losses,"first_gains":first_gains,"excluded":excluded,"zero_loss_improvements":safe,
+    let result=json!({"complete":true,"input_rows":rows.len(),"unobserved_questions_not_scored":unobserved,"programs":programs,"folds":folds,"norms":norms,"groups":if norms{vec!["strict","stored square products","stored norm additions","stored products and additions"]}else if folds{vec!["mean loop","squared norm loop","back substitution dot","intercept loop"]}else{vec!["mean","centering","squared norms","square root","back substitution","intercept"]},"counts_all_exact_baseline_gains_losses":counts,"first_losses":first_losses,"first_gains":first_gains,"excluded":excluded,"zero_loss_improvements":safe,
         "source":"Existing cleared Householder QR, IEEE754 and Intel SDM stored PC64 arithmetic. All reflector operations, rank, pivot/tie, logarithms and statistics consumers unchanged.",
-        "limits":if folds{"16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector. Unanswered questions are not scored."}else{"64 coherent group policies, no fitted parameter or data-dependent selector. Counts are diagnostic; adoption requires structural evidence and classification of every loss. Unanswered questions are not scored. Discovery only, no new Excel answers."}});
+        "limits":if norms{"Four fixed norm programs: strict, stored products only, stored additions only, stored products and additions. Reflector, square root, rank, pivot and other arithmetic unchanged. Counts do not uniquely identify stores; adoption requires independent square-product evidence and classification of every loss. Unanswered questions are not scored."}else if folds{"16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector. Unanswered questions are not scored."}else{"64 coherent group policies, no fitted parameter or data-dependent selector. Counts are diagnostic; adoption requires structural evidence and classification of every loss. Unanswered questions are not scored. Discovery only, no new Excel answers."}});
     json_write(destination.join("summary.json"),&result);println!("{}",json!({"complete":true,"rows":counts[0][0],"zero_loss_improvements":safe}));
 }
 

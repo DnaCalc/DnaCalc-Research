@@ -159,6 +159,51 @@ class ExactArithmetic(unittest.TestCase):
             result = corpus_delta(root/'before', root/'after', '-', root/'delta.json')
             self.assertEqual((result['counts']['formula_cells'], result['counts']['gains'], result['counts']['losses']), (1, 1, 0))
             self.assertEqual(result['counts']['sessions'], 1)
+            self.assertEqual(result['calculated_change_classes'], {'gained_exact_match':1})
+
+    def test_corpus_delta_retains_changes_that_still_fail_and_unscored_returns(self):
+        from racer.audit import corpus_delta
+        with tempfile.TemporaryDirectory() as scratch:
+            root=Path(scratch)
+            for side,value in [('before',1),('after',2)]:
+                directory=root/side/'workbooks'/'questions';directory.mkdir(parents=True)
+                cell=dict(sheet='s',row=1,column=1,verdict='mismatched')
+                counts=dict(formula_cells=1,awaiting_capture=0,external_links=0,circular_rule=0,fail=1,**{'pass':0})
+                summary=dict(workbooks=[dict(name='questions',sha256='fixed',counts=counts)],totals=dict(workbooks=1,counts=counts))
+                (root/side/'summary.json').write_text(json.dumps(summary))
+                for name in ('report.json','triage.json'):
+                    (directory/name).write_text(json.dumps(dict(cells=[cell])))
+                evaluations=[dict(sheet='s',row=row,column=1,returned=dict(value=value))for row in (1,2)]
+                (directory/'evaluations.json').write_text(json.dumps(dict(evaluations=evaluations)))
+            result=corpus_delta(root/'before',root/'after','-',root/'delta.json')
+            self.assertEqual((result['counts']['gains'],result['counts']['losses']),(0,0))
+            self.assertEqual(result['counts']['changed_values'],2)
+            self.assertEqual(result['calculated_change_classes'],
+                {'changed_still_failing':1,'outside_scored_session_inventory':1})
+            self.assertEqual([r['after']['returned']for r in result['calculated_changes']],
+                [dict(value=2),dict(value=2)])
+
+    def test_corpus_delta_changed_policy_cells_remain_failures(self):
+        from racer.audit import corpus_delta
+        with tempfile.TemporaryDirectory() as scratch:
+            root=Path(scratch)
+            for side,verdict,value in [('before','mismatched',1),('after','matched',2)]:
+                directory=root/side/'workbooks'/'questions';directory.mkdir(parents=True)
+                cells=[dict(sheet='s',row=row,column=1,verdict=verdict)for row in (1,2)]
+                counts=dict(formula_cells=2,awaiting_capture=0,external_links=1,circular_rule=1,fail=2,**{'pass':0})
+                summary=dict(workbooks=[dict(name='questions',sha256='fixed',counts=counts)],totals=dict(workbooks=1,counts=counts))
+                (root/side/'summary.json').write_text(json.dumps(summary))
+                (directory/'report.json').write_text(json.dumps(dict(cells=cells)))
+                triage=[dict(cells[0],external_links=True),dict(cells[1],circular_rule=True)]
+                (directory/'triage.json').write_text(json.dumps(dict(cells=triage)))
+                evaluations=[dict(sheet='s',row=row,column=1,returned=dict(value=value))for row in (1,2)]
+                (directory/'evaluations.json').write_text(json.dumps(dict(evaluations=evaluations)))
+            result=corpus_delta(root/'before',root/'after','-',root/'delta.json')
+            self.assertEqual((result['counts']['before_matched'],result['counts']['after_matched'],
+                result['counts']['gains'],result['counts']['losses']),(0,0,0,0))
+            self.assertEqual((result['inclusive_before_failed'],result['inclusive_after_failed']),(2,2))
+            self.assertEqual(result['counts']['changed_values'],2)
+            self.assertEqual(result['calculated_change_classes'],{'changed_policy_failure':2})
 
     def test_corpus_error_sizes_handle_zero_and_extreme_exponents(self):
         from racer.corpus_cases import error_size

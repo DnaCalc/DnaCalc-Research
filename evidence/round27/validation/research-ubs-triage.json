@@ -1,0 +1,105 @@
+{
+  "complete": true,
+  "scope": "Full contents of 15 changed research files, including pre-existing code; this is not a changed-lines-only scan.",
+  "severity_counts": {
+    "info": 1088,
+    "warning": 1648
+  },
+  "rule_counts": {
+    "py.control-flow.unreachable-code": 148,
+    "py.io.open-no-encoding": 59,
+    "py.functions.nested-defs": 186,
+    "py.parsing.string-concat-plus": 194,
+    "py.numeric.division-heavy": 49,
+    "py.parsing.json-loads-no-try": 85,
+    "py.open-no-encoding": 7,
+    "py.modules.dynamic-import": 3,
+    "py.control-flow.nested-ternary": 15,
+    "py.regex.nested-quantifiers": 11,
+    "py.importlib-dynamic": 3,
+    "py.comparison.type-equality": 1,
+    "py.perf.io-in-loop": 22,
+    "python.guards.deep_attr_chain": 2,
+    "py.type-equality": 1,
+    "py.io.open-missing-with": 3,
+    "py.collections.index-arithmetic-info": 3,
+    "py.json-load-no-try": 2,
+    "py.assert-used": 64,
+    "py.functions.missing-returns": 38,
+    "rust.ownership.unwrap-expect": 365,
+    "rust.ownership.unreachable-macro": 25,
+    "rust.ownership.println-macro": 73,
+    "rust.numeric.float-equality": 43,
+    "rust.numeric.division-by-var": 110,
+    "rust.collections.clone-any": 22,
+    "rust.collections.clone-in-loop": 17,
+    "rust.collections.collect-vec": 4,
+    "rust.filesystem.fs-usage": 1,
+    "rust.filesystem.command-new": 4,
+    "rust.filesystem.write-not-atomic": 16,
+    "rust.security.path-traversal": 1,
+    "rust.code-quality.tech-debt": 1,
+    "rust.modules.wildcard-imports": 4,
+    "rust.modules.pub-use": 2,
+    "rust.panic.assert-macros": 144,
+    "rust.panic.direct-indexing": 856,
+    "rust.casts.as-casts": 82,
+    "rust.casts.try-into-unwrap": 1,
+    "rust.parsing.parse-unwrap": 2,
+    "rust.parsing.serde-unwrap": 15,
+    "rust.parsing.env-var-unwrap": 1,
+    "rust.perf.string-alloc-in-loop": 47,
+    "rust.lints.phase": 1,
+    "rust.build.phase": 1,
+    "rust.dependencies.phase": 2
+  },
+  "disposition": [
+    "No critical finding remains. Public SHA integrity comparisons, public IEEE bit comparisons and operator-selected argv with no shell have specific documented false-positive annotations.",
+    "CLI parsing/indexing/assertions intentionally stop malformed or out-of-scope research input; all results require complete scopes. No such assertion is removed or converted into an Excel pass.",
+    "Floating-point variable divisions and casts are numerical program operations. Hypergeom integer-domain and support guards reject zero denominators before candidates; control-path preconditions assert positive probabilities and nontrivial support.",
+    "Non-atomic output writes are local research artefacts with complete=true only after calculation. Canonical source observations are never rewritten.",
+    "Formatting, allocation, nested functions and string construction findings concern small offline research records; no remote shell or network execution was added.",
+    "UBS is a review aid; Python and Rust execution plus independent exact certificates supply validation. This is not a zero-warning claim."
+  ],
+  "scan_sha256": "ffc6a115e4289497bd37efd98d30e0f5de2fdeadfb80ede13e7deee3e389a831",
+  "final_policy_scan": {
+    "counts": {
+      "critical": 0,
+      "warning": 34,
+      "info": 365,
+      "files": 2
+    },
+    "sha256": "35dc791fd337d82b80abda6033c7dc2887cd750786d1d1db59e0df09f837855a",
+    "disposition": "Two final changed Python files; same local assertion/index/JSON and numerical diagnostic warning families, no critical; scope fix now has failing-first external/circular regression coverage."
+  },
+  "final_additional_scans": {
+    "binom-main-ubs.json": {
+      "counts": {
+        "critical": 0,
+        "warning": 48,
+        "info": 37,
+        "files": 2
+      },
+      "sha256": "666f75b136bfd247fb02203c716221eac608fea73ea5fa732aee08ca946667b4"
+    },
+    "integer-power-ubs.json": {
+      "counts": {
+        "critical": 0,
+        "warning": 21,
+        "info": 131,
+        "files": 1
+      },
+      "sha256": "37952371daff851fcae33be55fc10fed3b003edc420daa148af4980babbd3c90"
+    },
+    "discrete-final-ubs.json": {
+      "counts": {
+        "critical": 0,
+        "warning": 187,
+        "info": 66,
+        "files": 1
+      },
+      "sha256": "1f460e7603d1425da61606e8e72e847b9363639655dd1846550b544415c51609"
+    }
+  },
+  "final_additional_disposition": "New main code adds one existing safe scalar helper call; assertions/unwraps are in original-bit test helpers. The new research helper matches the endpoint and preserves every domain/precondition/publication assertion. Integer-power changes explicitly separate nonnumeric Excel answers before equality labels. All scan exits0; no critical. Full-file warning counts include retained research programs."
+}

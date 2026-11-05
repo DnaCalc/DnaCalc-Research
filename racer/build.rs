@@ -4,6 +4,8 @@ fn main() {
     // Old units keep their original guard; a new unit explicitly freezes its
     // own source revision before any research build uses it.
     println!("cargo:rerun-if-env-changed=DNA_RESEARCH_UNIT");
+    println!("cargo:rustc-check-cfg=cfg(bessel_high_j_audit)");
+    println!("cargo:rustc-check-cfg=cfg(bessel_high_groups_audit)");
     let unit_name = env::var("DNA_RESEARCH_UNIT").unwrap_or_else(|_| "pmt-r6-unit.json".into());
     let unit_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("..")
@@ -177,6 +179,42 @@ fn main() {
             let path = source.parent().unwrap().join("bessel_rational.rs");
             println!("cargo:rerun-if-changed={}", path.display());
             writeln!(bridge, "#[path = {:?}] pub mod bessel_rational;", path).unwrap();
+        }
+        if unit["bessel_high_j_audit"].as_bool() == Some(true) {
+            let original=source.parent().unwrap().join("bessel.rs");
+            let mut text=fs::read_to_string(&original).unwrap();
+            for (old,new) in [
+                ("libm::j0(x.0)","crate::bessel_rational::inferred_high_j_seed(0,x.0)"),
+                ("libm::j1(x.0)","crate::bessel_rational::inferred_high_j_seed(1,x.0)"),
+            ] {
+                assert_eq!(text.matches(old).count(),1,"changed high-J seed call");
+                text=text.replace(old,new);
+            }
+            let path=output.join("bessel-high-j-research.rs");fs::write(&path,text).unwrap();
+            writeln!(bridge,"#[path = {:?}] pub mod bessel_high_j;",path).unwrap();
+            println!("cargo:rerun-if-changed={}",original.display());
+            println!("cargo:rustc-cfg=bessel_high_j_audit");
+        }
+        if unit["bessel_high_groups_audit"].as_bool() == Some(true) {
+            let original=source.parent().unwrap().join("bessel_rational.rs");
+            let mut text=fs::read_to_string(&original).unwrap();
+            for (trig,count) in [("sin",1),("cos",2)] {
+                let old=format!("((excel_{trig}(phase) * correction) * 8.0) / x");
+                let new=format!("((8.0 / x) * excel_{trig}(phase)) * correction");
+                assert_eq!(text.matches(&old).count(),count,"changed high-region tail");
+                text=text.replace(&old,&new);
+            }
+            let path=output.join("bessel-grouped-rational.rs");fs::write(&path,text).unwrap();
+            writeln!(bridge,"#[path = {:?}] pub mod bessel_grouped_rational;",path).unwrap();
+            println!("cargo:rerun-if-changed={}",original.display());
+            let original=source.parent().unwrap().join("bessel.rs");
+            let text=fs::read_to_string(&original).unwrap();
+            assert!(text.contains("super::bessel_rational::"));
+            let text=text.replace("super::bessel_rational::","super::bessel_grouped_rational::");
+            let path=output.join("bessel-grouped.rs");fs::write(&path,text).unwrap();
+            writeln!(bridge,"#[path = {:?}] pub mod bessel_grouped;",path).unwrap();
+            println!("cargo:rerun-if-changed={}",original.display());
+            println!("cargo:rustc-cfg=bessel_high_groups_audit");
         }
         if unit["bond_solver_audit"].as_bool() == Some(true) {
             let day_count = source.parent().unwrap().join("day_count_common.rs");

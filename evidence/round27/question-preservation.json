@@ -1,0 +1,43 @@
+{
+  "new_excel_answers": 0,
+  "original_files": 7,
+  "retained": {
+    "README.txt": {
+      "original_sha256": "7bdbf5b1f8155eeb39dc20891f762f17da67a4c519b867545f91134cfcf1aae5",
+      "retained": "evidence/round27/questions/README.txt.gz",
+      "sha256": "9ffac7c52649b53bfb0462c2f0ee9d90933e371e60a194b725b13ab9e2cf56a5"
+    },
+    "manifest.json": {
+      "original_sha256": "f307749a7a86817cd283aa550fb2215723a33ade408e19728dc299762ff53e59",
+      "retained": "evidence/round27/questions/manifest.json.gz",
+      "sha256": "1f242da7cc3c22dac56390efd942195b11987d3d465ad4c6b3334c0c36285f70"
+    },
+    "prediction-binding.json": {
+      "original_sha256": "77e4cbcd573680a1a660dd370c2f7be8c6e6eb0b630008d998ef147c0a626a9d",
+      "retained": "evidence/round27/questions/prediction-binding.json.gz",
+      "sha256": "07d1d22e21be4936ebc8f786a6b3995d7cd9da928163ae82132cbae3d156fedb"
+    },
+    "rank_dependencies/application-predictions.jsonl": {
+      "original_sha256": "1f6b91c3099346406e2d9d8c794720a1109ce333ab6be89b601c3fae53cf8e62",
+      "retained": "evidence/round27/questions/rank_dependencies/application-predictions.jsonl.gz",
+      "sha256": "23c68be86975063523364193637e889b03b2eb07e59cb98d793ddefc21219dc0"
+    },
+    "rank_dependencies/sheet-dcj9k_r27_rank_dependencies.txt": {
+      "original_sha256": "6c8171603861c2e050fd1888624fa8f0c55f2365334e941b68eea2c5d17fff2c",
+      "retained": "evidence/round27/questions/rank_dependencies/sheet-dcj9k_r27_rank_dependencies.txt.gz",
+      "sha256": "68d1ed33658f7be2da6ca44cf23ab147493e258439037d3c488b08e3e8baa573"
+    },
+    "rank_dependencies/workbook-questions.json": {
+      "original_sha256": "e014baa7744c1210d6a4943df35db2c1cb504a6ba409feb0b27b60893a8f0dbb",
+      "retained": "evidence/round27/questions/rank_dependencies/workbook-questions.json.gz",
+      "sha256": "26196d1f2f849791479981582d8960e12526c43b0fcccdc16f68c06410c8eabc"
+    },
+    "rank_dependencies/workbooks/dcj9k_r27_rank_dependencies/oracle.xlsx": {
+      "original_sha256": "4ec97b6d749f0ba37567922b81be321786dfb0473f6546053029f921eee171f6",
+      "retained": "evidence/round27/questions/rank_dependencies/workbooks/dcj9k_r27_rank_dependencies/oracle.xlsx",
+      "sha256": "4ec97b6d749f0ba37567922b81be321786dfb0473f6546053029f921eee171f6"
+    }
+  },
+  "source": "/home/ubuntu/codex-runs/excel-questions-r27/rank-dependencies",
+  "limits": "One new unanswered workbook;984 selected calls and544 exact operand echoes. Application predictions are calculated, never Excel evidence."
+}

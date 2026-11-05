@@ -435,6 +435,141 @@ pub fn replay_fixed<F: Fpu>(input: &str, out: &str) {
     run_programs::<F>(input, out, vec![p], false);
 }
 
+/// One fixed high-J seed tree; the two literal edits are declared in the unit.
+fn high_j_literal_value<F:Fpu>(x:f64,order:usize,program:usize)->f64 {
+    high_seed_grouped_value::<F>(x,order,false,program,false,0)
+}
+
+fn high_seed_grouped_value<F:Fpu>(x:f64,order:usize,second:bool,program:usize,z_square:bool,association:usize)->f64 {
+    let mut p=family().remove(0);p.group_y0_log=true;
+    let machine=Machine::<F>::new(&p);let model=EvalModel::Strict;
+    let edited_amp0=[1.0,-0.1098628267e-2,0.2734510407e-4,-0.2073370639e-5,0.2093887211e-6];
+    let repeated_amp1=[AMP1[0],AMP1[1],AMP1[2],AMP1[2],AMP1[3],AMP1[4]];
+    let argument=Val::f64(x);
+    let square=machine.mul(argument,argument,model);
+    let z=machine.div(Val::f64(8.0),argument,model);
+    let reduction=if z_square{machine.mul(z,z,model)}else{machine.div(Val::f64(64.0),square,model)};
+    let phase=machine.sub(argument,Val::f64(if order==0{0.785398164}else{2.356194491}),model);
+    let sine=machine.elementary("sin",phase);let cosine=machine.elementary("cos",phase);
+    let scale=machine.sqrt(machine.div(Val::f64(W),argument,model));
+    let amplitude=machine.poly(reduction,if order==0{if program==0||second{AMP0}else{&edited_amp0}}
+        else if program==0||second{AMP1}else{&repeated_amp1});
+    let correction=machine.poly(reduction,if order==0{if program==2||second{PHASE_Y0}else{PHASE_J0}}else{PHASE1});
+    let (leading,trailing)=if second{(sine,cosine)}else{(cosine,sine)};
+    let leading=machine.mul(leading,amplitude,model);
+    let trailing=match association{
+        0=>machine.div(machine.mul(machine.mul(trailing,correction,model),Val::f64(8.0),model),argument,model),
+        1=>machine.mul(machine.mul(z,trailing,model),correction,model),
+        2=>machine.mul(trailing,machine.mul(z,correction,model),model),
+        3=>machine.mul(machine.mul(trailing,correction,model),z,model),
+        _=>unreachable!(),
+    };
+    let combined=if second{machine.add(leading,trailing,model)}else{machine.sub(leading,trailing,model)};
+    machine.mul(scale,combined,model).to_f64::<F>()
+}
+
+/// Simple left-to-right z*trig*polynomial comes first. The existing
+/// quotient-last reconstruction is a control, never an accuracy-ranked choice.
+pub fn replay_high_seed_groups<F:Fpu>(input:&str,out:&str){
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=lines::<Value>(input);
+    let profiles=[(true,1),(false,1),(true,2),(false,2),(true,3),(false,3),(true,0),(false,0)];
+    let mut counts=vec![[0_usize;5];profiles.len()];let mut excluded=0;let mut predictions=Vec::new();
+    for row in &rows{
+        let name=row["function"].as_str().unwrap();let second=name=="BESSELY";
+        if !second&&name!="BESSELJ"{excluded+=1;continue;}
+        let args=row["args"].as_array().unwrap();let(Some(x),Some(n))=(decode(&args[0]),decode(&args[1]))else{excluded+=1;continue;};
+        let order=n.trunc();
+        if !x.is_finite()||x<8.0||n<0.0||order>1.0||!row["actual"].as_str().unwrap().starts_with("0x"){excluded+=1;continue;}
+        let baseline=crate::invoke_control(name,vec![crate::value::CalcValue::number(x),crate::value::CalcValue::number(n)]).0;
+        assert_eq!(baseline,row["actual"],"frozen high-seed baseline {}",row["id"]);
+        let values:Vec<_>=profiles.iter().enumerate().map(|(i,&(reduction,association))|{
+            let value=high_seed_grouped_value::<F>(x,order as usize,second,1,reduction,association);
+            let prediction=format!("0x{:016x}",value.to_bits());let old=baseline==row["expected"];let now=prediction==row["expected"];
+            for(j,b)in [true,now,old,now&&!old,old&&!now].into_iter().enumerate(){counts[i][j]+=usize::from(b);}
+            prediction
+        }).collect();predictions.push(json!({"original":row,"predictions":values}));
+    }
+    json_write(destination.join("predictions.json"),&predictions);
+    let result=json!({"complete":true,"input_rows":rows.len(),"excluded_rows":excluded,"profiles":profiles,
+        "count_order":["all","exact","baseline_exact","gains","losses"],"counts":counts,
+        "candidate_order":"Named z=8/x, then z*trig*correction first; z-square then64/(x*x). Other fixed associations follow. The pinned SheetJS quotient-last tree is the last control. No match-count ranking or fitted coefficient. The first draft incorrectly called the z-left alternative published; it is a simple algebraic reconstruction hypothesis, not SheetJS's grouping.",
+        "limits":"High positive admitted seed orders0/1 only, original recorded J and Y observations. J amplitude edits are held fixed, Y literals unchanged. Strict arithmetic and compiled worksheet SIN/COS leaves. Every contradiction retained; complete recurrence/application effect remains separate."});
+    json_write(destination.join("summary.json"),&result);println!("{result}");
+}
+
+/// The existing caller owns admission; this helper adds only the original parity.
+pub(crate) fn inferred_high_j_seed(order:usize,x:f64)->f64 {
+    let value=high_j_literal_value::<Native>(x.abs(),order,1);
+    if x<0.0&&order==1{-value}else{value}
+}
+
+/// Two handwritten transcription hypotheses, in fixed code-shape order.
+pub fn replay_high_j_literals<F:Fpu>(input:&str,out:&str) {
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=lines::<Value>(input);
+    let mut counts=[[0_usize;5];3];let mut predictions=Vec::new();let mut excluded=0;
+    for row in &rows {
+        let Some(args)=row["args"].as_array()else{excluded+=1;continue;};
+        if row["function"]!="BESSELJ"||args.len()!=2||!row["result_index"].is_null(){excluded+=1;continue;}
+        let(Some(x),Some(n))=(decode(&args[0]),decode(&args[1]))else{excluded+=1;continue;};
+        if !(x>=8.0&&x<=134217727.0&&(n==0.0||n==1.0))||!row["expected"].as_str().unwrap().starts_with("0x"){excluded+=1;continue;}
+        let mut values=Vec::new();
+        for program in 0..3 {
+            let value=high_j_literal_value::<F>(x,n as usize,program);
+            let value=format!("0x{:016x}",value.to_bits());
+            let now=value==row["expected"];let old=row["actual"]==row["expected"];
+            for(j,b)in [true,now,old,now&&!old,old&&!now].into_iter().enumerate(){counts[program][j]+=usize::from(b);}
+            values.push(value);
+        }
+        predictions.push(json!({"original":row,"predictions":values}));
+    }
+    json_write(destination.join("predictions.json"),&predictions);
+    let summary=json!({"complete":true,"input_rows":rows.len(),"excluded_rows":excluded,
+        "program_order":["published-literal control in fixed study graph","J0 digit transposition and J1 repeated term","same edits with published shared Y0 phase table"],
+        "count_order":["all","exact","baseline_exact","gains","losses"],"counts":counts,
+        "sources":"Pinned Apache2 SheetJS/bessel and original Excel phase-window observations. J0 decimal transposition and J1 repeated published coefficient are fixed code-shape hypotheses. No numeric coefficient fit or match-count ranking.",
+        "limits":"Positive admitted x>=8, seed orders0/1 only. Strict arithmetic and current worksheet SIN/COS are conditional leaves selected by the compiled feature, not the CLI backend selector. Other recurrence/admission behavior is outside this seed study. Excluded rows retain their original outcomes and are not scored here. Every contradiction is retained. Discovery, not held-out."});
+    json_write(destination.join("summary.json"),&summary);println!("{summary}");
+}
+
+#[cfg(bessel_high_j_audit)]
+pub fn replay_high_j_route(input:&str,out:&str) {
+    replay_bessel_component(input,out,false,|_,x,n|crate::ported::bessel_high_j::besselj_kernel(x,n));
+}
+
+#[cfg(bessel_high_groups_audit)]
+pub fn replay_high_seed_route(input:&str,out:&str) {
+    replay_bessel_component(input,out,true,|name,x,n|if name=="BESSELJ"{
+        crate::ported::bessel_grouped::besselj_kernel(x,n)
+    }else{crate::ported::bessel_grouped::bessely_kernel(x,n)});
+}
+
+#[cfg(any(bessel_high_j_audit,bessel_high_groups_audit))]
+fn replay_bessel_component(input:&str,out:&str,include_y:bool,
+    calculate:impl Fn(&str,f64,f64)->Result<f64,calc_func::value::WorksheetErrorCode>) {
+    let destination=Path::new(out);fs::create_dir(destination).unwrap();let rows=lines::<Value>(input);
+    let mut counts=[0_usize;5];let mut changes=Vec::new();let mut excluded=0;
+    let encode=|v:Result<f64,calc_func::value::WorksheetErrorCode>|v.map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(|e|format!("error:{e:?}"));
+    for row in &rows {
+        let Some(args)=row["args"].as_array()else{excluded+=1;continue;};
+        let name=row["function"].as_str().unwrap();
+        if !(name=="BESSELJ"||(include_y&&name=="BESSELY"))||args.len()!=2||!row["result_index"].is_null(){excluded+=1;continue;}
+        let(Some(x),Some(n))=(decode(&args[0]),decode(&args[1]))else{excluded+=1;continue;};
+        let baseline=encode(if name=="BESSELJ"{crate::ported::bessel::besselj_kernel(x,n)}else{crate::ported::bessel::bessely_kernel(x,n)});
+        assert_eq!(baseline,row["actual"],"current component and registered original {}",row["id"]);
+        let prediction=encode(calculate(name,x,n));
+        let old=baseline==row["expected"];let now=prediction==row["expected"];
+        for(j,b)in [true,now,old,now&&!old,old&&!now].into_iter().enumerate(){counts[j]+=usize::from(b);}
+        if prediction!=baseline{changes.push(json!({"original":row,"prediction":prediction}));}
+    }
+    assert_eq!(counts[0]+excluded,rows.len());
+    json_write(destination.join("changes.json"),&changes);
+    let result=json!({"complete":true,"input_rows":rows.len(),"excluded_rows":excluded,"counts":counts,
+        "count_order":["all","exact","baseline_exact","gains","losses"],
+        "variant":if include_y{"high J/Y correction uses ((8/x)*trig)*polynomial"}else{"two high-J seed calls replaced"},
+        "limits":"Whole current cleared Bessel component with only the declared high-region seed change. Original admission, parity, integer-order handling, forward/backward recurrence and publication retained. Every original registered baseline is checked. This is a component study; the application route still requires before/after replay. No coefficient, cutoff, arithmetic mask or row selector fit to match counts."});
+    json_write(destination.join("summary.json"),&result);println!("{result}");
+}
+
 pub fn replay_followup<F: Fpu>(input: &str, out: &str) {
     let mut p = family().remove(0);
     p.id = 1000;

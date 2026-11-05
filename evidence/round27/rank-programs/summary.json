@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "programs": 48,
+  "observations": 152,
+  "survivors": 0,
+  "executions": 240,
+  "scope": {
+    "scoped": 152,
+    "not_degrees_of_freedom": 304
+  },
+  "source_sha256": "59309132559c0adc1a24351e02518964beaa4919bdbb8bb50239285bc63945e6",
+  "input_sha256": {
+    "/home/ubuntu/codex-runs/r27/rank-intake-2/inputs.jsonl": "53ab50bb21d671a6b00c01640a77aa372d67369bc763f83614b33b225aff77b5"
+  },
+  "limits": "Exact rational pivoted Gram-Schmidt geometry with fixed IEEE roundoff-scale comparisons. Degrees of freedom only; no floating QR implementation, coefficient program, fitted tolerance or reusable Excel rank rule is identified. Surviving necessary rank policies cannot be adopted as numeric programs."
+}

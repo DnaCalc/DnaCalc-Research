@@ -1,0 +1,73 @@
+{
+  "complete": true,
+  "excel_seed_answers": [
+    "0x3fd87a0b0e1064fe",
+    "0xbfda6343b91819c4"
+  ],
+  "registered_seed_predictions": [
+    "0x3fd87a0b0e1064fd",
+    "0xbfda6343b91819c4"
+  ],
+  "seed_matches": [
+    false,
+    true
+  ],
+  "original_order2_answer": "0xbfedd488026d9901",
+  "programs": [
+    {
+      "shape": "(2/x)*y1-y0",
+      "model": "strict",
+      "prediction": "0xbfedd488026d9901",
+      "match": true
+    },
+    {
+      "shape": "(2/x)*y1-y0",
+      "model": "stored_pc64",
+      "prediction": "0xbfedd488026d9901",
+      "match": true
+    },
+    {
+      "shape": "(2/x)*y1-y0",
+      "model": "resident_pc64",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    },
+    {
+      "shape": "(2*y1)/x-y0",
+      "model": "strict",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    },
+    {
+      "shape": "(2*y1)/x-y0",
+      "model": "stored_pc64",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    },
+    {
+      "shape": "(2*y1)/x-y0",
+      "model": "resident_pc64",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    },
+    {
+      "shape": "2*(y1/x)-y0",
+      "model": "strict",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    },
+    {
+      "shape": "2*(y1/x)-y0",
+      "model": "stored_pc64",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    },
+    {
+      "shape": "2*(y1/x)-y0",
+      "model": "resident_pc64",
+      "prediction": "0xbfedd488026d9902",
+      "match": false
+    }
+  ],
+  "limits": "Two new independent scalar seed answers, existing original catalogue order2 reading. Fixed three published recurrence associations and coherent precisions only; no full Y recurrence adopted from one case."
+}

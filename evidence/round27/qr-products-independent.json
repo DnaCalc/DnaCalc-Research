@@ -1,0 +1,101 @@
+{
+  "complete": true,
+  "counts": {
+    "scoped": 9,
+    "strict_matches": 0,
+    "stored_matches": 9
+  },
+  "excluded": {
+    "outside_coefficient_certificate": 43
+  },
+  "coefficient_proofs": [
+    {
+      "id": "r25-qr-store-00009",
+      "strict": "0x3fc02012dd5f4df5",
+      "products_only": "0x3fc02012dd5f4df4",
+      "stored": "0x3fc02012dd5f4df4",
+      "resident": "0x3fc02012dd5f4df4",
+      "excel": "0x3fc02012dd5f4df4"
+    },
+    {
+      "id": "r25-qr-store-00026",
+      "strict": "0x3f805109b424e6d3",
+      "products_only": "0x3f805109b424e6d5",
+      "stored": "0x3f805109b424e6d5",
+      "resident": "0x3f805109b424e6d5",
+      "excel": "0x3f805109b424e6d5"
+    },
+    {
+      "id": "r25-qr-store-00032",
+      "strict": "0x3fc743871c2f72f0",
+      "products_only": "0x3fc743871c2f72ef",
+      "stored": "0x3fc743871c2f72ef",
+      "resident": "0x3fc743871c2f72ef",
+      "excel": "0x3fc743871c2f72ef"
+    },
+    {
+      "id": "r25-qr-store-00063",
+      "strict": "0x3fc02012dd5f4df5",
+      "products_only": "0x3fc02012dd5f4df4",
+      "stored": "0x3fc02012dd5f4df4",
+      "resident": "0x3fc02012dd5f4df4",
+      "excel": "0x3fc02012dd5f4df4"
+    },
+    {
+      "id": "r25-qr-store-00067",
+      "strict": "0x3fc02012dd5f4df5",
+      "products_only": "0x3fc02012dd5f4df4",
+      "stored": "0x3fc02012dd5f4df4",
+      "resident": "0x3fc02012dd5f4df4",
+      "excel": "0x3fc02012dd5f4df4"
+    },
+    {
+      "id": "r25-qr-store-00070",
+      "strict": "0x3f805109b424e6d3",
+      "products_only": "0x3f805109b424e6d5",
+      "stored": "0x3f805109b424e6d5",
+      "resident": "0x3f805109b424e6d5",
+      "excel": "0x3f805109b424e6d5"
+    },
+    {
+      "id": "r25-qr-store-00075",
+      "strict": "0x3f805109b424e6d3",
+      "products_only": "0x3f805109b424e6d5",
+      "stored": "0x3f805109b424e6d5",
+      "resident": "0x3f805109b424e6d5",
+      "excel": "0x3f805109b424e6d5"
+    },
+    {
+      "id": "r25-qr-store-00082",
+      "strict": "0x3fd22a3413e3eacd",
+      "products_only": "0x3fd22a3413e3eace",
+      "stored": "0x3fd22a3413e3eace",
+      "resident": "0x3fd22a3413e3eace",
+      "excel": "0x3fd22a3413e3eace"
+    },
+    {
+      "id": "r25-qr-store-00083",
+      "strict": "0x3fc743871c2f72f0",
+      "products_only": "0x3fc743871c2f72ef",
+      "stored": "0x3fc743871c2f72ef",
+      "resident": "0x3fc743871c2f72ef",
+      "excel": "0x3fc743871c2f72ef"
+    }
+  ],
+  "square": {
+    "input": "0x401f9ff8b1ae9622",
+    "strict": "0x404f41118f34bfc3",
+    "stored": "0x404f41118f34bfc2",
+    "exact": [
+      "19809686332727766664944288855841",
+      "316912650057057350374175801344"
+    ]
+  },
+  "bindings": {
+    "/home/ubuntu/codex-runs/r27/qr-inputs.jsonl": "8e5bdef87b2d9ce06b49436f5750572e39dd1176b4947af28fdcc7861dd8d9ed",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/regression.py": "ad9ff1645b8405642d0a14ff0a9b50e52781035e3e7c1dfa7164e56df8e90cf5",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/normal.py": "b17cafc14c2f76ea5a422c0b1adc3ca7a0a3cb1ecd20e8bb6c36d26c47885e9a"
+  },
+  "limits": "Exact four-row, orthogonal, full-rank LINEST coefficient replay only. Stored square products with strict additions suffice; storing additions too and a resident accumulator give the same nine coefficients. The certificate therefore identifies the square-product boundary only. Unchanged staged reflector and strict square root/back substitution; rank/intercept/LOGEST/statistics remain outside this certificate. No native or product arithmetic imported, no parameters fit."
+}

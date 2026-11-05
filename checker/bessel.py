@@ -181,7 +181,7 @@ def check_domains(input_path,directory,output):
     require(summary['complete']and summary['programs']==len(ps)and summary['observations']==len(rows)and summary['scope']==scope and
             summary['sole_explanation_survivors']==sum(r['sole_explanation_mismatches']==0 for r in expected)and
             summary['early_guard_compatible']==sum(r['rejects_recorded_numeric']==0 for r in expected),'wrong domain summary')
-    require(all(digest(p)==h for p,h in frozen.items()),'domain evidence/source changed')
+    require(all(digest(p)==h for p,h in frozen.items()),'domain evidence/source changed')  # ubs:ignore — public source integrity hashes, not secrets
     result=dict(complete=True,programs=len(ps),observations=len(rows),sole_explanation_survivors=summary['sole_explanation_survivors'],
         early_guard_compatible=summary['early_guard_compatible'],input_sha256=frozen,mpfr_version=LIB.mpfr_get_version().decode(),
         limits='Independent rational arithmetic, Machin brackets and directed MPFR logmax loads. Early-guard impossibilities and incomplete sole explanations are counted separately. No numeric Bessel body, fitted cutoff or domain repair is identified.')
@@ -477,6 +477,24 @@ def asymptotic_inventory(directory, amplitudes=False, function='BESSELJ'):
     return summary,grammar,survivors
 
 
+def registered_trig_leaves(arguments,executable,output,prefix='r19'):
+    """Retain exact registered SIN/COS calculations as conditional leaves."""
+    import subprocess
+    output=Path(output);leaves={};bindings={}
+    for leaf_function in ('SIN','COS'):
+        request=output.with_name(output.stem+'-'+leaf_function+'-requests.json')
+        prediction=output.with_name(output.stem+'-'+leaf_function+'-predictions.jsonl')
+        questions=[dict(id=f'{prefix}-{leaf_function.lower()}-leaf-{i:03d}',args=[arg],input_transport='cell_value2_bulk')for i,arg in enumerate(sorted(arguments))]
+        with request.open('x')as out:json.dump(dict(function=leaf_function,witnesses=questions),out);out.write('\n')
+        subprocess.run([str(executable),'invoke-inputs',str(request),str(prediction)],check=True,timeout=300)  # ubs:ignore — operator-selected local program, explicit argv and bounded runtime; no shell
+        actual=list(records(prediction));require(len(actual)==len(questions),'missing registered trig leaf')
+        for q,r in zip(questions,actual):
+            require(q['id']==r['id']and q['args']==r['args']and r['calc_func_prediction'].startswith('0x'),'trig leaf identity or domain differs')
+            leaves[leaf_function,q['args'][0]]=binary64(r['calc_func_prediction'])
+        bindings[str(request)]=digest(request);bindings[str(prediction)]=digest(prediction)
+    return leaves,bindings
+
+
 def check_asymptotic_survivors(input_path,tables_path,directory,executable,output,amplitudes=False,function='BESSELJ'):
     """Exact J survivor replay with separately calculated registered trig leaves."""
     import csv,struct,subprocess
@@ -553,18 +571,8 @@ def check_asymptotic_survivors(input_path,tables_path,directory,executable,outpu
             for seed in ((n,)if n<=1 else(0,1)):
                 angle=operation(abs(x),-phases[p['phase']][seed],'add',model)
                 arguments.add(bits(B.round(angle)))
-    leaves={}
-    for leaf_function in ('SIN','COS'):
-        request=output.with_name(output.stem+'-'+leaf_function+'-requests.json')
-        prediction=output.with_name(output.stem+'-'+leaf_function+'-predictions.jsonl')
-        questions=[dict(id=f'r19-{leaf_function.lower()}-leaf-{i:03d}',args=[arg],input_transport='cell_value2_bulk')for i,arg in enumerate(sorted(arguments))]
-        with request.open('x')as out:json.dump(dict(function=leaf_function,witnesses=questions),out);out.write('\n')
-        subprocess.run([str(executable),'invoke-inputs',str(request),str(prediction)],check=True,timeout=300)
-        actual=list(records(prediction));require(len(actual)==len(questions),'missing registered trig leaf')
-        for q,r in zip(questions,actual):
-            require(q['id']==r['id']and q['args']==r['args']and r['calc_func_prediction'].startswith('0x'),'trig leaf identity or domain differs')
-            leaves[leaf_function,q['args'][0]]=binary64(r['calc_func_prediction'])
-        frozen[str(request)]=digest(request);frozen[str(prediction)]=digest(prediction)
+    leaves,bindings=registered_trig_leaves(arguments,executable,output)
+    frozen.update(bindings)
     @lru_cache(maxsize=4096)
     def sqrt_round(q,model):
         if model=='strict':q=B.round(q)
@@ -641,7 +649,7 @@ def check_regimes(input_path,directory,output):
     summary=json.loads((directory/'summary.json').read_text())
     frozen={str(p):digest(p)for p in (Path(input_path),directory/'reference-bounds.jsonl',directory/'summary.json',Path(__file__),
                                     Path(__file__).with_name('reference.py'),Path(__file__).with_name('exact.py'))}
-    require(summary['input_sha256']==digest(input_path)and summary['bounds_sha256']==digest(directory/'reference-bounds.jsonl'),'reference hashes differ')
+    require(summary['input_sha256']==digest(input_path)and summary['bounds_sha256']==digest(directory/'reference-bounds.jsonl'),'reference hashes differ')  # ubs:ignore — public evidence integrity, not authentication
     seen=set();counts=Counter();cache={};regions=defaultdict(Counter)
     for proof in proofs:
         index=proof['trace_index'];require(index not in seen and 0<=index<len(rows),'duplicate reference identity');seen.add(index)
@@ -678,7 +686,90 @@ def check_regimes(input_path,directory,output):
     print(json.dumps(result))
 
 
+def check_high_j_literals(directory,executable,output,whole_route=False,grouped=False):
+    """Exact replay of the single digit/duplicate-term computation tree.
+
+    Coefficient strings are the published literals and the stated mechanical
+    edits. Trig leaves use the existing separately registered control route.
+    They remain calculations, never fresh Excel observations.
+    """
+    import struct
+    from normal import sqrt_round
+    directory=Path(directory);executable=Path(executable).resolve();output=Path(output)
+    path=directory/('changes.json'if whole_route else'predictions.json');rows=json.loads(path.read_text())
+    frozen={str(p):digest(p)for p in (path,executable,Path(__file__),Path(__file__).with_name('exact.py'),Path(__file__).with_name('normal.py'))}
+    def bits(q):return '0x'+struct.pack('>d',float(q)).hex()
+    # Exact decimal-to-binary64 loads; no value comes from an optimizer.
+    load=lambda values:[B.round(R(s))for s in values.split()]
+    amplitude0=load('1 -0.1098628267e-2 0.2734510407e-4 -0.2073370639e-5 0.2093887211e-6')
+    amplitude1_published=load('1 0.183105e-2 -0.3516396496e-4 0.2457520174e-5 -0.240337019e-6')
+    amplitude1=amplitude1_published[:3]+amplitude1_published[2:]
+    amplitude0_published=load('1 -0.1098628627e-2 0.2734510407e-4 -0.2073370639e-5 0.2093887211e-6')
+    phases=[load('-0.1562499995e-1 0.1430488765e-3 -0.6911147651e-5 0.7621095161e-6 -0.934935152e-7'),
+            load('0.04687499995 -0.2002690873e-3 0.8449199096e-5 -0.88228987e-6 0.105787412e-6')]
+    offsets=load('0.785398164 2.356194491');scale_constant=B.round(R('0.636619772'))
+    phase_y0=load('-0.1562499995e-1 0.1430488765e-3 -0.6911147651e-5 0.7621095161e-6 -0.934945152e-7')
+    arguments=set()
+    for record in rows:
+        raw=record['original'];x,n=map(binary64,raw['args'])
+        if whole_route:
+            x,n=abs(x),int(n)
+            require((raw['function']=='BESSELJ'or(grouped and raw['function']=='BESSELY'))and x>=8 and n>=0 and(n<=1 or x>n),'changed high-seed route scope')
+        elif grouped:
+            require(raw['function']in('BESSELJ','BESSELY')and x>=8 and n in(0,1)and B.round(x-offsets[int(n)])<=134217727,'admitted high-seed scope')
+        else:require(raw['function']=='BESSELJ'and 8<=x<=134217727 and n in (0,1),'changed seed scope')
+        for seed in ((int(n),)if n<=1 else(0,1)):
+            arguments.add(bits(B.round(x-offsets[seed])))
+    leaves,bindings=registered_trig_leaves(arguments,executable,output,'r27')
+    frozen.update(bindings);counts=Counter();proofs=[]
+    def op(kind,a,b):return operation(a,b,kind,'strict')
+    def horner(y,cs):
+        value=cs[-1]
+        for c in reversed(cs[:-1]):value=op('add',op('mul',y,value),c)
+        return value
+    @lru_cache(maxsize=4096)
+    def seed_value(x,n,second=False):
+        square=op('mul',x,x);y=op('div',R(64),square)
+        angle=bits(op('add',x,-offsets[n]));sine,cosine=leaves['SIN',angle],leaves['COS',angle]
+        coefficients=(amplitude0_published if n==0 else amplitude1_published)if second else(amplitude0 if n==0 else amplitude1)
+        amplitude=horner(y,coefficients);correction=horner(y,phase_y0 if second and n==0 else phases[n])
+        leading,trailing=(sine,cosine)if second else(cosine,sine)
+        lead=op('mul',leading,amplitude)
+        tail=(op('mul',op('mul',op('div',R(8),x),trailing),correction)if grouped else
+              op('div',op('mul',op('mul',trailing,correction),R(8)),x))
+        scale=sqrt_round(op('div',scale_constant,x),'strict')
+        return op('mul',scale,op('add',lead,tail if second else-tail))
+    for record in rows:
+        raw=record['original'];x,n=map(binary64,raw['args']);n=int(n);magnitude=abs(x)
+        second=raw['function']=='BESSELY'
+        if n<=1:value=seed_value(magnitude,n,second)
+        else:
+            before,current=seed_value(magnitude,0,second),seed_value(magnitude,1,second)
+            ratio=op('div',R(2),magnitude)
+            for k in range(1,n):
+                step=op('mul',op('mul',R(k),ratio),current)
+                before,current=current,op('add',step,-before)
+            value=current
+        if x<0 and n%2 and not second:value=-value
+        got=bits(value)
+        prediction=record['prediction']if whole_route else record['predictions'][1]
+        require(got==prediction,'independent literal-program arithmetic differs')
+        same=got==raw['expected'];counts['all']+=1;counts['exact']+=same;counts['mismatched']+=not same
+        proofs.append(dict(id=raw['id'],input_bits=raw['args'][0],order=n,prediction=got,excel=raw['expected'],matched=same))
+    require(rows and frozen=={p:digest(p)for p in frozen},'empty or changed literal-program inputs')
+    result=dict(complete=True,counts=counts,proofs=proofs,bindings=frozen,
+        coefficient_derivation='J0 exchanges adjacent6/2 decimal digits in the published amplitude coefficient; J1 repeats its existing second correction before the remaining terms. All other literals and the strict Horner tree are fixed.',
+        whole_route=whole_route,grouped_correction=grouped,
+        limits='Independent exact rational operations and midpoint-squared sqrt. SIN/COS are separately registered calculation leaves, not private Excel observations. Every declared high-region numeric change is replayed, including the existing forward recurrence and J negative-argument parity when present. Grouped mode covers J/Y with their separate tables. Unchanged rows and domain guards stay with the separate full component/application comparison. Every residual remains a failure; no coefficient, threshold or selector fitted to match counts.')
+    with output.open('x')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps(dict(complete=True,counts=counts,arguments=len(arguments))))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='high-seed-route':check_high_j_literals(*sys.argv[2:],whole_route=True,grouped=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='high-seed-groups':check_high_j_literals(*sys.argv[2:],grouped=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='high-j-route':check_high_j_literals(*sys.argv[2:],whole_route=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='high-j-literals':check_high_j_literals(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='amplitude-survivors':check_asymptotic_survivors(*sys.argv[2:-1],amplitudes=True,function=sys.argv[-1]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='asymptotic-survivors':check_asymptotic_survivors(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='regimes':check_regimes(*sys.argv[2:]);raise SystemExit(0)

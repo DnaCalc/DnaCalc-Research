@@ -1,0 +1,307 @@
+{
+  "complete": true,
+  "counts_all_exact_baseline_gains_losses": [
+    [
+      52,
+      9,
+      9,
+      0,
+      0
+    ],
+    [
+      52,
+      9,
+      9,
+      0,
+      0
+    ],
+    [
+      52,
+      32,
+      9,
+      31,
+      8
+    ],
+    [
+      52,
+      32,
+      9,
+      31,
+      8
+    ],
+    [
+      52,
+      9,
+      9,
+      0,
+      0
+    ],
+    [
+      52,
+      9,
+      9,
+      0,
+      0
+    ],
+    [
+      52,
+      32,
+      9,
+      31,
+      8
+    ],
+    [
+      52,
+      32,
+      9,
+      31,
+      8
+    ],
+    [
+      52,
+      8,
+      9,
+      0,
+      1
+    ],
+    [
+      52,
+      8,
+      9,
+      0,
+      1
+    ],
+    [
+      52,
+      31,
+      9,
+      31,
+      9
+    ],
+    [
+      52,
+      31,
+      9,
+      31,
+      9
+    ],
+    [
+      52,
+      8,
+      9,
+      0,
+      1
+    ],
+    [
+      52,
+      8,
+      9,
+      0,
+      1
+    ],
+    [
+      52,
+      31,
+      9,
+      31,
+      9
+    ],
+    [
+      52,
+      31,
+      9,
+      31,
+      9
+    ]
+  ],
+  "excluded": {},
+  "first_gains": [
+    null,
+    null,
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 2,
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 3,
+      "trace_index": 0
+    },
+    null,
+    null,
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 6,
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 7,
+      "trace_index": 0
+    },
+    null,
+    null,
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 10,
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 11,
+      "trace_index": 0
+    },
+    null,
+    null,
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 14,
+      "trace_index": 0
+    },
+    {
+      "baseline": "0x3fc02012dd5f4df5",
+      "expected": "0x3fc02012dd5f4df4",
+      "id": "r25-qr-store-00009",
+      "prediction": "0x3fc02012dd5f4df4",
+      "program": 15,
+      "trace_index": 0
+    }
+  ],
+  "first_losses": [
+    null,
+    null,
+    {
+      "baseline": "0x3fbd3daee633f721",
+      "expected": "0x3fbd3daee633f721",
+      "id": "r25-qr-store-00079",
+      "prediction": "0x3fbd3daee633f722",
+      "program": 2,
+      "trace_index": 30
+    },
+    {
+      "baseline": "0x3fbd3daee633f721",
+      "expected": "0x3fbd3daee633f721",
+      "id": "r25-qr-store-00079",
+      "prediction": "0x3fbd3daee633f722",
+      "program": 3,
+      "trace_index": 30
+    },
+    null,
+    null,
+    {
+      "baseline": "0x3fbd3daee633f721",
+      "expected": "0x3fbd3daee633f721",
+      "id": "r25-qr-store-00079",
+      "prediction": "0x3fbd3daee633f722",
+      "program": 6,
+      "trace_index": 30
+    },
+    {
+      "baseline": "0x3fbd3daee633f721",
+      "expected": "0x3fbd3daee633f721",
+      "id": "r25-qr-store-00079",
+      "prediction": "0x3fbd3daee633f722",
+      "program": 7,
+      "trace_index": 30
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 8,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 9,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 10,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 11,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 12,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 13,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 14,
+      "trace_index": 2
+    },
+    {
+      "baseline": "0xbf950604be34f570",
+      "expected": "0xbf950604be34f570",
+      "id": "r25-qr-store-00011",
+      "prediction": "0xbf950604be34f56a",
+      "program": 15,
+      "trace_index": 2
+    }
+  ],
+  "folds": true,
+  "groups": [
+    "mean loop",
+    "squared norm loop",
+    "back substitution dot",
+    "intercept loop"
+  ],
+  "input_rows": 52,
+  "limits": "16 fixed accumulator-retention policies: binary64 stores or residentPC64 inside each of four product/sum loops, stored at the loop result. Other outer operations remain strict. Reflector, rank, branches and published constants unchanged; no fitted parameter or selector. Unanswered questions are not scored.",
+  "programs": 16,
+  "source": "Existing cleared Householder QR, IEEE754 and Intel SDM stored PC64 arithmetic. All reflector operations, rank, pivot/tie, logarithms and statistics consumers unchanged.",
+  "unobserved_questions_not_scored": 0,
+  "zero_loss_improvements": []
+}

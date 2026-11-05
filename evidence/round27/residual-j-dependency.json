@@ -1,0 +1,86 @@
+{
+  "complete": true,
+  "new_excel_answers": 2,
+  "excel_seed_answers": [
+    "0x3faa3c3370850555",
+    "0x3fad49ad3022b97f"
+  ],
+  "registered_seed_predictions": [
+    "0x3faa3c3370850554",
+    "0x3fad49ad3022b97f"
+  ],
+  "seed_matches": [
+    false,
+    true
+  ],
+  "original_order2_answer": "0xbfa9b1eac88983f1",
+  "programs": [
+    {
+      "shape": "(2/x)*j1-j0",
+      "model": "strict",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "(2/x)*j1-j0",
+      "model": "stored_pc64",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "(2/x)*j1-j0",
+      "model": "resident_pc64",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "(2*j1)/x-j0",
+      "model": "strict",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "(2*j1)/x-j0",
+      "model": "stored_pc64",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "(2*j1)/x-j0",
+      "model": "resident_pc64",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "2*(j1/x)-j0",
+      "model": "strict",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "2*(j1/x)-j0",
+      "model": "stored_pc64",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    },
+    {
+      "shape": "2*(j1/x)-j0",
+      "model": "resident_pc64",
+      "prediction": "0xbfa9b1eac88983f1",
+      "match": true
+    }
+  ],
+  "receipts": [
+    {
+      "function": "BESSELJ",
+      "file": "f5ac720178c3b0af85cb6a124e5ab668bfeacbd1a29fe898f3a291400c365af7.json.gz",
+      "sha256": "104d467a87206aeac91544b69f7d9b93cacca676d7d3066a0c274cb7413a4c24",
+      "calls": 2,
+      "excel_build": "20527",
+      "machine": "GOVERT-OMEN",
+      "timestamp": "2026-11-05T02:25:14.641680+00:00",
+      "request_sha256": "ae36ca69b277e32d0701815f3b7a3686feca79f151d01bb7fedaeebf92939ee4"
+    }
+  ],
+  "limits": "Two original scalar seed readings condition fixed three published recurrence associations and coherent precisions at the existing residual J input. No new coefficient, tolerance, or production change; the final bank mismatch remains a failure."
+}

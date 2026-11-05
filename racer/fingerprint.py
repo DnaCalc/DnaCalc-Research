@@ -452,6 +452,14 @@ def scan(checkout, output, cache, count=512, offline=False, only=None):
                                  for p in row['profiles'])for row in log_doc['records'])
                 if coherent and division['double_only']and not(division['single_only']or division['neither']):
                     record['rounding']='double division in the public-LN quotient model; ideal leaf rejected'
+    primitive_path=ROOT/'evidence/round27/primitives.json'
+    if primitive_path.is_file():
+        primitive_doc=json.loads(primitive_path.read_text())
+        if primitive_doc.get('complete'):
+            auxiliary[str(primitive_path)]=sha(primitive_path)
+            for record in results:
+                record['broader_primitive_windows']=[r for r in primitive_doc['leaves']
+                    if r['function']==record['function']]
     result = dict(format='dnacalc-numeric-fingerprints/1', complete=True,inventory_complete=not bool(only),
         coverage=dict(problem_functions=len(inventory['functions']), reported=len(results),
                       statuses=Counter(r['status'] for r in results)),
@@ -464,6 +472,7 @@ def scan(checkout, output, cache, count=512, offline=False, only=None):
         limitations=['Exact single/double-rounding identification requires discriminating computation-tree predictions; output spectra alone cannot supply it.',
                     'Detected spectral lines are not identified stores. Absence of a line cannot exclude a stored stage.',
                     'Two local windows do not establish global route boundaries. Each unmeasured edge remains empty.',
+                    'The EXP double-rounding label applies to its listed local discriminants. R27 broader windows contain74 ideal-leaf contradictions among2048 inputs; the registered x87 chain matches every measured input. An ideal mathematical EXP leaf is not a global identification.',
                     'Separate-cell scalar observations do not establish range, array, reference or workbook behavior.',
                     'All problem-list entries are reported, including workbook-only, text/discrete and unidentifiable cases.'],
         cache_files=service.receipts, functions=results)
@@ -1005,9 +1014,226 @@ def log_consumer_study(checkout,output,cache,offline=False,count=4096):
     return result
 
 
-def append_question(book,name,formula,role,**fields):
+def primitive_study(checkout,output,cache,offline=False,count=256):
+    """Public leaves and small private consumers, in fixed source-code order.
+
+    EXPON density and zero-count Poisson expose an exponential without any
+    intervening arithmetic. All-success binomial exposes a power consumer.
+    Kahan's expm1 identity is measured independently of a distribution body.
+    These are scoped observations, never a count-based choice of a kernel.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    def window(centers):
+        return [f'{b:016x}'for x in centers for b in
+                range(int(bits(x),16)-count//2,int(bits(x),16)+count//2)]
+    def ask(name,rows):
+        answers=[]
+        for start in range(0,len(rows),8192):
+            answers.extend(service.ask(name,rows[start:start+8192])['rows'])
+        return answers
+    def profile(label,predictions,answers,inputs):
+        tally=Counter();contradictions=[]
+        for x,p,a in zip(inputs,predictions,answers):
+            key='matched'if p==a else'mismatched';tally[key]+=1
+            if p!=a:contradictions.append(dict(input=x,excel=a,candidate=p))
+        return dict(program=label,counts=tally,consistent=tally['matched']==len(answers),
+                    first_contradiction=next(iter(contradictions),None))
+    def number(q):return dict(type='number',bits=bits(float(q)))
+    def op(q,model):
+        return BINARY64.round(q)if model=='binary64'else BINARY64.round(EXTENDED64.round(q))
+    result=dict(format='dnacalc-private-primitive-consumers/1',complete=False,
+                program_order='Published scalar leaves; zero-count and density identities; all-success EXP(n*LN(p)); Kahan correction, product first then division first. Binary64 then storedPC64. Fixed code-shape order, never match-count rank.',
+                consecutive_inputs_per_center=count,leaves=[],exponential_consumers=[],powers=[],expm1=[])
+    for name,centers in [('EXP',(-700.,-50.,-1.,-.7,.7,1.,50.,700.)),
+                         ('LN',(.001,.13,.3,.7,.99,1.3,3.7,10.)),
+                         ('SQRT',(.13,.7,1.3,3.7,10.))]:
+        xs=window(centers);rows=[[client.number(x)]for x in xs]
+        answers=ask(name,rows)
+        result['leaves'].append(dict(function=name,centers=centers,
+                                    reference=rounding_evidence(name,rows,answers)))
+        print('primitive leaf',name,result['leaves'][-1]['reference'],flush=True)
+        write(output,dict(result,receipts=service.receipts))
+    xs=window((2**-30,.13,.7,1.,3.7,50.,700.))
+    negative=[[client.number(bits(-value(x)))]for x in xs]
+    exponential=ask('EXP',negative)
+    for name,rows in [('EXPON.DIST',[[client.number(x),client.number(1.),client.boolean(False)]for x in xs]),
+                      ('POISSON.DIST',[[client.number(0.),client.number(x),client.boolean(False)]for x in xs])]:
+        answers=ask(name,rows)
+        result['exponential_consumers'].append(profile(name+' = public EXP(-x)',exponential,answers,xs))
+        print('private exponential',name,result['exponential_consumers'][-1],flush=True)
+    ps=window((.001,.13,.3,.7,.99))
+    logarithms=ask('LN',[[client.number(p)]for p in ps])
+    if any(a['type']!='number'for a in logarithms):raise ValueError('non-numeric power logarithm')
+    unique={};programs=[]
+    for n in (1,2,3,5,10,32,100):
+        answers=ask('BINOM.DIST',[[client.number(float(n)),client.number(float(n)),client.number(p),client.boolean(False)]for p in ps])
+        for model in ('binary64','stored_pc64'):
+            arguments=[bits(float(op(n*Q(value(a['bits'])),model)))for a in logarithms]
+            for t in arguments:unique.setdefault(t,None)
+            programs.append((n,model,arguments,answers))
+    keys=list(unique)
+    leaves=ask('EXP',[[client.number(t)]for t in keys]);lookup=dict(zip(keys,leaves))
+    for n,model,arguments,answers in programs:
+        predictions=[lookup[t]for t in arguments]
+        row=profile('BINOM(n,n,p,FALSE) = EXP(n*LN(p)); '+model,predictions,answers,ps)
+        row.update(trials=n,model=model);result['powers'].append(row)
+        print('private power',n,model,dict(row['counts']),flush=True)
+    # Only the small negative arm needs LN(u); large |t| uses the plain
+    # difference, and u==1 must return t before logarithm/division.
+    answers=ask('EXPON.DIST',[[client.number(x),client.number(1.),client.boolean(True)]for x in xs])
+    log_inputs=sorted({a['bits']for a in exponential if a['type']=='number'and value(a['bits'])!=0.})
+    logs=dict(zip(log_inputs,ask('LN',[[client.number(x)]for x in log_inputs])))
+    for shape in ('product_then_divide','divide_then_product'):
+        for model in ('binary64','stored_pc64'):
+            predictions=[]
+            for x,u in zip(xs,exponential):
+                if u['type']!='number':raise ValueError('non-numeric expm1 exponential')
+                t=-Q(value(x));u=Q(value(u['bits']))
+                if u==1:z=t
+                elif abs(t)>=1:z=op(u-1,model)
+                else:
+                    l=Q(value(logs[bits(float(u))]['bits']));d=op(u-1,model)
+                    z=op(op(d*t,model)/l,model)if shape=='product_then_divide'else op(d*op(t/l,model),model)
+                predictions.append(number(-z))
+            row=profile('EXPON CDF = -Kahan_expm1(-x); '+shape+'; '+model,predictions,answers,xs)
+            result['expm1'].append(row)
+            print('private expm1',shape,model,dict(row['counts']),flush=True)
+    result.update(complete=True,receipts=service.receipts,
+        limitations='Scalar Value2 windows only. Public leaves have independent Excel readings and MPFR directed mathematical diagnostics; mathematical values never become Excel answers. Complete consumer equality is conditional on the measured binary64 leaf boundary. These observations do not recover resident extended private values, global branches, or a general algorithm. No coefficient, tolerance, threshold or selector fitted.')
+    write(output,result)
+    return result
+
+
+def integer_power_study(checkout,output,cache,offline=False,count=2048):
+    """Choose multiplication/publication discriminants before observing masses.
+
+    Small integer multipliers fit exactly in PC64, so their windows cannot
+    distinguish strict multiplication from the stored step. Large odd trial
+    counts at near-one probabilities expose that step without underflow.
+    """
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache,offline)
+    def ask(name,rows):
+        result=[]
+        for start in range(0,len(rows),8192):
+            result.extend(service.ask(name,rows[start:start+8192])['rows'])
+        return result
+    seeds=[]
+    for k in (8,12,16,20,24,28,32,36,40):
+        center=int(bits(1.-2.**-k),16)
+        seeds.extend((k,f'{p:016x}')for p in range(center-count//2,center+count//2))
+    logs=ask('LN',[[client.number(p)]for _,p in seeds])
+    selected=[];controls=[]
+    for (k,p),log in zip(seeds,logs):
+        if log['type']!='number':raise ValueError('non-numeric power logarithm')
+        l=Q(value(log['bits']))
+        for offset in (-3,-1,1,3):
+            n=2**(k+4)+offset;t=n*l
+            a,b=BINARY64.round(t),BINARY64.round(EXTENDED64.round(t))
+            row=dict(probability=p,trials=n,logarithm=log['bits'],
+                     strict_exponent=bits(float(a)),stored_exponent=bits(float(b)))
+            if a!=b:selected.append(row)
+            elif len(controls)<256 and int(p,16)%127==0:controls.append(row)
+    all_rows=selected+controls
+    exponents=sorted({r[key]for r in all_rows for key in ('strict_exponent','stored_exponent')})
+    leaves=dict(zip(exponents,ask('EXP',[[client.number(t)]for t in exponents])))
+    answers=ask('BINOM.DIST',[[client.number(float(r['trials'])),client.number(float(r['trials'])),
+                             client.number(r['probability']),client.boolean(False)]for r in all_rows])
+    counts=Counter();records=[]
+    for row,a in zip(all_rows,answers):
+        strict,stored=(leaves[row[key]]for key in ('strict_exponent','stored_exponent'))
+        label=('excel_non_numeric'if a['type']!='number'else
+               'all_equal'if a==strict==stored else
+               'candidate_equal_excel_differs'if strict==stored else
+               'stored_only'if a==stored else'strict_only'if a==strict else'neither')
+        counts[label]+=1
+        records.append(dict(row,excel=a,strict=strict,stored=stored,classification=label))
+    result=dict(format='dnacalc-integer-power-stores/1',complete=True,
+        selection='All exponent disagreements under RN53 versus RN53(RN64), chosen from independently measured LN before requesting BINOM. Counts/offsets and probability windows fixed first; controls chosen by input index only.',
+        consecutive_inputs_per_center=count,logarithm_calls=len(logs),
+        multiply_discriminants=len(selected),controls=len(controls),counts=counts,records=records,receipts=service.receipts,
+        excel_types=Counter(a['type']for a in answers),
+        candidate_exact=dict(strict=sum(r['excel']==r['strict']for r in records),
+                             stored=sum(r['excel']==r['stored']for r in records)),
+        limits='All-success masses only, near-one finite normal inputs, large exact odd integers. EXP and LN are measured public binary64 leaves. This identifies only the stated consumer, not an unpublished resident logarithm or every power site. No fitted threshold, coefficient or count-driven selector.')
+    write(output,result);print('integer power stores',dict(counts),flush=True)
+    return result
+
+
+def hypergeom_product_constraints(input_path,output):
+    """Fixed small factorial-ratio trees, contradicted by recorded PMFs.
+
+    This is a necessary-constraint search, with one counterexample per rejected
+    complete program. Mathematical references never replace Excel readings.
+    """
+    import itertools
+    rows=[json.loads(line)for line in Path(input_path).read_text().splitlines()]
+    profiles=[dict(id=i,model=model,symmetric=symmetric,direction=direction,
+                   combination=combination,outer=outer)
+        for i,(model,symmetric,direction,combination,outer)in enumerate(itertools.product(
+            ('binary64','stored_pc64','resident_pc64'),(True,False),
+            ('ascending','descending'),('multiply_then_divide','ratio_then_multiply'),range(3)))]
+    alive=set(range(len(profiles)));contradictions={};scope=Counter();mathematical=Counter();first_math=None;executions=0
+    def rounded(x,model):
+        return BINARY64.round(x)if model=='binary64'else(
+            BINARY64.round(EXTENDED64.round(x))if model=='stored_pc64'else EXTENDED64.round(x))
+    def publication(q):
+        x=float(BINARY64.round(q))
+        return '0x'+bits(0. if 0<abs(x)<sys.float_info.min else x)
+    def choose(n,k,p):
+        if k<0 or k>n:return Q(0)
+        if p['symmetric']:k=min(k,n-k)
+        v=Q(1);pairs=[(n-k+i,i)for i in range(1,k+1)]
+        if p['direction']=='descending':pairs.reverse()
+        for numerator,denominator in pairs:
+            if p['combination']=='multiply_then_divide':
+                v=rounded(rounded(v*numerator,p['model'])/denominator,p['model'])
+            else:v=rounded(v*rounded(Q(numerator,denominator),p['model']),p['model'])
+        return v
+    for row in rows:
+        args=row.get('args',[])
+        arity=4 if row['function']=='HYPGEOMDIST'else 5
+        if row['function']not in('HYPGEOM.DIST','HYPGEOMDIST')or len(args)!=arity or row.get('result_index')is not None:scope['surface']+=1;continue
+        if not all(isinstance(v,str)and len(v)==18 and v.startswith('0x')for v in args[:4]):scope['non_numeric']+=1;continue
+        xs=[value(v)for v in args[:4]]
+        if not all(math.isfinite(x)and x>=0 and x==int(x)for x in xs):scope['outside_nonnegative_integer_domain']+=1;continue
+        s,n,k,total=map(int,xs)
+        if n>total or k>total:scope['invalid_support_parameters']+=1;continue
+        if max(s,total)>10000:scope['research_resource_bound']+=1;continue
+        flag=args[4]if len(args)==5 else False
+        if isinstance(flag,bool):cumulative=flag
+        elif isinstance(flag,str)and flag.startswith('0x')and len(flag)==18:cumulative=value(flag)!=0.0
+        else:scope['non_numeric_cumulative_flag']+=1;continue
+        if cumulative:scope['not_pmf']+=1;continue
+        if not str(row['expected']).startswith('0x'):scope['non_numeric_expected']+=1;continue
+        scope['scoped']+=1
+        support=0<=s<=min(n,k)and 0<=n-s<=total-k
+        numerator=math.comb(k,s)*math.comb(total-k,n-s)if support else 0
+        reference=publication(Q(numerator,math.comb(total,n)))
+        match=reference==row['expected'];mathematical['all']+=1;mathematical['exact']+=match
+        if not match and first_math is None:first_math=dict(original=row,mathematical=reference)
+        for identity in list(alive):
+            p=profiles[identity];m=p['model'];executions+=1
+            try:
+                a,b,c=choose(k,s,p),choose(total-k,n-s,p),choose(total,n,p)
+                candidate=(rounded(rounded(a*b,m)/c,m)if p['outer']==0 else
+                    rounded(a*rounded(b/c,m),m)if p['outer']==1 else rounded(rounded(a/c,m)*b,m))
+                candidate=publication(candidate)
+            except ArithmeticError:candidate='refusal:nonfinite_combination_path'
+            if candidate!=row['expected']:
+                alive.remove(identity);contradictions[identity]=dict(original=row,prediction=candidate)
+    result=dict(format='dnacalc-hypergeom-product-constraints/1',complete=True,input_rows=len(rows),scope=scope,
+        profiles=profiles,contradictions=contradictions,survivors=sorted(alive),executions=executions,
+        mathematical_control=dict(counts=mathematical,first_contradiction=first_math),
+        input_sha256=sha(input_path),candidate_order='Three named coherent precisions; symmetry reduction; ascending then descending; multiply/divide then ratio/multiply; three written quotient associations. Fixed code-shape order, never match counts.',
+        limits='Integer PMFs only, total/sample bounded10000 for research resources, not an Excel cutoff. Every source row is counted in scope/exclusion; exclusions are not passes. A first contradiction refutes a complete program, so later rows do not earn calculated-only pass rates. No coefficient, threshold or selector fitted. Original mathematical probability is a diagnostic, never an Excel answer. No product change follows without a coherent identified step.')
+    write(output,result);print(json.dumps(dict(scope=scope,programs=len(profiles),survivors=len(alive),executions=executions)))
+
+
+def append_question(book,name,formula,role,round_number=26,**fields):
     row=len(book)+1
-    book.append(dict(id=f'r26-{name}-{row:05}',row=row,column=4,formula=formula,role=role,**fields))
+    book.append(dict(id=f'r{round_number}-{name}-{row:05}',row=row,column=4,formula=formula,role=role,**fields))
     return 'D'+str(row)
 
 
@@ -1142,20 +1368,82 @@ def root_transfer_questions(count=16):
     return {'root_transfer':book},{}
 
 
-def make_workbooks(checkout,output,executable,powershell,root_transfer=False):
+def rank_dependency_questions():
+    """Vary observation count, pivot order and predictor count at measured R25 edges.
+
+    The exact residual geometry is unchanged by zero rows without an intercept,
+    or by repeating observations. No tolerance is inferred from these questions.
+    """
+    try:
+        from .corpus_fuzz import exact_expression
+    except ImportError:
+        from corpus_fuzz import exact_expression
+    intake=ROOT/'evidence/round27/rank-intake.json'
+    data=json.loads(intake.read_text());observed={r['id']:r for r in data['observations']}
+    book=[]
+    def emit(formula,role,**fields):
+        return append_question(book,'rank_dependencies',formula,role,round_number=27,**fields)
+    vectors={}
+    def vector(xs,**fields):
+        identity=tuple(bits(x)for x in xs)
+        if identity not in vectors:
+            refs=[emit(exact_expression(x),'operand_echo',intended_bits='0x'+bits(x),**fields)for x in xs]
+            vectors[identity]=refs[0]+':'+refs[-1]
+        return vectors[identity]
+    seeds=[]
+    for interval in data['necessary_intervals']:
+        if interval['function']!='LINEST'or interval['reverse']or interval['normalizer']!='column':continue
+        for side in ('lower_witness','upper_witness'):
+            observation=observed[interval[side]];seeds.append(observation)
+            for function in ('LINEST','LOGEST'):
+                for design in ('original','reverse','pad1','pad4','repeat2','repeat4','third_orthogonal'):
+                    for scales in ((1.,1.),(2.**20,1.),(1.,2.**20)):
+                        for swap in (False,True):
+                            # Those exact reference controls are already answered
+                            # in R25. Reuse their recorded facts, never ask again.
+                            if function=='LINEST'and design in ('original','reverse')and scales==(1.,1.)and not swap:
+                                continue
+                            a=[1.,2.,5.,4.];b=[2.,4.,10.,value(observation['changed_operand'])]
+                            columns=[[x*scales[0]for x in a],[x*scales[1]for x in b]]
+                            response=[1.,2.,4.,7.]if function=='LINEST'else[2.,4.,16.,128.]
+                            if swap:columns.reverse()
+                            if design=='third_orthogonal':columns.append([3.,-4.,1.,0.])
+                            if design=='reverse':
+                                columns=[col[::-1]for col in columns];response.reverse()
+                            if design.startswith('pad'):
+                                count=int(design[3:]);columns=[col+[0.]*count for col in columns]
+                                response += [0. if function=='LINEST'else 1.]*count
+                            if design.startswith('repeat'):
+                                count=int(design[6:]);columns=[col*count for col in columns];response*=count
+                            context=dict(seed=observation['id'],changed_operand=observation['changed_operand'],
+                                design=design,scales=scales,swap=swap,constant=observation['constant'],function=function)
+                            y=vector(response,**context);xs=[vector(col,**context)for col in columns]
+                            x='CHOOSE({'+','.join(str(i+1)for i in range(len(xs)))+'},'+','.join(xs)+')'
+                            call=f'{function}({y},{x},{str(observation["constant"]).upper()},TRUE)'
+                            for row,column in ((4,2),(1,1),(1,len(columns))):
+                                emit(f'INDEX({call},{row},{column})','question',result_index=[row,column],
+                                    purpose='Separate row-count, pivot-order, column-scale and predictor-count rank decisions; coefficients remain recorded together.',**context)
+    return {'rank_dependencies':book},dict(intake_sha256=sha(intake),seeds=seeds,
+        limits='Original measured drop/keep bracket endpoints choose inputs only. New reference/formula results all await Excel. Padding with an intercept changes centered geometry; it is a separate question, not an assumed invariant.')
+
+
+def make_workbooks(checkout,output,executable,powershell,root_transfer=False,rank_dependencies=False):
     checkout,output,executable,powershell=map(lambda p:Path(p).resolve(),(checkout,output,executable,powershell))
     output.mkdir(parents=True,exist_ok=False)
-    books,requests=root_transfer_questions()if root_transfer else workbook_questions(checkout)
+    if root_transfer and rank_dependencies:raise ValueError('choose one workbook study')
+    round_name='r27'if rank_dependencies else'r26'
+    books,requests=(rank_dependency_questions()if rank_dependencies else
+                    root_transfer_questions()if root_transfer else workbook_questions(checkout))
     generator=checkout/'crates/calc-func/tests/fixtures/make-catalogue-fixtures.ps1'
     provenance=subprocess.check_output([str(executable),'provenance'],timeout=60)
     (output/'prediction-binding.json').write_bytes(provenance)
     inventory=[]
     for name,questions in books.items():
         directory=output/name;directory.mkdir()
-        case='dcj9k_r26_'+name
+        case='dcj9k_'+round_name+'_'+name
         doc=directory/'workbook-questions.json';write(doc,dict(sheet=case,allow_refusals=True,questions=questions))
         section=directory/('sheet-'+case+'.txt')
-        section.write_text('# R26 exact operands and unanswered fingerprint questions.\n'+'\n'.join(q['formula']for q in questions)+'\n')
+        section.write_text('# '+round_name.upper()+' exact operands and unanswered fingerprint questions.\n'+'\n'.join(q['formula']for q in questions)+'\n')
         predictions=directory/'application-predictions.jsonl'
         # Existing registered Workbook prediction route. These results remain
         # predictions and are never passed to Excel as expected answers.
@@ -1171,14 +1459,16 @@ def make_workbooks(checkout,output,executable,powershell,root_transfer=False):
         inventory.append(dict(name=name,case=case,formula_cells=len(questions),
                               selected_calls=sum(q['role']=='question'for q in questions),
                               workbook=str((directory/'workbooks'/case/'oracle.xlsx').relative_to(output))))
-    manifest=dict(format='dnacalc-r26-fingerprint-questions/1',new_excel_answers=0,workbooks=inventory,
+    manifest=dict(format='dnacalc-'+round_name+'-fingerprint-questions/1',new_excel_answers=0,workbooks=inventory,
                   scalar_requests=requests,generator_sha256=sha(generator),producer_sha256=sha(__file__),
                   executable_sha256=sha(executable),
                   files_sha256={str(p.relative_to(output)):sha(p)for p in output.rglob('*')if p.is_file()},
                   limits=('New workbook only. Reference-cell inputs use exact integer limbs and echoes. Decimal arrays have their own INDEX operand echo, without an assumed binary64 value. LN, reciprocal, mean and EXP occupy separate cells. Every workbook outcome awaits capture; scalar observations do not establish input-route transfer. Predictions are application calculations, not Excel readings.'if root_transfer else
                           'New workbooks only. Every numerical operand uses exact small integer limbs and is echoed. Predictions are application calculations, not Excel readings. QR rank thresholds and complete arithmetic remain unknown; no tolerance or coefficient fitted.'))
     write(output/'manifest.json',manifest)
-    if root_transfer:
+    if rank_dependencies:
+        (output/'README.txt').write_text('R27 unanswered rank dependency workbook.\nCapture only the new workbook listed in manifest.json through the existing capture route.\nR25 measured bracket endpoints are reused as inputs; no new answer is supplied.\nSeparate padding, repeated observations, reversed rows, predictor swap, exact column scaling and a third orthogonal predictor.\nAll numerical operands use exact integer limbs and have unchanged bit echoes.\nReturn canonical captures, raw worker values/settings and original workbook bytes.\n')
+    elif root_transfer:
         (output/'README.txt').write_text('R26 unanswered GEOMEAN input-route and stored-mean workbook.\nCapture only the workbook listed in manifest.json through the existing cargo xtask capture/compare route.\nCompare range, scalar-cell and decimal-array GEOMEAN calls at arities9,10,11,32.\nThe decimal-array operand has its own INDEX echo; its intended bits are not assumed.\nLN, reciprocal, mean and EXP occupy separate cells; POWER uses the stored reciprocal.\nAll workbook outcomes await capture. Existing scalar readings do not answer these route questions.\nReturn canonical captures, raw worker values/settings and original workbook bytes.\n')
     else:
         (output/'README.txt').write_text('R26 unanswered scalar fingerprint and regression workbooks.\nCapture only the two workbooks listed in manifest.json through the existing cargo xtask capture/compare route.\nReturn complete canonical captures, raw worker values/settings, operand echoes and original workbook bytes.\nThe scalar book covers service-unavailable entries; text/structural controls do not identify numerical stages.\nThe regression book separates full-rank norm stores from rank-bracket decisions. No new answer is supplied.\n')
@@ -1254,6 +1544,19 @@ if __name__ == '__main__':
     binomial_parser.add_argument('output',type=Path)
     binomial_parser.add_argument('--cache',required=True)
     binomial_parser.add_argument('--offline',action='store_true')
+    primitive_parser=commands.add_parser('primitives')
+    primitive_parser.add_argument('checkout')
+    primitive_parser.add_argument('output',type=Path)
+    primitive_parser.add_argument('--cache',required=True)
+    primitive_parser.add_argument('--offline',action='store_true')
+    power_parser=commands.add_parser('integer-powers')
+    power_parser.add_argument('checkout')
+    power_parser.add_argument('output',type=Path)
+    power_parser.add_argument('--cache',required=True)
+    power_parser.add_argument('--offline',action='store_true')
+    hypergeom_parser=commands.add_parser('hypergeom-products')
+    hypergeom_parser.add_argument('input')
+    hypergeom_parser.add_argument('output')
     log_parser=commands.add_parser('log-consumers')
     log_parser.add_argument('checkout')
     log_parser.add_argument('output',type=Path)
@@ -1262,6 +1565,7 @@ if __name__ == '__main__':
     book_parser=commands.add_parser('workbooks')
     for name in ('checkout','output','executable','powershell'):book_parser.add_argument(name)
     book_parser.add_argument('--root-transfer',action='store_true')
+    book_parser.add_argument('--rank-dependencies',action='store_true')
     args = parser.parse_args()
     if args.command=='edges':
         edges(args.checkout,args.output,args.cache,args.offline)
@@ -1287,11 +1591,20 @@ if __name__ == '__main__':
     if args.command=='binomial':
         binomial_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
+    if args.command=='primitives':
+        primitive_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='integer-powers':
+        integer_power_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='hypergeom-products':
+        hypergeom_product_constraints(args.input,args.output)
+        raise SystemExit
     if args.command=='log-consumers':
         log_consumer_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
     if args.command=='workbooks':
-        make_workbooks(args.checkout,args.output,args.executable,args.powershell,args.root_transfer)
+        make_workbooks(args.checkout,args.output,args.executable,args.powershell,args.root_transfer,args.rank_dependencies)
         raise SystemExit
     if args.count < 32 or args.count > 4096 or args.count & (args.count-1):
         parser.error('--count must be a power of two from32 through4096')

@@ -20,6 +20,7 @@ mod dsl;
 mod discrete;
 mod enumerate;
 mod eval;
+mod fdlibm_pow_core;
 mod identity;
 mod normal;
 mod poisson;
@@ -396,6 +397,8 @@ fn main() {
         } else {variance::stored_steps::<Hard>(&a[2],&a[3])},
         #[cfg(regression_outer_audit)]
         Some("regression-folds")=>route_audit::regression_folds(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
+        #[cfg(regression_outer_audit)]
+        Some("regression-norm-stores")=>route_audit::regression_norm_stores(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         #[cfg(regression_audit)]
         Some("regression-stat-leaves") => route_audit::regression_stat_leaves(&a[2], &a[3]),
         #[cfg(gamma_exponent_audit)]
@@ -413,6 +416,18 @@ fn main() {
             _ => discrete::hypergeom_quotients::<Hard>(&a[2], &a[3]),
         },
         Some("bessel-i-itk") => bessel_rational::replay_i_itk(&a[2], &a[3]),
+        Some("bessel-high-seed-groups") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_high_seed_groups::<Soft>(&a[2],&a[3]),
+            _ => bessel_rational::replay_high_seed_groups::<Hard>(&a[2],&a[3]),
+        },
+        #[cfg(bessel_high_groups_audit)]
+        Some("bessel-high-seed-route") => bessel_rational::replay_high_seed_route(&a[2],&a[3]),
+        Some("bessel-high-j-literals") => match a.get(4).map(String::as_str) {
+            Some("soft") => bessel_rational::replay_high_j_literals::<Soft>(&a[2], &a[3]),
+            _ => bessel_rational::replay_high_j_literals::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(bessel_high_j_audit)]
+        Some("bessel-high-j-route") => bessel_rational::replay_high_j_route(&a[2], &a[3]),
         Some("bessel-i-itk-complete") => match a.get(4).map(String::as_str) {
             Some("soft") => bessel_rational::replay_i_itk_complete::<Soft>(&a[2], &a[3]),
             _ => bessel_rational::replay_i_itk_complete::<Hard>(&a[2], &a[3]),
@@ -601,6 +616,8 @@ fn main() {
         }
         Some("precision-test") => eval::precision_controls(),
         #[cfg(discrete_audit)]
+        Some("hypergeom-exp-returns") => match a.get(4).map(String::as_str){Some("soft")=>discrete::hypergeom_exp_returns::<Soft>(&a[2],&a[3]),_=>discrete::hypergeom_exp_returns::<Hard>(&a[2],&a[3])},
+        #[cfg(discrete_audit)]
         Some("binomial-series") => match a.get(4).map(String::as_str){Some("soft")=>discrete::binomial_series::<Soft>(&a[2],&a[3]),_=>discrete::binomial_series::<Hard>(&a[2],&a[3])},
         #[cfg(discrete_audit)]
         Some("binomial-direct") => match a.get(4).map(String::as_str) {
@@ -641,6 +658,22 @@ fn main() {
             Some("soft") => normal::run::<Soft>(&a[2], &a[3], &a[4], &a[5], false, false, true),
             _ => normal::run::<Hard>(&a[2], &a[3], &a[4], &a[5], false, false, true),
         },
+        Some("pow-core") => {
+            // Fixed permissive kernel comparison. Inputs and observations stay
+            // separate from these calculations; the application is unchanged.
+            let doc: Value = serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
+            let predictions: Vec<_> = doc["records"].as_array().unwrap().iter().map(|r| {
+                let x = f64::from_bits(u64::from_str_radix(r["input"].as_str().unwrap(), 16).unwrap());
+                let n = r["count"].as_u64().unwrap();
+                assert!((2..=32).contains(&n));
+                let exponent = 1.0 / n as f64;
+                json!({"input": r["input"], "count": n, "predictions": [
+                    format!("{:016x}", libm::pow(x, exponent).to_bits()),
+                    format!("{:016x}", fdlibm_pow_core::pow(x, exponent).to_bits())
+                ]})
+            }).collect();
+            json_write(&a[3], &predictions);
+        },
         Some("invoke-inputs") => {
             let doc: Value = serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
             let name = doc["function"].as_str().unwrap();
@@ -656,10 +689,16 @@ fn main() {
                     .iter()
                     .map(|v| calc_verdict::decode_argument(v, "arg").unwrap())
                     .collect();
-                let (got, _) = invoke_selected_control_in(name, args, None, environment.as_ref());
+                let selected = r.get("result_index").filter(|v| !v.is_null()).map(|v| {
+                    let pair = v.as_array().expect("result selection pair");
+                    assert_eq!(pair.len(), 2);
+                    (pair[0].as_u64().unwrap() as usize, pair[1].as_u64().unwrap() as usize)
+                });
+                let (got, _) = invoke_selected_control_in(name, args, selected, environment.as_ref());
                 let mut prediction = json!({"id":r["id"],"args":r["args"],"calc_func_prediction":got,
                     "transport_assumption":"registered typed arguments; literal parsing may change inputs","not_excel_evidence":true});
                 if environment.is_some() { prediction["date_system"] = json!("1900"); }
+                if selected.is_some() { prediction["result_index"] = r["result_index"].clone(); }
                 writeln!(output,"{}",prediction).unwrap();
             }
         }

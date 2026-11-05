@@ -207,7 +207,7 @@ def check_rank(input_path,directory,output):
             require(rank_schur(ps[identity],data)[0]==data[2],'invalid rank survivor');executions+=1
     summary=json.loads((directory/'summary.json').read_text())
     require(summary['complete']and summary['programs']==len(ps)and summary['observations']==len(rows)and summary['scope']==scope and summary['executions']==executions and summary['survivors']==len(alive),'wrong rank summary')
-    require(all(digest(p)==h for p,h in frozen.items()),'rank evidence/source changed')
+    require(all(digest(p)==h for p,h in frozen.items()),'rank evidence/source changed')  # ubs:ignore — public input/source hashes, not secrets
     result=dict(complete=True,programs=len(ps),observations=len(rows),survivors=len(alive),executions=executions,input_sha256=frozen,
                 limits='Independent rational Gram-matrix Schur-complement replay of fixed rank-policy hypotheses. Degrees of freedom only, not a floating QR or complete coefficient program; no fitted threshold or adoption follows.')
     with open(output,'x')as out:json.dump(result,out,indent=2);out.write('\n')
@@ -336,7 +336,80 @@ def run_rounded_rank(input_path,output):
     (output/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
 
 
+def qr_norm_replay(input_path, output_path):
+    """Independent rational Householder replay of full-rank coefficient probes.
+
+    This imports no product, racer, generated QR body or native instruction.
+    Full-rank orthogonal inputs avoid a conditional numerical-rank decision.
+    Only LINEST without an intercept is in this arithmetic certificate.
+    """
+    from normal import sqrt_round,encoding
+    from exact import EXTENDED64 as E
+    rows=records(input_path);proofs=[];scope=Counter();counts=Counter()
+    def calculate(raw,norm_model):
+        args=raw['args'];y=[binary64(r[0])for r in args[0]]
+        columns=[[binary64(row[j])for row in args[1]]for j in range(len(args[1][0]))]
+        require(len(y)==4 and 1<=len(columns)<=2,'outside four-row norm certificate')
+        if len(columns)==2:
+            require(sum(a*b for a,b in zip(*columns))==0,'predictors not exactly orthogonal')
+        require(all(sum(v*v for v in c)>0 for c in columns),'not full rank')
+        def op(kind,a,b,model='stored_pc64'):return operation(a,b,kind,model)
+        def subtract(a,b,model='stored_pc64'):return op('add',a,-b,model)
+        def squares(values):
+            result=R(0)
+            product_model='stored_pc64'if norm_model=='products_only'else norm_model
+            sum_model='strict'if norm_model=='products_only'else norm_model
+            for v in values:result=op('add',result,op('mul',v,v,product_model),sum_model)
+            return B.round(result)
+        matrix=[(j,list(c))for j,c in enumerate(columns)];target=list(y);diagonal=[]
+        for j in range(len(matrix)):
+            pivot=max(range(j,len(matrix)),key=lambda k:squares(matrix[k][1][j:]))
+            matrix[j],matrix[pivot]=matrix[pivot],matrix[j]
+            column=matrix[j][1];x0=column[j]
+            rest=squares(column[j+1:]);norm=sqrt_round(squares(column[j:]),'strict')
+            alpha=-norm if x0>=0 else norm;diagonal.append(alpha)
+            v=column[j:];v[0]=subtract(x0,alpha)
+            vv=op('add',rest,op('mul',v[0],v[0]))
+            def reflect(a):
+                dot=R(0)
+                for vi,ai in zip(v,a[j:]):dot=op('add',dot,op('mul',vi,ai))
+                factor=op('div',op('mul',R(2),dot),vv)
+                for i,vi in enumerate(v,j):a[i]=subtract(a[i],op('mul',factor,vi))
+            for _,a in matrix[j+1:]:reflect(a)
+            reflect(target)
+        solution=[R(0)]*len(matrix)
+        for j in reversed(range(len(matrix))):
+            dot=R(0)
+            for k in range(j+1,len(matrix)):dot=op('add',dot,op('mul',matrix[k][1][j],solution[k],'strict'),'strict')
+            solution[j]=op('div',subtract(target[j],dot,'strict'),diagonal[j],'strict')
+        coefficients=[R(0)]*len(matrix)
+        for (index,_),v in zip(matrix,solution):coefficients[index]=v
+        return encoding(coefficients[-raw['result_index'][1]])
+    for raw in rows:
+        if raw['function']!='LINEST'or raw['args'][2]is not False or raw['result_index'][0]!=1:
+            scope['outside_coefficient_certificate']+=1;continue
+        strict=calculate(raw,'strict');stored=calculate(raw,'stored_pc64');resident=calculate(raw,'resident_pc64')
+        products=calculate(raw,'products_only')
+        require(strict==raw['actual'],'independent original QR replay differs')
+        expected=raw['expected'];predictions=raw['question']['candidate_predictions']
+        require(stored==predictions.get('stored_norm',strict),'independent stored-norm replay differs')
+        require(resident==predictions.get('resident_norm_loop',strict),'independent resident-norm replay differs')
+        require(products==stored,'square-product-only program differs on a coefficient probe')
+        proofs.append(dict(id=raw['id'],strict=strict,products_only=products,stored=stored,resident=resident,excel=expected))
+        counts['scoped']+=1;counts['strict_matches']+=strict==expected;counts['stored_matches']+=stored==expected
+    require(proofs,'empty independent norm certificate')
+    a=binary64('0x401f9ff8b1ae9622');product=a*a
+    result=dict(complete=True,counts=counts,excluded=scope,coefficient_proofs=proofs,
+        square=dict(input=encoding(a),strict=encoding(B.round(product)),stored=encoding(B.round(E.round(product))),
+                    exact=[str(product.numerator),str(product.denominator)]),
+        bindings={str(p):digest(p)for p in (Path(input_path),Path(__file__),Path(__file__).with_name('exact.py'),Path(__file__).with_name('normal.py'))},
+        limits='Exact four-row, orthogonal, full-rank LINEST coefficient replay only. Stored square products with strict additions suffice; storing additions too and a resident accumulator give the same nine coefficients. These probes support PC64 square-product arithmetic, but do not uniquely locate the following binary64 stores. Unchanged staged reflector and strict square root/back substitution; rank/intercept/LOGEST/statistics remain outside this certificate. No native or product arithmetic imported, no parameters fit.')
+    with Path(output_path).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(dict(counts=counts,excluded=scope)))
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='qr-norm':qr_norm_replay(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='rank-rounded':run_rounded_rank(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='rank':check_rank(*sys.argv[2:])
     else:check(*sys.argv[1:])
