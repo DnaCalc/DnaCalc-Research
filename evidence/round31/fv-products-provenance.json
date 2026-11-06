@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "study": "fv-products",
+  "original_artifacts": {
+    "fv-products.json": "a0d12b5a58cb77e11b938d534cd8fc52f76dcae7ecc2ce1da047abe1a10c5382",
+    "fv-products.json.leaf-questions.json": "3f3e0b83c162da675d176e17fb996e300d1b8f5713e500eb06aa8ef97c1c3bbe",
+    "fv-products.json.product-questions.json": "44cc02d0027145b883f7414bf9efbb8cc2f0c41c081547665102f4f0fed3354a"
+  },
+  "producer": {
+    "original_path": "racer/annuity_pairs.py",
+    "archived_path": "evidence/round31/producers/b57b02cbfb0e1fe7d30db75e7f8e6b80dc4d79426dca30335caa6a24dd9a53c3-annuity_pairs.py",
+    "sha256": "b57b02cbfb0e1fe7d30db75e7f8e6b80dc4d79426dca30335caa6a24dd9a53c3"
+  },
+  "integration_unit": {
+    "path": "round31-integration-unit.json",
+    "sha256": "db4be3b599c93098f6b0e40a46b079b28fe91c8a14d007c7961e9880bdf98503"
+  },
+  "correction": "The original future_value_stages artifacts omitted SOURCE_BINDINGS and therefore named only the shared writer. This sidecar binds the exact caller epoch independently recorded in the integration unit and retained verbatim. Original artifacts and answers are unchanged; future runs will carry this direct source binding.",
+  "corrected_future_producer_sha256": "51bc0c615f016442cbf58cd97c1c7b4714471668f5e98b8a726db538491d3aba"
+}

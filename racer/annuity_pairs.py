@@ -19,7 +19,7 @@ SOURCE_BINDINGS={str(p.resolve()):sha(p) for p in (
     Path(__file__).with_name('x87_native.c'),Path(__file__).parents[1]/'checker/exact.py')}
 
 
-def run(checkout, output, cache, offline=False, negative=False, final_model=None):
+def run(checkout, output, cache, offline=False, negative=False, final_model=None, discount=False):
     client, _ = load_service(checkout)
     service = CachedService(client.Client(timeout=300), cache, offline)
     # Fixed ordinary rates, periods and scaled/adjacent balances; no bank
@@ -29,6 +29,8 @@ def run(checkout, output, cache, offline=False, negative=False, final_model=None
     if negative:
         rates=tuple(-r for r in rates)
         periods=(1.,12.,60.,120.)
+        if discount:
+            periods=(-.5,-1.,-12.,-60.)
     final_model=final_model or ('strict' if negative else 'stored_pc64')
     balances = [.125, 1., 1.1, 1000., 125000., 2.**20]
     balances += [value(f'{int(bits(1.),16)+k:016x}') for k in (-2,-1,1,2)]
@@ -148,7 +150,7 @@ def run(checkout, output, cache, offline=False, negative=False, final_model=None
             candidates={k:bits(float(v)) for k,v in candidates.items()},
             possible={k:domain.contains(v) if domain else False for k,v in candidates.items()})
     result = dict(format='dnacalc-annuity-paired-stages/1', complete=True, counts=totals,
-        branch='negative_rate_growth' if negative else 'positive_rate_discount', final_model=final_model,
+        branch=('negative_rate_discount' if discount else 'negative_rate_growth') if negative else 'positive_rate_discount', final_model=final_model,
         groups=groups, factor_groups=factor_groups, receipts=service.receipts, source_bindings=SOURCE_BINDINGS,
         limits='Finite PMT at the declared rate sign and final-product word only. One shared binary64 em per rate/period is constrained by ten independent type-zero balances. Timing and nonzero-future-value stages are tested separately against all remaining em values. Nonempty constraints do not identify the logarithm or expm1; no parameter or selector is fitted. Opposing balances retain their separately measured cancellation route.')
     write(output,result)
@@ -373,17 +375,39 @@ def edges(checkout,output,cache,offline=False):
     return result
 
 
-def products(checkout,prior,output,cache,offline=False):
+def products(checkout,prior,output,cache,offline=False,timing=False):
     """Mine final-product ties with a denominator pinned by earlier public calls."""
     data=json.loads(Path(prior).read_text())
     if data.get('complete') is not True:
         raise ValueError('incomplete denominator study')
-    rng=random.Random(2901);rows=[];excluded=[]
+    rng=random.Random(2901);rows=[];excluded=[];factor_constraints={}
+    if timing:
+        for group in data['groups']:
+            if len(group['em_values'])!=1:raise ValueError('unresolved denominator')
+            em=binary64(group['em_values'][0])
+            state=factor_constraints.setdefault(group['rate'],{word:dict(domain=None,dead=False) for word in ('strict','stored_pc64')})
+            for observation in group['timing']:
+                q=operation(binary64(observation['pv']),em,'div','stored_pc64')
+                y=binary64(observation['due']['bits'])
+                for word,item in state.items():
+                    needed=inverse(Span(y,y),q,'mul',True,word)
+                    if not item['dead']:
+                        item['domain']=needed if item['domain'] is None else item['domain'].meet(needed) if needed else None
+                        item['dead']=item['domain'] is None
+        for raw,state in factor_constraints.items():
+            r=binary64(raw)
+            fixed=operation(1,operation(1,operation(1,r,'div','stored_pc64'),'add','stored_pc64'),'div','stored_pc64')
+            for word,item in state.items():
+                domain=item.pop('domain');coords=B.coordinates(domain)if domain else None
+                if coords is None or coords[0]!=coords[1] or B.value(coords[0])!=fixed:
+                    raise ValueError('final words do not independently constrain the same fixed coefficient')
+                item.update(domain=domain.json(),unique_coefficient=bits(float(fixed)))
     for group in data['groups']:
         if len(group['em_values'])!=1:
             raise ValueError('unresolved denominator')
         rate=binary64(group['rate']);em=binary64(group['em_values'][0])
-        magnitude=abs(rate)
+        factor=operation(1,operation(1,operation(1,rate,'div','stored_pc64'),'add','stored_pc64'),'div','stored_pc64') if timing else rate
+        magnitude=abs(factor)
         if magnitude.numerator.bit_count()==1 and magnitude.denominator.bit_count()==1:
             excluded.append(dict(rate=group['rate'],periods=group['periods'],reason='Power-of-two multiplication is exact on these normal operands.'))
             continue
@@ -391,19 +415,23 @@ def products(checkout,prior,output,cache,offline=False):
         for trial in range(100000):
             pv=f'{((1023+rng.randint(-10,10))<<52)|rng.getrandbits(52):016x}'
             q=operation(binary64(pv),em,'div','stored_pc64')
-            single=operation(q,rate,'mul','strict')
-            double=operation(q,rate,'mul','stored_pc64')
+            single=operation(q,factor,'mul','strict')
+            double=operation(q,factor,'mul','stored_pc64')
             if single==double:
                 continue
-            rows.append(dict(args=[group['rate'],group['periods'],pv,'0000000000000000','0000000000000000'],
-                em=group['em_values'][0],strict=bits(float(single)),stored_pc64=bits(float(double))))
+            rows.append(dict(args=[group['rate'],group['periods'],pv,'0000000000000000',bits(1. if timing else 0.)],
+                em=group['em_values'][0],factor=bits(float(factor)),strict=bits(float(single)),stored_pc64=bits(float(double))))
             selected+=1
             if selected==2:
                 break
         if selected!=2:
-            raise ValueError('no complete final-product discriminant set')
+            if not timing:
+                raise ValueError('no complete final-product discriminant set')
+            excluded.append(dict(rate=group['rate'],periods=group['periods'],selected=selected,trials=100000,
+                reason='The fixed bounded primitive search did not find two product-word discriminants. No mathematical impossibility is claimed.'))
     write(str(output)+'.questions.json',dict(format='dnacalc-annuity-product-questions/1',complete=True,
         rows=rows,excluded=excluded,prior_sha256=sha(prior),source_bindings=SOURCE_BINDINGS,
+        timing=timing,factor_constraints=factor_constraints,
         selection='First two exact strict/PC64 product discriminants per non-power-of-two rate/period group; seeded binary64 balance draws, before Excel answers.'))
     client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
     answers=service.ask('PMT',[[client.number(x) for x in row['args']] for row in rows])['rows']
@@ -415,8 +443,11 @@ def products(checkout,prior,output,cache,offline=False):
         counts[row['classification']]+=1
     result=dict(format='dnacalc-annuity-product-discriminants/1',complete=True,counts=counts,
         records=rows,excluded=excluded,prior_sha256=sha(prior),receipts=service.receipts,
+        timing=timing,factor_constraints=factor_constraints,
         questions_sha256=sha(str(output)+'.questions.json'),source_bindings=SOURCE_BINDINGS,
-        limits='One final multiplication, type0/fv0, with independently pinned binary64 em and a stored-PC64 quotient. Neither results refute the conditional earlier-stage model; no result changes a denominator or selector. Power-of-two factors cannot distinguish the two final roundings here.')
+        limits='One final multiplication, fv0, at the declared timing, with independently pinned binary64 em and a stored-PC64 quotient. '
+               'For beginning payments both final-word models independently constrain the same unique binary64 coefficient from earlier public calls before new ties are selected. '
+               'Neither results refute the conditional earlier-stage model; no result changes a denominator or selector. Power-of-two factors cannot distinguish the two final roundings here.')
     write(output,result);print(json.dumps(counts),flush=True)
     return result
 
@@ -715,10 +746,18 @@ def loss_controls(checkout,requests,output,cache,executable,offline=False):
     frozen={**SOURCE_BINDINGS,str(source.resolve()):sha(source),str(Path(executable).resolve()):sha(executable),
             **doc.get('source_bindings',{})}
     client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
-    payments={};components={};records=[]
+    payments={};components={};future_leaves={};records=[]
     for original in doc['records']:
         name=original['function'];args=original['args']
-        if name in ('IPMT','PPMT') and len(args)==6:
+        if name=='FV' and len(args)==5:
+            r,n=args[:2]
+            leaves=[[r,n,bits(0.),bits(-1.),bits(0.)],
+                    [r,n,bits(-1.),bits(0.),bits(0.)],
+                    [r,n,bits(-1.),bits(0.),bits(1.)]]
+            for p in leaves:future_leaves[tuple(p)]=None
+            records.append(dict(original,future_leaf_args=leaves))
+            continue
+        elif name in ('IPMT','PPMT') and len(args)==6:
             pmt=[args[i] for i in (0,2,3,4,5)];parts=[]
         elif name in ('CUMPRINC','CUMIPMT') and len(args)==6:
             pmt=[args[0],args[1],args[2],bits(0.),args[5]]
@@ -730,7 +769,7 @@ def loss_controls(checkout,requests,output,cache,executable,offline=False):
         for p in parts:components[tuple(p)]=None
         records.append(dict(original,payment_args=pmt,component_args=parts))
     # These are independent leaves, never re-asked parent outcomes.
-    for name,groups in [('PMT',payments),('PPMT',components)]:
+    for name,groups in [('PMT',payments),('PPMT',components),('FV',future_leaves)]:
         keys=list(groups)
         if not keys:continue
         answers=service.ask(name,[[client.number(x) for x in row] for row in keys])['rows']
@@ -747,6 +786,25 @@ def loss_controls(checkout,requests,output,cache,executable,offline=False):
             groups[key]['calculated']=actual['calc_func_prediction']
     counts=Counter()
     for row in records:
+        if row['function']=='FV':
+            args=row['args'];leaves=[future_leaves[tuple(k)] for k in row['future_leaf_args']]
+            row['future_leaves']=leaves;counts['rows']+=1
+            if all(p['answer']['type']=='number' for p in leaves):
+                growth=binary64(leaves[0]['answer']['bits'])
+                term=binary64(leaves[2 if value(args[4])!=0 else 1]['answer']['bits'])
+                present=operation(binary64(args[3]),growth,'mul','stored_pc64')
+                payment=operation(binary64(args[2]),term,'mul','stored_pc64')
+                prediction='0x'+bits(float(-operation(present,payment,'add','stored_pc64')))
+                row['public_leaf_composition']=prediction
+                row['public_leaf_composition_matches_original']=prediction==row['expected']
+                failed=[i for i,p in enumerate(leaves)if p['calculated']!='0x'+p['answer']['bits']]
+                row['mismatched_leaf_indices']=failed
+                classification=('FV_growth_or_annuity_production_discrepancy' if failed
+                    else 'FV_composition_discrepancy_despite_correct_public_leaves')
+                if prediction!=row['expected']:classification='FV_public_leaf_composition_counterexample'
+            else:classification='FV_leaf_domain_requires_separate_review'
+            row['classification']=classification;counts[classification]+=1
+            continue
         p=payments[tuple(row['payment_args'])];a=p['answer']
         payment_correct=a['type']=='number' and p['calculated']=='0x'+a['bits']
         row['payment']=p;row['payment_matches_original_public_call']=payment_correct
@@ -772,8 +830,58 @@ def loss_controls(checkout,requests,output,cache,executable,offline=False):
         limits='The original lost parent answers are never replaced or re-asked. Independent public '
         'PMT and, for cumulative rows, every public PPMT component locate whether a payment helper, '
         'component or cumulative composition still differs. Correct payment alone identifies no '
-        'private downstream algorithm. These observations classify remaining work, not gains.')
+        'private downstream algorithm. FV unit growth/end/beginning leaves separately test '
+        'its declared stored two-product/addition composition. These observations classify '
+        'remaining work, not gains.')
     write(output,result);print(json.dumps(counts),flush=True);return result
+
+
+def growth_reciprocal_edges(checkout, output, cache, offline=False):
+    """Pair payment/parts across exact power-of-two growth overflow edges."""
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    cases=[]
+    for rate,center in ((-.5,1024.),(-.75,512.),(value('bfefffffffffffff'),1024./53.)):
+        first=int(bits(center),16)
+        cases.extend(dict(rate=bits(rate),periods=f'{first+k:016x}')for k in range(-3,4))
+    questions={name:[]for name in ('PMT','IPMT','PPMT')}
+    rows={name:[]for name in questions}
+    for i,c in enumerate(cases):
+        for timing in (0.,1.):
+            args=[c['rate'],c['periods'],bits(3.7),bits(.9),bits(timing)]
+            questions['PMT'].append([client.number(a)for a in args]);rows['PMT'].append(dict(case=i,timing=timing,args=args))
+            for period in (1.,2.):
+                aa=[c['rate'],bits(period),c['periods'],bits(3.7),bits(.9),bits(timing)]
+                for name in ('IPMT','PPMT'):
+                    questions[name].append([client.number(a)for a in aa]);rows[name].append(dict(case=i,timing=timing,period=period,args=aa))
+    write(str(output)+'.questions.json',dict(format='dnacalc-annuity-growth-reciprocal-questions/1',complete=True,
+        cases=cases,questions=questions,rows=rows,source_bindings=SOURCE_BINDINGS,
+        selection='Seven neighboring periods at the exact mathematical 2^1024 growth boundary '
+                  'for three dyadic growth bases. Both timing values and first/second parts; '
+                  'first beginning IPMT zero is the only proposed exception to payment refusals.'))
+    observed={name:service.ask(name,q)['rows']for name,q in questions.items()}
+    payment={(r['case'],r['timing']):a for r,a in zip(rows['PMT'],observed['PMT'])}
+    records=[];counts=Counter()
+    for name in questions:
+        for row,answer in zip(rows[name],observed[name]):
+            expected='not_asserted'
+            if name=='IPMT'and row['period']==1 and row['timing']==1:
+                expected='zero'
+            elif name!='PMT'and payment[(row['case'],row['timing'])]==dict(type='error',code='#NUM!'):
+                expected='error:Num'
+            seen='zero'if answer['type']=='number'and int(answer['bits'],16)&((1<<63)-1)==0 else 'error:Num'if answer==dict(type='error',code='#NUM!')else 'other'
+            counts[name+'/calls']+=1;counts[name+'/num']+=seen=='error:Num'
+            counts[name+'/constrained']+=expected!='not_asserted'
+            counts[name+'/contradictions']+=expected!='not_asserted'and expected!=seen
+            records.append(dict(function=name,**row,answer=answer,expected_admission=expected,observed_admission=seen))
+    result=dict(format='dnacalc-annuity-growth-reciprocal-edges/1',complete=True,records=records,
+        counts=counts,receipts=service.receipts,questions_sha256=sha(str(output)+'.questions.json'),source_bindings=SOURCE_BINDINGS,
+        limits='Adjacent period observations and paired public-domain relations only. No exact '
+               'private overflow threshold or exponential producer is inferred. Numerical values '
+               'remain controls, not an identified payment graph. A shared PMT refusal must '
+               'preserve first-period beginning IPMT zero after finite/period-range validation.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
 
 
 def cumulative_component_constraints(checkout, study, prior_cache, output, cache, offline=False):
@@ -859,6 +967,345 @@ def cumulative_component_constraints(checkout, study, prior_cache, output, cache
                'compositions are fixed before new CUMIPMT answers; none is selected by counts.')
     write(output,result)
     print(json.dumps(dict(component_counts=counts,paired_counts=paired_counts)),flush=True)
+    return result
+
+
+def future_value_stages(checkout,output,cache,offline=False):
+    """Separate FV's public unit leaves, products and final balance sum."""
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    groups=[dict(rate=bits(r),periods=bits(n))
+            for r in (.0025,.03,.125,1.,-.0025,-.1,-.5,value('bfeffffffffffffe'))
+            for n in (1.,2.,12.,60.,-.5,-1.,-12.)]
+    leaf_questions=[]
+    for g in groups:
+        for payment,present,timing in ((0.,-1.,0.),(-1.,0.,0.),(-1.,0.,1.)):
+            leaf_questions.append([client.number(v) for v in (g['rate'],g['periods'],bits(payment),bits(present),bits(timing))])
+    write(str(output)+'.leaf-questions.json',dict(format='dnacalc-fv-unit-leaf-questions/1',complete=True,
+        groups=groups,questions=leaf_questions,source_bindings=SOURCE_BINDINGS,
+        selection='Eight fixed rates, seven fixed periods; growth and both payment-timing leaves are separate public unit calls, before product probes.'))
+    leaves=service.ask('FV',leaf_questions)['rows']
+    rng=random.Random(3107);probes=[];exclusions=[];questions=[]
+    for i,g in enumerate(groups):
+        g['leaves']=leaves[3*i:3*i+3]
+        for leaf_index,leaf in enumerate(g['leaves']):
+            if leaf['type']!='number':
+                exclusions.append(dict(group=i,leaf=leaf_index,reason='Original unit leaf is nonnumeric; no arithmetic prediction.'))
+                continue
+            factor=binary64(leaf['bits'])
+            balances=[bits(v) for v in (.125,1.,1.1,3.7,1000.,-1.1)]
+            magnitude=abs(factor)
+            exact_scale=not magnitude or (magnitude.numerator.bit_count()==1 and magnitude.denominator.bit_count()==1)
+            found=0
+            if not exact_scale:
+                for trial in range(50000):
+                    raw=f'{((1023+rng.randint(-10,10))<<52)|rng.getrandbits(52):016x}'
+                    b=binary64(raw)
+                    try:
+                        strict=operation(b,factor,'mul','strict');stored=operation(b,factor,'mul','stored_pc64')
+                    except ValueError:continue
+                    if strict==stored:continue
+                    balances.append(raw);found+=1
+                    if found==2:break
+                if found!=2:exclusions.append(dict(group=i,leaf=leaf_index,reason='Bounded50000-draw primitive search did not find two ties; no impossibility claim.',selected=found))
+            for balance in balances:
+                args=[g['rate'],g['periods'],bits(0.) if leaf_index==0 else balance,
+                      balance if leaf_index==0 else bits(0.),bits(1.) if leaf_index==2 else bits(0.)]
+                predictions={word:bits(float(-operation(binary64(balance),factor,'mul',word)))
+                             for word in ('strict','stored_pc64')}
+                probes.append(dict(group=i,leaf=leaf_index,args=args,balance=balance,factor=leaf,predictions=predictions))
+                questions.append([client.number(a) for a in args])
+    write(str(output)+'.product-questions.json',dict(format='dnacalc-fv-product-questions/1',complete=True,
+        probes=probes,exclusions=exclusions,receipts=service.receipts,source_bindings=SOURCE_BINDINGS,
+        selection='Six fixed balances and the first two strict/PC64 product ties per non-power-of-two public unit factor, seed3107; primitive-only search before consumer answers.'))
+    answers=service.ask('FV',questions)['rows'];counts=Counter();domains={}
+    for row,answer in zip(probes,answers):
+        row['answer']=answer
+        for word,prediction in row['predictions'].items():
+            counts[word+'/calls']+=1;counts[word+'/matched']+=answer==dict(type='number',bits=prediction)
+            key=(row['group'],row['leaf'],word)
+            state=domains.setdefault(key,dict(dead=False,domain=None))
+            if answer['type']!='number':state['dead']=True;continue
+            needed=inverse(Span(-binary64(answer['bits']),-binary64(answer['bits'])),binary64(row['balance']),'mul',True,word)
+            if not state['dead']:
+                state['domain']=needed if state['domain'] is None else state['domain'].meet(needed) if needed else None
+                state['dead']=state['domain'] is None
+    inferred=[]
+    for (group,leaf,word),state in domains.items():
+        interval=state['domain'] if not state['dead'] else None
+        coords=B.coordinates(interval) if interval else None
+        inferred.append(dict(group=group,leaf=leaf,word=word,domain=interval.json() if interval else None,
+            binary64_count=0 if coords is None else coords[1]-coords[0]+1))
+    result=dict(format='dnacalc-fv-isolated-products/1',complete=True,groups=groups,records=probes,
+        counts=counts,inferred_factor_domains=inferred,exclusions=exclusions,receipts=service.receipts,source_bindings=SOURCE_BINDINGS,
+        questions_sha256=sha(str(output)+'.product-questions.json'),
+        limits='Public unit factors are observed controls, not assumed private returns. Product '
+               'predictions test their binary64 reuse. Necessary factor intervals allow any '
+               'common underlying factor across each fixed group and final-word model. Empty '
+               'domains refute only that product composition. Nonnumeric leaves remain counted '
+               'exclusions, not arithmetic passes. No factor, tree or domain threshold is fitted.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
+def future_value_coupled(checkout,study,output,cache,offline=False):
+    """Check the isolated FV stores when both balances are nonzero."""
+    import itertools
+    from fractions import Fraction as Q
+    from exact import exponent_of,two
+    from geomean import verified_study_answers
+    source=Path(study);doc=json.loads(source.read_text())
+    _,bindings,_=verified_study_answers(doc,Path(cache))
+    frozen={**SOURCE_BINDINGS,**bindings,str(source.resolve()):sha(source)}
+    profiles=[dict(present_product=a,payment_product=b,addition=c)
+        for a,b,c in itertools.product(('strict','stored_pc64','resident_pc64'),
+            ('strict','stored_pc64','resident_pc64'),('strict','stored_pc64'))]
+    rows=[];missing=[]
+    def add(gi,timing,present,payment,role):
+        g=doc['groups'][gi];f,t=(binary64(g['leaves'][j]['bits']) for j in (0,1+timing))
+        p,m=binary64(present),binary64(payment);predictions=[]
+        for profile in profiles:
+            left=operation(p,f,'mul',profile['present_product'])
+            right=operation(m,t,'mul',profile['payment_product'])
+            value=-operation(left,right,'add',profile['addition'])
+            predictions.append(bits(float(value)))
+        rows.append(dict(group=gi,role=role,args=[g['rate'],g['periods'],payment,present,bits(float(timing))],predictions=predictions))
+    for gi,g in enumerate(doc['groups']):
+        for timing in (0,1):
+            if any(g['leaves'][j]['type']!='number' for j in (0,1+timing)):
+                missing.append(dict(group=gi,timing=timing,reason='Nonnumeric original leaf.'));continue
+            f,t=(binary64(g['leaves'][j]['bits']) for j in (0,1+timing))
+            for present,payment in ((1.1,.7),(-1.1,.7),(.125,1000.),(-3.7,1000.)):
+                add(gi,timing,bits(present),bits(payment),'fixed_nonzero_pair')
+            p=bits(1.1);left=operation(binary64(p),f,'mul','stored_pc64')
+            if not left or not t:continue
+            unit=two(exponent_of(abs(left))-52)
+            for sign in (1,-1):
+                ideal=Q(sign)*unit/(2*t);center=int(bits(float(ideal)),16);selected=None
+                for offset in range(-64,65):
+                    payment=f'{center+offset:016x}';right=operation(binary64(payment),t,'mul','stored_pc64')
+                    a=operation(left,right,'add','strict');b=operation(left,right,'add','stored_pc64')
+                    if a!=b:selected=payment;break
+                if selected is None:
+                    missing.append(dict(group=gi,timing=timing,sign=sign,
+                        reason='No addition-word tie in the fixed129-adjacent-payment window.'))
+                else:add(gi,timing,p,selected,'first_primitive_addition_word_tie')
+    write(str(output)+'.questions.json',dict(format='dnacalc-fv-coupled-questions/1',complete=True,
+        profiles=profiles,rows=rows,excluded=missing,source_bindings=frozen,
+        selection='Four fixed nonzero PV/payment pairs and the first final-addition strict/PC64 tie in each signed129-double payment window around half an ULP of the independently known PV product. Before fresh answers.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('FV',[[client.number(a) for a in row['args']] for row in rows])['rows']
+    counts=[Counter() for _ in profiles]
+    for row,answer in zip(rows,answers):
+        row['answer']=answer
+        for i,prediction in enumerate(row['predictions']):
+            counts[i]['calls']+=1;counts[i]['matched']+=answer==dict(type='number',bits=prediction)
+            counts[i]['failed']+=answer!=dict(type='number',bits=prediction)
+    result=dict(format='dnacalc-fv-coupled-stores/1',complete=True,profiles=profiles,
+        counts=counts,records=rows,excluded=missing,receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='The original independent unit factors and isolated product evidence are '
+               'unchanged. These18 literal two-product/addition programs check their '
+               'composition on new nonzero pairs, with final-addition ties selected using '
+               'primitive arithmetic only. Missing ties are bounded exclusions. No model '
+               'is ranked or selected by count; all original errors remain failures.')
+    write(output,result);print(json.dumps(list(zip(profiles,counts))),flush=True);return result
+
+
+def future_value_timing(checkout,study,output,cache,offline=False):
+    """Keep FV's timing-factor production separate from its final stores."""
+    import itertools
+    from geomean import verified_study_answers
+    source=Path(study);doc=json.loads(source.read_text())
+    _,bindings,_=verified_study_answers(doc,Path(cache))
+    frozen={**SOURCE_BINDINGS,**bindings,str(source.resolve()):sha(source)}
+    profiles=[dict(form=form,timing_factor=tf,inner=inner,finish=finish,difference='strict')
+        for form,tf,inner,finish in itertools.product(
+            ('multiply_divide','divide_multiply','coefficient_multiply'),
+            ('strict','resident_pc64'),('strict','stored_pc64','resident_pc64'),('strict','stored_pc64'))]
+    first={};alive=set(range(len(profiles)))
+    for gi,g in enumerate(doc['groups']):
+        r=binary64(g['rate']);u=operation(binary64(g['leaves'][0]['bits']),-1,'add','strict')
+        for timing in (0,1):
+            target=g['leaves'][1+timing]
+            for i in sorted(alive):
+                p=profiles[i];tf=operation(1,r,'add',p['timing_factor']) if timing else 1
+                if p['form']=='multiply_divide':v=operation(operation(tf,u,'mul',p['inner']),r,'div',p['finish'])
+                elif p['form']=='divide_multiply':v=operation(tf,operation(u,r,'div',p['inner']),'mul',p['finish'])
+                else:v=operation(operation(tf,r,'div',p['inner']),u,'mul',p['finish'])
+                prediction=bits(float(v))
+                if target!=dict(type='number',bits=prediction):
+                    alive.remove(i);first[i]=dict(group=gi,timing=timing,target=target,prediction=prediction)
+    rng=random.Random(3119);selected=[];excluded=[]
+    for stage in ('end_division','timing_product'):
+        for sign in (0,1):
+            for exponent in (-20,-10,-4,-1):
+                found=0
+                for trial in range(100000):
+                    raw=f'{(sign<<63)|((1023+exponent)<<52)|rng.getrandbits(52):016x}'
+                    r=binary64(raw);tf=operation(1,r,'add','strict');u=tf-1
+                    strict=operation(u,r,'div','strict');stored=operation(u,r,'div','stored_pc64')
+                    discriminates=(strict!=stored if stage=='end_division' else
+                        operation(strict,tf,'mul','strict')!=operation(strict,tf,'mul','stored_pc64'))
+                    if not discriminates:continue
+                    selected.append(dict(rate=raw,stage=stage,sign=sign,exponent=exponent,trial=trial))
+                    found+=1
+                    if found==2:break
+                if found!=2:excluded.append(dict(stage=stage,sign=sign,exponent=exponent,selected=found,trials=100000,
+                    reason='The fixed primitive search was incomplete; no impossibility claim.'))
+    selected.extend(dict(rate=bits(sign*2.**exponent),stage='fixed_small_rate_control')
+                    for sign in (1,-1)for exponent in (-53,-52,-40))
+    questions=[]
+    for row in selected:
+        r=row['rate']
+        questions.extend([[client_value for client_value in (r,bits(1.),bits(pmt),bits(pv),bits(timing))]
+                          for pmt,pv,timing in ((0.,-1.,0.),(-1.,0.,0.),(-1.,0.,1.),(.7,1.1,0.),(.7,1.1,1.))])
+    write(str(output)+'.questions.json',dict(format='dnacalc-fv-timing-questions/1',complete=True,
+        selected=selected,questions=questions,excluded=excluded,profiles=profiles,
+        earlier_survivors=sorted(alive),earlier_first_contradictions=first,source_bindings=frozen,
+        selection='Thirty-six literal source forms are constrained by all168 original unit leaves. Seed3119 selects first two n=1 primitive end-division or timing-product ties per signed rate binade, before new readings. Six fixed small-rate controls are separate. No model selected by count.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('FV',[[client.number(v) for v in q] for q in questions])['rows']
+    counts=Counter();records=[]
+    for i,row in enumerate(selected):
+        observed=answers[5*i:5*i+5];r=binary64(row['rate']);tf=operation(1,r,'add','strict')
+        counts['groups']+=1
+        predictions={}
+        if all(a['type']=='number' for a in observed[:3]):
+            f,t,d=(binary64(a['bits'])for a in observed[:3])
+            counts['growth_equals_stored_one_plus_rate']+=f==tf
+            for word in ('strict','stored_pc64'):
+                end=operation(f-1,r,'div',word);due=operation(t,tf,'mul',word)
+                predictions[word]=dict(end=bits(float(end)),due_from_observed_end=bits(float(due)))
+                counts[word+'/end_matches']+=t==end
+                counts[word+'/due_from_observed_end_matches']+=d==due
+        records.append(dict(row,questions=questions[5*i:5*i+5],answers=observed,predictions=predictions))
+    result=dict(format='dnacalc-fv-timing-production/1',complete=True,profiles=profiles,
+        earlier_survivors=sorted(alive),earlier_first_contradictions=first,
+        records=records,counts=counts,excluded=excluded,receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='A separate timing-helper study, not an application change. Earlier source forms '
+               'use the independently observed unit growth and an explicitly stored binary64 '
+               'difference growth-minus-one. Fresh n=1 hypotheses check their '
+               'growth and end-term premises against separate public FV leaves, then compare '
+               'the beginning term to those observed leaves. Fixed small-rate controls can '
+               'refute the generic quotient formula and are never dropped. Bounded searches '
+               'do not establish impossibility or an approximation cutoff. All original '
+               'mixed calls remain available for the registered application replay.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
+def future_value_growth(checkout,timing,controls,executable,output,cache,offline=False):
+    """Isolate FV's base addition before the existing public POWER route."""
+    from geomean import verified_study_answers
+    paths=list(map(Path,(timing,controls,executable)))
+    documents=[json.loads(p.read_text())for p in paths[:2]]
+    frozen={**SOURCE_BINDINGS,**{str(p.resolve()):sha(p)for p in paths}}
+    for document in documents:
+        _,bindings,_=verified_study_answers(document,Path(cache));frozen.update(bindings)
+    base_counts=Counter()
+    for row in documents[0]['records']:
+        r=binary64(row['rate']);answer=row['answers'][0]
+        for word in ('strict','stored_pc64'):
+            predicted=bits(float(operation(1,r,'add',word)))
+            base_counts[word+'/calls']+=1
+            base_counts[word+'/matches']+=answer==dict(type='number',bits=predicted)
+    questions=[];rows=[]
+    for row in documents[1]['records']:
+        r,n=row['args'][:2];growth=row['future_leaves'][0]['answer']
+        for word in ('strict','stored_pc64'):
+            base=bits(float(operation(1,binary64(r),'add',word)))
+            rows.append(dict(parent_id=row['id'],rate=r,periods=n,word=word,base=base,observed_FV_growth=growth))
+            questions.append([base,n])
+    write(str(output)+'.questions.json',dict(format='dnacalc-fv-growth-questions/1',complete=True,
+        rows=rows,base_counts=base_counts,source_bindings=frozen,
+        hypothesis='A stored-PC64 one-plus-rate base, then the unchanged public POWER kernel. The32 earlier n=1 growth observations test base formation directly. All14 remaining FV parents provide independent public growth leaves; parent outcomes are never re-asked.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('POWER',[[client.number(v)for v in q]for q in questions])['rows']
+    inputs=Path(str(output)+'.inputs.json');actuals=Path(str(output)+'.actuals.jsonl')
+    witnesses=[dict(id='power-'+str(i),args=['0x'+v for v in q])for i,q in enumerate(questions)]
+    write(inputs,dict(function='POWER',witnesses=witnesses))
+    # ubs:ignore — fixed argv to the bound local executable, no shell, original numeric inputs.
+    subprocess.run([str(executable),'invoke-inputs',str(inputs),str(actuals)],check=True,timeout=300)
+    calculated=[json.loads(s)for s in actuals.read_text().splitlines()]
+    if len(calculated)!=len(rows):raise ValueError('incomplete registered POWER controls')
+    counts=Counter()
+    for row,answer,request,actual in zip(rows,answers,witnesses,calculated):
+        if any(request[k]!=actual[k]for k in ('id','args')):raise ValueError('POWER control identity changed')
+        row['public_POWER']=answer;row['registered_POWER']=actual['calc_func_prediction']
+        expected=row['observed_FV_growth'];prefix=row['word']
+        counts[prefix+'/calls']+=1
+        counts[prefix+'/public_POWER_matches_FV_growth']+=answer==expected
+        counts[prefix+'/registered_POWER_matches_FV_growth']+=expected['type']=='number'and actual['calc_func_prediction']=='0x'+expected['bits']
+    result=dict(format='dnacalc-fv-growth-base-production/1',complete=True,base_counts=base_counts,
+        counts=counts,records=rows,receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='One base-addition stage and the already existing POWER producer. '
+               'Earlier n=1 growth calls directly expose the base; residual growth and '
+               'POWER are independent public leaves. Registered POWER is a calculated '
+               'control, never Excel evidence. This identifies no replacement power '
+               'algorithm, coefficient or cutoff. Every remaining parent stays a failure '
+               'until the actual FV route is changed and remeasured.')
+    write(output,result);print(json.dumps(dict(base_counts=base_counts,power_counts=counts)),flush=True);return result
+
+
+def cumulative_aggregate_constraints(study, prior, cache, prior_cache, output):
+    """Can one unpublished interest aggregate finish both cumulative calls?"""
+    from exact import BINARY64 as B, EXTENDED64 as E, inverse, pull_rounding
+    from geomean import verified_study_answers
+    source, before = Path(study), Path(prior)
+    doc, old = json.loads(source.read_text()), json.loads(before.read_text())
+    answers, bindings, _ = verified_study_answers(doc, Path(cache))
+    inherited, old_bindings, _ = verified_study_answers(old, Path(prior_cache))
+    answers.update(inherited)
+    frozen = {**SOURCE_BINDINGS, **bindings, **old_bindings,
+              str(source.resolve()):sha(source), str(before.resolve()):sha(before)}
+    profiles = [dict(payment_product=product, principal_return=word, interest=hidden)
+                for product in ('strict','stored_pc64','resident_pc64')
+                for word in ('strict','stored_pc64')
+                for hidden in ('binary64','resident_pc64','real_before_pc64')]
+    counts = [Counter() for _ in profiles]
+    records = []
+    for row in doc['records']:
+        args = row['args']
+        payment_args = [args[0],args[1],args[2],bits(0.),args[5]]
+        for name, request, expected in (
+                ('PMT',payment_args,row['payment']), ('CUMPRINC',args,row['answer']),
+                ('CUMIPMT',args,row['interest'])):
+            key = name,json.dumps([dict(type='number',bits=x) for x in request],sort_keys=True)
+            if answers.get(key) != expected:
+                raise ValueError('aggregate constraint lost an original public reading')
+        n = binary64(args[4])-binary64(args[3])+1
+        payment = binary64(row['payment']['bits'])
+        principal = binary64(row['answer']['bits'])
+        interest = binary64(row['interest']['bits'])
+        domains = []
+        for i, profile in enumerate(profiles):
+            product = operation(n,payment,'mul',profile['payment_product'])
+            negative = inverse(Span(principal,principal),product,'add',True,profile['principal_return'])
+            required = negative.linear(-1) if negative else None
+            observed = (pull_rounding(Span(interest,interest),'stored_pc64')
+                        if profile['interest']=='real_before_pc64' else B.pullback(Span(interest,interest)))
+            domain = observed.meet(required) if required else None
+            lattice = B if profile['interest']=='binary64' else E
+            possible = domain is not None and (profile['interest']=='real_before_pc64' or lattice.coordinates(domain) is not None)
+            counts[i]['spans'] += 1
+            counts[i]['possible'] += possible
+            counts[i]['excluded'] += not possible
+            domains.append(dict(possible=possible,required_interest=domain.json() if domain else None))
+        records.append(dict(args=args,payment=row['payment'],principal=row['answer'],
+                            interest=row['interest'],models=domains))
+    result = dict(format='dnacalc-cumulative-aggregate-constraints/1',complete=True,
+        profiles=profiles,counts=counts,records=records,source_bindings=frozen,
+        common_exclusions=sum(not any(p['possible'] for p in row['models']) for row in records),
+        limits='Fixed final aggregate expression principal = count*public_PMT - hidden_interest. '
+               'The same hidden interest must publish as the original CUMIPMT. Three payment '
+               'product precisions, two principal return words and three hidden-interest domains '
+               'are stated independently of matches. Empty cells refute only this final aggregate '
+               'with the public payment; they do not refute a private payment, interval-specific '
+               'loops or other cumulative routes. A possible cell identifies no hidden value '
+               'and never counts as a calculated application pass. No new Excel answers.')
+    write(output,result)
+    print(json.dumps(dict(counts=counts,common_exclusions=result['common_exclusions'])),flush=True)
     return result
 
 
@@ -949,9 +1396,12 @@ if __name__ == '__main__':
     p.add_argument('--discriminants')
     p.add_argument('--negative',action='store_true')
     p.add_argument('--negative-pc64',action='store_true')
+    p.add_argument('--negative-discount',action='store_true')
+    p.add_argument('--growth-reciprocal-edges',action='store_true')
     p.add_argument('--compose')
     p.add_argument('--edges',action='store_true')
     p.add_argument('--products')
+    p.add_argument('--timing-products',action='store_true')
     p.add_argument('--timing-edges',action='store_true')
     p.add_argument('--cumulative-pairs',action='store_true')
     p.add_argument('--cumulative-fv')
@@ -961,8 +1411,25 @@ if __name__ == '__main__':
     p.add_argument('--reciprocal-domain', action='store_true')
     p.add_argument('--reciprocal-transfer', action='store_true')
     p.add_argument('--cumulative-components',nargs=2,metavar=('STUDY','PRIOR_CACHE'))
+    p.add_argument('--cumulative-aggregate',nargs=3,metavar=('STUDY','PRIOR','PRIOR_CACHE'))
+    p.add_argument('--future-stages',action='store_true')
+    p.add_argument('--future-coupled')
+    p.add_argument('--future-timing')
+    p.add_argument('--future-growth',nargs=3,metavar=('TIMING','CONTROLS','EXECUTABLE'))
     a=p.parse_args()
-    if a.cumulative_components:
+    if a.future_growth:
+        future_value_growth(a.checkout,*a.future_growth,a.output,a.cache,a.offline)
+    elif a.future_timing:
+        future_value_timing(a.checkout,a.future_timing,a.output,a.cache,a.offline)
+    elif a.future_coupled:
+        future_value_coupled(a.checkout,a.future_coupled,a.output,a.cache,a.offline)
+    elif a.future_stages:
+        future_value_stages(a.checkout,a.output,a.cache,a.offline)
+    elif a.cumulative_aggregate:
+        cumulative_aggregate_constraints(a.cumulative_aggregate[0],a.cumulative_aggregate[1],a.cache,a.cumulative_aggregate[2],a.output)
+    elif a.growth_reciprocal_edges:
+        growth_reciprocal_edges(a.checkout,a.output,a.cache,a.offline)
+    elif a.cumulative_components:
         cumulative_component_constraints(a.checkout,a.cumulative_components[0],a.cumulative_components[1],a.output,a.cache,a.offline)
     elif a.reciprocal_domain or a.reciprocal_transfer:
         reciprocal_domain(a.checkout,a.output,a.cache,a.offline,a.reciprocal_transfer)
@@ -979,7 +1446,7 @@ if __name__ == '__main__':
     elif a.timing_edges:
         timing_edges(a.checkout,a.output,a.cache,a.offline)
     elif a.products:
-        products(a.checkout,a.products,a.output,a.cache,a.offline)
+        products(a.checkout,a.products,a.output,a.cache,a.offline,a.timing_products)
     elif a.edges:
         edges(a.checkout,a.output,a.cache,a.offline)
     elif a.compose:
@@ -987,4 +1454,5 @@ if __name__ == '__main__':
     elif a.discriminants:
         discriminants(a.checkout,a.discriminants,a.output,a.cache,a.offline)
     else:
-        run(a.checkout,a.output,a.cache,a.offline,a.negative or a.negative_pc64,'stored_pc64' if a.negative_pc64 else None)
+        run(a.checkout,a.output,a.cache,a.offline,a.negative or a.negative_pc64 or a.negative_discount,
+            'stored_pc64' if a.negative_pc64 or a.negative_discount else None,a.negative_discount)

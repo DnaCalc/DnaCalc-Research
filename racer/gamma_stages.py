@@ -1254,6 +1254,87 @@ def scaled_quotient_words(checkout, output, cache, library, offline=False, count
     return result
 
 
+def scaled_prefix_storage(checkout,study,prior_cache,output,cache,offline=False):
+    """Use primitive multiplication ties to resolve one shared prefix's lattice."""
+    import random
+    from fractions import Fraction as Q
+    from geomean import verified_study_answers
+    from exact import operation
+    source=Path(study);doc=json.loads(source.read_text())
+    _,bindings,_=verified_study_answers(doc,Path(prior_cache))
+    frozen={**STAGE_BINDINGS,**bindings,str(source.resolve()):sha(source)}
+    rng=random.Random(3111);groups=[];rows=[];excluded=[]
+    for anchor in doc['records']:
+        a,y=binary64(anchor['shape']),binary64(anchor['input'])
+        if y not in (Q(1,4),Q(1),Q(2),Q(4)):continue
+        r=binary64(anchor['density']['bits'])*y/a
+        if BINARY64.round(r)!=r:raise ValueError('prefix publication extraction rounded')
+        gi=len(groups);groups.append(dict(shape=anchor['shape'],ratio=anchor['input'],
+            anchor=anchor['density'],prefix_publication=bits(float(r))))
+        selected={-1:0,1:0}
+        for trial in range(500000):
+            xbits=((1023+rng.randint(-8,8))<<52)|rng.getrandbits(52)
+            x=binary64(f'{xbits:016x}');beta=x/y
+            if binary64(bits(float(beta)))!=beta:raise ValueError('holding scaled input rounded')
+            factor=operation(a,x,'div','stored_pc64')
+            strict=operation(r,factor,'mul','strict');stored=operation(r,factor,'mul','stored_pc64')
+            if strict==stored:continue
+            sign=1 if stored>strict else -1
+            if selected[sign]==4:continue
+            selected[sign]+=1
+            rows.append(dict(group=gi,args=[f'{xbits:016x}',anchor['shape'],bits(float(beta)),bits(0.)],
+                stored_ratio=bits(float(factor)),strict_stored_prefix=bits(float(strict)),
+                pc64_stored_prefix=bits(float(stored)),direction=sign,selection_trial=trial))
+            if all(n==4 for n in selected.values()):break
+        if not all(n==4 for n in selected.values()):
+            excluded.append(dict(group=gi,selected=selected,trials=500000,
+                reason='Fixed bounded primitive search incomplete; no impossibility claim.'))
+    write(str(output)+'.questions.json',dict(format='dnacalc-gamma-prefix-storage-questions/1',complete=True,
+        groups=groups,rows=rows,excluded=excluded,source_bindings=frozen,
+        selection='Thirteen inherited dyadic shape/input anchors. Seed3111; first four final-product strict/PC64 ties in each direction per anchor, before any new answer. x/beta stays exactly the original y.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('GAMMA.DIST',[[client.number(v) for v in row['args']] for row in rows])['rows']
+    accum=[[BINARY64.pullback(Span(binary64(g['prefix_publication']),binary64(g['prefix_publication'])))
+            for word in ('strict','stored_pc64')] for g in groups]
+    dead=[[False,False] for g in groups];counts=[Counter(),Counter()]
+    for row,answer in zip(rows,answers):
+        row['answer']=answer;row['required_prefixes']=[]
+        gi=row['group'];factor=binary64(row['stored_ratio'])
+        for i,word in enumerate(('strict','stored_pc64')):
+            domain=(inverse(Span(binary64(answer['bits']),binary64(answer['bits'])),factor,'mul',True,word)
+                    if answer['type']=='number' else None)
+            row['required_prefixes'].append(domain.json() if domain else None)
+            counts[i]['calls']+=1
+            prediction=row['strict_stored_prefix' if word=='strict' else 'pc64_stored_prefix']
+            counts[i]['stored_anchor_matches']+=answer==dict(type='number',bits=prediction)
+            if not dead[gi][i]:
+                accum[gi][i]=accum[gi][i].meet(domain) if domain else None
+                dead[gi][i]=accum[gi][i] is None
+    for gi,g in enumerate(groups):
+        g['constraints']=[]
+        for i,word in enumerate(('strict','stored_pc64')):
+            domain=None if dead[gi][i] else accum[gi][i]
+            b=BINARY64.coordinates(domain) if domain else None
+            e=EXTENDED64.coordinates(domain) if domain else None
+            counts[i]['groups']+=1;counts[i]['binary64_possible']+=b is not None
+            counts[i]['resident64_possible']+=e is not None
+            counts[i]['resident64_unique']+=e is not None and e[0]==e[1]
+            g['constraints'].append(dict(word=word,domain=domain.json() if domain else None,
+                binary64_count=0 if b is None else b[1]-b[0]+1,resident64_count=0 if e is None else e[1]-e[0]+1,
+                unique_resident_is_anchor=e is not None and e[0]==e[1] and EXTENDED64.value(e[0])==binary64(g['prefix_publication'])))
+    result=dict(format='dnacalc-gamma-shared-prefix-storage/1',complete=True,
+        groups=groups,records=rows,counts=counts,excluded=excluded,receipts=service.receipts,
+        source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Conditional shared prefix for fixed shape and exactly unchanged x/beta; the '
+               'final alpha/x is stored from PC64. The old dyadic anchor fixes its binary64 '
+               'publication without selecting hidden low bits. A surviving lattice value is '
+               'a necessary constraint, never a replacement prefix. A unique resident value '
+               'at the anchor would identify the sampled value, not a literal machine store. '
+               'Empty common cells refute this common-prefix/consumer composition. No '
+               'coefficient or model is chosen by counts; no application code is changed.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
 def final_sum_quantization(study, edges, output):
     """Coefficient-residue consequences of the two numerator binade jumps.
 
@@ -1320,7 +1401,7 @@ def final_sum_quantization(study, edges, output):
     return result
 
 
-def base2_prefactor_constraints(study, output, cache, library):
+def base2_prefactor_constraints(study, output, cache, library, signed=False):
     """Shared-normalizer inverses for literal base-two gamma prefixes.
 
     Exact dyadic y and power-of-two shapes remove the power logarithm. The
@@ -1337,11 +1418,12 @@ def base2_prefactor_constraints(study, output, cache, library):
     frozen = {**STAGE_BINDINGS, **bindings, str(source.resolve()):sha(source),
               str(Path(library).resolve()):sha(library)}
     g = Builder(1)
-    whole = g.op('frndint',0,store=False)
-    fraction = g.op('sub',0,whole,store=False)
+    exponent = g.op('neg',0,store=False) if signed else 0
+    whole = g.op('frndint',exponent,store=False)
+    fraction = g.op('sub',exponent,whole,store=False)
     mantissa = g.op('add',g.one,g.op('f2xm1',fraction,store=False),store=False)
     positive = g.op('fscale',mantissa,whole,store=False)
-    result = g.op('div',g.one,positive,store=False)
+    result = positive if signed else g.op('div',g.one,positive,store=False)
     graph = g.graph(result,result)
     l2e = decode(native.leaf('fldl2e',bytes(10),bytes(10),0x133f))
     profiles = [dict(form='sum_then_scale',sum_stored=s) for s in (False,True)]
@@ -1401,10 +1483,10 @@ def base2_prefactor_constraints(study, output, cache, library):
             item.update(domain=domain.json() if domain else None,
                 binary64_count=0 if coords is None else coords[1]-coords[0]+1)
     result = dict(format='dnacalc-gamma-base2-prefix-constraints/1',complete=True,
-        profiles=profiles,groups=groups,records=records,graph=graph,receipts=doc['receipts'],
+        profiles=profiles,groups=groups,records=records,graph=graph,receipts=doc['receipts'],signed=signed,
         source_bindings=frozen,
         limits='Necessary shared-normalizer intervals only, from original dyadic density anchors. '
-               'The base-two reciprocal exponential and fixed PC64 arithmetic are assumptions. '
+               'The declared signed or reciprocal base-two exponential and fixed PC64 arithmetic are assumptions. '
                'An empty intersection rejects only its declared program. '
                'A feasible interval identifies no coefficient, private routine or implementation.')
     write(output,result)
@@ -1580,17 +1662,21 @@ if __name__ == '__main__':
     p.add_argument('--stirling-stages',action='store_true')
     p.add_argument('--stirling-consumers',action='store_true')
     p.add_argument('--base2-prefactor',metavar='STUDY')
+    p.add_argument('--base2-signed',action='store_true')
     p.add_argument('--final-sum-quantization',nargs=2,metavar=('NEAR_STUDY','EDGE_MANIFEST'))
+    p.add_argument('--prefix-storage',nargs=2,metavar=('STUDY','PRIOR_CACHE'))
     p.add_argument('--scaled-quotient-words',action='store_true')
     args = p.parse_args()
     if not 2 <= args.count <= (4096 if args.gammaln_store_edges or args.gammaln_near_stores else 256):
         raise ValueError('small adjacent windows only')
     if args.scaled_quotient_words:
         scaled_quotient_words(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
+    elif args.prefix_storage:
+        scaled_prefix_storage(args.checkout,args.prefix_storage[0],args.prefix_storage[1],args.output,args.cache,args.offline)
     elif args.final_sum_quantization:
         final_sum_quantization(args.final_sum_quantization[0],args.final_sum_quantization[1],args.output)
     elif args.base2_prefactor:
-        base2_prefactor_constraints(args.base2_prefactor,args.output,args.cache,args.library)
+        base2_prefactor_constraints(args.base2_prefactor,args.output,args.cache,args.library,args.base2_signed)
     elif args.stirling_stages or args.stirling_consumers:
         stirling_stage_constraints(args.checkout,args.output,args.cache,args.library,args.offline,args.count,args.stirling_consumers)
     elif args.classify_losses:

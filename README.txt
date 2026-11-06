@@ -1,28 +1,38 @@
 DNA Calc arithmetic program research
 
-R31 isolates the beginning-payment PMT reciprocal pole while preserving the
-first-period IPMT zero before rate checks. Its fixed bank gains4 and loses0;
-the fixed54794-cell corpus retains every value. The1675-call scalar replay
-gains45 and loses0, with identical native/software returns. Initial broad
-domain hypotheses and their counterexamples remain beside the corrected one.
+R31 lands measured PMT and FV stores through the application call path.
+Its own fixed-bank gain is 4,806 with zero losses: PMT 4,512 and FV 294.
+Separate incoming rounding work gains 768. At the financial measurement point,
+the bank is 3,783,229/3,910,007;
+126,778 inclusive failures include 116 unread rows. PMT has 151 failures left,
+FV two. The 54,794-cell workbook corpus remains 52,883 passing, 1,911 failing,
+including 100 pending; no calculated value changed in that financial comparison.
+Later incoming master kernels have their own gains and losses in the index;
+they are kept separate from this financial measurement.
 
-The new Gamma quotient pairs support the stored-PC64 input division on64
-primitive ties:42 exclude strict division with a stored prefix,34 still
-exclude it with an arbitrary resident or real prefix. Prefix storage remains
-open. High-Gamma inverse cells reject24 declared final associations without
-choosing correction coefficients. The final-P quantum diagnostic retains511
-residue classes away from ties; ambiguous classes remain unresolved. Its
-current table residue3707 is excluded under
-the stated store/jump-sign assumptions. No Gamma coefficient or store lands.
+PMT keeps the reciprocal-pole guard and first-period IPMT zero exception,
+then stores the negative-rate common fold and timing finish. FV divides
+before applying payment timing, stores its products and sum, uses only exact
+zero for the linear term, and stores 1+r before the existing POWER. Paired
+public calls and primitive ties establish each stage before bank measurement.
+The remaining FV pair points to beginning-term production; it stays open.
 
-CUMPRINC's short-interval answers exclude all nine independent-component sum
-models on151 of648 intervals, even with unpublished component cells. Paired
-cumulative complements have their own counterexamples; no route is inferred.
-evidence/round31/index.json binds the original small scalar archives, exact
-producer epochs, compressed derived reports, corrections and bounded claims.
-Use round31-guard-checkpoint-unit.json for its recorded application epoch.
-Negative PMT arithmetic is measured separately; historical strict-product
-studies do not establish that final word. No count-selected kernel is used.
+Gamma prefix multiplication ties identify a sampled shared-prefix value
+property under its declared premise, without proving a literal stack store.
+GAMMALN, GAMMA, CUMPRINC, HYPGEOM, Bessel and QR retain bounded refutations
+and open questions; none gets a count-selected kernel. Historical incorrect
+models and corrected arithmetic premises remain beside their replacements.
+
+evidence/round31/index.json binds small raw scalar replies, source epochs,
+compressed reports, per-stage bank bits and test receipts. round31-final-unit.json
+binds the financial arithmetic epoch. Use round31-published-unit.json for the
+combined source tree; earlier units preserve the earlier measurements.
+Overlapping scalar cohorts are never summed as independent coverage.
+
+Published main 7ce6fef53b98: combined bank 3,831,336/3,910,007;
+78,671 inclusive failures. Corpus 52,988/54,794; 1,806 inclusive failures.
+Incoming discrete work has 156 bank and 20 corpus losses, all retained;
+the final numeric-reader merge changes no bank or corpus outcome.
 
 R30 keeps one numerical stage at a time. Its initial count/dependency ranking
 and original scalar replies are bound by evidence/round30/index.json. Gamma's

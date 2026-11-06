@@ -145,6 +145,11 @@ print(f'xtask witness: constructed control; {matches} of {len(rows)+1} rows matc
                 retained=[json.loads(line)for line in failed]
             self.assertEqual(len(retained),1)
             self.assertEqual(retained[0]['function'],'CONTROL')
+            rows[0]['actual']=rows[0]['expected'];rows[1]['actual']='0x4000000000000000'
+            data.write_text(json.dumps(rows))
+            selected_after=bank_match_bits(binary,root,root/'selected-after',root/'selected','CONTROL')
+            self.assertEqual((selected_after['gains'],selected_after['losses']),(1,1))
+            self.assertEqual(selected_after['identity_answer_environment_sha256'],selected['identity_answer_environment_sha256'])
             with self.assertRaisesRegex(ValueError,'worksheet function name required'):
                 bank_match_bits(binary,root,root/'bad-name','-','PMT;echo')
             with self.assertRaisesRegex(ValueError,'own unsliced baseline'):

@@ -1,54 +1,110 @@
 {
-  "complete": true,
-  "approved": true,
-  "reviewer": "r31_read_only_review",
-  "recorded_by": "root from review messages",
-  "utc": "2026-11-06T17:55:24.510377+00:00",
-  "main_commit": "63f2c6d7",
-  "bank": {
-    "gains": 4,
-    "losses": 0,
-    "matched": 3777659,
-    "total": 3910007,
-    "failed": 132348,
+  "guard_checkpoint": {
+    "complete": true,
+    "approved": true,
+    "reviewer": "r31_read_only_review",
+    "recorded_by": "root from review messages",
+    "utc": "2026-11-06T17:55:24.510377+00:00",
+    "main_commit": "63f2c6d7",
+    "bank": {
+      "gains": 4,
+      "losses": 0,
+      "matched": 3777659,
+      "total": 3910007,
+      "failed": 132348,
+      "unread": 116,
+      "pass_rate": 0.9661514672480126
+    },
+    "corpus": {
+      "gains": 0,
+      "losses": 0,
+      "changed_values": 0,
+      "matched": 52883,
+      "total": 54794,
+      "failed": 1911,
+      "pending": 100,
+      "pass_rate": 0.9651239186772275
+    },
+    "scalar": {
+      "gains": 45,
+      "losses": 0,
+      "matched": 1009,
+      "total": 1675,
+      "failed": 666,
+      "pass_rate": 0.6023880597014926,
+      "native_soft_identical": true
+    },
+    "independent_checks": [
+      "All original readbacks/provenance, phase-one counterexamples and phase-two guard classifications.",
+      "All21504 Gamma final-consumer records and896 exact square roots.",
+      "All5832 cumulative component enclosures;151 common exclusions.",
+      "All464 base-two normalizer domains and58 original anchors.",
+      "All8192 corrected residue cases; both product parities and midpoint neighbors.",
+      "All64 relaxed quotient intersections;34 real/resident exclusions and42 binary64 exclusions.",
+      "Negative PMT32 denominator groups,832 paired calls,518 discriminants and32 original final-product ties."
+    ],
+    "required_corrections_applied": [
+      "Invalid-period assertions labeled existing contract controls.",
+      "Phase-one pre-FSQRT source snapshots retained.",
+      "PC64 midpoint-neighbor ambiguity retained.",
+      "Quotient prefix-storage premise relaxed.",
+      "Inclusive rates and scalar666 remaining failures recorded.",
+      "Inherited/current audit.py epochs indexed."
+    ],
+    "limits": "Approval covers the isolated guard and bounded research conclusions, not complete Gamma/PMT/cumulative algorithms or a Windows/browser sweep."
+  },
+  "final_arithmetic": {
+    "reviewer": "r31_read_only_review",
+    "approved_arithmetic_and_bounded_claims": true,
+    "source_blob": "b1bb11b8d015cf88a0e637f2d70f7525daffd4c1",
+    "independent_bank_delta": {
+      "pmt": 4512,
+      "fv": 294,
+      "incoming_rounding": 768,
+      "losses": 0
+    },
+    "bank_matched": 3783229,
+    "bank_total": 3910007,
+    "inclusive_failures": 126778,
     "unread": 116,
-    "pass_rate": 0.9661514672480126
+    "checks": [
+      "Original assertions unchanged; extraction retains identical POWER and error mapping.",
+      "Bank bits independently recomputed from original baseline; FV final step only12 gains.",
+      "All native final receipt bindings verified; five software replay cohorts byte-identical.",
+      "All59 final corpus reports byte-identical;367 input hashes independently verified.",
+      "Remaining beginning annuity terms two ULP high; mixed-parent cancellation amplifies final discrepancy."
+    ],
+    "required_check": {
+      "passed": 1936,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "scope": "financial epoch before incoming discrete merge"
+    },
+    "publication": "pending"
   },
-  "corpus": {
-    "gains": 0,
-    "losses": 0,
-    "changed_values": 0,
-    "matched": 52883,
-    "total": 54794,
-    "failed": 1911,
-    "pending": 100,
-    "pass_rate": 0.9651239186772275
-  },
-  "scalar": {
-    "gains": 45,
-    "losses": 0,
-    "matched": 1009,
-    "total": 1675,
-    "failed": 666,
-    "pass_rate": 0.6023880597014926,
-    "native_soft_identical": true
-  },
-  "independent_checks": [
-    "All original readbacks/provenance, phase-one counterexamples and phase-two guard classifications.",
-    "All21504 Gamma final-consumer records and896 exact square roots.",
-    "All5832 cumulative component enclosures;151 common exclusions.",
-    "All464 base-two normalizer domains and58 original anchors.",
-    "All8192 corrected residue cases; both product parities and midpoint neighbors.",
-    "All64 relaxed quotient intersections;34 real/resident exclusions and42 binary64 exclusions.",
-    "Negative PMT32 denominator groups,832 paired calls,518 discriminants and32 original final-product ties."
-  ],
-  "required_corrections_applied": [
-    "Invalid-period assertions labeled existing contract controls.",
-    "Phase-one pre-FSQRT source snapshots retained.",
-    "PC64 midpoint-neighbor ambiguity retained.",
-    "Quotient prefix-storage premise relaxed.",
-    "Inclusive rates and scalar666 remaining failures recorded.",
-    "Inherited/current audit.py epochs indexed."
-  ],
-  "limits": "Approval covers the isolated guard and bounded research conclusions, not complete Gamma/PMT/cumulative algorithms or a Windows/browser sweep."
+  "final_publication": {
+    "reviewer": "r31_read_only_review",
+    "main_commit": "7ce6fef53b986b1027e683acfc694511d21a983f",
+    "main_check": {
+      "passed": 1937,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "harnesses": 69,
+      "packages": 14,
+      "receipt": "publication-reader-required-check.log",
+      "scope": "Final combined source tree including incoming numeric reader"
+    },
+    "arithmetic_and_bounded_claims_approved": true,
+    "incoming_losses_retained": {
+      "bank": 156,
+      "corpus": 20
+    },
+    "reader_epoch_bank_and_corpus_changes": 0,
+    "tracker_ids_preserved": 430,
+    "tracker_comment_payloads_preserved": 565,
+    "main_push_confirmed": true,
+    "limits": "No independent inspection of Claude-owned kernels; all incoming losses are classified as triage, not claimed root-cause fixes. No Windows/browser sweep."
+  }
 }

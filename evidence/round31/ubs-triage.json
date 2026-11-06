@@ -13,5 +13,13 @@
       "The selected local judge executable is authorized; validated worksheet function is argv data and no shell runs. Annotation now sits on the subprocess call."
     ],
     "remaining_actionable_critical": 0
+  },
+  "final": {
+    "main_critical": 0,
+    "research_critical": 0,
+    "research_warnings": 214,
+    "research_info": 526,
+    "research_files": 6,
+    "limitations": "Python scanner remains partial: existing SQLFlowLimit unsupported generator consumer. No SQL added; no complete-scan claim. Float equality at zero/periodone and exact evidence digests are intentional. Local fixed-argv subprocess uses no shell."
   }
 }

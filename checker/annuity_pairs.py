@@ -50,12 +50,16 @@ class Arithmetic:
     def finish(self,a,r,model):
         if model=='strict':
             x,y=(struct.unpack('>d',bytes.fromhex(self.bits(v)))[0] for v in (a,r))
-            return struct.pack('>d',x*y).hex()
-        require(model=='stored_pc64','unsupported final model')
-        return self.bits(self.op('mul',a,r))
+            result=struct.pack('>d',x*y).hex()
+        else:
+            require(model=='stored_pc64','unsupported final model')
+            result=self.bits(self.op('mul',a,r))
+        # Worksheet PMT and the application publish canonical zero. Keep
+        # native signed-zero operands inside the instruction trace itself.
+        return '0000000000000000' if int(result,16)&((1<<63)-1)==0 else result
 
 
-def check(study,cache,library,output):
+def check(study,cache,library,output,prior=None,prior_cache=None):
     study,cache,library,output=map(Path,(study,cache,library,output))
     doc=json.loads(study.read_text())
     require(doc.get('complete') is True,'incomplete stage study')
@@ -91,7 +95,50 @@ def check(study,cache,library,output):
         corrected=a.op('add',q,f)
         factor=r if not timing else a.op('div',one,a.op('add',one,a.op('div',one,r)))
         return a.finish(corrected,factor,model)
-    if doc['format']=='dnacalc-annuity-reciprocal-domain/1':
+    if doc['format']=='dnacalc-annuity-product-discriminants/1':
+        require(prior is not None and prior_cache is not None,'product proof needs its original denominator observations')
+        prior=Path(prior)
+        require(digest(prior)==doc['prior_sha256'],'prior denominator study changed')  # ubs:ignore — public evidence digest.
+        before=json.loads(prior.read_text())
+        old,old_bindings,_=verified_study_answers(before,Path(prior_cache))
+        answers.update(old);frozen.update(old_bindings);frozen[str(prior)]=digest(prior)
+        denominators={}
+        constraints={}
+        for group in before['groups']:
+            r,n=group['rate'],group['periods']
+            em=infer(r,n,group['timing'])
+            denominators[r,n]=em
+            if doc.get('timing'):
+                for row in group['timing']:
+                    q=binary64(a.bits(a.op('div',load64(int(row['pv'],16)),load64(int(em,16)))))
+                    y=binary64(row['due']['bits'])
+                    for word in ('strict','stored_pc64'):
+                        needed=inverse(Span(y,y),q,'mul',True,word)
+                        key=r,word
+                        constraints[key]=needed if key not in constraints else constraints[key].meet(needed)
+                        require(constraints[key] is not None,'coefficient constraint empty')
+        for (rate,word),domain in constraints.items():
+            native=a.op('div',one,a.op('add',one,a.op('div',one,load64(int(rate,16)))))
+            coords=B.coordinates(domain)
+            require(coords is not None and coords[0]==coords[1] and B.value(coords[0])==binary64(a.bits(native)),
+                    'final-word models do not pin the same native coefficient')
+            counts['unique_coefficient_domains']+=1
+        questions=Path(str(study)+'.questions.json')
+        require(digest(questions)==doc['questions_sha256'],'product question manifest changed')  # ubs:ignore — public evidence digest.
+        frozen[str(questions)]=digest(questions)
+        for row in doc['records']:
+            r,n,p,f,t=row['args']
+            require(f=='0000000000000000','product probe has a future balance')
+            em=denominators[r,n]
+            require(em==row['em'],'probe denominator differs from prior public constraints')
+            rr=load64(int(r,16))
+            factor=a.op('div',one,a.op('add',one,a.op('div',one,rr))) if doc.get('timing') else rr
+            q=a.op('div',load64(int(p,16)),load64(int(em,16)))
+            strict,stored=(a.finish(q,factor,word) for word in ('strict','stored_pc64'))
+            require(strict!=stored and strict==row['strict'] and stored==row['stored_pc64'],'native primitive tie differs')
+            assert_answer(row['args'],stored)
+            counts['product_word_discriminants']+=1
+    elif doc['format']=='dnacalc-annuity-reciprocal-domain/1':
         require(doc['phase']==2,'initial contradicted hypothesis is not an accepted domain rule')
         questions=Path(str(study)+'.questions.json')
         require(digest(questions)==doc['questions_sha256'],'domain question manifest changed')  # ubs:ignore — public evidence checksum, not a secret or authentication token.

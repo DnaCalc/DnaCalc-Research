@@ -923,14 +923,14 @@ def bank_match_bits(executable, checkout, output, before=None, only_function=Non
     from corpus_cases import judge_fifo_lines
     from contextlib import nullcontext
     if before == '-':before=None
-    if only_function is not None and before is not None:
-        raise ValueError('function-only inventory needs its own unsliced baseline')
     if only_function is not None and re.fullmatch(r'[A-Z][A-Z0-9._]*',only_function) is None:
         raise ValueError('worksheet function name required')
     executable,checkout,output = (Path(p).resolve() for p in (executable,checkout,output))
     output.mkdir(parents=True,exist_ok=False)
     frozen={str(executable):sha(executable),str(Path(__file__).resolve()):sha(Path(__file__))}
     baseline=json.loads((Path(before)/'summary.json').read_text()) if before else None
+    if baseline is not None and baseline.get('selected_function') != only_function:
+        raise ValueError('function-only inventory needs its own unsliced baseline; baseline scope differs')
     old=(Path(before)/'matched.bits').read_bytes() if before else None
     if baseline and (baseline.get('complete') is not True or sha(Path(before)/'matched.bits')!=baseline['match_bits_sha256']):
         raise ValueError('incomplete or changed match baseline')
@@ -1000,7 +1000,67 @@ def bank_match_bits(executable, checkout, output, before=None, only_function=Non
     return result
 
 
+def final_product_loss_cells(changes, output):
+    """Classify one strict-to-PC64 product step without assuming its producer.
+
+    Before/after application returns constrain the unchanged stored quotient.
+    Every candidate quotient is enumerated on the binary64 lattice and its
+    two products replayed with rational arithmetic. This locates a remaining
+    producer discrepancy conditional on the independently observed final word.
+    """
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
+    from exact import BINARY64 as B,Span,binary64,inverse,operation,round_model,two
+    import struct
+    changes,output=Path(changes),Path(output)
+    frozen={str(changes.resolve()):sha(changes),str(Path(__file__).resolve()):sha(Path(__file__))}
+    frozen.update({str(Path(__file__).resolve().parents[1]/'checker'/n):sha(Path(__file__).resolve().parents[1]/'checker'/n)for n in ('exact.py',)})
+    def encode(q):
+        if q is None:return 'error:Num'
+        if q and abs(q)<two(-1022):return 'fault:NotImplemented'
+        return '0x'+struct.pack('>d',float(q)).hex()
+    records=[];counts=collections.Counter()
+    for row in stream(changes):
+        if not row['before_matched']:
+            continue
+        if row['function']!='PMT':
+            records.append(dict(original=row,classification='other_function_requires_separate_review'))
+            counts['other_function_requires_separate_review']+=1
+            continue
+        r,n=map(binary64,row['args'][:2])
+        if r>=0 or n<=0 or not row['expected'].startswith('0x'):
+            raise ValueError('loss outside the isolated negative-growth final word')
+        target=binary64(row['expected'])
+        domain=inverse(Span(target,target),r,'mul',True,'strict')
+        coordinates=B.coordinates(domain) if domain else None
+        if coordinates is None or coordinates[1]-coordinates[0]>8:
+            raise ValueError('unresolved current quotient requires separate analysis')
+        prefixes=[]
+        for k in range(coordinates[0],coordinates[1]+1):
+            q=B.value(k);old=encode(operation(q,r,'mul','strict'))
+            new=encode(round_model(q*r,'stored_pc64'))
+            if old==row['expected'] and new==row['actual']:
+                prefixes.append(dict(bits=struct.pack('>d',float(q)).hex(),before=old,after=new))
+        if not prefixes:
+            raise ValueError('application outputs cannot share the declared unchanged quotient')
+        if any(p['after']==row['expected'] for p in prefixes):
+            raise ValueError('classified quotient can still match the original target')
+        records.append(dict(original=row,classification='current_stored_quotient_outside_pc64_target_cell',
+            strict_target_quotient_domain=domain.json(),possible_current_quotients=prefixes))
+        counts['current_stored_quotient_outside_pc64_target_cell']+=1
+    if frozen!={p:sha(Path(p))for p in frozen}:raise ValueError('loss inputs changed during classification')
+    result=dict(complete=True,counts=counts,records=records,inputs_sha256=frozen,
+        limits='Conditional on the independently discriminated PC64 final product. All losses '
+               'retain their original bank identity, expectation and actual result. The current '
+               'stored quotient includes timing and balance producers; this does not identify '
+               'which upstream stage is wrong or a private replacement value. Other-function '
+               'losses remain explicitly unclassified. No prediction counts as an application pass.')
+    with output.open('x')as f:json.dump(result,f,indent=2);f.write('\n')
+    print(json.dumps(counts),flush=True)
+    return result
+
+
 if __name__ == "__main__":
+    if sys.argv[1]=="final-product-loss-cells":final_product_loss_cells(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="scalar-service-replay":scalar_service_replay(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="variance-stored-replay":variance_stored_replay(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=="bank-match-bits":bank_match_bits(*sys.argv[2:]);raise SystemExit(0)

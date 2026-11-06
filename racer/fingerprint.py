@@ -2284,6 +2284,88 @@ def integer_power_study(checkout,output,cache,offline=False,count=2048):
     return result
 
 
+def hypergeom_diagonal_study(checkout,output,cache,offline=False):
+    """Falling-factorial products with no unknown binomial mass helper."""
+    from exact import operation,round_model,Span,pull_rounding,inverse
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    groups=[]
+    for exponent in (4,8,16,24,32,48,52):
+        for offset in (0,1):
+            total=(1<<exponent)+offset
+            for successes in (total//2,total//2+1,total-1):
+                groups.append(dict(total=total,successes=successes,draws=list(range(1,min(16,successes)+1))))
+    profiles=[dict(form=form,model=model) for form in ('multiply_then_divide','ratio_then_multiply','separate_products')
+              for model in ('strict','stored_pc64','resident_pc64')]
+    questions=[];rows=[]
+    for group in groups:
+        for n in group['draws']:
+            args=[bits(n),bits(n),bits(group['successes']),bits(group['total'])]
+            questions.append([client.number(v) for v in args]+[client.boolean(False)])
+            predictions=[]
+            for profile in profiles:
+                model=profile['model'];v=Q(1);num=Q(1);den=Q(1)
+                for i in range(n):
+                    a,b=Q(group['successes']-i),Q(group['total']-i)
+                    if profile['form']=='multiply_then_divide':
+                        v=operation(operation(v,a,'mul',model),b,'div',model)
+                    elif profile['form']=='ratio_then_multiply':
+                        v=operation(v,operation(a,b,'div',model),'mul',model)
+                    else:
+                        num=operation(num,a,'mul',model);den=operation(den,b,'mul',model)
+                if profile['form']=='separate_products':v=operation(num,den,'div',model)
+                predictions.append(bits(float(round_model(v,'strict'))))
+            rows.append(dict(args=args,predictions=predictions))
+    write(str(output)+'.questions.json',dict(format='dnacalc-hypergeom-diagonal-questions/1',complete=True,
+        groups=groups,profiles=profiles,rows=rows,
+        selection='Seven integer exponent edges, total=2^e or2^e+1, three fixed success counts and every diagonal sample1 through16. Nine literal product loops, source-code order, precede every answer.'))
+    answers=service.ask('HYPGEOM.DIST',questions)['rows']
+    aliases=service.ask('HYPGEOMDIST',[q[:4] for q,row in zip(questions,rows) if row['args'][0]==bits(1.)])['rows']
+    counts=[Counter() for _ in profiles];paired=[Counter() for _ in profiles]
+    records=[];last={};alias_index=0
+    for row,answer in zip(rows,answers):
+        n,_,k,total=(int(value(v)) for v in row['args'])
+        pair=[];prior=last.get((k,total))
+        for i,profile in enumerate(profiles):
+            counts[i]['calls']+=1
+            counts[i]['matched']+=answer==dict(type='number',bits=row['predictions'][i])
+            counts[i]['failed']+=answer!=dict(type='number',bits=row['predictions'][i])
+            domain=None
+            if prior is not None and prior['type']=='number' and answer['type']=='number':
+                # All three loops have a separately stated simple recurrence test.
+                # This does not assume the full product program's seed producer.
+                seed=BINARY64.pullback(Span(Q(value(prior['bits'])),Q(value(prior['bits']))))
+                target=Span(Q(value(answer['bits'])),Q(value(answer['bits'])))
+                model=profile['model'];a,b=Q(k-n+1),Q(total-n+1)
+                if profile['form']=='ratio_then_multiply':
+                    factor=operation(a,b,'div',model)
+                    needed=inverse(target,factor,'mul',True,'strict' if model=='strict' else 'stored_pc64')
+                elif profile['form']=='multiply_then_divide':
+                    needed=inverse(target,b,'div',True,'strict' if model=='strict' else 'stored_pc64')
+                    needed=inverse(needed,a,'mul',True,model) if needed else None
+                else:
+                    pair.append(None);continue
+                domain=seed.meet(needed) if needed else None
+                paired[i]['calls']+=1;paired[i]['excluded']+=domain is None
+            pair.append(domain.json() if domain else None)
+        record=dict(row,answer=answer,previous_diagonal=prior,recurrence_domains=pair)
+        if n==1:
+            record['legacy']=aliases[alias_index];alias_index+=1
+        records.append(record);last[k,total]=answer
+    result=dict(format='dnacalc-hypergeom-diagonal-products/1',complete=True,profiles=profiles,
+        counts=counts,paired_counts=paired,records=records,receipts=service.receipts,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Diagonal mass is mathematically the falling product of(K-i)/(N-i), without a binomial helper. '
+               'All finite integer inputs are below2^53 and at most16 factors are evaluated. '
+               'The mathematical identity supplies predictions only, never Excel answers. '
+               'A complete loop needs every original answer, including errors. Recurrence cells '
+               'allow an arbitrary real preceding value with the prior binary64 publication; '
+               'an empty cell refutes only that recurrence. Resident full-loop and stored public '
+               'recurrence models remain distinct. No program is selected by match count.')
+    write(output,result);print(json.dumps(dict(counts=counts,paired_counts=paired)),flush=True)
+    return result
+
+
 def hypergeom_product_constraints(input_path,output):
     """Fixed small factorial-ratio trees, contradicted by recorded PMFs.
 
@@ -2853,6 +2935,11 @@ if __name__ == '__main__':
     poisson_one_parser.add_argument('output',type=Path)
     poisson_one_parser.add_argument('--library',required=True)
     hypergeom_parser=commands.add_parser('hypergeom-products')
+    diagonal_parser=commands.add_parser('hypergeom-diagonal')
+    diagonal_parser.add_argument('checkout')
+    diagonal_parser.add_argument('output',type=Path)
+    diagonal_parser.add_argument('--cache',required=True)
+    diagonal_parser.add_argument('--offline',action='store_true')
     bessel_admission_parser=commands.add_parser('bessel-admission')
     bessel_admission_parser.add_argument('checkout')
     bessel_admission_parser.add_argument('output',type=Path)
@@ -2961,6 +3048,9 @@ if __name__ == '__main__':
     if args.command=='bessel-admission':
         bessel_admission_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
+    if args.command=='hypergeom-diagonal':
+        hypergeom_diagonal_study(args.checkout,args.output,args.cache,args.offline)
+        raise SystemExit(0)
     if args.command=='hypergeom-products':
         hypergeom_product_constraints(args.input,args.output)
         raise SystemExit
