@@ -2363,6 +2363,54 @@
       "archive": "evidence/round30/studies/final-integrated-check.log.gz",
       "uncompressed_sha256": "642ab79786ef3a966a8b3bbfdcb192fe3459992b4e90d8016277ad2e00f504e9",
       "archive_sha256": "5773927176a102afe7e07b36a3d913e7c885218359d8d7b33ae83dda0a837fa7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/work-report-review.json",
+      "archive": "evidence/round30/studies/work-report-review.json.gz",
+      "uncompressed_sha256": "a3cb3308a9140200e6aefd2f69dc896a82543bb69981217f3e45ad217dfc07dc",
+      "archive_sha256": "c62809182553e5964faec35cfd38780346da8a30f677d349c472ec918d62df67"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/final-ui-check.log",
+      "archive": "evidence/round30/studies/final-ui-check.log.gz",
+      "uncompressed_sha256": "ba6fccf2478c33207e3d71e1717ae1545bdb01291e07f954b7aad0f097b3d242",
+      "archive_sha256": "719abdaa41e524e5b8a6467674c338550f7fbd6442be4e55714d10a1f798a11e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/paint-test-environment.log",
+      "archive": "evidence/round30/studies/paint-test-environment.log.gz",
+      "uncompressed_sha256": "69dae30ca58a3f956e28fe8644ceb3e4e521a563631eb44966060adee2bcc0b4",
+      "archive_sha256": "b045dab6d3409d9c55b57df1dbb1bec52b2a0475d94660f0cc82dc4cd9b862e6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/paint-test-environment.json",
+      "archive": "evidence/round30/studies/paint-test-environment.json.gz",
+      "uncompressed_sha256": "ef9be20b804b8d245af633dfd6710cda946f05e057ef8516c613cb0ec70e2956",
+      "archive_sha256": "95168fc4be16fc3c9c6346b860165460a18f39ef9ccb85d91aa95caa0028f635"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/final-paint-self-test.log",
+      "archive": "evidence/round30/studies/final-paint-self-test.log.gz",
+      "uncompressed_sha256": "6ee9af1d9dccaa1690e34b978f644937404e9124053ff75be67109acbb3d0cf3",
+      "archive_sha256": "c47ea4e6fee8af69af41aea93e082edb339808f7f43781ec6f95db21be23017d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/final-paint-venv-self-test.log",
+      "archive": "evidence/round30/studies/final-paint-venv-self-test.log.gz",
+      "uncompressed_sha256": "3551f279fe700df62d28a5eb572b6448980637a3c2e0925f82a1969fac5ccc4e",
+      "archive_sha256": "8fed13ded12a1c15f35b28652385525c7130bad909e4f7e332cb22c42fe54cb4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/final-publication-check.log",
+      "archive": "evidence/round30/studies/final-publication-check.log.gz",
+      "uncompressed_sha256": "e0ef046b1f930a964c1198bd16a4aab9d8640ef083ff9f033de14f322af85cd5",
+      "archive_sha256": "394891f360ae53edd708ef86cf5ff04444a7cd09ef3f8358882def26dc2b8028"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/work-report-30.md",
+      "archive": "evidence/round30/studies/work-report-30.md.gz",
+      "uncompressed_sha256": "13c431eef1c5f079513b0f3bbda0555a07af575f9bc20916b561e1d24f57ff4f",
+      "archive_sha256": "091435171264e2fe64c77a408da9180e8bdf101015268a8fbaaca317f30fb593"
     }
   ],
   "limits": "Raw scalar answers stay in the existing scalar-cache lineage; the cache directory name is historical, not an observation date. Compressed analyses retain their exact original bytes. Producer snapshots distinguish source epochs and are not alternate tools. Full-bank match bits bind all identities/answers/environments and count unread rows as failures. Large derived corpus trees and native executables remain outside Git; committed source units and hashes identify them.",
@@ -2445,10 +2493,34 @@
       "ignored": 2,
       "application_revision": "4e68ac1804dcc187124a60f08f93c6c22ba745eb",
       "unit": "round30-published-unit.json"
+    },
+    "rendering_first_attempt": {
+      "passed": 1889,
+      "failed": 1,
+      "ignored": 5,
+      "not_run": 3,
+      "reason": "The incoming painting self-test default interpreter python was absent; system python3 also lacked Pillow/NumPy. Original failed output retained; assertions unchanged."
+    },
+    "painting_controls": {
+      "passed": 18,
+      "failed": 0,
+      "interpreter": "/home/ubuntu/codex-runs/r30/paint-venv/bin/python",
+      "environment": "paint-test-environment.json.gz",
+      "selection": "DNACALC_PAINT_PYTHON",
+      "isolated_environment_outside_git": true
+    },
+    "final_publication": {
+      "passed": 1890,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 14,
+      "seconds": 371,
+      "command": "DNACALC_PAINT_PYTHON=/home/ubuntu/codex-runs/r30/paint-venv/bin/python cargo xtask check"
     }
   },
   "gamma_commit": "b3b44246",
-  "artifact_bindings_verified": 393,
+  "artifact_bindings_verified": 403,
   "final_inventory": {
     "bank_matched": 3777655,
     "bank_total": 3910007,
@@ -2464,5 +2536,9 @@
   },
   "final_application_revision": "4e68ac1804dcc187124a60f08f93c6c22ba745eb",
   "final_published_unit": "round30-published-unit.json",
-  "numerical_source_scope": "Final rendering integration changes no calculation-route source relative to the integrated bank/corpus measurements. Generator original source state and hashes remain unaltered."
+  "numerical_source_scope": "Published research unit4e68ac18 remains the exact guarded application source. Later3268aaa1 merges only painting compare.py/README; no guarded calculation source changed. Final bank/corpus generator state and hashes remain unaltered.",
+  "publication_application_revision": "3268aaa1d28f4ac33bd9f99ffbf0df39d425ce63",
+  "scientific_research_revision": "f88badc132a92db020dacaa175b4503b6e21e347",
+  "main_push_verified": true,
+  "report": "evidence/round30/studies/work-report-30.md.gz"
 }
