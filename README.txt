@@ -1,5 +1,16 @@
 DNA Calc arithmetic program research
 
+R30 recovers the interrupted R29 tools and records in evidence/round29/recovery.
+The original replies and historical analyses retain their exact hashes; older
+producer epochs are distinguished from fresh offline replays. The recovered
+positive-rate PMT studies independently replay 832 paired stage calls and 479
+addition/rate discriminants as native instructions; 192 fresh coupled calls
+also agree. The discount balance fold is already in main 7ff33462, with its
+4033 gains and 278 classified timing losses. The reciprocal timing finish is
+still a separate step. Negative final-product probes contradict the earlier
+strict-product premise, so those historical negative studies do not establish
+that final stage. No answers or source guards are relaxed during recovery.
+
 R28 reconstructs normal-product GEOMEAN by exact integer exponent reduction,
 stored LN, a stored reciprocal, a product stored from PC64, and the public EXP
 core, followed by exact power-of-two restoration. Singleton identity has its

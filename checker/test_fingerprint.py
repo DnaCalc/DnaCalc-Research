@@ -11,6 +11,24 @@ from racer import fingerprint as f
 
 
 class FingerprintControls(unittest.TestCase):
+    def test_study_bindings_cannot_replace_the_loaded_producer(self):
+        source=next(iter(f.PRODUCER_BINDINGS))
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory)/'study.json'
+            with self.assertRaisesRegex(ValueError,'conflicting analysis source binding'):
+                f.write(output,dict(format='dnacalc-test/1',source_bindings={source:'0'*64}))
+            self.assertFalse(output.exists())
+            extra=Path(directory)/'extra.py'
+            extra.write_text('# constructed source control\n')
+            original=f.sha(extra)
+            extra.write_text('# changed source control\n')
+            with self.assertRaisesRegex(ValueError,'analysis source changed'):
+                f.write(output,dict(format='dnacalc-test/1',source_bindings={str(extra):original}))
+            self.assertFalse(output.exists())
+            f.write(output,dict(format='dnacalc-test/1',source_bindings={str(extra):f.sha(extra)}))
+            self.assertEqual(json.loads(output.read_text())['producer_bindings'],
+                             {**f.PRODUCER_BINDINGS,str(extra):f.sha(extra)})
+
     def test_quotient_summary_cannot_repeat_a_measured_group(self):
         from checker.geomean import quotient_summary_coverage
         models=[dict(quotient=q,published=p,groups=[dict(product_power=1)])

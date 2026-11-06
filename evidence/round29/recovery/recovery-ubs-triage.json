@@ -1,0 +1,12 @@
+{
+  "complete": true,
+  "scope": "Recovered R29 research tools and the source-binding change.",
+  "python": {
+    "critical": 1,
+    "warning": 89,
+    "info": 245
+  },
+  "disposition": "The one critical finding is equality of public evidence hashes, not authentication; marked with its reason. Nested definitions, JSON parse failures, arithmetic divisions, string composition and unreachable-code warnings were reviewed: inputs are bounded declared numerical grids, corrupt inputs deliberately fail the analysis, denominators are checked or positive by construction, and the unreachable markers are scope-parser false positives. No exception is swallowed. The guarded writer rejects conflicting or changed sources before creating output; constructed controls exercise both refusals.",
+  "rust_merge": "No manual application source resolution. The 25-file merge scan reports no critical findings; inherited upstream files retain their own tests. The PMT fold has the earlier R29 source scan and independent review. No claim that every heuristic warning in inherited code has been independently resolved.",
+  "limits": "UBS is a heuristic; source review and actual tests supply separate evidence."
+}

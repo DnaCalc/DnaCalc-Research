@@ -52,9 +52,14 @@ def write(path, document):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     if isinstance(document,dict)and str(document.get('format','')).startswith('dnacalc-'):
-        if PRODUCER_BINDINGS!={p:sha(p)for p in PRODUCER_BINDINGS}:
+        bindings=dict(PRODUCER_BINDINGS)
+        for source,digest in document.get('source_bindings',{}).items():
+            if source in bindings and bindings[source]!=digest:
+                raise ValueError('conflicting analysis source binding: '+source)
+            bindings[source]=digest
+        if bindings!={p:sha(p)for p in bindings}:
             raise ValueError('analysis source changed; raw replies remain retained, regenerate this analysis')
-        document=dict(document,producer_bindings=PRODUCER_BINDINGS,
+        document=dict(document,producer_bindings=bindings,
                       analysis_model='gpt-6.1-sol (session launcher)',
                       sources='Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read.')
     temporary=path.with_suffix(path.suffix+'.'+uuid.uuid4().hex+'.tmp')

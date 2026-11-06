@@ -1,0 +1,60 @@
+{
+  "complete": true,
+  "records": [
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity.json",
+      "archive": "evidence/round29/recovery/recovered-annuity.json.gz",
+      "sha256": "e92243ea05c3dce30298b184e63339d40713607f8f124252c0ab7e51cc855232"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-ties.json.gz",
+      "sha256": "ef3d5afaf52abe481bdc7b99895a1a7ce6fa5d9b653bacddd3d62c9cd6029f8b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties.json.questions.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-ties.json.questions.json.gz",
+      "sha256": "18ba6dc7e437a8d72128017a20db16c88b2d9b1e6272f5483013b10f9dd6ccf4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-compose.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-compose.json.gz",
+      "sha256": "d9fe42d93b1370ee4f1d35d0473f0f54c6005ca7a812ac05f6436098a356e8d1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-compose.json.questions.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-compose.json.questions.json.gz",
+      "sha256": "3f0687d270c987622e3ee769060ced6ed3e55547bfea006df8d79deba07f440b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-native.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-native.json.gz",
+      "sha256": "9eef39ea34793af7fb6966e320fe7ec2a5d3a33ddb7e734b3ad3b58ef7608bb9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties-native.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-ties-native.json.gz",
+      "sha256": "3a6386dfd19144ad07ae64d09c36898bfd17972653f8ddcc674bb31cedc0255b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-native-final.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-native-final.json.gz",
+      "sha256": "195629bce4e52464f81c6a4ee6a47739c5c5ee83c3d954efe05db9f824f281fe"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties-native-final.json",
+      "archive": "evidence/round29/recovery/recovered-annuity-ties-native-final.json.gz",
+      "sha256": "79d987f933db1bcac20ec465e9add32c8d270cbfd5a389c0ff0bb290f00e26c5"
+    }
+  ],
+  "counts": {
+    "paired_native": 832,
+    "discriminants_native": 479,
+    "composition": 192
+  },
+  "limits": "These offline studies use the original scalar receipts and recovered source. Each native checker freezes transitive checker sources. Negative final-product strict assumptions remain refuted; no negative-rate stage is promoted here.",
+  "final_native_checks": [
+    "recovered-annuity-native-final.json",
+    "recovered-annuity-ties-native-final.json"
+  ]
+}
