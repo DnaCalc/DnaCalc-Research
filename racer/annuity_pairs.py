@@ -19,7 +19,7 @@ SOURCE_BINDINGS={str(p.resolve()):sha(p) for p in (
     Path(__file__).with_name('x87_native.c'),Path(__file__).parents[1]/'checker/exact.py')}
 
 
-def run(checkout, output, cache, offline=False, negative=False):
+def run(checkout, output, cache, offline=False, negative=False, final_model=None):
     client, _ = load_service(checkout)
     service = CachedService(client.Client(timeout=300), cache, offline)
     # Fixed ordinary rates, periods and scaled/adjacent balances; no bank
@@ -29,7 +29,7 @@ def run(checkout, output, cache, offline=False, negative=False):
     if negative:
         rates=tuple(-r for r in rates)
         periods=(1.,12.,60.,120.)
-    final_model='strict' if negative else 'stored_pc64'
+    final_model=final_model or ('strict' if negative else 'stored_pc64')
     balances = [.125, 1., 1.1, 1000., 125000., 2.**20]
     balances += [value(f'{int(bits(1.),16)+k:016x}') for k in (-2,-1,1,2)]
     rows = []
@@ -150,7 +150,7 @@ def run(checkout, output, cache, offline=False, negative=False):
     result = dict(format='dnacalc-annuity-paired-stages/1', complete=True, counts=totals,
         branch='negative_rate_growth' if negative else 'positive_rate_discount', final_model=final_model,
         groups=groups, factor_groups=factor_groups, receipts=service.receipts, source_bindings=SOURCE_BINDINGS,
-        limits='Positive-rate finite PMT only. One shared binary64 em per rate/period is constrained by ten independent type-zero balances. Timing and nonzero-future-value stages are tested separately against all remaining em values. Nonempty constraints do not identify the logarithm or expm1; no parameter or selector is fitted. Opposing balances retain their separately measured cancellation route.')
+        limits='Finite PMT at the declared rate sign and final-product word only. One shared binary64 em per rate/period is constrained by ten independent type-zero balances. Timing and nonzero-future-value stages are tested separately against all remaining em values. Nonempty constraints do not identify the logarithm or expm1; no parameter or selector is fitted. Opposing balances retain their separately measured cancellation route.')
     write(output,result)
     print(json.dumps(totals,indent=2),flush=True)
     return result
@@ -776,6 +776,170 @@ def loss_controls(checkout,requests,output,cache,executable,offline=False):
     write(output,result);print(json.dumps(counts),flush=True);return result
 
 
+def cumulative_component_constraints(checkout, study, prior_cache, output, cache, offline=False):
+    """Test unrounded singleton components and paired cumulative returns.
+
+    Hidden components are relaxed to complete exact publication cells. Their
+    sum ranges overapproximate every permitted component, so exclusion is a
+    necessary refutation, never a fitted private principal value.
+    """
+    from geomean import verified_study_answers
+    from exact import EXTENDED64
+    source = Path(study)
+    doc = json.loads(source.read_text())
+    _, bindings, _ = verified_study_answers(doc,Path(prior_cache))
+    frozen = {**SOURCE_BINDINGS, **bindings, str(source.resolve()):sha(source)}
+    key = lambda row: tuple(row[k] for k in ('rate','periods','pv','timing'))
+    points = {key(row)+(int(value(row['period'])),):row for row in doc['singletons']}
+    profiles = [dict(component=component,accumulator=model)
+                for component in ('published_binary64','resident_before_publication','real_before_pc64_publication')
+                for model in ('strict','stored_pc64','resident_pc64')]
+    counts = [Counter() for _ in profiles]
+    rows = []
+    questions = []
+    for row in doc['spans']:
+        singletons = [points[key(row)+(k,)] for k in range(row['start'],row['end']+1)]
+        answer = binary64(row['answer']['bits'])
+        predictions = []
+        for index, profile in enumerate(profiles):
+            total = Span(0,0)
+            for point in singletons:
+                observed = binary64(point['cumprinc']['bits'])
+                component = Span(observed,observed)
+                if profile['component'] != 'published_binary64':
+                    component = B.pullback(component)
+                    if profile['component'] == 'real_before_pc64_publication':
+                        component = EXTENDED64.pullback(component)
+                # Closed rounded endpoint enclosure is a deliberate relaxation.
+                low = round_model(total.low+component.low,profile['accumulator'])
+                high = round_model(total.high+component.high,profile['accumulator'])
+                total = Span(low,high)
+            published = Span(B.round(total.low),B.round(total.high))
+            possible = published.contains(answer)
+            counts[index]['spans'] += 1
+            counts[index]['possible'] += possible
+            counts[index]['excluded'] += not possible
+            predictions.append(dict(possible=possible,published_enclosure=published.json()))
+        args = [row['rate'],row['periods'],row['pv'],bits(row['start']),bits(row['end']),row['timing']]
+        questions.append([dict(type='number',bits=a) for a in args])
+        rows.append(dict(args=args,answer=row['answer'],payment=singletons[0]['payment'],
+            singleton_principals=[point['cumprinc'] for point in singletons],component_models=predictions))
+    write(str(output)+'.questions.json',dict(format='dnacalc-cumulative-component-questions/1',complete=True,
+        questions=questions,profiles=profiles,rows=rows,source_bindings=frozen,
+        selection='The648 retained short intervals are unchanged. New paired CUMIPMT answers '
+                  'test count*PMT-CUMPRINC separately from all hidden-component sum bounds.'))
+    client,_ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300),cache,offline)
+    answers = service.ask('CUMIPMT',questions)['rows']
+    paired_counts = Counter()
+    for row, answer in zip(rows,answers):
+        if answer['type'] != 'number':
+            raise ValueError('ordinary cumulative interest must be numeric')
+        length = binary64(row['args'][4])-binary64(row['args'][3])+1
+        payment = binary64(row['payment']['bits'])
+        principal = binary64(row['answer']['bits'])
+        row['interest'] = answer
+        row['paired_predictions'] = {}
+        for multiply in ('strict','stored_pc64','resident_pc64'):
+            for subtract in ('strict','stored_pc64'):
+                product = operation(length,payment,'mul',multiply)
+                predicted = bits(float(operation(product,-principal,'add',subtract)))
+                name = multiply+'/'+subtract
+                row['paired_predictions'][name] = predicted
+                paired_counts[name+'/matched'] += answer == dict(type='number',bits=predicted)
+                paired_counts[name+'/rows'] += 1
+    result = dict(format='dnacalc-cumulative-component-constraints/1',complete=True,
+        profiles=profiles,counts=counts,paired_counts=paired_counts,records=rows,
+        source_bindings=frozen,receipts=service.receipts,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Every inherited singleton and principal interval answer is unchanged. '
+               'Hidden components are constrained only by the original singleton publication, '
+               'then all rounded-sum endpoint bounds are conservatively closed. '
+               'Exclusion rules out even this relaxation of independent, interval-invariant components. '
+               'A surviving interval identifies no component or route. Paired count*PMT-CUMPRINC '
+               'compositions are fixed before new CUMIPMT answers; none is selected by counts.')
+    write(output,result)
+    print(json.dumps(dict(component_counts=counts,paired_counts=paired_counts)),flush=True)
+    return result
+
+
+def reciprocal_domain(checkout, output, cache, offline=False, transfer=False):
+    """Discriminate the PC64 reciprocal pole before cancellation shortcuts.
+
+    The reciprocal is rounded independently with rational arithmetic. The
+    first beginning-payment interest is a separate public-domain question.
+    No numerical payment result is predicted by this admission experiment.
+    """
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    first = 0xbff0000000000000
+    rates = [f'{first-i:016x}' for i in range(17)]
+    rates += [bits(r) for r in (-.75, -.5, -1./3., -.25, .125)]
+    if transfer:
+        rates += [bits(r) for r in (-2., -1.25, 0.)]
+    questions = {name: [] for name in ('PMT', 'IPMT', 'PPMT', 'FV')}
+    metadata = {name: [] for name in questions}
+    for raw in rates:
+        r = binary64(raw)
+        reciprocal = operation(binary64(bits(1.)), r, 'div', 'stored_pc64') if r else None
+        coefficient_denominator = operation(binary64(bits(1.)), reciprocal, 'add', 'stored_pc64') if r else None
+        pole = coefficient_denominator == 0
+        for n in (.5, 1., 2., 17., 97.):
+            for pv, fv in ((3.7, 0.), (3.7, -3.7), (3.7, .9), (0., 3.7)):
+                for timing in (0., 1.):
+                    args = [raw, bits(n), bits(pv), bits(fv), bits(timing)]
+                    questions['PMT'].append([client.number(a) for a in args])
+                    metadata['PMT'].append(dict(args=args, reciprocal_pole=pole,
+                        expected_admission='error:Num' if r <= -1 or (pole and (not transfer or timing == 1)) else 'not_asserted'))
+        for n in (2., 17., 97.):
+            for per in (1., 2.):
+                for timing in (0., 1.):
+                    args = [raw, bits(per), bits(n), bits(3.7), bits(.9), bits(timing)]
+                    for name in ('IPMT', 'PPMT'):
+                        questions[name].append([client.number(a) for a in args])
+                        exception = name == 'IPMT' and per == 1 and timing == 1 and (transfer or r > -1)
+                        rejected = r <= -1 or (pole and (not transfer or timing == 1))
+                        expected = 'zero' if transfer and exception else ('zero' if exception else 'error:Num') if rejected else 'not_asserted'
+                        metadata[name].append(dict(args=args, reciprocal_pole=pole,
+                            first_interest_exception=exception, expected_admission=expected))
+            args = [raw, bits(n), bits(.9), bits(3.7), bits(1.)]
+            questions['FV'].append([client.number(a) for a in args])
+            metadata['FV'].append(dict(args=args, reciprocal_pole=pole,
+                expected_admission='not_asserted'))
+    manifest = dict(format='dnacalc-annuity-reciprocal-domain-questions/1', complete=True,
+        questions=questions, metadata=metadata, source_bindings=SOURCE_BINDINGS,
+        phase=2 if transfer else 1,
+        selection='Seventeen adjacent rates at -1 and five fixed ordinary controls; fixed periods, balances and timing. '
+                  'The PC64 reciprocal-pole hypothesis precedes every fresh answer. '
+                  'Phase two separates beginning timing after phase one counterexamples and adds -2, -1.25, zero. '
+                  'First-period beginning-payment IPMT zero is tested before the rate-domain checks.')
+    write(str(output)+'.questions.json', manifest)
+    counts = {name: Counter() for name in questions}
+    records = []
+    for name, rows in questions.items():
+        answers = service.ask(name, rows)['rows']
+        for m, answer in zip(metadata[name], answers):
+            expected = m['expected_admission']
+            observed = ('zero' if answer['type'] == 'number' and int(answer['bits'], 16) & ((1<<63)-1) == 0
+                        else 'error:Num' if answer == dict(type='error', code='#NUM!') else 'other')
+            counts[name]['calls'] += 1
+            counts[name]['constrained'] += expected != 'not_asserted'
+            counts[name]['contradictions'] += expected != 'not_asserted' and expected != observed
+            counts[name]['pole_calls'] += m['reciprocal_pole']
+            records.append(dict(function=name, **m, answer=answer, observed_admission=observed))
+    result = dict(format='dnacalc-annuity-reciprocal-domain/1', complete=True, records=records,
+        phase=2 if transfer else 1,
+        counts=counts, receipts=service.receipts, source_bindings=SOURCE_BINDINGS,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Admission evidence only, from exact input readbacks. '
+               'The reciprocal and coefficient denominator use rational PC64 then binary64 rounding. '
+               'Ordinary numerical values and FV are retained controls, not identified arithmetic. '
+               'A PMT guard must not suppress the separately observed first-period IPMT zero. '
+               'No row, coefficient or threshold is fitted to a match count.')
+    write(output, result)
+    print(json.dumps(counts), flush=True)
+    return result
+
+
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('checkout')
@@ -784,6 +948,7 @@ if __name__ == '__main__':
     p.add_argument('--offline',action='store_true')
     p.add_argument('--discriminants')
     p.add_argument('--negative',action='store_true')
+    p.add_argument('--negative-pc64',action='store_true')
     p.add_argument('--compose')
     p.add_argument('--edges',action='store_true')
     p.add_argument('--products')
@@ -793,8 +958,15 @@ if __name__ == '__main__':
     p.add_argument('--cumulative-denominators',action='store_true')
     p.add_argument('--loss-controls',nargs=2,metavar=('REQUESTS','EXECUTABLE'))
     p.add_argument('--first-residual',metavar='STUDY')
+    p.add_argument('--reciprocal-domain', action='store_true')
+    p.add_argument('--reciprocal-transfer', action='store_true')
+    p.add_argument('--cumulative-components',nargs=2,metavar=('STUDY','PRIOR_CACHE'))
     a=p.parse_args()
-    if a.first_residual:
+    if a.cumulative_components:
+        cumulative_component_constraints(a.checkout,a.cumulative_components[0],a.cumulative_components[1],a.output,a.cache,a.offline)
+    elif a.reciprocal_domain or a.reciprocal_transfer:
+        reciprocal_domain(a.checkout,a.output,a.cache,a.offline,a.reciprocal_transfer)
+    elif a.first_residual:
         cumulative_first_residual(a.first_residual,a.output,a.cache)
     elif a.loss_controls:
         loss_controls(a.checkout,a.loss_controls[0],a.output,a.cache,a.loss_controls[1],a.offline)
@@ -815,4 +987,4 @@ if __name__ == '__main__':
     elif a.discriminants:
         discriminants(a.checkout,a.discriminants,a.output,a.cache,a.offline)
     else:
-        run(a.checkout,a.output,a.cache,a.offline,a.negative)
+        run(a.checkout,a.output,a.cache,a.offline,a.negative or a.negative_pc64,'stored_pc64' if a.negative_pc64 else None)

@@ -910,7 +910,7 @@ def scalar_service_replay(executable,study,cache,output,function=None):
     print(json.dumps({k:v for k,v in result.items()if k not in('inputs_sha256','output_sha256','mismatches')}));return result
 
 
-def bank_match_bits(executable, checkout, output, before=None):
+def bank_match_bits(executable, checkout, output, before=None, only_function=None):
     """Stream the canonical judge; retain one old match bit per ordered row.
 
     Full identity/answer/environment hashes bind the two streams. This avoids
@@ -921,6 +921,12 @@ def bank_match_bits(executable, checkout, output, before=None):
     import subprocess
     import tempfile
     from corpus_cases import judge_fifo_lines
+    from contextlib import nullcontext
+    if before == '-':before=None
+    if only_function is not None and before is not None:
+        raise ValueError('function-only inventory needs its own unsliced baseline')
+    if only_function is not None and re.fullmatch(r'[A-Z][A-Z0-9._]*',only_function) is None:
+        raise ValueError('worksheet function name required')
     executable,checkout,output = (Path(p).resolve() for p in (executable,checkout,output))
     output.mkdir(parents=True,exist_ok=False)
     frozen={str(executable):sha(executable),str(Path(__file__).resolve()):sha(Path(__file__))}
@@ -929,13 +935,16 @@ def bank_match_bits(executable, checkout, output, before=None):
     if baseline and (baseline.get('complete') is not True or sha(Path(before)/'matched.bits')!=baseline['match_bits_sha256']):
         raise ValueError('incomplete or changed match baseline')
     bits=bytearray();identity=hashlib.sha256();counts=collections.defaultdict(collections.Counter)
-    actual_hashes={};index=0;changed_outcomes=0
+    actual_hashes={};index=0;changed_outcomes=0;retained_mismatches=0
     with tempfile.TemporaryDirectory(prefix='dnacalc-match-bits-') as scratch:
         fifo=Path(scratch)/'judge.fifo';os.mkfifo(fifo,0o600)
         descriptor=os.open(fifo,os.O_RDONLY|os.O_NONBLOCK)
-        with (output/'judge.log').open('x')as log,gzip.open(output/'changed-outcomes.jsonl.gz','xt')as changes:
+        mismatch_file=gzip.open(output/'failed-outcomes.jsonl.gz','xt') if only_function else nullcontext()
+        with (output/'judge.log').open('x')as log,gzip.open(output/'changed-outcomes.jsonl.gz','xt')as changes,mismatch_file as mismatches:
             # ubs:ignore — fixed argv to the selected local executable; owned child is bounded and reaped below.
-            child=subprocess.Popen([str(executable),'witness','judge','--bank','full','--trace',str(fifo)],
+            command=[str(executable),'witness','judge','--bank','full','--trace',str(fifo)]
+            if only_function:command.extend(['--func',only_function])
+            child=subprocess.Popen(command,  # ubs:ignore — operator-selected local judge executable; validated function is an argv value, with no shell.
                 cwd=checkout,stdout=log,stderr=subprocess.STDOUT)
             try:
                 for line in judge_fifo_lines(descriptor,child):
@@ -943,6 +952,8 @@ def bank_match_bits(executable, checkout, output, before=None):
                     identity.update(json.dumps(row,sort_keys=True,separators=(',',':')).encode()+b'\n')
                     actual_hashes.setdefault(function,hashlib.sha256()).update(actual.encode()+b'\n')
                     matched=actual==row['expected'];counts[function]['rows']+=1;counts[function]['matched']+=matched
+                    if mismatches is not None and not matched:
+                        mismatches.write(json.dumps(dict(row,actual=actual))+'\n');retained_mismatches+=1
                     if index%8==0:bits.append(0)
                     bits[index//8] |= int(matched)<<(index%8)
                     if old is not None:
@@ -975,7 +986,7 @@ def bank_match_bits(executable, checkout, output, before=None):
     result=dict(complete=True,decoded_rows=index,total=total,matched=matched,failed=failed,unread=unread,
         match_bits_sha256=sha(output/'matched.bits'),identity_answer_environment_sha256=digest,
         functions=counts,actual_sha256_by_function=hashes,inputs_sha256=frozen,
-        changed_outcomes=changed_outcomes,
+        changed_outcomes=changed_outcomes,retained_mismatches=retained_mismatches,selected_function=only_function,
         limits='Canonical full-bank judge only; every unread row remains an inclusive failure. '
                'The ordered identity/answer/environment digest must agree before match bits can be compared. '
                'Output hashes detect changed functions, but cannot locate failures that remain failures.')

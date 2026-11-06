@@ -8,7 +8,7 @@
 typedef struct { unsigned char b[10]; } Ext;
 typedef struct { int32_t op, a, b, site, phase; uint64_t bits; } Node;
 enum { INPUT, CONST, ADD, SUB, MUL, DIV, NEG, LOG2, LOG2P1, EXPM1_2,
-       RNDINT, SCALE, LN2, L2E };
+       RNDINT, SCALE, LN2, L2E, SQRT };
 
 static Ext load64(uint64_t bits) {
     Ext out;
@@ -39,6 +39,7 @@ static Ext instruction(int op, Ext a, Ext b) {
         UN_CASE(NEG, "fchs");
         UN_CASE(EXPM1_2, "f2xm1");
         UN_CASE(RNDINT, "frndint");
+        UN_CASE(SQRT, "fsqrt");
         case SCALE:
             __asm__ volatile("fldt %2; fldt %1; fscale; fstpt %0; fstp %%st(0)"
                 : "=m"(z) : "m"(a), "m"(b) : "st", "st(1)");
@@ -75,7 +76,7 @@ int x87_eval(const Node *nodes, int count, const uint64_t *inputs, int input_cou
             z = n.a < input_count ? load64(inputs[n.a]) : extended[n.a-input_count];
         } else if (n.op == CONST) z=load64(n.bits);
         else {
-            if (n.op < ADD || n.op > L2E || n.a < 0 || n.a >= i || n.b < 0 || n.b >= i) { rc=-1; break; }
+            if (n.op < ADD || n.op > SQRT || n.a < 0 || n.a >= i || n.b < 0 || n.b >= i) { rc=-1; break; }
             z=instruction(n.op,v[n.a],v[n.b]);
         }
         if (raw) raw[i]=z;

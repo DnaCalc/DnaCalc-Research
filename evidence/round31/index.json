@@ -1,0 +1,901 @@
+{
+  "format": "dnacalc-round31-evidence/1",
+  "phase": "Reviewed guard checkpoint and bounded Gamma/cumulative research; negative arithmetic still under study",
+  "model": "gpt-6.1-sol (session launcher)",
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "role": "implementer",
+  "sources": "Tier1 original Excel outputs, IEEE754 and Intel x87 instruction arithmetic; existing cleared MIT application/research code. No tier3/4 source read; excluded checkout untouched.",
+  "artifacts": [
+    {
+      "original": "/home/ubuntu/codex-runs/r31/bank-pmt/changed-outcomes.jsonl.gz",
+      "archive": "evidence/round31/studies/bank-pmt__changed-outcomes.jsonl.gz.gz",
+      "uncompressed_sha256": "377aea26ab8ccbb5ef27ec9c36603ef17ee5e5e5b7be14357153a540299eb71c",
+      "archive_sha256": "0ffe0c31c27630d1afe39b253903a8c390d85cf378d76b3e3c2b472c9459fdfc",
+      "uncompressed_bytes": 415,
+      "archive_bytes": 438
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/bank-pmt/judge.log",
+      "archive": "evidence/round31/studies/bank-pmt__judge.log.gz",
+      "uncompressed_sha256": "291b9cb92d670013b8afe494b8bbed53a13bfec491eb24804ea539e4093e2251",
+      "archive_sha256": "4cf21b07a65af8cd7f3df8c421f9ceef4c8d3c26689d0751e45052ee24ff26b6",
+      "uncompressed_bytes": 47671,
+      "archive_bytes": 5092
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/bank-pmt/matched.bits",
+      "archive": "evidence/round31/studies/bank-pmt__matched.bits.gz",
+      "uncompressed_sha256": "d3910a74e945770d88e125104f5566d5cf1e8e2840e243f89ec3f84094cd8511",
+      "archive_sha256": "d7346aba885ecd5ca0e54e48f90ba6b3585af9f98d672f4c20f947934ad2de25",
+      "uncompressed_bytes": 488737,
+      "archive_bytes": 31993
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/bank-pmt/summary.json",
+      "archive": "evidence/round31/studies/bank-pmt__summary.json.gz",
+      "uncompressed_sha256": "d1c9416bec9112b845245cae1c0acdf7e5b13d0adfb561c305de8c9c613fdfe4",
+      "archive_sha256": "c364d07296e92243cd0f95831444d72b3ce6ac0b30dd0dedceb33593bc0b5628",
+      "uncompressed_bytes": 55583,
+      "archive_bytes": 16678
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/corpus-pmt-delta.json",
+      "archive": "evidence/round31/studies/corpus-pmt-delta.json.gz",
+      "uncompressed_sha256": "0c507071dc3139f72d1ddc663293eae320d323dbed179b8503ebae418fcc3aa0",
+      "archive_sha256": "f645cd11e097c76079ef9c2dcc06ea5ff2e251c2e153f8414ce4de726477749d",
+      "uncompressed_bytes": 115932,
+      "archive_bytes": 17797
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/cumulative-components.json",
+      "archive": "evidence/round31/studies/cumulative-components.json.gz",
+      "uncompressed_sha256": "a51ff78bd598831bc1a8771393c394ed773961190ad6567913ee5e0eb3b9f2b6",
+      "archive_sha256": "7861786b4b0cc72193a1d0f6c1cc96edf46c537e8d31d17113d8fcbd0dcb8b64",
+      "uncompressed_bytes": 2928731,
+      "archive_bytes": 89004
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/cumulative-components.json.questions.json",
+      "archive": "evidence/round31/studies/cumulative-components.json.questions.json.gz",
+      "uncompressed_sha256": "40b1ddcd584aeff5154f675a238764f112061e55365b0b64b7f95997e91129c2",
+      "archive_sha256": "3bdd492b0cb69e7a8394eb9418853d01ba09c1fcb7ce5822da7542e06b3e4ed0",
+      "uncompressed_bytes": 2954534,
+      "archive_bytes": 68464
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-base2-prefix.json",
+      "archive": "evidence/round31/studies/gamma-base2-prefix.json.gz",
+      "uncompressed_sha256": "d6114dc110d971eef3009ca315c8a9dcb42968da5d06c9e48add765d6e008732",
+      "archive_sha256": "2dfbc547eb121f1b8fd5cb470ae598c327cfef0ad9ef2ab2dde96e8bd8357f9a",
+      "uncompressed_bytes": 147671,
+      "archive_bytes": 9080
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-scaled-quotient-relaxed.json",
+      "archive": "evidence/round31/studies/gamma-scaled-quotient-relaxed.json.gz",
+      "uncompressed_sha256": "565aab916594469664ceba58596ab61fe2681fc46984699916339d8d35d2bac3",
+      "archive_sha256": "401d14d8fcbbe601c1d38abc32c31e9a9fb24f64ab5b73525653a19301a8a6d5",
+      "uncompressed_bytes": 85125,
+      "archive_bytes": 11695
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-scaled-quotient-relaxed.json.questions.json",
+      "archive": "evidence/round31/studies/gamma-scaled-quotient-relaxed.json.questions.json.gz",
+      "uncompressed_sha256": "742828747cb79462280e6d86cc06243989ef91b16cb206c9ef700f6d30341eac",
+      "archive_sha256": "1ac1e62a1e604cf8343bb062d225436e3ee7ef216f652ee8b5282b6b03215919",
+      "uncompressed_bytes": 78157,
+      "archive_bytes": 6755
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-scaled-quotient.json",
+      "archive": "evidence/round31/studies/gamma-scaled-quotient.json.gz",
+      "uncompressed_sha256": "409217895a5bd1ab54601393fadeffaa902c60450ed7ea9b699a3b5149faff14",
+      "archive_sha256": "9268646a6e4a92479b4844b03cfd8adaba2e6b9fa6b6fb2193769f8285bf1af7",
+      "uncompressed_bytes": 71543,
+      "archive_bytes": 10419
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-scaled-quotient.json.questions.json",
+      "archive": "evidence/round31/studies/gamma-scaled-quotient.json.questions.json.gz",
+      "uncompressed_sha256": "b0246ae71c297f41467473bc83d57e605444c52e1ed6cfd28e5291eaea1b0886",
+      "archive_sha256": "eec4ab6a7dfbdfd502b4717fb4eb2c275469837b059fcfe0786d968308c643e6",
+      "uncompressed_bytes": 78157,
+      "archive_bytes": 6756
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/EXP.actuals.jsonl",
+      "archive": "evidence/round31/studies/gamma-stirling-application__EXP.actuals.jsonl.gz",
+      "uncompressed_sha256": "9a46840ea422c529f2554bcfb10600d061096014f98ad7a4af6313f657f29b40",
+      "archive_sha256": "ee3fdf80abe1098b923c21a7a655a6afbf0866c9240b81f9ba7469eb2686f413",
+      "uncompressed_bytes": 390552,
+      "archive_bytes": 19783
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/EXP.inputs.json",
+      "archive": "evidence/round31/studies/gamma-stirling-application__EXP.inputs.json.gz",
+      "uncompressed_sha256": "f6a404ddf2168d7c8f086c3b7ef1c4e25d09c60d3423d2488a7460864f572075",
+      "archive_sha256": "4e8c3767d988f9e871ebad7e3e49a381ef1b8816e941963ec3e1b65a61e6aef2",
+      "uncompressed_bytes": 116410,
+      "archive_bytes": 12121
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/GAMMA.actuals.jsonl",
+      "archive": "evidence/round31/studies/gamma-stirling-application__GAMMA.actuals.jsonl.gz",
+      "uncompressed_sha256": "6869980fd256870a7daf538ad13818b11c3022002b9abea98bfca8a2942a0a07",
+      "archive_sha256": "f2a665f2cd220369dc846d3c86d8e751cd8c9946bb15104adab07e8b12c20d6d",
+      "uncompressed_bytes": 195328,
+      "archive_bytes": 9141
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/GAMMA.inputs.json",
+      "archive": "evidence/round31/studies/gamma-stirling-application__GAMMA.inputs.json.gz",
+      "uncompressed_sha256": "261b440550fc71f1598888df4f734b6b5edd0d765fda0acaf295982c04c16889",
+      "archive_sha256": "786bae7d02f7ac9c72aa3a57258da7864b42a03d4dc33b823c1ff115d4f1fc19",
+      "uncompressed_bytes": 58276,
+      "archive_bytes": 4750
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/LN.actuals.jsonl",
+      "archive": "evidence/round31/studies/gamma-stirling-application__LN.actuals.jsonl.gz",
+      "uncompressed_sha256": "21ce0f1a7514ddc1f9ee55d9b5f96468a823262d130cbabf81e4acba1a3830a5",
+      "archive_sha256": "ee8187bfaff31f877e8a2b462438d261fd519f9332be92ccdfb82dfa93d1936b",
+      "uncompressed_bytes": 194322,
+      "archive_bytes": 6045
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/LN.inputs.json",
+      "archive": "evidence/round31/studies/gamma-stirling-application__LN.inputs.json.gz",
+      "uncompressed_sha256": "15535028d9dd1268d254e87f42dc1b814bfce7922ea9600f11778f032f6e1ad4",
+      "archive_sha256": "f74e146663fd078c0a01bb72ed2cfed31cbe0e6e8aa8c4067f2ab4ce5773a24d",
+      "uncompressed_bytes": 57267,
+      "archive_bytes": 4715
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-application/receipt.json",
+      "archive": "evidence/round31/studies/gamma-stirling-application__receipt.json.gz",
+      "uncompressed_sha256": "c1715314a6440406d75e8c25afb002bb884a6f568bfdee6bb615b9360ced6885",
+      "archive_sha256": "5904be693b35beed56803af1276f8a7bd7a8e27098ea037a3f32e7e614c1112a",
+      "uncompressed_bytes": 174743,
+      "archive_bytes": 8210
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-consumers.json",
+      "archive": "evidence/round31/studies/gamma-stirling-consumers.json.gz",
+      "uncompressed_sha256": "b3aeb0c0f5900ee7a9ce30be814ec25226224b41240122dbfed868c3b6881873",
+      "archive_sha256": "4e853b48212c393aab2031b43973741a6807716a1f8fb99b0ec7883d8c654284",
+      "uncompressed_bytes": 14508276,
+      "archive_bytes": 268958
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-consumers.json.questions.json",
+      "archive": "evidence/round31/studies/gamma-stirling-consumers.json.questions.json.gz",
+      "uncompressed_sha256": "3273c7feed1703346f4bde61c3801e1dc3b90091efc71ee1b16fb0bb8e28917c",
+      "archive_sha256": "7dbac0e8b1f07d229259dd5d979d08fd64e209419c181657523c36e83f7731fb",
+      "uncompressed_bytes": 31742,
+      "archive_bytes": 3826
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-stages.json",
+      "archive": "evidence/round31/studies/gamma-stirling-stages.json.gz",
+      "uncompressed_sha256": "a50fef91b593443942bc1e7e828129dd172d12ec167a5640ad3cff161c2cbc03",
+      "archive_sha256": "a2436f2a1f8efeca9d458aacfaeb607dccb58ce79dd4674162e44c0984d9c1f0",
+      "uncompressed_bytes": 2640959,
+      "archive_bytes": 82777
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gamma-stirling-stages.json.questions.json",
+      "archive": "evidence/round31/studies/gamma-stirling-stages.json.questions.json.gz",
+      "uncompressed_sha256": "eb1c1aa4b0e6d3af3918d8d298c495ebf20b7b4b594be2a62647c60463abf734",
+      "archive_sha256": "fa28de4afd8624e2a76ce49e3d59d564d1a901847794880e89e7cc4ba9be8450",
+      "uncompressed_bytes": 29390,
+      "archive_bytes": 3657
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gammaln-quantization-pc64.json",
+      "archive": "evidence/round31/studies/gammaln-quantization-pc64.json.gz",
+      "uncompressed_sha256": "8229bb2caabc761f81de0203e96ed07110143249b73af7ca98353fba03a886cb",
+      "archive_sha256": "51b2ae720f791c440ed211b5c82a50a5d20bff494a9bdd562e91ca82c2b69b93",
+      "uncompressed_bytes": 38989,
+      "archive_bytes": 6926
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/gammaln-quantization.json",
+      "archive": "evidence/round31/studies/gammaln-quantization.json.gz",
+      "uncompressed_sha256": "20c5696fbb626f6322d8be71f004d80aa258cbcadb2e63346bfd942125732ec5",
+      "archive_sha256": "0b3ecaa5c863ee7f4b7d80a11559eab047f3c97d6e038c6a9f7a032f318fb990",
+      "uncompressed_bytes": 38544,
+      "archive_bytes": 6828
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/negative-discriminants-independent.json",
+      "archive": "evidence/round31/studies/negative-discriminants-independent.json.gz",
+      "uncompressed_sha256": "6f26434799452d7a8d976f353c2b7f981e8aaccf8cc957f64958211110f4ce4d",
+      "archive_sha256": "d05e71a198f33c2059193e14ec4b35dbcf500eb0957dcf644e2433d416b60111",
+      "uncompressed_bytes": 1991,
+      "archive_bytes": 1002
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/negative-discriminants.json",
+      "archive": "evidence/round31/studies/negative-discriminants.json.gz",
+      "uncompressed_sha256": "a64884c139566a05512d407b7670ed179e1904b96816c8f18509860f599429da",
+      "archive_sha256": "86f57795540adf0c6bd5cb57e5133f46cf80ad25ae5fb72cd3bfa96ba4765228",
+      "uncompressed_bytes": 188870,
+      "archive_bytes": 13463
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/negative-discriminants.json.questions.json",
+      "archive": "evidence/round31/studies/negative-discriminants.json.questions.json.gz",
+      "uncompressed_sha256": "40f5e3114241106f5ffe71e948a968a30fe8e10765735c0d9737c947d7227bfb",
+      "archive_sha256": "d27420439ffa11ffed99f24ee68f004beba6338208a705da3f400eae31643595",
+      "uncompressed_bytes": 186753,
+      "archive_bytes": 9805
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/negative-paired-independent.json",
+      "archive": "evidence/round31/studies/negative-paired-independent.json.gz",
+      "uncompressed_sha256": "3a3916591b9836fd5428e2de1e65bb24b8efb039fee82395d134063d528e0f5b",
+      "archive_sha256": "a9f53146a91c85158a651c92da4964e56e000d47736ddd59c0ec30dd1f69eb89",
+      "uncompressed_bytes": 1808,
+      "archive_bytes": 933
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/negative-paired-pc64-final.json",
+      "archive": "evidence/round31/studies/negative-paired-pc64-final.json.gz",
+      "uncompressed_sha256": "67e11b47cb605bb59c37b87d898d1fcb0a1f45bc11b393cd5a30abf0af6aeb5d",
+      "archive_sha256": "140eeb98bf7ac823096cccac176be9993ed57f71473ac71acb7649b1378842dd",
+      "uncompressed_bytes": 543274,
+      "archive_bytes": 28584
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/negative-paired-pc64.json",
+      "archive": "evidence/round31/studies/negative-paired-pc64.json.gz",
+      "uncompressed_sha256": "27e69b29b715d5040706db39fb15df26482aa2425d6da3a7acaf80a4ef4a0771",
+      "archive_sha256": "4c29a7d1da3284c5938591224256b2a0e10d101091e6ac57669a10035d56aa2c",
+      "uncompressed_bytes": 543239,
+      "archive_bytes": 28563
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/FV.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-after-service__FV.actuals.jsonl.gz",
+      "uncompressed_sha256": "06fbde133d91fcf7f55f9da1b80c49d54ae63dc618eca060397f2e35a891113a",
+      "archive_sha256": "b8d08b81968556b9eb8672b0e48296c08af3eb57d63fb78678b017e14570bb34",
+      "uncompressed_bytes": 22650,
+      "archive_bytes": 1043
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/FV.inputs.json",
+      "archive": "evidence/round31/studies/pmt-after-service__FV.inputs.json.gz",
+      "uncompressed_sha256": "58929af6f7f691fc629c9caeb18bceaa3ce84e6953bc95de580e26aeb504cdf6",
+      "archive_sha256": "8668da2d7dbd2be3c487d3e0289792561a82ae967c600e351930bde3fc7ddba1",
+      "uncompressed_bytes": 11508,
+      "archive_bytes": 534
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/IPMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-after-service__IPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "ca8f7bd5dbb9e322688e47afd132ac39e56386de1df4a7af1e4c34f39588bf12",
+      "archive_sha256": "1221f92205e62a79285a2f7b13cece4a6151cd75602a771410bbaa0510ee0aad",
+      "uncompressed_bytes": 95928,
+      "archive_bytes": 2623
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/IPMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-after-service__IPMT.inputs.json.gz",
+      "uncompressed_sha256": "5d5f59b469fdda3a811e00e0b34c584c21ca02e4a7aad869837ca9225df8880a",
+      "archive_sha256": "83438c5e46fa198501fad14ebce12740485ed87522fc31a0999d088b948d6ed9",
+      "uncompressed_bytes": 52535,
+      "archive_bytes": 1905
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/PMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-after-service__PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "e21108924d2ee58c325e6d592a3b24a6f87eee24f9acda1eb89ac564492bbbb3",
+      "archive_sha256": "6afa4d3f1793eea3097e8aee2afc38e01b5ed1f42a45723b2ced45907a32cf92",
+      "uncompressed_bytes": 298514,
+      "archive_bytes": 9474
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/PMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-after-service__PMT.inputs.json.gz",
+      "uncompressed_sha256": "7d5ba4d11a2b48df40923e6bdad4942c88477ad0080f1d5a6049a9cd319d36d4",
+      "archive_sha256": "468d2c2fc500fcf2a74b6d449f12ce09bee98f4ec7a97eaaf50b605f9ef31a6d",
+      "uncompressed_bytes": 151924,
+      "archive_bytes": 5512
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/PPMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-after-service__PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "901a50cef9136a3f177255df58351c0e042ca5058dabefd57e1eb88e9ad34f41",
+      "archive_sha256": "8f3fa9043b8294e145a99b2d5266cebe66d9503ec5fd09023f8bcf801b9d3ba5",
+      "uncompressed_bytes": 95685,
+      "archive_bytes": 2848
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/PPMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-after-service__PPMT.inputs.json.gz",
+      "uncompressed_sha256": "d3536b054f7853d5e71f0689363aff184703f9b6f365aac5012ba7c221f25e16",
+      "archive_sha256": "23a92d4877f27d546b40c86532e67f8c8b0a61603228e9ccf3d03c0a8920e088",
+      "uncompressed_bytes": 52535,
+      "archive_bytes": 1903
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-after-service/receipt.json",
+      "archive": "evidence/round31/studies/pmt-after-service__receipt.json.gz",
+      "uncompressed_sha256": "40b6451717282d5461dd0605c75bf069b35a7534cf943114345b3c88af8d77f0",
+      "archive_sha256": "f603842ea86425a921fd10e408be9e45500dcb4974b2fdceb6771a81951679a4",
+      "uncompressed_bytes": 574340,
+      "archive_bytes": 16349
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/FV.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-before-service__FV.actuals.jsonl.gz",
+      "uncompressed_sha256": "06fbde133d91fcf7f55f9da1b80c49d54ae63dc618eca060397f2e35a891113a",
+      "archive_sha256": "b8d08b81968556b9eb8672b0e48296c08af3eb57d63fb78678b017e14570bb34",
+      "uncompressed_bytes": 22650,
+      "archive_bytes": 1043
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/FV.inputs.json",
+      "archive": "evidence/round31/studies/pmt-before-service__FV.inputs.json.gz",
+      "uncompressed_sha256": "58929af6f7f691fc629c9caeb18bceaa3ce84e6953bc95de580e26aeb504cdf6",
+      "archive_sha256": "8668da2d7dbd2be3c487d3e0289792561a82ae967c600e351930bde3fc7ddba1",
+      "uncompressed_bytes": 11508,
+      "archive_bytes": 534
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/IPMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-before-service__IPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "c47c688e10b2bc2a8d84444648ac1e5489d681caafaf6599242b5b1ba02b429a",
+      "archive_sha256": "45a7f5ef3f330600185bbb6acbe03e94f5f92c25f57b2d1f54dc7823f1f52aa7",
+      "uncompressed_bytes": 95712,
+      "archive_bytes": 2629
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/IPMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-before-service__IPMT.inputs.json.gz",
+      "uncompressed_sha256": "5d5f59b469fdda3a811e00e0b34c584c21ca02e4a7aad869837ca9225df8880a",
+      "archive_sha256": "83438c5e46fa198501fad14ebce12740485ed87522fc31a0999d088b948d6ed9",
+      "uncompressed_bytes": 52535,
+      "archive_bytes": 1905
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/PMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-before-service__PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "ed26887177b9eeba4b1dca33db91b3d84071182a832d104e5c7dab0f62ccc154",
+      "archive_sha256": "95bf70de33a87b516e1e344fc0a505e84232b57d762b483f253a2dbdd5c082d7",
+      "uncompressed_bytes": 298658,
+      "archive_bytes": 9503
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/PMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-before-service__PMT.inputs.json.gz",
+      "uncompressed_sha256": "7d5ba4d11a2b48df40923e6bdad4942c88477ad0080f1d5a6049a9cd319d36d4",
+      "archive_sha256": "468d2c2fc500fcf2a74b6d449f12ce09bee98f4ec7a97eaaf50b605f9ef31a6d",
+      "uncompressed_bytes": 151924,
+      "archive_bytes": 5512
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/PPMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-before-service__PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "286840ca097a9641e71ee4dc01439b3ec922ffe26e61eb71f50a02b0e1a7b826",
+      "archive_sha256": "3f0663bc9ccccd77c2403371a6e1826ac2fdcc2001e7af3a03ef2f4daf014d54",
+      "uncompressed_bytes": 95712,
+      "archive_bytes": 2856
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/PPMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-before-service__PPMT.inputs.json.gz",
+      "uncompressed_sha256": "d3536b054f7853d5e71f0689363aff184703f9b6f365aac5012ba7c221f25e16",
+      "archive_sha256": "23a92d4877f27d546b40c86532e67f8c8b0a61603228e9ccf3d03c0a8920e088",
+      "uncompressed_bytes": 52535,
+      "archive_bytes": 1903
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-before-service/receipt.json",
+      "archive": "evidence/round31/studies/pmt-before-service__receipt.json.gz",
+      "uncompressed_sha256": "58aa94475c9a5efacbef094557e40e6c3d65cd885fcdc3a3259a41c64d595db7",
+      "archive_sha256": "9defe72b83ee79226469225a424073b2391052a65072f4d28dd3943f28abd2b0",
+      "uncompressed_bytes": 613049,
+      "archive_bytes": 17203
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-domain-independent.json",
+      "archive": "evidence/round31/studies/pmt-domain-independent.json.gz",
+      "uncompressed_sha256": "66be5bc72a92d12b0875a3c2b519714baa7bb958b8c96f9a674ce5ac5c0f5eb1",
+      "archive_sha256": "a50442749b8c75131ea4108366afba7388700cad80216435f1ae37102de8c5d0",
+      "uncompressed_bytes": 2823,
+      "archive_bytes": 1303
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-domain-independent.log",
+      "archive": "evidence/round31/studies/pmt-domain-independent.log.gz",
+      "uncompressed_sha256": "04d88a4ca3aa92a65bfbd454a4fd162bae2d750d0a3f6a024ce0785b9bff5bdd",
+      "archive_sha256": "30a1e22f2d11be773af10b02906e40981e6e0edfa0b55528dc20a112f38f54cc",
+      "uncompressed_bytes": 749,
+      "archive_bytes": 367
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-domain-independent.log.resource.json",
+      "archive": "evidence/round31/studies/pmt-domain-independent.log.resource.json.gz",
+      "uncompressed_sha256": "bbe9a36b7c022b783ff29e378020b0d4dc27ad20011f8e448081ee58a0759b34",
+      "archive_sha256": "1a1001bc0c5f7eb4e315f5acca2f00b0f798f19457557991febc9be62e481b3d",
+      "uncompressed_bytes": 243,
+      "archive_bytes": 201
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-native-soft-parity.json",
+      "archive": "evidence/round31/studies/pmt-native-soft-parity.json.gz",
+      "uncompressed_sha256": "1229dfab37b45589a6929495e69fcc3f7f856c65fec716d311bca52af42d3aae",
+      "archive_sha256": "72ecec4982ab6f45de45982bbd1d64c351610cb6a5d29bc0d83eccf5e4ad0358",
+      "uncompressed_bytes": 206,
+      "archive_bytes": 132
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-reciprocal-domain.json",
+      "archive": "evidence/round31/studies/pmt-reciprocal-domain.json.gz",
+      "uncompressed_sha256": "c56c6eacfa2e67bb2ca3c07774b97dce44d7bc4cc085c7453497e0da7a7a7572",
+      "archive_sha256": "d2a88163ea0c457577dea36ca8a0a592b9da7ed7c01cdc04b9c81c40be4b3e9e",
+      "uncompressed_bytes": 630704,
+      "archive_bytes": 13126
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-reciprocal-domain.json.questions.json",
+      "archive": "evidence/round31/studies/pmt-reciprocal-domain.json.questions.json.gz",
+      "uncompressed_sha256": "af2d461faf7b1f8bbddc7ada878e99da24d51a11bc2e41043a8eb0ee984d8da9",
+      "archive_sha256": "fc5c851d435c9854adc8845f91cf9efb679537bc1322ffc4070a9c219db69fcb",
+      "uncompressed_bytes": 1146887,
+      "archive_bytes": 12309
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-reciprocal-transfer.json",
+      "archive": "evidence/round31/studies/pmt-reciprocal-transfer.json.gz",
+      "uncompressed_sha256": "b10964fc426800fa89bfb4d409e6fb84758fa0bfe087c41f9711ef52752f43d5",
+      "archive_sha256": "1ba2c09aae5e9cf39812744491fdd6bc971818156b558e70e0b04a1fa6ab133a",
+      "uncompressed_bytes": 714701,
+      "archive_bytes": 14201
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-reciprocal-transfer.json.questions.json",
+      "archive": "evidence/round31/studies/pmt-reciprocal-transfer.json.questions.json.gz",
+      "uncompressed_sha256": "c266c9968aa3b0a6f20e29be9f39806a98401dc5ae852eff45f64a0b879847fb",
+      "archive_sha256": "a8e198eb25b0d690a47fe35a29915c075ea516dd7894880d5ed5ac76b6f76ac6",
+      "uncompressed_bytes": 1302305,
+      "archive_bytes": 14122
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-regression-after.log",
+      "archive": "evidence/round31/studies/pmt-regression-after.log.gz",
+      "uncompressed_sha256": "e91314e2d139a6637e8fd627b28bda3e79eaf9d1212c15422fc6aeb13e9a6dea",
+      "archive_sha256": "1f6124c94ecc6955a8561b09dd72e5da6c2eef2708ea1ef0a0af787985593644",
+      "uncompressed_bytes": 710,
+      "archive_bytes": 432
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-regression-after.log.resource.json",
+      "archive": "evidence/round31/studies/pmt-regression-after.log.resource.json.gz",
+      "uncompressed_sha256": "e037eae163669f4d733b856f11bb1ad457c9916768e88a8514ee4e8879e26e04",
+      "archive_sha256": "b4d7771603b01f9d25132da47d5c9d1833f913eb8813f07a249fb60fd214b784",
+      "uncompressed_bytes": 241,
+      "archive_bytes": 200
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-regression-before.log",
+      "archive": "evidence/round31/studies/pmt-regression-before.log.gz",
+      "uncompressed_sha256": "99c8f170c718c75bb88ed0879020c389aa3f16da2a0f409f0a87a2b8dcd8b0d7",
+      "archive_sha256": "daa9352369f0f5cfc2f90336376445f200deb344085f49f92aadc5841687d98d",
+      "uncompressed_bytes": 1483,
+      "archive_bytes": 739
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-regression-before.log.resource.json",
+      "archive": "evidence/round31/studies/pmt-regression-before.log.resource.json.gz",
+      "uncompressed_sha256": "75e2041b82552727e2ea356cf9960e7044a9ee7b0c4f9f1c65c2a763cebcef95",
+      "archive_sha256": "d446244fa67ded42b555a5566ee9af2ed173c659d94662e697694218c54727c0",
+      "uncompressed_bytes": 245,
+      "archive_bytes": 204
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-required-check.log",
+      "archive": "evidence/round31/studies/pmt-required-check.log.gz",
+      "uncompressed_sha256": "0843d56e8ea0ed6d7cc4a10fe387ac482d681bda9a07fd680539b0773ea676a7",
+      "archive_sha256": "c9f7092bc3ceed6675225f6b9bf39042ef9fb11b7c5487b102b75954954fed3e",
+      "uncompressed_bytes": 1187,
+      "archive_bytes": 691
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-required-check.log.resource.json",
+      "archive": "evidence/round31/studies/pmt-required-check.log.resource.json.gz",
+      "uncompressed_sha256": "a22c0e00106c9d61a8ce131ec3e4c55831b9b9454429760f26aa5ca562c21fa8",
+      "archive_sha256": "966a3be675953e1f5151b1453c50bff40dbe05dc2c9a8c636a403ce45962ba36",
+      "uncompressed_bytes": 240,
+      "archive_bytes": 201
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/FV.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-soft-service__FV.actuals.jsonl.gz",
+      "uncompressed_sha256": "06fbde133d91fcf7f55f9da1b80c49d54ae63dc618eca060397f2e35a891113a",
+      "archive_sha256": "b8d08b81968556b9eb8672b0e48296c08af3eb57d63fb78678b017e14570bb34",
+      "uncompressed_bytes": 22650,
+      "archive_bytes": 1043
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/FV.inputs.json",
+      "archive": "evidence/round31/studies/pmt-soft-service__FV.inputs.json.gz",
+      "uncompressed_sha256": "58929af6f7f691fc629c9caeb18bceaa3ce84e6953bc95de580e26aeb504cdf6",
+      "archive_sha256": "8668da2d7dbd2be3c487d3e0289792561a82ae967c600e351930bde3fc7ddba1",
+      "uncompressed_bytes": 11508,
+      "archive_bytes": 534
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/IPMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-soft-service__IPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "ca8f7bd5dbb9e322688e47afd132ac39e56386de1df4a7af1e4c34f39588bf12",
+      "archive_sha256": "1221f92205e62a79285a2f7b13cece4a6151cd75602a771410bbaa0510ee0aad",
+      "uncompressed_bytes": 95928,
+      "archive_bytes": 2623
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/IPMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-soft-service__IPMT.inputs.json.gz",
+      "uncompressed_sha256": "5d5f59b469fdda3a811e00e0b34c584c21ca02e4a7aad869837ca9225df8880a",
+      "archive_sha256": "83438c5e46fa198501fad14ebce12740485ed87522fc31a0999d088b948d6ed9",
+      "uncompressed_bytes": 52535,
+      "archive_bytes": 1905
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/PMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-soft-service__PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "e21108924d2ee58c325e6d592a3b24a6f87eee24f9acda1eb89ac564492bbbb3",
+      "archive_sha256": "6afa4d3f1793eea3097e8aee2afc38e01b5ed1f42a45723b2ced45907a32cf92",
+      "uncompressed_bytes": 298514,
+      "archive_bytes": 9474
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/PMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-soft-service__PMT.inputs.json.gz",
+      "uncompressed_sha256": "7d5ba4d11a2b48df40923e6bdad4942c88477ad0080f1d5a6049a9cd319d36d4",
+      "archive_sha256": "468d2c2fc500fcf2a74b6d449f12ce09bee98f4ec7a97eaaf50b605f9ef31a6d",
+      "uncompressed_bytes": 151924,
+      "archive_bytes": 5512
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/PPMT.actuals.jsonl",
+      "archive": "evidence/round31/studies/pmt-soft-service__PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "901a50cef9136a3f177255df58351c0e042ca5058dabefd57e1eb88e9ad34f41",
+      "archive_sha256": "8f3fa9043b8294e145a99b2d5266cebe66d9503ec5fd09023f8bcf801b9d3ba5",
+      "uncompressed_bytes": 95685,
+      "archive_bytes": 2848
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/PPMT.inputs.json",
+      "archive": "evidence/round31/studies/pmt-soft-service__PPMT.inputs.json.gz",
+      "uncompressed_sha256": "d3536b054f7853d5e71f0689363aff184703f9b6f365aac5012ba7c221f25e16",
+      "archive_sha256": "23a92d4877f27d546b40c86532e67f8c8b0a61603228e9ccf3d03c0a8920e088",
+      "uncompressed_bytes": 52535,
+      "archive_bytes": 1903
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-soft-service/receipt.json",
+      "archive": "evidence/round31/studies/pmt-soft-service__receipt.json.gz",
+      "uncompressed_sha256": "a22f852aa51f4ffe67124733122fd76436b9a98edce73835394f39c2c9089290",
+      "archive_sha256": "7bcc7afc2b1d40092237b2ca3abcf44475de880a60a8cc85152353a9768ebdc5",
+      "uncompressed_bytes": 574345,
+      "archive_bytes": 16349
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-targeted/summary.json",
+      "archive": "evidence/round31/studies/pmt-targeted__summary.json.gz",
+      "uncompressed_sha256": "a309c8739df0175d8b37496c81fb67f2c4fed527ce8539ba1c3d76f53c8dbe52",
+      "archive_sha256": "d48a2bb6f1b7aec8931aebb1a87c33b9b06b4c162ab67dd248cf6e5fb77bc3e4",
+      "uncompressed_bytes": 1203,
+      "archive_bytes": 690
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-ubs.log",
+      "archive": "evidence/round31/studies/pmt-ubs.log.gz",
+      "uncompressed_sha256": "8ba676cca56b64e9a9b7ca6d0f801f092a76105159b4e1db3c9ed70d6904ac8c",
+      "archive_sha256": "faf708caad31251284f05075080d826895b89f4fd3363082ed49da84c6b258e8",
+      "uncompressed_bytes": 78844,
+      "archive_bytes": 7497
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-ubs.log.resource.json",
+      "archive": "evidence/round31/studies/pmt-ubs.log.resource.json.gz",
+      "uncompressed_sha256": "6acf1c0e5d8b5bb3c4b361d50863a1b199c7f7b8ee8494823901a0f6ff1ee349",
+      "archive_sha256": "1c61824dd2ff0873476bdc6129ebd9ba30bdc3f17fae48fc186e7f03c4c3c761",
+      "uncompressed_bytes": 227,
+      "archive_bytes": 191
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/python-tests-initial.log",
+      "archive": "evidence/round31/studies/python-tests-initial.log.gz",
+      "uncompressed_sha256": "585a8d2f2405530b2928685ae168a5e716776446f6d6491ee94a4da8f8db0cbe",
+      "archive_sha256": "091d26dc8cf8bbd32d0dcd335bb90bf9a25f35f662785d278ba0bde82a48a6d4",
+      "uncompressed_bytes": 4459,
+      "archive_bytes": 1308
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/python-tests-initial.log.resource.json",
+      "archive": "evidence/round31/studies/python-tests-initial.log.resource.json.gz",
+      "uncompressed_sha256": "e64767e3fb31e536f168e7ebb5a8abb1a562df19a9c9c3c2048dffed9c7b9c54",
+      "archive_sha256": "ee66b0f63dad881301d0da9f915b71b90e9af255385781a1533dfeddc24b5209",
+      "uncompressed_bytes": 242,
+      "archive_bytes": 204
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/research-ubs.log",
+      "archive": "evidence/round31/studies/research-ubs.log.gz",
+      "uncompressed_sha256": "7fec8c8078fe2d635ff25c32eca883e361986e03744a46f79d9f8efa8a08975f",
+      "archive_sha256": "cf5a965bc26cec924ef0a916df378c3f2a1a863585a1eac07f7926d151c88481",
+      "uncompressed_bytes": 165793,
+      "archive_bytes": 16366
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/research-ubs.log.resource.json",
+      "archive": "evidence/round31/studies/research-ubs.log.resource.json.gz",
+      "uncompressed_sha256": "559b68bf48a706c3a6c6153ce9251384f27a7c65d7d6d08edac5f4c7a870daf1",
+      "archive_sha256": "03b7aa8f9e092d3664e6c57d832841843590f765a63e5d1bb48706cf2bc7f4cf",
+      "uncompressed_bytes": 233,
+      "archive_bytes": 197
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/ubs-doctor.log",
+      "archive": "evidence/round31/studies/ubs-doctor.log.gz",
+      "uncompressed_sha256": "c1f9661010d9855fea69ee027f77e6a3b29f52c1385b17607617719bef2d21c7",
+      "archive_sha256": "d6e437c981a75a5ae3de3a678071a1348a70da60c8a8f65af41de160f18dfedc",
+      "uncompressed_bytes": 44791,
+      "archive_bytes": 3131
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/ubs-doctor.log.resource.json",
+      "archive": "evidence/round31/studies/ubs-doctor.log.resource.json.gz",
+      "uncompressed_sha256": "fd8c79bde920c23524c0a04d27cd396a517c8e7a6eca6098796697f376ca51d2",
+      "archive_sha256": "a5e9231c54fdf80e8f5f27e6c1fad4ca633a5e6630f1acc3e6709718bb18e255",
+      "uncompressed_bytes": 231,
+      "archive_bytes": 195
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/x87-controls.log",
+      "archive": "evidence/round31/studies/x87-controls.log.gz",
+      "uncompressed_sha256": "86c748fb9396b351387404342958d279a1661e15d080dc8e6c4ecf4650284a18",
+      "archive_sha256": "538f1392e17edc05a0bc08226c89395e0bbd67f3f8d949cc156990f85ab0c075",
+      "uncompressed_bytes": 306,
+      "archive_bytes": 194
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/x87-controls.log.resource.json",
+      "archive": "evidence/round31/studies/x87-controls.log.resource.json.gz",
+      "uncompressed_sha256": "fbe46a8c115cd43bb50a929b2fd12df75864fd7141964f086278d0119f251646",
+      "archive_sha256": "09fc60edd79593f69c22e08f591b4bc02b260e1e9bcc01bb7dea6d5de0dee8d2",
+      "uncompressed_bytes": 233,
+      "archive_bytes": 194
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-integrated-check.log",
+      "archive": "evidence/round31/studies/pmt-integrated-check.log.gz",
+      "uncompressed_sha256": "a526356bbacd4fd9be0add36b5bc8bec69d45243aa3153c6d009a3256c4466c2",
+      "archive_sha256": "fb69a8f650e02df7c1a9b8d3da2306a6c7b0da0d56ed7881bef6883109107de2",
+      "uncompressed_bytes": 1239,
+      "archive_bytes": 715
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-integrated-check.log.resource.json",
+      "archive": "evidence/round31/studies/pmt-integrated-check.log.resource.json.gz",
+      "uncompressed_sha256": "2cd3afc95ce03253538629b3b4e9b89f7fa45c057307ca2db5e507de784c2f4f",
+      "archive_sha256": "ea314085bfce1c5b3d30546f474c2aa79d0cef7dfbdbea65894207e9c1097ba1",
+      "uncompressed_bytes": 242,
+      "archive_bytes": 203
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/research-checkpoint-rust-tests.log",
+      "archive": "evidence/round31/studies/research-checkpoint-rust-tests.log.gz",
+      "uncompressed_sha256": "679868a3ac9b5aaf45fd1e8a6ff66d16fd68518932e5027356731cc9323dfcd0",
+      "archive_sha256": "7ac5c4a3ab37027b52de994a67e84b85099d963af5bb8abcfe55078bc9b827c4",
+      "uncompressed_bytes": 15247,
+      "archive_bytes": 3596
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/research-checkpoint-rust-tests.log.resource.json",
+      "archive": "evidence/round31/studies/research-checkpoint-rust-tests.log.resource.json.gz",
+      "uncompressed_sha256": "d988ee60770512b905a838939cc7ff0c30face0f1183452a601115179055ffa5",
+      "archive_sha256": "2d694a365ca8ae098d5e9ec3cb7c1456360ade589904c3d0a98955c4ee75c70c",
+      "uncompressed_bytes": 252,
+      "archive_bytes": 208
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/checkpoint-python-tests.log",
+      "archive": "evidence/round31/studies/checkpoint-python-tests.log.gz",
+      "uncompressed_sha256": "41958fcc00beae2a3b19b88f96d420b0de8e44bb8dacd703912a3483142c1693",
+      "archive_sha256": "a941383b3b327e9af179aa5abf14f290d3695da96c5e773c259d972970e98fbc",
+      "uncompressed_bytes": 4565,
+      "archive_bytes": 1334
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/checkpoint-python-tests.log.resource.json",
+      "archive": "evidence/round31/studies/checkpoint-python-tests.log.resource.json.gz",
+      "uncompressed_sha256": "70ea43a35547133b3575265a21428568c29a01821f4b26b4aee5d3fc0128bc50",
+      "archive_sha256": "41121e1ad5fa926480bec5189ba97e8d66b3248711cbcb74c982826b88cf9e9e",
+      "uncompressed_bytes": 244,
+      "archive_bytes": 205
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/scoped-judge-tests.log",
+      "archive": "evidence/round31/studies/scoped-judge-tests.log.gz",
+      "uncompressed_sha256": "d9c98defd84e4caf7e50cae0f07a5cde41540c1e889c4316c94e9f3875bda8dd",
+      "archive_sha256": "aa1733c7bfb5e045b44c055b16a8ee14d40d3f20fae6d7435b448c8248092020",
+      "uncompressed_bytes": 3199,
+      "archive_bytes": 904
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/scoped-judge-tests.log.resource.json",
+      "archive": "evidence/round31/studies/scoped-judge-tests.log.resource.json.gz",
+      "uncompressed_sha256": "9eef87e13ee1451b912d159745c9de347007fb829d323ebff89debd22ecef8d8",
+      "archive_sha256": "c4028c37fab3e89c3f9f233b18d8ecc4259f48cbf0dd672902e598658d6c1916",
+      "uncompressed_bytes": 239,
+      "archive_bytes": 197
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/research-ubs-triaged.log",
+      "archive": "evidence/round31/studies/research-ubs-triaged.log.gz",
+      "uncompressed_sha256": "ecb51442a193da43cffa1e623d8825dd730f4dd8b71368b7e60ef5f1082ed3ff",
+      "archive_sha256": "2d70d70ddba73594e2cd084f6757a69c6d719d4a3a9a341aee7006cc54b1c78c",
+      "uncompressed_bytes": 236426,
+      "archive_bytes": 23470
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/research-ubs-triaged.log.resource.json",
+      "archive": "evidence/round31/studies/research-ubs-triaged.log.resource.json.gz",
+      "uncompressed_sha256": "07317e81ed9315621e075c7b2a4d562ded726a514768da110151422981b774ad",
+      "archive_sha256": "d6621e4d4366df81d07fbaffc2ca5bb71f2ff54d6b8ef25cee81a13fbf0d0fe5",
+      "uncompressed_bytes": 240,
+      "archive_bytes": 200
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-guard-note.txt",
+      "archive": "evidence/round31/studies/pmt-guard-note.txt.gz",
+      "uncompressed_sha256": "3df0d524b67c408a2bae3e9307c98bfbae62af62917e07b909ca8b020cfe17f4",
+      "archive_sha256": "0a79e3a6f46c7c0c60e966c0856f24604dca9121ff6f17afece1261a0cfce51f",
+      "uncompressed_bytes": 1568,
+      "archive_bytes": 867
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-guard-rates.txt",
+      "archive": "evidence/round31/studies/pmt-guard-rates.txt.gz",
+      "uncompressed_sha256": "f7bcb7c65121cf9d18b1c4c80177da0c38d55f1342af11fc9481bbcd01cbfa8a",
+      "archive_sha256": "40d22373c3f487c4a56a4ec0e0305a8ff6075c160bdab15058052b3aec64168d",
+      "uncompressed_bytes": 497,
+      "archive_bytes": 352
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r31/pmt-guard-commit.txt",
+      "archive": "evidence/round31/studies/pmt-guard-commit.txt.gz",
+      "uncompressed_sha256": "b87061da18347ada70453c122d999e641dafd5369ddcace1f084e25edcc6333c",
+      "archive_sha256": "51651996590d73c4568ec003fea3426bb8223ad4d04d98d1d04715ff54be4713",
+      "uncompressed_bytes": 1035,
+      "archive_bytes": 651
+    }
+  ],
+  "source_snapshots": {
+    "evidence/round31/producers/0a67c7d56bbcf73fb0fd40f7a79f431683e6d89bc7039a19e801e966fce635c6-gamma_stages.py": "0a67c7d56bbcf73fb0fd40f7a79f431683e6d89bc7039a19e801e966fce635c6",
+    "evidence/round31/producers/1490a44cf8d671a6ea5909972b594b980815a236d2b39e917ad711f970ad126f-annuity_pairs.py": "1490a44cf8d671a6ea5909972b594b980815a236d2b39e917ad711f970ad126f",
+    "evidence/round31/producers/252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1-x87_native.c": "252c01692bbbd8c4a1d67f9c0dd2c4920dd29fac3566cdae77e036a3da3186d1",
+    "evidence/round31/producers/4867039164e81696a49c0cc80e6db18238e561da65e23401596a0c9f648ee727-gamma_stages.py": "4867039164e81696a49c0cc80e6db18238e561da65e23401596a0c9f648ee727",
+    "evidence/round31/producers/62b1517413ce2aad3705f3a2aa523925ed9be69e480b26bc6b05d225dc6fd150-gamma_stages.py": "62b1517413ce2aad3705f3a2aa523925ed9be69e480b26bc6b05d225dc6fd150",
+    "evidence/round31/producers/7306dd17f12dd6fb4c7b51fc22d04ce9e53f9dafcf177483e375a0bf55e1e72c-annuity_pairs.py": "7306dd17f12dd6fb4c7b51fc22d04ce9e53f9dafcf177483e375a0bf55e1e72c",
+    "evidence/round31/producers/93c5f6920c69b43c0c7b84d72756b0d86973e8338324a844e5765380cc7d0cad-gamma_stages.py": "93c5f6920c69b43c0c7b84d72756b0d86973e8338324a844e5765380cc7d0cad",
+    "evidence/round31/producers/a2de0dacae910ec7b8f763a5d57e157a4584f86e84bdec25a252cf7a86507f5a-audit.py": "a2de0dacae910ec7b8f763a5d57e157a4584f86e84bdec25a252cf7a86507f5a",
+    "evidence/round31/producers/a6da28141ced7695cbd93c53fe599450d920c6332872007c4f7a258521169248-annuity_pairs.py": "a6da28141ced7695cbd93c53fe599450d920c6332872007c4f7a258521169248",
+    "evidence/round31/producers/d51516bfff01f0e4598ac631814e1ac88c5f74cc53288bf6435444b343223ba5-x87_programs.py": "d51516bfff01f0e4598ac631814e1ac88c5f74cc53288bf6435444b343223ba5",
+    "evidence/round31/producers/e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7-x87_programs.py": "e1839d9d7aa57f10bb1a6f0b8aef9ce35f91f2cf14dd6ba0e7bbfb762ea41dd7",
+    "evidence/round31/producers/e55c246d3649e58339e7791dc2001d81cb587d79c33f3adad4c42b82cbf2c209-annuity_pairs.py": "e55c246d3649e58339e7791dc2001d81cb587d79c33f3adad4c42b82cbf2c209",
+    "evidence/round31/producers/ec9f98baffcd06aa521d394c25604790721dcdfdb61a63cc221fd796c3d69f1c-gamma_stages.py": "ec9f98baffcd06aa521d394c25604790721dcdfdb61a63cc221fd796c3d69f1c",
+    "evidence/round31/producers/f2595d265609e1845a6a5a60f095fb8effbde20a1d6336a4ef3e2012bf930e28-x87_native.c": "f2595d265609e1845a6a5a60f095fb8effbde20a1d6336a4ef3e2012bf930e28",
+    "evidence/round31/producers/f50fc6d3a670418da59835115d0725d5bce1fd7457f371d19b6ce49265420d41-gamma_stages.py": "f50fc6d3a670418da59835115d0725d5bce1fd7457f371d19b6ce49265420d41",
+    "evidence/round31/producers/f8dd481468634d525f871c125960778bcd03833954ebfbcc0f6100cccd4c6d51-annuity_pairs.py": "f8dd481468634d525f871c125960778bcd03833954ebfbcc0f6100cccd4c6d51"
+  },
+  "scalar_cache": {
+    "evidence/round31/scalar-cache/04a16331b1d6c925525b65e821eaf6816ba7c8387dee20282388e92bb1b0f598.json.gz": "de0221a987db50be92a8c67d4ac33dabd346f0f13cc9fd1d69aeab04be9bd9e6",
+    "evidence/round31/scalar-cache/1d52e339008f2adfaa19a3acfc9802f46a3087f04de624078075deca6a7447d9.json.gz": "68d27d31f60878d4241de4d2f2a3283e56a68e7c0aef95774f0fdaf79119f48a",
+    "evidence/round31/scalar-cache/1d7e842c5c248ce240d82304ac757ae4a4fe09f75196f4838b6a17023ae6ca20.json.gz": "ea57426716a3619c666d55728dc60bbbfcc9168ce0e4cb27aff37180d5a3b670",
+    "evidence/round31/scalar-cache/1ef16cda3e8226b8c9e80fc14c459b0e49aed0a29790a3354c4170a829747c90.json.gz": "805ea3fae117a95f7df8c36894f1b1069c7d12ffc95dcb4d3613ee7712e982d8",
+    "evidence/round31/scalar-cache/1ef16cda3e8226b8c9e80fc14c459b0e49aed0a29790a3354c4170a829747c90.refusal-77ca370c2ad54608a784bbe6e10a55ff.json.gz": "642c8f8b6c301f2c48767c483dc845b5f6610c21d13479c5ea6f5f333542fafb",
+    "evidence/round31/scalar-cache/35e1216ad89776f1f49d254b5bfb9347e8032f5eafbb0353579bf9b3082d8409.json.gz": "0a12dcf2f3126ff69c106e00df3d59d22d518f7cb15d0e342873b33c5687efa8",
+    "evidence/round31/scalar-cache/365594d5734f7a0e556fd98f06feb3eeb49fdca0d87ba42d3cd965b3ac687577.json.gz": "0bdd85ed50d49a7dab6035338a82974c3aa2a15d9bdf89b67997ab9ff782a7f4",
+    "evidence/round31/scalar-cache/5855bb5f5256458ccf33293cd79776602785733d7d92560a262a914c4d47ed33.json.gz": "dfa1802e355b152fd9cb484d7b5b8e2693f5540813229eaf7c05f21b2771d11e",
+    "evidence/round31/scalar-cache/90316b40e4bb80b046a96f6e4b53bc562151b06cc60e129dc3ec1212ffd52405.json.gz": "834ba8c5c20edd4a48cdee6b90a65778432a2c84c0fcbdddfc8e703e64890ba3",
+    "evidence/round31/scalar-cache/adeee222b8a21e80bf12c4770af707611256c5f2b59e84e80ef18fabccac6992.json.gz": "2fd1702d4fea4553a11d76bdc559b3e1f8bf4e426ced6c95c4bf4df5e38de4da",
+    "evidence/round31/scalar-cache/bca55b2c87d9a98dcca839fe85202abd631746bf1ea1e8c994786c19f1c05616.json.gz": "65b5d357a37edc8752e1c77f548a20f9173be0fe0f82f965696df85abf6f0706",
+    "evidence/round31/scalar-cache/dd6af492aa8bfabdb734146a61b7156e4777345737c5700d6aca8187fab8adb3.json.gz": "1bd7ffe5215770ce2af6737e80ff57a80db243625788efebaf50213426a31cd3",
+    "evidence/round31/scalar-cache/df83d6f7e91e9555b7a369aaca435a6ffddb52a4a0027c6e827614ffef24547a.json.gz": "73d324b26c174106bac1c3ac670a00e6cab633297a7fac51d8bcdc8c49bccdb1",
+    "evidence/round31/scalar-cache/e9178c237d8e62c356ef0c1fe90a16053943d9bd06d19a1fb773bd0ca19b721b.json.gz": "80980ccfdb5cc520a7d11952663459e50dbebbceaee47633847236391213cbde",
+    "evidence/round31/scalar-cache/e97271fcb6e807a87f453b3072984a7a71ecda74b43281ea8caa3f61b48a9b7f.json.gz": "5351b7226dd9715e4212bd69a7d56f9dee2c362f7f3f3044ff36a949ee6dcce9",
+    "evidence/round31/scalar-cache/f4e3f0e955a73568129a45d0643bb9bd3c6f43aad5894deba2ff448de0464d9a.json.gz": "ac7af44f9c80410aa4cd335c83b8b98e16dfd07519738cc45b9475e5148479ab",
+    "evidence/round31/scalar-cache/ffd2208b51dd3563ab02c276edbfa2379a179c3b72e9672f293a8674d0029b7e.json.gz": "eaf36fbbe6a4cff0d89b5c060cd76a63828e07e583b8cf4ef49aeaac6fd80f31"
+  },
+  "results": {
+    "guard_bank": {
+      "rows": 3910007,
+      "before_matched": 3777655,
+      "after_matched": 3777659,
+      "gains": 4,
+      "losses": 0,
+      "failed": 132348,
+      "unread": 116,
+      "pass_rate": 0.9661514672480126
+    },
+    "guard_corpus": {
+      "rows": 54794,
+      "matched": 52883,
+      "failed": 1911,
+      "pending": 100,
+      "gains": 0,
+      "losses": 0,
+      "changed_values": 0,
+      "pass_rate": 0.9651239186772275
+    },
+    "guard_scalar": {
+      "calls": 1675,
+      "gains": 45,
+      "losses": 0,
+      "native_soft_identical": true,
+      "before_matched": 964,
+      "after_matched": 1009,
+      "failed": 666,
+      "pass_rate": 0.6023880597014926
+    },
+    "gamma_quotient": {
+      "calls": 192,
+      "pairs": 64,
+      "pc64_matches": 64,
+      "strict_stored_prefix_possible": 22,
+      "strict_resident_or_real_prefix_possible": 30
+    },
+    "cumulative": {
+      "intervals": 648,
+      "excluded_by_all_nine_component_models": 151
+    }
+  },
+  "corrections": [
+    "Phase-one PMT guard is contradicted; phase two is timing-specific and preserves first-period IPMT zero before rate checks.",
+    "Initial final-P diagnostic omitted PC64 midpoint-neighbor ambiguity. The pc64 report supersedes its per-edge residue lists; the joint511 non-tie residues are unchanged. No coefficient chosen or store installed.",
+    "Initial quotient discrimination assumes a binary64 prefix. Relaxed report records34 exclusions that also hold for arbitrary resident or real prefixes.",
+    "A service-host failure is retained separately; only the successful explicit retry supplies quotient observations."
+  ],
+  "limits": "Observation cohorts can overlap and are never added as unique coverage. All refusals, unread rows and pending workbook questions remain failures. Diagnostic inverses and arbitrary possible helper values never count as application passes. Bessel bodies, HYPGEOM products and QR rank remain open; no new workbook question yet.",
+  "reproduce": [
+    "python3 racer/annuity_pairs.py ../DnaCalc OUTPUT --cache evidence/round31/scalar-cache --reciprocal-transfer --offline",
+    "python3 checker/annuity_pairs.py STUDY evidence/round31/scalar-cache LIBRARY CHECK_OUTPUT",
+    "python3 racer/x87_programs.py build LIBRARY",
+    "env DNA_RESEARCH_UNIT=round31-guard-checkpoint-unit.json cargo test --release",
+    "python3 racer/corpus_cases.py problem-functions ../DnaCalc ../DnaCalc/docs/generated/problem-functions"
+  ],
+  "inherited_source_snapshots": {
+    "evidence/round30/producers/5863495d5cf0105d277946e5598aa9d62c38857080ad3822390aaa079332b279-audit.py": "5863495d5cf0105d277946e5598aa9d62c38857080ad3822390aaa079332b279"
+  },
+  "application_guard_commit": "63f2c6d7",
+  "verification": {
+    "main_check": {
+      "passed": 1906,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 14
+    },
+    "research_rust": {
+      "passed": 137,
+      "failed": 0,
+      "ignored": 2
+    },
+    "research_python": {
+      "passed": 126,
+      "failed": 0,
+      "scoped_inventory_controls": 13
+    },
+    "ubs": {
+      "rust_critical": 0,
+      "research_critical_after_annotations": 0,
+      "python_analysis": "partial: existing SQL detector generator limitation"
+    },
+    "review": "Read-only r31_read_only_review approved the checkpoint after independent raw-reply and rational-stage checks; requested corrections preserved and applied."
+  }
+}

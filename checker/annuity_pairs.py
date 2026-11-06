@@ -91,7 +91,38 @@ def check(study,cache,library,output):
         corrected=a.op('add',q,f)
         factor=r if not timing else a.op('div',one,a.op('add',one,a.op('div',one,r)))
         return a.finish(corrected,factor,model)
-    if doc['format']=='dnacalc-annuity-paired-stages/1':
+    if doc['format']=='dnacalc-annuity-reciprocal-domain/1':
+        require(doc['phase']==2,'initial contradicted hypothesis is not an accepted domain rule')
+        questions=Path(str(study)+'.questions.json')
+        require(digest(questions)==doc['questions_sha256'],'domain question manifest changed')  # ubs:ignore — public evidence checksum, not a secret or authentication token.
+        frozen[str(questions)]=digest(questions)
+        by_function={}
+        poles={}
+        for row in doc['records']:
+            name,args=row['function'],row['args']
+            request=[dict(type='number',bits=x)for x in args]
+            original=answers[(name,json.dumps(request,sort_keys=True))]
+            require(original==row['answer'],'original domain answer changed')
+            rate=binary64(args[0]);timing=binary64(args[-1])
+            if args[0] not in poles:
+                denominator=a.op('add',one,a.op('div',one,load64(int(args[0],16)))) if rate else one
+                poles[args[0]]=binary64(a.bits(denominator))==0
+            pole=poles[args[0]]
+            require(pole==row['reciprocal_pole'],'native and rational reciprocal poles differ')
+            first=name=='IPMT'and binary64(args[1])==1 and timing==1
+            rejected=rate<=-1 or (pole and timing==1)
+            wanted='not_asserted'if name=='FV'else 'zero'if first else 'error:Num'if rejected else 'not_asserted'
+            require(wanted==row['expected_admission'],'declared domain branch differs')
+            seen='zero'if original['type']=='number'and binary64(original['bits'])==0 else 'error:Num'if original==dict(type='error',code='#NUM!')else 'other'
+            require(seen==row['observed_admission'],'observed domain classification differs')
+            tally=by_function.setdefault(name,Counter())
+            tally['calls']+=1;tally['constrained']+=wanted!='not_asserted'
+            tally['contradictions']+=wanted!='not_asserted'and wanted!=seen
+            tally['pole_calls']+=pole
+        require(by_function==doc['counts'],'domain counts differ')
+        require(all(c['contradictions']==0 for c in by_function.values()),'public domain contradiction')
+        counts.update({name+'/'+field:n for name,c in by_function.items()for field,n in c.items()})
+    elif doc['format']=='dnacalc-annuity-paired-stages/1':
         for group in doc['groups']:
             r,n=group['rate'],group['periods']
             observations=[dict(pv=row['pv'],zero=row['zero']) for row in group['timing']]

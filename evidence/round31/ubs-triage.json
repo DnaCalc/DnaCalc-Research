@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "main": {
+    "critical": 0,
+    "new_code": "Two informational float-equality findings are intentional exact comparisons: zero reciprocal denominator and period index one. No new warning or critical finding."
+  },
+  "research": {
+    "corrected_false_positive": "Public question-manifest checksum equality is not a secret comparison; explicit annotation added.",
+    "partial": "Python SQL detector reports unsupported generator consumer; analysis remains incomplete. No SQL is added.",
+    "reported_critical_initial": 1,
+    "corrected_false_positives": [
+      "Public evidence checksum equality is not a secret comparison; annotation retained.",
+      "The selected local judge executable is authorized; validated worksheet function is argv data and no shell runs. Annotation now sits on the subprocess call."
+    ],
+    "remaining_actionable_critical": 0
+  }
+}

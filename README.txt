@@ -1,5 +1,29 @@
 DNA Calc arithmetic program research
 
+R31 isolates the beginning-payment PMT reciprocal pole while preserving the
+first-period IPMT zero before rate checks. Its fixed bank gains4 and loses0;
+the fixed54794-cell corpus retains every value. The1675-call scalar replay
+gains45 and loses0, with identical native/software returns. Initial broad
+domain hypotheses and their counterexamples remain beside the corrected one.
+
+The new Gamma quotient pairs support the stored-PC64 input division on64
+primitive ties:42 exclude strict division with a stored prefix,34 still
+exclude it with an arbitrary resident or real prefix. Prefix storage remains
+open. High-Gamma inverse cells reject24 declared final associations without
+choosing correction coefficients. The final-P quantum diagnostic retains511
+residue classes away from ties; ambiguous classes remain unresolved. Its
+current table residue3707 is excluded under
+the stated store/jump-sign assumptions. No Gamma coefficient or store lands.
+
+CUMPRINC's short-interval answers exclude all nine independent-component sum
+models on151 of648 intervals, even with unpublished component cells. Paired
+cumulative complements have their own counterexamples; no route is inferred.
+evidence/round31/index.json binds the original small scalar archives, exact
+producer epochs, compressed derived reports, corrections and bounded claims.
+Use round31-guard-checkpoint-unit.json for its recorded application epoch.
+Negative PMT arithmetic is measured separately; historical strict-product
+studies do not establish that final word. No count-selected kernel is used.
+
 R30 keeps one numerical stage at a time. Its initial count/dependency ranking
 and original scalar replies are bound by evidence/round30/index.json. Gamma's
 declared shared-log/normalizer prefactor is refuted by four exact difference

@@ -1,0 +1,236 @@
+{
+  "application": {
+    "revision": "b96e22d2da1a0a0c33fc0433ace5f0ce8a5dbee4",
+    "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "bank": {
+    "rows": 3910007,
+    "matched": 3777655,
+    "failed": 132352,
+    "counts": {
+      "matched": 3777655,
+      "refused": 994,
+      "last_bit": 113136,
+      "larger_numeric": 17509,
+      "other_mismatch": 597,
+      "unread": 116
+    },
+    "pass_rate": 0.9661504442319413,
+    "canonical_trace_sha256": "1c72487ed6669a50ac9b392637d29eff62a31d8e3594cd161511872e55570580"
+  },
+  "corpus": {
+    "formula_cells": 54794,
+    "matched": 52883,
+    "inclusive_failed": 1911,
+    "awaiting_capture": 100,
+    "pass_rate": 0.9651239186772275,
+    "other_failed_verdicts": {
+      "not_modeled": 307,
+      "not_run": 7
+    },
+    "mismatches": 1410,
+    "counts": {
+      "larger_numeric": 551,
+      "last_bit": 658,
+      "other_mismatch": 201
+    }
+  },
+  "functions": [
+    {
+      "function": "LINEST",
+      "corpus": {
+        "larger_numeric": 208,
+        "last_bit": 19,
+        "other_mismatch": 26
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "GAMMA.DIST",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 15,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 164,
+        "last_bit": 29708,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "LOGEST",
+      "corpus": {
+        "larger_numeric": 150,
+        "last_bit": 12,
+        "other_mismatch": 81
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "GAMMA",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 26,
+        "last_bit": 6171,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "CUMIPMT",
+      "corpus": {
+        "larger_numeric": 1,
+        "last_bit": 51,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 15,
+        "last_bit": 10,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "FV",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 15,
+        "last_bit": 281,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "CUMPRINC",
+      "corpus": {
+        "larger_numeric": 13,
+        "last_bit": 155,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 356,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "HYPGEOM.DIST",
+      "corpus": {
+        "larger_numeric": 2,
+        "last_bit": 27,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 3,
+        "last_bit": 190,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "BESSELY",
+      "corpus": {
+        "larger_numeric": 1,
+        "last_bit": 1,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "PMT",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 4659,
+        "other_mismatch": 4,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "GAMMALN.PRECISE",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 3638,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "GAMMALN",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 2403,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    },
+    {
+      "function": "BESSELJ",
+      "corpus": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0
+      },
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 1,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      }
+    }
+  ],
+  "report_sha256": "692f7ea62ad5940c24fb3be75b0e5dd650a0b3356ff34476e518476de4f270ab"
+}

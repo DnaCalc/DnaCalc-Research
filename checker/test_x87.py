@@ -82,6 +82,26 @@ class NativeControls(unittest.TestCase):
                 self.assertEqual(decode(value),expected)
                 self.assertEqual(value,self.exact.operation('frndint',encode(a),encode(Q(0)),cw,False))
 
+    def test_square_root_resident_precision_and_publication(self):
+        from intervals import E53, E64
+        from exact import binary64
+        operands = [binary64(raw) for raw in (
+            '0010000000000000', '3fefffffffffffff', '3ff0000000000000',
+            '3ff0000000000001', '4000000000000000', '4024000000000001',
+            '405fffffffffffff', '7fefffffffffffff')]
+        operands += [Q(1)+two(-60), Q(4)-two(-61)]
+        graph = Builder(1)
+        root = graph.op('sqrt',0,store=True)
+        program = graph.graph(root,root)
+        for cw, fmt in ((0x123f,E53),(0x133f,E64)):
+            for operand in operands:
+                expected = fmt.rn_sqrt(operand)
+                resident = self.native.leaf('sqrt',encode(operand),encode(Q(0)),cw)
+                self.assertEqual(decode(resident),expected)
+                for mask in (0,1):
+                    result = self.native.evaluate(program,[],cw,mask,extended=encode(operand))[:10]
+                    self.assertEqual(decode(result),B.round(expected) if mask else expected)
+
     def test_malformed_native_requests_abort(self):
         g=Builder(1);a=g.op('add',g.one,0);graph=g.graph(a,a)
         with self.assertRaisesRegex(ValueError,'incomplete extended'):

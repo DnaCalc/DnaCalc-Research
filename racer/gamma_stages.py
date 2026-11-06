@@ -1162,6 +1162,396 @@ def gammaln_near_stores(checkout,manifest,output,cache,library,offline=False,cou
     write(output,result);print(json.dumps(dict(windows=len(records),calls=len(answers),remainder=str(remainder))),flush=True);return result
 
 
+def scaled_quotient_words(checkout, output, cache, library, offline=False, count=64):
+    """Independent public anchors at strict versus PC64 quotient ties.
+
+    Select input divisions before any density answer. Shape is twice the
+    PC64 quotient, making its unit-scale prefactor extraction exact. The
+    competing strict anchor retains its whole exact consumer preimage.
+    """
+    import random
+    from exact import operation
+    native = Native(library)
+    randomizer = random.Random(0x31a07)
+    cases=[];attempts=0
+    while len(cases)<count:
+        attempts+=1
+        if attempts>1000000:
+            raise ValueError('bounded primitive tie mining exhausted')
+        raw=[f'{(randomizer.randrange(1022,1026)<<52)|randomizer.getrandbits(52):016x}' for _ in range(2)]
+        x,beta=raw
+        strict=bits(value(x)/value(beta))
+        extended=native.leaf('div',load64(int(x,16)),load64(int(beta,16)),0x133f)
+        pc64=f'{native.publish(extended):016x}'
+        if strict==pc64:
+            continue
+        xx,bb=binary64(x),binary64(beta)
+        if bits(float(operation(xx,bb,'div','strict')))!=strict or bits(float(operation(xx,bb,'div','stored_pc64')))!=pc64:
+            raise ValueError('native and rational quotient discriminants differ')
+        shape=bits(2*value(pc64))
+        cases.append(dict(x=x,beta=beta,shape=shape,strict_quotient=strict,pc64_quotient=pc64))
+    frozen={**STAGE_BINDINGS,str(Path(library).resolve()):sha(library)}
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    anchors=[[client.number(y),client.number(c['shape']),client.number(1.),client.number(0.)]
+             for c in cases for y in (c['pc64_quotient'],c['strict_quotient'])]
+    questions=[[client.number(c['x']),client.number(c['shape']),client.number(c['beta']),client.number(0.)]for c in cases]
+    write(str(output)+'.questions.json',dict(format='dnacalc-gamma-scaled-quotient-questions/1',complete=True,
+        cases=cases,primitive_attempts=attempts,anchors=anchors,scaled_questions=questions,source_bindings=frozen,
+        selection='Fixed RNG primitive division ties only, before any density answer. '
+                  'Shape twice the PC64 quotient makes that anchor scale exact. '
+                  'Every strict-anchor prefix preimage is retained; no producer is assumed.'))
+    anchor_answers=service.ask('GAMMA.DIST',anchors)['rows']
+    scaled_answers=service.ask('GAMMA.DIST',questions)['rows']
+    records=[];counts=Counter()
+    for index,c in enumerate(cases):
+        pc64_anchor,strict_anchor=anchor_answers[2*index:2*index+2]
+        target=scaled_answers[index]
+        if any(a['type']!='number' for a in (pc64_anchor,strict_anchor,target)):
+            raise ValueError('positive finite density controls must be numeric')
+        a,x,y=map(binary64,(c['shape'],c['x'],c['strict_quotient']))
+        prefix=binary64(pc64_anchor['bits'])/2
+        if BINARY64.round(prefix)!=prefix:
+            raise ValueError('anchor rescaling was not exact')
+        scaled_factor=operation(a,x,'div','stored_pc64')
+        predicted=bits(float(operation(prefix,scaled_factor,'mul','stored_pc64')))
+        anchor_factor=operation(a,y,'div','stored_pc64')
+        possible=inverse(Span(binary64(strict_anchor['bits']),binary64(strict_anchor['bits'])),anchor_factor,'mul',True,'stored_pc64')
+        coordinates=BINARY64.coordinates(possible) if possible else None
+        if coordinates and coordinates[1]-coordinates[0]>4:
+            raise ValueError('unexpected unbounded strict prefix publication')
+        strict_prefixes=[] if coordinates is None else [BINARY64.value(k)for k in range(coordinates[0],coordinates[1]+1)]
+        strict_outputs=sorted({bits(float(operation(r,scaled_factor,'mul','stored_pc64')))for r in strict_prefixes})
+        target_domain=inverse(Span(binary64(target['bits']),binary64(target['bits'])),scaled_factor,'mul',True,'stored_pc64')
+        shared_domain=possible.meet(target_domain) if possible and target_domain else None
+        resident_coordinates=EXTENDED64.coordinates(shared_domain) if shared_domain else None
+        counts['rows']+=1;counts['pc64_anchor_prediction_matches']+=predicted==target['bits']
+        counts['strict_anchor_has_binary64_prefix']+=coordinates is not None
+        counts['strict_anchor_scaled_possible']+=target['bits']in strict_outputs
+        counts['pc64_only']+=predicted==target['bits']and target['bits']not in strict_outputs
+        counts['strict_only']+=predicted!=target['bits']and target['bits']in strict_outputs
+        counts['neither']+=predicted!=target['bits']and target['bits']not in strict_outputs
+        counts['strict_anchor_shared_resident_possible']+=resident_coordinates is not None
+        counts['strict_anchor_shared_real_possible']+=shared_domain is not None
+        counts['pc64_only_even_resident_prefix']+=predicted==target['bits']and resident_coordinates is None
+        counts['pc64_only_even_real_prefix']+=predicted==target['bits']and shared_domain is None
+        records.append(dict(c,pc64_anchor=pc64_anchor,strict_anchor=strict_anchor,scaled_answer=target,
+            extracted_pc64_prefix=bits(float(prefix)),scaled_factor=bits(float(scaled_factor)),
+            pc64_prediction=predicted,strict_prefix_domain=possible.json()if possible else None,
+            strict_prefixes=[bits(float(r))for r in strict_prefixes],strict_predictions=strict_outputs,
+            strict_shared_prefix_domain=shared_domain.json()if shared_domain else None,
+            strict_shared_resident_count=0 if resident_coordinates is None else resident_coordinates[1]-resident_coordinates[0]+1))
+    result=dict(format='dnacalc-gamma-scaled-quotient-words/1',complete=True,records=records,
+        counts=counts,receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Conditional division-word discrimination through the independently measured stored alpha/x consumer. '
+               'Each competing quotient uses its own original public density anchor, with every '
+               'permitted binary64 prefix retained. Separate shared-prefix intersections also allow '
+               'an arbitrary resident PC64 or real prefix, so discriminants conditional on prefix '
+               'storage are distinguished from robust exclusions. A complete match identifies '
+               'this sampled quotient publication, not a private prefix producer or a resident-quotient route. '
+               'Primitive ties alone select inputs; no answer or match count selects a case.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def final_sum_quantization(study, edges, output):
+    """Coefficient-residue consequences of the two numerator binade jumps.
+
+    For a stored product on lattice D, adding one fixed constant and then
+    storing on D/2 or D changes its rounding offset by zero or half D.
+    This algebra does not use the unknown higher polynomial coefficients.
+    The empirical jump remains a descriptive observation, not a fitted table.
+    """
+    from fractions import Fraction as Q
+    from exact import operation
+    source, edge_path = Path(study), Path(edges)
+    doc, manifest = json.loads(source.read_text()),json.loads(edge_path.read_text())
+    rows=[];allowed=set(range(4096));ambiguous=set()
+    p0=manifest['tables']['P'][0]
+    for window in doc['records']:
+        if window['polynomial']!='P':
+            continue
+        samples=window['samples'];n=len(samples)//2
+        jump=sum(r['error_in_result_ulps']['Excel'] for r in samples[n:])/n-sum(r['error_in_result_ulps']['Excel'] for r in samples[:n])/n
+        x=binary64(window['center']);den=Q(0)
+        for raw in reversed(manifest['tables']['Q']):den=den*x+binary64(raw)
+        level=window['level'];coarse=Q(level,1<<52);fine=coarse/2
+        unit=Q(math.ulp(value(samples[n]['excel']['bits'])))
+        quantum=fine*(x-2)/den/unit
+        candidates=set();ties=set();residue_shifts={}
+        for residue in range(4096):
+            constant=-2-Q(residue,1<<51)
+            errors={False:set(),True:set()}
+            # Both preceding-product parities on each side. The integer
+            # part of c0 is a whole number of coarse lattice units, so it
+            # only translates the arbitrary preceding product.
+            for k in range(-3,6):
+                product=level+2+k*coarse;exact_sum=product+constant
+                stored=operation(product,constant,'add','stored_pc64')
+                errors[exact_sum>=level].add(stored-exact_sum)
+            shifts={(after-before)/fine for before in errors[False] for after in errors[True]}
+            residue_shifts[residue]=sorted(str(q)for q in shifts)
+            if len(shifts)!=1:
+                ties.add(residue);continue
+            shift=next(iter(shifts))
+            if shift and (shift>0)==(jump>0):candidates.add(residue)
+        allowed &= candidates;ambiguous |= ties
+        rows.append(dict(level=level,center=window['center'],observed_half_mean_jump_ulps=jump,
+            one_quantum_in_result_ulps=float(quantum),observed_quanta=jump/float(quantum),
+            current_table_constant_shift_quanta=residue_shifts[int(p0,16)&4095],
+            permitted_non_tie_residues=sorted(candidates),ambiguous_residues=sorted(ties),
+            ambiguous_shift_quanta={str(r):residue_shifts[r]for r in sorted(ties)}))
+    result=dict(format='dnacalc-gammaln-final-sum-quantization/1',complete=True,records=rows,
+        joint_non_tie_residues=sorted(allowed),current_constant=p0,current_low12=int(p0,16)&4095,
+        source_bindings={**STAGE_BINDINGS,str(source.resolve()):sha(source),str(edge_path.resolve()):sha(edge_path)},
+        limits='Conditional on a stored numerator last sum, an already stored preceding product '
+               'and the measured negative/positive jump signs. Only c0 modulo4096 of its binary64 '
+               'units is constrained; no coefficient is selected. Both product parities are '
+               'evaluated through exact PC64 addition and binary64 publication. Exact ties and '
+               'PC64 double-rounding midpoint neighbors remain ambiguous. Quantum sizes use the frozen '
+               'approximate Q only as a scale diagnostic; no Q coefficient is inferred. '
+               'Descriptive residual means establish neither independent random samples nor a '
+               'unique private implementation. The current table cannot exhibit either observed '
+               'nonzero jump merely by adding the final store; a store-only numerical change '
+               'still needs an independent classification of its losses.')
+    write(output,result)
+    print(json.dumps(dict(joint_residue_count=len(allowed),current_low12=result['current_low12'],
+        observed_quanta=[r['observed_quanta'] for r in rows])),flush=True)
+    return result
+
+
+def base2_prefactor_constraints(study, output, cache, library):
+    """Shared-normalizer inverses for literal base-two gamma prefixes.
+
+    Exact dyadic y and power-of-two shapes remove the power logarithm. The
+    remaining literal programs use the x87 log2(e) ROM constant and one
+    arbitrary normalizer per shape. This tests a different arithmetic family
+    from a stored natural logarithm; no normalizer is fitted or installed.
+    """
+    from geomean import verified_study_answers
+    from exact import operation
+    source = Path(study)
+    doc = json.loads(source.read_text())
+    _, bindings, _ = verified_study_answers(doc,Path(cache))
+    native = Native(library)
+    frozen = {**STAGE_BINDINGS, **bindings, str(source.resolve()):sha(source),
+              str(Path(library).resolve()):sha(library)}
+    g = Builder(1)
+    whole = g.op('frndint',0,store=False)
+    fraction = g.op('sub',0,whole,store=False)
+    mantissa = g.op('add',g.one,g.op('f2xm1',fraction,store=False),store=False)
+    positive = g.op('fscale',mantissa,whole,store=False)
+    result = g.op('div',g.one,positive,store=False)
+    graph = g.graph(result,result)
+    l2e = decode(native.leaf('fldl2e',bytes(10),bytes(10),0x133f))
+    profiles = [dict(form='sum_then_scale',sum_stored=s) for s in (False,True)]
+    profiles += [dict(form='separate_scales',x_stored=x,c_stored=c) for x,c in
+                 ((False,False),(True,False),(False,True),(True,True))]
+    profiles += [dict(form='subtract_power_then_normalizer',difference_stored=s) for s in (False,True)]
+    groups = {}
+    records = []
+    for row in doc['records']:
+        a,x = binary64(row['shape']),binary64(row['input'])
+        if x.numerator & (x.numerator-1) or x.denominator & (x.denominator-1):
+            raise ValueError('exact dyadic powers required')
+        e = x.numerator.bit_length()-x.denominator.bit_length()
+        ae = a*e
+        if BINARY64.round(ae) != ae:
+            raise ValueError('power exponent rounded')
+        cell = positive_extended_cell(native,graph,row['extracted_prefactor'],
+            binary64(bits(-math.log2(value(row['extracted_prefactor'])))),decreasing=True)
+        if cell is None:
+            raise ValueError('empty base-two primitive preimage')
+        interval = Span(*(decode(bytes.fromhex(cell[k])) for k in ('low','high')))
+        group = groups.setdefault(row['shape'],[dict(domain=None,dead=False,rows=0) for _ in profiles])
+        domains = []
+        for index,p in enumerate(profiles):
+            if p['form'] == 'sum_then_scale':
+                # u = (x+c)*log2(e) - a*log2(x).
+                domain = inverse(interval,-ae,'add',True,'resident_pc64')
+                domain = inverse(domain,l2e,'mul',True,'resident_pc64') if domain else None
+                domain = inverse(domain,x,'add',True,'stored_pc64' if p['sum_stored'] else 'resident_pc64') if domain else None
+            elif p['form'] == 'separate_scales':
+                # u = (x*log2(e) + c*log2(e)) - a*log2(x).
+                yy = operation(x,l2e,'mul','stored_pc64' if p['x_stored'] else 'resident_pc64')
+                domain = inverse(interval,-ae,'add',True,'resident_pc64')
+                domain = inverse(domain,yy,'add',True,'resident_pc64') if domain else None
+                domain = inverse(domain,l2e,'mul',True,'stored_pc64' if p['c_stored'] else 'resident_pc64') if domain else None
+            else:
+                # u = (x*log2(e)-a*log2(x)) + c*log2(e).
+                yy = operation(x,l2e,'mul','resident_pc64')
+                base = operation(yy,-ae,'add','stored_pc64' if p['difference_stored'] else 'resident_pc64')
+                domain = inverse(interval,base,'add',True,'resident_pc64')
+                domain = inverse(domain,l2e,'mul',True,'resident_pc64') if domain else None
+            domains.append(domain.json() if domain else None)
+            item = group[index]
+            item['rows'] += 1
+            if not item['dead']:
+                item['domain'] = domain if item['domain'] is None else item['domain'].meet(domain) if domain else None
+                if item['domain'] is None:
+                    item['dead'] = True
+                    item['first_contradiction'] = len(records)
+        records.append(dict(shape=row['shape'],input=row['input'],density=row['density'],
+            extracted_prefactor=row['extracted_prefactor'],base2_magnitude_cell=cell,
+            normalizer_domains=domains))
+    for shape, group in groups.items():
+        for item in group:
+            domain = item.pop('domain')
+            coords = BINARY64.coordinates(domain) if domain else None
+            item.update(domain=domain.json() if domain else None,
+                binary64_count=0 if coords is None else coords[1]-coords[0]+1)
+    result = dict(format='dnacalc-gamma-base2-prefix-constraints/1',complete=True,
+        profiles=profiles,groups=groups,records=records,graph=graph,receipts=doc['receipts'],
+        source_bindings=frozen,
+        limits='Necessary shared-normalizer intervals only, from original dyadic density anchors. '
+               'The base-two reciprocal exponential and fixed PC64 arithmetic are assumptions. '
+               'An empty intersection rejects only its declared program. '
+               'A feasible interval identifies no coefficient, private routine or implementation.')
+    write(output,result)
+    print(json.dumps({shape:[item['binary64_count'] for item in group] for shape,group in groups.items()}),flush=True)
+    return result
+
+
+def stirling_stage_constraints(checkout, output, cache, library, offline=False, count=64, consumers=False):
+    """Invert the last GAMMA product without choosing Stirling coefficients.
+
+    Independent public LN and EXP leaves remove the corresponding producer
+    assumptions. Each declared stage graph admits an arbitrary binary64 w(x).
+    Common-window and monotone constraints are additional, explicitly
+    conditional tests, not fitted values or a replacement for the application.
+    """
+    if not 2 <= count <= 256:
+        raise ValueError('small adjacent windows required')
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    native = Native(library)
+    centers = (10., 12., 16., 20., 24., 30., 32., 36., 48., 64., 80., 100., 128., 160.)
+    prefix_profiles = ['resident_product_resident_sqrt', 'stored_product_resident_sqrt',
+                       'resident_product_stored_sqrt', 'stored_product_stored_sqrt']
+    forms = ('constant_then_correction', 'correction_then_constant', 'stored_constant_correction',
+             'resident_constant_correction', 'resident_constant_body', 'resident_square_body') if consumers else ('constant_then_correction',)
+    profiles = [dict(prefix=p,finish=f) for p in prefix_profiles for f in forms]
+    groups = [dict(center=bits(c), inputs=[f'{int(bits(c),16)+i:016x}' for i in range(-count//2,count//2+1) if i])
+              for c in centers]
+    # Stay in the high band even at its first exact boundary.
+    groups[0]['inputs'] = [f'{int(bits(10.),16)+i:016x}' for i in range(1,count+1)]
+    xs = [x for group in groups for x in group['inputs']]
+    frozen = {**STAGE_BINDINGS, str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json', dict(format='dnacalc-gamma-stirling-stage-questions/1',
+        complete=True, groups=groups, profiles=profiles, source_bindings=frozen,
+        selection='Fourteen fixed integer and exponent boundaries, consecutive inputs in increasing order. '
+                  'Four literal product/square-root store graphs precede every new answer. '
+                  'All logarithms and exponentials are independently measured public calls.'))
+    logs = dict(zip(xs,service.ask('LN',[[client.number(x)] for x in xs])['rows']))
+    ems = dict(zip(xs,service.ask('EXP',[[client.number(-value(x))] for x in xs])['rows']))
+    answers = dict(zip(xs,service.ask('GAMMA',[[client.number(x)] for x in xs])['rows']))
+    def op(kind, a, b):
+        return native.leaf(kind, a, b, 0x133f)
+    def scalar(x):
+        return load64(int(bits(x),16))
+    def stored(a):
+        return load64(native.publish(a))
+    root_arguments = {}
+    for x in xs:
+        half = .5*value(x)
+        root_arguments[x] = f'{native.publish(op("mul",scalar(half-math.floor(half)),load64(int(logs[x]["bits"],16)))):016x}'
+    roots_unique = sorted(set(root_arguments.values()))
+    roots = dict(zip(roots_unique,service.ask('EXP',[[client.number(x)] for x in roots_unique])['rows']))
+    def power(x, n):
+        product, square = None, load64(int(x,16))
+        while n:
+            if n & 1:
+                product = square if product is None else stored(op('mul',product,square))
+            n >>= 1
+            if n:
+                square = stored(op('mul',square,square))
+        return product if product is not None else scalar(1.)
+    records = []
+    counts = [Counter() for _ in profiles]
+    for group in groups:
+        common = [None for _ in profiles]
+        common_dead = [False for _ in profiles]
+        monotone_upper = [None for _ in profiles]
+        monotone_dead = [False for _ in profiles]
+        group_records = []
+        for x in group['inputs']:
+            target = answers[x]
+            if any(a['type'] != 'number' for a in (target,logs[x],ems[x],roots[root_arguments[x]])):
+                raise ValueError('high-band leaves must be finite numbers')
+            v = stored(op('mul',power(x,math.floor(.5*value(x))),load64(int(roots[root_arguments[x]]['bits'],16))))
+            square_root = op('sqrt',load64(int(x,16)),scalar(0.))
+            product = op('mul',v,load64(int(ems[x]['bits'],16)))
+            domains = []
+            for index, profile in enumerate(profiles):
+                label, finish = profile['prefix'], profile['finish']
+                pp = stored(product) if label.startswith('stored_product') else product
+                qq = stored(square_root) if label.endswith('stored_sqrt') else square_root
+                u = stored(op('div',pp,qq))
+                square = stored(op('mul',u,v))
+                constant = load64(0x40040d931ff62706)
+                body = stored(op('mul',square,constant))
+                interval = Span(binary64(target['bits']),binary64(target['bits']))
+                if finish in ('constant_then_correction','resident_constant_body','resident_square_body'):
+                    if finish == 'resident_constant_body':
+                        body = op('mul',square,constant)
+                    elif finish == 'resident_square_body':
+                        body = stored(op('mul',op('mul',u,v),constant))
+                    domain = inverse(interval,decode(body),'mul',True,'stored_pc64')
+                elif finish == 'correction_then_constant':
+                    interval = inverse(interval,decode(constant),'mul',True,'stored_pc64')
+                    domain = inverse(interval,decode(square),'mul',True,'stored_pc64') if interval else None
+                elif finish in ('stored_constant_correction','resident_constant_correction'):
+                    interval = inverse(interval,decode(square),'mul',True,'stored_pc64')
+                    model = 'stored_pc64' if finish.startswith('stored_') else 'resident_pc64'
+                    domain = inverse(interval,decode(constant),'mul',True,model) if interval else None
+                else:
+                    raise ValueError('unknown fixed final association')
+                coordinates = BINARY64.coordinates(domain) if domain else None
+                counts[index]['rows'] += 1
+                counts[index]['empty_binary64_w'] += coordinates is None
+                if not common_dead[index]:
+                    common[index] = domain if common[index] is None else common[index].meet(domain) if domain else None
+                    common_dead[index] = common[index] is None
+                if not monotone_dead[index]:
+                    if coordinates is None:
+                        monotone_dead[index] = True
+                    else:
+                        low, high = coordinates
+                        upper = high if monotone_upper[index] is None else min(monotone_upper[index],high)
+                        monotone_dead[index] = upper < low
+                        monotone_upper[index] = upper
+                domains.append(dict(body=f'{native.publish(body):016x}',resident_body=body.hex(),square=f'{native.publish(square):016x}',
+                    required_w=domain.json() if domain else None,
+                    binary64_count=0 if coordinates is None else coordinates[1]-coordinates[0]+1,
+                    binary64_values=[] if coordinates is None else [bits(float(BINARY64.value(k)))
+                        for k in range(coordinates[0],min(coordinates[1]+1,coordinates[0]+4))]))
+            group_records.append(dict(input=x,answer=target,public_log=logs[x],public_negative_exp=ems[x],
+                root_argument=root_arguments[x],public_root=roots[root_arguments[x]],
+                powered=f'{native.publish(v):016x}',resident_sqrt=square_root.hex(),profiles=domains))
+        results = []
+        for index in range(len(profiles)):
+            coordinates = BINARY64.coordinates(common[index]) if common[index] else None
+            counts[index]['groups'] += 1
+            counts[index]['common_w_possible'] += coordinates is not None
+            counts[index]['monotone_w_possible'] += not monotone_dead[index]
+            results.append(dict(common_w=common[index].json() if common[index] else None,
+                common_binary64_count=0 if coordinates is None else coordinates[1]-coordinates[0]+1,
+                monotone_w_possible=not monotone_dead[index]))
+        records.append(dict(center=group['center'],samples=group_records,profiles=results))
+    result = dict(format='dnacalc-gamma-stirling-stage-constraints/1',complete=True,
+        profiles=profiles,counts=counts,records=records,receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Exact final-product preimages with an arbitrary binary64 correction per input. '
+               'Empty cells refute the declared preceding body and final product. '
+               'Common or nonincreasing corrections across a window are stronger conditional hypotheses; '
+               'a failed one does not refute an arbitrary nonmonotonic computed correction. '
+               'The source integer-power route and stored public LN/EXP leaves stay fixed. '
+               'No correction, coefficient or stage is selected by counts or installed.')
+    write(output,result)
+    print(json.dumps(dict(profiles=profiles,counts=counts)),flush=True)
+    return result
+
+
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('checkout')
@@ -1187,10 +1577,23 @@ if __name__ == '__main__':
     p.add_argument('--scale-holdout',metavar='BANK')
     p.add_argument('--density-exponents',metavar='BANK')
     p.add_argument('--classify-losses',metavar='PREFIX_REPLAY')
+    p.add_argument('--stirling-stages',action='store_true')
+    p.add_argument('--stirling-consumers',action='store_true')
+    p.add_argument('--base2-prefactor',metavar='STUDY')
+    p.add_argument('--final-sum-quantization',nargs=2,metavar=('NEAR_STUDY','EDGE_MANIFEST'))
+    p.add_argument('--scaled-quotient-words',action='store_true')
     args = p.parse_args()
     if not 2 <= args.count <= (4096 if args.gammaln_store_edges or args.gammaln_near_stores else 256):
         raise ValueError('small adjacent windows only')
-    if args.classify_losses:
+    if args.scaled_quotient_words:
+        scaled_quotient_words(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
+    elif args.final_sum_quantization:
+        final_sum_quantization(args.final_sum_quantization[0],args.final_sum_quantization[1],args.output)
+    elif args.base2_prefactor:
+        base2_prefactor_constraints(args.base2_prefactor,args.output,args.cache,args.library)
+    elif args.stirling_stages or args.stirling_consumers:
+        stirling_stage_constraints(args.checkout,args.output,args.cache,args.library,args.offline,args.count,args.stirling_consumers)
+    elif args.classify_losses:
         classify_consumer_losses(args.classify_losses,args.output)
     elif args.density_exponents:
         density_exponents(args.checkout,args.density_exponents,args.output,args.cache,args.offline)

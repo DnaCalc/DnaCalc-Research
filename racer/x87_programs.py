@@ -16,7 +16,7 @@ import subprocess
 import time
 
 OPS = ('input', 'const', 'add', 'sub', 'mul', 'div', 'neg', 'fyl2x',
-       'fyl2xp1', 'f2xm1', 'frndint', 'fscale', 'fldln2', 'fldl2e')
+       'fyl2xp1', 'f2xm1', 'frndint', 'fscale', 'fldln2', 'fldl2e', 'sqrt')
 WORDS = (0x123f, 0x133f)
 ROOT = Path(__file__).resolve().parent.parent
 

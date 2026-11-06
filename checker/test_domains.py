@@ -111,6 +111,9 @@ class MatchBitIntegrity(unittest.TestCase):
 import json,sys
 from pathlib import Path
 rows=json.loads(Path(__file__).with_name('rows.json').read_text())
+if '--func' in sys.argv:
+    selected=sys.argv[sys.argv.index('--func')+1]
+    rows=[r for r in rows if r['function']==selected]
 with open(sys.argv[sys.argv.index('--trace')+1],'w') as out:
     for row in rows:out.write(json.dumps(row)+'\\n')
 matches=sum(r['actual']==r['expected'] for r in rows)
@@ -131,6 +134,21 @@ print(f'xtask witness: constructed control; {matches} of {len(rows)+1} rows matc
             with self.assertRaisesRegex(ValueError,'input/answer/context stream changed'):
                 bank_match_bits(binary,root,root/'corrupt',root/'before')
             self.assertFalse((root/'corrupt/summary.json').exists())
+            rows.append(dict(rows[0],function='OTHER',id='outside-selected-function'))
+            data.write_text(json.dumps(rows))
+            selected=bank_match_bits(binary,root,root/'selected','-','CONTROL')
+            self.assertEqual((selected['total'],selected['matched'],selected['failed'],selected['unread']),(3,1,2,1))
+            self.assertEqual(selected['selected_function'],'CONTROL')
+            self.assertEqual(selected['retained_mismatches'],1)
+            import gzip
+            with gzip.open(root/'selected/failed-outcomes.jsonl.gz','rt')as failed:
+                retained=[json.loads(line)for line in failed]
+            self.assertEqual(len(retained),1)
+            self.assertEqual(retained[0]['function'],'CONTROL')
+            with self.assertRaisesRegex(ValueError,'worksheet function name required'):
+                bank_match_bits(binary,root,root/'bad-name','-','PMT;echo')
+            with self.assertRaisesRegex(ValueError,'own unsliced baseline'):
+                bank_match_bits(binary,root,root/'wrong-baseline',root/'before','CONTROL')
 
 
 class DomainQuestions(unittest.TestCase):
