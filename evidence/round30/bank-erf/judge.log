@@ -1,0 +1,413 @@
+xtask witness: 6067349 readings of 1737 bank files
+xtask witness: import: work/w109/G3-04-growth/answers-growth-paired-discovery-v1.json: recovered 700 result selections and 700 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 0 rows
+xtask witness: import: work/w109/G3-04-growth/answers-growth-refinement-v2.json: recovered 560 result selections and 560 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 0 rows
+xtask witness: import: work/w109/G3-04-growth/answers-logest-paired-discovery-v1.json: recovered 200 result selections and 0 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 0 rows
+xtask witness: import: work/w109/G3-04-growth/answers-logest-refinement-v2.json: recovered 160 result selections and 0 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 0 rows
+xtask witness: import: work/w109/G4-04-combin/answers-r1-graph-a.json: 505 derived graph rows are copies of worksheet readings in work/w109/G4-04-combin/answers-r1-excel.json; not counted as additional calls
+xtask witness: import: work/w109/G4-04-combin/answers-r1-graph-b.json: 505 derived graph rows are copies of worksheet readings in work/w109/G4-04-combin/answers-r1-excel.json; not counted as additional calls
+xtask witness: import: work/w109/G4-04-permut/answers-r1-graph-a.json: 402 derived graph rows are copies of worksheet readings in work/w109/G4-04-permut/answers-r1-excel.json; not counted as additional calls
+xtask witness: import: work/w109/G4-04-permut/answers-r1-graph-b.json: 402 derived graph rows are copies of worksheet readings in work/w109/G4-04-permut/answers-r1-excel.json; not counted as additional calls
+xtask witness: import: work/w109/G5-01-minverse/answers-minverse-final-div-heldout-20260809.json: recovered 576 result selections and 0 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 0 rows
+xtask witness: import: work/w109/G5-01-minverse/answers-minverse-full-x87-publication-heldout-20260809.json: recovered 416 result selections and 0 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 0 rows
+xtask witness: import: work/w109/G6-09-yieldmat/answers-r1-graph.json: 150 derived graph rows are copies of worksheet readings in work/w109/G6-09-yieldmat/answers-r1-excel.json; not counted as additional calls
+xtask witness: import: work/w109/G6-09-yieldmat/answers-r2-graph.json: 35 derived graph rows are copies of worksheet readings in work/w109/G6-09-yieldmat/answers-r2-excel.json; not counted as additional calls
+xtask witness: import: work/w109/G6-09-yieldmat/answers-validation-graph.json: 1250 derived graph rows are copies of worksheet readings in work/w109/G6-09-yieldmat/answers-validation-excel.json; not counted as additional calls
+xtask witness: import: work/w109/erf-swarm-20260821/answers-b26-zcross.json: recovered 0 result selections and 0 prediction-column layouts from batch probes; normalized duplicated hex prefixes in 8192 rows
+xtask witness: import: readings/excel-20527/BESSELI.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/BESSELJ.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/CONCAT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/CONCATENATE.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/CUMIPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/CUMPRINC.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/ECMA.CEILING.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/EUROCONVERT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/JIS.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/LOWER.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/MATCH.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/NORM.S.DIST.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/PMT-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/PMT.json: 16 transport audit observations, 14 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/PPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/PROPER.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/REGEXTEST.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/TEXT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/TEXTAFTER.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/TEXTBEFORE.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/TEXTSPLIT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/UPPER.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/XMATCH.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-BESSELI.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-BESSELJ.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-CONCAT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-CONCATENATE.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-CUMIPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-CUMPRINC.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-EXP.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-LN.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-PMT-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-PMT-3.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-PMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-POWER.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r13-PPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r14-AVERAGE.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r14-DEVSQ.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r14-STDEV.P.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r14-STDEV.S.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r14-VAR.P.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r14-VAR.S.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-CUMIPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-CUMPRINC.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-FV.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-IPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-NPER.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-PMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-PPMT.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-PV.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r15-RATE.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-AVERAGE.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-BESSELI-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-BESSELJ-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-BESSELY.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-COS-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-DEVSQ.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-EXP-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-GEOMEAN.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-SIN.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-STDEV.P.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-STDEV.S.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-VAR.P.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r16-VAR.S.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r18-CONCAT-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r18-YIELD.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r19-BESSELI-3.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r19-BESSELJ-3.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r19-BESSELJ-4.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r19-BESSELY-2.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r19-BESSELY-3.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r20-BINOM.DIST.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r20-HYPGEOM.DIST.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: import: readings/excel-20527/r22-BESSELI-4.json: 0 transport audit observations, 0 failed audit obligations; retained separately from typed-argument semantic witnesses
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:160: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:164: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:168: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:172: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:176: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:180: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:184: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:188: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:192: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:196: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:200: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:204: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:208: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:212: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:216: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:220: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:224: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:228: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:232: an argument or outcome kind with no witness form
+xtask witness: unread: cache/oracle/build-20131/MINVERSE.jsonl:236: an argument or outcome kind with no witness form
+xtask witness: unread: ... 116 in all
+xtask witness: CompatibilityVersion is retained in source identity and applied by the context-aware caller
+xtask witness: ABS                        1227 rows     1225 matched  worst      - ULP  structural
+xtask witness: ACCRINT                  146688 rows   146688 matched  worst      - ULP  exact
+xtask witness: ACCRINTM                   3612 rows     3612 matched  worst      - ULP  exact
+xtask witness: ACOS                      13962 rows    13962 matched  worst      - ULP  exact
+xtask witness: ACOSH                      5730 rows     5730 matched  worst      - ULP  exact
+xtask witness: ACOT                      16924 rows    16924 matched  worst      - ULP  exact
+xtask witness: ACOTH                    269996 rows   269996 matched  worst      - ULP  exact
+xtask witness: ADDRESS                    1284 rows     1284 matched  worst      - ULP  exact
+xtask witness: AND                        1210 rows     1210 matched  worst      - ULP  exact
+xtask witness: ASIN                      21610 rows    21610 matched  worst      - ULP  exact
+xtask witness: ASINH                      4534 rows     4534 matched  worst      - ULP  exact
+xtask witness: ATAN                     181409 rows   181409 matched  worst      - ULP  exact
+xtask witness: ATANH                     22008 rows    22008 matched  worst      - ULP  exact
+xtask witness: AVEDEV                     1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: AVERAGE                    1222 rows     1222 matched  worst      - ULP  exact
+xtask witness: AVERAGEA                   1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: BAHTTEXT                   2592 rows     2592 matched  worst      - ULP  exact
+xtask witness: BASE                       3560 rows     3560 matched  worst      - ULP  exact
+xtask witness: BESSELI                    1365 rows     1365 matched  worst      - ULP  exact
+xtask witness: BESSELJ                     946 rows      945 matched  worst      1 ULP  last_bit
+xtask witness: BESSELK                    1236 rows     1236 matched  worst      - ULP  exact
+xtask witness: BESSELY                      46 rows       46 matched  worst      - ULP  exact
+xtask witness: BETA.DIST                  2822 rows      885 matched  worst    170 ULP  numeric
+xtask witness: BETADIST                    294 rows      140 matched  worst    170 ULP  numeric
+xtask witness: BETAINV                      62 rows       18 matched  worst     12 ULP  numeric
+xtask witness: BIN2DEC                     313 rows      313 matched  worst      - ULP  exact
+xtask witness: BIN2HEX                     748 rows      748 matched  worst      - ULP  exact
+xtask witness: BIN2OCT                     742 rows      742 matched  worst      - ULP  exact
+xtask witness: BINOM.DIST                70349 rows    32014 matched  worst   2004 ULP  gross
+xtask witness: BINOM.DIST.RANGE           1224 rows      740 matched  worst    369 ULP  numeric
+xtask witness: BINOM.INV                  2152 rows     2149 matched  worst 4607182418800017408 ULP  gross
+xtask witness: BITAND                     5989 rows     5989 matched  worst      - ULP  exact
+xtask witness: BITLSHIFT                  8131 rows     8131 matched  worst      - ULP  exact
+xtask witness: BITOR                      5989 rows     5989 matched  worst      - ULP  exact
+xtask witness: BITRSHIFT                  8128 rows     8128 matched  worst      - ULP  exact
+xtask witness: BITXOR                     5989 rows     5989 matched  worst      - ULP  exact
+xtask witness: CEILING                    1335 rows     1323 matched  worst 4611686018427387904 ULP  structural
+xtask witness: CEILING.MATH               1362 rows     1350 matched  worst      - ULP  structural
+xtask witness: CEILING.PRECISE            1335 rows     1323 matched  worst 4611686018427387904 ULP  structural
+xtask witness: CHIDIST                     388 rows      250 matched  worst     24 ULP  numeric
+xtask witness: CHIINV                      100 rows       31 matched  worst     91 ULP  numeric
+xtask witness: CHISQ.DIST.RT                 6 rows        6 matched  worst      - ULP  exact
+xtask witness: CHISQ.INV                    40 rows       12 matched  worst     20 ULP  numeric
+xtask witness: CHISQ.TEST                    5 rows        3 matched  worst      3 ULP  last_bit
+xtask witness: COMBIN                    25199 rows    25199 matched  worst      - ULP  exact
+xtask witness: COMBINA                   40991 rows    40991 matched  worst      - ULP  exact
+xtask witness: COMPLEX                   10694 rows    10644 matched  worst      - ULP  structural
+xtask witness: CONCAT                       20 rows       15 matched  worst      - ULP  structural
+xtask witness: CONCATENATE                  10 rows        5 matched  worst      - ULP  structural
+xtask witness: CONVERT                   33972 rows    33972 matched  worst      - ULP  exact
+xtask witness: COS                        3684 rows     3684 matched  worst      - ULP  exact
+xtask witness: COSH                      33550 rows    33550 matched  worst      - ULP  exact
+xtask witness: COT                        2130 rows     2130 matched  worst      - ULP  exact
+xtask witness: COTH                      40241 rows    40185 matched  worst      2 ULP  last_bit
+xtask witness: COUNT                      1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: COUNTA                     1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: COUPDAYBS                  5584 rows     5584 matched  worst      - ULP  exact
+xtask witness: COUPDAYS                   5584 rows     5584 matched  worst      - ULP  exact
+xtask witness: COUPDAYSNC                 5584 rows     5584 matched  worst      - ULP  exact
+xtask witness: COUPNCD                    5584 rows     5584 matched  worst      - ULP  exact
+xtask witness: COUPNUM                    5584 rows     5584 matched  worst      - ULP  exact
+xtask witness: COUPPCD                    5584 rows     5584 matched  worst      - ULP  exact
+xtask witness: CRITBINOM                  1264 rows     1263 matched  worst 4607182418800017408 ULP  gross
+xtask witness: CSC                        2136 rows     2136 matched  worst      - ULP  exact
+xtask witness: CSCH                      33306 rows    33300 matched  worst      2 ULP  last_bit
+xtask witness: CUMIPMT                      38 rows       12 matched  worst 268435456 ULP  gross
+xtask witness: CUMPRINC                    586 rows      185 matched  worst     12 ULP  numeric
+xtask witness: DATE                      22250 rows    22250 matched  worst      - ULP  exact
+xtask witness: DAY                       10153 rows    10153 matched  worst      - ULP  exact
+xtask witness: DAYS                       9565 rows     9565 matched  worst      - ULP  exact
+xtask witness: DAYS360                    4564 rows     4564 matched  worst      - ULP  exact
+xtask witness: DB                         2034 rows     2034 matched  worst      - ULP  exact
+xtask witness: DDB                        1761 rows     1761 matched  worst      - ULP  exact
+xtask witness: DEC2BIN                    4807 rows     4807 matched  worst      - ULP  exact
+xtask witness: DEC2HEX                    4807 rows     4807 matched  worst      - ULP  exact
+xtask witness: DEC2OCT                    4807 rows     4807 matched  worst      - ULP  exact
+xtask witness: DECIMAL                    1230 rows     1230 matched  worst      - ULP  exact
+xtask witness: DEGREES                    1227 rows     1225 matched  worst      - ULP  structural
+xtask witness: DELTA                      1092 rows     1088 matched  worst      - ULP  structural
+xtask witness: DEVSQ                     23106 rows    23106 matched  worst      - ULP  exact
+xtask witness: DISC                       2400 rows     2400 matched  worst      - ULP  exact
+xtask witness: DOLLARDE                   4847 rows     4847 matched  worst      - ULP  exact
+xtask witness: DOLLARFR                   3641 rows     3641 matched  worst      - ULP  exact
+xtask witness: DURATION                   7884 rows     7551 matched  worst      3 ULP  last_bit
+xtask witness: ECMA.CEILING                  6 rows        6 matched  worst      - ULP  exact
+xtask witness: EDATE                      9838 rows     9838 matched  worst      - ULP  exact
+xtask witness: EFFECT                     2584 rows     2584 matched  worst      - ULP  exact
+xtask witness: EOMONTH                    9838 rows     9838 matched  worst      - ULP  exact
+xtask witness: ERF.PRECISE              618437 rows   618418 matched  worst      2 ULP  last_bit
+xtask witness: ERFC                        544 rows      234 matched  worst      6 ULP  numeric
+xtask witness: ERFC.PRECISE               1863 rows     1062 matched  worst      6 ULP  numeric
+xtask witness: ERROR.TYPE                 1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: EUROCONVERT                  13 rows        0 matched  worst      - ULP  structural
+xtask witness: EVEN                       1227 rows     1225 matched  worst      - ULP  structural
+xtask witness: EXP                        2456 rows     2456 matched  worst      - ULP  exact
+xtask witness: EXPON.DIST                49346 rows    49345 matched  worst      1 ULP  last_bit
+xtask witness: EXPONDIST                  9740 rows     9740 matched  worst      - ULP  exact
+xtask witness: F.DIST                      369 rows      172 matched  worst      8 ULP  numeric
+xtask witness: F.DIST.RT                     6 rows        5 matched  worst      2 ULP  last_bit
+xtask witness: F.TEST                       78 rows       17 matched  worst 1767616520413419 ULP  gross
+xtask witness: FACT                       2709 rows     2709 matched  worst      - ULP  exact
+xtask witness: FACTDOUBLE                 2710 rows     2710 matched  worst      - ULP  exact
+xtask witness: FALSE                         1 rows        1 matched  worst      - ULP  exact
+xtask witness: FDIST                      4399 rows      641 matched  worst     23 ULP  numeric
+xtask witness: FINV                         32 rows        2 matched  worst     41 ULP  numeric
+xtask witness: FISHER                    34166 rows    34166 matched  worst      - ULP  exact
+xtask witness: FIXED                       989 rows      201 matched  worst      - ULP  structural
+xtask witness: FLOOR                      1335 rows     1324 matched  worst 4611686018427387904 ULP  structural
+xtask witness: FLOOR.MATH                 1362 rows     1350 matched  worst      - ULP  structural
+xtask witness: FLOOR.PRECISE              1335 rows     1323 matched  worst 4611686018427387904 ULP  structural
+xtask witness: FORECAST                     70 rows       70 matched  worst      - ULP  exact
+xtask witness: FV                         2561 rows     2265 matched  worst 9246589774487968976 ULP  gross
+xtask witness: GAMMA                     12603 rows     6406 matched  worst     49 ULP  numeric
+xtask witness: GAMMA.DIST                77975 rows    47621 matched  worst     58 ULP  numeric
+xtask witness: GAMMA.INV                   204 rows       50 matched  worst     55 ULP  numeric
+xtask witness: GAMMADIST                     6 rows        4 matched  worst      3 ULP  last_bit
+xtask witness: GAMMALN                    4538 rows     2135 matched  worst      7 ULP  numeric
+xtask witness: GAMMALN.PRECISE           14278 rows    10640 matched  worst      7 ULP  numeric
+xtask witness: GAUSS                      9728 rows     9371 matched  worst      3 ULP  last_bit
+xtask witness: GCD                        7966 rows     7966 matched  worst      - ULP  exact
+xtask witness: GEOMEAN                    1225 rows     1225 matched  worst      - ULP  exact
+xtask witness: GESTEP                     1096 rows     1092 matched  worst      - ULP  structural
+xtask witness: GROWTH                     1260 rows     1254 matched  worst      1 ULP  last_bit
+xtask witness: HARMEAN                   19214 rows    19214 matched  worst      - ULP  exact
+xtask witness: HEX2BIN                    1214 rows     1214 matched  worst      - ULP  exact
+xtask witness: HEX2DEC                    1025 rows     1025 matched  worst      - ULP  exact
+xtask witness: HEX2OCT                    1218 rows     1218 matched  worst      - ULP  exact
+xtask witness: HOUR                      14631 rows    14631 matched  worst      - ULP  exact
+xtask witness: HYPGEOM.DIST               3661 rows     3468 matched  worst     20 ULP  numeric
+xtask witness: HYPGEOMDIST                   3 rows        0 matched  worst      3 ULP  last_bit
+xtask witness: IFS                        1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: IMABS                      1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMAGINARY                  1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMARGUMENT                 1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMCONJUGATE                3245 rows     3245 matched  worst      - ULP  exact
+xtask witness: IMCOS                      1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMCOSH                     1209 rows     1202 matched  worst      - ULP  structural
+xtask witness: IMCOT                      1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMCSC                      1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMCSCH                     1209 rows     1201 matched  worst      - ULP  structural
+xtask witness: IMDIV                      2067 rows     2066 matched  worst      - ULP  structural
+xtask witness: IMLN                       1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMLOG10                    1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMLOG2                     1209 rows     1155 matched  worst      - ULP  structural
+xtask witness: IMPRODUCT                  3260 rows     3260 matched  worst      - ULP  exact
+xtask witness: IMREAL                     1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMSECH                     1209 rows     1205 matched  worst      - ULP  structural
+xtask witness: IMSIN                      1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: IMSINH                     1209 rows     1200 matched  worst      - ULP  structural
+xtask witness: IMSQRT                     2029 rows     2029 matched  worst      - ULP  exact
+xtask witness: IMSUB                      1216 rows     1216 matched  worst      - ULP  exact
+xtask witness: IMSUM                      3260 rows     3260 matched  worst      - ULP  exact
+xtask witness: IMTAN                      1209 rows     1209 matched  worst      - ULP  exact
+xtask witness: INT                      124403 rows   124399 matched  worst      4 ULP  structural
+xtask witness: INTERCEPT                     4 rows        4 matched  worst      - ULP  exact
+xtask witness: INTRATE                    2400 rows     2400 matched  worst      - ULP  exact
+xtask witness: IPMT                         57 rows       48 matched  worst      3 ULP  last_bit
+xtask witness: IRR                         734 rows      323 matched  worst 9195100997775460447 ULP  structural
+xtask witness: ISBLANK                    1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISERR                      1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISERROR                    1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISEVEN                    57066 rows    57064 matched  worst      - ULP  structural
+xtask witness: ISLOGICAL                  1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISNA                       1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISNONTEXT                  1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISNUMBER                   1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISO.CEILING                1335 rows     1323 matched  worst 4611686018427387904 ULP  structural
+xtask witness: ISODD                     57016 rows    57014 matched  worst      - ULP  structural
+xtask witness: ISOWEEKNUM                10153 rows    10153 matched  worst      - ULP  exact
+xtask witness: ISREF                      1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: ISTEXT                     1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: JIS                           8 rows        0 matched  worst      - ULP  structural
+xtask witness: KURT                       4508 rows     3209 matched  worst  32768 ULP  gross
+xtask witness: LCM                        7967 rows     7967 matched  worst      - ULP  exact
+xtask witness: LN                         1685 rows     1685 matched  worst      - ULP  exact
+xtask witness: LOG                       25233 rows    25233 matched  worst      - ULP  exact
+xtask witness: LOG10                      2823 rows     2823 matched  worst      - ULP  exact
+xtask witness: LOGEST                      360 rows      360 matched  worst      - ULP  exact
+xtask witness: LOGNORM.DIST               7809 rows     3919 matched  worst   2216 ULP  gross
+xtask witness: LOGNORMDIST                3299 rows     1158 matched  worst      9 ULP  numeric
+xtask witness: LOWER                         6 rows        6 matched  worst      - ULP  exact
+xtask witness: MATCH                        13 rows       13 matched  worst      - ULP  exact
+xtask witness: MAX                        1211 rows     1211 matched  worst      - ULP  exact
+xtask witness: MAXA                       1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: MDURATION                  1260 rows     1103 matched  worst      3 ULP  last_bit
+xtask witness: MEDIAN                    43412 rows    43412 matched  worst      - ULP  exact
+xtask witness: MIN                        1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: MINA                       1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: MINUTE                    14631 rows    14631 matched  worst      - ULP  exact
+xtask witness: MINVERSE: 112 unread recorded rows count as failures
+xtask witness: MINVERSE                   1795 rows     1683 matched  worst      - ULP  structural
+xtask witness: MOD                      152432 rows   152432 matched  worst      - ULP  exact
+xtask witness: MONTH                     10153 rows    10153 matched  worst      - ULP  exact
+xtask witness: MROUND                    50782 rows    50782 matched  worst      - ULP  exact
+xtask witness: N                          1227 rows     1225 matched  worst      - ULP  structural
+xtask witness: NA                            1 rows        1 matched  worst      - ULP  exact
+xtask witness: NEGBINOM.DIST               510 rows      356 matched  worst 4503599627370626 ULP  gross
+xtask witness: NEGBINOMDIST               1804 rows      167 matched  worst    296 ULP  numeric
+xtask witness: NETWORKDAYS                3600 rows     3600 matched  worst      - ULP  exact
+xtask witness: NETWORKDAYS.INTL           3600 rows     3600 matched  worst      - ULP  exact
+xtask witness: NOMINAL                    2085 rows     2085 matched  worst      - ULP  exact
+xtask witness: NORM.DIST                 24246 rows    24002 matched  worst      6 ULP  numeric
+xtask witness: NORM.S.DIST               27497 rows    16422 matched  worst     11 ULP  numeric
+xtask witness: NORMDIST                   4510 rows     4127 matched  worst      5 ULP  numeric
+xtask witness: NOT                        1227 rows     1225 matched  worst      - ULP  structural
+xtask witness: NPER                       2509 rows     2509 matched  worst      - ULP  exact
+xtask witness: NPV                         284 rows      190 matched  worst      2 ULP  last_bit
+xtask witness: OCT2BIN                    1201 rows     1201 matched  worst      - ULP  exact
+xtask witness: OCT2DEC                     998 rows      998 matched  worst      - ULP  exact
+xtask witness: OCT2HEX                    1198 rows     1198 matched  worst      - ULP  exact
+xtask witness: ODD                        1227 rows     1225 matched  worst      - ULP  structural
+xtask witness: OR                         1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: PDURATION                  1205 rows     1205 matched  worst      - ULP  exact
+xtask witness: PERMUT                     3432 rows     3432 matched  worst      - ULP  exact
+xtask witness: PERMUTATIONA              71915 rows    71911 matched  worst      1 ULP  last_bit
+xtask witness: PHI                       14406 rows    14406 matched  worst      - ULP  exact
+xtask witness: PI                            1 rows        1 matched  worst      - ULP  exact
+xtask witness: PMT                      291978 rows   283642 matched  worst      7 ULP  structural
+xtask witness: POISSON.DIST: 4 unread recorded rows count as failures
+xtask witness: POISSON.DIST              49714 rows    39405 matched  worst 18876141089959088 ULP  structural
+xtask witness: POWER                     62635 rows    62633 matched  worst      1 ULP  last_bit
+xtask witness: PPMT                         33 rows       26 matched  worst      3 ULP  last_bit
+xtask witness: PRICE                      9153 rows     9103 matched  worst      1 ULP  last_bit
+xtask witness: PRICEDISC                  2400 rows     2400 matched  worst      - ULP  exact
+xtask witness: PRICEMAT                   3608 rows     3608 matched  worst      - ULP  exact
+xtask witness: PRODUCT                    1211 rows     1211 matched  worst      - ULP  exact
+xtask witness: PROPER                        3 rows        3 matched  worst      - ULP  exact
+xtask witness: PV                         1308 rows     1146 matched  worst 255707920 ULP  gross
+xtask witness: QUOTIENT                   1362 rows     1350 matched  worst      - ULP  structural
+xtask witness: RADIANS                   32925 rows    32923 matched  worst      - ULP  structural
+xtask witness: RATE                        377 rows        5 matched  worst 8956533079650969310 ULP  structural
+xtask witness: RECEIVED                   2400 rows     2400 matched  worst      - ULP  exact
+xtask witness: REGEXTEST                     6 rows        6 matched  worst      - ULP  exact
+xtask witness: ROUND                     36945 rows    36821 matched  worst     16 ULP  numeric
+xtask witness: ROUNDDOWN                 59995 rows    59182 matched  worst 4503599627370490 ULP  gross
+xtask witness: ROUNDUP                   52841 rows    52022 matched  worst 9210368059245316262 ULP  structural
+xtask witness: RRI                        5528 rows     5483 matched  worst      - ULP  structural
+xtask witness: SEC                        2138 rows     2138 matched  worst      - ULP  exact
+xtask witness: SECH                      30424 rows    30423 matched  worst      1 ULP  last_bit
+xtask witness: SECOND                    14631 rows    14631 matched  worst      - ULP  exact
+xtask witness: SIGN                       1226 rows     1224 matched  worst      - ULP  structural
+xtask witness: SIN                        2129 rows     2129 matched  worst      - ULP  exact
+xtask witness: SINH                      33550 rows    33420 matched  worst      1 ULP  last_bit
+xtask witness: SKEW                       4508 rows     4501 matched  worst    170 ULP  numeric
+xtask witness: SLN                        1205 rows     1205 matched  worst      - ULP  exact
+xtask witness: SLOPE                         4 rows        4 matched  worst      - ULP  exact
+xtask witness: SQRT                      42803 rows    42801 matched  worst      - ULP  structural
+xtask witness: SQRTPI                     1224 rows     1224 matched  worst      - ULP  exact
+xtask witness: STANDARDIZE               10310 rows    10302 matched  worst      - ULP  structural
+xtask witness: STDEV                      1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: STDEV.P                    1221 rows     1221 matched  worst      - ULP  exact
+xtask witness: STDEV.S                    1222 rows     1222 matched  worst      - ULP  exact
+xtask witness: STDEVA                     1210 rows     1210 matched  worst      - ULP  exact
+xtask witness: STDEVP                     1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: STDEVPA                    1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: SUM                        1211 rows     1211 matched  worst      - ULP  exact
+xtask witness: SUMSQ                      1211 rows     1211 matched  worst      - ULP  exact
+xtask witness: SWITCH                     1227 rows     1223 matched  worst 7318349394477056 ULP  structural
+xtask witness: SYD                        1207 rows     1207 matched  worst      - ULP  exact
+xtask witness: T                          1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: T.DIST.RT                     6 rows        1 matched  worst     24 ULP  numeric
+xtask witness: TAN                        2114 rows     2114 matched  worst      - ULP  exact
+xtask witness: TANH                      39028 rows    38970 matched  worst      1 ULP  last_bit
+xtask witness: TBILLEQ                    3600 rows     3600 matched  worst      - ULP  exact
+xtask witness: TBILLPRICE                 3600 rows     3600 matched  worst      - ULP  exact
+xtask witness: TBILLYIELD                 2400 rows     2400 matched  worst      - ULP  exact
+xtask witness: TDIST                        92 rows       24 matched  worst     24 ULP  numeric
+xtask witness: TEXT                          7 rows        7 matched  worst      - ULP  exact
+xtask witness: TEXTAFTER                    11 rows       11 matched  worst      - ULP  exact
+xtask witness: TEXTBEFORE                   11 rows       11 matched  worst      - ULP  exact
+xtask witness: TEXTSPLIT                     5 rows        3 matched  worst      - ULP  structural
+xtask witness: TIME                       1296 rows     1296 matched  worst      - ULP  exact
+xtask witness: TINV                         32 rows       15 matched  worst    173 ULP  numeric
+xtask witness: TREND                        12 rows       10 matched  worst      2 ULP  last_bit
+xtask witness: TRUE                          1 rows        1 matched  worst      - ULP  exact
+xtask witness: TRUNC                     51317 rows    50504 matched  worst 4503599627370490 ULP  gross
+xtask witness: TYPE                       1227 rows     1227 matched  worst      - ULP  exact
+xtask witness: UPPER                         5 rows        5 matched  worst      - ULP  exact
+xtask witness: VAR                        1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: VAR.P                      1222 rows     1222 matched  worst      - ULP  exact
+xtask witness: VAR.S                      1323 rows     1323 matched  worst      - ULP  exact
+xtask witness: VARA                       1211 rows     1211 matched  worst      - ULP  exact
+xtask witness: VARP                       1210 rows     1210 matched  worst      - ULP  exact
+xtask witness: VARPA                      1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: VDB                        2201 rows     2201 matched  worst      - ULP  exact
+xtask witness: WEEKDAY                   19523 rows    19523 matched  worst      - ULP  exact
+xtask witness: WEEKNUM                   13332 rows    12889 matched  worst      - ULP  structural
+xtask witness: WEIBULL.DIST              31483 rows    31481 matched  worst      2 ULP  last_bit
+xtask witness: WORKDAY                    3600 rows     3600 matched  worst      - ULP  exact
+xtask witness: WORKDAY.INTL               6000 rows     6000 matched  worst      - ULP  exact
+xtask witness: XMATCH                       13 rows       13 matched  worst      - ULP  exact
+xtask witness: XNPV                       3406 rows     3406 matched  worst      - ULP  exact
+xtask witness: XOR                        1212 rows     1212 matched  worst      - ULP  exact
+xtask witness: YEAR                      10153 rows    10153 matched  worst      - ULP  exact
+xtask witness: YEARFRAC                   4506 rows     4506 matched  worst      - ULP  exact
+xtask witness: YIELD                       533 rows       14 matched  worst 4395513236313605 ULP  gross
+xtask witness: YIELDMAT                   1085 rows     1085 matched  worst      - ULP  exact
+xtask witness: 295 functions, 184 exact on every counted row; 3773399 of 3910007 rows matched, 136608 failed (mismatched, refused or unread; 116 unread)
+xtask witness: 479 inputs read differently: 0 across builds or platforms, 479 within one environment
+xtask witness: wrote crates/calc-func/witness-status.tsv (full)
+xtask witness: wrote crates/calc-func/witness-differences.tsv
+xtask witness: wrote target/witness/full-vs-oxfunc.tsv

@@ -1,0 +1,37 @@
+{
+  "complete": true,
+  "reviewer": "/root/review",
+  "gamma": {
+    "original_scalar_readbacks": 136,
+    "exact_density_rescalings": 58,
+    "inverse_cell_outputs": 29433,
+    "adjacent_gaps": 348,
+    "cycle_rows": [
+      51,
+      55,
+      26,
+      22
+    ],
+    "cycle_sums": {
+      "signed": [
+        "-10723",
+        "36893488147419103232"
+      ],
+      "reciprocal": [
+        "-10723",
+        "36893488147419103232"
+      ],
+      "signed_constant53": [
+        "-10901",
+        "36893488147419103232"
+      ]
+    },
+    "claim": "The conservative shared unknown log/normalizer family is refuted; no private helper is identified."
+  },
+  "gammaln": {
+    "original_readings": 16384,
+    "quadratic_max_checked_remainder_result_ulps": "2.0836e-23",
+    "decision": "Defer the final-P-store-only change. P-only mean jumps support its hypothesis, but unchanged-table models do not reproduce them; more coefficient-independent discrimination is needed to justify an executable change and classify its losses."
+  },
+  "limits": "Independent read-only review, not a new machine-generated proof executable. Final source epochs were replayed offline after the same calculations; original input/readback lineage remains intact."
+}

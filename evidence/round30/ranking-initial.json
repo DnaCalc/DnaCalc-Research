@@ -1,0 +1,866 @@
+{
+  "complete": true,
+  "application": {
+    "revision": "c63ce530b3916a78bd4eaa06bb7c63da827053f2",
+    "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "problem_report_sha256": "8de21166bc13eee59035adf6c3e42533b481a929540457e79993db1ad123c7b9",
+  "bank": {
+    "rows": 3910007,
+    "matched": 3773403,
+    "failed": 136604,
+    "counts": {
+      "matched": 3773403,
+      "refused": 1001,
+      "last_bit": 117325,
+      "larger_numeric": 17511,
+      "other_mismatch": 651,
+      "unread": 116
+    },
+    "pass_rate": 0.9650629781481209,
+    "canonical_trace_sha256": "48f6738b5ecb53e2e59fe57c92629220692fc81fccb9d9b213227c6437576430"
+  },
+  "corpus": {
+    "formula_cells": 54794,
+    "matched": 52250,
+    "inclusive_failed": 2544,
+    "awaiting_capture": 100,
+    "pass_rate": 0.9535715589298098,
+    "other_failed_verdicts": {
+      "not_modeled": 893,
+      "not_run": 7
+    },
+    "mismatches": 1457,
+    "counts": {
+      "larger_numeric": 558,
+      "last_bit": 686,
+      "other_mismatch": 213
+    }
+  },
+  "priority_counts": [
+    {
+      "function": "GAMMA.DIST",
+      "bank_failures": 30352,
+      "bank": {
+        "larger_numeric": 166,
+        "last_bit": 30186,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 13
+    },
+    {
+      "function": "NORM.S.DIST",
+      "bank_failures": 11075,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 11075,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 1
+    },
+    {
+      "function": "POISSON.DIST",
+      "bank_failures": 10309,
+      "bank": {
+        "larger_numeric": 2240,
+        "last_bit": 8065,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 4
+      },
+      "corpus_mismatches": 79
+    },
+    {
+      "function": "PMT",
+      "bank_failures": 8336,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 8325,
+        "other_mismatch": 4,
+        "refused": 7,
+        "unread": 0
+      },
+      "corpus_mismatches": 0
+    },
+    {
+      "function": "GAMMA",
+      "bank_failures": 6197,
+      "bank": {
+        "larger_numeric": 26,
+        "last_bit": 6171,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 0
+    },
+    {
+      "function": "GAMMALN.PRECISE",
+      "bank_failures": 3638,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 3638,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 0
+    },
+    {
+      "function": "GAMMALN",
+      "bank_failures": 2403,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 2403,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 0
+    },
+    {
+      "function": "ERFC.PRECISE",
+      "bank_failures": 801,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 801,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 1
+    },
+    {
+      "function": "CUMPRINC",
+      "bank_failures": 401,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 401,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 163
+    },
+    {
+      "function": "ERFC",
+      "bank_failures": 310,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 310,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 2
+    },
+    {
+      "function": "HYPGEOM.DIST",
+      "bank_failures": 193,
+      "bank": {
+        "larger_numeric": 3,
+        "last_bit": 190,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 29
+    },
+    {
+      "function": "BESSELJ",
+      "bank_failures": 1,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 1,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 12
+    },
+    {
+      "function": "LINEST",
+      "bank_failures": 0,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 253
+    },
+    {
+      "function": "LOGEST",
+      "bank_failures": 0,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 243
+    },
+    {
+      "function": "BESSELY",
+      "bank_failures": 0,
+      "bank": {
+        "larger_numeric": 0,
+        "last_bit": 0,
+        "other_mismatch": 0,
+        "refused": 0,
+        "unread": 0
+      },
+      "corpus_mismatches": 2
+    }
+  ],
+  "all_bank_counts": [
+    {
+      "function": "BINOM.DIST",
+      "failed": 38335
+    },
+    {
+      "function": "GAMMA.DIST",
+      "failed": 30352
+    },
+    {
+      "function": "NORM.S.DIST",
+      "failed": 11075
+    },
+    {
+      "function": "POISSON.DIST",
+      "failed": 10309
+    },
+    {
+      "function": "PMT",
+      "failed": 8336
+    },
+    {
+      "function": "GAMMA",
+      "failed": 6197
+    },
+    {
+      "function": "LOGNORM.DIST",
+      "failed": 3890
+    },
+    {
+      "function": "FDIST",
+      "failed": 3758
+    },
+    {
+      "function": "GAMMALN.PRECISE",
+      "failed": 3638
+    },
+    {
+      "function": "GAMMALN",
+      "failed": 2403
+    },
+    {
+      "function": "LOGNORMDIST",
+      "failed": 2141
+    },
+    {
+      "function": "BETA.DIST",
+      "failed": 1937
+    },
+    {
+      "function": "NEGBINOMDIST",
+      "failed": 1637
+    },
+    {
+      "function": "KURT",
+      "failed": 1299
+    },
+    {
+      "function": "ROUNDUP",
+      "failed": 819
+    },
+    {
+      "function": "ROUNDDOWN",
+      "failed": 813
+    },
+    {
+      "function": "TRUNC",
+      "failed": 813
+    },
+    {
+      "function": "ERFC.PRECISE",
+      "failed": 801
+    },
+    {
+      "function": "FIXED",
+      "failed": 788
+    },
+    {
+      "function": "YIELD",
+      "failed": 519
+    },
+    {
+      "function": "BINOM.DIST.RANGE",
+      "failed": 484
+    },
+    {
+      "function": "WEEKNUM",
+      "failed": 443
+    },
+    {
+      "function": "IRR",
+      "failed": 411
+    },
+    {
+      "function": "CUMPRINC",
+      "failed": 401
+    },
+    {
+      "function": "NORMDIST",
+      "failed": 383
+    },
+    {
+      "function": "RATE",
+      "failed": 372
+    },
+    {
+      "function": "GAUSS",
+      "failed": 357
+    },
+    {
+      "function": "DURATION",
+      "failed": 333
+    },
+    {
+      "function": "ERFC",
+      "failed": 310
+    },
+    {
+      "function": "FV",
+      "failed": 296
+    },
+    {
+      "function": "NORM.DIST",
+      "failed": 244
+    },
+    {
+      "function": "F.DIST",
+      "failed": 197
+    },
+    {
+      "function": "HYPGEOM.DIST",
+      "failed": 193
+    },
+    {
+      "function": "PV",
+      "failed": 162
+    },
+    {
+      "function": "MDURATION",
+      "failed": 157
+    },
+    {
+      "function": "NEGBINOM.DIST",
+      "failed": 154
+    },
+    {
+      "function": "BETADIST",
+      "failed": 154
+    },
+    {
+      "function": "GAMMA.INV",
+      "failed": 154
+    },
+    {
+      "function": "CHIDIST",
+      "failed": 138
+    },
+    {
+      "function": "SINH",
+      "failed": 130
+    },
+    {
+      "function": "ROUND",
+      "failed": 124
+    },
+    {
+      "function": "MINVERSE",
+      "failed": 112
+    },
+    {
+      "function": "NPV",
+      "failed": 94
+    },
+    {
+      "function": "CHIINV",
+      "failed": 69
+    },
+    {
+      "function": "TDIST",
+      "failed": 68
+    },
+    {
+      "function": "F.TEST",
+      "failed": 61
+    },
+    {
+      "function": "TANH",
+      "failed": 58
+    },
+    {
+      "function": "COTH",
+      "failed": 56
+    },
+    {
+      "function": "IMLOG2",
+      "failed": 54
+    },
+    {
+      "function": "PRICE",
+      "failed": 50
+    },
+    {
+      "function": "COMPLEX",
+      "failed": 50
+    },
+    {
+      "function": "RRI",
+      "failed": 45
+    },
+    {
+      "function": "BETAINV",
+      "failed": 44
+    },
+    {
+      "function": "FINV",
+      "failed": 30
+    },
+    {
+      "function": "CHISQ.INV",
+      "failed": 28
+    },
+    {
+      "function": "CUMIPMT",
+      "failed": 26
+    },
+    {
+      "function": "ERF.PRECISE",
+      "failed": 18
+    },
+    {
+      "function": "TINV",
+      "failed": 17
+    },
+    {
+      "function": "EUROCONVERT",
+      "failed": 13
+    },
+    {
+      "function": "CEILING",
+      "failed": 12
+    },
+    {
+      "function": "CEILING.PRECISE",
+      "failed": 12
+    },
+    {
+      "function": "FLOOR.PRECISE",
+      "failed": 12
+    },
+    {
+      "function": "ISO.CEILING",
+      "failed": 12
+    },
+    {
+      "function": "CEILING.MATH",
+      "failed": 12
+    },
+    {
+      "function": "FLOOR.MATH",
+      "failed": 12
+    },
+    {
+      "function": "QUOTIENT",
+      "failed": 12
+    },
+    {
+      "function": "FLOOR",
+      "failed": 11
+    },
+    {
+      "function": "IPMT",
+      "failed": 9
+    },
+    {
+      "function": "IMSINH",
+      "failed": 9
+    },
+    {
+      "function": "IMCSCH",
+      "failed": 8
+    },
+    {
+      "function": "JIS",
+      "failed": 8
+    },
+    {
+      "function": "STANDARDIZE",
+      "failed": 8
+    },
+    {
+      "function": "PPMT",
+      "failed": 7
+    },
+    {
+      "function": "SKEW",
+      "failed": 7
+    },
+    {
+      "function": "IMCOSH",
+      "failed": 7
+    },
+    {
+      "function": "CSCH",
+      "failed": 6
+    },
+    {
+      "function": "GROWTH",
+      "failed": 6
+    },
+    {
+      "function": "T.DIST.RT",
+      "failed": 5
+    },
+    {
+      "function": "CONCAT",
+      "failed": 5
+    },
+    {
+      "function": "CONCATENATE",
+      "failed": 5
+    },
+    {
+      "function": "SWITCH",
+      "failed": 4
+    },
+    {
+      "function": "PERMUTATIONA",
+      "failed": 4
+    },
+    {
+      "function": "INT",
+      "failed": 4
+    },
+    {
+      "function": "DELTA",
+      "failed": 4
+    },
+    {
+      "function": "GESTEP",
+      "failed": 4
+    },
+    {
+      "function": "IMSECH",
+      "failed": 4
+    },
+    {
+      "function": "BINOM.INV",
+      "failed": 3
+    },
+    {
+      "function": "HYPGEOMDIST",
+      "failed": 3
+    },
+    {
+      "function": "CHISQ.TEST",
+      "failed": 2
+    },
+    {
+      "function": "POWER",
+      "failed": 2
+    },
+    {
+      "function": "TREND",
+      "failed": 2
+    },
+    {
+      "function": "WEIBULL.DIST",
+      "failed": 2
+    },
+    {
+      "function": "ABS",
+      "failed": 2
+    },
+    {
+      "function": "DEGREES",
+      "failed": 2
+    },
+    {
+      "function": "EVEN",
+      "failed": 2
+    },
+    {
+      "function": "ISEVEN",
+      "failed": 2
+    },
+    {
+      "function": "ISODD",
+      "failed": 2
+    },
+    {
+      "function": "N",
+      "failed": 2
+    },
+    {
+      "function": "NOT",
+      "failed": 2
+    },
+    {
+      "function": "ODD",
+      "failed": 2
+    },
+    {
+      "function": "RADIANS",
+      "failed": 2
+    },
+    {
+      "function": "SIGN",
+      "failed": 2
+    },
+    {
+      "function": "SQRT",
+      "failed": 2
+    },
+    {
+      "function": "TEXTSPLIT",
+      "failed": 2
+    },
+    {
+      "function": "CRITBINOM",
+      "failed": 1
+    },
+    {
+      "function": "GAMMADIST",
+      "failed": 1
+    },
+    {
+      "function": "F.DIST.RT",
+      "failed": 1
+    },
+    {
+      "function": "BESSELJ",
+      "failed": 1
+    },
+    {
+      "function": "EXPON.DIST",
+      "failed": 1
+    },
+    {
+      "function": "SECH",
+      "failed": 1
+    },
+    {
+      "function": "IMDIV",
+      "failed": 1
+    },
+    {
+      "function": "LINEST",
+      "failed": 0
+    },
+    {
+      "function": "LOGEST",
+      "failed": 0
+    },
+    {
+      "function": "ODDFYIELD",
+      "failed": 0
+    },
+    {
+      "function": "BESSELY",
+      "failed": 0
+    },
+    {
+      "function": "ZTEST",
+      "failed": 0
+    },
+    {
+      "function": "Z.TEST",
+      "failed": 0
+    },
+    {
+      "function": "BINOMDIST",
+      "failed": 0
+    },
+    {
+      "function": "CONFIDENCE",
+      "failed": 0
+    },
+    {
+      "function": "GAMMAINV",
+      "failed": 0
+    },
+    {
+      "function": "LOGINV",
+      "failed": 0
+    },
+    {
+      "function": "POISSON",
+      "failed": 0
+    },
+    {
+      "function": "TTEST",
+      "failed": 0
+    },
+    {
+      "function": "BETA.INV",
+      "failed": 0
+    },
+    {
+      "function": "CHISQ.DIST.RT",
+      "failed": 0
+    },
+    {
+      "function": "CONFIDENCE.NORM",
+      "failed": 0
+    },
+    {
+      "function": "CONFIDENCE.T",
+      "failed": 0
+    },
+    {
+      "function": "F.INV",
+      "failed": 0
+    },
+    {
+      "function": "F.INV.RT",
+      "failed": 0
+    },
+    {
+      "function": "LOGNORM.INV",
+      "failed": 0
+    },
+    {
+      "function": "T.DIST",
+      "failed": 0
+    },
+    {
+      "function": "T.DIST.2T",
+      "failed": 0
+    },
+    {
+      "function": "T.INV.2T",
+      "failed": 0
+    },
+    {
+      "function": "T.TEST",
+      "failed": 0
+    },
+    {
+      "function": "COLUMNS",
+      "failed": 0
+    },
+    {
+      "function": "Cell reference (unresolved)",
+      "failed": 0
+    },
+    {
+      "function": "HSTACK",
+      "failed": 0
+    },
+    {
+      "function": "INDEX",
+      "failed": 0
+    },
+    {
+      "function": "Infix &",
+      "failed": 0
+    },
+    {
+      "function": "Infix +",
+      "failed": 0
+    },
+    {
+      "function": "Infix -",
+      "failed": 0
+    },
+    {
+      "function": "ROWS",
+      "failed": 0
+    },
+    {
+      "function": "SORT",
+      "failed": 0
+    }
+  ],
+  "dependency_order": [
+    {
+      "stage": "Gamma prefactor/series and GAMMALN bands/seed",
+      "consumers": [
+        "GAMMA.DIST",
+        "GAMMA",
+        "GAMMALN",
+        "GAMMALN.PRECISE",
+        "GAMMA.INV"
+      ],
+      "qualification": "The current shared-log/normalizer prefactor family is refuted on four original dyadic pairs; fixing GAMMALN alone is not an established solution."
+    },
+    {
+      "stage": "Upper ERFC F and complement wrappers",
+      "consumers": [
+        "ERFC",
+        "ERFC.PRECISE",
+        "NORM.S.DIST",
+        "LOGNORM.DIST",
+        "LOGNORMDIST"
+      ],
+      "qualification": "Normal wrapper is independently paired; F remains unidentified."
+    },
+    {
+      "stage": "Poisson private seed/log stage",
+      "consumers": [
+        "POISSON.DIST"
+      ],
+      "qualification": "Original R28 inverse gaps remain; public Poisson does not equal general gamma density on the new dyadic cohort."
+    },
+    {
+      "stage": "PMT timing and balance stages, then amortization consumers",
+      "consumers": [
+        "PMT",
+        "IPMT",
+        "PPMT",
+        "CUMIPMT",
+        "CUMPRINC"
+      ],
+      "qualification": "Recovered positive timing is independently pinned; negative final strict-product premise was refuted. CUMPRINC has its own unresolved route."
+    },
+    {
+      "stage": "Hypergeometric quotient and endpoints",
+      "consumers": [
+        "HYPGEOM.DIST"
+      ],
+      "qualification": "No probability-one shortcut or per-row correction justified."
+    },
+    {
+      "stage": "QR rank",
+      "consumers": [
+        "LINEST",
+        "LOGEST",
+        "TREND",
+        "GROWTH"
+      ],
+      "qualification": "Workbook-shaped observations live in the corpus, so zero scalar-bank failures is not a solved result."
+    },
+    {
+      "stage": "Bessel seeds and recurrences",
+      "consumers": [
+        "BESSELJ",
+        "BESSELY",
+        "BESSELI",
+        "BESSELK"
+      ],
+      "qualification": "Bank and corpus counts are separate observations and not summed."
+    }
+  ],
+  "limits": "Exact comparisons only. Inclusive bank failures include refused/unread rows. Corpus column here is mismatches; the report separately retains refusals, not-run and pending cells. Counts across sources may overlap and are never added. BINOM.DIST still has38335 general-bank failures despite the fully matched1132-call admission cohort."
+}

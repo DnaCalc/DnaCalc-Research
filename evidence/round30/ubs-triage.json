@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "python": {
+    "critical": 0,
+    "warning": 31,
+    "info": 90
+  },
+  "rust_product": {
+    "critical": 0,
+    "warning": 483,
+    "info": 24
+  },
+  "disposition": "Every reported new-tool location was reviewed: local numerical grids make denominators positive/nonzero, parse failures deliberately stop analyses, closed interval exact arithmetic is intentional, native calls use bounded fixed argument vectors, and nested definitions/lists are finite. Product findings are numeric float equality, guarded variable divisions, casts, fixed indexing and test assertions in the scanned full files; no new critical finding.",
+  "limits": "Python SQL detector is incomplete: unsupported generator consumer, SQLFlowLimit. UBS doctor --fix reports the environment healthy; the analyzer limitation remains. No SQL is executed by these tools. Findings were triaged; no all-detectors-clean claim. Separate original-readback verification, independent exact/native review and actual product tests supply the numerical evidence."
+}

@@ -420,6 +420,236 @@ def products(checkout,prior,output,cache,offline=False):
     return result
 
 
+def timing_edges(checkout,output,cache,offline=False):
+    """Fixed exponent controls for a reciprocal timing coefficient."""
+    rates=[2.**e for e in (-1022,-1000,-64,-53,-52,-10,0,52,53,500,1023)]
+    rates += [1e308,value('7fefffffffffffff')]
+    periods=(.5,1.,2.,12.,360.,-1.,-12.)
+    balances=((.125,0.),(1.,0.),(1.1,0.),(1.,.7),(1.,-1.),(0.,1.),(1000.,-700.))
+    rows=[[r,n,p,f,t] for r in rates for n in periods for p,f in balances for t in (0.,1.)]
+    questions=[[dict(type='number',bits=bits(v)) for v in row] for row in rows]
+    write(str(output)+'.questions.json',dict(format='dnacalc-annuity-timing-exponent-questions/1',
+        complete=True,rows=questions,source_bindings=SOURCE_BINDINGS,
+        selection='Fixed normal-rate exponent edges, maximum finite rates, ordinary balances and future values, both timings, and negative-period unchanged-route controls.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('PMT',questions)['rows']
+    result=dict(format='dnacalc-annuity-timing-exponent-edges/1',complete=True,
+        records=[dict(args=[a['bits'] for a in q],answer=a) for q,a in zip(questions,answers)],
+        receipts=service.receipts,source_bindings=SOURCE_BINDINGS,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Original numeric/error readings at preselected exponent and mathematical branch controls. '
+        'No edge is an inferred approximation cutoff and no answer is a model prediction. '
+        'Negative-period controls do not establish a new timing model for that route.')
+    write(output,result);print(json.dumps(Counter(a['type'] for a in answers)),flush=True);return result
+
+
+def cumulative_pairs(checkout,output,cache,offline=False):
+    """Separate the cumulative singleton route from its summation stage."""
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    groups=[];points=[];spans=[]
+    for rate in (.0025,.03,.125,2.**-10):
+        for n in (12,60,360):
+            for pv in (1.,1.1,1000.):
+                for timing in (0.,1.):
+                    group=dict(rate=bits(rate),periods=bits(n),pv=bits(pv),timing=bits(timing))
+                    groups.append(group)
+                    intervals=sorted({(start,min(start+length-1,n)) for start in (1,2,5,n//2,n-1)
+                                      for length in (2,3)})
+                    ks=sorted({k for start,end in intervals for k in range(start,end+1)}|{n})
+                    points.extend(dict(group,period=bits(k)) for k in ks)
+                    spans.extend(dict(group,start=start,end=end) for start,end in intervals)
+    def pmt_args(g):return [g['rate'],g['periods'],g['pv'],bits(0.),g['timing']]
+    def part_args(p):return [p['rate'],p['period'],p['periods'],p['pv'],bits(0.),p['timing']]
+    def cumulative_args(r,start,end):return [r['rate'],r['periods'],r['pv'],bits(start),bits(end),r['timing']]
+    def ask(name,rows):return service.ask(name,[[client.number(v) for v in row] for row in rows])['rows']
+    key=lambda g:tuple(g[k] for k in ('rate','periods','pv','timing'))
+    write(str(output)+'.questions.json',dict(format='dnacalc-cumulative-public-route-questions/1',complete=True,
+        groups=groups,points=points,spans=spans,source_bindings=SOURCE_BINDINGS,
+        selection='Fixed rates, periods, balances and timings. Short intervals expose singleton publications and ascending sums separately.'))
+    payments=dict(zip(map(key,groups),ask('PMT',[pmt_args(g) for g in groups])))
+    parts={name:ask(name,[part_args(p) for p in points]) for name in ('PPMT','IPMT')}
+    point_predictions=[]
+    for i,p in enumerate(points):
+        payment,principal,interest=payments[key(p)],parts['PPMT'][i],parts['IPMT'][i]
+        if any(a['type']!='number' for a in (payment,principal,interest)):
+            raise ValueError('ordinary financial controls must be numeric')
+        m,pr,it=map(lambda a:binary64(a['bits']),(payment,principal,interest))
+        point_predictions.append(dict(p,payment=payment,public_ppmt=principal,public_ipmt=interest,
+            principal_predictions=dict(public_ppmt=principal['bits'],
+                payment_minus_interest_strict=bits(float(operation(m,-it,'add','strict'))),
+                payment_minus_interest_stored_pc64=bits(float(operation(m,-it,'add','stored_pc64'))))))
+    write(str(output)+'.singleton-predictions.json',dict(format='dnacalc-cumulative-singleton-predictions/1',
+        complete=True,records=point_predictions,receipts=service.receipts,source_bindings=SOURCE_BINDINGS))
+    principals=ask('CUMPRINC',[cumulative_args(p,value(p['period']),value(p['period'])) for p in points])
+    interests=ask('CUMIPMT',[cumulative_args(p,value(p['period']),value(p['period'])) for p in points])
+    lookup={};counts=Counter()
+    for i,p in enumerate(point_predictions):
+        p['cumprinc']=principals[i];p['cumipmt']=interests[i]
+        if principals[i]['type']!='number' or interests[i]['type']!='number':
+            raise ValueError('ordinary cumulative singleton must be numeric')
+        lookup[key(p)+(int(value(p['period'])),)]=p
+        counts['singleton_rows']+=1
+        for model,want in p['principal_predictions'].items():
+            counts['singleton_principal/'+model]+=principals[i]==dict(type='number',bits=want)
+        counts['singleton_interest/public_ipmt']+=interests[i]==p['public_ipmt']
+        for model in ('strict','stored_pc64'):
+            predicted=bits(float(operation(binary64(p['payment']['bits']),-binary64(principals[i]['bits']),'add',model)))
+            counts['singleton_interest/payment_minus_cumprinc_'+model]+=interests[i]==dict(type='number',bits=predicted)
+    span_predictions=[]
+    for r in spans:
+        point_rows=[lookup[key(r)+(k,)] for k in range(r['start'],r['end']+1)]
+        predictions={}
+        for source in ('cumprinc','public_ppmt'):
+            values=[binary64(p[source]['bits']) for p in point_rows]
+            for model in ('strict','stored_pc64','resident_pc64'):
+                total=0
+                for v in values:total=operation(total,v,'add',model)
+                predictions[source+'/'+model]=bits(float(round_model(total,'strict')))
+        span_predictions.append(dict(r,predictions=predictions))
+    write(str(output)+'.span-predictions.json',dict(format='dnacalc-cumulative-span-predictions/1',complete=True,
+        records=span_predictions,singletons=point_predictions,receipts=service.receipts,source_bindings=SOURCE_BINDINGS))
+    span_answers=ask('CUMPRINC',[cumulative_args(r,r['start'],r['end']) for r in spans])
+    for row,answer in zip(span_predictions,span_answers):
+        row['answer']=answer;counts['span_rows']+=1
+        for model,prediction in row['predictions'].items():
+            counts['span/'+model]+=answer==dict(type='number',bits=prediction)
+    result=dict(format='dnacalc-cumulative-public-route-pairs/1',complete=True,counts=counts,
+        singletons=point_predictions,spans=span_predictions,receipts=service.receipts,source_bindings=SOURCE_BINDINGS,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        singleton_predictions_sha256=sha(str(output)+'.singleton-predictions.json'),
+        span_predictions_sha256=sha(str(output)+'.span-predictions.json'),
+        limits='Original PMT/IPMT/PPMT leaves precede independent cumulative singleton answers, '
+        'which precede the short-interval answers. Fixed scalar routes and three ascending-sum '
+        'precisions are tested separately. A contradiction excludes only that exact public '
+        'composition, not an unpublished component or arbitrary cumulative algorithm. No '
+        'principal, summation selector, tolerance or coefficient is fitted or installed.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
+def cumulative_fv(checkout,study,output,cache,offline=False):
+    """Condition end-payment principal expressions on independent public FV."""
+    from geomean import verified_study_answers
+    source=Path(study);doc=json.loads(source.read_text())
+    if doc.get('complete') is not True:raise ValueError('incomplete cumulative pairs')
+    _,bindings,_=verified_study_answers(doc,Path(cache))
+    frozen={**SOURCE_BINDINGS,**bindings,str(source.resolve()):sha(source)}
+    points=[p for p in doc['singletons'] if p['timing']==bits(0.)]
+    spans=[r for r in doc['spans'] if r['timing']==bits(0.)]
+    questions=[[p['rate'],bits(value(p['period'])-1.),p['payment']['bits'],p['pv'],bits(0.)] for p in points]
+    write(str(output)+'.questions.json',dict(format='dnacalc-cumulative-fv-leaf-questions/1',complete=True,
+        rows=questions,source_bindings=frozen,
+        hypothesis='End-payment principal is PMT-FV(rate,k-1,PMT,pv,0)*rate, accumulated in ascending period order.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('FV',[[client.number(x) for x in row] for row in questions])['rows']
+    after_questions=[[p['rate'],p['period'],p['payment']['bits'],p['pv'],bits(0.)] for p in points]
+    write(str(output)+'.balance-questions.json',dict(format='dnacalc-cumulative-fv-balance-questions/1',complete=True,
+        rows=after_questions,source_bindings=frozen,
+        hypothesis='Principal over an interval is public FV before the first period minus public FV after the last period.'))
+    after_answers=service.ask('FV',[[client.number(x) for x in row] for row in after_questions])['rows']
+    # Fixed simple source forms, ranked by code shape, not observed matches.
+    models=dict(compiled_expression=('resident_pc64','resident_pc64','stored_pc64'),
+                stored_assignments=('stored_pc64','stored_pc64','stored_pc64'),
+                strict=('strict','strict','strict'),
+                stored_interest=('stored_pc64','resident_pc64','stored_pc64'))
+    counts=Counter();records=[];lookup={}
+    def key(p):return tuple(p[k] for k in ('rate','periods','pv','timing'))
+    def term(p,fv,model):
+        multiply,subtract,_=models[model]
+        interest=operation(binary64(fv['bits']),binary64(p['rate']),'mul',multiply)
+        return operation(binary64(p['payment']['bits']),-interest,'add',subtract)
+    for p,fv,after_fv in zip(points,answers,after_answers):
+        if fv['type']!='number' or after_fv['type']!='number':raise ValueError('finite FV control must be numeric')
+        lookup[key(p)+(int(value(p['period'])),)]=(p,fv,after_fv)
+        predictions={name:bits(float(round_model(term(p,fv,name),'stored_pc64'))) for name in models}
+        for model in ('strict','stored_pc64'):
+            predictions['balance_'+model]=bits(float(operation(binary64(fv['bits']),-binary64(after_fv['bits']),'add',model)))
+        records.append(dict(p,public_fv=fv,public_fv_after=after_fv,predictions=predictions));counts['singletons']+=1
+        for name,b in predictions.items():counts['singleton/'+name]+=p['cumprinc']==dict(type='number',bits=b)
+    interval_records=[]
+    for row in spans:
+        predictions={}
+        for name,(_,_,summation) in models.items():
+            total=0
+            for k in range(row['start'],row['end']+1):
+                p,fv,_=lookup[key(row)+(k,)]
+                total=operation(total,term(p,fv,name),'add',summation)
+            predictions[name]=bits(float(round_model(total,'strict')))
+        _,first_fv,_=lookup[key(row)+(row['start'],)]
+        _,_,last_fv=lookup[key(row)+(row['end'],)]
+        for model in ('strict','stored_pc64'):
+            predictions['balance_'+model]=bits(float(operation(binary64(first_fv['bits']),-binary64(last_fv['bits']),'add',model)))
+        interval_records.append(dict(row,public_fv_predictions=predictions));counts['spans']+=1
+        for name,b in predictions.items():counts['span/'+name]+=row['answer']==dict(type='number',bits=b)
+    result=dict(format='dnacalc-cumulative-public-fv-route/1',complete=True,counts=counts,models=models,
+        singletons=records,spans=interval_records,receipts=doc['receipts']+service.receipts,
+        source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Discovery comparison on the earlier end-payment cumulative cohort. Public FV leaves '
+        'are newly observed at the original public PMT amount. The four literal expression/store '
+        'forms and direct FV endpoint differences are fixed before those FV answers; no logarithm, private principal or selector is '
+        'fitted. A complete survivor would still require fresh discriminants and validation. '
+        'Beginning-payment semantics are outside this isolated route test.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
+def cumulative_denominators(checkout,output,cache,offline=False):
+    """Pin a possible first-principal denominator without a growth producer."""
+    rates=(.0025,.03,.125,2.**-10);periods=(12.,60.,360.)
+    balances=[.125,1.,1.1,1000.,125000.,2.**20]
+    balances += [value(f'{int(bits(1.),16)+k:016x}') for k in (-2,-1,1,2)]
+    groups=[(r,n) for r in rates for n in periods]
+    rows=[[r,n,pv,1.,1.,0.] for r,n in groups for pv in balances]
+    write(str(output)+'.questions.json',dict(format='dnacalc-cumulative-denominator-questions/1',complete=True,
+        rows=[[bits(x) for x in r] for r in rows],source_bindings=SOURCE_BINDINGS,
+        hypothesis='One shared binary64 positive growth-minus-one denominator per loan; quotient-first and product-first principal expressions, each with coherent strict or stored-PC64 arithmetic.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    answers=service.ask('CUMPRINC',[[client.number(x) for x in row] for row in rows])['rows']
+    fv=service.ask('FV',[[client.number(r),client.number(n),client.number(0.),client.number(1.),client.number(0.)] for r,n in groups])['rows']
+    powers=service.ask('POWER',[[client.number(1.+r),client.number(n)] for r,n in groups])['rows']
+    records=[];counts=Counter()
+    for i,(rate,n) in enumerate(groups):
+        rr=binary64(bits(rate));observed=answers[i*len(balances):(i+1)*len(balances)]
+        candidates=[]
+        for order in ('quotient_first','product_first'):
+            for model in ('strict','stored_pc64'):
+                domain=None;contradicted=False;first_contradiction=None
+                for j,(pv,answer) in enumerate(zip(balances,observed)):
+                    if answer['type']!='number':raise ValueError('first principal must be numeric')
+                    target=-binary64(answer['bits']);pp=binary64(bits(pv))
+                    if order=='quotient_first':
+                        q=inverse(Span(target,target),rr,'mul',True,model)
+                        constraint=inverse(q,pp,'div',False,model) if q is not None else None
+                    else:
+                        numerator=operation(pp,rr,'mul',model)
+                        constraint=inverse(Span(target,target),numerator,'div',False,model)
+                    if not contradicted:
+                        domain=constraint if domain is None else (None if constraint is None else domain.meet(constraint))
+                        if domain is None:contradicted=True;first_contradiction=j
+                coords=B.coordinates(domain) if domain else None
+                total=0 if coords is None else coords[1]-coords[0]+1
+                name=order+'/'+model;counts[name+'/groups']+=1;counts[name+'/nonempty']+=total>0
+                counts[name+'/unique']+=total==1
+                values=[] if coords is None else [bits(float(B.value(k))) for k in range(coords[0],min(coords[1]+1,coords[0]+8))]
+                public={}
+                for leaf,growth in (('FV',fv[i]),('POWER',powers[i])):
+                    if growth['type']!='number':raise ValueError('ordinary growth must be numeric')
+                    g=binary64(growth['bits'])*(-1 if leaf=='FV' else 1)
+                    denominator=operation(g,-1,'add',model)
+                    public[leaf]=dict(denominator=bits(float(denominator)),possible=domain is not None and domain.contains(denominator))
+                    counts[name+'/'+leaf+'_possible']+=public[leaf]['possible']
+                candidates.append(dict(order=order,model=model,domain=domain.json() if domain else None,
+                    binary64_count=total,values=values,first_contradiction=first_contradiction,public_growth=public))
+        records.append(dict(rate=bits(rate),periods=bits(n),balances=[bits(v) for v in balances],
+                            answers=observed,public_fv=fv[i],public_power=powers[i],candidates=candidates))
+    result=dict(format='dnacalc-cumulative-first-principal-denominators/1',complete=True,counts=counts,
+        records=records,receipts=service.receipts,source_bindings=SOURCE_BINDINGS,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Necessary common-denominator constraints from ten independent PV scales/adjacent balances. '
+        'A surviving denominator is not a growth producer and is never installed. The public FV/POWER '
+        'leaves are independent controls, not assumed private helpers. No finite program is selected '
+        'by how many rows it matches; every empty intersection is retained.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('checkout')
@@ -431,8 +661,20 @@ if __name__ == '__main__':
     p.add_argument('--compose')
     p.add_argument('--edges',action='store_true')
     p.add_argument('--products')
+    p.add_argument('--timing-edges',action='store_true')
+    p.add_argument('--cumulative-pairs',action='store_true')
+    p.add_argument('--cumulative-fv')
+    p.add_argument('--cumulative-denominators',action='store_true')
     a=p.parse_args()
-    if a.products:
+    if a.cumulative_denominators:
+        cumulative_denominators(a.checkout,a.output,a.cache,a.offline)
+    elif a.cumulative_fv:
+        cumulative_fv(a.checkout,a.cumulative_fv,a.output,a.cache,a.offline)
+    elif a.cumulative_pairs:
+        cumulative_pairs(a.checkout,a.output,a.cache,a.offline)
+    elif a.timing_edges:
+        timing_edges(a.checkout,a.output,a.cache,a.offline)
+    elif a.products:
         products(a.checkout,a.products,a.output,a.cache,a.offline)
     elif a.edges:
         edges(a.checkout,a.output,a.cache,a.offline)

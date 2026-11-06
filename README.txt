@@ -1,5 +1,26 @@
 DNA Calc arithmetic program research
 
+R30 keeps one numerical stage at a time. Its initial count/dependency ranking
+and original scalar replies are bound by evidence/round30/index.json. Gamma's
+declared shared-log/normalizer prefactor is refuted by four exact difference
+constraints, independently replayed on 29433 cell inputs and 348 neighbors.
+The 16384 new GAMMALN readings show numerator-only binade jumps, but the
+ambiguous table prevents a justified store-only executable change; none lands.
+
+Main bd5471f1 adopts the paired upper-ERF/negative-ERFC complements. Its full
+bank gains13 and loses17 (all1ULP); corpus gains0 and loses5. Every loss has
+its original ERFC counterpart and returned value retained. The unchanged F
+stand-in stays open. Final required check passes1871 tests; native/software
+returns agree on2725 edge and6656 paired ERF records, without adding the
+cohorts as unique calls. One classified GAMMADIST prediction field changes;
+every original answer, input and sample remains unchanged.
+
+Cumulative finance's 816 singleton pairs establish public CUMIPMT=PMT-CUMPRINC.
+Published PPMT, simple singleton sums and the declared public-FV compositions
+fail as complete CUMPRINC routes. First-principal common-denominator programs
+also fail all12 groups; no private component or count-selected fix is installed.
+The new tools use the existing scalar cache, not another answer lineage.
+
 R30 recovers the interrupted R29 tools and records in evidence/round29/recovery.
 The original replies and historical analyses retain their exact hashes; older
 producer epochs are distinguished from fresh offline replays. The recovered
