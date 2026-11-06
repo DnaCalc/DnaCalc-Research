@@ -1,0 +1,2101 @@
+{
+  "complete": true,
+  "decoded_rows": 3909891,
+  "total": 3910007,
+  "matched": 3777166,
+  "failed": 132841,
+  "unread": 116,
+  "match_bits_sha256": "95e03c018402c3c044b69721e45fbf95c77a2a0f141ae7ee90748a0a46c97d56",
+  "identity_answer_environment_sha256": "a3691cced3206a65f6744b7957fe3ce638f29cb7af201394e714c357b5c570c3",
+  "functions": {
+    "ABS": {
+      "rows": 1227,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "ACCRINT": {
+      "rows": 146688,
+      "matched": 146688,
+      "gains": 0,
+      "losses": 0
+    },
+    "ACCRINTM": {
+      "rows": 3612,
+      "matched": 3612,
+      "gains": 0,
+      "losses": 0
+    },
+    "ACOS": {
+      "rows": 13962,
+      "matched": 13962,
+      "gains": 0,
+      "losses": 0
+    },
+    "ACOSH": {
+      "rows": 5730,
+      "matched": 5730,
+      "gains": 0,
+      "losses": 0
+    },
+    "ACOT": {
+      "rows": 16924,
+      "matched": 16924,
+      "gains": 0,
+      "losses": 0
+    },
+    "ACOTH": {
+      "rows": 269996,
+      "matched": 269996,
+      "gains": 0,
+      "losses": 0
+    },
+    "ADDRESS": {
+      "rows": 1284,
+      "matched": 1284,
+      "gains": 0,
+      "losses": 0
+    },
+    "AND": {
+      "rows": 1210,
+      "matched": 1210,
+      "gains": 0,
+      "losses": 0
+    },
+    "ASIN": {
+      "rows": 21610,
+      "matched": 21610,
+      "gains": 0,
+      "losses": 0
+    },
+    "ASINH": {
+      "rows": 4534,
+      "matched": 4534,
+      "gains": 0,
+      "losses": 0
+    },
+    "ATAN": {
+      "rows": 181409,
+      "matched": 181409,
+      "gains": 0,
+      "losses": 0
+    },
+    "ATANH": {
+      "rows": 22008,
+      "matched": 22008,
+      "gains": 0,
+      "losses": 0
+    },
+    "AVEDEV": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "AVERAGE": {
+      "rows": 1222,
+      "matched": 1222,
+      "gains": 0,
+      "losses": 0
+    },
+    "AVERAGEA": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "BAHTTEXT": {
+      "rows": 2592,
+      "matched": 2592,
+      "gains": 0,
+      "losses": 0
+    },
+    "BASE": {
+      "rows": 3560,
+      "matched": 3560,
+      "gains": 0,
+      "losses": 0
+    },
+    "BESSELI": {
+      "rows": 1365,
+      "matched": 1365,
+      "gains": 0,
+      "losses": 0
+    },
+    "BESSELJ": {
+      "rows": 946,
+      "matched": 945,
+      "gains": 0,
+      "losses": 0
+    },
+    "BESSELK": {
+      "rows": 1236,
+      "matched": 1236,
+      "gains": 0,
+      "losses": 0
+    },
+    "BESSELY": {
+      "rows": 46,
+      "matched": 46,
+      "gains": 0,
+      "losses": 0
+    },
+    "BETA.DIST": {
+      "rows": 2822,
+      "matched": 885,
+      "gains": 0,
+      "losses": 0
+    },
+    "BETADIST": {
+      "rows": 294,
+      "matched": 140,
+      "gains": 0,
+      "losses": 0
+    },
+    "BETAINV": {
+      "rows": 62,
+      "matched": 18,
+      "gains": 0,
+      "losses": 0
+    },
+    "BIN2DEC": {
+      "rows": 313,
+      "matched": 313,
+      "gains": 0,
+      "losses": 0
+    },
+    "BIN2HEX": {
+      "rows": 748,
+      "matched": 748,
+      "gains": 0,
+      "losses": 0
+    },
+    "BIN2OCT": {
+      "rows": 742,
+      "matched": 742,
+      "gains": 0,
+      "losses": 0
+    },
+    "BINOM.DIST": {
+      "rows": 70349,
+      "matched": 32014,
+      "gains": 0,
+      "losses": 0
+    },
+    "BINOM.DIST.RANGE": {
+      "rows": 1224,
+      "matched": 740,
+      "gains": 0,
+      "losses": 0
+    },
+    "BINOM.INV": {
+      "rows": 2152,
+      "matched": 2149,
+      "gains": 0,
+      "losses": 0
+    },
+    "BITAND": {
+      "rows": 5989,
+      "matched": 5989,
+      "gains": 0,
+      "losses": 0
+    },
+    "BITLSHIFT": {
+      "rows": 8131,
+      "matched": 8131,
+      "gains": 0,
+      "losses": 0
+    },
+    "BITOR": {
+      "rows": 5989,
+      "matched": 5989,
+      "gains": 0,
+      "losses": 0
+    },
+    "BITRSHIFT": {
+      "rows": 8128,
+      "matched": 8128,
+      "gains": 0,
+      "losses": 0
+    },
+    "BITXOR": {
+      "rows": 5989,
+      "matched": 5989,
+      "gains": 0,
+      "losses": 0
+    },
+    "CEILING": {
+      "rows": 1335,
+      "matched": 1323,
+      "gains": 0,
+      "losses": 0
+    },
+    "CEILING.MATH": {
+      "rows": 1362,
+      "matched": 1350,
+      "gains": 0,
+      "losses": 0
+    },
+    "CEILING.PRECISE": {
+      "rows": 1335,
+      "matched": 1323,
+      "gains": 0,
+      "losses": 0
+    },
+    "CHIDIST": {
+      "rows": 388,
+      "matched": 250,
+      "gains": 0,
+      "losses": 0
+    },
+    "CHIINV": {
+      "rows": 100,
+      "matched": 31,
+      "gains": 0,
+      "losses": 0
+    },
+    "CHISQ.DIST.RT": {
+      "rows": 6,
+      "matched": 6,
+      "gains": 0,
+      "losses": 0
+    },
+    "CHISQ.INV": {
+      "rows": 40,
+      "matched": 12,
+      "gains": 0,
+      "losses": 0
+    },
+    "CHISQ.TEST": {
+      "rows": 5,
+      "matched": 3,
+      "gains": 0,
+      "losses": 0
+    },
+    "COMBIN": {
+      "rows": 25199,
+      "matched": 25199,
+      "gains": 0,
+      "losses": 0
+    },
+    "COMBINA": {
+      "rows": 40991,
+      "matched": 40991,
+      "gains": 0,
+      "losses": 0
+    },
+    "COMPLEX": {
+      "rows": 10694,
+      "matched": 10644,
+      "gains": 0,
+      "losses": 0
+    },
+    "CONCAT": {
+      "rows": 20,
+      "matched": 15,
+      "gains": 0,
+      "losses": 0
+    },
+    "CONCATENATE": {
+      "rows": 10,
+      "matched": 5,
+      "gains": 0,
+      "losses": 0
+    },
+    "CONVERT": {
+      "rows": 33972,
+      "matched": 33972,
+      "gains": 0,
+      "losses": 0
+    },
+    "COS": {
+      "rows": 3684,
+      "matched": 3684,
+      "gains": 0,
+      "losses": 0
+    },
+    "COSH": {
+      "rows": 33550,
+      "matched": 33550,
+      "gains": 0,
+      "losses": 0
+    },
+    "COT": {
+      "rows": 2130,
+      "matched": 2130,
+      "gains": 0,
+      "losses": 0
+    },
+    "COTH": {
+      "rows": 40241,
+      "matched": 40185,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUNT": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUNTA": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUPDAYBS": {
+      "rows": 5584,
+      "matched": 5584,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUPDAYS": {
+      "rows": 5584,
+      "matched": 5584,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUPDAYSNC": {
+      "rows": 5584,
+      "matched": 5584,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUPNCD": {
+      "rows": 5584,
+      "matched": 5584,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUPNUM": {
+      "rows": 5584,
+      "matched": 5584,
+      "gains": 0,
+      "losses": 0
+    },
+    "COUPPCD": {
+      "rows": 5584,
+      "matched": 5584,
+      "gains": 0,
+      "losses": 0
+    },
+    "CRITBINOM": {
+      "rows": 1264,
+      "matched": 1263,
+      "gains": 0,
+      "losses": 0
+    },
+    "CSC": {
+      "rows": 2136,
+      "matched": 2136,
+      "gains": 0,
+      "losses": 0
+    },
+    "CSCH": {
+      "rows": 33306,
+      "matched": 33300,
+      "gains": 0,
+      "losses": 0
+    },
+    "CUMIPMT": {
+      "rows": 38,
+      "matched": 13,
+      "gains": 1,
+      "losses": 0
+    },
+    "CUMPRINC": {
+      "rows": 586,
+      "matched": 230,
+      "gains": 64,
+      "losses": 19
+    },
+    "DATE": {
+      "rows": 22250,
+      "matched": 22250,
+      "gains": 0,
+      "losses": 0
+    },
+    "DAY": {
+      "rows": 10153,
+      "matched": 10153,
+      "gains": 0,
+      "losses": 0
+    },
+    "DAYS": {
+      "rows": 9565,
+      "matched": 9565,
+      "gains": 0,
+      "losses": 0
+    },
+    "DAYS360": {
+      "rows": 4564,
+      "matched": 4564,
+      "gains": 0,
+      "losses": 0
+    },
+    "DB": {
+      "rows": 2034,
+      "matched": 2034,
+      "gains": 0,
+      "losses": 0
+    },
+    "DDB": {
+      "rows": 1761,
+      "matched": 1761,
+      "gains": 0,
+      "losses": 0
+    },
+    "DEC2BIN": {
+      "rows": 4807,
+      "matched": 4807,
+      "gains": 0,
+      "losses": 0
+    },
+    "DEC2HEX": {
+      "rows": 4807,
+      "matched": 4807,
+      "gains": 0,
+      "losses": 0
+    },
+    "DEC2OCT": {
+      "rows": 4807,
+      "matched": 4807,
+      "gains": 0,
+      "losses": 0
+    },
+    "DECIMAL": {
+      "rows": 1230,
+      "matched": 1230,
+      "gains": 0,
+      "losses": 0
+    },
+    "DEGREES": {
+      "rows": 1227,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "DELTA": {
+      "rows": 1092,
+      "matched": 1088,
+      "gains": 0,
+      "losses": 0
+    },
+    "DEVSQ": {
+      "rows": 23106,
+      "matched": 23106,
+      "gains": 0,
+      "losses": 0
+    },
+    "DISC": {
+      "rows": 2400,
+      "matched": 2400,
+      "gains": 0,
+      "losses": 0
+    },
+    "DOLLARDE": {
+      "rows": 4847,
+      "matched": 4847,
+      "gains": 0,
+      "losses": 0
+    },
+    "DOLLARFR": {
+      "rows": 3641,
+      "matched": 3641,
+      "gains": 0,
+      "losses": 0
+    },
+    "DURATION": {
+      "rows": 7884,
+      "matched": 7551,
+      "gains": 0,
+      "losses": 0
+    },
+    "ECMA.CEILING": {
+      "rows": 6,
+      "matched": 6,
+      "gains": 0,
+      "losses": 0
+    },
+    "EDATE": {
+      "rows": 9838,
+      "matched": 9838,
+      "gains": 0,
+      "losses": 0
+    },
+    "EFFECT": {
+      "rows": 2584,
+      "matched": 2584,
+      "gains": 0,
+      "losses": 0
+    },
+    "EOMONTH": {
+      "rows": 9838,
+      "matched": 9838,
+      "gains": 0,
+      "losses": 0
+    },
+    "ERF.PRECISE": {
+      "rows": 618437,
+      "matched": 618418,
+      "gains": 0,
+      "losses": 0
+    },
+    "ERFC": {
+      "rows": 544,
+      "matched": 234,
+      "gains": 0,
+      "losses": 0
+    },
+    "ERFC.PRECISE": {
+      "rows": 1863,
+      "matched": 1062,
+      "gains": 0,
+      "losses": 0
+    },
+    "ERROR.TYPE": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "EUROCONVERT": {
+      "rows": 13,
+      "matched": 0,
+      "gains": 0,
+      "losses": 0
+    },
+    "EVEN": {
+      "rows": 1227,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "EXP": {
+      "rows": 2456,
+      "matched": 2456,
+      "gains": 0,
+      "losses": 0
+    },
+    "EXPON.DIST": {
+      "rows": 49346,
+      "matched": 49345,
+      "gains": 0,
+      "losses": 0
+    },
+    "EXPONDIST": {
+      "rows": 9740,
+      "matched": 9740,
+      "gains": 0,
+      "losses": 0
+    },
+    "F.DIST": {
+      "rows": 369,
+      "matched": 172,
+      "gains": 0,
+      "losses": 0
+    },
+    "F.DIST.RT": {
+      "rows": 6,
+      "matched": 5,
+      "gains": 0,
+      "losses": 0
+    },
+    "F.TEST": {
+      "rows": 78,
+      "matched": 17,
+      "gains": 0,
+      "losses": 0
+    },
+    "FACT": {
+      "rows": 2709,
+      "matched": 2709,
+      "gains": 0,
+      "losses": 0
+    },
+    "FACTDOUBLE": {
+      "rows": 2710,
+      "matched": 2710,
+      "gains": 0,
+      "losses": 0
+    },
+    "FALSE": {
+      "rows": 1,
+      "matched": 1,
+      "gains": 0,
+      "losses": 0
+    },
+    "FDIST": {
+      "rows": 4399,
+      "matched": 641,
+      "gains": 0,
+      "losses": 0
+    },
+    "FINV": {
+      "rows": 32,
+      "matched": 2,
+      "gains": 0,
+      "losses": 0
+    },
+    "FISHER": {
+      "rows": 34166,
+      "matched": 34166,
+      "gains": 0,
+      "losses": 0
+    },
+    "FIXED": {
+      "rows": 989,
+      "matched": 201,
+      "gains": 0,
+      "losses": 0
+    },
+    "FLOOR": {
+      "rows": 1335,
+      "matched": 1324,
+      "gains": 0,
+      "losses": 0
+    },
+    "FLOOR.MATH": {
+      "rows": 1362,
+      "matched": 1350,
+      "gains": 0,
+      "losses": 0
+    },
+    "FLOOR.PRECISE": {
+      "rows": 1335,
+      "matched": 1323,
+      "gains": 0,
+      "losses": 0
+    },
+    "FORECAST": {
+      "rows": 70,
+      "matched": 70,
+      "gains": 0,
+      "losses": 0
+    },
+    "FV": {
+      "rows": 2561,
+      "matched": 2265,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAMMA": {
+      "rows": 12603,
+      "matched": 6406,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAMMA.DIST": {
+      "rows": 77975,
+      "matched": 47621,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAMMA.INV": {
+      "rows": 204,
+      "matched": 50,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAMMADIST": {
+      "rows": 6,
+      "matched": 4,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAMMALN": {
+      "rows": 4538,
+      "matched": 2135,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAMMALN.PRECISE": {
+      "rows": 14278,
+      "matched": 10640,
+      "gains": 0,
+      "losses": 0
+    },
+    "GAUSS": {
+      "rows": 9728,
+      "matched": 9371,
+      "gains": 0,
+      "losses": 0
+    },
+    "GCD": {
+      "rows": 7966,
+      "matched": 7966,
+      "gains": 0,
+      "losses": 0
+    },
+    "GEOMEAN": {
+      "rows": 1225,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "GESTEP": {
+      "rows": 1096,
+      "matched": 1092,
+      "gains": 0,
+      "losses": 0
+    },
+    "GROWTH": {
+      "rows": 1260,
+      "matched": 1254,
+      "gains": 0,
+      "losses": 0
+    },
+    "HARMEAN": {
+      "rows": 19214,
+      "matched": 19214,
+      "gains": 0,
+      "losses": 0
+    },
+    "HEX2BIN": {
+      "rows": 1214,
+      "matched": 1214,
+      "gains": 0,
+      "losses": 0
+    },
+    "HEX2DEC": {
+      "rows": 1025,
+      "matched": 1025,
+      "gains": 0,
+      "losses": 0
+    },
+    "HEX2OCT": {
+      "rows": 1218,
+      "matched": 1218,
+      "gains": 0,
+      "losses": 0
+    },
+    "HOUR": {
+      "rows": 14631,
+      "matched": 14631,
+      "gains": 0,
+      "losses": 0
+    },
+    "HYPGEOM.DIST": {
+      "rows": 3661,
+      "matched": 3468,
+      "gains": 0,
+      "losses": 0
+    },
+    "HYPGEOMDIST": {
+      "rows": 3,
+      "matched": 0,
+      "gains": 0,
+      "losses": 0
+    },
+    "IFS": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMABS": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMAGINARY": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMARGUMENT": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMCONJUGATE": {
+      "rows": 3245,
+      "matched": 3245,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMCOS": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMCOSH": {
+      "rows": 1209,
+      "matched": 1202,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMCOT": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMCSC": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMCSCH": {
+      "rows": 1209,
+      "matched": 1201,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMDIV": {
+      "rows": 2067,
+      "matched": 2066,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMLN": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMLOG10": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMLOG2": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 54,
+      "losses": 0
+    },
+    "IMPRODUCT": {
+      "rows": 3260,
+      "matched": 3260,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMREAL": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMSECH": {
+      "rows": 1209,
+      "matched": 1205,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMSIN": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMSINH": {
+      "rows": 1209,
+      "matched": 1200,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMSQRT": {
+      "rows": 2029,
+      "matched": 2029,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMSUB": {
+      "rows": 1216,
+      "matched": 1216,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMSUM": {
+      "rows": 3260,
+      "matched": 3260,
+      "gains": 0,
+      "losses": 0
+    },
+    "IMTAN": {
+      "rows": 1209,
+      "matched": 1209,
+      "gains": 0,
+      "losses": 0
+    },
+    "INT": {
+      "rows": 124403,
+      "matched": 124399,
+      "gains": 0,
+      "losses": 0
+    },
+    "INTERCEPT": {
+      "rows": 4,
+      "matched": 4,
+      "gains": 0,
+      "losses": 0
+    },
+    "INTRATE": {
+      "rows": 2400,
+      "matched": 2400,
+      "gains": 0,
+      "losses": 0
+    },
+    "IPMT": {
+      "rows": 57,
+      "matched": 50,
+      "gains": 2,
+      "losses": 0
+    },
+    "IRR": {
+      "rows": 734,
+      "matched": 323,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISBLANK": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISERR": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISERROR": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISEVEN": {
+      "rows": 57066,
+      "matched": 57064,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISLOGICAL": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISNA": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISNONTEXT": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISNUMBER": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISO.CEILING": {
+      "rows": 1335,
+      "matched": 1323,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISODD": {
+      "rows": 57016,
+      "matched": 57014,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISOWEEKNUM": {
+      "rows": 10153,
+      "matched": 10153,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISREF": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "ISTEXT": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "JIS": {
+      "rows": 8,
+      "matched": 0,
+      "gains": 0,
+      "losses": 0
+    },
+    "KURT": {
+      "rows": 4508,
+      "matched": 3209,
+      "gains": 0,
+      "losses": 0
+    },
+    "LCM": {
+      "rows": 7967,
+      "matched": 7967,
+      "gains": 0,
+      "losses": 0
+    },
+    "LN": {
+      "rows": 1685,
+      "matched": 1685,
+      "gains": 0,
+      "losses": 0
+    },
+    "LOG": {
+      "rows": 25233,
+      "matched": 25233,
+      "gains": 0,
+      "losses": 0
+    },
+    "LOG10": {
+      "rows": 2823,
+      "matched": 2823,
+      "gains": 0,
+      "losses": 0
+    },
+    "LOGEST": {
+      "rows": 360,
+      "matched": 360,
+      "gains": 0,
+      "losses": 0
+    },
+    "LOGNORM.DIST": {
+      "rows": 7809,
+      "matched": 3919,
+      "gains": 0,
+      "losses": 0
+    },
+    "LOGNORMDIST": {
+      "rows": 3299,
+      "matched": 1158,
+      "gains": 0,
+      "losses": 0
+    },
+    "LOWER": {
+      "rows": 6,
+      "matched": 6,
+      "gains": 0,
+      "losses": 0
+    },
+    "MATCH": {
+      "rows": 13,
+      "matched": 13,
+      "gains": 0,
+      "losses": 0
+    },
+    "MAX": {
+      "rows": 1211,
+      "matched": 1211,
+      "gains": 0,
+      "losses": 0
+    },
+    "MAXA": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "MDURATION": {
+      "rows": 1260,
+      "matched": 1103,
+      "gains": 0,
+      "losses": 0
+    },
+    "MEDIAN": {
+      "rows": 43412,
+      "matched": 43412,
+      "gains": 0,
+      "losses": 0
+    },
+    "MIN": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "MINA": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "MINUTE": {
+      "rows": 14631,
+      "matched": 14631,
+      "gains": 0,
+      "losses": 0
+    },
+    "MINVERSE": {
+      "rows": 1683,
+      "matched": 1683,
+      "gains": 0,
+      "losses": 0
+    },
+    "MOD": {
+      "rows": 152432,
+      "matched": 152432,
+      "gains": 0,
+      "losses": 0
+    },
+    "MONTH": {
+      "rows": 10153,
+      "matched": 10153,
+      "gains": 0,
+      "losses": 0
+    },
+    "MROUND": {
+      "rows": 50782,
+      "matched": 50782,
+      "gains": 0,
+      "losses": 0
+    },
+    "N": {
+      "rows": 1227,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "NA": {
+      "rows": 1,
+      "matched": 1,
+      "gains": 0,
+      "losses": 0
+    },
+    "NEGBINOM.DIST": {
+      "rows": 510,
+      "matched": 356,
+      "gains": 0,
+      "losses": 0
+    },
+    "NEGBINOMDIST": {
+      "rows": 1804,
+      "matched": 167,
+      "gains": 0,
+      "losses": 0
+    },
+    "NETWORKDAYS": {
+      "rows": 3600,
+      "matched": 3600,
+      "gains": 0,
+      "losses": 0
+    },
+    "NETWORKDAYS.INTL": {
+      "rows": 3600,
+      "matched": 3600,
+      "gains": 0,
+      "losses": 0
+    },
+    "NOMINAL": {
+      "rows": 2085,
+      "matched": 2085,
+      "gains": 0,
+      "losses": 0
+    },
+    "NORM.DIST": {
+      "rows": 24246,
+      "matched": 24002,
+      "gains": 0,
+      "losses": 0
+    },
+    "NORM.S.DIST": {
+      "rows": 27497,
+      "matched": 16422,
+      "gains": 0,
+      "losses": 0
+    },
+    "NORMDIST": {
+      "rows": 4510,
+      "matched": 4127,
+      "gains": 0,
+      "losses": 0
+    },
+    "NOT": {
+      "rows": 1227,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "NPER": {
+      "rows": 2509,
+      "matched": 2509,
+      "gains": 0,
+      "losses": 0
+    },
+    "NPV": {
+      "rows": 284,
+      "matched": 190,
+      "gains": 0,
+      "losses": 0
+    },
+    "OCT2BIN": {
+      "rows": 1201,
+      "matched": 1201,
+      "gains": 0,
+      "losses": 0
+    },
+    "OCT2DEC": {
+      "rows": 998,
+      "matched": 998,
+      "gains": 0,
+      "losses": 0
+    },
+    "OCT2HEX": {
+      "rows": 1198,
+      "matched": 1198,
+      "gains": 0,
+      "losses": 0
+    },
+    "ODD": {
+      "rows": 1227,
+      "matched": 1225,
+      "gains": 0,
+      "losses": 0
+    },
+    "OR": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "PDURATION": {
+      "rows": 1205,
+      "matched": 1205,
+      "gains": 0,
+      "losses": 0
+    },
+    "PERMUT": {
+      "rows": 3432,
+      "matched": 3432,
+      "gains": 0,
+      "losses": 0
+    },
+    "PERMUTATIONA": {
+      "rows": 71915,
+      "matched": 71911,
+      "gains": 0,
+      "losses": 0
+    },
+    "PHI": {
+      "rows": 14406,
+      "matched": 14406,
+      "gains": 0,
+      "losses": 0
+    },
+    "PI": {
+      "rows": 1,
+      "matched": 1,
+      "gains": 0,
+      "losses": 0
+    },
+    "PMT": {
+      "rows": 291978,
+      "matched": 287308,
+      "gains": 3666,
+      "losses": 0
+    },
+    "POISSON.DIST": {
+      "rows": 49710,
+      "matched": 39405,
+      "gains": 0,
+      "losses": 0
+    },
+    "POWER": {
+      "rows": 62635,
+      "matched": 62633,
+      "gains": 0,
+      "losses": 0
+    },
+    "PPMT": {
+      "rows": 33,
+      "matched": 25,
+      "gains": 2,
+      "losses": 3
+    },
+    "PRICE": {
+      "rows": 9153,
+      "matched": 9103,
+      "gains": 0,
+      "losses": 0
+    },
+    "PRICEDISC": {
+      "rows": 2400,
+      "matched": 2400,
+      "gains": 0,
+      "losses": 0
+    },
+    "PRICEMAT": {
+      "rows": 3608,
+      "matched": 3608,
+      "gains": 0,
+      "losses": 0
+    },
+    "PRODUCT": {
+      "rows": 1211,
+      "matched": 1211,
+      "gains": 0,
+      "losses": 0
+    },
+    "PROPER": {
+      "rows": 3,
+      "matched": 3,
+      "gains": 0,
+      "losses": 0
+    },
+    "PV": {
+      "rows": 1308,
+      "matched": 1146,
+      "gains": 0,
+      "losses": 0
+    },
+    "QUOTIENT": {
+      "rows": 1362,
+      "matched": 1350,
+      "gains": 0,
+      "losses": 0
+    },
+    "RADIANS": {
+      "rows": 32925,
+      "matched": 32923,
+      "gains": 0,
+      "losses": 0
+    },
+    "RATE": {
+      "rows": 377,
+      "matched": 5,
+      "gains": 0,
+      "losses": 0
+    },
+    "RECEIVED": {
+      "rows": 2400,
+      "matched": 2400,
+      "gains": 0,
+      "losses": 0
+    },
+    "REGEXTEST": {
+      "rows": 6,
+      "matched": 6,
+      "gains": 0,
+      "losses": 0
+    },
+    "ROUND": {
+      "rows": 36945,
+      "matched": 36821,
+      "gains": 0,
+      "losses": 0
+    },
+    "ROUNDDOWN": {
+      "rows": 59995,
+      "matched": 59182,
+      "gains": 0,
+      "losses": 0
+    },
+    "ROUNDUP": {
+      "rows": 52841,
+      "matched": 52022,
+      "gains": 0,
+      "losses": 0
+    },
+    "RRI": {
+      "rows": 5528,
+      "matched": 5483,
+      "gains": 0,
+      "losses": 0
+    },
+    "SEC": {
+      "rows": 2138,
+      "matched": 2138,
+      "gains": 0,
+      "losses": 0
+    },
+    "SECH": {
+      "rows": 30424,
+      "matched": 30423,
+      "gains": 0,
+      "losses": 0
+    },
+    "SECOND": {
+      "rows": 14631,
+      "matched": 14631,
+      "gains": 0,
+      "losses": 0
+    },
+    "SIGN": {
+      "rows": 1226,
+      "matched": 1224,
+      "gains": 0,
+      "losses": 0
+    },
+    "SIN": {
+      "rows": 2129,
+      "matched": 2129,
+      "gains": 0,
+      "losses": 0
+    },
+    "SINH": {
+      "rows": 33550,
+      "matched": 33420,
+      "gains": 0,
+      "losses": 0
+    },
+    "SKEW": {
+      "rows": 4508,
+      "matched": 4501,
+      "gains": 0,
+      "losses": 0
+    },
+    "SLN": {
+      "rows": 1205,
+      "matched": 1205,
+      "gains": 0,
+      "losses": 0
+    },
+    "SLOPE": {
+      "rows": 4,
+      "matched": 4,
+      "gains": 0,
+      "losses": 0
+    },
+    "SQRT": {
+      "rows": 42803,
+      "matched": 42801,
+      "gains": 0,
+      "losses": 0
+    },
+    "SQRTPI": {
+      "rows": 1224,
+      "matched": 1224,
+      "gains": 0,
+      "losses": 0
+    },
+    "STANDARDIZE": {
+      "rows": 10310,
+      "matched": 10302,
+      "gains": 0,
+      "losses": 0
+    },
+    "STDEV": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "STDEV.P": {
+      "rows": 1221,
+      "matched": 1221,
+      "gains": 0,
+      "losses": 0
+    },
+    "STDEV.S": {
+      "rows": 1222,
+      "matched": 1222,
+      "gains": 0,
+      "losses": 0
+    },
+    "STDEVA": {
+      "rows": 1210,
+      "matched": 1210,
+      "gains": 0,
+      "losses": 0
+    },
+    "STDEVP": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "STDEVPA": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "SUM": {
+      "rows": 1211,
+      "matched": 1211,
+      "gains": 0,
+      "losses": 0
+    },
+    "SUMSQ": {
+      "rows": 1211,
+      "matched": 1211,
+      "gains": 0,
+      "losses": 0
+    },
+    "SWITCH": {
+      "rows": 1227,
+      "matched": 1223,
+      "gains": 0,
+      "losses": 0
+    },
+    "SYD": {
+      "rows": 1207,
+      "matched": 1207,
+      "gains": 0,
+      "losses": 0
+    },
+    "T": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "T.DIST.RT": {
+      "rows": 6,
+      "matched": 1,
+      "gains": 0,
+      "losses": 0
+    },
+    "TAN": {
+      "rows": 2114,
+      "matched": 2114,
+      "gains": 0,
+      "losses": 0
+    },
+    "TANH": {
+      "rows": 39028,
+      "matched": 38970,
+      "gains": 0,
+      "losses": 0
+    },
+    "TBILLEQ": {
+      "rows": 3600,
+      "matched": 3600,
+      "gains": 0,
+      "losses": 0
+    },
+    "TBILLPRICE": {
+      "rows": 3600,
+      "matched": 3600,
+      "gains": 0,
+      "losses": 0
+    },
+    "TBILLYIELD": {
+      "rows": 2400,
+      "matched": 2400,
+      "gains": 0,
+      "losses": 0
+    },
+    "TDIST": {
+      "rows": 92,
+      "matched": 24,
+      "gains": 0,
+      "losses": 0
+    },
+    "TEXT": {
+      "rows": 7,
+      "matched": 7,
+      "gains": 0,
+      "losses": 0
+    },
+    "TEXTAFTER": {
+      "rows": 11,
+      "matched": 11,
+      "gains": 0,
+      "losses": 0
+    },
+    "TEXTBEFORE": {
+      "rows": 11,
+      "matched": 11,
+      "gains": 0,
+      "losses": 0
+    },
+    "TEXTSPLIT": {
+      "rows": 5,
+      "matched": 3,
+      "gains": 0,
+      "losses": 0
+    },
+    "TIME": {
+      "rows": 1296,
+      "matched": 1296,
+      "gains": 0,
+      "losses": 0
+    },
+    "TINV": {
+      "rows": 32,
+      "matched": 15,
+      "gains": 0,
+      "losses": 0
+    },
+    "TREND": {
+      "rows": 12,
+      "matched": 10,
+      "gains": 0,
+      "losses": 0
+    },
+    "TRUE": {
+      "rows": 1,
+      "matched": 1,
+      "gains": 0,
+      "losses": 0
+    },
+    "TRUNC": {
+      "rows": 51317,
+      "matched": 50504,
+      "gains": 0,
+      "losses": 0
+    },
+    "TYPE": {
+      "rows": 1227,
+      "matched": 1227,
+      "gains": 0,
+      "losses": 0
+    },
+    "UPPER": {
+      "rows": 5,
+      "matched": 5,
+      "gains": 0,
+      "losses": 0
+    },
+    "VAR": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "VAR.P": {
+      "rows": 1222,
+      "matched": 1222,
+      "gains": 0,
+      "losses": 0
+    },
+    "VAR.S": {
+      "rows": 1323,
+      "matched": 1323,
+      "gains": 0,
+      "losses": 0
+    },
+    "VARA": {
+      "rows": 1211,
+      "matched": 1211,
+      "gains": 0,
+      "losses": 0
+    },
+    "VARP": {
+      "rows": 1210,
+      "matched": 1210,
+      "gains": 0,
+      "losses": 0
+    },
+    "VARPA": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "VDB": {
+      "rows": 2201,
+      "matched": 2201,
+      "gains": 0,
+      "losses": 0
+    },
+    "WEEKDAY": {
+      "rows": 19523,
+      "matched": 19523,
+      "gains": 0,
+      "losses": 0
+    },
+    "WEEKNUM": {
+      "rows": 13332,
+      "matched": 12889,
+      "gains": 0,
+      "losses": 0
+    },
+    "WEIBULL.DIST": {
+      "rows": 31483,
+      "matched": 31481,
+      "gains": 0,
+      "losses": 0
+    },
+    "WORKDAY": {
+      "rows": 3600,
+      "matched": 3600,
+      "gains": 0,
+      "losses": 0
+    },
+    "WORKDAY.INTL": {
+      "rows": 6000,
+      "matched": 6000,
+      "gains": 0,
+      "losses": 0
+    },
+    "XMATCH": {
+      "rows": 13,
+      "matched": 13,
+      "gains": 0,
+      "losses": 0
+    },
+    "XNPV": {
+      "rows": 3406,
+      "matched": 3406,
+      "gains": 0,
+      "losses": 0
+    },
+    "XOR": {
+      "rows": 1212,
+      "matched": 1212,
+      "gains": 0,
+      "losses": 0
+    },
+    "YEAR": {
+      "rows": 10153,
+      "matched": 10153,
+      "gains": 0,
+      "losses": 0
+    },
+    "YEARFRAC": {
+      "rows": 4506,
+      "matched": 4506,
+      "gains": 0,
+      "losses": 0
+    },
+    "YIELD": {
+      "rows": 533,
+      "matched": 14,
+      "gains": 0,
+      "losses": 0
+    },
+    "YIELDMAT": {
+      "rows": 1085,
+      "matched": 1085,
+      "gains": 0,
+      "losses": 0
+    }
+  },
+  "actual_sha256_by_function": {
+    "ABS": "7e69741687d475f9caf16e57a265450c8c27acb91b6a191d7895d60ff2135db8",
+    "ACCRINT": "cb7c23099810f760a85f1cb45f30eaee298f5e016e7895e40939a442be5c357c",
+    "ACCRINTM": "05e41cb6417cc79a607a38aef81fe2524c94a3316d7fb6159f3619f9ae8408b2",
+    "ACOS": "2c46d9c76b7906029036e3d5ef0293afbbb0c273c0448ee60d8fc14920336772",
+    "ACOSH": "260e931e4cbf35e8f595ed367850e4fdb4b04b50ee9d438d702f12e58828cd18",
+    "ACOT": "a273200600dddcae89f0e025a5e3ab92c802287c56e8ba28f0c71f308163fbf5",
+    "ACOTH": "c9c55884acb8e873222314cfb833fde22afa8dff3dc4d6248390a34b7e3dc2cc",
+    "ADDRESS": "8a6c8a7b250502e800ba8eeaaf7a9a7f722bf360ac5bca31daddff6bf2d8086f",
+    "AND": "f560cd5898f3ced15bf6d447b9d3df23d5c944640c1d9fe906614cf043e045c5",
+    "ASIN": "59142a6f7ca7399765f5569bee0905fbd5cce6aef112a5e5a052ea8888623702",
+    "ASINH": "382b108d174cb9941154e1988611594ad1f939d82dad2557e6e649f9dfa9583b",
+    "ATAN": "34e251e5d906cfb5ed0ccf20ee99d3fb176336d99d000c80ed585675be92ed05",
+    "ATANH": "10cc06b8584bf0acd4082fd70a4a5365b31318d3d3b83558985266594c47ad08",
+    "AVEDEV": "939c4ba0a59e292cbe0f7cbf797a101deaae610d160d624404ebd698dacf041d",
+    "AVERAGE": "2b263e346ac2280834a9c083b44f2989009c6dd72204ab98465245da7921532a",
+    "AVERAGEA": "daab70d62f988ba8b483462e3186c305802c050363bd1c38669b665ed308b870",
+    "BAHTTEXT": "336eb4cd740b76b7fb4d3eaf8dbe8d901fbce4a01eabbaad00bd58f72ebbdf65",
+    "BASE": "d3bbecfd2422cde14ebb696d02e20045dc52ee9bc60bc324c63157e2feaabe35",
+    "BESSELI": "dd878204e09276f0b90254f2644ca1322171bbfba9637260aa3fb4edc3a45f8e",
+    "BESSELJ": "b4799a27a15bffa88086392166e394f832bd7770e116eff215284d73e1982e69",
+    "BESSELK": "97740c52a3663248ffd1e53a2db647632f054ebb010bf040ea491b1732d3f6f7",
+    "BESSELY": "7078c3940745a926ff288846673a02b68162f67358fa2b3d45b9d84454836fa0",
+    "BETA.DIST": "cbbe474d9a833d41b1be19b3a64fcf3c7d101356e39e15ea96fc517dec294918",
+    "BETADIST": "5823b949e086c72ff9a58458583419e0260925fcba84d16b8d47db3c8774453c",
+    "BETAINV": "60df36f788869795da78c5d485a598b3c6942c82caef291608ecd190cdfe6ab9",
+    "BIN2DEC": "054ecadfe4bb91ba8462ef5d8f436db8b55896e9fb05fa9678d52abdd184bbb3",
+    "BIN2HEX": "dafb160c95aef0cd256cd2b96e6d69efbf23f09cfdcfcfa742d971f8e286b220",
+    "BIN2OCT": "b23e1fe2cf76b01ac5ca734014d53113ba9c3f3ebdb274ec83e28ea8d86a9f57",
+    "BINOM.DIST": "d40dec822666ead7913ddc04f98e0c2c15759a32109a10f1740fb7dc5d7da9fe",
+    "BINOM.DIST.RANGE": "c82abd470af92ce34bbc1a4ff51b5e1d15f38b1a1f603e5a4ff698ad19dd7c87",
+    "BINOM.INV": "d8bd6f6fc2238c71c2ec80fdc5a2e7eb7cbaf810ca996563709bea4b6a8761b7",
+    "BITAND": "7c59b7b8ace8cd53edc7cbadcd01ff7f160c547ee10350a9dcdb20e6e2ba6031",
+    "BITLSHIFT": "9f97efef0a794d5854d6051bec297a1481b303e1453089feff0a4ce371904784",
+    "BITOR": "fcff276e2a3d96d563f18881d4880ca11bd2b07be5010eaef660f05ad8ab1c8e",
+    "BITRSHIFT": "6597f3d6c7564083f65c5b1dc50859edbe0d4f20f1b697bbf9a54b220df97f28",
+    "BITXOR": "2909c0f2b8d05edcea5de1d56e56abf6fa4136dfb18e9ca9f22b8315eaa86463",
+    "CEILING": "b38371e299e70d08d49d8a26b3ed734f8a162e36770ef1c1c21f3e90972d277f",
+    "CEILING.MATH": "eed180c3affbdc87532fb44d49dbce793a6d14847873af81788156833ecafe9d",
+    "CEILING.PRECISE": "41421a6710bfedea6049eea9eeeefaec730be5f26d4fbb1df0bd3f61a75a8f6a",
+    "CHIDIST": "3fb10e58cf27e3e4d998e123442ea788e1cfe3920bd7323664dfb6272c5682e0",
+    "CHIINV": "121ffa18c1e2a279990d5c2539d3671ee1bfc08648d473cbfef81619d3712f79",
+    "CHISQ.DIST.RT": "554e30d49dbe1979b9aba48c99f3bff8d366cfdb72a18d7b201b4fa51b20b5f9",
+    "CHISQ.INV": "b7a2c82de977979404ed1ef3b5d87d8cfa04d490b940a986826e2922f7cdc31e",
+    "CHISQ.TEST": "5fff9779e6c4ed0b5fd0fbebd6ac41fa6cf7a1462894345f0c3089b67820bfca",
+    "COMBIN": "fef0c2f3f10168d060d42b5d3783de40776d75af8936182047d473dc03a4a9a0",
+    "COMBINA": "6b9c482177af92058c5785fcb4e665902f437808a7a14b226b6bffb31a6b0139",
+    "COMPLEX": "c5b1012738011bd7de09dfd70c2cd05170190bfed1172e08cfade607c4fc01ba",
+    "CONCAT": "c0cdc484a348b96a7c5b61f9ac4d7652af5c4739fb7fb1d6fde573c2631dcfce",
+    "CONCATENATE": "84fc98aae21e4122e42a9d07a357323546630ada675115be1bddbf742ac46809",
+    "CONVERT": "bd391b7976577e3c9084aac15bfbc6fd3a13be55c15e4f6c0a431097f52ffe6a",
+    "COS": "7d0df8b0b1b32b9f84fd77b2617da3e282e9f67e2a645ca048bab6e9e4eb8229",
+    "COSH": "9c87d2580abf444117503e4d2ee8b0335383030ee5f3355f530b58fa0275c64f",
+    "COT": "1eb51e2da560c2e861cb2545a90c9b532702488549733688890e4147a2e02831",
+    "COTH": "c4cd0793f5f5472f3e4d6833c6d41032fe357372ca12689d9a73fc3f65463520",
+    "COUNT": "e170bcb738d73032b8f95dd066f455f7e6fe93ffb879324f6f8d1b094026ed1f",
+    "COUNTA": "555de9c1aaf4ccdb9cafbf76e0bf067839251b5abc29d1ca68e6beff06d8f1e1",
+    "COUPDAYBS": "cffc5deb522ffb7e3c81e8f8d8d1ed9256939e4d0476843a5ddcea0a24f58e7d",
+    "COUPDAYS": "3a1469e4e896c2a1a7c4459460dd6b24b751ce0cdb98acd3ffae35ff9399d68c",
+    "COUPDAYSNC": "3f75ab8e9f8515795175187048ab31eb0759e2407bd5cd2a04a3b8d9052df71d",
+    "COUPNCD": "8a53846f3fee31cd18c51837940dd65a677503fdf167effdab3ddb98ae34162f",
+    "COUPNUM": "a0ffb4575ef21bd2b469b8425297b0da29823492dc2adbbf813b617f9667cb99",
+    "COUPPCD": "4e4dbc7cf95a66e0497b17757e6ce14f7521d2a312566855c7bba67e11f6b507",
+    "CRITBINOM": "faf26991f499604751fbef576385a1a5c099f81881ec74a7a64d3dc2f2eead0b",
+    "CSC": "49e8d706b8f97f0a84e48ce67f6875966ee66d63428d0d448a01704e92ecb72b",
+    "CSCH": "4c42619d898b3829d1457949f4da4003d3695d0a2e1f77dfd06ab1610044dfd8",
+    "CUMIPMT": "3e23cf806f229e087d97d35e206aa05442c08de09fe70b4caff7645695cabfdb",
+    "CUMPRINC": "f2b6b17ea7d3cc5114f252b56d58108fe1ac67d9cb8c5968fd6a2c435bc2bd9e",
+    "DATE": "b774952035cb78d5dd9f4a051316be5275a88af4e585eef3bb27e321b5dbb858",
+    "DAY": "b0b4c0720231b26e03c87a4c8bd5e6a841457215b2f887428d963945d263c57b",
+    "DAYS": "dbf058968acc2c19487a4ff47ab69ca6834985a97416dbe1edbaa054cbc1143a",
+    "DAYS360": "c63eaf5c3837dcc8ca01c7817a677666232640704a71dfe2d51605bc0b8b6edf",
+    "DB": "cdff5d93280b91dcb7b75f23b1b29d286fe3e0715163fe33c29d592a7fa9a678",
+    "DDB": "91ad6b463b501bef22a09ed904e48fbcf12eab476a70ae51ec4c796b685f85ea",
+    "DEC2BIN": "89cf7a142150d216a216c837b41dcc7c89b91e1e8ab6a546506cb65733375c71",
+    "DEC2HEX": "33082a50511ddeebc94019355141a88d298522dd13661026b6b95f433967ded4",
+    "DEC2OCT": "5a8a83f19d4c3c706109cc5101758e8b13546cd2d6b192e9ac4a3bf22898f349",
+    "DECIMAL": "128f071e2f54ea0f7b42df7ee3e3c04d4a31ef9e429507cb47b4c22f1101ea73",
+    "DEGREES": "fc0c9acc3c8d586775c2edc9af3727049ee38640518153b9f9494a5847f6b2dc",
+    "DELTA": "4a924e292292640bc516dcd27849784ca18714ca42a7e921b2e1691b6a394207",
+    "DEVSQ": "74d65ba400db335eec3ee10f64c833d9da5a3ec0bec5128617e2e178f5bad6a7",
+    "DISC": "23f2affa3849110c575f79c9aae314ade2601ed26ca88e345e9ff5536cf4d3d5",
+    "DOLLARDE": "bdfc48a10a9b773da71d4ea812af60e2f134af49f9946d5e69233ae32690c221",
+    "DOLLARFR": "cebdd40608b72b52841fc7b30f39097d7bf7037d87574a59d3081526471d84ad",
+    "DURATION": "04029aaee1050f0a579c1193ec8c2e0443b2732178658a04053efc8c3a02e29b",
+    "ECMA.CEILING": "28068dd3c066b32cbd08cd2259d2d346c314e4591c2c469a8338e1c8f85ef9e3",
+    "EDATE": "d542f2f722da239e987a6f327e7f394288d75fb500f138d9802535a0a52b52ae",
+    "EFFECT": "e76163f1af06e2f67858c6da6dc5474414428f4cedad4d27f5534ea73d4da519",
+    "EOMONTH": "4794e4fe4016f9ccaa20d0a9c9c3c5d9c40519d8216e580af891a941a8032951",
+    "ERF.PRECISE": "ca973e12ba9a1f595e123875ae14dd8fd9d5930e93efec6fd3839c4b81bbac14",
+    "ERFC": "b28b6985708edd5ce0338c12069a9dff4cd52436f6ff6fe720eb4ab4ce7ecdcf",
+    "ERFC.PRECISE": "94cd569517cb3b841ba5d952b915b003083d3785cecb1f3fb07157b14a63c9e5",
+    "ERROR.TYPE": "24d8d5f1feaf18d07ca904e23fec9cfa7ea8f53abebb5e8001912b2cd6d197b5",
+    "EUROCONVERT": "bb11267e659fef14af109db9ab899fa9a35529c86448af73d5fe17d456fd1676",
+    "EVEN": "481b05b314e0aceef34aedcf2d52babe2f3fe9ad4a12a271fbd79c04c7e4af88",
+    "EXP": "06711f80ef5466a43464860cb53f7b54ff7be416d7ba823604a59936277187d9",
+    "EXPON.DIST": "b1e0c3c4a9ffcf042293f4f0e926d3b058d2492e667ee587ebb8fbd0a7184071",
+    "EXPONDIST": "4966216c324303d26cdac99f32e4895d6d43d362a05a8f8bb1cacc8e2e3ba7e7",
+    "F.DIST": "1609cd0882226d1de3f2922987a7b916f4d00a95fdc3127f9310d846364de73c",
+    "F.DIST.RT": "5174daad51cd7c5732b20356722968263526f8a6cbcd47c8c5fe8207325367b2",
+    "F.TEST": "58cbadad264fe86381957bba373f73c89f3155496819f25b0ee9d9d187ff49c5",
+    "FACT": "0f739db72af05f1d62dc5e40f2d2c3d7da0a43acb24ee5094f30b35a8eecae04",
+    "FACTDOUBLE": "46de774c4dd9725a74c8b733716ae17f64eaa2e569f60bd3c39afa49288212e6",
+    "FALSE": "a42f056bcdd90f2f5bbe4412ab129b341921a24a4caffe936dbe8301c1f2441e",
+    "FDIST": "168cc49975a48317a3178657534c674feb5016ce28903e55bdec2a9c5a4c6dce",
+    "FINV": "2ebd0a63eb50e22dc963a853f662a03db265961d4130261cacec5eb79d95201f",
+    "FISHER": "9bff8e0596b2f92a0939d641ea6c10d757be58b2b865c07f64366803a723abe0",
+    "FIXED": "81b59bae11bdfc18ffd89a0b33664e5be30583028f666bc178aeb4e712ad2d94",
+    "FLOOR": "8faf32bf8c138c0a11ec9da62ef2984cd0db2c8289fa9b80e31178e409d242db",
+    "FLOOR.MATH": "b7914206e3ff2681b537905a8b91abde925f23094e2995539ee96f42c56378b1",
+    "FLOOR.PRECISE": "3224025b411c9f4e897545c5a26185efd7d64164cba8d237ba6cc191e3441e7b",
+    "FORECAST": "c75739944411f38f5a014be667f73c56fe1d651de11779df705704e1e7615cf0",
+    "FV": "321def7c270e8e86acd211a9f4d1e8d08b4c2332fbfc611921055b990552c769",
+    "GAMMA": "ef223bd97a4701668aa0af766f0d44e30608b370bde7e92ec3cb7dd6e331c926",
+    "GAMMA.DIST": "dff874b6e1c3683005ff6d67f3d99af8250ddc33a7f48486c4bb8cb1504976d4",
+    "GAMMA.INV": "750d44d8fe26f64b2065efd776bad80555e40e6aa55a134a45243659757f3858",
+    "GAMMADIST": "d4d5aeb41bed2d2df320da2f57e3b52dadbe9250996fdf36ae253db1602ce294",
+    "GAMMALN": "1e3a91c75e545a11c323ba8ac5ab1e6adbdc4493f86f026d0b056c38e2dbaccf",
+    "GAMMALN.PRECISE": "a8b2faeabc4b5cf5c217b53c4c017609c9e1884cabe278b8dfa81b2d0094dc15",
+    "GAUSS": "90364b9af28c3fdcd524cc402139c0f88cc19f9c6c90e09d816cfd1ffae32761",
+    "GCD": "7aa01acde4fb096c08ba70e1495f08382e5e86e00f3fc1f1aa7c7b9d434626a7",
+    "GEOMEAN": "9631d58248327bbf80bb928fedc99c6e0d78b00f6e5544ba0ba588891bb7a794",
+    "GESTEP": "ded504db1d3c5460b1218ea0f7176a93ad82c80e9fb97cfe10c99642ea9c9d2d",
+    "GROWTH": "6ac9fa394eac6ab0b2652a9d8c24b9105fff4cf0d649c279086ccc9ca5e1080d",
+    "HARMEAN": "65389609f8edd178b2241dca2500a207526630ad1e19233cab9597fa760f054a",
+    "HEX2BIN": "4a7e535fe26f8b71cf034a10513119a039511b4f286f6c3dad2bb609f1e91eb7",
+    "HEX2DEC": "5d9dc69abcb732d380fc5b6a9b9c69c7bb1465d9a78b697d61f5caaa8d74bb4a",
+    "HEX2OCT": "14abfcfb0180098635cf54ca7041fd3701ee45612b205eb83e47219c18d6a474",
+    "HOUR": "6f07d140bf4a5cbde43cccbc9cc555891bc41ebfb531cbbd4cefd1ed8b902dc9",
+    "HYPGEOM.DIST": "2b35f49ffec8b4fb9584e3847b179f340fc679a155474ff754b14684e11e9bf2",
+    "HYPGEOMDIST": "f340da38e7754eeee904d62c5543b210f3891dcc2d582965ed292602329decbb",
+    "IFS": "978540a697f607390b166263109025f430357a161ecdb0b973e04782660357d6",
+    "IMABS": "ada6aaa698032a67e68d6add0a91c0938c64d9ccf60bdf3de772011f6671a22f",
+    "IMAGINARY": "830745ce0bc962ce0ba902be57cc1ad1bd33707cf1469a45c583c49c2871abb7",
+    "IMARGUMENT": "0faf9557b8c2164a01535d4b9023bb47433699fb4f2c6ec1c567026b8edbc078",
+    "IMCONJUGATE": "f536eaaaab675f1cf722e52566e24cfdc303aebbe7a428cadbf6cc55a5ac6852",
+    "IMCOS": "313adbc0cfe2b748c7142c5b5122b08166db640c9d221c7931d0b5cef9a2b4ef",
+    "IMCOSH": "17b352146c8800d63196e9d1acf6ab2475834c7af18190f712d2c78cd81eb0b8",
+    "IMCOT": "60e95eb6ee6f3382d4468419240dcd35a458674ec1483d61061cef9015731073",
+    "IMCSC": "723a6b67abdd690b91b013ac9af956ee02167a75fd41577ca43319f3ec6e0f83",
+    "IMCSCH": "d94046d053721d46dee2b8def911529a0d7d46cedfab16b16071fc0102df2143",
+    "IMDIV": "1cf2d7cbf2c5313c84c406bd744aaf2de3f215092a15a0060e5302c6982d80d5",
+    "IMLN": "ca4e42e89fa602e905edc4c8c4d0e2d2a7854680cf44085f5730c92f71bde41b",
+    "IMLOG10": "93153103c3757fef785d59fad3dcf1a56533c1de4ffc370fb41f871db98e8bfb",
+    "IMLOG2": "4fa9d51b8384426ea8bccad4d335daf2c762bcb569bcd0ebf7ec099b1dfecf49",
+    "IMPRODUCT": "89aaeb6160e8de44c94bbd28eaade25849a5cd08b9b31f08b1e88b624c160352",
+    "IMREAL": "2737fab93b07528b7a3eab64d0e49cc541dbbeb20da00de36af8145cf7873f24",
+    "IMSECH": "ddac1d8a088c291f17ef33cf2ae19113dd490c561180606f4b572c01ffad6b0f",
+    "IMSIN": "c2fff92609df68b6d7a1afe7c5dded955ba7f6f329f8d34cf83cf99508b3d61f",
+    "IMSINH": "ad7ca3d0a777fe792ff9f37ba9d4e46b9343f332640ddb1926a19a807c6f6329",
+    "IMSQRT": "9df17022eb352cbb3ecac10137ead401be728649b124163a5256336f32d7fbe9",
+    "IMSUB": "3f23691e45c6d2f3f9f36d7c18199d3003051da64151041d8acd13c04ff0d602",
+    "IMSUM": "b475424f5c081b3b3411f73dbef3276b157f3885ee3bff5797f48f21379d419a",
+    "IMTAN": "a25315b3098ed98b35668622b7103472c4c6d5c14a01cd54d6486c515ec2d12e",
+    "INT": "b81e62f662092422064fc95b0665851cff42f4ba95a8e3a9dc29bfd8d588381c",
+    "INTERCEPT": "200d043a0b684742c4b98710bc8a56d901d71bdddc0c81b13dc3a9176bd789c8",
+    "INTRATE": "785d33bb10291f052c36c55a2c9ddca3b9795d865ada8fbe6a955239746cb935",
+    "IPMT": "68325ef718e3fd36df99cadccb4449012e0d093bd521461a32f80609daebc0a0",
+    "IRR": "78451557fcf22626ce77996acc93cdac066ef7d10a7f1c26c89bc8dc9c4c0522",
+    "ISBLANK": "5efe198ae9270e9d03ba419cfc7092b516b915db88756d01ff41a381c16ea205",
+    "ISERR": "5efe198ae9270e9d03ba419cfc7092b516b915db88756d01ff41a381c16ea205",
+    "ISERROR": "5efe198ae9270e9d03ba419cfc7092b516b915db88756d01ff41a381c16ea205",
+    "ISEVEN": "e54da49fd788e06e2684bf67cb3d74d712dab6eeaef127e9857c96ac833b2727",
+    "ISLOGICAL": "5efe198ae9270e9d03ba419cfc7092b516b915db88756d01ff41a381c16ea205",
+    "ISNA": "5efe198ae9270e9d03ba419cfc7092b516b915db88756d01ff41a381c16ea205",
+    "ISNONTEXT": "7ad36a1b623cb3ba53d3138606e5fd083a814943d4e912c98b685a2b7eb6d340",
+    "ISNUMBER": "7ad36a1b623cb3ba53d3138606e5fd083a814943d4e912c98b685a2b7eb6d340",
+    "ISO.CEILING": "6250a95e447334e1d558dc5e4c0611c18076c9be3b51fcef8e4f42354f7b863c",
+    "ISODD": "2f16319d4a37a0eb703d7ce788c060a300424a42dcee739e60086aeaf8ff6d48",
+    "ISOWEEKNUM": "a25de506b0a17c427334da1fc1a104955dcf09e43d63d09133e866e853f82aa9",
+    "ISREF": "7ad36a1b623cb3ba53d3138606e5fd083a814943d4e912c98b685a2b7eb6d340",
+    "ISTEXT": "5efe198ae9270e9d03ba419cfc7092b516b915db88756d01ff41a381c16ea205",
+    "JIS": "92922599e276a9b29dc87a5915cffc28f364421fb61c0053d826961f9f74143e",
+    "KURT": "8e2e0352c7983f362e14b5f09c0af83a23c1c6984bf2f9097282971bfee0e218",
+    "LCM": "093c5af6d9286860de3e9d97fdd1232616cf9414c0093d7155ffec043409c482",
+    "LN": "2206266bd013c61a54966a9a46c2e7aac3b160078f74b03437b11b2d72e76a1f",
+    "LOG": "c0b4c3897b97b9bba915f7445a0fb6fda2a4d27ea42b9ad39dbf664b9cef9a2e",
+    "LOG10": "0195e222d3211d1ed282178fbb65f24cd016ab4e99efd7fb7a6f79bd801e319d",
+    "LOGEST": "2ef18a1578ce8cc7c7182fac46e77273a61dc6b14a4fb667d568f19621bdc9be",
+    "LOGNORM.DIST": "43feece2deff5cff7f370ddf4b8189b85a614e1a9b215155ee37809caf8c6e86",
+    "LOGNORMDIST": "761e032502f1fc757331743a0c60e2b7212a7bb2c57f60fbf14c0abc4573c830",
+    "LOWER": "2387c591f9adb5235ed98cda27d96f67755fd9a65f0943b2fac18d44c810ae44",
+    "MATCH": "27b7888358852808d944095d6bd5552d3966ac2d7c3b41ade5807b2942c59b10",
+    "MAX": "231343a6a38cbfe05dc94aa2b8501b7c3f317dfb76505360459ea991ea0bbaf8",
+    "MAXA": "32378eb4a0737c83ac43ad1a2936f1f01c1c6d3d179aedfc7fc1b5b49cb1e744",
+    "MDURATION": "9b2e52785ea6379d2a0532dabfa847052b8bb000add154e67f3411fc1f247f18",
+    "MEDIAN": "3d948976ef284537e6488b20523972bd81c5ce742f2ff0a27df210a20d449c6b",
+    "MIN": "a0952c9b7d931b19850dc2bd1d28468f78f6425f86972e208d4493e02a43d79a",
+    "MINA": "6fcc06e34f83c5ee5900bfcbd3c494c0504343109a2c1445e1f852254e173dbf",
+    "MINUTE": "f553b593d5c931ea7291c98be23988d348a99cdbfbb217baa0cdc151472343ef",
+    "MINVERSE": "704037d88c4898e2583ff5c52f6841edde48f0f66be20c9f360e7d0c1effde7d",
+    "MOD": "5533e7f28b792ee2d14704566ac99b1695ed93ac3d992756a5d2cf81d963c315",
+    "MONTH": "56628089caf2d51f22188e69d037a1f31ac467c75c6a62259d2a86437a6cb11f",
+    "MROUND": "6f831aac6eaebb5a9515fbf89aa3488021e54be15efd33d4db3ae528b3a0dab4",
+    "N": "d27efe06dd70b003c56d0d715f9ecc8e22b161661edfd14850919381b7ce0aa4",
+    "NA": "eb93becda6ac1c49561acc0456f28c4adde0a0aa3c685821016886f12ace5192",
+    "NEGBINOM.DIST": "63bb83f4bb37e43bc0a9451d4fc776a306a79ec76f38545b10cf476546fc9dd8",
+    "NEGBINOMDIST": "76cca25591bed7c28abe0766e6e9fe570a1dddba835e93db492bd0637ee768d3",
+    "NETWORKDAYS": "cbd8c816804287200f3dc95a47a2e63c8003d639a4ecdcce54b2988fb32febb4",
+    "NETWORKDAYS.INTL": "d777b737570de331a2321e974e4fcf781b0540ac5f19fb941e9b6de66fb41373",
+    "NOMINAL": "acf90f28b65c16718185cb0a5ee37aafb817600ff8d93dec01e498f878749853",
+    "NORM.DIST": "779fed245a21bad07504af58ea2b14e9bef9f7364dfae81c772987c43f1bcf26",
+    "NORM.S.DIST": "8c09638bd31fedf00ca15ffc7d36962cb61097d967aaf19eefb90f00d259fca3",
+    "NORMDIST": "50feb7e914da5fe4a457c3d4a60ba9485e075742784cfc6204e462ab59e2a4cf",
+    "NOT": "0e5db32da6cbfc5f8dcba795cb47c8c38d766fe7eebe68ec16bdb031be49e246",
+    "NPER": "5d827f0d45745d025c1d93925beff4c5d42bd2bb4bc08b89bf71727f26fd9169",
+    "NPV": "435693f1e349964b29843fb19e4441416df8e34e7ad65a20759e5117be705194",
+    "OCT2BIN": "ccaea6c9fc48353097d6fe0aa12de9b68c7dccaaca1c16675b3a3a96521463e9",
+    "OCT2DEC": "fa3c962deecd7afa656fded3dd856381ebc64ab48a67e60cb086032bc177a14f",
+    "OCT2HEX": "8bb629e55e22f98a8ef0007f52d01dfc7d0f6c14c1e95f26a1433bba2ce496e9",
+    "ODD": "ca9c7bad6ef5824aa4c39291258d85becffdd5316785db799ba8f9d6bc54fab5",
+    "OR": "3100813aaf19845f0466ab9b7e4fa20f7f2f26ab9c8bfcd01e28d318f43d7eba",
+    "PDURATION": "c283cfbf3b038a898f56264e168c68977c7aacc8c22e16e95c02a04de080aa8b",
+    "PERMUT": "40dca4547291770d640689aaeeec2f42db4f2a101919b22ad6df893fdaa44ec8",
+    "PERMUTATIONA": "273d4760edf6428a6e3633c690d15c531959d6c397926746b27a7c919edb2b8f",
+    "PHI": "5f68613607ea5fc4592e5a387041be9a1f9c1422dc83c7f758b2e0ead30348bc",
+    "PI": "dd3f9126cc964d0442d9c53db0301974c0c84876410a78757802772e2e5ebf73",
+    "PMT": "e5ea088d6e33ebac75ebb8ce3c3523533c479603f5bbd74016a57e38eaf428ae",
+    "POISSON.DIST": "5e08b2a8157148e16ddf9aa4dfdd469ff8b522136e4d1e5887aa4441a450dc2f",
+    "POWER": "f84057d63ed864bc85592c0df09018389cd34271e3e07bc0a5470ded1853b264",
+    "PPMT": "ac34118009157c35bb5f93a19aa8923153f3417e82ea82085e06cc85035beb2e",
+    "PRICE": "a065854b2aec38aa314a7024fcf7312d003809f326d20f238c045518d1fc0f29",
+    "PRICEDISC": "63c82fb19e8c74536f22a07a86572a8531a63ee2a267fe997b4ed2187bada914",
+    "PRICEMAT": "74777cdd395f3a12c47550967ca1c5db972fdeb9f1249c366c76e5a0e796be93",
+    "PRODUCT": "1fd24046e088cdac45602088510641caddec6def5fef4264580b6ff4025a140d",
+    "PROPER": "5d6646a228894247d1f70500a763cfd87f28125482b314bd1509ecae9fccf5c0",
+    "PV": "a5c453122bc20c0d828ff91fb4885dc12e5c96420ac8717bd9ccc8314dec314a",
+    "QUOTIENT": "6364a0cf9047e3a4779f1f9bc4ef8944b6e18b12aef376f1f735e7060b65f1e3",
+    "RADIANS": "166db13d0d3c936a0d5cdfe3f16e6adc0a4c8f5459e64b1ebbe3e2eb227e7b37",
+    "RATE": "6592a95f23be8d9e81818b5d639788028b17d99b40a0d921ca4876673533b8bc",
+    "RECEIVED": "ce730446d1d340e753436f545618c106f852c66a2a23dc20c6d9bc627754ebb2",
+    "REGEXTEST": "7662bfb2df856618131720d675f699993e5d14bfad1a6db715252481e4db21a2",
+    "ROUND": "ff622bb56bea4e37602345d93faa708fb0b294c484c39216b1f610d9da850061",
+    "ROUNDDOWN": "e4b3a13566e5dc615fa015bdb13928e9dbcad6cdc2bee562af777195e4efc32e",
+    "ROUNDUP": "e814d1edd66fcc643b735cdab7aad8bb399e749d8a26e15f530bc685fc5a8ed5",
+    "RRI": "57654128d932363380de2c0019c006f43be119e430f6a70869ce32989ca56dda",
+    "SEC": "d729e0f1a89aa6c53b0a4ba3587a6e6ff4ab96f2778b7792e369657c32b31b80",
+    "SECH": "ff28fd0ab4d4cba03d903a9086fc23b1c12e87b319e33a0c205faf4c4c6c4f7b",
+    "SECOND": "6bed15e7642144c15ac88ff828df8476942c4922ca2fc9af2ab2011911a83bb9",
+    "SIGN": "1c49ffa9a00b56575f2c22275b4714e22a53e443e5b808f6efcbcdf43dac33f4",
+    "SIN": "e1964b22d05fb9b09ce66602bcfe3ac20f04fad4f80ab34ed2655072b000c377",
+    "SINH": "030c45e3dc455eb331e09312b06aca6c7837a1481808e59357c8d2307273a0f9",
+    "SKEW": "ff9c93239606f16ca7b382d4b96beffe1752e35ba274b0120a9efed130db6d34",
+    "SLN": "5c09cf6771c1bd646787c95a43ba0fa6d931695f7cea1fae6a19bbb219149b07",
+    "SLOPE": "0898d64f39c33e8f513736da14d19e57ce09ffcd76e2ad6d3bffe12890262fe9",
+    "SQRT": "fd6eda8a4e7c6eb3d35e97fa021f8662eb11179320188943144d89573f001711",
+    "SQRTPI": "f34a09dbcebf16e3b5d80c5daab4b9dd73c5713de56c83cd7feb3941dcb2be33",
+    "STANDARDIZE": "1a1d82f9c933740135e1705e4b2746e1550a276e16584bc234f74ba61bfbbcf9",
+    "STDEV": "b72524dc8a730308f8075ff36360c0e0db0c5f740fe47e35f73d67dfc258766f",
+    "STDEV.P": "901432f245c9e091eab98cc008dbada4f6f13e58cbda874829f6be67f710bfb1",
+    "STDEV.S": "4bc0116f93ec08f2f8e7eb9018b92a3eca8b88f2ec1a42fb6531b88e1f5ad2ac",
+    "STDEVA": "0ce74302205e363b8a8d69af2017655da86aad074b64068fb697af78b0395c59",
+    "STDEVP": "831730ea55f72ce4c3b11c58bc9da8d6aed22ff3bc196c619dddcdc9e62b880e",
+    "STDEVPA": "a568d8d8dd1f69bca9c55ec9014274cf68af4e41a9b8f22102309612d19cfb74",
+    "SUM": "2ba48933334bc19af21f6d806a81ebedc213bcd17c22f9a9d39895076bf4060a",
+    "SUMSQ": "38edd3700567bf3284aa43ed7efc69c1f3df6bbd017a2a480f6c49759b6ae9bc",
+    "SWITCH": "17f5fea98b7d505fab412458eb27e8ac6df6687af4a4bd9ca6aa73c1877323aa",
+    "SYD": "683b997d689bc7dbd5e8096f1790b09318bb116ab9b8b42bf2f468a8c8f442e1",
+    "T": "160ac86361ac96bea11a59487a39615fcd577e7c7831c595aa3081951518a7e4",
+    "T.DIST.RT": "5b85ee2ec6e30804d89132afb8de372eb3cad73c474419e2d837920c458f4584",
+    "TAN": "cc4ab0c86d6ed73ff54e7a2e93d94f983071e567a1fb454953a9a02e8183aeec",
+    "TANH": "c94d73e0154da320f6e23bce52f221cb20e5bcbb77526e9c0f624b53bf51c788",
+    "TBILLEQ": "51ccc9733a98bba990d9ba976459cdebbb67ed66698f49d7bf7d8538ac5eab32",
+    "TBILLPRICE": "6d25d723a2ca936ecc7fb1224ee1b5c8ee6a6abf2ca7e38ec10fee54ba0542f6",
+    "TBILLYIELD": "7db51c22b532f324b869e4238e93dc9d20f3a0e78d8eee9d64cd46f3a7cb0517",
+    "TDIST": "37ac1f12fa201937baf304785d41a4e60bc5a48bc3fe3006c9f6051b0eca4343",
+    "TEXT": "e3037bed0dc17a1d4a6bef2b7c42923ef0f037178681f83436359594c55723fe",
+    "TEXTAFTER": "8c76b14b308d36a2e96fee3083968bc495e73f2c0cfccd63bb1e68b93d871c48",
+    "TEXTBEFORE": "2f69757d6ffdca4afd96af97e8de3542fba159e435070b4b313919ffc216c587",
+    "TEXTSPLIT": "81fd00d56d11a86e50a85a78cded7b53ff7bcb81580a9f7e1b00c80665bc9cc6",
+    "TIME": "ed10a33b13d8491033824458185f80100906d4ca16faa1d453a705083fb4833c",
+    "TINV": "2aebe8e6738cca2d1b2920fc1a59f58315a3ca7d05ad7766de7a297074cd9886",
+    "TREND": "c5fb3238c108f608ed4719f3b5cdb46e0cadbdb1e515c93c2c1d64fd7dae8697",
+    "TRUE": "cc691456fdd92ed6dc7bbad83601bc5b997b1d4af587ac6a4cb89281eb632625",
+    "TRUNC": "83a851d697a049becbdd4dd0dff62623e64f5eb8387d3de302b585774cd9bf44",
+    "TYPE": "8e52ea07f077e7edc2b9ffe6a8c3e93e125fbe8cbd0af3e302755acef6ac385c",
+    "UPPER": "4a4e051dc2b464c80c035fbc755dfe467c86cefecd6d47b47df37691f062322a",
+    "VAR": "62052311ad4cb824a3d9b48d37765711a5aee798fb1e7976309977a7e2092dc8",
+    "VAR.P": "524c37438f051199a022a4ccfc8f44d42fc4b49c28bb8d04d199d6bdc1436c57",
+    "VAR.S": "dd3c5c0b7bb9436ccd041e86350160c6576847cb58c6a09e6d7d520fc20aeb14",
+    "VARA": "aafc69c6824f269f33ddca5632c32c51a1ebbc0800683d4c22a5c7c145e27618",
+    "VARP": "653da90f06aad8e6a8afb21d5ea63e63c3e99424205d636a5032a74ced60feff",
+    "VARPA": "71e2fa3c5566e3381ff2a96c5d44f962c5304a48b1fbe404381e27d894fffca6",
+    "VDB": "7da0bd2541434f5d40ff35fc4c78b5ed0414fbf62964d37b71e9bbb23f4117df",
+    "WEEKDAY": "f463a4293ee2b69df3eb5fca48b4b61cd5bbfe39e4a351c4b9dae6eae8d6a03b",
+    "WEEKNUM": "45f67f7fc98e7f0051be3bfd457cf5e2e4f9c1a9263e581c9750b25d6a035145",
+    "WEIBULL.DIST": "c554cc3a8ffc34f3cf7ad71d25282f51f44e0e482fe0006c61d4a02eee90366f",
+    "WORKDAY": "43edd29bc3151b05da4d824a22d48a0b2ae2c75952b2eb1a65c306604ef9f50e",
+    "WORKDAY.INTL": "c84c6406f428beac38a1e94f90e0b436b60e37c65ccaab7a8143ae3c1360fa1a",
+    "XMATCH": "27b7888358852808d944095d6bd5552d3966ac2d7c3b41ade5807b2942c59b10",
+    "XNPV": "720c379be0e9a0cd968634a01ddda580d7a14f233c90f31d4da77a72b220cc1c",
+    "XOR": "9395228d0e0c7ad5d485e2ff4cfc4ed86ad2f6488d5c2ce82b066a7c4f20aeac",
+    "YEAR": "546d0ce6dfcec7546c730e7d41f57d3ec99ec46986ade97891307740de4f8969",
+    "YEARFRAC": "ffad0a3420277c2faccd8486edfe33e4e52af1c749dc11348a61f6a458391c54",
+    "YIELD": "9dee55d7756e514738b3bc01ea47f9e4e6b4fef9901af4598660d64bf7b11caf",
+    "YIELDMAT": "d85f27a5a88b085d8c6fdceb7309b68319e9d3157291f59e82c9e11c9c7e143c"
+  },
+  "inputs_sha256": {
+    "/home/ubuntu/projects/DnaCalc/DnaCalc/target/xtask-corpus/release/xtask-harness": "653dd2d6c43c96de8185db44ead9521b0d7d9df1a56a87fd65b265e3b009a601",
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/audit.py": "d772a32f0d8330cc49868b1d56817ba2fbd6f4a498de27467d85b3e2405c9f7a"
+  },
+  "changed_outcomes": 3811,
+  "limits": "Canonical full-bank judge only; every unread row remains an inclusive failure. The ordered identity/answer/environment digest must agree before match bits can be compared. Output hashes detect changed functions, but cannot locate failures that remain failures.",
+  "before": {
+    "total": 3910007,
+    "matched": 3773399,
+    "failed": 136608,
+    "unread": 116
+  },
+  "changed_functions": [
+    "CUMIPMT",
+    "CUMPRINC",
+    "IMLOG2",
+    "IPMT",
+    "PMT",
+    "PPMT"
+  ],
+  "gains": 3789,
+  "losses": 22
+}

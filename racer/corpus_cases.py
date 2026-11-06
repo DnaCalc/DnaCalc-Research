@@ -590,7 +590,12 @@ def outcome(value):
         # Capture and evaluation formats use different casing for the same
         # worksheet-error enum. Keep the original objects in each frozen row.
         names = {name.lower(): name for name in ('Null','Div0','Value','Ref','Name','Num','NA','GettingData','Spill','Calc','Blocked','Field','Unknown','Connect','Busy')}
-        return 'error:'+names[value['error'].lower()]
+        displays = {'#NULL!':'Null', '#DIV/0!':'Div0', '#VALUE!':'Value', '#REF!':'Ref',
+                    '#NAME?':'Name', '#NUM!':'Num', '#N/A':'NA', '#GETTING_DATA':'GettingData',
+                    '#SPILL!':'Spill', '#CALC!':'Calc', '#BLOCKED!':'Blocked', '#FIELD!':'Field',
+                    '#CONNECT!':'Connect', '#BUSY!':'Busy'}
+        code=value['error']
+        return 'error:'+(displays[code] if code in displays else names[code.lower()])
     if set(value) == {'logical'}:
         return 'bool:'+str(value['logical']).lower()
     if set(value) == {'text'}:

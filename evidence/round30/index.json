@@ -1,6 +1,6 @@
 {
   "complete": true,
-  "phase": "R30 gamma/ERFC checkpoint; PMT follow-up remains active",
+  "phase": "Final R30: reviewed ERF complement, positive type-one PMT, BESSELJ admission and Gamma density ratio; unresolved prefix research retained",
   "records": [
     {
       "original": "/home/ubuntu/codex-runs/r30/gamma-power-primitives-final.json",
@@ -275,7 +275,2194 @@
       "archive": "evidence/round30/studies/checkpoint-stages-ubs.log.gz",
       "uncompressed_sha256": "16dbbbefaf4111a691fb92e40ed17675cfca8b91163c0f470ed16ef54a293525",
       "archive_sha256": "35928acc3010d1fb9c8ec70a372c4d86fe6cc2740090f8a356d6187b26d615d9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-admission.json",
+      "archive": "evidence/round30/studies/bessel-admission.json.gz",
+      "uncompressed_sha256": "c4f3e21d80aa9032174a66d54f4293a38dc6b9b11c9a5825f095033417e104a1",
+      "archive_sha256": "6464d34263b73d4385155e204281fe93cf655cdccb53c8644d44b9cd970bef23"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-admission.json.questions.json",
+      "archive": "evidence/round30/studies/bessel-admission.json.questions.json.gz",
+      "uncompressed_sha256": "7f26e557c06b8ed3e7372de2d7e52a85fa49c6727c08f160ff8d5d4db798ab26",
+      "archive_sha256": "756612bcece67f8646aaa98a6ea774a093692118e6745fbc3ff3badea798aaf0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-real-controls/reference-bounds.jsonl",
+      "archive": "evidence/round30/studies/bessel-real-controls/reference-bounds.jsonl.gz",
+      "uncompressed_sha256": "0cf9bf80e0a14fd10a42d643b275c656bd69f68d540e9cb1dad3ca6ba90ddac3",
+      "archive_sha256": "5560c83769d501990453f68653aa4744328ab747854d0aae4b7fe7db912a0ce9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-real-controls/summary.json",
+      "archive": "evidence/round30/studies/bessel-real-controls/summary.json.gz",
+      "uncompressed_sha256": "d27312065ff3ddccf694b3acdbe51a39a2dacf533f7767609292f2edce504045",
+      "archive_sha256": "4c04e4a66ab46e524d8985479781d249cda3fb4610d50ef5f74bd8410f546f62"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-real-controls.log",
+      "archive": "evidence/round30/studies/bessel-real-controls.log.gz",
+      "uncompressed_sha256": "dd34abcf28fdecc4c1025eb83315c1d90f6e30f50c8952e65292350dfa980497",
+      "archive_sha256": "7f1b3e17248da6412755ba580f75d605a42f545ab3aa528e90b98ea3194d5c75"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-pmt-delta.json",
+      "archive": "evidence/round30/studies/corpus-pmt-delta.json.gz",
+      "uncompressed_sha256": "2fad33194fc1282cdcc3ea1423b31ab0a2912a284704c8a7b01f545886b63e74",
+      "archive_sha256": "c7e06eec43311b7ff2e2182e2e955a238c2a3fde1f8a7a6ac6d35656968b4b64"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/cumulative-first-residual.json",
+      "archive": "evidence/round30/studies/cumulative-first-residual.json.gz",
+      "uncompressed_sha256": "cd7a7992076119004e1ad49aa9a55be27096ec43eb3c3d574734dddd99decb3a",
+      "archive_sha256": "cf8c5247ff0a6b086ab7a95b4ac601779db407fe2fb0f5b2f2e7a35d0f6f9c4f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/hypergeom-corpus-products.json",
+      "archive": "evidence/round30/studies/hypergeom-corpus-products.json.gz",
+      "uncompressed_sha256": "fd095960e34b82c2ecb60d26fe288224c1a9c77ebfb7ba57390284df2bde9b32",
+      "archive_sha256": "1321986510d75a6cbc31e97c44e54b2c66215db09b4cbb2b9413a237391e1993"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-exponents/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-after-exponents/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "54bec69f58232b3b78626bdc06ee898c6dc533d33209738d00ac10bc818549d2",
+      "archive_sha256": "43bfc8810af6438ef1a9de3f71813f752f8abba3723a168d6d26596c88f274e5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-exponents/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-after-exponents/PMT.inputs.json.gz",
+      "uncompressed_sha256": "8d5cf8704c676859870e5af87d75b7e048157eccfffd75cf2bdb9c7a4f7fb277",
+      "archive_sha256": "838fbfa30c55e30ff19ea6c6182057c7cf2112b96e68e6e5130b4a5d692383a5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-exponents/receipt.json",
+      "archive": "evidence/round30/studies/pmt-after-exponents/receipt.json.gz",
+      "uncompressed_sha256": "9ae1142325aed51912a62d70c2da451509d8ba121a27473152843246616cf50b",
+      "archive_sha256": "2cb4fd744cdd2baddefe3e1f5cee0346dd684552edae9b8dc2df2d2759912267"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-pairs/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-after-pairs/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "d064eaf5531fcfa2b474e32fbaaa0f874bb5820eb6961cdd427ee20776020f99",
+      "archive_sha256": "ec306ddf49f0a03a8db8223fe8084e77acc3ef5865be51c97324e29476a77bed"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-pairs/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-after-pairs/PMT.inputs.json.gz",
+      "uncompressed_sha256": "fe9a54e25a18a6682a9eb16f835c1c59e7c1759900638f9f8b89b702ce16ded0",
+      "archive_sha256": "0ae40e52918393f20e877fcb4ab1283803801e84216765455aa26fcfffe50e68"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-pairs/receipt.json",
+      "archive": "evidence/round30/studies/pmt-after-pairs/receipt.json.gz",
+      "uncompressed_sha256": "e61131c56b7d0ed0ce9e8d8f80cd5a580964ff7702f05a5ff4bf77862d341ec3",
+      "archive_sha256": "74b13c5680e907065a2ae875a824beb700a10dd5051d614a7cbfb60e374e1848"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-replays.log",
+      "archive": "evidence/round30/studies/pmt-after-replays.log.gz",
+      "uncompressed_sha256": "1b3f1d91d468c3a1131541b8cd93235ee1428641089885f73730fcff6fd63288",
+      "archive_sha256": "a7b3449fe14b25727e656112913d5f55424afe125a23d762db8e8376a08ba3d5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-ties/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-after-ties/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "434fe7fb73d343ffe9807dd0d8118e9a0b249301a194db08a720394095e96034",
+      "archive_sha256": "75b9dafe7c3e067e286551fa43d361edfdb59beb878b05d870cba0771d428037"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-ties/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-after-ties/PMT.inputs.json.gz",
+      "uncompressed_sha256": "0f6a7d9e1801dfc1a93ca3ef50deebfe2401421c6c7444308e8e4bbd1cea9214",
+      "archive_sha256": "38f39bcd63fa1765900639d077ed8b126d15843271a623b4f3386e5ba9b5b8b6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-after-ties/receipt.json",
+      "archive": "evidence/round30/studies/pmt-after-ties/receipt.json.gz",
+      "uncompressed_sha256": "d21912f1a3952f15b498e1dcb7778f7bf998be860833d1f9584d27755bf6f0c1",
+      "archive_sha256": "9e078ecc7aee9f2b77847cd816a3a83005129bff27bdd9d3cdfe1d6c13962e49"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-final.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-final.json.gz",
+      "uncompressed_sha256": "e807ed9f6049e87e2506538c57f3f9dae38fafa905f8fc486e0b4604861e81b0",
+      "archive_sha256": "1dfdefb5a71fca17df0f245a9af592f8352bd9fc2309b8b5aaf0d0d56f1a940e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-final.json.PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-final.json.PMT.inputs.json.gz",
+      "uncompressed_sha256": "f25d33ea51fd763084e1b95a2b50bb33fbcd0ca28d8852a67b0ecc02c6d49437",
+      "archive_sha256": "f7dea0e2b2c3410fe1448696ce2126cb775fedbc1dbf93a6ff01577ea7224176"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-final.json.PPMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-final.json.PPMT.inputs.json.gz",
+      "uncompressed_sha256": "5653ff527240355078c33939424bb96e1058d086357d6fa3d6af61438298bee7",
+      "archive_sha256": "ad6ee0146c0075dfafe3dcb9288c410e95cf0a5a7dc45b44868a59c7b509aad1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-final.log",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-final.log.gz",
+      "uncompressed_sha256": "38d5b4c7a16aac8570799c8b4b478611f29f05c9f557ca53d12d39e2e3643422",
+      "archive_sha256": "e4d964785b2e1aca2470f309b7f9a2683240227621906d09999ef99d4a04efe5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-software.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-software.json.gz",
+      "uncompressed_sha256": "7df8fbdd5982a69307ed61af658b9adf4bc37111064d55e7dbbfde24dbf868de",
+      "archive_sha256": "91f5b9ab6b8508772ccf59e2941e9941032016884fb25bf34f085d62cdefca6f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-software.json.PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-software.json.PMT.inputs.json.gz",
+      "uncompressed_sha256": "f25d33ea51fd763084e1b95a2b50bb33fbcd0ca28d8852a67b0ecc02c6d49437",
+      "archive_sha256": "f7dea0e2b2c3410fe1448696ce2126cb775fedbc1dbf93a6ff01577ea7224176"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-software.json.PPMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-software.json.PPMT.inputs.json.gz",
+      "uncompressed_sha256": "5653ff527240355078c33939424bb96e1058d086357d6fa3d6af61438298bee7",
+      "archive_sha256": "ad6ee0146c0075dfafe3dcb9288c410e95cf0a5a7dc45b44868a59c7b509aad1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls.json.PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls.json.PMT.inputs.json.gz",
+      "uncompressed_sha256": "f25d33ea51fd763084e1b95a2b50bb33fbcd0ca28d8852a67b0ecc02c6d49437",
+      "archive_sha256": "f7dea0e2b2c3410fe1448696ce2126cb775fedbc1dbf93a6ff01577ea7224176"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls.json.PPMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls.json.PPMT.inputs.json.gz",
+      "uncompressed_sha256": "5653ff527240355078c33939424bb96e1058d086357d6fa3d6af61438298bee7",
+      "archive_sha256": "ad6ee0146c0075dfafe3dcb9288c410e95cf0a5a7dc45b44868a59c7b509aad1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls.log",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls.log.gz",
+      "uncompressed_sha256": "31da846bb253803ffdcd08f5879740638103578d2715e152ae3672affc68023f",
+      "archive_sha256": "9ff32a7fc92cc90ffaaddfd9cbe6c32b5f041744d1d016ea2646256ee15802aa"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-requests.json",
+      "archive": "evidence/round30/studies/pmt-bank-loss-requests.json.gz",
+      "uncompressed_sha256": "da8f23011a6d1f21230979ade85a9e46f476d7d67df821317a1fd8b4d34cbb32",
+      "archive_sha256": "94af11ef3156468f9a6e8491e363ade100bef30c5bd0cfc2803571357896a18e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-before-replays.log",
+      "archive": "evidence/round30/studies/pmt-before-replays.log.gz",
+      "uncompressed_sha256": "bb9f9be0388c3943e1494117a891217dc316a2c666ad241626cb1c45ec38019e",
+      "archive_sha256": "f7e04c192c6d39bc8d09d18e69088eab4dbd3c2b196914e9f7c6778511764f44"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-classified-pin-losses.tsv",
+      "archive": "evidence/round30/studies/pmt-classified-pin-losses.tsv.gz",
+      "uncompressed_sha256": "cee2840d8bee66eb03297c5bdd39650eae3433542d2d5fd40cec14af95fd55df",
+      "archive_sha256": "dc9cbc29e2fcf1e85f7b06c135d76920eb8563850cefe8022b72e8687a7acbbd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-final.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-final.json.gz",
+      "uncompressed_sha256": "12646f15531b8b27c48a70b93e513df57a1febfebbbbbc9eda78f751f6fc86ab",
+      "archive_sha256": "0907850ef4d716bb2b24d16218b8c72f47089356f0d288852391085a1509a8a2"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-final.json.PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-final.json.PMT.inputs.json.gz",
+      "uncompressed_sha256": "bfc7b82833ed9dde484fefa3b39eb8f9ec43d791792289cb1388f7a8e34efbe7",
+      "archive_sha256": "6103ff738d09583e66e25f9d8f819b22943ee009abce2867caa94bafe3a3c4f4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-final.json.PPMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-final.json.PPMT.inputs.json.gz",
+      "uncompressed_sha256": "02a7c2bf273434fcc3a9aca59fc4d646ce505ee78201c8651f188af73379b829",
+      "archive_sha256": "dd8af1618d8f48b4468d6ea6e0cdab34d7840bb2dc3183da2715d29d7dd8926f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-final.log",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-final.log.gz",
+      "uncompressed_sha256": "5f5384011a1cae7c3579b8329a342de0a8c448c2ca23470473f3077a5db87e49",
+      "archive_sha256": "1361cdd7df7a21621e71372d7cca34f9387f9d1e9515fb79eeff8a246b0df1e0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-retry.log",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-retry.log.gz",
+      "uncompressed_sha256": "194d2c2af1e39711b32626142c8bff210327de20794b7243f1e5eec355b3a9a5",
+      "archive_sha256": "f78db57f6bc664194a5b4b509c7ee3c18a5eb696225b8ac4aecde78a85092ff9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-software.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-software.json.gz",
+      "uncompressed_sha256": "fc67001a709c5578d7e435627665c671936aef831573ac3c5080a95ce1df5600",
+      "archive_sha256": "2ffb3ebd1f60aebf3776df6c5f62522b7e4fbabfe82d7412d1069a6dba2ab15b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-software.json.PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-software.json.PMT.inputs.json.gz",
+      "uncompressed_sha256": "bfc7b82833ed9dde484fefa3b39eb8f9ec43d791792289cb1388f7a8e34efbe7",
+      "archive_sha256": "6103ff738d09583e66e25f9d8f819b22943ee009abce2867caa94bafe3a3c4f4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-software.json.PPMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-software.json.PPMT.inputs.json.gz",
+      "uncompressed_sha256": "02a7c2bf273434fcc3a9aca59fc4d646ce505ee78201c8651f188af73379b829",
+      "archive_sha256": "dd8af1618d8f48b4468d6ea6e0cdab34d7840bb2dc3183da2715d29d7dd8926f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls.json.PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls.json.PMT.inputs.json.gz",
+      "uncompressed_sha256": "bfc7b82833ed9dde484fefa3b39eb8f9ec43d791792289cb1388f7a8e34efbe7",
+      "archive_sha256": "6103ff738d09583e66e25f9d8f819b22943ee009abce2867caa94bafe3a3c4f4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls.json.PPMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls.json.PPMT.inputs.json.gz",
+      "uncompressed_sha256": "02a7c2bf273434fcc3a9aca59fc4d646ce505ee78201c8651f188af73379b829",
+      "archive_sha256": "dd8af1618d8f48b4468d6ea6e0cdab34d7840bb2dc3183da2715d29d7dd8926f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls.log",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls.log.gz",
+      "uncompressed_sha256": "eded065a0d8739986328fc00d7f814e01165ab38449f597f9a33b1b13e02feae",
+      "archive_sha256": "a3596a7c69d7089b1c27d356a3cc0fbc01f010571320fe4610c468e2e08fb022"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-requests.json",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-requests.json.gz",
+      "uncompressed_sha256": "55ccc61e99aa5e71657a82cdfa0602065c804be465c92168b0ee53e65a894a01",
+      "archive_sha256": "7bed52cae39bd2aca3f92340ad4a4a20cf6b3b6779b6a0db52eb3d505799f6f3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-final-review.json",
+      "archive": "evidence/round30/studies/pmt-final-review.json.gz",
+      "uncompressed_sha256": "fcc4003059b6f3166263da07b5a8d50209ab0ca5e4de23fdee316f0976cc6275",
+      "archive_sha256": "249b07ead4c3ff3e3e67e3037121e6c61ac44bfbeabdf1fc264ece60b39a1be5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-internal-control.json",
+      "archive": "evidence/round30/studies/pmt-internal-control.json.gz",
+      "uncompressed_sha256": "291adbac4513e25e4f8facfff364b28dcaca9456ac82ef947b95d094aa64c031",
+      "archive_sha256": "265ff7e02e13150ef9167df520a639a9a1b7bd4f982b3bbc6c98ddedeca52151"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-native-software-parity.json",
+      "archive": "evidence/round30/studies/pmt-native-software-parity.json.gz",
+      "uncompressed_sha256": "9ad0f15c91c60fc0aae7b735ce086e6e888f821ca414fc933ca39ecd67c1aa0a",
+      "archive_sha256": "a9003d8bc57fe5180a1ea112f5a036443a7b28c8abb3b8f3584e28ee9c9a4f16"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-pin-refresh.log",
+      "archive": "evidence/round30/studies/pmt-pin-refresh.log.gz",
+      "uncompressed_sha256": "048e46707793875d7a84f9de6838723be644a9128661c35538db0b358887d7e6",
+      "archive_sha256": "afc9a54c5043a91258b7e498bc4c5521fbf3a9c9b326e9d1bb3665b649eb113a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-pins-before/CUMPRINC.json",
+      "archive": "evidence/round30/studies/pmt-pins-before/CUMPRINC.json.gz",
+      "uncompressed_sha256": "ff895ceb8f1eff7aa00b2a4238081dd8c878c09632c8ec3d001fd069bb2d851a",
+      "archive_sha256": "b67090ff31c49da1a59f973850b4a520f4d8bd10a6235d03e4012e1ce5fb68c5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-pins-before/IPMT.json",
+      "archive": "evidence/round30/studies/pmt-pins-before/IPMT.json.gz",
+      "uncompressed_sha256": "07671c0ed5a84dff7fa7a9a58fe55cd57f4d638b0b329ae8579c4e9ef02d46ea",
+      "archive_sha256": "db24a4f14f5774f91f3ecb52bdae4aef4a7cd4cd994fb3f8aa7675c1eca80240"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-pins-before/PMT.json",
+      "archive": "evidence/round30/studies/pmt-pins-before/PMT.json.gz",
+      "uncompressed_sha256": "bea040fda0e71ee3f75c0b25ac371fe736ba7b6774c69491c5a514ff78195404",
+      "archive_sha256": "8f1ad61c6f8ce1e71c2edd3879a5bb60c5c20965fb2b62afa52f825821278f26"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-pins-before/PPMT.json",
+      "archive": "evidence/round30/studies/pmt-pins-before/PPMT.json.gz",
+      "uncompressed_sha256": "21776af43360568709acb5e2ee8c1682d956a66a627ac2f2a764c8cc9a68133b",
+      "archive_sha256": "1bb2601a35077677e456cce00cab98316e89945c2b3386905d8101c76c579e27"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-publish-merge-check.log",
+      "archive": "evidence/round30/studies/pmt-publish-merge-check.log.gz",
+      "uncompressed_sha256": "fef067426a6a9ce4ee42fb8668bdf5e68ec0facc21947dcb18e83359fc535c09",
+      "archive_sha256": "dd8213f280ec9946c03196b5ee96919067cf5b5cbe052ab62042c5eb9a0cc534"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-build.log",
+      "archive": "evidence/round30/studies/pmt-soft-build.log.gz",
+      "uncompressed_sha256": "7f75faae0d83bfd6f82c38c0eb731b24b0b1aaecb015154bf7962ec86374eb5a",
+      "archive_sha256": "2d048162606c76ea0e70aea04aca8b213ab1de12af19befe592c98be1221c459"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-exponents/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-soft-exponents/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "54bec69f58232b3b78626bdc06ee898c6dc533d33209738d00ac10bc818549d2",
+      "archive_sha256": "43bfc8810af6438ef1a9de3f71813f752f8abba3723a168d6d26596c88f274e5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-exponents/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-soft-exponents/PMT.inputs.json.gz",
+      "uncompressed_sha256": "8d5cf8704c676859870e5af87d75b7e048157eccfffd75cf2bdb9c7a4f7fb277",
+      "archive_sha256": "838fbfa30c55e30ff19ea6c6182057c7cf2112b96e68e6e5130b4a5d692383a5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-exponents/receipt.json",
+      "archive": "evidence/round30/studies/pmt-soft-exponents/receipt.json.gz",
+      "uncompressed_sha256": "cd14e1301bd8e6e716fd31c80d944050b378e1169d5c26e4f9b7f75920f7c9c8",
+      "archive_sha256": "96c30867ad3677db8f65a61f5a15c090238bfce4b798388ec66d18d562c3963a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-pairs/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-soft-pairs/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "d064eaf5531fcfa2b474e32fbaaa0f874bb5820eb6961cdd427ee20776020f99",
+      "archive_sha256": "ec306ddf49f0a03a8db8223fe8084e77acc3ef5865be51c97324e29476a77bed"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-pairs/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-soft-pairs/PMT.inputs.json.gz",
+      "uncompressed_sha256": "fe9a54e25a18a6682a9eb16f835c1c59e7c1759900638f9f8b89b702ce16ded0",
+      "archive_sha256": "0ae40e52918393f20e877fcb4ab1283803801e84216765455aa26fcfffe50e68"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-pairs/receipt.json",
+      "archive": "evidence/round30/studies/pmt-soft-pairs/receipt.json.gz",
+      "uncompressed_sha256": "25334cb33b80c8f83c9eee6cc7d13dedf9995a8b355cc7dfbc884e74084e4179",
+      "archive_sha256": "a7e7b302e1bf82cfb2b3d362174b69608ff66523879f23d19d54cc33b423467b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-replays.log",
+      "archive": "evidence/round30/studies/pmt-soft-replays.log.gz",
+      "uncompressed_sha256": "1b3f1d91d468c3a1131541b8cd93235ee1428641089885f73730fcff6fd63288",
+      "archive_sha256": "a7b3449fe14b25727e656112913d5f55424afe125a23d762db8e8376a08ba3d5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-ties/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-soft-ties/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "434fe7fb73d343ffe9807dd0d8118e9a0b249301a194db08a720394095e96034",
+      "archive_sha256": "75b9dafe7c3e067e286551fa43d361edfdb59beb878b05d870cba0771d428037"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-ties/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-soft-ties/PMT.inputs.json.gz",
+      "uncompressed_sha256": "0f6a7d9e1801dfc1a93ca3ef50deebfe2401421c6c7444308e8e4bbd1cea9214",
+      "archive_sha256": "38f39bcd63fa1765900639d077ed8b126d15843271a623b4f3386e5ba9b5b8b6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-soft-ties/receipt.json",
+      "archive": "evidence/round30/studies/pmt-soft-ties/receipt.json.gz",
+      "uncompressed_sha256": "13180557b5bbe1c8b73048844997caf37e1edb20f84e6a8f21ec32551f5f007d",
+      "archive_sha256": "68a62626c016a0fc5d7932b128287fa53a97125e5e09ae24f99b27db730f0ee9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-software-controls.log",
+      "archive": "evidence/round30/studies/pmt-software-controls.log.gz",
+      "uncompressed_sha256": "a2704380b6ab3061a5a3039fd071e69a109a8868df5e556d07677e85f0f1d57a",
+      "archive_sha256": "c5a6549370b0d6c97782574823ade5dac266bec290fc89a426a5381cc9b1a83b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-check-final.log",
+      "archive": "evidence/round30/studies/pmt-timing-check-final.log.gz",
+      "uncompressed_sha256": "56a847bcd51af91ebc36393aa96dbb87282ba2a7653bc4a55e4d2c3218cbd711",
+      "archive_sha256": "d787028210a815896ada6d1b31a84d58b81272b300fbdbbfd608c68862d2ab10"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-check.log",
+      "archive": "evidence/round30/studies/pmt-timing-check.log.gz",
+      "uncompressed_sha256": "010c9e85d58c11ec08316ecd910695fb0158770b048d27583fd39643f9d4c09a",
+      "archive_sha256": "dcc2b5eb37c0ae46ef822e42ffb6a7012a176d7c4476186c37393b3f567d06fb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-edges.log",
+      "archive": "evidence/round30/studies/pmt-timing-edges.log.gz",
+      "uncompressed_sha256": "19a7fc3eec03b531a76f84e9d66248a5f1ed7f439700427d47d8e493d7f42351",
+      "archive_sha256": "16eb949f1470acb6507b9fe7bc57c51f18fb076e4629c5fbca11e84ac66dc09b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-research-build.log",
+      "archive": "evidence/round30/studies/pmt-timing-research-build.log.gz",
+      "uncompressed_sha256": "e2412d7b3ba502ea57d286c09be5ce16665e8d597e3c5756660c63524b7cf3fe",
+      "archive_sha256": "4d5a774ffb89280682bd634c9241391dcc8d18f60def04b3e580d7c2eb856163"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-tests-corrected.log",
+      "archive": "evidence/round30/studies/pmt-timing-tests-corrected.log.gz",
+      "uncompressed_sha256": "2679d7e012eaaefbe2b859a057ce7a4b5ab52ff83ca6e29a1158590c7f7a2f44",
+      "archive_sha256": "faa30fe121b4cd20c6f1acfcdeed570bd65c3270957120de8080e602b57ce8d0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-tests.log",
+      "archive": "evidence/round30/studies/pmt-timing-tests.log.gz",
+      "uncompressed_sha256": "f4068028946751521bef0263db36643ccd3137be03ecea6b1e7082cff91b0c36",
+      "archive_sha256": "a51f0aed0178cff75d999dadaa51ee833b0b52a7b1b5783fbb260fc89e356440"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-timing-ubs.log",
+      "archive": "evidence/round30/studies/pmt-timing-ubs.log.gz",
+      "uncompressed_sha256": "62d7257e9acb3bcef23dfbb1dfd709deaac29513abafc75f59cca738f0b8a231",
+      "archive_sha256": "d7092a76e9513446d0c98e0a1e40e7521c733ce58b2ce94809259e533adf30ef"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/poisson-log-contrasts.json",
+      "archive": "evidence/round30/studies/poisson-log-contrasts.json.gz",
+      "uncompressed_sha256": "6160bbc0db8c9651be69b61e7604bd860d6fcaebebe2c370a77b3010b468ad9e",
+      "archive_sha256": "49f892f264432f9ebb0fd1291a7643e4ee37708eb615ba6ccc657e62ce3f95aa"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/python-pmt-final.log",
+      "archive": "evidence/round30/studies/python-pmt-final.log.gz",
+      "uncompressed_sha256": "7a467ce805132ed4b572842cfda051764ccac31d9c8b383505e0f00ad3ed1e0c",
+      "archive_sha256": "6274441c5dfdcdd904ac1408bf65cc2f40db52df36356590f8ce2de9151bae1a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/remaining-bessel-hypergeom/cases.jsonl",
+      "archive": "evidence/round30/studies/remaining-bessel-hypergeom/cases.jsonl.gz",
+      "uncompressed_sha256": "b67477b998855e3031896bc3eb5a8016ce83b9df397f6609945674180188ecc0",
+      "archive_sha256": "c853485d64c137b1708efffc67c595eaefb1ccc788f554ea0090e14879b66185"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/remaining-bessel-hypergeom/excluded.jsonl",
+      "archive": "evidence/round30/studies/remaining-bessel-hypergeom/excluded.jsonl.gz",
+      "uncompressed_sha256": "6ea328c9e42a1cd8e0ba6ab59e9dd014c01dacd36299651a252aa116cc7d74e2",
+      "archive_sha256": "6ea588e5a6492cebe10972c21281d84014a9b25edb87998dcf22a95e20a77dba"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/remaining-bessel-hypergeom/summary.json",
+      "archive": "evidence/round30/studies/remaining-bessel-hypergeom/summary.json.gz",
+      "uncompressed_sha256": "11ec53a9742fb437145cf41303e916e3b9d1101d9cff7b6f7141a7d8cde46294",
+      "archive_sha256": "51a3f06e2f4161c1b00ce050ad75272b558cba499fee46e0b682721742cad2d3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/remaining-freeze.log",
+      "archive": "evidence/round30/studies/remaining-freeze.log.gz",
+      "uncompressed_sha256": "393e3e950f3e810970751662d936475aa3415f1b864eb27f5da3c779e67893d1",
+      "archive_sha256": "31ec08ca1fc6b0f0f938daed0844a3be36f7e9b097e40d9c5d25df0834740546"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-pmt-final-test.log",
+      "archive": "evidence/round30/studies/research-pmt-final-test.log.gz",
+      "uncompressed_sha256": "bd0845609c5efae2ece9b2ed7dba01b874d5133b75142e570c60e5af335ce9b8",
+      "archive_sha256": "d3a77007997d1af28fa21241f6989767f18e7b191855f138a331c15d8d2c928e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/GAMMADIST-before-erf-refresh.json",
+      "archive": "evidence/round30/studies/GAMMADIST-before-erf-refresh.json.gz",
+      "uncompressed_sha256": "157eb64952316c055651a8501776656aad84741bcd466304c219cb173aad9b75",
+      "archive_sha256": "3252f164258b0b9666e852950a428d2a6eebc4cfc2daec80e75588103b614c25"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-baseline.log",
+      "archive": "evidence/round30/studies/bank-baseline.log.gz",
+      "uncompressed_sha256": "a8e0c79b87e76f666e5848a940b4c2ea5e1b14f3d4c6b17b02b44c7f98c7e60d",
+      "archive_sha256": "4c603d085e8f8080e485bd6d90d162e9157720fecd470be3a503b45781f48292"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-bessel.log",
+      "archive": "evidence/round30/studies/bank-bessel.log.gz",
+      "uncompressed_sha256": "fdc5db738d245252e614c150f1f7743e134a027234edd6c1d8626e95c32a0d0c",
+      "archive_sha256": "5508b069e65a933aa617a6df658d6093f4e2257ef9e0254d338f7378132dd27a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-erf.log",
+      "archive": "evidence/round30/studies/bank-erf.log.gz",
+      "uncompressed_sha256": "c086356de4476d7bd42f7a0bb1333c17148408a6db288ac6e5b6a2aa99a15b66",
+      "archive_sha256": "2d30b7b671311b3f688310738d20a0c0908758074df7b73eb94009010bc8df18"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-after.log",
+      "archive": "evidence/round30/studies/bank-gamma-after.log.gz",
+      "uncompressed_sha256": "cb195c2cf5af16c8acfa3b9b8d006a6bc8ad25a4aeade711c936cbbececd3d0e",
+      "archive_sha256": "ece33884733dfa4d12673facf2dfb83a1065abd755790703116261bca447c633"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-before.log",
+      "archive": "evidence/round30/studies/bank-gamma-before.log.gz",
+      "uncompressed_sha256": "cc0042fb1f60ee22e1035d9f65ca172b554ebfcc7c6a13c284b65b4a510ecf92",
+      "archive_sha256": "4851d7f463da8073664310d289af427192c25fcb39dff738450d9f69e137b067"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-pmt.log",
+      "archive": "evidence/round30/studies/bank-pmt.log.gz",
+      "uncompressed_sha256": "7e733dfac41f128272bfde856b98c7934495ea3d5e614e197461acdece6b6532",
+      "archive_sha256": "6889b51cdf3b22a3e53b70a41ee3a95d0dc69ac9ef97114f9216f05366850173"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-admission.log",
+      "archive": "evidence/round30/studies/bessel-admission.log.gz",
+      "uncompressed_sha256": "31ba819ab72f314b6373089ac5351c622f8981de5290793838f6e61d0f2b8399",
+      "archive_sha256": "92a670619c9c10e24219b876598b6f7025fe1343e81539841a4812f52f24c860"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-bead-note.txt",
+      "archive": "evidence/round30/studies/bessel-bead-note.txt.gz",
+      "uncompressed_sha256": "63242355bc8d7edb267d60fc76ffb5957e61cc79fcc48dd833540ad8a72620bb",
+      "archive_sha256": "f9af63351151dd543615a0ec741665ae785051e6734d210d35eb0ff5bfed8e46"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-check-final.log",
+      "archive": "evidence/round30/studies/bessel-check-final.log.gz",
+      "uncompressed_sha256": "1aabff4d7c441b85bca23100480f5a66324c105d980bb1988a1125dc0d5b7b1f",
+      "archive_sha256": "c61b70576c617797a0bc236b48ae64551e8527edbcee169b7ec9942415e7fc08"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-check.log",
+      "archive": "evidence/round30/studies/bessel-check.log.gz",
+      "uncompressed_sha256": "6c3971b5d5a62c48e6e4876bb75d358ad3aaa0a3a35996445161c97de688a998",
+      "archive_sha256": "8ccb3026845bc3b5c5c3844c493f39f34cc608e74612f4a765431a4adf141649"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-commit.txt",
+      "archive": "evidence/round30/studies/bessel-commit.txt.gz",
+      "uncompressed_sha256": "467939011c0ed2e2c42f74c139d55c6f4926b147ff26eaf220cf5817fe44b91c",
+      "archive_sha256": "7a84bfc5b71119e0735e053438c2acecfb81ba09271a953674f057d75e4db458"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-final-review.json",
+      "archive": "evidence/round30/studies/bessel-final-review.json.gz",
+      "uncompressed_sha256": "3d33dfdd3b932902bdb84063ed214ede1fd33654301615bee97ab4795aa34c85",
+      "archive_sha256": "fca9e7203ecbd59537b01fa782ee15b593e1ed7bb629d9fadd43c53094bce75c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-research-build-final.log",
+      "archive": "evidence/round30/studies/bessel-research-build-final.log.gz",
+      "uncompressed_sha256": "5fa98ea28dfe8639165601df279d4a3916a51fe267aa52abee900a18bcd3a443",
+      "archive_sha256": "95b534c15ab01bfb13600b546f0f860e905a9bdd57a244ca0733fc40ff62f41f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-research-build.log",
+      "archive": "evidence/round30/studies/bessel-research-build.log.gz",
+      "uncompressed_sha256": "29287bd59bdb9472c198a4e7767988a8286407b9b7a77f167a8834fb49d9d4b0",
+      "archive_sha256": "8faf73de8954d5261d38a0f3c7c364d3bc4d4092ac58eb3ecbab1b1ced6c0051"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bessel-ubs.log",
+      "archive": "evidence/round30/studies/bessel-ubs.log.gz",
+      "uncompressed_sha256": "349c99cb5f508a1f44d091caac686bb8d0e31fe1c5101584a3b523935bc1329b",
+      "archive_sha256": "e4e6540857a1d65d50b96fd386fc69501796c0413cb5111d641f0ad273da1ba2"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/checkpoint-research-commit.txt",
+      "archive": "evidence/round30/studies/checkpoint-research-commit.txt.gz",
+      "uncompressed_sha256": "70cdc5f78afa67982422304f87c48b265d451e523b597cd7a514a3373032b67f",
+      "archive_sha256": "98002bef80924c972dd2b6b906ad67dd992cf73516d7ce30c194d995a3087101"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-bessel-delta.json",
+      "archive": "evidence/round30/studies/corpus-bessel-delta.json.gz",
+      "uncompressed_sha256": "c0c7d441b54737c242b85da6eaec04a3e8d4a4bffba03ca731085b9b2babc9cb",
+      "archive_sha256": "794f17a90d1d0a1a454b39248af639ea18f364cfc9955cb6c440380261a8996a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-bessel-delta.log",
+      "archive": "evidence/round30/studies/corpus-bessel-delta.log.gz",
+      "uncompressed_sha256": "eccb23e2a0e72b0282d1e5744a15b9750b3b6f57f842b1b9be2a0ef635838aea",
+      "archive_sha256": "e69dec3f86ff292217f33e0c8379542e5b0142c493264191425c367efa5fb8b9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-bessel.log",
+      "archive": "evidence/round30/studies/corpus-bessel.log.gz",
+      "uncompressed_sha256": "6ccb10af3236fa9267903593adfcdc20c4eb041b536aa3d7fa844027f5894b1b",
+      "archive_sha256": "5226519621f88b12967a66f0a53426201815f42365ce264ea3ecabd697082300"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-erf-delta.log",
+      "archive": "evidence/round30/studies/corpus-erf-delta.log.gz",
+      "uncompressed_sha256": "45d3c5acee7132f4237124e992fa53bb13e0003c915d2ed3323f9b5f2ed9bc06",
+      "archive_sha256": "9a39fc0e91660d73f09bc6f7118b053b9c352398c84212aaeecfd37167c19e3a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-erf.log",
+      "archive": "evidence/round30/studies/corpus-erf.log.gz",
+      "uncompressed_sha256": "56f457f54e164b95414f11cfd6f87c2ab9f16afa80d58240e52a12861788bde8",
+      "archive_sha256": "a7639e31a44163dd559ecd97e4759b6680a9d91ed747fff9d235ae5c13cb0de6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-after.log",
+      "archive": "evidence/round30/studies/corpus-gamma-after.log.gz",
+      "uncompressed_sha256": "870fdff7ddd84b35a13da206206547860f6f076aa21fdb371e9dd3c2ce5afd50",
+      "archive_sha256": "bbdec8c2278554b44e9bfe1abf59f913056067fdcf9a0feeb89dc6375695f48b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-before.log",
+      "archive": "evidence/round30/studies/corpus-gamma-before.log.gz",
+      "uncompressed_sha256": "86d43b6c56f2cd68620790d734baebe60a9a36e4331db4cd6f1038c0a6f230ee",
+      "archive_sha256": "412f6e6a56895412d2cb324a66492d3c201b9bbcef43628f96cd4e50529fa907"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-delta.json",
+      "archive": "evidence/round30/studies/corpus-gamma-delta.json.gz",
+      "uncompressed_sha256": "f56057360bb0a0ca4d952d16ee673e3aa18cc1df8f87a88dee83bd16da1b284b",
+      "archive_sha256": "eb3e1ef3594a0bbdd35e10c9ad11e1442861269d5f03d2fcd0f1151a468015c5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-delta.log",
+      "archive": "evidence/round30/studies/corpus-gamma-delta.log.gz",
+      "uncompressed_sha256": "cabc50c5e55fa285527f2e5e0e6f5d590cda12fa82a91506365ce3fa86ffc991",
+      "archive_sha256": "56bbbd30931c76a7f549ac4a1bfb618a6e35276dee0af91245be90ba81e331f6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-pmt-delta.log",
+      "archive": "evidence/round30/studies/corpus-pmt-delta.log.gz",
+      "uncompressed_sha256": "aa556fe7745857a7d629056231082243e4864d1798f2492668dfc4310b77990b",
+      "archive_sha256": "6b4b45b040ac6beb06a2c5fe003845d84de43bbfdec4aa5ffcae5e188a0f9488"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-pmt.log",
+      "archive": "evidence/round30/studies/corpus-pmt.log.gz",
+      "uncompressed_sha256": "a299c8d531551d64cc36a88c5f11e312632a9d0d98910f6aa39803016d24fba4",
+      "archive_sha256": "1582434019624fa716643725daa39f9319b1e93bed1acde0c17f1e4aa0793a44"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/cumulative-denominators.log",
+      "archive": "evidence/round30/studies/cumulative-denominators.log.gz",
+      "uncompressed_sha256": "59220a6db8ba0534c2045e6b2396d51cbe559fecb8815637d8ddb021a5208883",
+      "archive_sha256": "6e2159df92054a866b8e76187921b83c6c4ab8143497b95d8ebfbb15b9192649"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/cumulative-first-residual.log",
+      "archive": "evidence/round30/studies/cumulative-first-residual.log.gz",
+      "uncompressed_sha256": "488022e7c6d9ae82138cda41d1de472fbf08e61915ec28bfd7282cef3d5f6e57",
+      "archive_sha256": "301e314d4ba2155d66337a51c9e5356a6958fbfa414a07133afd083dc3a380da"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/cumulative-fv-balances.log",
+      "archive": "evidence/round30/studies/cumulative-fv-balances.log.gz",
+      "uncompressed_sha256": "68c9b8731fc876b7dd9e48c5e19513ffcbf53232df418ddd65c6cfc67f52b686",
+      "archive_sha256": "82200e71c1ef0f53f01a32cbf86e48dc900a00f72c5c6be5f81218be4a7b9287"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/cumulative-fv.log",
+      "archive": "evidence/round30/studies/cumulative-fv.log.gz",
+      "uncompressed_sha256": "2d8c0e52a6fca6edf9f8218fc0efa2ec1012b00aee838c0ba1dd100d7fe95161",
+      "archive_sha256": "dc446f0220dd0859a5673740119e331467512f0a160a83e1b7678896d2456bfd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/cumulative-pairs.log",
+      "archive": "evidence/round30/studies/cumulative-pairs.log.gz",
+      "uncompressed_sha256": "e2b89c4d04ccabff7515db6bb8b0beefc337d06335c2839369f228faf3e63742",
+      "archive_sha256": "6f65d333514eece02a0738a366b4840f9446261967d9d6c04f6cb00df5ff965d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-after-replays.log",
+      "archive": "evidence/round30/studies/erf-after-replays.log.gz",
+      "uncompressed_sha256": "273e878c1a69f481d89eaa6cc4890a200743adaecb00c3e5da56ea1bc3b885a1",
+      "archive_sha256": "c18cd624a19228fffc16e367e647a8fa7f6298ac83bd771281d659765d856e31"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-bead-comment.txt",
+      "archive": "evidence/round30/studies/erf-bead-comment.txt.gz",
+      "uncompressed_sha256": "4c495c767b2effe221dc0711e47470baf20a90f7928cfa09e76014d6682d1dff",
+      "archive_sha256": "84b6be966b7bd572cee16c6e26c14fff7e659e966108b6703cda2079e0791866"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-before-replays.log",
+      "archive": "evidence/round30/studies/erf-before-replays.log.gz",
+      "uncompressed_sha256": "9948bb3b46402b10af8812f3a891a76ec5cad6d0b16d6270b8521306f5072293",
+      "archive_sha256": "1c6a700ce15ba2dc90d9d5ca8e62a812de1c853b37db355368a4bc2c10d839bc"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-classified-pin-losses.tsv",
+      "archive": "evidence/round30/studies/erf-classified-pin-losses.tsv.gz",
+      "uncompressed_sha256": "eb31e6156abb88ed4d7b91e0bc37d466a7d609beb624571851b5fda4b03cc1c8",
+      "archive_sha256": "4828f42dbe29ff7727ac9d2db1ed55699eeda671347e5e67b007fcd09f81103e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-commit.txt",
+      "archive": "evidence/round30/studies/erf-commit.txt.gz",
+      "uncompressed_sha256": "512c5ce6e2b2b4050506c90d0a07800fe6fe017c644f23533b3d45d3267126e1",
+      "archive_sha256": "9ba6ca1436f7385e5fdd4d406fd99093e9ca770028e56ba7cb98fed2feb33248"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-final-replays.log",
+      "archive": "evidence/round30/studies/erf-final-replays.log.gz",
+      "uncompressed_sha256": "793335d829eef7cb9d1b03ed1d70991f1d4296709a2a7bab607a5ea00f8ee90b",
+      "archive_sha256": "7dc2175035cdc8ca0cb7f1d120488687c7d7849082a5e0211f934af0d2a191c0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-loss-classification.json",
+      "archive": "evidence/round30/studies/erf-loss-classification.json.gz",
+      "uncompressed_sha256": "fd32556ab9b89b632d9a11ceb91b99fd3fa7677ffde65f96a055e24df4ef8b99",
+      "archive_sha256": "2f933f8fb3602587f3dc20d13710f82026acf2d11428c9a9037affc9e028cf85"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-loss-classification.json.actuals.jsonl",
+      "archive": "evidence/round30/studies/erf-loss-classification.json.actuals.jsonl.gz",
+      "uncompressed_sha256": "e607ea36ecc8bca7a4168786a88adafcbdbcff8dc5888febd3fbbc8a94cbad0d",
+      "archive_sha256": "f62b259ce39c72000dc8c4824eed6d5f2a45236360c651421ffa70fcc2e3c305"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-loss-classification.json.inputs.json",
+      "archive": "evidence/round30/studies/erf-loss-classification.json.inputs.json.gz",
+      "uncompressed_sha256": "0c3cb860273d70e4f25c4862111834fa0a41f469589eb3e4fcd580ebde271845",
+      "archive_sha256": "6b56a3971af306f5d4221d3729ab10a9f71795a71373f7aac02580920071b954"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-loss-classification.log",
+      "archive": "evidence/round30/studies/erf-loss-classification.log.gz",
+      "uncompressed_sha256": "0659491b8ef94d19b62afccb445491bbb32927842cbfaf01d27b87cf67e9f9a3",
+      "archive_sha256": "848935f57c3a6198ed82aa49c50b993daa526c6d6795888d0efcc48b3a605256"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-parity-build.log",
+      "archive": "evidence/round30/studies/erf-parity-build.log.gz",
+      "uncompressed_sha256": "c51d370ee03bf5e4f067a8e8b2ab19e54a0bf98ffd7fd1743e575a011359c55f",
+      "archive_sha256": "7fccbdd91ac77b1fefee75fd67779621b44d06eb3cfddc03317173295cd65f79"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-parity.log",
+      "archive": "evidence/round30/studies/erf-parity.log.gz",
+      "uncompressed_sha256": "032ddcb0362964cf8d298d2a7b7f603f7fe7189b6c54b821bcbae034331add18",
+      "archive_sha256": "8b0f4eedaa07d363e5b1662673334fbebe0504d0a7a38dd5de08ed5afb3abaa5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-research-build.log",
+      "archive": "evidence/round30/studies/erf-research-build.log.gz",
+      "uncompressed_sha256": "b7733859b080d98de5b8a52a7661fa0b9508adc7ab5e1d2060a263da68eac749",
+      "archive_sha256": "0f3e68ee5f7c9f1539ab2347e185c03141387a134d1a80926384e465a7a09003"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erf-tie-test.log",
+      "archive": "evidence/round30/studies/erf-tie-test.log.gz",
+      "uncompressed_sha256": "ea3c402a073b9eb7de1f14ded0fa4cf24fb95fa2d8494050929e3df5fe8c3406",
+      "archive_sha256": "218a38a4d9ea1a9a0db9c64fe38febdd239a85c07df6ccc18c1aa10da352ec14"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erfc-complement-edges.log",
+      "archive": "evidence/round30/studies/erfc-complement-edges.log.gz",
+      "uncompressed_sha256": "c1a6810902586c2ef86e25138786d0febf8dae25da4975de5db2d7e27aed4a4d",
+      "archive_sha256": "50214aa5551cf0b6800812d1bc317225038789986d5a3f9ff9544b7dfceb938e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erfc-complements.json",
+      "archive": "evidence/round30/studies/erfc-complements.json.gz",
+      "uncompressed_sha256": "208ff84e4a64ec6b0848b7d66cbb1f21b4a4a9d09ec606bd746a254c847b6069",
+      "archive_sha256": "46a0f09b4781e25f74501887d6dfc93705c289d82404b4fca56b13fbe27bd366"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/erfc-complements.log",
+      "archive": "evidence/round30/studies/erfc-complements.log.gz",
+      "uncompressed_sha256": "0b14adb670b7dbb03af0f0a038421b0ba122dd5952a938857003fd78f5e702f4",
+      "archive_sha256": "086b9e4e8137fd6dc11faf517691fade9ee18cbcc5c17ad2f8417730aa9dcb78"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/final-report-check.log",
+      "archive": "evidence/round30/studies/final-report-check.log.gz",
+      "uncompressed_sha256": "01e70997e6782db27a98f30da28cf44cc1adb462848506f9e696686549405498",
+      "archive_sha256": "78d56f801df1e160eefdd260d18cf4a357f334e77b6800ef65caca21bef5fedd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-bank-loss-classification.json",
+      "archive": "evidence/round30/studies/gamma-bank-loss-classification.json.gz",
+      "uncompressed_sha256": "154f6cd6f9b136767e93645304550dc5069b2adb83f6009ed8a84c99359c82d4",
+      "archive_sha256": "2119f7e69d4fbdd3fda65b8ebd1dff0e72121ed02eb19269eea6e922db6dce13"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-bank-loss-requests.json",
+      "archive": "evidence/round30/studies/gamma-bank-loss-requests.json.gz",
+      "uncompressed_sha256": "d1833b5707b4a024a4c4ed406b7e9f0cba4c50fccc8d6959306e631b3bb45969",
+      "archive_sha256": "d9842e295414b14664c4d5ff144979d1d45a142de0ae32af123909faa9b653d0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-bank-prefixes.json",
+      "archive": "evidence/round30/studies/gamma-bank-prefixes.json.gz",
+      "uncompressed_sha256": "ed07c7bc2b116e1ccb8773cf74128249390e91eb4c7366fdbdafa23cb9498e1b",
+      "archive_sha256": "012cb5154b21e402a90ba8ce44819fb3edb22f0d50b0f373abc24f98647bacc9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-bead-note.txt",
+      "archive": "evidence/round30/studies/gamma-bead-note.txt.gz",
+      "uncompressed_sha256": "357d42dfe4e19efc24861870da08e45317451e56dcce802b1c4950c6de28467c",
+      "archive_sha256": "3db49e7925be7de2c735b953cf8421f83c05adb1f0925ec1dbb52442e4371715"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-executable.json",
+      "archive": "evidence/round30/studies/gamma-before-executable.json.gz",
+      "uncompressed_sha256": "ccb131760f1d80a03191db472bcc00fa51a249bba762b2ba62f62d89e6160d6d",
+      "archive_sha256": "b9ead15ffba6dfbaa6584bf0d2b28cc128a2c75250227738beb6ca9ca2bfd28a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-exponents.log",
+      "archive": "evidence/round30/studies/gamma-before-exponents.log.gz",
+      "uncompressed_sha256": "e7270e1e6515313d9e09bd29e46b36014248746057a7e720d4b97cdd3e16bcd1",
+      "archive_sha256": "09cac9b101e29d023cf982705953fe753388588fbd4c10c3e0d1934f7d882cf8"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-commit.txt",
+      "archive": "evidence/round30/studies/gamma-commit.txt.gz",
+      "uncompressed_sha256": "ff5f438596f04999a51d5c975f027ad802cf672bd3bced9fbe4915ea4b542530",
+      "archive_sha256": "e5037e0b72c4ea01e1c4b29b215725bed1f5ad3a685aaec082a8565173cd57a9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-consumer-review.json",
+      "archive": "evidence/round30/studies/gamma-consumer-review.json.gz",
+      "uncompressed_sha256": "8de6f5b5c567aa671039d5634fb2b347d11aa1e434732cc77a7281ab0e86befa",
+      "archive_sha256": "c04bdf49b1f12a99497247ce493c8f3c74906c7241db61bf5d8c01a87d6970c3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-consumer-review.py",
+      "archive": "evidence/round30/studies/gamma-consumer-review.py.gz",
+      "uncompressed_sha256": "b10cd6e1a79c4243dcf601b9409b3c77a4a570a3aa3e4a84fcd5a2ec8c0ff539",
+      "archive_sha256": "e5aa655b658dbf87944ac32795b093107e7f566796983ccda5ef230686770317"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-crt-build.log",
+      "archive": "evidence/round30/studies/gamma-crt-build.log.gz",
+      "uncompressed_sha256": "80cc2a8c065deda4bd906966ea8a4c6dee29d51986fdfe4c0df8591fa011b945",
+      "archive_sha256": "8017a01319d8f4db87d6d5a256022a3cf73f182b9fc7685d0211f66503d65dfc"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-density-exponents.json",
+      "archive": "evidence/round30/studies/gamma-density-exponents.json.gz",
+      "uncompressed_sha256": "2dabcfa4b108850aa83d15d0ba0cfdcddc01a07df5c5a482ab86a672c6e1206a",
+      "archive_sha256": "10c9b9b0fe52fe2b74eee5ceceb3f4f166644eaab6a96f1957a5c7520c39aa9a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-density-exponents.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-density-exponents.json.questions.json.gz",
+      "uncompressed_sha256": "f47eaacb3ece61814930003a9a084828795611fcb7e69a6ffc1bc00dfbd019dc",
+      "archive_sha256": "0f5c3f22e83e23e4279c4d304af30c83890288884eefee94bf45d6c3ec4b9686"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-density-exponents.log",
+      "archive": "evidence/round30/studies/gamma-density-exponents.log.gz",
+      "uncompressed_sha256": "eab7c736d0f80299c91fdc4ad2d958ce16b177a5d26f4a167146268ecaa9d4db",
+      "archive_sha256": "d97406c68eb932de430dbbf45e2eb481b7da4a06451047045ecd4413601c2b72"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-density-primitives.json",
+      "archive": "evidence/round30/studies/gamma-density-primitives.json.gz",
+      "uncompressed_sha256": "220e00a5a9c5b69d3e5f522043b4b90223c15bd9260a6c7f629ccf6fef966d57",
+      "archive_sha256": "65cfc031c98e6b39afa40b983bfd806a1964e85a350d122250e2d9e3eb56b18c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-density-primitives.log",
+      "archive": "evidence/round30/studies/gamma-density-primitives.log.gz",
+      "uncompressed_sha256": "861081426ce3618b30887122bc0a795e416f6d0af4e400ce3e357e2ff92d1a53",
+      "archive_sha256": "80423bbb914ed92d78dbea9799565a915061845bcba79cc897c2952c3bf5e7df"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-f1-known-gap-after.jsonl",
+      "archive": "evidence/round30/studies/gamma-f1-known-gap-after.jsonl.gz",
+      "uncompressed_sha256": "77629f982c13b6c46faee9d4f56557ca0121535d7e0eadbcec17d8faca86f419",
+      "archive_sha256": "98d1488040c4a1983ac16339e5999b9f2de60f429af75a721272cd5b8e872290"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-f1-known-gap-before.json",
+      "archive": "evidence/round30/studies/gamma-f1-known-gap-before.json.gz",
+      "uncompressed_sha256": "1cc7eccf2cfae3e41c3103a1df95495d6b885db148e5306f91b98948643ff1d5",
+      "archive_sha256": "550d92f96fa47b48761c437d2ebda8b63c0de0a8e76b91836a18a4bf3bf108f1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-f1-known-gap-inputs.json",
+      "archive": "evidence/round30/studies/gamma-f1-known-gap-inputs.json.gz",
+      "uncompressed_sha256": "4412a8e6d92e89a4e5b41c691a723439cd9344e008e1ac82617a58720089f602",
+      "archive_sha256": "e6060257357506183e5428756b6fdf231cc38a4e62e28a8e3193fda4a94d2a0e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-f1-stats.log",
+      "archive": "evidence/round30/studies/gamma-f1-stats.log.gz",
+      "uncompressed_sha256": "efa5b5a807167773b1bb96f0e03029c593073cbcf55d329a389059941c7b1e5e",
+      "archive_sha256": "c2fcc428b73f4a3412436f4e4859f81c6a856588c8c7fc580feb31a9607cced1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-final-replays.log",
+      "archive": "evidence/round30/studies/gamma-final-replays.log.gz",
+      "uncompressed_sha256": "90b51e015af8363d1ed38c44d542e9e811cf3f26e860fb307e796f5337b38cf6",
+      "archive_sha256": "771af5a72073e5762b194bd3dba593eac36ce08eecc7e391703a88649d71861f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-replays.log",
+      "archive": "evidence/round30/studies/gamma-hard-replays.log.gz",
+      "uncompressed_sha256": "ed1c2b6aae767e383d890f716e2e64ef4caa8d3975b68f53f4690dba6963a8cc",
+      "archive_sha256": "51e2684fd1db23b0362755122989e925addc8f17bdf9f6d5222973de02c077fb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-holdout-application.log",
+      "archive": "evidence/round30/studies/gamma-holdout-application.log.gz",
+      "uncompressed_sha256": "52d1d60aa8294edc27e865f51a65947b42d5be4774cde97e5128ed68ede1938f",
+      "archive_sha256": "cd564fbf2a58434c098822e62d8a24131a6e62f70a62fc8c2b6ee0f842aeec57"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-holdout-gains.json",
+      "archive": "evidence/round30/studies/gamma-holdout-gains.json.gz",
+      "uncompressed_sha256": "859f78a8249d2d60654836294cfc5c32365bba4a914ec17a1b4920a00cef8cd6",
+      "archive_sha256": "bd0a20feab0d965ac4ee0118d5db1b6fb43d9dedac07e9613d892bbdf9d759b9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-holdout-loss-classification.json",
+      "archive": "evidence/round30/studies/gamma-holdout-loss-classification.json.gz",
+      "uncompressed_sha256": "8f897896916220557b73e29c0ff2b2ecf23b585b4612d8287930937723cb510d",
+      "archive_sha256": "051e7ce2baec9030aeae35071b48aa313c66f858b7918a58570b53193fada01d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-holdout-loss-requests.json",
+      "archive": "evidence/round30/studies/gamma-holdout-loss-requests.json.gz",
+      "uncompressed_sha256": "aa98a1d680da3120fa4cf4de52152c7e95df61ba12763eb9c508d58029ca1fe9",
+      "archive_sha256": "aa13ff5d31031e21b7c0dca91d9f5340ed67c4f907592e31fef7d44c5564b056"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-holdout-prefixes.json",
+      "archive": "evidence/round30/studies/gamma-holdout-prefixes.json.gz",
+      "uncompressed_sha256": "f1137eb2f2af32f8aa3b4d0648df6b06b55993898a293305bbe36ccbdfc42523",
+      "archive_sha256": "3854ed625bf3690590c8bb8a8d082b371e801dccb3e6d945463c9dcbff8c0818"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-loss-classification.log",
+      "archive": "evidence/round30/studies/gamma-loss-classification.log.gz",
+      "uncompressed_sha256": "b904c3e0188b40ddb788f16e72ed334e96eb4994f0ca87d269919b6d26d6fd99",
+      "archive_sha256": "f79312c37a0617593326aaf9fd2bc608f484df0c1a8507dafaf56a9e56fbc156"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-native-software-parity.json",
+      "archive": "evidence/round30/studies/gamma-native-software-parity.json.gz",
+      "uncompressed_sha256": "b0e704a529c85a4f4eded4842826ce07272828f14f62e918972c8bee9a18fbab",
+      "archive_sha256": "1b320e93ca08a2e6bafb15ca59932cdd647a52cd0f47dd14b489f6736635da01"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-pin-judge.log",
+      "archive": "evidence/round30/studies/gamma-pin-judge.log.gz",
+      "uncompressed_sha256": "0cc074db04d3f0083d90a8619c7c6426ba6abd6e6ada9f18c22ca4edde05ed7e",
+      "archive_sha256": "cd7e75862b53d4335ee3bfff337720fded74b51a6f0dea696532782c9a6e5e20"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-pin-losses.json",
+      "archive": "evidence/round30/studies/gamma-pin-losses.json.gz",
+      "uncompressed_sha256": "e81ddaa0f85013492563bc79c1a992114d653e0b751476cba45b676096d4d194",
+      "archive_sha256": "7ba62d9e6f9fdbb563d688eabbd379a042c021a8de16b1a8b8f686a340581a17"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-pin-refresh.log",
+      "archive": "evidence/round30/studies/gamma-pin-refresh.log.gz",
+      "uncompressed_sha256": "206e431d2eb3155d5f4e787a35a0f898f2a081a283e161d51a3a6be0cba6d845",
+      "archive_sha256": "9601372c449d90e0738324185ac29d79b70b9123d85007de20e3e143e85cd447"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-pins-after.jsonl",
+      "archive": "evidence/round30/studies/gamma-pins-after.jsonl.gz",
+      "uncompressed_sha256": "1984682b57e2267d6c24c6be98d9be9d78da44939d1c940e5585f14053739ff2",
+      "archive_sha256": "8ab8cd437be44eb4d64bee02a6e6dad879f762db5f809fe904545dfe77315070"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-poisson-pairs.json",
+      "archive": "evidence/round30/studies/gamma-poisson-pairs.json.gz",
+      "uncompressed_sha256": "b4c908ac4aea86ca1039577074a4dfaadd277e08b90228b286ba27a460794953",
+      "archive_sha256": "782843a1773582d7ac78cce51721e57cd3682f2313f412810a5b52f943fbb5ee"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-poisson-pairs.log",
+      "archive": "evidence/round30/studies/gamma-poisson-pairs.log.gz",
+      "uncompressed_sha256": "6c6b2906cd1e5f30abf538d7d1f530f6334ff4b7fd20553b91e6d52e4d59be44",
+      "archive_sha256": "d3ded0597ceec22540c531c799c014620d43c172d6c9d1915b69d0e9745ce85f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-power-build.log",
+      "archive": "evidence/round30/studies/gamma-power-build.log.gz",
+      "uncompressed_sha256": "9a401b3e7a6b099dd5a44d790d27afa22d3a284fb0aec5c70fbcd256b1a6f135",
+      "archive_sha256": "7269b91336591774c1db1c9b83e8a48d6d850198c62fb37cf36103d10d2e5e66"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-power-primitives-constant.json",
+      "archive": "evidence/round30/studies/gamma-power-primitives-constant.json.gz",
+      "uncompressed_sha256": "d3f18c73ee2f46abe02e9b3770d651e11a3fb84847637378cd9a48a4ed9ca9e9",
+      "archive_sha256": "14a9bb54a45170e8746b0c4c64f975299ef5a34bf537b10b17fc3e09a675a123"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-power-primitives-constant.log",
+      "archive": "evidence/round30/studies/gamma-power-primitives-constant.log.gz",
+      "uncompressed_sha256": "0d55541a238a3d2a00cf1677b630d91cf9349a1c2cb554d389182604d0dadaef",
+      "archive_sha256": "033754b2265c4ea457200bdfc73b3142e29a7b8a12c4fd3a0ae625a58e300457"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-power-primitives.json",
+      "archive": "evidence/round30/studies/gamma-power-primitives.json.gz",
+      "uncompressed_sha256": "1cc80bd0d579c09b93463543adeaec62e696ca224889886b4bbab8abb0636aea",
+      "archive_sha256": "1f8f9b79f0ff197e42122acc60ceaf446700c76fbeb770d0f6f0a7b322833502"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-power-primitives.log",
+      "archive": "evidence/round30/studies/gamma-power-primitives.log.gz",
+      "uncompressed_sha256": "4bb68578f4c31d22224cb48ed4c2bc246e0b2e72bea636a228a59f19ef5a4e63",
+      "archive_sha256": "13ac4b875d763dd26df94743bcba24e1a2e68e3cf286b554039c9f3b624e671c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-prefix-build.log",
+      "archive": "evidence/round30/studies/gamma-prefix-build.log.gz",
+      "uncompressed_sha256": "1bbaacf0526c8371726531b8b76ded2b81b9c4b7e0ca85f0b873e03446096765",
+      "archive_sha256": "c92d3fa5bf2f7d42ad7e15eda1a941507712775fa7c6c451042934fb2dab9df5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-product-ubs.log",
+      "archive": "evidence/round30/studies/gamma-product-ubs.log.gz",
+      "uncompressed_sha256": "123ca4bffb5b7f96ef66cd5d1a7a0442701a8ed32824d93e23fff967d5b7945d",
+      "archive_sha256": "d8f3956a3230c9cf0b63ba1469af93110a9bd32a0ac4c273d054dc660f1005f0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-ratio-check.log",
+      "archive": "evidence/round30/studies/gamma-ratio-check.log.gz",
+      "uncompressed_sha256": "72d6edb9f512b0947abc25e23e0a791ed5346dda8fa2e731ed732b370539b7a4",
+      "archive_sha256": "784cd5968c32a7e9074f24fb0953ad66571d2e8c705cdd8cba1ed90ab6885aac"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-ratio-hard-build.log",
+      "archive": "evidence/round30/studies/gamma-ratio-hard-build.log.gz",
+      "uncompressed_sha256": "4bfdcf57482c9bf805fcb2aa34ce415a1aff44f0e5711d597232bef286f57040",
+      "archive_sha256": "1ea8d389dafc09f0bc9d3b138825f581ddf44f0f63b21cf37a18ba9360ccfc84"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-ratio-trial-build.log",
+      "archive": "evidence/round30/studies/gamma-ratio-trial-build.log.gz",
+      "uncompressed_sha256": "78b16c81e1b31d3db7fda933e5cc8d2536bc924e3125ac7c29a87b70809b4b99",
+      "archive_sha256": "adb003509e9ab40dfeb2909aa928a944db1a192f565a49a381c7106be7928306"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout-corrected.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout-corrected.json.gz",
+      "uncompressed_sha256": "a747f3418e19828f4e8fde5fa52db1ebf52b247cb976ab6f12176a69bc5aed4c",
+      "archive_sha256": "9e61549f47b8abd75ae390e3d10852230d4770e1bb12860b44b98cf0906859d7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout-corrected.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout-corrected.json.questions.json.gz",
+      "uncompressed_sha256": "688885b5789c76e483dbd6899453c7623fc1dd5e5c01165205e8ef8273a7600c",
+      "archive_sha256": "8efa54befe44e12c25b3ac40b6175e569e4db68d4fecc4770ed0245e9bb94631"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout-corrected.log",
+      "archive": "evidence/round30/studies/gamma-scale-holdout-corrected.log.gz",
+      "uncompressed_sha256": "dba9e380ddbaf475b51df0fa906fa26b256978dec9a002f67216be6371b44368",
+      "archive_sha256": "3cd44dcb1ae9d99f5ad83be36097abc1e2ed048a231304446cab903f4fc96923"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout-final.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout-final.json.questions.json.gz",
+      "uncompressed_sha256": "002be757db7ca1023ee07e5cd08f075a59cad7ee480bfdd25aceab3bb8f14796",
+      "archive_sha256": "d56bba21b83fc7a16716d2e30228e39a3304299bdfe1a582e0c1de507bfb2960"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout-final.log",
+      "archive": "evidence/round30/studies/gamma-scale-holdout-final.log.gz",
+      "uncompressed_sha256": "eafd2fe2f476b2a06e174ac4c0ddd3e8b564fe1a2417a1b8ff3fddb44db8e75a",
+      "archive_sha256": "33071e26a206d0f73884605743d2ef96916dbd8336d50b6a0d890a8338285873"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout.json.gz",
+      "uncompressed_sha256": "ad4a6505b731ea96b6c5485bf2dfbd4bf141d127780a33b907a911e90fc3b545",
+      "archive_sha256": "c2fae68da97b96efcee2ce2421e631fc85c796cc471e7e33661b9c5ffdc86ad5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout.json.anchors.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout.json.anchors.json.gz",
+      "uncompressed_sha256": "1039c5356cb795884d2ea3e96a7a24dccaab4b02c5710f641655a97f6130785e",
+      "archive_sha256": "2e44a19cf8640a6b513e3754ae3f03cf401a8b6bb0b77e6cc227a5e7a8b3c368"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout.json.anchors.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout.json.anchors.json.questions.json.gz",
+      "uncompressed_sha256": "5bc1b5377799b0419f38daba69a036f4b6e92dc702d2198d97043c69d1765a21",
+      "archive_sha256": "c250a8473685d31a22022d3445b95498040730f755ca8f80a476015a8f65f267"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-scale-holdout.json.questions.json.gz",
+      "uncompressed_sha256": "9877b8843fbfae80ffa021dfd209aeb9ffedcb9ef22b64901fef9e3e6e4778d0",
+      "archive_sha256": "d98aaebae5f42ea3e576373abebe2563e815f5279b05248a0f1da94c1d56e91b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scale-holdout.log",
+      "archive": "evidence/round30/studies/gamma-scale-holdout.log.gz",
+      "uncompressed_sha256": "8072b19d2159340b0d1cb1c16bee849154b31e7b5948771bc9fa679afa274376",
+      "archive_sha256": "f4a2fd6009320add17ba5f88252c963722c1f62a42754d6ef62f3d004eb693b3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-consumers-final.json",
+      "archive": "evidence/round30/studies/gamma-scaled-consumers-final.json.gz",
+      "uncompressed_sha256": "1cd296b6abf600e6aeabad3c2894900bf1378f7ffb05c2bdf708ab1ee62016ca",
+      "archive_sha256": "303e7a353108a21776dbe266a81a8df091dc9f173cef9fabbf4f88077ba08c61"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-consumers-final.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-scaled-consumers-final.json.questions.json.gz",
+      "uncompressed_sha256": "f1c27722c107c43138eb2328abc2b58d0c8ee74f65980d8e14ebf3e46598e8b1",
+      "archive_sha256": "4a257e5efcb9e71e4525a06cca9c9461dc7d7c356a79232e2bc7557592970d1f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-consumers-final.log",
+      "archive": "evidence/round30/studies/gamma-scaled-consumers-final.log.gz",
+      "uncompressed_sha256": "9d295f0b68db868a8b9966498588a340bc29968b89b7fabbf0056ba7180efd16",
+      "archive_sha256": "b40b2bfad2b012684c0da1f9432ff345a4a002808925c2590834ee71694dad41"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-consumers.json",
+      "archive": "evidence/round30/studies/gamma-scaled-consumers.json.gz",
+      "uncompressed_sha256": "f51201cd0ada1fa8352d2ffbd90ad60ff8b58d39c0148e8c1ba06e32461ef5f3",
+      "archive_sha256": "ed937790f0295e2fa169a0beb5d8c09a173e1dff359fdb054e66658c31581aaa"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-consumers.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-scaled-consumers.json.questions.json.gz",
+      "uncompressed_sha256": "48a4adb6d83269ef5599179f3100d5a1847efdfd9c833f27c0285af34987bff6",
+      "archive_sha256": "8bf665549f3a5b7ab2943770347f1937b4b2278e3d86a2a170f45bf11f6b56e3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-consumers.log",
+      "archive": "evidence/round30/studies/gamma-scaled-consumers.log.gz",
+      "uncompressed_sha256": "d32b6a832f6232ad090d695a5e42992da32b272e8a6cbaef25e785ab42568dc5",
+      "archive_sha256": "df9b6de512c8a2ccedfd9dfb0ec9a4b5e2f8e8ce63aa7e8a4877de3de5f858bb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-log-constraints.json",
+      "archive": "evidence/round30/studies/gamma-scaled-log-constraints.json.gz",
+      "uncompressed_sha256": "8681e992e19757f193b3cfec1cab33862804b81a41c3394be2e51d09112c00b8",
+      "archive_sha256": "50126e9cd33a386a97e2578c5a412b867d732cf99e72cae51d6ff0097c05a513"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-scaled-log-constraints.log",
+      "archive": "evidence/round30/studies/gamma-scaled-log-constraints.log.gz",
+      "uncompressed_sha256": "5073fd8874809cb42cdc3f87ff7e26340e7110dc63586c2e4b22715a674c9558",
+      "archive_sha256": "e010fe43723c7418696f0cc341a87dc411e1f74aec9ab20374d130492326914e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-shared-log.json",
+      "archive": "evidence/round30/studies/gamma-shared-log.json.gz",
+      "uncompressed_sha256": "5872a4d29f49ec8eadb63e67443dbe18d061ccf2d843bd83daddfd1ccf8324bc",
+      "archive_sha256": "10dd28ab0c1f2639c07799acbf6663e32ebb9227036b6cad35e6fbd89fe9fa96"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-shared-log.log",
+      "archive": "evidence/round30/studies/gamma-shared-log.log.gz",
+      "uncompressed_sha256": "3b442d1e86291a7985c358e90f045496394d7a9866f8156e4f134f955f7a665b",
+      "archive_sha256": "f808a11b6dfe1550a6a52e976758d8482f83459f7c58f7cc0031dc6b38fb0d80"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-split-prefactor.json",
+      "archive": "evidence/round30/studies/gamma-split-prefactor.json.gz",
+      "uncompressed_sha256": "3ef8f6476bc750314db589ced3005ff750c0ffd7cb31e99c77c7194184655ae2",
+      "archive_sha256": "fc32dff3d3adbb9ccedc22e5df7c013a2c3e29fbf974185f0527941aa40cebd1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-split-prefactor.log",
+      "archive": "evidence/round30/studies/gamma-split-prefactor.log.gz",
+      "uncompressed_sha256": "33c13a781e46908e3a498c51caa752da41e8087d6feca8fb29c57af5c68c7926",
+      "archive_sha256": "3a61cd3927c629eca48ee5f619eb925a62d9ee39f9753fb3a673fffec7ba4be6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-trial-exponent-delta.json",
+      "archive": "evidence/round30/studies/gamma-trial-exponent-delta.json.gz",
+      "uncompressed_sha256": "9d96e65b48b9513fc7dc6144526c42354817965211ee285db7f6c1b146ad2c3b",
+      "archive_sha256": "4726fde66f74fe6f65361c6ef6e91a20651c2c7eb7599ce3019c41dd43ad166b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-trial-exponents.log",
+      "archive": "evidence/round30/studies/gamma-trial-exponents.log.gz",
+      "uncompressed_sha256": "c299bca41d11a664a04dd1bb529c0799bef76bfcad7a00f257bd0ffdbf63030e",
+      "archive_sha256": "185c909404c5e68a280a73c37415a72d10c2d04df8340408c5e7891edd0167ef"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-adjacent-monotonicity.json",
+      "archive": "evidence/round30/studies/gamma-unit-adjacent-monotonicity.json.gz",
+      "uncompressed_sha256": "068b0f75d52b703966432b505f7c75fe86890b6a3f74ad3491e30756f088494b",
+      "archive_sha256": "07e3b43642365be06310243483e2575245c7c96b16d4e3cfd6fa0ef359606774"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-constants-final.json",
+      "archive": "evidence/round30/studies/gamma-unit-constants-final.json.gz",
+      "uncompressed_sha256": "bf583c4caec7895898fdb3a97de396c98a455ffa050d736dfedc6da98c3d3385",
+      "archive_sha256": "7e5e55920e19c26589aa94f43200482fda4bc538c420c9ebdbc9560f836a42c0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-constants-final.log",
+      "archive": "evidence/round30/studies/gamma-unit-constants-final.log.gz",
+      "uncompressed_sha256": "d8acbfd5fbe2814f79ab2ca246b88e543a3cb81095d5c563aa498ab4ce316a4f",
+      "archive_sha256": "6f7022394459fd10d136a129b651a3d2690f62216adaf192681b63316552e738"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-constants.log",
+      "archive": "evidence/round30/studies/gamma-unit-constants.log.gz",
+      "uncompressed_sha256": "38d998c53e9cf972597c428823d4fdb9740183fc47cd862642f8f29849bef5d6",
+      "archive_sha256": "d29b910430a967e456cea0a9191428a8821f13d704f5b1badef1b29155db40f4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-consumers.json",
+      "archive": "evidence/round30/studies/gamma-unit-consumers.json.gz",
+      "uncompressed_sha256": "6363a8d53d4e218c88dab28f12338c7ca04077f2337ac498b99da03a79698559",
+      "archive_sha256": "114ea2ceb94a5ec61d534658d7bfda3ca485d0ef90af30435b2838f6637fbeea"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-consumers.log",
+      "archive": "evidence/round30/studies/gamma-unit-consumers.log.gz",
+      "uncompressed_sha256": "57ce4bd2616aeb5e91f624faf9ccafe2b143713ed059d845161c4071bad7043a",
+      "archive_sha256": "fe9f4f46703d62f59603cecc755c34f8a38f6b63959b59161121e778e022994f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-crt-leaves-receipt.json",
+      "archive": "evidence/round30/studies/gamma-unit-crt-leaves-receipt.json.gz",
+      "uncompressed_sha256": "7661cc4410248a484a4ef6c36f8c44fd76cf51cd3a7d292bbeb15c817da5479b",
+      "archive_sha256": "5e7ce5fe48d46af5a1e086233ff5c6d14f14f151909987d32c77d65738e9f474"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-crt-leaves.json",
+      "archive": "evidence/round30/studies/gamma-unit-crt-leaves.json.gz",
+      "uncompressed_sha256": "c5d6d14ef46f76ce1e0c1a987fd7007a0dcb4c8710c65b5feb4c2a4d8d56f60a",
+      "archive_sha256": "c4f8691e580e8cf6663e50ca7ad2fa82a8a2b037dc132c8d0c630450baa72d24"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-power-leaves-receipt.json",
+      "archive": "evidence/round30/studies/gamma-unit-power-leaves-receipt.json.gz",
+      "uncompressed_sha256": "5605c2bd108068d5f573a173d3d95478b96352022bacb4c2f598f168acf1cd54",
+      "archive_sha256": "d11a2674426b5a23c1d8c722505f47d4f791013e25aeba81a32828540485b569"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-power-leaves.json",
+      "archive": "evidence/round30/studies/gamma-unit-power-leaves.json.gz",
+      "uncompressed_sha256": "3addbf937a8b7654dc0fd3d609c865eaf0549f7f3cb777842a89a72e7322ee50",
+      "archive_sha256": "8a06f88c24a694c2a310354ce828f7360d064f456bc84bab13306531a86c8f9f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-prefactor-final.json",
+      "archive": "evidence/round30/studies/gamma-unit-prefactor-final.json.gz",
+      "uncompressed_sha256": "507a1ef69f23f2714f7f32a26d00d953ecb7e2f3f2f43468c882c74e0ec12a7d",
+      "archive_sha256": "71c19cc470adc96911481afe59e6320f227d1e5abb24a839e34333b95e0849d2"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-prefactor-final.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-unit-prefactor-final.json.questions.json.gz",
+      "uncompressed_sha256": "e371775a9cafc8e8a09be37bcc960c5a4556b6ff64cbfccad8a8427e9c52be47",
+      "archive_sha256": "82c2cb9680899b0a3dd077614991a3338b4e034d77743223e5d0fdd4278dff76"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-prefactor-final.log",
+      "archive": "evidence/round30/studies/gamma-unit-prefactor-final.log.gz",
+      "uncompressed_sha256": "9c7e1056c43e6eef70f3210cc2d445c525d6c9b46cbe8197aa00c897084e1366",
+      "archive_sha256": "feb93f4d1a08a3b24765dec1b3006b3549a72c770de5b4bb8e4dce617acff5d7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-prefactor.json",
+      "archive": "evidence/round30/studies/gamma-unit-prefactor.json.gz",
+      "uncompressed_sha256": "20c9599da4e664c7a237e8fbf600b6c7c233815aa4444c65e6c7bb77b488a74e",
+      "archive_sha256": "6c635a102b371ac64cb127bb5ec8bc46f5eb2a61afa53c632b4a3b07d8679f13"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-prefactor.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-unit-prefactor.json.questions.json.gz",
+      "uncompressed_sha256": "ec953381f25ea8e04dc0afc20ed85d115dd7c156b562639d4f5585e343ab76fa",
+      "archive_sha256": "4c59520a2ca0adabf839960cd12f4fffee0382a404d5eea22d3e188fa3393391"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-prefactor.log",
+      "archive": "evidence/round30/studies/gamma-unit-prefactor.log.gz",
+      "uncompressed_sha256": "9c7e1056c43e6eef70f3210cc2d445c525d6c9b46cbe8197aa00c897084e1366",
+      "archive_sha256": "feb93f4d1a08a3b24765dec1b3006b3549a72c770de5b4bb8e4dce617acff5d7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-application.log",
+      "archive": "evidence/round30/studies/gamma-unit-shape-application.log.gz",
+      "uncompressed_sha256": "9befa7766c19c4b90c44150431cc6026c7fbb66584def56180a3248a45ecad43",
+      "archive_sha256": "d4e3074dc10fc3589f10349740286f01b5742133b43ff5ffd3c08b3779383f90"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-exponential.json",
+      "archive": "evidence/round30/studies/gamma-unit-shape-exponential.json.gz",
+      "uncompressed_sha256": "8bd2f1156fb0733badeb1e919997f4c961e9dadca2d4665c046b00034928bdfe",
+      "archive_sha256": "91712a804241be5f93d683c9246c80795f4b972605a491f7cd082f6b247af538"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-exponential.json.questions.json",
+      "archive": "evidence/round30/studies/gamma-unit-shape-exponential.json.questions.json.gz",
+      "uncompressed_sha256": "780a4be096240727db912f826864fcab982d27d1948fcb4ad17b0db8d1d54d8a",
+      "archive_sha256": "ba97ab1f7c45ca6b5092b3ec61c63169fc89a263841f9fc9e5200ebf682b941d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-exponential.log",
+      "archive": "evidence/round30/studies/gamma-unit-shape-exponential.log.gz",
+      "uncompressed_sha256": "102086f0816ca62a82314204f7389c4020898dc75cd7596cfa0bd6043b1f6905",
+      "archive_sha256": "3ebdd8fcf5649cf486e893ce37854079374295f2e06155a4ece0574892c26a26"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammadist-pins-after.jsonl",
+      "archive": "evidence/round30/studies/gammadist-pins-after.jsonl.gz",
+      "uncompressed_sha256": "c8a75d592dd0ca8873f4120e9c3976f244df1080662dbdda11a7353b2fd89ec2",
+      "archive_sha256": "79ed11a89db6c8e2ca058acacd64dfd85f97a84c6c0c0a71d0f0c399290f0554"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammaln-near-review.json",
+      "archive": "evidence/round30/studies/gammaln-near-review.json.gz",
+      "uncompressed_sha256": "e56f7975220852f005830d1af9c6fe3c4b67853e17b0b58495787091daa1a6b3",
+      "archive_sha256": "163602067d22dc038e2c1797134c339d828fc6c8b43dbe7641fa5fd1942ef21b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammaln-near-review.py",
+      "archive": "evidence/round30/studies/gammaln-near-review.py.gz",
+      "uncompressed_sha256": "f5dae302f678f12c2647cd7c7f23205f5d3608f8fe68c6e9becf9e6764369647",
+      "archive_sha256": "99d7682b40ad1fa8b6e62664c9e20ea20f5d6f8e496bf2908dc9d6ee4565cd45"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammaln-near-stores.json",
+      "archive": "evidence/round30/studies/gammaln-near-stores.json.gz",
+      "uncompressed_sha256": "a91a98feaf860f4221e35132bd41ce85ea275feff5b0b2b42a3968e36484be37",
+      "archive_sha256": "a90e281482d245d1d9c03f2e731a4225ca2a3541f84f2d13150782c60a8dd4a0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammaln-near-stores.json.questions.json",
+      "archive": "evidence/round30/studies/gammaln-near-stores.json.questions.json.gz",
+      "uncompressed_sha256": "dffc23cc2886712e257b7398a01e6efbd7071d1ec8de12dd3319abfc47c88700",
+      "archive_sha256": "0ba469a6844843acc3b1e3da5e116e81492f2ee0e5bba2b8c80c626bc589f7fc"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammaln-near-stores.log",
+      "archive": "evidence/round30/studies/gammaln-near-stores.log.gz",
+      "uncompressed_sha256": "c4bf85c1f61d00140f89c7caf77ff43f0ddb5f17073fd3a284854482a1472a23",
+      "archive_sha256": "d7da48d80283c7000bf1dd7b8d4d456383c9de396cb7ad215798b5c9c1e1ceb0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gammaln-store-edges.log",
+      "archive": "evidence/round30/studies/gammaln-store-edges.log.gz",
+      "uncompressed_sha256": "979f4305b66c3458d7a6cedea4b7d399a05168113f062e5339ce7489d64d5867",
+      "archive_sha256": "cca8798d3202cda39bda29e5437eec2a0b8ccc398790f57e57bd82078578ee3a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/hypergeom-corpus-products.log",
+      "archive": "evidence/round30/studies/hypergeom-corpus-products.log.gz",
+      "uncompressed_sha256": "c0e48415354219e9f9c2e3b2df1689b2d7e9e74512981f5ad9647f0255941bb9",
+      "archive_sha256": "3c8c31f460fc0c6a24399cf477608ce92c64d1d9574ac0cb1631070e9d10b145"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/initial-report-commit.txt",
+      "archive": "evidence/round30/studies/initial-report-commit.txt.gz",
+      "uncompressed_sha256": "60e118959dc4dcb555ee15527c68b179965609fc110d8b4d70953acafbabd82a",
+      "archive_sha256": "ad60e9ad3d967a828f3818fa45f1b065b63f19abf64e128407babac69d373535"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/initial-report-ubs.log",
+      "archive": "evidence/round30/studies/initial-report-ubs.log.gz",
+      "uncompressed_sha256": "ef8ea054a75886af4d8735a7f964c9e2bbb2d7a0885f23d3e9fb716be3878702",
+      "archive_sha256": "0b9dba7ec5839542410a334c9ac7c1b1c1e880ab702ef4c931170f993b949cf3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/late-incoming-bank-delta.json",
+      "archive": "evidence/round30/studies/late-incoming-bank-delta.json.gz",
+      "uncompressed_sha256": "28af3d9769a896270e0fe7a4ac8b3d432547f617b36659f095a0eb2853fd8b4a",
+      "archive_sha256": "bd98cc9cd9475ad2a19e6765e0fc60dd6392491cb0423fbeed955ad613c1a548"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-final.json.PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-final.json.PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "f609656be15305f70df1abcbd2648afca667b7516245f160976d97b4f0e35e8d",
+      "archive_sha256": "ba2ce50afcfcf0fc27eeb4a564b88a708e667ef1bf8a4faf98bc9b72f60c4488"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-final.json.PPMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-final.json.PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "eed1283a6fd3ff06bd38974eab42885e08cb6fc584edb54c1352e89ef262a9ad",
+      "archive_sha256": "f21584e18c9f47710ee347882b1d9a484f8c12d5afaa98e79d2057dbd247e0c5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-software.json.PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-software.json.PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "f609656be15305f70df1abcbd2648afca667b7516245f160976d97b4f0e35e8d",
+      "archive_sha256": "ba2ce50afcfcf0fc27eeb4a564b88a708e667ef1bf8a4faf98bc9b72f60c4488"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls-software.json.PPMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls-software.json.PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "eed1283a6fd3ff06bd38974eab42885e08cb6fc584edb54c1352e89ef262a9ad",
+      "archive_sha256": "f21584e18c9f47710ee347882b1d9a484f8c12d5afaa98e79d2057dbd247e0c5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls.json.PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls.json.PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "f609656be15305f70df1abcbd2648afca667b7516245f160976d97b4f0e35e8d",
+      "archive_sha256": "ba2ce50afcfcf0fc27eeb4a564b88a708e667ef1bf8a4faf98bc9b72f60c4488"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bank-loss-controls.json.PPMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-bank-loss-controls.json.PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "eed1283a6fd3ff06bd38974eab42885e08cb6fc584edb54c1352e89ef262a9ad",
+      "archive_sha256": "f21584e18c9f47710ee347882b1d9a484f8c12d5afaa98e79d2057dbd247e0c5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-bead-note.txt",
+      "archive": "evidence/round30/studies/pmt-bead-note.txt.gz",
+      "uncompressed_sha256": "615e15e4d4858c5a6b3e6596b740b460181382a67ac6d9cc56b5747bafcb798d",
+      "archive_sha256": "3adefd8ad08dd6ef71173016a66d7a861e226299e46ed05f3874332209103e1c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-commit.txt",
+      "archive": "evidence/round30/studies/pmt-commit.txt.gz",
+      "uncompressed_sha256": "e57803a957d652efc1ef313f6a3198943a045b57eaafef19b2c8fd19e12316c4",
+      "archive_sha256": "c8c9c08e06893cd7fc8ca439b8b6b01c8e8199eb7d33589d887a2422d97541f7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-final.json.PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-final.json.PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "7b8cfe07d377fc8ab2fe07cee75e68c74f59a5118afa9e459d3f1823fc409323",
+      "archive_sha256": "4a6843915ec8c7c37a7368034416309fe775bfaa9b5d23e8075a41b377184adb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-final.json.PPMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-final.json.PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "4da1ca988f22acb2d7701395809b1d7fe3df57652783e846a73627001ae84fc8",
+      "archive_sha256": "7eb6717933f6ce71e4c1d0bfdaae023dc7d6743e8a860d28200a0383bd6b1fe0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-software.json.PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-software.json.PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "7b8cfe07d377fc8ab2fe07cee75e68c74f59a5118afa9e459d3f1823fc409323",
+      "archive_sha256": "4a6843915ec8c7c37a7368034416309fe775bfaa9b5d23e8075a41b377184adb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls-software.json.PPMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls-software.json.PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "4da1ca988f22acb2d7701395809b1d7fe3df57652783e846a73627001ae84fc8",
+      "archive_sha256": "7eb6717933f6ce71e4c1d0bfdaae023dc7d6743e8a860d28200a0383bd6b1fe0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls.json.PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls.json.PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "7b8cfe07d377fc8ab2fe07cee75e68c74f59a5118afa9e459d3f1823fc409323",
+      "archive_sha256": "4a6843915ec8c7c37a7368034416309fe775bfaa9b5d23e8075a41b377184adb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corpus-loss-controls.json.PPMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corpus-loss-controls.json.PPMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "4da1ca988f22acb2d7701395809b1d7fe3df57652783e846a73627001ae84fc8",
+      "archive_sha256": "7eb6717933f6ce71e4c1d0bfdaae023dc7d6743e8a860d28200a0383bd6b1fe0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-replays.log",
+      "archive": "evidence/round30/studies/pmt-corrected-replays.log.gz",
+      "uncompressed_sha256": "23c1f861707a3bf17a9220584ae0a9dcd98a21248278c18633bf4f78f255d3c6",
+      "archive_sha256": "2ba9706689a7d706848795848ccb61f62d3d93ce00822d72da040a8adf9b8b0c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-count-correction.txt",
+      "archive": "evidence/round30/studies/pmt-count-correction.txt.gz",
+      "uncompressed_sha256": "df383fed51b73565dac8242e59da08743bf3ba3edb634d2a0f00854c99d5671a",
+      "archive_sha256": "0432cb173155326293bfb02b4e36062ea7163c385251e6bd7e336f54068ba748"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-exponent-review-correction.json",
+      "archive": "evidence/round30/studies/pmt-exponent-review-correction.json.gz",
+      "uncompressed_sha256": "1979fbf0d78038235cbed512bed931290b29b2ebed4130e1e263b232add5d413",
+      "archive_sha256": "137f5f054bfc6a4d4e84ba5d0d5993637addd73f02308860157d5fcd31568eb1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-internal-before.jsonl",
+      "archive": "evidence/round30/studies/pmt-internal-before.jsonl.gz",
+      "uncompressed_sha256": "cc97795f73edac99198246d2a07ac784b2a4fea1d668a280551673a45314be08",
+      "archive_sha256": "0c55052f34ec7b9363e35f3bd86ff34a966c0bf409a63bcd343d46f07690f8df"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-tracker-merge-message.txt",
+      "archive": "evidence/round30/studies/pmt-tracker-merge-message.txt.gz",
+      "uncompressed_sha256": "3bf1654e60b8390c6b8d356b139e4ea517fc3e821a2b5de946c918402eaa4257",
+      "archive_sha256": "51ec32f1f77ac10ec02cf12e63b744cec47eaf7c2b4bb3ff5057c95b8586ab7e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/poisson-log-contrasts.log",
+      "archive": "evidence/round30/studies/poisson-log-contrasts.log.gz",
+      "uncompressed_sha256": "05de4baf2aa1275c50cb7d68932b3350448d7cf117d710d6ed7f0a2a668de2f6",
+      "archive_sha256": "c04ca695a917e45c28d7d964c9a6e90c084323be1962dca08d427e5c3a44070b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/poisson-one-primitives.json",
+      "archive": "evidence/round30/studies/poisson-one-primitives.json.gz",
+      "uncompressed_sha256": "ec39970441b0d26299ba22a2a0b726b258bda59863cac6b5967535f174b80014",
+      "archive_sha256": "0a3deda7f9dd2422b97c826d7f261ecea2c92d8c5b51cc6b128622735f19279e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/poisson-one-primitives.log",
+      "archive": "evidence/round30/studies/poisson-one-primitives.log.gz",
+      "uncompressed_sha256": "22348618e3d462da123e50279ae539cc44ee87347bc0f83f89ff60e5ce4e1e63",
+      "archive_sha256": "785369693a7f64acc10fc2a31f58323fc165e71d84019e9d86b2f8530b2c3392"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/problems-final.log",
+      "archive": "evidence/round30/studies/problems-final.log.gz",
+      "uncompressed_sha256": "d475088dde0e967329277084344dc1b744ec4a3cd7805b1d9f51c6e2c67719aa",
+      "archive_sha256": "25f71e61a446edd766b1ae88dd35b5ed22a0dd899318776744f977d312cfce9a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/problems-gamma-final.log",
+      "archive": "evidence/round30/studies/problems-gamma-final.log.gz",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/python-error-encoding-tests.log",
+      "archive": "evidence/round30/studies/python-error-encoding-tests.log.gz",
+      "uncompressed_sha256": "1bee3785aed9920ce13ee166fb59e1d3a461d56c825a144e75ac505b0580ab04",
+      "archive_sha256": "41d819dbd7c1c45d7057e1581508c38a1168f6021ceff16a5e65b941ab299925"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/python-final-science-tests.log",
+      "archive": "evidence/round30/studies/python-final-science-tests.log.gz",
+      "uncompressed_sha256": "490f55465e3657b4fbf488926be0b17b0b2e57b2aa2af0a650ee0c3259543d86",
+      "archive_sha256": "2a2d9389f660fa367b736fff3b5ab4d6a3c5bc2e416c57c76b0d426ff76538c0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-compose.json",
+      "archive": "evidence/round30/studies/recovered-annuity-compose.json.gz",
+      "uncompressed_sha256": "d9fe42d93b1370ee4f1d35d0473f0f54c6005ca7a812ac05f6436098a356e8d1",
+      "archive_sha256": "cc4b4ea3ac89188ac65f80cf093a0fabc70e274a5b7157477539dc86ee21bb43"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-compose.json.questions.json",
+      "archive": "evidence/round30/studies/recovered-annuity-compose.json.questions.json.gz",
+      "uncompressed_sha256": "3f0687d270c987622e3ee769060ced6ed3e55547bfea006df8d79deba07f440b",
+      "archive_sha256": "76a3e5baa886efc491bb845e38aa7e3fb7f4400e459dbb7767bc9c38048aa966"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-compose.log",
+      "archive": "evidence/round30/studies/recovered-annuity-compose.log.gz",
+      "uncompressed_sha256": "9b33e77aeefbb539d5c72646784e9347137d0c761a83fb86fc8915fd33cbab80",
+      "archive_sha256": "e31cb149b359469c3ef3baba3fb178aae40a0b1de5a5d7a41c0b4dfb682f23d6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-native-final.json",
+      "archive": "evidence/round30/studies/recovered-annuity-native-final.json.gz",
+      "uncompressed_sha256": "195629bce4e52464f81c6a4ee6a47739c5c5ee83c3d954efe05db9f824f281fe",
+      "archive_sha256": "c8a0bcc28b7207e8353ad54c0a0b690c443161f4b8da1d57a37e28a0ebf287e7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-native.json",
+      "archive": "evidence/round30/studies/recovered-annuity-native.json.gz",
+      "uncompressed_sha256": "9eef39ea34793af7fb6966e320fe7ec2a5d3a33ddb7e734b3ad3b58ef7608bb9",
+      "archive_sha256": "be1d41b59cf4494666248cc7df9f4c26d2f458dbc575e2b6f8c8ab44034f0a0e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-native.log",
+      "archive": "evidence/round30/studies/recovered-annuity-native.log.gz",
+      "uncompressed_sha256": "b0fe9bff58ee33ada83c9c25d4e515c9692258cc46b99fae315a20b0d436f6d5",
+      "archive_sha256": "11d3dcab774b0674b4fb8742834e285642aa6d0729bbdaa53888a8934078b3f3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties-native-final.json",
+      "archive": "evidence/round30/studies/recovered-annuity-ties-native-final.json.gz",
+      "uncompressed_sha256": "79d987f933db1bcac20ec465e9add32c8d270cbfd5a389c0ff0bb290f00e26c5",
+      "archive_sha256": "5463c5c67442f226b6d8a8fba907bc2b1c4594d7fbb144eed0ba47baa32ffb1d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties-native.json",
+      "archive": "evidence/round30/studies/recovered-annuity-ties-native.json.gz",
+      "uncompressed_sha256": "3a6386dfd19144ad07ae64d09c36898bfd17972653f8ddcc674bb31cedc0255b",
+      "archive_sha256": "b26f7357f569e1f5579640cf4ea82bdc1c2fbd8cd277395fa8772047f03803fb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties-native.log",
+      "archive": "evidence/round30/studies/recovered-annuity-ties-native.log.gz",
+      "uncompressed_sha256": "8a808ccbec8bdb5a8c61a2d1bcc0a585eed40a1692e58765f33dbad66f3fa169",
+      "archive_sha256": "4388459e811c9317c785c2d0eb39ac51127f2c7f0b2eb7671a3b329bded942db"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties.json",
+      "archive": "evidence/round30/studies/recovered-annuity-ties.json.gz",
+      "uncompressed_sha256": "ef3d5afaf52abe481bdc7b99895a1a7ce6fa5d9b653bacddd3d62c9cd6029f8b",
+      "archive_sha256": "52bae94cdec7d6ed0a268ee0031058e8e71fc1444896e5f993e343f99a4d252a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties.json.questions.json",
+      "archive": "evidence/round30/studies/recovered-annuity-ties.json.questions.json.gz",
+      "uncompressed_sha256": "18ba6dc7e437a8d72128017a20db16c88b2d9b1e6272f5483013b10f9dd6ccf4",
+      "archive_sha256": "5c27bdfcd6de091a53244a69ec08003f13b1cf6320af7e9e9b00275ecb899bf6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity-ties.log",
+      "archive": "evidence/round30/studies/recovered-annuity-ties.log.gz",
+      "uncompressed_sha256": "e96ad8a59fa095ac7e6236cdad6952a8f7b9eacf4bd39b76a8c86fbce4619971",
+      "archive_sha256": "cf1938c1655558745d07e56ddb279e27ade6fb0f3de1e15d7169d65e75a82488"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity.json",
+      "archive": "evidence/round30/studies/recovered-annuity.json.gz",
+      "uncompressed_sha256": "e92243ea05c3dce30298b184e63339d40713607f8f124252c0ab7e51cc855232",
+      "archive_sha256": "c228dc218b20526b2c4e1c7d518e4d9adfff8aac889ef536d7a3f4af28246ece"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-annuity.log",
+      "archive": "evidence/round30/studies/recovered-annuity.log.gz",
+      "uncompressed_sha256": "b820f0ab02c748311ca1c6f94420b8e1954178dc9959a4930f3042f98575251f",
+      "archive_sha256": "cd1fb28e6fc58ef13d7f6099e028f2df4c5cd8c80afc520c6eaa6c1ff5f84042"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-checker-ubs.log",
+      "archive": "evidence/round30/studies/recovered-checker-ubs.log.gz",
+      "uncompressed_sha256": "979feba1478131c6c6b29f9043f289a7714eb9d40efbfa46983e6c651cc72f02",
+      "archive_sha256": "0c8971316258e534c7eda48628ea5d4937eb1fe026079c47e348b895753cc24b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-main-check.log",
+      "archive": "evidence/round30/studies/recovered-main-check.log.gz",
+      "uncompressed_sha256": "22fa8afe8a67cdaab25bebbd3d6a595233869f8dd7840d2be53c10502d43dc7a",
+      "archive_sha256": "d3860bd6dfbf492023641e48852f5f7dad27877dae1f4bf16be52240a34f1d30"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-python-tests.log",
+      "archive": "evidence/round30/studies/recovered-python-tests.log.gz",
+      "uncompressed_sha256": "01d6e25645c6cb10463bd64e8b0e121b38dfa3af55b203a4e3b0db742a3339ca",
+      "archive_sha256": "ed81e633e13793b392bc62a4d16c7b6e677b9230672046d838418afeaa6fe1d0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-research-ubs.log",
+      "archive": "evidence/round30/studies/recovered-research-ubs.log.gz",
+      "uncompressed_sha256": "5b3c93ae48be2dcd2000c305527b030d5a53d5c66217da851b38ef01d32a3a44",
+      "archive_sha256": "73b0dceb791b2de97409d7fd662f25f77165d4b82b30a18b207ac6135f7d745a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/recovered-ubs.log",
+      "archive": "evidence/round30/studies/recovered-ubs.log.gz",
+      "uncompressed_sha256": "114ac4630fdef57cf6a832a3230cc9460a25747b1d34bbf73f882c7ca4ae2902",
+      "archive_sha256": "73ebd2a91f80c643b52b0ea5811cd41c3ddce5436c1b9490591b2efdb79004c0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/regenerate-initial.log",
+      "archive": "evidence/round30/studies/regenerate-initial.log.gz",
+      "uncompressed_sha256": "f3b807ca43531ecc72ccab5420a49d3210e4450d2d9cad7ae437c15b2ceb5f02",
+      "archive_sha256": "947fca5397d5b550ac43aea7c6bd4ffef2a14e2749c1b6f49fbeeb0723734527"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/remaining-gamma-freeze.log",
+      "archive": "evidence/round30/studies/remaining-gamma-freeze.log.gz",
+      "uncompressed_sha256": "e6e9b94b97fac7b595806f76e2aa8e7873e5a566256cd96168ad09b65d8005f6",
+      "archive_sha256": "a74dad0aff9a5e115de0f1aa6dc8e4baa1f1cccb4f635d53a5e957562e04b92d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/report-commit.txt",
+      "archive": "evidence/round30/studies/report-commit.txt.gz",
+      "uncompressed_sha256": "a6a8f8b6f79638ca3369739d66f79d42d33d010f2aca0ad9e9ce8e287d7ee141",
+      "archive_sha256": "1f29b3f81c168eecbde243240321db2bfaf994a957e07982fb64523e4d1d65a2"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/report-merge-message.txt",
+      "archive": "evidence/round30/studies/report-merge-message.txt.gz",
+      "uncompressed_sha256": "da07865647dfe78634bd74d273d538ef32b87410a60826670bff6ba767f7dce7",
+      "archive_sha256": "96673bdb1b9c663b160684d74310ea00b65ee71ed7abce1af58784938459575c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-before-build.log",
+      "archive": "evidence/round30/studies/research-before-build.log.gz",
+      "uncompressed_sha256": "e199f40fd8d90805c6d5eb4f2a4b20debca7ee251def2aec8e9669fd7edac4f6",
+      "archive_sha256": "36cfb7bcadc5567f07b69c0006e5db8e249626cde6b0d0abca88e4bf7d60f4a7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-final-python-tests.log",
+      "archive": "evidence/round30/studies/research-final-python-tests.log.gz",
+      "uncompressed_sha256": "671124f90ba033f0238ea15253c9ee70ca69734620438b77feef0ea88e585ef9",
+      "archive_sha256": "b6e666d4f70129dc495cfc33c3798495b1f116b297c9fb978cdafe0affa239ab"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-final-rust-tests.log",
+      "archive": "evidence/round30/studies/research-final-rust-tests.log.gz",
+      "uncompressed_sha256": "041ec9473734ccfdfcd359ccb37312a267d76fbcb4bafe38171f290f665b71fe",
+      "archive_sha256": "8538eae9d55b92df9de39d7ffd90759e99f8144eb765c481a20055b55dcff3a9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-final-ubs.log",
+      "archive": "evidence/round30/studies/research-final-ubs.log.gz",
+      "uncompressed_sha256": "47692fe826ee2c54a8ab85c04082ebb021c75317c1ac8f89c2b023b07d25fb56",
+      "archive_sha256": "2cf894cd4f873a10d4df0ac13ae284bb211727ecd320f313146cda5bc5f1266a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-initial-rust-test.log",
+      "archive": "evidence/round30/studies/research-initial-rust-test.log.gz",
+      "uncompressed_sha256": "c1c3beaa9d86da60db351f61061c12e531b85844ce3d5ca3c25d1f49db974e9d",
+      "archive_sha256": "ff5e337bef27c603880b63d63e9ce60b166e4103d93d26f6dc211dc5cde697e0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/stages-ubs.log",
+      "archive": "evidence/round30/studies/stages-ubs.log.gz",
+      "uncompressed_sha256": "cb7fac81b13a67d603116e66b3edaf5751ab6f00ca1f55e9eb8fed1c28d0d0a0",
+      "archive_sha256": "75fd4b352123062e68aad44a2105557b2291c8652eae37c8ece5816246963555"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/ubs-doctor.log",
+      "archive": "evidence/round30/studies/ubs-doctor.log.gz",
+      "uncompressed_sha256": "1b029f89565a79bbdd0ab258e923970c31747bb947d1c62cb7494fbc96ad5c3a",
+      "archive_sha256": "91116f1da2ab9667f8de4d721deea178a88f4b5e2f7ceffa898f8763d76c62ed"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-after-holdout/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-after-holdout/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "308489b008e6de3d834175f3cc995052739a8a6bd410e62e51f3bfc329b5f814",
+      "archive_sha256": "6d98bd09932ffe6a21ea0090ceebd9ac16fb53b5ad159d88c7aabaabb84c5f00"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-after-holdout/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-after-holdout/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "f5b49a2555be84b3f26821a39460602ce4bbc64872004d1175b20fcdbb952a73",
+      "archive_sha256": "b18336c8944aa06308e556bb66c860b0f8f54849a9fbc691d569fdbee10de8b8"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-after-holdout/receipt.json",
+      "archive": "evidence/round30/studies/gamma-after-holdout/receipt.json.gz",
+      "uncompressed_sha256": "b60307f3179af927dc568817a3590158af1d988c738ca4668d6e21e1d0271d92",
+      "archive_sha256": "991bab8467a37c5ab53c6d24df9ccc22ac74114a18fb6eef3334722c506e275e"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-holdout/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-before-holdout/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "a1941aee969526523191470f83620aa8248db5980bc4b1e46541c6c08933e603",
+      "archive_sha256": "54ec0c7e950645f418e3a2aa8bc7b2f76ddf3e9c3684255fe713c7ed8f6915fe"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-holdout/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-before-holdout/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "f5b49a2555be84b3f26821a39460602ce4bbc64872004d1175b20fcdbb952a73",
+      "archive_sha256": "b18336c8944aa06308e556bb66c860b0f8f54849a9fbc691d569fdbee10de8b8"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-holdout/receipt.json",
+      "archive": "evidence/round30/studies/gamma-before-holdout/receipt.json.gz",
+      "uncompressed_sha256": "776ac81610eceaf80dce65734baf7adb97a6506c273c415ff7cbcd1e42457671",
+      "archive_sha256": "f9cc4691c183c8a843395a49a214432697204819a559546c22342888a1db8991"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-exponents/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-before-exponents/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "daa6cc6f4b2e463da78bada3442b22dcddc0652354375642c608462820d22cc5",
+      "archive_sha256": "7ae830f7411b072e21008d43fa7d1bfa8586ea0cd4db1535206588b5973e3740"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-exponents/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-before-exponents/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "4d479b9fd65b4352970e10c0fd8d570e4701316829fef25c065fffde225ade81",
+      "archive_sha256": "9bb76583ad34faa1b2edf5d6e53da8668323249f58350fce4e2bb4f6a88b4335"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-before-exponents/receipt.json",
+      "archive": "evidence/round30/studies/gamma-before-exponents/receipt.json.gz",
+      "uncompressed_sha256": "2c1d1629e1d45b957bd67d47b74ce0405652349b226c8626af07a4d25fbbf7cd",
+      "archive_sha256": "5d16bf6939f414d426acb12b66e8d09dcb8eeed9265484ded044a0b3a45ec678"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-trial-exponents/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-trial-exponents/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "92115ee58725fc11bb696fcc6f85c1eff1bf7857abe569d2a44eace57f74f640",
+      "archive_sha256": "c0d74e2e9fd4094bc26eaa2315249307b77cea9b4e7d076032fe1c40048d56b6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-trial-exponents/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-trial-exponents/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "4d479b9fd65b4352970e10c0fd8d570e4701316829fef25c065fffde225ade81",
+      "archive_sha256": "9bb76583ad34faa1b2edf5d6e53da8668323249f58350fce4e2bb4f6a88b4335"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-trial-exponents/receipt.json",
+      "archive": "evidence/round30/studies/gamma-trial-exponents/receipt.json.gz",
+      "uncompressed_sha256": "3f5052b555ab9edd182dadb2699d6b3def2b7c3e0dbaf87fdafe064d8a9113ff",
+      "archive_sha256": "248427cc5075c145605a86808ad372f8149cafa1e8c0b77eca289bea02565429"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-exponents/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-hard-exponents/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "92115ee58725fc11bb696fcc6f85c1eff1bf7857abe569d2a44eace57f74f640",
+      "archive_sha256": "c0d74e2e9fd4094bc26eaa2315249307b77cea9b4e7d076032fe1c40048d56b6"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-exponents/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-hard-exponents/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "4d479b9fd65b4352970e10c0fd8d570e4701316829fef25c065fffde225ade81",
+      "archive_sha256": "9bb76583ad34faa1b2edf5d6e53da8668323249f58350fce4e2bb4f6a88b4335"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-exponents/receipt.json",
+      "archive": "evidence/round30/studies/gamma-hard-exponents/receipt.json.gz",
+      "uncompressed_sha256": "6b23c9f1308b1ef25bc18f0912e3deb474bc2f1cbb59fd00e3c5092a7d87a366",
+      "archive_sha256": "095ab078b0b4c5602e57407b0312d38058548e32744bbca203a9549f97d97434"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-holdout/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-hard-holdout/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "308489b008e6de3d834175f3cc995052739a8a6bd410e62e51f3bfc329b5f814",
+      "archive_sha256": "6d98bd09932ffe6a21ea0090ceebd9ac16fb53b5ad159d88c7aabaabb84c5f00"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-holdout/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-hard-holdout/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "f5b49a2555be84b3f26821a39460602ce4bbc64872004d1175b20fcdbb952a73",
+      "archive_sha256": "b18336c8944aa06308e556bb66c860b0f8f54849a9fbc691d569fdbee10de8b8"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-hard-holdout/receipt.json",
+      "archive": "evidence/round30/studies/gamma-hard-holdout/receipt.json.gz",
+      "uncompressed_sha256": "4a61e4a02cf71906ed22a8ca8302d39edf2bb7b5d9e3b145ec202516526994fd",
+      "archive_sha256": "03ae7f7cbc9ce47032d5288e32c7d633f0dfc0b0ec0b6a253d102d6882e6fe45"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-application/EXP.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-unit-shape-application/EXP.actuals.jsonl.gz",
+      "uncompressed_sha256": "8467492e92e83994eb6f3d5113eeb82c835edbcb564164925e8f7bd6e141012f",
+      "archive_sha256": "718e3671a001bd4c1651462fcebfe3b035efdd1c79a30f18dcf3ef450d7d64f9"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-application/EXP.inputs.json",
+      "archive": "evidence/round30/studies/gamma-unit-shape-application/EXP.inputs.json.gz",
+      "uncompressed_sha256": "da8e2ca9e17e4e6c30ab2ae2c802d3bb7e28a00b095f15ff2ff42ac567fc6017",
+      "archive_sha256": "c5ee61157f3a87582eb59d341690a092447e4e047374fdd035a61beca72ffbbd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-application/GAMMA.DIST.actuals.jsonl",
+      "archive": "evidence/round30/studies/gamma-unit-shape-application/GAMMA.DIST.actuals.jsonl.gz",
+      "uncompressed_sha256": "b983a1077cefd4a5a0ce9026808aac58dde9fb28c822c540880d8ef5fcc7bcd5",
+      "archive_sha256": "9af3e1d8a9ca189621fc6c8ea86fd83b693729864c9ebaa95fcdf9eb2e80fec8"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-application/GAMMA.DIST.inputs.json",
+      "archive": "evidence/round30/studies/gamma-unit-shape-application/GAMMA.DIST.inputs.json.gz",
+      "uncompressed_sha256": "fa0fee164310726f67183db5690373f62b21028de44b473ee78753e0987223a5",
+      "archive_sha256": "0eb0f71c1a32fc8a93e8abf8ad6ef46145f9a253de6c7113d1c11ad944513f93"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-unit-shape-application/receipt.json",
+      "archive": "evidence/round30/studies/gamma-unit-shape-application/receipt.json.gz",
+      "uncompressed_sha256": "0f58114e86c0f1a5c885ccb765141a22763e4770c45f7b5cdd2dde7bde10cdb6",
+      "archive_sha256": "e4dfabadde63e34ec0ab8f20521cddd1f3bbc9920aae982cd85b64e4ab5403f1"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-pins-before/GAMMA.DIST.json",
+      "archive": "evidence/round30/studies/gamma-pins-before/GAMMA.DIST.json.gz",
+      "uncompressed_sha256": "f81a0f278d3c2d14a02e5e225c9afe44a447906378cfc0e3f1e58512d0e2805a",
+      "archive_sha256": "6b09403f0ad40084fbc39e7f8d6688f7470610c8fe110f3904d7b61b4f6882fc"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-pins-before/GAMMADIST.json",
+      "archive": "evidence/round30/studies/gamma-pins-before/GAMMADIST.json.gz",
+      "uncompressed_sha256": "703da04306b786168f96d115cd90eba7ce35bc2244574d911ab35cf4c7964fe5",
+      "archive_sha256": "8e1b4b7214619f974e17100306192bff448461a37e2c89ecaf8cd43fc3efc871"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-before-exponents/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corrected-before-exponents/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "b773b7e82d95888a840f0ab858e1c1e25dc3c30fb58bb62a46d5d1398c7bd480",
+      "archive_sha256": "bb1fea7d9036540ac2106ffc1a35c7b943c7170fedbf88cc58b94f43e55ac668"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-before-exponents/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corrected-before-exponents/PMT.inputs.json.gz",
+      "uncompressed_sha256": "8d5cf8704c676859870e5af87d75b7e048157eccfffd75cf2bdb9c7a4f7fb277",
+      "archive_sha256": "838fbfa30c55e30ff19ea6c6182057c7cf2112b96e68e6e5130b4a5d692383a5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-before-exponents/receipt.json",
+      "archive": "evidence/round30/studies/pmt-corrected-before-exponents/receipt.json.gz",
+      "uncompressed_sha256": "186593cd737172ca369229826e7a05c50e50a2ad0dd5215030e03cb9528df51e",
+      "archive_sha256": "43aaa32ba9ec4c4a372300bc59e1bbc4c5ebdad4ed29b8c3bc563c25e05b1965"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-after-exponents/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corrected-after-exponents/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "54bec69f58232b3b78626bdc06ee898c6dc533d33209738d00ac10bc818549d2",
+      "archive_sha256": "43bfc8810af6438ef1a9de3f71813f752f8abba3723a168d6d26596c88f274e5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-after-exponents/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corrected-after-exponents/PMT.inputs.json.gz",
+      "uncompressed_sha256": "8d5cf8704c676859870e5af87d75b7e048157eccfffd75cf2bdb9c7a4f7fb277",
+      "archive_sha256": "838fbfa30c55e30ff19ea6c6182057c7cf2112b96e68e6e5130b4a5d692383a5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-after-exponents/receipt.json",
+      "archive": "evidence/round30/studies/pmt-corrected-after-exponents/receipt.json.gz",
+      "uncompressed_sha256": "f9f25794210e85279494ff44d9fca8baf00ac1eafcca2590b549375747b047fc",
+      "archive_sha256": "0cdd9bf8630fb73e828f06ff9fb612c5a2696e9415fa2c96c5d85f8a78da7761"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-software-exponents/PMT.actuals.jsonl",
+      "archive": "evidence/round30/studies/pmt-corrected-software-exponents/PMT.actuals.jsonl.gz",
+      "uncompressed_sha256": "54bec69f58232b3b78626bdc06ee898c6dc533d33209738d00ac10bc818549d2",
+      "archive_sha256": "43bfc8810af6438ef1a9de3f71813f752f8abba3723a168d6d26596c88f274e5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-software-exponents/PMT.inputs.json",
+      "archive": "evidence/round30/studies/pmt-corrected-software-exponents/PMT.inputs.json.gz",
+      "uncompressed_sha256": "8d5cf8704c676859870e5af87d75b7e048157eccfffd75cf2bdb9c7a4f7fb277",
+      "archive_sha256": "838fbfa30c55e30ff19ea6c6182057c7cf2112b96e68e6e5130b4a5d692383a5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/pmt-corrected-software-exponents/receipt.json",
+      "archive": "evidence/round30/studies/pmt-corrected-software-exponents/receipt.json.gz",
+      "uncompressed_sha256": "c9c45183f6a3888dbdf3626cab41ee1736a768b67620981d8957c1eeed6366c3",
+      "archive_sha256": "7067289f4fc3f10cfb30bede89bd084cd5c6b97a19f2b4767714e53bb53408c4"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-bessel/changed-outcomes.jsonl.gz",
+      "archive": "evidence/round30/bank-bessel/changed-outcomes.jsonl.gz.gz",
+      "uncompressed_sha256": "dd6719fda27751e78aac6eee6ed7200ba5b6713edfbdbb9ffd65680dc7cfe66a",
+      "archive_sha256": "eeffb5186ca09aa1b0c6404484b49e3c78e8f0399f2d4d21ba1fcccf6aba2301"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-bessel/judge.log",
+      "archive": "evidence/round30/bank-bessel/judge.log.gz",
+      "uncompressed_sha256": "378077b95431ea7e40fcb67ed7d06d4033837fe8d3b393087fa68f32c37cc607",
+      "archive_sha256": "baab664c2ddd6bc295ad8d3b930ff07d90faad0da690d669ccb066ad22355e0f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-bessel/matched.bits",
+      "archive": "evidence/round30/bank-bessel/matched.bits.gz",
+      "uncompressed_sha256": "95e03c018402c3c044b69721e45fbf95c77a2a0f141ae7ee90748a0a46c97d56",
+      "archive_sha256": "93986773e34e411080edf8bbbf64d411dfa7d187ba2d62539518e04fc609d9f7"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-bessel/summary.json",
+      "archive": "evidence/round30/bank-bessel/summary.json.gz",
+      "uncompressed_sha256": "1743c1ab0e2139bf293e97618ab19d670fe8680fb3c911876207fde21e4ae87c",
+      "archive_sha256": "22d9b1646ac9486c8f6158746cc844c541215e59286f651a3cf58bf454fb7ce5"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-before/changed-outcomes.jsonl.gz",
+      "archive": "evidence/round30/bank-gamma-before/changed-outcomes.jsonl.gz.gz",
+      "uncompressed_sha256": "9f9aaab12237c6f0931439d6b19428f5ea6d4150dd7239496ee0a5ab46e3ac49",
+      "archive_sha256": "a7959527573857073d536acd4687d26c6929c79125288358dc674049179c9ccd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-before/judge.log",
+      "archive": "evidence/round30/bank-gamma-before/judge.log.gz",
+      "uncompressed_sha256": "e1fa44269d57cc26a71c75ff9bca43a007b983a71fe756348a3535d037ac75ec",
+      "archive_sha256": "027ba395935152385053ffdd107785e83201a79f03d3f4565cec4e1c9758af91"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-before/matched.bits",
+      "archive": "evidence/round30/bank-gamma-before/matched.bits.gz",
+      "uncompressed_sha256": "53e199b9b2e8c8570b41aefe29872b4d53e9ec3b31c32cf0280ed8c1eea2492c",
+      "archive_sha256": "7393f64b161f77a3c2c33d650f0c41e71182b19a1d66f90e4125fb170d9569ee"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-before/summary.json",
+      "archive": "evidence/round30/bank-gamma-before/summary.json.gz",
+      "uncompressed_sha256": "68985993bcaf3f5ff3147a83dc03c1674c495a372699014d007c082b5b9c9b67",
+      "archive_sha256": "6027fba7228e49da4a661d83a71cf7b506b0c57eeb246107daeda3169809909a"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-after/changed-outcomes.jsonl.gz",
+      "archive": "evidence/round30/bank-gamma-after/changed-outcomes.jsonl.gz.gz",
+      "uncompressed_sha256": "7219cafaf27340526a9f4b048e032e9c3f7e0071c13c0a0132d101dcad35a271",
+      "archive_sha256": "440a60e4cbcf76092928b90fd6aa3edf2069915c577c3c2e6b95c322da5be450"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-after/judge.log",
+      "archive": "evidence/round30/bank-gamma-after/judge.log.gz",
+      "uncompressed_sha256": "c3b3b582cdb368e4661bced80c985488a4d4eb28a32c72fa411573bf43d89b55",
+      "archive_sha256": "9bca9dfa911bc84c9a4b9f6550691c14475dbce077b09d35f4535ca365e8caeb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-after/matched.bits",
+      "archive": "evidence/round30/bank-gamma-after/matched.bits.gz",
+      "uncompressed_sha256": "c2ffefc740c54aca9519eb4da64ba2f16454a9cd8f2d5eb0ff93f728a9e98cc6",
+      "archive_sha256": "62d3d99f897eaff59a9fb52449d2c083d7eb343fd68779f280e2804c5efa38cc"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/bank-gamma-after/summary.json",
+      "archive": "evidence/round30/bank-gamma-after/summary.json.gz",
+      "uncompressed_sha256": "243f76fb50d49fedce0d8b225cc6b0b27f86e2331f73055bf2450bcf07d670fb",
+      "archive_sha256": "8918cbb3373d179bb91d00bdfe4aacf63ee28aee5676a6a4ec560a39a098cbf3"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-before/summary.md",
+      "archive": "evidence/round30/studies/corpus-gamma-before/summary.md.gz",
+      "uncompressed_sha256": "8824cfcc358fdc237c003b44114ba7813b786588233a6b7db97b9397a4aab8f9",
+      "archive_sha256": "aed270ebbceec99bebe119b4629b92476a4dd16d57622b2ce5717abc893fad0d"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-before/problem-functions.json",
+      "archive": "evidence/round30/studies/corpus-gamma-before/problem-functions.json.gz",
+      "uncompressed_sha256": "d28ccda5cc781815e62b77584d27d2948508f1a6bb6644bbd76e5fa0b8d5ce25",
+      "archive_sha256": "24859a029a4ddb4fd20a322854a25f3ecf677285155a625ac22079b819e478f0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-before/inventory.json",
+      "archive": "evidence/round30/studies/corpus-gamma-before/inventory.json.gz",
+      "uncompressed_sha256": "c084eee0fd1780047929e455f9551475ff09a6e8f0c7bc999ed97df4bff99ba6",
+      "archive_sha256": "04e9478497971cd982ef2ee6219d8420ac0a01d9001fe72fccb001b237130ebd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-before/summary.json",
+      "archive": "evidence/round30/studies/corpus-gamma-before/summary.json.gz",
+      "uncompressed_sha256": "ee2641334f836ef4fb5919150934c378344af1b241977e3e5de1cc69a06af473",
+      "archive_sha256": "b8d2a3140b25e6f5057660d794539987df7c869fdc37765f3d272d9ee9e5f868"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-after/summary.md",
+      "archive": "evidence/round30/studies/corpus-gamma-after/summary.md.gz",
+      "uncompressed_sha256": "99859facd1bcf6ba1f581e28f0d065b9cdaea953fefb72ff5676f5cae2ba50b4",
+      "archive_sha256": "e465778bdf96121510de2c83c5feee77d6f6ae244f9b6194c4ae98a6ad70401b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-after/problem-functions.json",
+      "archive": "evidence/round30/studies/corpus-gamma-after/problem-functions.json.gz",
+      "uncompressed_sha256": "d28ccda5cc781815e62b77584d27d2948508f1a6bb6644bbd76e5fa0b8d5ce25",
+      "archive_sha256": "24859a029a4ddb4fd20a322854a25f3ecf677285155a625ac22079b819e478f0"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-after/inventory.json",
+      "archive": "evidence/round30/studies/corpus-gamma-after/inventory.json.gz",
+      "uncompressed_sha256": "c084eee0fd1780047929e455f9551475ff09a6e8f0c7bc999ed97df4bff99ba6",
+      "archive_sha256": "04e9478497971cd982ef2ee6219d8420ac0a01d9001fe72fccb001b237130ebd"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-gamma-after/summary.json",
+      "archive": "evidence/round30/studies/corpus-gamma-after/summary.json.gz",
+      "uncompressed_sha256": "431cf5bc07bb3647f452336e4ecb293e1ff3886c115511000ccf142b514a49f3",
+      "archive_sha256": "9f32e2e9bb6a6587716c31d83f2e939e19aac8d987c1ba3ea4af75b2182b8194"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/gamma-final-review.json",
+      "archive": "evidence/round30/studies/gamma-final-review.json.gz",
+      "uncompressed_sha256": "0a59810082bec84ff87dd09b86df3dcc6cf0bfaf11a3dcf7ce3bf1bd8d402524",
+      "archive_sha256": "63eb132a2c60e6e1365e5999c951c858747f5e9cd3f1593edaea51f5c731822f"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-final-complete-source-ubs.log",
+      "archive": "evidence/round30/studies/research-final-complete-source-ubs.log.gz",
+      "uncompressed_sha256": "378ee0af954f98095cde0bf2489258e9eb067cc74abf465db1e9a11523c7068c",
+      "archive_sha256": "e7cd138ded2ee1621937edf85bb044e8bfd95b5c29bd4c51d100d9788e3e08a2"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-integrated.log",
+      "archive": "evidence/round30/studies/corpus-integrated.log.gz",
+      "uncompressed_sha256": "ee0d11a078a18344f913398904651899ef3507e4dd3569e0a256a6e8e6c029c0",
+      "archive_sha256": "ee4d4d4be04f9570591915c7c9f9c0ad484dab8d5aa79adc76c270552f331715"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/problems-integrated-final.log",
+      "archive": "evidence/round30/studies/problems-integrated-final.log.gz",
+      "uncompressed_sha256": "ba6e86c63cfaff71b78e77d80657aa4d1f1bced5372d3e67db95198c54033fb9",
+      "archive_sha256": "a2c2d754eed11f7eb333523100c9acdd77175a3115936b13d8cb2ebf601037bb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/problems-integrated-final/bank.log",
+      "archive": "evidence/round30/studies/problems-integrated-final/bank.log.gz",
+      "uncompressed_sha256": "c3b3b582cdb368e4661bced80c985488a4d4eb28a32c72fa411573bf43d89b55",
+      "archive_sha256": "9bca9dfa911bc84c9a4b9f6550691c14475dbce077b09d35f4535ca365e8caeb"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-integrated/summary.json",
+      "archive": "evidence/round30/studies/corpus-integrated/summary.json.gz",
+      "uncompressed_sha256": "298ee5f8c41f1b93f825b8ea265d0f36cf563a1d2730017b9b02aeede3c66a2a",
+      "archive_sha256": "e03a4017179a8907262cd84b489ff993112d6fb74ee6cfde397bd2112e8cf753"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/corpus-integrated/summary.md",
+      "archive": "evidence/round30/studies/corpus-integrated/summary.md.gz",
+      "uncompressed_sha256": "9617a0f84e33d024cdd5b95dc785b59962387d589cdf4e1f498822349631f1ed",
+      "archive_sha256": "79e0673dfc223f99a17cbedf23d84289cffeae58f06e1e5fa99e37aaf2739185"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/problems-gamma-final.log",
+      "archive": "evidence/round30/studies/problems-gamma-final.log-df89289cd06b.gz",
+      "uncompressed_sha256": "df89289cd06b97f0fd7eafb56b5ff415d6066db5adc298c6954a932913d8246f",
+      "archive_sha256": "3a432288d68f3bac4edccb120e412592dd47d4893bd892da52613245fb71af9c"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/research-published-unit-tests.log",
+      "archive": "evidence/round30/studies/research-published-unit-tests.log.gz",
+      "uncompressed_sha256": "bb032dc6fd2f925631509d0fa137a2d17f163e930d93564508fe4a6f69199ec2",
+      "archive_sha256": "49765e4a247375ad72335f20080f1c8ad250d3995e8bf844bcf9c025986cab5b"
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r30/final-integrated-check.log",
+      "archive": "evidence/round30/studies/final-integrated-check.log.gz",
+      "uncompressed_sha256": "642ab79786ef3a966a8b3bbfdcb192fe3459992b4e90d8016277ad2e00f504e9",
+      "archive_sha256": "5773927176a102afe7e07b36a3d913e7c885218359d8d7b33ae83dda0a837fa7"
     }
   ],
-  "limits": "Raw scalar answers stay in the existing scalar-cache lineage; the cache directory name is historical, not an observation date. Compressed analyses retain their exact original bytes. Producer snapshots distinguish source epochs and are not alternate tools. Full-bank match bits bind all identities/answers/environments and count unread rows as failures. Large derived corpus trees and native executables remain outside Git; committed source units and hashes identify them."
+  "limits": "Raw scalar answers stay in the existing scalar-cache lineage; the cache directory name is historical, not an observation date. Compressed analyses retain their exact original bytes. Producer snapshots distinguish source epochs and are not alternate tools. Full-bank match bits bind all identities/answers/environments and count unread rows as failures. Large derived corpus trees and native executables remain outside Git; committed source units and hashes identify them.",
+  "pmt_commit": "46db6058",
+  "pmt_check": {
+    "passed": 1875,
+    "failed": 0,
+    "ignored": 5,
+    "not_run": 3,
+    "packages": 14
+  },
+  "pmt_scope": {
+    "bank_financial_gains": 3735,
+    "bank_financial_losses": 22,
+    "bank_incoming_imlog2_gains": 54,
+    "corpus_financial_gains": 59,
+    "corpus_financial_losses": 19,
+    "corpus_incoming_collation_gains": 586
+  },
+  "retained_local_executable": {
+    "path": "/home/ubuntu/codex-runs/r30/racer-pmt-hard",
+    "sha256": "c29590b449f5bcb926a18a60ebdcd8fba05ce0e85e9f445a0295b09acdad9138",
+    "limits": "Not committed as binary bulk; original unit, committed application source and exact producer epochs remain reconstructible. Current software leaf outputs are separately bound and agree."
+  },
+  "gamma_scope": {
+    "bank_before": 3777173,
+    "bank_after": 3777655,
+    "bank_total": 3910007,
+    "gains": 654,
+    "losses": 172,
+    "corpus_matched": 52883,
+    "corpus_total": 54794,
+    "corpus_failures": 1911,
+    "pending": 100,
+    "corpus_gains": 0,
+    "corpus_losses": 0,
+    "holdout_gains": 44,
+    "holdout_losses": 12,
+    "exponent_gains": 22,
+    "exponent_losses": 0,
+    "classified_prefix_losses": 184
+  },
+  "pmt_exponent_correction": {
+    "before": 1135,
+    "after": 1171,
+    "total": 1274,
+    "gains": 36,
+    "losses": 0,
+    "remaining_failures": 103,
+    "reason": "Canonical display-error mapping:91 matching #NUM! records previously compared with error:Num. Raw answers and actual outputs unchanged.",
+    "review": "pmt-exponent-review-correction.json.gz"
+  },
+  "checks": {
+    "main_gamma": {
+      "passed": 1883,
+      "failed": 0,
+      "packages": 14
+    },
+    "research_python": {
+      "passed": 125,
+      "failed": 0
+    },
+    "research_rust": {
+      "passed": 137,
+      "failed": 0,
+      "ignored": 2
+    },
+    "ubs": "Gamma product2files:0critical48warnings24info, inherited test unwraps/float comparisons/casts; no unsafe code or critical changes. Final8file research scan:0critical1285warnings1654info, partial Python SQL analyzer unsupported flow; no clean-scan claim.",
+    "integrated_main": {
+      "passed": 1889,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3,
+      "packages": 14,
+      "seconds": 765
+    },
+    "published_research": {
+      "passed": 137,
+      "failed": 0,
+      "ignored": 2,
+      "application_revision": "4e68ac1804dcc187124a60f08f93c6c22ba745eb",
+      "unit": "round30-published-unit.json"
+    }
+  },
+  "gamma_commit": "b3b44246",
+  "artifact_bindings_verified": 393,
+  "final_inventory": {
+    "bank_matched": 3777655,
+    "bank_total": 3910007,
+    "bank_failed": 132352,
+    "unread": 116,
+    "corpus_matched": 52883,
+    "corpus_total": 54794,
+    "corpus_failed": 1911,
+    "pending": 100,
+    "incoming_final_integration_net_matches": 0,
+    "ranking": "evidence/round30/ranking-final.json",
+    "separate_sources": "Do not add bank/corpus counts as unique calls."
+  },
+  "final_application_revision": "4e68ac1804dcc187124a60f08f93c6c22ba745eb",
+  "final_published_unit": "round30-published-unit.json",
+  "numerical_source_scope": "Final rendering integration changes no calculation-route source relative to the integrated bank/corpus measurements. Generator original source state and hashes remain unaltered."
 }

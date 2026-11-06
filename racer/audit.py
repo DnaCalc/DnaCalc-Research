@@ -872,6 +872,7 @@ def scalar_service_replay(executable,study,cache,output,function=None):
     import subprocess
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
     from geomean import verified_study_answers
+    from corpus_cases import outcome
     executable,study,cache,output=map(lambda p:Path(p).resolve(),(executable,study,cache,output))
     output.mkdir(parents=True,exist_ok=False);doc=json.loads(study.read_text())
     answers,bindings,ordered=verified_study_answers(doc,cache)
@@ -879,7 +880,7 @@ def scalar_service_replay(executable,study,cache,output,function=None):
     if function is not None:
         ordered=[r for r in ordered if r[0]==function]
         if not ordered:raise ValueError('requested function has no original observations')
-    frozen={str(p):sha(p)for p in (executable,study,Path(__file__).resolve())};frozen.update(bindings)
+    frozen={str(p):sha(p)for p in (executable,study,Path(__file__).resolve(),Path(outcome.__code__.co_filename).resolve())};frozen.update(bindings)
     grouped=collections.defaultdict(list)
     for i,(name,args,answer)in enumerate(ordered):
         if any(a['type']!='number'for a in args):raise ValueError('numeric scalar replay only')
@@ -895,7 +896,8 @@ def scalar_service_replay(executable,study,cache,output,function=None):
         tally=collections.Counter()
         for expected,actual in zip(rows,computed):
             if any(actual[k]!=expected[k]for k in ('id','args')):raise ValueError('application replay identity changed')
-            answer=expected['expected'];want='0x'+answer['bits']if answer['type']=='number'else answer['code']
+            answer=expected['expected']
+            want=outcome({'number':answer['bits']} if answer['type']=='number' else {'error':answer['code']})
             match=actual['calc_func_prediction']==want;tally['matched'if match else'mismatched']+=1
             if not match:changes.append(dict(function=name,original=expected,actual=actual))
         counts[name]=tally

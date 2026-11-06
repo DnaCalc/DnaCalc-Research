@@ -44,6 +44,87 @@ pub fn bessel_k_precision(input:&str,output:&str) {
 }
 use std::{fs, path::Path};
 
+/// Fixed cleared CRT leaves for the uncancelled shape-one density expression.
+/// These are discovery hypotheses; only `baseline` uses the registered application route.
+pub fn gamma_unit_crt(input:&str,out:&str) {
+    use crate::ported::excel_numeric::{crt_log,crt_exp,excel_x87_sub,excel_x87_div,excel_x87_mul,excel_pow_chain,excel_pow_x87_direct};
+    let doc:Value=serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    assert_eq!(doc["complete"],true,"complete original study required");
+    let rows=doc["records"].as_array().unwrap();assert!(rows.len()<=2048,"bounded leaf cohort");
+    let mut records=Vec::new();let mut counts=std::collections::BTreeMap::<String,[usize;2]>::new();
+    for r in rows {
+        let parse=|s:&str|f64::from_bits(u64::from_str_radix(s.trim_start_matches("0x"),16).unwrap());
+        let x=parse(r["input"].as_str().unwrap());assert!(x>0.0&&x.is_finite());
+        let public=parse(r["public_LN"]["bits"].as_str().unwrap());
+        let logarithm=crt_log(x);let target=r["density"]["bits"].as_str().unwrap();
+        let mut predictions=std::collections::BTreeMap::new();
+        for (log_name,log) in [("crt_LN",logarithm),("public_LN",public)] {
+            for (arg_name,arg) in [("strict_argument",log-x),("pc64_argument",excel_x87_sub(log,x))] {
+                let prefix=crt_exp(arg);
+                for (div_name,value) in [("strict_division",prefix/x),("pc64_division",excel_x87_div(prefix,x))] {
+                    let name=format!("{log_name}/{arg_name}/{div_name}");let bits=format!("{:016x}",value.to_bits());
+                    let count=counts.entry(name.clone()).or_default();count[0]+=1;count[1]+=usize::from(bits==target);
+                    predictions.insert(name,bits);
+                }
+            }
+        }
+        let observed_exp=parse(r["public_EXP"]["bits"].as_str().unwrap());
+        for (power_name,power) in [("raw_log_power",excel_pow_chain(x,1.0)),("raw_log2_power",excel_pow_x87_direct(x,1.0))] {
+            for (model_name,stored) in [("strict",false),("stored_pc64",true)] {
+                let mul=|a,b|if stored { excel_x87_mul(a,b) } else { a*b };
+                let div=|a,b|if stored { excel_x87_div(a,b) } else { a/b };
+                for (association,value) in [("product_first",div(mul(power,observed_exp),x)),
+                    ("power_ratio_first",mul(div(power,x),observed_exp)),
+                    ("exp_ratio_first",mul(power,div(observed_exp,x)))] {
+                    let name=format!("{power_name}/{model_name}/{association}");let bits=format!("{:016x}",value.to_bits());
+                    let count=counts.entry(name.clone()).or_default();count[0]+=1;count[1]+=usize::from(bits==target);
+                    predictions.insert(name,bits);
+                }
+            }
+        }
+        let baseline=crate::invoke_control("GAMMA.DIST",[x,1.0,1.0,0.0].into_iter().map(CalcValue::number).collect()).0;
+        records.push(json!({"input":r["input"],"density":r["density"],"public_LN":r["public_LN"],
+            "crt_LN":format!("{:016x}",logarithm.to_bits()),"crt_exp_minus_x":format!("{:016x}",crt_exp(-x).to_bits()),
+            "baseline":baseline,"hypotheses":predictions}));
+    }
+    let result=json!({"complete":true,"records":records,"counts_rows_matched":counts,"not_excel_evidence":true,
+        "limits":"Eight fixed cleared-CRT compositions of EXP(LN(x)-x)/x and twelve raw-power/product associations using independently measured public EXP. Source-shape order only. No coefficient, normalizer or selector fitted. A survivor identifies only this sampled functional expression. The separate baseline is the registered application calculation; hypothesis matches are not product gains."});
+    crate::json_write(out,&result);println!("{}",result["counts_rows_matched"]);
+}
+
+/// Replay the unchanged cleared prefix only to locate recorded consumer-step losses.
+/// Every reported before/after return is checked against its canonical application evidence.
+pub fn gamma_density_prefixes(input:&str,out:&str) {
+    use crate::ported::excel_numeric::{excel_log,excel_exp_difference,gammaln_excel,excel_x87_div,excel_x87_mul};
+    let doc:Value=serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    let rows=doc["records"].as_array().unwrap();let mut records=Vec::new();
+    let encode=|x:f64|if !x.is_finite(){"error:Num".into()}else if x!=0.0&&x.is_subnormal(){"fault:NotImplemented".into()}else{format!("0x{:016x}",if x==0.0 {0.0}else{x}.to_bits())};
+    for row in rows {
+        let aa=row["args"].as_array().unwrap();let mut ns=Vec::new();let mut unresolved=false;
+        for v in aa.iter().take(3) {
+            if let Some(s)=v.as_str().and_then(|s|s.strip_prefix("0x")) {
+                ns.push(f64::from_bits(u64::from_str_radix(s,16).unwrap()));
+            } else if let Some(b)=v.as_bool() {ns.push(if b {1.0}else{0.0});}
+            else {unresolved=true;break;}
+        }
+        if unresolved||ns.len()!=3 {records.push(json!({"original":row,"classification":"nonnumeric_argument_needs_wrapper_audit"}));continue;}
+        let (x,a,b)=(ns[0],ns[1],ns[2]);assert!(x>0.0&&a!=1.0&&b>0.0,"changed generic-density route");
+        let y=excel_x87_div(x,b);let log=excel_log(y);let normalizer=gammaln_excel(a+1.0);
+        let r=excel_exp_difference(excel_x87_mul(a,log),y,normalizer);let factor=excel_x87_div(a,x);
+        let old=encode(excel_x87_div(excel_x87_mul(r,a),x));let now=encode(excel_x87_mul(r,factor));let strict=encode(r*factor);
+        let args=aa.iter().map(|v|calc_verdict::decode_argument(v,"original gamma argument").unwrap()).collect();
+        let actual=crate::invoke_control(row["function"].as_str().unwrap(),args).0;
+        assert_eq!(actual,row["actual"].as_str().unwrap(),"registered loss return changed");
+        assert_eq!(now,actual,"prefix replay differs from registered application");
+        assert_eq!(old,row["expected"].as_str().unwrap(),"old prefix replay differs from original matched return");
+        records.push(json!({"original":row,"prefix":format!("{:016x}",r.to_bits()),"stored_factor":format!("{:016x}",factor.to_bits()),
+            "scaled_input":format!("{:016x}",y.to_bits()),"normalizer":format!("{:016x}",normalizer.to_bits()),
+            "old_replayed":old,"new_registered":actual,"strict_multiply":strict,"classification":"prefix_replay_verified"}));
+    }
+    crate::json_write(out,&json!({"complete":true,"records":records,"not_excel_evidence":true,
+        "limits":"Cleared-prefix diagnostic replay, checked against each old matched answer and current registered return. Hypothetical intermediate values are not additional engine passes or private Excel values. Final exact inverse classification is recorded separately."}));
+}
+
 /// Fixed product-root and natural-log helper boundaries. No coefficients,
 /// thresholds or per-observation choices occur in these mathematical paths.
 pub fn geomean_stored<F:crate::ported::excel_numeric::Fpu>(input:&str,out:&str) {

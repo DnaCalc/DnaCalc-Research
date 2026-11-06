@@ -9,6 +9,7 @@ import json
 import math
 from pathlib import Path
 import random
+import subprocess
 
 from fingerprint import CachedService, load_service, bits, value, sha, write
 from exact import BINARY64 as B, Span, binary64, inverse, operation, round_model
@@ -650,6 +651,131 @@ def cumulative_denominators(checkout,output,cache,offline=False):
     write(output,result);print(json.dumps(counts),flush=True);return result
 
 
+def cumulative_first_residual(study,output,cache):
+    """Invert the first-period cancellation without prescribing an exponential.
+
+    The unknown em is shared across balances, not chosen per answer. Every
+    fixed source form is tested independently; no best-match form is selected.
+    """
+    from geomean import verified_study_answers
+    from exact import EXTENDED64
+    source=Path(study);doc=json.loads(source.read_text())
+    if doc.get('complete') is not True:raise ValueError('incomplete first-principal observations')
+    _,bindings,_=verified_study_answers(doc,Path(cache))
+    models=dict(stored_assignments=('stored_pc64',)*3,
+                single_expression=('resident_pc64',)*3,
+                stored_quotient=('stored_pc64','resident_pc64','resident_pc64'),
+                stored_quotient_and_interest=('stored_pc64','resident_pc64','stored_pc64'),
+                stored_payment=('resident_pc64','stored_pc64','resident_pc64'))
+    records=[];counts={name:Counter() for name in models}
+    for group in doc['records']:
+        rate=binary64(group['rate']);candidates=[]
+        for name,(division,product,interest_model) in models.items():
+            domain=None;contradicted=False;constraints=[]
+            for pv,answer in zip(group['balances'],group['answers']):
+                if answer['type']!='number':raise ValueError('nonnumeric original principal')
+                p=binary64(pv);target=binary64(answer['bits'])
+                interest=operation(p,rate,'mul',interest_model)
+                payment=inverse(Span(target,target),interest,'add',True,'stored_pc64')
+                quotient=inverse(payment,rate,'mul',True,product) if payment is not None else None
+                needed=inverse(quotient,p,'div',False,division) if quotient is not None else None
+                constraints.append(needed.json() if needed is not None else None)
+                if not contradicted:
+                    domain=needed if domain is None else (None if needed is None else domain.meet(needed))
+                    if domain is None:contradicted=True
+            binary=B.coordinates(domain) if domain is not None else None
+            extended=EXTENDED64.coordinates(domain) if domain is not None else None
+            counts[name]['groups']+=1
+            counts[name]['binary64_nonempty']+=binary is not None
+            counts[name]['resident64_nonempty']+=extended is not None
+            counts[name]['real_nonempty']+=domain is not None
+            candidates.append(dict(name=name,division=division,payment_product=product,
+                interest_product=interest_model,required_shared_em=domain.json() if domain is not None else None,
+                binary64_count=0 if binary is None else binary[1]-binary[0]+1,
+                resident64_count=0 if extended is None else extended[1]-extended[0]+1,
+                constraints=constraints))
+        records.append(dict(rate=group['rate'],periods=group['periods'],balances=group['balances'],
+                            answers=group['answers'],candidates=candidates))
+    result=dict(format='dnacalc-cumulative-first-residual-preimages/1',complete=True,counts=counts,
+        source_bindings={**SOURCE_BINDINGS,**bindings,str(source.resolve()):sha(source)},records=records,
+        original_receipts=doc['receipts'],
+        limits='Conditional first-principal source forms: q=pv/em, payment=q*rate, '
+        'interest=pv*rate, result=stored-PC64(payment+interest). A shared em is constrained '
+        'by all ten balances before lattice projection. Both binary64 and resident64 '
+        'possibilities are reported. Nonempty cells are not a growth producer or an '
+        'implementation; an empty intersection excludes only its declared store form. '
+        'No new Excel reading, fitted helper, or product-code change.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
+def loss_controls(checkout,requests,output,cache,executable,offline=False):
+    """Locate downstream losses using original public payment/component calls."""
+    source=Path(requests);doc=json.loads(source.read_text())
+    if doc.get('complete') is not True:raise ValueError('incomplete original loss list')
+    frozen={**SOURCE_BINDINGS,str(source.resolve()):sha(source),str(Path(executable).resolve()):sha(executable),
+            **doc.get('source_bindings',{})}
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    payments={};components={};records=[]
+    for original in doc['records']:
+        name=original['function'];args=original['args']
+        if name in ('IPMT','PPMT') and len(args)==6:
+            pmt=[args[i] for i in (0,2,3,4,5)];parts=[]
+        elif name in ('CUMPRINC','CUMIPMT') and len(args)==6:
+            pmt=[args[0],args[1],args[2],bits(0.),args[5]]
+            start,end=(int(value(args[i])) for i in (3,4))
+            if not 1<=start<=end<=10000:raise ValueError('loss interval outside bounded controls')
+            parts=[[args[0],bits(k),args[1],args[2],bits(0.),args[5]] for k in range(start,end+1)]
+        else:raise ValueError('unsupported downstream loss shape')
+        payments[tuple(pmt)]=None
+        for p in parts:components[tuple(p)]=None
+        records.append(dict(original,payment_args=pmt,component_args=parts))
+    # These are independent leaves, never re-asked parent outcomes.
+    for name,groups in [('PMT',payments),('PPMT',components)]:
+        keys=list(groups)
+        if not keys:continue
+        answers=service.ask(name,[[client.number(x) for x in row] for row in keys])['rows']
+        for key,answer in zip(keys,answers):groups[key]=dict(answer=answer)
+        inputs=Path(str(output)+'.'+name+'.inputs.json');actuals=Path(str(output)+'.'+name+'.actuals.jsonl')
+        witnesses=[dict(id='control-'+str(i),args=['0x'+b for b in row]) for i,row in enumerate(keys)]
+        write(inputs,dict(function=name,witnesses=witnesses))
+        # ubs:ignore — fixed argv to the bound local application binary, no shell, bounded execution.
+        subprocess.run([str(executable),'invoke-inputs',str(inputs),str(actuals)],check=True,timeout=300)
+        computed=[json.loads(s) for s in actuals.read_text().splitlines()]
+        if len(computed)!=len(witnesses):raise ValueError('incomplete application controls')
+        for key,expected,actual in zip(keys,witnesses,computed):
+            if any(expected[k]!=actual[k] for k in ('id','args')):raise ValueError('application control identity changed')
+            groups[key]['calculated']=actual['calc_func_prediction']
+    counts=Counter()
+    for row in records:
+        p=payments[tuple(row['payment_args'])];a=p['answer']
+        payment_correct=a['type']=='number' and p['calculated']=='0x'+a['bits']
+        row['payment']=p;row['payment_matches_original_public_call']=payment_correct
+        counts['rows']+=1;counts['correct_payment']+=payment_correct
+        if row['component_args']:
+            ps=[components[tuple(k)] for k in row['component_args']]
+            all_correct=all(p['answer']['type']=='number' and p['calculated']=='0x'+p['answer']['bits'] for p in ps)
+            total=0
+            for p in ps:
+                if p['answer']['type']!='number':raise ValueError('public principal component is not numeric')
+                total=operation(total,binary64(p['answer']['bits']),'add','strict')
+            published=bits(float(total));row.update(components=ps,public_ppmt_strict_sum=published,
+                all_components_match_original_public_calls=all_correct)
+            counts['correct_all_components']+=all_correct
+            classification=('published_PPMT_sum_differs_from_original_cumulative_route' if all_correct
+                else 'published_PPMT_component_discrepancy_in_cumulative_route')
+        else:
+            classification='downstream_IPMT_or_PPMT_discrepancy_despite_correct_public_payment'
+        if not payment_correct:classification='existing_public_payment_helper_discrepancy'
+        row['classification']=classification;counts[classification]+=1
+    result=dict(format='dnacalc-annuity-downstream-loss-controls/1',complete=True,counts=counts,
+        records=records,receipts=service.receipts,source_bindings=frozen,
+        limits='The original lost parent answers are never replaced or re-asked. Independent public '
+        'PMT and, for cumulative rows, every public PPMT component locate whether a payment helper, '
+        'component or cumulative composition still differs. Correct payment alone identifies no '
+        'private downstream algorithm. These observations classify remaining work, not gains.')
+    write(output,result);print(json.dumps(counts),flush=True);return result
+
+
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('checkout')
@@ -665,8 +791,14 @@ if __name__ == '__main__':
     p.add_argument('--cumulative-pairs',action='store_true')
     p.add_argument('--cumulative-fv')
     p.add_argument('--cumulative-denominators',action='store_true')
+    p.add_argument('--loss-controls',nargs=2,metavar=('REQUESTS','EXECUTABLE'))
+    p.add_argument('--first-residual',metavar='STUDY')
     a=p.parse_args()
-    if a.cumulative_denominators:
+    if a.first_residual:
+        cumulative_first_residual(a.first_residual,a.output,a.cache)
+    elif a.loss_controls:
+        loss_controls(a.checkout,a.loss_controls[0],a.output,a.cache,a.loss_controls[1],a.offline)
+    elif a.cumulative_denominators:
         cumulative_denominators(a.checkout,a.output,a.cache,a.offline)
     elif a.cumulative_fv:
         cumulative_fv(a.checkout,a.cumulative_fv,a.output,a.cache,a.offline)

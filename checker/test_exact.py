@@ -31,6 +31,16 @@ def extended_control(q):
 
 
 class ExactArithmetic(unittest.TestCase):
+    def test_service_errors_and_captured_errors_have_one_canonical_outcome(self):
+        from racer.corpus_cases import outcome
+        # Actual transport mismatch discovered by PMT replay: these are the
+        # same worksheet error, while a numeric result remains different.
+        self.assertEqual(outcome({'error':'#NUM!'}),outcome({'error':'num'}))
+        self.assertEqual(outcome({'error':'#DIV/0!'}),'error:Div0')
+        self.assertEqual(outcome({'error':'#N/A'}),'error:NA')
+        self.assertNotEqual(outcome({'error':'#NUM!'}),outcome({'number':'0000000000000000'}))
+        with self.assertRaises(KeyError):outcome({'error':'#UNSUPPORTED!'})
+
     def test_formula_labels_follow_aliases_without_reading_values(self):
         from racer.corpus_cases import formula_label
         formulas = {('question',20,10):dict(formula='=NORM.S.DIST(A1,FALSE)'),

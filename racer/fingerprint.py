@@ -1256,7 +1256,7 @@ def primitive_stage_graph(kind, constant='rom', stored_reduction=False):
     return g.graph(out,out)
 
 
-def positive_extended_cell(native, graph, answer, center,decreasing=False):
+def positive_extended_cell(native, graph, answer, center,decreasing=False,max_radius_bits=18):
     """Conditional inverse of one fixed positive extended-input primitive.
 
     Find both ends of an output's preimage on the PC64 input lattice. The
@@ -1275,8 +1275,11 @@ def positive_extended_cell(native, graph, answer, center,decreasing=False):
         return native.publish(native.evaluate(graph,[],0x133f,extended=pack(sig))[:10])
     direction=-1 if decreasing else 1
     target=direction*int(answer,16)
-    if not direction*evaluate(lo)<target<direction*evaluate(hi):
-        raise ValueError('inverse bracket does not enclose requested output')
+    if not 18<=max_radius_bits<=62:raise ValueError('bounded inverse radius required')
+    while not direction*evaluate(lo)<target<direction*evaluate(hi):
+        if radius>=1<<max_radius_bits:raise ValueError('inverse bracket does not enclose requested output')
+        radius*=2;lo,hi=significand-radius,significand+radius
+        if not 0<lo<hi<EXTENDED64.last:raise ValueError('expanded inverse bracket leaves positive finite values')
     def first(strict):
         a,b=lo,hi
         while b-a>1:
@@ -1289,6 +1292,7 @@ def positive_extended_cell(native, graph, answer, center,decreasing=False):
     if direction*evaluate(lower)!=target or direction*evaluate(upper)!=target:
         raise ValueError('inverse endpoint does not publish requested output')
     return dict(low=pack(lower).hex(),high=pack(upper).hex(),
+                bracket_radius=radius,
                 predecessor_output=f'{evaluate(lower-1):016x}',
                 successor_output=f'{evaluate(upper+1):016x}')
 
@@ -1592,6 +1596,99 @@ def poisson_log_difference_study(checkout,original,output,cache,library,offline=
     write(output,result);print(json.dumps(counts));return result
 
 
+def poisson_log_primitive_contrasts(original,output,library):
+    """Test fixed native LN leaves against previously derived necessary cells.
+
+    This isolates the coefficient precision, operation precision and return
+    publication. It does not select the least-bad leaf or infer a private LN.
+    """
+    from exact import Span
+    from x87 import decode,load64
+    path=Path(original)
+    prior=json.loads(gzip.decompress(path.read_bytes()) if path.suffix=='.gz' else path.read_bytes())
+    if prior.get('complete') is not True:raise ValueError('incomplete original log constraints')
+    native=Native(library);rom=native.leaf('fldln2',bytes(10),bytes(10),0x133f)
+    published=load64(native.publish(rom))
+    leaves=[(name,coefficient,word,stored)
+            for name,coefficient in [('rom_ln2',rom),('binary64_ln2',published)]
+            for word in (0x123f,0x133f) for stored in (False,True)]
+    counts={f'{name}/pc{53 if word==0x123f else 64}/{"stored" if stored else "resident"}':Counter()
+            for name,_,word,stored in leaves}
+    records=[]
+    for row in prior['records']:
+        d=row['private_log_interval']
+        cell=Span(Q(*map(int,d['lower'])),Q(*map(int,d['upper'])),d['lower_closed'],d['upper_closed'])
+        predictions={}
+        for name,coefficient,word,stored in leaves:
+            key=f'{name}/pc{53 if word==0x123f else 64}/{"stored" if stored else "resident"}'
+            raw=native.leaf('fyl2x',coefficient,load64(int(row['input'],16)),word)
+            if stored:raw=load64(native.publish(raw))
+            possible=cell.contains(decode(raw));counts[key]['possible' if possible else 'excluded']+=1
+            predictions[key]=dict(native=raw.hex(),possible=possible)
+        records.append(dict(input=row['input'],excel=row['excel'],private_log_interval=d,predictions=predictions))
+    result=dict(format='dnacalc-poisson-native-log-contrasts/1',complete=True,
+        source_bindings={str(path.resolve()):sha(path),str(Path(library).resolve()):sha(library),
+                         str(ROOT/'racer/x87_native.c'):sha(ROOT/'racer/x87_native.c'),
+                         str(ROOT/'racer/x87_programs.py'):sha(ROOT/'racer/x87_programs.py')},
+        original_receipts=prior['original_receipts'],counts=counts,records=records,
+        limits='All eight leaves are fixed before evaluation. A single exclusion refutes that leaf '
+        'under the original resident public EXP and one-subtraction premises. Nonempty cells identify '
+        'neither a logarithm nor the private exponential. Original PMF and public LN readings are '
+        'unchanged; no new Excel question, fitted constant or product change.')
+    write(output,result);print(json.dumps(counts));return result
+
+
+def poisson_one_primitive_contrasts(original,output,library):
+    """Separate signed EXP reduction from the PMF1 log/subtract producer."""
+    path=Path(original)
+    prior=json.loads(gzip.decompress(path.read_bytes()) if path.suffix=='.gz' else path.read_bytes())
+    if prior.get('complete') is not True:raise ValueError('incomplete original PMF1 observations')
+    graphs={}
+    # Source forms fixed in this order, before consulting any target matches.
+    for log in ('public_LN','resident_rom_LN','resident_binary64_ln2_LN'):
+        for stored_argument in (True,False):
+            for reciprocal in (False,True):
+                for reduction in ('rom_log2e','binary64_log2e'):
+                    g=Builder(2)
+                    if log=='public_LN':leaf=1
+                    else:
+                        coefficient=(g.op('fldln2',store=False) if log=='resident_rom_LN'
+                                     else g.constant(bits(math.log(2.))))
+                        leaf=g.op('fyl2x',coefficient,0,store=False)
+                    argument=g.op('sub',leaf,0,store=False)
+                    if stored_argument:g.nodes[argument]['site']=0;g.sites=1
+                    if reciprocal:argument=g.op('neg',argument,store=False)
+                    coefficient=(g.op('fldl2e',store=False) if reduction=='rom_log2e'
+                                 else g.constant(bits(math.log2(math.e))))
+                    t=g.op('mul',argument,coefficient,store=False)
+                    whole=g.op('frndint',t,store=False)
+                    small=g.op('f2xm1',g.op('sub',t,whole,store=False),store=False)
+                    result=g.op('fscale',g.op('add',g.one,small,store=False),whole,store=False)
+                    if reciprocal:result=g.op('div',g.one,result,store=False)
+                    key=f'{log}/{"stored" if stored_argument else "resident"}/{"reciprocal" if reciprocal else "signed"}/{reduction}'
+                    graphs[key]=g.graph(result,result)
+    native=Native(library);counts={k:Counter() for k in graphs};records=[]
+    for row in prior['records']:
+        if row['public_LN']['type']!='number' or row['excel']['type']!='number':raise ValueError('nonnumeric original primitive control')
+        inputs=[int(row['input'],16),int(row['public_LN']['bits'],16)];predictions={}
+        for name,graph in graphs.items():
+            prediction=f'{native.publish(native.evaluate(graph,inputs,0x133f,mask=1)[:10]):016x}'
+            counts[name]['matched' if prediction==row['excel']['bits'] else 'mismatched']+=1
+            predictions[name]=prediction
+        records.append(dict(input=row['input'],public_LN=row['public_LN'],excel=row['excel'],predictions=predictions))
+    result=dict(format='dnacalc-poisson-one-primitive-contrasts/1',complete=True,
+        source_bindings={str(path.resolve()):sha(path),str(Path(library).resolve()):sha(library),
+                         str(ROOT/'racer/x87_native.c'):sha(ROOT/'racer/x87_native.c'),
+                         str(ROOT/'racer/x87_programs.py'):sha(ROOT/'racer/x87_programs.py')},
+        original_receipts=prior['original_receipts'],graphs=graphs,records=records,counts=counts,
+        limits='Count1 only: EXP(L(mean)-mean), without factorial or normalizer. Three fixed '
+        'log leaves, two argument publications, signed or reciprocal exponential, and two '
+        'fixed reduction constants. A single contradiction refutes its complete declared '
+        'composition. No least-bad programme, fitted coefficient, cutoff or private helper '
+        'is selected. Original PMF1/LN readings and environments remain unchanged.')
+    write(output,result);print(json.dumps(dict(programs=len(graphs),complete_survivors=[k for k,v in counts.items() if not v['mismatched']])));return result
+
+
 def poisson_exp_argument_study(checkout,original,output,cache,library,offline=False):
     """Project a single PMF exponential input onto the binary64 lattice.
 
@@ -1822,6 +1919,37 @@ def root_primitive_spill_study(checkout,output,cache,library,count=256):
         limits='Only one binary64 spill is changed inside each fixed EXP/EXP2 primitive. All three arities share an otherwise arbitrary resident logarithm; n2/4/8 scaling is exact. A feasible intersection is a necessary condition, never an identified logarithm. Local monotonicity is conditional. Refutations apply to these single-stage perturbations only, not to an entire root or polynomial/table family. Original readings reused; no new Excel calls or product change.')
     write(output,result);print('single primitive stores',[(m['primitive'],m['store'],dict(m['counts']))for m in models],flush=True)
     return result
+
+
+def bessel_admission_study(checkout,output,cache,offline=False):
+    """Separate logical Value2 cells, blanks and error order from omitted args.
+
+    Existing workbook captures settle BESSELJ's literal logical and omitted
+    arguments. This asks only the distinct cell transport and error controls.
+    """
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    rows=[];roles=[]
+    for logical in (False,True):
+        for position in (0,1):
+            row=[client.number(1.1),client.number(3.)];row[position]=client.boolean(logical)
+            rows.append(row);roles.append('logical_cell_position_'+str(position))
+    for position in (0,1):
+        row=[client.number(1.1),client.number(3.)];row[position]=client.blank()
+        rows.append(row);roles.append('blank_cell_position_'+str(position))
+    for row,role in [([client.error('#DIV/0!'),client.boolean(True)],'first_error_before_second_logical'),
+                     ([client.boolean(True),client.error('#DIV/0!')],'first_logical_before_second_error'),
+                     ([client.boolean(True),client.number(-1.)],'logical_before_numeric_domain')]:
+        rows.append(row);roles.append(role)
+    write(str(output)+'.questions.json',dict(format='dnacalc-bessel-admission-questions/1',
+        complete=True,rows=rows,roles=roles,selection='Fixed logical-cell, blank-cell and argument-order controls; no existing literal/omitted workbook question repeated.'))
+    answers=service.ask('BESSELJ',rows)['rows']
+    result=dict(format='dnacalc-bessel-admission/1',complete=True,
+        records=[dict(role=role,args=row,answer=answer) for role,row,answer in zip(roles,rows,answers)],
+        receipts=service.receipts,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Original scalar Value2 controls only. Missing and blank are distinct; omitted '
+        'arguments remain bound to their existing workbook captures. No numeric Bessel '
+        'kernel, other Bessel-family entry or reference-coercion algorithm is inferred.')
+    write(output,result);print(json.dumps([(r['role'],r['answer']) for r in result['records']]));return result
 
 
 def hypergeom_return_study(checkout,output,cache,offline=False):
@@ -2716,7 +2844,20 @@ if __name__ == '__main__':
     poisson_log_parser.add_argument('--cache',required=True)
     poisson_log_parser.add_argument('--library',required=True)
     poisson_log_parser.add_argument('--offline',action='store_true')
+    poisson_contrast_parser=commands.add_parser('poisson-log-contrasts')
+    poisson_contrast_parser.add_argument('original')
+    poisson_contrast_parser.add_argument('output',type=Path)
+    poisson_contrast_parser.add_argument('--library',required=True)
+    poisson_one_parser=commands.add_parser('poisson-one-primitives')
+    poisson_one_parser.add_argument('original')
+    poisson_one_parser.add_argument('output',type=Path)
+    poisson_one_parser.add_argument('--library',required=True)
     hypergeom_parser=commands.add_parser('hypergeom-products')
+    bessel_admission_parser=commands.add_parser('bessel-admission')
+    bessel_admission_parser.add_argument('checkout')
+    bessel_admission_parser.add_argument('output',type=Path)
+    bessel_admission_parser.add_argument('--cache',required=True)
+    bessel_admission_parser.add_argument('--offline',action='store_true')
     hypergeom_parser.add_argument('input')
     hypergeom_parser.add_argument('output')
     log_parser=commands.add_parser('log-consumers')
@@ -2810,6 +2951,15 @@ if __name__ == '__main__':
         raise SystemExit
     if args.command=='poisson-log-difference':
         poisson_log_difference_study(args.checkout,args.original,args.output,args.cache,args.library,args.offline)
+        raise SystemExit
+    if args.command=='poisson-log-contrasts':
+        poisson_log_primitive_contrasts(args.original,args.output,args.library)
+        raise SystemExit
+    if args.command=='poisson-one-primitives':
+        poisson_one_primitive_contrasts(args.original,args.output,args.library)
+        raise SystemExit
+    if args.command=='bessel-admission':
+        bessel_admission_study(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit
     if args.command=='hypergeom-products':
         hypergeom_product_constraints(args.input,args.output)
