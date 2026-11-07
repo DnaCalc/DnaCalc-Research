@@ -195,6 +195,32 @@ class FingerprintControls(unittest.TestCase):
             for endpoint in ('low','high'):
                 self.assertEqual(model.publish(model.evaluate(None,[],0,bytes.fromhex(cell[endpoint]))[:10]),int(answer,16))
 
+    def test_resident_output_span_preserves_open_edges_and_decreasing_images(self):
+        from checker.exact import Span
+        from checker.x87 import encode,decode,bits64
+        class Model:
+            def __init__(self,reciprocal=False):self.reciprocal=reciprocal
+            def evaluate(self,graph,inputs,cw,extended):
+                x=decode(extended)
+                return encode(f.EXTENDED64.round(1/x)if self.reciprocal else x)*2
+            def publish(self,raw):return bits64(f.BINARY64.round(decode(raw)))
+        center=Q(1.3);k=f.EXTENDED64.floor_coordinate(center)
+        for reciprocal in (False,True):
+            model=Model(reciprocal)
+            y=f.EXTENDED64.round(1/center)if reciprocal else center
+            j=f.EXTENDED64.floor_coordinate(y)
+            span=Span(f.EXTENDED64.value(j-7),f.EXTENDED64.value(j+11),False,True)
+            cell=f.positive_extended_cell(model,None,None,center,decreasing=reciprocal,output_span=span)
+            feasible=[i for i in range(k-100,k+101)
+                      if span.contains(decode(model.evaluate(None,[],0,encode(f.EXTENDED64.value(i)))[:10]))]
+            self.assertEqual(decode(bytes.fromhex(cell['low'])),f.EXTENDED64.value(min(feasible)))
+            self.assertEqual(decode(bytes.fromhex(cell['high'])),f.EXTENDED64.value(max(feasible)))
+            self.assertFalse(span.contains(decode(bytes.fromhex(cell['predecessor_output_extended']))))
+            self.assertFalse(span.contains(decode(bytes.fromhex(cell['successor_output_extended']))))
+        delta=f.EXTENDED64.value(k+1)-center
+        empty=Span(center+delta/4,center+3*delta/4)
+        self.assertIsNone(f.positive_extended_cell(Model(),None,None,center,output_span=empty))
+
     def test_dft_reports_a_known_line_and_not_a_store_count(self):
         values=[math.cos(2*math.pi*7*i/64) for i in range(64)]
         powers=[abs(z)**2 for z in f.fft(values)]

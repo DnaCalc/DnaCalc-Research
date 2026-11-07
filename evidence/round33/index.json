@@ -1,0 +1,318 @@
+{
+  "format": "dnacalc-round33-evidence/1",
+  "complete": true,
+  "application_measurement_revision": "9b6d452f277f625d1e98ce7e36f394e967621f70",
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/excel_numeric/gammaln.rs": "8ce7a392fdb3b75f633ef40e329d6dadd414561d",
+    "crates/calc-func/src/ported/moment_stats_family.rs": "28cb164342fa1d1534b54aba457ca3e02d38025d",
+    "crates/calc-func/src/ported/bond_core_family.rs": "ebb5e1695fdcbb0b716ce87e2397028ff6226f26",
+    "crates/calc-func/src/ported/power_fn.rs": "c4af74f3215babd072d86d031191674a7c3c4aeb"
+  },
+  "role": "Implementer and original black-box analyst. Existing cleared code and original Excel observations only. No tier3/4 implementation read; no legacy code ported.",
+  "counts": {
+    "format": "dnacalc-round33-measurements/1",
+    "complete": true,
+    "baseline": {
+      "complete": true,
+      "application": {
+        "revision": "1eb8881e96920e032d1802e6f6bb3b91514b0fab",
+        "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "corpus": {
+        "formula_cells": 54794,
+        "matched": 53052,
+        "inclusive_failed": 1742,
+        "awaiting_capture": 100,
+        "pass_rate": 0.9682081979778808,
+        "other_failed_verdicts": {
+          "not_run": 7,
+          "not_modeled": 305
+        },
+        "mismatches": 1243,
+        "counts": {
+          "larger_numeric": 525,
+          "last_bit": 517,
+          "other_mismatch": 201
+        }
+      },
+      "bank": {
+        "rows": 3910007,
+        "matched": 3872170,
+        "failed": 37837,
+        "counts": {
+          "matched": 3872170,
+          "refused": 994,
+          "last_bit": 32601,
+          "larger_numeric": 3574,
+          "other_mismatch": 552,
+          "unread": 116
+        },
+        "pass_rate": 0.9903230352273027,
+        "canonical_trace_sha256": "d381975c9616a7da2059a5ed8cff65c8fcd31d8dea5973e672b40a0d38617f87"
+      },
+      "functions": 141,
+      "outputs_sha256": {
+        "/home/ubuntu/codex-runs/round33/baseline-problems.json": "629db39e4973f06484ee34f3a761a28c354cbf737a239f3017e8ac9b09efadbb",
+        "/home/ubuntu/codex-runs/round33/baseline-problems.md": "61b0cfe26b23f9888246492785e30bc00e1a1bad119cdd498b525abdc27e42d1"
+      }
+    },
+    "incoming_baseline": {
+      "complete": true,
+      "application": {
+        "revision": "29017e52bcc7d77c2d23c6a32a276e31987dd310",
+        "source_diff_sha256": "c8bd7418a119dbf3cc7b4ada01028d848d5715fc1b986480a90900bc64501320"
+      },
+      "corpus": {
+        "formula_cells": 54794,
+        "matched": 53105,
+        "inclusive_failed": 1689,
+        "awaiting_capture": 100,
+        "pass_rate": 0.9691754571668431,
+        "other_failed_verdicts": {
+          "not_run": 7,
+          "not_modeled": 305
+        },
+        "mismatches": 1190,
+        "counts": {
+          "larger_numeric": 526,
+          "last_bit": 463,
+          "other_mismatch": 201
+        }
+      },
+      "bank": {
+        "rows": 3910007,
+        "matched": 3883165,
+        "failed": 26842,
+        "counts": {
+          "matched": 3883165,
+          "refused": 994,
+          "last_bit": 21973,
+          "larger_numeric": 3207,
+          "other_mismatch": 552,
+          "unread": 116
+        },
+        "pass_rate": 0.993135050653362,
+        "canonical_trace_sha256": "5cc5ba9ae55320fd90592b7d37675d1d5425c03b70d264fd2cc72b619e808cc7"
+      },
+      "functions": 130,
+      "outputs_sha256": {
+        "/home/ubuntu/codex-runs/round33/incoming-baseline-problems.json": "f68f3940de6ee32063503ec483e6a65e969f0f2f9c6df5a31921feae51d1a282",
+        "/home/ubuntu/codex-runs/round33/incoming-baseline-problems.md": "909580f5ada39a8914b865424c90a84c73fb31c782ca8adbc346dcbdb9b53e63"
+      }
+    },
+    "own_final_at_incoming_baseline": {
+      "complete": true,
+      "application": {
+        "revision": "29017e52bcc7d77c2d23c6a32a276e31987dd310",
+        "source_diff_sha256": "bb44e2b298a9583fe3b55881d55ba4d24cb37e0561b062e4413bc5c479ed9595"
+      },
+      "corpus": {
+        "formula_cells": 54794,
+        "matched": 53105,
+        "inclusive_failed": 1689,
+        "awaiting_capture": 100,
+        "pass_rate": 0.9691754571668431,
+        "other_failed_verdicts": {
+          "not_run": 7,
+          "not_modeled": 305
+        },
+        "mismatches": 1190,
+        "counts": {
+          "larger_numeric": 526,
+          "last_bit": 463,
+          "other_mismatch": 201
+        }
+      },
+      "bank": {
+        "rows": 3910007,
+        "matched": 3884470,
+        "failed": 25537,
+        "counts": {
+          "matched": 3884470,
+          "refused": 994,
+          "last_bit": 20815,
+          "larger_numeric": 3060,
+          "other_mismatch": 552,
+          "unread": 116
+        },
+        "pass_rate": 0.9934688096466323,
+        "canonical_trace_sha256": "1e1b2db035a3e5adc8e72b8e8ab5ffc6ebb478bdb5976a1226ebeec7cf61f1f4"
+      },
+      "functions": 129,
+      "outputs_sha256": {
+        "/home/ubuntu/codex-runs/round33/final-problems.json": "a428e43354a333bd605442975fff2e9f80ee77b52c7573b03580e4caf3c094b6",
+        "/home/ubuntu/codex-runs/round33/final-problems.md": "56d7d7ed74f2c2f4fefc0211acc1c4b6ff8b966feedb1804cd929a542e3a5ba3"
+      }
+    },
+    "published_measurement": {
+      "complete": true,
+      "application": {
+        "revision": "9b6d452f277f625d1e98ce7e36f394e967621f70",
+        "source_diff_sha256": "bb44e2b298a9583fe3b55881d55ba4d24cb37e0561b062e4413bc5c479ed9595"
+      },
+      "corpus": {
+        "formula_cells": 54794,
+        "matched": 53105,
+        "inclusive_failed": 1689,
+        "awaiting_capture": 100,
+        "pass_rate": 0.9691754571668431,
+        "other_failed_verdicts": {
+          "not_run": 7,
+          "not_modeled": 305
+        },
+        "mismatches": 1190,
+        "counts": {
+          "larger_numeric": 526,
+          "last_bit": 463,
+          "other_mismatch": 201
+        }
+      },
+      "bank": {
+        "rows": 3910007,
+        "matched": 3885745,
+        "failed": 24262,
+        "counts": {
+          "matched": 3885745,
+          "refused": 994,
+          "last_bit": 20099,
+          "larger_numeric": 2501,
+          "other_mismatch": 552,
+          "unread": 116
+        },
+        "pass_rate": 0.9937948960193678,
+        "canonical_trace_sha256": "b8bf4ad41c3048e44595779675179c8a0af0223f96cfaa6c2e7b3fdf94c60dc4"
+      },
+      "functions": 128,
+      "outputs_sha256": {
+        "/home/ubuntu/codex-runs/round33/pulled-final-problems.json": "e4de34db048b15c60d57e48149bd161a3806dfd0694de076b40542259d78cc9b",
+        "/home/ubuntu/codex-runs/round33/pulled-final-problems.md": "eabbf1f2c76858318f0b7bf6c2e3189ad5cb5b2dd888a50157bd7be7f8f5720e"
+      }
+    },
+    "own_gains": {
+      "GAMMALN.PRECISE": 3,
+      "KURT": 1299,
+      "YIELD": 2,
+      "DURATION": 1
+    },
+    "own_gains_total": 1305,
+    "own_losses_total": 0,
+    "latest_incoming_bank_net": 1275,
+    "all_incoming_bank_net": 12270,
+    "own_corpus_delta": {
+      "sessions": 59,
+      "formula_cells": 54794,
+      "evaluations": 112890,
+      "before_matched": 53105,
+      "after_matched": 53105,
+      "gains": 0,
+      "losses": 0,
+      "external_or_circular": 87,
+      "changed_values": 0,
+      "awaiting_capture": 100,
+      "workbooks": 56
+    },
+    "limits": "Own +/- counts come from unchanged official per-function traces. Aggregate incoming changes are net counts, not claims that their every loss was reviewed here. Corpus values, formula inventories, answers and contexts are reconciled by separate delta readers. Corpus/bank observations may overlap and are not added as unique calls."
+  },
+  "implemented": [
+    "GAMMALN below0.7 uses worksheet LN; upper-band tables and subtraction word unchanged.",
+    "KURT stores the leading n*(n+1)/((n-1)*(n-2)*(n-3)) coefficient before multiplying the fourth moment; existing strict words preserved.",
+    "Single-coupon YIELD normalizes price/redemption by100, uses numerator-position day spans and actual E for bases1/2/3, then stores the identified PC64 arithmetic. Zero 30/360 DSR publishes+0. Multi-period solver unchanged.",
+    "Bond redemption divisions and MDURATION finish store from PC64. Integer powers reuse existing stored-PC64 square/multiply. PRICE-only division stays separate from multi-period YIELD objective."
+  ],
+  "stage_evidence": {
+    "gamma": "No absolute table recovered. Linked phase degrees still have common power-of-two scale, integer slope aliases, offsets and unresolved tracks. Imposed derivative relation is tautological. All8 fixed below-one recurrence trees refuted on142/864 calls; arbitrary common resident seed still refutes all on61/288 seed groups.",
+    "gammaln": "1217 paired public compositions plus257 primitive LN/runtime disagreements identify worksheet LN. On fresh disagreements old4->250/257:249 gains/3 losses, each loss independently localized by the final subtraction inverse to the unresolved upper table. Canonical bank+3/-0. Published Cody tables/stores and stage-frequency candidates remain refuted.",
+    "density": "Public GAMMALN normalizer diagnostic matches108/108, including99 first-log-arm bank failures below shape7 and the requested0.75/0.375 check. Actual application8/108. No answer injection installed.",
+    "beta": "Complete b=1 integer reduction models cover2688 rows for a2..7. I_x(2,2) arbitrary-common-normalizer constraints refute all declared32 store models under each stored/resident LN and strict/PC64 final-multiplication premise. General prefactor/series/callers unresolved; no beta implementation changed. All3758 old FDIST failures repeat live; FDIST equals F.DIST.RT on4142 controls, and1-CDF is refuted. New F(x,2,2a) prefix models remain conditional diagnostics. F(x,2,2a) controls (a2..7) refute all36 declared transform/LN-lifetime programs and both elementary public POWER forms; this separates a remaining F caller/primitive question from the established direct-beta arm.",
+    "kurt": "694 initial+1344 fresh exact-normalization controls across arities4..31, independently read back and rationally replayed; registered and authored numeric-cell Workbook paths match. Original4508-row bank gains1299 with0 losses.",
+    "yield": "Independent2565 initial+28200 month-end+17100 fresh date/redemption controls.360 zero-day controls across18 states. Registered and numeric-cell Workbook routes match all controls. Four answer/span/omission/readback corruptions rejected without a success receipt. Canonical+2/-0.",
+    "bond": "Independent10752 zero-coupon+567 exact-dyadic nonzero-coupon controls force the two redemption quotient words separately.961 integer-power discriminants. Final application32256+1701 route/operand audits pass. Canonical DURATION+1/-0; all332 remaining failures off-coupon. Sum/ratio words remain indistinguishable and keep strict arithmetic.",
+    "next": "SINH192 fixed Kahan programs refuted on3544 paired controls; CSCH reciprocal already matches. WEEKNUM997 visible input keys repeated fourfold changes279 keys within one batch, so unsupported-type historical answers are not stable targets. FIXED format context and IRR/RATE solver stopping/publication remain open.",
+    "cumprinc": "2016 fresh end-payment controls over72 fixed(r,n)loans.36 declared direct/factored geometric-numerator/word programs are refuted even with any common positive resident denominator across balances/spans. Independent review verifies all2592 first contradictions, signs, strict input stores and open/tie endpoints. Conditional on storedq/publicPOWER; private resident bases, unpublished powers, independent mixed-word delta stages and general CUMPRINC remain open. No PMT/FV call or application change."
+  },
+  "history": "All failed experiments, scope errors, early unbound-source guard failure, old unit labels and recovered exact source epochs remain distinct. Source epochs were reconstructed from own source-file patches only; no private session messages were exported. The final source-epoch report has no unresolved entries.",
+  "review": "One read-only agent found no blocker in the three narrow implementations, GAMMALN loss classifications, original archive/hash/scalar counts and corpus invariance. The final CUMPRINC study was independently replayed too. Exact committed close_reason records for .30/.31/.32 were then checked directly against pushed e794f622 and all receipts; no correction needed.",
+  "validation": {
+    "python": "130 tests passed; final beta premise flags additionally replayed offline.",
+    "application": "Exact independent predictions and input echoes; no scalar cache counts as an application calculation.",
+    "ubs": "Main scan exits0 with0 criticals and164 pre-existing-line warnings. Research scan is partial: SQL detector unsupported list aliasing. Doctor reports environment healthy. Two criticals are public readback dictionary-key comparisons; added-line findings reviewed separately. No complete scanner/security claim.",
+    "cargo_xtask_check": "Passed: workspace build;2020 passed,0 failed,5 ignored,3 explicitly not run across73 harnesses/14 packages;775.58seconds. Single full run, at implementation3ed02834 source epoch.",
+    "windows_browsers_ci": "Not run. Excel observations came through the existing scalar service; application/test execution here is Linux.",
+    "research_native_rust": "138 passed,0 failed,2 ignored",
+    "research_software_rust": "138 passed,0 failed,2 ignored",
+    "software_application": "Both bond cohorts pass32256+1701 registered/Workbook/operand audits in software-x87 as well as native.",
+    "merge_retries": "Two clean merges; workspace build and calc-func tests passed after each, then pushed. No second full check.",
+    "published_application": "20145 independent mixed KURT,YIELD,DURATION,MDURATION,PRICE registered/Workbook/input-echo audits passed from the extracted compiled e794f622 software-x87 provenance.",
+    "published_corpus": {
+      "revision": "e794f622",
+      "counts": {
+        "sessions": 59,
+        "formula_cells": 54794,
+        "evaluations": 112890,
+        "before_matched": 53105,
+        "after_matched": 53105,
+        "gains": 0,
+        "losses": 0,
+        "external_or_circular": 87,
+        "changed_values": 0,
+        "awaiting_capture": 100,
+        "workbooks": 56
+      },
+      "inclusive_failed": 1689,
+      "pending": 100
+    },
+    "bank_after_merges": "No new full-bank run: all CalcFunc,CalcValue,verdict source trees and bank-judge blob are identical to implementation3ed02834. Earlier exact bank measurement retained."
+  },
+  "reproduction": [
+    "Verify every artifacts.json archive hash, inflate retained/producers with gzip and preserve original byte hashes. scalar-cache files are already gzip. Keep originals unchanged and write new results elsewhere.",
+    "Use the original Research6622227b3e37 base plus retained source epochs named by each study or final round33-unit.json. For the application measurement use9b6d452f plus the four exact Git blobs above. Later published main commit will also be recorded.",
+    "python3 checker/variance.py kurt-outer STUDY SCALAR_CACHE NEW_PROOF",
+    "python3 checker/questions_r13.py yield-coupon yield-month-end-days-retry.json SCALAR_CACHE NEW_PROOF numerator-published-period",
+    "python3 checker/questions_r13.py duration-redemption duration-zero-coupon.json SCALAR_CACHE NEW_PROOF; repeat with duration-two-coupon-transfer.json.",
+    "For beta use recorded gamma_stages.py --beta-series-normalizer commands and source epochs; final flags --beta-resident-log and --beta-strict-final test their declared independent premises.",
+    "Recorded function-routes invocations consume independently generated prediction calls; raw Excel answers are not substituted into application values.",
+    "native-build.json records the unchanged original ISA emulator source, compiler and flags. Rebuild it rather than retaining the binary.",
+    "Corpus/bank full-run receipts and exact per-function trace comparisons are retained; full corpus cells and large fixture payloads remain outside this archive.",
+    "python3 racer/annuity_pairs.py ../DnaCalc NEW_STUDY --cache SCALAR_CACHE --offline --cumulative-power-denominators; compare2016rows/72loans and all36declared profiles refuted."
+  ],
+  "artifacts": "artifacts.json",
+  "limits": "No absolute GAMMA/GAMMALN coefficient table, general incomplete-beta kernel or fractional bond discount helper identified. Refusals/unread/pending remain inclusive failures. Bank/corpus may overlap and are never summed as unique calls.",
+  "scalar_service": {
+    "bundles": 112,
+    "successful_bundles": 111,
+    "observed_calls": 294998,
+    "failed_requests": 1,
+    "failed_request_calls": 28200,
+    "distinct_observed_inputs": 239370,
+    "repeated_observed_calls": 55628
+  },
+  "implementation_commit": "3ed02834",
+  "application_published_revision": "e794f622b36cc0baca87de296f1be034e5908fee",
+  "publication": {
+    "main_pushed": true,
+    "main_push_receipt": "merge2-push.log",
+    "research": "This evidence commit; its final Git ID/push result will be recorded in /home/ubuntu/codex-runs/work-report-33.md."
+  },
+  "closed_beads": [
+    "dc-j9k.30",
+    "dc-j9k.31",
+    "dc-j9k.32"
+  ],
+  "open_work": "dc-j9k.20 and the parent numeric work remain open; the three closures are narrow identified stages.",
+  "excluded_generated_binary": "The archived producer library snapshot was excluded before commit. Its original source/compiler/flags/hash are retained in native-build.json and excluded-binaries.json; it is not a missing source epoch.",
+  "artifact_validation": {
+    "records": 914,
+    "physical_files": 913,
+    "packed_bytes": 28525456,
+    "manifest_sha256": "d7a3eea85c315ce505295eeb59029ad7fdc0bea7edc7759967761541ad73b50d",
+    "all_hashes_verified": true,
+    "all_physical_files_referenced": true,
+    "native_binaries_excluded": true
+  },
+  "source_epochs": {
+    "source_hash_entries": 151,
+    "recovered_versions": 170,
+    "unresolved": 0,
+    "report": "source-epoch-full-recovery.json"
+  }
+}

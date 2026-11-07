@@ -397,7 +397,71 @@ def check(scoped, directory, output):
     print(json.dumps(result))
 
 
+def check_kurt_outer(study, cache, output):
+    """Check normalized fourth moments and original scalar replies, without the racer."""
+    import gzip,struct
+    doc=json.loads(Path(study).read_text());rows=doc['records']
+    require(doc['complete']and doc['format']=='dnacalc-kurt-outer/1','complete fourth-moment study required')
+    sources={str(p):digest(p)for p in (Path(__file__),Path(__file__).with_name('exact.py'),Path(__file__).with_name('check.py'))}
+    original_hashes={};seen=set()
+    for receipt in doc['receipts']:
+        name=receipt['function'];require(name in('AVERAGE','STDEV.S','KURT')and name not in seen,'unexpected/duplicate raw function')
+        seen.add(name);path=Path(cache)/receipt['file'];require(digest(path)==receipt['sha256'],'raw reply hash changed')
+        original_hashes[str(path)]=receipt['sha256']
+        with gzip.open(path,'rt')as stream:raw=json.load(stream)
+        request,reply=raw['request'],raw['reply']
+        require(request['function']==name and reply['ok']and reply['version']==1,'invalid original scalar reply')
+        require(reply['automation_security_before']==reply['automation_security_after'],'changed worker policy')
+        require(all(k in reply for k in('excel_build','machine','timestamp','request_sha256','session_receipt_sha256')),'missing worker provenance')
+        expected=[[{k:v for k,v in a.items()if k!='mode'}for a in r]for r in request['rows']]
+        require(reply['inputs']==expected and len(reply['rows'])==len(rows),'raw input/readback cohort changed')
+        key={'AVERAGE':'average','STDEV.S':'deviation','KURT':'answer'}[name]
+        for row,args,answer in zip(rows,expected,reply['rows']):
+            require(args==[dict(type='number',bits=x)for x in row['args']],'original numeric arguments changed')
+            require(row[key]==answer,'derived answer differs from original worker reply')
+    require(seen=={'AVERAGE','STDEV.S','KURT'},'missing independent normalization readings')
+    counts=Counter();calls=[]
+    def encoded(x):return struct.pack('>d',float(B.round(x))).hex()
+    for row in rows:
+        n=row['n'];xs=[binary64(x)for x in row['args']];scale=two(row.get('normalizer_scale',0))
+        require(len(xs)==n and sum(xs)==0,'zero mean identity failed')
+        require(sum(x*x for x in xs)==(n-1)*scale*scale,'unit sample variance identity failed')
+        fourth=sum((x/scale)**4 for x in xs)
+        require(B.round(fourth)==fourth==binary64(row['fourth']),'fourth moment changed')
+        require(binary64(row['average']['bits'])==0 and binary64(row['deviation']['bits'])==scale,'public normalization changed')
+        d2=Q((n-2)*(n-3));d3=(n-1)*d2
+        for model in('strict','stored_pc64'):
+            coefficient=operation(Q(n*(n+1)),d3,'div',model)
+            left=operation(coefficient,fourth,'mul',model)
+            correction=operation(Q(3*(n-1)**2),d2,'div',model)
+            result=operation(left,-correction,'add',model)
+            require(encoded(result)==row['answer']['bits'],'independent coefficient-first result differs')
+            counts[model+'_matched']+=1
+            if model=='strict':
+                calls.append(dict(id='kurt-coefficient-'+str(len(calls)),function='KURT',
+                    args=['0x'+x for x in row['args']],numeric_cell_inputs=True,
+                    actual='0x'+encoded(result),previous_actual='0x'+row['strict_baseline'],
+                    prediction_source='Independent exact coefficient-first arithmetic; not an Excel reading.'))
+        old=operation(operation(Q(n*(n+1)),fourth,'mul','strict'),d3,'div','strict')
+        old=operation(old,-operation(Q(3*(n-1)**2),d2,'div','strict'),'add','strict')
+        require(encoded(old)==row['strict_baseline'],'old outer replay differs')
+        counts['rows']+=1
+    require(all(digest(p)==h for p,h in sources.items()),'checker source changed')
+    call_path=Path(str(output)+'.calls.jsonl')
+    with call_path.open('x')as stream:
+        for call in calls:stream.write(json.dumps(call)+'\n')
+    result=dict(format='dnacalc-kurt-independent-check/1',complete=True,counts=counts,source_sha256=sources,
+        inputs_sha256={str(study):digest(study),**original_hashes},calls_sha256=digest(call_path),
+        limits='Exact normalized controls and original scalar replies only. The two leading-coefficient '
+               'arithmetic words remain indistinguishable; no general private normalization route is inferred.')
+    with Path(output).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(counts),flush=True)
+    return result
+
+
 if __name__ == '__main__':
+    import sys
+    if len(sys.argv)>1 and sys.argv[1]=='kurt-outer':check_kurt_outer(*sys.argv[2:]);raise SystemExit(0)
     parser = argparse.ArgumentParser()
     parser.add_argument('scoped')
     parser.add_argument('directory')

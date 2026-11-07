@@ -913,8 +913,251 @@ def check(packet,trace,gaps,library,output):
     Path(output).write_text(json.dumps(result,indent=2)+'\n');return result
 
 
+def scalar_key(name,args):
+    return name,json.dumps(args,sort_keys=True,separators=(',',':'))
+
+
+def scalar_reply_proof(receipts,cache):
+    """One reader for the original scalar request/readback/answer lineage."""
+    import gzip
+    original={};observations={};raw_counts=Counter();input_counts=Counter()
+    for receipt in receipts:
+        path=Path(cache)/receipt['file'];require(sha(path)==receipt['sha256'],'raw coupon reply hash changed')
+        if str(path)in original:continue
+        original[str(path)]=receipt['sha256']
+        with gzip.open(path,'rt')as stream:raw=json.load(stream)
+        request,reply=raw['request'],raw['reply'];name=request['function']
+        require(name==receipt['function']and reply['ok']and reply['version']==1,'invalid coupon worker reply')
+        require(reply['automation_security_before']==reply['automation_security_after'],'worker policy changed')
+        require(all(k in reply for k in('excel_build','machine','timestamp','request_sha256','session_receipt_sha256')),'missing coupon provenance')
+        args=[[{k:v for k,v in a.items()if k!='mode'}for a in row]for row in request['rows']]
+        require(reply['inputs']==args and len(reply['rows'])==len(args),'coupon input/readback changed')
+        require(len(args)==receipt['calls'],'scalar receipt call count changed')
+        require(all(receipt[k]==reply[k]for k in('excel_build','machine','timestamp','request_sha256')),'scalar receipt provenance changed')
+        for inputs,answer in zip(args,reply['rows']):
+            token=scalar_key(name,inputs)
+            require(token not in observations or observations[token]==answer,'repeated coupon answer differs')
+            observations[token]=answer;raw_counts[name]+=1
+            input_counts[token]+=1
+    return original,observations,raw_counts,input_counts
+
+
+def check_yield_coupon(study, cache, output, day_policy='direct'):
+    """Replay original single-coupon calls and the normalized formula independently."""
+    import struct
+    from fractions import Fraction as Q
+    from exact import operation
+    study=Path(study);doc=read(study);require(doc['complete'],'incomplete coupon study')
+    policies=('direct','published-period-boundaries','nasd-published-period','numerator-published-period')
+    require(day_policy in policies,'unknown coupon day policy')
+    require(doc['format']=='dnacalc-yield-direct-day-counts/1','direct day controls required')
+    sources={str(p):sha(p)for p in(Path(__file__),Path(__file__).with_name('exact.py'))}
+    original,observations,raw_counts,input_counts=scalar_reply_proof(doc['parent_receipts']+doc['receipts'],cache)
+    yield_inputs=Counter({key:count for key,count in input_counts.items()if key[0]=='YIELD'})
+    key=scalar_key
+    def encoded(x):return struct.pack('>d',float(x)).hex()
+    def number(x):return dict(type='number',bits=encoded(x))
+    def observed(name,args):
+        token=key(name,args);require(token in observations,'missing independent coupon observation')
+        return observations[token]
+    def numeric(name,args):
+        result=observed(name,args);require(result['type']=='number','nonnumeric day factor')
+        return binary64(result['bits'])
+    proposed=Counter(key('YIELD',[number(row[k])for k in('settlement','maturity','rate','price','redemption','frequency','basis')])
+                     for row in doc['records'])
+    require(proposed==yield_inputs,'YIELD observation cohort omitted or duplicated')
+    counts=Counter();calls=[];failures=[]
+    for index,row in enumerate(doc['records']):
+        args=[number(row[k])for k in('settlement','maturity','rate','price','redemption','frequency','basis')]
+        require(observed('YIELD',args)==row['answer'],'derived YIELD answer changed')
+        factors=[number(row[k])for k in('settlement','maturity','frequency','basis')]
+        for name,answer in row['factors'].items():require(observed(name,factors)==answer,'derived coupon factor changed')
+        prev,next_=[numeric(name,factors)for name in('COUPPCD','COUPNCD')]
+        settlement,maturity=map(Q,(row['settlement'],row['maturity']))
+        require(next_==maturity and prev<=settlement<maturity,'not a final coupon interval')
+        spans={}
+        for label,start,end in(('a',prev,settlement),('e',prev,next_),('dsr',settlement,next_)):
+            span=(numeric('DAYS360',[number(start),number(end),dict(type='boolean',value=row['basis']==4)])
+                  if row['basis']in(0,4)else end-start)
+            require(row['direct_day_counts'][label]==number(span),'derived direct span changed')
+            spans[label]=span
+        a,e,dsr=[spans[k]for k in('a','e','dsr')]
+        if day_policy!='direct':
+            a=numeric('COUPDAYBS',factors)
+            if row['basis']not in(2,3):e=numeric('COUPDAYS',factors)
+            if day_policy=='published-period-boundaries'and settlement==prev:dsr=e
+            if day_policy in('nasd-published-period','numerator-published-period')and row['basis']==0:
+                import datetime as dt,calendar
+                first,last=[dt.date(1899,12,30)+dt.timedelta(days=int(x))for x in(settlement,maturity)]
+                ends=lambda d:d.month==2 and d.day==calendar.monthrange(d.year,2)[1]
+                if ends(first)and ends(last):dsr+=30-last.day
+                elif day_policy=='numerator-published-period'and ends(first)and last.day==31:dsr+=1
+        require(e>0 and dsr>=0,'unexpected direct coupon day domain')
+        counts['rows']+=1
+        if dsr==0:
+            counts['zero_day_divisor']+=1
+            if day_policy!='direct':
+                matched=row['answer']==dict(type='number',bits='0000000000000000')
+                for word in('strict','stored_pc64'):counts[word+'_matches']+=matched
+                calls.append(dict(id='yield-coupon-'+str(index),function='YIELD',args=['0x'+v['bits']for v in args],
+                    numeric_cell_inputs=True,date_system_1900=True,actual='0x0000000000000000',
+                    prediction_source='Declared zero remaining-day publication policy; not an Excel reading.'))
+                if not matched:failures.append(dict(index=index,answer=row['answer'],reason='zero-day publication differs'))
+            else:failures.append(dict(index=index,answer=row['answer'],reason='zero direct remaining-day divisor; no numeric prediction'))
+            continue
+        for word in('strict','stored_pc64'):
+            op=lambda x,y,kind:operation(Q(x),Q(y),kind,word)
+            rate,price,red,frequency=[binary64(encoded(row[k]))for k in('rate','price','redemption','frequency')]
+            coupon=op(rate,frequency,'div');p=op(price,100,'div');red=op(red,100,'div')
+            accrual=op(op(a,e,'div'),coupon,'mul');dirty=op(p,accrual,'add')
+            numerator=op(op(red,coupon,'add'),-dirty,'add')
+            ratio=op(numerator,dirty,'div');factor=op(op(frequency,e,'mul'),dsr,'div')
+            result=encoded(op(ratio,factor,'mul'))
+            matched=row['answer'].get('type')=='number'and row['answer']['bits']==result
+            counts[word+'_matches']+=matched
+            if not matched:failures.append(dict(index=index,word=word,answer=row['answer'],prediction=result))
+            if word=='stored_pc64':
+                calls.append(dict(id='yield-coupon-'+str(index),function='YIELD',args=['0x'+v['bits']for v in args],
+                    numeric_cell_inputs=True,date_system_1900=True,actual='0x'+result,
+                    prediction_source='Independent exact normalized coupon formula; not an Excel reading.'))
+    require(all(sha(p)==h for p,h in sources.items()),'coupon checker source changed')
+    call_path=Path(str(output)+'.calls.jsonl')
+    with call_path.open('x')as stream:
+        for call in calls:stream.write(json.dumps(call)+'\n')
+    result=dict(format='dnacalc-yield-coupon-independent/1',complete=True,counts=counts,failures=failures,
+        source_sha256=sources,inputs_sha256={str(study):sha(study),**original},raw_calls=raw_counts,day_policy=day_policy,
+        calls_sha256=sha(call_path),
+        limits='Independent rational arithmetic and original scalar readbacks. Direct day spans are '
+        'measured separately from the YIELD outputs. The optional boundary policy publishes zero '
+        'on a zero remaining-day span; the original direct formula leaves those as failures. '
+        'Does not prove literal private stores, non-final coupon behavior or Excel callee transport.')
+    with Path(output).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(counts),flush=True);return result
+
+
+def check_duration_redemption(study,cache,output):
+    """Independent raw-readback and exact-prefix proof for redemption division."""
+    import itertools,struct,datetime as dt
+    from fractions import Fraction as Q
+    from exact import operation,two
+    study=Path(study);doc=read(study);require(doc['complete'],'incomplete duration study')
+    zero=doc['format']=='dnacalc-duration-zero-coupon/1'
+    require(zero or doc['format']=='dnacalc-duration-two-coupon-transfer/1','unknown duration study')
+    sources={str(p):sha(p)for p in(Path(__file__),Path(__file__).with_name('exact.py'))}
+    original,observations,raw_counts,input_counts=scalar_reply_proof(doc['receipts'],cache)
+    def encoded(x):return struct.pack('>d',float(x)).hex()
+    def number(x):return dict(type='number',bits=encoded(x))
+    def observed(name,args):
+        token=scalar_key(name,args);require(token in observations,'missing original duration control')
+        return observations[token]
+    proposed=Counter();states={};prepared=[]
+    for row in doc['records']:
+        f=row['frequency'];n=row['n']if zero else 2;q=binary64(row['base_strict']if zero else row['base_bits'])
+        y=binary64(row['yield_bits']);rate=Q(0)if zero else binary64(row['coupon_rate_bits'])
+        require(f in(1,2,4)and n>=2,'duration frequency/count outside scope')
+        require(row['settlement']==43831,'changed on-coupon settlement')
+        months=2020*12+n*(12//f);year,month=divmod(months,12)
+        maturity=(dt.date(year,month+1,1)-dt.date(1899,12,30)).days
+        require(row['maturity']==maturity,'changed on-coupon maturity')
+        require(B.round(1+y/f)==q,'duration base prefix changed')
+        if zero:
+            den0=num0=Q(0);powers=row['powers'];power=powers['strict'];answer=row['duration']
+            proposed[scalar_key('SUM',[number(1),number(y/f)])]+=1
+            require(observed('SUM',[number(1),number(y/f)])==row['public_sum'],'base SUM reading changed')
+            require(number(B.round(E.round(1+y/f)))==row['public_sum'],'base SUM arithmetic differs')
+            for base in('strict','stored_pc64'):
+                args=[number(binary64(row['base_'+base])),number(n)]
+                require(observed('POWER',args)==powers[base],'discount POWER reading changed')
+                if base=='strict'or row['base_stored_pc64']!=row['base_strict']:proposed[scalar_key('POWER',args)]+=1
+            states[row['settlement'],maturity,f]=n
+        else:
+            require(1<q<2 and q.numerator%5==0 and q.denominator<=1<<25,'controlled dyadic base changed')
+            square=q*q;scale=two(row['scale_exponent']);coupon=square*scale
+            require(B.round(square)==square==binary64(row['square_bits']),'controlled square is not exact')
+            require(B.round(100*rate)==100*rate and 100*rate/f==coupon,'controlled coupon prefix is not exact')
+            require(y==(q-1)*f,'controlled yield prefix is not exact')
+            den0=(q+1)*scale;num0=(q+2)*scale
+            require(B.round(den0)==den0==binary64(row['coupon_denominator_prefix']),'controlled coupon PV sum differs')
+            require(B.round(num0)==num0==binary64(row['coupon_numerator_prefix']),'controlled weighted sum differs')
+            power=row['power'];answer=row['answer'];args=[number(q),number(2)]
+            require(observed('POWER',args)==power==number(square),'exact public square differs')
+            proposed[scalar_key('POWER',args)]+=1
+        require(power['type']=='number','nonnumeric discount factor')
+        args=[number(row['settlement']),number(maturity),number(rate),number(y),number(f),number(0)]
+        price_args=args[:4]+[number(100)]+args[4:]
+        for name,inputs,expected in(('DURATION',args,answer),('MDURATION',args,row['modified_duration']),('PRICE',price_args,row['price'])):
+            proposed[scalar_key(name,inputs)]+=1
+            require(observed(name,inputs)==expected,'original '+name+' reading changed')
+        prepared.append(dict(row=row,n=n,f=f,q=q,den0=den0,num0=num0,discount=binary64(power['bits']),
+                             answer=answer,args=args,price_args=price_args))
+    for(s,m,f),n in states.items():
+        args=[number(s),number(m),number(f),number(0)]
+        for name,expected in(('COUPNUM',n),('COUPDAYBS',0)):
+            proposed[scalar_key(name,args)]+=1
+            require(observed(name,args)==number(expected),'on-coupon public schedule differs')
+    require(proposed==input_counts,'duration observation cohort omitted or duplicated')
+    programs=[dict(words=list(words),matches=0,first_failure=None)for words in itertools.product(('strict','stored_pc64'),repeat=5)]
+    price_programs=[dict(words=list(words),matches=0,first_failure=None)for words in itertools.product(('strict','stored_pc64'),repeat=2)]
+    counts=Counter();calls={profile:[]for profile in('before','denominator','redemption','modified')}
+    def prediction(case,words):
+        rd,rn,dw,nw,fw=words
+        red=operation(Q(100),case['discount'],'div',rd)
+        weighted=operation(Q(case['n']*100),case['discount'],'div',rn)
+        den=operation(case['den0'],red,'add',dw);num=operation(case['num0'],weighted,'add',nw)
+        return operation(num,den,'div',fw)/case['f']
+    for index,case in enumerate(prepared):
+        row=case['row'];answer=case['answer'];counts['rows']+=1
+        for program in programs:
+            value=encoded(prediction(case,program['words']));good=answer.get('type')=='number'and answer['bits']==value
+            program['matches']+=good
+            if not good and program['first_failure']is None:program['first_failure']=dict(index=index,answer=answer,prediction=value)
+        for program in price_programs:
+            rd,dw=program['words'];red=operation(Q(100),case['discount'],'div',rd)
+            value=encoded(operation(case['den0'],red,'add',dw));good=row['price'].get('type')=='number'and row['price']['bits']==value
+            program['matches']+=good
+            if not good and program['first_failure']is None:program['first_failure']=dict(index=index,answer=row['price'],prediction=value)
+        for word in('strict','stored_pc64'):
+            if answer.get('type')=='number':
+                value=encoded(operation(binary64(answer['bits']),case['q'],'div',word))
+                counts['mduration_'+word+'_matches']+=row['modified_duration'].get('type')=='number'and row['modified_duration']['bits']==value
+        for profile in calls:
+            rd='strict'if profile=='before'else'stored_pc64'
+            rn='stored_pc64'if profile in('redemption','modified')else'strict'
+            duration=prediction(case,(rd,rn,'strict','strict','strict'))
+            mdword='stored_pc64'if profile=='modified'else'strict'
+            md=operation(B.round(duration),case['q'],'div',mdword)
+            price=operation(case['den0'],operation(Q(100),case['discount'],'div',rd),'add','strict')
+            for name,args,result in(('DURATION',case['args'],duration),('MDURATION',case['args'],md),('PRICE',case['price_args'],price)):
+                calls[profile].append(dict(id=name.lower()+'-'+str(index),function=name,
+                    args=['0x'+v['bits']for v in args],numeric_cell_inputs=True,date_system_1900=True,
+                    actual='0x'+encoded(result),prediction_source='Independent exact '+profile+' arithmetic; not an Excel reading.'))
+    call_hashes={}
+    for profile,rows in calls.items():
+        path=Path(str(output)+'.'+profile+'.calls.jsonl')
+        with path.open('x')as stream:
+            for row in rows:stream.write(json.dumps(row)+'\n')
+        call_hashes[profile]=sha(path)
+    require(all(sha(p)==h for p,h in sources.items()),'duration checker source changed')
+    result=dict(format='dnacalc-duration-redemption-independent/1',complete=True,counts=counts,programs=programs,
+        complete_programs=[p for p in programs if p['matches']==len(prepared)],price_programs=price_programs,
+        complete_price_programs=[p for p in price_programs if p['matches']==len(prepared)],calls_sha256=call_hashes,
+        source_sha256=sources,inputs_sha256={str(study):sha(study),**original},raw_calls=raw_counts,
+        limits='Original scalar observations and exact on-coupon prefixes only. Redemption numerator and denominator '
+        'words are independent profile coordinates. Remaining sum/ratio words are not inferred when they remain '
+        'indistinguishable. No general coupon loop or fractional discount helper is identified.')
+    with Path(output).open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(dict(counts=counts,complete=result['complete_programs'],price=result['complete_price_programs'])),flush=True)
+    return result
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='duration-redemption':
+        check_duration_redemption(*sys.argv[2:])
+        raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='yield-coupon':
+        check_yield_coupon(*sys.argv[2:])
+        raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='workbook-delivery':
         print(json.dumps(check_workbook_delivery(*sys.argv[2:])))
         raise SystemExit(0)

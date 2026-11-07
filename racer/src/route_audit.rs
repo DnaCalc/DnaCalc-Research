@@ -94,8 +94,79 @@ pub fn gamma_unit_crt(input:&str,out:&str) {
 
 /// Replay the unchanged cleared prefix only to locate recorded consumer-step losses.
 /// Every reported before/after return is checked against its canonical application evidence.
+pub fn gammaln_low_stages(input: &str, out: &str) {
+    use crate::ported::excel_numeric::{crt_log, excel_log, excel_x87_sub, gammaln_excel};
+    let doc: Value = serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    let mut records = Vec::new();
+    let mut generated = Vec::new();
+    if let Some(count) = doc["rng_count"].as_u64() {
+        assert!(count <= 4_194_304, "bounded primitive mining only");
+        let mut state = doc["rng_seed"].as_u64().unwrap();
+        for _ in 0..count {
+            state ^= state << 13; state ^= state >> 7; state ^= state << 17;
+            let exponent = 1023 - (1 + (state >> 52) % 52);
+            let bits = (exponent << 52) | (state & ((1u64 << 52) - 1));
+            let x = f64::from_bits(bits);
+            if x < 0.7 { generated.push(json!({"x": format!("{bits:016x}")})); }
+        }
+    }
+    let inputs = doc["records"].as_array().unwrap_or(&generated);
+    for row in inputs {
+        let x = f64::from_bits(u64::from_str_radix(row["x"].as_str().unwrap(), 16).unwrap());
+        assert!(x > 0.0 && x < 0.7 && x.is_normal());
+        let runtime = crt_log(x);
+        let worksheet = excel_log(x);
+        if doc["only_log_disagreements"].as_bool() == Some(true) && runtime == worksheet { continue; }
+        let upper = gammaln_excel(1.0 + x);
+        let (actual, _) = crate::invoke_control("GAMMALN", vec![CalcValue::number(x)]);
+        records.push(json!({"original": row, "upper_argument": format!("{:016x}", (1.0+x).to_bits()),
+            "upper": format!("{:016x}", upper.to_bits()),
+            "runtime_log": format!("{:016x}", runtime.to_bits()),
+            "worksheet_log": format!("{:016x}", worksheet.to_bits()),
+            "runtime_subtract": format!("{:016x}", (upper-runtime).to_bits()),
+            "worksheet_subtract": format!("{:016x}", (upper-worksheet).to_bits()),
+            "worksheet_pc64_subtract": format!("{:016x}", excel_x87_sub(upper,worksheet).to_bits()),
+            "registered": actual}));
+    }
+    crate::json_write(out, &json!({"format":"dnacalc-gammaln-low-stage-replay/1", "complete":true,
+        "records":records, "eligible_primitive_inputs":inputs.len(), "selection":doc,
+        "unit": serde_json::from_str::<Value>(include_str!(concat!(env!("OUT_DIR"),"/research-unit.json"))).unwrap(),
+        "limits":"Current cleared stage replay and actual registered returns. Intermediate values are hypotheses, never additional Excel observations."}));
+}
+
+pub fn gamma_density_normalizers(input: &str, out: &str) {
+    use crate::ported::excel_numeric::{excel_exp_compensated, excel_log, excel_x87_div, excel_x87_mul, gammaln_excel};
+    let doc: Value = serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    let mut records = Vec::new();
+    for row in doc["records"].as_array().unwrap() {
+        let number = |key: &str| f64::from_bits(u64::from_str_radix(row[key].as_str().unwrap(),16).unwrap());
+        let (x,a,b) = (number("x"),number("alpha"),number("beta"));
+        let y = excel_x87_div(x,b);
+        assert!(x>0.0 && a>0.0 && a!=1.0 && b>0.0 && (a<=1.0 || y<1.1));
+        let current = gammaln_excel(a+1.0);
+        let public = f64::from_bits(u64::from_str_radix(row["public_normalizer"]["bits"].as_str().unwrap(),16).unwrap());
+        let term = excel_x87_mul(a,excel_log(y));
+        let factor = excel_x87_div(a,x);
+        let replay = |normalizer| {
+            let mass=excel_exp_compensated(term,&[y,normalizer]);
+            let result=excel_x87_mul(mass,factor);
+            if result.is_subnormal() {0.0} else {result}
+        };
+        let actual = crate::invoke_control("GAMMA.DIST",[x,a,b,0.0].into_iter().map(CalcValue::number).collect()).0;
+        let predicted = format!("0x{:016x}",replay(current).to_bits());
+        assert_eq!(actual,predicted,"current gamma prefix differs from registered route");
+        records.push(json!({"original":row,"registered":actual,
+            "current_normalizer":format!("{:016x}",current.to_bits()),
+            "public_normalizer_prediction":format!("{:016x}",replay(public).to_bits()),
+            "hypothetical_only":true}));
+    }
+    crate::json_write(out,&json!({"format":"dnacalc-gamma-density-normalizer-replay/1","complete":true,
+        "records":records,"unit":serde_json::from_str::<Value>(include_str!(concat!(env!("OUT_DIR"),"/research-unit.json"))).unwrap(),
+        "limits":"Actual registered baseline and one diagnostic replacement by an independent public normalizer. The replacement is not an application calculation or a stored Excel-answer implementation."}));
+}
+
 pub fn gamma_density_prefixes(input:&str,out:&str) {
-    use crate::ported::excel_numeric::{excel_log,excel_exp_difference,gammaln_excel,excel_x87_div,excel_x87_mul};
+    use crate::ported::excel_numeric::{excel_log,excel_exp_compensated,gammaln_excel,excel_x87_div,excel_x87_mul};
     let doc:Value=serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
     let rows=doc["records"].as_array().unwrap();let mut records=Vec::new();
     let encode=|x:f64|if !x.is_finite(){"error:Num".into()}else if x!=0.0&&x.is_subnormal(){"fault:NotImplemented".into()}else{format!("0x{:016x}",if x==0.0 {0.0}else{x}.to_bits())};
@@ -110,7 +181,7 @@ pub fn gamma_density_prefixes(input:&str,out:&str) {
         if unresolved||ns.len()!=3 {records.push(json!({"original":row,"classification":"nonnumeric_argument_needs_wrapper_audit"}));continue;}
         let (x,a,b)=(ns[0],ns[1],ns[2]);assert!(x>0.0&&a!=1.0&&b>0.0,"changed generic-density route");
         let y=excel_x87_div(x,b);let log=excel_log(y);let normalizer=gammaln_excel(a+1.0);
-        let r=excel_exp_difference(excel_x87_mul(a,log),y,normalizer);let factor=excel_x87_div(a,x);
+        let r=excel_exp_compensated(excel_x87_mul(a,log),&[y,normalizer]);let factor=excel_x87_div(a,x);
         let old=encode(excel_x87_div(excel_x87_mul(r,a),x));let now=encode(excel_x87_mul(r,factor));let strict=encode(r*factor);
         let args=aa.iter().map(|v|calc_verdict::decode_argument(v,"original gamma argument").unwrap()).collect();
         let actual=crate::invoke_control(row["function"].as_str().unwrap(),args).0;

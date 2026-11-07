@@ -1,5 +1,31 @@
 DNA Calc arithmetic program research
 
+R33 lands worksheet LN below0.7 in GAMMALN, the KURT leading coefficient,
+normalized single-coupon YIELD arithmetic, and bond redemption/integer-power/
+MDURATION stores. Its unchanged-bank gain is1,305 with zero losses: GAMMALN.PRECISE3,
+KURT1,299, YIELD2, DURATION1. KURT now matches all4,508 bank rows. Incoming master
+work adds a separate net12,270 bank matches and net53 corpus matches; these are not ours.
+At the fixed-bank measurement (9b6d452f plus four bound files), 3,885,745 of
+3,910,007 rows match; 24,262 fail, including 116 unread. The identical calculator
+source was pushed at e794f622. A corpus rerun there matches 53,105 of 54,794,
+with 1,689 failures including 100 pending. Every own-work session and context
+reconciles with no changed values, gains or losses.
+
+No absolute GAMMA table was recovered: phase scales, aliases, offsets and other
+tracks remain unresolved. GAMMALN upper tables and beta's general prefactor/series
+remain open. The user density check becomes exact only in a diagnostic replay
+with Excel's independent public GAMMALN normalizer; that answer is not injected.
+Three fresh GAMMALN control losses are localized to the unresolved upper table;
+the fixed bank has no losses. Bond off-coupon discounts and coupon sum words stay
+unidentified. Fresh CUMPRINC growth-numerator models also fail even with a free
+denominator per loan. SINH's Kahan models and unstable unsupported-type WEEKNUM answers
+do not justify implementation changes. Claude's reserved work was left alone.
+
+evidence/round33/index.json records original replies, independent rational and
+inverse proofs, exact producer epochs, failed hypotheses, route/operand audits,
+canonical measurements, validation limits and reproduction commands. The raw
+scalar cache is about3MB; full corpus cells and binaries are not committed.
+
 R32 refreshes the problem-functions list at main 6ccdfe05: bank 3,872,170/3,910,007
 matched (99.03230%), 37,837 inclusive failures including 116 unread. The current
 corpus is 53,052/54,794 matched (96.82082%), 1,742 inclusive failures including 100

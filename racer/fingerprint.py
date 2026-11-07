@@ -514,6 +514,12 @@ class CachedService:
                                   timestamp=reply['timestamp'], request_sha256=reply['request_sha256']))
         return reply
 
+    def ask_rows(self, function, rows, chunk_size=10000):
+        """Keep each service request and receipt intact within its call limit."""
+        if not 1<=chunk_size<=20000:raise ValueError('invalid scalar request chunk size')
+        return [answer for start in range(0,len(rows),chunk_size)
+                for answer in self.ask(function,rows[start:start+chunk_size])['rows']]
+
 
 def scan(checkout, output, cache, count=512, offline=False, only=None):
     client, policy = load_service(checkout)
@@ -1407,13 +1413,15 @@ def primitive_stage_graph(kind, constant='rom', stored_reduction=False):
     return g.graph(out,out)
 
 
-def positive_extended_cell(native, graph, answer, center,decreasing=False,max_radius_bits=18):
+def positive_extended_cell(native, graph, answer, center,decreasing=False,max_radius_bits=18,output_span=None):
     """Conditional inverse of one fixed positive extended-input primitive.
 
     Find both ends of an output's preimage on the PC64 input lattice. The
     local monotonicity of this fixed instruction chain is a declared premise;
     Excel is never queried with an inferred extended operand. No logarithm
-    producer is assumed. Empty preimages are kept as contradictions.
+    producer is assumed. Empty preimages are kept as contradictions. An
+    optional exact output span constrains the resident PC64 result instead
+    of its final binary64 publication, using the same inverse search.
     """
     from x87 import encode,decode
     significand=EXTENDED64.floor_coordinate(EXTENDED64.round(center))
@@ -1422,30 +1430,43 @@ def positive_extended_cell(native, graph, answer, center,decreasing=False,max_ra
     if not 0<lo<hi<EXTENDED64.last:
         raise ValueError('inverse bracket leaves positive finite extended values')
     def pack(sig):return encode(EXTENDED64.value(sig))
+    def raw_result(sig):
+        return native.evaluate(graph,[],0x133f,extended=pack(sig))[:10]
     def evaluate(sig):
-        return native.publish(native.evaluate(graph,[],0x133f,extended=pack(sig))[:10])
+        raw=raw_result(sig)
+        return (native.publish(raw)if output_span is None else
+                EXTENDED64.floor_coordinate(decode(raw)))
     direction=-1 if decreasing else 1
-    target=direction*int(answer,16)
+    if output_span is None:
+        target_low=target_high=direction*int(answer,16)
+    else:
+        coordinates=EXTENDED64.coordinates(output_span)
+        if coordinates is None:return None
+        target_low,target_high=(coordinates if direction==1 else(-coordinates[1],-coordinates[0]))
     if not 18<=max_radius_bits<=62:raise ValueError('bounded inverse radius required')
-    while not direction*evaluate(lo)<target<direction*evaluate(hi):
+    while not(direction*evaluate(lo)<target_low and target_high<direction*evaluate(hi)):
         if radius>=1<<max_radius_bits:raise ValueError('inverse bracket does not enclose requested output')
         radius*=2;lo,hi=significand-radius,significand+radius
         if not 0<lo<hi<EXTENDED64.last:raise ValueError('expanded inverse bracket leaves positive finite values')
-    def first(strict):
+    def first(target,strict):
         a,b=lo,hi
         while b-a>1:
             m=(a+b)//2;got=direction*evaluate(m)
             if got>target if strict else got>=target:b=m
             else:a=m
         return b
-    lower,upper=first(False),first(True)-1
+    lower,upper=first(target_low,False),first(target_high,True)-1
     if lower>upper:return None
-    if direction*evaluate(lower)!=target or direction*evaluate(upper)!=target:
+    if not(target_low<=direction*evaluate(lower)<=target_high and target_low<=direction*evaluate(upper)<=target_high):
         raise ValueError('inverse endpoint does not publish requested output')
-    return dict(low=pack(lower).hex(),high=pack(upper).hex(),
-                bracket_radius=radius,
-                predecessor_output=f'{evaluate(lower-1):016x}',
-                successor_output=f'{evaluate(upper+1):016x}')
+    result=dict(low=pack(lower).hex(),high=pack(upper).hex(),bracket_radius=radius)
+    if output_span is None:
+        result.update(predecessor_output=f'{evaluate(lower-1):016x}',successor_output=f'{evaluate(upper+1):016x}')
+    else:
+        result.update(predecessor_output_extended=raw_result(lower-1).hex(),
+                      successor_output_extended=raw_result(upper+1).hex(),
+                      output_span=output_span.json())
+    return result
 
 
 def resident_stage_study(checkout,output,cache,library,offline=False,count=256):
@@ -2888,6 +2909,692 @@ def make_workbooks(checkout,output,executable,powershell,root_transfer=False,ran
     return manifest
 
 
+def yield_single_coupon(checkout, output, cache, offline=False, month_ends=False, date_holdout=False):
+    """Separate the one-coupon YIELD day fraction with public coupon calls."""
+    import datetime as dt
+    import calendar
+    from exact import operation
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    serial=lambda date:(date-dt.date(1899,12,30)).days
+    states=[]
+    maturities=([dt.date(2000,2,29),dt.date(2001,3,30),dt.date(2024,10,30),dt.date(2025,3,15),dt.date(2031,11,30)]
+                if date_holdout else[dt.date(2023,2,28),dt.date(2024,2,29),dt.date(2025,5,31),dt.date(2020,8,31),dt.date(2021,1,31)]
+                if month_ends else[dt.date(2021,1,1)])
+    for maturity in maturities:
+      for frequency in (1,2,4):
+        month_index=maturity.year*12+maturity.month-1-12//frequency
+        year,month=divmod(month_index,12);month+=1
+        at_end=maturity.day==calendar.monthrange(maturity.year,maturity.month)[1]
+        day=calendar.monthrange(year,month)[1]if at_end else min(maturity.day,calendar.monthrange(year,month)[1])
+        previous=dt.date(year,month,day)
+        days=(maturity-previous).days
+        offsets={0,1,days//2,*range(days-10,days)}
+        for month_index in range(previous.year*12+previous.month-1,maturity.year*12+maturity.month):
+            year,month=divmod(month_index+1,12);next_month=dt.date(year,month+1,1)
+            date=next_month-dt.timedelta(days=1)
+            if previous<=date<maturity:offsets.add((date-previous).days)
+        for offset in sorted(offsets):
+            for basis in range(5):
+                states.append(dict(settlement=serial(previous+dt.timedelta(days=offset)),maturity=serial(maturity),
+                                   frequency=frequency,basis=basis))
+    rates=(0.,math.ldexp(1.,-20),math.nextafter(.0625,math.inf))if date_holdout else(math.ldexp(1.,-20),.03125,math.nextafter(.05,0.),math.nextafter(.05,math.inf),.125)if month_ends else(0.,.04125,.05)
+    prices=(.5,math.nextafter(123.456,math.inf))if date_holdout else(64.,math.nextafter(100.,0.),math.nextafter(100.,math.inf),128.)if month_ends else(95.,100.,105.)
+    redemptions=(80.,128.)if date_holdout else(100.,)
+    cases=[dict(state,rate=rate,price=price,redemption=red)for state in states for rate in rates for price in prices for red in redemptions]
+    source=Path(checkout)/'crates/calc-func/src/ported/bond_core_family.rs'
+    frozen={str(source.resolve()):sha(source),str(Path(__file__).resolve()):sha(__file__)}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for path,digest in frozen.items():
+        dest=snapshots/(digest+'-'+Path(path).name)
+        if not dest.exists():dest.write_bytes(Path(path).read_bytes())
+    write(str(output)+'.questions.json',dict(format='dnacalc-yield-single-coupon-questions/1',complete=True,
+        states=states,cases=cases,source_bindings=frozen,
+        models=['direct published day span','derived E-A','coupon-date E otherwise public span'],
+        selection='Fixed final coupon periods, all five bases and three frequencies, coupon/month ends '
+                  'and the last ten settlement days. Rates, prices and redemptions are listed explicitly. '
+                  'Public COUP factors are observed before the YIELD targets. No stopping tolerance or coefficient fitted.',
+        month_end_holdout=month_ends,date_holdout=date_holdout,rates=rates,prices=prices,redemptions=redemptions,maturities=[str(d)for d in maturities],
+        mathematical_source='https://support.microsoft.com/en-us/excel/functions/yield-function'))
+    factor_questions=[[client.number(s[k])for k in('settlement','maturity','frequency','basis')]for s in states]
+    factors={name:service.ask(name,factor_questions)['rows']for name in('COUPNUM','COUPDAYS','COUPDAYBS','COUPDAYSNC')}
+    for readings in factors.values():
+        if any(r['type']!='number'for r in readings):raise ValueError('coupon controls must be numeric')
+    if any(value(r['bits'])!=1. for r in factors['COUPNUM']):raise ValueError('declared final-coupon scope contradicted')
+    questions=[[client.number(c[k])for k in('settlement','maturity','rate','price','redemption','frequency','basis')]for c in cases]
+    answers=service.ask_rows('YIELD',questions)
+    def model(c,a,e,dsc,word):
+        if not dsc:return None
+        op=lambda x,y,k:operation(Q(x),Q(y),k,word)
+        coupon=op(op(100,c['rate'],'mul'),c['frequency'],'div')
+        accrued=op(op(coupon,a,'mul'),e,'div')
+        ratio=op(op(c['redemption'],coupon,'add'),op(c['price'],accrued,'add'),'div')
+        term=op(ratio,-1,'add')
+        term=op(op(term,c['frequency'],'mul'),e,'mul')
+        return bits(float(op(term,dsc,'div')))
+    records=[];counts=Counter();price_questions=[];price_indices=[]
+    for index,(case,answer)in enumerate(zip(cases,answers)):
+        state_index=index//(len(rates)*len(prices)*len(redemptions))
+        a,e,dsc=[value(factors[name][state_index]['bits'])for name in('COUPDAYBS','COUPDAYS','COUPDAYSNC')]
+        predictions={name+'_'+word:model(case,a,e,span,word)
+                     for name,span in(('public_span',dsc),('derived_span',e-a),('coupon_date',e if a==0 else dsc))
+                     for word in('strict','stored_pc64')}
+        for label,prediction in predictions.items():counts[label+'_matches']+=answer.get('type')=='number'and answer['bits']==prediction
+        counts['rows']+=1;counts['nonnumeric_targets']+=answer['type']!='number'
+        counts['all_finite_models_refuted']+=answer.get('bits')not in[p for p in predictions.values()if p is not None]
+        record=dict(case,answer=answer,factors={name:rows[state_index]for name,rows in factors.items()},predictions=predictions)
+        records.append(record)
+        if answer['type']=='number'and value(answer['bits'])>=0:
+            args=[client.number(case[k])for k in('settlement','maturity','rate')]
+            args += [client.number(answer['bits'])]
+            args += [client.number(case[k])for k in('redemption','frequency','basis')]
+            price_questions.append(args);price_indices.append(index)
+    prices=service.ask_rows('PRICE',price_questions)
+    for index,price in zip(price_indices,prices):
+        records[index]['price_at_excel_yield']=price
+        counts['price_controls']+=1
+        counts['price_at_yield_matches_target']+=price.get('type')=='number'and price['bits']==bits(records[index]['price'])
+    result=dict(format='dnacalc-yield-single-coupon/1',complete=True,records=records,counts=counts,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Public coupon factors and single-period closed-form programs only. Stored arithmetic words '
+               'remain separate; a nonfinite model is not scored as a typed-error match. PRICE refuses negative '
+               'input yields, so those YIELD observations have no paired PRICE call. This does not identify '
+               'the multi-period Newton solver, its objective, or an unobserved day-count helper.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def yield_coupon_days(checkout, original, output, cache, offline=False):
+    """Observe direct day counts separately from the published coupon counts."""
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    original=Path(original);study=json.loads(original.read_text());records=study['records']
+    states=list({tuple(r[k]for k in('settlement','maturity','frequency','basis')):None for r in records})
+    arguments=[[client.number(v)for v in state]for state in states]
+    dates={name:service.ask(name,arguments)['rows']for name in('COUPPCD','COUPNCD')}
+    require=lambda condition:None if condition else (_ for _ in()).throw(ValueError('coupon-date control failed'))
+    require(all(r['type']=='number'for rows in dates.values()for r in rows))
+    requests=[];slots=[];direct={};state_dates={}
+    for index,state in enumerate(states):
+        settlement,maturity,frequency,basis=state
+        prev,next_=[int(value(dates[name][index]['bits']))for name in('COUPPCD','COUPNCD')]
+        require(next_==maturity and prev<=settlement<maturity)
+        state_dates[state]={name:rows[index]for name,rows in dates.items()}
+        direct[state]={}
+        for label,start,end in(('a',prev,settlement),('e',prev,next_),('dsr',settlement,next_)):
+            if basis in(0,4):
+                slots.append((state,label));requests.append([client.number(start),client.number(end),client.boolean(basis==4)])
+            else:direct[state][label]=dict(type='number',bits=bits(end-start))
+    spans=service.ask('DAYS360',requests)['rows'];require(all(r['type']=='number'for r in spans))
+    for(state,label),answer in zip(slots,spans):direct[state][label]=answer
+    for record in records:
+        state=tuple(record[k]for k in('settlement','maturity','frequency','basis'))
+        record['direct_day_counts']=direct[state]
+        record['coupon_dates']=state_dates[state]
+    result=dict(format='dnacalc-yield-direct-day-counts/1',complete=True,records=records,
+        original_sha256=sha(original),receipts=service.receipts,parent_receipts=study['receipts'],
+        limits='Direct DAYS360 for bases 0/4, actual serial-date differences otherwise, with '
+               'independent public previous/next coupon dates. Distinct from the published COUP spans. '
+               'Original YIELD and PRICE readings are unchanged.')
+    write(output,result);print(json.dumps(dict(rows=len(records),states=len(states),days360_calls=len(requests))),flush=True)
+    return result
+
+
+def yield_coupon_programs(original, output, library, admitted=None, day_boundaries=False, nasd_days=False,numerator_days=False):
+    """Test the documented normalized formula and its elementary associations."""
+    original=Path(original);study=json.loads(original.read_text());native=Native(library)
+    actual={tuple(r[k]for k in('settlement','maturity','frequency')):r['factors']['COUPDAYS']['bits']
+            for r in study['records']if r['basis']==1}
+    has_direct=all('direct_day_counts'in r for r in study['records'])
+    templates=[]
+    for normalization in ('percent','face'):
+      for accrual in ('fraction_first','coupon_first'):
+       for numerator in ('difference','ratio_minus_one'):
+        for period in (('published','actual_for_2_3','direct')if has_direct else('published','actual_for_2_3')):
+         for remaining in (('numerator_direct',)if numerator_days else('nasd_direct',)if nasd_days else('published','complement','direct','coupon_or_direct')if day_boundaries else('published','complement','direct')if has_direct else('published','complement')):
+          for association in ('factor_first','left_products','fraction_first','combined_denominator'):
+            g=Builder(8);rate,price,red,frequency,a,e,dsc,actual_e=range(8)
+            if period in('actual_for_2_3','direct'):e=actual_e
+            hundred=g.constant(bits(100.))
+            if normalization=='percent':
+                price=g.op('div',price,hundred);red=g.op('div',red,hundred)
+                coupon=g.op('div',rate,frequency)
+            else:coupon=g.op('div',g.op('mul',hundred,rate),frequency)
+            if remaining=='complement':dsc=g.op('sub',e,a)
+            if accrual=='fraction_first':accr=g.op('mul',g.op('div',a,e),coupon)
+            else:accr=g.op('div',g.op('mul',coupon,a),e)
+            dirty=g.op('add',price,accr);cash=g.op('add',red,coupon)
+            if numerator=='difference':term=g.op('div',g.op('sub',cash,dirty),dirty)
+            else:term=g.op('sub',g.op('div',cash,dirty),g.one)
+            if association=='factor_first':result=g.op('mul',term,g.op('div',g.op('mul',frequency,e),dsc))
+            elif association=='left_products':result=g.op('div',g.op('mul',g.op('mul',term,frequency),e),dsc)
+            elif association=='fraction_first':result=g.op('div',g.op('mul',term,frequency),g.op('div',dsc,e))
+            else:result=g.op('div',term,g.op('div',dsc,g.op('mul',frequency,e)))
+            templates.append(dict(normalization=normalization,accrual=accrual,numerator=numerator,
+                                  period=period,remaining=remaining,association=association,graph=g.graph(result,result)))
+    rows=[];programs=[]
+    for r in study['records']:
+        factor=lambda name:int(r['factors'][name]['bits'],16)
+        actual_e=actual[tuple(r[k]for k in('settlement','maturity','frequency'))]if r['basis']in(2,3)else r['factors']['COUPDAYS']['bits']
+        rows.append(([int(bits(r[k]),16)for k in('rate','price','redemption','frequency')]+
+                     [factor('COUPDAYBS'),factor('COUPDAYS'),factor('COUPDAYSNC'),int(actual_e,16)],
+                     r['answer']))
+    allowed=None
+    if admitted is not None:
+        admitted_programs=json.loads(Path(admitted).read_text())['complete_programs']
+        allowed=set()
+        for p in admitted_programs:
+            template=dict(p['template'])
+            if day_boundaries:template['remaining']='coupon_or_direct'
+            if nasd_days:template['remaining']='nasd_direct'
+            if numerator_days:template['remaining']='numerator_direct'
+            allowed.add(json.dumps(template,sort_keys=True)+'/'+p['word'])
+    if allowed is not None and not allowed:raise ValueError('no complete prior programs to validate')
+    for template in templates:
+      graph=template['graph']
+      for word,cw,mask in [('strict',0x123f,(1<<graph['sites'])-1),('stored_pc64',0x133f,(1<<graph['sites'])-1),('resident_pc64',0x133f,0)]:
+        if allowed is not None and json.dumps({k:v for k,v in template.items()if k!='graph'},sort_keys=True)+'/'+word not in allowed:continue
+        count=0;first=None
+        for index,(original_operands,answer)in enumerate(rows):
+            operands=list(original_operands);record=study['records'][index]
+            if template['period']=='direct':
+                operands[4]=int(record['direct_day_counts']['a']['bits'],16)
+                operands[7]=int(record['direct_day_counts']['e']['bits'],16)
+            if template['remaining']in('direct','coupon_or_direct','nasd_direct','numerator_direct'):operands[6]=int(record['direct_day_counts']['dsr']['bits'],16)
+            if(nasd_days or numerator_days)and record['basis']==0:
+                import datetime as dt,calendar
+                s,m=[dt.date(1899,12,30)+dt.timedelta(days=int(record[k]))for k in('settlement','maturity')]
+                last_feb=lambda d:d.month==2 and d.day==calendar.monthrange(d.year,2)[1]
+                if last_feb(s)and last_feb(m):operands[6]=int(bits(value(f'{operands[6]:016x}')+30-m.day),16)
+                elif numerator_days and last_feb(s)and m.day==31:operands[6]=int(bits(value(f'{operands[6]:016x}')+1),16)
+            if template['remaining']=='coupon_or_direct'and record['settlement']==value(record['coupon_dates']['COUPPCD']['bits']):
+                operands[6]=operands[7]if template['period']in('actual_for_2_3','direct')else operands[5]
+            predicted=('0000000000000000'if(day_boundaries or nasd_days or numerator_days)and operands[6]==0 else
+                       f'{native.publish(native.evaluate(graph,operands,cw,mask)[:10]):016x}')
+            matches=answer['type']=='number'and answer['bits']==predicted
+            count+=matches
+            if not matches and first is None:first=dict(index=index,expected=answer,predicted=predicted)
+        programs.append(dict(template={k:v for k,v in template.items()if k!='graph'},word=word,cw=cw,mask=mask,
+                             matches=count,first_failure=first))
+    bindings={str(Path(__file__).resolve()):sha(__file__),str(ROOT/'racer/x87_programs.py'):sha(ROOT/'racer/x87_programs.py'),
+              str(ROOT/'racer/x87_native.c'):sha(ROOT/'racer/x87_native.c')}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for path,digest in bindings.items():
+        dest=snapshots/(digest+'-'+Path(path).name)
+        if not dest.exists():dest.write_bytes(Path(path).read_bytes())
+    result=dict(format='dnacalc-yield-coupon-programs/1',complete=True,original_sha256=sha(original),rows=len(rows),
+                templates=templates,programs=programs,complete_programs=[p for p in programs if p['matches']==len(rows)],
+                source_bindings=bindings,library_sha256=sha(library),admitted_programs_sha256=sha(admitted)if admitted else None,
+                day_boundaries=day_boundaries,day_boundary_rule='Use E on the previous coupon date; a zero remaining direct day span publishes zero.'if day_boundaries else None,
+                nasd_days=nasd_days,nasd_rule='For US basis only, when both original endpoints are February ends, adjust the final day to30. Zero remaining-day span publishes zero.'if nasd_days else None,
+                numerator_days=numerator_days,numerator_rule='Use the existing US numerator-position day rule: adjust two February ends, but test end-day31 against the original start day before adjusting a February start. Zero remaining-day span publishes zero.'if numerator_days else None,
+                limits='Fixed elementary associations of the public documented formula. Actual coupon length '
+                'for bases 2/3 is independently taken from paired basis-1 COUPDAYS. No multi-period solver '
+                'or different coupon date convention is inferred. Programs are not ranked by partial matches.')
+    write(output,result);print(json.dumps(dict(rows=len(rows),programs=len(programs),complete=result['complete_programs'])),flush=True)
+    return result
+
+
+def duration_zero_coupon(checkout,output,cache,library,offline=False,count=64,holdout=False):
+    """Separate the weighted redemption and final ratio on exact coupon dates."""
+    import datetime as dt
+    from exact import operation
+    if not 8<=count<=1024:raise ValueError('bounded adjacent window required')
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    native=Native(library);states=[];cases=[]
+    settlement=43831
+    ns=(2,6,10,11,19,23,29)if holdout else(3,5,7,9,13,17,31)
+    for frequency in(1,2,4):
+      for n in ns:
+        months=2020*12+n*(12//frequency);year,month=divmod(months,12)
+        maturity=(dt.date(year,month+1,1)-dt.date(1899,12,30)).days
+        state=dict(settlement=settlement,maturity=maturity,frequency=frequency,n=n)
+        states.append(state)
+        for center in(.0001,.005,.05,.125,.25,.5,.75,1.):
+            anchor=int(bits(center),16)+(8192 if holdout else 0)
+            for step in range(-count//2,count-count//2):
+                yld=value(f'{anchor+step:016x}');q=1.+yld/frequency
+                cases.append(dict(state,yield_bits=bits(yld),base_strict=bits(q),
+                    base_stored_pc64=bits(float(operation(Q(1),Q(yld/frequency),'add','stored_pc64')))))
+    source=Path(checkout)/'crates/calc-func/src/ported/bond_core_family.rs'
+    bindings={str(source.resolve()):sha(source),str(Path(__file__).resolve()):sha(__file__),
+              str(ROOT/'racer/x87_programs.py'):sha(ROOT/'racer/x87_programs.py'),
+              str(ROOT/'racer/x87_native.c'):sha(ROOT/'racer/x87_native.c')}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for path,digest in bindings.items():
+        dest=snapshots/(digest+'-'+Path(path).name)
+        if not dest.exists():dest.write_bytes(Path(path).read_bytes())
+    write(str(output)+'.questions.json',dict(format='dnacalc-duration-zero-coupon-questions/1',complete=True,
+        states=states,cases=cases,holdout=holdout,count=count,source_bindings=bindings,
+        selection='Fixed odd/even coupon counts, all three frequencies and eight ordinary/exponent-edge yield windows. '
+        'Zero coupon removes the entire coupon sum. Public POWER, PRICE, SUM and coupon factors precede targets. '
+        'Face1/100 and weighted-numerator/weighted-term/linear-time programs are fixed before target answers.'))
+    factors=[[client.number(s[k])for k in('settlement','maturity','frequency')]+[client.number(0.)]for s in states]
+    for name in('COUPNUM','COUPDAYBS'):
+        answers=service.ask(name,factors)['rows']
+        for state,answer in zip(states,answers):
+            wanted=state['n']if name=='COUPNUM'else 0
+            if answer!=dict(type='number',bits=bits(wanted)):raise ValueError('on-coupon schedule control changed')
+    sums=service.ask_rows('SUM',[[client.number(1.),client.number(value(c['yield_bits'])/c['frequency'])]for c in cases])
+    if any(r!=dict(type='number',bits=c['base_stored_pc64'])for c,r in zip(cases,sums)):
+        raise ValueError('public base addition differs from its independent PC64 prediction')
+    power_requests=[];power_slots=[]
+    for c in cases:
+        slots={}
+        for prefix in('strict','stored_pc64'):
+            base=c['base_'+prefix]
+            if prefix=='stored_pc64'and base==c['base_strict']:slots[prefix]=slots['strict']
+            else:
+                slots[prefix]=len(power_requests)
+                power_requests.append([client.number(base),client.number(c['n'])])
+        power_slots.append(slots)
+    powers=service.ask_rows('POWER',power_requests)
+    if any(r['type']!='number'for r in powers):raise ValueError('nonnumeric discount-factor control')
+    duration_args=[[client.number(c[k])for k in('settlement','maturity')]+[client.number(0.),client.number(c['yield_bits']),
+                   client.number(c['frequency']),client.number(0.)]for c in cases]
+    price_args=[args[:4]+[client.number(100.)]+args[4:]for args in duration_args]
+    prices=service.ask_rows('PRICE',price_args)
+    duration=service.ask_rows('DURATION',duration_args)
+    modified=service.ask_rows('MDURATION',duration_args)
+    templates=[]
+    for face in(100.,1.):
+      for association in('weighted_cash','weighted_present_value','time_identity'):
+        g=Builder(3);discount,n,frequency=range(3);cash=g.constant(bits(face))
+        term=g.op('div',cash,discount)
+        if association=='weighted_cash':numerator=g.op('div',g.op('mul',n,cash),discount)
+        elif association=='weighted_present_value':numerator=g.op('mul',n,term)
+        else:numerator=None
+        result=g.op('div',n,frequency)if numerator is None else g.op('div',g.op('div',numerator,term),frequency)
+        templates.append(dict(face=face,association=association,graph=g.graph(result,result)))
+    programs=[]
+    for template in templates:
+      graph=template['graph']
+      for base in('strict','stored_pc64'):
+        programs.append(dict(template={k:v for k,v in template.items()if k!='graph'},base=base,word='strict',
+                             cw=0x123f,mask=(1<<graph['sites'])-1,matches=0,first_failure=None))
+        for mask in range(1<<graph['sites']):
+            programs.append(dict(template={k:v for k,v in template.items()if k!='graph'},base=base,word='pc64',
+                                 cw=0x133f,mask=mask,matches=0,first_failure=None))
+    counts=Counter();records=[]
+    def integer_power(base,n,word):
+        acc=Q(1);b=Q(base)
+        while n:
+            if n&1:acc=operation(acc,b,'mul',word)
+            n>>=1
+            if n:b=operation(b,b,'mul',word)
+        return bits(float(acc))
+    for index,(c,slots,d,md,price,base_sum)in enumerate(zip(cases,power_slots,duration,modified,prices,sums)):
+        predictions={};matched=[]
+        for ti,template in enumerate(templates):
+            graph=template['graph']
+            for base in('strict','stored_pc64'):
+                operands=[int(powers[slots[base]]['bits'],16),int(bits(c['n']),16),int(bits(c['frequency']),16)]
+                strict=native.evaluate(graph,operands,0x123f,(1<<graph['sites'])-1)
+                masks=native.masks(graph,operands,0x133f)
+                predictions[ti,base,'strict',(1<<graph['sites'])-1]=f'{native.publish(strict[:10]):016x}'
+                for mask in range(1<<graph['sites']):predictions[ti,base,'pc64',mask]=f'{native.publish(masks[20*mask:20*mask+10]):016x}'
+        cursor=0
+        for ti,template in enumerate(templates):
+          for base in('strict','stored_pc64'):
+            for word,mask in [('strict',(1<<template['graph']['sites'])-1)]+[('pc64',m)for m in range(1<<template['graph']['sites'])]:
+                prediction=predictions[ti,base,word,mask];program=programs[cursor]
+                good=d.get('type')=='number'and d['bits']==prediction
+                program['matches']+=good
+                if good:matched.append(cursor)
+                elif program['first_failure']is None:program['first_failure']=dict(index=index,answer=d,prediction=prediction)
+                cursor+=1
+        counts['rows']+=1;counts['all_declared_programs_refuted']+=not matched
+        controls={}
+        for word in('strict','stored_pc64'):
+            discount=Q(value(powers[slots['strict']]['bits']))
+            controls['price_'+word]=bits(float(operation(Q(100),discount,'div',word)))
+            counts['price_'+word+'_matches']+=price.get('type')=='number'and price['bits']==controls['price_'+word]
+            if d.get('type')=='number':
+                for base in('strict','stored_pc64'):
+                    key='mduration_'+word+'_base_'+base
+                    controls[key]=bits(float(operation(Q(value(d['bits'])),Q(value(c['base_'+base])),'div',word)))
+                    counts[key+'_matches']+=md.get('type')=='number'and md['bits']==controls[key]
+        integer_powers={word:integer_power(value(c['base_strict']),c['n'],word)for word in('strict','stored_pc64')}
+        for word,prediction in integer_powers.items():counts['integer_power_'+word+'_matches']+=powers[slots['strict']]['bits']==prediction
+        records.append(dict(c,powers={base:powers[slots[base]]for base in slots},public_sum=base_sum,
+                            duration=d,modified_duration=md,price=price,controls=controls,matching_programs=matched,
+                            integer_power_predictions=integer_powers))
+    result=dict(format='dnacalc-duration-zero-coupon/1',complete=True,counts=counts,templates=templates,programs=programs,
+        complete_programs=[p for p in programs if p['matches']==len(cases)],records=records,receipts=service.receipts,
+        source_bindings=bindings,library_sha256=sha(library),questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Conditional weighted-redemption models constrained by observed POWER and exact on-coupon schedules. '
+        'Does not identify nonzero coupon sums, fractional discount exponents or a private POWER implementation. '
+        'Every nonnumeric answer remains a failure; partial model matches are not a selection rule.')
+    write(output,result);print(json.dumps(dict(counts=counts,complete_programs=result['complete_programs'])),flush=True)
+    return result
+
+
+def duration_two_coupon_transfer(checkout,output,cache,offline=False,trials=65536):
+    """Nonzero coupons whose complete coupon contribution is exact dyadic arithmetic."""
+    from exact import operation
+    import itertools,datetime as dt
+    if not 1024<=trials<=1048576:raise ValueError('bounded primitive-discriminant mining required')
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    seed=0x33d012;mask=(1<<64)-1;seen=set();discriminants=[]
+    for _ in range(trials):
+        seed^=(seed<<13)&mask;seed^=seed>>7;seed^=(seed<<17)&mask;seed&=mask
+        numerator=5*((1<<25)//5+1+seed%((1<<25)//5-1))
+        if numerator in seen:continue
+        seen.add(numerator);q=Q(numerator,1<<25);square=q*q
+        if BINARY64.round(square)!=square:raise ValueError('declared exact square does not fit')
+        exact=Q(100)/square;strict=BINARY64.round(exact);stored=BINARY64.round(EXTENDED64.round(exact))
+        if strict!=stored:discriminants.append(dict(base_bits=bits(float(q)),square_bits=bits(float(square)),
+            redemption_strict=bits(float(strict)),redemption_stored_pc64=bits(float(stored))))
+    cases=[]
+    for item in discriminants:
+      q=Q(value(item['base_bits']));square=q*q
+      for frequency in(1,2,4):
+        months=2020*12+2*(12//frequency);year,month=divmod(months,12)
+        maturity=(dt.date(year,month+1,1)-dt.date(1899,12,30)).days
+        for exponent in(-52,-51,-20,-1,0,1,20,51,52):
+            scale=Q(2)**exponent;coupon=square*scale;rate=coupon*frequency/100
+            if BINARY64.round(rate)!=rate or Q(100)*rate/frequency!=coupon:raise ValueError('coupon prefix is not exact')
+            cases.append(dict(item,settlement=43831,maturity=maturity,frequency=frequency,
+                yield_bits=bits(float((q-1)*frequency)),coupon_rate_bits=bits(float(rate)),scale_exponent=exponent,
+                coupon_denominator_prefix=bits(float((q+1)*scale)),coupon_numerator_prefix=bits(float((q+2)*scale))))
+    source=Path(checkout)/'crates/calc-func/src/ported/bond_core_family.rs'
+    bindings={str(source.resolve()):sha(source),str(Path(__file__).resolve()):sha(__file__)}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for path,digest in bindings.items():
+        dest=snapshots/(digest+'-'+Path(path).name)
+        if not dest.exists():dest.write_bytes(Path(path).read_bytes())
+    write(str(output)+'.questions.json',dict(format='dnacalc-duration-two-coupon-questions/1',complete=True,cases=cases,
+        trials=trials,distinct_bases=len(seen),discriminants=discriminants,source_bindings=bindings,
+        construction='q=k/2^25 with k divisible by5, so q^2 and q^2*2^e*f/100 are exact binary64. '
+        'Two coupons have exact PV sum(q+1)*2^e and exact weighted sum(q+2)*2^e. '
+        'Select only100/q^2 strict/PC64 division disagreements, before asking any target. '
+        'Redemption quotient, final denominator sum, numerator sum and ratio each have two fixed stored arithmetic words.'))
+    if not cases:raise ValueError('no primitive discriminants in declared mining scope')
+    powers=service.ask_rows('POWER',[[client.number(c['base_bits']),client.number(2.)]for c in cases])
+    if any(r!=dict(type='number',bits=c['square_bits'])for c,r in zip(cases,powers)):raise ValueError('exact square public POWER changed')
+    arguments=[[client.number(c['settlement']),client.number(c['maturity']),client.number(c['coupon_rate_bits']),
+                client.number(c['yield_bits']),client.number(c['frequency']),client.number(0.)]for c in cases]
+    prices=service.ask_rows('PRICE',[a[:4]+[client.number(100.)]+a[4:]for a in arguments])
+    answers=service.ask_rows('DURATION',arguments);modified=service.ask_rows('MDURATION',arguments)
+    programs=[dict(words=list(words),matches=0,first_failure=None)for words in itertools.product(('strict','stored_pc64'),repeat=4)]
+    price_programs=[dict(words=list(words),matches=0,first_failure=None)for words in itertools.product(('strict','stored_pc64'),repeat=2)]
+    records=[];counts=Counter()
+    for index,(case,answer,price,md,power)in enumerate(zip(cases,answers,prices,modified,powers)):
+        den0=Q(value(case['coupon_denominator_prefix']));num0=Q(value(case['coupon_numerator_prefix']));matched=[]
+        for pi,program in enumerate(programs):
+            word,dw,nw,fw=program['words'];red=Q(value(case['redemption_'+word]))
+            den=operation(den0,red,'add',dw);num=operation(num0,2*red,'add',nw)
+            ratio=operation(num,den,'div',fw);predicted=bits(float(ratio/case['frequency']))
+            good=answer.get('type')=='number'and answer['bits']==predicted;program['matches']+=good
+            if good:matched.append(pi)
+            elif program['first_failure']is None:program['first_failure']=dict(index=index,answer=answer,prediction=predicted)
+        for program in price_programs:
+            word,finish=program['words'];red=Q(value(case['redemption_'+word]))
+            predicted=bits(float(operation(den0,red,'add',finish)))
+            good=price.get('type')=='number'and price['bits']==predicted;program['matches']+=good
+            if not good and program['first_failure']is None:program['first_failure']=dict(index=index,answer=price,prediction=predicted)
+        for word in('strict','stored_pc64'):
+            if answer.get('type')=='number':
+                predicted=bits(float(operation(Q(value(answer['bits'])),Q(value(case['base_bits'])),'div',word)))
+                counts['mduration_'+word+'_matches']+=md.get('type')=='number'and md['bits']==predicted
+        counts['rows']+=1;counts['all_programs_refuted']+=not matched
+        records.append(dict(case,answer=answer,price=price,modified_duration=md,power=power,matching_programs=matched))
+    result=dict(format='dnacalc-duration-two-coupon-transfer/1',complete=True,counts=counts,programs=programs,
+        complete_programs=[p for p in programs if p['matches']==len(cases)],price_programs=price_programs,
+        complete_price_programs=[p for p in price_programs if p['matches']==len(cases)],records=records,
+        receipts=service.receipts,source_bindings=bindings,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Exact controlled nonzero coupon contributions on two-period on-coupon bonds only. '
+        'No arbitrary coupon sum, fractional POWER, unobserved helper or complete duration kernel is inferred.')
+    write(output,result);print(json.dumps(dict(counts=counts,complete=result['complete_programs'],price=result['complete_price_programs'])),flush=True)
+    return result
+
+
+def duration_off_coupon(checkout,output,cache,library,offline=False,count=16,direct_days=False):
+    """Test coupon-term words with independently observed fractional powers."""
+    import itertools,datetime as dt
+    if not 8<=count<=256:raise ValueError('bounded base window required')
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    native=Native(library);states=[];cases=[];ladders=[];power_requests=[]
+    for frequency in(1,2,4):
+      for n in(2,3,5,9,17,31):
+        months=2020*12+n*(12//frequency);year,month=divmod(months,12)
+        maturity=(dt.date(year,month+1,1)-dt.date(1899,12,30)).days
+        e=360./frequency;off=(e-41.)/e
+        state=dict(settlement=43873,maturity=maturity,frequency=frequency,n=n,e=e,a=41.,off_bits=bits(off));states.append(state)
+        for center in(1.001,1.03125,1.125,1.5,1.875):
+          anchor=int(bits(center),16)
+          for step in range(-count//2,count-count//2):
+            q=value(f'{anchor+step:016x}');yld=(q-1.)*frequency
+            if 1.+yld/frequency!=q:raise ValueError('exact base construction failed')
+            slots=[]
+            for k in range(n):
+                exponent=(e-41.+k*e)/e if direct_days else off+k
+                if exponent<=0 or exponent==.5 or exponent.is_integer():raise ValueError('fractional-power scope changed')
+                slots.append(len(power_requests));power_requests.append([client.number(q),client.number(exponent)])
+            ladder_index=len(ladders);ladders.append(dict(state,base_bits=bits(q),yield_bits=bits(yld),slots=slots))
+            for rate in(.03,.06,.123456789):cases.append(dict(state,base_bits=bits(q),yield_bits=bits(yld),coupon_rate_bits=bits(rate),ladder=ladder_index))
+    source=Path(checkout)/'crates/calc-func/src/ported/bond_core_family.rs'
+    bindings={str(source.resolve()):sha(source),str(Path(__file__).resolve()):sha(__file__),
+              str(ROOT/'racer/x87_programs.py'):sha(ROOT/'racer/x87_programs.py'),str(ROOT/'racer/x87_native.c'):sha(ROOT/'racer/x87_native.c')}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for path,digest in bindings.items():
+        dest=snapshots/(digest+'-'+Path(path).name)
+        if not dest.exists():dest.write_bytes(Path(path).read_bytes())
+    word_profiles=list(itertools.product(('strict','stored_pc64'),repeat=5))
+    write(str(output)+'.questions.json',dict(format='dnacalc-duration-off-coupon-questions/1',complete=True,cases=cases,
+        states=states,ladders=ladders,source_bindings=bindings,word_profiles=word_profiles,direct_days=direct_days,
+        sites=['weighted coupon product','coupon quotient','numerator sum','denominator sum','final ratio'],
+        selection='Fixed18 schedules, five adjacent-double base windows and three coupons. Positive noninteger '
+        'exponents avoid the public square-root/integer special cases. Every discount POWER is observed separately. '
+        'Redemption divisions are fixed to the independently proven stored-PC64 word; other words are independent. '
+        'The optional direct-day time is RN53((E-A+k*E)/E), separately passed to POWER and the weighted product.'))
+    factor_args=[[client.number(s[k])for k in('settlement','maturity','frequency')]+[client.number(0.)]for s in states]
+    for name in('COUPNUM','COUPDAYS','COUPDAYBS'):
+        readings=service.ask(name,factor_args)['rows']
+        field={'COUPNUM':'n','COUPDAYS':'e','COUPDAYBS':'a'}[name]
+        if any(r!=dict(type='number',bits=bits(s[field]))for s,r in zip(states,readings)):raise ValueError('off-coupon public factors changed')
+    powers=service.ask_rows('POWER',power_requests)
+    if any(r['type']!='number'for r in powers):raise ValueError('nonnumeric fractional discount control')
+    args=[[client.number(c['settlement']),client.number(c['maturity']),client.number(c['coupon_rate_bits']),
+           client.number(c['yield_bits']),client.number(c['frequency']),client.number(0.)]for c in cases]
+    answers=service.ask_rows('DURATION',args);modified=service.ask_rows('MDURATION',args)
+    # Continue only at explicitly stored binary64 accumulators. This keeps
+    # every graph within the existing128-node interpreter bound without
+    # changing that bound or introducing a store into a resident program.
+    graphs={};finishes={}
+    for pi,words in enumerate(word_profiles):
+      wm,qd,na,da,fd=words
+      for width in(1,2,3,5,7,8):
+       for last in(False,True):
+        g=Builder(3+2*width);hundred=g.constant(bits(100.))
+        def op(kind,a,b,word):
+            at=g.op(kind,a,b,store=False);g.nodes[at]['site']=0
+            if word=='strict':g.nodes[at]['phase']=1
+            return at
+        coupon=0;num=1;den=2
+        for j in range(width):
+            disc=3+2*j;diff=4+2*j
+            num=op('add',num,op('div',op('mul',diff,coupon,wm),disc,qd),na)
+            den=op('add',den,op('div',coupon,disc,qd),da)
+            if last and j+1==width:
+                num=op('add',num,op('div',op('mul',diff,hundred,'strict'),disc,'stored_pc64'),na)
+                den=op('add',den,op('div',hundred,disc,'stored_pc64'),da)
+        g.sites=1;graphs[pi,width,last]=g.graph(num,den)
+      g=Builder(3)
+      quotient=g.op('div',0,1,store=False);g.nodes[quotient].update(site=0,phase=int(fd=='strict'))
+      result=g.op('div',quotient,2,store=False);g.nodes[result].update(site=0,phase=1)
+      g.sites=1;finishes[pi]=g.graph(result,result)
+    programs=[dict(words=list(w),matches=0,first_failure=None)for w in word_profiles];records=[];counts=Counter()
+    for index,(case,answer,md)in enumerate(zip(cases,answers,modified)):
+        ladder=ladders[case['ladder']];discounts=[powers[i]for i in ladder['slots']]
+        matched=[]
+        for pi,program in enumerate(programs):
+            coupon=int(bits(100.*value(case['coupon_rate_bits'])/case['frequency']),16);num=den=0
+            for start in range(0,case['n'],8):
+                width=min(8,case['n']-start);last=start+width==case['n'];operands=[coupon,num,den]
+                for k in range(start,start+width):
+                    diff=(case['e']-case['a']+k*case['e'])/case['e']if direct_days else value(case['off_bits'])+k
+                    operands.extend((int(discounts[k]['bits'],16),int(bits(diff),16)))
+                outputs=native.evaluate(graphs[pi,width,last],operands,0x133f,1,inner_cw=0x123f)
+                num,den=native.publish(outputs[:10]),native.publish(outputs[10:])
+            outputs=native.evaluate(finishes[pi],[num,den,int(bits(case['frequency']),16)],0x133f,1,inner_cw=0x123f)
+            prediction=f'{native.publish(outputs[:10]):016x}'
+            good=answer.get('type')=='number'and answer['bits']==prediction;program['matches']+=good
+            if good:matched.append(pi)
+            elif program['first_failure']is None:program['first_failure']=dict(index=index,answer=answer,prediction=prediction)
+        counts['rows']+=1;counts['all_declared_programs_refuted']+=not matched
+        records.append(dict(case,discounts=discounts,answer=answer,modified_duration=md,matching_programs=matched))
+    result=dict(format='dnacalc-duration-off-coupon/1',complete=True,counts=counts,programs=programs,
+        complete_programs=[p for p in programs if p['matches']==len(cases)],records=records,receipts=service.receipts,
+        source_bindings=bindings,library_sha256=sha(library),questions_sha256=sha(str(output)+'.questions.json'),direct_days=direct_days,
+        limits='Named binary64 coupon and observed positive fractional POWER leaves are declared premises. '
+        'PC53 and stored PC64 words vary independently at five sites; all operands at these sites are stored '
+        'binary64. Does not identify private helpers or nonpositive/half-integer discount branches.')
+    write(output,result);print(json.dumps(dict(counts=counts,complete=result['complete_programs'])),flush=True)
+    return result
+
+
+def sinh_small_stages(checkout,output,cache,library,offline=False,bank_trace=None,count=128):
+    """Constrain the paired Kahan terms with public EXP/LN leaves."""
+    from exact import operation
+    if not 8<=count<=1024:raise ValueError('bounded small-SINH window required')
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline);native=Native(library)
+    inputs={}
+    for center in[math.ldexp(1.,e)for e in(-60,-54,-53,-52,-40,-27,-26,-20,-10)]+[.01,.125,.5,.9]:
+        anchor=int(bits(center),16)
+        for step in range(-count//2,count-count//2):
+            for sign in(1.,-1.):inputs.setdefault(bits(sign*value(f'{anchor+step:016x}')),[]).append('fixed adjacent/exponent window')
+    if bank_trace:
+        for line in Path(bank_trace).read_text().splitlines():
+            row=json.loads(line)
+            if row['function']=='SINH'and row['actual']!=row['expected']:
+                raw=row['args'][0].removeprefix('0x');x=value(raw)
+                if 0<abs(x)<1:
+                    inputs.setdefault(raw,[]).append('original bank failure input')
+                    inputs.setdefault(bits(-x),[]).append('paired sign of original bank failure input')
+    raw_inputs=list(inputs)
+    source=Path(checkout)/'crates/calc-func/src/ported/sinh.rs'
+    bindings={str(source.resolve()):sha(source),str(Path(__file__).resolve()):sha(__file__),
+              str(ROOT/'racer/x87_programs.py'):sha(ROOT/'racer/x87_programs.py'),str(ROOT/'racer/x87_native.c'):sha(ROOT/'racer/x87_native.c')}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for path,digest in bindings.items():
+        dest=snapshots/(digest+'-'+Path(path).name)
+        if not dest.exists():dest.write_bytes(Path(path).read_bytes())
+    write(str(output)+'.questions.json',dict(format='dnacalc-sinh-small-questions/1',complete=True,
+        inputs=[dict(bits=raw,roles=inputs[raw])for raw in raw_inputs],source_bindings=bindings,
+        bank_trace_sha256=sha(bank_trace)if bank_trace else None,
+        selection='Fixed exponent/adjacent windows plus explicitly labeled old failure inputs and their paired signs. '
+        'EXP(+x),EXP(-x) and LN of each published EXP are independent observations. Kahan numerator/division '
+        'stores and the outer subtraction are varied without changing any logarithm producer or coefficient.'))
+    exp_rows=service.ask_rows('EXP',[[client.number(raw)]for raw in raw_inputs]+[[client.number(-value(raw))]for raw in raw_inputs])
+    if any(r['type']!='number'for r in exp_rows):raise ValueError('nonnumeric small exponential control')
+    log_rows=service.ask_rows('LN',[[client.number(r['bits'])]for r in exp_rows])
+    if any(r['type']!='number'for r in log_rows):raise ValueError('nonnumeric small logarithm control')
+    args=[[client.number(raw)]for raw in raw_inputs]
+    answers=service.ask_rows('SINH',args);coshes=service.ask_rows('COSH',args)
+    cosecants=service.ask_rows('CSCH',args);tangents=service.ask_rows('TANH',args)
+    graphs={};programs=[]
+    for association in('product_first','ratio_first','input_ratio_first'):
+      for identities in((False,False),(False,True),(True,False),(True,True)):
+        g=Builder(5);negative=g.op('neg',0,store=False)
+        def op(kind,a,b,site):
+            at=g.op(kind,a,b,store=False);g.nodes[at]['site']=site;return at
+        def term(t,u,log,identity):
+            if identity:return t
+            difference=op('sub',u,g.one,0)
+            if association=='product_first':return op('div',op('mul',difference,t,1),log,2)
+            if association=='ratio_first':return op('mul',op('div',difference,log,2),t,1)
+            return op('mul',difference,op('div',t,log,2),1)
+        plus=term(0,1,3,identities[0]);minus=term(negative,2,4,identities[1])
+        result=op('div',op('sub',plus,minus,3),g.constant(bits(2.)),4);g.sites=5
+        graphs[association,identities]=g.graph(result,result)
+      for cw in(0x123f,0x133f):
+       for mask in range(32):programs.append(dict(association=association,cw=cw,mask=mask,matches=0,first_failure=None))
+    records=[];counts=Counter();size=len(raw_inputs)
+    for i,(raw,answer,cosh,csch,tanh)in enumerate(zip(raw_inputs,answers,coshes,cosecants,tangents)):
+        plus,minus=exp_rows[i],exp_rows[size+i];plog,mlog=log_rows[i],log_rows[size+i]
+        identities=(value(plus['bits'])==1.,value(minus['bits'])==1.)
+        operands=list(map(lambda x:int(x,16),(raw,plus['bits'],minus['bits'],plog['bits'],mlog['bits'])));predictions={}
+        for association in('product_first','ratio_first','input_ratio_first'):
+          for cw in(0x123f,0x133f):
+            values=native.masks(graphs[association,identities],operands,cw)
+            for mask in range(32):predictions[association,cw,mask]=f'{native.publish(values[20*mask:20*mask+10]):016x}'
+        matched=[]
+        for pi,program in enumerate(programs):
+            prediction=predictions[program['association'],program['cw'],program['mask']]
+            good=answer.get('type')=='number'and answer['bits']==prediction;program['matches']+=good
+            if good:matched.append(pi)
+            elif program['first_failure']is None:program['first_failure']=dict(index=i,answer=answer,prediction=prediction)
+        controls={}
+        for word in('strict','stored_pc64'):
+            if answer.get('type')=='number':
+                s=Q(value(answer['bits']));controls['csch_'+word]=bits(float(operation(Q(1),s,'div',word)))
+                counts['csch_'+word+'_matches']+=csch.get('type')=='number'and csch['bits']==controls['csch_'+word]
+                if cosh.get('type')=='number':
+                    controls['tanh_'+word]=bits(float(operation(s,Q(value(cosh['bits'])),'div',word)))
+                    counts['tanh_'+word+'_matches']+=tanh.get('type')=='number'and tanh['bits']==controls['tanh_'+word]
+        counts['rows']+=1;counts['all_declared_programs_refuted']+=not matched
+        counts['identity_matches']+=answer.get('type')=='number'and answer['bits']==raw
+        records.append(dict(input=raw,roles=inputs[raw],exp_plus=plus,exp_minus=minus,ln_plus=plog,ln_minus=mlog,
+                            answer=answer,cosh=cosh,csch=csch,tanh=tanh,controls=controls,matching_programs=matched))
+    result=dict(format='dnacalc-sinh-small-stages/1',complete=True,counts=counts,records=records,programs=programs,
+        complete_programs=[p for p in programs if p['matches']==size],receipts=service.receipts,source_bindings=bindings,
+        library_sha256=sha(library),questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Public EXP/LN leaves are fixed, not fitted or replaced by a private alnrel producer. '
+        'Arithmetic masks identify only declared functional compositions. No tiny-input threshold is inferred from '
+        'partial matches; original failures and fixed windows remain separately labeled.')
+    write(output,result);print(json.dumps(dict(counts=counts,complete=result['complete_programs'])),flush=True)
+    return result
+
+
+def weeknum_controls(checkout,output,cache,bank_trace,offline=False,repeat_count=1):
+    """Check unsupported return-type readings against new exact scalar calls."""
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    source=Path(bank_trace);rows=[json.loads(line)for line in source.read_text().splitlines()]
+    requests={};old=[]
+    def add(arguments,role):
+        key=tuple(arguments);requests.setdefault(key,[]).append(role)
+    for serial in(0.,1.,2.,59.,60.,61.,43831.,44013.,2958465.):
+        for kind in range(65):add((bits(serial),bits(kind)),'fixed serial/return-type grid')
+    for kind in(1.,2.,11.,17.,21.,36.,54.,float(1<<31),float(1<<32)+21.):
+        for value_ in(math.nextafter(kind,-math.inf),kind,math.nextafter(kind,math.inf)):
+            add((bits(43831.),bits(value_)),'adjacent return-type boundary')
+    for row in rows:
+        if row['function']=='WEEKNUM'and row['actual']!=row['expected']:
+            if all(isinstance(a,str)and re.fullmatch('0x[0-9a-f]{16}',a)for a in row['args']):
+                key=tuple(a.removeprefix('0x')for a in row['args']);add(key,'original mismatched input');old.append(row)
+    if not 1<=repeat_count<=8:raise ValueError('bounded repeat count required')
+    keys=list(requests)*repeat_count
+    if repeat_count>1:old=[]
+    write(str(output)+'.questions.json',dict(format='dnacalc-weeknum-controls-questions/1',complete=True,
+        arguments=[dict(args=list(k),roles=requests[k])for k in keys],bank_trace_sha256=sha(source),repeat_count=repeat_count,
+        selection='Fixed serial and return-type grid, adjacent return-type edges, and original mismatched numeric inputs. '
+        'Expected answers are absent from service questions. Repeated historical input conflicts are retained, not resolved by a row selector.'))
+    answers=service.ask_rows('WEEKNUM',[[client.number(x)for x in key]for key in keys]);by_key=dict(zip(keys,answers));counts=Counter()
+    def rendered(answer):
+        if answer['type']=='number':return'0x'+answer['bits']
+        if answer['type']=='error':return'error:'+{'#NUM!':'Num','#VALUE!':'Value','#DIV/0!':'Div0','#N/A':'NA'}.get(answer['code'],answer['code'])
+        return answer['type']
+    historical=[]
+    for row in old:
+        key=tuple(a.removeprefix('0x')for a in row['args']);fresh=by_key[key];counts['original_rows']+=1
+        counts['original_expected_repeated_live']+=rendered(fresh)==row['expected']
+        counts['current_calculation_repeated_live']+=rendered(fresh)==row['actual']
+        historical.append(dict(original=row,fresh=fresh))
+    unsupported=[]
+    for key,answer in zip(keys,answers):
+        kind=math.trunc(value(key[1]));counts['calls']+=1
+        if kind not in(1,2,11,12,13,14,15,16,17,21)and answer['type']=='number':unsupported.append(dict(args=key,answer=answer))
+    repeated={}
+    for key,answer in zip(keys,answers):repeated.setdefault(key,set()).add(rendered(answer))
+    counts['unique_inputs']=len(repeated);counts['inputs_with_changed_answers']=sum(len(v)>1 for v in repeated.values())
+    result=dict(format='dnacalc-weeknum-controls/1',complete=True,counts=counts,historical=historical,
+        repeat_count=repeat_count,repeated_conflicts=[dict(args=key,answers=sorted(values))for key,values in repeated.items()if len(values)>1],
+        unsupported_numeric_controls=unsupported,records=[dict(args=key,answer=answer,roles=requests[key])for key,answer in zip(keys,answers)],
+        receipts=service.receipts,bank_trace_sha256=sha(source),questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Fresh scalar inputs and original readings only. A historical contradiction is not repaired by changing the evaluator '
+        'or discarding an original failure. Visible input metadata does not establish every effective callee input.')
+    write(output,result);print(json.dumps(dict(counts=counts,unsupported_numeric_controls=len(unsupported))),flush=True);return result
+
+
 def render(result, path):
     lines = ['# Numerical fingerprint map', '',
         'Regenerate from DnaCalc-Research, using retained service replies (or asking Excel for missing replies):', '',
@@ -2923,6 +3630,64 @@ def render(result, path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    duration_parser=commands.add_parser('duration-zero-coupon')
+    duration_parser.add_argument('checkout')
+    duration_parser.add_argument('output')
+    duration_parser.add_argument('--cache',required=True)
+    duration_parser.add_argument('--library',required=True)
+    duration_parser.add_argument('--count',type=int,default=64)
+    duration_parser.add_argument('--holdout',action='store_true')
+    duration_parser.add_argument('--offline',action='store_true')
+    duration_transfer_parser=commands.add_parser('duration-two-coupon-transfer')
+    duration_transfer_parser.add_argument('checkout')
+    duration_transfer_parser.add_argument('output')
+    duration_transfer_parser.add_argument('--cache',required=True)
+    duration_transfer_parser.add_argument('--offline',action='store_true')
+    duration_transfer_parser.add_argument('--trials',type=int,default=65536)
+    duration_off_parser=commands.add_parser('duration-off-coupon')
+    duration_off_parser.add_argument('checkout')
+    duration_off_parser.add_argument('output')
+    duration_off_parser.add_argument('--cache',required=True)
+    duration_off_parser.add_argument('--library',required=True)
+    duration_off_parser.add_argument('--offline',action='store_true')
+    duration_off_parser.add_argument('--count',type=int,default=16)
+    duration_off_parser.add_argument('--direct-days',action='store_true')
+    sinh_parser=commands.add_parser('sinh-small-stages')
+    sinh_parser.add_argument('checkout')
+    sinh_parser.add_argument('output')
+    sinh_parser.add_argument('--cache',required=True)
+    sinh_parser.add_argument('--library',required=True)
+    sinh_parser.add_argument('--offline',action='store_true')
+    sinh_parser.add_argument('--bank-trace')
+    sinh_parser.add_argument('--count',type=int,default=128)
+    weeknum_parser=commands.add_parser('weeknum-controls')
+    weeknum_parser.add_argument('checkout')
+    weeknum_parser.add_argument('output')
+    weeknum_parser.add_argument('--cache',required=True)
+    weeknum_parser.add_argument('--bank-trace',required=True)
+    weeknum_parser.add_argument('--offline',action='store_true')
+    weeknum_parser.add_argument('--repeat',type=int,default=1)
+    yield_parser=commands.add_parser('yield-single-coupon')
+    yield_parser.add_argument('checkout')
+    yield_parser.add_argument('output')
+    yield_parser.add_argument('--cache',required=True)
+    yield_parser.add_argument('--offline',action='store_true')
+    yield_parser.add_argument('--month-ends',action='store_true')
+    yield_parser.add_argument('--date-holdout',action='store_true')
+    yield_programs_parser=commands.add_parser('yield-coupon-programs')
+    yield_programs_parser.add_argument('original')
+    yield_programs_parser.add_argument('output')
+    yield_programs_parser.add_argument('--library',required=True)
+    yield_programs_parser.add_argument('--admitted')
+    yield_programs_parser.add_argument('--day-boundaries',action='store_true')
+    yield_programs_parser.add_argument('--nasd-days',action='store_true')
+    yield_programs_parser.add_argument('--numerator-days',action='store_true')
+    yield_days_parser=commands.add_parser('yield-coupon-days')
+    yield_days_parser.add_argument('checkout')
+    yield_days_parser.add_argument('original')
+    yield_days_parser.add_argument('output')
+    yield_days_parser.add_argument('--cache',required=True)
+    yield_days_parser.add_argument('--offline',action='store_true')
     mapping = commands.add_parser('map')
     mapping.add_argument('checkout')
     mapping.add_argument('output', type=Path)
@@ -3109,6 +3874,30 @@ if __name__ == '__main__':
     book_parser.add_argument('--rank-dependencies',action='store_true')
     book_parser.add_argument('--rank-edges')
     args = parser.parse_args()
+    if args.command=='weeknum-controls':
+        weeknum_controls(args.checkout,args.output,args.cache,args.bank_trace,args.offline,args.repeat)
+        raise SystemExit
+    if args.command=='sinh-small-stages':
+        sinh_small_stages(args.checkout,args.output,args.cache,args.library,args.offline,args.bank_trace,args.count)
+        raise SystemExit
+    if args.command=='duration-off-coupon':
+        duration_off_coupon(args.checkout,args.output,args.cache,args.library,args.offline,args.count,args.direct_days)
+        raise SystemExit
+    if args.command=='duration-two-coupon-transfer':
+        duration_two_coupon_transfer(args.checkout,args.output,args.cache,args.offline,args.trials)
+        raise SystemExit
+    if args.command=='duration-zero-coupon':
+        duration_zero_coupon(args.checkout,args.output,args.cache,args.library,args.offline,args.count,args.holdout)
+        raise SystemExit
+    if args.command=='yield-coupon-days':
+        yield_coupon_days(args.checkout,args.original,args.output,args.cache,args.offline)
+        raise SystemExit
+    if args.command=='yield-coupon-programs':
+        yield_coupon_programs(args.original,args.output,args.library,args.admitted,args.day_boundaries,args.nasd_days,args.numerator_days)
+        raise SystemExit
+    if args.command=='yield-single-coupon':
+        yield_single_coupon(args.checkout,args.output,args.cache,args.offline,args.month_ends,args.date_holdout)
+        raise SystemExit
     if args.command=='edges':
         edges(args.checkout,args.output,args.cache,args.offline)
         raise SystemExit

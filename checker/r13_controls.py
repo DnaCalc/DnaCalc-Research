@@ -408,8 +408,49 @@ def loan_certificate_controls(input_path, helpers, search, output):
     print(json.dumps(result))
 
 
+def coupon_controls(study, cache, output):
+    """Changed answers, spans and incomplete cohorts cannot receive a coupon proof."""
+    import copy,gzip,tempfile
+    from questions_r13 import check_yield_coupon
+    study,cache,output=map(Path,(study,cache,output));output.mkdir(parents=True,exist_ok=False)
+    original=json.loads(study.read_text());controls=[]
+    for label,message in [('answer','derived YIELD answer changed'),('span','derived direct span changed'),
+                          ('omitted','YIELD observation cohort omitted or duplicated'),
+                          ('readback','coupon input/readback changed')]:
+        with tempfile.TemporaryDirectory(prefix='dnacalc-coupon-control-')as scratch:
+            scratch=Path(scratch);changed=copy.deepcopy(original);shadow=scratch/'cache';shadow.mkdir()
+            for source in cache.iterdir():
+                if source.is_file():(shadow/source.name).symlink_to(source.resolve())
+            if label=='answer':
+                row=changed['records'][0];row['answer']['bits']=f"{int(row['answer']['bits'],16)^1:016x}"
+            elif label=='span':
+                row=changed['records'][0]['direct_day_counts']['dsr'];row['bits']=f"{int(row['bits'],16)^1:016x}"
+            elif label=='omitted':changed['records']=changed['records'][1:]
+            else:
+                receipt=next(r for r in changed['parent_receipts']if r['function']=='YIELD')
+                target=shadow/receipt['file']
+                with gzip.open(target,'rt')as stream:raw=json.load(stream)
+                first=raw['reply']['inputs'][0][0];first['bits']=f"{int(first['bits'],16)^1:016x}"
+                target.unlink()  # Only the owned temporary symlink; the original reply stays intact.
+                target.write_bytes(gzip.compress(json.dumps(raw).encode(),mtime=0))
+                receipt['sha256']=hashlib.sha256(target.read_bytes()).hexdigest()
+            path=scratch/'study.json';path.write_text(json.dumps(changed));receipt=scratch/'must-not-exist.json'
+            try:check_yield_coupon(path,shadow,receipt,'numerator-published-period')
+            except ValueError as error:
+                if message not in str(error)or receipt.exists()or Path(str(receipt)+'.calls.jsonl').exists():raise
+                controls.append(dict(control=label,rejected=True,error=str(error),success_receipt_absent=True))
+            else:raise ValueError('damaged coupon proof was accepted: '+label)
+    result=dict(complete=True,controls=controls,study_sha256=hashlib.sha256(study.read_bytes()).hexdigest(),
+        source_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in
+                       (Path(__file__),Path(__file__).with_name('questions_r13.py'),Path(__file__).with_name('exact.py'))},
+        limits='Constructed corruptions only; original questions, answers, readbacks and cache files are unchanged.')
+    with(output/'controls.json').open('x')as stream:json.dump(result,stream,indent=2);stream.write('\n')
+    print(json.dumps(result),flush=True);return result
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='coupon':coupon_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='variance-r17':variance_structural_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='loan-inputs':loan_input_controls(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='loan-certificate':loan_certificate_controls(*sys.argv[2:]);raise SystemExit(0)

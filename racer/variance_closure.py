@@ -461,7 +461,156 @@ def paired_run(input_path, destination):
     print(json.dumps(summary))
 
 
+def kurt_outer(checkout, output, cache, library, offline=False, all_arities=False):
+    """Separate KURT's outer arithmetic with exact zero/unit normalization."""
+    import math,random,hashlib
+    from fingerprint import CachedService,Native,Builder,load_service,bits,value,write
+    from exact import BINARY64
+    from x87 import decode
+    seed=0x33c048 if all_arities else 0x33c047
+    rng=random.Random(seed)
+    def four_squares(total):
+        if not total:return [0]*4
+        if total%4==0:return [2*x for x in four_squares(total//4)]
+        for _ in range(1000):
+            a=rng.randrange(math.isqrt(total)+1);left=total-a*a
+            b=rng.randrange(math.isqrt(left)+1);left-=b*b
+            for c in range(math.isqrt(left)+1):
+                d=math.isqrt(left-c*c)
+                if c*c+d*d==left:return [a,b,c,d]
+        raise ValueError('bounded four-square input construction exhausted')
+    cases=[];seen=set()
+    arities=range(4,32)if all_arities else range(5,32,2)
+    for n in arities:
+        k=n//2
+        for depth in range(9):
+            if n%2==0 and depth==0:continue
+            scale=1<<depth
+            for _ in range(8):
+                if k<4:integers=[3*scale//2,scale//2,0]if n==6 else[scale]*k
+                else:
+                    remaining=(n-1)*scale*scale//2;integers=[]
+                    for j in range(k-4):
+                        a=rng.randrange(math.isqrt(remaining//(k-j))+1)
+                        integers.append(a);remaining-=a*a
+                    integers+=four_squares(remaining)
+                positive=sorted(Q(a,scale)for a in integers)
+                values=([-x for x in positive]+([Q(0)]if n%2 else[])+positive)
+                if n==4:values=[Q(3,2),-Q(1,2),-Q(1,2),-Q(1,2)]
+                identity=tuple(values)
+                if identity in seen:continue
+                seen.add(identity)
+                require(sum(values)==0 and sum(x*x for x in values)==n-1,'invalid zero/unit normalization')
+                fourth=sum(x**4 for x in values)
+                require(BINARY64.round(fourth)==fourth,'fourth moment must be exact')
+                for power in (1,2,4):
+                    partial=Q(0)
+                    for x in values:
+                        term=x**power
+                        require(BINARY64.round(term)==term,'term must be exact')
+                        partial+=term
+                        require(BINARY64.round(partial)==partial,'partial sum must be exact')
+                cases.append(dict(n=n,depth=depth,args=[bits(float(x))for x in values],fourth=bits(float(fourth))))
+    # A small independent scale/order check stays inside the same exact
+    # normalization premise; it is not a new arithmetic family.
+    for case in cases[::max(1,len(cases)//16)]:
+        for exponent in (-100,100):
+            values=[math.ldexp(value(x),exponent)for x in reversed(case['args'])]
+            cases.append(dict(case,n=case['n'],args=[bits(x)for x in values],normalizer_scale=exponent))
+    def family(n):
+        result={}
+        for name in ('numerator_first','coefficient_first','common_denominator','factorized','population_excess'):
+            g=Builder(1)
+            c=lambda x:g.constant(bits(float(x)))
+            op=lambda kind,a,b:g.op(kind,a,b)
+            d2=(n-2)*(n-3);d3=(n-1)*d2
+            correction=lambda:op('div',c(3*(n-1)**2),c(d2))
+            if name=='numerator_first':
+                left=op('div',op('mul',c(n*(n+1)),0),c(d3));right=correction()
+                out=g.op('sub',left,right,store=False)
+            elif name=='coefficient_first':
+                left=op('mul',op('div',c(n*(n+1)),c(d3)),0);right=correction()
+                out=g.op('sub',left,right,store=False)
+            elif name=='common_denominator':
+                top=op('sub',op('mul',c(n*(n+1)),0),c(3*(n-1)**3))
+                out=g.op('div',top,c(d3),store=False)
+            elif name=='factorized':
+                factor=op('mul',op('div',c(n),c(n-1)),op('div',c(n+1),c(n-2)))
+                factor=op('div',factor,c(n-3));left=op('mul',factor,0)
+                right=op('mul',op('div',c(3*(n-1)),c(n-2)),op('div',c(n-1),c(n-3)))
+                out=g.op('sub',left,right,store=False)
+            else:
+                excess=op('sub',op('div',op('mul',c(n),0),c((n-1)**2)),c(3))
+                inside=op('add',op('mul',c(n+1),excess),c(6))
+                factor=op('div',c(n-1),c(d2))
+                out=g.op('mul',factor,inside,store=False)
+            result[name]=g.graph(out,out)
+        return result
+    graphs={n:family(n)for n in arities}
+    native=Native(library);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    dependencies=[Path(__file__),Path(__file__).with_name('fingerprint.py'),Path(__file__).with_name('x87_programs.py'),
+                  Path(__file__).with_name('x87_native.c'),Path(library),Path(checkout)/'crates/calc-func/src/ported/moment_stats_family.rs']
+    frozen={str(p.resolve()):digest(p)for p in dependencies}
+    snapshots=Path(output).resolve().parent/'producers';snapshots.mkdir(exist_ok=True)
+    for p,h in frozen.items():
+        dest=snapshots/(h+'-'+Path(p).name)
+        if not dest.exists():dest.write_bytes(Path(p).read_bytes())
+    write(str(output)+'.questions.json',dict(format='dnacalc-kurt-outer-questions/1',complete=True,cases=cases,rng_seed=seed,all_arities=all_arities,
+        graphs=graphs,source_bindings=frozen,
+        selection='Fixed dyadic square decompositions, exactly zero sum and sum of squares n-1. '
+                  'All fourth powers and their sum are exact. Five elementary outer identities, '
+                  'all PC64 store masks and one strict profile each, fixed before Excel answers.'))
+    questions=[[client.number(x)for x in r['args']]for r in cases]
+    averages=service.ask('AVERAGE',questions)['rows']
+    deviations=service.ask('STDEV.S',questions)['rows']
+    answers=service.ask('KURT',questions)['rows']
+    counts=Counter();programs={};records=[];matrix=hashlib.sha256()
+    calls=Path(str(output)+'.calls.jsonl').open('x')
+    try:
+        for index,(case,avg,std,answer)in enumerate(zip(cases,averages,deviations,answers)):
+            scale=case.get('normalizer_scale',0)
+            require(avg.get('type')=='number'and value(avg['bits'])==0.,'public average contradicts exact zero')
+            require(std.get('type')=='number'and std['bits']==bits(math.ldexp(1.,scale)),'public deviation contradicts exact scale')
+            require(answer.get('type')=='number','finite kurtosis control required')
+            n=case['n'];matching=[];strict=None
+            for name,graph in graphs[n].items():
+                returned=native.masks(graph,[int(case['fourth'],16)],0x133f)
+                predictions=[f'{native.publish(returned[20*i:20*i+10]):016x}'for i in range(1<<graph['sites'])]
+                direct=f'{native.publish(native.evaluate(graph,[int(case["fourth"],16)],0x123f)[:10],0x123f):016x}'
+                if name=='numerator_first':strict=direct
+                for label,prediction in [(name+'/strict',direct),*[(name+'/pc64/'+str(i),p)for i,p in enumerate(predictions)]]:
+                    matrix.update(bytes.fromhex(prediction))
+                    p=programs.setdefault(label,dict(rows=0,matched=0,first_contradiction=None))
+                    p['rows']+=1;p['matched']+=prediction==answer['bits']
+                    if prediction==answer['bits']:matching.append(label)
+                    elif p['first_contradiction']is None:p['first_contradiction']=dict(index=index,n=n,fourth=case['fourth'],prediction=prediction,answer=answer)
+            counts['rows']+=1;counts['no_program_matches']+=not matching
+            records.append(dict(case,average=avg,deviation=std,answer=answer,matching_programs=matching,strict_baseline= strict))
+            calls.write(json.dumps(dict(id='kurt-outer-'+str(index),function='KURT',args=['0x'+x for x in case['args']],
+                                       numeric_cell_inputs=True,actual='0x'+strict))+'\n')
+    finally:calls.close()
+    result=dict(format='dnacalc-kurt-outer/1',complete=True,counts=counts,programs=programs,records=records,
+        prediction_matrix_sha256=matrix.hexdigest(),receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=digest(str(output)+'.questions.json'),calls_sha256=digest(str(output)+'.calls.jsonl'),
+        limits='Exact normalized controls isolate the declared outer formulas under simple mean/variance '
+               'programs; public AVERAGE and STDEV.S are independently confirmed. These are discoveries, '
+               'not a complete KURT prefix or permission to select a formula by partial score. '
+               'Scale/order controls may reuse the same mathematical moment and are not independent algorithms.')
+    write(output,result)
+    print(json.dumps(dict(counts=counts,complete_programs=[k for k,p in programs.items()if p['matched']==p['rows']])),flush=True)
+    return result
+
+
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='kurt-outer-all-arities':
+        args=sys.argv[2:];offline=bool(args and args[-1]=='--offline')
+        if offline:args=args[:-1]
+        kurt_outer(*args,offline=offline,all_arities=True);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='kurt-outer':
+        args=sys.argv[2:];offline=bool(args and args[-1]=='--offline')
+        if offline:args=args[:-1]
+        kurt_outer(*args,offline=offline);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='paired':paired_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moment-scope-stdev4':raw_moment_scope(*sys.argv[2:], root=True);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='raw-moments-stdev4':raw_moment_run(*sys.argv[2:], fused=True, root=True);raise SystemExit(0)

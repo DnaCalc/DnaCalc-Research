@@ -168,6 +168,931 @@ def seed_phase_validation(study, output, cache, retained_dir=None):
     return result
 
 
+def seed_phase_absolute(study, output):
+    """Expose the remaining affine/scale ambiguity of the R32 Horner lead.
+
+    This is algebra on already measured phase derivatives, not a recovered
+    numerical table. Each phase is measured modulo one on a binary64 grid.
+    """
+    from decimal import Decimal as D, localcontext
+    doc = json.loads(Path(study).read_text())
+    if doc['format'] != 'dnacalc-gamma-seed-phase-validation/1':
+        raise ValueError('validated phase relation required')
+    root, linked = doc['root_phase'], doc['linked_phase']
+    with localcontext() as ctx:
+        ctx.prec = 70
+        x0 = D(value(root['origin']))
+        dx = D(math.ulp(float(x0)))
+        p, q = ([D(c) for c in track['coefficients_cycles']] for track in (root, linked))
+        # This is an identity imposed by the linked R32 model; its
+        # inherited second derivative is not another observation.
+        alias = (q[2]/2-(x0-1)*p[2]-p[1])*dx
+        root_value = q[1]/2-(x0-1)*p[1]
+        choices = []
+        for integer in range(-8, 9):
+            normalized = root_value+D(integer)/(2*dx)
+            if D(2)**52 <= abs(normalized) < D(2)**53:
+                choices.append(dict(linked_slope_integer_alias=integer,
+                    root_value_in_own_ulps=str(normalized),
+                    root_value_in_binades=str(normalized*D(2)**-52)))
+        higher = {str(j):str(p[j]*dx) for j in range(2,root['active_degree']+1)}
+    result = dict(format='dnacalc-gamma-seed-phase-absolute/1', complete=True,
+        study=dict(path=str(Path(study).resolve()),sha256=sha(study)),
+        relation='Q = 2*(x-1)*P + constant in normalized stage cycles',
+        inherited_second_derivative_identity=str(alias),
+        conditional_premise='Chosen root slope branch (integer alias zero) and observed spectral signs; linked higher derivatives were inherited, not independently measured.',
+        conditional_root_value_choices=choices,
+        higher_taylor_coefficients_in_input_grid_units=higher,
+        source_bindings={str(Path(__file__).resolve()):sha(__file__)},
+        limits='Conditional algebra using the R32 smooth-phase model, not rigorous hidden-stage enclosures. '
+               'The linked slope has integer aliases, both spectral signs need interpretation, the root phase '
+               'has an arbitrary constant, and a common power-of-two scale is unobserved. The remaining '
+               'phase tracks do not yet supply validated adjacent Horner links. These observations do not '
+               'identify absolute binary64 coefficients; no table or application result changes.')
+    write(output,result)
+    print(json.dumps(result,indent=2),flush=True)
+    return result
+
+
+def low_gamma_recurrence(checkout, output, cache, library, offline=False, count=32):
+    """Separate simple quotient loops using independently observed seed calls."""
+    from fractions import Fraction as Q
+    from exact import operation
+    native=Native(library)
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    seeds=sorted({f'{int(bits(center),16)-count//2+i:016x}'
+                  for center in (1.125,1.25,1.3,1.375,1.5,1.625,1.7,1.75,1.875)
+                  for i in range(count)})
+    cases=[]
+    for seed in seeds:
+        y=value(seed)-1.
+        for shift in (0,-1,-2):
+            x=y+shift
+            if not -2<x<1 or x==0 or Q(x)!=Q(y)+shift:
+                continue
+            factors=[y-i for i in range(1-shift)]
+            if any(Q(f)!=Q(y)-i for i,f in enumerate(factors)):
+                raise ValueError('recurrence factor rounded')
+            cases.append(dict(x=bits(x),seed=seed,factors=[bits(f)for f in factors]))
+    labels=[(order,kind) for order in ('top_down','bottom_up')
+            for kind in ('resident_divisions','stored_divisions','resident_product','stored_product')]
+    questions=dict(format='dnacalc-gamma-low-recurrence-questions/1',complete=True,
+        seeds=seeds,cases=cases,program_order=labels,
+        selection='Fixed dyadic/ordinary centers and adjacent seed doubles. Exact rational operands '
+                  'must preserve the same fractional seed. No output selects the inputs or program order.',
+        source_bindings={**STAGE_BINDINGS,str(Path(library).resolve()):sha(library)})
+    write(str(output)+'.questions.json',questions)
+    answers=service.ask('GAMMA',[[client.number(s)]for s in seeds])['rows']
+    if any(a['type']!='number'for a in answers):
+        raise ValueError('positive seed must be numeric')
+    anchors={s:a['bits']for s,a in zip(seeds,answers)}
+    targets=service.ask('GAMMA',[[client.number(c['x'])]for c in cases])['rows']
+    counts=Counter();records=[]
+    for c,target in zip(cases,targets):
+        if target['type']!='number':
+            raise ValueError('non-pole low recurrence must be numeric')
+        predictions={}
+        for order,kind in labels:
+            factors=c['factors'] if order=='top_down'else list(reversed(c['factors']))
+            operand=load64(int(anchors[c['seed']],16))
+            rational=binary64(anchors[c['seed']])
+            if kind.endswith('divisions'):
+                for f in factors:
+                    operand=native.leaf('div',operand,load64(int(f,16)),0x133f)
+                    rational=EXTENDED64.round(rational/binary64(f))
+                    if kind.startswith('stored'):
+                        raw=native.publish(operand)
+                        operand=load64(raw)
+                        rational=BINARY64.round(rational)
+            else:
+                product=load64(int(bits(1.),16));rproduct=Q(1)
+                for f in factors:
+                    product=native.leaf('mul',product,load64(int(f,16)),0x133f)
+                    rproduct=EXTENDED64.round(rproduct*binary64(f))
+                    if kind.startswith('stored'):
+                        product=load64(native.publish(product))
+                        rproduct=BINARY64.round(rproduct)
+                operand=native.leaf('div',operand,product,0x133f)
+                rational=EXTENDED64.round(rational/rproduct)
+            raw=f'{native.publish(operand):016x}'
+            if raw!=bits(float(BINARY64.round(rational))):
+                raise ValueError('native recurrence differs from exact rational checker')
+            label=order+'_'+kind
+            predictions[label]=raw
+            counts[label+'_matches']+=raw==target['bits']
+        counts['rows']+=1
+        counts['all_models_refuted']+=target['bits']not in predictions.values()
+        records.append(dict(c,seed_answer=anchors[c['seed']],answer=target,predictions=predictions))
+    result=dict(format='dnacalc-gamma-low-recurrence/1',complete=True,counts=counts,
+        records=records,receipts=service.receipts,questions_sha256=sha(str(output)+'.questions.json'),
+        source_bindings=questions['source_bindings'],
+        limits='Paired public seeds, exact factor identities and independently checked PC64 arithmetic. '
+               'A match identifies only a sampled recurrence under the public-seed premise; it does not '
+               'identify the seed table. Every contradiction and original return is retained.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def low_gamma_shared_seed(study, output):
+    """Invert each low recurrence before assuming the seed is stored."""
+    from collections import defaultdict
+    from fractions import Fraction as Q
+    from exact import operation
+    doc=json.loads(Path(study).read_text())
+    groups=defaultdict(list)
+    for r in doc['records']:
+        groups[r['seed']].append(r)
+    programs=[(order,kind)for order in ('top_down','bottom_up')
+              for kind in ('resident_divisions','stored_divisions','resident_product','stored_product')]
+    counts=Counter();records=[]
+    for seed,rows in sorted(groups.items()):
+        anchor=binary64(rows[0]['seed_answer'])
+        anchor_cell=BINARY64.pullback(Span(anchor,anchor))
+        models=[]
+        for order,kind in programs:
+            common=anchor_cell
+            constraints=[]
+            for r in rows:
+                factors=r['factors']if order=='top_down'else list(reversed(r['factors']))
+                v=binary64(r['answer']['bits'])
+                span=BINARY64.pullback(Span(v,v))
+                if kind.endswith('divisions'):
+                    for f in reversed(factors):
+                        span=inverse(span,binary64(f),'div',True,
+                                     'stored_pc64'if kind.startswith('stored')else'resident_pc64')
+                else:
+                    product=Q(1)
+                    for f in factors:
+                        product=operation(product,binary64(f),'mul',
+                                          'stored_pc64'if kind.startswith('stored')else'resident_pc64')
+                    span=inverse(span,product,'div',True,'resident_pc64')
+                constraints.append(dict(x=r['x'],seed_preimage=span.json()if span else None))
+                common=common.meet(span)if common else None
+            coordinates=EXTENDED64.coordinates(common)
+            label=order+'_'+kind
+            counts[label+'_feasible_groups']+=coordinates is not None
+            models.append(dict(program=label,shared_real_interval=common.json()if common else None,
+                               resident_count=coordinates[1]-coordinates[0]+1 if coordinates else 0,
+                               constraints=constraints))
+        counts['seed_groups']+=1
+        counts['all_models_refuted_groups']+=all(m['resident_count']==0 for m in models)
+        records.append(dict(seed=seed,seed_answer=rows[0]['seed_answer'],models=models))
+    result=dict(format='dnacalc-gamma-low-shared-seed/1',complete=True,counts=counts,records=records,
+        study=dict(path=str(Path(study).resolve()),sha256=sha(study)),
+        source_bindings={**STAGE_BINDINGS},
+        limits='Necessary exact inverse constraints for a common arbitrary resident PC64 seed in the '
+               'observed public seed rounding cell. An empty intersection refutes the declared recurrence '
+               'even without assuming binary64 seed storage. A nonempty interval is possibility, not '
+               'identification of a seed producer or its final operation. No output changes.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def gammaln_low_composition(checkout, output, cache, library, offline=False, count=64):
+    """Observe the below-.7 recurrence with public upper-band and LN calls."""
+    from exact import operation
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    native=Native(library)
+    centers=(2.**-100,2.**-53,2.**-52,2.**-20,.125,.25,.375,.5,.625,
+             math.nextafter(.7,0.))
+    inputs=sorted({f'{int(bits(c),16)-count//2+i:016x}'for c in centers for i in range(count)
+                   if 0<value(f'{int(bits(c),16)-count//2+i:016x}')<.7})
+    # Exponent edges separate x+1 publication from a hypothetical unrounded
+    # addition; each upper call independently observes that rounded argument.
+    shifts=sorted({bits(value(x)+1.)for x in inputs})
+    frozen={**STAGE_BINDINGS,str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-gammaln-low-composition-questions/1',
+        complete=True,inputs=inputs,upper_arguments=shifts,source_bindings=frozen,
+        hypothesis='GAMMALN(x) = GAMMALN(RN53(1+x)) - LN(x) below .7; test strict and stored-PC64 subtraction using independent public calls.'))
+    upper=service.ask('GAMMALN',[[client.number(x)]for x in shifts])['rows']
+    if any(r['type']!='number'for r in upper):raise ValueError('numeric upper band required')
+    uppers={x:r['bits']for x,r in zip(shifts,upper)}
+    logs=service.ask('LN',[[client.number(x)]for x in inputs])['rows']
+    target=service.ask('GAMMALN',[[client.number(x)]for x in inputs])['rows']
+    precise=service.ask('GAMMALN.PRECISE',[[client.number(x)]for x in inputs])['rows']
+    counts=Counter();records=[]
+    for x,log,answer,other in zip(inputs,logs,target,precise):
+        if any(r['type']!='number'for r in (log,answer,other)):raise ValueError('numeric low band required')
+        a=uppers[bits(value(x)+1.)];b=log['bits']
+        predictions={model:bits(float(operation(binary64(a),-binary64(b),'add',model)))
+                     for model in ('strict','stored_pc64')}
+        native_result=f'{native.publish(native.leaf("sub",load64(int(a,16)),load64(int(b,16)),0x133f)):016x}'
+        if native_result!=predictions['stored_pc64']:raise ValueError('low subtraction checker disagrees')
+        for name,result in predictions.items():counts[name+'_matches']+=result==answer['bits']
+        counts['rows']+=1;counts['aliases_equal']+=answer==other
+        counts['both_refuted']+=answer['bits']not in predictions.values()
+        records.append(dict(x=x,upper_argument=bits(value(x)+1.),upper_answer=a,log=log,
+                            answer=answer,precise=other,predictions=predictions))
+    result=dict(format='dnacalc-gammaln-low-composition/1',complete=True,counts=counts,records=records,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Independent public calls test one recurrence and its stored argument. A contradiction '
+               'does not identify a private low-band approximation, logarithm, or an unstored upper-band '
+               'value. Exact aliases and all mismatches are retained; no table is fitted.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def gammaln_low_tables(checkout, output, cache, library, offline=False, count=128):
+    """Challenge existing low-band tables without moving any coefficient."""
+    import re
+    path=Path(checkout)/'crates/calc-func/src/ported/excel_numeric/gammaln.rs'
+    source=path.read_text()
+    tables={}
+    for name in ('P1','Q1'):
+        block=source.split('const '+name+':',1)[1].split('];',1)[0]
+        tables[name]=[b.replace('_','').lower()for b in re.findall(r'0x([0-9a-fA-F_]+)',block)]
+        if len(tables[name])!=8:raise ValueError('low table shape changed')
+    for name in ('P2','Q2'):
+        block=source.split('const '+name+':',1)[1].split('];',1)[0].split('= [',1)[1]
+        tables[name]=[bits(float(v.strip()))for v in block.split(',')if v.strip()]
+        if len(tables[name])!=8:raise ValueError('shifted low table shape changed')
+    native=Native(library)
+    programs={}
+    for band in ('B1','B2'):
+        variants=[('continuous',False,False,False,False,0x133f),
+                  ('C_Horner',False,True,True,True,0x133f),
+                  ('strict',True,True,True,True,0x123f)]
+        variants += [('products_final_sums_'+str(int(p))+str(int(q)),True,True,p,q,0x133f)
+                     for p,q in ((False,False),(True,False),(False,True),(True,True))]
+        for label,products,sums,p_final,q_final,cw in variants:
+            g=Builder(1)
+            def op(kind,a,b,stored):
+                n=g.op(kind,a,b,store=False)
+                if stored:g.nodes[n]['site']=0;g.sites=1
+                return n
+            t=0 if band=='B1'else op('sub',0,g.constant(bits(2.)),False)
+            def chain(name,initial,last):
+                if band=='B1':
+                    v=g.constant(tables[name][-1])
+                    coefficients=list(reversed(tables[name][:-1]))
+                else:
+                    v=g.constant(bits(initial));coefficients=tables[name]
+                for i,c in enumerate(coefficients):
+                    v=op('mul',v,t,products)
+                    v=op('add',v,g.constant(c),last if i==len(coefficients)-1 else sums)
+                return v
+            n=chain('P'+band[-1],0.,p_final);d=chain('Q'+band[-1],1.,q_final)
+            ratio=op('div',n,d,products)
+            if band=='B1':
+                delta=op('sub',0,g.one,False)
+                result=op('mul',delta,ratio,False)
+            else:
+                inner=op('mul',t,ratio,False)
+                inner=op('add',g.constant('3fdb0ee6072093ce'),inner,False)
+                result=op('mul',t,inner,False)
+            programs[band+'_'+label]=dict(graph=g.graph(result,result),cw=cw)
+    centers=(.7+2.**-12,.75,.875,1.+2.**-12,1.125,1.375,1.5-2.**-12,1.625,1.75,1.875,2.-2.**-12)
+    windows=[dict(center=bits(c),band='B1'if c<1.5 else'B2',
+                  inputs=[f'{int(bits(c),16)-count//2+i:016x}'for i in range(count)])for c in centers]
+    frozen={**STAGE_BINDINGS,str(path.resolve()):sha(path),str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-gammaln-low-table-questions/1',complete=True,
+        tables=tables,windows=windows,programs=programs,source_bindings=frozen,
+        selection='Fixed ordinary centers and root/band edges. Existing table bits are frozen; '
+                  'programs follow continuous Horner, C assignments, strict operations, then stored products and final-sum variants.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    questions=[[client.number(x)]for w in windows for x in w['inputs']]
+    answers=service.ask('GAMMALN',questions)['rows']
+    precise=service.ask('GAMMALN.PRECISE',questions)['rows']
+    counts=Counter();records=[];offset=0
+    for window in windows:
+        local=Counter()
+        for x,answer,other in zip(window['inputs'],answers[offset:offset+count],precise[offset:offset+count]):
+            if answer['type']!='number'or other['type']!='number':raise ValueError('numeric low table window required')
+            predictions={name:f'{native.publish(native.evaluate(p["graph"],[int(x,16)],p["cw"],mask=1)[:10],p["cw"]):016x}'
+                         for name,p in programs.items()if name.startswith(window['band'])}
+            for name,p in predictions.items():local[name+'_matches']+=p==answer['bits']
+            local['rows']+=1;local['aliases_equal']+=answer==other
+            local['all_models_refuted']+=answer['bits']not in predictions.values()
+            records.append(dict(x=x,band=window['band'],answer=answer,precise=other,predictions=predictions))
+        offset+=count;counts.update(local)
+        window['counts']=local
+    result=dict(format='dnacalc-gammaln-low-tables/1',complete=True,counts=counts,windows=windows,
+        records=records,receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Frozen existing published tables under declared Horner stores only. These contradictions '
+               'cannot distinguish missing table bits from an unknown private approximation. No coefficient, '
+               'branch, or kernel is selected by match count; alias calls remain separate observations.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def beta_shape_two(checkout, output, cache, library, offline=False, count=64):
+    """Isolate the series-free I_x(2,1) exponent before general beta work.
+
+    In the retained TOMS708 bpser form, the series is zero at b=1 and
+    betaln(2,1) is -ln(2). No unknown gamma table enters this control.
+    """
+    from exact import operation
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    native=Native(library)
+    centers=(2.**-100,2.**-30,2.**-10,.03125,.125,.25,.3,.375,.5-2.**-12)
+    xs=sorted({f'{int(bits(c),16)-count//2+i:016x}'for c in centers for i in range(count)})
+    programs={}
+    for stored_log in (True,False):
+        for stored_sum in (True,False):
+            g=Builder(1)
+            def op(kind,a,b,stored=False):
+                n=g.op(kind,a,b,store=False)
+                if stored:g.nodes[n]['site']=0;g.sites=1
+                return n
+            logarithm=op('fyl2x',op('fldln2',0,0),0,stored_log)
+            exponent=op('mul',g.constant(bits(2.)),logarithm)
+            exponent=op('add',exponent,g.constant(bits(math.log(2.))),stored_sum)
+            base2=op('mul',exponent,op('fldl2e',0,0))
+            whole=op('frndint',base2,0)
+            fraction=op('sub',base2,whole)
+            small=op('f2xm1',fraction,0)
+            exp=op('fscale',op('add',g.one,small),whole)
+            result=op('div',exp,g.constant(bits(2.)))
+            label='log_'+('stored'if stored_log else'resident')+'_sum_'+('stored'if stored_sum else'resident')
+            programs[label]=g.graph(result,result)
+    frozen={**STAGE_BINDINGS,str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-beta-shape-two-questions/1',complete=True,
+        inputs=xs,programs=programs,source_bindings=frozen,
+        premise='Retained TOMS708 series-free b=1, a=2 arm: EXP(2*LN(x)+LN(2))/2. '
+                'Fixed exponent/ordinary adjacent windows below .5; no fit, coefficient, or count selection.'))
+    logs=service.ask('LN',[[client.number(x)]for x in xs])['rows']
+    if any(r['type']!='number'for r in logs):raise ValueError('positive LN controls must be numeric')
+    arguments=[bits(float(operation(2*binary64(r['bits']),binary64(bits(math.log(2.))),'add','stored_pc64')))for r in logs]
+    exp_controls=service.ask('EXP',[[client.number(x)]for x in arguments])['rows']
+    targets=service.ask('BETA.DIST',[[client.number(x),client.number(2.),client.number(1.),client.boolean(True)]for x in xs])['rows']
+    legacy=service.ask('BETADIST',[[client.number(x),client.number(2.),client.number(1.)]for x in xs])['rows']
+    records=[];counts=Counter()
+    ln_graph=primitive_stage_graph('LN');exp_graph=primitive_stage_graph('EXP')
+    for x,log,arg,exp,target,alias in zip(xs,logs,arguments,exp_controls,targets,legacy):
+        if any(r['type']!='number'for r in (exp,target,alias)):raise ValueError('positive beta controls must be numeric')
+        ln=f'{native.publish(native.evaluate(ln_graph,[int(x,16)],0x133f)[:10]):016x}'
+        ee=f'{native.publish(native.evaluate(exp_graph,[int(arg,16)],0x133f)[:10]):016x}'
+        if ln!=log['bits']or ee!=exp['bits']:raise ValueError('independent public primitive differs from native instruction model')
+        predictions={name:f'{native.publish(native.evaluate(graph,[int(x,16)],0x133f,mask=1)[:10]):016x}'for name,graph in programs.items()}
+        paired_prediction=bits(value(exp['bits'])/2.)
+        if predictions['log_stored_sum_stored']!=paired_prediction:raise ValueError('paired public beta exponent differs from native')
+        predictions['stored_square']=bits(float(operation(binary64(x),binary64(x),'mul','stored_pc64')))
+        for label,p in predictions.items():counts[label+'_matches']+=p==target['bits']
+        counts['rows']+=1;counts['aliases_equal']+=target==alias
+        counts['all_models_refuted']+=target['bits']not in predictions.values()
+        records.append(dict(x=x,log=log,exponent_argument=arg,exp=exp,answer=target,legacy=alias,predictions=predictions))
+    result=dict(format='dnacalc-beta-shape-two/1',complete=True,counts=counts,records=records,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Conditional series-free exponent controls and independently verified public primitives. '
+               'The square is a mathematical control, not a proposed special case. A complete match '
+               'would identify only this sampled arm; other beta normalizers, series and callers remain separate.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def gammaln_log_controls(checkout, replay, output, cache, offline=False):
+    """Use primitive-log disagreements before asking the low-band target."""
+    from exact import operation
+    doc=json.loads(Path(replay).read_text())
+    if not doc['complete']or doc['format']!='dnacalc-gammaln-low-stage-replay/1':
+        raise ValueError('complete current stage replay required')
+    selected=[r for r in doc['records']if r['runtime_log']!=r['worksheet_log']]
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    uppers=service.ask('GAMMALN',[[client.number(r['upper_argument'])]for r in selected])['rows']
+    logs=service.ask('LN',[[client.number(r['original']['x'])]for r in selected])['rows']
+    controls=[];indistinguishable=[]
+    for r,upper,log in zip(selected,uppers,logs):
+        if upper['type']!='number'or log['type']!='number':raise ValueError('primitive controls must be numeric')
+        if log['bits']!=r['worksheet_log']:raise ValueError('public logarithm differs from current stage replay')
+        predictions={name+'_'+model:bits(float(operation(binary64(upper['bits']),-binary64(b),'add',model)))
+                     for name,b in (('runtime',r['runtime_log']),('worksheet',r['worksheet_log']))
+                     for model in ('strict','stored_pc64')}
+        record=dict(x=r['original']['x'],upper=upper,log=log,replay=r,predictions=predictions)
+        if len(set(predictions.values()))>1:controls.append(record)
+        else:indistinguishable.append(record)
+    frozen={**STAGE_BINDINGS,str(Path(replay).resolve()):sha(replay)}
+    questions=dict(format='dnacalc-gammaln-log-controls-questions/1',complete=True,
+        replay_rows=len(doc['records']),primitive_log_disagreements=len(selected),controls=controls,
+        indistinguishable=indistinguishable,source_bindings=frozen,
+        selection='All primitive runtime/worksheet LN disagreements in the fixed prior RNG input set; '
+                  'independent public upper-band values distinguish subtraction predictions before any low-band target is requested.')
+    write(str(output)+'.questions.json',questions)
+    answers=service.ask('GAMMALN',[[client.number(r['x'])]for r in controls])['rows']
+    aliases=service.ask('GAMMALN.PRECISE',[[client.number(r['x'])]for r in controls])['rows']
+    records=[];counts=Counter()
+    for r,answer,alias in zip(controls,answers,aliases):
+        if answer['type']!='number'or alias['type']!='number':raise ValueError('finite low band target required')
+        for name,p in r['predictions'].items():counts[name+'_matches']+=p==answer['bits']
+        counts['rows']+=1;counts['aliases_equal']+=answer==alias
+        counts['all_models_refuted']+=answer['bits']not in r['predictions'].values()
+        records.append(dict(r,answer=answer,alias=alias))
+    result=dict(format='dnacalc-gammaln-log-controls/1',complete=True,counts=counts,records=records,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='A sampled logarithm consumer discrimination with independent public upper-band and LN '
+               'observations. The upper approximation remains unresolved; this does not recover its table. '
+               'Strict and PC64 subtraction are reported separately even when indistinguishable.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def beta_log_replay(study, replay, output, library):
+    """Separate the stored runtime LN leaf from exponent publication."""
+    import copy
+    doc=json.loads(Path(study).read_text())
+    questions_path=str(study)+'.questions.json'
+    if sha(questions_path)!=doc['questions_sha256']:raise ValueError('beta questions changed')
+    questions=json.loads(Path(questions_path).read_text())
+    leaves=json.loads(Path(replay).read_text())
+    if not leaves['complete']:raise ValueError('incomplete primitive replay')
+    runtime={r['original']['x']:r['runtime_log']for r in leaves['records']}
+    native=Native(library);graphs={}
+    for name,original in questions['programs'].items():
+        if not name.startswith('log_stored_'):continue
+        graph=copy.deepcopy(original)
+        found=[n for n in graph['nodes']if n['op']=='fyl2x']
+        if len(found)!=1:raise ValueError('changed beta logarithm graph')
+        found[0].update(op='input',a=1)
+        graphs['runtime_'+name]=graph
+        resident_normalizer=copy.deepcopy(graph)
+        constants=[n for n in resident_normalizer['nodes']if n['op']=='const'and n.get('bits')==bits(math.log(2.))]
+        if len(constants)!=1:raise ValueError('changed beta normalizer graph')
+        constants[0]['op']='fldln2'
+        graphs['runtime_'+name+'_resident_ln2']=resident_normalizer
+    records=[];counts=Counter()
+    for r in doc['records']:
+        if r['x']not in runtime:raise ValueError('missing runtime logarithm')
+        predictions={name:f'{native.publish(native.evaluate(graph,[int(r["x"],16),int(runtime[r["x"]],16)],0x133f,mask=1)[:10]):016x}'
+                     for name,graph in graphs.items()}
+        for name,p in predictions.items():counts[name+'_matches']+=p==r['answer']['bits']
+        counts['rows']+=1
+        counts['runtime_public_log_different']+=runtime[r['x']]!=r['log']['bits']
+        counts['all_models_refuted']+=r['answer']['bits']not in predictions.values()
+        records.append(dict(original=r,runtime_log=runtime[r['x']],predictions=predictions))
+    result=dict(format='dnacalc-beta-runtime-log-replay/1',complete=True,counts=counts,records=records,
+        graphs=graphs,source_bindings={**STAGE_BINDINGS,str(Path(study).resolve()):sha(study),
+            str(Path(replay).resolve()):sha(replay),str(Path(library).resolve()):sha(library)},
+        limits='The existing cleared runtime logarithm is a declared hypothesis, not an Excel '
+               'observation. Fixed series-free beta exponent programs and every contradiction remain '
+               'visible. No normalizer or coefficient is fitted and no kernel is selected by counts.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def beta_integer_unit_shape(checkout, output, cache, library, offline=False, count=64, prior=None):
+    """Separate the published b=1 normalizer loop from its EXP consumer.
+
+    Integer shapes make the other gamma helpers zero. The retained TOMS708
+    reduction is a short product of b/(1+b), then a logarithm. This is an
+    algorithm-derived control, never an integer-shape replacement kernel.
+    """
+    import itertools
+    from fractions import Fraction as Q
+    from exact import operation
+    native=Native(library);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    shapes=(2,3,4,5,6,7)
+    centers=(2.**-10,.03125,.125,.25,.3,.375,.5-2.**-12)
+    xs=sorted({f'{int(bits(c),16)-count//2+i:016x}'for c in centers for i in range(count)})
+    loops={}
+    for a,ratio_store,product_store in itertools.product(shapes,(True,False),(True,False)):
+        product=load64(int(bits(1.),16));rproduct=Q(1)
+        for b in range(a-1,0,-1):
+            ratio=native.leaf('div',load64(int(bits(b),16)),load64(int(bits(1+b),16)),0x133f)
+            rr=operation(Q(b),Q(1+b),'div','stored_pc64'if ratio_store else'resident_pc64')
+            if ratio_store:ratio=load64(native.publish(ratio))
+            product=native.leaf('mul',product,ratio,0x133f)
+            rproduct=operation(rproduct,rr,'mul','stored_pc64'if product_store else'resident_pc64')
+            if product_store:product=load64(native.publish(product))
+        if decode(product)!=rproduct:raise ValueError('beta reduction differs from rational checker')
+        loops[(a,ratio_store,product_store)]=product
+    graphs={}
+    for a,mul_store,norm_store,sum_store,exp_store,reciprocal in itertools.product(shapes,*([(True,False)]*5)):
+        g=Builder(2)
+        def op(kind,a,b=0,stored=False):
+            n=g.op(kind,a,b,store=False)
+            if stored:g.nodes[n]['site']=0;g.sites=1
+            return n
+        normalizer=op('fyl2x',op('fldln2',0),1,norm_store)
+        term=op('mul',g.constant(bits(a)),0,mul_store)
+        exponent=op('sub',term,normalizer,sum_store)
+        base2=op('mul',exponent,op('fldl2e',0))
+        if reciprocal:base2=op('neg',base2)
+        whole=op('frndint',base2)
+        fraction=op('sub',base2,whole)
+        exp=op('fscale',op('add',g.one,op('f2xm1',fraction)),whole)
+        if reciprocal:exp=op('div',g.one,exp)
+        if exp_store:exp=op('add',exp,g.constant(bits(0.)),True)
+        result=op('div',exp,g.constant(bits(a)))
+        graphs[(a,mul_store,norm_store,sum_store,exp_store,reciprocal)]=g.graph(result,result)
+    labels=list(itertools.product((True,False),repeat=7))
+    def label(p):
+        return '_'.join(n+('S'if v else'R')for n,v in zip(('ratio','product','mul','normalizer','sum','exp'),p[:6]))+('_coreReciprocal'if p[6]else'_coreDirect')
+    frozen={**STAGE_BINDINGS,str(Path(library).resolve()):sha(library)}
+    manifest=dict(format='dnacalc-beta-integer-unit-shape-questions/1',complete=True,
+        shapes=shapes,inputs=xs,program_order=[label(p)for p in labels],
+        normalizer_arguments={','.join(map(str,k)):v.hex()for k,v in loops.items()},
+        graphs={','.join(map(str,k)):v for k,v in graphs.items()},source_bindings=frozen,
+        scope='The retained betaln reduction arm has min(a,b)=1 and max(a,b)<8. Earlier exploratory shapes 8,16,31 leave that arm and cannot refute its reduction loop.',
+        selection='Fixed integer shapes and adjacent windows below .5. Published TOMS708 reduction '
+                  'and finite store/EXP programs frozen before target calls. No integer shortcut is proposed.')
+    if prior:manifest['reused_study']=dict(path=str(Path(prior).resolve()),sha256=sha(prior))
+    write(str(output)+'.questions.json',manifest)
+    logs=service.ask('LN',[[client.number(x)]for x in xs])['rows']
+    existing={}
+    if prior:
+        previous=json.loads(Path(prior).read_text())
+        if sha(str(prior)+'.questions.json')!=previous['questions_sha256']:raise ValueError('reused beta questions changed')
+        existing={(r['a'],r['x']):r['answer']for r in previous['records']}
+    pending=[(a,x)for a in shapes for x in xs if(a,x)not in existing]
+    if pending:
+        questions=[[client.number(x),client.number(a),client.number(1.),client.boolean(True)]for a,x in pending]
+        original=service.ask('BETA.DIST',questions)['rows']
+        existing.update(zip(pending,original))
+    answers=[existing[(a,x)]for a in shapes for x in xs]
+    counts={label(p):Counter()for p in labels};records=[];matrix=hashlib.sha256()
+    ln_graph=primitive_stage_graph('LN')
+    for index,(a,x,log,answer)in enumerate((a,x,logs[j],answers[i*len(xs)+j])for i,a in enumerate(shapes)for j,x in enumerate(xs)):
+        if log['type']!='number'or answer['type']!='number':raise ValueError('finite beta controls required')
+        actual_log=f'{native.publish(native.evaluate(ln_graph,[int(x,16)],0x133f)[:10]):016x}'
+        if actual_log!=log['bits']:raise ValueError('beta control LN differs from independent primitive')
+        mask=0
+        for i,p in enumerate(labels):
+            ratio_store,product_store,*outer=p
+            raw=f'{native.publish(native.evaluate(graphs[(a,*outer)],[int(log["bits"],16)],0x133f,mask=1,extended=loops[(a,ratio_store,product_store)])[:10]):016x}'
+            matrix.update(bytes.fromhex(raw))
+            tally=counts[label(p)];tally['rows']+=1
+            if raw==answer['bits']:tally['matched']+=1;mask|=1<<i
+            else:
+                tally['failed']+=1
+                # One first contradiction suffices to reject a complete tree;
+                # all answers and the prediction matrix digest remain bound.
+                if 'first_contradiction'not in tally:tally['first_contradiction']=dict(index=index,x=x,a=a,prediction=raw,answer=answer)
+        records.append(dict(x=x,a=a,answer=answer,matching_program_mask=f'{mask:032x}'))
+    result=dict(format='dnacalc-beta-integer-unit-shape/1',complete=True,counts=counts,records=records,
+        prediction_matrix_sha256=matrix.hexdigest(),receipts=service.receipts,source_bindings=frozen,
+        reused_study=manifest.get('reused_study'),new_target_calls=len(pending),reused_target_calls=len(answers)-len(pending),
+        questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Fixed published-loop and arithmetic programs. Complete models require every observation; '
+               'partial scores do not choose a kernel or a per-row selector. The exponent, normalizer '
+               'and EXP publication are distinct hypotheses. General nonwhole shapes and the series remain open.')
+    write(output,result)
+    print(json.dumps(dict(rows=len(records),complete_programs=[k for k,c in counts.items()if not c['failed']],
+                          no_program_matches=sum(r['matching_program_mask']=='0'*32 for r in records))),flush=True)
+    return result
+
+
+def beta_f_unit_prefix(checkout, prior, output, cache, library, offline=False, power_pairs=False):
+    """Reuse the established b=1 body to question the F input transform."""
+    import itertools
+    from fractions import Fraction as Q
+    from exact import operation
+    from x87 import encode
+    prior=Path(prior);study=json.loads(prior.read_text())
+    question_path=Path(str(prior)+'.questions.json')
+    if sha(question_path)!=study['questions_sha256']:
+        raise ValueError('established beta questions changed')
+    questions=json.loads(question_path.read_text())
+    for core in ('Reciprocal','Direct'):
+        name='ratioR_productR_mulS_normalizerR_sumR_expR_core'+core
+        if study['counts'][name].get('failed')or study['counts'][name]['matched']!=len(study['records']):
+            raise ValueError('complete prior beta body required')
+    native=Native(library);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    cases=[]
+    for a,scale in itertools.product(range(2,8),(1.125,2.,4.,16.,256.)):
+        center=a*scale
+        cases.extend(dict(a=a,x=f'{int(bits(center),16)-32+i:016x}')for i in range(64))
+    profiles=list(itertools.product(('strict','stored_pc64','resident_pc64'),repeat=2))
+    profiles=list(itertools.product(profiles,(True,False),(True,False)))
+    def label(p):return p[0][0]+'_'+p[0][1]+('_logS'if p[1]else'_logR')+('_coreReciprocal'if p[2]else'_coreDirect')
+    frozen={**STAGE_BINDINGS,str(prior.resolve()):sha(prior),str(question_path.resolve()):sha(question_path),str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-beta-f-unit-prefix-questions/1',complete=True,
+        cases=cases,programs=[label(p)for p in profiles],source_bindings=frozen,power_pairs=power_pairs,
+        premise='For F(x,2,2a) right tail the b=1 beta input is z=a/(a+x). '
+                'Reuse only the previously established resident normalizer and stored a*LN stage. '
+                'Question denominator, quotient and LN lifetime independently; no partial score selects a model. '
+                'Optional public POWER pairs test the elementary ratio^a and (1+x/a)^(-a) forms on these exposed controls.'))
+    args=[[client.number(c['x']),client.number(2.),client.number(2*c['a'])]for c in cases]
+    answers=service.ask_rows('FDIST',args);aliases=service.ask_rows('F.DIST.RT',args)
+    powers={}
+    if power_pairs:
+        for form,word in itertools.product(('ratio','one_plus'),('strict','stored_pc64')):
+            arguments=[]
+            for case in cases:
+                a=Q(case['a']);x=binary64(case['x'])
+                if form=='ratio':base=operation(a,operation(a,x,'add',word),'div',word);exponent=a
+                else:base=operation(Q(1),operation(x,a,'div',word),'add',word);exponent=-a
+                arguments.append([client.number(bits(float(base))),client.number(float(exponent))])
+            powers[form+'_'+word]=service.ask_rows('POWER',arguments)
+    one=load64(int(bits(1.),16));ln2=native.leaf('fldln2',one,one,0x133f)
+    counts={label(p):Counter()for p in profiles};records=[]
+    for index,(case,answer,alias)in enumerate(zip(cases,answers,aliases)):
+        if answer.get('type')!='number'or alias!=answer:
+            raise ValueError('finite matching F-tail aliases required')
+        a=case['a'];x=binary64(case['x']);predictions={}
+        normalizer=bytes.fromhex(questions['normalizer_arguments'][f'{a},False,False'])
+        for profile in profiles:
+            (dw,qw),log_store,reciprocal=profile
+            den=operation(Q(a),x,'add',dw);z=operation(Q(a),den,'div',qw)
+            logarithm=native.leaf('fyl2x',ln2,encode(z),0x133f)
+            if log_store:logarithm=load64(native.publish(logarithm))
+            graph=questions['graphs'][f'{a},True,False,False,False,{reciprocal}']
+            raw=native.evaluate(graph,[],0x133f,mask=1,extended=logarithm+normalizer)
+            predicted=f'{native.publish(raw[:10]):016x}';name=label(profile)
+            predictions[name]=predicted;tally=counts[name];tally['rows']+=1
+            if predicted==answer['bits']:tally['matched']+=1
+            else:
+                tally['failed']+=1
+                if 'first_contradiction'not in tally:tally['first_contradiction']=dict(index=index,case=case,answer=answer,prediction=predicted)
+        records.append(dict(case=case,answer=answer,alias=alias,predictions=predictions))
+    power_counts={}
+    for name,replies in powers.items():
+        if any(reply.get('type')!='number'for reply in replies):raise ValueError('finite public powers required')
+        power_counts[name]=sum(reply==answer for reply,answer in zip(replies,answers))
+        for record,reply in zip(records,replies):record.setdefault('public_powers',{})[name]=reply
+    result=dict(format='dnacalc-beta-f-unit-prefix/1',complete=True,counts=counts,records=records,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        public_power_counts=power_counts,
+        complete_programs=[k for k,v in counts.items()if not v['failed']],
+        limits='Conditional declared F transform and previously identified b=1 beta body only. '
+               'These controls identify no general beta series, caller or per-row choice.')
+    write(output,result);print(json.dumps(dict(rows=len(records),complete_programs=result['complete_programs'],public_power_counts=power_counts)),flush=True)
+    return result
+
+
+def beta_public_f_tails(checkout, trace, output, cache, offline=False):
+    """Pair the public F surfaces before attributing their failures to beta."""
+    trace=Path(trace)
+    original=[json.loads(line)for line in trace.read_text().splitlines()]
+    selected=[r for r in original if r['actual']!=r['expected']]
+    inputs=[tuple(r['args'])for r in selected]
+    for center,d1,d2 in ((.22,2.,19.),(.22,5.,11.),(.5,1.,1.),(1.,2.,2.),(1.,4.,4.),(4.,7.,12.)):
+        inputs.extend(('0x'+f'{int(bits(center),16)-32+i:016x}','0x'+bits(d1),'0x'+bits(d2))for i in range(64))
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    for row in inputs:
+        if len(row)!=3 or any(not math.isfinite(value(x.removeprefix('0x')))or value(x.removeprefix('0x'))<0 for x in row):
+            raise ValueError('finite positive F controls required')
+    frozen={**STAGE_BINDINGS,str(trace.resolve()):sha(trace)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-beta-public-f-tail-questions/1',complete=True,
+        inputs=inputs,selected_bank_rows=len(selected),source_bindings=frozen,
+        selection='Every previously observed FDIST bank failure, then six fixed64-adjacent windows. '
+                  'These are exposed diagnostic controls, not blind validation. Compare aliases, historical '
+                  'expectations and one-minus-public-CDF before changing the shared beta evaluator.'))
+    args=[[client.number(x.removeprefix('0x'))for x in row]for row in inputs]
+    old=service.ask_rows('FDIST',args)
+    right=service.ask_rows('F.DIST.RT',args)
+    cdf=service.ask_rows('F.DIST',[row+[client.boolean(True)]for row in args])
+    counts=Counter();records=[]
+    for i,(row,a,b,c)in enumerate(zip(inputs,old,right,cdf)):
+        if any(v.get('type')!='number'for v in(a,b,c)):
+            raise ValueError('numeric F-tail controls required')
+        counts['rows']+=1;counts['public_aliases_equal']+=a==b
+        complement=bits(1.-value(c['bits']))
+        counts['one_minus_cdf_matches']+=a['bits']==complement
+        record=dict(args=row,fdist=a,right_tail=b,cdf=c,one_minus_cdf=complement)
+        if i<len(selected):
+            r=selected[i];record['original_bank']=r
+            repeat='0x'+a['bits']
+            counts['bank_rows']+=1
+            counts['old_expected_repeated']+=repeat==r['expected']
+            counts['old_actual_repeated']+=repeat==r['actual']
+            counts['neither_repeated']+=repeat not in(r['expected'],r['actual'])
+        records.append(record)
+    result=dict(format='dnacalc-beta-public-f-tails/1',complete=True,counts=counts,records=records,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Original public pairs and exposed historical failures only. Alias agreement does not '
+               'identify a private beta producer, and a changed historical answer does not score as a '
+               'canonical bank pass. No context/profile is inferred or installed from these observations.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def beta_series_normalizer(checkout, output, cache, library, offline=False, count=128, resident_log=False, strict_final=False):
+    """Invert I_x(2,2)'s one-term series into a shared normalizer interval."""
+    import itertools
+    from fractions import Fraction as Q
+    from exact import operation
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    native=Native(library)
+    centers=(2.**-10,.03125,.125,.25,.3)
+    xs=sorted({f'{int(bits(c),16)-count//2+i:016x}'for c in centers for i in range(count)})
+    graphs={}
+    for reciprocal in (True,False):
+        g=Builder(1)
+        # The positive inverse coordinate is e=-t, since all these
+        # prefactors have negative exponents. Output remains resident.
+        t=g.op('mul',0,g.op('fldl2e',store=False),store=False)
+        if not reciprocal:t=g.op('neg',t,store=False)
+        whole=g.op('frndint',t,store=False)
+        fraction=g.op('sub',t,whole,store=False)
+        small=g.op('f2xm1',fraction,store=False)
+        exp=g.op('fscale',g.op('add',g.one,small,store=False),whole,store=False)
+        if reciprocal:exp=g.op('div',g.one,exp,store=False)
+        graphs[reciprocal]=g.graph(exp,exp)
+    specifications=list(itertools.product((True,False),repeat=5))
+    def label(p):return '_'.join(n+('S'if s else'R')for n,s in zip(('series','product','factor','prefactor'),p[:4]))+('_coreReciprocal'if p[4]else'_coreDirect')
+    frozen={**STAGE_BINDINGS,str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-beta-series-normalizer-questions/1',complete=True,
+        inputs=xs,graphs={str(k):v for k,v in graphs.items()},program_order=[label(p)for p in specifications],
+        source_bindings=frozen,resident_log=resident_log,strict_final=strict_final,selection='Fixed I_x(2,2) bpser windows below .3. '
+            'The series is exactly one term: 1-2*x/3, evaluated under declared stores. '
+            'No unknown normalizer value is fitted; exact intervals test for one shared resident value.'))
+    logs=service.ask('LN',[[client.number(x)]for x in xs])['rows']
+    answers=service.ask('BETA.DIST',[[client.number(x),client.number(2.),client.number(2.),client.boolean(True)]for x in xs])['rows']
+    models={label(p):dict(common=None,contradiction=None,applied=0)for p in specifications}
+    records=[]
+    for index,(x,log,answer)in enumerate(zip(xs,logs,answers)):
+        if log['type']!='number'or answer['type']!='number':raise ValueError('finite beta series controls required')
+        logarithm=native.evaluate(primitive_stage_graph('LN'),[int(x,16)],0x133f)[:10]
+        if f'{native.publish(logarithm):016x}'!=log['bits']:
+            raise ValueError('public LN primitive differs from native model')
+        term=2*(decode(logarithm)if resident_log else binary64(log['bits']))
+        center=Q(-math.log(6.))-term
+        records.append(dict(x=x,log=log,answer=answer))
+        for p in specifications:
+            model=models[label(p)]
+            if model['contradiction']is not None:continue
+            ws,ps,fs,bs,reciprocal=p
+            w=operation(-binary64(x),Q(3),'div','stored_pc64'if ws else'resident_pc64')
+            product=operation(Q(2),w,'mul','stored_pc64'if ps else'resident_pc64')
+            factor=operation(Q(1),product,'add','stored_pc64'if fs else'resident_pc64')
+            y=binary64(answer['bits'])
+            domain=inverse(Span(y,y),factor,'mul',True,'strict'if strict_final else'stored_pc64')
+            if bs:domain=BINARY64.pullback(domain)
+            domain=domain.linear(Q(2))if domain else None
+            cell=positive_extended_cell(native,graphs[reciprocal],None,center,decreasing=True,
+                                        max_radius_bits=24,output_span=domain)if domain else None
+            normalizer=None
+            if cell:
+                exponent=Span(decode(bytes.fromhex(cell['low'])),decode(bytes.fromhex(cell['high'])))
+                normalizer=inverse(exponent,-term,'add',True,'resident_pc64')
+            model['applied']+=1
+            if model['common']is None and model['applied']==1:model['common']=normalizer
+            else:model['common']=model['common'].meet(normalizer)if model['common']else None
+            if EXTENDED64.coordinates(model['common'])is None:
+                model['contradiction']=dict(index=index,x=x,answer=answer,
+                    current_normalizer_preimage=normalizer.json()if normalizer else None)
+    # Independent published reduction candidates, without moving any digit.
+    one=load64(int(bits(1.),16));three=load64(int(bits(3.),16));half=load64(int(bits(.5),16))
+    ln2=native.leaf('fldln2',one,one,0x133f)
+    w=native.leaf('div',one,three,0x133f)
+    lw=native.leaf('fyl2x',ln2,w,0x133f);lz=native.leaf('fyl2x',ln2,half,0x133f)
+    reduction=native.leaf('add',lw,lz,0x133f)
+    ideal=native.leaf('neg',native.leaf('fyl2x',ln2,load64(int(bits(6.),16)),0x133f),one,0x133f)
+    candidates=dict(resident_reduction=decode(reduction),resident_negative_ln6=decode(ideal),stored_negative_ln6=Q(-math.log(6.)))
+    summaries={}
+    for name,m in models.items():
+        span=m['common'];e=EXTENDED64.coordinates(span);d=BINARY64.coordinates(span)
+        summaries[name]=dict(applied_constraints=m['applied'],contradiction=m['contradiction'],
+            shared_real_interval=span.json()if span else None,resident_count=e[1]-e[0]+1 if e else 0,
+            binary64_count=d[1]-d[0]+1 if d else 0,
+            contained_candidates={k:bool(span and span.contains(v))for k,v in candidates.items()})
+    result=dict(format='dnacalc-beta-series-normalizer/1',complete=True,records=records,models=summaries,
+        candidate_values={k:str(v)for k,v in candidates.items()},receipts=service.receipts,source_bindings=frozen,
+        questions_sha256=sha(str(output)+'.questions.json'),resident_log=resident_log,strict_final=strict_final,
+        limits='Necessary exact constraints under the declared resident EXP monotonicity and selected stored/resident-LN '
+               'premises. Empty intersections refute whole programs. A nonempty interval does not identify '
+               'a producer. Refuted models stop at their first contradiction; all original target rows remain '
+               'retained. Prefactor storage and pre-division EXP storage are indistinguishable at shape2.')
+    write(output,result)
+    print(json.dumps(dict(rows=len(records),feasible={k:v for k,v in summaries.items()if v['resident_count']})),flush=True)
+    return result
+
+
+def gammaln_table_frequencies(windows, tables_path, output):
+    """Compare frozen-table stage frequencies with independent output spectra."""
+    from fractions import Fraction as Q
+    from exact import exponent_of,two
+    observed=json.loads(Path(windows).read_text())
+    tables=json.loads(Path(tables_path).read_text())['tables']
+    records=[]
+    for fn in observed['functions']:
+        for window in fn['windows']:
+            x=value(f'{int(window["start"],16)+window["count"]//2:016x}')
+            xx=Q(x);dx=Q(math.ulp(x));band='B1'if x<1.5 else'B2'
+            variable=xx if band=='B1'else xx-2
+            stages=[];final={}
+            def emit(name,v,d):
+                if not v:return
+                frequency=d*dx/two(exponent_of(abs(v))-52)
+                folded=frequency%1
+                if folded>Q(1,2):folded=1-folded
+                stages.append(dict(stage=name,value=str(v),derivative=str(d),cycles_per_input=float(folded)))
+            for name in ('P','Q'):
+                coefficients=[binary64(c)for c in tables[name+band[-1]]]
+                if band=='B1':v=coefficients[-1];d=Q(0);coefficients=list(reversed(coefficients[:-1]))
+                else:v=Q(0 if name=='P'else 1);d=Q(0)
+                for i,c in enumerate(coefficients):
+                    derivative=v+variable*d
+                    v*=variable;d=derivative;emit(name+'_product_'+str(i),v,d)
+                    v+=c;emit(name+'_sum_'+str(i),v,d)
+                final[name]=(v,d)
+            p,pd=final['P'];q,qd=final['Q'];r=p/q;rd=(pd*q-p*qd)/(q*q)
+            emit('ratio',r,rd)
+            if band=='B1':emit('result',(xx-1)*r,r+(xx-1)*rd)
+            else:
+                anchor=binary64('3fdb0ee6072093ce')
+                inner=anchor+variable*r
+                emit('inner_product',variable*r,r+variable*rd)
+                emit('inner_sum',inner,r+variable*rd)
+                emit('result',variable*inner,inner+variable*(r+variable*rd))
+            peaks=[]
+            for line in window['spectrum']['lines']:
+                candidates=sorted((abs(s['cycles_per_input']-line['cycles_per_input'])*window['count'],s['stage'])for s in stages)
+                peaks.append(dict(line,nearest_stage=candidates[0][1],distance_in_dft_bins=candidates[0][0],
+                                  compatible_stages=[name for distance,name in candidates if distance<=1.5]))
+            records.append(dict(function=fn['function'],center=bits(x),band=band,stages=stages,peaks=peaks,
+                                unmapped_peaks=sum(not p['compatible_stages']for p in peaks)))
+    result=dict(format='dnacalc-gammaln-table-frequencies/1',complete=True,records=records,
+        source_bindings={str(Path(windows).resolve()):sha(windows),str(Path(tables_path).resolve()):sha(tables_path),**STAGE_BINDINGS},
+        limits='Ideal local derivatives of the frozen existing tables, not private Excel stage values. '
+               'The fixed 1.5-bin proximity is spectral resolution, not a verdict tolerance. Missing '
+               'matches challenge this table/coordinate model; coincident lines do not prove a store, '
+               'coefficient or phase. Harmonics and interactions may supply additional output lines.')
+    write(output,result)
+    print(json.dumps([dict(function=r['function'],band=r['band'],unmapped_peaks=r['unmapped_peaks'],
+                           peak_count=len(r['peaks']))for r in records]),flush=True)
+    return result
+
+
+def audit_gammaln_log_change(controls, registered, output):
+    """Bind the logarithm change and every new loss to actual invocation."""
+    doc=json.loads(Path(controls).read_text())
+    actual=json.loads(Path(registered).read_text())
+    if not doc['complete']or not actual['complete']:raise ValueError('complete comparisons required')
+    observed=doc['records'];computed=actual['records']
+    if len(observed)!=len(computed):raise ValueError('registered cohort changed')
+    counts=Counter();losses=[];records=[]
+    for r,calculated in zip(observed,computed):
+        if calculated['original']['x']!=r['x']:raise ValueError('registered operands reordered')
+        old=r['replay']['registered'].removeprefix('0x')
+        new=calculated['registered'].removeprefix('0x');expected=r['answer']['bits']
+        if old!=r['replay']['runtime_subtract']:raise ValueError('old registered replay differs')
+        if new!=calculated['worksheet_subtract']:raise ValueError('new registered replay differs')
+        if calculated['upper']!=r['replay']['upper']:raise ValueError('upper approximation changed')
+        for name,v in (('old_matched',old==expected),('new_matched',new==expected),
+                       ('gained',old!=expected and new==expected),('lost',old==expected and new!=expected),
+                       ('changed',old!=new)):
+            counts[name]+=v
+        counts['rows']+=1
+        records.append(dict(x=r['x'],expected=expected,old_registered=old,new_registered=new))
+        if old==expected and new!=expected:
+            y=binary64(expected);ln=binary64(r['log']['bits'])
+            needed=inverse(Span(y,y),-ln,'add',True,'strict')
+            current=binary64(calculated['upper']);upper=binary64(r['upper']['bits'])
+            if needed is None or needed.contains(current)or not needed.contains(upper):
+                raise ValueError('loss is not classified by the independent upper-band constraint')
+            losses.append(dict(original=r,calculated=calculated,
+                required_upper_preimage=needed.json(),classification='unresolved upper-band table',
+                proof='The actual upper value is outside the exact final-subtraction preimage; '
+                      'the independently observed public upper value is inside it and reproduces the target.'))
+    result=dict(format='dnacalc-gammaln-log-change-audit/1',complete=True,counts=counts,records=records,
+        classified_losses=losses,source_bindings={**STAGE_BINDINGS,str(Path(controls).resolve()):sha(controls),
+            str(Path(registered).resolve()):sha(registered)},
+        limits='All before/after values are registered application returns. Every new-cohort loss is '
+               'retained and independently localized to the unresolved upper table under the measured '
+               'public composition. The new cohort is separate from the canonical bank and corpus counts.')
+    write(output,result);print(json.dumps(counts),flush=True)
+    return result
+
+
+def density_normalizer_questions(checkout, bank, output, cache, library, offline=False):
+    """Pair the remaining low density failures with public GAMMALN readings."""
+    native=Native(library);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=300),cache,offline)
+    cases=[];omitted=Counter()
+    for line in Path(bank).read_text().splitlines():
+        r=json.loads(line)
+        if r['expected']==r['actual']:continue
+        a=r['args']
+        flag=a[3]if isinstance(a[3],bool)else value(a[3].removeprefix('0x'))!=0
+        if flag:omitted['cumulative']+=1;continue
+        if not all(isinstance(v,str)and v.startswith('0x')for v in a[:3]):
+            omitted['nonnumeric_arguments']+=1;continue
+        x,alpha,beta=[v.removeprefix('0x')for v in a[:3]]
+        xx,aa,bb=map(value,(x,alpha,beta))
+        if not(xx>0 and 0<aa<7 and aa!=1 and bb>0):omitted['outside_low_shape_scope']+=1;continue
+        y=native.leaf('div',load64(int(x,16)),load64(int(beta,16)),0x133f)
+        yy=value(f'{native.publish(y):016x}')
+        if not(aa<=1 or yy<1.1):omitted['stirling_mass_arm']+=1;continue
+        cases.append(dict(x=x,alpha=alpha,beta=beta,bank_original=r))
+    for alpha in (.125,.375,.5,.75,1.25,1.5,2.5,4.5,6.5):
+        cases.append(dict(x=bits(.75),alpha=bits(alpha),beta=bits(1.),fixed_control=True))
+    normalizers=sorted({bits(value(r['alpha'])+1.)for r in cases})
+    frozen={**STAGE_BINDINGS,str(Path(bank).resolve()):sha(bank),str(Path(library).resolve()):sha(library)}
+    write(str(output)+'.questions.json',dict(format='dnacalc-gamma-density-normalizer-questions/1',complete=True,
+        records=cases,normalizer_arguments=normalizers,omitted=omitted,source_bindings=frozen,
+        selection='All original density mismatches with nonwhole/low shapes below7 in the existing logarithmic-mass arm, then nine fixed ordinary controls. No output chooses a kernel.'))
+    upper=service.ask('GAMMALN',[[client.number(x)]for x in normalizers])['rows']
+    require_numeric=lambda rows:all(r.get('type')=='number'for r in rows)
+    if not require_numeric(upper):raise ValueError('positive normalizers must be numeric')
+    lookup=dict(zip(normalizers,upper))
+    answers=service.ask('GAMMA.DIST',[[client.number(r['x']),client.number(r['alpha']),client.number(r['beta']),client.boolean(False)]for r in cases])['rows']
+    records=[dict(r,normalizer_argument=bits(value(r['alpha'])+1.),
+                  public_normalizer=lookup[bits(value(r['alpha'])+1.)],live_answer=a)for r,a in zip(cases,answers)]
+    result=dict(format='dnacalc-gamma-density-normalizer-observations/1',complete=True,records=records,
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Original bank failures remain unchanged. These independent current-build scalar readings '
+               'and public normalizers are diagnostic observations, not a new bank capture or engine pass. '
+               'The paired replacement is evaluated separately through the current registered baseline.')
+    write(output,result);print(json.dumps(dict(rows=len(records),bank_cases=len(cases)-9,ordinary_controls=9)),flush=True)
+    return result
+
+
 def paired(checkout, output, cache, library, count=32, offline=False):
     client, _ = load_service(checkout)
     service = CachedService(client.Client(timeout=300), cache, offline)
@@ -1813,12 +2738,70 @@ if __name__ == '__main__':
     p.add_argument('--radius',type=float,default=.001)
     p.add_argument('--seed-phase-validation',metavar='STUDY')
     p.add_argument('--retained-phase-dir')
+    p.add_argument('--seed-phase-absolute',metavar='VALIDATED_STUDY')
+    p.add_argument('--low-recurrence',action='store_true')
+    p.add_argument('--low-shared-seed',metavar='STUDY')
+    p.add_argument('--gammaln-low-composition',action='store_true')
+    p.add_argument('--gammaln-low-tables',action='store_true')
+    p.add_argument('--beta-shape-two',action='store_true')
+    p.add_argument('--gammaln-log-controls',metavar='REPLAY')
+    p.add_argument('--beta-log-replay',nargs=2,metavar=('STUDY','REPLAY'))
+    p.add_argument('--beta-integer-unit-shape',action='store_true')
+    p.add_argument('--beta-unit-prior',metavar='STUDY')
+    p.add_argument('--beta-series-normalizer',action='store_true')
+    p.add_argument('--beta-public-f-tails',metavar='BANK_TRACE')
+    p.add_argument('--beta-f-unit-prefix',metavar='PRIOR_STUDY')
+    p.add_argument('--beta-f-power-pairs',action='store_true')
+    p.add_argument('--beta-resident-log',action='store_true')
+    p.add_argument('--beta-strict-final',action='store_true')
+    p.add_argument('--gammaln-table-frequencies',nargs=2,metavar=('WINDOWS','TABLES'))
+    p.add_argument('--audit-gammaln-log-change',nargs=2,metavar=('CONTROLS','REGISTERED'))
+    p.add_argument('--density-normalizer-questions',metavar='BANK_TRACE')
     args = p.parse_args()
+    # Keep the exact reader epoch before a later study extends this tool.
+    snapshots=Path(args.output).resolve().parent/'producers'
+    snapshots.mkdir(parents=True,exist_ok=True)
+    for filename,digest in STAGE_BINDINGS.items():
+        data=Path(filename).read_bytes()
+        if hashlib.sha256(data).hexdigest()!=digest:raise ValueError('study source changed')
+        destination=snapshots/(digest+'-'+Path(filename).name)
+        if not destination.exists():
+            with destination.open('xb')as stream:stream.write(data)
     if not 2 <= args.count <= (4096 if args.gammaln_store_edges or args.gammaln_near_stores or args.seed_phase_tracks else 256):
         raise ValueError('small adjacent windows only')
-    if not (args.seed_phase_tracks or args.seed_phase_validation) and not args.library:
+    if not (args.seed_phase_tracks or args.seed_phase_validation or args.seed_phase_absolute or args.low_shared_seed or args.gammaln_log_controls or args.gammaln_table_frequencies or args.audit_gammaln_log_change or args.beta_public_f_tails) and not args.library:
         p.error('--library is required for instruction studies')
-    if args.seed_phase_validation:
+    if args.beta_f_unit_prefix:
+        beta_f_unit_prefix(args.checkout,args.beta_f_unit_prefix,args.output,args.cache,args.library,args.offline,args.beta_f_power_pairs)
+    elif args.beta_public_f_tails:
+        beta_public_f_tails(args.checkout,args.beta_public_f_tails,args.output,args.cache,args.offline)
+    elif args.density_normalizer_questions:
+        density_normalizer_questions(args.checkout,args.density_normalizer_questions,args.output,args.cache,args.library,args.offline)
+    elif args.audit_gammaln_log_change:
+        audit_gammaln_log_change(*args.audit_gammaln_log_change,args.output)
+    elif args.gammaln_table_frequencies:
+        gammaln_table_frequencies(*args.gammaln_table_frequencies,args.output)
+    elif args.beta_series_normalizer:
+        beta_series_normalizer(args.checkout,args.output,args.cache,args.library,args.offline,args.count,args.beta_resident_log,args.beta_strict_final)
+    elif args.beta_integer_unit_shape:
+        beta_integer_unit_shape(args.checkout,args.output,args.cache,args.library,args.offline,args.count,args.beta_unit_prior)
+    elif args.beta_log_replay:
+        beta_log_replay(*args.beta_log_replay,args.output,args.library)
+    elif args.gammaln_log_controls:
+        gammaln_log_controls(args.checkout,args.gammaln_log_controls,args.output,args.cache,args.offline)
+    elif args.beta_shape_two:
+        beta_shape_two(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
+    elif args.gammaln_low_tables:
+        gammaln_low_tables(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
+    elif args.gammaln_low_composition:
+        gammaln_low_composition(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
+    elif args.low_shared_seed:
+        low_gamma_shared_seed(args.low_shared_seed,args.output)
+    elif args.seed_phase_absolute:
+        seed_phase_absolute(args.seed_phase_absolute,args.output)
+    elif args.low_recurrence:
+        low_gamma_recurrence(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
+    elif args.seed_phase_validation:
         seed_phase_validation(args.seed_phase_validation,args.output,args.cache,args.retained_phase_dir)
     elif args.seed_phase_tracks:
         seed_phase_tracks(args.checkout,args.output,args.cache,args.seed_phase_tracks,args.offline,args.radius,args.count)

@@ -623,6 +623,82 @@ def cumulative_fv(checkout,study,output,cache,offline=False):
     write(output,result);print(json.dumps(counts),flush=True);return result
 
 
+def cumulative_power_denominators(checkout,output,cache,offline=False):
+    """Question geometric principal numerators with any common loan denominator."""
+    import itertools
+    from exact import EXTENDED64 as E
+    rates=sorted({f'{int(bits(center),16)-4+i:016x}'for center in (.0025,.03125,2.**-10)for i in range(8)})
+    spans=((1,1),(2,2),(4,4),(1,2),(1,4),(2,5),(1,8))
+    cases=[dict(rate=r,periods=n,pv=bits(pv),start=s,end=e)
+           for r,n,pv,(s,e)in itertools.product(rates,(8,16,36),(1.,1.1,128.,10000.),spans)]
+    profiles=list(itertools.product(('difference','factored'),('strict','stored_pc64','resident_pc64'),
+                                   ('strict','stored_pc64','resident_pc64'),('strict','stored_pc64')))
+    def label(p):return '/'.join(p)
+    bases={}
+    for r in rates:
+        base=operation(binary64(bits(1.)),binary64(r),'add','strict')
+        if base!=operation(binary64(bits(1.)),binary64(r),'add','stored_pc64'):
+            raise ValueError('stored base word differs in this fixed cohort')
+        bases[r]=bits(float(base))
+    powers=sorted({(bases[c['rate']],k)for c in cases for k in(c['start']-1,c['end'],c['end']-c['start']+1,c['periods'])})
+    frozen=dict(SOURCE_BINDINGS)
+    write(str(output)+'.questions.json',dict(format='dnacalc-cumulative-power-denominator-questions/1',complete=True,
+        cases=cases,powers=powers,profiles=profiles,source_bindings=frozen,
+        premise='End-payment principal over s..e is mathematically -PV*(q^e-q^(s-1))/(q^n-1), q=1+r. '
+                'Compare direct/factored numerators using independently published POWER leaves. '
+                'Relax the denominator to any one resident positive value per fixed rate/n, shared across PV and intervals. '
+                'No PMT/FV call or private payment is assumed. Stored q is a declared premise, not an identified private base.'))
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    leaves=service.ask('POWER',[[client.number(q),client.number(k)]for q,k in powers])['rows']
+    if any(r['type']!='number'for r in leaves):raise ValueError('finite positive power leaves required')
+    lookup={key:binary64(row['bits'])for key,row in zip(powers,leaves)}
+    args=[[c['rate'],bits(c['periods']),c['pv'],bits(c['start']),bits(c['end']),bits(0.)]for c in cases]
+    answers=service.ask('CUMPRINC',[[client.number(v)for v in row]for row in args])['rows']
+    states={};records=[]
+    for index,(case,answer)in enumerate(zip(cases,answers)):
+        if answer['type']!='number'or binary64(answer['bits'])>=0:
+            raise ValueError('negative principal reading required')
+        r,n=case['rate'],case['periods'];q=bases[r]
+        first,last=lookup[(q,case['start']-1)],lookup[(q,case['end'])]
+        count=lookup[(q,case['end']-case['start']+1)]
+        target=-binary64(answer['bits']);pv=binary64(case['pv'])
+        for profile in profiles:
+            form,dword,mword,fword=profile;key=(r,n,label(profile))
+            state=states.setdefault(key,dict(domain=None,applied=0,contradiction=None))
+            if state['contradiction']is not None:continue
+            delta=(operation(last,-first,'add',dword)if form=='difference'else
+                   operation(first,operation(count,-binary64(bits(1.)),'add',dword),'mul',dword))
+            numerator=operation(pv,delta,'mul',mword)
+            needed=inverse(Span(target,target),numerator,'div',False,fword)
+            state['domain']=needed if state['applied']==0 else state['domain'].meet(needed)if state['domain']and needed else None
+            state['applied']+=1
+            if state['domain']is None or E.coordinates(state['domain'])is None:
+                state['contradiction']=dict(index=index,case=case,answer=answer,
+                    numerator=str(numerator),last_denominator_cell=needed.json()if needed else None)
+        records.append(dict(case=case,args=args[index],answer=answer))
+    models=[];feasible={label(p):True for p in profiles};loan_feasible=Counter()
+    for (r,n,name),state in states.items():
+        domain=state['domain'];coords=E.coordinates(domain)if domain else None
+        feasible[name]&=coords is not None
+        if coords:loan_feasible[(r,n)]+=1
+        candidates={word:operation(lookup[(bases[r],n)],-binary64(bits(1.)),'add',word)
+                    for word in('strict','stored_pc64','resident_pc64')}
+        models.append(dict(rate=r,periods=n,profile=name,applied_constraints=state['applied'],
+            contradiction=state['contradiction'],domain=domain.json()if domain else None,
+            resident_count=coords[1]-coords[0]+1 if coords else 0,
+            contains_public_power_denominator={word:bool(domain and domain.contains(v))for word,v in candidates.items()}))
+    result=dict(format='dnacalc-cumulative-power-denominators/1',complete=True,records=records,models=models,
+        counts=dict(rows=len(records),loans=len(rates)*3,loans_with_every_profile_refuted=len(rates)*3-len(loan_feasible)),
+        complete_profiles=[name for name,ok in feasible.items()if ok],power_leaves=[dict(base=q,exponent=k,answer=a)for(q,k),a in zip(powers,leaves)],
+        receipts=service.receipts,source_bindings=frozen,questions_sha256=sha(str(output)+'.questions.json'),
+        limits='Necessary exact denominator constraints under declared published POWER and stored-base premises. '
+               'An empty resident intersection refutes that whole numerator/word program for the loan; '
+               'a surviving interval identifies no private denominator and never scores as an application pass. '
+               'Private resident bases, unpublished powers, different numerators and beginning-payment routes remain open.')
+    write(output,result);print(json.dumps(dict(counts=result['counts'],complete_profiles=result['complete_profiles'])),flush=True)
+    return result
+
+
 def cumulative_denominators(checkout,output,cache,offline=False):
     """Pin a possible first-principal denominator without a growth producer."""
     rates=(.0025,.03,.125,2.**-10);periods=(12.,60.,360.)
@@ -1406,6 +1482,7 @@ if __name__ == '__main__':
     p.add_argument('--cumulative-pairs',action='store_true')
     p.add_argument('--cumulative-fv')
     p.add_argument('--cumulative-denominators',action='store_true')
+    p.add_argument('--cumulative-power-denominators',action='store_true')
     p.add_argument('--loss-controls',nargs=2,metavar=('REQUESTS','EXECUTABLE'))
     p.add_argument('--first-residual',metavar='STUDY')
     p.add_argument('--reciprocal-domain', action='store_true')
@@ -1417,7 +1494,9 @@ if __name__ == '__main__':
     p.add_argument('--future-timing')
     p.add_argument('--future-growth',nargs=3,metavar=('TIMING','CONTROLS','EXECUTABLE'))
     a=p.parse_args()
-    if a.future_growth:
+    if a.cumulative_power_denominators:
+        cumulative_power_denominators(a.checkout,a.output,a.cache,a.offline)
+    elif a.future_growth:
         future_value_growth(a.checkout,*a.future_growth,a.output,a.cache,a.offline)
     elif a.future_timing:
         future_value_timing(a.checkout,a.future_timing,a.output,a.cache,a.offline)

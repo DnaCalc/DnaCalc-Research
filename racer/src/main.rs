@@ -619,6 +619,10 @@ fn main() {
         Some("gamma-unit-crt") => route_audit::gamma_unit_crt(&a[2],&a[3]),
         #[cfg(route_audit)]
         Some("gamma-density-prefixes") => route_audit::gamma_density_prefixes(&a[2],&a[3]),
+        #[cfg(route_audit)]
+        Some("gammaln-low-stages") => route_audit::gammaln_low_stages(&a[2],&a[3]),
+        #[cfg(route_audit)]
+        Some("gamma-density-normalizers") => route_audit::gamma_density_normalizers(&a[2],&a[3]),
         #[cfg(discrete_audit)]
         Some("hypergeom-exp-returns") => match a.get(4).map(String::as_str){Some("soft")=>discrete::hypergeom_exp_returns::<Soft>(&a[2],&a[3]),_=>discrete::hypergeom_exp_returns::<Hard>(&a[2],&a[3])},
         #[cfg(discrete_audit)]
