@@ -3663,6 +3663,110 @@ def yield_multi_coupon(checkout, output, cache, offline=False):
     print(json.dumps(dict(cases=len(cases), counts=counts)))
 
 
+def yield_domain_raster(checkout,output,cache,offline=False):
+    """Read the negative-root numerical domain at exact dyadic price ratios."""
+    from datetime import date
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    serial=lambda d:float((d-date(1899,12,30)).days);cases=[]
+    for frequency in(1,2,4):
+        month=1+24//frequency;year=2024+(month-1)//12;month=(month-1)%12+1
+        for scale in(-20,0,20):
+            price=math.ldexp(128.,scale)
+            for numerator in range(1,128):
+                cases.append(dict(frequency=frequency,scale=scale,numerator=numerator,
+                    args=[client.number(x)for x in(serial(date(2024,1,15)),serial(date(year,month,15)),0.,price,math.ldexp(float(numerator),scale),float(frequency),0.)]))
+    write(str(output)+'.questions.json',dict(cases=cases,source_sha256=sha(Path(__file__)),
+        selection='All127 fixed dyadic redemption/price ratios below par, three exact money scales and three frequencies; two coupons on-calendar. All mathematical roots are inside the legal negative-yield interval.'))
+    answers=service.ask_rows('YIELD',[c['args']for c in cases]);groups=[]
+    for frequency in(1,2,4):
+        for scale in(-20,0,20):
+            rows=[(c,a)for c,a in zip(cases,answers)if c['frequency']==frequency and c['scale']==scale]
+            runs=[]
+            for c,a in rows:
+                kind=a['type']if a['type']=='number'else a['code']
+                if runs and runs[-1]['kind']==kind:runs[-1]['last']=c['numerator']
+                else:runs.append(dict(kind=kind,first=c['numerator'],last=c['numerator']))
+            groups.append(dict(frequency=frequency,scale=scale,runs=runs))
+    write(output,dict(complete=True,cases=cases,answers=answers,groups=groups,receipts=service.receipts,
+        source_sha256=sha(Path(__file__)),limits='Numerical admission raster only. NUM can arise at any iteration; an edge alone does not identify an initial guess, derivative or fallback. No tolerance or seed fitted.'))
+    print(json.dumps(groups),flush=True)
+
+
+def yield_exact_roots(checkout, output, cache, offline=False):
+    """Dyadic zero-coupon roots certify prices before solver observations."""
+    from datetime import date
+    import itertools
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    serial=lambda d:float((d-date(1899,12,30)).days);settlement=date(2024,1,15);cases=[]
+    for n,f,scale,q in itertools.product((2,3,4,8),(1,2,4),(-20,0,20),(.5,.75,1.,1.25,1.5,2.,4.)):
+        months=n*12//f;index=settlement.year*12+settlement.month-1+months;maturity=date(index//12,index%12+1,15)
+        price=math.ldexp(128.,scale);red=price*q**n
+        if Q(red)!=Q(price)*Q(q)**n:raise ValueError('uncertified dyadic price')
+        args=[serial(settlement),serial(maturity),0.,price,red,float(f),0.]
+        first_index=settlement.year*12+settlement.month-1+12//f;first=date(first_index//12,first_index%12+1,15)
+        odd=[args[0],args[1],serial(date(2023,1,15)),serial(first),0.,price,red,float(f),0.]
+        cases.append(dict(n=n,frequency=f,scale=scale,q=q,exact_root=bits(float(f*(q-1))),args=[client.number(x)for x in args],odd=[client.number(x)for x in odd]))
+    write(str(output)+'.questions.json',dict(cases=cases,source_sha256=sha(Path(__file__)),
+        selection='Fixed dyadic base, coupon count, frequency and price powers; exact rational equality certifies each price before asking either solver.'))
+    answers={f:service.ask_rows(f,[c['args'if f=='YIELD'else'odd']for c in cases])for f in ('YIELD','ODDFYIELD')}
+    counts=Counter()
+    for i,c in enumerate(cases):
+        for f in answers:
+            a=answers[f][i];counts[f+'/'+a['type']]+=1;counts[f+'/exact_root']+=a==dict(type='number',bits=c['exact_root'])
+        counts['paired_equal']+=answers['YIELD'][i]==answers['ODDFYIELD'][i]
+    write(output,dict(complete=True,cases=cases,answers=answers,counts=counts,receipts=service.receipts,
+        source_sha256=sha(Path(__file__)),limits='Exact mathematical roots and paired public solver observations only. A close numerical return is not scored as exact. No private iteration, initial value or tolerance identified.'))
+    print(json.dumps(counts),flush=True)
+
+
+def yield_date_domain(checkout, output, cache, offline=False):
+    """Numeric date-error readings through the same scalar question service."""
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    cases=[];base=[39493.,42689.,.0575,95.04287,100.,2.,0.]
+    for slot in (0,1):
+        for date in (-2147483648.,-1.,0.,.5,1.,1.5,59.,59.5,60.,60.5,61.,
+                     2958465.,2958465.5,2958466.,4294967295.,4294967296.):
+            args=base.copy();args[slot]=date
+            cases.append(dict(slot=slot,date=date,args=[client.number(x)for x in args]))
+    write(str(output)+'.questions.json',dict(cases=cases,source_sha256=sha(Path(__file__)),
+        selection='Fixed numeric date boundaries and halves; no subnormal input whose cell transport changes it.'))
+    answers=service.ask_rows('YIELD',[r['args']for r in cases])
+    write(output,dict(complete=True,cases=cases,answers=answers,receipts=service.receipts,
+        source_sha256=sha(Path(__file__)),limits='Date admission only; numeric solver outputs are retained observations and do not identify a solver.'))
+    print(json.dumps(Counter(json.dumps(a,sort_keys=True)if a['type']!='number'else'number'for a in answers)))
+
+
+def yield_scale_questions(checkout, output, cache, offline=False):
+    """Power-of-two price/redemption scales isolate solver stopping premises."""
+    from datetime import date
+    import itertools
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    serial=lambda d:float((d-date(1899,12,30)).days)
+    rows=[]
+    for count,scale,ratio in itertools.product((2,3,8),(-40,-10,0,10,40),(.5,.75,1.,1.25,2.)):
+        redemption=math.ldexp(128.,scale)
+        rows.append(dict(count=count,scale=scale,ratio=ratio,args=[client.number(x) for x in
+            (serial(date(2024,1,15)),serial(date(2024+count,1,15)),0.,redemption*ratio,redemption,1.,0.)]))
+    answers=service.ask_rows('YIELD',[r['args']for r in rows]);groups={}
+    for r,a in zip(rows,answers):groups.setdefault((r['count'],r['ratio']),[]).append(dict(scale=r['scale'],answer=a))
+    write(output,dict(complete=True,cases=rows,answers=answers,groups=[dict(count=k[0],ratio=k[1],scaled=v,
+        distinct_answers=len({json.dumps(x['answer'],sort_keys=True)for x in v}))for k,v in groups.items()],
+        receipts=service.receipts,source_sha256=sha(Path(__file__)),
+        limits='Dyadic scaling is an exact necessary invariance of homogeneous zero-coupon price, relative stopping and coherent operations away from exponent edges. Different roots refute that combined premise, not a uniquely identified stopping rule.'))
+    print(json.dumps(Counter(len({json.dumps(x['answer'],sort_keys=True)for x in v})for v in groups.values())))
+
+
+if __name__ == '__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='yield-domain-raster':
+        yield_domain_raster(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='yield-exact-roots':
+        yield_exact_roots(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='yield-dates':
+        yield_date_domain(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='yield-scales':
+        yield_scale_questions(*sys.argv[2:]);raise SystemExit(0)
+
+
 def render(result, path):
     lines = ['# Numerical fingerprint map', '',
         'Regenerate from DnaCalc-Research, using retained service replies (or asking Excel for missing replies):', '',

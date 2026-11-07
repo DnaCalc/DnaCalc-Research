@@ -69,8 +69,119 @@ def due_parts(checkout, output, cache, cohort="discovery", offline=False):
     print(json.dumps(counts),flush=True)
 
 
+def due_quotients(checkout, source, output, cache, offline=False):
+    """Read PMT independently for each period-component loan."""
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    document=json.loads(Path(source).read_text());loans={}
+    for row in document['records']:
+        a=row['args'];key=tuple(a[i]for i in (0,2,3,4));loans.setdefault(key,len(loans))
+    records=[];questions=[]
+    for key,index in loans.items():
+        for timing in (0.,1.):questions.append([client.number(value(x))for x in key]+[client.number(timing)])
+        records.append(dict(id=index,args=list(key)))
+    answers=service.ask_rows('PMT',questions)
+    for i,row in enumerate(records):row['end'],row['due']=answers[2*i:2*i+2]
+    write(output,dict(complete=True,loans=records,receipts=service.receipts,
+        source_sha256={str(Path(source).resolve()):sha(source),str(Path(__file__).resolve()):sha(__file__)},
+        limits='Independent public PMT observations only. No private quotient is recovered or installed by these readings.'))
+    print(json.dumps(dict(loans=len(records),calls=len(answers))))
+
+
+def due_quotient_domains(source, components, output):
+    """Inverse PMT publications before inspecting a proposed period quotient."""
+    doc=json.loads(Path(source).read_text());observed=json.loads(Path(components).read_text())
+    def qvalue(s):return binary64(s)
+    groups={};current={}
+    for row in observed:
+        a=row['original']['args'];key=tuple(a[i].removeprefix('0x')for i in (0,2,3,4))
+        if row['quotient']is not None:
+            if key in current and current[key]!=row['quotient']:raise ValueError('period-dependent current quotient')
+            current[key]=row['quotient']
+    for row in doc['loans']:
+        a=row['args'];r,n,p,f=map(qvalue,a)
+        if f!=0:continue
+        y=qvalue(row['end']['bits']);qd=inverse(Span(y,y),r,'mul',True,'stored_pc64')
+        em=inverse(qd,p,'div',False,'stored_pc64');key=tuple(a[:2])
+        groups[key]=em if key not in groups else groups[key].meet(em)
+    ems={}
+    for k,d in groups.items():
+        coords=B.coordinates(d)if d else None
+        if coords is None or coords[1]-coords[0]>8:raise ValueError('unresolved independent em domain')
+        ems[k]=[B.value(i)for i in range(coords[0],coords[1]+1)]
+    records=[];counts=Counter()
+    for row in doc['loans']:
+        a=row['args'];r,n,p,f=map(qvalue,a);factor=operation(1,operation(1,operation(1,r,'div','stored_pc64'),'add','stored_pc64'),'div','stored_pc64')
+        end,due=map(lambda x:qvalue(row[x]['bits']),('end','due'))
+        d0=inverse(Span(end,end),r,'mul',True,'stored_pc64');d1=inverse(Span(due,due),factor,'mul',True,'stored_pc64');joint=d0.meet(d1)
+        predictions=[]
+        for em in ems[tuple(a[:2])]:
+            balance=operation(p,f,'add','stored_pc64');newq=operation(operation(balance,em,'div','stored_pc64'),f,'add','stored_pc64')
+            predictions.append(dict(em=bits(float(em)),quotient=bits(float(newq)),admitted=joint.contains(newq)if joint else False))
+        old=current.get(tuple(a));oldok=joint.contains(qvalue(old))if joint and old else False
+        counts['loans']+=1;counts['unique_independent_em']+=len(ems[tuple(a[:2])])==1;counts['new_fold_admitted']+=any(x['admitted']for x in predictions);counts['current_quotient_admitted']+=oldok
+        records.append(dict(original=row,joint_quotient_domain=joint.json()if joint else None,current_quotient=old,current_admitted=oldok,predictions=predictions))
+    write(output,dict(complete=True,counts=counts,records=records,
+        source_sha256={str(Path(source).resolve()):sha(source),str(Path(components).resolve()):sha(components),str(Path(__file__).resolve()):sha(__file__)},
+        limits='Binary64 em cells come only from independent zero-future PMT calls. The fixed common balance fold is evaluated at every remaining em. Neither a nonempty domain nor shared mathematical quotient proves a whole period kernel.'))
+    print(json.dumps(counts))
+
+
+def period_boundaries(checkout, output, cache, cohort="boundary", offline=False):
+    """Read caller boundary cases independently of the period-component premise."""
+    import itertools
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline);cases=[]
+    if cohort not in ('boundary','higher','higher_holdout','guard','guard_holdout'):raise ValueError('unknown cohort')
+    rates=(.625,1.5,4.,16.)if cohort=='higher_holdout'else(.75,1.,2.,10.)if cohort=='higher'else(2.**-10,.05,.375,1.,-.125)
+    periods=(5.,17.,50.)if cohort=='higher_holdout'else(3.,12.,60.)if cohort=='higher'else(3.,12.,360.)
+    if cohort not in ('guard','guard_holdout'):
+        for r,n,pv in itertools.product(rates,periods,(.125,math.nextafter(1.,0.),12345.678)if cohort=='higher_holdout'else(1.,math.nextafter(1000.,math.inf),200000.)):
+            points=(1.,2.5,n-.25,n)if cohort=='higher_holdout'else(1.,2.5,n/2.,n-1.,n)if cohort=='higher'else(1.,math.nextafter(1.,math.inf),1.5,math.nextafter(n,0.),n)
+            for fv,per,timing in itertools.product((0.,-.3*pv,.7*pv,-pv),points,(0.,1.)):
+                cases.append(dict(args=[bits(x)for x in(r,per,n,pv,fv,timing)]))
+    else:
+        import struct
+        seen=set()
+        def add(per,n):
+            args=[bits(x)for x in(.125,per,n,1000.,0.,0.)]
+            if tuple(args)not in seen:seen.add(tuple(args));cases.append(dict(args=args))
+        if cohort=='guard_holdout':
+            small=(2.**-100,2.**-60,2.**-54,2.**-53,2.**-52,.125,.5,.875,1.,1.25,1.5)
+            for n in small:
+                for per in(math.nextafter(1.,0.),1.,math.nextafter(1.,math.inf),1.125,1.5,
+                        n+.5,n+1.,math.nextafter(n+1.,0.),math.nextafter(n+1.,math.inf)):
+                    for timing in(0.,1.):
+                        args=[bits(x)for x in(.125,per,n,1000.,0.,timing)]
+                        if tuple(args)not in seen:seen.add(tuple(args));cases.append(dict(args=args))
+            for exponent in(53,54,63,64,65,66,100,1023):
+                n=2.**exponent
+                for per in(math.nextafter(n,0.),n,math.nextafter(n,math.inf)):
+                    for timing in(0.,1.):
+                        args=[bits(x)for x in(.125,per,n,1000.,0.,timing)]
+                        if tuple(args)not in seen:seen.add(tuple(args));cases.append(dict(args=args))
+        for base in (()if cohort=='guard_holdout'else(2.,3.,8.,17.,128.,378.,1024.,2.**20,2.**32,2.**52,2.**53)):
+            for n in ((base,base+.5)if base<2.**52 else(base,)):
+                raw=int(bits(n),16)
+                for delta in range(-4,5):add(value(f'{raw+delta:016x}'),n)
+                for delta in (-1.,-.5,0.,.125,.5,.875,1.,1.125):add(n+delta,n)
+            raw=int(bits(base),16)
+            for delta in range(-4,5):add(base,value(f'{raw+delta:016x}'))
+            for delta in (-1.,-.875,-.5,-.125,0.,.5,1.):add(base,base+delta)
+    write(str(output)+'.questions.json',dict(cases=cases,source_sha256=sha(Path(__file__)),
+        selection=('Fixed period/nper adjacent windows and fractional/exponent boundaries. No tolerance fitted.'if cohort in('guard','guard_holdout')else'Fixed higher positive rates and legal period points, first and opposing-balance exceptions included.'if cohort in('higher','higher_holdout')else'Fixed rates, signs, caller first-period and adjacent-double boundaries, final periods and opposite balances. No period-component premise imposed on first beginning payments or fallback branches.')))
+    answers={f:service.ask_rows(f,[[client.number(value(x))for x in c['args']]for c in cases])for f in('IPMT','PPMT')}
+    write(output,dict(complete=True,cohort=cohort,cases=cases,answers=answers,receipts=service.receipts,
+        source_sha256=sha(Path(__file__)),limits='Caller boundaries and numerical fallback readings only. No expected answer is inferred or substituted for a recorded result.'))
+    print(json.dumps(dict(cases=len(cases),calls=sum(map(len,answers.values())))))
+
+
 if __name__ == '__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='period-boundaries':
+        period_boundaries(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='due-quotient-domains':
+        due_quotient_domains(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='due-quotients':
+        due_quotients(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='due-parts':
         due_parts(*sys.argv[2:]);raise SystemExit(0)
 

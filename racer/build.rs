@@ -179,6 +179,31 @@ fn main() {
             {
                 let mut body=fs::read_to_string(&path).unwrap();
                 body.push_str(r#"
+// Fixed original algebraic hypothesis: retain the discount quotient before
+// PMT adds fv. No observed operand or selected row enters this program.
+pub(crate) fn research_period_base_candidate(r:f64,per:f64,n:f64,pv:f64,fv:f64)->Option<[f64;5]> {
+    if r<=0.0 {return None;}
+    let log=alnrel(r);
+    let em_n=crate::ported::excel_numeric::excel_expm1_spilled(-(n*log));
+    if em_n==0.0 || !em_n.is_finite() {return None;}
+    let base=excel_x87_div(excel_x87_add(pv,fv),em_n);
+    let t=-((n-per+1.0)*log);
+    let em=crate::ported::excel_numeric::excel_expm1_spilled(t);
+    let u=crate::ported::excel_numeric::excel_exp(t);
+    let interest=excel_x87_sub(excel_x87_mul(base,em),fv);
+    let principal=excel_x87_mul(base,u);
+    let due=due_coefficient(r);
+    Some([base,-excel_x87_mul(interest,r),excel_x87_mul(principal,r),
+        -excel_x87_mul(interest,due),excel_x87_mul(principal,due)])
+}
+pub(crate) fn research_period_quotient(r:f64,n:f64,pv:f64,fv:f64)->Option<f64> {
+    Some(end_payment_quotient(r,n,pv,fv)?.1)
+}
+pub(crate) fn research_period_components(r:f64,per:f64,n:f64,pv:f64,fv:f64)->Option<(f64,f64)> {
+    let (log,quotient)=end_payment_quotient(r,n,pv,fv)?;
+    // Read the existing component producer without changing its arithmetic.
+    Some(period_components(r,per,n,fv,log,quotient))
+}
 pub(crate) fn research_end_discount_parts(r:f64,n:f64,pv:f64)->Option<(f64,f64,Vec<f64>,Vec<f64>)> {
     if n!=n.trunc() || !(1.0..=512.0).contains(&n) {return None;}
     let (log,quotient)=end_payment_quotient(r,n,pv,0.0)?;
@@ -186,7 +211,7 @@ pub(crate) fn research_end_discount_parts(r:f64,n:f64,pv:f64)->Option<(f64,f64,V
     for period in 1..=n as usize {
         let t=-((n-period as f64+1.0)*log);
         discounts.push(crate::ported::excel_numeric::excel_exp(t));
-        principals.push(end_payment_parts(r,period as f64,n,0.0,log,quotient).1);
+        principals.push(end_payment_parts(r,period as f64,n,0.0,log,quotient,PaymentTiming::EndOfPeriod).1);
     }
     Some((log,quotient,discounts,principals))
 }

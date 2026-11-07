@@ -1026,8 +1026,9 @@ def problem_functions(checkout, output, run=None, corpus=None):
     names = set(corpus_counts) | {f for f, c in bank.items() if sum(c[k] for k in fields)}
     functions = [dict(function=f, corpus={k:corpus_counts.get(f, {}).get(k, 0) for k in fields[:3]},
                       bank={k:bank.get(f, Counter())[k] for k in fields}) for f in names]
-    functions.sort(key=lambda r: (-sum(r[s]['larger_numeric'] for s in ('corpus','bank')),
-                                 -sum(r[s]['last_bit'] for s in ('corpus','bank')), r['function']))
+    # Corpus failures determine work order; bank observations break later ties.
+    functions.sort(key=lambda r: (-sum(r['corpus'].values()), -r['corpus']['larger_numeric'],
+                                 -sum(r['bank'].values()), -r['bank']['larger_numeric'], r['function']))
     (run/'bank-counts.json').write_text(json.dumps(dict(totals=dict(bank_totals),
         functions={f:dict(c) for f,c in bank.items()}, trace_sha256=trace_hash), indent=2)+'\n')
     if before != state() or bank_source != evidence_state() or executable_hash != hashlib.sha256(executable.read_bytes()).hexdigest():
@@ -1048,7 +1049,8 @@ def problem_functions(checkout, output, run=None, corpus=None):
              'Every mismatch, refusal, unread, missing, pending, external and circular-policy cell remains an inclusive failure. '
              'Corpus labels follow exact single-cell aliases, infer calls from formula spelling and unwrap INDEX selections; unresolved references and infix operators remain explicit. Bank functions use canonical judge identities. '
              'Counts are observations per source; corpus and bank may overlap and must not be added as unique calls. '
-             'Bank reference/locale context gaps remain failures, not proven numerical defects.')
+             'Bank reference/locale context gaps remain failures, not proven numerical defects. '
+             'Rows are ordered by corpus mismatch count, then corpus larger differences, then bank nonpasses.')
     output.parent.mkdir(parents=True, exist_ok=True)
     output.with_suffix('.json').write_text(json.dumps(result, indent=2)+'\n')
     lines = ['# Problem functions', '',

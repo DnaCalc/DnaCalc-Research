@@ -45,6 +45,22 @@ pub fn discount_parts(input:&str, output:&str) {
     println!("{} observed loan records",records.len());
 }
 
+/// Observe the existing stored period components before their rate finish.
+#[cfg(cumulative_discount_audit)]
+pub fn period_components(input:&str, output:&str) {
+    let rows=crate::lines::<Value>(input);let mut records=Vec::new();
+    for row in rows {
+        let args:Vec<_>=row["args"].as_array().unwrap().iter().map(|v|
+            f64::from_bits(u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+        assert_eq!(args.len(),5);
+        let parts=crate::ported::financial_time_value_family::research_period_components(args[0],args[1],args[2],args[3],args[4]);
+        let quotient=crate::ported::financial_time_value_family::research_period_quotient(args[0],args[2],args[3],args[4]);
+        let candidate=crate::ported::financial_time_value_family::research_period_base_candidate(args[0],args[1],args[2],args[3],args[4]);
+        records.push(json!({"fixed_base_candidate":candidate.map(|v|v.map(|x|format!("0x{:016x}",x.to_bits()))),"quotient":quotient.map(|q|format!("0x{:016x}",q.to_bits())),"original":row,"parts":parts.map(|(i,p)|[format!("0x{:016x}",i.to_bits()),format!("0x{:016x}",p.to_bits())]),"not_excel_evidence":true}));
+    }
+    crate::json_write(output,&records);
+}
+
 pub fn programs() -> Vec<Program> {
     let mut result = Vec::new();
     for power in 0..2 {

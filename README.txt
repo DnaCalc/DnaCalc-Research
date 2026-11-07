@@ -1,5 +1,29 @@
 DNA Calc arithmetic program research
 
+R34 lands the normalized radix16 decimal scale, ROUNDUP's stored unit,
+the IPMT/PPMT balance before FV, beginning-interest timing, stored payment
+period admission, the sample-moment square root, CUMIPMT's skipped first
+period, and YIELD/ODDFYIELD date admission. All67 initial IPMT corpus failures
+now match; IPMT's bank is57/57. No regression or numerical bond solver lands.
+
+The unchanged bank improves3,886,558 to3,887,320 of3,910,007 rows; failures
+fall23,449 to22,687, including116 unread. Own stages gain39 and lose1,
+net38; incoming work contributes a separate net724. The one CUMIPMT loss
+equals the independently observed unchanged start2 shadow and stays counted.
+The corpus improves53,105 to53,255 of54,794; inclusive failures fall1,689
+to1,539, including100 pending. Own stages gain89 with no losses; incoming
+work gains79 and loses18. These populations may overlap and are not added
+as unique calls. Numeric main is pushed through15e41f86.
+
+evidence/round34/index.json binds the small raw replies, source epochs,
+primitive inverses, rejected programs, public route measurements and checks.
+LINEST/LOGEST scalar-array questions await the updated Windows service;
+the running worker refuses the newly audited array/selection policy.
+Cumulative summation, beginning PPMT, remaining rounding units and multi-period
+bond iteration stay open. Dyadic bond money scales change Excel's roots and
+NUM outcomes; this refutes a homogeneous relative-stop premise, not a uniquely
+identified seed, derivative or tolerance. Reserved functions remain untouched.
+
 R33 lands worksheet LN below0.7 in GAMMALN, the KURT leading coefficient,
 normalized single-coupon YIELD arithmetic, and bond redemption/integer-power/
 MDURATION stores. Its unchanged-bank gain is1,305 with zero losses: GAMMALN.PRECISE3,

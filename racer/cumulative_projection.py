@@ -427,6 +427,157 @@ def sum_factor_constraints(source, powers, discount_parts, destination):
     print(json.dumps(dict(programs=len(programs),survivors=survivors)))
 
 
+def stored_component_sums(source, components, destination):
+    """Fixed sums of stored principal components, with timing applied after it.
+
+    This differs from a common factor around a sum of raw powers: h*u is
+    stored for each period before accumulation. Existing product h/u operands
+    are explicit conditional leaves, never recovered from cumulative answers.
+    """
+    from bessel import operation,pair
+    source,components,destination=map(Path,(source,components,destination));destination.mkdir(exist_ok=False)
+    q=json.loads((source/'questions.json').read_text());a=json.loads((source/'answers.json').read_text())['CUMPRINC']
+    core={r['loan']['id']:r for r in json.loads(components.read_text())}
+    programs=[];survivors=[]
+    def op(x,y,k,m):return operation(k,m,Q(x),Q(y))
+    def reduce(terms,m,order):
+        if order=='balanced'and len(terms)>1:
+            half=len(terms)//2;return op(reduce(terms[:half],m,order),reduce(terms[half:],m,order),'add',m)
+        value=Q(0)
+        for term in terms[::-1]if order=='reverse'else terms:value=op(value,term,'add',m)
+        return value
+    for family,sum_model,final_model,order in itertools.product(
+            ('components_then_timing','shifted_components_then_rate','published_parts'),
+            MODELS,MODELS,('forward','reverse','balanced')):
+        first=None;checked=0;excluded=Counter()
+        for index,(row,expected)in enumerate(zip(q['ranges'],a)):
+            loan=q['loans'][row['loan']];parts=core[row['loan']]
+            if parts.get('outside_observation_scope'):
+                excluded['outside_current_component_producer']+=1;continue
+            h=Q(number(parts['quotient']));r=Q(loan['rate']);begin=bool(loan['timing'])
+            due=op(1,op(1,op(1,r,'div','stored_pc64'),'add','stored_pc64'),'div','stored_pc64')
+            factor=due if begin else r;initial=Q(0);terms=[]
+            for period in range(row['start'],row['end']+1):
+                if begin and period==1:
+                    if family=='shifted_components_then_rate':initial=op(h,due,'mul','stored_pc64');continue
+                    term=h
+                else:
+                    offset=period-2 if family=='shifted_components_then_rate'and begin else period-1
+                    term=op(h,Q(number(parts['discounts'][offset])),'mul','stored_pc64')
+                if family=='published_parts':term=op(term,factor,'mul',final_model)
+                terms.append(term)
+            total=reduce(terms,sum_model,order)
+            if family=='shifted_components_then_rate':got=op(initial,op(total,r,'mul',final_model),'add',final_model)
+            elif family=='published_parts':got=total
+            else:got=op(total,factor,'mul',final_model)
+            prediction='0x'+struct.pack('>d',float(B64.rn(got))).hex();wanted='0x'+expected['bits'];checked+=1
+            if prediction!=wanted:
+                first=dict(index=index,original=row,expected=expected,prediction=prediction,
+                    loan=loan,terms=[pair(t)for t in terms],initial=pair(initial));break
+        identity=len(programs)
+        if first is None:survivors.append(identity)
+        programs.append(dict(id=identity,family=family,sum_model=sum_model,final_model=final_model,
+            order=order,checked_until_first_contradiction=checked,excluded=excluded,first_contradiction=first))
+    result=dict(complete=True,original_rows=len(a),programs=programs,survivors=survivors,
+        source_sha256={str(source/'questions.json'):hashlib.sha256((source/'questions.json').read_bytes()).hexdigest(),
+            str(source/'answers.json'):hashlib.sha256((source/'answers.json').read_bytes()).hexdigest(),
+            str(components):hashlib.sha256(components.read_bytes()).hexdigest(),str(Path(__file__).resolve()):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},
+        limits='Finite stored-component sum hypotheses only. Existing h/u producers are conditional product leaves; no observed principal or selected factor is installed. Unsupported rate1 rows are outside every scope, never scored as passes.')
+    (destination/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(dict(programs=len(programs),survivors=survivors)))
+
+
+def recurrence_sum_domains(source,destination,balance=False):
+    """Necessary initial-value cells for range-local geometric accumulation.
+
+    Each (loan,start) has one arbitrary extended initial value constrained by
+    its original singleton. Later ends must share it. Nothing assumes that a
+    singleton begun at a later period uses the same rounded producer.
+    """
+    from bessel import operation
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
+    from exact import EXTENDED64,Span
+    source,destination=map(Path,(source,destination));destination.mkdir(exist_ok=False)
+    questions=json.loads((source/'questions.json').read_text());observations=json.loads((source/'answers.json').read_text());answers=observations['CUMPRINC']
+    singleton={(r['loan'],r['start']):Q(number('0x'+v['bits']))for r,v in zip(questions['ranges'],answers)if r['start']==r['end']}
+    profiles=[(m,m)for m in MODELS]+[('stored_pc64','strict')]
+    programs=[];survivors=[]
+    def op(a,b,k,m):return operation(k,m,Q(a),Q(b))
+    descriptions=list(itertools.product(('principal','component'),('multiply_growth','add_interest'),profiles,MODELS))
+    if balance:
+        descriptions=[(family,advance,profile,finish)for family in('principal_from_balance','interest_balances')
+            for advance in('add_principal','multiply_growth_add_payment')for profile in profiles
+            for finish in(('strict',)if family=='principal_from_balance'else MODELS)]
+    for family,advance,(update_word,sum_word),finish_word in descriptions:
+        domains={};first=None;checked=0;excluded=Counter();searches=0
+        for index,(row,answer)in enumerate(zip(questions['ranges'],answers)):
+            loan=questions['loans'][row['loan']];start,end=row['start'],row['end']
+            if loan['timing']and start==1:excluded['separate_first_beginning_payment']+=1;continue
+            r=Q(loan['rate']);growth=op(1,r,'add','stored_pc64');factor=r if family=='component'else Q(1);payment=Q(number('0x'+observations['PMT'][row['loan']]['bits']))
+            key=(row['loan'],start)
+            if key not in domains:
+                target=Interval(singleton[key],singleton[key])
+                if balance and family=='principal_from_balance':
+                    if sum_word.startswith('resident'):target=B64.preimage(target)
+                    initial=inverse_add(target,MODELS.index(sum_word),Q(0))
+                    initial=inverse_add(initial,MODELS.index(update_word),payment)if initial else None
+                    initial=inverse_op(initial,MODELS.index(update_word),'mul',r,True)if initial else None
+                elif balance:
+                    if finish_word.startswith('resident'):target=B64.preimage(target)
+                    first_payment=op(payment,1,'mul',finish_word)
+                    initial=inverse_add(target,MODELS.index(finish_word),first_payment)
+                    initial=inverse_op(initial,MODELS.index(finish_word),'mul',r,True)if initial else None
+                    initial=inverse_add(initial,MODELS.index(sum_word),Q(0))if initial else None
+                else:
+                    if finish_word.startswith('resident'):target=B64.preimage(target)
+                    initial=inverse_op(target,MODELS.index(finish_word),'mul',factor,True)
+                    initial=inverse_add(initial,MODELS.index(sum_word),Q(0))if initial else None
+                span=Span(initial.lo,initial.hi,initial.lc,initial.hc)if initial else None
+                domains[key]=EXTENDED64.coordinates(span)
+            prior=domains[key]
+            expected=Q(number('0x'+answer['bits']))
+            def evaluate(coordinate):
+                term=EXTENDED64.value(coordinate)
+                if balance:
+                    total=Q(0)
+                    for step in range(end-start+1):
+                        principal=op(payment,op(term,r,'mul',update_word),'add',update_word)
+                        total=op(total,principal if family=='principal_from_balance'else term,'add',sum_word)
+                        if step<end-start:
+                            term=op(term,principal,'add',update_word)if advance=='add_principal'else op(op(term,growth,'mul',update_word),payment,'add',update_word)
+                    if family=='principal_from_balance':return B64.rn(total)
+                    return B64.rn(op(op(payment,end-start+1,'mul',finish_word),op(total,r,'mul',finish_word),'add',finish_word))
+                total=op(0,term,'add',sum_word)
+                for _ in range(end-start):
+                    term=op(term,growth,'mul',update_word)if advance=='multiply_growth'else op(term,op(term,r,'mul',update_word),'add',update_word)
+                    total=op(total,term,'add',sum_word)
+                return B64.rn(op(total,factor,'mul',finish_word))
+            if prior is None:updated=None
+            else:
+                low,high=prior
+                def bound(strict):
+                    nonlocal searches
+                    lo,hi=low,high+1
+                    while lo<hi:
+                        mid=(lo+hi)//2;value=evaluate(mid);searches+=1
+                        if value<expected or strict and value==expected:lo=mid+1
+                        else:hi=mid
+                    return lo
+                left,right=bound(False),bound(True)-1;updated=(left,right)if left<=right else None
+            domains[key]=updated;checked+=1
+            if updated is None:
+                first=dict(index=index,original=row,expected=answer,loan=loan,previous_initial_coordinates=prior,
+                    previous_endpoint_predictions=None if prior is None else ['0x'+struct.pack('>d',float(evaluate(k))).hex()for k in prior]);break
+        identity=len(programs)
+        if first is None:survivors.append(identity)
+        programs.append(dict(id=identity,family=family,advance=advance,update_word=update_word,sum_word=sum_word,
+            finish_word=finish_word,checked_until_first_contradiction=checked,excluded=excluded,exact_search_evaluations=searches,
+            first_contradiction=first,necessary_initial_domains=[dict(loan=k[0],start=k[1],coordinates=v)for k,v in domains.items()]if first is None else None))
+    result=dict(complete=True,original_rows=len(answers),programs=programs,survivors=survivors,
+        source_sha256={str(source/'questions.json'):hashlib.sha256((source/'questions.json').read_bytes()).hexdigest(),str(source/'answers.json'):hashlib.sha256((source/'answers.json').read_bytes()).hexdigest(),str(Path(__file__).resolve()):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},
+        public_payment_leaf=balance,limits='Arbitrary extended initial values are necessary constraints only, never selected operands. First beginning-payment ranges are outside each recurrence scope. Exact monotone bisection intersects complete publication cells across every end for each start; no first-term producer or complete CUMPRINC kernel is identified by a nonempty domain.')
+    (destination/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(dict(programs=len(programs),survivors=survivors)))
+
+
 def tagged(s):
     if s.startswith('binary64:'):return Q(number(s.split(':')[1]))
     assert s.startswith('ext80-le:')
@@ -830,7 +981,10 @@ to validate and no new Excel answer in this packet. Preserve the original R13/R1
 
 
 if __name__=='__main__':
-    if sys.argv[1]=='sum-factor-constraints':sum_factor_constraints(*sys.argv[2:])
+    if sys.argv[1]=='affine-sum-domains':recurrence_sum_domains(*sys.argv[2:],balance=True)
+    elif sys.argv[1]=='recurrence-sum-domains':recurrence_sum_domains(*sys.argv[2:])
+    elif sys.argv[1]=='stored-component-sums':stored_component_sums(*sys.argv[2:])
+    elif sys.argv[1]=='sum-factor-constraints':sum_factor_constraints(*sys.argv[2:])
     elif sys.argv[1]=='paired-sum-inverse':paired_sum_inverse(*sys.argv[2:])
     elif sys.argv[1]=='summation-analyze':summation_analyze(*sys.argv[2:])
     elif sys.argv[1]=='summation-questions':summation_questions(*sys.argv[2:])

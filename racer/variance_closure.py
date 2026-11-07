@@ -461,6 +461,92 @@ def paired_run(input_path, destination):
     print(json.dumps(summary))
 
 
+def skew_sqrt_questions(checkout, output, cache, cohort="discovery", offline=False):
+    """Primitive root ties selected before querying sample moments."""
+    import numpy as np
+    import hashlib,math,struct
+    from fingerprint import CachedService,load_service,bits,write
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=300),cache,offline)
+    if cohort not in ("discovery","holdout"):raise ValueError("unknown cohort")
+    holdout=cohort=="holdout"
+    rng=np.random.default_rng(0x3405d if holdout else 0x3405c);cases=[]
+    def op(a,b,k):return operation(k,'stored_pc64',Q(a),Q(b))
+    def moments(values):
+        avg=Q(0)
+        for x in values:avg=op(avg,x,'add')
+        avg=op(avg,len(values),'div');ss=Q(0)
+        for x in values:
+            delta=op(x,-avg,'add');ss=op(ss,op(delta,delta,'mul'),'add')
+        return avg,op(ss,len(values)-1,'div')
+    def add(values,group):
+        values=list(map(Q,values));avg,var=moments(values)
+        roots=dict(strict=B64.rn_sqrt(var),stored_pc64=B64.rn(E64.rn_sqrt(var)))
+        if any(x is None or x<=0 for x in roots.values()):raise ValueError('root outside declared normal scope')
+        predictions={}
+        n=Q(len(values))
+        for model,root in roots.items():
+            cubes=fourths=Q(0)
+            for x in values:
+                z=op(op(x,-avg,'add'),root,'div');square=op(z,z,'mul')
+                cubes=op(cubes,op(square,z,'mul'),'add');fourths=op(fourths,op(square,square,'mul'),'add')
+            skew=op(op(n,(n-1)*(n-2),'div'),cubes,'mul')
+            kurt=None
+            if n>3:
+                coefficient=op(op(n,n+1,'mul'),op(op(n-1,n-2,'mul'),n-3,'mul'),'div')
+                offset=op(op(3,op(n-1,n-1,'mul'),'mul'),op(n-2,n-3,'mul'),'div')
+                kurt=op(op(coefficient,fourths,'mul'),-offset,'add')
+            predictions[model]=dict(SKEW=bits(float(skew)),KURT=None if kurt is None else bits(float(kurt)))
+        cases.append(dict(group=group,args=[bits(float(x))for x in values],variance=bits(float(var)),
+            roots={k:bits(float(v))for k,v in roots.items()},predictions=predictions))
+    wanted=4 if holdout else 8
+    for n in ((6,7,9,12,17,30)if holdout else(3,4,5,8,16,31)):
+        selected=0
+        for batch in range(8):
+            values=rng.uniform(-8.,8.,size=(20000,n));total=np.zeros(20000)
+            for i in range(n):total=(total.astype(np.longdouble)+values[:,i].astype(np.longdouble)).astype(np.float64)
+            avg=(total.astype(np.longdouble)/np.longdouble(n)).astype(np.float64);ss=np.zeros(20000)
+            for i in range(n):
+                delta=(values[:,i].astype(np.longdouble)-avg.astype(np.longdouble)).astype(np.float64)
+                square=(delta.astype(np.longdouble)*delta.astype(np.longdouble)).astype(np.float64)
+                ss=(ss.astype(np.longdouble)+square.astype(np.longdouble)).astype(np.float64)
+            var=(ss.astype(np.longdouble)/np.longdouble(n-1)).astype(np.float64)
+            strict=np.sqrt(var);extended=np.sqrt(var.astype(np.longdouble)).astype(np.float64)
+            for index in np.flatnonzero(strict.view(np.uint64)!=extended.view(np.uint64)):
+                add(values[index],dict(kind='fresh_root_discriminant',n=n,batch=batch,index=int(index)))
+                if cases[-1]['roots']['strict']==cases[-1]['roots']['stored_pc64']:raise ValueError('native discriminator not rationally certified')
+                selected+=1
+                if selected==wanted:break
+            if selected==wanted:break
+        if selected!=wanted:raise ValueError('fixed root-discriminant search exhausted')
+    anchor=[int(x,16)for x in ('c0119ef06a93d623','401cdf7ccd1aa376','c01f734e107bdd5c','bfde9e26ef0f1a84')]
+    if holdout:
+        for case in list(cases):
+            for power in (-300,300):
+                add([math.ldexp(number("0x"+x),power)for x in case["args"]],dict(kind="heldout_exponent_scale",power=power,original=case["group"]))
+    for offset in (()if holdout else range(-64,65)):
+        values=[number('0x'+f'{x:016x}')for x in anchor];values[3]=number('0x'+f'{anchor[3]+offset:016x}')
+        add(values,dict(kind='original_failure_adjacent_window',offset=offset))
+    bindings={str(Path(__file__).resolve()):digest(__file__),str(Path(__file__).with_name('intervals.py').resolve()):digest(Path(__file__).with_name('intervals.py'))}
+    write(str(output)+'.questions.json',dict(cases=cases,source_bindings=bindings,numpy=np.__version__,
+        selection=('First four independently certified root-word disagreements per new arity, each at original and fixed2^(-300),2^300 scales; selected before Excel answers.' if holdout else 'First eight independently certified root-word disagreements per declared arity, plus the unchanged129-double original witness window; selected before Excel answers.')))
+    answers={};mapping={}
+    for function in ('SKEW','STDEV.S','SQRT','KURT'):
+        positions=[i for i,c in enumerate(cases)if function!='KURT'or len(c['args'])>=4]
+        rows=[[client.number(number('0x'+cases[i]['variance']))]if function=='SQRT'else[client.number(number('0x'+x))for x in cases[i]['args']]for i in positions]
+        answers[function]=service.ask_rows(function,rows);mapping[function]=positions
+    counts=Counter()
+    for function in answers:
+        for i,a in zip(mapping[function],answers[function]):
+            c=cases[i]
+            for model in ('strict','stored_pc64'):
+                prediction=c['roots'][model]if function in ('SQRT','STDEV.S')else c['predictions'][model][function]
+                counts[function+'/'+model]+=a==dict(type='number',bits=prediction)
+    write(output,dict(complete=True,cohort=cohort,cases=cases,answers=answers,mapping=mapping,counts=counts,
+        receipts=service.receipts,source_bindings=bindings,
+        limits='Only the root stage differs between fixed complete arithmetic programs. Every native root discriminator is certified by exact squared-midpoint arithmetic before asking Excel. General moments and literal private stores are not inferred from match counts.'))
+    print(json.dumps(counts),flush=True)
+
+
 def kurt_outer(checkout, output, cache, library, offline=False, all_arities=False):
     """Separate KURT's outer arithmetic with exact zero/unit normalization."""
     import math,random,hashlib
@@ -603,6 +689,8 @@ def kurt_outer(checkout, output, cache, library, offline=False, all_arities=Fals
 
 
 if __name__=='__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='skew-sqrt':
+        skew_sqrt_questions(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='kurt-outer-all-arities':
         args=sys.argv[2:];offline=bool(args and args[-1]=='--offline')
         if offline:args=args[:-1]
