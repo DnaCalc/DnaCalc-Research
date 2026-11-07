@@ -7313,8 +7313,96 @@
       "archive_sha256": "08b6b8eb5817ae147ce12572f8ede172e57d6865db0bad21e4ea2f58118c1d66",
       "bytes": 1053,
       "archive_bytes": 676
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/archive-validation.json",
+      "archive": "evidence/round33/retained/154439906775142abfe4a0b168edb65cab8db5dd8c1060e3a5144cd4fb420054-archive-validation.json.gz",
+      "sha256": "154439906775142abfe4a0b168edb65cab8db5dd8c1060e3a5144cd4fb420054",
+      "archive_sha256": "ad22d185412e5bcbe95d384e5a66e8f4ac9e7a102dbbe65a4052d84218173050",
+      "bytes": 911,
+      "archive_bytes": 530
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/cumprinc-q-envelope.json",
+      "archive": "evidence/round33/retained/57279148b8c707195d76269680a5e395dc049c8b132af9d63b69b259bed72a08-cumprinc-q-envelope.json.gz",
+      "sha256": "57279148b8c707195d76269680a5e395dc049c8b132af9d63b69b259bed72a08",
+      "archive_sha256": "617f400064ff7cf10068b14c60cf7490241d4ace3f6545bea087d38a4cc55d2c",
+      "bytes": 119099,
+      "archive_bytes": 5693
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/cumprinc-q-envelope.log",
+      "archive": "evidence/round33/retained/ea30083429bea78af28e768d5ffa0150381473ce2267b213fcbe267fda1c0613-cumprinc-q-envelope.log.gz",
+      "sha256": "ea30083429bea78af28e768d5ffa0150381473ce2267b213fcbe267fda1c0613",
+      "archive_sha256": "ab1a4e266a5bdf041118cb6af2e5892d49b0c03d90d27f873aed98afc9ccb85a",
+      "bytes": 244,
+      "archive_bytes": 202
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/cumprinc-q-envelope.log.resource.json",
+      "archive": "evidence/round33/retained/ce5a29bfa21a5e877304426d0ce5999351b0299ba16eefe2ccce41a0d6574405-cumprinc-q-envelope.log.resource.json.gz",
+      "sha256": "ce5a29bfa21a5e877304426d0ce5999351b0299ba16eefe2ccce41a0d6574405",
+      "archive_sha256": "6faf6cbb1b67978495a69da6a468cf60a8d25baa368a92fc3cd6a6767d6550d8",
+      "bytes": 245,
+      "archive_bytes": 202
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/cumprinc-q-envelope.py",
+      "archive": "evidence/round33/retained/e21363f97363a58260757b466c776ca74cc65da090ddfc73a0641ddb78ce6b53-cumprinc-q-envelope.py.gz",
+      "sha256": "e21363f97363a58260757b466c776ca74cc65da090ddfc73a0641ddb78ce6b53",
+      "archive_sha256": "75a64d86e12b45f9afd35cad1d916b76a0a0124db1dcaad2fc48bbdbea746ebc",
+      "bytes": 2514,
+      "archive_bytes": 1261
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/cumprinc-q-independent-review.txt",
+      "archive": "evidence/round33/retained/e74950f3675787ed55a998fb0122ba46a60b55878ca57484b2e3c8b65f25342f-cumprinc-q-independent-review.txt.gz",
+      "sha256": "e74950f3675787ed55a998fb0122ba46a60b55878ca57484b2e3c8b65f25342f",
+      "archive_sha256": "c66dc431c0193c0e75bc622c51a06c19c8cc100c2937976c1ed54328afa35a86",
+      "bytes": 508,
+      "archive_bytes": 336
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/research-addendum-message.txt",
+      "archive": "evidence/round33/retained/dc7987dc61ac223c1d31e7fe18079e6de321b60875f020d8b46fd34176ede642-research-addendum-message.txt.gz",
+      "sha256": "dc7987dc61ac223c1d31e7fe18079e6de321b60875f020d8b46fd34176ede642",
+      "archive_sha256": "64eb6ee99483000752ce0e09d973ccbe928b354a2dc1498b3ae964c998433d28",
+      "bytes": 483,
+      "archive_bytes": 340
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/research-push.log",
+      "archive": "evidence/round33/retained/444a39501474b4d768e735ac470c4a659fece578eb2b470e8afd4b3b121a082b-research-push.log.gz",
+      "sha256": "444a39501474b4d768e735ac470c4a659fece578eb2b470e8afd4b3b121a082b",
+      "archive_sha256": "2636028abb3d3b149a1285e846212d0609e5e3324d73677ef93a74b4f2bf9e0f",
+      "bytes": 207,
+      "archive_bytes": 191
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/research-push.log.resource.json",
+      "archive": "evidence/round33/retained/9736eb26360b38cbed6436758b030e5472e9b29aa6a3bcc5d074ad9374532b00-research-push.log.resource.json.gz",
+      "sha256": "9736eb26360b38cbed6436758b030e5472e9b29aa6a3bcc5d074ad9374532b00",
+      "archive_sha256": "d79bb4af1e4a36eaf8f2901a7b74092da2b505bfe989e0332c653069cdd845e1",
+      "bytes": 237,
+      "archive_bytes": 197
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/ubs-q-envelope.log",
+      "archive": "evidence/round33/retained/119805e386091174a774dcdee6309e042ea4635c13ce39a8084497c843ca1a57-ubs-q-envelope.log.gz",
+      "sha256": "119805e386091174a774dcdee6309e042ea4635c13ce39a8084497c843ca1a57",
+      "archive_sha256": "88d64f6175614db453fe62aca8c9dc0f8813f5dd931721d05326cd7e1277b3f3",
+      "bytes": 3706,
+      "archive_bytes": 904
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/round33/ubs-q-envelope.log.resource.json",
+      "archive": "evidence/round33/retained/03cdc69e98be9434a57b56a075ae4dcce1be4736cebfaebaaaa69a59220d94e5-ubs-q-envelope.log.resource.json.gz",
+      "sha256": "03cdc69e98be9434a57b56a075ae4dcce1be4736cebfaebaaaa69a59220d94e5",
+      "archive_sha256": "4a5da1e8194a908b3b56181133e87eae213b56f2d582bd2b3a41bd8bc7d3f2ad",
+      "bytes": 239,
+      "archive_bytes": 201
     }
   ],
-  "archive_bytes": 28525456,
+  "archive_bytes": 28535513,
   "limits": "Exact original bytes or gzip thereof. No binary library, target directory, full corpus cells, private session messages, excluded checkout or Excel lock file is archived. Historical failed experiments remain distinct from final proofs."
 }
