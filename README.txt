@@ -20,7 +20,14 @@ primitive inverses, rejected programs, public route measurements and checks.
 LINEST/LOGEST scalar-array questions await the updated Windows service;
 the running worker refuses the newly audited array/selection policy.
 Cumulative summation, beginning PPMT, remaining rounding units and multi-period
-bond iteration stay open. Dyadic bond money scales change Excel's roots and
+bond iteration stay open. A final120 backward range-recurrence models also
+refute, even with an arbitrary last term constrained only by its singleton;
+the earlier120 forward and72 affine results replay unchanged. Interior-only
+repeats exclude every start1 range explicitly; all120 forward,120 backward
+and72 affine programs still refute, without identifying a first-period branch.
+round34-final-unit.json binds this final Python-only extension. Software x87
+passes548 application tests with3 ignored across the library, moments and
+financial tests. Dyadic bond money scales change Excel's roots and
 NUM outcomes; this refutes a homogeneous relative-stop premise, not a uniquely
 identified seed, derivative or tolerance. Reserved functions remain untouched.
 

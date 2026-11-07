@@ -486,16 +486,18 @@ def stored_component_sums(source, components, destination):
     (destination/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(dict(programs=len(programs),survivors=survivors)))
 
 
-def recurrence_sum_domains(source,destination,balance=False):
+def recurrence_sum_domains(source,destination,balance=False,backward=False,interior=False):
     """Necessary initial-value cells for range-local geometric accumulation.
 
-    Each (loan,start) has one arbitrary extended initial value constrained by
-    its original singleton. Later ends must share it. Nothing assumes that a
-    singleton begun at a later period uses the same rounded producer.
+    Forward ranges share an arbitrary extended first term per (loan,start);
+    backward ranges share an arbitrary last term per (loan,end). Each term is
+    constrained by its exact singleton. No different range origin is required
+    to use the same rounded producer.
     """
     from bessel import operation
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
     from exact import EXTENDED64,Span
+    if balance and backward:raise ValueError('backward balance family is not specified')
     source,destination=map(Path,(source,destination));destination.mkdir(exist_ok=False)
     questions=json.loads((source/'questions.json').read_text());observations=json.loads((source/'answers.json').read_text());answers=observations['CUMPRINC']
     singleton={(r['loan'],r['start']):Q(number('0x'+v['bits']))for r,v in zip(questions['ranges'],answers)if r['start']==r['end']}
@@ -503,17 +505,22 @@ def recurrence_sum_domains(source,destination,balance=False):
     programs=[];survivors=[]
     def op(a,b,k,m):return operation(k,m,Q(a),Q(b))
     descriptions=list(itertools.product(('principal','component'),('multiply_growth','add_interest'),profiles,MODELS))
+    if backward:
+        descriptions=list(itertools.product(('principal','component'),('divide_growth','multiply_reciprocal'),profiles,MODELS))
     if balance:
         descriptions=[(family,advance,profile,finish)for family in('principal_from_balance','interest_balances')
             for advance in('add_principal','multiply_growth_add_payment')for profile in profiles
             for finish in(('strict',)if family=='principal_from_balance'else MODELS)]
     for family,advance,(update_word,sum_word),finish_word in descriptions:
         domains={};first=None;checked=0;excluded=Counter();searches=0
-        for index,(row,answer)in enumerate(zip(questions['ranges'],answers)):
+        indexed=list(enumerate(zip(questions['ranges'],answers)))
+        if backward:indexed.sort(key=lambda item:(item[1][0]['loan'],item[1][0]['end'],-item[1][0]['start']))
+        for index,(row,answer)in indexed:
             loan=questions['loans'][row['loan']];start,end=row['start'],row['end']
+            if interior and start==1:excluded['first_period_branch_outside_scope']+=1;continue
             if loan['timing']and start==1:excluded['separate_first_beginning_payment']+=1;continue
             r=Q(loan['rate']);growth=op(1,r,'add','stored_pc64');factor=r if family=='component'else Q(1);payment=Q(number('0x'+observations['PMT'][row['loan']]['bits']))
-            key=(row['loan'],start)
+            key=(row['loan'],end if backward else start)
             if key not in domains:
                 target=Interval(singleton[key],singleton[key])
                 if balance and family=='principal_from_balance':
@@ -548,7 +555,10 @@ def recurrence_sum_domains(source,destination,balance=False):
                     return B64.rn(op(op(payment,end-start+1,'mul',finish_word),op(total,r,'mul',finish_word),'add',finish_word))
                 total=op(0,term,'add',sum_word)
                 for _ in range(end-start):
-                    term=op(term,growth,'mul',update_word)if advance=='multiply_growth'else op(term,op(term,r,'mul',update_word),'add',update_word)
+                    if backward:
+                        term=op(term,growth,'div',update_word)if advance=='divide_growth'else op(term,op(1,growth,'div','stored_pc64'),'mul',update_word)
+                    else:
+                        term=op(term,growth,'mul',update_word)if advance=='multiply_growth'else op(term,op(term,r,'mul',update_word),'add',update_word)
                     total=op(total,term,'add',sum_word)
                 return B64.rn(op(total,factor,'mul',finish_word))
             if prior is None:updated=None
@@ -571,10 +581,10 @@ def recurrence_sum_domains(source,destination,balance=False):
         if first is None:survivors.append(identity)
         programs.append(dict(id=identity,family=family,advance=advance,update_word=update_word,sum_word=sum_word,
             finish_word=finish_word,checked_until_first_contradiction=checked,excluded=excluded,exact_search_evaluations=searches,
-            first_contradiction=first,necessary_initial_domains=[dict(loan=k[0],start=k[1],coordinates=v)for k,v in domains.items()]if first is None else None))
+            first_contradiction=first,necessary_initial_domains=[dict(loan=k[0],**({'end':k[1]}if backward else{'start':k[1]}),coordinates=v)for k,v in domains.items()]if first is None else None))
     result=dict(complete=True,original_rows=len(answers),programs=programs,survivors=survivors,
         source_sha256={str(source/'questions.json'):hashlib.sha256((source/'questions.json').read_bytes()).hexdigest(),str(source/'answers.json'):hashlib.sha256((source/'answers.json').read_bytes()).hexdigest(),str(Path(__file__).resolve()):hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},
-        public_payment_leaf=balance,limits='Arbitrary extended initial values are necessary constraints only, never selected operands. First beginning-payment ranges are outside each recurrence scope. Exact monotone bisection intersects complete publication cells across every end for each start; no first-term producer or complete CUMPRINC kernel is identified by a nonempty domain.')
+        public_payment_leaf=balance,limits=('Interior-only necessary loop constraints: every range beginning at period1 is excluded explicitly, without asserting that Excel uses a separate branch. No excluded range counts as a pass. 'if interior else'')+('Backward principal/component recurrences: one arbitrary Ext80 last term per(loan,end), constrained by its exact singleton, then divided by stored1+r or multiplied by its stored reciprocal while accumulating down to each start. No last-term producer is assumed. 'if backward else'')+'Arbitrary extended initial values are necessary constraints only, never selected operands. First beginning-payment ranges are outside each recurrence scope. Exact monotone bisection intersects complete publication cells across the range; no first-term producer or complete CUMPRINC kernel is identified by a nonempty domain.')
     (destination/'summary.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(dict(programs=len(programs),survivors=survivors)))
 
 
@@ -981,7 +991,10 @@ to validate and no new Excel answer in this packet. Preserve the original R13/R1
 
 
 if __name__=='__main__':
-    if sys.argv[1]=='affine-sum-domains':recurrence_sum_domains(*sys.argv[2:],balance=True)
+    if sys.argv[1]=='interior-backward-sum-domains':recurrence_sum_domains(*sys.argv[2:],backward=True,interior=True)
+    elif sys.argv[1]=='interior-sum-domains':recurrence_sum_domains(*sys.argv[2:],interior=True)
+    elif sys.argv[1]=='backward-sum-domains':recurrence_sum_domains(*sys.argv[2:],backward=True)
+    elif sys.argv[1]=='affine-sum-domains':recurrence_sum_domains(*sys.argv[2:],balance=True)
     elif sys.argv[1]=='recurrence-sum-domains':recurrence_sum_domains(*sys.argv[2:])
     elif sys.argv[1]=='stored-component-sums':stored_component_sums(*sys.argv[2:])
     elif sys.argv[1]=='sum-factor-constraints':sum_factor_constraints(*sys.argv[2:])

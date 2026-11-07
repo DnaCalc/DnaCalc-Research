@@ -3631,5 +3631,586 @@
     "original_bytes": 1355540,
     "sha256": "200f9062df51610702d17ea6fce96b88708bd12f61946cbe6e9abbe20d42d8e2",
     "archive_sha256": "7ba9e898d3021a0c2fcc4449718f7d6d9aa12a3c464a6936a7fc9465361c8184"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/scalar-cache/145a8a68c84aa46414f2d815bbdb176ecd0d38984ee38d0a8d9bc0555c9cd7d0.json.gz",
+    "archive": "scalar-cache/145a8a68c84aa46414f2d815bbdb176ecd0d38984ee38d0a8d9bc0555c9cd7d0.json.gz",
+    "original_bytes": 1851,
+    "sha256": "be1f71ffd743ecdff8537df53315b042eacf97440a5a0a533e30a0911655c2be",
+    "archive_sha256": "be1f71ffd743ecdff8537df53315b042eacf97440a5a0a533e30a0911655c2be"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/scalar-cache/cb3cbe680d993ba1c1baf71dbce63cc87e2d8bb6a9d34c33d939995d18428347.json.gz",
+    "archive": "scalar-cache/cb3cbe680d993ba1c1baf71dbce63cc87e2d8bb6a9d34c33d939995d18428347.json.gz",
+    "original_bytes": 1858,
+    "sha256": "93ffc0ea9e751e48723bcb63d0ff2c4bb73ddb680f34c5293128fe9ceea4cfcb",
+    "archive_sha256": "93ffc0ea9e751e48723bcb63d0ff2c4bb73ddb680f34c5293128fe9ceea4cfcb"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/scalar-cache/f31cb0c7dc8504f870dbc31a21840b077077b0b48948e1d5d265176a33f0b0d9.json.gz",
+    "archive": "scalar-cache/f31cb0c7dc8504f870dbc31a21840b077077b0b48948e1d5d265176a33f0b0d9.json.gz",
+    "original_bytes": 1854,
+    "sha256": "4ed3222af431b0da80d64fbdffa26f339212a0664fab425f9727fb1c4a30fe4a",
+    "archive_sha256": "4ed3222af431b0da80d64fbdffa26f339212a0664fab425f9727fb1c4a30fe4a"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/backward-research-build.log",
+    "archive": "retained/backward-research-build.log.gz",
+    "original_bytes": 1139,
+    "sha256": "546c6748391472d003bb45157b8171e16c8ebfc51e30a4fb12353454b0869f23",
+    "archive_sha256": "9f95d245e26ea42169e0adbf4f3ab33e22f476b51d73420df99bb189f651cb10"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/backward-research-provenance.json",
+    "archive": "retained/backward-research-provenance.json.gz",
+    "original_bytes": 11817,
+    "sha256": "4f9ac436b6a294cba949d3be4fbc1b473a014495c536b4caf52a118166d1a1b3",
+    "archive_sha256": "d0cc17aab17ea22860422f08880d5eae59fb6009a32e11ba3c99d9cfa6373086"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-ROUNDDOWN-judge.log",
+    "archive": "retained/binade-ROUNDDOWN-judge.log.gz",
+    "original_bytes": 666,
+    "sha256": "835a044a2a5df29cd6e7e34eb71e7da1120341e6a7884afeeea21e1e1fe2f23e",
+    "archive_sha256": "0244a2433c6b72cab9cea78169ace25c0a67b5addda6ae6bc31cd2f35ccd9595"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-ROUNDUP-judge.log",
+    "archive": "retained/binade-ROUNDUP-judge.log.gz",
+    "original_bytes": 666,
+    "sha256": "6cfc7e6253cc714c30716c47e5e1756dff8eb73b55b05a8bb185f13a505969f2",
+    "archive_sha256": "98fa618e79814b0dd30e1816e62d6c0c689f6033d37fadb54984dc01ab131893"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-TRUNC-judge.log",
+    "archive": "retained/binade-TRUNC-judge.log.gz",
+    "original_bytes": 666,
+    "sha256": "68e29341d9a636ee53ee284aa0cebee1e67be597da237b2793e903cfbeb7d61a",
+    "archive_sha256": "525d9497c3624721959ed73a64f421c8be36d42f3a79d3cc25d673341b272708"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-application-snapshot.json",
+    "archive": "retained/binade-application-snapshot.json.gz",
+    "original_bytes": 558,
+    "sha256": "b8aca89542d7f043127b402f5e31a51561eea0206001de4034029ec59021eb98",
+    "archive_sha256": "a7c6c5acbb9be9d8f23c2c4c1d3d8990b2886b8d775a0f5a66336027fb0b1b43"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-bank-after-reconciled.log",
+    "archive": "retained/binade-bank-after-reconciled.log.gz",
+    "original_bytes": 528,
+    "sha256": "ba768b86db6c64afd8ef7dc2822aa843d35aa198db7888ee6ce9d5d27bc295da",
+    "archive_sha256": "9397005ee93735f3488fd8889c95dcdaec3ee103af1acbf1c1b0d1c3271ec218"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-bank-after-retry.log",
+    "archive": "retained/binade-bank-after-retry.log.gz",
+    "original_bytes": 337,
+    "sha256": "e067d7216d31cbb116a470b471e7075f75f4b69878da063f7df3032359125ea2",
+    "archive_sha256": "f988709e04c8200ad4f56107039e059f36cab89cd7ba0f7e64ac096b004dd27c"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-bank-after.log",
+    "archive": "retained/binade-bank-after.log.gz",
+    "original_bytes": 1750,
+    "sha256": "74f256f6a27daa9bad220ed6c554f4f29507810c7c5273ee83f5c93fb04ada6c",
+    "archive_sha256": "95c51e893e129e92c455a44db90e30281727a818029f76e11ac0ca4843c1cae6"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-bank-after.py",
+    "archive": "retained/binade-bank-after.py.gz",
+    "original_bytes": 2719,
+    "sha256": "65a404ec61ee804feac75006a155f7a49de800c845309775f874ade90f62a7e8",
+    "archive_sha256": "cefa6e114428d8d16a9efde686b3f1592bcd27037a21cc6176923fb12ea2df03"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-bank-deltas.json",
+    "archive": "retained/binade-bank-deltas.json.gz",
+    "original_bytes": 2158190,
+    "sha256": "0ab9a876c4423c3fc8076186d3fdc4225e03c19213ca00c91e52ea36ec625fd6",
+    "archive_sha256": "abdcaa7a1c7aa1045b798366c13f4459491d6779a95a10050ef34f164418465e"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-corpus-equivalence.json",
+    "archive": "retained/binade-corpus-equivalence.json.gz",
+    "original_bytes": 114964,
+    "sha256": "52d69e5bf984376b1d833574b1204b97258e2d6c366bc186a290580956d8fbcd",
+    "archive_sha256": "8f9b1d46d23566b8757032a718db4403e58804d4ffc8df74d910573d5f54301d"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-corpus.log",
+    "archive": "retained/binade-corpus.log.gz",
+    "original_bytes": 13362,
+    "sha256": "f13b2d928aa797452731148b8de172955859f0b953f4070ce1ef2971468e1ac5",
+    "archive_sha256": "f3a07c54074eff18f893848eee1e36e02bc3cc0f194c86348e9ef4f0794a48c7"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-focused-tests.log",
+    "archive": "retained/binade-focused-tests.log.gz",
+    "original_bytes": 1303,
+    "sha256": "de8896af2d0dbcb7a85d4916c78202ef23d42f6203cf736462546734fdd901d6",
+    "archive_sha256": "58e65de904073e1d290f97a5d833feba0f2eb43927fab99323644044ebb649d6"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-harness-build.log",
+    "archive": "retained/binade-harness-build.log.gz",
+    "original_bytes": 2979,
+    "sha256": "ed03796067b7eed2ec70892dcd185a495fca5908c0baf896595e74cd65e9c01c",
+    "archive_sha256": "1c1d7ff7e33421c0df07e23d348d509af20b2a6f4506293249fa4d16bafea644"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-problems.json",
+    "archive": "retained/binade-problems.json.gz",
+    "original_bytes": 89003,
+    "sha256": "4df99a3d599a5d073476c09e5eedc4c3369f4a30a582ce89f3ca480274fb6502",
+    "archive_sha256": "0a12a8663ebeceb505b5e5fdd1cf955ab834bc7eae88e645a9d154ea5d569d74"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-problems.log",
+    "archive": "retained/binade-problems.log.gz",
+    "original_bytes": 2104,
+    "sha256": "6d6753e9a18ce96797e8e9e329a3abf381f2249fb1398404fb4d1e5994fcfc3c",
+    "archive_sha256": "a13a5def7e7962b981160585b2941f1ac269fa30769044c46f4a9cae079b8548"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-restoration.json",
+    "archive": "retained/binade-restoration.json.gz",
+    "original_bytes": 1123,
+    "sha256": "45fe0f3f5139401065446e8f659b7151a16de84d8989e82136696cb5f59f5211",
+    "archive_sha256": "228a4b15ab2acb21461e2a3a55a663f48f0849de9336888a34de1f26d03eedf6"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-soft-math-tests.log",
+    "archive": "retained/binade-soft-math-tests.log.gz",
+    "original_bytes": 1475,
+    "sha256": "7324a0bb7cd4558ece5c7ba512b6dd0f3b010634a419131821d30a667da0a1df",
+    "archive_sha256": "00fc3a8e05905ca5da479ef67bf0148671e764e58be7972493215506bda756b6"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-unlanded.patch",
+    "archive": "retained/binade-unlanded.patch.gz",
+    "original_bytes": 6313,
+    "sha256": "d119dff468d98646856251615af097132d70ce2e673a9bc00f5ddd08aaf66772",
+    "archive_sha256": "e21d0b190bb585650927f1f8b2f57987af44cb75ccfa9415ea83e9f271c44b08"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/check-binade-stage.log",
+    "archive": "retained/check-binade-stage.log.gz",
+    "original_bytes": 5656,
+    "sha256": "c326fa99c7341e3e419a1b77961d20b8d71f61de8bc89503a617141052a99ce3",
+    "archive_sha256": "f169dd0dda9853c7112a9354cb7f24fa04776ff974aeaff3a58ad2bbf0b56bcd"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-affine-published.log",
+    "archive": "retained/cumulative-affine-published.log.gz",
+    "original_bytes": 34,
+    "sha256": "2ce928e003049e7d6e60b172583aa912a7df7e9cb419ebdb59989dc7f447125a",
+    "archive_sha256": "e5369bed34446e406b56a86f5e29bb7c0e401f6133a7d8ce20140fa3e152c708"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-backward-domains.log",
+    "archive": "retained/cumulative-backward-domains.log.gz",
+    "original_bytes": 35,
+    "sha256": "8c049f37a35de960eeeff653e5d2d2723684ebd423adc5de0b18a1e6d81aeebd",
+    "archive_sha256": "ee3a22a409118a4f1573857a1b434e287aab4e272932a6270b13f3ad1dcefbba"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-backward-published.log",
+    "archive": "retained/cumulative-backward-published.log.gz",
+    "original_bytes": 35,
+    "sha256": "8c049f37a35de960eeeff653e5d2d2723684ebd423adc5de0b18a1e6d81aeebd",
+    "archive_sha256": "ee3a22a409118a4f1573857a1b434e287aab4e272932a6270b13f3ad1dcefbba"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-forward-published.log",
+    "archive": "retained/cumulative-forward-published.log.gz",
+    "original_bytes": 35,
+    "sha256": "8c049f37a35de960eeeff653e5d2d2723684ebd423adc5de0b18a1e6d81aeebd",
+    "archive_sha256": "ee3a22a409118a4f1573857a1b434e287aab4e272932a6270b13f3ad1dcefbba"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-affine.log",
+    "archive": "retained/cumulative-interior-affine.log.gz",
+    "original_bytes": 34,
+    "sha256": "2ce928e003049e7d6e60b172583aa912a7df7e9cb419ebdb59989dc7f447125a",
+    "archive_sha256": "e5369bed34446e406b56a86f5e29bb7c0e401f6133a7d8ce20140fa3e152c708"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-backward.log",
+    "archive": "retained/cumulative-interior-backward.log.gz",
+    "original_bytes": 35,
+    "sha256": "8c049f37a35de960eeeff653e5d2d2723684ebd423adc5de0b18a1e6d81aeebd",
+    "archive_sha256": "ee3a22a409118a4f1573857a1b434e287aab4e272932a6270b13f3ad1dcefbba"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-forward.log",
+    "archive": "retained/cumulative-interior-forward.log.gz",
+    "original_bytes": 35,
+    "sha256": "8c049f37a35de960eeeff653e5d2d2723684ebd423adc5de0b18a1e6d81aeebd",
+    "archive_sha256": "ee3a22a409118a4f1573857a1b434e287aab4e272932a6270b13f3ad1dcefbba"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-summary.json",
+    "archive": "retained/cumulative-interior-summary.json.gz",
+    "original_bytes": 2689,
+    "sha256": "58277d8a2702bde5bec6f42168b86dd4ee98d662ac5e583efb68a7f81125e7d3",
+    "archive_sha256": "668e87556e6617f99efab98882017acb7257f41ad19ff45af4962a2ec310506a"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-refactor-equivalence.json",
+    "archive": "retained/cumulative-refactor-equivalence.json.gz",
+    "original_bytes": 1383,
+    "sha256": "57514d4027a35c2d120df5771f19e4ed50cee27405ded91d3c159d7a8722e986",
+    "archive_sha256": "963ec61c7d63a1fa698dad51d2a1931c27a23204430f8d2f9b8f1477cc704a06"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/final-index.py",
+    "archive": "retained/versions/ca30e2e22c278030526c71edb7ca544c09311323921998788f33d30af8a5e55e/final-index.py.gz",
+    "original_bytes": 15357,
+    "sha256": "ca30e2e22c278030526c71edb7ca544c09311323921998788f33d30af8a5e55e",
+    "archive_sha256": "040a44a476597acbff06d42ac333cd03156b53842b2430458d1e522210f4ee88"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/final-research-build.log",
+    "archive": "retained/final-research-build.log.gz",
+    "original_bytes": 1139,
+    "sha256": "02a9d9ac456e72a75dee23bb3840148940d0a25fb2803018ba74e8464915f9f2",
+    "archive_sha256": "240191ae58ac314642ef58273e4747ffa5695359995f55dc6a9e8c2f03a04781"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/final-research-provenance.json",
+    "archive": "retained/final-research-provenance.json.gz",
+    "original_bytes": 11819,
+    "sha256": "13fcf1db3771ea3342004eda6e2e2dbdd72ee440e300abfa2207ced5686926ef",
+    "archive_sha256": "d94e975ab6d9898494b19121d053e6b719e8a932d790ecdaa395d006d817958f"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/native-harness-restored-build.log",
+    "archive": "retained/native-harness-restored-build.log.gz",
+    "original_bytes": 2164,
+    "sha256": "ba59e3f28e1858d5b33d03056d527c682691ca85183811805d89ae608ada479d",
+    "archive_sha256": "497333a717a9f2b07e55f2b741bff89702dbce266e54bab8b4631ce1c817708c"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/python-backward-tests.log",
+    "archive": "retained/python-backward-tests.log.gz",
+    "original_bytes": 6308,
+    "sha256": "81d444141ae9195bcf234180d2d9205ddfbd4fa4bd8b34b75e38473bedb633d0",
+    "archive_sha256": "84438b9d7187149fb7f729204fe613071b725e57b4c0c43cd7737e0a4e430ba3"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/python-final-loop-tests.log",
+    "archive": "retained/python-final-loop-tests.log.gz",
+    "original_bytes": 6308,
+    "sha256": "5c2d2ebd5b9a970fdad30f3c6cdb82b8f2d5c40061bb41896199f37cc40bcb22",
+    "archive_sha256": "cd9638bdd0f11fa78fd98f5d04e4c887f61d23f821350d632a985cd596ea6c34"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/review-backward-summary.json",
+    "archive": "retained/review-backward-summary.json.gz",
+    "original_bytes": 1140,
+    "sha256": "fc30d8ca7423b5213c945da37a2a7a61c347791266c0056d8def6aca57827aee",
+    "archive_sha256": "f45f56f87830148482ebf6b9563da408957db9dcecf75cac872df06adb3bf5d5"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/review-interior-summary.json",
+    "archive": "retained/review-interior-summary.json.gz",
+    "original_bytes": 679,
+    "sha256": "7b1020675250a0e52929cc600b9c478f508a174dd5138edf773b70f12d4aff6c",
+    "archive_sha256": "a5def88add11c1cc4ec83df4756459e2f02500708166d10c4df55a0bd81b8dd3"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-fresh-questions.json",
+    "archive": "retained/rounding-binade-fresh-questions.json.gz",
+    "original_bytes": 42977,
+    "sha256": "07080b4d2d975a1eaf5fb98d8acb078cc5c631e140ab8f3a304f4ef1e7633749",
+    "archive_sha256": "ee8b824f2db6101c6fa64e3c87eea4c80a546fa81d8a28e054bc738594244dcd"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-fresh.json",
+    "archive": "retained/rounding-binade-fresh.json.gz",
+    "original_bytes": 82360,
+    "sha256": "37acc21e7a98eb09db85702b89e5bd2709638ba57fac51e6e757303186a19b1b",
+    "archive_sha256": "caefc274e09d18a9bb4f4eae65b419116560c0561068c568e03de66a5cf33aec"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-fresh.log",
+    "archive": "retained/rounding-binade-fresh.log.gz",
+    "original_bytes": 1032,
+    "sha256": "dd1a8197c067ab18af13181b5fdde50aa18de558ffcda029e0b2501d5902398d",
+    "archive_sha256": "7ddb061dc2edde967ec24955b0f16dcf461ce966a01f03c977204bf96015dcae"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-fresh.py",
+    "archive": "retained/rounding-binade-fresh.py.gz",
+    "original_bytes": 3848,
+    "sha256": "96db0b6b7cb75433a397b27ed97218593468a56356bb1279073b1bae1e4e21e9",
+    "archive_sha256": "97b9b83e3f8cf705b35884916999533c96a741d84f20007a09275b07f6803752"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-hypothesis.json",
+    "archive": "retained/rounding-binade-hypothesis.json.gz",
+    "original_bytes": 998,
+    "sha256": "2d5f1168cc3b6e2ad87d0b4fd9007b7a5fc7003705c8adb77084154ff531f862",
+    "archive_sha256": "cafc0c1cbbb6b028d9bb19293918be6e3d4bcd76cf3851a69b95a836dcc7c82b"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-hypothesis.log",
+    "archive": "retained/rounding-binade-hypothesis.log.gz",
+    "original_bytes": 559,
+    "sha256": "9340f193eccf000292f341068be94ef1eb2b680828fd6e541c7a6e96389bde90",
+    "archive_sha256": "f1cba7feef0f69ec865b456d0922ddec31ac6b7bb3f0ec20d4572c7ad18c3b92"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/rounding-binade-hypothesis.py",
+    "archive": "retained/rounding-binade-hypothesis.py.gz",
+    "original_bytes": 3215,
+    "sha256": "003fd07dd86c7910a3b30dd612ef21147533ceb545d02f97f53ebabeaed3311f",
+    "archive_sha256": "a891720a621507d0a45e16b9ffa810413682c095f9a2af914a4412e6fab841f3"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-corpus-build.log",
+    "archive": "retained/soft-corpus-build.log.gz",
+    "original_bytes": 2979,
+    "sha256": "2fc34ada233dab64c777f96a8e21ae4bdb38fd63837f1aee03303e8972ace21b",
+    "archive_sha256": "66ffe2cd161577328514099f2932c0a588b6da75a85730e77a1080d09184ee3c"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-corpus-equivalence.json",
+    "archive": "retained/soft-corpus-equivalence.json.gz",
+    "original_bytes": 114480,
+    "sha256": "3f2d4f7d5d52de36661d2e0f6a3a6e2f1edf8508a5eb62674e8fa8c6f3c04209",
+    "archive_sha256": "0b19fc4ec1fb2bd89bd1e02a2ef4414a2288f20a058ebb8562d34042aeb23741"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-corpus-provenance.json",
+    "archive": "retained/soft-corpus-provenance.json.gz",
+    "original_bytes": 1146,
+    "sha256": "c102162a9bc9c1829357dbd684f7b17521142e319bd7ab09a626a2d4eb5a4b9f",
+    "archive_sha256": "4b4da1e6baf605aa269e9156a416deaa09e8362ec7b08700dfc1de0ce4252a96"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-corpus.log",
+    "archive": "retained/soft-corpus.log.gz",
+    "original_bytes": 13360,
+    "sha256": "95f77682b0c174a409200fcd711a6e6569d4a2719b9900e82d7720580b2a4711",
+    "archive_sha256": "1c43c2095e55b041148e3be280896e48239c5ae1a587b02772ade6e2c0ad525f"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-published-tests.log",
+    "archive": "retained/soft-published-tests.log.gz",
+    "original_bytes": 45117,
+    "sha256": "a74ccae006aae6bc2668ca7bf977bc30bdd9c3961521b37c47021d763c9fcbda",
+    "archive_sha256": "0d8d50eaf2a55c28e97ef14552ba7806e153546659a3d76b1f49e599c3a67952"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/ubs-backward.json",
+    "archive": "retained/ubs-backward.json.gz",
+    "original_bytes": 80407,
+    "sha256": "a7ae2223f4b6ac8bc33a34197bef821d3e366b8d26410736c4968ca543b2cd0f",
+    "archive_sha256": "3c81a17dd20194e4f0be83c2fe207fd8841206db769d33f34e157d74d27f84f9"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/ubs-backward.stderr.log",
+    "archive": "retained/ubs-backward.stderr.log.gz",
+    "original_bytes": 291,
+    "sha256": "21ad85d703437d59f48504a953c5b7f336bc53dba54f5a274c0b8c228a2604e8",
+    "archive_sha256": "8bf1e7403e36879f70351812de7ce27a23bd085d09d1284559f3458868731134"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/ubs-binade-stage.json",
+    "archive": "retained/ubs-binade-stage.json.gz",
+    "original_bytes": 33728,
+    "sha256": "f437b8a63021034f5d7ca80860907ff7cb2313610d1d1dd5b2ff4a0ed91eda80",
+    "archive_sha256": "1325d798a71c62c9a1746d014f75920e7b5c5c54dae5a12b782f73ca6925dac5"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/ubs-binade-stage.stderr.log",
+    "archive": "retained/ubs-binade-stage.stderr.log.gz",
+    "original_bytes": 275,
+    "sha256": "32e51d85439ce2d0cdc1f4274b77e75c6b40091b229709559c39e579a682236c",
+    "archive_sha256": "d23a5f64b8524cf305793c530bd417ff3e08ff81ccd6336c4e100d973796e52f"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/ubs-final-loop.json",
+    "archive": "retained/ubs-final-loop.json.gz",
+    "original_bytes": 80407,
+    "sha256": "4b508961607180a178e31fc8574d529a25112e925298f7f9d88462104a52c61c",
+    "archive_sha256": "dd0ba926b447df448d26c1659a3c27f5c8c79aa5110ddb9e669edd9eb01e1774"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/ubs-final-loop.stderr.log",
+    "archive": "retained/ubs-final-loop.stderr.log.gz",
+    "original_bytes": 291,
+    "sha256": "d2fad35a300b5122e45e766abe56d27f20fda47d7e8df633df452bf974f45db9",
+    "archive_sha256": "fa0fe322f307c9366fc55873b872a6b10dd3d5d110a5317121bfd96fa17e715d"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-corpus/summary.json",
+    "archive": "retained/binade-corpus/summary.json.gz",
+    "original_bytes": 91007,
+    "sha256": "22a221866f70e80c432898cd5139f2eb19775d977919028deb8baffb4f05b1f2",
+    "archive_sha256": "ab4c06f9f69dd4e740fd32887d9ec37c5d64abb45657f2527642100fae36cbc6"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-corpus/summary.md",
+    "archive": "retained/binade-corpus/summary.md.gz",
+    "original_bytes": 22157,
+    "sha256": "c91d0f16b08be37d5324c402193d8d498aa6cd3433f763052e13771a5d510314",
+    "archive_sha256": "675bc944592c0533dd58978e2fa8f250788a9176ebe9e8aaa956b73dd765aa5d"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-run/bank.log",
+    "archive": "retained/binade-run/bank.log.gz",
+    "original_bytes": 47564,
+    "sha256": "ab79eb1355ce9c1b0c9954d6c6049ca41de9f9a9b77c6523cd81f86ef7e23f96",
+    "archive_sha256": "ea13067051fb41f27cd23f73514b52ec0d8fd073265eb8de7196fc75bfbbae3f"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-run/classification/summary.json",
+    "archive": "retained/binade-run/classification/summary.json.gz",
+    "original_bytes": 51086,
+    "sha256": "de375a8608d83456311c8a6a71f05e6754da62c5eb1c14f986e8d264f55e996d",
+    "archive_sha256": "89fa1b63d2a0877c0ee427d25b0f3471c9a844ce47fe1987b43f2a21927da9fe"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/binade-run/corpus-functions/table.json",
+    "archive": "retained/binade-run/corpus-functions/table.json.gz",
+    "original_bytes": 19175,
+    "sha256": "b2cd0234b4fb53e98132ab2bcf8ce6ad7b552a56ee20dee9521d7975b6e3fe48",
+    "archive_sha256": "610e7d9735017f48a4ef6e855e50bde18b66ad6a28bd3b69ff272d89aacc8a9e"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-affine-published/summary.json",
+    "archive": "retained/cumulative-affine-published/summary.json.gz",
+    "original_bytes": 123844,
+    "sha256": "9bccc50e579de6066b42c2bf6544e2822304719feb185b9c57f9448c7dcc70aa",
+    "archive_sha256": "24ae738b172e485369033cbbef430c562522c6c43a27568746c4e758effb6df3"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-backward-domains/summary.json",
+    "archive": "retained/cumulative-backward-domains/summary.json.gz",
+    "original_bytes": 204830,
+    "sha256": "08f9c54f83f7cc88f202231028a99752d66a15210c34f144f9f5e656b4de8754",
+    "archive_sha256": "0595a78b164ceccd4481bce6499268450b870a477b26e0efcd98f084a298bfde"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-backward-published/summary.json",
+    "archive": "retained/cumulative-backward-published/summary.json.gz",
+    "original_bytes": 204830,
+    "sha256": "4b8419be6160906ae2b56f0bae998620b8378ff218c039ff317fd037a425ae2f",
+    "archive_sha256": "c2e33126eebcd68626a08db422276d3e0765af4abff9077b6efa277d13721635"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-forward-published/summary.json",
+    "archive": "retained/cumulative-forward-published/summary.json.gz",
+    "original_bytes": 204309,
+    "sha256": "1526d71c444355e8bdaab14c2458d65b2f71adf6415a6e3cdd685bac19256374",
+    "archive_sha256": "2ea308691c56220270d743d0deb03ad63bd6abf5bc4e36eb353151e7a2211761"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-affine/summary.json",
+    "archive": "retained/cumulative-interior-affine/summary.json.gz",
+    "original_bytes": 127992,
+    "sha256": "718a76d581e31a1dac9842660a8f06450a6ec74fb0ec645489d106879f8a1a8e",
+    "archive_sha256": "9e87b566dbd17640afbe9951940c57b2de2fe1c085bd097cdd80938b27fbf2e9"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-backward/summary.json",
+    "archive": "retained/cumulative-interior-backward/summary.json.gz",
+    "original_bytes": 211698,
+    "sha256": "7b80d2f816bd1475da2c3c2e479ccad7a609fb708852cb02d13ef6653c5aaea3",
+    "archive_sha256": "5831f4a909cf10b97868966182ab859c41b699a5adf4a9f5b2d9dd08792b9aab"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/cumulative-interior-forward/summary.json",
+    "archive": "retained/cumulative-interior-forward/summary.json.gz",
+    "original_bytes": 210997,
+    "sha256": "183e2283908aebe5c53e28a6926a37bb24744ab07419ac3cbddd96d87df23a39",
+    "archive_sha256": "ff9b315b4327390a87a1e46dd4068bf2843d9e405e5e2a4d245509262c857965"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-corpus/summary.json",
+    "archive": "retained/soft-corpus/summary.json.gz",
+    "original_bytes": 90994,
+    "sha256": "6349c815ed3ce5dbb431c8651fa28cfce83a24ef4778ead49618e245b1dd08ca",
+    "archive_sha256": "385d5b5ea6fcc7aef19d56b31ca49c61167c033b89138baf983af1d47936fabe"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/soft-corpus/summary.md",
+    "archive": "retained/soft-corpus/summary.md.gz",
+    "original_bytes": 22145,
+    "sha256": "5b00ccdf936f99e4741578f7f581acc4f10c4adf4c9f0153f737bbde0e48eaf8",
+    "archive_sha256": "6f286dc1b312a3dafcaa0257ebecbdab0cb9ec54c2e3827c8ba72d0cc016fae5"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/003fd07dd86c7910a3b30dd612ef21147533ceb545d02f97f53ebabeaed3311f-rounding-binade-hypothesis.py",
+    "archive": "retained/producers/003fd07dd86c7910a3b30dd612ef21147533ceb545d02f97f53ebabeaed3311f-rounding-binade-hypothesis.py.gz",
+    "original_bytes": 3215,
+    "sha256": "003fd07dd86c7910a3b30dd612ef21147533ceb545d02f97f53ebabeaed3311f",
+    "archive_sha256": "a891720a621507d0a45e16b9ffa810413682c095f9a2af914a4412e6fab841f3"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/48708aedd747336f791c8a63d4eca967b50efaad9c04c9f6c5af09aefab4c860-cumulative_projection.py",
+    "archive": "retained/producers/48708aedd747336f791c8a63d4eca967b50efaad9c04c9f6c5af09aefab4c860-cumulative_projection.py.gz",
+    "original_bytes": 67166,
+    "sha256": "48708aedd747336f791c8a63d4eca967b50efaad9c04c9f6c5af09aefab4c860",
+    "archive_sha256": "cf520ac6eed083c87ad3a944a8a52a56602db30bb8bcf25a76dfc26a14559b97"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/864be617314075db148f2ec0980863857bddcb781622fe31404e765ac5c2f458-rounding-binade-failed-miner.py",
+    "archive": "retained/producers/864be617314075db148f2ec0980863857bddcb781622fe31404e765ac5c2f458-rounding-binade-failed-miner.py.gz",
+    "original_bytes": 3541,
+    "sha256": "864be617314075db148f2ec0980863857bddcb781622fe31404e765ac5c2f458",
+    "archive_sha256": "bef7fd851c9379cdae658d1486b7b668e758d0a5f662075d8bd86e1b2131b040"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/8e3cb03b9cb28c54438bc3f2cde426717a41fcf13ce9262530a0b810e9e0e71c-cumulative_projection.py",
+    "archive": "retained/producers/8e3cb03b9cb28c54438bc3f2cde426717a41fcf13ce9262530a0b810e9e0e71c-cumulative_projection.py.gz",
+    "original_bytes": 67211,
+    "sha256": "8e3cb03b9cb28c54438bc3f2cde426717a41fcf13ce9262530a0b810e9e0e71c",
+    "archive_sha256": "2d833ea9676e9dfa9475a7e9957f1e7cb336e5e971aab3fe52b82b8c42160ed0"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/96db0b6b7cb75433a397b27ed97218593468a56356bb1279073b1bae1e4e21e9-rounding-binade-fresh.py",
+    "archive": "retained/producers/96db0b6b7cb75433a397b27ed97218593468a56356bb1279073b1bae1e4e21e9-rounding-binade-fresh.py.gz",
+    "original_bytes": 3848,
+    "sha256": "96db0b6b7cb75433a397b27ed97218593468a56356bb1279073b1bae1e4e21e9",
+    "archive_sha256": "97b9b83e3f8cf705b35884916999533c96a741d84f20007a09275b07f6803752"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/9fb4b8f6b4a8a69ba884fc25da23d0d2133d8f9d18fca7d7f328ef2a6c30b69c-decimal.rs",
+    "archive": "retained/producers/9fb4b8f6b4a8a69ba884fc25da23d0d2133d8f9d18fca7d7f328ef2a6c30b69c-decimal.rs.gz",
+    "original_bytes": 30510,
+    "sha256": "9fb4b8f6b4a8a69ba884fc25da23d0d2133d8f9d18fca7d7f328ef2a6c30b69c",
+    "archive_sha256": "f9eec86500502d7226c749827353fac5310d85ff7821db0b1f7a04e0219e5a76"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/cb05bbe3c0f869bd0cd3fc71d1415ea72d31218f88c68d087bbf323e390136dd-f1_math.rs",
+    "archive": "retained/producers/cb05bbe3c0f869bd0cd3fc71d1415ea72d31218f88c68d087bbf323e390136dd-f1_math.rs.gz",
+    "original_bytes": 19224,
+    "sha256": "cb05bbe3c0f869bd0cd3fc71d1415ea72d31218f88c68d087bbf323e390136dd",
+    "archive_sha256": "22ef33448ff79b75c20fc82b3187237eb4ce1fed9db2ec17bd8d5c1924ee2c12"
+  },
+  {
+    "original": "/home/ubuntu/codex-runs/r34/producers/dc34dde5cf2f0e7d904ec66040142b8cb26e81769e10d291bc93e23bfb3a0dd1-cumulative_projection.py",
+    "archive": "retained/producers/dc34dde5cf2f0e7d904ec66040142b8cb26e81769e10d291bc93e23bfb3a0dd1-cumulative_projection.py.gz",
+    "original_bytes": 67749,
+    "sha256": "dc34dde5cf2f0e7d904ec66040142b8cb26e81769e10d291bc93e23bfb3a0dd1",
+    "archive_sha256": "074984c3666525e7633f1a297ffa33035f26a346d7f742f513df30cfb021bf14"
+  },
+  {
+    "original": "/home/ubuntu/projects/DnaCalc/DnaCalc/target/check/test.log",
+    "archive": "retained/checks-latest/557d7806ec9f2af2ba356a31bbd91b60bb403a8d3f39a30e838988383a387053/test.log.gz",
+    "original_bytes": 1359414,
+    "sha256": "557d7806ec9f2af2ba356a31bbd91b60bb403a8d3f39a30e838988383a387053",
+    "archive_sha256": "47fccb2aac192d440f3f36ed1a5b17e38a0e432d8994c55342868de72bcee930"
+  },
+  {
+    "original": "/home/ubuntu/projects/DnaCalc/DnaCalc/target/check/build.log",
+    "archive": "retained/checks-latest/8c0c8a054b2f9cc90326e98debf644662001ebfc8018ec1d05cd4ddd0ae6bb0f/build.log.gz",
+    "original_bytes": 7398,
+    "sha256": "8c0c8a054b2f9cc90326e98debf644662001ebfc8018ec1d05cd4ddd0ae6bb0f",
+    "archive_sha256": "aafa26d516103936fc289f9d4f33ae8ffc42bb53b8260239a2e3e47286240a3f"
   }
 ]

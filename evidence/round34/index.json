@@ -154,7 +154,7 @@
     "payment_periods": "436 discovery plus210 holdout guards per function identify the stored zero-based comparison. The fixed higher-component candidate matches1944 discovery and1512 holdout observations including unadopted beginning PPMT. Tiny-nper observations refute reassociation of nper-per+1.",
     "assertion_correction": "One old unmeasured nper0.5/type1 first-interest NUM assertion is corrected to independently measured zero.56 exact/neighbor Excel calls retain the original inputs and confirm nper0 remains NUM. An additional invalid-nper assertion is retained. This is not a changed original captured answer.",
     "moment_root": "177 discovery/window plus72 holdout SKEW/SQRT readings,169+72 KURT readings and independent exact-rational square-root rounding certify the stored root. STDEV.S differs and is unchanged. Two bank gains; no corpus gain.",
-    "cumulative_sums": "The singleton-term/ordinary-sum premise has417 contradictions. All300 explicit-power/common-factor programs,225 stored-component sums,120 free-initial-value geometric recurrences and72 free-initial-value/public-PMT affine-balance loops are refuted. Original first contradictions and independently replayed inverse domains retained. No cumulative kernel adopted.",
+    "cumulative_sums": "The singleton-term/ordinary-sum premise has at least417 contradictions per model. All300 explicit-power/common-factor programs,225 stored-component sums,120 free-initial-value forward geometric recurrences,120 backward geometric recurrences and72 free-initial-value/public-PMT affine-balance loops are refuted. Backward domains constrain one arbitrary last term per(loan,end), then divide by stored1+r or multiply its stored reciprocal while accumulating to each start. Explicit interior-only repeats exclude every start1 range without asserting a separate Excel branch: all120 forward,120 backward and72 affine models still refute, so their contradictions also read beyond first-period handling. Original first contradictions and independently replayed inverse domains retained. No cumulative kernel adopted.",
     "bond_solver": "180 on-coupon zero-coupon cases retain1476 qualified paired PRICE calls;144 untransportable subnormal-neighbor calls are explicitly excluded. All1600 fixed finite Newton programs refute, conditional on existing price leaves.252 exact-dyadic YIELD/ODDFYIELD pairs return identically:202 numeric,50NUM,39 exact mathematical roots per surface. Fifteen dyadic money-scale groups each have4or5 distinct returned answers. A further1143-call negative-root raster yields698 numeric and445NUM, with all roots mathematically inside(-frequency,0). Scale dependence refutes a homogeneous relative-stop premise without identifying a seed, derivative, tolerance or fallback."
   },
   "still_open": [
@@ -193,12 +193,31 @@
       "failed": 0,
       "log": "python-published-tests.log"
     },
+    "backward_extension_python": {
+      "passed": 130,
+      "failed": 0,
+      "log": "python-backward-tests.log"
+    },
+    "final_loop_python": {
+      "passed": 130,
+      "failed": 0,
+      "log": "python-final-loop-tests.log"
+    },
+    "portable_software_x87": {
+      "passed": 548,
+      "failed": 0,
+      "ignored": 3,
+      "scope": "calc-func lib,f1_stats,f3_financial",
+      "log": "soft-published-tests.log"
+    },
+    "backward_unit": "round34-backward-unit.json preserves the earlier backward-only source epoch and unchanged application sources atfb445e7e.",
+    "final_unit": "round34-final-unit.json binds the final Python-only interior extension and unchanged application sources atfb445e7e. Rust expressions remain those verified by138 tests; compiled provenance checks all78 current source hashes.",
     "ubs": {
       "status": "partial",
       "critical_reported": 0,
       "new_warning_instances": 32,
       "limit": "Python SQL-flow detector stops on unsupported list-mutation aliasing. No complete-scan claim. Rust scanning completes; full receipt and exact changed-line subset retained.",
-      "triage": "Research JSON and shape failures deliberately stop the diagnostic; argument indexing follows an exact arity assertion; variance divisors use fixed n>=3; bounded diagnostic string allocations are intentional. No SQL/database calls were added."
+      "triage": "Research JSON and shape failures deliberately stop the diagnostic; argument indexing follows an exact arity assertion; variance divisors use fixed n>=3; bounded diagnostic string allocations are intentional. No SQL/database calls were added. A separate complete scan of the final loop-reader file reports0critical and19warnings; full broader scan remains partial."
     },
     "published_unit": "round34-published-unit.json; compiled provenance checks all78 research source hashes and exact published application hashes.",
     "check_recipe": "Each numerical work chunk used one full cargo xtask check. Rejected pushes were followed only by pull-no-rebase, workspace build, touched-crate tests and immediate push. The first missing-Pillow paint failure was rerun in the installed Pillow/NumPy environment; no second full check for the same work.",
@@ -217,5 +236,15 @@
     "https://support.microsoft.com/en-us/excel/functions/oddfyield-function",
     "https://netlib.org/lawson-hanson/all"
   ],
-  "scope_note": "Public contracts and the Netlib public-domain HFTI norm-recompute hypothesis were consulted; no kernel copied. Mathematical assertions retain their declared premises."
+  "scope_note": "Public contracts and the Netlib public-domain HFTI norm-recompute hypothesis were consulted; no kernel copied. Mathematical assertions retain their declared premises.",
+  "unlanded_binade_trial": {
+    "bank_gains": 1332,
+    "bank_losses": 12,
+    "net": 1320,
+    "adopted": false,
+    "discovery": "Fixed upper-binade scale plus existing radix16 factors matches12338 whole-reading bank rows, prior12170;38979 excluded. All480 live surface/window calls agree, but32 centers+32neighbors per surface repeat original bank inputs and96neighbors are new; both programs agree on new neighbors. No blind discriminating validation claimed.",
+    "contradiction": "All12 bank losses are one signed input5e334e958ab26e0e at positions-130/-131 across three surfaces. Original raw whole calls at32000 also require directed e13 while the candidate/ROUND gives e09. The initial-reading producer is refuted at this tie; no later-digit explanation or fitted exception adopted.",
+    "disposition": "Exact trial patch, fixed programs, original raw answers, all ordered-row deltas, failed independent miners and failed trial check retained. Nine trial pinned differences are gains; no calculated pin or Excel expectation changed. Source/test/generated reports restored byte-for-byte tofb445e7e;39 stays open. Diagnostic gains never enter final product totals.",
+    "software_corpus": "Before the unlanded trial, the software-x87 corpus matches every one of112890 native returned evaluations and has identical53255/54794 totals. This is native execution of the portable arithmetic route, not a browser claim."
+  }
 }
