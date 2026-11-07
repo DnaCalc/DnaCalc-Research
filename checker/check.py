@@ -2,7 +2,12 @@
 
 All accepted observations must already be decoded by the existing xtask witness
 loader. This reads its frozen records; it is not a new Excel capture/importer.
-Failures abort without a success summary. No tolerance, fitting or match ranking.
+Failures abort without a success summary. Find the shape from mapping probes,
+single-bit steps and exponent edges; then recover its constants by bisection or
+fitting all known samples and validate on fresh answers. Adjacent constants need
+separating questions; an inseparable value remains undetermined. Exact verdicts
+stay exact. Error tolerances may be properties of the program being recovered.
+Growing degrees/pieces or failing fresh answers sends the research back to shape.
 """
 import argparse
 from collections import Counter

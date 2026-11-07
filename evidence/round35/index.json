@@ -1,0 +1,441 @@
+{
+  "format": "dnacalc-round35-evidence/1",
+  "complete": true,
+  "status": "R35 source and evidence complete; main changes published. Research publication is identified by this Git commit.",
+  "published_main_first_chunk": "1c0f758f",
+  "research_base": "e00286f",
+  "initial_main": "03d22601df6c88aa8e45beeefb7eaa37920fcf17",
+  "incoming": [
+    "317178fc",
+    "9e9780a3",
+    "e1a399ff",
+    "9f51fccd"
+  ],
+  "role": "Original scalar Excel-question analyst and implementer; existing cleared sources and published mathematics only. No tier3/4 implementation source or excluded checkout read.",
+  "landed": {
+    "beginning_ppmt": "Shared existing stored period component and timing finish; cumulative beginning producer retains its earlier expression.",
+    "cumulative_finish": "Stored64 count multiplication; stored64 subtraction follow-up has17 independent count-one discriminants.",
+    "erfc": "No numeric constant changed; method and adjacent-load tooling landed."
+  },
+  "measurement": {
+    "bank": {
+      "before": 3887435,
+      "after": 3887443,
+      "total": 3910007,
+      "before_failed": 22572,
+      "after_failed": 22564,
+      "unread": 116,
+      "own_gains": 8,
+      "own_losses": 0,
+      "whole_after_count_word_unchanged": true,
+      "after_subtraction_canonical_trace_sha256": "5ed8af3a3f8e335f70a05c4dbf46d926c500ed304b0230baeac138c6db234da9",
+      "whole_after_subtraction_unchanged": true,
+      "before_pass_rate": 0.9942271203095033,
+      "after_pass_rate": 0.9942291663416459
+    },
+    "corpus": {
+      "before": 54045,
+      "after": 54094,
+      "total": 54794,
+      "before_failed": 749,
+      "after_failed": 700,
+      "mismatched": 512,
+      "refused": 0,
+      "missing": 1,
+      "external": 73,
+      "circular": 14,
+      "pending": 100,
+      "own_gains": 49,
+      "own_losses": 0,
+      "subtraction_followup": {
+        "gains": 0,
+        "losses": 0,
+        "changed_values": 0
+      },
+      "before_pass_rate": 0.9863306201408913,
+      "after_pass_rate": 0.987224878636347,
+      "published_overall_delta": "published-overall-corpus-delta.json"
+    }
+  },
+  "additional_application_controls": {
+    "ppmt": {
+      "rows": 1152,
+      "before_matched": 912,
+      "after_matched": 1152,
+      "gains": 240,
+      "losses": 0
+    },
+    "cumulative_long": {
+      "rows": 25,
+      "before_matched": 2,
+      "after_matched": 8,
+      "gains": 8,
+      "losses": 2,
+      "changed_since_product_stage": 0
+    },
+    "subtraction_ties": {
+      "CUMIPMT": {
+        "rows": 17,
+        "before_matched": 0,
+        "after_matched": 17,
+        "gains": 17,
+        "losses": 0,
+        "changed": 17
+      },
+      "CUMPRINC": {
+        "rows": 17,
+        "before_matched": 11,
+        "after_matched": 11,
+        "gains": 0,
+        "losses": 0,
+        "changed": 0
+      }
+    }
+  },
+  "experiments": {
+    "plateau": {
+      "tool": "racer/plateau_probe.py",
+      "search_inputs": 124895,
+      "original_erfc_questions": 163,
+      "both_neighbours_absorbed": [
+        "N0",
+        "N1",
+        "N2",
+        "D1",
+        "D2",
+        "D4"
+      ],
+      "lower_separates_upper_absorbed": [
+        "N3",
+        "D3"
+      ],
+      "limits": "All these absorbed or one-sided loads remain undetermined. One constant moves at a time; no joint uniqueness claim. Finite no-separator labels differ from positive-Horner absorption proofs. Final reviewed run replays original cached replies, not163 additional fresh observations."
+    },
+    "yield_solver": {
+      "rate_rule_programs": 900,
+      "transformed_variable_secant_labels": 10800,
+      "bracket_labels": 720,
+      "fixed_iteration_labels": 2720,
+      "future_equation_brent_labels": 480,
+      "survivors": 0,
+      "mapping_cases": 560,
+      "dense_zero_coupon_rows": 3003,
+      "new_coupon_distance_rows": 252,
+      "adjacent_price_edges": 4,
+      "reason_stopped": "One-sided errors and jumps near1e-10 constrain termination, but no complete tested solver/seed/price tree survives. These finite classes do not exhaust root solvers."
+    },
+    "cumulative_summation": {
+      "dyadic_loans": 60,
+      "dyadic_ranges": 3162,
+      "normalized_singletons": 2676,
+      "equal_gap_groups": 240,
+      "unequal_gap_groups": 0,
+      "unit_payment_loans": 30,
+      "unit_payment_singletons": 1428,
+      "cancelled_factor_labels": 105,
+      "conditional_singleton_survivors": 4,
+      "rate_sum_labels": 7500,
+      "quotient_sum_labels": 7500,
+      "quotient_sum_effective_programs": 1500,
+      "span_labels": 1500,
+      "inner_recurrence_labels": 500,
+      "complete_survivors": 0,
+      "conditional_log_load": {
+        "rate": "2^-16",
+        "old_adjacent_survivors": 7,
+        "fresh_large_gap_questions": 7,
+        "remaining_load": "3eeffff0000aaaa3",
+        "exponent_words_undetermined": [
+          "strict",
+          "stored_pc64"
+        ]
+      },
+      "reason_stopped": "Normalized observations constrain a collapsed remaining-period quantity, but public EXP/log/payment premises and complete sum trees refute. No private operand or principal-producing algorithm is identified. R34 refutation methods/data remain unchanged."
+    },
+    "regression": {
+      "registered_controls": 429,
+      "finite_leaves": 187,
+      "intercept_leaves": 62,
+      "direct_centered_factor_labels": 32400,
+      "raw_moment_labels": 2625,
+      "survivors": 0,
+      "fresh_answers": 0,
+      "reason_stopped": "Both readiness attempts are refused by the old Windows worker policy before Excel; current captures refute the tested structures."
+    },
+    "integer_gamma": {
+      "region": "2<=integer a<=20, a<x<=30",
+      "shape": "Stored Horner with RN53(1/k!) loads, then independently read EXP(-x)",
+      "small_shape_validation_rows": 2523,
+      "small_shape_new_random_points": 2304,
+      "shape20_validation_rows": 261,
+      "shape20_new_random_points": 256,
+      "controls_note": "The rest are fixed/repeated branch-edge or consecutive-bit controls; cohort sizes are not unique new-answer counts.",
+      "separated_coefficients": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "initial_product_trial": {
+        "region": "integer a<20 finite branch; shape20 extension was not full-bank measured",
+        "bank_gains": 18,
+        "bank_losses": 4,
+        "corpus_gains": 6,
+        "corpus_losses": 0
+      },
+      "fresh_inverse_quantiles": 81,
+      "lattice_ceiling_matches": 41,
+      "reason_stopped": "Initial product trial loses four exact inverse pins. The public-CDF lattice-ceiling inverse premise is refuted, but no inverse replacement identified. All Gamma product/test changes removed; no pins weakened."
+    },
+    "normal_wrappers": {
+      "confidence_discovery_rows": 19,
+      "fresh_word_rows": 60,
+      "whole_word_separators": 48,
+      "strict_matches": 12,
+      "stored64_matches": 60,
+      "shape": "Upper-tail public z times(stddev/public SQRT(size)); separate stored64 divide and multiply",
+      "lognormal_rows": 25,
+      "application_quantile_controls": 12,
+      "application_quantile_matches": 1,
+      "as241_labels": 30,
+      "as241_survivors": 0,
+      "reason_stopped": "Conditional wrapper trees survive but the application quantile primitive differs. No wrapper-only or inverse-normal change adopted."
+    },
+    "other": {
+      "irr_whole_controls": 734,
+      "irr_fixed_callback_labels": 195,
+      "irr_survivors": 0,
+      "irr_rectangle_trial": "Parked: admission then one discount-factor ULP error. Original captured expectation and failing trial logs retained; intermediate trial assertion source epoch is not retained. No product assertion was weakened.",
+      "bessely": "At x1.5 the application Y0 base is one ULP off; Y1 agrees, and the Y0 difference propagates to order2. No recurrence-only fix adopted.",
+      "index": "Recorded INDEX differences trace through SORT collation/cycle cases.",
+      "hstack": "Five HSTACK differences expose the existing scalar decimal-rendering discrepancies, not a new stacking implementation.",
+      "hypergeometric": "Remaining PMF/CDF rows depend on the binomial mass stage reserved to the other lanes. Reserved implementations and catalogue declarations are unchanged."
+    },
+    "duration": {
+      "settlement_rows": 864,
+      "subtraction_labels": 48,
+      "geometric_labels": 64,
+      "negative_power_sum_labels": 256,
+      "complete_survivors": 0,
+      "independent_rational_refutations": 320,
+      "zero_coupon_yield_groups": 96,
+      "unequal_zero_coupon_groups": 70,
+      "application": {
+        "rows": 864,
+        "matched": 553,
+        "failed": 311,
+        "zero_coupon_rows": 288,
+        "zero_coupon_matched": 176,
+        "positive_coupon_rows": 576,
+        "positive_coupon_matched": 377
+      },
+      "application_pass_rate": 0.6400462962962963,
+      "reason_stopped": "Fixed settlement-subtraction and two geometric forms refute; negative public POWER sums also refute. Public helper premises and resident sum models remain open; no implementation change."
+    },
+    "number_to_text": {
+      "midpoint_regions": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "exact_midpoints": 640,
+      "midpoint_lower": 639,
+      "midpoint_upper": 1,
+      "adjacent_controls": 1280,
+      "known_control_calls": 15,
+      "infix_text_triage_rows": 9,
+      "application": {
+        "rows": 1935,
+        "matched": 1929,
+        "failed": 6
+      },
+      "application_pass_rate": 0.9968992248062015,
+      "reason_stopped": "Mapping confirms rare upward midpoint cases and separates them with immediate neighbours. Conversion structure and scaling constants remain unidentified; no coefficient or branch added.",
+      "fixed_digit_loop_labels": 108,
+      "fixed_digit_loop_survivors": 0,
+      "fixed_format_text_numeric_agreements": {
+        "matched": 1935,
+        "total": 1935
+      },
+      "limits": "CONCATENATE primary answers reproduce all five known coercion controls. TEXT General exposes fewer displayed digits; explicitly chosen TEXT formats spell equal numeric values for all1935 calls. These observations do not prove an internal shared helper. The108 tested standard-load digit loops refute, without eliminating unknown coefficient tables or all conversion families. The initial loop artifact216 label count was a description typo; the corrected v2 has identical108 program results."
+    }
+  },
+  "arithmetic_replay": {
+    "complete": true,
+    "counts": {
+      "integer-gamma-coefficients-fresh.json": {
+        "fresh_rows": 2523,
+        "neighbor_examples": 228
+      },
+      "integer-gamma-shape20-holdout.json": {
+        "fresh_rows": 261,
+        "neighbor_examples": 12
+      },
+      "erfc": {
+        "original_observations": 163,
+        "neighbor_examples": 594
+      }
+    },
+    "operation_counts": {
+      "mul": 38184,
+      "binary64_stores": 73867,
+      "add": 35233,
+      "div": 450
+    },
+    "source_bindings": {
+      "/home/ubuntu/codex-runs/r35/integer-gamma-coefficients-fresh.json": "2fc2ad581ad134a48ea25ac47f6c8005768f37721dab09bbdd683c074e6cd2f3",
+      "/home/ubuntu/codex-runs/r35/integer-gamma-shape20-holdout.json": "826d07ac480596743bb6ad3b8c955ca4fa4ec48c79d6cfa8433a0a205d6df35c",
+      "/home/ubuntu/codex-runs/r35/erfc-plateau-final/result.json": "648c0925f1b13c9b453e6b909be20aeefa67ea0a5550aa202d24bcc103c290fc",
+      "/home/ubuntu/codex-runs/r35/erfc-plateau-final/shape.json": "21f0716965403166b265327ed11b40958eeec01c5388503d5b8d58705982e1f5",
+      "/home/ubuntu/codex-runs/r35/replay-stage-arithmetic.py": "1f0bf7d2181a860fe85d6bf4d9bf1768692a8f2e5703a18b1e4b96ce6b583b67",
+      "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/fingerprint.py": "d6559728cca4b570f44ca237840d3c80967e3fb7f4739f0057a7a66ea4395b56",
+      "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/x87.py": "4fee9beca49836f88a7c402e8c85ca641a4f1747f81154adac28409a4ca8bb72",
+      "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/checker/exact.py": "842363e00ad65c464623594822d566a2af9a0415e0b574557613092c993af80f"
+    },
+    "limits": "Independent rational arithmetic interprets the frozen shape graphs. Measured EXP remains a conditional binary64 input. Neighbours move one at a time; no joint uniqueness claim. This verifies frozen questions and predictions, not an inverse kernel or the parked product change."
+  },
+  "checks": {
+    "first_main_full": {
+      "passed": 2055,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3
+    },
+    "after_incoming_merge": {
+      "workspace_build": "passed",
+      "tests_passed": 745,
+      "tests_failed": 0,
+      "tests_ignored": 3
+    },
+    "software_first_stage": {
+      "passed": 507,
+      "failed": 0,
+      "ignored": 3
+    },
+    "subtraction_helper_native": {
+      "passed": 2,
+      "failed": 0
+    },
+    "subtraction_helper_software": {
+      "passed": 2,
+      "failed": 0
+    },
+    "research_rust": {
+      "passed": 143,
+      "failed": 0,
+      "ignored": 2
+    },
+    "research_python": {
+      "passed": 138,
+      "failed": 0
+    },
+    "ubs": "Zero critical findings; Python SQL-flow analysis is partial on unsupported list aliasing. Environment doctor is healthy; no complete Python scan claim.",
+    "windows_browser_sweep": "not run",
+    "subtraction_main_full": {
+      "passed": 2060,
+      "failed": 0,
+      "ignored": 5,
+      "not_run": 3
+    },
+    "plateau_final_guards": {
+      "passed": 32,
+      "failed": 0
+    },
+    "subtraction_after_merge": {
+      "incoming": "9f51fccd",
+      "workspace_build": "passed",
+      "tests_passed": 1047,
+      "tests_failed": 0,
+      "tests_ignored": 3
+    },
+    "research_rust_final_unit": {
+      "passed": 143,
+      "failed": 0,
+      "ignored": 2,
+      "application_revision": "ffaf950ee8d89cfb700c4e8ffa0eaf620ee92f65"
+    },
+    "published_corpus": {
+      "formula_cells": 54794,
+      "matched": 54094,
+      "inclusive_failed": 700,
+      "after_merge_gains": 0,
+      "after_merge_losses": 0,
+      "after_merge_changed_values": 0,
+      "sessions": 59,
+      "evaluations": 112884
+    },
+    "generic_plateau_cli": "passed on163 frozen example inputs; emitted deduplicated scalar questions without answers",
+    "provenance_writer": "Inherited hard-coded model claim removed; exact prior numeric producer snapshot retained by SHA256.",
+    "research_python_final_writer": {
+      "passed": 138,
+      "failed": 0
+    },
+    "research_release_final_unit": "passed; compiled provenance equals final unit including corrected Python source hash",
+    "read_only_review": {
+      "result": "passed",
+      "agent": "/root/review_round35",
+      "reviewed_manifest_sha256": "dad05ab9413769ff9dc4e1c9ebccb74e5523565f33c9d8ceab6c0f4cb482353c",
+      "scope": "Published main changes, all measurements and losses, maintained tool/source unit, archive byte/source hashes, and the late DURATION and number-to-text studies. All320 DURATION graph contradictions independently replayed; all640 exact midpoint identities and TEXT numeric comparisons checked."
+    }
+  },
+  "provenance_limits": [
+    "Raw output counts are observations per cohort, not sums of unique calls. Public helper leaves stay conditional and never enter the application as answers.",
+    "Fields named private_leaf in early cumulative artifacts are observable normalized ratios only; that field name does not prove a private EXP operand.",
+    "Quotient-sum7500 labels contain fivefold duplicates from an unused outer-word dimension;1500 effective programs all refute. Other finite label sets may also repeat physical programs.",
+    "Bootstrap unit files inherited stale R34 descriptive/source inventories; only their explicit application revision/working-blob guards qualify their compiled calculation content. Those descriptive inventories are not R35 provenance.",
+    "Some intermediate Python producer epochs were not retained. Their original hash claims remain unqualified where no matching source snapshot exists; accepted stage arithmetic and final tool/guards are independently replayed.",
+    "Failed imports, malformed/empty exploratory attempts and stale application trials remain retained but do not count as proofs. The corrected final commands and their limits are explicit.",
+    "No marker of a model refusal is converted to a calculated pass. The report/audit tools now understand the canonical agreed_rejection entry-validation verdict; typed not-modelled results still fail.",
+    "Bulk corpus evaluation/capture files and compiled binaries remain outside Git. The compact archive keeps raw scalar-service replies, selected observations, predictions, producer scripts, checks and hashes.",
+    "Earlier generated analysis_model strings were inherited hard-coded launcher labels, not an independently verified model identity. They are unqualified. The final writer and unit report the exact model identifier as unavailable; original reply/worker metadata is unchanged.",
+    "Raw worker replies retain the service-side session-receipt path and byte hash. The receipt files themselves remain service-side; a path string is not the receipt bytes and is not rehashed as such. Cached question identities, echoed operands and reply metadata are checked locally."
+  ],
+  "reproduction": [
+    "python3 -m unittest discover -s checker -v",
+    "DNA_RESEARCH_UNIT=round35-final-unit.json CARGO_TARGET_DIR=target cargo test --workspace",
+    "python3 racer/plateau_probe.py erfc ../DnaCalc /new/run /cache --count 50000 --seed 35"
+  ],
+  "excluded_paths_not_touched": [
+    "/home/ubuntu/projects/DnaCalc/DnaCalc-engine",
+    "/home/ubuntu/claude-work"
+  ],
+  "published_main_final": "ffaf950ee8d89cfb700c4e8ffa0eaf620ee92f65",
+  "source_unit": "round35-final-unit.json",
+  "archive_verification": {
+    "complete": true,
+    "counts": {
+      "artifacts": 1222,
+      "archive_bytes": 7863621,
+      "cached_requests": 134,
+      "requested_rows_in_batches": 103234,
+      "successful_batches": 133,
+      "failed_batches": 1,
+      "source_hashes": 82
+    },
+    "application_revision": "ffaf950ee8d89cfb700c4e8ffa0eaf620ee92f65",
+    "compiled_features": {
+      "soft_x87": false
+    },
+    "artifact_manifest_sha256": "dad05ab9413769ff9dc4e1c9ebccb74e5523565f33c9d8ceab6c0f4cb482353c",
+    "unit_sha256": "9d06277464ae61ab8d7677857555d29462b9b4f1084341c8ec5b2b6e5d16eed7",
+    "limits": "Cached requests are distinct batches, not counts of unique formula calls. Readbacks and worker metadata checked by the existing accept route. Service-side receipt file paths and hashes are retained as metadata; their remote bytes are not rehashed locally."
+  }
+}

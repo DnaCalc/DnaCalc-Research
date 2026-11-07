@@ -1,5 +1,88 @@
 DNA Calc arithmetic program research
 
+
+R35 lands beginning PPMT's existing stored period/timing component, preserves
+cumulative principal's previous producer, and stores both words of CUMIPMT's
+final expression. Numeric main 1c0f758f and ffaf950e are pushed.
+Bank: 3,887,435 to 3,887,443 of 3,910,007 (+8/-0), pass rate 99.422917%;
+22,564 failures include 116 unread and 994 refused.
+Corpus: 54,045 to 54,094 of 54,794 (+49/-0), pass rate 98.722488%; 700 failures
+comprise 512 mismatched, 0 refused, 1 missing, 73 external, 14 circular-policy
+and 100 pending. Fresh PPMT improves 912 to 1,152/1,152. Separate long CUMIPMT
+controls improve 2 to 8/25 (+8/-2); principal remains unresolved and these
+losses stay counted outside the bank.
+
+racer/plateau_probe.py searches both neighbouring loads of a frozen arithmetic
+DAG and emits scalar-service questions. ERFC's 124,895-input mapping and 163
+original questions confirm absorption of both neighbours for N0-N2, D1-D2, D4.
+N3 and D3 lower neighbours separate; their upper neighbours are absorbed, so
+literal loads remain undetermined. Positive-Horner proofs retain binade cuts
+and both tie parities. No ERFC numerical constant changes.
+
+Run the ERFC adapter with:
+  python3 racer/plateau_probe.py erfc ../DnaCalc /new/run /cache --count 50000 --seed 35
+For another recovered shape, use:
+  python3 racer/plateau_probe.py probe SHAPE INPUTS LIBRARY OUTPUT
+SHAPE contains the existing instruction graph, cw, store mask, named constant
+node indices, worksheet function and argument_inputs columns. INPUTS is a JSON
+array of hexadecimal binary64 rows; LIBRARY is the existing x87 native library.
+OUTPUT must be new. The first graph output is compared, and conditional leaves
+remain explicit inputs. Each constant moves separately in both directions;
+finite searches without separators report undetermined_within_search. This
+makes questions for the service and does not claim jointly unique constants.
+
+YIELD: RATE's 900 programs, 10,800 transformed-variable secants, 720 bracket
+programs and 2,720 fixed-iteration labels refute. Adjacent-price bisections
+reveal one-sided jumps near 1e-10; 252 further coupon-distance cases do not
+identify the routine. Regression's direct/centered R-factor and raw-moment
+trees refute current captures. The Windows service rejects scalar-array
+selections, so no fresh fits or regression kernel land.
+
+Cumulative probes retain 2,676 normalized singletons from 60 dyadic loans and
+1,428 unit-PMT/power-rate controls. These are observable ratios; their relation
+to private EXP operands remains unknown. Equal remaining periods agree across
+loan lengths. Complete cancelled-rate sums, quotient sums, stable spans and
+inner recurrences refute; 7,500 quotient-sum labels represent 1,500 programs.
+One conditional logarithm load at rate 2^-16 separates from its six neighbours
+on seven fresh large-gap questions; the exponent word stays undetermined.
+No private leaf or summation implementation is installed. R34 refutations
+remain unchanged. Seventeen independent count-one controls isolate stored64
+final subtraction (17/17 versus 0 strict); actual application calls improve
+0 to 17/17. Their CUMPRINC outputs and the complete bank/corpus stay unchanged.
+
+The finite integer-gamma Horner shape and reciprocal-factorial loads match
+2,523 small-shape validation rows (2,304 new random points plus controls) and
+261 shape20 rows (256 new random points plus edge controls), conditioned on
+independent EXP leaves. Both neighbouring loads of each coefficient 0..19
+separate. The initial a<20 product trial is parked: bank +18/-4, corpus +6/-0;
+four inverse exact pins would regress. The later shape20 extension was not
+full-bank measured. Eighty-one fresh quantiles refute the existing public-CDF
+lattice-ceiling premise. Confidence wrapper words are identified conditionally,
+but application quantiles differ on 11/12 controls. No normal wrapper or inverse
+change lands. IRR's 195 callback trees also refute.
+
+A late DURATION mapping retains 864 settlement cases. All 48 simple subtraction,
+64 compact/geometric and 256 negative-POWER sum labels refute; 320 geometric/sum
+counterexamples replay with independent rational arithmetic. Public powers are
+conditional leaves. Zero-coupon duration changes with yield in 70/96 date groups.
+The application matches 553/864 (64.004630%), with 311 failures; no change adopted.
+Number-to-text mapping spans 640 exact midpoints and 1,280 adjacent doubles:
+639 midpoints round down, one up. The application matches 1,929/1,935 calls
+(99.689922%), with six failures, including five known controls. Explicit TEXT
+formats spell equal numeric values in all 1,935 calls; General displays fewer
+digits. All 108 fixed standard-load digit loops refute. No branch added.
+
+evidence/round35/index.json binds compact raw replies, frozen predictions,
+source epochs, exact rational replays, rejected trials, measurements and checks.
+Bootstrap units' inherited R34 descriptive inventories are unqualified; the
+final unit binds published main and current research sources. Inherited hard-coded
+analysis model labels are unqualified; the exact model identifier is unavailable. Full checks pass
+2,055 then 2,060 tests, each with 5 ignored/3 not run. Earlier post-merge tests
+pass 745/3 ignored, final post-merge tests 1,047/3 ignored; software x87 passes
+507/3 ignored; final finish controls pass two tests (overlapping coverage). No Windows/browser sweep.
+UBS has zero critical findings; Python SQL-flow analysis remains partial on
+unsupported list aliasing.
+
 R34 lands the normalized radix16 decimal scale, ROUNDUP's stored unit,
 the IPMT/PPMT balance before FV, beginning-interest timing, stored payment
 period admission, the sample-moment square root, CUMIPMT's skipped first

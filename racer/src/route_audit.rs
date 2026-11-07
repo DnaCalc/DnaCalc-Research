@@ -954,9 +954,15 @@ mod question_tests {
         fs::create_dir(&folder).unwrap();
         let input = folder.join("questions.json");
         let output = folder.join("predictions.jsonl");
+        // Entry validation now rejects missing IRR arguments. Preserve that
+        // check and exercise an admitted hyperlink with an unsupported friendly name.
+        let mut admission = Workbook::new_blank();
+        let admission_sheet = admission.sheets()[0].id;
+        let invalid = CellKey::new(admission_sheet, 1, 1).unwrap();
+        assert!(!admission.enter(invalid, "=IRR()").accepted());
         let mut document = json!({"questions":[
             {"id":"synthetic-calculated","row":1,"column":4,"formula":"1+1"},
-            {"id":"synthetic-refusal","row":2,"column":4,"formula":"IRR()"}
+            {"id":"synthetic-refusal","row":2,"column":4,"formula":"HYPERLINK(\"#A1\",LAMBDA(x,x))"}
         ],"allow_refusals":true});
         fs::write(&input, document.to_string()).unwrap();
         sheet_predictions(input.to_str().unwrap(), output.to_str().unwrap());

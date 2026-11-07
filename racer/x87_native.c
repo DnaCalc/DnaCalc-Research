@@ -101,6 +101,22 @@ int x87_masks(const Node *nodes, int count, const uint64_t *inputs, int ni,
     return 0;
 }
 
+/* Same interpreter and publication, over a row-major binary64 input grid. */
+int x87_grid(const Node *nodes, int count, const uint64_t *inputs, int ni,
+             uint64_t rows, uint32_t words, uint64_t mask, int oa, int ob,
+             uint64_t *outputs) {
+    if (ni < 1) return -1;
+    for (uint64_t j=0; j<rows; ++j) {
+        Ext pair[2];
+        if (x87_eval(nodes,count,inputs+j*ni,ni,0,0,words,mask,oa,ob,pair,0,0)) return -1;
+        uint16_t saved, cw=(uint16_t)words;
+        __asm__ volatile("fnstcw %0; fldcw %1" : "=m"(saved) : "m"(cw));
+        outputs[2*j]=store64(pair[0]); outputs[2*j+1]=store64(pair[1]);
+        __asm__ volatile("fldcw %0" : : "m"(saved));
+    }
+    return 0;
+}
+
 /* Independent callers can replay a single native instruction, avoiding the
  * interpreter's indexing and store-mask logic. */
 void x87_leaf(int op, const Ext *a, const Ext *b, uint16_t cw, Ext *out) {

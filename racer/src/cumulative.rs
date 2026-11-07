@@ -37,6 +37,9 @@ pub fn discount_parts(input:&str, output:&str) {
         records.push(match parts {
             Some((log,quotient,discounts,principals))=>json!({"loan":loan,"log":bits(log),
                 "quotient":bits(quotient),"discounts":discounts.into_iter().map(bits).collect::<Vec<_>>(),
+                "span_expm1_positive":(1..=a[1] as usize).map(|n|bits(crate::ported::excel_numeric::excel_expm1_spilled(n as f64*log))).collect::<Vec<_>>(),
+                "span_expm1_negative":(1..=a[1] as usize).map(|n|bits(crate::ported::excel_numeric::excel_expm1_spilled(-(n as f64*log)))).collect::<Vec<_>>(),
+                "span_exp_positive":(1..=a[1] as usize).map(|n|bits(crate::ported::excel_numeric::excel_exp(n as f64*log))).collect::<Vec<_>>(),
                 "principals":principals.into_iter().map(bits).collect::<Vec<_>>(),"not_excel_evidence":true}),
             None=>json!({"loan":loan,"outside_observation_scope":true,"not_excel_evidence":true}),
         });

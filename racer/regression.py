@@ -304,6 +304,127 @@ def factor_run(input_path,destination):
     print(json.dumps({k:v for k,v in summary.items()if k not in ('counts_all_exact_baseline_gains_losses','first_contradictions','input_sha256')}))
 
 
+def intercept_solve_factor(profile, leaf):
+    """Solve R' z = w directly, without first constructing (X'X)^-1."""
+    matrix=[[Q(number(x))for x in row]for row in leaf['triangular']['r']]
+    weights=[Q(number(x))for x in leaf['factors']['weights']]
+    n=Q(leaf['factors']['observations']);model=profile['model'];order=profile['order']
+    def op(kind,a,b):return operation(kind,model,a,b)
+    def store(x):return B64.rn(x)if profile['local_store']else x
+    def total(terms):
+        terms=list(terms)
+        if order=='balanced'and len(terms)>1:
+            k=len(terms)//2;return op('add',total(terms[:k]),total(terms[k:]))
+        result=Q(0)
+        for t in terms[::-1]if order=='reverse'else terms:result=op('add',result,t)
+        return result
+    start=int(profile['shape']!='full');z=[Q(0)]*len(weights)
+    for j in range(start,len(weights)):
+        indices=list(range(start,j))
+        if order=='reverse':indices.reverse()
+        if profile['solve']=='sum_then_subtract':
+            value=op('add',weights[j],-total(op('mul',matrix[i][j],z[i])for i in range(start,j)))
+            z[j]=store(op('div',value,matrix[j][j]))
+        elif profile['solve']=='running_difference':
+            value=weights[j]
+            for i in indices:value=op('add',value,-op('mul',matrix[i][j],z[i]))
+            z[j]=store(op('div',value,matrix[j][j]))
+        else:
+            value=op('div',weights[j],matrix[j][j])
+            for i in indices:value=op('add',value,-op('mul',op('div',matrix[i][j],matrix[j][j]),z[i]))
+            z[j]=store(value)
+    factor=total(op('mul',v,v)for v in z[start:])
+    if start:
+        base=op('div',1,n)if profile['shape']=='centered_1/n'else op('mul',Q(number(leaf['factors']['inverse'][0][0])),Q(number(leaf['factors']['inverse'][0][0])))
+        factor=op('add',base,factor)
+    return B64.rn(factor)if profile['store_factor']else factor
+
+
+def intercept_solve_run(input_path,destination):
+    """First contradictions for direct and centered inverse-R mean solves."""
+    rows=[r for r in map(json.loads,Path(input_path).read_text().splitlines())if r['leaf']['role']==1]
+    require(rows and all(r['leaf']['triangular']for r in rows),'no triangular intercept operands')
+    dest=Path(destination);dest.mkdir(exist_ok=False);profiles=[];survivors=[]
+    descriptions=itertools.product(('full','centered_1/n','centered_inverse00'),
+        ('sum_then_subtract','running_difference','divide_first'),('forward','reverse','balanced'),
+        MODELS,(True,False),(True,False))
+    consumers=list(statistic_profiles())
+    for shape,solve,order,model,local_store,store_factor in descriptions:
+        producer=dict(shape=shape,solve=solve,order=order,model=model,local_store=local_store,store_factor=store_factor)
+        active=set(range(len(consumers)));first=[None]*len(consumers);checked=[0]*len(consumers)
+        for index,row in enumerate(rows):
+            factor=intercept_solve_factor(producer,row['leaf'])
+            for i in sorted(active):
+                prediction=statistic_value(consumers[i],row['leaf'],factor);checked[i]+=1
+                if prediction!=row['raw']['expected']:
+                    first[i]=dict(input_index=index,id=row['raw']['id'],expected=row['raw']['expected'],prediction=prediction)
+                    active.remove(i)
+            if not active:break
+        for i,consumer in enumerate(consumers):
+            identity=len(profiles)
+            if first[i]is None:survivors.append(identity)
+            profiles.append(dict(id=identity,producer=producer,consumer=consumer,checked=checked[i],first_contradiction=first[i]))
+    result=dict(complete=True,rows=len(rows),programs=profiles,survivors=survivors,
+        source_sha256={str(p):digest(p)for p in(Path(__file__),Path(input_path),Path(__file__).with_name('intervals.py'))},
+        limits='Direct triangular solve of R transpose against the intercept weights, or the centered predictor submatrix with1/n or inverseR00 squared. Original QR and residual operands remain conditional. No new Excel answers, constant fit or complete regression claim. A first exact contradiction refutes the whole program.')
+    (dest/'summary.json').write_text(json.dumps(result,separators=(',',':'))+'\n')
+    print(json.dumps(dict(programs=len(profiles),survivors=survivors,rows=len(rows))))
+
+
+def intercept_raw_moment_run(input_path,destination):
+    """Single-retained-predictor intercept errors from raw second moments."""
+    all_rows=[r for r in map(json.loads,Path(input_path).read_text().splitlines())if r['leaf']['role']==1]
+    rows=[]
+    for row in all_rows:
+        leaf=row['leaf'];tri=leaf['triangular'];n=leaf['factors']['observations']
+        if len(tri['order'])!=2 or tri['order'][0]is not None:continue
+        index=tri['order'][1];raw=row['raw']['args'][1]
+        if not isinstance(raw,list):continue
+        if raw and not isinstance(raw[0],list):raw=[raw]
+        if len(raw)==n:xs=[Q(number(r[index]))for r in raw]
+        elif len(raw[index])==n:xs=list(map(lambda v:Q(number(v)),raw[index]))
+        else:continue
+        rows.append((row,xs))
+    require(rows,'no raw one-predictor statistics');dest=Path(destination);dest.mkdir(exist_ok=False)
+    programs=[];survivors=[]
+    for norm,average,outer,order,form in itertools.product(MODELS,MODELS,MODELS,('forward','reverse','balanced'),range(7)):
+        first=None;checked=0
+        def op(k,m,a,b):return operation(k,m,Q(a),Q(b))
+        def total(xs):
+            if order=='balanced'and len(xs)>1:
+                k=len(xs)//2;return op('add',norm,total(xs[:k]),total(xs[k:]))
+            value=Q(0)
+            for x in xs[::-1]if order=='reverse'else xs:value=op('add',norm,value,x)
+            return value
+        def root(x):return B64.rn_sqrt(B64.rn(x))
+        for row,xs in rows:
+            leaf=row['leaf'];n=Q(len(xs));ss,df=map(lambda k:Q(number(leaf[k])),('ss','df'))
+            inv=Q(number(leaf['factors']['inverse'][1][1]));r=Q(number(leaf['triangular']['r'][1][1]));mean=-Q(number(leaf['factors']['weights'][1]))
+            rawsum=total([op('mul',norm,x,x)for x in xs]);rawmean=op('div',average,rawsum,n)
+            covariance=B64.rn(inv*inv);sem=root(B64.rn(B64.rn(ss*covariance)/df))
+            mse=op('div',outer,ss,df);sey=root(B64.rn(ss/df));sxx=op('mul',outer,r,r)
+            centered=op('add',outer,op('div',average,1,n),op('div',outer,op('mul',outer,mean,mean),sxx))
+            if form==0:result=op('mul',outer,sem,root(rawmean))
+            elif form==1:result=root(op('mul',outer,op('mul',outer,sem,sem),rawmean))
+            elif form==2:result=root(op('mul',outer,mse,op('div',outer,rawsum,op('mul',outer,n,sxx))))
+            elif form==3:result=root(op('mul',outer,mse,centered))
+            elif form==4:
+                ratio=op('div',outer,op('mul',outer,n,op('mul',outer,mean,mean)),sxx)
+                result=root(op('mul',outer,op('div',outer,mse,n),op('add',outer,1,ratio)))
+            elif form==5:result=op('mul',outer,sey,root(centered))
+            else:result=root(op('mul',outer,op('mul',outer,sey,sey),centered))
+            prediction='0x'+struct.pack('>d',float(B64.rn(result))).hex();checked+=1
+            if prediction!=row['raw']['expected']:
+                first=dict(id=row['raw']['id'],expected=row['raw']['expected'],prediction=prediction);break
+        identity=len(programs)
+        if first is None:survivors.append(identity)
+        programs.append(dict(id=identity,norm=norm,average=average,outer=outer,order=order,form=form,checked=checked,first_contradiction=first))
+    result=dict(complete=True,original_intercept_rows=len(all_rows),single_retained_predictor_rows=len(rows),programs=programs,survivors=survivors,
+        input_sha256={str(p):digest(p)for p in(Path(input_path),Path(__file__))},
+        limits='Raw second-moment identity se(intercept)=se(slope)*sqrt(mean(x^2)), and centered one-predictor forms using the original R diagonal, residual and published standard errors. No multi-predictor extension, fit or fresh-validation claim.')
+    (dest/'summary.json').write_text(json.dumps(result,separators=(',',':'))+'\n');print(json.dumps(dict(programs=len(programs),rows=len(rows),survivors=survivors)))
+
+
 def rank_profiles():
     # All tolerances are mathematical IEEE roundoff scales, never inferred
     # from a residual or fitted to an Excel rank transition.
@@ -646,6 +767,8 @@ def service_questions(checkout, output, cache, mode='rank', offline=False):
 
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='intercept-raw-moment':intercept_raw_moment_run(*sys.argv[2:]);raise SystemExit(0)
+    if len(sys.argv)>1 and sys.argv[1]=='intercept-solve':intercept_solve_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='service':service_questions(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='delivered-rank':delivered_rank_constraints(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='inverse':inverse_run(*sys.argv[2:]);raise SystemExit(0)

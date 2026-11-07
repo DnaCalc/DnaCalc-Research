@@ -47,6 +47,8 @@ class Native:
             extp, C.c_int, C.c_uint32, C.c_uint64, C.c_int, C.c_int, extp, extp, extp]
         self.lib.x87_masks.argtypes = self.lib.x87_eval.argtypes[:8] + [
             C.c_uint64, C.c_int, C.c_int, extp]
+        self.lib.x87_grid.argtypes = [nodep, C.c_int, C.POINTER(C.c_uint64), C.c_int,
+            C.c_uint64, C.c_uint32, C.c_uint64, C.c_int, C.c_int, C.POINTER(C.c_uint64)]
         self.lib.x87_leaf.argtypes = [C.c_int, extp, extp, C.c_uint16, extp]
         self.lib.x87_leaf.restype = None
         self.lib.x87_publish.argtypes = [extp, C.c_uint16]
@@ -88,6 +90,22 @@ class Native:
         if rc:
             raise ValueError('malformed instruction graph')
         return bytes(outputs)
+
+    def grid(self, graph, inputs, cw=0x133f, mask=0):
+        """Publish both graph outputs for each exact binary64 input row."""
+        import numpy as np
+        inputs = np.ascontiguousarray(inputs, dtype=np.uint64)
+        if inputs.ndim != 2 or inputs.shape[0] < 1 or inputs.shape[1] < 1:
+            raise ValueError('input grid must have nonempty rows')
+        nodes = self.nodes(json.dumps(graph, sort_keys=True))
+        outputs = np.empty((len(inputs), 2), dtype=np.uint64)
+        ptr = C.POINTER(C.c_uint64)
+        rc = self.lib.x87_grid(nodes, len(nodes), inputs.ctypes.data_as(ptr),
+            inputs.shape[1], len(inputs), cw | (cw << 16), mask,
+            *graph['outputs'], outputs.ctypes.data_as(ptr))
+        if rc:
+            raise ValueError('malformed instruction graph')
+        return outputs
 
     def leaf(self, op, a, b, cw):
         aa, bb = Ext.from_buffer_copy(a), Ext.from_buffer_copy(b)

@@ -1309,5 +1309,14 @@ class NormalReferenceTests(unittest.TestCase):
             self.assertGreaterEqual(R(*map(int,a['upper'])),R(*map(int,b['upper'])))
 
 
+
+class CumulativeScopeControls(unittest.TestCase):
+    def test_empty_and_truncated_observations_are_rejected(self):
+        from racer.cumulative_projection import validate_sum_observations
+        for q,a in [({'loans':[],'ranges':[]},{}),
+                    ({'loans':[{'id':0,'periods':2}],'ranges':[{'loan':0,'start':1,'end':1}]},
+                     {'PMT':[{}],'CUMPRINC':[{}],'CUMIPMT':[]})]:
+            with self.assertRaises(ValueError):validate_sum_observations(q,a)
+
 if __name__ == '__main__':
     unittest.main()

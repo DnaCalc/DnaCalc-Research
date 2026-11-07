@@ -31,6 +31,79 @@ class NativeControls(unittest.TestCase):
     def tearDownClass(cls):
         cls.scratch.cleanup()
 
+    def test_grid_matches_independent_rational_double_rounding(self):
+        from racer.plateau_probe import probe
+        g=Builder(1); tiny=g.constant('3ca0000000000000')
+        out=g.op('add',g.one,0); out=g.op('add',out,tiny)
+        graph=g.graph(out,out)
+        inputs=[[0x3ca0008000000000],[0x3c9fffffffffffff],[0x3cb0000000000000]]
+        for cw in (0x123f,0x133f):
+            for mask in range(4):
+                grid=self.native.grid(graph,inputs,cw,mask)
+                for row,answer in zip(inputs,grid):
+                    exact=self.exact.graph(graph,row,cw,mask)
+                    self.assertEqual(list(map(int,answer)),
+                        [published_bits(exact[i:i+10]) for i in (0,10)])
+
+    def test_grid_rejects_empty_population(self):
+        from racer.x87_programs import Builder
+        import numpy as np
+        g=Builder(1);graph=g.graph(0,0)
+        with self.assertRaises(ValueError):self.native.grid(graph,np.empty((0,1),dtype=np.uint64))
+
+    def test_plateau_does_not_choose_an_inseparable_constant(self):
+        from racer.plateau_probe import probe
+        g=Builder(1); c=g.constant('3ff0000000000000'); dead=g.constant('3ff0000000000000')
+        out=g.op('mul',c,0); graph=g.graph(out,out)
+        shape=dict(graph=graph,constants=dict(live=c,dead=dead),cw=0x133f,mask=1)
+        results=probe(shape,[[0x3ff0000000000000],[0x4000000000000000]],self.native)
+        self.assertEqual(results[0]['status'],'separating_questions')
+        self.assertEqual(results[1]['status'],'undetermined_within_search')
+        self.assertTrue(all(n['separating_inputs']==2 for n in results[0]['neighbors']))
+
+    def test_plateau_rejects_empty_search_and_a_misbound_constant(self):
+        from racer.plateau_probe import probe
+        g=Builder(1);graph=g.graph(0,0)
+        shape=dict(graph=graph,constants=dict(wrong=0),cw=0x133f,mask=0)
+        with self.assertRaisesRegex(ValueError,'nonempty'):
+            probe(shape,[],self.native)
+        with self.assertRaisesRegex(ValueError,'constant node'):
+            probe(shape,[[0x3ff0000000000000]],self.native)
+
+    def test_absorption_certificate_keeps_binade_edges_and_tie_parity(self):
+        from racer.plateau_probe import absorption_certificate,adjacent,bits
+        def shape(c,leading):
+            return dict(tables=dict(N=[bits(c),bits(leading)]),
+                        domain=dict(low=bits(1.),high=bits(2.)))
+        # Every possible product is enclosed, not just sampled x values.
+        s=shape(1e-6,2.**20)
+        for direction in (-1,1):
+            neighbor=adjacent(bits(1e-6),direction)
+            self.assertTrue(absorption_certificate(s,'N0',neighbor)['proved'])
+        # At x=nextafter(1), changing the added1 by its upper neighbor moves
+        # a midpoint at the next binade. A certificate must not erase that tie.
+        s=shape(1.,1.)
+        self.assertFalse(absorption_certificate(s,'N0',adjacent(bits(1.),1))['proved'])
+
+        g=Builder(1);c=g.constant(bits(1.));out=g.op('add',0,c);graph=g.graph(out,out)
+        baseline=self.native.grid(graph,[[0x3ff0000000000001]],mask=1)[0,0]
+        graph['nodes'][c]['bits']=adjacent(bits(1.),1)
+        changed=self.native.grid(graph,[[0x3ff0000000000001]],mask=1)[0,0]
+        self.assertNotEqual(int(baseline),int(changed))
+
+    def test_absorption_rejects_unsupported_domain_and_coefficients(self):
+        from racer.plateau_probe import absorption_certificate,bits
+        for table,domain in [([bits(1.),bits(1.)],dict(low=bits(2.),high=bits(1.))),
+                             ([bits(-1.),bits(1.)],dict(low=bits(1.),high=bits(2.)))]:
+            with self.assertRaisesRegex(ValueError,'positive'):
+                absorption_certificate(dict(tables=dict(N=table),domain=domain),'N0',bits(1.))
+
+    def test_service_questions_rejects_negative_argument_columns(self):
+        from racer.plateau_probe import service_questions
+        g=Builder(1)
+        with self.assertRaisesRegex(ValueError,'nonnegative'):
+            service_questions(dict(graph=g.graph(0,0),argument_inputs=[-1]),[])
+
     def test_pc53_consumes_full_resident_operand(self):
         g=Builder(2);out=g.op('sub',1,0)
         graph=g.graph(out,out);resident=encode(1+two(-60))

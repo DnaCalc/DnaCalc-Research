@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "counts": {
+    "artifacts": 1222,
+    "archive_bytes": 7863621,
+    "cached_requests": 134,
+    "requested_rows_in_batches": 103234,
+    "successful_batches": 133,
+    "failed_batches": 1,
+    "source_hashes": 82
+  },
+  "application_revision": "ffaf950ee8d89cfb700c4e8ffa0eaf620ee92f65",
+  "compiled_features": {
+    "soft_x87": false
+  },
+  "artifact_manifest_sha256": "dad05ab9413769ff9dc4e1c9ebccb74e5523565f33c9d8ceab6c0f4cb482353c",
+  "unit_sha256": "9d06277464ae61ab8d7677857555d29462b9b4f1084341c8ec5b2b6e5d16eed7",
+  "limits": "Cached requests are distinct batches, not counts of unique formula calls. Readbacks and worker metadata checked by the existing accept route. Service-side receipt file paths and hashes are retained as metadata; their remote bytes are not rehashed locally."
+}

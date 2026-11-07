@@ -30,11 +30,15 @@ def due_parts(checkout, output, cache, cohort="discovery", offline=False):
     client, _ = load_service(checkout)
     service = CachedService(client.Client(timeout=300), cache, offline)
     rows=[]
-    if cohort not in ("discovery","holdout"):raise ValueError('unknown cohort')
+    if cohort not in ("discovery","holdout","validation35"):raise ValueError('unknown cohort')
     holdout=cohort=="holdout"
     rates=(2.**-20,.00375,.0625,.2,.375,math.nextafter(.5,0.)) if holdout else (2.**-10,.05,.1,.125,.25,.5)
     periods=(3.,17.,128.5) if holdout else (4.,12.,360.)
     balances=(math.nextafter(1.,0.),1.1,math.ldexp(1000.,-20),math.ldexp(1000.,20)) if holdout else (1.,math.nextafter(1000.,math.inf),math.ldexp(1000.,-40),math.ldexp(1000.,40))
+    if cohort=='validation35':
+        rates=(2.**-12,.007,.03125,.1875,.4,.8)
+        periods=(5.,29.,96.25)
+        balances=(1.25,math.nextafter(300.,math.inf),math.ldexp(750.,-10),math.ldexp(750.,30))
     for r,n,pv in itertools.product(rates,periods,balances):
         for per in sorted(set((2.,2.5 if holdout else n/2.,n-1.,n))):
             for fv in (0.,(-.3 if holdout else .7)*pv):

@@ -727,6 +727,17 @@ fn main() {
             Some("soft") => bond_solver::zero_coupon_newton::<Soft>(&a[2], &a[3]),
             _ => bond_solver::zero_coupon_newton::<Hard>(&a[2], &a[3]),
         },
+        #[cfg(bond_solver_audit)]
+        Some("yield-variable-secants") => match a.get(5).map(String::as_str) {
+            Some("soft") => bond_solver::rate_rule_in::<Soft>(&a[2], &a[3], &a[4]),
+            _ => bond_solver::rate_rule_in::<Hard>(&a[2], &a[3], &a[4]),
+        },
+        #[cfg(bond_solver_audit)]
+        Some("yield-rate-rule") => bond_solver::rate_rule::<Hard>(&a[2], &a[3]),
+        #[cfg(bond_solver_audit)]
+        Some("yield-bracket-rule") => bond_solver::bracket_rule::<Hard>(&a[2], &a[3]),
+        #[cfg(bond_solver_audit)]
+        Some("yield-fixed-iterations") => bond_solver::fixed_iterations::<Hard>(&a[2], &a[3]),
         #[cfg(cumulative_discount_audit)]
         Some("period-components") => cumulative::period_components(&a[2], &a[3]),
         #[cfg(cumulative_discount_audit)]
@@ -747,6 +758,11 @@ fn main() {
         Some("irr-poi-programs") => match a.get(4).map(String::as_str) {
             Some("soft") => bond_solver::periodic::<Soft>(&a[2], &a[3]),
             _ => bond_solver::periodic::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(bond_solver_audit)]
+        Some("irr-discount-trees") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::irr_discount_trees::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::irr_discount_trees::<Hard>(&a[2], &a[3]),
         },
         #[cfg(closed_security_audit)]
         Some("security-programs") => match a.get(4).map(String::as_str) {

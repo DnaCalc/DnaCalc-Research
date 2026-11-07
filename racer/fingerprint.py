@@ -3,7 +3,12 @@
 Original MIT tooling. Inputs, typed answers and worker provenance are retained
 in small gzip files. Spectral peaks are observations, not a count of hidden
 stores: only a discriminated, fully matching computation tree can supply that.
-No coefficient, threshold or tree is ranked by the number of matching answers.
+Probe the mapping, single-bit steps and exponent edges to find the shape. Recover
+its exact constants by bisection or fitting all known samples, then prove on fresh
+answers. Search for inputs separating adjacent constant values; otherwise report
+them as undetermined. Growing degrees/pieces or failing fresh answers calls the
+shape into question. Rank trees by plausible hand-written 1990s code, not match
+percentage; exact answer comparisons remain exact.
 """
 import argparse
 from collections import Counter
@@ -60,7 +65,7 @@ def write(path, document):
         if bindings!={p:sha(p)for p in bindings}:
             raise ValueError('analysis source changed; raw replies remain retained, regenerate this analysis')
         document=dict(document,producer_bindings=bindings,
-                      analysis_model='gpt-6.1-sol (session launcher)',
+                      analysis_model='Codex session; exact model identifier unavailable',
                       sources='Tier1 original Excel scalar outputs and IEEE754; original MIT arithmetic/DFT and installed MPFR interface. No tier3/4 implementation source read.')
     temporary=path.with_suffix(path.suffix+'.'+uuid.uuid4().hex+'.tmp')
     with temporary.open('x')as stream:
@@ -995,7 +1000,7 @@ def product_stage_study(checkout,output,cache,offline=False,count=256):
     return result
 
 
-def poisson_study(checkout,output,cache,offline=False,count=512):
+def poisson_study(checkout,output,cache,offline=False,count=512,centers=None):
     """Fixed zero/one-count textbook products; independent EXP readings.
 
     Measured public EXP is an explicitly conditional binary64 leaf. Surviving
@@ -1003,7 +1008,8 @@ def poisson_study(checkout,output,cache,offline=False,count=512):
     """
     client,_=load_service(checkout)
     service=CachedService(client.Client(timeout=900),cache,offline)
-    centers=(.13,1.3,3.7,10.,50.)
+    centers=(.13,1.3,3.7,10.,50.)if centers is None else tuple(centers)
+    if count<1 or not centers or any(not math.isfinite(x)or x<=0 for x in centers):raise ValueError('nonempty positive Poisson mapping required')
     xs=[f'{b:016x}'for x in centers for b in range(int(bits(x),16)-count//2,int(bits(x),16)+count//2)]
     exponential=service.ask('EXP',[[client.number(bits(-value(x)))]for x in xs])['rows']
     jobs=[(0,False),(0,True),(1,False),(1,True),(2,False),(2,True)]
@@ -1015,8 +1021,8 @@ def poisson_study(checkout,output,cache,offline=False,count=512):
         profiles=[]
         for shape in ('finite_sum_then_product','recurrence_from_exp'):
             for model in ('binary64','stored_pc64'):
-                tally=Counter();first=None
-                for x,e,a in zip(xs,exponential,answers[j*len(xs):(j+1)*len(xs)]):
+                tally=Counter();first=None;bands=[Counter()for _ in centers]
+                for input_index,(x,e,a) in enumerate(zip(xs,exponential,answers[j*len(xs):(j+1)*len(xs)])):
                     if e['type']!='number'or a['type']!='number':tally['unresolved']+=1;continue
                     mean,leaf=Q(value(x)),Q(value(e['bits']))
                     op=lambda q:rounding(q,model)
@@ -1033,9 +1039,11 @@ def poisson_study(checkout,output,cache,offline=False,count=512):
                             if cdf:s=op(s+term)
                         result=s if cdf else term
                     predicted=bits(float(result));key='matched'if predicted==a['bits']else'mismatched';tally[key]+=1
+                    bands[input_index//count][key]+=1
                     if key=='mismatched'and first is None:first=dict(input=x,expo=e['bits'],excel=a['bits'],candidate=predicted)
                 profiles.append(dict(shape=shape,model=model,counts=tally,first_contradiction=first,
-                                     consistent=tally['matched']==len(xs)))
+                                     consistent=tally['matched']==len(xs),
+                                     bands=[dict(center=bits(x),counts=dict(c))for x,c in zip(centers,bands)]))
         records.append(dict(count=k,cumulative=cdf,profiles=profiles))
         print('POISSON',k,cdf,[(p['shape'],p['model'],dict(p['counts']))for p in profiles],flush=True)
     logarithms=service.ask('LN',[[client.number(x)]for x in xs]+[[client.number(2.)]])['rows']
@@ -1060,9 +1068,234 @@ def poisson_study(checkout,output,cache,offline=False,count=512):
             print('POISSON log program',k,model,dict(tally),flush=True)
     result=dict(format='dnacalc-poisson-textbook-consumers/1',complete=True,program_order='Finite sum then product; recurrence from exponential. Binary64 then storedPC64. Fixed structural order, not accuracy rank.',
         centers=centers,consecutive_inputs_per_center=count,records=records,log_programs=log_programs,receipts=service.receipts,
+        count_one_rows=[dict(input=x,public_exp=e,pmf=answers[jobs.index((1,False))*len(xs)+i],cdf=answers[jobs.index((1,True))*len(xs)+i])for i,(x,e)in enumerate(zip(xs,exponential))],
         limitations='Positive finite small means and counts0..2 only. EXP readings are public scalar binary64 leaves, not recovered private Ext80 seeds. A mismatch rejects only the specified consumer. No threshold, polynomial, recurrence selector or kernel is fit to counts.')
     write(output,result)
     return result
+
+
+def integer_gamma_horner_graph(count,association=0):
+    """The finite gamma sum in backward Horner order, before the exponential."""
+    g=Builder(2);s=g.one
+    for k in range(count,0,-1):
+        divisor=g.constant(bits(float(k)))
+        if association==0:t=g.op('div',g.op('mul',0,s),divisor)
+        elif association==1:t=g.op('mul',g.op('div',0,divisor),s)
+        else:t=g.op('mul',0,g.op('div',s,divisor))
+        s=g.op('add',g.one,t)
+    final=g.op('mul',1,s)
+    return g.graph(final,final)
+
+
+def integer_gamma_horner_study(study,cache,library,output):
+    """Test the Horner shape on all existing finite-sum mapping observations."""
+    import numpy as np
+    document=json.loads(Path(study).read_text());service=CachedService(None,cache,True)
+    exponential={};observations=[]
+    for receipt in document['receipts']:
+        path=Path(cache)/receipt['file']
+        if sha(path)!=receipt['sha256']:raise ValueError('original service receipt changed')
+        with gzip.open(path,'rt')as stream:doc=json.load(stream)
+        request=doc['request']
+        if request['function']not in('EXP','POISSON.DIST'):continue
+        reply=service.ask(request['function'],request['rows'])
+        for args,answer in zip(request['rows'],reply['rows']):
+            if answer['type']!='number':raise ValueError('finite numeric mapping required')
+            if request['function']=='EXP':exponential[args[0]['bits']]=answer['bits']
+            elif args[2].get('type')=='boolean'and args[2].get('value')is True:
+                k=int(value(args[0]['bits']));mean=value(args[1]['bits'])
+                if 1<=k<=18 and k+1<=mean<=30.:observations.append((k,args[1]['bits'],answer['bits']))
+    if not observations:raise ValueError('empty integer finite-sum observation scope')
+    native=Native(library);profiles=[]
+    for association in range(3):
+        for model,cw in [('strict',0x123f),('stored_pc64',0x133f),('resident_pc64',0x133f)]:
+            first=None;checked=0;contradictions=Counter();examples=[]
+            for count in sorted({r[0]for r in observations}):
+                rows=[r for r in observations if r[0]==count]
+                inputs=np.array([[int(x,16),int(exponential[bits(-value(x))],16)]for _,x,_ in rows],dtype=np.uint64)
+                graph=integer_gamma_horner_graph(count,association)
+                prediction=native.grid(graph,inputs,cw,0 if model=='resident_pc64'else(1<<graph['sites'])-1)[:,0]
+                for (_,x,wanted),got in zip(rows,prediction):
+                    checked+=1
+                    if int(got)!=int(wanted,16):
+                        contradiction=dict(count=count,input=x,expected=wanted,prediction=f'{int(got):016x}')
+                        if first is None:first=contradiction
+                        contradictions['at_lower_edge'if value(x)==count+1 else 'interior']+=1
+                        if len(examples)<8:examples.append(contradiction)
+            profiles.append(dict(association=association,model=model,rows=checked,first_contradiction=first,
+                contradiction_counts=contradictions,examples=examples))
+    result=dict(format='dnacalc-integer-gamma-horner-discovery/1',complete=True,profiles=profiles,
+        survivors=[p for p in profiles if p['first_contradiction']is None],receipts=service.receipts,
+        source_bindings={str(p):sha(p)for p in(Path(__file__),Path(study),Path(library))},
+        limits='Backward finite polynomial from the mapping, conditioned on separately observed EXP(-mean). The declared integer finite-sum region is count+1<=mean<=30; its edges still require adjacent and new-count controls. All prior mapping answers are discovery, not fresh validation.')
+    write(output,result);print(json.dumps(dict(profiles=profiles)),flush=True)
+
+
+def integer_gamma_sum_validation(checkout,cache,library,output,polynomial=False,seed=35099,points=64,max_count=19,min_count=1):
+    """Freeze Horner predictions for fresh counts, branch edges and gamma aliases."""
+    import random
+    import numpy as np
+    if not 1<=min_count<=max_count<=29 or points<1:raise ValueError('nonempty bounded integer-gamma mapping required')
+    rng=random.Random(seed);native=Native(library)
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=180),cache)
+    cases=[]
+    for count in range(min_count,max_count+1):
+        a=float(count+1)
+        means=[a+(30.-a)*rng.random()for _ in range(points)]
+        means += [value(f'{int(bits(edge),16)+offset:016x}')for edge in(a,30.)for offset in(-2,-1,0,1,2)]
+        if polynomial and count==1:
+            means += [value(f'{int(bits(3.25),16)+offset:016x}')for offset in range(-64,65)]
+        for mean in means:
+            scope='interior'if a<mean<=30. and a<=20 else 'edge_or_large_shape'
+            cases.append(dict(count=count,shape=a,mean=bits(mean),scope=scope))
+    frozen={str(p):sha(p)for p in(Path(__file__),Path(library))}
+    write(str(output)+'.questions.json',dict(format='dnacalc-integer-gamma-sum-validation-questions/1',
+        cases=cases,seed=seed,source_bindings=frozen,
+        selection=f'Fixed counts{min_count}through{max_count},{points} uniform mapping points per count from seed{seed}; repeated edge controls and adjacent doubles at the mathematical lower edge and observed upper edge30. Coefficient separation also uses129 adjacent inputs near3.25 at count1 when polynomial=True. No answer-guided selection.'))
+    exps=service.ask_rows('EXP',[[client.number(bits(-value(c['mean'])))]for c in cases])
+    if any(e['type']!='number'for e in exps):raise ValueError('numeric EXP required')
+    predictions=[dict(c,public_exp=e,candidates={})for c,e in zip(cases,exps)]
+    coefficient_probes=[]
+    for count in range(min_count,max_count+1):
+        selected=[i for i,c in enumerate(cases)if c['count']==count]
+        inputs=np.array([[int(cases[i]['mean'],16),int(exps[i]['bits'],16)]for i in selected],dtype=np.uint64)
+        for association in (('factorial_coefficients',)if polynomial else range(3)):
+            graph=integer_gamma_polynomial_graph(count,association)if polynomial else integer_gamma_horner_graph(count,association)
+            for model,cw in [('strict',0x123f),('stored_pc64',0x133f),('resident_pc64',0x133f)]:
+                values=native.grid(graph,inputs,cw,0 if model=='resident_pc64'else(1<<graph['sites'])-1)[:,0]
+                for i,q in zip(selected,values):predictions[i]['candidates'][f'{association}/{model}']=f'{int(q):016x}'
+            if polynomial and count<max_count and any(cases[i]['scope']=='interior'for i in selected):
+                from plateau_probe import probe
+                scoped=[j for j,i in enumerate(selected)if cases[i]['scope']=='interior']
+                shape=dict(graph=graph,constants={f'F{k}':graph['coefficient_nodes'][f'F{k}']for k in((0,1)if count==1 else(count,))},
+                           cw=0x133f,mask=(1<<graph['sites'])-1)
+                coefficient_probes.extend(dict(c,count=count)for c in probe(shape,inputs[scoped],native,keep=6))
+                frozen[str(ROOT/'racer/plateau_probe.py')]=sha(ROOT/'racer/plateau_probe.py')
+    write(str(output)+'.predictions.json',dict(format='dnacalc-integer-gamma-sum-validation-predictions/1',
+        records=predictions,coefficient_probes=coefficient_probes,receipts=service.receipts.copy(),source_bindings=frozen))
+    poisson=service.ask_rows('POISSON.DIST',[[client.number(float(c['count'])),client.number(c['mean']),client.boolean(True)]for c in cases])
+    chi=service.ask_rows('CHIDIST',[[client.number(2.*value(c['mean'])),client.number(2.*c['shape'])]for c in cases])
+    gamma=service.ask_rows('GAMMA.DIST',[[client.number(c['mean']),client.number(c['shape']),client.number(1.),client.boolean(True)]for c in cases])
+    counts=Counter();contradictions={}
+    for row,p,ch,ga in zip(predictions,poisson,chi,gamma):
+        row['answers']=dict(POISSON=p,CHIDIST=ch,GAMMA=ga)
+        if any(x['type']!='number'for x in(p,ch,ga)):raise ValueError('finite gamma aliases required')
+        if row['scope']!='interior':continue
+        counts['interior_rows']+=1;counts['poisson_equals_chidist']+=p==ch
+        for program,prediction in row['candidates'].items():
+            counts[program]+=p==dict(type='number',bits=prediction)
+            if p!=dict(type='number',bits=prediction)and program not in contradictions:
+                contradictions[program]=dict(count=row['count'],mean=row['mean'],expected=p,prediction=prediction)
+        q=row['candidates'][('factorial_coefficients'if polynomial else'0')+'/stored_pc64'];pv=value(q)
+        counts['gamma_complement_of_poisson']+=ga==dict(type='number',bits=bits(.5+(.5-value(p['bits']))))
+        counts['gamma_horner_complement']+=ga==dict(type='number',bits=bits(.5+(.5-pv)))
+    if frozen!={p:sha(p)for p in frozen}:raise ValueError('gamma validation source changed')
+    observed={(row['count'],row['mean']):row['answers']['POISSON']for row in predictions}
+    for c in coefficient_probes:
+        for neighbor in c['neighbors']:
+            samples=neighbor['examples'];neighbor['baseline_agrees']=sum(observed[c['count'],r['inputs'][0]]==dict(type='number',bits=r['baseline'])for r in samples)
+            neighbor['alternative_agrees']=sum(observed[c['count'],r['inputs'][0]]==dict(type='number',bits=r['alternative'])for r in samples)
+    result=dict(format='dnacalc-integer-gamma-sum-validation/1',complete=True,records=predictions,
+        counts=counts,coefficient_probes=coefficient_probes,first_contradictions=contradictions,receipts=service.receipts,source_bindings=frozen,
+        limits='Fresh validation of the finite polynomial in the declared integer shape region. Edge and shapes above20 answers are retained separately, never counted as interior passes. Separately observed EXP is a conditional binary64 leaf. Multiple equal associations remain undetermined until new questions distinguish them; this does not identify the general gamma path.')
+    write(output,result);print(json.dumps(counts),flush=True)
+
+
+
+def gamma_inverse_plateaus(checkout,cache,output,seed=35103):
+    """Test the shared-forward lattice-ceiling premise on fresh quantiles."""
+    import random
+    rng=random.Random(seed);client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=180),cache)
+    rows=[]
+    for shape in (2.,3.,5.,10.,20.):
+        for _ in range(16):rows.append(dict(p=bits(.55+.4*rng.random()),shape=bits(shape),scale=bits(1.)))
+    rows += [dict(p=bits(.75),shape=bits(5.),scale=bits(1.))]
+    source=sha(__file__)
+    write(str(output)+'.questions.json',dict(rows=rows,seed=seed,source_sha256=source,
+        selection='Five fixed integer shapes,16 fresh probability inputs each, plus the known lost Gamma inverse control. No quantile output selected by agreement.'))
+    inverse=service.ask_rows('GAMMA.INV',[[client.number(r['p']),client.number(r['shape']),client.number(r['scale'])]for r in rows])
+    questions=[]
+    for r,a in zip(rows,inverse):
+        if a['type']!='number':raise ValueError('finite inverse required')
+        center=int(a['bits'],16)
+        for offset in range(-16,17):questions.append([client.number(f'{center+offset:016x}'),client.number(r['shape']),client.number(r['scale']),client.boolean(True)])
+    forward=service.ask_rows('GAMMA.DIST',questions)
+    counts=Counter();records=[]
+    for i,(r,a)in enumerate(zip(rows,inverse)):
+        answers=forward[i*33:(i+1)*33]
+        if any(x['type']!='number'for x in answers):raise ValueError('finite forward required')
+        values=[value(x['bits'])for x in answers];target=value(r['p'])
+        counts['rows']+=1;counts['returned_forward_equals_p']+=values[16]==target
+        counts['lattice_ceiling_at_return']+=values[15]<target<=values[16]
+        crossings=[j-16 for j,v in enumerate(values)if v>=target and(j==0 or values[j-1]<target)]
+        records.append(dict(inputs=r,inverse=a,forward=answers,first_ge_offset=crossings[0]if crossings else None,
+                            nonmonotone=any(x>y for x,y in zip(values,values[1:]))))
+    if source!=sha(__file__):raise ValueError('inverse plateau source changed')
+    result=dict(format='dnacalc-gamma-inverse-forward-plateaus/1',complete=True,counts=counts,
+        records=records,receipts=service.receipts,source_sha256=source,
+        limits='Tests the existing inverse premise that the result is the least binary64 x whose own public CDF reaches p. A contradiction refutes that premise, not the newly identified forward polynomial. No inverse rule is selected by a match count and no private CDF is inferred solely from these public outputs.')
+    write(output,result);print(json.dumps(counts),flush=True)
+
+def integer_gamma_polynomial_graph(count,form):
+    """Fixed factorial-polynomial trees suggested by new-count contradictions."""
+    g=Builder(2)
+    if form in('factorial_coefficients','scaled_integer_coefficients'):
+        scale=math.factorial(count)if form.startswith('scaled')else 1
+        coefficients=[g.constant(bits(float(Q(scale,math.factorial(i)))))for i in range(count+1)]
+        coefficient_nodes={f'F{i}':node for i,node in enumerate(coefficients)}
+        s=coefficients[-1]
+        for c in coefficients[-2::-1]:s=g.op('add',g.op('mul',s,0),c)
+        if scale!=1:s=g.op('div',s,g.constant(bits(float(scale))))
+    elif form in('reciprocal_after_product','reciprocal_before_product','reciprocal_on_x'):
+        s=g.one
+        for k in range(count,0,-1):
+            c=g.constant(bits(1./k))
+            if form=='reciprocal_after_product':t=g.op('mul',g.op('mul',s,0),c)
+            elif form=='reciprocal_before_product':t=g.op('mul',g.op('mul',s,c),0)
+            else:t=g.op('mul',s,g.op('mul',0,c))
+            s=g.op('add',g.one,t)
+    elif form=='coefficient_power_sum':
+        s=g.one;p=g.one
+        for k in range(1,count+1):
+            p=g.op('mul',p,0);c=g.constant(bits(float(Q(1,math.factorial(k)))))
+            s=g.op('add',s,g.op('mul',p,c))
+    else:raise ValueError('unknown integer polynomial form')
+    final=g.op('mul',1,s);graph=g.graph(final,final)
+    graph['polynomial_store_mask']=(1<<g.nodes[s]['site'])|(1<<g.nodes[final]['site'])
+    if form in('factorial_coefficients','scaled_integer_coefficients'):graph['coefficient_nodes']=coefficient_nodes
+    return graph
+
+
+def integer_gamma_polynomial_study(study,library,output):
+    """Refute whole fixed polynomial trees; new-count data are now discovery."""
+    import numpy as np
+    doc=json.loads(Path(study).read_text());native=Native(library)
+    rows=[r for r in doc['records']if r['scope']=='interior']
+    if not rows:raise ValueError('empty polynomial scope')
+    profiles=[]
+    forms=('factorial_coefficients','scaled_integer_coefficients','reciprocal_after_product',
+           'reciprocal_before_product','reciprocal_on_x','coefficient_power_sum')
+    for form in forms:
+        for model in('strict','stored_pc64','resident_pc64','resident_polynomial'):
+            checked=0;first=None;mismatches=Counter()
+            for count in sorted({r['count']for r in rows}):
+                selected=[r for r in rows if r['count']==count]
+                graph=integer_gamma_polynomial_graph(count,form)
+                inputs=np.array([[int(r['mean'],16),int(r['public_exp']['bits'],16)]for r in selected],dtype=np.uint64)
+                mask=0 if model=='resident_pc64'else graph['polynomial_store_mask']if model=='resident_polynomial'else(1<<graph['sites'])-1
+                results=native.grid(graph,inputs,0x123f if model=='strict'else 0x133f,mask)[:,0]
+                for row,got in zip(selected,results):
+                    checked+=1;wanted=row['answers']['POISSON']['bits']
+                    if int(got)!=int(wanted,16):
+                        mismatches[str(count)]+=1
+                        if first is None:first=dict(count=count,mean=row['mean'],expected=wanted,prediction=f'{int(got):016x}')
+            profiles.append(dict(form=form,model=model,rows=checked,first_contradiction=first,mismatches_by_count=mismatches))
+    result=dict(format='dnacalc-integer-gamma-polynomial-study/1',complete=True,profiles=profiles,
+        survivors=[p for p in profiles if p['first_contradiction']is None],
+        source_bindings={str(p):sha(p)for p in(Path(__file__),Path(study),Path(library))},
+        limits='Six fixed mathematical factorial-polynomial trees, each with four coherent store policies, on all new-count observations. No coefficient adjusted and no count-specific selector. All answers are discovery after the divided-Horner failure; any survivor needs genuinely fresh validation.')
+    write(output,result);print(json.dumps(dict(profiles=profiles)),flush=True)
 
 
 def binomial_study(checkout,output,cache,offline=False,count=512):
@@ -3756,7 +3989,49 @@ def yield_scale_questions(checkout, output, cache, offline=False):
     print(json.dumps(Counter(len({json.dumps(x['answer'],sort_keys=True)for x in v})for v in groups.values())))
 
 
+def yield_solver_mapping(checkout, output, cache, offline=False):
+    """Map around par, by money scale and adjacent prices before solver search."""
+    from datetime import date
+    client,_=load_service(checkout); service=CachedService(client.Client(timeout=180),cache,offline)
+    output=Path(output);output.mkdir(parents=True,exist_ok=False)
+    serial=lambda d:float((d-date(1899,12,30)).days)
+    settlement=date(2024,1,15);cases=[]
+    for n in (2,4,8):
+        for frequency in (1,2,4):
+            index=settlement.year*12+settlement.month-1+n*12//frequency
+            maturity=date(index//12,index%12+1,15)
+            first_index=settlement.year*12+settlement.month-1+12//frequency
+            first=date(first_index//12,first_index%12+1,15)
+            for coupon in (0.,.03125,.0625,.125):
+                prices=(50.,75.,90.,95.,99.,99.9,100.,100.1,101.,105.,110.,125.,150.,200.)
+                if n==4 and frequency==2 and coupon==.0625:
+                    prices=tuple(sorted(set(prices+(tuple(100.+sign*2.**e for sign in (-1,1) for e in range(-24,5))))))
+                for price in prices:
+                    args=[serial(settlement),serial(maturity),coupon,price,100.,float(frequency),0.]
+                    odd=[args[0],args[1],serial(date(2023,1,15)),serial(first),coupon,price,100.,float(frequency),0.]
+                    cases.append(dict(id=str(len(cases)),n=n,frequency=frequency,coupon=coupon,price=price,
+                        args=[client.number(x)for x in args],odd=[client.number(x)for x in odd]))
+    write(output/'questions.json',dict(cases=cases,source_sha256=sha(Path(__file__)),
+        selection='Fixed on-coupon mapping across coupon, frequency and count; one power-of-two ladder around par. No prediction/match-guided selection.'))
+    answers={f:service.ask_rows(f,[c['args'if f=='YIELD'else'odd']for c in cases])for f in ('YIELD','ODDFYIELD')}
+    rows=[]
+    for i,c in enumerate(cases):
+        a=answers['YIELD'][i]
+        expected='0x'+a['bits']if a['type']=='number'else'error:Num'if a.get('code')=='#NUM!'else None
+        if expected is None:raise ValueError('unclassified yield result')
+        rows.append(dict(id=c['id'],function='YIELD',args=['0x'+x['bits']for x in c['args']],expected=expected,
+            original_case=c,odd_answer=answers['ODDFYIELD'][i]))
+    with(output/'solver-inputs.jsonl').open('x')as stream:
+        for r in rows:stream.write(json.dumps(r,separators=(',',':'))+'\n')
+    result=dict(format='dnacalc-yield-solver-mapping/1',complete=True,cases=cases,answers=answers,
+        paired_equal=sum(a==b for a,b in zip(*answers.values())),receipts=service.receipts,
+        source_sha256=sha(Path(__file__)),limits='Original public answers and readbacks; no solver, stop rule or iteration count identified.')
+    write(output/'result.json',result);print(json.dumps(dict(cases=len(cases),paired_equal=result['paired_equal'])),flush=True)
+
+
 if __name__ == '__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='yield-solver-map':
+        yield_solver_mapping(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='yield-domain-raster':
         yield_domain_raster(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='yield-exact-roots':

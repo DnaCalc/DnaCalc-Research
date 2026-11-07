@@ -724,7 +724,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
         formulas = {key(r): r for r in capture['formulas']}
         actual = {key(r): r for r in evaluations['evaluations']}
         for verdict in triage['cells']:
-            if verdict['verdict'] in ('matched', 'external_link', 'circular_rule', 'awaiting_capture'):
+            if verdict['verdict'] in ('matched', 'agreed_rejection', 'external_link', 'circular_rule', 'awaiting_capture'):
                 continue
             if verdict['verdict'] not in ('mismatched', 'not_modeled', 'not_run', 'failed', 'missing', 'stale', 'unproven', 'file_cached'):
                 raise ValueError('unknown nonpass '+str(verdict))

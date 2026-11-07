@@ -16,6 +16,195 @@ fn mul<F:Fpu>(m:EvalModel,a:Val,b:Val)->Val { binop::<F>(Op::Mul(0,1),m,a,b) }
 fn div<F:Fpu>(m:EvalModel,a:Val,b:Val)->Val { binop::<F>(Op::Div(0,1),m,a,b) }
 fn stored<F:Fpu>(a:Val)->Option<f64> { let v=a.to_f64::<F>(); v.is_finite().then_some(v) }
 
+/// RATE's measured secant and stopping rule, tested on the original bond price
+/// leaf. Named seeds, money normalization and signs are separate hypotheses.
+pub fn rate_rule<F:Fpu>(input:&str,output:&str) { rate_rule_in::<F>(input,output,"rate"); }
+
+pub fn rate_rule_in<F:Fpu>(input:&str, output:&str,variable:&str) {
+    assert!(["rate","base","discount","discount_polynomial"].contains(&variable),"unknown secant variable");
+    use crate::ported::bond_core_family::ResearchPrice;
+    let rows=crate::lines::<Value>(input); assert!(!rows.is_empty(),"empty YIELD RATE-rule scope"); let v=Val::f64;
+    let mut programs=Vec::new(); let mut survivors=Vec::new();
+    let stops=if variable=="rate"{vec![("RATE",1e-7,1e-7)]}else{vec![("RATE",1e-7,1e-7),("step10",1e-10,f64::INFINITY),("both10",1e-10,1e-10),("value10",f64::INFINITY,1e-10)]};
+    for (stop,xtol,ftol) in stops {for seed in ["coupon","zero","0.05","0.1","one"] { for delta in [0.001,0.0001,0.01] {
+      for sign in [-1i32,0,1] {for normalization in [1.0,0.01] {for staged in [false,true] {for model in WIDE_MODELS {
+        let id=programs.len();let mut first=None; let mut checked=0;
+        for row in &rows {
+            let a:Vec<f64>=row["args"].as_array().unwrap().iter().map(|x|
+                f64::from_bits(u64::from_str_radix(x.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+            let price=ResearchPrice::new(&a).unwrap(); assert!(price.count()>1);
+            let to_yield=|x:f64|match variable {
+                "rate"=>Some(x),"base"=>stored::<F>(mul::<F>(model,sub::<F>(model,v(x),v(1.0)),v(a[5]))),
+                _=>stored::<F>(mul::<F>(model,sub::<F>(model,div::<F>(model,v(1.0),v(x)),v(1.0)),v(a[5]))),
+            };
+            let to_variable=|y:f64|match variable {
+                "rate"=>Some(y),"base"=>stored::<F>(add::<F>(model,v(1.0),div::<F>(model,v(y),v(a[5])))),
+                _=>stored::<F>(div::<F>(model,v(1.0),add::<F>(model,v(1.0),div::<F>(model,v(y),v(a[5]))))),
+            };
+            let f=|x:f64|{
+                let pv=if variable=="discount_polynomial" {
+                    let coupon=div::<F>(model,mul::<F>(model,v(100.0),v(a[2])),v(a[5]));
+                    let mut sum=v(a[4]);
+                    for _ in 0..price.count(){sum=mul::<F>(model,add::<F>(model,sum,coupon),v(x));}
+                    stored::<F>(sum)
+                }else{to_yield(x).and_then(|y|price.value(y,staged).ok())};
+                pv.and_then(|p|stored::<F>(mul::<F>(model,sub::<F>(model,v(p),v(a[3])),v(normalization))))
+            };
+            let mut trace=Vec::new();
+            let answer=(||->Option<f64>{
+                let mut before=to_variable(match seed {"coupon"=>a[2],"zero"=>0.0,"0.05"=>0.05,"0.1"=>0.1,_=>1.0})?;
+                let mut fb=f(before)?;if fb==0.0{return to_yield(before);}
+                let direction=if sign==0 {(-fb).signum()} else {f64::from(sign)};
+                let mut current=stored::<F>(add::<F>(model,v(before),v(delta*direction)))?;
+                let mut fc=f(current)?;
+                for iteration in 1..=200 {
+                    let change=stored::<F>(sub::<F>(model,v(fc),v(fb)))?;
+                    if change==0.0{return None;}
+                    let next=stored::<F>(sub::<F>(model,v(current),div::<F>(model,
+                        mul::<F>(model,v(fc),sub::<F>(model,v(current),v(before))),v(change))))?;
+                    let step=stored::<F>(sub::<F>(model,v(next),v(current)))?.abs();
+                    (before,fb)=(current,fc);current=next;fc=f(current)?;
+                    trace.push(json!({"iteration":iteration,"x":format!("{:016x}",current.to_bits()),
+                        "f":format!("{:016x}",fc.to_bits()),"step":format!("{:016x}",step.to_bits())}));
+                    if trace.len()>4{trace.remove(0);}
+                    if step<xtol && fc.abs()<ftol{return to_yield(current);}
+                }
+                None
+            })();
+            let actual=answer.map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(||"error:Num".into());
+            checked+=1;
+            if actual!=row["expected"].as_str().unwrap(){first=Some(json!({"row":row,"prediction":actual,"trace":trace}));break;}
+        }
+        if first.is_none(){survivors.push(id);}
+        programs.push(json!({"id":id,"variable":variable,"stop":stop,"seed":seed,"delta":delta,"sign":sign,"normalization":normalization,
+            "staged_price":staged,"model":model,"checked":checked,"first_contradiction":first}));
+      }}}}
+    }}}
+    crate::json_write(output,&json!({"complete":true,"rows":rows.len(),"programs":programs,"survivors":survivors,
+        "variable":variable,"limits":"RATE's simultaneous1e-7 tests and200-step limit; transformed-variable runs also test step-only, value-only and both1e-10 stops. Rate/base/discount or a direct discounted cash-flow Horner polynomial. Five named seeds, three deltas/signs, two money normalizations, original/staged price and five coherent arithmetic models. Every program refutes at its first exact contradiction. Product price and schedule remain conditional leaves; no ranking by counts or claim to exhaust solver families."}));
+    println!("{} RATE-rule programs; {} survivors",programs.len(),survivors.len());
+}
+
+/// Bracket-width hypotheses suggested by the observed one-sided1e-10 cap.
+/// The interpolation is ordinary linear or inverse quadratic; no coefficients
+/// are fit. Keep every iterate of the first contradiction to test termination.
+pub fn bracket_rule<F:Fpu>(input:&str, output:&str) {
+    use crate::ported::bond_core_family::ResearchPrice;
+    let rows=crate::lines::<Value>(input);assert!(!rows.is_empty(),"empty YIELD bracket scope");let v=Val::f64;
+    let mut programs=Vec::new();let mut survivors=Vec::new();
+    for (seed_low,seed_high) in [(0.0,1.0),(0.0,0.1),(0.0,0.05),(-0.5,1.0)] {
+      for method in 0..6 {for tol in [1e-10,1e-8,1e-7] {for staged in [false,true] {for model in WIDE_MODELS {
+        let id=programs.len();let mut first=None;let mut checked=0;
+        for row in &rows {
+            let a:Vec<f64>=row["args"].as_array().unwrap().iter().map(|x|f64::from_bits(
+                u64::from_str_radix(x.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+            let price=ResearchPrice::new(&a).unwrap();assert!(price.count()>1);
+            let f=|x:f64|price.value(x,staged).ok().and_then(|p|stored::<F>(sub::<F>(model,v(p),v(a[3]))));
+            let op=|kind:u8,a:f64,b:f64|stored::<F>(match kind {
+                0=>add::<F>(model,v(a),v(b)),1=>sub::<F>(model,v(a),v(b)),
+                2=>mul::<F>(model,v(a),v(b)),_=>div::<F>(model,v(a),v(b)),});
+            let mut trace=Vec::new();
+            let answer=(||->Option<f64>{
+                let(mut low,mut high)=(seed_low,seed_high);let(mut fl,mut fh)=(f(low)?,f(high)?);
+                if fl==0.0{return Some(low);}if fh==0.0{return Some(high);}
+                for _ in 0..20 {
+                    if fl>0.0 && fh<0.0 {break;}
+                    if fl<0.0 {let next=op(1,low,op(1,high,low)?)?;
+                        low=if next<=-a[5] {(-a[5]+low)*0.5}else{next};fl=f(low)?;}
+                    else {high=op(0,high,op(1,high,low)?)?;fh=f(high)?;}
+                    if fl==0.0{return Some(low);}if fh==0.0{return Some(high);}
+                }
+                if fl*fh>0.0{return None;}
+                let(mut previous,mut fp)=(low,fl);
+                for iteration in 0..100 {
+                    if high-low<tol {return Some(low);}
+                    let midpoint=||op(0,low,op(2,0.5,op(1,high,low)?)?);
+                    let secant=||op(1,high,op(3,op(2,fh,op(1,high,low)?)?,op(1,fh,fl)?)?);
+                    let mut x=if method==0 || (method==1 && iteration%2==0)
+                        || (method==2 && iteration%2==1) {midpoint()?}
+                    else if method>=4 && previous!=low && previous!=high && fl!=fp && fh!=fp {
+                        let mut sum=0.0;
+                        for(x,fx,fy,fz)in [(low,fl,fh,fp),(high,fh,fl,fp),(previous,fp,fl,fh)] {
+                            let numerator=op(2,op(2,x,fy)?,fz)?;
+                            let denominator=op(2,op(1,fx,fy)?,op(1,fx,fz)?)?;
+                            sum=op(0,sum,op(3,numerator,denominator)?)?;
+                        }
+                        sum
+                    } else {secant()?};
+                    if x<=low || x>=high || (method==5 && (x-low).min(high-x)<0.01*(high-low)) {x=midpoint()?;}
+                    let fx=f(x)?;trace.push(json!({"iteration":iteration,"low":format!("{:016x}",low.to_bits()),
+                        "high":format!("{:016x}",high.to_bits()),"x":format!("{:016x}",x.to_bits()),"f":format!("{:016x}",fx.to_bits())}));
+                    if fx==0.0{return Some(x);}
+                    if fx>0.0 {(previous,fp)=(low,fl);(low,fl)=(x,fx);}
+                    else {(previous,fp)=(high,fh);(high,fh)=(x,fx);}
+                }
+                None
+            })();
+            let actual=answer.map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(||"error:Num".into());checked+=1;
+            if actual!=row["expected"].as_str().unwrap(){first=Some(json!({"id":row["id"],"args":row["args"],
+                "expected":row["expected"],"prediction":actual,"trace":trace}));break;}
+        }
+        if first.is_none(){survivors.push(id);}
+        programs.push(json!({"id":id,"low":seed_low,"high":seed_high,"method":method,"tolerance":tol,
+            "staged_price":staged,"model":model,"checked":checked,"first_contradiction":first}));
+      }}}}
+    }
+    crate::json_write(output,&json!({"complete":true,"rows":rows.len(),"programs":programs,"survivors":survivors,
+        "methods":["bisection","bisection/secant","secant/bisection","secant","inverse quadratic","safeguarded inverse quadratic"],
+        "limits":"Exploratory finite bracket programs suggested by a one-sided error cap; no claim these are Excel's routine. Original price/schedule conditional; first exact contradiction refutes. No fit by match count."}));
+    println!("{} bracket programs; {} survivors",programs.len(),survivors.len());
+}
+
+/// Read fixed iteration counts on zero-coupon bonds, including the sixth-order
+/// Newton/reused-derivative/Newton and Newton/Halley shapes.
+pub fn fixed_iterations<F:Fpu>(input:&str,output:&str) {
+    use crate::ported::bond_core_family::ResearchPrice;
+    let rows:Vec<_>=crate::lines::<Value>(input).into_iter().filter(|r|
+        r["args"][2]=="0x0000000000000000").collect();
+    assert!(!rows.is_empty(),"empty zero-coupon fixed-iteration scope");
+    let v=Val::f64;let mut programs=Vec::new();let mut survivors=Vec::new();
+    for seed in [0.0,0.05,0.1,1.0] {for algorithm in 0..4 {for staged in [false,true] {for model in WIDE_MODELS {
+        let mut first:Vec<Option<Value>>=vec![None;17];let mut checked=[0usize;17];
+        for row in &rows {
+            let a:Vec<f64>=row["args"].as_array().unwrap().iter().map(|x|f64::from_bits(
+                u64::from_str_radix(x.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+            let price=ResearchPrice::new(&a).unwrap();let n=price.count() as f64;
+            let mut x:Option<f64>=Some(seed);let mut derivative=None;
+            for iteration in 0..17 {
+                let prediction=x.map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(||"error:Num".into());
+                if first[iteration].is_none(){checked[iteration]+=1;
+                    if prediction!=row["expected"].as_str().unwrap(){first[iteration]=Some(json!({"id":row["id"],
+                        "args":row["args"],"expected":row["expected"],"prediction":prediction}));}}
+                x=(||->Option<f64>{
+                    let xx=x?;let px=price.value(xx,staged).ok()?;
+                    let residual=stored::<F>(sub::<F>(model,v(px),v(a[3])))?;
+                    let denominator=add::<F>(model,v(a[5]),v(xx));
+                    let d=stored::<F>(neg(div::<F>(model,mul::<F>(model,v(n),v(px)),denominator)))?;
+                    if algorithm!=1 || iteration%2==0 {derivative=Some(d);}
+                    let d=derivative?;
+                    let correction=if algorithm==2 || algorithm==3 && iteration%2==1 {
+                        let second=div::<F>(model,mul::<F>(model,mul::<F>(model,v(n),v(n+1.0)),v(px)),
+                            mul::<F>(model,denominator,denominator));
+                        div::<F>(model,mul::<F>(model,mul::<F>(model,v(2.0),v(residual)),v(d)),
+                            sub::<F>(model,mul::<F>(model,v(2.0),mul::<F>(model,v(d),v(d))),mul::<F>(model,v(residual),second)))
+                    } else {div::<F>(model,v(residual),v(d))};
+                    stored::<F>(sub::<F>(model,v(xx),correction))
+                })();
+            }
+            if first.iter().all(Option::is_some){break;}
+        }
+        for(iteration,(first,checked))in first.into_iter().zip(checked).enumerate(){
+            let id=programs.len();if first.is_none(){survivors.push(id);}
+            programs.push(json!({"id":id,"seed":seed,"algorithm":algorithm,"iterations":iteration,
+                "staged_price":staged,"model":model,"checked":checked,"first_contradiction":first}));
+        }
+    }}}}
+    crate::json_write(output,&json!({"complete":true,"zero_coupon_rows":rows.len(),"programs":programs,
+        "survivors":survivors,"algorithms":["Newton","derivative recomputed every second update","Halley","alternating Newton and Halley"],
+        "limits":"Zero-coupon conditional price leaves and analytic derivatives only;0through16 updates, no convergence test or count selected by agreement percentage. Includes the low-order update combinations with local sixth-order error. These exact contradictions do not identify Excel's missing routine."}));
+    println!("{} fixed-iteration programs; {} survivors",programs.len(),survivors.len());
+}
+
 /// All source constants and evaluation order are fixed before looking at gains.
 fn root<F:Fpu>(f:impl Fn(f64)->Option<f64>,m:EvalModel)->Option<f64> {
     let precision=1e-6;
@@ -335,6 +524,98 @@ pub fn periodic<F:Fpu>(input:&str,output:&str) {
         "programs":"Five coherent arithmetic models times two explicit domains: published complete recurrence or current two-cashflow route retained as a conditional leaf. Each declared local boundary stores binary64.",
         "limits":"Original numeric array readings and optional numeric guesses only; skipped text/error/reference obligations remain failures. Nonfinite intermediates map to NUM, without claiming all Java exceptional semantics. No fitted stopping constant, coefficient or row selector; discovery answers; no complete IRR identification."});
     crate::json_write(destination.join("summary.json").to_str().unwrap(),&result);println!("{result}");
+}
+
+/// Fixed NPV operation trees inside the measured discount-factor secant.
+/// This is original numerical research; the older POI trial above stays separate.
+fn irr_discount_program<F:Fpu>(flows:&[f64],guess:f64,kind:usize,reverse:bool,m:EvalModel,normalization:&str)->Option<f64> {
+    let v=Val::f64;
+    let scale=match normalization {"first"=>flows.iter().find(|x|**x!=0.0)?.abs(),"maximum"=>flows.iter().map(|x|x.abs()).fold(0.0,f64::max),_=>1.0};
+    let normalized=flows.iter().map(|x|stored::<F>(div::<F>(m,v(*x),v(scale)))).collect::<Option<Vec<_>>>()?;
+    let flows=&normalized;
+    let npv=|q:f64|->Option<f64>{
+        let base=stored::<F>(div::<F>(m,v(1.0),v(q)))?;
+        if kind==6 {
+            let mut sum=v(0.0);
+            for &flow in flows.iter().rev() {sum=add::<F>(m,mul::<F>(m,sum,v(q)),v(flow));}
+            return stored::<F>(sum);
+        }
+        let mut powers=vec![1.0;flows.len()];
+        if kind==4 || kind==5 {
+            for k in 1..flows.len(){powers[k]=stored::<F>(mul::<F>(m,v(powers[k-1]),v(if kind==4{base}else{q})))?;}
+        }
+        let mut sum=v(0.0);
+        for index in 0..flows.len() {
+            let k=if reverse{flows.len()-index-1}else{index};
+            let power=match kind {
+                0|2=>crate::ported::power_fn::power_kernel(if kind==0{base}else{q},k as f64).ok()?,
+                1|3=>crate::ported::excel_numeric::crt_pow(if kind==1{base}else{q},k as f64),
+                4|5=>powers[k], _=>unreachable!(),
+            };
+            if !power.is_finite(){return None;}
+            let term=if kind==0||kind==1||kind==4{div::<F>(m,v(flows[k]),v(power))}else{mul::<F>(m,v(flows[k]),v(power))};
+            sum=add::<F>(m,sum,term);
+        }
+        stored::<F>(sum)
+    };
+    let mut previous=stored::<F>(div::<F>(m,v(1.0),add::<F>(m,v(1.0),v(guess))))?;
+    let mut fp=npv(previous)?;
+    if fp==0.0{return Some(guess);}
+    let mut current=stored::<F>(add::<F>(m,v(previous),v(0.001_f64.copysign(fp))))?;
+    let mut fc=npv(current)?;
+    for _ in 0..200 {
+        let change=stored::<F>(sub::<F>(m,v(fc),v(fp)))?;
+        if change==0.0{return None;}
+        let next=stored::<F>(sub::<F>(m,v(current),div::<F>(m,mul::<F>(m,v(fc),sub::<F>(m,v(current),v(previous))),v(change))))?;
+        let step=stored::<F>(sub::<F>(m,v(next),v(current)))?.abs();
+        (previous,fp)=(current,fc);current=next;fc=npv(current)?;
+        if step<1e-7 && fc.abs()<1e-7{return stored::<F>(sub::<F>(m,div::<F>(m,v(1.0),v(current)),v(1.0)));}
+    }
+    None
+}
+
+pub fn irr_discount_trees<F:Fpu>(input:&str,output:&str) {
+    let rows=crate::lines::<Value>(input);let mut scope=Vec::new();let mut excluded=0;
+    fn collect(a:&Value,out:&mut Vec<f64>)->bool {
+        if let Some(a)=a.as_array(){a.iter().all(|x|collect(x,out))}
+        else if let Some(x)=calc_verdict::decode_argument(a,"IRR tree").unwrap().as_number(){out.push(x);x.is_finite()}
+        else{false}
+    }
+    for row in &rows {
+        assert_eq!(row["function"],"IRR");let args=row["args"].as_array().unwrap();let mut flows=Vec::new();
+        let guess=if args.len()==1{Some(0.1)}else{calc_verdict::decode_argument(&args[1],"guess").unwrap().as_number()};
+        if !args[0].is_array()||!collect(&args[0],&mut flows)||flows.is_empty()||guess.is_none_or(|x|!x.is_finite())||!flows.iter().any(|x|*x<0.0)||!flows.iter().any(|x|*x>0.0){excluded+=1;continue;}
+        scope.push((row,flows,guess.unwrap()));
+    }
+    assert!(!scope.is_empty(),"empty IRR tree scope");
+    let mut controlled=0;
+    for (row,flows,guess) in &scope {
+        let args=row["args"].as_array().unwrap().iter().map(|x|calc_verdict::decode_argument(x,"IRR control").unwrap()).collect();
+        let registered=crate::invoke_control("IRR",args).0;
+        assert_eq!(registered,row["actual"],"frozen original IRR registered route");
+        if registered!="error:Ref" {
+            let got=irr_discount_program::<F>(flows,*guess,0,false,EvalModel::StoredPc64,"none")
+                .map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(||"error:Num".into());
+            assert_eq!(got,registered,"original whole stored discount-secant control");controlled+=1;
+        }
+    }
+    let mut programs=Vec::new();
+    for normalization in ["none","first","maximum"] {for kind in 0..7 {for reverse in [false,true] {if kind==6&&reverse{continue;}for model in WIDE_MODELS {
+        let mut first=None;let mut checked=0;
+        for (row,flows,guess)in &scope {
+            let prediction=irr_discount_program::<F>(flows,*guess,kind,reverse,model,normalization)
+                .map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(||"error:Num".into());
+            checked+=1;
+            if prediction!=row["expected"].as_str().unwrap(){first=Some(json!({"original":row,"prediction":prediction}));break;}
+        }
+        programs.push(json!({"kind":kind,"reverse":reverse,"normalization":normalization,"model":model,"checked":checked,"first_contradiction":first}));
+    }}}}
+
+    let result=json!({"complete":true,"rows":rows.len(),"scoped":scope.len(),"excluded_still_fail":excluded,"registered_whole_controls":controlled,
+        "programs":programs,"survivors":programs.iter().filter(|p|p["first_contradiction"].is_null()).collect::<Vec<_>>(),
+        "order":"Worksheet POWER quotient, CRT-power quotient, direct-q worksheet POWER product, direct-q CRT product, base-power recurrence, q-power recurrence, reverse Horner; forward/reverse sums; five coherent word policies; original flows or all flows divided by the first nonzero absolute value or maximum absolute value. Secant seeds and 1e-7 step-and-value stop fixed to the existing measured program.",
+        "limits":"All original finite numeric arrays with both signs; rectangular arrays are a diagnostic flattened input, not an admitted application change. Complete trees are rejected by first exact contradiction, without match-percentage selection. No new Excel answers or uniquely recovered IRR callback."});
+    crate::json_write(output,&result);println!("{result}");
 }
 
 /// The published discount-security equations in the registered bodies. These

@@ -758,7 +758,8 @@ def corpus_delta(before, after, original_catalogue_after, output):
             if excluded:
                 counts['external_or_circular'] += 1
                 continue
-            was, now = a[k]['verdict'] == 'matched', b[k]['verdict'] == 'matched'
+            was, now = (a[k]['verdict'] in ('matched','agreed_rejection'),
+                        b[k]['verdict'] in ('matched','agreed_rejection'))
             counts['before_matched'] += was
             counts['after_matched'] += now
             counts['gains'] += now and not was
@@ -771,8 +772,8 @@ def corpus_delta(before, after, original_catalogue_after, output):
             counts['changed_values'] += 1
             scored = k in a
             policy_failure = scored and bool(policy[k].get('external_links') or policy[k].get('circular_rule'))
-            was = scored and not policy_failure and a[k]['verdict'] == 'matched'
-            now = scored and not policy_failure and b[k]['verdict'] == 'matched'
+            was = scored and not policy_failure and a[k]['verdict'] in ('matched','agreed_rejection')
+            now = scored and not policy_failure and b[k]['verdict'] in ('matched','agreed_rejection')
             classification = ('outside_scored_session_inventory' if not scored else
                 'changed_policy_failure' if policy_failure else
                 'gained_exact_match' if now and not was else

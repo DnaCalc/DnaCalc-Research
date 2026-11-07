@@ -151,7 +151,7 @@ def direct_run(input_path,library,destination):
     print(json.dumps(result))
 
 
-def summation_questions(checkout, destination, cache, offline=False):
+def summation_questions(checkout, destination, cache, offline=False, cohort='round34'):
     """Read every subrange of controlled loans, independently of a growth model."""
     import math
     try:
@@ -163,18 +163,31 @@ def summation_questions(checkout, destination, cache, offline=False):
     destination = Path(destination)
     destination.mkdir(exist_ok=False)
     loans, requests = [], []
-    for rate, scale, offset, timing in itertools.product(
-            (2.**-10, .05, .5, 1.), (-40, 0, 40), (-1, 0, 1), (0, 1)):
-        pv = math.ldexp(1000., scale)
-        if offset:
-            pv = math.nextafter(pv, math.inf if offset>0 else 0.)
-        loan = dict(id=len(loans), rate=rate, periods=8, pv=pv, timing=timing,
-                    scale=scale, offset=offset)
-        loans.append(loan)
-        for start in range(1, 9):
-            for end in range(start, 9):
-                requests.append(dict(loan=loan['id'], start=start, end=end,
-                    args=[client.number(v) for v in (rate, 8., pv, float(start), float(end), float(timing))]))
+    if cohort not in ('round34','validation35','dyadic35'):raise ValueError('unknown summation cohort')
+    if cohort=='dyadic35':
+        # In exact arithmetic these loans have PMT=-base**periods (end),
+        # and per-period principal -base**(period-1). Public answers remain
+        # the observations; this identity is only an operand-reading control.
+        for rate,periods,timing in itertools.product((1.,3.,7.),(8,16,24,40,52,53,54,60,64,80),(0,1)):
+            base=1+int(rate);pv=float(Q(base**periods-1,int(rate)))
+            loans.append(dict(id=len(loans),rate=rate,periods=periods,pv=pv,timing=timing))
+    else:
+        rates=(2.**-10,.05,.5,1.)if cohort=='round34'else(.007,.03125,.1875,.8)
+        scales=(-40,0,40)if cohort=='round34'else(-32,0,32)
+        for rate,scale,offset,timing in itertools.product(rates,scales,(-1,0,1),(0,1)):
+            pv=math.ldexp(1000.,scale)
+            if offset:pv=math.nextafter(pv,math.inf if offset>0 else 0.)
+            loans.append(dict(id=len(loans),rate=rate,periods=8,pv=pv,timing=timing,scale=scale,offset=offset))
+    for loan in loans:
+        periods=loan['periods']
+        if cohort=='dyadic35':
+            ranges={(p,p)for p in range(1,periods+1)}
+            for start in (1,2,max(1,periods-20),periods-2,periods):
+                for end in (start,min(periods,start+1),periods):ranges.add((start,end))
+        else:ranges={(start,end)for start in range(1,periods+1)for end in range(start,periods+1)}
+        for start,end in sorted(ranges):
+            requests.append(dict(loan=loan['id'],start=start,end=end,args=[client.number(v)for v in
+                (loan['rate'],float(periods),loan['pv'],float(start),float(end),float(loan['timing']))]))
     inputs = dict(loans=loans, ranges=requests)
     (destination/'questions.json').write_text(json.dumps(inputs, separators=(',', ':'))+'\n')
     results = {}
@@ -183,12 +196,200 @@ def summation_questions(checkout, destination, cache, offline=False):
     results['PMT'] = service.ask_rows('PMT', [[client.number(v) for v in
         (l['rate'], float(l['periods']), l['pv'], 0., float(l['timing']))] for l in loans])
     (destination/'answers.json').write_text(json.dumps(results, separators=(',', ':'))+'\n')
-    result = dict(complete=True, loans=len(loans), ranges=len(requests),
+    result = dict(complete=True, cohort=cohort, loans=len(loans), ranges=len(requests),
         calls=sum(map(len, results.values())), receipts=service.receipts,
         source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         limits='Every observed subrange has its own original Excel answer. No growth, payment or numerator program is assumed; subrange observations can refute shared-term summation premises.')
     (destination/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result))
+
+
+
+def validate_sum_observations(questions,answers):
+    """A missing range or operand must not turn an empty test into a survivor."""
+    loans=questions['loans'];ranges=questions['ranges']
+    if not loans or not ranges:raise ValueError('nonempty cumulative loans and ranges required')
+    if [l['id']for l in loans]!=list(range(len(loans))):raise ValueError('ordered cumulative loan IDs required')
+    if len(answers['PMT'])!=len(loans)or any(len(answers[f])!=len(ranges)for f in ('CUMPRINC','CUMIPMT')):
+        raise ValueError('unaligned cumulative observations')
+    keys=[(r['loan'],r['start'],r['end'])for r in ranges]
+    if len(set(keys))!=len(keys)or any(not 0<=r['loan']<len(loans)or not 1<=r['start']<=r['end']<=loans[r['loan']]['periods']for r in ranges):
+        raise ValueError('invalid or duplicate cumulative range')
+
+def paired_finish(source,destination):
+    """Read CUMIPMT's finish from independently observed cumulative principal.
+
+    The beginning first period is absent from both the payment count and the
+    principal operand. This does not assume any principal-producing program.
+    """
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'checker'))
+    from exact import operation as arithmetic
+    source,destination=map(Path,(source,destination));destination.mkdir(exist_ok=False)
+    q=json.loads((source/'questions.json').read_text());a=json.loads((source/'answers.json').read_text())
+    validate_sum_observations(q,a)
+    def val(answer):
+        if answer['type']!='number':raise ValueError('paired finish requires numeric controls')
+        return Q(number('0x'+answer['bits']))
+    principal={(r['loan'],r['start'],r['end']):p for r,p in zip(q['ranges'],a['CUMPRINC'])}
+    programs=[];survivors=[]
+    for product,finish in itertools.product(MODELS,MODELS):
+        first=None;checked=0;matches=0
+        for index,(r,answer)in enumerate(zip(q['ranges'],a['CUMIPMT'])):
+            loan=q['loans'][r['loan']]
+            start=max(2,r['start'])if loan['timing']else r['start'];end=r['end']
+            count=max(0,end-start+1)
+            p=val(principal[r['loan'],start,end])if count else Q(0)
+            total=arithmetic(Q(count),val(a['PMT'][r['loan']]),'mul',product)
+            got=B64.rn(arithmetic(total,-p,'add',finish));wanted=val(answer);checked+=1;matches+=got==wanted
+            if got!=wanted and first is None:
+                first=dict(index=index,original=r,principal_range=[start,end]if count else None,
+                    payment=a['PMT'][r['loan']],principal='0x'+struct.pack('>d',float(p)).hex(),
+                    expected=answer,prediction='0x'+struct.pack('>d',float(got)).hex())
+        identity=len(programs)
+        if first is None:survivors.append(identity)
+        programs.append(dict(id=identity,product_model=product,finish_model=finish,rows=checked,matched=matches,first_contradiction=first))
+    result=dict(complete=True,programs=programs,survivors=survivors,
+        input_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest()for p in(source/'questions.json',source/'answers.json',Path(__file__),Path(__file__).parents[1]/'checker/exact.py',Path(__file__).with_name('intervals.py'))},
+        limits='The principal operand is the independent public CUMPRINC answer for the adjusted interval, not a sum of PPMT and not a fitted private operand. Every declared arithmetic word is compared exactly. Multiple survivors stay indistinguishable on this cohort; the cumulative principal producer remains open.')
+    (destination/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps(dict(rows=len(q['ranges']),survivors=survivors)))
+
+
+def long_finish_questions(checkout,output,cache,cohort='validation35'):
+    """Use integer-count product ties to discriminate the paired interest finish."""
+    import math
+    from fingerprint import CachedService,load_service,bits,write,sha
+    from exact import operation as arithmetic,binary64
+    client,_=load_service(checkout);service=CachedService(client.Client(timeout=180),cache)
+    if cohort not in ('discovery35','validation35'):raise ValueError('unknown finish cohort')
+    rates=(2.**-14,.0001,.0003)if cohort=='discovery35'else(2.**-13,.00013,.00027)
+    balances=(1.,math.nextafter(1000.,math.inf),1234.56789,math.nextafter(1.,0.))if cohort=='discovery35'else(1.3,math.nextafter(8000.,math.inf),500.25,.75)
+    n=16384. if cohort=='discovery35'else 12001.
+    loans=[dict(rate=r,periods=n,pv=pv,timing=t)for r,pv,t in itertools.product(rates,balances,(0.,1.))]
+    payments=service.ask_rows('PMT',[[client.number(l[k])for k in('rate','periods','pv')]+[client.number(0.),client.number(l['timing'])]for l in loans])
+    def round_integer(p,precision):
+        shift=p.bit_length()-precision
+        if shift<=0:return p
+        q,r=divmod(p,1<<shift);half=1<<(shift-1)
+        return(q+(r>half or r==half and q&1))<<shift
+    rows=[]
+    for loan,payment in zip(loans,payments):
+        if payment['type']!='number':raise ValueError('finite PMT required')
+        raw=int(payment['bits'],16);mantissa=(raw&((1<<52)-1))+(1<<52);selected=[]
+        for count in range(2049,8192):
+            product=mantissa*count
+            if round_integer(product,53)!=round_integer(round_integer(product,64),53):selected.append(count)
+            if len(selected)==3:break
+        for count in selected:
+            start=2 if loan['timing']else 1;end=start+count-1
+            rows.append(dict(loan=loan,payment=payment,count=count,start=start,end=end,
+                args=[client.number(v)for v in(loan['rate'],n,loan['pv'],float(start),float(end),loan['timing'])]))
+    if len(payments)!=len(loans):raise ValueError('unaligned payment observations')
+    if not rows:raise ValueError('no separating cumulative count-product ties')
+    source=sha(__file__)
+    write(str(output)+'.questions.json',dict(format='dnacalc-cumulative-count-ties/1',cohort=cohort,rows=rows,
+        receipts=service.receipts.copy(),source_sha256=source,
+        selection='Only the integer product of count and independently observed PMT selects the questions. No cumulative answer inspected.'))
+    principals=service.ask_rows('CUMPRINC',[r['args']for r in rows],chunk_size=100)
+    profiles=list(itertools.product(MODELS,MODELS));predictions=[]
+    for row,p in zip(rows,principals):
+        if p['type']!='number':raise ValueError('finite cumulative principal required')
+        outcomes=[]
+        for product,finish in profiles:
+            total=arithmetic(row['count'],binary64(row['payment']['bits']),'mul',product)
+            result=arithmetic(total,-binary64(p['bits']),'add',finish)
+            outcomes.append(bits(float(B64.rn(result))))
+        predictions.append(dict(row,principal=p,predictions=outcomes))
+    write(str(output)+'.predictions.json',dict(format='dnacalc-cumulative-count-tie-predictions/1',
+        records=predictions,profiles=profiles,receipts=service.receipts.copy(),source_sha256=source))
+    answers=service.ask_rows('CUMIPMT',[r['args']for r in rows],chunk_size=100)
+    counts=[0]*len(profiles)
+    for row,answer in zip(predictions,answers):
+        if answer['type']!='number':raise ValueError('finite cumulative interest required')
+        row['interest']=answer
+        for i,prediction in enumerate(row['predictions']):counts[i]+=prediction==answer['bits']
+    if sha(__file__)!=source:raise ValueError('finish reader changed during observation')
+    result=dict(format='dnacalc-cumulative-count-tie-finish/1',complete=True,cohort=cohort,
+        records=predictions,profiles=profiles,matches=counts,survivors=[i for i,c in enumerate(counts)if c==len(rows)],
+        receipts=service.receipts,source_sha256=source,
+        limits='Conditional public PMT and adjusted public CUMPRINC operands, with25 fixed product/subtraction words. All predictions frozen before the new CUMIPMT answers. Remaining equal words are undetermined on this cohort. No principal-producing or summation program is selected.')
+    write(output,result);print(json.dumps(dict(rows=len(rows),survivors=result['survivors'],matches=counts)))
+
+
+def balance_sum_questions(checkout,source,output,cache,include_fv=False):
+    """Condition backward-balance sum programs on independent public PV/IPMT."""
+    from fingerprint import CachedService,load_service,bits,write,sha
+    from exact import operation as arithmetic,binary64
+    source,output=map(Path,(source,output));output.mkdir(exist_ok=False)
+    q=json.loads((source/'questions.json').read_text());service_client,_=load_service(checkout)
+    service=CachedService(service_client.Client(timeout=180),cache)
+    answers=json.loads((source/'answers.json').read_text());validate_sum_observations(q,answers);loans=q['loans'];rows=[]
+    for loan in loans:
+        payment=answers['PMT'][loan['id']]
+        if payment['type']!='number':raise ValueError('finite payment required')
+        for period in range(1,loan['periods']+1):
+            for timing in (0.,1.):
+                rows.append(dict(loan=loan['id'],period=period,timing=timing,
+                    args=[service_client.number(loan['rate']),service_client.number(float(loan['periods']-period+1)),
+                          service_client.number(payment['bits']),service_client.number(0.),service_client.number(timing)]))
+    write(output/'questions.json',dict(rows=rows,source_sha256=sha(__file__),
+        hypothesis='Each remaining-period outstanding balance comes from public PV of the observed PMT; test summed balances, summed interest corrections and per-period principal separately.'))
+    pv=service.ask_rows('PV',[r['args']for r in rows])
+    part_rows=[dict(loan=l['id'],period=p,args=[service_client.number(v)for v in
+        (l['rate'],float(p),float(l['periods']),l['pv'],0.,float(l['timing']))])for l in loans for p in range(1,l['periods']+1)]
+    ipmt=service.ask_rows('IPMT',[r['args']for r in part_rows])
+    if any(a['type']!='number'for a in pv+ipmt):raise ValueError('finite balance controls required')
+    fv_rows=[];fv=[]
+    if include_fv:
+        for loan in loans:
+            for period in range(1,loan['periods']+1):
+                for timing in (0.,1.):
+                    fv_rows.append(dict(loan=loan['id'],period=period,timing=timing,
+                        args=[service_client.number(loan['rate']),service_client.number(float(period-1)),
+                              service_client.number(answers['PMT'][loan['id']]['bits']),service_client.number(loan['pv']),service_client.number(timing)]))
+        fv=service.ask_rows('FV',[r['args']for r in fv_rows])
+        if len(fv)!=len(fv_rows)or any(a['type']!='number'for a in fv):raise ValueError('aligned finite FV controls required')
+    write(output/'leaves.json',dict(pv=list(zip(rows,pv)),ipmt=list(zip(part_rows,ipmt)),fv=list(zip(fv_rows,fv)),receipts=service.receipts))
+    balances={(r['loan'],r['period'],r['timing']):binary64(a['bits'])for r,a in zip(rows,pv)}
+    interests={(r['loan'],r['period']):-binary64(a['bits'])for r,a in zip(part_rows,ipmt)}
+    forward_balances={(r['loan'],r['period'],r['timing']):-binary64(a['bits'])for r,a in zip(fv_rows,fv)}
+    def op(a,b,k,m):return arithmetic(Q(a),Q(b),k,m)
+    def reduce(terms,model,order):
+        if order=='balanced'and len(terms)>1:
+            k=len(terms)//2;return op(reduce(terms[:k],model,order),reduce(terms[k:],model,order),'add',model)
+        value=Q(0)
+        for t in terms[::-1]if order=='reverse'else terms:value=op(value,t,'add',model)
+        return value
+    programs=[];survivors=[]
+    for leaf,family,product,addition,summation,order in itertools.product(
+        (('PV0','PV1','IPMT','FV0','FV1')if include_fv else('PV0','PV1','IPMT')),('sum_balances','sum_interest','sum_parts'),MODELS,MODELS,MODELS,('forward','reverse','balanced')):
+        first=None;checked=0
+        for index,(r,wanted)in enumerate(zip(q['ranges'],answers['CUMPRINC'])):
+            loan=loans[r['loan']];rate=Q(loan['rate']);payment=binary64(answers['PMT'][r['loan']]['bits'])
+            factor=rate if leaf=='PV0'else op(1,op(1,op(1,rate,'div','stored_pc64'),'add','stored_pc64'),'div','stored_pc64')if leaf=='PV1'else Q(1)
+            if leaf.startswith('FV'):
+                factor=op(rate,op(1,rate,'add','stored_pc64'),'div','stored_pc64')if loan['timing']else rate
+            terms=[]
+            for period in range(r['start'],r['end']+1):
+                no_interest=loan['timing']and period==1
+                term=Q(0)if no_interest else interests[r['loan'],period]if leaf=='IPMT'else forward_balances[r['loan'],period,float(leaf=='FV1')]if leaf.startswith('FV')else balances[r['loan'],period,float(leaf=='PV1')]
+                if family!='sum_balances':term=op(term,factor,'mul',product)
+                if family=='sum_parts':term=op(payment,term,'add',addition)
+                terms.append(term)
+            total=reduce(terms,summation,order)
+            if family=='sum_balances':total=op(total,factor,'mul',product)
+            if family!='sum_parts':total=op(op(r['end']-r['start']+1,payment,'mul','stored_pc64'),total,'add',addition)
+            got=bits(float(B64.rn(total)));checked+=1
+            if got!=wanted['bits']:
+                first=dict(index=index,original=r,expected=wanted,prediction=got);break
+        identity=len(programs)
+        if first is None:survivors.append(identity)
+        programs.append(dict(id=identity,leaf=leaf,family=family,product=product,addition=addition,
+            summation=summation,order=order,checked=checked,first_contradiction=first))
+    result=dict(format='dnacalc-cumulative-backward-balance-sums/1',complete=True,programs=programs,
+        survivors=survivors,receipts=service.receipts,input_sha256={str(p):sha(p)for p in(source/'questions.json',source/'answers.json',output/'leaves.json',Path(__file__))},
+        limits='Public PV/FV of the observed PMT and public IPMT are explicit conditional leaves, recomputed independently at each remaining period. This differs from the previously refuted affine recurrences and principal-component sums. Every program refutes at its first exact contradiction; no private PV, payment or sum is identified by these tests.')
+    write(output/'result.json',result);print(json.dumps(dict(programs=len(programs),survivors=survivors)))
 
 
 def summation_analyze(source, destination):
@@ -991,6 +1192,9 @@ to validate and no new Excel answer in this packet. Preserve the original R13/R1
 
 
 if __name__=='__main__':
+    if sys.argv[1]=='balance-sums':balance_sum_questions(*sys.argv[2:]);raise SystemExit(0)
+    if sys.argv[1]=='long-finish':long_finish_questions(*sys.argv[2:]);raise SystemExit(0)
+    if sys.argv[1]=='paired-finish':paired_finish(*sys.argv[2:]);raise SystemExit(0)
     if sys.argv[1]=='interior-backward-sum-domains':recurrence_sum_domains(*sys.argv[2:],backward=True,interior=True)
     elif sys.argv[1]=='interior-sum-domains':recurrence_sum_domains(*sys.argv[2:],interior=True)
     elif sys.argv[1]=='backward-sum-domains':recurrence_sum_domains(*sys.argv[2:],backward=True)
