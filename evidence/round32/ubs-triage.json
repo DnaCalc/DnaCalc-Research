@@ -1,0 +1,20 @@
+{
+  "format": "dnacalc-round32-ubs-triage/1",
+  "scan_sha256": "6d1815be1f916ede7b3d363b2db20269bfa1ec545dfefb92c6a5fd1199598352",
+  "status": "partial; no complete-security-scan claim",
+  "critical": 0,
+  "warning": 238,
+  "info": 506,
+  "doctor": "ubs doctor --fix: environment looks good; SQLFlowLimit remains an unsupported analyzer path",
+  "categories": {
+    "high-param-count": "Existing command/research controls; no new unvalidated external operation.",
+    "open-missing-with": "The FIFO descriptor is closed in the existing finally; new JSON/archive reads use context managers or Path.read_text.",
+    "json-load-no-try and json-loads-no-try": "Malformed research input intentionally fails visibly; no failure is converted into a match.",
+    "division-heavy": "New nonzero operands are fixed positive input ulps, validated window sizes, nonzero lattice/covariance scales, and Hann weights on windows of at least16 inputs.",
+    "io-in-loop": "Recorded per-window observations and one immutable reply file per service batch are intentional.",
+    "regex-nested-quantifiers": "New samples are NumPy arithmetic/cosine expressions, not regular expressions.",
+    "index-arithmetic": "Phase windows have at least16 inputs; retained windows are4096 inputs, and center+1 is in range.",
+    "missing-returns and nested-defs": "unittest methods return no value; local calibration helper is intentional."
+  },
+  "limitation": "The Python SQL-injection detector reports unsupported SQL list-mutation aliasing while scanning pre-existing research tools. There is no new SQL execution. The scan is partial and cannot certify the missing analysis. Current final additions also receive direct review and recorded offline replay."
+}

@@ -1,5 +1,23 @@
 DNA Calc arithmetic program research
 
+R32 refreshes the problem-functions list at main 6ccdfe05: bank 3,872,170/3,910,007
+matched (99.03230%), 37,837 inclusive failures including 116 unread. The current
+corpus is 53,052/54,794 matched (96.82082%), 1,742 inclusive failures including 100
+pending. The report generator now uses the public CalcFunc-Evidence checkout.
+No calculation kernel changes; these are existing master's results, not gains.
+
+The existing fingerprint/gamma tools now continue spectral phases with Decimal
+coordinates, width constraints and a significance check on each added degree.
+In 208 windows around 1.3, one degree-six GAMMA seed phase predicts seven retained
+coarse windows within 0.014011 cycles. A second phase inherits its higher terms
+from 2*(x-1) times the first; calibrating only constant/slope predicts the same
+coarse windows within 0.024932 cycles. Those windows selected the starting slopes
+and are not blind data. Absolute scale, offsets and the other table stages stay
+open; this is a smooth phase relation, not a literal private-store proof.
+No GAMMA body is replaced. GAMMALN below 2 and incomplete beta remain unstarted.
+evidence/round32/index.json records replies, repeated-input counts, producer
+epochs, failed readers, offline reproduction and validation limits.
+
 R31 lands measured PMT and FV stores through the application call path.
 Its own fixed-bank gain is 4,806 with zero losses: PMT 4,512 and FV 294.
 Separate incoming rounding work gains 768. At the financial measurement point,

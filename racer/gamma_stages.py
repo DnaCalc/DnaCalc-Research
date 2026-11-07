@@ -25,6 +25,149 @@ STAGE_BINDINGS = {str(p.resolve()):sha(p) for p in (
       ('geomean.py', 'exact.py', 'check.py', 'x87.py')))}
 
 
+def seed_phase_tracks(checkout, output, cache, retained, offline=False, radius=.001, count=1024):
+    """Continue the observed GAMMA(1.3) lines, without a candidate table.
+
+    The retained 20k window and neighboring windows supplied these frequencies
+    and slopes. They are observations, not a search over named approximations.
+    New calls form a fixed geometric ladder; cached replies retain readbacks.
+    """
+    from fingerprint import PhaseTrack, window_residual
+    if not math.isfinite(radius) or not 0 < radius <= .125 or count < 16:
+        raise ValueError('phase study needs 16 or more samples and a radius in (0,.125]')
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    retained = Path(retained).resolve()
+    rows = [json.loads(line) for line in retained.read_text().splitlines()][:4096]
+    xs = [value(r['a'][0]) for r in rows]
+    if len(rows) != 4096 or any(int(rows[i]['a'][0],16) != int(rows[0]['a'][0],16)+i for i in range(len(rows))):
+        raise ValueError('retained consecutive window changed')
+    x0 = xs[0]
+    specifications = ((.03475,-.29), (.44946,-.49), (.14258,.50),
+                      (.34679,.21), (.47787,-.04), (.20379,.275), (.04187,-1.10))
+    tracks = [PhaseTrack('L'+str(i+1),x0,f,s,degree=12) for i,(f,s) in enumerate(specifications)]
+    residual = window_residual([r['r'] for r in rows])
+    for t in tracks:
+        t.observe(xs,residual)
+    centers=[]
+    step=6000*math.ulp(x0)
+    distance=step
+    while distance<radius:
+        centers.extend((x0+distance,x0-distance))
+        distance=distance*1.25+step
+    windows=[]
+    # Independent questions may be packed; phase fits still consume windows
+    # sequentially. The queue's existing 20k-call limit remains in force.
+    for offset in range(0,len(centers),16):
+        batch=centers[offset:offset+16]
+        inputs=[f'{int(bits(c),16)-count//2+k:016x}' for c in batch for k in range(count)]
+        reply=service.ask('GAMMA',[[client.number(x)] for x in inputs])
+        for i,c in enumerate(batch):
+            answers=reply['rows'][i*count:(i+1)*count]
+            ws=[value(x) for x in inputs[i*count:(i+1)*count]]
+            residual=window_residual(answers)
+            readings=[t.observe(ws,residual) for t in tracks]
+            windows.append(dict(center=bits(c),readings=readings))
+            print(json.dumps(dict(center=c,readings=readings)),flush=True)
+        result=dict(format='dnacalc-gamma-seed-phase-reader/1',complete=offset+16>=len(centers),
+            retained_window=dict(path=str(retained),sha256=sha(retained),rows=len(rows),
+                                 limits='Retained scalar rows omit worker metadata; bound to their original file, not promoted to a new capture.'),
+            specifications=[dict(frequency=f,slope=s) for f,s in specifications],
+            radius=radius,count=count,windows=windows,tracks=[t.record() for t in tracks],
+            receipts=service.receipts,source_bindings={str(p):sha(p) for p in (Path(__file__),Path(__file__).with_name('fingerprint.py'))},
+            limits='Diagnostic phase polynomials only. No coefficient or store is installed; aliases, absolute stage scales and additive constants remain open. No bank match counts select this study.')
+        write(output,result)
+    return result
+
+
+def seed_phase_validation(study, output, cache, retained_dir=None):
+    """Check a read phase and one Horner link against retained coarse windows.
+
+    The coarse windows selected initial frequencies/slopes, but never entered
+    the phase polynomial fit. They are validation of that fit, not blind data.
+    Only L5's constant and slope are calibrated; its higher derivatives come
+    from the fixed L5 = 2*(x-1)*L1 + constant hypothesis.
+    """
+    import gzip
+    from decimal import Decimal as D, localcontext
+    from fingerprint import PhaseTrack, window_residual
+    study=Path(study).resolve()
+    doc=json.loads(study.read_text())
+    if not doc['complete']:
+        raise ValueError('incomplete phase ladder')
+    retained=Path(retained_dir)/'q21.jsonl' if retained_dir else Path(doc['retained_window']['path'])
+    if sha(retained)!=doc['retained_window']['sha256']:
+        raise ValueError('retained seed window changed')
+    rows=[json.loads(line) for line in retained.read_text().splitlines()][:4096]
+    xs=[value(r['a'][0]) for r in rows]
+    noise=window_residual([r['r'] for r in rows])
+    def calibrated(index):
+        spec=doc['specifications'][index]
+        track=PhaseTrack('L'+str(index+1),xs[0],spec['frequency'],spec['slope'],degree=12)
+        track.observe(xs,noise)
+        return track
+    root=calibrated(0)
+    root.coefficients=[D(c) for c in doc['tracks'][0]['coefficients_cycles']]
+    root.active_degree=doc['tracks'][0]['active_degree']
+    root.observations=[(value(r['x']),D(r['cycles']),r['amplitude']) for r in doc['tracks'][0]['observations']]
+    root.misses=doc['tracks'][0]['misses']
+    linked=calibrated(4)
+    linked.observations=[]
+    linked.coefficients=[D(0)]*len(root.coefficients)
+    linked.coefficients[1]=D(doc['tracks'][4]['coefficients_cycles'][1])
+    with localcontext() as ctx:
+        ctx.prec=70
+        for k in range(2,len(linked.coefficients)):
+            linked.coefficients[k]=2*((D(xs[0])-1)*root.coefficients[k]+root.coefficients[k-1])
+    # Fit a constant and slope only, preserving every derived higher term.
+    linked.degree=1
+    linked.active_degree=1
+    linked.observe(xs,noise)
+    training=[]
+    raw_bindings={str(retained):sha(retained)}
+    for receipt in doc['receipts']:
+        path=Path(cache)/receipt['file']
+        if sha(path)!=receipt['sha256']:
+            raise ValueError('phase reply changed')
+        raw_bindings[str(path.resolve())]=sha(path)
+        with gzip.open(path,'rt') as stream:
+            original=json.load(stream)
+        if original['request']['function']!='GAMMA':
+            raise ValueError('wrong phase function')
+        for i in range(0,len(original['reply']['rows']),doc['count']):
+            xx=[value(r[0]['bits']) for r in original['request']['rows'][i:i+doc['count']]]
+            residual=window_residual(original['reply']['rows'][i:i+doc['count']])
+            training.append(linked.observe(xx,residual))
+    validations=[]
+    directory=Path(retained_dir) if retained_dir else retained.parent
+    for tag in 'abcdefg':
+        path=directory/('q24'+tag+'.jsonl')
+        raw_bindings[str(path.resolve())]=sha(path)
+        rows=[json.loads(line) for line in path.read_text().splitlines()][:4096]
+        xx=[value(r['a'][0]) for r in rows]
+        residual=window_residual([r['r'] for r in rows])
+        results=[]
+        for label,track in (('read_L1',root),('linked_L5',linked)):
+            _,_,amplitude,phase=track.demodulate(xx,residual)
+            innovation=(phase-track.reference_phase+.5)%1-.5
+            results.append(dict(model=label,amplitude=amplitude,innovation_cycles=innovation))
+        validations.append(dict(path=str(path.resolve()),first=bits(xx[0]),count=len(xx),results=results))
+    summary={label:max(abs(r['innovation_cycles']) for w in validations for r in w['results'] if r['model']==label)
+             for label in ('read_L1','linked_L5')}
+    result=dict(format='dnacalc-gamma-seed-phase-validation/1',complete=True,
+        study=dict(path=str(study),sha256=sha(study)),raw_bindings=raw_bindings,
+        root_phase=root.record(),linked_phase=linked.record(),training=training,validation=validations,
+        summary=dict(max_abs_validation_phase_cycles=summary,
+            linked_training_windows=len(training),
+            linked_large_innovations=sum(abs(r.get('innovation_cycles',0))>.2 for r in training)),
+        hypothesis='L5 = 2*(x-1)*L1 + constant, modulo the arbitrary phase offset and integer/sign slope aliases; higher terms are inherited, constant and slope alone are calibrated.',
+        source_bindings={str(p):sha(p) for p in (Path(__file__),Path(__file__).with_name('fingerprint.py'))},
+        limits='A supported smooth phase relation, not a literal private-store proof. The other five tracks, absolute stage scale, polynomial offsets and remaining table coefficients are unidentified. Coarse windows informed initial slopes and are not blind observations. No application value changes or bank gains are claimed.')
+    write(output,result)
+    print(json.dumps(result['summary']),flush=True)
+    return result
+
+
 def paired(checkout, output, cache, library, count=32, offline=False):
     client, _ = load_service(checkout)
     service = CachedService(client.Client(timeout=300), cache, offline)
@@ -1639,7 +1782,7 @@ if __name__ == '__main__':
     p.add_argument('checkout')
     p.add_argument('output')
     p.add_argument('--cache', required=True)
-    p.add_argument('--library', required=True)
+    p.add_argument('--library')
     p.add_argument('--count', type=int, default=32)
     p.add_argument('--offline', action='store_true')
     p.add_argument('--power-prefactor', action='store_true')
@@ -1666,10 +1809,20 @@ if __name__ == '__main__':
     p.add_argument('--final-sum-quantization',nargs=2,metavar=('NEAR_STUDY','EDGE_MANIFEST'))
     p.add_argument('--prefix-storage',nargs=2,metavar=('STUDY','PRIOR_CACHE'))
     p.add_argument('--scaled-quotient-words',action='store_true')
+    p.add_argument('--seed-phase-tracks',metavar='RETAINED_JSONL')
+    p.add_argument('--radius',type=float,default=.001)
+    p.add_argument('--seed-phase-validation',metavar='STUDY')
+    p.add_argument('--retained-phase-dir')
     args = p.parse_args()
-    if not 2 <= args.count <= (4096 if args.gammaln_store_edges or args.gammaln_near_stores else 256):
+    if not 2 <= args.count <= (4096 if args.gammaln_store_edges or args.gammaln_near_stores or args.seed_phase_tracks else 256):
         raise ValueError('small adjacent windows only')
-    if args.scaled_quotient_words:
+    if not (args.seed_phase_tracks or args.seed_phase_validation) and not args.library:
+        p.error('--library is required for instruction studies')
+    if args.seed_phase_validation:
+        seed_phase_validation(args.seed_phase_validation,args.output,args.cache,args.retained_phase_dir)
+    elif args.seed_phase_tracks:
+        seed_phase_tracks(args.checkout,args.output,args.cache,args.seed_phase_tracks,args.offline,args.radius,args.count)
+    elif args.scaled_quotient_words:
         scaled_quotient_words(args.checkout,args.output,args.cache,args.library,args.offline,args.count)
     elif args.prefix_storage:
         scaled_prefix_storage(args.checkout,args.prefix_storage[0],args.prefix_storage[1],args.output,args.cache,args.offline)

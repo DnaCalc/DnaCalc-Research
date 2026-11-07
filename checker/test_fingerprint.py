@@ -11,6 +11,55 @@ from racer import fingerprint as f
 
 
 class FingerprintControls(unittest.TestCase):
+    def test_phase_reader_preserves_fractional_cycles_at_large_phases(self):
+        from decimal import Decimal as D, localcontext
+        import numpy as np
+        track=f.PhaseTrack('constructed',1.3,.2,0.)
+        with localcontext() as ctx:
+            ctx.prec=70
+            track.coefficients[0]=D(2)**128+D('.125')
+            self.assertEqual(track.evaluate(1.3) % 1,D('.125'))
+        # Actual and predicted frequencies differ; the known phase shifts
+        # must be read with the correct sign and fitted across the ladder.
+        dx=math.ulp(1.3)
+        actual=D('.200003')/D(dx)
+        for center in (0,6000,-6000,14000,-14000,24000,-24000):
+            xs=[1.3+(center+k-512)*dx for k in range(1024)]
+            phases=[float((actual*(D(x)-D(1.3))+D('.125')) % 1) for x in xs]
+            residual=np.cos(2*np.pi*np.array(phases))
+            reading=track.observe(xs,residual)
+            self.assertEqual(reading['status'],'read')
+            self.assertLess(reading['max_cycles'],.002)
+        self.assertLess(abs(float((track.evaluate(1.3,1)-actual)*D(dx))),1e-7)
+        self.assertIn('aliases',track.record()['limits'])
+
+    def test_short_noisy_phase_windows_cannot_invent_high_derivatives(self):
+        from decimal import Decimal as D
+        import numpy as np
+        track=f.PhaseTrack('noisy control',1.3,.2,0.)
+        dx=math.ulp(1.3)
+        for center in (0,6000,-6000,14000,-14000,24000,-24000,50000,-50000):
+            xs=[1.3+(center+k-512)*dx for k in range(1024)]
+            phases=[float((D('.2')*(D(x)-D(1.3))/D(dx)) % 1) for x in xs]
+            residual=np.cos(2*np.pi*(np.array(phases)+.02*math.sin(center)))
+            track.observe(xs,residual)
+            self.assertEqual(track.active_degree,1)
+        self.assertEqual(track.coefficients[2:],[D(0)]*6)
+        before=copy.deepcopy(track.record())
+        track.demodulate(xs,residual)
+        self.assertEqual(track.record(),before)
+
+    def test_phase_window_keeps_lattice_bits_and_rejects_binade_crossings(self):
+        import numpy as np
+        answers=[dict(type='number',bits=f'{0x3ff0000000000000+3*k:016x}') for k in range(1024)]
+        self.assertLess(float(np.max(np.abs(f.window_residual(answers)))),1e-10)
+        answers[0]=dict(type='number',bits=f.bits(.99))
+        with self.assertRaisesRegex(ValueError,'binade'):
+            f.window_residual(answers)
+        answers[0]=dict(type='number',bits=f.bits(-1.))
+        with self.assertRaisesRegex(ValueError,'binade'):
+            f.window_residual(answers)
+
     def test_study_bindings_cannot_replace_the_loaded_producer(self):
         source=next(iter(f.PRODUCER_BINDINGS))
         with tempfile.TemporaryDirectory() as directory:

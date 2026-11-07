@@ -215,6 +215,157 @@ def spectrum(answers):
                 limitation='Harmonics, aliasing and unobserved/redundant stores prevent converting peak count into store count.')
 
 
+def window_residual(answers):
+    """Affine residual in output ulps, preserving all binary64 low bits.
+
+    Optional NumPy accelerates phase studies. This is an observation of the
+    public output lattice, with no mathematical Gamma approximation subtracted.
+    A window must stay inside one finite, nonzero output binade.
+    """
+    import numpy as np
+    if any(a.get('type') != 'number' for a in answers):
+        raise ValueError('numeric phase window required')
+    ys = [value(a['bits']) for a in answers]
+    if not ys or not all(math.isfinite(y) and y != 0 and (y > 0) == (ys[0] > 0)
+                         and math.ulp(y) == math.ulp(ys[0]) for y in ys):
+        raise ValueError('phase window crosses an output binade')
+    # Integer lattice differences are exact even when the offset is large.
+    origin = int(answers[0]['bits'], 16)
+    y = np.array([int(a['bits'], 16)-origin for a in answers], dtype=float)
+    if ys[0] < 0:
+        y = -y
+    k = np.arange(len(y))-(len(y)-1)/2
+    y -= y.mean()
+    y -= k * (k @ y)/(k @ k)
+    return y
+
+
+class PhaseTrack:
+    """Read one spectral phase across a small, contiguous interval.
+
+    The polynomial is a local phase model, in cycles, not a function kernel.
+    Its constant is arbitrary and its linear term has integer/sign alias
+    ambiguities. Decimal keeps fractional cycles when the phase reaches 2^52.
+    The caller must inspect amplitude, innovations and residuals; a fit does
+    not establish a stage, a store, or a coefficient table.
+    """
+    def __init__(self, name, origin, frequency, slope, degree=7):
+        from decimal import Decimal as D, localcontext
+        if degree < 2:
+            raise ValueError('phase model needs room for the initial curvature')
+        self.name, self.origin, self.degree = name, D(origin), degree
+        with localcontext() as ctx:
+            ctx.prec = 70
+            dx = D(math.ulp(origin))
+            self.coefficients = [D(0) for _ in range(degree+1)]
+            self.coefficients[1] = D(frequency)/dx
+            self.coefficients[2] = D(slope)/(2*dx)
+        self.observations, self.misses = [], []
+        self.active_degree = 1
+        self.reference_phase = self.reference_amplitude = None
+
+    def evaluate(self, x, derivative=0):
+        from decimal import Decimal as D, localcontext
+        with localcontext() as ctx:
+            ctx.prec = 70
+            w = D(x)-self.origin
+            y = D(0)
+            for j in range(len(self.coefficients)-1, derivative-1, -1):
+                factor = math.prod(range(j-derivative+1, j+1))
+                y = y*w+self.coefficients[j]*factor
+            return y
+
+    def demodulate(self, xs, residual):
+        """Measure a window without changing the phase model or calibration."""
+        import numpy as np
+        from decimal import Decimal as D, localcontext
+        center = len(xs)//2
+        x = xs[center]
+        theta = self.evaluate(x)
+        frequency = float(self.evaluate(x, 1)*D(xs[center+1]-x))
+        k = np.arange(len(xs))-center
+        w = np.hanning(len(xs))
+        with localcontext() as ctx:
+            ctx.prec = 70
+            phase = float(theta % 1)+(frequency % 1)*k
+        z = np.sum(residual*w*np.exp(-2j*np.pi*phase))*2/w.sum()
+        amplitude = float(abs(z))
+        observed_phase = float(np.angle(z)/(2*np.pi))
+        return x, theta, amplitude, observed_phase
+
+    def observe(self, xs, residual):
+        import numpy as np
+        from decimal import Decimal as D, localcontext
+        x, theta, amplitude, observed_phase = self.demodulate(xs,residual)
+        if self.reference_phase is None:
+            self.reference_phase, self.reference_amplitude = observed_phase, amplitude
+        if amplitude < max(.025, .35*self.reference_amplitude):
+            self.misses.append(dict(x=bits(x), amplitude=amplitude))
+            return dict(name=self.name, status='weak', amplitude=amplitude)
+        innovation = (observed_phase-self.reference_phase+.5) % 1-.5
+        with localcontext() as ctx:
+            ctx.prec = 70
+            self.observations.append((x, theta+D(innovation), amplitude))
+        # Do not fit high derivatives to a sub-resolution interval. In this
+        # diagnostic continuation a unit-sized smooth Taylor coefficient must
+        # span .2 cycles before it becomes a fitted coordinate. Short windows'
+        # phase noise otherwise invents huge curvature and slips whole cycles.
+        # This is an explicit continuation prior, never a coefficient proof.
+        radius = max(abs(x-float(self.origin)) for x, _, _ in self.observations)
+        dx = math.ulp(float(self.origin))
+        ceiling = max([1]+[j for j in range(2,self.degree+1) if radius**j/dx > .2])
+        degree = min(self.active_degree, (len(self.observations)-1)//2)
+        errors = self.fit(degree)
+        while degree < ceiling and len(self.observations) >= 2*(degree+2):
+            saved = self.coefficients.copy()
+            candidate = self.fit(degree+1)
+            change = abs(float(self.coefficients[degree+1]-saved[degree+1]))
+            if change <= 6*self.fit_standard_errors[degree+1]:
+                self.coefficients = saved
+                break
+            degree += 1
+            errors = candidate
+        self.active_degree = max(1,degree)
+        return dict(name=self.name, status='read', amplitude=amplitude,
+                    innovation_cycles=innovation, degree=self.active_degree,
+                    rms_cycles=float(np.std(errors)), max_cycles=float(np.max(np.abs(errors))))
+
+    def fit(self, degree):
+        import numpy as np
+        from decimal import Decimal as D, localcontext
+        if degree < 1:
+            return np.zeros(len(self.observations))
+        with localcontext() as ctx:
+            ctx.prec = 70
+            xs = [D(x)-self.origin for x, _, _ in self.observations]
+            design = np.array([[float(x**j) if j else 1. for j in range(degree+1)] for x in xs])
+            scales = np.max(np.abs(design), axis=0)
+            scales[scales == 0] = 1
+            weights = np.array([a for _, _, a in self.observations])
+            errors = np.array([float(y-self.evaluate(x)) for x, y, _ in self.observations])
+            correction, _, _, _ = np.linalg.lstsq(design/scales*weights[:, None], errors*weights, rcond=None)
+            for j, c in enumerate(correction/scales):
+                self.coefficients[j] += D(float(c))
+            residual = np.array([float(y-self.evaluate(x)) for x, y, _ in self.observations])
+            # A fixed weighted noise floor prevents exact-looking early fits
+            # from admitting an unmeasurable high derivative. These errors are
+            # diagnostic estimates, not rigorous enclosures of hidden stages.
+            sigma = max(.005, float(np.linalg.norm(residual*weights))/math.sqrt(max(1,len(residual)-degree-1)))
+            matrix = design/scales*weights[:, None]
+            covariance = np.linalg.pinv(matrix.T @ matrix)
+            self.fit_standard_errors = sigma*np.sqrt(np.maximum(np.diag(covariance),0))/scales
+            return residual
+
+    def record(self):
+        return dict(name=self.name, origin=bits(float(self.origin)),
+                    coefficients_cycles=[str(c) for c in self.coefficients],
+                    active_degree=self.active_degree,
+                    reference_phase=self.reference_phase,reference_amplitude=self.reference_amplitude,
+                    observations=[dict(x=bits(x), cycles=str(y), amplitude=a) for x, y, a in self.observations],
+                    misses=self.misses,
+                    limits='Phase modulo an arbitrary constant and integer/sign slope aliases. Continuation assumes smooth Taylor coefficients of ordinary scale: each added degree spans .2 cycles and its correction exceeds six estimated standard errors (weighted noise floor .005 cycles). These are diagnostic estimates, not rigorous stage enclosures. No stage scale, constant, coefficient table or literal store is identified.')
+
+
 def accept(reply, function, rows):
     # Readbacks contain actual cell values. The request's literal/cell mode is
     # transport metadata, not a field on a read-back worksheet value.

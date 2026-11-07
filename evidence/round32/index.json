@@ -1,0 +1,543 @@
+{
+  "format": "dnacalc-round32-evidence/1",
+  "application_revision": "6ccdfe05057e14147caad201b6a8283de3370a1a",
+  "role": "Implementer and black-box analyst using tier1 Excel outputs, IEEE754, original MIT numerical/DFT code, and installed NumPy linear algebra. No tier3/4 source read; no legacy code ported.",
+  "counts": {
+    "bank": {
+      "rows": 3910007,
+      "matched": 3872170,
+      "failed": 37837,
+      "unread": 116
+    },
+    "corpus": {
+      "rows": 54794,
+      "matched": 53052,
+      "failed": 1742,
+      "pending": 100
+    },
+    "scalar_service": {
+      "requested": 223232,
+      "distinct_inputs": 212992,
+      "repeats": 10240,
+      "reply_files": 14
+    },
+    "phase_ladder": {
+      "windows": 208,
+      "window_size": 1024,
+      "retained_anchor": 4096
+    },
+    "coarse_validation": {
+      "windows": 7,
+      "window_size": 4096
+    }
+  },
+  "interpretation": "Degree-six phase continuation and one conditional Horner phase relation. No application arithmetic change, bank gain or literal private-store claim. Remaining five tracks, absolute scale and offsets stay open. Coarse validation windows selected initial slopes; they are not blind data. Statistical fit errors are not rigorous stage enclosures.",
+  "history": "First reader admitted noise-driven curvature and failed with Decimal DivisionImpossible. Width-only continuation still overfit upper derivatives. The final significance check retains those failures and bounds the supported result to L1 and the inherited L5 higher terms. The preliminary L2/L4 relation is not established by coarse phase validation.",
+  "reproduction": [
+    "Inflate retained/*.jsonl.gz into an ignored scratch directory without changing any source archive.",
+    "python3 racer/gamma_stages.py ../DnaCalc target/r32-phase.json --cache evidence/round32/scalar-cache --seed-phase-tracks target/r32-retained/q21.jsonl --count 1024 --radius .064 --offline",
+    "python3 racer/gamma_stages.py ../DnaCalc target/r32-validation.json --cache evidence/round32/scalar-cache --seed-phase-validation target/r32-phase.json --retained-phase-dir target/r32-retained",
+    "Compare the validation summary: maximum absolute phase error L1=0.014010730529753435 and linked L5=0.024931361874934388; linked training large innovations=0. Source/output paths change provenance hashes, not these measurements."
+  ],
+  "artifacts": [
+    {
+      "original": "/home/ubuntu/codex-runs/r32/publication-seed-phase.json",
+      "archive": "evidence/round32/studies/publication-seed-phase.json.gz",
+      "kind": "final diagnostic",
+      "sha256": "8211e3216dd4bb01205e7d4bee0680a65aa4d399dbc49aabbcac256010e3b482",
+      "archive_sha256": "6e04d8bd5de06f1bc1118be30bedf2c22cbedaa90772fb45bb05168153fac8a4",
+      "bytes": 726603
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/publication-phase-validation.json",
+      "archive": "evidence/round32/studies/publication-phase-validation.json.gz",
+      "kind": "final diagnostic",
+      "sha256": "86d249054583a57f891c169b721908406a0e452d44cce0def5cb7bd4a5b06988",
+      "archive_sha256": "145fc7435eea86b5c7d1f53203071a698aba8f95da464c7fd04f5905e604d12c",
+      "bytes": 101452
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases.json",
+      "archive": "evidence/round32/studies/gamma-seed-phases.json.gz",
+      "kind": "historical reader; superseded diagnostic",
+      "sha256": "fa72f0d88c6443932e38aa90c97cf6724bfc4b1381fe1f1042a450ef7f6aa11b",
+      "archive_sha256": "c7c41c6db918cccbf263d580147010d6289c5cfd940debb507b44b4005bc5b87",
+      "bytes": 242024
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases-width.json",
+      "archive": "evidence/round32/studies/gamma-seed-phases-width.json.gz",
+      "kind": "historical reader; superseded diagnostic",
+      "sha256": "4ef5ed241d50ccf6fc815ae966b87abf5edbb4160f7121b3e9aaf65cb0b7f130",
+      "archive_sha256": "37fba4dc87fb5abecab84f0f576c85a0489700ab752fff0b71b69833d75af16d",
+      "bytes": 543791
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases-wide.json",
+      "archive": "evidence/round32/studies/gamma-seed-phases-wide.json.gz",
+      "kind": "historical reader; superseded diagnostic",
+      "sha256": "37762d25f1f4efa3316c59ac61cf35b20ec61ebeaec10ff283784577af5bd906",
+      "archive_sha256": "36d9e8b7f2893d243bc8be3ae296c560e3cafe652fbd3edbe1ad14f5fee12cd5",
+      "bytes": 665842
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases-significant.json",
+      "archive": "evidence/round32/studies/gamma-seed-phases-significant.json.gz",
+      "kind": "historical reader; superseded diagnostic",
+      "sha256": "d68b6b4365d50a0bab5abdf1d371c261a7495bc3d91ae3af171037d89aae48c2",
+      "archive_sha256": "aef1146e1bfd0ad955ccd83084fbf3d0dc4e2969992dda6484c37350298c545a",
+      "bytes": 725934
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/phase-final-run.log.resource.json",
+      "archive": "evidence/round32/reports/phase-final-run.log.resource.json",
+      "kind": "command receipt",
+      "sha256": "cccd5e67fd9ecc43f1a96d8624665f57c16411d722e491e4ac1ffd50d6b6288b",
+      "archive_sha256": "cccd5e67fd9ecc43f1a96d8624665f57c16411d722e491e4ac1ffd50d6b6288b",
+      "bytes": 236
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/publication-phase-run.log.resource.json",
+      "archive": "evidence/round32/reports/publication-phase-run.log.resource.json",
+      "kind": "command receipt",
+      "sha256": "ea26adcb69f508bc3fda318eb800f41594672d9cf189a2ec0a0a140069f96d43",
+      "archive_sha256": "ea26adcb69f508bc3fda318eb800f41594672d9cf189a2ec0a0a140069f96d43",
+      "bytes": 242
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/publication-validation-run.log.resource.json",
+      "archive": "evidence/round32/reports/publication-validation-run.log.resource.json",
+      "kind": "command receipt",
+      "sha256": "71324220c377a7987a70b0dee427a632d9ab4a9a07f6a059ca65019cb0e8c9e8",
+      "archive_sha256": "71324220c377a7987a70b0dee427a632d9ab4a9a07f6a059ca65019cb0e8c9e8",
+      "bytes": 246
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/python-final-tests.log.resource.json",
+      "archive": "evidence/round32/reports/python-final-tests.log.resource.json",
+      "kind": "command receipt",
+      "sha256": "54d412ee7d23d72b2566b616835780233cd91389164978de07f16216142ccfa7",
+      "archive_sha256": "54d412ee7d23d72b2566b616835780233cd91389164978de07f16216142ccfa7",
+      "bytes": 239
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases.log",
+      "archive": "evidence/round32/reports/gamma-seed-phases.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "279a5a031eb7bb3aefb98d77f422fbcf3cdc0353539cd59d1aa8bd80fe546680",
+      "archive_sha256": "5f058350e47129c5844640dd7624fa5109d4e17bf5336bc575ec3e0e16e417e6",
+      "bytes": 96105
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases-width.log",
+      "archive": "evidence/round32/reports/gamma-seed-phases-width.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "68ce7a5c04acf9c7ec7729ac63593278720ab1262f962064d7b05d4285eadfe6",
+      "archive_sha256": "352549e1ef91d3f70e16f63a0a3ed66443ffbad2d845807280e0068a8a7b613b",
+      "bytes": 238783
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/gamma-seed-phases-wide.log",
+      "archive": "evidence/round32/reports/gamma-seed-phases-wide.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "947b934c2f4e935a7a122faf4e0ad7d89c0c5ac8358bf4756744462fdbdfe0c8",
+      "archive_sha256": "af1f4d3f31f78f7100fc4d68f69bbb7e7a25bf4001876c4f58e10ba59bd4a12d",
+      "bytes": 292037
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/publication-phase-run.log",
+      "archive": "evidence/round32/reports/publication-phase-run.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "e3abbd8e3d3f9f63f4ee5950670a8488cb87749a98fe130d1625b0b4d724e933",
+      "archive_sha256": "566298d6861262ffd81c07c8d033f5656ebd1d6d5f29802cb2900f86072cde2b",
+      "bytes": 292101
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/publication-validation-run.log",
+      "archive": "evidence/round32/reports/publication-validation-run.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "05e65595e4278e7117e89584494a66b239988f7bca2be48401066ca7a4fe74fc",
+      "archive_sha256": "7afc61e1b23e89d71355042681ecdc9b8d0f2607c5b2d77c37ec6ce9be8d69dd",
+      "bytes": 528
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/python-final-tests.log",
+      "archive": "evidence/round32/reports/python-final-tests.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "9923407fcf0cf5236fc475a0c49804d5efd31fef51d9af44613c8f03162f20c3",
+      "archive_sha256": "7dfd13eb2a1aba4a594a596d1c0a55233c845abd4dd63eea8c4daf9f863de148",
+      "bytes": 6379
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/ubs-research.json",
+      "archive": "evidence/round32/reports/ubs-research.json.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "6d1815be1f916ede7b3d363b2db20269bfa1ec545dfefb92c6a5fd1199598352",
+      "archive_sha256": "a046222605f929747b9d0f1370ea1b5634f0b7f15dbe77dc7782a795ca2f725e",
+      "bytes": 338295
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/ubs-research.stderr",
+      "archive": "evidence/round32/reports/ubs-research.stderr.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "c0d89bb0fe2a638981586cd0293f949dfdb5b7e4b8405be691c8dcc733a2bb3e",
+      "archive_sha256": "ddba1040221f78c3a0a18b845a9c73bbdb8d422572081164f15bfc826972acc3",
+      "bytes": 1155
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/ubs-doctor.log",
+      "archive": "evidence/round32/reports/ubs-doctor.log.gz",
+      "kind": "retained analysis or validation log",
+      "sha256": "6dd1143c06e3e22b9cd4c5d4e06ecca886c6765b371b41eb5b02941eff3ce1c0",
+      "archive_sha256": "a0a82db9bcf0e872a37f2a8dd5342cdc3ea774c566ac79bd8c87d05112c82f50",
+      "bytes": 44662
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/problem-functions-current/bank-counts.json",
+      "archive": "evidence/round32/reports/problem-functions-bank-counts.json.gz",
+      "kind": "canonical bank/corpus report",
+      "sha256": "59968426fd09cbb43ab073301ea6578cb604aa90e8bb2f7b0e3cbb748ca7f690",
+      "archive_sha256": "dc91359a2d202d535ce5fb7aa49dab7ccaee2ddc62c97ded42b2b958fc351943",
+      "bytes": 22669
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/problem-functions-current/receipt.json",
+      "archive": "evidence/round32/reports/problem-functions-receipt.json.gz",
+      "kind": "canonical bank/corpus report",
+      "sha256": "bc7c87fb0bfc95b76450b9c326c60ad831986d85700d76a4a9dd864128304b99",
+      "archive_sha256": "153f65fc6921ecd20fe22cb6b8f3b4bf3b4ef7b7abf34627d184396575c23783",
+      "bytes": 1312
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/problem-functions-current/bank.log",
+      "archive": "evidence/round32/reports/problem-functions-bank.log.gz",
+      "kind": "canonical bank/corpus report",
+      "sha256": "aaac923c651cc46e6d4f9b48dbef2b4efd5c622d58af3f1da9fa14dab2824ee2",
+      "archive_sha256": "877fadd74a086e08872652c74f3fe318a189f91c11867bf03ca7b0e166634319",
+      "bytes": 47620
+    },
+    {
+      "original": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.json",
+      "archive": "evidence/round32/reports/problem-functions.json.gz",
+      "kind": "regenerated list at main6ccdfe05",
+      "sha256": "69cee3300ff042547ed4e7622ac0dc897e5dd6f34e0f2c67ac0d26b9cb4cbe1c",
+      "archive_sha256": "ecc88a334ef8e3c142981140cbc46adaa77d83750f9a645e31c70871efe1a9b6",
+      "bytes": 98002
+    },
+    {
+      "original": "/home/ubuntu/projects/DnaCalc/DnaCalc/docs/generated/problem-functions.md",
+      "archive": "evidence/round32/reports/problem-functions.md.gz",
+      "kind": "regenerated list at main6ccdfe05",
+      "sha256": "61b0cfe26b23f9888246492785e30bc00e1a1bad119cdd498b525abdc27e42d1",
+      "archive_sha256": "edea9eaaf348f8a7208634331d59ca40ad5cbd833017de71d6825bb9a56e1393",
+      "bytes": 7856
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/106d5d5c04a17cf60bbab7b766ba849a4c673b683ba4a4e18d36cdbc6abe1abf.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "678391d30cd5b9ce09e3d2cde6402e4ca32e7f585d1725ef505600d11ed58c5c",
+      "archive_sha256": "a74fca302c8338b4a517385da56bc79003e5fa059244ed932f7c98d2e416bedc",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/e31364ace578c09ad0f0390d5c8438f8c968dae425a2e2d96696a9ef7db1be2a.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "e7c7f4f194bdf255d50970c6320b0d1bafa211722ba9721dbfb642678f5f7b2a",
+      "archive_sha256": "083cdba258a19e6689b50129d076347ce9ed471b3d9d77c422e39fc86cf0a460",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/bba285ef1b5c87ceb2723b558c801f2582653206d0f3d732b3e4bd575a6ed287.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "349c81157c58a4bd80d9e331b2b937c634383fbe6af29d12a193e968cda4db1c",
+      "archive_sha256": "8dc239ae3824c90ceaa33c61234d933630a769d7a7f22fa0910a0565e253968f",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/44166971c99c35596ee1312a0509e8c6c9d9636838ede222a7d6b4cbb3e75d25.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "2c07aa61f4eac73e1e93bb359cb264c013a4fba23c1533e52277e845ea960925",
+      "archive_sha256": "4f23b8f8e758e046f993d41d251affcbed2d0b5f65150a99bf03c4f483125d67",
+      "bytes": 2229306
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/8ae17771a27082acf4d36be795c472f797a914f7d508c0b0c28ada7ac2ff55af.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "a749c667a650ff7736c1779cfe827ec487d56191774a04a7439aa6d8df31ded8",
+      "archive_sha256": "334ce8862325e609e404477f073098024b756b93ba25f347a9a71db457dc3327",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/9ccba551e05e7b6fb7a56150112839b53d295473512bc5136ff3172e57d1078f.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "b97e51ce00f99b11dab85a14b807bd5fb0df3351b612ee4c90a5b1970a1fa9f4",
+      "archive_sha256": "96705404b2a6fe0410d0cbb979ff95c099d426b476a878c3f77159b36eebe31a",
+      "bytes": 1393736
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/08fc790615ee7494f8c89b7151acc292c85373dd391b3238614df250cd2a3aa9.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "c44e9c708fc9b84ffc69c5deec0753db33978ec56107a2d8ccafdceda7673680",
+      "archive_sha256": "1984efbd03f514b440e23e9ea828db3e5773be690af701ae934850b2b3d332cd",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/3b1c5a42148e3ff553cf61fcd29ddf311c0e8a2e6e31e3bab82cf0ba8599ea3b.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "44eaac27f52149f71c3a17be33e4867f129e35e855262ba9ac5dc97a96b71f81",
+      "archive_sha256": "56805dd7194501ff9dd06263d0fa6af88c8873d37450a40161b383af2dc65003",
+      "bytes": 2229307
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/a0054b1034bd8bb810a747fa824e13af760913f90ff7d8887c75bfc84d399e0e.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "f1751df0a0119802f6a00d01cc24e459386776bff83eabe43a60544c7686430b",
+      "archive_sha256": "23917c70f788e06012150ba545ef692d856db467f4757a48cc9f5436c269a372",
+      "bytes": 2229319
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/1e6b6b800eb6122fb0339776be964cc2214acca71b8e190ef07b9a3e3381d138.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "368415d6b8a6379abb96fa087c307006dbe2ee3cf60276ccd1f4b1224e9c1e73",
+      "archive_sha256": "4f28c4145869256341b56be836c57e99f233505b5ebffa5bc3281dfb4546313a",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/836e66f28ebbe295a4896c8e09239bd88e0063e7ee01a51256faa67d2f3bb082.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "7b3cc9c9f4597ece6cb614266db06284860a67a50505fc8eee4c98c4eb96f292",
+      "archive_sha256": "72cf4ca1d431828aa255ec3a7496f8d9cc2871c626888f5b71cf09961209c154",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/aa448359fa3081efcd05df790d4bb8e9a4535a611abb549d467523e56e1c26bd.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "8e35aa688329a701b06ff11ed4a0cb39f789e3eb5e09406b4165dd8819b5b063",
+      "archive_sha256": "e6f3e34cf03deedab8060c6585d8a03dd1f81915709fc281a7b573cea598f963",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/2e73152325a338563d596c0fcdc88653e7f20b82f457cbc476b12b15a3cc03b8.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "281a663f2e8e1a5828f68b8328f9a823fd32ced063f405114bd3afc6ae15f1cf",
+      "archive_sha256": "df2011137218a61c99b5e0eab4142991404fa39bdc8de21c3bb4dcbbb495244b",
+      "bytes": 2229320
+    },
+    {
+      "archive": "evidence/round32/scalar-cache/ba59923d781eb5fd4e4b331da7a624d18a280e0f0294db3edd0aefe6b4dded6d.json.gz",
+      "kind": "raw scalar service reply",
+      "sha256": "71e09f580a01b9566639eb99154c041e610f53390800fb0d5f92228b87f8dd2d",
+      "archive_sha256": "532052c4152923ba7e37b7bcbe9062224fbec45e1ae91356f3a9abd41fbce0af",
+      "bytes": 2229319
+    },
+    {
+      "archive": "evidence/round32/retained/q21.py",
+      "kind": "retained",
+      "sha256": "e6bb627a926436e5bb0d87e99561c4c9c47bdd35d7e6bb47cd9af4eef5095ba8",
+      "archive_sha256": "e6bb627a926436e5bb0d87e99561c4c9c47bdd35d7e6bb47cd9af4eef5095ba8",
+      "bytes": 129
+    },
+    {
+      "archive": "evidence/round32/retained/q24.py",
+      "kind": "retained",
+      "sha256": "44570a9d15f1f816cee51457179a79279309e96964417fb03d014d13bd2e39f5",
+      "archive_sha256": "44570a9d15f1f816cee51457179a79279309e96964417fb03d014d13bd2e39f5",
+      "bytes": 257
+    },
+    {
+      "archive": "evidence/round32/retained/q21.jsonl.gz",
+      "kind": "retained",
+      "sha256": "e44ad4c618eb34005a8f1cdb3c8aa6c3af449fafcddeaf1355060709d7ba50cd",
+      "archive_sha256": "e5141af415509c4716e900ea8f633d8e212e59c9767a3881e74ce757026be1d5",
+      "bytes": 1620000
+    },
+    {
+      "archive": "evidence/round32/retained/q24c.jsonl.gz",
+      "kind": "retained",
+      "sha256": "79b89649d696155c545cf435a8f96ac30fc95a43e33a163e0a7754619319dcf4",
+      "archive_sha256": "e5cceb95727e0bcc738548a87be06eef35b150884eff19ff5d8457a26a46846c",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/retained/q24a.jsonl.gz",
+      "kind": "retained",
+      "sha256": "e403811153459b349c7d400851e0cbfea98df06f4f86b30a725e5a96eaafdb28",
+      "archive_sha256": "955b938e37d6d24bdea6e32bb9cba82d10e19a00da3bfdd73d5fb86d40cd8702",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/retained/q24e.jsonl.gz",
+      "kind": "retained",
+      "sha256": "b2f25fcb561770f5b7c7b44dbc26aeb53c02487f0d7f11ddb784a09557d68feb",
+      "archive_sha256": "121de65703e0539aa6d2ae02efb2708aa865f815e09154dc72ef19540e60b7de",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/retained/q24b.jsonl.gz",
+      "kind": "retained",
+      "sha256": "c5da0446f925a557af0cd1ea49589c7b831af762d69896c281b2d11a4e2cf517",
+      "archive_sha256": "8cfd0fcd8f3308a0b4ff2f21c7df64d33acaffae9be7227c1406d2ac9ac9c6a3",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/retained/q24g.jsonl.gz",
+      "kind": "retained",
+      "sha256": "bed9b1570d3ec66ab9816b18210af0a4191056df04d8775cad31f9dcab19d915",
+      "archive_sha256": "0f4a428efa78fbcf42b4dbae633840aae91bf1a5288ebf44e6557863ab3c96fe",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/retained/q24f.jsonl.gz",
+      "kind": "retained",
+      "sha256": "21865b25e3243ce20ca5ff05aa978cdc0b149860968baa6a3227e4e378c3f337",
+      "archive_sha256": "94e15a74008df11b1d3d4b6055fb9213b983f76431de55a4bd8cd081eb48424c",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/retained/q24d.jsonl.gz",
+      "kind": "retained",
+      "sha256": "a31feacae85dca1f7274b07c7a4a27bb8a5592e1168f23c7a696a400d6437825",
+      "archive_sha256": "675c6951167f8a8359ce9081e6d0ef9614ef301e47a331a11a6726eb3c5aa55f",
+      "bytes": 486000
+    },
+    {
+      "archive": "evidence/round32/producers/ef94f73272b3655e0ef52c02bfed3efa60b1e3f5f867dec0a52b60023eebcc57-gamma_stages.py.gz",
+      "kind": "producers",
+      "sha256": "ef94f73272b3655e0ef52c02bfed3efa60b1e3f5f867dec0a52b60023eebcc57",
+      "archive_sha256": "537947f2438b05883d45477c16948405386893b073bc7de2207aa86fd6282db9",
+      "bytes": 115785
+    },
+    {
+      "archive": "evidence/round32/producers/5ea6c88ca6d07b3a3be01359f02e819d0a55078f8226326efd6bfa1e58fdfaac-fingerprint.py.gz",
+      "kind": "producers",
+      "sha256": "5ea6c88ca6d07b3a3be01359f02e819d0a55078f8226326efd6bfa1e58fdfaac",
+      "archive_sha256": "e68c90ea67eb3606064d7244ff001a16d2946cff9b30b6979e22fa4af7c77838",
+      "bytes": 208947
+    },
+    {
+      "archive": "evidence/round32/producers/e8cfce485d438b30d3e3a07d914cff00b1514cbeb661e8fc40a9bf40be489633-gamma_stages.py.gz",
+      "kind": "producers",
+      "sha256": "e8cfce485d438b30d3e3a07d914cff00b1514cbeb661e8fc40a9bf40be489633",
+      "archive_sha256": "1b1229184e9f7b513f9a8a68565a45be8bab9e6db7c7ac606441d6f49a3721a6",
+      "bytes": 115775
+    },
+    {
+      "archive": "evidence/round32/producers/a50d0de88ed819da9ebe089b6e79b2530d7335c37ba0b73d0da53159cfd65fcf-gamma_stages.py.gz",
+      "kind": "producers",
+      "sha256": "a50d0de88ed819da9ebe089b6e79b2530d7335c37ba0b73d0da53159cfd65fcf",
+      "archive_sha256": "30de7f21479bb0cbe665102546eb5ac63185680de5b66f11f569c7778fb77ed7",
+      "bytes": 121288
+    },
+    {
+      "archive": "evidence/round32/producers/57af86415939f6645366b4cd0382d379e29296ce0e712498e276da725fc69047-test_fingerprint.py.gz",
+      "kind": "producers",
+      "sha256": "57af86415939f6645366b4cd0382d379e29296ce0e712498e276da725fc69047",
+      "archive_sha256": "5930c849753cff9bfc8ae9f37a4960efc1aab641e08ec4e5a76edc2d1e3a0566",
+      "bytes": 15937
+    },
+    {
+      "archive": "evidence/round32/producers/76403d96e336227256120d8d2e0440f0978d04d32442efd88f9c8fbf3b49b52d-corpus_cases.py.gz",
+      "kind": "producers",
+      "sha256": "76403d96e336227256120d8d2e0440f0978d04d32442efd88f9c8fbf3b49b52d",
+      "archive_sha256": "def59a9f55c27ef219d3a70e3a3e497fe113d4721b92b3bf11ea8da6c06f98d5",
+      "bytes": 137197
+    },
+    {
+      "archive": "evidence/round32/producers/10183bab57d2a028b53b0341759129659bdf5df856cd18cc7587c0a469f7d7d8-fingerprint.py.gz",
+      "kind": "producers",
+      "sha256": "10183bab57d2a028b53b0341759129659bdf5df856cd18cc7587c0a469f7d7d8",
+      "archive_sha256": "3541864512518127a2414be805b2ea89eaf90b84dbc2ae9b54f86cd46cceb467",
+      "bytes": 206528
+    },
+    {
+      "archive": "evidence/round32/producers/be6824d12d179fbd068d4d2021149a8718827be7af0512d45973c878ea2780be-fingerprint.py.gz",
+      "kind": "producers",
+      "sha256": "be6824d12d179fbd068d4d2021149a8718827be7af0512d45973c878ea2780be",
+      "archive_sha256": "24eddd578931d331b8da2505fee2842a0c3239a26cf224947af6c8851ba68f9f",
+      "bytes": 207085
+    },
+    {
+      "archive": "evidence/round32/producers/27e1c23aa1250ef4f61bfe94efa1f8d407cc425ba8fb199ed472cf3f58d31f85-test_fingerprint.py.gz",
+      "kind": "producers",
+      "sha256": "27e1c23aa1250ef4f61bfe94efa1f8d407cc425ba8fb199ed472cf3f58d31f85",
+      "archive_sha256": "f755c7764444761ce9d52c9f1830df22e6f492a50aa6f1724bfcd1ecad824fee",
+      "bytes": 16884
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/checked-phase-validation.json",
+      "archive": "evidence/round32/studies/checked-phase-validation.json.gz",
+      "kind": "final diagnostic with complete root observations",
+      "sha256": "44c22356b6dbebc8bb8141c8a174b571776c41bfc81de26aded4a5f5644cc673",
+      "archive_sha256": "9813d1581396e5918dd7574eb1432bb9e5d85dca5b19113f0fef90fbb6e4336d",
+      "bytes": 139676
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/checked-validation-run.log",
+      "archive": "evidence/round32/reports/checked-validation-run.log.gz",
+      "kind": "final validation command",
+      "sha256": "9ba7738abc444e7c3a6cc6a5b7d4d758f528070317ad28e0fb1baea43c70bcf1",
+      "archive_sha256": "41be1fe68022df3cb45a8c1ddaba8b1753c91c659f63dbb8085691a17ad1a50a",
+      "bytes": 524
+    },
+    {
+      "original": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/evidence/round32/ubs-triage.json",
+      "archive": "evidence/round32/reports/ubs-triage.json.gz",
+      "kind": "partial scanner triage",
+      "sha256": "a80c628e2b50fdff56b318636643893bc8e64595c02036079390346e12c34ef0",
+      "archive_sha256": "5ba565875e184f05fd194ff0b286deb083f78ef0040131c59a2ab2bd79fbd92a",
+      "bytes": 1730
+    },
+    {
+      "original": "/home/ubuntu/projects/DnaCalc/DnaCalc-Research/racer/gamma_stages.py",
+      "archive": "evidence/round32/producers/680af6c8beafe8f4c5df31c43fd4e06ce1786f9c96614b38454777eff844fc7e-gamma_stages.py.gz",
+      "kind": "current validation producer",
+      "sha256": "680af6c8beafe8f4c5df31c43fd4e06ce1786f9c96614b38454777eff844fc7e",
+      "archive_sha256": "996f945024467784eb30fc84a47955458de3347361fd62a97506e55d9d1c0d4a",
+      "bytes": 121443
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/check.log",
+      "archive": "evidence/round32/reports/main-full-check.log.gz",
+      "kind": "validation receipt",
+      "sha256": "fee249712d283cb68559fc8da083062e81482eb482e17cd932cf96adeff425b5",
+      "archive_sha256": "fa63b062427f1580c6e3170c46c435999b789a29eb6fb58fdc20de1d29fd60ee",
+      "bytes": 5677
+    },
+    {
+      "original": "/home/ubuntu/projects/DnaCalc/DnaCalc/target/check/test.log",
+      "archive": "evidence/round32/reports/main-full-tests.log.gz",
+      "kind": "validation receipt",
+      "sha256": "d431cea79ec1f22260a15444a6028a02a1af197b281b0bddacf9ab43e5e06464",
+      "archive_sha256": "47da4304a84e9ea9516f86d4e87b8a31a33932c38b858d1666de762a0842cccb",
+      "bytes": 1339395
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/paint-test-corrected.log",
+      "archive": "evidence/round32/reports/paint-test-corrected.log.gz",
+      "kind": "validation receipt",
+      "sha256": "48e859ab8466c2e517896939588431103f7edd6eb21336eeb02ed97835207b74",
+      "archive_sha256": "3f1ffc71eb9b2b2f18f00d05c038ccb46fb625e28868b473d8e9c9a9e03afa03",
+      "bytes": 189
+    },
+    {
+      "original": "/home/ubuntu/codex-runs/r32/wordscan.log",
+      "archive": "evidence/round32/reports/wordscan.log.gz",
+      "kind": "validation receipt",
+      "sha256": "71b1792660c9418d701608299697350d5d455ae7c8400a9335e93ba8bf270ac5",
+      "archive_sha256": "f34b191366cf05d8cd5dada7ef665c9d402202314ddb00ee2f252f98d0e0084f",
+      "bytes": 279
+    }
+  ],
+  "final_validation": "studies/checked-phase-validation.json.gz",
+  "validation": {
+    "python": {
+      "passed": 129,
+      "failed": 0
+    },
+    "ubs": {
+      "critical": 0,
+      "status": "partial SQLFlowLimit; triage retained"
+    },
+    "full_check": "One full Linux check at main6ccdfe05: build passed,1988 tests passed,1 paint test failed because the default python executable is absent,5 ignored. The failed test passes with DNACALC_PAINT_PYTHON=/usr/bin/python3 and PYTHONPATH selecting installed Pillow/NumPy. No second full check."
+  }
+}

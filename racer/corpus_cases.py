@@ -970,7 +970,7 @@ def problem_functions(checkout, output, run=None, corpus=None):
     legacy = Path(setting) if setting else checkout.parent
     if not legacy.is_absolute():
         legacy = checkout/legacy
-    evidence = legacy.resolve()/'OxFunc-Evidence'
+    evidence = legacy.resolve()/'CalcFunc-Evidence'
     def evidence_state():
         return dict(revision=git(evidence, 'rev-parse', 'HEAD'),
                     status=git(evidence, 'status', '--porcelain=v1', '--untracked-files=all'),
