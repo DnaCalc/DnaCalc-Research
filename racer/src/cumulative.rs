@@ -24,6 +24,27 @@ pub struct Program {
     pub sum_model: EvalModel,
 }
 
+/// Observe existing payment-core operands without changing their calculation.
+#[cfg(cumulative_discount_audit)]
+pub fn discount_parts(input:&str, output:&str) {
+    let loans=crate::lines::<Value>(input);let mut records=Vec::new();
+    let bits=|v:f64|format!("0x{:016x}",v.to_bits());
+    for loan in loans {
+        let a:Vec<_>=loan["args"].as_array().unwrap().iter().map(|v|
+            f64::from_bits(u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+        assert_eq!(a.len(),3);
+        let parts=crate::ported::financial_time_value_family::research_end_discount_parts(a[0],a[1],a[2]);
+        records.push(match parts {
+            Some((log,quotient,discounts,principals))=>json!({"loan":loan,"log":bits(log),
+                "quotient":bits(quotient),"discounts":discounts.into_iter().map(bits).collect::<Vec<_>>(),
+                "principals":principals.into_iter().map(bits).collect::<Vec<_>>(),"not_excel_evidence":true}),
+            None=>json!({"loan":loan,"outside_observation_scope":true,"not_excel_evidence":true}),
+        });
+    }
+    crate::json_write(output,&records);
+    println!("{} observed loan records",records.len());
+}
+
 pub fn programs() -> Vec<Program> {
     let mut result = Vec::new();
     for power in 0..2 {

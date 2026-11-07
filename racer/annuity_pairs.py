@@ -19,6 +19,62 @@ SOURCE_BINDINGS={str(p.resolve()):sha(p) for p in (
     Path(__file__).with_name('x87_native.c'),Path(__file__).parents[1]/'checker/exact.py')}
 
 
+def due_parts(checkout, output, cache, cohort="discovery", offline=False):
+    """Constrain a shared stored period component with paired public calls.
+
+    Ordinary annuity algebra gives the beginning-payment coefficient
+    1/(1+1/r). End-payment publications constrain the entire latent component,
+    so no logarithm, exponential or private quotient is assumed here.
+    """
+    import itertools
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    rows=[]
+    if cohort not in ("discovery","holdout"):raise ValueError('unknown cohort')
+    holdout=cohort=="holdout"
+    rates=(2.**-20,.00375,.0625,.2,.375,math.nextafter(.5,0.)) if holdout else (2.**-10,.05,.1,.125,.25,.5)
+    periods=(3.,17.,128.5) if holdout else (4.,12.,360.)
+    balances=(math.nextafter(1.,0.),1.1,math.ldexp(1000.,-20),math.ldexp(1000.,20)) if holdout else (1.,math.nextafter(1000.,math.inf),math.ldexp(1000.,-40),math.ldexp(1000.,40))
+    for r,n,pv in itertools.product(rates,periods,balances):
+        for per in sorted(set((2.,2.5 if holdout else n/2.,n-1.,n))):
+            for fv in (0.,(-.3 if holdout else .7)*pv):
+                rows.append([r,per,n,pv,fv])
+    questions=[[client.number(x) for x in row+[timing]] for row in rows for timing in (0.,1.)]
+    answers={f:service.ask_rows(f,questions) for f in ('PPMT','IPMT')}
+    records=[];counts=Counter()
+    for f, observed in answers.items():
+        for i,row in enumerate(rows):
+            end,due=observed[2*i:2*i+2];r=binary64(bits(row[0]));names={}
+            if end['type']!='number' or due['type']!='number':
+                raise ValueError('finite positive ordinary annuity must calculate')
+            e,d=map(lambda a:binary64(a['bits']),(end,due))
+            domain=inverse(Span(e,e),r,'mul',True,'stored_pc64')
+            coords=B.coordinates(domain) if domain else None
+            if coords is not None and coords[1]-coords[0]>8:
+                raise ValueError('shared component is not sufficiently isolated')
+            latent=[] if coords is None else [B.value(k) for k in range(coords[0],coords[1]+1)]
+            factor=operation(1,operation(1,operation(1,r,'div','stored_pc64'),'add','stored_pc64'),'div','stored_pc64')
+            names['shared_component_due_coefficient']=[operation(t,factor,'mul','stored_pc64') for t in latent]
+            names['outer_timing_division']=[operation(e,operation(1,r,'add','stored_pc64'),'div','stored_pc64')]
+            names['shared_component_timing_then_rate']=[operation(operation(t,operation(1,r,'add','stored_pc64'),'div','stored_pc64'),r,'mul','stored_pc64') for t in latent]
+            possible={k:d in vv for k,vv in names.items()}
+            for k,v in possible.items():counts[f+'/'+('fv0' if row[4]==0 else 'fv')+'/'+k+'/possible']+=v
+            counts[f+'/rows']+=1
+            records.append(dict(function=f,args=list(map(bits,row)),end=end,due=due,
+                latent_binary64_domain=domain.json() if domain else None,possible=possible,
+                predictions={k:list(map(lambda x:bits(float(x)),vv)) for k,vv in names.items()}))
+    write(output,dict(complete=True,cohort=cohort,calls=len(questions)*2,counts=counts,records=records,
+        receipts=service.receipts,source_sha256=sha(Path(__file__)),
+        limits='Conditional shared stored component only. Every end-call preimage is retained in full. Nonempty domains do not identify a complete period kernel; no observed helper is installed.'))
+    print(json.dumps(counts),flush=True)
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv)>1 and sys.argv[1]=='due-parts':
+        due_parts(*sys.argv[2:]);raise SystemExit(0)
+
+
 def run(checkout, output, cache, offline=False, negative=False, final_model=None, discount=False):
     client, _ = load_service(checkout)
     service = CachedService(client.Client(timeout=300), cache, offline)

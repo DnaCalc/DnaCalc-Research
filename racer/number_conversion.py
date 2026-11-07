@@ -14,6 +14,8 @@ import json
 import sys
 import zipfile
 import xml.etree.ElementTree as E
+from functools import lru_cache
+from collections import Counter
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from checker.exact import Lattice
@@ -72,6 +74,231 @@ def observations(main):
 
 def ten(e):
     return Q(10**e) if e >= 0 else Q(1, 10**-e)
+
+
+@lru_cache(maxsize=None)
+def power64(exponent):
+    return Lattice(64, -20000, 20000).round(ten(exponent))
+
+
+def radix16_scale(value, exponent):
+    """Fixed low-nibble-first powers-of-ten scaling, all operations PC64."""
+    rnd = Lattice(64, -20000, 20000).round
+    magnitude = abs(exponent)
+    for shift in range(0, magnitude.bit_length(), 4):
+        part = ((magnitude >> shift) & 15) << shift
+        if part: value = rnd(value*power64(-part if exponent<0 else part))
+    return value
+
+
+def rounding_radix_controls(checkout, output, cache, offline=False):
+    """Paired calls that change coefficient length while keeping decimal value.
+
+    Every selected native mining result is independently recomputed using exact
+    rational PC64 operations before Excel is asked. No answer selects a case.
+    """
+    import numpy as np
+    import struct
+    try:
+        from .fingerprint import load_service, CachedService
+    except ImportError:
+        from fingerprint import load_service, CachedService
+    if np.finfo(np.longdouble).nmant != 63: raise ValueError('PC64 native miner required')
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    output = Path(output)
+    output.mkdir(exist_ok=False)
+    encode = lambda x: struct.pack('>d', float(x)).hex()
+    def native_scale(values, exponent):
+        values = values.astype(np.longdouble)
+        magnitude = abs(exponent)
+        for shift in range(0, magnitude.bit_length(), 4):
+            part = ((magnitude >> shift)&15)<<shift
+            if part: values = values*np.longdouble('1e'+str(-part if exponent<0 else part))
+        return values.astype(np.float64)
+    cases, seen = [], set()
+    rng = np.random.default_rng(340016)
+    for digits in range(1, 15):
+        accepted = Counter()
+        for exponent in range(-307, 295, 7):
+            side = exponent < 0
+            if accepted[side] >= 12: continue
+            coefficients = rng.integers(10**(digits-1), 10**digits, size=2000, dtype=np.int64)
+            coefficients = coefficients[coefficients%10 != 0]
+            padding = 15-digits
+            normalized = native_scale(coefficients, exponent)
+            fixed = native_scale(coefficients*10**padding, exponent-padding)
+            selected = np.flatnonzero((normalized != fixed) & np.isfinite(normalized)
+                                     & (np.abs(normalized) >= sys.float_info.min))
+            for index in selected:
+                c = int(coefficients[index])
+                identity = c, exponent
+                if identity in seen: continue
+                seen.add(identity)
+                exact = c*ten(exponent)
+                short = radix16_scale(Q(c), exponent)
+                full = radix16_scale(Q(c*10**padding), exponent-padding)
+                if encode(short) != encode(normalized[index]) or encode(full) != encode(fixed[index]):
+                    raise ValueError('native/rational scaling disagreement')
+                for sign in (1, -1):
+                    cases.append(dict(coefficient=sign*c, exponent=exponent, digits=digits,
+                        input_bits=encode(sign*exact), normalized_bits=encode(sign*short),
+                        fixed15_bits=encode(sign*full)))
+                accepted[side] += 1
+                if accepted[side] >= 12: break
+    if not cases: raise ValueError('empty representation discrimination cohort')
+    (output/'questions.json').write_text(json.dumps(cases, separators=(',', ':'))+'\n')
+    counts, replies = {}, {}
+    arguments = [[client.number(c['input_bits']), client.number(digits)]
+        for c in cases for digits in (32000., float(-c['exponent']))]
+    for function in ('ROUNDUP', 'ROUNDDOWN', 'TRUNC', 'ROUND'):
+        answers = service.ask_rows(function, arguments, chunk_size=2000)
+        replies[function] = answers
+        counts[function] = dict(rows=len(arguments),
+            whole_fixed15=sum(a.get('bits') == c['fixed15_bits'] for c,a in zip(cases,answers[::2])),
+            whole_normalized=sum(a.get('bits') == c['normalized_bits'] for c,a in zip(cases,answers[::2])),
+            position_fixed15=sum(a.get('bits') == c['fixed15_bits'] for c,a in zip(cases,answers[1::2])),
+            position_normalized=sum(a.get('bits') == c['normalized_bits'] for c,a in zip(cases,answers[1::2])))
+    (output/'answers.json').write_text(json.dumps(replies, separators=(',', ':'))+'\n')
+    result = dict(complete=True, cases=len(cases), counts=counts, receipts=service.receipts,
+        source='Decimal positional arithmetic; fixed radix16 PC64 scaling and independently selected native/rational disagreements.',
+        limits='Paired whole-reading and decimal-position publications only. No initial-reading algorithm or broader scaling table is installed.')
+    (output/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(counts))
+
+
+def rounding_publications(checkout, output, cache, offline=False):
+    """Preselect exact double-rounding discriminants before querying Excel."""
+    import hashlib
+    import struct
+    try:
+        from .fingerprint import load_service, CachedService
+    except ImportError:
+        from fingerprint import load_service, CachedService
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    output = Path(output)
+    output.mkdir(exist_ok=False)
+    lattice = Lattice(64, -20000, 20000)
+    bits = lambda x: struct.pack('>d', float(x)).hex()
+    cases = []
+    # An input-independent integer sequence and complete exponent range. Neither
+    # the Excel answers nor the bank's match counts select a coefficient.
+    seed = 340011
+    for exponent in range(-321, 295):
+        power = ten(exponent)
+        for _ in range(1000):
+            seed = (6364136223846793005*seed+1442695040888963407) % 2**64
+            coefficient = 100000000000000 + seed % 900000000000000
+            exact = coefficient*power
+            if not Q(sys.float_info.min) <= exact <= Q(sys.float_info.max):
+                continue
+            direct, stored = bits(exact), bits(lattice.round(exact))
+            if direct != stored:
+                for sign in (1, -1):
+                    cases.append(dict(coefficient=coefficient*sign, exponent=exponent,
+                        input_bits=bits(sign*exact), strict_bits=bits(sign*exact),
+                        stored_bits=bits(sign*lattice.round(exact))))
+    if not cases:
+        raise ValueError('no arithmetic discriminants')
+    (output/'questions.json').write_text(json.dumps(cases, separators=(',', ':'))+'\n')
+    arguments = [[client.number(c['input_bits']), client.number(32000.)] for c in cases]
+    counts, all_answers = {}, {}
+    for function in ('ROUNDUP', 'ROUNDDOWN', 'TRUNC', 'ROUND'):
+        answers = service.ask_rows(function, arguments)
+        counts[function] = dict(rows=len(cases), stored=sum(a.get('bits') == c['stored_bits']
+            for a, c in zip(answers, cases)), strict=sum(a.get('bits') == c['strict_bits']
+            for a, c in zip(answers, cases)))
+        all_answers[function] = answers
+    (output/'answers.json').write_text(json.dumps(all_answers, separators=(',', ':'))+'\n')
+    result = dict(complete=True, counts=counts, receipts=service.receipts,
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        source='IEEE754 exact decimal rational, RN64 followed by RN53; independently selected arithmetic disagreements.',
+        limits='Whole fifteen-digit decimal publication only. Initial digit extraction and final digit rounding remain separate unresolved stages.')
+    (output/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(counts))
+
+
+def rounding_scale128(checkout, output, cache, offline=False):
+    """Discriminate one negative power-table operand with no other table factor.
+
+    The declared program scales x by a resident10^-128, then by exact10, and
+    rounds the resulting15-digit coefficient half up. Binary exponent selects
+    the upper binade's decimal exponent. No value is installed by this study.
+    """
+    import numpy as np
+    import struct
+    from checker.exact import EXTENDED64
+    try:
+        from .fingerprint import load_service, CachedService
+    except ImportError:
+        from fingerprint import load_service, CachedService
+    if np.finfo(np.longdouble).nmant != 63:
+        raise ValueError('control mining requires the native64-bit significand')
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    output = Path(output)
+    output.mkdir(exist_ok=False)
+    p = EXTENDED64.round(ten(-128))
+    exponent = p.numerator.bit_length()-p.denominator.bit_length()
+    if p < Q(2)**exponent: exponent -= 1
+    unit = Q(2)**(exponent-63)
+    native_p = np.longdouble('1e-128')
+    if Q(str(native_p)) == 0:
+        raise ValueError('native seed underflow')
+    cases = []
+    seen = set()
+    for batch in range(8):
+        coefficients = np.arange(620000000000000+batch*100000,
+                                 620000000100000+batch*100000, dtype=np.int64)
+        xs = ((coefficients.astype(np.longdouble)+np.longdouble('.5'))/10/native_p).astype(np.float64)
+        predictions = []
+        for offset in range(-1, 4):
+            candidate_p = native_p
+            for _ in range(abs(offset)):
+                candidate_p = np.nextafter(candidate_p, np.longdouble('-inf' if offset<0 else 'inf'))
+            z = xs.astype(np.longdouble)*candidate_p
+            z = z*10
+            predictions.append(np.floor(z+np.longdouble('.5')).astype(np.int64))
+        selected = np.flatnonzero(np.any(np.array(predictions) != predictions[0], axis=0))
+        for index in selected:
+            x = float(xs[index])
+            encoded = struct.pack('>d', x).hex()
+            if encoded in seen: continue
+            seen.add(encoded)
+            # Recheck every selected native mining result with exact rationals.
+            b = Q(x).numerator.bit_length()-Q(x).denominator.bit_length()
+            if Q(x) < Q(2)**b: b -= 1
+            if decade(Q(2)**(b+1)) != 142 or decade(Q(x)) != 141:
+                raise ValueError('control does not isolate the declared exponent path')
+            exact = [int(EXTENDED64.round(EXTENDED64.round(Q(x)*(p+offset*unit))*10)+Q(1, 2))
+                     for offset in range(-1, 4)]
+            if exact != [int(v[index]) for v in predictions]:
+                raise ValueError('native miner differs from rational stage replay')
+            for sign in (1, -1):
+                cases.append(dict(input_bits=struct.pack('>d', sign*x).hex(),
+                                  sign=sign, predictions=exact))
+            if len(cases) >= 256: break
+        if len(cases) >= 256: break
+    if len(cases) != 256: raise ValueError('not enough independent table controls')
+    (output/'questions.json').write_text(json.dumps(cases, separators=(',', ':'))+'\n')
+    counts, replies = {}, {}
+    arguments = [[client.number(c['input_bits']), client.number(32000.)] for c in cases]
+    for function in ('ROUNDUP', 'ROUNDDOWN', 'TRUNC'):
+        replies[function] = service.ask_rows(function, arguments)
+        matches = [0]*5
+        for c, answer in zip(cases, replies[function]):
+            if answer['type'] != 'number': raise ValueError('unread numeric table control')
+            got = abs(Q(struct.unpack('>d', bytes.fromhex(answer['bits']))[0]))
+            coefficient = round(got/ten(127))
+            for k, expected in enumerate(c['predictions']): matches[k] += coefficient == expected
+        counts[function] = matches
+    (output/'answers.json').write_text(json.dumps(replies, separators=(',', ':'))+'\n')
+    result = dict(complete=True, cases=len(cases), offsets=list(range(-1, 4)),
+        matching_initial_coefficients=counts, receipts=service.receipts,
+        limits='Conditional constant-operand discrimination in the stated two-multiply initial-reading program. No count-selected value or complete conversion kernel is installed.')
+    (output/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(counts))
 
 
 def decade(x):
@@ -263,6 +490,9 @@ def published_poi(main, out, jdk_bin, poi_source, application_records):
 
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'published-poi': published_poi(*sys.argv[2:])
+    if sys.argv[1] == 'rounding-radix-controls': rounding_radix_controls(*sys.argv[2:])
+    elif sys.argv[1] == 'rounding-scale128': rounding_scale128(*sys.argv[2:])
+    elif sys.argv[1] == 'rounding-publications': rounding_publications(*sys.argv[2:])
+    elif sys.argv[1] == 'published-poi': published_poi(*sys.argv[2:])
     elif sys.argv[1] == 'chunked': chunked_run(*sys.argv[2:])
     else: run(*sys.argv[1:])

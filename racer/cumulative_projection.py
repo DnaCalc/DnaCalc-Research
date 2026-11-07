@@ -14,7 +14,7 @@ import time
 import datetime
 import struct
 
-from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, log2floor, number, pow2
+from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, rounding_inverse, log2floor, number, pow2
 
 MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
 
@@ -149,6 +149,282 @@ def direct_run(input_path,library,destination):
                'A first contradiction excludes its fixed program before other rows are needed; no accumulation order, internal payment, full kernel or product gain is inferred.')
     with(dest/'summary.json').open('x')as out:json.dump(result,out,indent=2);out.write('\n')
     print(json.dumps(result))
+
+
+def summation_questions(checkout, destination, cache, offline=False):
+    """Read every subrange of controlled loans, independently of a growth model."""
+    import math
+    try:
+        from .fingerprint import load_service, CachedService
+    except ImportError:
+        from fingerprint import load_service, CachedService
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    destination = Path(destination)
+    destination.mkdir(exist_ok=False)
+    loans, requests = [], []
+    for rate, scale, offset, timing in itertools.product(
+            (2.**-10, .05, .5, 1.), (-40, 0, 40), (-1, 0, 1), (0, 1)):
+        pv = math.ldexp(1000., scale)
+        if offset:
+            pv = math.nextafter(pv, math.inf if offset>0 else 0.)
+        loan = dict(id=len(loans), rate=rate, periods=8, pv=pv, timing=timing,
+                    scale=scale, offset=offset)
+        loans.append(loan)
+        for start in range(1, 9):
+            for end in range(start, 9):
+                requests.append(dict(loan=loan['id'], start=start, end=end,
+                    args=[client.number(v) for v in (rate, 8., pv, float(start), float(end), float(timing))]))
+    inputs = dict(loans=loans, ranges=requests)
+    (destination/'questions.json').write_text(json.dumps(inputs, separators=(',', ':'))+'\n')
+    results = {}
+    for function in ('CUMPRINC', 'CUMIPMT'):
+        results[function] = service.ask_rows(function, [r['args'] for r in requests], chunk_size=2000)
+    results['PMT'] = service.ask_rows('PMT', [[client.number(v) for v in
+        (l['rate'], float(l['periods']), l['pv'], 0., float(l['timing']))] for l in loans])
+    (destination/'answers.json').write_text(json.dumps(results, separators=(',', ':'))+'\n')
+    result = dict(complete=True, loans=len(loans), ranges=len(requests),
+        calls=sum(map(len, results.values())), receipts=service.receipts,
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        limits='Every observed subrange has its own original Excel answer. No growth, payment or numerator program is assumed; subrange observations can refute shared-term summation premises.')
+    (destination/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(result))
+
+
+def summation_analyze(source, destination):
+    """Necessary summation constraints, with each observed singleton retained.
+
+    Latent operands range over their complete binary64 publication cells. The
+    closed interval enclosure deliberately admits both tie endpoints; failure
+    therefore refutes even that enlarged fixed-term premise. Containment is
+    necessary only, and never identifies an accumulator or private operand.
+    """
+    from bessel import operation
+    source, destination = Path(source), Path(destination)
+    destination.mkdir(exist_ok=False)
+    questions = json.loads((source/'questions.json').read_text())
+    answers = json.loads((source/'answers.json').read_text())
+    requests = questions['ranges']
+    def value(answer):
+        if answer['type'] != 'number': raise ValueError('non-numeric sum observation')
+        return Q(struct.unpack('>d', bytes.fromhex(answer['bits']))[0])
+    principal, interest, payment = [[value(v) for v in answers[f]]
+                                  for f in ('CUMPRINC', 'CUMIPMT', 'PMT')]
+    singletons = {(r['loan'], r['start']): p for r, p in zip(requests, principal)
+                  if r['start'] == r['end']}
+    def publication(q): return '0x'+struct.pack('>d', float(q)).hex()
+    def rounded(q, model):
+        return operation('add', model, Q(0), q)
+    def reduce(values, model, order):
+        if order == 'balanced' and len(values)>1:
+            k = len(values)//2
+            return operation('add', model, reduce(values[:k], model, order),
+                             reduce(values[k:], model, order))
+        result = Q(0)
+        for v in values[::-1] if order == 'reverse' else values:
+            result = operation('add', model, result, v)
+        return result
+    profiles = []
+    for model, order in itertools.product(MODELS, ('forward', 'reverse', 'balanced')):
+        matched, contained, first, first_outside = 0, 0, None, None
+        for index, (r, expected) in enumerate(zip(requests, principal)):
+            terms = [singletons[r['loan'], i] for i in range(r['start'], r['end']+1)]
+            got = B64.rn(reduce(terms, model, order))
+            matched += got == expected
+            if got != expected and first is None:
+                first = dict(index=index, request=r, expected=publication(expected),
+                             prediction=publication(got), singleton_terms=list(map(publication, terms)))
+            cells = [B64.preimage(Interval(t, t)) for t in terms]
+            if any(c is None for c in cells): raise ValueError('missing publication cell')
+            low = B64.rn(reduce([c.lo for c in cells], model, order))
+            high = B64.rn(reduce([c.hi for c in cells], model, order))
+            inside = low <= expected <= high
+            contained += inside
+            if not inside and first_outside is None:
+                first_outside = dict(index=index, request=r, expected=publication(expected),
+                    low=publication(low), high=publication(high), singleton_terms=list(map(publication, terms)))
+        profiles.append(dict(model=model, order=order, rows=len(requests), matched=matched,
+            first_published_term_contradiction=first, latent_operand_enclosure_contains=contained,
+            first_latent_operand_contradiction=first_outside))
+    finish = []
+    for model in MODELS:
+        matched, first = 0, None
+        for index, (r, p, expected) in enumerate(zip(requests, principal, interest)):
+            count = Q(r['end']-r['start']+1)
+            total = operation('mul', model, count, payment[r['loan']])
+            got = B64.rn(operation('add', model, total, -p))
+            matched += got == expected
+            if got != expected and first is None:
+                first = dict(index=index, request=r, expected=publication(expected), prediction=publication(got))
+        finish.append(dict(model=model, rows=len(requests), matched=matched, first_contradiction=first))
+    result = dict(complete=True, loans=len(questions['loans']), ranges=len(requests),
+        sum_programs=profiles, paired_interest_finish=finish,
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        inputs_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest()
+                      for p in (source/'questions.json', source/'answers.json')},
+        limits='Declared common per-period operand and deterministic reduction programs only. '
+               'Closed latent publication cells enlarge the feasible domain. Containment is not proof; '
+               'exclusions do not identify term production, loop precision or the complete cumulative kernel.')
+    (destination/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps(dict(sum_programs=[(p['model'], p['order'], p['matched'],
+        p['latent_operand_enclosure_contains']) for p in profiles], paired_interest_finish=finish)))
+
+
+def paired_sum_inverse(source, destination):
+    """Read the principal operand through the paired interest subtraction.
+
+    The public PMT value is an explicit premise. An interval intersection is a
+    necessary constraint, never a supplied private result or an implementation.
+    """
+    from bessel import operation
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'checker'))
+    from exact import EXTENDED64, BINARY64, Span
+    source, destination = Path(source), Path(destination)
+    destination.mkdir(exist_ok=False)
+    questions = json.loads((source/'questions.json').read_text())
+    answers = json.loads((source/'answers.json').read_text())
+    def value(answer):
+        if answer['type'] != 'number': raise ValueError('non-numeric paired observation')
+        return Q(struct.unpack('>d', bytes.fromhex(answer['bits']))[0])
+    principal, interest, payment = [[value(v) for v in answers[f]]
+                                  for f in ('CUMPRINC', 'CUMIPMT', 'PMT')]
+    profiles, recoveries = [], []
+    for (product_id, product_model), (final_id, final_model) in itertools.product(enumerate(MODELS), enumerate(MODELS)):
+        counts, first = Counter(), None
+        payment_domains = {l['id']:B64.preimage(Interval(payment[l['id']], payment[l['id']]))
+                           for l in questions['loans']}
+        for index, (r, p, i) in enumerate(zip(questions['ranges'], principal, interest)):
+            count = Q(r['end']-r['start']+1)
+            total = operation('mul', product_model, count, payment[r['loan']])
+            target = Interval(i, i)
+            if final_model.startswith('resident'): target = B64.preimage(target)
+            minus_principal = inverse_add(target, final_id, total)
+            candidate = minus_principal.affine(Q(-1)) if minus_principal is not None else None
+            published = B64.preimage(Interval(p, p))
+            residual_cell = rounding_inverse(target, final_id)
+            if residual_cell is None:
+                payment_domains[r['loan']] = None
+            elif payment_domains[r['loan']] is not None:
+                total_cell = Interval(residual_cell.lo+published.lo, residual_cell.hi+published.hi,
+                    residual_cell.lc and published.lc, residual_cell.hc and published.hc)
+                possible_payment = inverse_op(total_cell, product_id, 'mul', count, True)
+                payment_domains[r['loan']] = payment_domains[r['loan']].intersect(possible_payment)
+            domain = published.intersect(candidate) if candidate is not None else None
+            span = Span(domain.lo, domain.hi, domain.lc, domain.hc) if domain is not None else None
+            extended = EXTENDED64.coordinates(span)
+            binary = BINARY64.coordinates(span)
+            counts['rows'] += 1
+            counts['resident_principal_possible'] += extended is not None
+            counts['stored_principal_possible'] += binary is not None
+            counts['unique_resident_principal'] += extended is not None and extended[0] == extended[1]
+            if extended is None and first is None:
+                first = dict(index=index, request=r, principal=answers['CUMPRINC'][index],
+                    interest=answers['CUMIPMT'][index], payment=answers['PMT'][r['loan']])
+            if product_model == 'stored_pc64' and final_model == 'stored_pc64':
+                recoveries.append(dict(index=index, loan=r['loan'], start=r['start'], end=r['end'],
+                    principal=answers['CUMPRINC'][index], interest=answers['CUMIPMT'][index],
+                    payment=answers['PMT'][r['loan']], extended_coordinates=extended,
+                    binary64_coordinates=binary,
+                    domain=None if domain is None else domain.json()))
+        private_payments = []
+        for loan, domain in payment_domains.items():
+            span = Span(domain.lo, domain.hi, domain.lc, domain.hc) if domain is not None else None
+            coordinates = EXTENDED64.coordinates(span)
+            private_payments.append(dict(loan=loan, extended_coordinates=coordinates,
+                binary64_coordinates=BINARY64.coordinates(span),
+                domain=None if domain is None else domain.json()))
+        profiles.append(dict(product_model=product_model, final_model=final_model,
+            counts=counts, first_contradiction=first,
+            common_private_payment_necessary_domains=private_payments,
+            loans_with_common_private_payment=sum(p['extended_coordinates'] is not None for p in private_payments)))
+    (destination/'recoveries.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in recoveries))
+    result = dict(complete=True, loans=len(questions['loans']), profiles=profiles,
+        inputs_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest()
+                      for p in (source/'questions.json', source/'answers.json')},
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        limits='Conditional on public PMT as the payment operand and the declared multiply/subtract words. '
+               'All open/tie endpoints are retained. A nonempty private-principal cell does not identify its producer, '
+               'the summation loop or the complete cumulative function, and no recovered operand is installed.')
+    (destination/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
+    print(json.dumps([(p['product_model'], p['final_model'], p['counts']) for p in profiles]))
+
+
+def sum_factor_constraints(source, powers, discount_parts, destination):
+    """Constrain one common factor around explicit sums of independently read powers.
+
+    Closed geometric differences are deliberately absent. Each complete program
+    uses the same sum word/order and final multiplication word for every range.
+    Private factors are constrained only, never installed or selected by scores.
+    """
+    from bessel import operation
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'checker'))
+    from exact import EXTENDED64, BINARY64, Span
+    source, powers, discount_parts, destination = map(Path, (source, powers, discount_parts, destination))
+    destination.mkdir(exist_ok=False)
+    questions=json.loads((source/'questions.json').read_text())
+    observed=json.loads((source/'answers.json').read_text())['CUMPRINC']
+    public=json.loads(powers.read_text())
+    core=json.loads(discount_parts.read_text())
+    pub={(r['rate'],r['exponent']):number('0x'+a['bits'])
+         for r,a in zip(public['rows'],public['reply']['rows'])}
+    core={r['loan']['id']:r for r in core}
+    def reduce(terms,model,order):
+        if order=='balanced'and len(terms)>1:
+            half=len(terms)//2
+            return operation('add',model,reduce(terms[:half],model,order),reduce(terms[half:],model,order))
+        result=Q(0)
+        for term in terms[::-1]if order=='reverse'else terms:result=operation('add',model,result,term)
+        return result
+    programs=[];survivors=[]
+    for family, sum_model, order, (final_id,final_model) in itertools.product(
+            ('growth_public','discount_public','reciprocal_public','discount_core'), MODELS,
+            ('forward','reverse','balanced'), enumerate(MODELS)):
+        states={};first=None;excluded=Counter();scoped=0
+        for index,(r,answer)in enumerate(zip(questions['ranges'],observed)):
+            loan=questions['loans'][r['loan']]
+            if loan['timing']==1 and r['start']==1:
+                excluded['separate_first_beginning_payment']+=1;continue
+            if family=='discount_core'and core[r['loan']].get('outside_observation_scope'):
+                excluded['outside_existing_discount_core_branch']+=1;continue
+            degrees=[i-1-loan['timing']for i in range(r['start'],r['end']+1)]
+            if family=='growth_public':terms=[Q(pub[loan['rate'],i])for i in degrees]
+            elif family=='discount_public':terms=[Q(pub[loan['rate'],i-loan['periods']])for i in degrees]
+            elif family=='reciprocal_public':
+                terms=[B64.rn(1/Q(pub[loan['rate'],loan['periods']-i]))for i in degrees]
+            else:terms=[Q(number(core[r['loan']]['discounts'][i]))for i in degrees]
+            total=reduce(terms,sum_model,order)
+            if total<=0:raise ValueError('positive sum premise failed')
+            p=Q(number('0x'+answer['bits']));target=Interval(p,p)
+            if final_model.startswith('resident'):target=B64.preimage(target)
+            required=inverse_op(target,final_id,'mul',total,True)
+            before=states.get(r['loan'])
+            if r['loan']not in states:states[r['loan']]=required
+            elif before is not None:states[r['loan']]=before.intersect(required)
+            scoped+=1
+            if states[r['loan']]is None and first is None:
+                first=dict(index=index,request=r,expected=answer,
+                    prior=None if before is None else before.json(),
+                    required=None if required is None else required.json())
+        feasible=[]
+        for loan,domain in states.items():
+            span=Span(domain.lo,domain.hi,domain.lc,domain.hc)if domain is not None else None
+            feasible.append(dict(loan=loan,extended=EXTENDED64.coordinates(span),binary64=BINARY64.coordinates(span),
+                domain=None if domain is None else domain.json()))
+        good=sum(r['extended']is not None for r in feasible)
+        identity=len(programs)
+        if good==len(states):survivors.append(identity)
+        programs.append(dict(id=identity,family=family,sum_model=sum_model,order=order,final_model=final_model,
+            rows_scoped=scoped,excluded=excluded,loans=len(states),loans_with_common_factor=good,
+            first_contradiction=first,necessary_factor_domains=feasible if good==len(states)else None))
+    result=dict(complete=True,original_rows=len(questions['ranges']),programs=programs,survivors=survivors,
+        inputs_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in (source/'questions.json',source/'answers.json',powers,discount_parts)},
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        limits='One arbitrary common PC64 factor per loan, explicit observed POWER/EXP terms and fixed summation programs. '
+               'Necessary factor cells neither identify a numerical factor producer nor prove a complete cumulative implementation. '
+               'First beginning-period payments and unsupported existing discount-core branches remain explicitly outside each scope, never passed.')
+    (destination/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps(dict(programs=len(programs),survivors=survivors)))
 
 
 def tagged(s):
@@ -554,7 +830,11 @@ to validate and no new Excel answer in this packet. Preserve the original R13/R1
 
 
 if __name__=='__main__':
-    if sys.argv[1]=='direct':direct_run(*sys.argv[2:])
+    if sys.argv[1]=='sum-factor-constraints':sum_factor_constraints(*sys.argv[2:])
+    elif sys.argv[1]=='paired-sum-inverse':paired_sum_inverse(*sys.argv[2:])
+    elif sys.argv[1]=='summation-analyze':summation_analyze(*sys.argv[2:])
+    elif sys.argv[1]=='summation-questions':summation_questions(*sys.argv[2:])
+    elif sys.argv[1]=='direct':direct_run(*sys.argv[2:])
     elif sys.argv[1]=='questions':questions(*sys.argv[2:])
     elif sys.argv[1]=='questions-r15':questions_r15(*sys.argv[2:])
     elif sys.argv[1]=='coupled':coupled(*sys.argv[2:])

@@ -65,6 +65,81 @@ fn root<F:Fpu>(f:impl Fn(f64)->Option<f64>,m:EvalModel)->Option<f64> {
     None
 }
 
+/// Finite Newton hypotheses for independently observed on-coupon zero-coupon bonds.
+/// Seeds, differences and stopping tolerances are written constants, never fitted.
+pub fn zero_coupon_newton<F:Fpu>(input:&str, output:&str) {
+    use crate::ported::bond_core_family::ResearchPrice;
+    let rows=crate::lines::<Value>(input);
+    let destination=Path::new(output);fs::create_dir(destination).unwrap();
+    let mut programs=Vec::new();
+    let mut derivatives=vec![(0,0.0)];
+    for method in 1..=3 {for step in [1e-6,1e-8,1e-4] {derivatives.push((method,step));}}
+    let mut survivors=Vec::new();let mut executions=0usize;
+    for seed in [0.1,0.05,1.0,0.0] {for staged in [true,false] {
+        for model in WIDE_MODELS {for &(method,step) in &derivatives {
+            for tolerance in [1e-8,1e-6,1e-10,1e-4] {
+                let id=programs.len();let mut first=None;let mut checked=0usize;
+                for row in &rows {
+                    assert_eq!(row["function"],"YIELD");
+                    let a:Vec<f64>=row["args"].as_array().unwrap().iter().map(|a|
+                        f64::from_bits(u64::from_str_radix(a.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+                    assert_eq!(a.len(),7);assert_eq!(a[2],0.0);
+                    let price=ResearchPrice::new(&a).unwrap();assert!(price.count()>1);
+                    let mut trace=Vec::new();
+                    let answer=(||->Option<f64>{
+                        if price.is_par(a[3]) {return Some(0.0);}
+                        let v=Val::f64;let mut x=seed;
+                        for iteration in 0..100 {
+                            let px=price.value(x,staged).ok()?;
+                            let residual=stored::<F>(sub::<F>(model,v(px),v(a[3])))?;
+                            if residual==0.0 {return Some(x);}
+                            let derivative=if method==0 {
+                                stored::<F>(neg(div::<F>(model,
+                                    mul::<F>(model,v(price.count()as f64),v(px)),
+                                    add::<F>(model,v(a[5]),v(x)))))?
+                            } else {
+                                let above=if method!=3 {
+                                    price.value(stored::<F>(add::<F>(model,v(x),v(step)))?,staged).ok()?
+                                }else{px};
+                                let below=if method!=1 {
+                                    price.value(stored::<F>(sub::<F>(model,v(x),v(step)))?,staged).ok()?
+                                }else{px};
+                                stored::<F>(div::<F>(model,
+                                    sub::<F>(model,v(above),v(below)),
+                                    v(if method==2 {2.0*step}else{step})))?
+                            };
+                            if derivative==0.0 {return None;}
+                            let next=stored::<F>(sub::<F>(model,v(x),div::<F>(model,v(residual),v(derivative))))?;
+                            trace.push(json!({"iteration":iteration,"x":format!("{:016x}",x.to_bits()),
+                                "price":format!("{:016x}",px.to_bits()),"residual":format!("{:016x}",residual.to_bits()),
+                                "derivative":format!("{:016x}",derivative.to_bits()),"next":format!("{:016x}",next.to_bits())}));
+                            if trace.len()>3 {trace.remove(0);}
+                            let difference=stored::<F>(sub::<F>(model,v(next),v(x)))?;
+                            if difference.abs()<tolerance {return Some(next);}
+                            x=next;
+                        }
+                        None
+                    })();
+                    let prediction=answer.map(|x|format!("0x{:016x}",x.to_bits())).unwrap_or_else(||"error:Num".into());
+                    checked+=1;executions+=1;
+                    if prediction!=row["expected"].as_str().unwrap() {
+                        first=Some(json!({"original":row,"prediction":prediction,"last_iterations":trace}));break;
+                    }
+                }
+                if first.is_none(){survivors.push(id);}
+                programs.push(json!({"id":id,"seed":seed,"staged_price":staged,"model":model,
+                    "derivative":method,"difference_step":step,"tolerance":tolerance,
+                    "checked_until_first_contradiction":checked,"first_contradiction":first}));
+            }
+        }}
+    }}
+    crate::json_write(destination.join("summary.json"),&json!({"complete":true,"rows":rows.len(),
+        "programs":programs,"survivors":survivors,"executions":executions,
+        "method_order":["analytic zero-coupon derivative","forward difference","central difference","backward difference"],
+        "limits":"Finite Newton programs only. Existing product date/price helpers are conditional leaves. Each named iterate and price result publishes binary64; expression operations use the stated coherent precision. Existing par shortcut retained. No fallback, derivative step, tolerance or seed fitted to counts; first contradiction refutes a complete hypothesis."}));
+    println!("{} programs; {} survivors; {} executions",programs.len(),survivors.len(),executions);
+}
+
 pub fn run<F:Fpu>(input:&str, output:&str) {
     use crate::ported::bond_core_family::ResearchPrice;
     use calc_func::locale::{CalcEnvironment,DateSystem};

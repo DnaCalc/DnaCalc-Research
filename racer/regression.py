@@ -578,8 +578,75 @@ def delivered_rank_constraints(delivery, destination):
     print(json.dumps(dict(selected_calls=len(rows),rank_observations=len(observations),consistent_intervals=sum(i['consistent']for i in intervals),intervals=len(intervals))))
 
 
+def service_questions(checkout, output, cache, mode='rank', offline=False):
+    """Controlled numeric regressions through the existing audited question service.
+
+    Predictor scales, row/column order and response do not fit any threshold.
+    Retained answers are observations, never a replacement evaluator.
+    """
+    import math
+    try:
+        from .fingerprint import load_service, CachedService, write
+    except ImportError:
+        from fingerprint import load_service, CachedService, write
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    output = Path(output)
+    output.mkdir(exist_ok=False)
+    cases = []
+    if mode == 'rank':
+        for constant, reverse, swap, scales, exponent in itertools.product(
+                (False, True), (False, True), (False, True),
+                ((0, 0), (-20, -20), (20, 20), (-10, 10), (10, -10)),
+                (None, -30, -26, -24, -22, -20, -18, -16, -14, -12, -10, -8, -4, 0)):
+            delta = 0. if exponent is None else 2.**exponent
+            xs = [[math.ldexp(x, scales[0]), math.ldexp(2*x+(delta if i==3 else 0.), scales[1])]
+                  for i, x in enumerate((1., 2., 5., 4.))]
+            y = [[v] for v in (1., 2., 4., 7.)]
+            if swap: xs = [r[::-1] for r in xs]
+            if reverse: xs, y = xs[::-1], y[::-1]
+            cases.append(dict(id=str(len(cases)), x=xs, y=y, constant=constant,
+                              reverse=reverse, swap=swap, scales=scales, delta_exponent=exponent))
+        selections = [(1, 1), (1, 2), (1, 3), (4, 2)]
+    elif mode == 'decomposition':
+        for n, scale, constant, reverse, response in itertools.product(
+                (3, 4, 5, 8), (-20, 0, 20), (False, True), (False, True), range(4)):
+            xs = [[math.ldexp(float(i+1), scale), math.ldexp(float((i*3+1)%5), scale)]
+                  for i in range(n)]
+            y = [[float(i == response)] for i in range(n)]
+            if reverse: xs, y = xs[::-1], y[::-1]
+            cases.append(dict(id=str(len(cases)), x=xs, y=y, constant=constant,
+                              reverse=reverse, scale=scale, response=response))
+        selections = [(r, c) for r in range(1, 6) for c in range(1, 4)]
+    else:
+        raise ValueError('unknown regression question mode')
+    arguments = [[client.number_array(c['y']), client.number_array(c['x']),
+                  client.boolean(c['constant']), client.boolean(True)] for c in cases]
+    write(output/'questions.json', dict(mode=mode, cases=cases, selections=selections,
+          source='Original controlled numeric inputs, Excel question-service outputs; no implementation source copied.'))
+    counts = Counter()
+    with (output/'observations.jsonl').open('x') as stream:
+        for function in ('LINEST', 'LOGEST'):
+            for selection in selections:
+                answers = service.ask_rows(function, arguments, chunk_size=500, result_index=selection)
+                for case, args, answer in zip(cases, arguments, answers):
+                    row = dict(function=function, case=case['id'], result_index=selection,
+                               args=args, answer=answer)
+                    stream.write(json.dumps(row, separators=(',', ':'))+'\n')
+                    counts[function+':'+answer['type']] += 1
+                stream.flush()
+                print(function, selection, len(answers), flush=True)
+    result = dict(complete=True, cases=len(cases), calls=sum(counts.values()), counts=counts,
+                  mode=mode, receipts=service.receipts, source_sha256=digest(Path(__file__)),
+                  limits='Controlled numeric array transport through CHOOSE; not a statement about range coercion. '
+                         'No rank rule, decomposition or numeric kernel is inferred from match counts.')
+    write(output/'summary.json', result)
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     import sys
+    if len(sys.argv)>1 and sys.argv[1]=='service':service_questions(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='delivered-rank':delivered_rank_constraints(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='inverse':inverse_run(*sys.argv[2:]);raise SystemExit(0)
     if len(sys.argv)>1 and sys.argv[1]=='factors':factor_run(*sys.argv[2:]);raise SystemExit(0)

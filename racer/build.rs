@@ -6,6 +6,7 @@ fn main() {
     println!("cargo:rerun-if-env-changed=DNA_RESEARCH_UNIT");
     println!("cargo:rustc-check-cfg=cfg(bessel_high_j_audit)");
     println!("cargo:rustc-check-cfg=cfg(bessel_high_groups_audit)");
+    println!("cargo:rustc-check-cfg=cfg(cumulative_discount_audit)");
     let unit_name = env::var("DNA_RESEARCH_UNIT").unwrap_or_else(|_| "pmt-r6-unit.json".into());
     let unit_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("..")
@@ -171,8 +172,29 @@ fn main() {
             "complex_family",
             "bessel",
         ] {
-            let path = source.parent().unwrap().join(format!("{module}.rs"));
+            let mut path = source.parent().unwrap().join(format!("{module}.rs"));
             println!("cargo:rerun-if-changed={}", path.display());
+            if module == "financial_time_value_family"
+                && unit["cumulative_discount_audit"].as_bool() == Some(true)
+            {
+                let mut body=fs::read_to_string(&path).unwrap();
+                body.push_str(r#"
+pub(crate) fn research_end_discount_parts(r:f64,n:f64,pv:f64)->Option<(f64,f64,Vec<f64>,Vec<f64>)> {
+    if n!=n.trunc() || !(1.0..=512.0).contains(&n) {return None;}
+    let (log,quotient)=end_payment_quotient(r,n,pv,0.0)?;
+    let mut discounts=Vec::new();let mut principals=Vec::new();
+    for period in 1..=n as usize {
+        let t=-((n-period as f64+1.0)*log);
+        discounts.push(crate::ported::excel_numeric::excel_exp(t));
+        principals.push(end_payment_parts(r,period as f64,n,0.0,log,quotient).1);
+    }
+    Some((log,quotient,discounts,principals))
+}
+"#);
+                path=output.join("financial-discount-observation.rs");
+                fs::write(&path,body).unwrap();
+                println!("cargo:rustc-cfg=cumulative_discount_audit");
+            }
             writeln!(bridge, "#[path = {:?}] pub mod {module};", path).unwrap();
         }
         if unit["bessel_rational_audit"].as_bool() == Some(true) {

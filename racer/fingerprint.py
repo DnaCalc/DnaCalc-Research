@@ -446,8 +446,10 @@ class CachedService:
         self.receipts = []
         self.refusals = []
 
-    def ask(self, function, rows):
+    def ask(self, function, rows, *, result_index=None):
         request = dict(function=function, rows=rows)
+        if result_index is not None:
+            request['result_index'] = list(result_index)
         identity = hashlib.sha256(json.dumps(request, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
         path = self.directory / (identity + '.json.gz')
         pending_path=self.directory/(identity+'.pending.json')
@@ -487,7 +489,8 @@ class CachedService:
                     raise CachedRefusal(doc['reply'])
                 raise FileNotFoundError('unanswered service request ' + identity)
             try:
-                reply = self.client.ask(function, rows)
+                reply = self.client.ask(function, rows, **(
+                    {'result_index': result_index} if result_index is not None else {}))
             except TimeoutError as error:
                 match=re.search(r'Excel question ([0-9a-f]{32}) timed out',str(error))
                 if match is None:raise
@@ -514,11 +517,12 @@ class CachedService:
                                   timestamp=reply['timestamp'], request_sha256=reply['request_sha256']))
         return reply
 
-    def ask_rows(self, function, rows, chunk_size=10000):
+    def ask_rows(self, function, rows, chunk_size=10000, *, result_index=None):
         """Keep each service request and receipt intact within its call limit."""
         if not 1<=chunk_size<=20000:raise ValueError('invalid scalar request chunk size')
         return [answer for start in range(0,len(rows),chunk_size)
-                for answer in self.ask(function,rows[start:start+chunk_size])['rows']]
+                for answer in self.ask(function,rows[start:start+chunk_size],
+                                       result_index=result_index)['rows']]
 
 
 def scan(checkout, output, cache, count=512, offline=False, only=None):
@@ -3595,6 +3599,70 @@ def weeknum_controls(checkout,output,cache,bank_trace,offline=False,repeat_count
     write(output,result);print(json.dumps(dict(counts=counts,unsupported_numeric_controls=len(unsupported))),flush=True);return result
 
 
+def yield_multi_coupon(checkout, output, cache, offline=False):
+    """On-coupon zero-coupon inversions and paired public PRICE neighborhoods."""
+    from datetime import date
+    import itertools
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    output = Path(output)
+    output.mkdir(exist_ok=False)
+    settlement = date(2024, 1, 15)
+    serial = lambda d: float((d-date(1899, 12, 30)).days)
+    cases = []
+    for count, frequency, redemption, ratio in itertools.product(
+            (2, 3, 4, 8, 16, 32), (1, 2, 4), (100., 128.), (.5, .75, 1., 1.25, 2.)):
+        months = count*12//frequency
+        index = settlement.year*12+settlement.month-1+months
+        maturity = date(index//12, index%12+1, settlement.day)
+        arguments = [serial(settlement), serial(maturity), 0., redemption*ratio,
+                     redemption, float(frequency), 0.]
+        cases.append(dict(id=str(len(cases)), count=count, frequency=frequency,
+                          redemption=redemption, price=redemption*ratio,
+                          arguments=[client.number(v) for v in arguments]))
+    write(output/'questions.json', cases)
+    yields = service.ask_rows('YIELD', [c['arguments'] for c in cases])
+    prices, mapping, untransportable = [], [], []
+    for index, (case, answer) in enumerate(zip(cases, yields)):
+        if answer['type'] != 'number': continue
+        y = value(answer['bits'])
+        for offset in range(-4, 5):
+            neighbor = y
+            for _ in range(abs(offset)):
+                neighbor = math.nextafter(neighbor, -math.inf if offset<0 else math.inf)
+            if neighbor != 0. and abs(neighbor) < sys.float_info.min:
+                untransportable.append(dict(case=index, offset=offset, yield_bits=bits(neighbor),
+                    reason='Subnormal neighbor is changed by the worksheet input transport; no reading requested.'))
+                continue
+            args = list(case['arguments'])
+            args[3] = client.number(neighbor)
+            prices.append(args)
+            mapping.append(dict(case=index, offset=offset, yield_bits=bits(neighbor)))
+    price_answers = service.ask_rows('PRICE', prices, chunk_size=2000)
+    powers = service.ask_rows('POWER', [[client.number(c['redemption']/c['price']),
+        client.number(1./c['count'])] for c in cases])
+    observations = dict(yields=yields, price_mapping=mapping, prices=price_answers, powers=powers,
+                        untransportable_neighbors=untransportable)
+    write(output/'answers.json', observations)
+    counts = Counter()
+    for c, y, p in zip(cases, yields, powers):
+        counts['yield_'+y['type']] += 1
+        if y['type'] == p['type'] == 'number':
+            analytic = c['frequency']*(value(p['bits'])-1.)
+            counts['public_power_composition_equal'] += bits(analytic) == y['bits']
+    for mapped, answer in zip(mapping, price_answers):
+        if mapped['offset'] == 0:
+            c = cases[mapped['case']]
+            counts['public_price_at_returned_yield_equal'] += answer.get('bits') == bits(c['price'])
+    result = dict(complete=True, cases=len(cases), calls=len(cases)*2+len(prices), counts=counts,
+        untransportable_neighbors=len(untransportable),
+        receipts=service.receipts, source_sha256=sha(Path(__file__)),
+        limits='Controlled on-coupon zero-coupon bonds; public PRICE can differ from a solver private leaf. '
+               'Paired PRICE and POWER calls are diagnostics, never substituted Excel answers or an identified solver.')
+    write(output/'summary.json', result)
+    print(json.dumps(dict(cases=len(cases), counts=counts)))
+
+
 def render(result, path):
     lines = ['# Numerical fingerprint map', '',
         'Regenerate from DnaCalc-Research, using retained service replies (or asking Excel for missing replies):', '',
@@ -3630,6 +3698,11 @@ def render(result, path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    multi_yield_parser = commands.add_parser('yield-multi-coupon')
+    multi_yield_parser.add_argument('checkout')
+    multi_yield_parser.add_argument('output')
+    multi_yield_parser.add_argument('--cache', required=True)
+    multi_yield_parser.add_argument('--offline', action='store_true')
     duration_parser=commands.add_parser('duration-zero-coupon')
     duration_parser.add_argument('checkout')
     duration_parser.add_argument('output')
@@ -3874,6 +3947,9 @@ if __name__ == '__main__':
     book_parser.add_argument('--rank-dependencies',action='store_true')
     book_parser.add_argument('--rank-edges')
     args = parser.parse_args()
+    if args.command == 'yield-multi-coupon':
+        yield_multi_coupon(args.checkout, args.output, args.cache, args.offline)
+        raise SystemExit
     if args.command=='weeknum-controls':
         weeknum_controls(args.checkout,args.output,args.cache,args.bank_trace,args.offline,args.repeat)
         raise SystemExit

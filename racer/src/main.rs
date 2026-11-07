@@ -723,6 +723,13 @@ fn main() {
         #[cfg(bond_solver_audit)]
         Some("yield-newton") => route_audit::yield_newton(&a[2], &a[3]),
         #[cfg(bond_solver_audit)]
+        Some("yield-zero-newton") => match a.get(4).map(String::as_str) {
+            Some("soft") => bond_solver::zero_coupon_newton::<Soft>(&a[2], &a[3]),
+            _ => bond_solver::zero_coupon_newton::<Hard>(&a[2], &a[3]),
+        },
+        #[cfg(cumulative_discount_audit)]
+        Some("cumulative-discount-parts") => cumulative::discount_parts(&a[2], &a[3]),
+        #[cfg(bond_solver_audit)]
         Some("yield-root-programs") => match a.get(4).map(String::as_str) {
             Some("soft") => bond_solver::run::<Soft>(&a[2], &a[3]),
             _ => bond_solver::run::<Hard>(&a[2], &a[3]),
