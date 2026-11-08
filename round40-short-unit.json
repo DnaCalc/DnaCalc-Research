@@ -1,0 +1,37 @@
+{
+  "id": "dc-h9u.1-r40-short",
+  "unit": "round40-short",
+  "application_revision": "e723810814a4e0121cf482479b71c4f2cc6ce602",
+  "role": "implementer",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "Excel questions, IEEE754, Microsoft ETS documentation, Wichura AS241 mathematical tables"
+    ],
+    "tier2": [
+      "Cleared MIT sources; CPython mathematical reference (PSF)"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "Two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)",
+  "bessel_high_groups_audit": false,
+  "bessel_high_j_audit": false,
+  "bessel_k_audit": false,
+  "bessel_rational_audit": true,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "cumulative_discount_audit": true,
+  "discrete_audit": true,
+  "gamma_exponent_audit": false,
+  "regression_audit": true,
+  "regression_householder_audit": false,
+  "regression_inverse_audit": true,
+  "regression_outer_audit": false,
+  "application_working_blobs": {
+    "crates/calc-func/src/catalogue/statistics/ets.rs": "4a9e8055eb4a0ef7365399b715ba6949cbc18562"
+  }
+}

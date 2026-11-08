@@ -183,27 +183,38 @@ def automatic_two_proof():
  for kind,pred,function,variants in specs:freeze(name+'-'+kind,dict(cases=cases,predictions=pred,extra_source=Path(__file__).read_text(),method='Unconditional exact alternating affine histories: period two and the same zero-innovation fit under automatic seasonality; fresh offsets, signs, exponents and trend/signal ratios.'))
  for kind,pred,function,variants in specs:finish(name+'-'+kind,cases,pred,function,variants)
 
+def detection_candidate(y,preprocess,norm,search,lag_offset=None,threshold=0.):
+ """Pure correlation candidate shared by retained and fresh detector maps.
+
+ lag_offset=None preserves R39's n//3 family; an integer tests floor((n-k)/2).
+ A threshold is supplied by a fixed structural hypothesis, never fitted here.
+ """
+ n=len(y);mean=sequential_total(y)/n;t=initial_trend(y)
+ x=[v-mean for v in y]if preprocess=='mean'else[v-(mean+(j-(n-1)/2)*t)for j,v in enumerate(y)]if preprocess=='linear'else[v-u for u,v in zip(y,y[1:])]
+ if preprocess=='difference':
+  mx=sequential_total(x)/len(x);x=[v-mx for v in x]
+ c=[1.];energy=sequential_total(v*v for v in x)
+ for lag in range(1,len(x)):
+  left=x[:-lag];right=x[lag:];num=sequential_total(a*b for a,b in zip(left,right))
+  if norm=='biased':den=energy
+  elif norm=='unbiased':den=energy*(len(x)-lag)/len(x)
+  elif norm=='cosine':den=math.sqrt(sequential_total(v*v for v in left)*sequential_total(v*v for v in right))
+  else:
+   ml=sequential_total(left)/len(left);mr=sequential_total(right)/len(right)
+   num=sequential_total((a-ml)*(b-mr)for a,b in zip(left,right));den=math.sqrt(sequential_total((v-ml)**2 for v in left)*sequential_total((v-mr)**2 for v in right))
+  c.append(num/den if den else 0.)
+ bound=n//3 if lag_offset is None else(n-lag_offset)//2
+ peaks=[k for k in range(2,min(bound,len(c)-2)+1)if c[k]>threshold and c[k]>c[k-1]and c[k]>=c[k+1]]
+ pred=(peaks[0]if search=='first'else max(peaks,key=lambda k:c[k]))if peaks else 0
+ return pred,c
+
+
 def detection_analysis():
  d=read(OUT/'step8-detection-answers.json');actual=[value(a['bits'])if a['type']=='number'else None for a in d['answers']];programs=[]
  for preprocess,norm,search in itertools.product(['mean','linear','difference'],['biased','unbiased','cosine','pearson'],['first','global']):
   predictions=[];bad=[]
   for i,z in enumerate(d['cases']):
-   y=z['y'];n=len(y);mean=sequential_total(y)/n;t=initial_trend(y)
-   x=[v-mean for v in y]if preprocess=='mean'else[v-(mean+(j-(n-1)/2)*t)for j,v in enumerate(y)]if preprocess=='linear'else[v-u for u,v in zip(y,y[1:])]
-   if preprocess=='difference':
-    mx=sequential_total(x)/len(x);x=[v-mx for v in x]
-   c=[1.];energy=sequential_total(v*v for v in x)
-   for lag in range(1,len(x)):
-    left=x[:-lag];right=x[lag:];num=sequential_total(a*b for a,b in zip(left,right))
-    if norm=='biased':den=energy
-    elif norm=='unbiased':den=energy*(len(x)-lag)/len(x)
-    elif norm=='cosine':den=math.sqrt(sequential_total(v*v for v in left)*sequential_total(v*v for v in right))
-    else:
-     ml=sequential_total(left)/len(left);mr=sequential_total(right)/len(right)
-     num=sequential_total((a-ml)*(b-mr)for a,b in zip(left,right));den=math.sqrt(sequential_total((v-ml)**2 for v in left)*sequential_total((v-mr)**2 for v in right))
-    c.append(num/den if den else 0.)
-   peaks=[k for k in range(2,min(n//3,len(c)-2)+1)if c[k]>0 and c[k]>c[k-1]and c[k]>=c[k+1]]
-   pred=(peaks[0]if search=='first'else max(peaks,key=lambda k:c[k]))if peaks else 0
+   pred,c=detection_candidate(z['y'],preprocess,norm,search)
    predictions.append(pred)
    if pred!=actual[i]:bad.append(dict(case=i,kind=z['kind'],design=z['design'],predicted=pred,actual=actual[i],correlations=c))
   programs.append(dict(preprocessing=preprocess,normalization=norm,search=search,predictions=predictions,refutations=bad,all_exact=not bad))

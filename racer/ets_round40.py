@@ -6,6 +6,7 @@ tables. No restricted implementation sources. R39 files remain immutable.
 import argparse
 from collections import Counter
 import gzip
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -14,12 +15,13 @@ import time
 
 from . import ets
 from .ets import bits, value, read, grouped, sequential_total, initial_trend
-from .fingerprint import CachedService, load_service, sha
+from .fingerprint import AuditedClientMixin, CachedService, load_service, sha
 from .question_designer import Census
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = Path('/home/ubuntu/codex-runs/round40')
 RETAINED = ROOT / 'evidence/round39/retained'
+_LOADED_SOURCE = Path(__file__).read_text()
 
 
 def save(name, document):
@@ -30,15 +32,15 @@ def save(name, document):
 
 
 def frozen(name, document):
-    document['producer_source'] = Path(__file__).read_text()
-    document['source_sha256'] = sha(__file__)
+    document['producer_source'] = _LOADED_SOURCE
+    document['source_sha256'] = hashlib.sha256(_LOADED_SOURCE.encode()).hexdigest()
     return save(name + '-frozen', document)
 
 
 def service(offline=False):
     client, _ = load_service(ets.CHECKOUT)
 
-    class TimedClient(client.Client):
+    class TimedClient(AuditedClientMixin,client.Client):
         def ask(self, function, rows, **kwargs):
             start = time.monotonic()
             record = dict(function=function, calls=len(rows), result_index=kwargs.get('result_index'))
@@ -97,23 +99,25 @@ def reanalysis():
     census = Census()
     # Reproduce the claim on exactly the original distinct reported parameter
     # observations, retaining post-fit changes rather than treating them as starts.
-    for path in sorted(RETAINED.glob('step*-stat.json.gz')):
+    per_output=set()
+    for path in sorted(RETAINED.glob('step*.json.gz')):
         document = read(path)
-        if not all(k in document for k in ['cases', 'labels', 'answers']): continue
+        if not isinstance(document,dict)or document.get('function')!='FORECAST.ETS.STAT'or not all(k in document for k in ['cases', 'labels', 'answers']): continue
         for i, row in enumerate(grouped(document)):
             for k in [1, 2, 3]:
                 a = row.get(str(k))
-                if a and a.get('type') == 'number': census.observe([path.name, i, k], a['bits'])
+                if a and a.get('type') == 'number':
+                    census.observe([path.name, i, k], a['bits']);per_output.add((k,a['bits']))
     report = census.report()
     decimals = []
     for raw in report['counts']:
         x = value(json.loads(raw))
         decimals.append(dict(bits=bits(x), value=x, six_significant=float(format(x, '.6g'))==x,
                              nonseasonal_gamma=x==2.**-52))
-    save('step1-reanalysis', dict(rounded_grid=rounded, representation_changes=representation,
+    save('step1-full-reanalysis', dict(rounded_grid=rounded, representation_changes=representation,
          original=retained('step7-gamma-generalization-refutations')['matched'],
          rounded_matched=sum(row['matched'] for row in results), total=len(results), rows=results,
-         census=report, parameters=decimals,
+         census=report, per_output_patterns=sorted(per_output), parameters=decimals,
          limits='Six significant decimal digits describe the reported values, not an identified rounding instruction. The fixed 25-point structure still has counterexamples.'))
     print('rounded family', sum(row['matched'] for row in results), '/', len(results), 'representation changes', len(representation), flush=True)
 
@@ -217,19 +221,31 @@ def confidence_reanalysis():
     print('conditional confidence',dict(counts),flush=True)
 
 
-def ask_series(c, s, cases, function, variants, chunk_size=400):
+def ask_series(c, s, cases, function, variants, chunk_size=400, reuse_batches=False):
     """Existing ETS question construction with a throughput-sized batch."""
     rows=[];labels=[]
     for i,z in enumerate(cases):
-        y=c.number_array([[v]for v in z['y']]);t=c.number_array([[float(j+1)]for j in range(len(z['y']))]);season=c.number(float(z.get('season',0)))
-        for v in variants:
+        timeline=z.get('timeline',[float(j+1)for j in range(len(z['y']))])
+        y=c.number_array([[v]for v in z['y']]);t=c.number_array([[v]for v in timeline]);season=c.number(float(z.get('season',0)))
+        for v in variants(z)if callable(variants)else variants:
             if function=='FORECAST.ETS.STAT':args=[y,t,c.number(float(v)),season]
-            elif function=='FORECAST.ETS':args=[c.number(len(z['y'])+v),y,t,season]
+            elif function=='FORECAST.ETS':args=[c.number(z.get('targets',{}).get(str(v),timeline[-1]+v)),y,t,season]
             elif function=='FORECAST.ETS.CONFINT':
-                h,conf=v;args=[c.number(len(z['y'])+h),y,t,c.number(conf),season]
+                h,conf=v;args=[c.number(z.get('targets',{}).get(str(h),timeline[-1]+h)),y,t,c.number(conf),season]
             else:args=[y,t]
             rows.append(args);labels.append([i,v])
-    answers=s.ask_rows(function,rows,chunk_size=chunk_size)
+    if reuse_batches:
+        import hashlib
+        answers=[]
+        for start in range(0,len(rows),chunk_size):
+            batch=rows[start:start+chunk_size]
+            # Same canonical request identity as CachedService. Keep every
+            # successful original batch; only unreturned work is made smaller.
+            request=dict(function=function,rows=batch)
+            identity=hashlib.sha256(json.dumps(request,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            cached=(s.directory/(identity+'.json.gz')).exists()
+            answers.extend(s.ask_rows(function,batch,chunk_size=chunk_size if cached else 250))
+    else:answers=s.ask_rows(function,rows,chunk_size=chunk_size)
     return dict(cases=cases,function=function,labels=labels,answers=answers,receipts=s.receipts)
 
 
@@ -458,10 +474,447 @@ def short_proof():
     print('short fresh proof',len(cases)*11,'failures',len(failures),failures[:8],flush=True)
 
 
+def parameter_census(resume=False):
+    from .ets_optimizer import parameters
+    rng=random.Random(400401);cases=[];predictions=[];raw=[]
+    for i in range(10000):
+        family=i%5;n=rng.randrange(8,33);exponent=rng.randrange(-200,201)
+        if family==0:y=[rng.randrange(-4096,4097)/32 for _ in range(n)]
+        elif family==1:
+            drift=rng.randrange(-256,257)/16;curve=rng.randrange(-16,17)/128
+            y=[drift*j+curve*j*j+rng.randrange(-8,9)/64 for j in range(n)]
+        elif family==2:
+            at=rng.randrange(n);size=rng.randrange(-256,257)/8
+            y=[128.*j+(size if j>=at else 0.)for j in range(n)]
+        elif family==3:
+            period=rng.randrange(2,9);pattern=[rng.randrange(-128,129)/16 for _ in range(period)]
+            drift=rng.randrange(-16,17)/16
+            y=[pattern[j%period]+drift*j+rng.randrange(-4,5)/64 for j in range(n)]
+        else:
+            center=int(bits(rng.choice([1., math.pi,1/3])),16)
+            y=[value(f'{center+rng.randrange(-32,33):016x}')for _ in range(n)]
+        y=[math.ldexp(v,exponent)for v in y]
+        case=dict(y=y,season=0,family=family)
+        a,b=parameters(y);_,_,_,_,reset=fit_with_trend(y,a,b,initial_trend(y))
+        predictions.append([bits(a),bits(.001 if reset else b),bits(2.**-52)])
+        raw.append(dict(alpha=a,beta=b,reset=reset))
+        cases.append(case)
+    document=dict(cases=cases,predictions=predictions,raw_parameters=raw,
+           families=['noise','curvature','step','periodic','adjacent-lattice'],
+           method='Seed and all existing finite-search predictions frozen before asking. Census maps observed triples; no count selects a new point.',
+           helper_source=(ROOT/'racer/ets_optimizer.py').read_text())
+    if resume:
+        original=read(OUT/'step4-census-frozen.json')
+        if original['cases']!=cases or original['predictions']!=predictions:raise ValueError('census continuation changed questions or predictions')
+        save('step4-census-continuation',dict(frozen_sha256=sha(OUT/'step4-census-frozen.json'),
+             reason='One original 1000-selection service job exceeded 75 seconds. Successful batches are reused; remaining frozen selections use batches of 250.',producer_source=_LOADED_SOURCE))
+    else:frozen('step4-census',document)
+    c,s=service();document=ask_series(c,s,cases,'FORECAST.ETS.STAT',[1,2,3],chunk_size=1000,reuse_batches=resume)
+    save('step4-census-answers',document)
+    census=Census();failures=[];by_family=Counter();blocks=[]
+    for i,(z,stat,pred)in enumerate(zip(cases,grouped(document),predictions)):
+        actual=[stat[str(k)].get('bits',stat[str(k)])for k in[1,2,3]]
+        census.observe(i,actual)
+        if pred!=actual:
+            failures.append(dict(case=i,family=z['family'],prediction=pred,answer=actual,raw=raw[i]))
+            by_family[z['family']]+=1
+        if (i+1)%500==0:blocks.append(dict(observations=i+1,distinct=len(census.counts)))
+    save('step4-census-result',dict(census=census.report(),blocks=blocks,failures=failures,
+         failures_by_family=dict(by_family),histories=len(cases),selections=len(cases)*3,
+         limits='Near-constant initial-state rounding remains unresolved. A finite output map is not proof of global saturation or of a search algorithm. All parameter losses remain failures.'))
+    print('parameter census',len(cases),'distinct',len(census.counts),'failed histories',len(failures),'families',dict(by_family),'blocks',blocks,flush=True)
+
+
+def final_add_proof():
+    import numpy as np
+    from fractions import Fraction as Q
+    from checker.exact import EXTENDED64 as E,BINARY64 as B
+    from .ets_optimizer import parameters
+    from .question_designer import choose_split
+    rng=random.Random(400361);cases=[];attempts=0
+    while len(cases)<24:
+        attempts+=1
+        if attempts>200000:raise ValueError('final-add search exhausted')
+        n=3 if attempts%2 else 7
+        y=[rng.randrange(-65536,65537)/32 for _ in range(n)]
+        if not exact_short(y):continue
+        a,b=parameters(padded_history(y));t=initial_trend(padded_history(y))
+        l,tr,se,e,reset=fit_with_trend(y,a,b,t)
+        if reset:l=y[-1]-se[(n-1)%2];tr=t
+        center=(se[0]+se[1])/2;l+=center;se=[v-center for v in se]
+        for h in [0.,1.,2.,5.,17.]:
+            subtotal=l+h*tr;season=se[(n-1+int(h))%2]
+            strict=bits(subtotal+season);pc64=bits(float(np.longdouble(subtotal)+np.longdouble(season)))
+            if strict==pc64:continue
+            certified=bits(float(B.round(E.round(Q(subtotal)+Q(season)))))
+            if certified!=pc64:raise ValueError('native and rational addition disagree')
+            cases.append(dict(y=y,season=0,horizon=h,strict=strict,pc64=pc64,
+                              subtotal=bits(subtotal),seasonal_value=bits(season),alpha=a,beta=b))
+            break
+    selection=choose_split({name:[z[name]for z in cases]for name in ['strict','pc64']})
+    frozen('step3-final-add',dict(cases=cases,predictions={name:[z[name]for z in cases]for name in ['strict','pc64']},
+           first_split=selection,attempts=attempts,
+           method='Fixed final seasonal addition. Mine its binary64/PC64 rounding-midpoint disagreements; independently certify every proposed answer with exact rationals. Existing parameter search is frozen.'))
+    c,s=service();rows=[]
+    for z in cases:
+        rows.append([c.number(len(z['y'])+z['horizon']),c.number_array([[v]for v in z['y']]),c.number_array([[float(j+1)]for j in range(len(z['y']))]),c.number(0.)])
+    answers=s.ask_rows('FORECAST.ETS',rows,chunk_size=1000)
+    save('step3-final-add-proof',dict(cases=cases,answers=answers,receipts=s.receipts,
+         counts={name:sum(z[name]==a.get('bits')for z,a in zip(cases,answers))for name in ['strict','pc64']}))
+    print('fresh final-add', {name:sum(z[name]==a.get('bits')for z,a in zip(cases,answers))for name in ['strict','pc64']},flush=True)
+
+
+def final_product_proof():
+    import numpy as np
+    from fractions import Fraction as Q
+    from checker.exact import EXTENDED64 as E,BINARY64 as B
+    from .ets_optimizer import parameters
+    from .ets_confidence import variance
+    from .question_designer import product_residue
+    z=value(retained('step6-quantile-coupling-normal')['answers'][5]['bits'])
+    rng=random.Random(400371);cases=[];attempts=0
+    while len(cases)<24:
+        attempts+=1
+        if attempts>200000:raise ValueError('confidence-product search exhausted')
+        y=[rng.randrange(-65536,65537)/32 for _ in range(3)]
+        a,b=parameters(padded_history(y));t=initial_trend(padded_history(y))
+        _,_,_,errors,reset=fit_with_trend(y,a,b,t);pb=.001 if reset else b
+        sigma=sequential_total(e*e for e in errors)/len(y)
+        for h in [1.,2.,5.,17.]:
+            root=math.sqrt(sigma*variance(a,pb,h,39))
+            product,residue=product_residue(z,root)
+            strict=bits(product);pc64=bits(float(np.longdouble(z)*np.longdouble(root)))
+            if strict==pc64:continue
+            if bits(float(B.round(E.round(Q(z)*Q(root)))))!=pc64:raise ValueError('product replay differs')
+            cases.append(dict(y=y,season=0,horizon=h,strict=strict,pc64=pc64,z=bits(z),root=bits(root),residue=str(residue)))
+            break
+    frozen('step3-final-product',dict(cases=cases,predictions={name:[z[name]for z in cases]for name in['strict','pc64']},
+           attempts=attempts,method='Fixed final confidence product; exact rational midpoint residues select fresh distinguishing histories. Independent retained normal quantile at p=.975.'))
+    c,s=service();rows=[]
+    for cs in cases:
+        rows.append([c.number(3+cs['horizon']),c.number_array([[v]for v in cs['y']]),c.number_array([[1.],[2.],[3.]]),c.number(.95),c.number(0.)])
+    answers=s.ask_rows('FORECAST.ETS.CONFINT',rows,chunk_size=1000)
+    save('step3-final-product-proof',dict(cases=cases,answers=answers,receipts=s.receipts,
+         counts={name:sum(cs[name]==a.get('bits')for cs,a in zip(cases,answers))for name in['strict','pc64']}))
+    print('fresh confidence product',{name:sum(cs[name]==a.get('bits')for cs,a in zip(cases,answers))for name in['strict','pc64']},flush=True)
+
+
+def search_structures():
+    """Refute fixed familiar search programs; never append observed points."""
+    from .ets_optimizer import objective
+    from .question_designer import choose_split
+    document=read(OUT/'step4-census-answers.json');stat=grouped(document)
+    ids=[i for i,z in enumerate(document['cases'])if z['family']<4][:80]
+    # Complete raw axes from the owner-supplied structural hypothesis. All
+    # feasible Cartesian pairs are scored, rather than extending the sparse
+    # observed list by whichever extra point happened to be missing.
+    axes=[0.,1/12,.1,.125,1/6,.25,1/3,.5,2/3,.75,5/6,.9,1.]
+    pool=sorted(set((float(format(min(.998,max(.002,a)),'.6g')),
+                     float(format(min(max(.001,b),min(.998,max(.002,a))-.001),'.6g')))
+                    for a in axes for b in axes))
+    grid_failures=[]
+    for i in ids:
+        y=document['cases'][i]['y'];a,b=min(pool,key=lambda pair:objective(y,*pair))
+        _,_,_,_,reset=fit_with_trend(y,a,b,initial_trend(y));pb=.001 if reset else b
+        actual=[stat[i][str(k)]['bits']for k in[1,2]]
+        if [bits(a),bits(pb)]!=actual:grid_failures.append(dict(case=i,predicted=[a,pb],answer=actual))
+
+    def project(v):
+        a=min(.998,max(.002,v[0]));b=min(a-.001,max(.001,v[1]));g=min(1-a-.001,max(.001,v[2]))
+        return[a,b,g]
+    def nm(y,step,iterations,stored):
+        # Nonseasonal gamma is the independently measured epsilon. Keeping
+        # three coordinates tests the centroid-divide-by-three hypothesis.
+        def evaluate(v):return objective(y,*project(v)[:2])
+        def move(v):return project(v)if stored else list(v)
+        start=[.9,.001,.001]
+        points=[start]+[[v+(step if j==k else 0.)for j,v in enumerate(start)]for k in range(3)]
+        points=[move(v)for v in points]
+        scored=[(evaluate(v),v)for v in points]
+        for _ in range(iterations):
+            scored.sort(key=lambda p:p[0]);worst=scored[-1][1]
+            center=[sum(p[1][j]for p in scored[:-1])/3 for j in range(3)]
+            reflected=move([2*c-w for c,w in zip(center,worst)]);fr=evaluate(reflected)
+            if fr<scored[0][0]:
+                expanded=move([c+2*(r-c)for c,r in zip(center,reflected)]);fe=evaluate(expanded)
+                scored[-1]=(fe,expanded)if fe<fr else(fr,reflected)
+            elif fr<scored[-2][0]:scored[-1]=(fr,reflected)
+            else:
+                target=reflected if fr<scored[-1][0]else worst
+                contracted=move([(c+t)/2 for c,t in zip(center,target)]);fc=evaluate(contracted)
+                if fc<min(fr,scored[-1][0]):scored[-1]=(fc,contracted)
+                else:
+                    best=scored[0][1]
+                    scored=[scored[0]]+[(evaluate(v),v)for v in[move([(a+b)/2 for a,b in zip(best,p)])for _,p in scored[1:]]]
+        a,b,_=project(min(scored,key=lambda p:p[0])[1]);return float(format(a,'.6g')),float(format(b,'.6g'))
+    programs=[]
+    for step in [.1,.5,1.]:
+        for stored in[False,True]:
+            for iterations in[24,64]:
+                failures=[]
+                for i in ids[:24]:
+                    y=document['cases'][i]['y'];scale=math.ldexp(1.,math.frexp(max(abs(v)for v in y))[1]);normal=[v/scale for v in y]
+                    a,b=nm(normal,step,iterations,stored)
+                    _,_,_,_,reset=fit_with_trend(y,a,b,initial_trend(y));pb=.001 if reset else b
+                    actual=[stat[i][str(k)]['bits']for k in[1,2]]
+                    if [bits(a),bits(pb)]!=actual:failures.append(dict(case=i,predicted=[a,pb],answer=actual))
+                programs.append(dict(step=step,stored_projection=stored,iterations=iterations,failures=failures))
+    save('step4-search-structures',dict(cartesian_axes=axes,cartesian_pairs=pool,
+         cartesian_cases=ids,cartesian_failures=grid_failures,simplex_programs=programs,
+         limits='These are finite program refutations, not a proof against every Nelder-Mead seed or termination rule. The sparse original family is not expanded; unidentified search behavior remains open.'))
+    print('Cartesian grid refutes',len(grid_failures),'/',len(ids),'simplex refutations',[len(p['failures'])for p in programs],flush=True)
+
+
+def reset_boundaries():
+    """Candidate-predicted crossings, then balanced frozen boundary questions."""
+    import itertools
+    import numpy as np
+    from .ets_optimizer import parameters
+    from .question_designer import Boundary,vector_path,choose_split
+    design=read(OUT/'step4-census-frozen.json')['cases']
+    bases=[]
+    for n in[8,12,32]:
+        for z in design:
+            if len(z['y'])==n and z['family']==0 and parameters(z['y'])[0]==.002:
+                exponent=math.frexp(max(abs(v)for v in z['y']))[1]
+                bases.append([math.ldexp(v,-exponent)for v in z['y']]);break
+    bases.append([-2.,8.,-13.,10.,-14.,12.,-17.,-11.,-29.,27.,30.,27.,-29.,-11.,-17.,12.,-14.,10.,-13.,8.,-2.])
+    bases += [[10.+j*j/16 for j in range(n)]for n in[8,12]]
+    profiles=list(itertools.product(['current','states','stat','full','transitions'],['population','sample'],['window','count']))
+    def predicate(y,a,b,profile,center=False):
+        mode,denom,multiplier=profile;n=len(y);initial=initial_trend(y);l=y[0];t=initial;se=[0.,0.];trends=[initial]
+        for j,v in enumerate(y[1:],1):
+            q=j%2;e=v-((l+t)+se[q]);l+=t+a*e;t+=b*e;se[q]+=2.**-52*e;trends.append(t)
+        w=n if n<=10 else(n+1)//2
+        if mode=='current':vs=trends[-(w-1):]
+        elif mode=='states':vs=trends[-w:]
+        elif mode=='stat':vs=trends[-(n if n<=10 else min(int(.4*n),10)):]
+        elif mode=='full':vs=trends
+        else:vs=trends[1:]
+        count=len(vs);mean=sequential_total(vs)/count
+        variance=sequential_total((v-mean)**2 for v in vs)/(count if denom=='population'else count-1)
+        factor=w/(w-1)if multiplier=='window'else(count+1)/count
+        return -mean if center else abs(mean)<math.sqrt(variance)*factor
+    cases=[];decision_predictions={str(p):[]for p in profiles};traces=[]
+    last=1<<52
+    for base_id,base in enumerate(bases):
+        a,b=parameters(base);n=len(base)
+        span=max(1.,2*max(abs(v)for v in base)/n)
+        left=[v-span*j for j,v in enumerate(base)];right=[v+span*j for j,v in enumerate(base)]
+        def path(index):return vector_path(left,right,index,last)
+        indices={0,last,last//2}
+        for profile in profiles:
+            # Locate both candidate crossings using a bounded offline scan;
+            # then bisect each opposite-decision path to adjacent indices.
+            inside=round((predicate(base,a,b,profile,True)/span+1)*last/2)
+            grid=sorted(set([j*last//64 for j in range(65)]+[max(0,min(last,inside))]))
+            flags=[predicate(path(j),a,b,profile)for j in grid]
+            for lo,hi,lv,hv in zip(grid,grid[1:],flags,flags[1:]):
+                if lv==hv:continue
+                edge=Boundary(lo,hi,lv,hv)
+                while (mid:=edge.question())is not None:edge.observe(mid,predicate(path(mid),a,b,profile))
+                indices.update([edge.low,edge.high])
+                traces.append(dict(base=base_id,profile=profile,low=edge.low,high=edge.high))
+        ordered=sorted(indices);pool=sorted(set(ordered+[(a+b)//2 for a,b in zip(ordered,ordered[1:])]))
+        predicted={str(p):[predicate(path(j),a,b,p)for j in pool]for p in profiles}
+        groups=[list(predicted)];selected=set()
+        for _ in range(16):
+            options=[(len(group),group,choose_split(predicted,group))for group in groups]
+            options=[x for x in options if x[2]is not None]
+            if not options:break
+            _,group,choice=max(options,key=lambda x:x[0]);index=choice['index'];selected.add(index)
+            groups.remove(group)
+            for flag in[False,True]:
+                bucket=[name for name in group if predicted[name][index]==flag]
+                if bucket:groups.append(bucket)
+        for index in sorted(selected):
+            j=pool[index];y=path(j)
+            case=dict(y=y,season=0,base=base_id,path_index=j,raw_alpha=a,raw_beta=b)
+            cases.append(case)
+            for p in profiles:decision_predictions[str(p)].append(predicted[str(p)][index])
+    frozen('step5-reset-boundaries',dict(cases=cases,predictions=decision_predictions,profiles=profiles,
+           candidate_brackets=traces,method='Offline path bisection to adjacent dyadic indices; choose questions that split candidate decisions. No Excel answer chooses a window or coefficient.'))
+    c,s=service();stats=ask_series(c,s,cases,'FORECAST.ETS.STAT',[1,2],chunk_size=250)
+    forecasts=ask_series(c,s,cases,'FORECAST.ETS',[0.,1.],chunk_size=250)
+    save('step5-reset-stat',stats);save('step5-reset-forecast',forecasts)
+    decisions=[];unknown=[];changed=[]
+    for i,(z,st,fo)in enumerate(zip(cases,grouped(stats),grouped(forecasts))):
+        y=z['y'];a,b=z['raw_alpha'],z['raw_beta']
+        if st['1']['bits']!=bits(a):changed.append(i);decisions.append(None);continue
+        l,t,se,e,_=fit_with_trend(y,a,b,initial_trend(y));center=(se[0]+se[1])/2
+        seasons=[v-center for v in se];states=[(l+center,t),(y[-1]-se[(len(y)-1)%2]+center,initial_trend(y))]
+        choices=[]
+        for decision,(level,trend)in enumerate(states):
+            pred=[bits(float(np.longdouble(level+h*trend)+np.longdouble(seasons[(len(y)-1+int(h))%2])))for h in[0.,1.]]
+            if pred==[fo[str(h)]['bits']for h in[0.,1.]]:choices.append(bool(decision))
+        if len(choices)==1:decisions.append(choices[0])
+        else:decisions.append(None);unknown.append(dict(case=i,choices=choices))
+    survivors=[name for name,values in decision_predictions.items()if all(actual is None or pred==actual for pred,actual in zip(values,decisions))]
+    save('step5-reset-result',dict(histories=len(cases),decisions=decisions,survivors=survivors,
+         changed_search=changed,unidentified_state_arithmetic=unknown,
+         limits='Candidate reset decisions are conditioned on the frozen raw search parameters and recurrence. Unknown state readbacks and changed search premises remain failures, not ignored passes.'))
+    print('reset boundaries',len(cases),'survivors',survivors,'unknown',len(unknown),'changed search',len(changed),flush=True)
+
+
+def seasonal_initialization(partial=False):
+    from .ets_seasonal import moving_initial,fit
+    import itertools
+    import numpy as np
+    rng=random.Random(400901 if partial else 400601);cases=[]
+    name='step9-partial-cycles'if partial else'step6-seasonal-initialization'
+    for p in range(2,9):
+        lengths=sorted(set([2*p+1,2*p+2,3*p-1]if partial else[3*p,3*p+1,4*p]))
+        pattern=[p*rng.randrange(-16,17)/4 for _ in range(p)]
+        for n in lengths:
+            for at in[-1,0,n//2,n-1]:
+                y=[128.*j+pattern[j%p]for j in range(n)]
+                if at>=0:y[at]=math.nextafter(y[at],math.inf)if at==n//2 else y[at]+1/16
+                cases.append(dict(y=y,season=p,at=at,horizons=[float(h)for h in range(2*p+1)]))
+    frozen(name+'-design',dict(cases=cases,predictions=None,
+           method='Positive dyadic trend, distinct periodic phases, impulses and one-bit observation steps; census first, no optimizing parameter injected into the application.'))
+    c,s=service();parameters=ask_series(c,s,cases,'FORECAST.ETS.STAT',[1,2,3],chunk_size=200)
+    save(name+'-parameters',parameters);st=grouped(parameters)
+    programs=list(itertools.product(['original','pad3p','pad3p1'],['direct','subtract_add','add_difference'],['centered','raw']))
+    predicted={};initials={}
+    for extension,order,adjustment in programs:
+        key=str((extension,order,adjustment));out=[];starts=[]
+        for cs,ss in zip(cases,st):
+            y=cs['y'];p=cs['season'];init_y=y
+            if extension!='original':
+                minimum=3*p+int(extension=='pad3p1');trend=initial_trend(y)
+                init_y=y+[y[j%p]+(j-j%p)*trend for j in range(len(y),minimum)]
+            if len(init_y)<3*p:
+                starts.append(None);out.extend([None]*len(cs['horizons']));continue
+            init=moving_initial(init_y,p,order,'centered'if adjustment=='centered'else'raw')
+            a,b,g=[value(ss[str(k)]['bits'])for k in[1,2,3]]
+            l,t,se,errors,pr=fit(y,p,a,b,g,init)
+            out.extend(bits(float(np.longdouble(l+h*t)+np.longdouble(se[(len(y)-1+int(h))%p])))for h in cs['horizons'])
+            starts.append(init)
+        predicted[key]=out;initials[key]=starts
+    frozen(name,dict(cases=cases,predictions=predicted,parameters=parameters,initial_states=initials,
+           helper_source=(ROOT/'racer/ets_seasonal.py').read_text(),
+           limits='Conditional on reported STAT leaves and the existing recursion. Positive drift separates ordinary trend reset. Original and two structurally motivated phase extensions are fixed before forecast answers.'))
+    forecasts=ask_series(c,s,cases,'FORECAST.ETS',lambda z:z['horizons'],chunk_size=200)
+    save(name+'-answers',forecasts);actual=[a.get('bits')for a in forecasts['answers']];results={}
+    for key,pred in predicted.items():
+        failures=[dict(selection=i,prediction=p,answer=forecasts['answers'][i],case=forecasts['labels'][i][0])for i,p in enumerate(pred)if p!=actual[i]]
+        results[key]=dict(matched=len(actual)-len(failures),failures=len(failures),first=failures[:12],by_period=dict(Counter(cases[z['case']]['season']for z in failures)))
+    census=Census()
+    for i,ss in enumerate(st):census.observe(i,[ss[str(k)].get('bits')for k in[1,2,3]])
+    save(name+'-result',dict(selections=len(actual),programs=results,parameter_census=census.report(),
+         limits='Every unavailable initializer and every mismatch fails. No seasonal search or initial-state body is installed from conditional leaves.'))
+    print(name,len(actual),{k:v['failures']for k,v in results.items()},flush=True)
+
+
+def seasonal_exact_proof(resume=False):
+    from .ets_seasonal import initial,fit
+    rng=random.Random(400641);cases=[];forecast=[];stat=[];ci=[]
+    for i in range(168):
+        p=2+i%7;cycles=rng.randrange(3,32//p+1);n=p*cycles
+        exponent=rng.randrange(-300,301);offset=rng.randrange(-256,257)/8
+        pattern=[p*rng.randrange(-32,33)/8 for _ in range(p)]
+        trend=rng.randrange(-32,33)/16
+        y=[math.ldexp(offset+pattern[j%p]+trend*j,exponent)for j in range(n)]
+        l,t,se,errors,pr=fit(y,p,.751,.001,.001,initial(y,p,'firsttwo','first_detrend'))
+        if any(e!=0. for e in errors):raise ValueError('exact seasonal design has an innovation')
+        cases.append(dict(y=y,season=p,horizons=[0.,1.,float(p),float(p+1),float(2*p+5)]))
+        forecast.extend(bits((l+h*t)+se[(n-1+int(h))%p])for h in cases[-1]['horizons'])
+        stat.extend(bits(v)for v in[.751,.001,.001,0.,0.,0.,0.,1.])
+        ci.extend([bits(0.)]*3)
+    document=dict(cases=cases,predictions=dict(forecast=forecast,stat=stat,confidence=ci),
+           method='Whole-cycle affine patterns, all periods 2..8, at least three cycles, varied signs/offsets/exponents. The shared recurrence calculates zero innovations; no observed parameter leaf is supplied.')
+    if resume:
+        original=read(OUT/'step6-exact-seasonal-frozen.json')
+        if original['cases']!=cases or original['predictions']!=document['predictions']:raise ValueError('seasonal continuation changed predictions')
+        save('step6-exact-seasonal-continuation',dict(original_frozen_sha256=sha(OUT/'step6-exact-seasonal-frozen.json'),producer_source=_LOADED_SOURCE,
+             reason='The v2 relay reply lacked the legacy session receipt. Preserve it unqualified; repeat the same frozen questions through the audited touchstone socket.'))
+    else:frozen('step6-exact-seasonal',document)
+    c,s=service();results={}
+    for name,function,variants,pred in [('forecast','FORECAST.ETS',lambda z:z['horizons'],forecast),('stat','FORECAST.ETS.STAT',list(range(1,9)),stat),('confidence','FORECAST.ETS.CONFINT',[(1.,.25),(2.,.95),(5.,math.nextafter(1.,0.))],ci)]:
+        d=ask_series(c,s,cases,function,variants,chunk_size=200);save('step6-exact-seasonal-'+name,d)
+        failures=[dict(selection=i,prediction=p,answer=a,case=d['labels'][i][0])for i,(p,a)in enumerate(zip(pred,d['answers']))if p!=a.get('bits')]
+        results[name]=dict(selections=len(pred),failures=failures)
+    save('step6-exact-seasonal-result',dict(results=results))
+    print('fresh exact seasonal',{k:(v['selections'],len(v['failures']))for k,v in results.items()},flush=True)
+
+
+def detection_proof():
+    import itertools
+    from .ets_seasonal import detection_candidate
+    rng=random.Random(400801);cases=[]
+    for p in range(2,13):
+        for n in range(2*p-1,2*p+6):
+            for kind in['spike','cosine']:
+                y=[float(p-1 if j%p==0 else-1)for j in range(n)]if kind=='spike'else[math.cos(2*math.pi*j/p)for j in range(n)]
+                cases.append(dict(y=y,kind=kind,period=p,n=n))
+    noise=[rng.randrange(-128,129)/16 for _ in range(32)]
+    for exponent in range(-16,17):
+        amp=2.**exponent
+        cases.append(dict(y=[v+amp*(1 if j%2==0 else-1)for j,v in enumerate(noise)],kind='noise_threshold',amplitude=amp))
+    for exponent in range(-8,9):
+        a=2.**(exponent/4)
+        cases.append(dict(y=[a*[1.,0.,-1.,0.][j%4]+[1.,1.,1.,1.,-1.,-1.,-1.,-1.][j%8]for j in range(32)],kind='competing_peaks',amplitude=a))
+    programs=list(itertools.product(['mean','linear','difference'],['biased','unbiased','pearson'],['first','global'],[1,2,3],['zero','two','normal95']))
+    predictions={}
+    for pre,norm,search,offset,threshold in programs:
+        pred=[]
+        for z in cases:
+            cutoff=0. if threshold=='zero'else(2. if threshold=='two'else 1.96)/math.sqrt(len(z['y']))
+            pred.append(detection_candidate(z['y'],pre,norm,search,offset,cutoff)[0])
+        predictions[str((pre,norm,search,offset,threshold))]=pred
+    frozen('step8-detection',dict(cases=cases,predictions=predictions,
+           helper_source=(ROOT/'racer/ets_seasonal.py').read_text(),
+           method='Full short-length census around 2p+1..2p+3, two distinct periodic shapes, noise exponent edges, and competing local peaks. Fixed correlation normalizations and cutoffs.'))
+    c,s=service();d=ask_series(c,s,cases,'FORECAST.ETS.SEASONALITY',[0],chunk_size=200)
+    save('step8-detection-answers',d);actual=[value(a['bits'])if a.get('type')=='number'else a for a in d['answers']]
+    results={key:dict(failures=sum(p!=a for p,a in zip(pred,actual)),first=[dict(case=i,prediction=p,answer=a)for i,(p,a)in enumerate(zip(pred,actual))if p!=a][:8])for key,pred in predictions.items()}
+    bounds=[]
+    for p in range(2,13):
+        for kind in['spike','cosine']:
+            rows=[dict(n=z['n'],answer=a)for z,a in zip(cases,actual)if z.get('period')==p and z['kind']==kind]
+            bounds.append(dict(period=p,kind=kind,observations=rows))
+    save('step8-detection-result',dict(selections=len(cases),programs=results,boundaries=bounds,
+         survivors=[key for key,v in results.items()if not v['failures']],
+         limits='A finite length/noise map does not prove a universal lag bound. Refuted correlation programs do not identify a detector or justify expanding automatic forecasts.'))
+    print('detector fresh',len(cases),'programs',len(programs),'survivors',[key for key,v in results.items()if not v['failures']],flush=True)
+
+
+def calendar_proof():
+    import calendar
+    import datetime as dt
+    origin=dt.date(1899,12,30)
+    serial=lambda date:float((date-origin).days)
+    cases=[];predictions=[]
+    for kind in['first','end','middle','mixed','quarter','year','day28','day29','day30','day31']:
+        for n in[8,12,24]:
+            start=dt.date(2019,9,1)
+            def date_at(j):
+                if kind.startswith('day'):return start+dt.timedelta(days=int(kind[3:])*j)
+                month=start.year*12+start.month-1+j*(3 if kind=='quarter'else 12 if kind=='year'else 1)
+                year,month0=divmod(month,12);month=month0+1
+                day=calendar.monthrange(year,month)[1]if kind=='end'else 15 if kind=='middle'else(1 if j%2==0 else 15)if kind=='mixed'else 1
+                return dt.date(year,month,day)
+            timeline=[serial(date_at(j))for j in range(n)]
+            targets={str(h):serial(date_at(n-1+int(h)))for h in[0.,1.,2.,5.]}
+            y=[2.+128.*j for j in range(n)]
+            cases.append(dict(y=y,season=0,kind=kind,timeline=timeline,targets=targets))
+            predictions.extend(bits(2.+128.*(n-1+h))for h in[0.,1.,2.,5.])
+    frozen('step10-calendar',dict(cases=cases,predictions=predictions,
+           method='Calendar-index affine model: first/end/middle/mixed month days, quarters, years and 28..31-day numeric controls across leap dates. Original numeric serials, no workbook settings are changed.'))
+    c,s=service();stats=ask_series(c,s,cases,'FORECAST.ETS.STAT',[8],chunk_size=200)
+    forecasts=ask_series(c,s,cases,'FORECAST.ETS',[0.,1.,2.,5.],chunk_size=200)
+    save('step10-calendar-stat',stats);save('step10-calendar-answers',forecasts)
+    failures=[dict(selection=i,prediction=p,answer=a,case=forecasts['labels'][i][0])for i,(p,a)in enumerate(zip(predictions,forecasts['answers']))if p!=a.get('bits')]
+    save('step10-calendar-result',dict(selections=len(predictions),failures=failures,
+         steps=[dict(kind=z['kind'],n=len(z['y']),answer=a)for z,a in zip(cases,stats['answers'])],
+         limits='Calendar index is a structural candidate. Every changed numeric prediction and every typed error remains a failure. Date1904 and mixed-day inference need independent evidence; no calendar preparation body is installed.'))
+    print('calendar fresh',len(predictions),'failures',len(failures),flush=True)
+
+
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('step', choices=['reanalysis', 'normal-map', 'normal-refinement','confidence-reanalysis','slope-map','slope-analysis','slope-impulses','impulse-analysis','slope-stores','short-proof'])
+    parser.add_argument('step', choices=['reanalysis', 'normal-map', 'normal-refinement','confidence-reanalysis','slope-map','slope-analysis','slope-impulses','impulse-analysis','slope-stores','short-proof','final-add-proof','final-product-proof','census','resume-census','search-structures','reset-boundaries','seasonal-initialization','seasonal-exact-proof','resume-seasonal-exact','partial-cycles','detection','calendar'])
     args=parser.parse_args()
     {'reanalysis':reanalysis, 'normal-map':quantile_mapping, 'normal-refinement':quantile_refinement,
      'confidence-reanalysis':confidence_reanalysis,'slope-map':slope_mapping,'slope-analysis':slope_analysis,
-     'slope-impulses':slope_impulses,'impulse-analysis':impulse_analysis,'slope-stores':slope_stores,'short-proof':short_proof}[args.step]()
+     'slope-impulses':slope_impulses,'impulse-analysis':impulse_analysis,'slope-stores':slope_stores,'short-proof':short_proof,'final-add-proof':final_add_proof,'final-product-proof':final_product_proof,'census':parameter_census,'resume-census':lambda:parameter_census(True),'search-structures':search_structures,'reset-boundaries':reset_boundaries,'seasonal-initialization':seasonal_initialization,'seasonal-exact-proof':seasonal_exact_proof,'resume-seasonal-exact':lambda:seasonal_exact_proof(True),'partial-cycles':lambda:seasonal_initialization(True),'detection':detection_proof,'calendar':calendar_proof}[args.step]()

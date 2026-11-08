@@ -131,3 +131,47 @@ def product_residue(a, b):
     if not all(math.isfinite(v) for v in (a, b, product)):
         raise ValueError('finite product required')
     return product, Fraction(a) * Fraction(b) - Fraction(product)
+
+
+def main():
+    """File interface: frozen splitting, streaming census, or one path question.
+
+    split INPUT OUTPUT: INPUT has predictions and optional questions.
+    census INPUT.jsonl OUTPUT: every record has question and answer.
+    boundary INPUT OUTPUT: INPUT has Boundary's four fields, optional sequential
+    observations [{index,answer}], and optional left/right/last vector path.
+    OUTPUT is exclusively created and binds the exact input/source bytes.
+    """
+    import argparse
+    import hashlib
+    from pathlib import Path
+    parser=argparse.ArgumentParser(description=main.__doc__)
+    parser.add_argument('mode',choices=['split','census','boundary'])
+    parser.add_argument('input',type=Path);parser.add_argument('output',type=Path)
+    args=parser.parse_args();raw=args.input.read_bytes()
+    if args.mode=='census':
+        census=Census()
+        for line in raw.decode().splitlines():
+            record=json.loads(line);census.observe(record['question'],record['answer'])
+        result=census.report()
+    else:
+        document=json.loads(raw)
+        if args.mode=='split':
+            result=choose_split(document['predictions'],document.get('candidates'))
+            if result is not None and 'questions'in document:result['question']=document['questions'][result['index']]
+            result=dict(selection=result,status='undetermined_within_question_pool'if result is None else'separating_question')
+        else:
+            boundary=Boundary(document['low'],document['high'],document['low_answer'],document['high_answer'])
+            for record in document.get('observations',[]):boundary.observe(record['index'],record['answer'])
+            index=boundary.question()
+            result=dict(low=boundary.low,high=boundary.high,low_answer=boundary.low_answer,
+                        high_answer=boundary.high_answer,next_index=index,
+                        status='adjacent_indices'if index is None else'next_question')
+            if index is not None and 'left'in document:
+                result['question']=vector_path(document['left'],document['right'],index,document.get('last',1<<52))
+    result['input_sha256']=hashlib.sha256(raw).hexdigest()
+    result['source_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    with args.output.open('x')as stream:json.dump(result,stream,indent=2,allow_nan=False)
+
+
+if __name__=='__main__':main()

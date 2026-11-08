@@ -1,5 +1,10 @@
 import unittest
 from fractions import Fraction
+import json
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
 from racer.question_designer import (Boundary, vector_path, choose_split,
                                      eliminate, Census, two_sum, product_residue)
 
@@ -48,6 +53,30 @@ class Questions(unittest.TestCase):
         a, b = 1. + 2. ** -52, 1. - 2. ** -52
         product, error = product_residue(a, b)
         self.assertEqual(Fraction(product) + error, Fraction(a) * Fraction(b))
+
+    def test_cli_boundary_emits_the_next_vector(self):
+        with tempfile.TemporaryDirectory()as directory:
+            source=Path(directory)/'state.json';target=Path(directory)/'question.json'
+            source.write_text(json.dumps(dict(low=0,high=8,low_answer=False,high_answer=True,
+                observations=[dict(index=4,answer=True)],left=[0.],right=[8.],last=8)))
+            subprocess.run([sys.executable,'-m','racer.question_designer','boundary',str(source),str(target)],
+                           cwd=Path(__file__).resolve().parents[1],check=True,capture_output=True,timeout=30)
+            result=json.loads(target.read_text())
+            self.assertEqual((result['low'],result['high'],result['next_index']),(0,4,2))
+            self.assertEqual(result['question'],[2.])
+
+    def test_cli_census_is_typed_and_never_overwrites_evidence(self):
+        with tempfile.TemporaryDirectory()as directory:
+            source=Path(directory)/'answers.jsonl';target=Path(directory)/'census.json'
+            source.write_text(''.join(json.dumps(dict(question=i,answer=a))+'\n'for i,a in enumerate([True,1,True])))
+            command=[sys.executable,'-m','racer.question_designer','census',str(source),str(target)]
+            subprocess.run(command,cwd=Path(__file__).resolve().parents[1],check=True,capture_output=True,timeout=30)
+            original=target.read_bytes();result=json.loads(original)
+            self.assertEqual(result['distinct'],2)
+            self.assertEqual(result['discovery_positions'],[1,2])
+            again=subprocess.run(command,cwd=Path(__file__).resolve().parents[1],check=False,capture_output=True,timeout=30)
+            self.assertNotEqual(again.returncode,0)
+            self.assertEqual(target.read_bytes(),original)
 
 
 if __name__ == '__main__': unittest.main()

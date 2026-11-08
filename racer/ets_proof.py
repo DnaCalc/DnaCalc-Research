@@ -114,7 +114,7 @@ def catalogue(seasonal=False):
     for name,rows in groups.items():
         answers=s.ask_rows(name,rows,chunk_size=100);write(OUT/(prefix+'-'+name+'.json'),dict(labels=labels[name],answers=answers,receipts=s.receipts));print('catalogue',name,len(answers),flush=True)
 
-def application_replay(executable,output,include_round38=False):
+def application_replay(executable,output,include_round38=False,directories=None):
     """Continue R38's registered-route replay over original audited questions."""
     import gzip
     import subprocess
@@ -122,7 +122,7 @@ def application_replay(executable,output,include_round38=False):
     from .fingerprint import accept
     executable=Path(executable).resolve();output=Path(output).resolve();output.mkdir(parents=True,exist_ok=False)
     provenance=json.loads(subprocess.check_output([str(executable),'provenance'],timeout=30))
-    directories=[OUT/'service-cache']
+    directories=[OUT/'service-cache']if directories is None else list(map(Path,directories))
     if include_round38:directories+=sorted(p for p in OUT.parent.joinpath('round38').glob('*cache')if p.is_dir())
     groups=defaultdict(list);bindings={};seen=set()
     def decode(a):
@@ -139,7 +139,7 @@ def application_replay(executable,output,include_round38=False):
             if '.refusal-'in path.name:continue
             d=read(path);request,reply=d['request'],d['reply'];name=request['function']
             if not name.startswith('FORECAST.ETS')or not reply.get('ok')or reply['id']in seen:continue
-            accept(reply,name,request['rows']);seen.add(reply['id']);source=str(path.relative_to(OUT.parent));bindings[source]=sha(path)
+            accept(reply,name,request['rows'],audit=d.get('audit'),result_index=request.get('result_index'));seen.add(reply['id']);source=str(path.relative_to(OUT.parent));bindings[source]=sha(path)
             for i,(args,answer)in enumerate(zip(request['rows'],reply['rows'])):groups[name].append(dict(id=reply['id']+':'+str(i),args=[decode(a)for a in args],expected=expected(answer),source=source))
     counts={};contradictions=[]
     for name,rows in groups.items():

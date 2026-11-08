@@ -371,20 +371,101 @@ class PhaseTrack:
                     limits='Phase modulo an arbitrary constant and integer/sign slope aliases. Continuation assumes smooth Taylor coefficients of ordinary scale: each added degree spans .2 cycles and its correction exceeds six estimated standard errors (weighted noise floor .005 cycles). These are diagnostic estimates, not rigorous stage enclosures. No stage scale, constant, coefficient table or literal store is identified.')
 
 
-def accept(reply, function, rows):
+def touchstone_audit(pending, reply):
+    """Retain actual submitted frames and the service's environment definitions.
+
+    These are client audit hashes, explicitly distinct from v1's session-host
+    receipt. The worker reply remains unchanged in the cache envelope.
+    """
+    import copy
+    frames=copy.deepcopy(pending.frames_sent)
+    environments={key:copy.deepcopy(pending.envs[key])for key in sorted(pending.env_ids)}
+    canonical=lambda obj:json.dumps(obj,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+    return dict(schema='dnacalc-touchstone-audit/1',request_id=pending.rid,
+                submit_frames=frames,environments=environments,
+                submit_frames_sha256=hashlib.sha256(canonical(frames)).hexdigest(),
+                environments_sha256=hashlib.sha256(canonical(environments)).hexdigest(),
+                reply_sha256=hashlib.sha256(canonical(reply)).hexdigest())
+
+
+class AuditedClientMixin:
+    """Use the existing question client with v2 input echoes and frame evidence."""
+    def ask(self,function,rows,*,result_index=None):
+        self.last_audit=None
+        connection=self._socket()if hasattr(self,'_socket')else None
+        if connection is None:
+            return super().ask(function,rows,**({'result_index':result_index}if result_index is not None else{}))
+        pending=connection.submit_rows(function,rows,result_index=result_index,echo=True,order='any')
+        reply=pending.result(self.timeout)
+        self.last_audit=touchstone_audit(pending,reply)
+        return reply
+
+
+class _ClientDelegate:
+    def __init__(self,client):self._inner_client=client
+    def __getattr__(self,name):return getattr(self._inner_client,name)
+    def ask(self,*args,**kwargs):return self._inner_client.ask(*args,**kwargs)
+
+
+class _AuditedClientProxy(AuditedClientMixin,_ClientDelegate):
+    """Give existing CachedService callers the same audited socket route."""
+
+
+def accept(reply, function, rows, *, audit=None, result_index=None):
     # Readbacks contain actual cell values. The request's literal/cell mode is
     # transport metadata, not a field on a read-back worksheet value.
     expected=[[{k:v for k,v in a.items() if k!='mode'} for a in row] for row in rows]
     if reply.get('version')!=1 or not re.fullmatch(r'[0-9a-f]{32}',str(reply.get('id',''))):
         raise ValueError('invalid cached Excel reply identity/version')
-    if not reply.get('ok') or reply.get('inputs') != expected or len(reply.get('rows', [])) != len(rows):
+    if not reply.get('ok') or reply.get('inputs') != expected or not isinstance(reply.get('rows'),list) or len(reply['rows']) != len(rows):
         raise ValueError('failed, incomplete, reordered or changed Excel operands: ' + function)
     if reply.get('automation_security_before') != reply.get('automation_security_after'):
         raise ValueError('worker changed AutomationSecurity')
     if not all(k in reply for k in ('automation_security_before','automation_security_after',
-                                   'excel_build', 'machine', 'timestamp', 'request_sha256',
-                                   'session_receipt_sha256')):
+                                   'excel_build', 'machine', 'timestamp', 'request_sha256')):
         raise ValueError('missing worker provenance')
+    if 'session_receipt_sha256'in reply:
+        if not isinstance(reply['session_receipt_sha256'],str)or not reply['session_receipt_sha256']or not reply.get('request_sha256'):
+            raise ValueError('empty legacy worker provenance')
+        return
+    if not isinstance(audit,dict)or audit.get('schema')!='dnacalc-touchstone-audit/1':
+        raise ValueError('missing worker provenance')
+    canonical=lambda obj:json.dumps(obj,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+    for name,field in [('submit_frames','submit_frames_sha256'),('environments','environments_sha256')]:
+        if field not in audit or hashlib.sha256(canonical(audit.get(name))).hexdigest()!=audit[field]:
+            raise ValueError('changed touchstone audit '+name)
+    if hashlib.sha256(canonical(reply)).hexdigest()!=audit.get('reply_sha256')or audit.get('request_id')!=reply['id']:
+        raise ValueError('touchstone audit does not bind the reply')
+    # Reuse the service's one typed framing implementation to verify that the
+    # actual transmitted frames name these functions, operands and selection.
+    load_service(ROOT.parent/'DnaCalc')
+    from touchstone import protocol
+    groups=protocol.rows_to_groups(function,rows,result_index)
+    frames=protocol.submit_frames(reply['id'],groups,dict(echo=True,order='any',calls=len(rows)))
+    if audit['submit_frames']!=frames:raise ValueError('touchstone wire request differs')
+    environments=audit.get('environments')
+    if not isinstance(environments,dict)or not environments or reply.get('env_id')not in environments:
+        raise ValueError('missing touchstone environment definition')
+    settings=reply.get('calculation_settings',{})
+    if not isinstance(settings,dict):raise ValueError('missing touchstone scratch settings')
+    bindings={'precision_as_displayed':'PrecisionAsDisplayed','date1904':'Date1904',
+              'compatibility_version':'CompatibilityVersion','use_system_separators':'UseSystemSeparators',
+              'decimal_separator':'DecimalSeparator','thousands_separator':'ThousandsSeparator',
+              'calculation':'calculation'}
+    for key,record in environments.items():
+        if not isinstance(record,dict):raise ValueError('invalid touchstone environment definition')
+        env=record.get('env',{})
+        if not isinstance(key,str)or not re.fullmatch(r'[0-9a-f]{12}',key)or not isinstance(env,dict)or env.get('engine')!='excel':raise ValueError('invalid touchstone environment identity')
+        if any(field not in env for field in ['version','build','file_version','os','cpu_id','mt_calc','iteration','automation_security',*bindings]):
+            raise ValueError('incomplete touchstone environment')
+        if any(type(env[name])is not bool for name in['precision_as_displayed','date1904','use_system_separators','iteration'])or type(env['compatibility_version'])is not int:
+            raise ValueError('unknown touchstone calculation settings')
+        if env['build']!=reply['excel_build']or env['version']!=reply.get('excel_version')or env['file_version']!=reply.get('excel_file_version'):
+            raise ValueError('mixed or changed touchstone Excel build')
+        if env['automation_security']!=reply['automation_security_before']:
+            raise ValueError('touchstone security state differs')
+        if any(field not in settings or settings[field]!=env[name]for name,field in bindings.items()):
+            raise ValueError('touchstone scratch settings differ')
 
 
 def publication(bounds):
@@ -444,7 +525,8 @@ class CachedRefusal(RuntimeError):
 
 class CachedService:
     def __init__(self, client, directory, offline=False):
-        self.client = client
+        self.client = (_AuditedClientProxy(client)if client is not None and hasattr(client,'_socket')
+                       and not isinstance(client,AuditedClientMixin)else client)
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.offline = offline
@@ -472,7 +554,7 @@ class CachedService:
                 if not reply.get('ok'):continue
                 if attempt.get('queue_request_sha256')!=reply.get('request_sha256'):
                     raise ValueError('delayed reply request hash changed')
-                accept(reply,function,rows)
+                accept(reply,function,rows,result_index=result_index)
                 with gzip.open(path,'xt',compresslevel=9)as stream:
                     json.dump(dict(request=request,reply=reply),stream,separators=(',',':'))
                 break
@@ -514,12 +596,15 @@ class CachedService:
                         json.dump(dict(request=request,reply=refusal),stream,separators=(',',':'))
                     self.refusals.append(dict(function=function,file=refused.name,sha256=sha(refused),calls_requested=len(rows)))
                 raise
+            doc=dict(request=request,reply=reply)
+            if getattr(self.client,'last_audit',None)is not None:doc['audit']=self.client.last_audit
             with gzip.open(path, 'xt', compresslevel=9) as stream:
-                json.dump(dict(request=request, reply=reply), stream, separators=(',', ':'))
-        accept(reply, function, rows)
+                json.dump(doc, stream, separators=(',', ':'))
+        accept(reply, function, rows,audit=doc.get('audit'),result_index=result_index)
         self.receipts.append(dict(function=function, file=path.name, sha256=sha(path), calls=len(rows),
                                   excel_build=reply['excel_build'], machine=reply['machine'],
-                                  timestamp=reply['timestamp'], request_sha256=reply['request_sha256']))
+                                  timestamp=reply['timestamp'], request_sha256=reply['request_sha256'],
+                                  transport='touchstone/1'if doc.get('audit')else'session-host-v1'))
         return reply
 
     def ask_rows(self, function, rows, chunk_size=10000, *, result_index=None):
