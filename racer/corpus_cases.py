@@ -2064,6 +2064,17 @@ not claims that Excel changes there. No parked ERF, normal or annuity producer i
     print(json.dumps({k:v for k,v in manifest.items()if not k.endswith('sha256')},indent=2))
 
 
+def ets_selected_calls(z, statistics, number, number_array):
+    y = number_array([[v] for v in z['y']])
+    t = number_array([[float(v)] for v in z['timeline']])
+    tail = [number(float(z[k])) for k in ('seasonality','data_completion','aggregation')]
+    target = number(float(max(z['timeline'])+1))
+    return [('FORECAST.ETS', [target,y,t]+tail),
+        ('FORECAST.ETS.CONFINT', [target,y,t,number(.95)]+tail),
+        ('FORECAST.ETS.SEASONALITY', [y,t]+tail[1:])] + [
+        ('FORECAST.ETS.STAT', [y,t,number(float(stat))]+tail) for stat in statistics]
+
+
 def ets_catalogue(checkout, design, cache, output, executable=None):
     """Map audited ETS scalar replies into the existing catalogue/verdict route.
 
@@ -2076,7 +2087,18 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
     import subprocess
     from fingerprint import accept, bits, value, sha, write
     checkout, design, cache, output = map(lambda p: Path(p).resolve(), (checkout, design, cache, output))
-    sheet = 'dcj9k_r38_ets'
+    design_document = json.loads(design.read_text())
+    sheet = design_document.get('sheet', 'dcj9k_r38_ets')
+    expected_cases = design_document.get('expected_cases', 980)
+    statistics = design_document.get('statistics', [8])
+    evidence_round = design_document.get('evidence_round', 'round38')
+    if re.fullmatch(r'[a-z][a-z0-9_]{0,30}', sheet) is None or not isinstance(expected_cases, int) or expected_cases < 1:
+        raise ValueError('invalid ETS section metadata')
+    if not statistics or any(type(v) is not int or not 1 <= v <= 8 for v in statistics) or len(set(statistics)) != len(statistics):
+        raise ValueError('invalid ETS statistic selection')
+    if re.fullmatch(r'round[0-9]+', evidence_round) is None:
+        raise ValueError('invalid ETS evidence round')
+    calls_per_case = 3 + len(statistics)
     prepared = output/'prepared.json'
     import sys
     sys.path.insert(0, str(checkout/'tools/excel-service'))
@@ -2096,13 +2118,7 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
         leaves[text] = '0x'+arg['bits']
         return text
     def selected_calls(z):
-        y = number_array([[v] for v in z['y']]); t = number_array([[float(v)] for v in z['timeline']])
-        tail = [number(float(z[k])) for k in ('seasonality','data_completion','aggregation')]
-        target = number(float(max(z['timeline'])+1))
-        return [('FORECAST.ETS', [target,y,t]+tail),
-            ('FORECAST.ETS.CONFINT', [target,y,t,number(.95)]+tail),
-            ('FORECAST.ETS.SEASONALITY', [y,t]+tail[1:]),
-            ('FORECAST.ETS.STAT', [y,t,number(8.)]+tail)]
+        return ets_selected_calls(z, statistics, number, number_array)
     if executable is None:
         output.mkdir(parents=True, exist_ok=False)
         observed = {}
@@ -2127,7 +2143,7 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
                 observed[key] = row
         rows = []
         cases = json.loads(design.read_text())['cases']
-        if len(cases) != 980:
+        if len(cases) != expected_cases:
             raise ValueError('the retained design changed')
         for case, z in enumerate(cases):
             calls = selected_calls(z)
@@ -2139,22 +2155,22 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
                 rows.append(dict(case=case,row=len(rows)+1,column=4,function=name,args=args,
                     formula=formula,**observation))
         section = output/('sheet-'+sheet+'.txt')
-        section.write_text('# dc-j9k R38: four measured ETS surfaces per retained design case.\n'+
+        section.write_text('# dc-j9k '+evidence_round+': measured ETS selections per retained design case.\n'+
                            '\n'.join(z['formula'] for z in rows)+'\n')
         write(prepared, dict(sheet=sheet,rows=rows,leaves=leaves,design_sha256=sha(design),
             section_sha256=sha(section),producer_sha256=sha(__file__),
-            selection='One next-step forecast, .95 confidence, detected period and step statistic for every retained design case, without answer-dependent selection.'))
+            selection='One next-step forecast, .95 confidence, detected period and the declared statistic list for every design case, without answer-dependent selection.'))
         print('prepared',len(rows),'measured cells; literals',len(leaves))
         return
     executable = Path(executable).resolve()
     doc = json.loads(prepared.read_text())
     cases = json.loads(design.read_text())['cases']
-    if sha(design) != doc['design_sha256'] or len(cases) != 980 or len(doc['rows']) != 4*len(cases):
+    if sha(design) != doc['design_sha256'] or len(cases) != expected_cases or len(doc['rows']) != calls_per_case*len(cases):
         raise ValueError('the frozen design or prepared selection changed')
     raw = {}
     for index, z in enumerate(doc['rows']):
-        name, args = selected_calls(cases[index//4])[index%4]
-        if z['case'] != index//4 or z['row'] != index+1 or z['column'] != 4 or z['function'] != name or z['args'] != args:
+        name, args = selected_calls(cases[index//calls_per_case])[index%calls_per_case]
+        if z['case'] != index//calls_per_case or z['row'] != index+1 or z['column'] != 4 or z['function'] != name or z['args'] != args:
             raise ValueError('prepared call differs from the retained design')
         file = z['raw_file']
         if re.fullmatch(r'[0-9a-f]{64}\.json\.gz',file) is None:
@@ -2225,7 +2241,7 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
     # Version three explicitly records scalar questions without an invented
     # workbook session. Corpus's independent evaluation record still proves returns.
     record=dict(format='dnacalc-capture-record',version=3,case=sheet+'__'+sheet,source=section['key'],
-        acquisition=dict(kind='function_questions',entry='DnaCalc-Research/evidence/round38/ets-catalogue/mapping.json.gz;sha256:'+sha(mapping_path)),
+        acquisition=dict(kind='function_questions',entry='DnaCalc-Research/evidence/'+evidence_round+'/ets-catalogue/mapping.json.gz;sha256:'+sha(mapping_path)),
         environment=None,sheets=[dict(name=sheet,visibility='visible')],
         formulas=[dict(sheet=sheet,row=z['row'],column=4,kind='ordinary',formula='='+z['formula'])for z in doc['rows']],observations=observations)
     destination=checkout/'crates/calc-func/tests/captures'/sheet/'sections'/f'{sheet}.capture.json'

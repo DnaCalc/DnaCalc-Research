@@ -1,0 +1,25 @@
+{
+  "id": "dc-j9k-r39-nonseasonal",
+  "unit": "round39-nonseasonal",
+  "application_revision": "404b6e82bcf76f7dfc511bcf04a30a5eb2bcc07c",
+  "application_working_blobs": {
+    "crates/calc-func/src/catalogue/statistics/ets.rs": "e91b5ff52db58f87448ccf34dfe874c518442605",
+    "crates/calc-func/src/ported/normal_log_family.rs": "4953c6f57054510bddb51fa9fb891f9588a5d9cd"
+  },
+  "role": "implementer",
+  "route_audit": false,
+  "sources": {
+    "tier1": [
+      "Excel questions, IEEE754, Microsoft ETS documentation, Wichura AS241 mathematical tables"
+    ],
+    "tier2": [
+      "Cleared MIT sources; CPython mathematical reference (PSF)"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "Two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)"
+}

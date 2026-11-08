@@ -51,6 +51,25 @@ class NativeControls(unittest.TestCase):
         g=Builder(1);graph=g.graph(0,0)
         with self.assertRaises(ValueError):self.native.grid(graph,np.empty((0,1),dtype=np.uint64))
 
+    def test_unrolled_loop_over_128_nodes_keeps_shared_store_sites(self):
+        g=Builder(1);out=0
+        for _ in range(200):
+            out=g.op('add',out,g.one,store=False)
+            g.nodes[out]['site']=0
+        g.sites=1
+        result=self.native.grid(g.graph(out,out),[[0x3ff0000000000000]],0x133f,1)
+        self.assertEqual(list(map(int,result[0])),[0x4069200000000000]*2)  # 201
+
+    def test_grid_inner_word_has_an_independent_double_rounding_control(self):
+        g=Builder(1);g.phase=1;out=g.op('add',g.one,0);graph=g.graph(out,out)
+        row=[0x3ca0008000000000]
+        expected=self.exact.graph(graph,row,0x123f,1,inner_cw=0x133f)
+        mixed=self.native.grid(graph,[row],0x123f,1,inner_cw=0x133f)
+        self.assertEqual(list(map(int,mixed[0])),
+            [published_bits(expected[i:i+10]) for i in (0,10)])
+        plain=self.native.grid(graph,[row],0x123f,1)
+        self.assertNotEqual(int(mixed[0,0]),int(plain[0,0]))
+
     def test_plateau_does_not_choose_an_inseparable_constant(self):
         from racer.plateau_probe import probe
         g=Builder(1); c=g.constant('3ff0000000000000'); dead=g.constant('3ff0000000000000')

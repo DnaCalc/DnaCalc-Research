@@ -91,7 +91,7 @@ class Native:
             raise ValueError('malformed instruction graph')
         return bytes(outputs)
 
-    def grid(self, graph, inputs, cw=0x133f, mask=0):
+    def grid(self, graph, inputs, cw=0x133f, mask=0, inner_cw=None):
         """Publish both graph outputs for each exact binary64 input row."""
         import numpy as np
         inputs = np.ascontiguousarray(inputs, dtype=np.uint64)
@@ -101,7 +101,7 @@ class Native:
         outputs = np.empty((len(inputs), 2), dtype=np.uint64)
         ptr = C.POINTER(C.c_uint64)
         rc = self.lib.x87_grid(nodes, len(nodes), inputs.ctypes.data_as(ptr),
-            inputs.shape[1], len(inputs), cw | (cw << 16), mask,
+            inputs.shape[1], len(inputs), cw | ((cw if inner_cw is None else inner_cw) << 16), mask,
             *graph['outputs'], outputs.ctypes.data_as(ptr))
         if rc:
             raise ValueError('malformed instruction graph')

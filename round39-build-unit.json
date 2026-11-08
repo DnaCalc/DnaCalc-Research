@@ -1,0 +1,24 @@
+{
+  "id": "dc-j9k-r39-build",
+  "unit": "round39-build",
+  "application_revision": "404b6e82bcf76f7dfc511bcf04a30a5eb2bcc07c",
+  "application_working_blobs": {
+    "crates/calc-func/src/catalogue/statistics/ets.rs": "397113340bcc662e6942b3adffdea824bf058fd4"
+  },
+  "role": "implementer",
+  "route_audit": false,
+  "sources": {
+    "tier1": [
+      "Excel questions, IEEE754, Microsoft ETS documentation"
+    ],
+    "tier2": [
+      "Cleared MIT sources; CPython AS241 mathematical reference (PSF)"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "Two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)"
+}

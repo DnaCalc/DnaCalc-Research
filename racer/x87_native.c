@@ -9,6 +9,7 @@ typedef struct { unsigned char b[10]; } Ext;
 typedef struct { int32_t op, a, b, site, phase; uint64_t bits; } Node;
 enum { INPUT, CONST, ADD, SUB, MUL, DIV, NEG, LOG2, LOG2P1, EXPM1_2,
        RNDINT, SCALE, LN2, L2E, SQRT };
+#define MAX_NODES 512
 
 static Ext load64(uint64_t bits) {
     Ext out;
@@ -58,9 +59,9 @@ static Ext instruction(int op, Ext a, Ext b) {
 int x87_eval(const Node *nodes, int count, const uint64_t *inputs, int input_count,
              const Ext *extended, int extended_count, uint32_t words, uint64_t mask,
              int out_a, int out_b, Ext *outputs, Ext *raw, Ext *values) {
-    if (count <= 0 || count > 128 || out_a < 0 || out_a >= count || out_b < 0 || out_b >= count)
+    if (count <= 0 || count > MAX_NODES || out_a < 0 || out_a >= count || out_b < 0 || out_b >= count)
         return -1;
-    Ext v[128];
+    Ext v[MAX_NODES];
     uint16_t cw = (uint16_t)words, inner = (uint16_t)(words >> 16);
     if ((cw != 0x123f && cw != 0x133f) || (inner != 0x123f && inner != 0x133f)) return -1;
     uint16_t saved;
