@@ -2092,12 +2092,15 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
     expected_cases = design_document.get('expected_cases', 980)
     statistics = design_document.get('statistics', [8])
     evidence_round = design_document.get('evidence_round', 'round38')
+    evidence_section = design_document.get('evidence_section', 'ets-catalogue')
     if re.fullmatch(r'[a-z][a-z0-9_]{0,30}', sheet) is None or not isinstance(expected_cases, int) or expected_cases < 1:
         raise ValueError('invalid ETS section metadata')
     if not statistics or any(type(v) is not int or not 1 <= v <= 8 for v in statistics) or len(set(statistics)) != len(statistics):
         raise ValueError('invalid ETS statistic selection')
     if re.fullmatch(r'round[0-9]+', evidence_round) is None:
         raise ValueError('invalid ETS evidence round')
+    if re.fullmatch(r'[a-z][a-z0-9-]{0,63}', evidence_section) is None:
+        raise ValueError('invalid ETS evidence section')
     calls_per_case = 3 + len(statistics)
     prepared = output/'prepared.json'
     import sys
@@ -2241,7 +2244,7 @@ def ets_catalogue(checkout, design, cache, output, executable=None):
     # Version three explicitly records scalar questions without an invented
     # workbook session. Corpus's independent evaluation record still proves returns.
     record=dict(format='dnacalc-capture-record',version=3,case=sheet+'__'+sheet,source=section['key'],
-        acquisition=dict(kind='function_questions',entry='DnaCalc-Research/evidence/'+evidence_round+'/ets-catalogue/mapping.json.gz;sha256:'+sha(mapping_path)),
+        acquisition=dict(kind='function_questions',entry='DnaCalc-Research/evidence/'+evidence_round+'/'+evidence_section+'/mapping.json.gz;sha256:'+sha(mapping_path)),
         environment=None,sheets=[dict(name=sheet,visibility='visible')],
         formulas=[dict(sheet=sheet,row=z['row'],column=4,kind='ordinary',formula='='+z['formula'])for z in doc['rows']],observations=observations)
     destination=checkout/'crates/calc-func/tests/captures'/sheet/'sections'/f'{sheet}.capture.json'

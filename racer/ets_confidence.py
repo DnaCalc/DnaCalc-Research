@@ -5,15 +5,15 @@ from .ets import *
 from .x87_programs import Builder,Native
 from .ets_proof import freeze,finish
 
-def variance(a,b,h,form=1):
+def variance(a,b,h,form=1,g=2.**-52):
     if form==39:
         f=1+(h-1)*((h*a*b+h*(2*h-1)*b*b/6)+a*a)
-        k=math.floor((h-1)/2);g=2.**-52
+        k=math.floor((h-1)/2)
         return f+g*k*((2*a+g)+2*b*(k+1))
     if form==1:f=1+(h-1)*(a*a+a*b*h+b*b*h*(2*h-1)/6)
     elif form==4:f=1+(h-1)*(a*a+b*(a*h+b*h*(2*h-1)/6))
     else:f=1+(h-1)*(a*a+b*h*(a+b*(2*h-1)/6))
-    k=math.floor((h-1)/2);g=2.**-52
+    k=math.floor((h-1)/2)
     return f+g*k*(2*a+g+2*b*(k+1))
 
 POLY_TAGS=['aa','ab','bb','sum','main','season_inner','season_product','factor','scale','root','publication']

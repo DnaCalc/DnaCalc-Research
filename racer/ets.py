@@ -64,6 +64,9 @@ def numeric_forecast(y,a,b,h,trend=None):
 
 def numeric_statistics(y,a,b,trend=None):
     l,t,s,e,p=numeric_fit(y,a,b,trend)
+    return statistics_from_errors(y,e,p)
+
+def statistics_from_errors(y,e,p):
     n=len(y);tail=n if n<=10 else min(int(.4*n),10);start=n-tail
     mae=sequential_total(abs(v)for v in e[start:])/tail
     rmse=math.sqrt(sequential_total(v*v for v in e[start:])/tail)

@@ -85,16 +85,26 @@ def complete(final=False):
     finish(name+'-forecast',cases,forecasts,'FORECAST.ETS',[0.,1.,2.,5.])
     finish(name+'-confidence',cases,confidence,'FORECAST.ETS.CONFINT',[(h,.95)for h in [1.,2.,5.,10.]])
 
-def catalogue():
+def catalogue(seasonal=False):
     from .corpus_cases import ets_selected_calls
-    rng=random.Random(399540);cases=[]
-    for i in range(80):
-        n=rng.randrange(8,33)if i<64 else 3+(i-64)%5
-        trend=rng.randrange(-16,17)/8
-        y=[rng.randrange(-128,129)/8+trend*j for j in range(n)]if i%2 else[j*j/16+trend*j+rng.randrange(-8,9)/16 for j in range(n)]
-        cases.append(dict(y=y,timeline=list(range(1,n+1)),seasonality=0,data_completion=1,aggregation=1,pattern='random'if i%2 else'quadratic'))
-    doc=dict(sheet='dcj9k_r39_ets',expected_cases=80,statistics=list(range(1,9)),evidence_round='round39',cases=cases,producer_source=Path(__file__).read_text())
-    design=OUT/'ets-catalogue-design.json'
+    rng=random.Random(397991 if seasonal else 399540);cases=[]
+    for i in range(40 if seasonal else 80):
+        if seasonal:
+            p=rng.choice([2,4,8]);n=p*rng.randrange(max(2,(8+p-1)//p),32//p+1)
+            pattern=[rng.randrange(-64,65)/8 for _ in range(p)]
+            drift=rng.randrange(-16,17)/16;offset=rng.randrange(-128,129)/4
+            y=[offset+pattern[j%p]+drift*j for j in range(n)]
+            kind='exact_seasonal_affine'
+        else:
+            p=0;n=rng.randrange(8,33)if i<64 else 3+(i-64)%5
+            trend=rng.randrange(-16,17)/8
+            y=[rng.randrange(-128,129)/8+trend*j for j in range(n)]if i%2 else[j*j/16+trend*j+rng.randrange(-8,9)/16 for j in range(n)]
+            kind='random'if i%2 else'quadratic'
+        cases.append(dict(y=y,timeline=list(range(1,n+1)),seasonality=p,data_completion=1,aggregation=1,pattern=kind))
+    prefix='ets-seasonal-catalogue'if seasonal else'ets-catalogue'
+    doc=dict(sheet='dcj9k_r39_seasonal'if seasonal else'dcj9k_r39_ets',expected_cases=len(cases),statistics=list(range(1,9)),evidence_round='round39',cases=cases,producer_source=Path(__file__).read_text())
+    if seasonal:doc['evidence_section']='ets-seasonal-catalogue'
+    design=OUT/(prefix+'-design.json')
     if design.exists():
         if read(design)['cases']!=cases:raise ValueError('catalogue design changed')
     else:write(design,doc)
@@ -102,7 +112,7 @@ def catalogue():
     for i,z in enumerate(cases):
         for name,args in ets_selected_calls(z,doc['statistics'],c.number,c.number_array):groups.setdefault(name,[]).append(args);labels.setdefault(name,[]).append(i)
     for name,rows in groups.items():
-        answers=s.ask_rows(name,rows,chunk_size=100);write(OUT/('ets-catalogue-'+name+'.json'),dict(labels=labels[name],answers=answers,receipts=s.receipts));print('catalogue',name,len(answers),flush=True)
+        answers=s.ask_rows(name,rows,chunk_size=100);write(OUT/(prefix+'-'+name+'.json'),dict(labels=labels[name],answers=answers,receipts=s.receipts));print('catalogue',name,len(answers),flush=True)
 
 def application_replay(executable,output,include_round38=False):
     """Continue R38's registered-route replay over original audited questions."""
@@ -151,9 +161,10 @@ def application_replay(executable,output,include_round38=False):
     write(output/'summary.json',doc)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['recurrence','three','complete','catalogue','validate','replay']);p.add_argument('--executable',default='target/debug/symbolic-racer');p.add_argument('--output');p.add_argument('--include-round38',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('command',choices=['recurrence','three','complete','catalogue','catalogue-seasonal','validate','replay']);p.add_argument('--executable',default='target/debug/symbolic-racer');p.add_argument('--output');p.add_argument('--include-round38',action='store_true');a=p.parse_args()
     if a.command=='recurrence':recurrence()
     elif a.command=='three':three()
     elif a.command=='catalogue':catalogue()
+    elif a.command=='catalogue-seasonal':catalogue(True)
     elif a.command=='replay':application_replay(a.executable,a.output or OUT/'application-replay',a.include_round38)
     else:complete(a.command=='validate')
