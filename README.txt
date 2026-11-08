@@ -1,13 +1,14 @@
 DNA Calc arithmetic program research
 
-Round 36 records 2,462 fresh qualified Excel20527 selections. Near-zero and
+Round 36 records 2,548 fresh qualified Excel20527 selections. Near-zero and
 near-one cumulative payment types require exact zero or one; the application
 change and these witnesses are recorded under evidence/round36. The long-range
 principal sum is still open. Centred regression and published-slope expressions
 fail fresh adjacent-input controls. On-coupon DURATION coupon sums agree with
 the forward stored sum on separating, holdout and exact-discount controls;
 general discount arithmetic is still open. The Poisson/chi-square relation
-holds on 120 new controls. The evidence records all scope and limitations.
+holds on 120 new controls. A single-draw hypergeometric quotient fails 59 of
+86 controls. The evidence records all scope and limitations.
 
 
 R35 lands beginning PPMT's existing stored period/timing component, preserves

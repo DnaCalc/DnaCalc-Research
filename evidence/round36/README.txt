@@ -46,6 +46,8 @@ For 120 POISSON.DIST CDF controls around four exponent or dispatch positions,
 the paired CHISQ.DIST.RT outputs agree on all 120; subtracting the paired
 GAMMA.DIST CDF from one agrees on 76. This establishes the observed public
 relation on these inputs only; the internal Poisson/gamma stages remain open.
+Single-draw HYPGEOM.DIST returns the strict mathematical quotient on 27 of
+86 controls; 59 differ, so that quotient alone cannot replace its mass path.
 The prior six number-to-text failures had no new separating question, so no
 additional conversion model was selected. The problem list's INDEX examples
 include observers of SORT spills and formatted HSTACK results, so the label
