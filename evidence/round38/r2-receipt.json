@@ -1,0 +1,55 @@
+{
+  "format": "dnacalc-raw-storage/1",
+  "complete": true,
+  "prefix": "r2:dnacalc-evidence/research/round38/20261108T110354Z-firehorse-7f3ced6b/",
+  "remote_files": 2,
+  "remote_bytes": 72065715,
+  "raw_files": 9872,
+  "raw_bytes": 1363781731,
+  "archive": "round38-raw.tar.gz",
+  "archive_sha256": "0033b09afce732aa7e9de4f0da00707e30b2aa2accacc9508322d65c864c71b1",
+  "archive_bytes": 71714531,
+  "member_manifest": "storage/contents.json.gz",
+  "member_manifest_sha256": "e4945bcaeadfce918874753fe1a40c02b368aa93c40a3a08b5ad424541aec5c3",
+  "every_archive_member_independently_sha256_verified": true,
+  "independently_verified_members": 9872,
+  "copy_checksum": true,
+  "copy_immutable": true,
+  "check_one_way": true,
+  "check_checksum": true,
+  "check_differences": 0,
+  "local_remote_file_and_byte_counts_equal": true,
+  "execution_receipts": {
+    "archive": {
+      "returncode": 0,
+      "seconds": 30.226555414963514,
+      "child_peak_rss_kib": 59488,
+      "log": "/home/ubuntu/codex-runs/round38-r2-archive.log",
+      "executable_sha256": "efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e"
+    },
+    "copy": {
+      "returncode": 0,
+      "seconds": 3.018567067105323,
+      "child_peak_rss_kib": 89296,
+      "log": "/home/ubuntu/codex-runs/round38-r2-copy.log",
+      "executable_sha256": "62e4d3e5432f2c685f1834b8bb342058ff0611c99d048aeb44bb8d8fd611527e"
+    },
+    "check": {
+      "returncode": 0,
+      "seconds": 0.38828924391418695,
+      "child_peak_rss_kib": 71964,
+      "log": "/home/ubuntu/codex-runs/round38-r2-check.log",
+      "executable_sha256": "62e4d3e5432f2c685f1834b8bb342058ff0611c99d048aeb44bb8d8fd611527e"
+    },
+    "size": {
+      "returncode": 0,
+      "seconds": 0.34426181903108954,
+      "child_peak_rss_kib": 69964,
+      "log": "/home/ubuntu/codex-runs/round38-r2-size.log",
+      "executable_sha256": "62e4d3e5432f2c685f1834b8bb342058ff0611c99d048aeb44bb8d8fd611527e"
+    }
+  },
+  "application_revision": "0338d9a02d55b2eb530cfe947e17632a5cc0fac7",
+  "proof_records_before_storage": 1165,
+  "limits": "One immutable archive and a member manifest. All original run bytes are retained, including failed discoveries; their own receipts define scope. No configuration contents or keys were read or logged."
+}

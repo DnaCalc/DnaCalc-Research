@@ -513,6 +513,7 @@ def bank_intake(executable, checkout, before_receipt, output):
     import os
     import subprocess
     import tempfile
+    import corpus_cases
     executable,checkout,before_receipt,output=(Path(p).resolve()for p in(executable,checkout,before_receipt,output))
     output.mkdir(parents=True,exist_ok=False)
     baseline=json.loads(before_receipt.read_text())
@@ -521,7 +522,7 @@ def bank_intake(executable, checkout, before_receipt, output):
     old_scope=baseline['bank_scope'];evidence=Path(old_scope['root'])
     if old_scope.get('status') or old_scope.get('dirty_or_untracked_sha256'):
         raise ValueError('intake comparison requires a clean pre-intake evidence revision')
-    frozen={str(p):sha(p)for p in(executable,before_receipt,Path(__file__))}
+    frozen={str(p):sha(p)for p in(executable,before_receipt,Path(__file__),Path(corpus_cases.__file__))}
     def git(*args):
         return subprocess.check_output(['git','-C',str(evidence),*args],text=True,timeout=60).strip()
     old_paths=set(git('ls-tree','-r','--name-only',old_scope['revision']).splitlines())
@@ -568,15 +569,13 @@ def bank_intake(executable, checkout, before_receipt, output):
                         except subprocess.TimeoutExpired:child.kill();child.wait()
     if frozen!={p:sha(Path(p))for p in frozen}or state()!=new_scope:
         raise ValueError('intake source, executable or evidence changed during comparison')
-    import re
     def totals(name):
-        match=re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)',(output/name).read_text())
-        if match is None:raise ValueError('missing intake judge totals')
-        matched,total,failed,unread=map(int,match.groups())
+        matched,total,failed,unread,excluded=corpus_cases.bank_summary((output/name).read_text())
         if failed!=total-matched:raise ValueError('incorrect intake judge failure count')
-        return dict(matched=matched,total=total,failed=failed,unread=unread)
+        return dict(matched=matched,total=total,failed=failed,unread=unread,excluded=excluded)
     old,new=totals('before-judge.log'),totals('judge.log');c=delta['counts']
-    if old!={key:baseline[key]for key in('matched','total','failed','unread')}:
+    if (any(old[key]!=baseline[key]for key in('matched','total','failed','unread'))
+            or old['excluded']!=baseline.get('excluded',0)):
         raise ValueError('before-view judge differs from the bound pre-intake totals')
     if c.get('removed_inputs',0)or c['shared_inputs']+old['unread']!=old['total']or c['shared_inputs']+c.get('added_inputs',0)+new['unread']!=new['total']:
         raise ValueError('intake coverage does not reconcile')
@@ -587,7 +586,7 @@ def bank_intake(executable, checkout, before_receipt, output):
         input_sha256=frozen,logs_sha256={p.name:sha(p)for p in output.iterdir()if p.is_file()},
         limits='Same application executable on two evidence views. Existing cache/data files are shared unchanged; the before view exposes exactly the originally bound reading files. '
                'All identities/answers and typed actuals use the existing canonical judge and bank-delta reconciliation. Added coverage and selected-capture metadata are separate from product gains. '
-               'Unread observations remain failures. Two FIFO traces are consumed once and never retained; no target or bulk bank copy.')
+               'Unread and excluded observations remain failures. Two FIFO traces are consumed once and never retained; no target or bulk bank copy.')
     with(output/'receipt.json').open('x')as file:json.dump(result,file,indent=2);file.write('\n')
     print(json.dumps(dict(before=old,after=new,counts=c)));return result
 
@@ -597,12 +596,13 @@ def bank_replay(before, executable, checkout, output, mode='file', function=None
     import os
     import subprocess
     import tempfile
+    import corpus_cases
     before, executable, checkout, output = (Path(p).resolve() for p in
         (before, executable, checkout, output))
     if mode not in ('file', 'live'):
         raise ValueError('bank replay mode must be file or live')
     output.mkdir(parents=True, exist_ok=False)
-    sources = {str(p): sha(p) for p in (before, executable, Path(__file__))}
+    sources = {str(p): sha(p) for p in (before, executable, Path(__file__), Path(corpus_cases.__file__))}
     legacy_root = Path(os.environ['DNACALC_LEGACY_ROOT']) if 'DNACALC_LEGACY_ROOT' in os.environ else checkout.parent
     evidence = (legacy_root if legacy_root.is_absolute() else checkout/legacy_root).resolve()/'OxFunc-Evidence'
     def evidence_state():
@@ -673,23 +673,26 @@ def bank_replay(before, executable, checkout, output, mode='file', function=None
     compared = (output/'compare.log').read_text()
     summary = re.search(r'xtask witness compare: (\d+) -> (\d+) matched, \+(\d+) / -(\d+); (\d+) actuals changed', compared)
     rows = re.search(r'xtask witness compare: (\d+) decoded rows;', compared)
-    judged = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)', (output/'judge.log').read_text())
-    if summary is None or rows is None or judged is None or int(rows[1]) == 0:
+    judged = corpus_cases.bank_summary((output/'judge.log').read_text())
+    if summary is None or rows is None or int(rows[1]) == 0:
         raise ValueError('missing nonempty judge/comparison totals')
     old, new, gains, losses, changed = map(int, summary.groups())
-    matched, total, failed, unread = map(int, judged.groups())
+    matched, total, failed, unread, excluded = judged
     if new != matched or total != int(rows[1])+unread or failed != total-matched:
         raise ValueError('judge and comparator totals do not reconcile')
+    before_excluded = None
     if mode == 'live':
-        previous = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)', (output/'before-judge.log').read_text())
-        if previous is None or tuple(map(int, previous.groups())) != (old, total, total-old, unread):
+        previous = corpus_cases.bank_summary((output/'before-judge.log').read_text())
+        if previous[:4] != (old, total, total-old, unread):
             raise ValueError('baseline judge and comparison totals do not reconcile')
+        before_excluded = previous[4]
     result = dict(complete=True, decoded_rows=int(rows[1]), before_matched=old, matched=matched,
-        total=total, failed=failed, unread=unread, gains=gains, losses=losses, changed_outputs=changed,
+        total=total, failed=failed, unread=unread, excluded=excluded, before_excluded=before_excluded,
+        gains=gains, losses=losses, changed_outputs=changed,
         commands=commands, mode=mode, function=function, input_sha256=sources, bank_scope=bank_scope,
         logs_sha256={p.name: sha(p) for p in output.glob('*.log')},
         limits='Existing application judge and verdict comparator; all identity/answer fields compared. '
-               'Unread observations remain failures. The FIFO trace is consumed once and never retained.')
+               'Unread and excluded observations remain failures. The FIFO trace is consumed once and never retained.')
     with (output/'receipt.json').open('x') as file:
         json.dump(result, file, indent=2)
         file.write('\n')
@@ -699,6 +702,7 @@ def bank_replay(before, executable, checkout, output, mode='file', function=None
 
 def corpus_delta(before, after, original_catalogue_after, output):
     """Compare fixed observations; '-' uses every matching catalogue session."""
+    from corpus_cases import workbook_directory
     override_catalogue = str(original_catalogue_after) != '-'
     before, after, original_catalogue_after, output = map(Path,
         (before, after, original_catalogue_after, output))
@@ -718,6 +722,8 @@ def corpus_delta(before, after, original_catalogue_after, output):
     changes, calculated_changes, pairs, workbooks = [], [], [], set()
     hashes = {str(before/'summary.json'): sha(before/'summary.json'),
               str(after/'summary.json'): sha(after/'summary.json'), str(Path(__file__)): sha(Path(__file__))}
+    helper = Path(__file__).with_name('corpus_cases.py')
+    hashes[str(helper)] = sha(helper)
     for old_report in sorted(before.glob('workbooks/**/report.json')):
         # xtask publishes the selected comparison beside retained retry evidence.
         # Retry reports are not additional formula obligations in summary.json.
@@ -789,7 +795,9 @@ def corpus_delta(before, after, original_catalogue_after, output):
     if counts['awaiting_capture'] != expected['awaiting_capture']:
         raise ValueError('pending coverage does not reconcile')
     counts['formula_cells'] += counts['awaiting_capture']
-    workbooks.update(p['workbook'].replace('/', '_').replace('\\', '_') for p in pending)
+    original_books = {w['name']: w for w in summary['workbooks']}
+    workbooks.update(workbook_directory(before, original_books[p['workbook']],
+        summary.get('version',1)).name for p in pending)
     counts['workbooks'] = len(workbooks)
     if counts['workbooks'] != summary['totals']['workbooks'] or counts['formula_cells'] != expected['formula_cells'] or counts['before_matched'] != expected['pass']:
         raise ValueError('original corpus totals do not reconcile: '+str(dict(counts)))
@@ -921,14 +929,16 @@ def bank_match_bits(executable, checkout, output, before=None, only_function=Non
     import re
     import subprocess
     import tempfile
-    from corpus_cases import judge_fifo_lines
+    from corpus_cases import judge_fifo_lines, bank_summary
+    import corpus_cases
     from contextlib import nullcontext
     if before == '-':before=None
     if only_function is not None and re.fullmatch(r'[A-Z][A-Z0-9._]*',only_function) is None:
         raise ValueError('worksheet function name required')
     executable,checkout,output = (Path(p).resolve() for p in (executable,checkout,output))
     output.mkdir(parents=True,exist_ok=False)
-    frozen={str(executable):sha(executable),str(Path(__file__).resolve()):sha(Path(__file__))}
+    frozen={str(executable):sha(executable),str(Path(__file__).resolve()):sha(Path(__file__)),
+            str(Path(corpus_cases.__file__).resolve()):sha(Path(corpus_cases.__file__))}
     baseline=json.loads((Path(before)/'summary.json').read_text()) if before else None
     if baseline is not None and baseline.get('selected_function') != only_function:
         raise ValueError('function-only inventory needs its own unsliced baseline; baseline scope differs')
@@ -953,6 +963,7 @@ def bank_match_bits(executable, checkout, output, before=None, only_function=Non
                     identity.update(json.dumps(row,sort_keys=True,separators=(',',':')).encode()+b'\n')
                     actual_hashes.setdefault(function,hashlib.sha256()).update(actual.encode()+b'\n')
                     matched=actual==row['expected'];counts[function]['rows']+=1;counts[function]['matched']+=matched
+                    counts[function]['excluded']+=actual.startswith('excluded:')
                     if mismatches is not None and not matched:
                         mismatches.write(json.dumps(dict(row,actual=actual))+'\n');retained_mismatches+=1
                     if index%8==0:bits.append(0)
@@ -973,10 +984,9 @@ def bank_match_bits(executable, checkout, output, before=None, only_function=Non
                     try:child.wait(timeout=5)
                     except subprocess.TimeoutExpired:child.kill();child.wait()
     text=(output/'judge.log').read_text()
-    match=re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)',text)
-    if match is None:raise ValueError('missing canonical judge totals')
-    matched,total,failed,unread=map(int,match.groups())
-    if index+unread!=total or sum(c['matched']for c in counts.values())!=matched or total-matched!=failed:
+    matched,total,failed,unread,excluded=bank_summary(text)
+    if (index+unread!=total or sum(c['matched']for c in counts.values())!=matched or total-matched!=failed
+            or sum(c['excluded']for c in counts.values())!=excluded):
         raise ValueError('stream and inclusive judge totals differ')
     digest=identity.hexdigest()
     if baseline and (baseline['identity_answer_environment_sha256']!=digest or baseline['decoded_rows']!=index or baseline['unread']!=unread):
@@ -984,11 +994,11 @@ def bank_match_bits(executable, checkout, output, before=None, only_function=Non
     if frozen!={p:sha(Path(p))for p in frozen}:raise ValueError('executable/audit changed during streaming')
     (output/'matched.bits').write_bytes(bits)
     hashes={name:h.hexdigest()for name,h in actual_hashes.items()}
-    result=dict(complete=True,decoded_rows=index,total=total,matched=matched,failed=failed,unread=unread,
+    result=dict(complete=True,decoded_rows=index,total=total,matched=matched,failed=failed,unread=unread,excluded=excluded,
         match_bits_sha256=sha(output/'matched.bits'),identity_answer_environment_sha256=digest,
         functions=counts,actual_sha256_by_function=hashes,inputs_sha256=frozen,
         changed_outcomes=changed_outcomes,retained_mismatches=retained_mismatches,selected_function=only_function,
-        limits='Canonical full-bank judge only; every unread row remains an inclusive failure. '
+        limits='Canonical full-bank judge only; every unread or excluded row remains an inclusive failure. '
                'The ordered identity/answer/environment digest must agree before match bits can be compared. '
                'Output hashes detect changed functions, but cannot locate failures that remain failures.')
     if baseline:

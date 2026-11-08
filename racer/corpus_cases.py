@@ -731,6 +731,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
             k = key(verdict)
             formula = formulas.get(k, {}).get('formula', '')
             function = formula_label(formula, formulas, k)
+            formula_function = function
             if verdict.get('class') == 'not-modelled':
                 function = verdict['key']
             e, a = expected.get(k), actual.get(k)
@@ -764,7 +765,7 @@ def classify(corpus, output, after=None, original_catalogue_after=None, scope_re
             category = 'last_bits_only' if reason == 'last_bits' else 'gross_or_unavailable'
             counts[category] += 1
             groups[category, function, reason] += 1
-            rows.append(dict(workbook=workbook, formula=formula, function=function,
+            rows.append(dict(workbook=workbook, formula=formula, function=function, formula_function=formula_function,
                 category=category, cause=reason, ulp_distance=distance,
                 **magnitude,
                 original_verdict=verdict, expected=e, actual=a,
@@ -890,10 +891,23 @@ def bank_problem_counts(lines):
         row = json.loads(line)
         tally = counts.setdefault(row['function'], Counter())
         actual = row['actual']
-        kind = ('refused' if actual.startswith('fault:') else
+        kind = ('excluded' if actual.startswith('excluded:') else
+                'refused' if actual.startswith('fault:') else
                 numeric_mismatch(row['expected'], actual))
         tally[kind] += 1
     return counts, digest.hexdigest()
+
+
+def bank_summary(text):
+    """Read old and current judge summaries without dropping excluded failures."""
+    match = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread(?:, (\d+) excluded)?\)', text)
+    if match is None or 'bank files could not be decoded' in text:
+        raise ValueError('incomplete bank inventory')
+    matched,total,failed,unread = map(int,match.groups()[:4])
+    excluded = int(match.group(5) or 0)
+    if matched+failed != total or unread+excluded > failed:
+        raise ValueError('bank summary counts do not reconcile')
+    return matched,total,failed,unread,excluded
 
 
 def judge_fifo_lines(descriptor, child, timeout=3600):
@@ -961,8 +975,15 @@ def problem_functions(checkout, output, run=None, corpus=None):
     classify(corpus, classification)
     table = function_table(classification, run/'corpus-functions')
     corpus_summary = json.loads((classification/'summary.json').read_text())
-    # The corpus command builds this release binary before comparing any workbook.
-    executable = checkout/'target/xtask-corpus/release'/('xtask-harness.exe' if os.name == 'nt' else 'xtask-harness')
+    # Use the exact executable the corpus measured, including the current
+    # default debug profile and older retained speed runs.
+    name = 'xtask-harness.exe' if os.name == 'nt' else 'xtask-harness'
+    digest = json.loads((corpus/'summary.json').read_text())['run']['executable_sha256']
+    candidates = [checkout/'target'/profile/name for profile in ('debug','release','xtask-corpus/release')]
+    executable = next((p for p in candidates if p.is_file() and
+        hashlib.sha256(p.read_bytes()).hexdigest() == digest), None)
+    if executable is None:
+        raise ValueError('the corpus executable is unavailable or changed')
     executable_hash = hashlib.sha256(executable.read_bytes()).hexdigest()
     if os.name == 'nt':
         raise ValueError('the streaming list generator currently requires Linux FIFOs')
@@ -1000,10 +1021,12 @@ def problem_functions(checkout, output, run=None, corpus=None):
                         child.kill()
                         child.wait()
     text = (run/'bank.log').read_text()
-    match = re.search(r'; (\d+) of (\d+) rows matched, (\d+) failed .*; (\d+) unread\)', text)
-    if match is None or 'bank files could not be decoded' in text:
-        raise ValueError('incomplete bank inventory')
-    matched, total, failed, unread = map(int, match.groups())
+    # Keep the complete stream counters even if a future summary protocol
+    # changes; they are observations, not a successful publication receipt.
+    (run/'bank-stream-counts.json').write_text(json.dumps(dict(functions={f:dict(c)for f,c in bank.items()},
+        trace_sha256=trace_hash,application=before,executable_sha256=executable_hash,
+        bank_source=bank_source,publication_complete=False),indent=2)+'\n')
+    matched, total, failed, unread, excluded = bank_summary(text)
     # The existing judge's status table supplies per-function unread counts.
     import csv
     with (checkout/'crates/calc-func/witness-status.tsv').open() as stream:
@@ -1012,19 +1035,26 @@ def problem_functions(checkout, output, run=None, corpus=None):
                 continue
             tally = bank.setdefault(status['function'], Counter())
             missing = int(status['rows'])-sum(tally.values())
-            if missing < 0 or tally['matched'] != int(status['matched']):
+            if missing < 0 or tally['matched'] != int(status['matched']) or tally['excluded'] != int(status.get('excluded',0)):
                 raise ValueError('bank status differs from streamed rows')
             tally['unread'] = missing
     bank_totals = sum(bank.values(), Counter())
-    if (bank_totals['matched'], sum(bank_totals.values()), total-matched, bank_totals['unread']) != (matched, total, failed, unread):
+    if (bank_totals['matched'], sum(bank_totals.values()), total-matched, bank_totals['unread'], bank_totals['excluded']) != (matched, total, failed, unread, excluded):
         raise ValueError('bank totals do not reconcile')
-    fields = ('larger_numeric', 'last_bit', 'other_mismatch', 'refused', 'unread')
+    fields = ('larger_numeric', 'last_bit', 'other_mismatch', 'refused', 'unread', 'excluded')
     corpus_counts = {}
     for function in table['functions']:
         corpus_counts[function['function']] = dict(larger_numeric=function['larger_numeric'],
             last_bit=function['within_16_ulp'], other_mismatch=sum(function['other'].values()))
+    for line in (classification/'cells.jsonl').read_text().splitlines():
+        row = json.loads(line)
+        if row['original_verdict']['verdict'] == 'not_modeled':
+            tally = corpus_counts.setdefault(row.get('formula_function',row['function']), {})
+            tally['refused'] = tally.get('refused',0)+1
+    if sum(c.get('refused',0) for c in corpus_counts.values()) != table['other_verdicts'].get('not_modeled',0):
+        raise ValueError('corpus refusals do not reconcile')
     names = set(corpus_counts) | {f for f, c in bank.items() if sum(c[k] for k in fields)}
-    functions = [dict(function=f, corpus={k:corpus_counts.get(f, {}).get(k, 0) for k in fields[:3]},
+    functions = [dict(function=f, corpus={k:corpus_counts.get(f, {}).get(k, 0) for k in fields[:4]},
                       bank={k:bank.get(f, Counter())[k] for k in fields}) for f in names]
     # Corpus failures determine work order; bank observations break later ties.
     functions.sort(key=lambda r: (-sum(r['corpus'].values()), -r['corpus']['larger_numeric'],
@@ -1039,7 +1069,7 @@ def problem_functions(checkout, output, run=None, corpus=None):
             inclusive_failed=corpus_summary['inclusive_failed'], awaiting_capture=corpus_summary['awaiting_capture'],
             pass_rate=corpus_summary['pass_rate'],
             other_failed_verdicts=table['other_verdicts'], mismatches=table['mismatches'],
-            counts={k:sum(f['corpus'][k] for f in functions) for k in fields[:3]}),
+            counts={k:sum(f['corpus'][k] for f in functions) for k in fields[:4]}),
         bank=dict(rows=total, matched=matched, failed=failed, counts=dict(bank_totals),
                   pass_rate=matched/total if total else 0,
                   canonical_trace_sha256=trace_hash), functions=functions,
@@ -1050,7 +1080,7 @@ def problem_functions(checkout, output, run=None, corpus=None):
              'Corpus labels follow exact single-cell aliases, infer calls from formula spelling and unwrap INDEX selections; unresolved references and infix operators remain explicit. Bank functions use canonical judge identities. '
              'Counts are observations per source; corpus and bank may overlap and must not be added as unique calls. '
              'Bank reference/locale context gaps remain failures, not proven numerical defects. '
-             'Rows are ordered by corpus mismatch count, then corpus larger differences, then bank nonpasses.')
+             'Rows are ordered by corpus mismatches plus refusals, then corpus larger differences, then bank nonpasses.')
     output.parent.mkdir(parents=True, exist_ok=True)
     output.with_suffix('.json').write_text(json.dumps(result, indent=2)+'\n')
     lines = ['# Problem functions', '',
@@ -1058,12 +1088,12 @@ def problem_functions(checkout, output, run=None, corpus=None):
         '```sh', 'python3 racer/corpus_cases.py problem-functions ../DnaCalc ../DnaCalc/docs/generated/problem-functions', '```', '',
         result['rule'], '',
         f"Corpus: {result['corpus']['matched']:,}/{result['corpus']['formula_cells']:,} matched ({result['corpus']['pass_rate']:.5%}); {result['corpus']['inclusive_failed']:,} inclusive failures, including {result['corpus']['awaiting_capture']:,} pending.",
-        f"Bank: {matched:,}/{total:,} matched ({result['bank']['pass_rate']:.5%}); {failed:,} failures, including {unread:,} unread.", '',
-        'Larger numeric and last-bit columns count numeric mismatches; other columns count remaining mismatches. Bank refusals and unread rows are separate. Corpus refusals/missing are recorded in the JSON, outside the mismatch table.', '',
-        '| Function | Corpus larger | Corpus last-bit | Corpus other | Bank larger | Bank last-bit | Bank other | Bank refused | Bank unread |',
-        '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+        f"Bank: {matched:,}/{total:,} matched ({result['bank']['pass_rate']:.5%}); {failed:,} failures, including {unread:,} unread and {excluded:,} excluded.", '',
+        'Larger numeric and last-bit columns count numeric mismatches; other columns count remaining mismatches. Corpus and bank refusals are separate inclusive failures. Missing corpus values and unread bank rows remain failures too.', '',
+        '| Function | Corpus larger | Corpus last-bit | Corpus other | Corpus refused | Bank larger | Bank last-bit | Bank other | Bank refused | Bank unread | Bank excluded |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
     for row in functions:
-        values = [row['corpus'][k] for k in fields[:3]]+[row['bank'][k] for k in fields]
+        values = [row['corpus'][k] for k in fields[:4]]+[row['bank'][k] for k in fields]
         lines.append('| '+row['function'].replace('|', '\\|')+' | '+' | '.join(f'{v:,}' for v in values)+' |')
     output.with_suffix('.md').write_text('\n'.join(lines)+'\n')
     (run/'receipt.json').write_text(json.dumps(dict(complete=True, application=before,
@@ -2034,7 +2064,184 @@ not claims that Excel changes there. No parked ERF, normal or annuity producer i
     print(json.dumps({k:v for k,v in manifest.items()if not k.endswith('sha256')},indent=2))
 
 
+def ets_catalogue(checkout, design, cache, output, executable=None):
+    """Map audited ETS scalar replies into the existing catalogue/verdict route.
+
+    First writes the section and its immutable call-to-reply map. After the
+    repository generator runs, a second invocation with executable audits all
+    numeric literals through Workbook::enter and writes the canonical section
+    record. These are function questions, never a claimed workbook round trip.
+    """
+    import gzip
+    import subprocess
+    from fingerprint import accept, bits, value, sha, write
+    checkout, design, cache, output = map(lambda p: Path(p).resolve(), (checkout, design, cache, output))
+    sheet = 'dcj9k_r38_ets'
+    prepared = output/'prepared.json'
+    import sys
+    sys.path.insert(0, str(checkout/'tools/excel-service'))
+    from client import number, number_array
+    leaves = {}
+    def expression(arg):
+        if arg['type'] == 'array':
+            return '{'+';'.join(','.join(expression(v) for v in row) for row in arg['values'])+'}'
+        if arg['type'] != 'number':
+            raise ValueError('only audited numeric vectors are admitted')
+        v = value(arg['bits'])
+        if not __import__('math').isfinite(v):
+            raise ValueError('nonfinite numeric literal')
+        text = format(v, '.15g')
+        if bits(float(text)) != arg['bits']:
+            raise ValueError('numeric operand has no admitted 15-digit literal spelling')
+        leaves[text] = '0x'+arg['bits']
+        return text
+    def selected_calls(z):
+        y = number_array([[v] for v in z['y']]); t = number_array([[float(v)] for v in z['timeline']])
+        tail = [number(float(z[k])) for k in ('seasonality','data_completion','aggregation')]
+        target = number(float(max(z['timeline'])+1))
+        return [('FORECAST.ETS', [target,y,t]+tail),
+            ('FORECAST.ETS.CONFINT', [target,y,t,number(.95)]+tail),
+            ('FORECAST.ETS.SEASONALITY', [y,t]+tail[1:]),
+            ('FORECAST.ETS.STAT', [y,t,number(8.)]+tail)]
+    if executable is None:
+        output.mkdir(parents=True, exist_ok=False)
+        observed = {}
+        def identity(name, args):
+            return json.dumps(dict(function=name, rows=[args]), sort_keys=True, separators=(',', ':'))
+        for path in sorted(cache.glob('*.json.gz')):
+            if '.refusal-' in path.name:
+                continue
+            with gzip.open(path, 'rt') as stream:
+                doc = json.load(stream)
+            request, reply = doc['request'], doc['reply']
+            if request['function'] not in ('FORECAST.ETS','FORECAST.ETS.CONFINT','FORECAST.ETS.SEASONALITY','FORECAST.ETS.STAT'):
+                continue
+            accept(reply, request['function'], request['rows'])
+            for index, (args, answer) in enumerate(zip(request['rows'], reply['rows'])):
+                key = identity(request['function'], args)
+                row = dict(answer=answer, request_id=reply['id'], index=index,
+                    raw_file=path.name, raw_sha256=sha(path), environment=reply.get('calculation_settings'),
+                    excel_file_version=reply.get('excel_file_version'), excel_build=reply.get('excel_build'))
+                if key in observed and observed[key]['answer'] != answer:
+                    raise ValueError('inconsistent repeated ETS question')
+                observed[key] = row
+        rows = []
+        cases = json.loads(design.read_text())['cases']
+        if len(cases) != 980:
+            raise ValueError('the retained design changed')
+        for case, z in enumerate(cases):
+            calls = selected_calls(z)
+            for name, args in calls:
+                observation = observed.get(identity(name, args))
+                if observation is None:
+                    raise ValueError(f'unanswered {case} {name}; keep the partial raw replies')
+                formula = '_xlfn.'+name+'('+','.join(map(expression,args))+')'
+                rows.append(dict(case=case,row=len(rows)+1,column=4,function=name,args=args,
+                    formula=formula,**observation))
+        section = output/('sheet-'+sheet+'.txt')
+        section.write_text('# dc-j9k R38: four measured ETS surfaces per retained design case.\n'+
+                           '\n'.join(z['formula'] for z in rows)+'\n')
+        write(prepared, dict(sheet=sheet,rows=rows,leaves=leaves,design_sha256=sha(design),
+            section_sha256=sha(section),producer_sha256=sha(__file__),
+            selection='One next-step forecast, .95 confidence, detected period and step statistic for every retained design case, without answer-dependent selection.'))
+        print('prepared',len(rows),'measured cells; literals',len(leaves))
+        return
+    executable = Path(executable).resolve()
+    doc = json.loads(prepared.read_text())
+    cases = json.loads(design.read_text())['cases']
+    if sha(design) != doc['design_sha256'] or len(cases) != 980 or len(doc['rows']) != 4*len(cases):
+        raise ValueError('the frozen design or prepared selection changed')
+    raw = {}
+    for index, z in enumerate(doc['rows']):
+        name, args = selected_calls(cases[index//4])[index%4]
+        if z['case'] != index//4 or z['row'] != index+1 or z['column'] != 4 or z['function'] != name or z['args'] != args:
+            raise ValueError('prepared call differs from the retained design')
+        file = z['raw_file']
+        if re.fullmatch(r'[0-9a-f]{64}\.json\.gz',file) is None:
+            raise ValueError('invalid raw cache basename')
+        if file not in raw:
+            if sha(cache/file) != z['raw_sha256']:
+                raise ValueError('original reply changed')
+            with gzip.open(cache/file,'rt') as stream:
+                raw[file] = json.load(stream)
+            accept(raw[file]['reply'],raw[file]['request']['function'],raw[file]['request']['rows'])
+        original = raw[file]; request, reply = original['request'], original['reply']; slot = z['index']
+        if (request.get('result_index') is not None or request['function'] != name or
+            not isinstance(slot,int) or slot < 0 or slot >= len(request['rows']) or
+            request['rows'][slot] != args or reply['id'] != z['request_id'] or
+            reply['rows'][slot] != z['answer'] or reply.get('calculation_settings') != z['environment'] or
+            reply.get('excel_file_version') != z['excel_file_version'] or reply.get('excel_build') != z['excel_build']):
+            raise ValueError('prepared cell is not the original audited reply')
+        formula = '_xlfn.'+name+'('+','.join(map(expression,args))+')'
+        if z['formula'] != formula:
+            raise ValueError('formula differs from its audited numeric call')
+    if leaves != doc['leaves']:
+        raise ValueError('prepared operand-echo inventory changed')
+    fixture = checkout/'crates/calc-func/tests/fixtures'/sheet/'oracle.xlsx'
+    keys = json.loads(subprocess.check_output([str(executable),'oracle-section-keys',str(fixture)], timeout=120))  # ubs:ignore — operator-selected local research executable, fixed argv, bounded runtime, no shell
+    section = next(z for z in keys if z['sheet'] == sheet)
+    if section['formula_cells'] != len(doc['rows']):
+        raise ValueError('catalogue section cell count changed')
+    # Check the actual generated worksheet, independently of its section text.
+    from zipfile import ZipFile
+    import xml.etree.ElementTree as ET
+    ns = {'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+    with ZipFile(fixture) as package:
+        workbook = ET.fromstring(package.read('xl/workbook.xml'))
+        names = [s.attrib['name'] for s in workbook.find('m:sheets',ns)]
+        worksheet = ET.fromstring(package.read(f'xl/worksheets/sheet{names.index(sheet)+1}.xml'))
+        formulas = {cell.attrib['r']:cell.find('m:f',ns).text for cell in worksheet.findall('.//m:c',ns) if cell.find('m:f',ns) is not None}
+    if formulas != {f"D{z['row']}":z['formula'] for z in doc['rows']}:
+        raise ValueError('generated formulas differ from audited calls')
+    echo = output/'operand-echo-questions.json'
+    echo.write_text(json.dumps(dict(questions=[dict(id=str(i),row=i+1,column=4,formula=literal)
+        for i,literal in enumerate(doc['leaves'])]),indent=2)+'\n')
+    predictions = output/'operand-echo-predictions.jsonl'
+    subprocess.run([str(executable),'sheet-predictions',str(echo),str(predictions)],check=True,timeout=180)  # ubs:ignore — operator-selected local research executable, fixed argv and bounded runtime, no shell
+    actual = [json.loads(line) for line in predictions.read_text().splitlines()]
+    if len(actual) != len(doc['leaves']):
+        raise ValueError('missing operand echoes')
+    for row, expected in zip(actual, doc['leaves'].values()):
+        if row['prediction_provenance'] != 'calculated' or row['calc_func_prediction'] != expected:
+            raise ValueError('formula parsing changes a numeric operand')
+    sources = {z['raw_file']:z['raw_sha256'] for z in doc['rows']}
+    for file, digest in sources.items():
+        if sha(cache/file) != digest:
+            raise ValueError('original reply changed')
+    mapping = dict(format='dnacalc-function-question-map/1',sheet=sheet,section_key=section['key'],
+        package_sha256=sha(fixture),prepared_sha256=sha(prepared),operand_echo_sha256=sha(predictions),
+        executable_sha256=sha(executable),raw_replies=sources,
+        cells=[dict(cell=f"D{z['row']}",request_id=z['request_id'],index=z['index'],raw_file=z['raw_file'],
+                    formula=z['formula'],args=z['args'],answer=z['answer'],environment=z['environment'])for z in doc['rows']],
+        limits='Original raw Value2 questions and audited numeric operands. The committed workbook was not opened, saved or reopened in Excel. Formula values still run through the ordinary application evaluator and canonical verdict.')
+    mapping_path = output/'mapping.json.gz'
+    mapping_path.write_bytes(gzip.compress(json.dumps(mapping,separators=(',',':')).encode(),mtime=0))
+    error_names={'#NUM!':'num','#N/A':'na','#DIV/0!':'div0','#VALUE!':'value'}
+    observations=[]
+    for z in doc['rows']:
+        answer=z['answer'];raw=({'number':answer['bits']} if answer['type']=='number' else
+                              {'error':error_names[answer['code']]})
+        observations.append(dict(sheet=sheet,row=z['row'],column=4,excel_raw=raw))
+    # Version three explicitly records scalar questions without an invented
+    # workbook session. Corpus's independent evaluation record still proves returns.
+    record=dict(format='dnacalc-capture-record',version=3,case=sheet+'__'+sheet,source=section['key'],
+        acquisition=dict(kind='function_questions',entry='DnaCalc-Research/evidence/round38/ets-catalogue/mapping.json.gz;sha256:'+sha(mapping_path)),
+        environment=None,sheets=[dict(name=sheet,visibility='visible')],
+        formulas=[dict(sheet=sheet,row=z['row'],column=4,kind='ordinary',formula='='+z['formula'])for z in doc['rows']],observations=observations)
+    destination=checkout/'crates/calc-func/tests/captures'/sheet/'sections'/f'{sheet}.capture.json'
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    authored = output/'capture-input.json'
+    with authored.open('x') as stream:
+        json.dump(record,stream,indent=2);stream.write('\n')
+    subprocess.run([str(executable),'encode-capture',str(authored),str(destination)],check=True,timeout=120)  # ubs:ignore — frozen local codec executable and explicit argv; create-new output, bounded runtime, no shell
+    write(output/'receipt.json',dict(cells=len(observations),capture_sha256=sha(destination),mapping_sha256=sha(mapping_path),
+        source=section['key'],raw_reply_files=len(sources),operand_literals=len(actual),producer_sha256=sha(__file__)))
+    print('imported',len(observations),'function observations;',len(actual),'literal echoes verified')
+
+
 if __name__ == '__main__':
+    if len(sys.argv)>1 and sys.argv[1]=='ets-catalogue':
+        ets_catalogue(*sys.argv[2:]);sys.exit(0)
     if len(sys.argv)>1 and sys.argv[1]=='round25-guard-packet':
         round25_guard_packet(*sys.argv[2:]);sys.exit(0)
     if len(sys.argv)>1 and sys.argv[1]=='round25-store-questions':

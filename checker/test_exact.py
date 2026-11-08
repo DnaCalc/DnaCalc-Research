@@ -400,6 +400,21 @@ class ExactArithmetic(unittest.TestCase):
                          larger_numeric=1, other_mismatch=1, refused=1))
         self.assertEqual(len(digest), 64)
 
+    def test_problem_table_keeps_excluded_rows_in_inclusive_totals(self):
+        from racer.corpus_cases import bank_problem_counts, bank_summary
+        counts, _ = bank_problem_counts([json.dumps(dict(function='SYNTHETIC',
+            expected='0x3ff0000000000000', actual='excluded:ambiguous-order'))+'\n'])
+        self.assertEqual(dict(counts['SYNTHETIC']), dict(excluded=1))
+        legacy = 'xtask witness: 2 functions, 1 exact; 7 of 10 rows matched, 3 failed (mismatched, refused or unread; 1 unread)'
+        current = 'xtask witness: 2 functions, 1 exact; 7 of 10 rows matched, 3 failed (mismatched, refused, unread or excluded; 1 unread, 2 excluded)'
+        self.assertEqual(bank_summary(legacy), (7,10,3,1,0))
+        self.assertEqual(bank_summary(current), (7,10,3,1,2))
+        for invalid in (current.replace('7 of 10','8 of 10'),
+                        current.replace('2 excluded','3 excluded'),
+                        current+'\n1 bank files could not be decoded', 'no summary'):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                bank_summary(invalid)
+
     def test_fuzzer_neighbor_expressions_are_exact_rationals(self):
         import ast
         from racer.corpus_fuzz import exact_expression

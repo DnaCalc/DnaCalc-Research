@@ -117,7 +117,9 @@ if '--func' in sys.argv:
 with open(sys.argv[sys.argv.index('--trace')+1],'w') as out:
     for row in rows:out.write(json.dumps(row)+'\\n')
 matches=sum(r['actual']==r['expected'] for r in rows)
-print(f'xtask witness: constructed control; {matches} of {len(rows)+1} rows matched, {len(rows)+1-matches} failed (mismatched, refused or unread; 1 unread)')
+excluded=sum(r['actual'].startswith('excluded:') for r in rows)
+tail=f', {excluded} excluded' if excluded else ''
+print(f'xtask witness: constructed control; {matches} of {len(rows)+1} rows matched, {len(rows)+1-matches} failed (mismatched, refused or unread; 1 unread{tail})')
 ''')
             binary.chmod(0o755)
             rows=[dict(function='CONTROL',args=['0x3ff0000000000000'],id=str(i),
@@ -154,6 +156,10 @@ print(f'xtask witness: constructed control; {matches} of {len(rows)+1} rows matc
                 bank_match_bits(binary,root,root/'bad-name','-','PMT;echo')
             with self.assertRaisesRegex(ValueError,'own unsliced baseline'):
                 bank_match_bits(binary,root,root/'wrong-baseline',root/'before','CONTROL')
+            rows[0]['actual']='excluded:ambiguous-order';data.write_text(json.dumps(rows))
+            excluded=bank_match_bits(binary,root,root/'excluded',root/'selected-after','CONTROL')
+            self.assertEqual((excluded['total'],excluded['matched'],excluded['failed'],excluded['unread'],excluded['excluded']),(3,0,3,1,1))
+            self.assertEqual((excluded['gains'],excluded['losses']),(0,1))
 
 
 class DomainQuestions(unittest.TestCase):

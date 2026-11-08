@@ -776,6 +776,56 @@ fn main() {
         },
         #[cfg(route_audit)]
         Some("sheet-predictions") => route_audit::sheet_predictions(&a[2], &a[3]),
+        Some("oracle-section-keys") => {
+            let parts = calc_verdict::stored_package_parts(&fs::read(&a[2]).unwrap()).unwrap();
+            let sections = calc_verdict::workbook_sections(&parts).unwrap();
+            let keys: Vec<_> = sections.into_iter().map(|s| json!({
+                "sheet":s.sheet,"key":s.key,"formula_cells":s.formula_cells,
+            })).collect();
+            println!("{}", json!(keys));
+        }
+        Some("encode-capture") => {
+            let record = calc_verdict::CaptureRecord::decode(&fs::read(&a[2]).unwrap()).unwrap();
+            let text = record.encode().unwrap();
+            let mut output = fs::OpenOptions::new().write(true).create_new(true).open(&a[3]).unwrap();
+            output.write_all(text.as_bytes()).unwrap();
+        }
+        Some("power-boundaries") => {
+            use ported::excel_numeric::{research_load, research_log, research_exp, research_pow2,
+                excel_pow_chain, crt_pow};
+            let rows: Vec<Value> = serde_json::from_slice(&fs::read(&a[2]).unwrap()).unwrap();
+            let mut records = Vec::new();
+            for row in rows {
+                let read = |key: &str| f64::from_bits(u64::from_str_radix(row[key].as_str().unwrap(),16).unwrap());
+                let (base, exponent) = (read("base"),read("exponent"));
+                assert!(base > 0.0 && base.is_finite() && exponent.is_finite());
+                let mut values = serde_json::Map::new();
+                for log_store in [false,true] {
+                    for product_store in [false,true] {
+                        let mut log = research_log::<Hard>(&research_load(base));
+                        if log_store { log = research_load(Hard::store(&log,0x133f)); }
+                        let mut product = Hard::mul(&research_load(exponent),&log,0x133f);
+                        if product_store { product = research_load(Hard::store(&product,0x133f)); }
+                        let raw = Hard::store(&research_exp::<Hard>(&product),0x133f).to_bits();
+                        values.insert(format!("natural_log_store_{log_store}_product_store_{product_store}"),json!(format!("{raw:016x}")));
+                    }
+                }
+                let log = Hard::fyl2x(&research_load(1.0),&research_load(base),0x133f);
+                for product_store in [false,true] {
+                    let mut product = Hard::mul(&research_load(exponent),&log,0x133f);
+                    if product_store { product = research_load(Hard::store(&product,0x133f)); }
+                    let raw = Hard::store(&research_pow2::<Hard>(&product),0x133f).to_bits();
+                    values.insert(format!("base_two_product_store_{product_store}"),json!(format!("{raw:016x}")));
+                }
+                for (name,got) in [("stored_chain",excel_pow_chain(base,exponent)),("crt",crt_pow(base,exponent)),
+                    ("native",base.powf(exponent)),("fdlibm",fdlibm_pow_core::pow(base,exponent))] {
+                    values.insert(name.into(),json!(format!("{:016x}",got.to_bits())));
+                }
+                records.push(json!({"input":row,"predictions":values}));
+            }
+            json_write(&a[3],&json!({"records":records,"not_excel_evidence":true,
+                "limits":"Fixed logarithm/product lifetimes and existing cleared power providers. No fitted constants, branches or correction."}));
+        }
         #[cfg(route_audit)]
         Some("literal-input-audit") => route_audit::literal_inputs(&a[2], &a[3], &a[4]),
         #[cfg(route_audit)]
