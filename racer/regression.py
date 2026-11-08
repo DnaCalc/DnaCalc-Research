@@ -739,15 +739,32 @@ def service_questions(checkout, output, cache, mode='rank', offline=False):
             cases.append(dict(id=str(len(cases)), x=xs, y=y, constant=constant,
                               reverse=reverse, scale=scale, response=response))
         selections = [(r, c) for r in range(1, 6) for c in range(1, 4)]
+    elif mode == 'residual':
+        # Zero-mean orthogonal predictors separate residual arithmetic from the
+        # intercept's translation. Basis responses read the fitted projection.
+        for n, scale, reverse, response in itertools.product(
+                (3, 4, 5, 8, 9, 16), (-20, 0, 20), (False, True), range(5)):
+            x = [math.ldexp(float(2*i-n+1), scale) for i in range(n)]
+            if response < 3:
+                y = [float(i == response) for i in range(n)]
+            elif response == 3:
+                y = [float((i*3+1)%7-3) for i in range(n)]
+            else:
+                y = [1.0 if i in (0, n-1) else -2.0/(n-2) for i in range(n)]
+            if reverse: x, y = x[::-1], y[::-1]
+            cases.append(dict(id=str(len(cases)), x=[[v] for v in x], y=[[v] for v in y],
+                              constant=True, reverse=reverse, scale=scale, response=response))
+        selections = [(1, 1), (1, 2), (2, 1), (2, 2), (3, 2), (4, 2), (5, 2)]
     else:
         raise ValueError('unknown regression question mode')
-    arguments = [[client.number_array(c['y']), client.number_array(c['x']),
-                  client.boolean(c['constant']), client.boolean(True)] for c in cases]
     write(output/'questions.json', dict(mode=mode, cases=cases, selections=selections,
           source='Original controlled numeric inputs, Excel question-service outputs; no implementation source copied.'))
     counts = Counter()
     with (output/'observations.jsonl').open('x') as stream:
         for function in ('LINEST', 'LOGEST'):
+            arguments = [[client.number_array(
+                [[2.0**v[0]] for v in c['y']] if function == 'LOGEST' and mode == 'residual' else c['y']),
+                client.number_array(c['x']), client.boolean(c['constant']), client.boolean(True)] for c in cases]
             for selection in selections:
                 answers = service.ask_rows(function, arguments, chunk_size=500, result_index=selection)
                 for case, args, answer in zip(cases, arguments, answers):

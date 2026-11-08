@@ -1,5 +1,24 @@
 DNA Calc arithmetic program research
 
+Round37 pushes DURATION coupon-PV weighting and PC64 quotients/sums, plus
+intercept standard-error product-before-division in main65716b44. The full
+bank rises3,887,447->3,887,612/3,910,007 (+165 net); corpus54,094->54,096/54,794
+(+3/-1), with the original LINEST D654 loss retained. Separate fresh288-case
+proofs per bond function match the actual route;648 conditional intercept
+cases agree, while private QR and fractional powers remain incomplete.
+
+Service5f8039f4 admits bounded ETS questions, but the live Windows loop still
+rejects them and needs a Windows pull/restart. No ETS numeric result or kernel
+is claimed. Evidence/round37 retains10,166 audited scalar selections, including
+1,260 initial LOGEST nonpositive-domain error selections, all counted apart
+from numerical fit validation. The evidence qualifies inherited test-hash
+metadata and the overwritten initial research unit. Original answers stay
+unchanged. The one full numeric check's only failure was two newly exact
+DURATION prediction pins; after prediction-only refresh, its witness suite
+passes5/5. No second full numeric check was run. The corpus and bank table is
+regenerated from the guarded numerical tree; hashes, independent replays and
+all retained losses are under evidence/round37.
+
 Round 36 records 2,548 fresh qualified Excel20527 selections. Near-zero and
 near-one cumulative payment types require exact zero or one; the application
 change and these witnesses are recorded under evidence/round36. The long-range

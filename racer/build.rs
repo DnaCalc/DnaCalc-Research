@@ -419,8 +419,8 @@ flushing_op!(Div, div, excel_x87_div);
         for (old,new) in [
             ("(ss_resid * covariance(position, position) / df).sqrt()",
              "crate::route_audit::regression_leaf(ss_resid, covariance(position, position), df, 2, fit.model.coefficients.len()-*index, 0, (ss_resid * covariance(position, position) / df).sqrt())"),
-            ("(ss_resid / df * variance).sqrt()",
-             "crate::route_audit::regression_leaf(ss_resid, variance, df, 2, first.len(), 1, (ss_resid / df * variance).sqrt())"),
+            ("(ss_resid * variance / df).sqrt()",
+             "crate::route_audit::regression_leaf(ss_resid, variance, df, 2, first.len(), 1, (ss_resid * variance / df).sqrt())"),
             ("let se_b = if exact",
              "let variance = crate::route_audit::regression_factors(&w, &inverse, n, variance); let se_b = if exact"),
         ] {
