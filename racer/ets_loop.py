@@ -15,6 +15,40 @@ TAGS=['complement','prediction','error','difference','alpha_product','trend_prod
       'delta','level','beta_product','trend','gamma_product','season','mean',
       'level_center','season_center','horizon','forecast','publication']
 
+SLOPE_TAGS=['sum_y','product_xy','sum_xy','numerator_product','numerator','quotient','pad_product','pad_sum']
+
+
+def slope_graph(n, form=0, extend=False):
+    """Original moment-OLS/padded-OLS candidates, with coherent store sites.
+
+    An insufficient history can be extended to seven by its first two phases
+    and the original OLS trend, then regressed again. The shape is inferred
+    from impulse weights; no impulse coefficient is installed as a table.
+    """
+    g=Builder(n);zero=g.constant(bits(0.))
+    def c(v):return g.constant(bits(float(v)))
+    def op(kind,a,b,tag):
+        node=g.op(kind,a,b,store=False);g.nodes[node].update(site=SLOPE_TAGS.index(tag),tag=tag);return node
+    def regression(y):
+        count=len(y);sx=count*(count+1)/2;sxx=count*(count+1)*(2*count+1)/6
+        sy=zero;sxy=zero
+        for i,v in enumerate(y):
+            sy=op('add',sy,v,'sum_y');sxy=op('add',sxy,op('mul',c(i+1),v,'product_xy'),'sum_xy')
+        if form==0:
+            numerator=op('sub',op('mul',c(count),sxy,'numerator_product'),op('mul',c(sx),sy,'numerator_product'),'numerator');denominator=c(count*sxx-sx*sx)
+        elif form==1:
+            numerator=op('sub',sxy,op('div',op('mul',c(sx),sy,'numerator_product'),c(count),'numerator_product'),'numerator');denominator=c(sxx-sx*sx/count)
+        else:
+            numerator=op('sub',sxy,op('mul',c(sx/count),sy,'numerator_product'),'numerator');denominator=c(sxx-sx*sx/count)
+        return op('div',numerator,denominator,'quotient')
+    y=list(range(n));t=regression(y)
+    if extend and n<7:
+        for j in range(n,7):
+            y.append(op('add',j%2,op('mul',c(j-j%2),t,'pad_product'),'pad_sum'))
+        t=regression(y)
+    g.sites=len(SLOPE_TAGS)
+    return g.graph(t,t)
+
 def graph(n,form=0,ef=0,phases=(),extended_initial=False,mse=False):
     g=Builder(n+6 if extended_initial else n+4);zero=g.constant(bits(0.));two=g.constant(bits(2.));gamma=g.constant(bits(2.**-52));errors=[zero]
     def op(kind,a,b,tag):

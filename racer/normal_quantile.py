@@ -74,6 +74,31 @@ def proof():
     freeze(name,dict(points=points,predictions=pred,profiles=profiles,extra_source=Path(__file__).read_text()))
     c,s=service();answers=s.ask_rows('NORM.S.INV',[[c.number(p)]for p in points]);actual=[a.get('bits')for a in answers];survive=[i for i,v in pred.items()if v==actual];write(OUT/(name+'-answers.json'),dict(points=points,answers=answers,receipts=s.receipts));write(OUT/(name+'-proof.json'),dict(survivors=survive,counts={i:sum(a==b for a,b in zip(v,actual))for i,v in pred.items()}));print('fresh central programs',survive)
 
+
+def store_refutations(mapping, output, library):
+    """Replay the original fixed AS241 store family on any fresh mapping.
+
+    Every rejected profile keeps its first exact contradiction. Selecting the
+    shortest/simple profile is allowed only among complete survivors.
+    """
+    d=read(mapping)
+    selected=[i for i,p in enumerate(d['points'])if .075<p<.925]
+    if not selected:raise ValueError('no central observations')
+    rows=np.array([[int(bits(d['points'][i]),16)]for i in selected],dtype='uint64')
+    actual=np.array([int(d['answers'][i]['bits'],16)for i in selected],dtype='uint64')
+    native=Native(library);g=central_graph();refutations=[];survivors=[]
+    for cw,mask in itertools.product([0x123f,0x133f],range(1<<len(TAGS))):
+        out=native.grid(g,rows,cw,mask)
+        for branch in [0,1]:
+            bad=np.flatnonzero(out[:,branch]!=actual)
+            profile=dict(cw=cw,mask=mask,output=branch)
+            if len(bad):
+                j=int(bad[0]);refutations.append(dict(**profile,case=selected[j],p=d['points'][selected[j]],prediction=f'{int(out[j,branch]):016x}',answer=f'{int(actual[j]):016x}'))
+            else:survivors.append(profile)
+    write(output,dict(observations=len(rows),profiles=len(refutations)+len(survivors),survivors=survivors,
+                     first_contradictions=refutations,source_sha256=sha(__file__),mapping_sha256=sha(mapping)))
+    return survivors
+
 if __name__=='__main__':
     import sys
     if len(sys.argv)>1 and sys.argv[1]=='proof':proof()
