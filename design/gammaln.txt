@@ -84,3 +84,41 @@ stopped yielding before a replacement table could be justified. A research
 DFT bug exposed by exact-root windows is fixed: a window touching or
 crossing zero reports that condition instead of dividing by ulp(0).
 Evidence: evidence/round45, gamma*, original audited cache and probe.py.
+
+R49 / Fable-1 follow-up (GPT-6.1 Sol (Codex), dna-firehorse)
+
+The ascending stored-product reduction and literal .7 join were already in
+the application. Fresh public-leaf controls confirm 1,348/1,348 inputs in
+(3,8), including single-bit windows around integers; x=3 is an exception:
+GAMMALN(3)=3fe62e42fefa39f0, whereas LN(2)=3fe62e42fefa39ef and GAMMALN(2)=0.
+The existing endpoint treatment is preserved. All 274 sampled x<.7 agree
+with the public upper answer minus public LN. Neither final plain addition
+nor PC64-then-store is separated by these controls. No new reduction or
+lower-core implementation is credited to this round.
+
+Fable's flat absolute-error premise is refuted. Its e1c records explicitly
+say "math.lgamma (double)": the fallback, rather than the intended mpmath
+reference, supplied its truth. Recomputing all 600 retained answers at 80
+decimal digits gives max errors 7.32e-17,6.32e-17,6.30e-17,1.29e-16,3.16e-16
+on [.7,1),[1,1.5),[1.5,2),[2,2.5),[2.5,3), respectively. The fallback's own
+error reaches 1.12e-15. Its apparent noise cannot identify Excel's program.
+The original answers and original fallback reference remain immutable.
+
+Fresh mapping: 55 windows of 256 adjacent inputs, 14,080 numeric answers,
+with high-precision loggamma of the exact binary64 inputs. Absolute error
+shrinks at both roots: sd is about 1.23e-30 at 1 and 2.14e-30 at 2 in the
+256-point windows. This supports factored roots, contradicting the proposed
+difference of large Lanczos terms as the explanation for flat error.
+For g=5,7,607/128,9, six predicted temporary binade crossings were probed on
+both sides. The adjacent sd ratios lie between .914 and 1.044, not a doubling.
+This refutes that signature for those temporaries; it excludes neither all
+Lanczos forms nor every store policy. No g is recovered or coefficient fitted.
+Typed decimal constants must still be rounded to PC64 before any binary64
+store in a supported source-level program; this round identifies no such
+new constant, and does not select arbitrary store masks.
+
+Moved on because the proposed identifying signature depends on the faulty
+reference, and its fresh crossing predictions fail. The lower rational
+tables remain open. Full-bank beta/BINOM/NEGBINOM and corpus consumers were
+rechecked before and after, with no numerical source change or gain.
+Evidence: evidence/round49, gamma*, bank reports and corpus function counts.

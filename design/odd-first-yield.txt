@@ -40,3 +40,32 @@ are not identified, so no iteration reproduces Excel's bits. Next question:
 bonds whose price is quadratic or linear in yield (one coupon period, zero
 coupon) so the slope is exact and the stop rule separates from the start.
 Evidence: evidence/ld1/oy1.json, oy2.json, back2-0.json, scripts/.
+
+R49 / Fable-1 exponent scan (GPT-6.1 Sol (Codex), dna-firehorse)
+
+6,006 valid zero-coupon ODDFYIELD questions cover six n=2/4/8 designs at
+each exponent -500..500, scaling price and redemption together. Settlement
+is a coupon date, issue is the previous coupon date, firstcoupon the next.
+The long first coupon has zero payment, so both functions have the same
+remaining zero-coupon price. All 6,006 answers are numeric and bit-identical
+to YIELD, including the price80 negative root, both plateaus and every
+crossover. This supports common solver behaviour for this sampled price
+function; it does not prove a globally shared implementation. The earlier
+equal-issue/settlement trial returned 6,006 NUM errors and is retained as
+invalid-date controls, not numeric validation.
+
+The proposed exactly regular first-period identity has a different obstacle.
+In 303 scaled nonzero-coupon controls at frequencies1/2/4, every ODDFYIELD
+answer is NUM. The 100 equal error/error pairs with YIELD are not numeric
+evidence. A 19-case follow-up pins a narrow calendar discontinuity: for all
+six frequency/rate combinations tested (rate0 or .05, basis0), issue exactly
+one coupon period before firstcoupon gives NUM in BOTH ODDFPRICE and
+ODDFYIELD; moving issue one day either way gives numeric answers. The ld1
+corpus control repeats its exact original yield3fb3c65d22ec15b6.
+This refutes the assumed availability of that regular-period comparison,
+not shared iteration by itself. Other dates and bases remain untested.
+
+The analytic backward experiment supplies no supported start or slope for
+the shared zero-coupon behaviour. The ld1 untaken-next-step observation
+remains a constraint, not a complete solver. No iteration change lands.
+Evidence: evidence/round49, odd-scan-v2, regular-first-control, odd-calendar.

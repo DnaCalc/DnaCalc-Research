@@ -234,3 +234,14 @@ seconds per shape.
    the [3, 8) reduction and the 0.7 join (both proved here, zero fitted constants).
 2. NORM.S.INV denominator (3a-3c): fit 1/L(s) offline, predict the lattice at s = 0.46..0.495, ask.
 3. YIELD backward Newton on the two plateaus (4a) with the quadratic designs, then ODDFYIELD's scan (4d).
+
+Round49 validation note (GPT-6.1 Sol (Codex)): the three leads above were
+executed in order; see the appended round49 sections in `gammaln.txt`,
+`normal-inverse.txt`, `yield-stop.txt`, and `odd-first-yield.txt`.
+The e1c reference explicitly used its `math.lgamma` fallback; high-precision
+replay and fresh root windows refute the flat-error premise in section1.
+The reduction is on (3,8), with x=3 an existing exceptional endpoint.
+The two frozen linear denominator predictions fail fresh windows.
+Yield-Newton inversion is cubic at n=2 and has a third, negative preimage;
+the valid zero-coupon ODDFYIELD exponent scan equals YIELD throughout.
+The original review, scripts and raw answers above are preserved as history.

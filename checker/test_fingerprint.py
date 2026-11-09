@@ -11,6 +11,24 @@ from racer import fingerprint as f
 
 
 class FingerprintControls(unittest.TestCase):
+    def test_backward_bond_newton_keeps_all_real_branches(self):
+        from racer.fable_followup import inverse_newton_interval
+        import mpmath as mp
+        with mp.workdps(70):
+            r=mp.mpf(1)/4
+            # At the double root the third preimage is negative; keeping
+            # only positive predecessors loses the observed negative basin.
+            intervals=inverse_newton_interval((mp.mpf(2),mp.mpf(2)),r,2)
+            for seed in [mp.mpf(2),mp.mpf(-4)]:
+                self.assertTrue(any(a<=seed<=b for a,b in intervals))
+            for n in [2,4,8]:
+                for seed in [mp.mpf(-5),mp.mpf('-1.25'),mp.mpf('.125'),
+                             mp.mpf('1.25'),mp.mpf(5)]:
+                    target=((n+1)*seed-r*seed**(n+1))/n
+                    intervals=inverse_newton_interval((target,target),r,n)
+                    self.assertTrue(any(a<=seed<=b for a,b in intervals), (n,seed))
+                    self.assertTrue(all(a<=b for a,b in intervals))
+
     def test_corrected_exponent_inverse_keeps_the_constructed_normalizer(self):
         from racer.gamma_stages import corrected_exponent_normalizer
         from exact import operation, EXTENDED64 as E

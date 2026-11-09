@@ -1,0 +1,35 @@
+{
+  "id": "dc-j9k-r49-published",
+  "unit": "round49-published",
+  "application_revision": "146db3af36a4c74246fd1f8bbd127d07545869e3",
+  "role": "implementer",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "Excel20527 question-service replies; IEEE754; elementary gamma, inverse-normal and bond mathematics"
+    ],
+    "tier2": [
+      "Current cleared CalcFunc and MIT Research helpers"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "Excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)",
+  "bessel_high_groups_audit": false,
+  "bessel_high_j_audit": false,
+  "bessel_k_audit": false,
+  "bessel_rational_audit": true,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "cumulative_discount_audit": true,
+  "discrete_audit": true,
+  "gamma_exponent_audit": false,
+  "regression_audit": true,
+  "regression_householder_audit": false,
+  "regression_inverse_audit": true,
+  "regression_outer_audit": false,
+  "application_working_blobs": {}
+}

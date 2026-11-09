@@ -61,3 +61,37 @@ agree (33 of254 inexact-complement controls agree too). Preserving both p
 and binary64(1-p) in the existing bratio interface
 still predicts only6/774 exactly; the beta body remains unresolved. No
 distribution kernel changed. Evidence: evidence/round46.
+
+R49 / Fable-1 backward plateau experiment (GPT-6.1 Sol (Codex))
+
+Six zero-coupon designs, n=2/4/8 remaining periods, frequencies1/2, cover
+every cash exponent -500..500: 6,006 numeric YIELD answers. The two-period
+prices25/50/80 separate the small-cash root choices. In particular price80
+again reaches the negative root. This excludes a solver constrained to the
+positive discount-base basin; root choice alone does not prove Newton rather
+than another unbounded iteration.
+
+For analytic Newton in yield, z=1+y/f and r=price/redemption give
+z_next=((n+1)z-r*z^(n+1))/n. Its inverse is cubic for n=2, not quadratic.
+There are up to three real preimages, at most two positive. A quadratic inverse
+would instead describe Newton on the discount factor, a different algorithm.
+The corrected inverse keeps all three monotone branches, bisection brackets
+at endpoints, n=2/4/8, and up to24 backward steps. Independent forward-map
+controls check branch completeness, including z=2 and z=-4 both mapping to2
+at n=2,r=1/4. The original incorrect negative-branch endpoint trial is retained
+as superseded; only v3 supports these conclusions.
+
+Inversion is conditional on the analytic slope. A 64-output-ULP envelope
+tests sensitivity, not a rigorous bound for Excel's unknown price/slope.
+No common proposed limit (2f/n,f/n,0,.1,-2f/n, or the declared cash limit)
+survives all designs. For n=2,price25 the exact-root plateau admits broad
+seed ranges; for price50, the 2f/n seed is excluded even by the padded
+analytic inverse. Exact analytic Newton from 2f/n takes eleven iterates for
+the negative price80 case, so Fable's suggested eight-step ceiling is also
+not justified. Seeds y0(0),y0(infinity) are not recovered.
+
+Moved on because the slope assumption and inverse conditioning prevent a
+unique seed inference; fitting a cash formula now would fit the wrong map.
+No solver, tolerance or seed constant changed. The valid ODDFYIELD scan
+and the failure of the exactly regular first-period control are in the odd
+first yield note. Evidence: evidence/round49, yield-* and audited cache.

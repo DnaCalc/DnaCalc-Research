@@ -185,3 +185,30 @@ No shape survives to constant recovery; the plateau tool has no supported
 constant to separate. Moving on leaves the varying divisor unidentified,
 with exact counterexamples instead of a fitted higher-degree rational.
 Evidence: evidence/round45, normal.questions/results and audited replies.
+
+8. Round49 / Fable-1 denominator probe (GPT-6.1 Sol (Codex))
+
+Offline first: reuse all 154 retained R43 lattice windows, without asking
+Excel or changing their answers. The existing phase-coherence estimator is
+replayed in absolute output units 2^-53. A line fitted to inverse spacing
+on coherent windows at t>=.52 gives zero s=.54327, relative rms residual
+10.4%. A denominator-induced spacing is proportional to the output, so a
+second, explicitly distinct fit uses x/L(s), rather than 1/L(s): zero .58487,
+rms residual 5.74%. Neither residual supports an exact linear denominator;
+the inferred zero is model-dependent, not a recovered constant.
+
+Both predictions were frozen before 8,192 fresh answers (four 2,048-input
+windows). At s=.46,.48,.495, the absolute fit predicts periods
+11.33070,14.91241,19.54649; the relative fit predicts
+11.10999,13.63365,16.26666. Excel gives 10.955,12.55,14.13, with coherences
+.620,.657,.699. Thus both proposed linear forms fail the fresh lattice map.
+The t=.75 control has sd 3.59 in first differences and coherence only .085;
+its nominal period is unresolved, not evidence for continuing piece A.
+
+This rejects these two linear readings of C-stored(R(s)), not arbitrary
+rational denominators. The denominator's scale and C remain unidentified;
+no literal value is chosen from an unseparated plateau. No degree or piece
+was added to absorb residuals. Moved on after the frozen predictions failed.
+Fable's exact mirror observation, including its exceptional upper interval,
+is retained as a constraint; no central inverse or mirror dispatch changed.
+Evidence: evidence/round49, retained-normal-windows, normal-* and audited cache.
