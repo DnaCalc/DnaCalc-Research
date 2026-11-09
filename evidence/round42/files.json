@@ -91,11 +91,17 @@
    "stored_sha256": "d7f4fcde4ff3687d91e97b2bfb8352a05d1751ce7dc09b57c82121656fc14c63",
    "bytes": 123243
   },
+  "questions/NORM.S.INV.mapping.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/NORM.S.INV.mapping.json",
+   "sha256": "26daa10c387d42114c081bcf615d4902bec1b594ae4d417dd25e9978f128bc4f",
+   "stored_sha256": "fa749d7885a674a43fc8dc884fc3baa9698a1cd80365fad5adfdfdf759f106b9",
+   "bytes": 5991
+  },
   "questions/freeze.sha256": {
    "source": "/home/ubuntu/codex-runs/r42/freeze.sha256",
-   "sha256": "b4f482376f3d23dc5d8c1e9812b64b36936f1fae7904ceb2238f1495e3b8d027",
-   "stored_sha256": "842a56a3ec94fdb314382f918df109b8056e4b3a7a40a84994860df343ee8847",
-   "bytes": 1360
+   "sha256": "db6b0b617e1c21472d8f333e1904f0761067b0adbc9a1242b53d8ade9e4c1647",
+   "stored_sha256": "6f1f70f16ace1ed04cb1acd58f9bb7e57fdacfe08a93443056afdf6662d7e1eb",
+   "bytes": 1450
   },
   "scripts/nlib.py": {
    "source": "/home/ubuntu/codex-runs/r42/work/nlib.py",
@@ -375,9 +381,21 @@
   },
   "scripts/ask.py": {
    "source": "/home/ubuntu/codex-runs/r42/ask.py",
-   "sha256": "3d10d2086ffd911c6b9a5d9e0cb6c71ffd736bfee0b04c81d2fe6431c31c13bb",
-   "stored_sha256": "7b0862a6d2ef4252714b51f12277d57679454119ed42211f98c418c43f7f4e1d",
-   "bytes": 2599
+   "sha256": "d5275fa7e342f17da1b295c6ba671026359d25acd59713f7fce76f9818af240d",
+   "stored_sha256": "08828205d18c228f85432da0ced5426758f38a77993a61a4eb133691a58dde7b",
+   "bytes": 3051
+  },
+  "scripts/score.py": {
+   "source": "/home/ubuntu/codex-runs/r42/score.py",
+   "sha256": "acfe28d94a7f47d1f52df3d10695d4d3c8d3ab3c4a94eae81d24bc1eba264528",
+   "stored_sha256": "f86e12c9985fa871c6efefa895abcf56170dce33c8b7fae7b9c66205939e4666",
+   "bytes": 2551
+  },
+  "scripts/nmap.py": {
+   "source": "/home/ubuntu/codex-runs/r42/nmap.py",
+   "sha256": "87b60880e1cad67ae57992c908812166457c20cbf5b32627c50a7865f4449673",
+   "stored_sha256": "aa26a572e92370b3d6bc6f951aa4cc88b06c27f137da5594a6dd492b191dff0a",
+   "bytes": 889
   },
   "scripts/measure.sh": {
    "source": "/home/ubuntu/codex-runs/r42/measure.sh",
@@ -420,24 +438,6 @@
    "sha256": "cde3527f7770416059487cf7628f2840fe1c8d0a011fafba224da29f0078d519",
    "stored_sha256": "ed7ac694c0e9e2d7429cff60084ba00e556c92b67cf92be030ee884bd2a79343",
    "bytes": 2113
-  },
-  "lvar4.out": {
-   "source": "/home/ubuntu/codex-runs/r42/work/lvar4.out",
-   "sha256": "df0ace18c25aba317142e6064cdf3302f2e45e08434cf43c1ea9380575197e80",
-   "stored_sha256": "85d89a5143a2b0a1c320c4d2560e8ac7544d55c2e1bf5d8e6f0e6cb7bef81be8",
-   "bytes": 121
-  },
-  "npade.out": {
-   "source": "/home/ubuntu/codex-runs/r42/work/npade.out",
-   "sha256": "8eb6cec308c2eed14d69df0e90c7fb06b8b1045d5f87944c1427d719d90b217c",
-   "stored_sha256": "ca0efa00d6004ef75de18465efaa51052e340fa14c2437225a5d774ce436bb5c",
-   "bytes": 717
-  },
-  "npade2.out": {
-   "source": "/home/ubuntu/codex-runs/r42/work/npade2.out",
-   "sha256": "17f261f4f0846fc6ea92cfa1bcd8da62d2e78388321bd01e08c93630d4888efc",
-   "stored_sha256": "9dbbf80785ea1d86a02824548b4928f074a7dfe5c6224570ab251d38af612f74",
-   "bytes": 254
   },
   "ltab-LINEST.out": {
    "source": "/home/ubuntu/codex-runs/r42/work/ltab-LINEST.out",

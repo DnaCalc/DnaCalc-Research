@@ -43,7 +43,9 @@ Frozen questions for the next round (retained/questions, hashes in
 freeze.sha256, predictions of both builds beside each): NORM.S.INV lower tail
 2,050 points (1,607 separate the builds); LINEST/LOGEST 754 selections each
 (372 separate stop from continue); 576 + 960 LINEST selections for the zero
-diagonal rule (3 + 12 separate). retained/scripts/ask.py asks them all.
+diagonal rule (3 + 12 separate); 79 NORM.S.INV mapping windows (20,224
+points: the central split, (0.925, 15/16], above 15/16). retained/scripts/
+ask.py asks them all and score.py compares the replies with both builds.
 
 Validation of the candidates (not committed to DnaCalc): calc-func unit tests
 pass, including three new ones pinned to retained Excel readings. The light
