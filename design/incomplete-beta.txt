@@ -102,3 +102,7 @@ exponent kept at x87); x^a * exp(-betaln) / a with Excel's POWER matches
 1,081-1,098 by grouping; x^a * G(a+b) / (G(a) G(b)) / a with Excel's GAMMA
 1,029-1,040. None is exact: the prefactor already differs where the series cannot, and
 the power-based family is the closer one.
+Regrouping the log-beta and the product (35 forms) tops out at 1,107. These
+leaf tests use calc-func's GAMMALN, which itself matches the bank on only
+2,135 of 4,538 rows, so they cannot separate the forms yet: the beta's
+prefactor waits on GAMMALN (and GAMMA) being bit-exact first.
