@@ -82,3 +82,23 @@ On the same 5,000 calls calc-func's BINOM.DIST matches 3,189 (1,287 of the
 gap is mostly the beta's own. Swapping the route (1 - I_p(k + 1, n - k), or
 either bratio complement) moves p < 0.5 by at most 11 calls (research switch,
 scripts/pb5.py, binom_sw.py): no route closes it before the beta does.
+
+6. Per-branch agreement on the shape map (calc-func before this round's
+a = 1 arm; scripts/beta_branch.py replays bratio's branch choice):
+  b = 1 arm 675/675, a = 1 arm 712/915 (now fixed below 0.1),
+  a0, b0 > 1: bpser 2,366/3,938, bfrac 708/1,356, bup 1,059/2,448, basym 0/2;
+  a0 or b0 <= 1: bpser 2,155/4,013, its mirror 148/396, bgrat 131/336,
+  bup 94/321.
+Every branch differs, so a shared stage is the likelier cause than one
+branch's series. Storing bpser's prefactor exponent, its series steps, its
+final product or its division by a from x87 (16 combinations, research
+switch scripts/pb6.py, bpser_sw.py) changes none of the 7,951 bpser cells:
+the difference is in the formula or its leaves, not in double rounding.
+The prefactor alone (fresh/BETA.DIST.prefactor.json: 1,500 calls, a and b
+in (1, 30), x in [1e-200, 1e-25], where the series is 1 to the last bit):
+calc-func's exp(a ln x - betaln) / a matches 990, and so does the same with
+Excel's own GAMMALN, LN and EXP leaves (any grouping of betaln, or the
+exponent kept at x87); x^a * exp(-betaln) / a with Excel's POWER matches
+1,081-1,098 by grouping; x^a * G(a+b) / (G(a) G(b)) / a with Excel's GAMMA
+1,029-1,040. None is exact: the prefactor, not the series, is where Excel
+leaves bratio, and the power-based family is the closer one.
