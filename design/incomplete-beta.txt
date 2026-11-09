@@ -1,0 +1,79 @@
+Incomplete beta (BETA.DIST, and the BINOM.DIST CDF that reads it): design note
+(round 43, Claude Opus, dna-firehorse)
+
+Sources: Excel answers (question service, Excel 16.0.20527), mpmath for the
+true values, the TOMS 708 bratio already in calc-func (cleared). No tier 3/4
+implementation was read.
+
+Why here: BINOM.DIST(k, n, p, TRUE) for 0 < k < n is the regularized beta at
+q = 1 - p with (n - k, k + 1) (binom_cumulative), so the binomial CDF's
+failures are the beta's. Bank (baseline 70ecfa0b): BETA.DIST 971/2,822,
+BETADIST 140/294, F.DIST 180/369, FDIST 653/4,399, TDIST 28/92, BINOM.DIST
+70,320/70,349.
+
+1. Mapping (fresh, 14,400 questions, fresh/BETA.DIST.map.json): a, b in
+{0.3, 0.5, 0.9, 1, 1.5, 2, 2.5, 3, 4.7, 7, 10, 20, 50, 100, 500}, 64 x per
+pair (log-spaced near 0 and 1, uniform between).
+- b = 1 (x^a): calc-func matches all. a = 1 (1 - (1 - x)^b): 693/896.
+- Elsewhere exact agreement is 12-89% per pair, falling as a grows; the
+  largest differences grow with a (about 10 ulp at a <= 3, 100-400 at a = 50,
+  over 1,000 at a = 500). The differences are not confined to one region of
+  x, so more than one of bratio's branches differs from Excel.
+2. Error scale (a >= 20, 2,878 points, error against the true value in ulps
+of the answer): Excel median 12.8, calc-func (TOMS 708) 15.6, a plain
+lgamma prefactor exp(lgamma(a+b) - lgamma(a) - lgamma(b) + a ln x + b ln(1-x))
+with the classic continued fraction 83.7. The correlation of Excel's errors
+with TOMS 708's is 0.32, with the plain form 0.08.
+Ranked candidates:
+(a) TOMS 708 bratio with Excel's own leaves (its exp/log/gammaln and x87
+    stores): consistent with the error scale; the branch-by-branch store
+    order is not identified.
+(b) Plain lgamma prefactor plus continued fraction: refuted by the error
+    scale (six times Excel's).
+(c) Closed forms at a = 1: 1 - pow(1 - x, b) 545/896, -expm1(b log1p(-x))
+    573, 1 - exp(b ln(1 - x)) 574 (glibc leaves): all below calc-func's 693.
+3. The a = 1 arm below x = 0.1 (identified and landed)
+Dense map (fresh/BETA.DIST.a1.json, 3,000 calls, b in {0.3, 0.7, 1.5, 2, 3,
+5.5, 10, 37, 100, 1000}, x log-uniform in [1e-9, 0.0999]): every difference
+from calc-func sat below x = 0.1. With glibc leaves -expm1(b * log1p(-x))
+already agrees within one ulp everywhere (62%, mean error 0.4-0.5 ulp in
+every decade of x), so the shape was right and the leaves were not. Ranked
+leaf programs on the same answers (research build, one switch):
+  -expm1(b * log1p(-x)), Excel's leaves, binary64 product        1,767/3,000
+  same with the product stored from x87                         1,767
+  -expm1 of the x87 log1p_times chain (the leaf BINOM's x = 0
+    mass already uses)                                          2,165
+  internal or spilled EXPM1 graph of the binary64 product      2,364
+  internal or spilled EXPM1 graph of the log1p_times chain     3,000
+The spilled and internal graphs agree on 20,000 sampled (x, b) with x in
+[1e-300, 0.1) and b in [1e-3, 1e6]: which one Excel runs is undetermined.
+Fresh proof frozen before asking (q/BETA.a1-proof.json, 06:59 UTC):
+BETA.DIST(x, 1, b) at random x in [1e-300, 0.1), b in [1e-3, 1e6]: 1,997 /
+2,000 (previous program 430); the 100 doubles just below 0.1: 100/100 (72);
+BETADIST: 298/300 (96). The five misses all have x in (1.1e-16, 2.3e-16),
+one or two ulp: the log1p_times leaf's edge near 2^-53 is still open.
+
+4. BINOM.DIST one short of n (identified and landed)
+The same proof set asked BINOM.DIST(n - 1, n, p, TRUE) for 1 - p < 0.1:
+409/500 matched the beta arm above, and Excel's own BETA.DIST(1 - p, 1, n)
+(asked beside them) differs from Excel's BINOM.DIST on the other 91 by one or
+two ulp. So the binomial has its own arm here. On those 500 answers the
+binary64 product with the internal or spilled EXPM1 graph,
+-expm1(n * log1p(-q)), matches 499. Fresh proof frozen before asking
+(q/BINOM.n1-proof.json, 07:04 UTC): k = n - 1 with 1 - p in [1e-14, 0.1),
+n up to 1e7: 998/1,000 (previous program 844); p in [0.5, 0.9]: 300/300
+(unchanged arm); BINOM.DIST.RANGE(n, p, 0, n - 1): 200/200 (169); the 100
+doubles on either side of p = 0.9: 100/100 (96).
+
+5. Next questions: per bratio branch (bpser, bup, bfrac, bgrat, basym), pick
+(x, a, b) cells that select one branch only, map them densely, and compare
+stage by stage with x87-stored leaves, as section 3 did for a = 1. The
+binomial is a separate caller: section 4 shows it can take its own arm, so
+its other k should be asked beside BETA.DIST at the same (q, n - k, k + 1).
+First such map (fresh/BINOM.vs-BETA.map.json, 5,000 random k, n up to 1e5,
+p in [0.001, 0.999], both asked of Excel): BINOM.DIST equals Excels ownFirst such map (fresh/BINOM.vs-BETA.map.json, 5,000 random k, n up to 1e5,
+p in [0.001, 0.999], both asked of Excel): BINOM.DIST equals Excel's own
+BETA.DIST(1 - p, n - k, k + 1) on 4,698. The 302 differences are p < 0.5
+almost only (296), most in the lower tail k < np (231 of 603 cells there),
+median 2 ulp, 207 within 4, the largest 1,436: the binomial evaluates that side by another route
+(perhaps the complement through I_p(k + 1, n - k)); not identified yet.

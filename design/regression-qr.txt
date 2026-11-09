@@ -82,3 +82,56 @@ negative. Retained cohorts: R41 LINEST 13,915 -> 14,852 / 15,150 (+937, -0),
 LOGEST 10,973 -> 11,849 / 12,140 (+876, -0); R38 1,002 -> 1,266 and 937 ->
 1,195 / 1,296 (+264, +258, -0). Still open: 41 set-3 selections, all
 zero-column layouts beside a collinear pair (exact or 2^-20..2^-26 off).
+
+5. Round 43 (Claude Opus, dna-firehorse): the 41 open selections resolved
+
+Order of the matrix. With a constant Excel stores the ones column after the
+predictors and swaps it to the front: [x1, x2, x3, 1] -> [1, x2, x3, x1].
+Pivoting is then plain swapping with the earlier column winning an exact
+tie, with and without a constant. This one rule explains three things at
+once: R42's "the later column wins a tie with a constant" (x1 now sits last),
+the order-dependence of zero columns beside a collinear pair ([x, 2x, 0] and
+[x, 0, 2x] keep the zero column, [0, x, 2x], [0, 2x, x] and [3x, 0, x] do
+not), and F71/F99 ([0, x, -x]: x is fitted, not -x). The pivot's running
+remainder is read as zero when rounding makes it negative (a collinear
+column's remainder is often -2e-13); without the clip the zero column wins
+those comparisons. Found with an x87 emulation of the R42 program
+(~/codex-runs/r43/qr2.py, longdouble arithmetic) on the degrees of freedom
+of 2,807 retained selections: current program 2,653, ones-last swap with the
+clip 2,780; the remaining 27 were all n = 4 with a zero column and a pair
+2^-42 apart.
+
+The test while columns remain. Threshold maps (asked 06:05-06:08 UTC,
+LINEST thr, thr2, thr3: 1,071 + 1,176 + 3,240 df questions, x fixed, the
+perturbation stepped by 1/32 octave of the remainder ratio):
+- [x, z] (z = 2x + d e_n), n = 4..32, with and without a constant: the switch
+  is the remainder ratio 2^-41 (drop <= -41.000, keep >= -40.969).
+- [x, z, w] with an independent w at any scale 2^-20..2^20: also 2^-41 once
+  the ratio is taken after projecting out w (the earlier apparent shift was
+  that projection).
+- [x, z, 0], [0, x, z], [x, z, 0, 0], or a third column scaled 2^-400 or
+  2^-600 (nonzero, independent, tiny): the switch moves to 2^-42.0 .. 2^-42.8,
+  depending on x. In every one of these 20 configurations the switch is at
+  vv = 2^-41 times x's initial sum of squares (drop <= -41.0008, keep >=
+  -40.9978), where vv = rest + (x0 - alpha)^2 is the reflector's normaliser.
+So: the last column is tested on its running remainder; a column with
+columns still to come is tested on vv. Both against 2^-41 of the initial
+sum of squares.
+
+Landed (DnaCalc, regression_forecast_family.rs): ones column stored last and
+swapped in; pivot remainder clipped at zero, earlier column wins ties; vv
+test while columns remain. Retained cohorts (racer, invoke-inputs; error
+names normalised, #NUM! = Num): R41 LINEST 14,852 -> 15,122 / 15,150, LOGEST
+11,849 -> 12,119 / 12,140, R38 1,266 -> 1,296 and 1,267 -> 1,296 / 1,296,
+R42 fresh sets 1-3 (both functions) +192; every cohort +791 / -0 in all.
+Fresh proof (frozen 06:14 UTC, q/proof.sha256; 2,439 selections per
+function in five families: G1 zero or tiny third column beside an exact or
+perturbed pair, G2 permuted-entry ties, G3 pair near the switch beside an
+independent column, G4 two zero/tiny columns, G5 full rank): LINEST 2,225 ->
+2,413, LOGEST 2,255 -> 2,414. 25 selections per function (three designs with
+2^-600-scaled columns) came back unread (input-changed); they count as
+failures. Of the answered, the only miss is one last-bit coefficient.
+
+Still open: last-bit standard errors of the intercept ([2,3], 21 R41
+selections), R^2 = 1 versus #NUM! for n = 3, k = 2 without a constant (6),
+and the unread tiny-column designs.

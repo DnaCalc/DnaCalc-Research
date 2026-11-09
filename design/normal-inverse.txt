@@ -88,3 +88,62 @@ sqrt(2) (at most 12% exact).
   any outer erfinv formula in z = sqrt(-log(1 - p)).
 - Fresh proof for (a): ~/codex-runs/r42/questions/NORM.S.INV.lower.json
   (2,050 points, 1,607 separate the two builds; predictions frozen).
+
+5. Round 43 (Claude Opus, dna-firehorse): central branch, still unidentified
+
+Data: the 621,954 retained central and (0.925, 15/16] answers (R41 sweep,
+R42 map) with erfinv to 34 digits (~/codex-runs/r43/central-truth.npz), and
+four fresh 2,048-double windows at q = +-0.35355 and +-1/(2 sqrt 2) (asked
+06:2x UTC, fresh/NORM.S.INV.split.replies.json).
+
+Pieces, in t = 2p - 1 (erfinv's argument; the output is RN(RN64(y*RN(sqrt2)))
+throughout, y the stored erfinv):
+- A, |t| <= 1/sqrt2. The split is at t^2 = 1/2 to within four doubles on
+  both sides (no error above 5 ulp past index 1020 of the upper window, none
+  before 1026 of the lower); |t| = 0.7071 is refuted (both of its windows are
+  all piece A). So the pieces are laid out in s = t^2: A on [0, 1/2].
+- B, 1/sqrt2 < |t| <= 0.85 (y noise sd 1.4-3 ulp, bias -1.6..+2).
+- C, 0.85 < t <= 0.875 (p in (0.925, 15/16]): y within one ulp of erfinv
+  (RN 57%, +1 32%, -1 10%), bias +0.3 ulp. Accurate, not a cancelling form.
+  It is not the root of Excel's ERF (the answer minimises |ERF(y) - t| among
+  its seven neighbours in 353 of 772 sampled points).
+Piece A in detail:
+- Bias (window means, units 2^-53 of y): 0.89 t from 0 to t = 0.5 (that is
+  K = RN(sqrt(pi)/2) and RN(sqrt 2) rounding alone), then a smooth deficit
+  growing to 5.6 at t = 0.706 (about t^15..t^20). Taylor and Pade forms of
+  erfinv(t)/t in s about 0 do not fit this curve (best chi^2 4,345 on 49
+  window means, [6/13]); the deficit is more likely the coefficients'
+  rounding seen through cancellation than truncation.
+- Noise: consecutive answers sit on a lattice whose spacing grows smoothly
+  with t (about 4.8 units of 2^-53 in x at t = 0.6, 9.6 at 0.673, 13.9 at
+  0.706; no factor-2 jumps between 0.672 and 0.706), with spread about one
+  spacing. A lattice wider than one ulp that moves smoothly with t means the
+  last stored intermediate is several times larger than y and is then
+  cancelled (relative spacing ulp(V)/y about 6..13 * 2^-53), as in the last
+  Horner step of a rational with large alternating coefficients. A final
+  product or quotient of stored doubles cannot do this (its relative spacing
+  stays within one binade).
+Candidates refuted (ranked by what a developer would have used):
+- Giles 2010 single and double: one piece for all |t| <= 0.998 (w < 5 or
+  6.25); refuted by the splits at 1/sqrt2 and 0.85.
+- Blair, Edwards and Johnson 1976 (splits 0.75, 0.9375), Strecok 1968 (0.8),
+  Boost erf_inv (0.5, 0.75), Cephes ndtri (p in [e^-2, 1 - e^-2], i.e.
+  |t| <= 0.729, and q*sqrt(2 pi) near 0.5): refuted by the split positions;
+  Boost and Cephes also by the near-0.5 program.
+- MATLAB-style central rational to |t| <= 0.7 plus Newton: split refuted;
+  Newton on ERF refuted by the noise (R42) and by the root test above.
+- AS241's central rational, in q (16% of B, 10% of A) and rewritten for erfinv
+  with P/(2 sqrt 2) (20% and 21%), each with binary64 or x87 stores; AS241's
+  tail rewritten for erfinv (r = sqrt(ln 2 - ln(1 - t)), D*sqrt 2) on C: 13%;
+  the AS241 tail at 1 - p on C: 10%.
+Lattice map (fresh, 154 windows of 512 doubles at t = 0.400, 0.402, ...,
+0.706, fresh/NORM.S.INV.lattice.replies.json): the spacing is not resolved
+below t = 0.50 (noise under 2 ulp); from 0.50 to 0.706 it grows smoothly from
+2.5 to 14.6 units of 2^-53 with no factor-2 step (one 17% step at t = 0.521,
+within the estimate's noise). So the dominant stored intermediate stays in one
+binade over that range and the growth comes from what multiplies its error
+afterwards (a shrinking denominator, or further Horner steps in s). That is
+a constraint for a fit, not yet a program.
+Next questions: fit fixed-degree forms t*N(s)/D(s) (monomial Horner, x87
+stores) jointly to the bias curve and the lattice spacing, ranking degrees by
+the fewest coefficients that reproduce both; then prove on fresh windows.
