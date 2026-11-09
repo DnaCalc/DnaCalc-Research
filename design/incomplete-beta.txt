@@ -100,5 +100,5 @@ calc-func's exp(a ln x - betaln) / a matches 990, and so does the same with
 Excel's own GAMMALN, LN and EXP leaves (any grouping of betaln, or the
 exponent kept at x87); x^a * exp(-betaln) / a with Excel's POWER matches
 1,081-1,098 by grouping; x^a * G(a+b) / (G(a) G(b)) / a with Excel's GAMMA
-1,029-1,040. None is exact: the prefactor, not the series, is where Excel
-leaves bratio, and the power-based family is the closer one.
+1,029-1,040. None is exact: the prefactor already differs where the series cannot, and
+the power-based family is the closer one.
