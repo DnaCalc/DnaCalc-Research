@@ -1,0 +1,35 @@
+{
+  "id": "dc-j9k-r48-published",
+  "unit": "round48-published",
+  "application_revision": "10798f3d6c608786cb21db19d7fd8e40b28f7fb1",
+  "role": "implementer",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "Original Excel20527 question-service answers, IEEE754, published ETS mathematics in Hyndman et al., Microsoft Power View2014 method description"
+    ],
+    "tier2": [
+      "Current cleared CalcFunc and MIT Research implementations"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "The two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)",
+  "bessel_high_groups_audit": false,
+  "bessel_high_j_audit": false,
+  "bessel_k_audit": false,
+  "bessel_rational_audit": true,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "cumulative_discount_audit": true,
+  "discrete_audit": true,
+  "gamma_exponent_audit": false,
+  "regression_audit": true,
+  "regression_householder_audit": false,
+  "regression_inverse_audit": true,
+  "regression_outer_audit": false,
+  "application_working_blobs": {}
+}

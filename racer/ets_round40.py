@@ -1048,7 +1048,7 @@ def audit_evidence(allow_unread_inputs=False,visitor=None):
     save('final-service-audit',dict(successful_replies=len(raw),selections=sum(functions.values()),transports=counts,functions=functions,
          answer_types=types,excel_builds=builds,raw=raw,service_refusals=refusals,unqualified_rejected=rejected,
          timed_live_requests=len(waits),slow_requests=len(slow),slow_seconds=sum(row['seconds']for row in slow),
-         longest_seconds=max(row['seconds']for row in slow),waits_sha256=sha(OUT/'excel-waits.tsv'),sources=sources,
+         longest_seconds=max((row['seconds']for row in slow),default=0.),waits_sha256=sha(OUT/'excel-waits.tsv'),sources=sources,
          limits='All qualified normalized replies are revalidated against unchanged typed input echoes and worker provenance. Client v2 frame/environment hashes are distinct from server receipts. Service errors and unqualified replies never enter numeric proof counts. Every timed live request over three seconds appears in excel-waits.tsv.'))
     print('service audit',len(raw),sum(functions.values()),'slow waits',len(slow),flush=True)
 

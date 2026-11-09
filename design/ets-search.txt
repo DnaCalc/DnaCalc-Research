@@ -1,9 +1,9 @@
-ETS search, reset and short-history routing (R47, GPT-6.1 Sol (Codex), dna-firehorse)
+ETS search, reset and short-history routing (R48, GPT-6.1 Sol (Codex), dna-firehorse)
 
 Implementer; sources are original Excel20527 question-service answers,
 IEEE754 and existing cleared arithmetic. No tier3/4 implementation source.
 
-Historical R46 baseline and findings (current R47 results follow below):
+Historical R46 baseline and findings (R47 and R48 results follow below):
 R46's initial refreshed corpus had1,111 ETS refusals, not about1,600:
 FORECAST.ETS 292, CONFINT 292, SEASONALITY 455, STAT 72.
 Temporary first-refusal tracing through the workbook route partitions them:
@@ -119,3 +119,153 @@ newly calculated discrepancy on120,140 common selections. This is discovery
 plus holdout material, not120,140 fresh proofs. All other mismatches remain
 failures, including the uninstalled search trial's new counterexamples.
 Evidence: evidence/round47, its final transitions and measurement bindings.
+
+R48 continuation (original Excel20527 answers; implementer, tier1 mathematics)
+
+The refreshed starting census is952: FORECAST256, CONFINT256,
+SEASONALITY368, STAT72. The four first-refusal blocks remain automatic528,
+short204, seasonal innovations180 and cycle40. The original corpus is unchanged;
+the new supported diagnostic subset lies outside those refused corpus cells.
+
+Ranked complete search trees, before questions:
+1. Sparse bounded parameter mesh, frozen transitions in a final validation
+   window, total squared prediction error, measured heuristic initial states.
+2. Coarse mesh followed by four halved coordinate refinements.
+3. Bounded two-dimensional Nelder-Mead at a coarse winner, with textbook
+   reflection/expansion/contraction/shrink and a fixed iteration budget.
+4. Multiplicative Gaussian errors with its observation Jacobian, explicitly
+   a different error model rather than another name for AAA.
+Thirty-six fixed combinations are tested on96 offset, impulse, step and
+seasonal-noise histories. There are74 grid/simplex separators,10 additive/
+multiplicative score separators and59 training/holdout separators. All35
+alternatives to the sparse hybrid additive grid fail. That grid survives
+these coarse controls but already fails R47's single-bit observations.
+Nothing changes the product search or its fitted/score-only loads. These
+finite refutations do not exclude every private simplex seed or stop rule.
+
+Identifiability: with the same additive residuals and fixed window,
+-2logL=n*log(SSE/n)+constant. MSE and profiled additive Gaussian likelihood
+have the same real minimizer; no mathematical separating history exists.
+The differing-score controls change the error model or residual window.
+Reference: https://otexts.com/fpp2/estimation-and-model-selection.html
+
+Microsoft's8May2014 Power View article is a useful historical primary source:
+https://powerbi.microsoft.com/en-us/blog/describing-the-forecasting-models-in-power-view/
+Its frozen validation states and trend correction are consistent with earlier
+worksheet observations. Its detector removes linear trend, obtains candidate
+intervals from spectrum peaks, then ranks correlation peaks within those
+intervals and considers business-period hints. This supplies a method-family
+hypothesis, not proof of an identical worksheet implementation.
+R48 ranks spectrum/correlation first, fixed-cutoff ACF second, error-minimizing
+period fits third. Thirty explicit simplified trees all fail220 histories.
+They cover n-sized/power-of-two spectra, Pearson ranking, fixed statistical
+cutoffs and full/held-out phase regression with no penalty, AIC or BIC.
+A fixed larger-period extension, smallest exactly repeating affine phase with
+at least three cycles, also fails108/288 fresh answers. Exact repetition alone
+does not identify Excel's preferred spectral/correlation period. No fitted
+cutoff, extra peak correction, or period-specific patch follows.
+
+Short initialization:3072 raw-moment initializer/store/lifetime trees and
+2048 centered-covariance trees all fail318 retained candidate-reset-free
+histories. Initializer and recurrence graphs are joined without a binary64
+boundary, explicitly testing a resident quotient. A fixed candidate's reset
+decision does not certify Excel's private raw beta; these remain conditional
+tree refutations. Nine retained histories also have no compatible binary64
+initial slope among513 neighbors with those same loads and recurrence.
+No residual polynomial or extra arithmetic piece is added;204 corpus cells
+still need the unidentified complete short program.
+The original joined trial accidentally coupled its PC53 choice to PC53 final
+publication. Review found this bookkeeping error. Its files remain retained;
+V2 fixes final publication toPC64 and varies initializer precision separately.
+Both corrected finite families still havezero survivors.
+
+Seasonal innovations:96 fresh positive-trend histories test12 conditional
+initializers: first-season states/first-two-cycle trend, forward/rolling2p
+means and raw/centered/resident-PC64 centered regressions. All have forecast
+counterexamples; the existing forward/raw tree fails57/384. Parameters are
+reported STAT inputs, not a proof of their search. The broader180-cell path
+stops here without changed fitted loads, states or recurrence arithmetic.
+
+Useful exact diagnostic subset: period2 at five or more observations, even
+with an unfinished final cycle. The existing first-two-cycle exact trend and
+centered first-season states producezero innovations on alternating affine
+histories. The initial384 histories give5376 exact mathematical predictions;
+an independent seed gives15288 across every length5..32, automatic/explicit2
+pairs, input magnitude endpoints2^-400/2^400, both trend signs and explicit
+zero-amplitude controls. Predictions precede replies without measured
+parameters as inputs. These coarse questions initially support forecasts too.
+
+Reviewer-selected DC/trend/amplitude lattice-edge controls expose the limitation:90 short
+histories with DC/trend near the existing n-cubed bound give1260 selections.
+All900 diagnostic selections agree, but four horizon0 forecasts at length5
+returnzero in Excel where the candidate and application publish+/-2^-400.
+The final affine component nearly cancels a much larger scale. This does not
+identify a private zero threshold, nor show that only historical targets are
+affected. No tolerance or horizon-specific correction is fitted.
+The entire newly extended forecast consumer is therefore withdrawn. Final
+support is detection, reported smoothing parameters/error statistics andzero
+confidence widths only. Every newly withheld forecast remains a failed
+obligation. The pre-session complete-cycle forecast paths and all183 original
+exact call assertions remain. One old detector refusal is strengthened to an
+exact period2 pin; the original six-point automatic forecast refusal stays.
+Original trial source/answers and its first published commit are preserved;
+the follow-up fixes forward and records canonical bead/path references.
+
+Cycle40:128 four-point histories, single-bit clouds and exponent edges give
+3840 scalar readings with no period0/period2 pair contradiction. This confirms
+routing, not short initialization arithmetic. The non-affine four-point
+forecast/confidence path stays refused; the route identity cannot supply it.
+
+Isolated ETS corpus remains75209/76957:952 refused,600 mismatched,1 missing,
+73 external,14 circular and108 pending. All62 workbook identities and201691
+recorded evaluations are unchanged. Final bank/count/source and registered
+replay bindings are retained with the narrowed implementation. Earlier
+route-final/measurement files describe the broader trial; the explicitly
+named narrowed outputs and final measurement bindings supersede that scope.
+Evidence: evidence/round48, including all refutations and publication epochs.
+
+Final narrowed application evidence:152376 shared registered readings gain
+8268 exact matches from refusals (STAT5770, CONFINT1640, SEASONALITY858),
+withzero lost matches or newly calculated discrepancies. Every shared forecast
+value is unchanged from the pre-session baseline. The final mixed route has
+108078/153925 matched,44557 refused and1290 mismatched; all remain in its
+denominator. Final selected proofs are4352/5376 discovery,13032/15288
+independent and900/1260 lattice-edge matches, with1024/2256/360 refusals
+respectively andzero numeric discrepancies. Every withheld reading is a
+forecast; all diagnostic readings agree. Original wider trial measurements
+remain retained but do not describe the final supported scope.
+The new search comparisons isolate the measured nonseasonal epsilon-gamma
+track; they do not claim to reconstruct the full seasonal gamma optimizer.
+
+Publication: the first wider trial is preserved in fc7a0907. Commit10798f3d
+fixes forward to diagnostic-only support and records canonical references
+for the first title/prose's accidental identifier spacing. Source99fe7eb5
+is the narrowed ETS file; the published replay embeds10798f3d with no dirty
+source overrides and exactly reproduces the isolated narrowed counts.
+An upstream pull brought9871f8b1/1404d275 cumulative-finance changes into
+main before the fix commit. The combined corpus still has75209 matches and
+952 refusals. Its three changed values, CUMPRINC/CUMIPMT cellsD3058/D3059/
+D3583 in dcztvv_r24, remain failures and are incoming work, not ETS gains.
+The final bank/source binding and raw storage receipts distinguish the
+isolated ETS comparison from this combined-master publication.
+
+Final master coverage: upstream3e8d2645 fixes two SWITCH bank readings; this
+is incoming work, not an ETS gain. Upstream95c1b3bf then adds604 captured
+J4 formulas. Fresh Linux corpus is75788/77561:1773 inclusive failures,
+including614 mismatches,963 refusals,1 missing,73 external,14 circular and
+108 pending. The new coverage contributes579 matches,14 mismatches and11
+VDB refusals. ETS refusals remain FORECAST256, CONFINT256, SEASONALITY368,
+STAT72 before and after. The original four first-refusal blocks remain
+528 automatic,204 short initialization,180 seasonal innovations,40 cycles.
+The original fixed-cohort75209/76957 result above describes the isolated ETS
+change; its zero match gains are not replaced with the new-coverage count.
+J4 changes the jnt workbook identity and question-session numbering. The
+strict original-context audit correctly rejects that changed source identity.
+A supplementary census matches section captures by every field except source,
+then compares all201691 original evaluation payloads and76849 observed cell
+verdicts:zero changed payloads. Its108 pending obligations remain pending.
+This establishes shared-reading equality, not identical workbook context.
+The expanded corpus uses exactly the same measured calculation executable as
+the immediately prior SWITCH measurement. The report generator runs the full
+bank anew:3887883/3910773, with22890 inclusive failures,4 unread and2064
+excluded. The trace hash and all295 function counters equal the prior run.

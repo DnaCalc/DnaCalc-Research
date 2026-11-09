@@ -38,8 +38,17 @@ def slope_graph(n, form=0, extend=False):
             numerator=op('sub',op('mul',c(count),sxy,'numerator_product'),op('mul',c(sx),sy,'numerator_product'),'numerator');denominator=c(count*sxx-sx*sx)
         elif form==1:
             numerator=op('sub',sxy,op('div',op('mul',c(sx),sy,'numerator_product'),c(count),'numerator_product'),'numerator');denominator=c(sxx-sx*sx/count)
-        else:
+        elif form==2:
             numerator=op('sub',sxy,op('mul',c(sx/count),sy,'numerator_product'),'numerator');denominator=c(sxx-sx*sx/count)
+        else:
+            # R48: a textbook centered covariance can round before the
+            # division even when raw products and totals are exact.
+            mean=op('div',sy,c(count),'numerator_product')
+            numerator=zero
+            for i,v in enumerate(y):
+                centered=op('sub',v,mean,'numerator') if form==3 else v
+                numerator=op('add',numerator,op('mul',c(i+1-sx/count),centered,'product_xy'),'sum_xy')
+            denominator=c(sxx-sx*sx/count)
         return op('div',numerator,denominator,'quotient')
     y=list(range(n));t=regression(y)
     if extend and n<7:
