@@ -122,5 +122,14 @@ through cargo xtask corpus and the full witness judge. Research unit source
 guards require the recorded application sources when rebuilding old epochs.
 
 Read-only review is complete with no remaining material concern. Its receipt
-is retained. Final index: 543 immutable payloads/6977724 stored bytes,
+is retained. Final index: 552 immutable payloads/6997552 stored bytes,
 all verified by the existing retainer after adding the review and commit body.
+
+Publication also merges incoming Research382f54f original probe notes after
+another rejected push. Its28 ETS coarse readings do not repair the refuted
+fixed search program and are excluded from this round's288 audited replies.
+No active calculator/helper changes. Three incoming script readers now use
+with-open after the initial scan found unmanaged handles; all incoming JSON
+answers remain byte-identical. Final scan haszero critical and28 reviewed
+warnings. Research154 Rust/165 Python tests pass again. Supplemental read-only
+review finds no material concern; research-merge-bindings records this scope.
