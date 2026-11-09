@@ -7,6 +7,9 @@ pub use calc_func::locale;
 mod ported {
     include!(concat!(env!("OUT_DIR"), "/bridge.rs"));
 }
+// The bridged power_fn reads calc-func's exact decimal type at crate::decimal (DnaCalc 9ef49454).
+#[path = "../../../DnaCalc/crates/calc-func/src/decimal.rs"]
+mod decimal;
 mod annuity;
 mod annuity_early;
 mod boundary;

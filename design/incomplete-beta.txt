@@ -77,3 +77,8 @@ BETA.DIST(1 - p, n - k, k + 1) on 4,698. The 302 differences are p < 0.5
 almost only (296), most in the lower tail k < np (231 of 603 cells there),
 median 2 ulp, 207 within 4, the largest 1,436: the binomial evaluates that side by another route
 (perhaps the complement through I_p(k + 1, n - k)); not identified yet.
+On the same 5,000 calls calc-func's BINOM.DIST matches 3,189 (1,287 of the
+2,500 with p >= 0.5, where Excel's BINOM and BETA agree), so the binomial's
+gap is mostly the beta's own. Swapping the route (1 - I_p(k + 1, n - k), or
+either bratio complement) moves p < 0.5 by at most 11 calls (research switch,
+scripts/pb5.py, binom_sw.py): no route closes it before the beta does.
