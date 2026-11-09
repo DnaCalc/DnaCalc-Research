@@ -49,8 +49,9 @@ the classic erfinv split at |t| = 0.7 (q = 0.35) lies inside it.
 2. Candidate programs, ranked by what someone would have typed
 
 (a) Lower tail: AS241 PPND16 tail at p, Horner products, sums and quotient each
-    stored from precision 64, CRT log, binary64 sqrt. Candidate (not landed: no
-    fresh answers this round): the R41 dense sweep goes 81,987 -> 393,140 /
+    stored from precision 64, CRT log, binary64 sqrt. Landed after fresh proof:
+    2,000 frozen lower-tail questions asked at 04:37 UTC match 1,999 (old program
+    392; the miss is the -2 ulp log case below). Retained: the R41 dense sweep 81,987 -> 393,140 /
     393,216 (+311,160, -7) and the R39/R40 retained answers 1,646 -> 2,715 /
     2,716 (upper > 15/16 included, no loss). Corpus +3 (LOGINV x2, LOGNORM.INV),
     bank unchanged (it holds no inverse-normal rows).
@@ -73,11 +74,14 @@ approximants [m/n] of erfinv(t)/t in t^2 with m + n <= 25, binary64 or x87-store
 for (0.925, 15/16], AS241 tail coefficients scaled by 1/sqrt(2) then times
 sqrt(2) (at most 12% exact).
 
-3. Next questions (designed, not asked: the service was down all round)
-- Locate the central split: windows of 256 doubles at |q| = 0.336..0.361 in
-  steps of 0.001 on both sides; the noise sd and bias step at the split.
-  Then bisect on the per-point difference between the two pieces once either
-  piece's program is known.
+3. Fresh mapping (asked 04:37 UTC, 79 windows of 256 doubles, retained)
+- Noise sd is about 10 ulp up to |q| = 0.341, about 6 from 0.342 to 0.353 and
+  about 1 from 0.354 on, both sides alike. The first step is x = 1 (ulp(x)
+  doubles at q = 0.3413); the second is the piece split at t^2 = 1/2
+  (|q| = 0.35355). (0.925, 15/16] has a flat +0.85 ulp bias, sd 0.85.
+4. Next questions
+- Bisect the t^2 = 1/2 split on the per-point difference between the pieces
+  once either piece's program is known.
 - Piece degree: the bias curve at 40 |q| values per piece (window means
   resolve 0.05 ulp); count sign changes and growth order.
 - Region B: windows across (0.925, 0.9375] and just above 15/16; compare with

@@ -63,3 +63,22 @@ each: D1 a small independent column still unstepped when a collinear pair is
 detected (stop drops it, continue fits it); D2 zero-column layouts with exact
 and perturbed pairs, both constants; D3 full-rank controls. 372 selections per
 function separate the two builds; both predictions are frozen beside them.
+
+4. Fresh answers (the service came back at 04:37 UTC; every set frozen before asking)
+Set 1 (the questions above): D1 refuted the plain stop with fresh-squares
+pivoting (143/288; remove-and-continue 193/288), D2 favoured the stop (217 vs
+172 of 264 answered), the zero-diagonal sets matched (c) fully (576/576,
+948/948). The D1 cases are decided by the pivot criterion: pivoting on the
+running remainder, the quantity the collinearity test already reads, gives
+288/288. Set 2 (1,344 LINEST selections, predictions of four builds frozen):
+the running-remainder pivot matches 447/448 of E1; exact pivot ties went to
+the later column with a constant (140 selections) and the earlier one
+without (84). Set 3 (new seed, 1,344 selections each for LINEST and LOGEST,
+frozen with that tie rule): 1,303 / 1,344 for both (previous program 903 and
+932; +414/-14 and +385/-14), E1 and E3 448/448, E2 407/448.
+Landed program: running-remainder pivot (later column wins an exact tie with
+a constant), stop at the first failing pivot, zero diagonal reflects as
+negative. Retained cohorts: R41 LINEST 13,915 -> 14,852 / 15,150 (+937, -0),
+LOGEST 10,973 -> 11,849 / 12,140 (+876, -0); R38 1,002 -> 1,266 and 937 ->
+1,195 / 1,296 (+264, +258, -0). Still open: 41 set-3 selections, all
+zero-column layouts beside a collinear pair (exact or 2^-20..2^-26 off).

@@ -1,6 +1,60 @@
 {
  "format": "round42 compact evidence",
  "files": {
+  "questions/LINEST.pivot-pred-base.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot-pred-base.jsonl",
+   "sha256": "b8b8046be675e28a739db159e1d8143e2c433552c38ccb442370ef8b9345bafa",
+   "stored_sha256": "aac048d9e2561779f32be43ae800ea42e01cfffbaaab4548d55cb72ab0f41c32",
+   "bytes": 1270269
+  },
+  "questions/LINEST.pivot-pred-down.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot-pred-down.jsonl",
+   "sha256": "fca12c94a351f6cd13ecf422333c232bc1148bf192940c6a3fff1def1e944f00",
+   "stored_sha256": "1c5edcf440037d86c56858122fc375ce1f6ec6c7f17122348a01fdb9736e00ce",
+   "bytes": 1270269
+  },
+  "questions/LINEST.pivot-pred-downlast.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot-pred-downlast.jsonl",
+   "sha256": "0c5ad14759960b979061ae16594990549d8aaf48f536646c2a83390770bb8097",
+   "stored_sha256": "f715ce2c5a48043794459f663832d87c3603c0af1f08bb5f4e330a3d1ab6e035",
+   "bytes": 1270269
+  },
+  "questions/LINEST.pivot-pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot-pred-sign.jsonl",
+   "sha256": "377fc32d33ff000a6c8a592738138171031c0c38e6ec8632f7da38420992b7cd",
+   "stored_sha256": "3873522ea1a438a409b5d4f066c7dd0bb5d1751f62fef389044342e6522857b1",
+   "bytes": 1270269
+  },
+  "questions/LINEST.pivot-questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot-questions.json",
+   "sha256": "8daffaece4e8eb2214c7ee9812a6b816c2e89bca7364b89668aa2bcb77f75980",
+   "stored_sha256": "28263a6c3f5162dff64f6e786cd546a5d8386d6f100ebe9f8134e6928458d8c9",
+   "bytes": 1131776
+  },
+  "questions/LINEST.pivot3-pred-base.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot3-pred-base.jsonl",
+   "sha256": "e3201dff79314e6f23ebdce6f75f0962776b6ebeb253b2333bb97e00b755e733",
+   "stored_sha256": "d2ca00a85b577ee513e83eb9cc39682265cf3149bfcf377143b374a6fd10e60c",
+   "bytes": 1335943
+  },
+  "questions/LINEST.pivot3-pred-downc.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot3-pred-downc.jsonl",
+   "sha256": "b37080333d46b96d047d85b5827de1ae89614318c43a919cf2fc29f3d5eac188",
+   "stored_sha256": "fe3009b80528f3129736cf0f61da2f0c9f0dfc06314313b709aa5c37df9fe654",
+   "bytes": 1335943
+  },
+  "questions/LINEST.pivot3-pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot3-pred-sign.jsonl",
+   "sha256": "12b17eaf4385da8b85a05057795610f4156a1d2c15389ad5083fa3c7851cfedd",
+   "stored_sha256": "84b94baa1c743d93c0a3d2bf36ba80e2e095c85da62389334d7411a2e6cfd561",
+   "bytes": 1335943
+  },
+  "questions/LINEST.pivot3-questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pivot3-questions.json",
+   "sha256": "e36c2e101c958551b09b6f98a34e1089b97cc5eccd116bc4ce3afb28a20c7696",
+   "stored_sha256": "9ebd65da625c2a8ecc888ce67da30f8170dbf63a172539c47a5589cedc5bc76e",
+   "bytes": 1200432
+  },
   "questions/LINEST.pred-base.jsonl": {
    "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pred-base.jsonl",
    "sha256": "33a46e4b36af948f6bdd53cedc6ad7c9479018c0ba80e1f2811176db09c771cc",
@@ -61,6 +115,30 @@
    "stored_sha256": "4315a134a27d3e4b25dc343f2abadb37e8e1f40ffcacbcb271e1214e34c3ed70",
    "bytes": 512209
   },
+  "questions/LOGEST.pivot3-pred-base.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pivot3-pred-base.jsonl",
+   "sha256": "3c7e2d3045d4bb6886cc6bc67b364919c1449800cac42feebea5a257ed6b1fdf",
+   "stored_sha256": "654e45120a95add654ba122badb4e6054246c2e60b571481b21e2dca2e22cbaf",
+   "bytes": 1335493
+  },
+  "questions/LOGEST.pivot3-pred-downc.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pivot3-pred-downc.jsonl",
+   "sha256": "0590255f6319891e882a77073ff966750c10a2becbc4223ccb960a9e89b5b652",
+   "stored_sha256": "a37109ba18ebea0f48ef5ff2c9dee03f6ec7f4ee89d9b11f2c8ebc9618492e54",
+   "bytes": 1335673
+  },
+  "questions/LOGEST.pivot3-pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pivot3-pred-sign.jsonl",
+   "sha256": "4bdcb5713fd0c53ed942039b8fb75c4285fb75d788e64941ea8177680265bbef",
+   "stored_sha256": "4b52555070827aaf573c1d7afc8aab2e70108b8dfde3d3a410e64f00ed197e65",
+   "bytes": 1335844
+  },
+  "questions/LOGEST.pivot3-questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pivot3-questions.json",
+   "sha256": "f05345e3c336fc35bb0304f03359257ef333603d1f2d0dde2bc6f3ca14098abb",
+   "stored_sha256": "9ceca69d3e044a57e24a10347ec2bf13ffb0887f905c0c58b9fea8f965152c5d",
+   "bytes": 1200432
+  },
   "questions/LOGEST.pred-base.jsonl": {
    "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pred-base.jsonl",
    "sha256": "9e21801fb1f008e6d82fc8b4f46391e67846ddee33fea7b7aa204b1b40d156e7",
@@ -99,9 +177,9 @@
   },
   "questions/freeze.sha256": {
    "source": "/home/ubuntu/codex-runs/r42/freeze.sha256",
-   "sha256": "db6b0b617e1c21472d8f333e1904f0761067b0adbc9a1242b53d8ade9e4c1647",
-   "stored_sha256": "6f1f70f16ace1ed04cb1acd58f9bb7e57fdacfe08a93443056afdf6662d7e1eb",
-   "bytes": 1450
+   "sha256": "7afda99717bdf3d55b3051b5f4d7837819e290efb80fdd1958f2ce07bd69a4a9",
+   "stored_sha256": "bde8717648a424468ec771928274c4a4017d78628301c5119709b45e4f7527c5",
+   "bytes": 2696
   },
   "scripts/nlib.py": {
    "source": "/home/ubuntu/codex-runs/r42/work/nlib.py",
@@ -379,11 +457,83 @@
    "stored_sha256": "9b48193dd951721fd2ef0683a2a1bfeaa1c901428763f98acb006ff9b0575c32",
    "bytes": 1833
   },
+  "scripts/lq4.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lq4.py",
+   "sha256": "df85858a35796b1685e83a2c1d9623557cb911c334dca4a792d6afd46d72cc87",
+   "stored_sha256": "ccdbd5f35b14ba754efd439a98bf4bc058c982822a18f0b5213fc35307f9919d",
+   "bytes": 2279
+  },
+  "scripts/lq5.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lq5.py",
+   "sha256": "e9648347950dc6ab67cb02f296f2b58c5d184e76cf705814e1efc3657efa3696",
+   "stored_sha256": "e9fe2c520088f3807226ca7bd9050d9da486654d5eb626eb8e1382e95cc52e84",
+   "bytes": 2298
+  },
+  "scripts/le3.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/le3.py",
+   "sha256": "0ac3249f0d3531e46ad55e64b38aaaf362b36e0351e7ce354f0245bfb8a275f6",
+   "stored_sha256": "07589511679ca32e7549a55751cffd3a7c23ecef944ac3ff24a03918ff19decd",
+   "bytes": 2031
+  },
+  "scripts/lfresh.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lfresh.py",
+   "sha256": "f857424d93a9520678cf7c0c576081ac6d71ec3167fc0d40a4b59dee0d060dcc",
+   "stored_sha256": "0f4f632edab9c8c5911a57176fa5a712109b825470b620a6fd2af829b2817f7c",
+   "bytes": 1454
+  },
+  "scripts/lfresh2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lfresh2.py",
+   "sha256": "b5bb8c83ac74cd48a58de98f0be3a4dda7bb2501d55fdaf9f2645049808bb391",
+   "stored_sha256": "0aa73d8d0f8a2fcd718860dba56b81b17ea76ebc578870f6c5bbd1ef65135456",
+   "bytes": 2205
+  },
+  "scripts/lcase.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lcase.py",
+   "sha256": "d6dd0e353bd16582c89d70ac84660bf50bc01ee81dc19d834381c12281188a0a",
+   "stored_sha256": "85b96ad22b095ca27bf9f5500633c74e09c28b526b58a772f09bbc8e748b18cf",
+   "bytes": 1632
+  },
+  "scripts/lcmp2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lcmp2.py",
+   "sha256": "f819198e976b2b8e3d9347ed94b92a2f97a7188bd4e64662384a0eb18151d54d",
+   "stored_sha256": "069aaa9dc7df58f8269309825f41f714da4ec159ecb3ac7cb9aafc8ff46a28fe",
+   "bytes": 1207
+  },
+  "scripts/ltag.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ltag.py",
+   "sha256": "53793dea84b32f9b6e5fc55acde40869269bb4e8a49270ced6fe4355c6d020ee",
+   "stored_sha256": "8dc79c84d68a126026dfb62089fe4c2d1a926975d4c890ebefb3c0513b5baa44",
+   "bytes": 1406
+  },
+  "scripts/ld1.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ld1.py",
+   "sha256": "09b291433fc8087edf30630124950adf6e604fca2e0864bfd7c122ec60d4ff36",
+   "stored_sha256": "b0b8f5b5678728a5e1eccdb41e2928fd5f616e04f7ef232f8b64432820c04d30",
+   "bytes": 3063
+  },
+  "scripts/nmapan.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nmapan.py",
+   "sha256": "08136943243a5511cebfdb30033fe8710f8fa4ab3a6e762fad8ab3ac71fd4048",
+   "stored_sha256": "5e39a5a360e53b828e41cac2de810114d3810ad4cdee1ae04080d9662d2fb77c",
+   "bytes": 896
+  },
+  "scripts/ntail5.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ntail5.py",
+   "sha256": "224cbb233e39cc148c6a3572b58dd1c6b823a0a5151d14e31dca0f213e34a46f",
+   "stored_sha256": "5287701d14d0690e03ffb2b7fc07d32a0d625df389820d422d1e70f61522cc7c",
+   "bytes": 968
+  },
+  "scripts/ntail6.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ntail6.py",
+   "sha256": "7bddc1836351cc54d734ff15adda8cfbbdc536fb441e543099c25b613b847b25",
+   "stored_sha256": "0fcc9f3a2b42a8852f15d975ae7c2eabc7d7014537c4e8d02740563cee89cc47",
+   "bytes": 755
+  },
   "scripts/ask.py": {
    "source": "/home/ubuntu/codex-runs/r42/ask.py",
-   "sha256": "d5275fa7e342f17da1b295c6ba671026359d25acd59713f7fce76f9818af240d",
-   "stored_sha256": "08828205d18c228f85432da0ced5426758f38a77993a61a4eb133691a58dde7b",
-   "bytes": 3051
+   "sha256": "c0b9fda70070a3eef9c8e8a577b3211769a384e7489faa09bc4ef8a28eca6835",
+   "stored_sha256": "7cadc13114e7ca181a596b3632bd251562e832764336068aafb24ed85fb23b6a",
+   "bytes": 3147
   },
   "scripts/score.py": {
    "source": "/home/ubuntu/codex-runs/r42/score.py",
@@ -409,11 +559,29 @@
    "stored_sha256": "e2a4cd67ab1690c66f4bd1cfaf6cfd50479c06ecb844b549b38a2a91ede543d4",
    "bytes": 1093
   },
+  "scripts/rebuild2.sh": {
+   "source": "/home/ubuntu/codex-runs/r42/rebuild2.sh",
+   "sha256": "93d55045a9046e7997c924c03112ca5af90cc84e2d8cc59a8842341051bf4f9a",
+   "stored_sha256": "027f8be51bc0aad1fe97c7df1fd114ff93c05b749cebe65bf3429546ae015250",
+   "bytes": 704
+  },
+  "scripts/lset2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/lset2.py",
+   "sha256": "8266eef66ad0da8fb66c61e6feed1ada9cd68ae1204489e96f836afa43a521f3",
+   "stored_sha256": "fea9f8a51f15d6cda1546028cc615b8d3b02b9f43fc61216d79967f2dbcfd376",
+   "bytes": 1097
+  },
   "scripts/r42-candidates.patch": {
    "source": "/home/ubuntu/codex-runs/r42/r42-candidates.patch",
    "sha256": "afb88c91e7d92ca016aa21a2f45e448c9ec9e58e2e6dc924825ea1eec8f62bf3",
    "stored_sha256": "bb4925cc63599c5fd84cd97f38af016dd3586d81d70449c094ed15aa946d2282",
    "bytes": 14269
+  },
+  "scripts/r42-final.patch": {
+   "source": "/home/ubuntu/codex-runs/r42/r42-final.patch",
+   "sha256": "1eae19862855f364d406040868872954af746d6a2f17a3bfa2be9c0958a8133f",
+   "stored_sha256": "ae49af5348274d3b2912b6ae957496da80db50e49306f08d694c46ef16e73706",
+   "bytes": 21705
   },
   "nbias.out": {
    "source": "/home/ubuntu/codex-runs/r42/work/nbias.out",
@@ -453,9 +621,87 @@
   },
   "regression-cohorts.json": {
    "source": "/home/ubuntu/codex-runs/r42/work/regression-cohorts.json",
-   "sha256": "fef1bcbde2fe89667d5f197ce5c496bdc75c737a45b8ba8cba0bf132cf286361",
-   "stored_sha256": "c72a2ecaf41925bf6840e8a3ce0e3143dcec21e8dd7e1ffc80e794a0dfe08154",
-   "bytes": 5846
+   "sha256": "c2841a01ec5cdc1dfee0fd96484636128b199c6926cd0ed2cb974f0e0d2c790a",
+   "stored_sha256": "fa5cf4c834e6c92c81368147043d287ecc5de5f4243f437a682d9ef48fbfb0cb",
+   "bytes": 7072
+  },
+  "fresh/LINEST.pivot-questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LINEST.pivot-questions.replies.json",
+   "sha256": "f1a3c89e0413dcdbeaf2e781026a43a3ed28c63b8964e70f2aa96d6110f00333",
+   "stored_sha256": "0f8d9845fa45e8da6c330064dc5b58d75b4f8614410e29340b9c2d77c29b94af",
+   "bytes": 103298
+  },
+  "fresh/LINEST.pivot3-questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LINEST.pivot3-questions.replies.json",
+   "sha256": "b166ea3100662a48007a282017f46a31d95d6bc75cb70fac5e58a2d33bca09fe",
+   "stored_sha256": "8a0f2a190ca62255993df734ddb31d3d6578a4c43b613f0e175616074c01930b",
+   "bytes": 98483
+  },
+  "fresh/LINEST.questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LINEST.questions.replies.json",
+   "sha256": "fb261e88202784c697a406f4e5db922287e3676a565aeeb31a3a7412278ce5e0",
+   "stored_sha256": "8fde55f28b393c45c1e57e2c584fa4cb71d4b33b311b3ccd0c9f52d98060aa27",
+   "bytes": 87541
+  },
+  "fresh/LINEST.sign-questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LINEST.sign-questions.replies.json",
+   "sha256": "800e8980753ac4b5564fe7e1913b958996d1b233ee8cea4107975d9b38a47705",
+   "stored_sha256": "dcde61087403a7092d7a9589f47638a182cba1e28e5c3cc9d2d65961a0196100",
+   "bytes": 41802
+  },
+  "fresh/LINEST.zero-questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LINEST.zero-questions.replies.json",
+   "sha256": "5ab491a3fb08c067a623c5b3f9a37fd883371ec8389ecf4d1ebd07459b3e916d",
+   "stored_sha256": "7369ceb3c2ce5147750aa9fb559fae9ef3540e1548e4b798021d8465eec28ad5",
+   "bytes": 74818
+  },
+  "fresh/LOGEST.pivot3-questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LOGEST.pivot3-questions.replies.json",
+   "sha256": "3648e9cb021ac46bfb0d246563d4e3ce68dd1f75548b6d71fc56a50c1e9ee663",
+   "stored_sha256": "587c9500bf4f65e4a20a386593e32612f426c6fa63bb520c61e9b792f94b149e",
+   "bytes": 98120
+  },
+  "fresh/LOGEST.questions.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/LOGEST.questions.replies.json",
+   "sha256": "44215d9946cb03c92821d1ebd12e830bd7644fb3887127845d08c436f76dc7f9",
+   "stored_sha256": "d8fe19fcd8adc6d69a76af82bec7e3f712ea568e19eab49565a97cfaa52d9452",
+   "bytes": 87338
+  },
+  "fresh/NORM.S.INV.lower.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/NORM.S.INV.lower.replies.json",
+   "sha256": "cb0a9809d8d817d93e558647d10f16410e56d8086554fedc6aefdc4e4ea06d6b",
+   "stored_sha256": "d2f2208a2d50e2fe222d02bf8e19f4a173bd6b8071ee5b988ea56763c0e5a0fe",
+   "bytes": 112939
+  },
+  "fresh/NORM.S.INV.mapping.replies.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/NORM.S.INV.mapping.replies.json",
+   "sha256": "e78649e7a23e11936da85dd1bbf6097f067ac153bf89680cfc6be83a1a2174fa",
+   "stored_sha256": "53cefe4d1f1a81b12d4afbac34591ee3b6d8762451fff46b92e5e2ac928f0a70",
+   "bytes": 1155465
+  },
+  "fresh/ask-normal.log": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/ask-normal.log",
+   "sha256": "4830193d2e5ce664be5befbd62f5d7cd75cb4dc8ddb73ad0b672de82e82b3a76",
+   "stored_sha256": "0edaa30e6629f87f842c2e0506f860abaf5b93000d23bf36a15c5ff5836242ed",
+   "bytes": 124
+  },
+  "fresh/ask-regression.log": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/ask-regression.log",
+   "sha256": "0277e39eeb2213a22712f8514504bbb4d5e3e80bd66862a4651daa558a90a93b",
+   "stored_sha256": "6955e32a5ca2bff293b33567e81b72761bf508b60027b5e73fdd3995091ff0bc",
+   "bytes": 128
+  },
+  "fresh/waits.tsv": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/fresh/waits.tsv",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+   "bytes": 0
+  },
+  "poll.log": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/poll.log",
+   "sha256": "6e190d4223e6ad8d91f75c4ed5c6679c0c543b3cdab22afef5b3bc83df73e9a4",
+   "stored_sha256": "4162f8e545474e9d3678d87ae18fcd3e50967a5922f5acbe402954a8e98cd5b9",
+   "bytes": 371
   },
   "measurements/baseline-bank.json": {
    "source": "/home/ubuntu/codex-runs/claude-r42/baseline/bank.json",
@@ -511,6 +757,42 @@
    "stored_sha256": "475ec0163da3159f1c2b1d7f76d85f13a8f16964a583910a98668ff8ea874b5b",
    "bytes": 41
   },
+  "measurements/baseline-head-bank.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/baseline-head/bank.json",
+   "sha256": "8cf4b423f9527ccc683c2456b3fb732f9730c161de84d346e1e724f29dfb48ca",
+   "stored_sha256": "d69de19a67b6b7ea640b08ae1324dff865828603e78c5dfb0c9422516c2c5dbe",
+   "bytes": 51198
+  },
+  "measurements/baseline-head-corpus-summary.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/baseline-head/corpus/summary.json",
+   "sha256": "90229f7bd75ae7b7f9fc68935e75d85350b58ed0d1742355c84e108d44c71f4c",
+   "stored_sha256": "3cb5e02ce88adacddb302ceaf667ebe353557ac36d08cb7954a8c751fbbe3292",
+   "bytes": 96028
+  },
+  "measurements/baseline-head-head.txt": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/baseline-head/head.txt",
+   "sha256": "84dfbd72e48a3ca6fb72dccbaaf8b79c41cbbef1bc20dcfab0879b28ea528ea1",
+   "stored_sha256": "fc5ac673a9e4e0ee3d4971e54e405c0b217844fad254f973d767fff877a7549a",
+   "bytes": 41
+  },
+  "measurements/final-after-bank.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/final-after/bank.json",
+   "sha256": "4ec3acb6ae5890eceb04512471cadbd0352b246c5c016642731e3fb3c9c50473",
+   "stored_sha256": "ee8c7f7935e6e6ec7282b6ed0c06ad15c50dd703f6eb2f07b561535f3a8fa8b1",
+   "bytes": 51198
+  },
+  "measurements/final-after-corpus-summary.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/final-after/corpus/summary.json",
+   "sha256": "f7ee68b0957216a243b9e3fe4b39c8a7030523494e77d2d1175d4f973c767b65",
+   "stored_sha256": "5187227baf46e2dfc9525ed810d3af342cfc9d25a2d6740d53009b7a1b8b8eb6",
+   "bytes": 95127
+  },
+  "measurements/final-after-head.txt": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/final-after/head.txt",
+   "sha256": "84dfbd72e48a3ca6fb72dccbaaf8b79c41cbbef1bc20dcfab0879b28ea528ea1",
+   "stored_sha256": "fc5ac673a9e4e0ee3d4971e54e405c0b217844fad254f973d767fff877a7549a",
+   "bytes": 41
+  },
   "excel-waits.tsv": {
    "source": "/home/ubuntu/codex-runs/claude-r42/excel-waits.tsv",
    "sha256": "2c78e41892682dca9bea3b5c8e52d3ba28aba554736c5e63e90cff9867cb332d",
@@ -527,6 +809,12 @@
    "source": "/home/ubuntu/codex-runs/claude-r42/check-candidates2.log",
    "sha256": "18cc50aef48ec280d6ad0589d0f282665ea9a266652164a265ec84da6a3c8799",
    "stored_sha256": "6f740e1cea20efaa9a8030fa68a487cc56001482e372d93c24825ff634174f7a",
+   "bytes": 1103
+  },
+  "measurements/check-final.log": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/check-final.log",
+   "sha256": "83c8da31fb410a08e96900d8d0cf936e7dbee5e8f29de6b997c1f9dd971bd17f",
+   "stored_sha256": "d51c239e321faf74e853af8c7d847936ab826ccf992c14d80bef66128cac6c1f",
    "bytes": 1103
   }
  }

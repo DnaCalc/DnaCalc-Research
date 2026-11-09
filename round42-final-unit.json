@@ -1,7 +1,7 @@
 {
   "id": "dc-j9k.14-r42-final",
   "unit": "round42-final",
-  "application_revision": "15098f5270f4c094eb614230a308bc87db99dd63",
+  "application_revision": "296cedb6aa86f62b9a815837331e6e27da349fe5",
   "role": "implementer",
   "route_audit": true,
   "sources": {
@@ -30,9 +30,5 @@
   "regression_audit": true,
   "regression_householder_audit": false,
   "regression_inverse_audit": true,
-  "regression_outer_audit": false,
-  "application_working_blobs": {
-    "crates/calc-func/src/ported/normal_log_family.rs": "a0c5fdf54c02ae548e311ec366b275904da2ffa2",
-    "crates/calc-func/src/ported/regression_forecast_family.rs": "9915d2560c6131f7295e84df5910b9965f6fe983"
-  }
+  "regression_outer_audit": false
 }

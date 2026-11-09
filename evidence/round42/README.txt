@@ -1,57 +1,47 @@
 Round 42 (Claude Opus, dna-firehorse): NORM.S.INV and LINEST/LOGEST QR
 
-The Windows question service answered nothing this round: from the first
-request at 02:13 UTC every call returned "worker-down: no worker is up" (all
-three workers stopped at 02:16 after excel-timeout restarts; the broker kept
-running). No Excel answer was taken, so no fresh proof exists and no product
-code landed. Everything below uses answers retained by rounds 38-41, Excel
-16.0 build 20527. The service was not restarted from this lane.
+The question service answered no call from 02:13 to 04:36 UTC ("worker-down:
+no worker is up"; the workers stopped at 02:16 after excel-timeout restarts).
+The orchestrator restarted it at 04:37; every frozen question was then asked
+(Excel 16.0 build 20527, env f3269992527c). Analysis before 04:37 used the
+answers retained by rounds 38-41.
 
-Measurements (DnaCalc c3646c36, clean): bank 3,887,837 / 3,910,773; corpus
-58,451 / 60,296 (1,845 failures: 538 mismatched, 1,111 refused, 1 missing,
-73 external, 14 circular, 108 awaiting capture). With the three candidate
-changes (retained/scripts/r42-candidates.patch): bank 3,887,839 (+2, TREND
-10 -> 12/12, no other function changes); corpus 58,454 (+3, -0: LOGINV x2 and
-LOGNORM.INV in the catalogue's prefix_metadata sheet).
+Landed in DnaCalc 296cedb6 (on dd35297b; light check 697 passed, 0 failed):
+- NORM.S.INV/NORM.INV below p - 0.5 = -0.425 is the AS241 tail at p, Horner
+  steps and quotient stored from precision 64. Fresh frozen lower-tail set:
+  1,999 / 2,000 (old program 392). Retained R41 sweep 81,987 -> 393,140 /
+  393,216; R39/R40 1,646 -> 2,715 / 2,716 (1,283 upper answers kept).
+- LINEST/LOGEST/TREND/GROWTH: pivot on the running remainder (an exact tie
+  goes to the later column with a constant, the earlier without), stop at
+  the first pivot that fails the collinearity test, zero diagonal entry
+  reflects as negative. Fresh set 3, frozen with that program: LINEST and
+  LOGEST 1,303 / 1,344 each (old 903 and 932). Retained R41 LINEST 13,915 ->
+  14,852 / 15,150 and LOGEST 10,973 -> 11,849 / 12,140, R38 1,002 -> 1,266
+  and 937 -> 1,195 / 1,296, every one with zero losses.
+Bank 3,887,837 -> 3,887,839 / 3,910,773 (TREND 10 -> 12/12); corpus 58,451 ->
+58,468 / 60,296 (+17, -0), both measured at 15098f52 without and with the
+change (measurements/). Corpus failures 1,845 -> 1,828: 521 mismatched,
+1,111 refused, 1 missing, 73 external, 14 circular, 108 awaiting capture.
 
-NORM.S.INV (design/normal-inverse.txt):
-- Below p - 0.5 = -0.425 Excel publishes the AS241 PPND16 tail at p with
-  every Horner step and the quotient stored from precision 64. R41 dense
-  sweep: 81,987 -> 393,140 / 393,216 (+311,160, -7); R39/R40 retained answers
-  1,646 -> 2,715 / 2,716, the 1,283 upper answers above 15/16 unchanged.
-- The central branch is sqrt(2)*erfinv(2p - 1): near 0.5 the program
-  y = RN53(RN64(2q*RN(sqrt(pi)/2))), x = RN53(RN64(y*RN(sqrt 2))) matches all
-  16,383 retained answers; it is a function of the stored q (0 of 23,550
-  sharing pairs differ). Its noise is that of a monomial rational in t^2 with
-  large alternating coefficients, with a piece break between |t| = 0.673 and
-  0.720. Pieces, degrees and coefficients are not identified; Pade
-  approximants about 0 (m + n <= 25, binary64 or x87-stored) are refuted.
-- (0.925, 15/16] is a separate approximation: not the AS241 tail (Excel
-  minus it -1..+5 ulp), not Newton-refined, not the tail scaled by 1/sqrt 2.
+How the rules were reached (design/regression-qr.txt): fresh set 1 refuted
+the plain stop with fresh-squares pivoting (D1 143/288) and showed the
+running-remainder pivot (288/288); set 2 (four builds frozen) confirmed it
+(447/448) and exposed the constant-dependent tie; set 3 proved the combined
+program. Still open: 41 set-3 selections, all zero-column layouts beside a
+collinear pair.
 
-LINEST/LOGEST (design/regression-qr.txt):
-- Rank-revealing stop: when the largest remaining column fails the
-  collinearity test, every unstepped column is left out with it.
-- A diagonal entry that is exactly zero reflects as a negative one.
-- Both against c3646c36: R41 LINEST 13,915 -> 14,864 / 15,150 (+1,057, -108),
-  LOGEST 10,973 -> 11,861 / 12,140 (+996, -108); R38 designs (not used to find
-  the rules) LINEST 1,002 -> 1,239 / 1,296 (+276, -39), LOGEST 937 -> 1,168
-  (+270, -39). All 147 losses have a zero column beside a collinear pair (123
-  with a constant); that ordering rule is still open.
+NORM.S.INV central (design/normal-inverse.txt): sqrt(2)*erfinv(2p - 1); near
+0.5 y = RN53(RN64(2q*RN(sqrt(pi)/2))), x = RN53(RN64(y*RN(sqrt 2))) matches
+all 16,383 retained answers. Fresh mapping (79 windows) puts the erfinv
+piece split at t^2 = 1/2 (|q| = 0.35355); pieces, degrees and coefficients
+are not identified; Pade approximants about 0 are refuted. (0.925, 15/16] is
+a separate approximation with a flat +0.85 ulp bias, unidentified.
 
-Frozen questions for the next round (retained/questions, hashes in
-freeze.sha256, predictions of both builds beside each): NORM.S.INV lower tail
-2,050 points (1,607 separate the builds); LINEST/LOGEST 754 selections each
-(372 separate stop from continue); 576 + 960 LINEST selections for the zero
-diagonal rule (3 + 12 separate); 79 NORM.S.INV mapping windows (20,224
-points: the central split, (0.925, 15/16], above 15/16). retained/scripts/
-ask.py asks them all and score.py compares the replies with both builds.
-
-Validation of the candidates (not committed to DnaCalc): calc-func unit tests
-pass, including three new ones pinned to retained Excel readings. The light
-check on 15098f52 plus the patch passes 693/0 (3 ignored, 1 not run) after
-`cargo xtask witness refresh --func TREND` re-pinned the two TREND gains.
-Every Excel failure is in retained/excel-waits.tsv (each a 0.2 s refusal; no
-wait over 3 s). files.json maps every compact payload to its source and both
-hashes. Sources: retained Excel answers, IEEE 754, AS241 tables, published
-Householder QR; no tier 3/4 implementation was read.
+Retained: questions/ (every frozen set, freeze.sha256, predictions of each
+build), fresh/ (the original replies), scripts/ (ask.py, score.py, the
+analysis scripts, r42-final.patch = the landed diff), measurements/.
+files.json maps each payload to its source and both hashes. Waits over 3 s:
+none; the 9 lane probes and 8 minute-polls that failed (worker-down, or
+no reply while the broker was stopped) before 04:37 are in excel-waits.tsv and poll.log, and were
+re-asked after the restart. Sources: Excel answers, IEEE 754, AS241
+tables, published Householder QR; no tier 3/4 implementation was read.
