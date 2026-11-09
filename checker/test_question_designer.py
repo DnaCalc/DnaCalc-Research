@@ -6,10 +6,30 @@ import subprocess
 import sys
 import tempfile
 from racer.question_designer import (Boundary, vector_path, choose_split,
-                                     eliminate, Census, two_sum, product_residue)
+                                     eliminate, Census, two_sum, product_residue, DecisionPath)
 
 
 class Questions(unittest.TestCase):
+    def test_path_preserves_third_decisions_and_all_seen_changes(self):
+        path = DecisionPath([(0, 'a'), (64, 'b')])
+        indices = path.questions(7)
+        self.assertEqual(indices, [8,16,24,32,40,48,56])
+        path.observe((i, 'a' if i < 17 else 'c' if i < 43 else 'b') for i in indices)
+        while indices := path.questions(64):
+            path.observe((i, 'a' if i < 17 else 'c' if i < 43 else 'b') for i in indices)
+        self.assertEqual(path.changes(), [(16,17),(42,43)])
+        self.assertTrue(path.report()['adjacent'])
+        with self.assertRaises(ValueError): path.observe([(0,'b')])
+        before=dict(path.observations)
+        with self.assertRaises(ValueError):path.observe([(65,'c'),(0,'b')])
+        self.assertEqual(path.observations,before)
+        with self.assertRaises(ValueError):DecisionPath([(0,'a'),(0,'b'),(1,'c')])
+
+    def test_equal_path_endpoints_make_no_island_claim(self):
+        path = DecisionPath([(0, 'a'), (100, 'a')])
+        self.assertEqual(path.questions(), [])
+        self.assertIn('islands', path.report()['limits'])
+
     def test_boundary_retains_opposite_endpoints(self):
         edge = Boundary(0, 1 << 60, False, True)
         count = 0

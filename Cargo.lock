@@ -175,9 +175,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc652a48c352aef3ea3aed32080501cf3ef6ed5da78602a020c991775b0aff04"
 
 [[package]]
+name = "calc-catalogue"
+version = "0.1.0"
+dependencies = [
+ "calc-value",
+]
+
+[[package]]
 name = "calc-doc"
 version = "0.1.0"
 dependencies = [
+ "calc-catalogue",
  "calc-doc-model",
  "calc-fml",
  "miniz_oxide",
@@ -198,6 +206,7 @@ dependencies = [
 name = "calc-engine"
 version = "0.1.0"
 dependencies = [
+ "calc-catalogue",
  "calc-doc-model",
  "calc-fml",
  "calc-value",
@@ -207,6 +216,7 @@ dependencies = [
 name = "calc-fml"
 version = "0.1.0"
 dependencies = [
+ "calc-catalogue",
  "calc-func",
  "calc-syntax",
  "serde",
@@ -216,6 +226,7 @@ dependencies = [
 name = "calc-func"
 version = "0.1.0"
 dependencies = [
+ "calc-catalogue",
  "calc-value",
  "libm",
  "sxd-document",

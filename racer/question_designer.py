@@ -66,6 +66,47 @@ def vector_path(left, right, index, last=1 << 52):
     return [(1 - t) * a + t * b for a, b in zip(left, right)]
 
 
+class DecisionPath:
+    """Refine every observed change, retaining intermediate third decisions.
+
+    Equal endpoints do not establish a constant interval. A coarse census must
+    precede refinement; unobserved islands remain possible. Indices refer to
+    the declared path, which need not be injective in binary64 coordinates.
+    """
+    def __init__(self, observations):
+        self.observations = {}
+        self.observe(observations)
+        if len(self.observations) < 2 or any(type(i) is not int for i in self.observations):
+            raise ValueError('at least two integer-indexed observations required')
+
+    def changes(self):
+        ordered = sorted(self.observations)
+        return [(a, b) for a, b in zip(ordered, ordered[1:])
+                if identity(self.observations[a]) != identity(self.observations[b])]
+
+    def questions(self, points=64):
+        if type(points) is not int or points < 1:
+            raise ValueError('positive integer point count required')
+        return sorted({a + (b-a)*k//(min(points, b-a-1)+1)
+                       for a, b in self.changes() if b-a > 1
+                       for k in range(1, min(points, b-a-1)+1)})
+
+    def observe(self, observations):
+        pending = dict(self.observations)
+        for index, answer in observations:
+            if type(index) is not int:
+                raise ValueError('integer index required')
+            if index in pending and identity(pending[index]) != identity(answer):
+                raise ValueError('conflicting repeated observation')
+            pending[index] = answer
+        self.observations = pending
+
+    def report(self):
+        return dict(observations=sorted(self.observations.items()), changes=self.changes(),
+                    adjacent=all(b-a == 1 for a,b in self.changes()),
+                    limits='Only observed transitions on this path; equal endpoints do not exclude islands.')
+
+
 def choose_split(predictions, candidates=None):
     """Minimise the largest surviving answer bucket, then sum of squared sizes.
 

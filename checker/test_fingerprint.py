@@ -289,6 +289,12 @@ class FingerprintControls(unittest.TestCase):
         with self.assertRaises(ValueError):f.accept(changed,'CONTROL',rows)
         changed=copy.deepcopy(reply);changed['inputs'][0][0]['bits']=f.bits(3.)
         with self.assertRaises(ValueError):f.accept(changed,'CONTROL',rows)
+        with self.assertRaises(ValueError):f.accept(changed,'CONTROL',rows,allow_unread_inputs=True)
+        changed['rows']=[dict(type='unread',reason='input-changed')]
+        with self.assertRaises(ValueError):f.accept(changed,'CONTROL',rows)
+        f.accept(changed,'CONTROL',rows,allow_unread_inputs=True)
+        changed['rows'][0]['reason']='other'
+        with self.assertRaises(ValueError):f.accept(changed,'CONTROL',rows,allow_unread_inputs=True)
         class Client:
             def ask(self,function,arguments):return reply
         with tempfile.TemporaryDirectory()as root:

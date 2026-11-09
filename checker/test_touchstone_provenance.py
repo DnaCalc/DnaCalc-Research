@@ -35,6 +35,16 @@ class TouchstoneProvenance(unittest.TestCase):
         f.accept(reply,'ABS',rows,audit=audit)
         self.assertEqual(reply,original)
 
+    def test_priority_is_transport_metadata_but_other_wire_fields_stay_bound(self):
+        rows,reply,pending=self.fixture()
+        for priority in ['interactive','bulk']:
+            changed=copy.deepcopy(pending)
+            changed.frames_sent[0]['opts']['priority']=priority
+            f.accept(reply,'ABS',rows,audit=f.touchstone_audit(changed,reply))
+        for field,value in [('priority','unknown'),('order','serial'),('calls',2)]:
+            changed=copy.deepcopy(pending);changed.frames_sent[0]['opts'][field]=value
+            with self.assertRaises(ValueError):f.accept(reply,'ABS',rows,audit=f.touchstone_audit(changed,reply))
+
     def test_environment_id_alone_never_replaces_legacy_receipt(self):
         rows,reply,_=self.fixture()
         with self.assertRaises(ValueError):f.accept(reply,'ABS',rows)

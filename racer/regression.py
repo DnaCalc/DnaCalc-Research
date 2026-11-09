@@ -699,21 +699,9 @@ def delivered_rank_constraints(delivery, destination):
     print(json.dumps(dict(selected_calls=len(rows),rank_observations=len(observations),consistent_intervals=sum(i['consistent']for i in intervals),intervals=len(intervals))))
 
 
-def service_questions(checkout, output, cache, mode='rank', offline=False):
-    """Controlled numeric regressions through the existing audited question service.
-
-    Predictor scales, row/column order and response do not fit any threshold.
-    Retained answers are observations, never a replacement evaluator.
-    """
+def service_design(mode='rank'):
+    """One reusable design for numeric rank, reflector and residual questions."""
     import math
-    try:
-        from .fingerprint import load_service, CachedService, write
-    except ImportError:
-        from fingerprint import load_service, CachedService, write
-    client, _ = load_service(checkout)
-    service = CachedService(client.Client(timeout=300), cache, offline)
-    output = Path(output)
-    output.mkdir(exist_ok=False)
     cases = []
     if mode == 'rank':
         for constant, reverse, swap, scales, exponent in itertools.product(
@@ -757,6 +745,20 @@ def service_questions(checkout, output, cache, mode='rank', offline=False):
         selections = [(1, 1), (1, 2), (2, 1), (2, 2), (3, 2), (4, 2), (5, 2)]
     else:
         raise ValueError('unknown regression question mode')
+    return cases, selections
+
+
+def service_questions(checkout, output, cache, mode='rank', offline=False):
+    """Ask the common controlled design; answers never replace an evaluator."""
+    try:
+        from .fingerprint import load_service, CachedService, write
+    except ImportError:
+        from fingerprint import load_service, CachedService, write
+    client, _ = load_service(checkout)
+    service = CachedService(client.Client(timeout=300), cache, offline)
+    output = Path(output)
+    output.mkdir(exist_ok=False)
+    cases, selections = service_design(mode)
     write(output/'questions.json', dict(mode=mode, cases=cases, selections=selections,
           source='Original controlled numeric inputs, Excel question-service outputs; no implementation source copied.'))
     counts = Counter()

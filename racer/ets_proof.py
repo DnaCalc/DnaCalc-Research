@@ -114,7 +114,7 @@ def catalogue(seasonal=False):
     for name,rows in groups.items():
         answers=s.ask_rows(name,rows,chunk_size=100);write(OUT/(prefix+'-'+name+'.json'),dict(labels=labels[name],answers=answers,receipts=s.receipts));print('catalogue',name,len(answers),flush=True)
 
-def application_replay(executable,output,include_round38=False,directories=None):
+def application_replay(executable,output,include_round38=False,directories=None,functions=None):
     """Continue R38's registered-route replay over original audited questions."""
     import gzip
     import subprocess
@@ -132,15 +132,19 @@ def application_replay(executable,output,include_round38=False,directories=None)
         raise ValueError('unsupported audited ETS operand')
     def expected(a):
         if a['type']=='number':return '0x'+a['bits']
-        if a['type']=='error':return 'error:'+{'#NUM!':'Num','#N/A':'NA','#DIV/0!':'Div0','#VALUE!':'Value'}[a['code']]
+        if a['type']=='error':return 'error:'+{'#NUM!':'Num','#N/A':'NA','#DIV/0!':'Div0','#VALUE!':'Value','#REF!':'Ref','#NAME?':'Name','#SPILL!':'Spill'}[a['code']]
         raise ValueError('unsupported ETS answer')
     for directory in directories:
         for path in sorted(directory.glob('*.json.gz')):
             if '.refusal-'in path.name:continue
             d=read(path);request,reply=d['request'],d['reply'];name=request['function']
-            if not name.startswith('FORECAST.ETS')or not reply.get('ok')or reply['id']in seen:continue
+            selected = name in functions if functions is not None else name.startswith('FORECAST.ETS')
+            if not selected or not reply.get('ok')or reply['id']in seen:continue
             accept(reply,name,request['rows'],audit=d.get('audit'),result_index=request.get('result_index'));seen.add(reply['id']);source=str(path.relative_to(OUT.parent));bindings[source]=sha(path)
-            for i,(args,answer)in enumerate(zip(request['rows'],reply['rows'])):groups[name].append(dict(id=reply['id']+':'+str(i),args=[decode(a)for a in args],expected=expected(answer),source=source))
+            for i,(args,answer)in enumerate(zip(request['rows'],reply['rows'])):
+                row=dict(id=reply['id']+':'+str(i),args=[decode(a)for a in args],expected=expected(answer),source=source)
+                if 'result_index' in request:row['result_index']=request['result_index']
+                groups[name].append(row)
     counts={};contradictions=[]
     for name,rows in groups.items():
         q=output/(name+'.inputs.json');p=output/(name+'.predictions.jsonl');write(q,dict(function=name,witnesses=rows))

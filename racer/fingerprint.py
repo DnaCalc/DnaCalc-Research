@@ -390,12 +390,15 @@ def touchstone_audit(pending, reply):
 
 class AuditedClientMixin:
     """Use the existing question client with v2 input echoes and frame evidence."""
-    def ask(self,function,rows,*,result_index=None):
+    def ask(self,function,rows,*,result_index=None,priority=None):
+        if priority not in (None,'interactive','bulk'):raise ValueError('unknown service priority')
         self.last_audit=None
         connection=self._socket()if hasattr(self,'_socket')else None
         if connection is None:
             return super().ask(function,rows,**({'result_index':result_index}if result_index is not None else{}))
-        pending=connection.submit_rows(function,rows,result_index=result_index,echo=True,order='any')
+        options=dict(result_index=result_index,echo=True,order='any')
+        if priority is not None:options['priority']=priority
+        pending=connection.submit_rows(function,rows,**options)
         reply=pending.result(self.timeout)
         self.last_audit=touchstone_audit(pending,reply)
         return reply
@@ -411,14 +414,25 @@ class _AuditedClientProxy(AuditedClientMixin,_ClientDelegate):
     """Give existing CachedService callers the same audited socket route."""
 
 
-def accept(reply, function, rows, *, audit=None, result_index=None):
+def accept(reply, function, rows, *, audit=None, result_index=None, allow_unread_inputs=False):
+    """Validate an original reply; optional changed-input rows stay typed unread.
+
+    The opt-in admits acquisition failures for a census denominator. It never
+    admits a numeric answer to changed operands, and strict callers are unchanged.
+    """
     # Readbacks contain actual cell values. The request's literal/cell mode is
     # transport metadata, not a field on a read-back worksheet value.
     expected=[[{k:v for k,v in a.items() if k!='mode'} for a in row] for row in rows]
     if reply.get('version')!=1 or not re.fullmatch(r'[0-9a-f]{32}',str(reply.get('id',''))):
         raise ValueError('invalid cached Excel reply identity/version')
-    if not reply.get('ok') or reply.get('inputs') != expected or not isinstance(reply.get('rows'),list) or len(reply['rows']) != len(rows):
+    answers = reply.get('rows')
+    inputs = reply.get('inputs')
+    if not reply.get('ok') or not isinstance(inputs,list) or len(inputs)!=len(rows) or not isinstance(answers,list) or len(answers) != len(rows):
         raise ValueError('failed, incomplete, reordered or changed Excel operands: ' + function)
+    for wanted,actual,answer in zip(expected,inputs,answers):
+        if wanted != actual and not (allow_unread_inputs and isinstance(answer,dict)
+                and answer.get('type')=='unread' and answer.get('reason')=='input-changed'):
+            raise ValueError('failed, incomplete, reordered or changed Excel operands: ' + function)
     if reply.get('automation_security_before') != reply.get('automation_security_after'):
         raise ValueError('worker changed AutomationSecurity')
     if not all(k in reply for k in ('automation_security_before','automation_security_after',
@@ -441,7 +455,14 @@ def accept(reply, function, rows, *, audit=None, result_index=None):
     load_service(ROOT.parent/'DnaCalc')
     from touchstone import protocol
     groups=protocol.rows_to_groups(function,rows,result_index)
-    frames=protocol.submit_frames(reply['id'],groups,dict(echo=True,order='any',calls=len(rows)))
+    options=dict(echo=True,order='any',calls=len(rows))
+    submitted=audit.get('submit_frames',[])
+    if submitted and isinstance(submitted[0],dict) and isinstance(submitted[0].get('opts'),dict):
+        opts=submitted[0]['opts']
+        if 'priority'in opts:
+            if opts['priority'] not in ('interactive','bulk'):raise ValueError('unknown touchstone priority')
+            options['priority']=opts['priority']
+    frames=protocol.submit_frames(reply['id'],groups,options)
     if audit['submit_frames']!=frames:raise ValueError('touchstone wire request differs')
     environments=audit.get('environments')
     if not isinstance(environments,dict)or not environments or reply.get('env_id')not in environments:
@@ -524,7 +545,13 @@ class CachedRefusal(RuntimeError):
 
 
 class CachedService:
-    def __init__(self, client, directory, offline=False):
+    def __init__(self, client, directory, offline=False, compresslevel=9, allow_unread_inputs=False, priority=None):
+        if type(compresslevel) is not int or not 0 <= compresslevel <= 9:
+            raise ValueError('gzip compression level must be an integer in 0..9')
+        self.compresslevel = compresslevel
+        self.allow_unread_inputs = allow_unread_inputs
+        if priority not in (None,'interactive','bulk'):raise ValueError('unknown service priority')
+        self.priority=priority
         self.client = (_AuditedClientProxy(client)if client is not None and hasattr(client,'_socket')
                        and not isinstance(client,AuditedClientMixin)else client)
         self.directory = Path(directory)
@@ -533,12 +560,20 @@ class CachedService:
         self.receipts = []
         self.refusals = []
 
-    def ask(self, function, rows, *, result_index=None):
+    def _request_path(self,function,rows,result_index):
         request = dict(function=function, rows=rows)
         if result_index is not None:
             request['result_index'] = list(result_index)
         identity = hashlib.sha256(json.dumps(request, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
-        path = self.directory / (identity + '.json.gz')
+        return request,self.directory/(identity+'.json.gz')
+
+    def has_reply(self,function,rows,*,result_index=None):
+        """Check transport grouping before choosing smaller continuation batches."""
+        return self._request_path(function,rows,result_index)[1].is_file()
+
+    def ask(self, function, rows, *, result_index=None):
+        request,path=self._request_path(function,rows,result_index)
+        identity=path.name.removesuffix('.json.gz')
         pending_path=self.directory/(identity+'.pending.json')
         # Client timeouts retain queue files. A later invocation first imports
         # its own delayed successful reply, without resubmitting that question.
@@ -554,9 +589,10 @@ class CachedService:
                 if not reply.get('ok'):continue
                 if attempt.get('queue_request_sha256')!=reply.get('request_sha256'):
                     raise ValueError('delayed reply request hash changed')
-                accept(reply,function,rows,result_index=result_index)
-                with gzip.open(path,'xt',compresslevel=9)as stream:
-                    json.dump(dict(request=request,reply=reply),stream,separators=(',',':'))
+                accept(reply,function,rows,result_index=result_index,
+                       allow_unread_inputs=self.allow_unread_inputs)
+                with gzip.open(path,'xt',compresslevel=self.compresslevel)as stream:
+                    stream.write(json.dumps(dict(request=request,reply=reply),separators=(',',':')))
                 break
         if path.exists():
             with gzip.open(path, 'rt') as stream:
@@ -576,8 +612,10 @@ class CachedService:
                     raise CachedRefusal(doc['reply'])
                 raise FileNotFoundError('unanswered service request ' + identity)
             try:
-                reply = self.client.ask(function, rows, **(
-                    {'result_index': result_index} if result_index is not None else {}))
+                options={}
+                if result_index is not None:options['result_index']=result_index
+                if self.priority is not None:options['priority']=self.priority
+                reply = self.client.ask(function, rows, **options)
             except TimeoutError as error:
                 match=re.search(r'Excel question ([0-9a-f]{32}) timed out',str(error))
                 if match is None:raise
@@ -592,15 +630,16 @@ class CachedService:
                 refusal=getattr(error,'response',None)
                 if isinstance(refusal,dict) and refusal.get('ok') is False:
                     refused=self.directory/(identity+'.refusal-'+str(refusal.get('id','unknown'))+'.json.gz')
-                    with gzip.open(refused,'xt',compresslevel=9)as stream:
-                        json.dump(dict(request=request,reply=refusal),stream,separators=(',',':'))
+                    with gzip.open(refused,'xt',compresslevel=self.compresslevel)as stream:
+                        stream.write(json.dumps(dict(request=request,reply=refusal),separators=(',',':')))
                     self.refusals.append(dict(function=function,file=refused.name,sha256=sha(refused),calls_requested=len(rows)))
                 raise
             doc=dict(request=request,reply=reply)
             if getattr(self.client,'last_audit',None)is not None:doc['audit']=self.client.last_audit
-            with gzip.open(path, 'xt', compresslevel=9) as stream:
-                json.dump(doc, stream, separators=(',', ':'))
-        accept(reply, function, rows,audit=doc.get('audit'),result_index=result_index)
+            with gzip.open(path, 'xt', compresslevel=self.compresslevel) as stream:
+                stream.write(json.dumps(doc, separators=(',', ':')))
+        accept(reply, function, rows,audit=doc.get('audit'),result_index=result_index,
+               allow_unread_inputs=self.allow_unread_inputs)
         self.receipts.append(dict(function=function, file=path.name, sha256=sha(path), calls=len(rows),
                                   excel_build=reply['excel_build'], machine=reply['machine'],
                                   timestamp=reply['timestamp'], request_sha256=reply['request_sha256'],

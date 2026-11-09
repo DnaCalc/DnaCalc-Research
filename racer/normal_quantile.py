@@ -42,18 +42,44 @@ def upper_mapping():
     pred=[bits(tail(p))for p in points];freeze('step6-normal-upper-mapping',dict(points=points,predictions=pred,extra_source=Path(__file__).read_text(),method='Single-bit regions across the candidate upper-tail transition and exponent edges.'))
     c,s=service();ans=s.ask_rows('NORM.S.INV',[[c.number(p)]for p in points],chunk_size=1000);write(OUT/'step6-normal-upper-mapping-answers.json',dict(points=points,answers=ans,receipts=s.receipts));print([(p0,sum(pred[j]==ans[j].get('bits')for j,p in enumerate(points)if int(bits(p0),16)-32<=int(bits(p),16)<min(int(bits(p0),16)+32,0x3ff0000000000000)))for p0 in centers])
 TAGS=['q','square','r','nproduct','nsum','dproduct','dsum','product','quotient']
-def central_graph():
+def central_graph(numerator=None,denominator=None,squared_coordinate=False):
+    """The same rational shape, optionally expanded into the q-squared basis."""
+    numerator=CENTRAL_N if numerator is None else numerator
+    denominator=CENTRAL_D if denominator is None else denominator
     g=Builder(1)
     def op(kind,a,b,tag):
         k=g.op(kind,a,b,store=False);g.nodes[k].update(site=TAGS.index(tag),tag=tag);return k
     def c(v):return g.constant(bits(v))
-    q=op('sub',0,c(.5),'q');r=op('sub',c(.180625),op('mul',q,q,'square'),'r')
+    q=op('sub',0,c(.5),'q');square=op('mul',q,q,'square')
+    r=square if squared_coordinate else op('sub',c(.180625),square,'r')
     def horner(coefficients,prefix):
         v=c(coefficients[0])
         for a in coefficients[1:]:v=op('add',op('mul',v,r,prefix+'product'),c(a),prefix+'sum')
         return v
-    n=horner(CENTRAL_N,'n');d=horner(CENTRAL_D,'d')
+    n=horner(numerator,'n');d=horner(denominator,'d')
     before=op('div',op('mul',n,q,'product'),d,'quotient');after=op('mul',q,op('div',n,d,'quotient'),'product');g.sites=len(TAGS);return g.graph(before,after)
+
+
+def expanded_central_coefficients(decimal_tables=True,decimal_shift=True):
+    """Exact polynomial basis change of existing published AS241 tables.
+
+    No coefficient is fitted. Decimal spelling versus binary64 loads and the
+    exact decimal versus loaded shift are explicit, fixed alternatives.
+    """
+    from fractions import Fraction as Q
+    from math import comb
+    original=[[Q(v.strip().replace('_',''))for v in row.split(',')if v.strip()]
+              for row in re.findall(r'\[([^\[\]]+)\]',_table_text)][:2]
+    if not decimal_tables:original=[[Q(float(v))for v in row]for row in original]
+    shift=Q('0.180625')if decimal_shift else Q(.180625)
+    result=[]
+    for descending in original:
+        ascending=descending[::-1];expanded=[]
+        for j in range(len(ascending)):
+            expanded.append((-1)**j*sum((ascending[k]*comb(k,j)*shift**(k-j)
+                                        for k in range(j,len(ascending))),Q(0)))
+        result.append([float(v)for v in expanded[::-1]])
+    return result
 
 def discovery():
     d=read(OUT/'step6-quantile-coupling-normal.json');rows=[];expected=[]

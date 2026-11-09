@@ -1001,7 +1001,7 @@ def detection_followup():
     print('detector followup',len(cases),'survivors',[key for key,p in programs.items()if not p['failures']],flush=True)
 
 
-def audit_evidence():
+def audit_evidence(allow_unread_inputs=False,visitor=None):
     """Revalidate retained transport evidence and list every slow live request."""
     from .fingerprint import accept
     import csv
@@ -1010,11 +1010,14 @@ def audit_evidence():
         document=read(path);request,reply=document['request'],document['reply']
         if not reply.get('ok'):
             refusals.append(dict(file=path.name,id=reply.get('id'),error=reply.get('error'),calls=len(request['rows'])));continue
-        accept(reply,request['function'],request['rows'],audit=document.get('audit'),result_index=request.get('result_index'))
+        accept(reply,request['function'],request['rows'],audit=document.get('audit'),result_index=request.get('result_index'),
+               allow_unread_inputs=allow_unread_inputs)
         transport='touchstone/1'if document.get('audit')else'session-host-v1'
         counts[transport]+=1;functions[request['function']]+=len(reply['rows']);builds[str(reply['excel_build'])]+=1
         types.update(a['type']for a in reply['rows']);by_id[reply['id']]=path.name
-        raw.append(dict(file=path.name,sha256=sha(path),id=reply['id'],transport=transport,calls=len(reply['rows'])))
+        record=dict(file=path.name,sha256=sha(path),id=reply['id'],transport=transport,calls=len(reply['rows']))
+        raw.append(record)
+        if visitor is not None:visitor(path,document,record)
     for path in sorted((OUT/'unqualified-service-cache').glob('*.json.gz')):
         document=read(path);request,reply=document['request'],document['reply']
         try:accept(reply,request['function'],request['rows'],audit=document.get('audit'),result_index=request.get('result_index'))
@@ -1035,7 +1038,7 @@ def audit_evidence():
         if record['seconds']<=3.:continue
         name=by_id.get(record.get('id'),'')
         row=dict(sequence=index,function=record['function'],result_index=record.get('result_index'),calls=record['calls'],seconds=record['seconds'],
-                 request_id=record.get('id',''),question_cache=name,stages=';'.join(stages.get(name,[])),error=record.get('detail',''))
+                 request_id=record.get('id',''),question_cache=name,stages=';'.join(stages.get(name,[])),error=record.get('detail')or record.get('error')or'')
         if not name and not row['error']:raise ValueError('slow successful request has no retained reply')
         slow.append(row)
     with (OUT/'excel-waits.tsv').open('x',newline='')as stream:
