@@ -1,0 +1,37 @@
+{
+  "id": "dc-j9k-r47-candidate",
+  "unit": "round47-candidate",
+  "application_revision": "070c6d9b39ee320a465529dd5a5a997542b4406f",
+  "role": "implementer",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "Original Excel20527 question-service answers, IEEE754, ETS innovations and raw-moment algebra, zero-coupon bond mathematics"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc ETS/discrete/beta/gamma and Research sources"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "The two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)",
+  "bessel_high_groups_audit": false,
+  "bessel_high_j_audit": false,
+  "bessel_k_audit": false,
+  "bessel_rational_audit": true,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "cumulative_discount_audit": true,
+  "discrete_audit": true,
+  "gamma_exponent_audit": false,
+  "regression_audit": true,
+  "regression_householder_audit": false,
+  "regression_inverse_audit": true,
+  "regression_outer_audit": false,
+  "application_working_blobs": {
+    "crates/calc-func/src/catalogue/statistics/ets.rs": "85626bac7a53f47bf7919ce67af5154d80659ce2"
+  }
+}

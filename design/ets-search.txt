@@ -1,9 +1,10 @@
-ETS search and reset (R46, GPT-6.1 Sol (Codex), dna-firehorse)
+ETS search, reset and short-history routing (R47, GPT-6.1 Sol (Codex), dna-firehorse)
 
 Implementer; sources are original Excel20527 question-service answers,
 IEEE754 and existing cleared arithmetic. No tier3/4 implementation source.
 
-The refreshed corpus has 1,111 ETS refusals, not about 1,600:
+Historical R46 baseline and findings (current R47 results follow below):
+R46's initial refreshed corpus had1,111 ETS refusals, not about1,600:
 FORECAST.ETS 292, CONFINT 292, SEASONALITY 455, STAT 72.
 Temporary first-refusal tracing through the workbook route partitions them:
 615 automatic detection/search; 204 inexact short initialization; 180 nonzero
@@ -50,3 +51,71 @@ No broader seasonal search or initializer is installed. We moved on after
 the short seasonal model failed and the full search remained unidentified;
 the identified reset and short detector stand independently.
 Evidence: evidence/round46; raw workbook outputs are cited by its R2 receipt.
+
+R47 continuation (original Excel20527 answers, same implementer/source tiers)
+
+R47 starts at1,024 refusals: FORECAST292, CONFINT292, SEASONALITY368,
+STAT72. R46's87 detector gains leave528 automatic detection/search refusals,
+204 short initialization,180 seasonal innovations and112 cycle-limit cells.
+
+The R46 reset makes all54 R41 adjacent sides compatible with the proposed
+25-pair score program. Its original first-minimum order still has one wrong
+tie. A fixed candidate matches1,536 fresh parameter readings; the partial
+tie repair matches1,848 boundary/holdout readings and120 forecast plus120
+statistic consumers. These observations do not identify the complete search.
+Across14,858 retained histories,147 exact-score ties supply34 necessary
+precedence constraints without a cycle. A stable-first order satisfying all
+of them then fails47/4,608 fresh parameter readings in single-bit clouds.
+That refutes the combined score/load/initializer/order program, not table
+order alone. No point or ordering change from the trial is installed.
+
+The existing plateau tool selected61 separating forecast questions from
+12,000 constructed exact-OLS histories. All61 forecasts and122 parameter
+readings agree. It separates62/100 immediate fitted-load neighbors;38 stay
+undetermined within that search. Validation-score-only loads are distinct
+and remain undetermined. No neighbor is selected by a match percentage.
+The confidence consumer trial fails114/360 readings, all at confidence.5;
+the .95 and rounded-upper-end controls agree. The central inverse-normal
+leaf is already a measured discrepancy; no quantile work follows here.
+
+Detector:81 fixed ACF programs on312 designed histories all fail. Programs
+include measured short extension, full-lag selection before length rejection,
+three preprocessing/normalization forms, and first/last/global peaks.
+Longer detection stops here; no fitted cutoff or additional piece is added.
+
+Short initialization: the fixed raw-moment/first-two-phase extension matches
+960 reported parameters but fails27/1,280 forecasts. All768 declared
+form/store programs fail the combined conditional recurrence, given the raw
+pair selected by the candidate search. A reported reset beta does not prove
+that raw pair, so this does not exclude every private initializer alone.
+Seasonal innovations: the fixed rounded25 search has17/384 parameter
+contradictions; the forward2p moving initializer has44/512 forecast
+contradictions even conditional on reported parameters. Both wider regions
+remain refused; neither table nor initializer receives residual patches.
+
+The useful cycle-limit shape is a switch to the nonseasonal fit before five
+prepared observations, including explicit period2 at length4. The initial
+seasonal-state hypothesis gets the parameters wrong while affine forecasts
+and confidence zero agree. Paired fresh period0/2 questions match across256
+four-point histories; automatic/period0 match across192 histories of length
+2..4. The independent affine design has4,096 exact scalar answers. Broader
+short routing was tried but exposed68 new confidence and one RMSE numeric
+discrepancies; it is not retained. Only exact_trend's zero-innovation region
+is newly admitted. Its sums/products and extrapolation remain checked.
+
+A read-only review prompted actual quantum-limit controls at exponents
+-901,-900,-899,899,900,901, historical targets and both sides of the signed
+32-bit horizon limit. All648 direct forecast predictions match; paired STAT
+and confidence also agree. Registered replay gives1,032 exact/1,440 with408
+typed refusals and zero numeric discrepancies. Refusals remain failures.
+
+The final original-corpus comparison gains72 and loses zero: FORECAST and
+CONFINT refusals each292->256; SEASONALITY368 and STAT72 are unchanged.
+Total refusals1,024->952;72 gains include count reductions that prepare an
+affine history from non-affine source values. The remaining cycle block is40.
+The other three first-refusal blocks are unchanged. Final mixed research
+replay gains6,591 exact matches from earlier refusals, with no lost match or
+newly calculated discrepancy on120,140 common selections. This is discovery
+plus holdout material, not120,140 fresh proofs. All other mismatches remain
+failures, including the uninstalled search trial's new counterexamples.
+Evidence: evidence/round47, its final transitions and measurement bindings.
