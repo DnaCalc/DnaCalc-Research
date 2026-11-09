@@ -1,0 +1,57 @@
+GAMMALN: design note (round 44, GPT-6.1 Sol (Codex), dna-firehorse)
+
+Sources: original question-service replies, Excel 16.0.20527; IEEE754;
+the existing cleared GAMMALN and Stirling helpers; Bernoulli mathematics;
+Cody/Stoltz SPECFUN algama (https://netlib.org/specfun/algama). Implementer;
+no tier 3/4 implementation source or excluded checkout was read.
+
+Mapping first: 18,314 arguments include consecutive 512-double windows at
+integer/half-integer arguments, both roots, .7, 1.5, 3 and 8, and exponent
+edges from the least normal number to 2^1000. GAMMALN and GAMMALN.PRECISE
+agree on all 18,313 numeric answers; one unread remains a failure. No
+Lanczos form is identified by this map. The
+existing recurrence below 8 still depends on the unresolved lower tables.
+R33's eight unexplained spectral peaks at 1.3 and seven at 1.625 already
+refute the published tables' stage frequencies. Adjusting a few low bits
+of those stand-ins cannot repair a different stage map; no lower table
+was changed. The approximate B3 table extrapolated below 2 is also refuted.
+
+Above 8: the main expression remains stored ((x-.5)*LN(x) - x) + ln(2pi)/2.
+The correction is the existing ten Bernoulli terms in z^2, z=1/x, followed
+by multiplication by z. Every operation stores from x87 PC64. Mapping the
+places where the correction crosses half an output grid step separates
+this from the previous fdlibm correction: 192 fixed crossing windows,
+9,408 inputs, old 8,883 exact; the ten-term stored form 9,408. No coefficient
+is fitted. The ten terms already serve GAMMA's resident correction.
+
+First fresh frozen set: 10,212 inputs, old 9,881, plain binary64 ten-term
+10,210. The two misses separate ordinary reciprocal division from its PC64
+store: the reciprocal double rounding changes its last bit.
+On this now-discovery set, nine terms have 15 contradictions, eleven one,
+ten stored terms none. Second frozen set (new seed, predictions frozen
+before requesting GAMMALN; 9,312 new arguments and 900 retained boundary
+controls): old 9,875 -> 10,212/10,212. The new arguments alone improve
+8,980 -> 9,312/9,312. The actual registered
+application route also matches all 10,212. Larger arguments through 2^1000
+and the transition at 8 are included; no assertion of a complete domain proof.
+
+Another 2,048 new random arguments in [8,128], frozen through the existing
+gamma tool and CachedService (including original socket frames, environment
+definitions and exact input echoes), match 2,048/2,048. This corroborates the
+earlier direct-client proofs, whose submitted requests and worker metadata
+are retained; input echoes and socket frames were not separately recorded
+for those early requests (the echo slots are null). The decisive earlier
+controls are separately repeated with the audited client.
+
+Plateau tool: both adjacent binary64 loads of 1/12 separate on the designed
+grid; all 24 selected service questions agree with 1/12. No neighbour of
+any other coefficient, or the ln(2pi)/2 load, separates on that finite grid:
+their literal last bits remain undetermined. Reciprocal-square and
+square-reciprocal coordinates have not been separated either. The landed
+form uses the already present Bernoulli table and reciprocal-square tree.
+Individual Horner store sites are not all uniquely determined; this is the
+supported stored program, not a unique recovery of every instruction.
+
+Open: rationals on [.7,1.5), [1.5,2), [2,3], propagated below .7 and through
+the recurrence to 8; the GAMMA seed and reflection leaves. Full-function
+bit exactness is not claimed. Evidence: evidence/round44.

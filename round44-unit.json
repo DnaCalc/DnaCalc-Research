@@ -1,0 +1,34 @@
+{
+  "id": "dc-j9k.20-r44",
+  "unit": "round44",
+  "application_revision": "3935eeacb44762a87669f56ea3190da1f7486f1e",
+  "role": "implementer",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "Original Excel 16.0.20527 question-service answers, IEEE754, Bernoulli/Stirling mathematics, zero-coupon bond mathematics"
+    ],
+    "tier2": [
+      "Current cleared DnaCalc and Research sources; Cody/Stoltz SPECFUN algama (public domain), https://netlib.org/specfun/algama"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "Two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "GPT-6.1 Sol (Codex)",
+  "bessel_high_groups_audit": false,
+  "bessel_high_j_audit": false,
+  "bessel_k_audit": false,
+  "bessel_rational_audit": true,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "cumulative_discount_audit": true,
+  "discrete_audit": true,
+  "gamma_exponent_audit": false,
+  "regression_audit": true,
+  "regression_householder_audit": false,
+  "regression_inverse_audit": true,
+  "regression_outer_audit": false
+}

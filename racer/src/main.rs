@@ -424,6 +424,8 @@ fn main() {
         Some("regression-stat-leaves") => route_audit::regression_stat_leaves(&a[2], &a[3]),
         #[cfg(gamma_exponent_audit)]
         Some("gamma-exponents")=>discrete::gamma_exponents(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
+        #[cfg(discrete_audit)]
+        Some("beta-prefactors")=>discrete::beta_prefactors(&a[2],&a[3]),
         #[cfg(gamma_exponent_audit)]
         Some("gamma-temme")=>discrete::gamma_temme(&a[2],&a[3],a.get(4).is_some_and(|v|v=="soft")),
         #[cfg(discrete_audit)]

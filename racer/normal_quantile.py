@@ -125,9 +125,64 @@ def store_refutations(mapping, output, library):
                      first_contradictions=refutations,source_sha256=sha(__file__),mapping_sha256=sha(mapping)))
     return survivors
 
+
+def final_subtraction_lattice(t, answer, exponent):
+    """Necessary exact grid test for t*(C-stored(R)), then sqrt(2).
+
+    C is binary64 and the cancelling R shares its binade, or is one binade
+    lower. Thus C-R is a multiple of ulp(R). An arbitrary extended constant
+    is outside this hypothesis. Both final products store RN53(RN64()).
+    """
+    from fractions import Fraction as Q
+    from exact import BINARY64 as B, Span, inverse, two
+    if not 0 < t < 1 or not math.isfinite(answer) or answer <= 0:
+        raise ValueError('positive finite central inverse observations required')
+    y_domain=inverse(Span(Q(answer),Q(answer)),Q(math.sqrt(2.)),'mul',True,'stored_pc64')
+    y_coordinates=B.coordinates(y_domain)
+    if y_coordinates is None:return False
+    low,high=y_coordinates
+    if high-low>8:raise ValueError('unexpectedly wide final product preimage')
+    step=two(exponent)
+    for coordinate in range(low,high+1):
+        y=B.value(coordinate)
+        u_domain=inverse(Span(y,y),Q(t),'mul',True,'stored_pc64')
+        if u_domain is None:continue
+        first=math.ceil(u_domain.low/step)
+        for k in (first,first+1):
+            if u_domain.contains(k*step):return True
+    return False
+
+
+def subtraction_lattice_replay(questions, replies, output):
+    """Replay the grid constraint with rational inverse-rounding intervals."""
+    q=read(questions);r=read(replies)
+    if len(q['xs'])!=len(r['rows']):raise ValueError('answer count changed')
+    windows=[]
+    for window in q['windows']:
+        counts={};first={};unread=0
+        low=window['offset'];high=low+window['count']
+        for exponent in q['exponents']:
+            matched=0
+            for i in range(low,high):
+                row=r['rows'][i]
+                if row.get('type')!='number':
+                    if exponent==q['exponents'][0]:unread+=1
+                    continue
+                t=2*(value(q['xs'][i])-.5)
+                admitted=final_subtraction_lattice(t,value(row['bits']),exponent)
+                matched+=admitted
+                if not admitted:first.setdefault(str(exponent),dict(p=q['xs'][i],answer=row))
+            counts[str(exponent)]=matched
+        windows.append(dict(window=window,necessary_matches=counts,unread=unread,first_contradictions=first))
+    result=dict(complete=True,windows=windows,questions_sha256=sha(questions),replies_sha256=sha(replies),
+        source_sha256=sha(__file__),limits='Necessary conditions for a binary64 cancelling constant and one stored series value in the stated binades. An admitted output proves no series or constant; an unread output never passes. Extended constants and a later varying divisor remain open.')
+    write(output,result)
+    return result
+
 if __name__=='__main__':
     import sys
-    if len(sys.argv)>1 and sys.argv[1]=='proof':proof()
+    if len(sys.argv)>1 and sys.argv[1]=='subtraction-lattice':subtraction_lattice_replay(*sys.argv[2:])
+    elif len(sys.argv)>1 and sys.argv[1]=='proof':proof()
     elif len(sys.argv)>1 and sys.argv[1]=='tail':tail_proof()
     elif len(sys.argv)>1 and sys.argv[1]=='upper':upper_mapping()
     else:discovery()

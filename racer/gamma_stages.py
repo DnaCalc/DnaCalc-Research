@@ -13,8 +13,12 @@ import math
 from pathlib import Path
 import sys
 
-from fingerprint import (CachedService, bits, value, load_service, Native,
-                         primitive_stage_graph, positive_extended_cell, Builder, sha, write)
+try:
+    from .fingerprint import (CachedService, bits, value, load_service, Native,
+                             primitive_stage_graph, positive_extended_cell, Builder, sha, write)
+except ImportError:
+    from fingerprint import (CachedService, bits, value, load_service, Native,
+                             primitive_stage_graph, positive_extended_cell, Builder, sha, write)
 from exact import BINARY64, EXTENDED64, Span, binary64, inverse
 from x87 import load64, decode
 
@@ -950,6 +954,74 @@ def beta_series_normalizer(checkout, output, cache, library, offline=False, coun
                'retained. Prefactor storage and pre-division EXP storage are indistinguishable at shape2.')
     write(output,result)
     print(json.dumps(dict(rows=len(records),feasible={k:v for k,v in summaries.items()if v['resident_count']})),flush=True)
+    return result
+
+
+def gammaln_stirling_shape(checkout):
+    """Expose the existing stored Stirling tree to the plateau selector.
+
+    Input 1 is a separately measured LN leaf. Coefficients are read from
+    the application table, never copied or selected by answer counts.
+    """
+    import re
+    from fractions import Fraction as Q
+    directory=Path(checkout)/'crates/calc-func/src/ported/excel_numeric'
+    chains=directory/'x87_chains.rs';kernel=directory/'gammaln.rs'
+    block=chains.read_text().split('const STIRLING_TERMS:',1)[1].split('];',1)[0].split('= [',1)[1]
+    coefficients=[]
+    for text in block.split(','):
+        if not text.strip():continue
+        numerator,denominator=text.strip().split('/')
+        coefficients.append(bits(float(Q(numerator.strip())/Q(denominator.strip()))))
+    if len(coefficients)!=10:raise ValueError('Stirling table changed')
+    ls=re.search(r'const LS2PI:.*?0x([0-9A-Fa-f_]+)',kernel.read_text())[1].replace('_','').lower()
+    g=Builder(2);constants={}
+    def constant(name,raw):
+        node=g.constant(raw);constants[name]=node;return node
+    q=g.op('mul',g.op('sub',0,g.constant(bits(.5))),1)
+    q=g.op('sub',q,0);q=g.op('add',q,constant('LS2PI',ls))
+    z=g.op('div',g.one,0);t=g.op('mul',z,z)
+    w=constant('C9',coefficients[-1])
+    for index in range(8,-1,-1):
+        w=g.op('add',g.op('mul',w,t),constant('C'+str(index),coefficients[index]))
+    out=g.op('add',q,g.op('mul',z,w))
+    return dict(format='dnacalc-plateau-shape/1',function='GAMMALN',argument_inputs=[0],
+        graph=g.graph(out,out),constants=constants,cw=0x133f,mask=(1<<g.sites)-1,
+        domain=dict(low=bits(8.),high=bits(128.)),
+        source_bindings={str(p.resolve()):sha(p)for p in(chains,kernel)},
+        leaf='Input1 is independently observed LN(x). Finite no-separator results leave constant bits undetermined.')
+
+
+def gammaln_stirling_proof(checkout, output, cache, library, count=2048, seed=44005, extra_inputs=None, offline=False):
+    """Freeze a fresh stored-program prediction with audited service leaves."""
+    import random
+    import numpy as np
+    shape=gammaln_stirling_shape(checkout);native=Native(library)
+    rng=random.Random(seed);xs=[bits(2.**rng.uniform(3.,7.))for _ in range(count)]
+    if extra_inputs:
+        additional=json.loads(Path(extra_inputs).read_text())
+        if any(not isinstance(x,str)or not 8.<=value(x)<=128. for x in additional):
+            raise ValueError('extra Stirling controls must be in [8,128]')
+        xs=list(dict.fromkeys(xs+additional))
+    client,_=load_service(checkout)
+    service=CachedService(client.Client(timeout=90),cache,offline=offline,priority='interactive',allow_unread_inputs=True)
+    logs=service.ask('LN',[[client.number(x)]for x in xs])['rows']
+    if any(row.get('type')!='number'for row in logs):raise ValueError('numeric LN leaves required')
+    inputs=np.array([[int(x,16),int(row['bits'],16)]for x,row in zip(xs,logs)],dtype=np.uint64)
+    predictions=[f'{int(v):016x}'for v in native.grid(shape['graph'],inputs,shape['cw'],shape['mask'])[:,0]]
+    frozen=Path(str(output)+'.questions.json')
+    if frozen.exists():raise FileExistsError('fresh proof requires a new output path')
+    write(frozen,dict(xs=xs,shape=shape,predictions=predictions,seed=seed,random_count=count,
+        extra_inputs_sha256=sha(extra_inputs)if extra_inputs else None,
+        leaf_receipts=service.receipts.copy(),source_bindings=STAGE_BINDINGS,
+        library_sha256=sha(library)))
+    answers=service.ask('GAMMALN',[[client.number(x)]for x in xs])['rows']
+    matched=sum(row==dict(type='number',bits=p)for row,p in zip(answers,predictions))
+    result=dict(complete=True,offline=offline,rows=len(xs),matched=matched,failed=len(xs)-matched,
+        records=[dict(x=x,prediction=p,answer=a)for x,p,a in zip(xs,predictions,answers)],
+        receipts=service.receipts,questions_sha256=sha(frozen),
+        limits='A fresh proof of the fixed stored program with independently measured public LN leaves, not unique identification of every store site. Every unread or nonnumeric row fails.')
+    write(output,result);print(json.dumps(dict(rows=len(xs),matched=matched,failed=len(xs)-matched)),flush=True)
     return result
 
 
@@ -2755,6 +2827,10 @@ if __name__ == '__main__':
     p.add_argument('--beta-resident-log',action='store_true')
     p.add_argument('--beta-strict-final',action='store_true')
     p.add_argument('--gammaln-table-frequencies',nargs=2,metavar=('WINDOWS','TABLES'))
+    p.add_argument('--gammaln-stirling-shape',action='store_true')
+    p.add_argument('--gammaln-stirling-proof',action='store_true')
+    p.add_argument('--stirling-extra-inputs')
+    p.add_argument('--seed',type=int,default=44005)
     p.add_argument('--audit-gammaln-log-change',nargs=2,metavar=('CONTROLS','REGISTERED'))
     p.add_argument('--density-normalizer-questions',metavar='BANK_TRACE')
     args = p.parse_args()
@@ -2767,11 +2843,15 @@ if __name__ == '__main__':
         destination=snapshots/(digest+'-'+Path(filename).name)
         if not destination.exists():
             with destination.open('xb')as stream:stream.write(data)
-    if not 2 <= args.count <= (4096 if args.gammaln_store_edges or args.gammaln_near_stores or args.seed_phase_tracks else 256):
+    if not 2 <= args.count <= (8192 if args.gammaln_stirling_proof else 4096 if args.gammaln_store_edges or args.gammaln_near_stores or args.seed_phase_tracks else 256):
         raise ValueError('small adjacent windows only')
-    if not (args.seed_phase_tracks or args.seed_phase_validation or args.seed_phase_absolute or args.low_shared_seed or args.gammaln_log_controls or args.gammaln_table_frequencies or args.audit_gammaln_log_change or args.beta_public_f_tails) and not args.library:
+    if not (args.gammaln_stirling_shape or args.seed_phase_tracks or args.seed_phase_validation or args.seed_phase_absolute or args.low_shared_seed or args.gammaln_log_controls or args.gammaln_table_frequencies or args.audit_gammaln_log_change or args.beta_public_f_tails) and not args.library:
         p.error('--library is required for instruction studies')
-    if args.beta_f_unit_prefix:
+    if args.gammaln_stirling_shape:
+        write(args.output,gammaln_stirling_shape(args.checkout))
+    elif args.gammaln_stirling_proof:
+        gammaln_stirling_proof(args.checkout,args.output,args.cache,args.library,args.count,args.seed,args.stirling_extra_inputs,args.offline)
+    elif args.beta_f_unit_prefix:
         beta_f_unit_prefix(args.checkout,args.beta_f_unit_prefix,args.output,args.cache,args.library,args.offline,args.beta_f_power_pairs)
     elif args.beta_public_f_tails:
         beta_public_f_tails(args.checkout,args.beta_public_f_tails,args.output,args.cache,args.offline)

@@ -11,6 +11,35 @@ from racer import fingerprint as f
 
 
 class FingerprintControls(unittest.TestCase):
+    def test_stirling_proof_offline_never_asks_for_a_missing_reply(self):
+        from unittest.mock import patch
+        from types import SimpleNamespace
+        from racer import gamma_stages as gamma
+        class NoLiveClient:
+            def __init__(self, **options):pass
+            def ask(self, *args, **options):
+                raise AssertionError('offline proof attempted a live Excel question')
+        client=SimpleNamespace(Client=NoLiveClient,number=lambda raw:dict(type='number',bits=raw))
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            with patch.object(gamma,'gammaln_stirling_shape',return_value={}), \
+                 patch.object(gamma,'Native',return_value=object()), \
+                 patch.object(gamma,'load_service',return_value=(client,None)):
+                with self.assertRaises(FileNotFoundError):
+                    gamma.gammaln_stirling_proof('.',root/'proof.json',root/'cache',
+                        'unused.so',count=2,offline=True)
+
+    def test_final_inverse_subtraction_grid_keeps_constructed_members(self):
+        from racer.normal_quantile import final_subtraction_lattice
+        from exact import BINARY64 as B, EXTENDED64 as E
+        for t in (.52,.58,.64,.7,.706):
+            # Binary64 C and R in adjacent binades, independently rounded
+            # by rational arithmetic; both products use the two roundings.
+            c=Q(8.);r=Q(7.25);u=c-r
+            y=B.round(E.round(Q(t)*u))
+            answer=float(B.round(E.round(y*Q(math.sqrt(2.)))))
+            self.assertTrue(final_subtraction_lattice(t,answer,-50))
+
     def test_phase_reader_preserves_fractional_cycles_at_large_phases(self):
         from decimal import Decimal as D, localcontext
         import numpy as np

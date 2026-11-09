@@ -147,3 +147,20 @@ a constraint for a fit, not yet a program.
 Next questions: fit fixed-degree forms t*N(s)/D(s) (monomial Horner, x87
 stores) jointly to the bias curve and the lattice spacing, ranking degrees by
 the fewest coefficients that reproduce both; then prove on fresh windows.
+
+6. Round 44 (GPT-6.1 Sol (Codex)): constrain the final cancellation first
+
+Fresh 1,024-double windows at t=.52,.58,.64,.70,.706 (5,120 answers) test
+y=stored(t*(C-stored(R(t)))), C a binary64 constant, then stored(sqrt(2)*y), without choosing C
+or a series. If the cancelling quantities share a binade (or C is in the
+next one), C-R lies on the exact grid ulp(R). For each proposed grid we
+test every nearby multiple that could round to the observed output.
+No window admits all its answers on a grid of 2^-51 or coarser (413, 482,
+520, 706, 690 of 1,024 are admitted at 2^-51). Thus the large intermediate
+cannot be just a final constant-minus-stored-series followed by t and
+sqrt(2). This rules out that simple cancellation for any coefficients,
+not only a fitted series. Earlier cancellation followed by t/D(t^2), or
+several Horner stages that amplify its grid, remains possible. A rational
+in 1-t^2 also remains possible. No degrees, pieces or constants were added.
+Evidence: evidence/round44, normal-subtraction.*. This necessary lattice
+test does not identify an inverse-erf approximation; the branch stays open.

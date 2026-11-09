@@ -106,3 +106,40 @@ Regrouping the log-beta and the product (35 forms) tops out at 1,107. These
 leaf tests use calc-func's GAMMALN, which itself matches the bank on only
 2,135 of 4,538 rows, so they cannot separate the forms yet: the beta's
 prefactor waits on GAMMALN (and GAMMA) being bit-exact first.
+
+7. Round 44 (GPT-6.1 Sol (Codex)): isolate the tiny-x exponent first
+
+GAMMALN's >=8 branch now has a supported ten-term stored correction (see
+gammaln.txt), so a,b in [8,12] keep a,b,a+b in that region. New service
+questions measure GAMMALN, GAMMA, LN, POWER and EXP independently; no
+approximate application leaf supplies a claimed Excel value. There are
+1,473 beta calls: 13 fixed shape pairs on x=2^-55,...,2^-75 and 1,200
+random controls. The first few dyadic inputs and some random inputs still
+have a visible series correction: they remain retained but are not used
+as pure-prefactor controls. All 1,053 inputs at x<=2^-60 have a series
+factor of 1 to the last bit for the bounded shapes in this experiment.
+
+With integer a, exact rescaling by 2^(e*a) gives different values as e
+changes, even after excluding those first inputs. A direct POWER(x,a)
+times a shape-only normalizer would give the same value: that whole family
+is refuted. This is an exponent calculation. The public-GAMMALN exponent
+forms match only 18/1,053; public-POWER forms 59..63. This independently
+refutes those compositions even with correct public leaves; it is not
+merely an inaccurate GAMMALN stand-in.
+
+The existing TOMS708 beta normalizer with stored a*LN(x) and a corrected
+exponent subtraction improves 18 -> 262/1,053; resident EXP gives 235.
+That is a conditional diagnostic, not a proposed complete branch. For
+the 16 dyadic pure controls at each fixed shape pair, a search over 129
+neighbouring normalizer doubles admits no plain stored-exponent program.
+Compensated subtraction fits (2,3), (4,7), (8,9), (8,8), (12,12), with a
+single normalizer per pair; reciprocal multiplication instead of division
+admits (3,2) and (10,11) too, but not every pair. Separate EXP(a*LN(x))
+times any nearby common stored multiplier refutes all 13 groups.
+
+Thus the subtraction/normalizer interface, final scaling, and perhaps
+product precision are still unidentified. No per-pair normalizer is
+installed, no degree/piece is added, and no beta kernel change is justified.
+Next: invert the normalizer as an extended value and distinguish corrected
+product and subtraction chains before returning to the nontrivial series.
+Evidence: evidence/round44, beta-prefactor*, beta-normalizers*, beta-product*.

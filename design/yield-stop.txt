@@ -1,0 +1,30 @@
+YIELD stopping: design note (round 44, GPT-6.1 Sol (Codex), dna-firehorse)
+
+Sources: original Excel 16.0.20527 question-service answers; elementary
+zero-coupon bond mathematics and exact powers of two. Implementer;
+no tier 3/4 implementation source or excluded checkout was read.
+
+R35 and R41 already refuted RATE-style secants, bracket variants and fixed
+iteration labels. A new separating design scales both price and redemption
+by the same exact power of two, with zero coupons and settlement on a
+coupon date. Then every mathematical root is unchanged, and a conventional
+price calculation scales exactly. A relative-residual or yield-step stop
+with scale-independent seeds would preserve the answer bits.
+
+45 designs: frequencies 1/2/4, maturities 2/4/8 years, discount bases
+1.001/1.05/1.25/1.5/2; 17 joint scales 2^-400 through 2^400, 765 questions
+(758 numeric, 7 errors; every error remains in the denominator).
+Every design changes answer under scaling. Some tiny-price cases return
+#NUM or a spurious negative root; those remain failures, not numeric passes.
+For n=2, frequency=1, price=25, redemption=100, the true root is exactly 1.
+At scale 2^-400 Excel returns exactly 1; at scale 1 it is 2.69e-11 below;
+at scales 2^100,2^200,2^400 it is 5.97e-11 below. Large cash scale plainly
+does not force an absolute price residual below 1e-10. Thus neither a
+plain absolute-price stop nor the scale-invariant complete solver above
+explains the map. Initialisation, bracketing, or a mixed stopping test
+depends on cash magnitude; a yield-width stop can still explain the
+one-sided roughly 1e-10 errors.
+No tolerance or seed is identified and no solver change is justified.
+Next useful design: map the scale transitions with a fixed exact dyadic
+root, then separate seed/bracket changes before fitting a stopping constant.
+Evidence: evidence/round44, yield-scale.*; no ETS search was extended.

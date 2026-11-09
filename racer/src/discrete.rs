@@ -5,6 +5,42 @@ use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
 use std::{fs, io::{BufRead, BufReader, BufWriter, Write}, path::Path};
 
+/// Fixed tiny-x beta prefactor trees. The original TOMS708 log-beta is an
+/// explicit conditional leaf; public GAMMALN is not substituted for it.
+pub fn beta_prefactors(input: &str, output: &str) {
+    let rows = crate::lines::<Value>(input);
+    let mut records = Vec::new();
+    for row in rows {
+        let args: Vec<_> = row["args"].as_array().unwrap().iter().map(|v|
+            f64::from_bits(u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"),16).unwrap())).collect();
+        assert_eq!(args.len(), 3);
+        let (x,a,b) = (args[0],args[1],args[2]);
+        assert!(x > 0.0 && x < 1.0 && a >= 1.0 && b >= 1.0);
+        let current_normalizer = crate::ported::special_math_common::bratio_betaln(a,b);
+        let normalizer = row["normalizer"].as_str().map_or(current_normalizer, |raw|
+            f64::from_bits(u64::from_str_radix(raw,16).unwrap()));
+        assert!(normalizer.is_finite());
+        let start = excel_x87_mul(a,excel_log(x));
+        let difference = Hard::sub(&research_load(start), &research_load(normalizer), 0x133f);
+        let resident = Hard::store(&research_exp::<Hard>(&difference), 0x133f);
+        let variants = [
+            ("stored", excel_exp(excel_x87_sub(start,normalizer))),
+            ("compensated", excel_exp_compensated(start,&[normalizer])),
+            ("running", excel_exp_running(start,&[normalizer])),
+            ("resident", resident),
+        ];
+        let predictions: serde_json::Map<String,Value> = variants.into_iter().flat_map(|(name,value)| [
+            (name.into(),json!(format!("{:016x}",excel_x87_div(value,a).to_bits()))),
+            (format!("{name}_reciprocal"),json!(format!("{:016x}",excel_x87_mul(value,excel_x87_div(1.0,a)).to_bits()))),
+        ]).collect();
+        records.push(json!({"original":row,"normalizer":format!("{:016x}",normalizer.to_bits()),
+            "current_normalizer":format!("{:016x}",current_normalizer.to_bits()),
+            "start":format!("{:016x}",start.to_bits()),"predictions":predictions}));
+    }
+    crate::json_write(output,&json!({"complete":true,"records":records,
+        "limits":"Conditional original TOMS708 beta normalizer. Fixed stored, compensated, running and resident exponent programs; no coefficient fitting, no application replacement or exactness claim."}));
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 struct Profile {
     id: usize,

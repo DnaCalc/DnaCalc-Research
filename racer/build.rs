@@ -392,7 +392,8 @@ flushing_op!(Div, div, excel_x87_div);
         let special_text=fs::read_to_string(&special).unwrap();
         assert_eq!(special_text.matches("fn bratio_brcomp(").count(),1);
         let generated_special=output.join("special-research.rs");
-        let mut special_text=special_text.replace("fn bratio_brcomp(","pub(crate) fn bratio_brcomp(");
+        let mut special_text=special_text.replace("fn bratio_brcomp(","pub(crate) fn bratio_brcomp(")
+            .replace("fn bratio_betaln(", "pub(crate) fn bratio_betaln(");
         if unit["gamma_exponent_audit"].as_bool()==Some(true) {
             assert_eq!(special_text.matches("a * crt_log(x) - x").count(),3,"changed gamma exponent sites");
             special_text=special_text.replace("a * crt_log(x) - x","crate::discrete::gamma_exponent(a,x)");
