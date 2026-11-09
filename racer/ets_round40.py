@@ -911,10 +911,188 @@ def calendar_proof():
     print('calendar fresh',len(predictions),'failures',len(failures),flush=True)
 
 
+def calendar_followup():
+    """Separate calendar units and residual-day horizon trees on new dates."""
+    import calendar
+    import datetime as dt
+    origin=dt.date(1899,12,30)
+    serial=lambda date:float((date-origin).days)
+    def month_at(start,months,day):
+        year,month=divmod(start.year*12+start.month-1+months,12);month+=1
+        return dt.date(year,month,min(day,calendar.monthrange(year,month)[1]))
+    cases=[];predictions={name:[]for name in ['calendar_index','month_plus_fixed31','month_plus_last_length','numeric_serial']}
+    for start in [dt.date(2000,1,1),dt.date(2020,2,1),dt.date(2024,11,1)]:
+        for step in [1,2,3,4,5,6,7,8,9,10,11,12,18,24,36]:
+            for day in [1,31]:
+                n=8;dates=[month_at(start,j*step,day)for j in range(n)];last=dates[-1]
+                target_dates={str(float(h)):month_at(start,(n-1+h)*step,day)for h in [1,2,5]}
+                z=dict(y=[2.+128.*j for j in range(n)],season=0,month_step=step,start=str(start),day=day,
+                       timeline=[serial(date)for date in dates],targets={key:serial(date)for key,date in target_dates.items()})
+                cases.append(z)
+                for h in [1,2,5]:
+                    date=target_dates[str(float(h))];delta=date.day-last.day
+                    predictions['calendar_index'].append(bits(z['y'][-1]+128.*h))
+                    predictions['month_plus_fixed31'].append(bits(z['y'][-1]+128.*(h+delta/(31.*step))))
+                    predictions['month_plus_last_length'].append(bits(z['y'][-1]+128.*(h+delta/(float(calendar.monthrange(last.year,last.month)[1])*step))))
+                    predictions['numeric_serial'].append(bits(z['y'][-1]+128.*(serial(date)-serial(last))/(z['timeline'][-1]-z['timeline'][-2])))
+    units={name:[]for name in ['jan2001','jan2000','dec1899','average_month','thirty_day']}
+    for z in cases:
+        step=z['month_step']
+        for name,anchor in [('jan2001',dt.date(2001,1,1)),('jan2000',dt.date(2000,1,1)),('dec1899',dt.date(1899,12,30))]:
+            units[name].append(bits(float((month_at(anchor,step,anchor.day)-anchor).days)))
+        units['average_month'].append(bits(365.25*step/12.));units['thirty_day'].append(bits(30.*step))
+    frozen('step10-calendar-followup',dict(cases=cases,predictions=predictions,units=units,
+           method='Fresh start years, leap boundaries, two days and fifteen whole-month intervals. Fixed Gregorian anchor rules and day-residual horizon trees; no fitted date-dependent coefficients.'))
+    c,s=service();stats=ask_series(c,s,cases,'FORECAST.ETS.STAT',[8],chunk_size=200)
+    forecasts=ask_series(c,s,cases,'FORECAST.ETS',[1.,2.,5.],chunk_size=200)
+    save('step10-calendar-followup-stat',stats);save('step10-calendar-followup-answers',forecasts)
+    def assess(pred,actual):
+        losses=[dict(selection=i,prediction=p,answer=a)for i,(p,a)in enumerate(zip(pred,actual))if p!=a.get('bits')]
+        return dict(selections=len(actual),failures=len(losses),first=losses[:12])
+    save('step10-calendar-followup-result',dict(units={key:assess(pred,stats['answers'])for key,pred in units.items()},
+         forecasts={key:assess(pred,forecasts['answers'])for key,pred in predictions.items()},
+         limits='Numeric-unit and forecast hypotheses are independent. A surviving unit rule alone does not identify timeline preparation, aggregation or forecast arithmetic. Every mismatch and typed error fails.'))
+    print('calendar followup',len(cases),{key:assess(pred,forecasts['answers'])['failures']for key,pred in predictions.items()},flush=True)
+
+
+def detection_followup():
+    """Fresh phase/length questions for the newly observed 2n/5 lag envelope."""
+    import itertools
+    from .ets_seasonal import detection_candidate
+    cases=[]
+    for p in range(2,13):
+        for n in sorted(set([max(5,(5*p)//2-1),(5*p+1)//2,(5*p+1)//2+2,3*p+1])):
+            for kind in ['shifted_spike','shifted_cosine']:
+                y=[float(p-1 if (j+1)%p==0 else -1)for j in range(n)]if kind=='shifted_spike'else[math.cos(2*math.pi*(j+1)/p)for j in range(n)]
+                cases.append(dict(y=y,period=p,n=n,kind=kind))
+    predictions={}
+    for pre,norm,search,threshold in itertools.product(['mean','linear','difference'],['biased','unbiased','pearson'],['first','global'],['zero','two','normal95']):
+        key=str(('acf_2n5',pre,norm,search,threshold));predictions[key]=[]
+        for z in cases:
+            n=len(z['y']);cutoff=0. if threshold=='zero'else(2. if threshold=='two'else 1.96)/math.sqrt(n)
+            predictions[key].append(detection_candidate(z['y'],pre,norm,search,n-2*((2*n)//5),cutoff)[0])
+    for pre,padding,rounding in itertools.product(['mean','linear','difference'],[1,4],['nearest','floor','ceil']):
+        values=[]
+        for z in cases:
+            y=z['y'];n=len(y);mean=sequential_total(y)/n;t=initial_trend(y)
+            x=[v-mean for v in y]if pre=='mean'else[v-(mean+(j-(n-1)/2)*t)for j,v in enumerate(y)]if pre=='linear'else[v-u for u,v in zip(y,y[1:])]
+            size=padding*n;low=max(1,math.ceil(size/max(2,(2*n)//5)));high=size//2
+            spectrum=[(sequential_total(v*math.cos(2*math.pi*k*j/size)for j,v in enumerate(x))**2+
+                       sequential_total(v*math.sin(2*math.pi*k*j/size)for j,v in enumerate(x))**2,k)for k in range(low,high+1)]
+            if not spectrum:
+                values.append(0);continue
+            _,frequency=max(spectrum,key=lambda q:q[0]);period=size/frequency
+            out=round(period)if rounding=='nearest'else math.floor(period)if rounding=='floor'else math.ceil(period)
+            values.append(out)
+        predictions[str(('periodogram',pre,padding,rounding))]=values
+    frozen('step8-detection-followup',dict(cases=cases,predictions=predictions,
+           helper_source=(ROOT/'racer/ets_seasonal.py').read_text(),
+           method='Fresh phase-shifted patterns at the new length envelope. Fixed correlation and direct periodogram families; no fitted cutoff or extra peak correction.'))
+    c,s=service();d=ask_series(c,s,cases,'FORECAST.ETS.SEASONALITY',[0],chunk_size=200)
+    save('step8-detection-followup-answers',d)
+    actual=[value(a['bits'])if a.get('type')=='number'else a for a in d['answers']]
+    programs={}
+    for key,pred in predictions.items():
+        failures=[dict(case=i,prediction=p,answer=a)for i,(p,a)in enumerate(zip(pred,actual))if p!=a]
+        programs[key]=dict(failures=len(failures),first=failures[:8])
+    save('step8-detection-followup-result',dict(selections=len(cases),programs=programs,
+         survivors=[key for key,p in programs.items()if not p['failures']],
+         limits='The observed 2n/5 envelope is not an implementation. These two complete families are stopped on refutation; no detector scope is expanded.'))
+    print('detector followup',len(cases),'survivors',[key for key,p in programs.items()if not p['failures']],flush=True)
+
+
+def audit_evidence():
+    """Revalidate retained transport evidence and list every slow live request."""
+    from .fingerprint import accept
+    import csv
+    counts=Counter();types=Counter();functions=Counter();builds=Counter();by_id={};raw=[];refusals=[];rejected=[]
+    for path in sorted((OUT/'service-cache').glob('*.json.gz')):
+        document=read(path);request,reply=document['request'],document['reply']
+        if not reply.get('ok'):
+            refusals.append(dict(file=path.name,id=reply.get('id'),error=reply.get('error'),calls=len(request['rows'])));continue
+        accept(reply,request['function'],request['rows'],audit=document.get('audit'),result_index=request.get('result_index'))
+        transport='touchstone/1'if document.get('audit')else'session-host-v1'
+        counts[transport]+=1;functions[request['function']]+=len(reply['rows']);builds[str(reply['excel_build'])]+=1
+        types.update(a['type']for a in reply['rows']);by_id[reply['id']]=path.name
+        raw.append(dict(file=path.name,sha256=sha(path),id=reply['id'],transport=transport,calls=len(reply['rows'])))
+    for path in sorted((OUT/'unqualified-service-cache').glob('*.json.gz')):
+        document=read(path);request,reply=document['request'],document['reply']
+        try:accept(reply,request['function'],request['rows'],audit=document.get('audit'),result_index=request.get('result_index'))
+        except ValueError as error:rejected.append(dict(file=path.name,sha256=sha(path),id=reply['id'],calls=len(reply['rows']),reason=str(error)))
+        else:raise ValueError('unqualified acquisition unexpectedly accepted')
+        by_id[reply['id']]='unqualified-service-cache/'+path.name
+    stages={}
+    for path in sorted(OUT.glob('*.json')):
+        document=read(path)
+        if not isinstance(document,dict):continue
+        for receipt in document.get('receipts',[]):
+            if 'file'in receipt:stages.setdefault(receipt['file'],[]).append(path.name)
+    waits=[json.loads(line)for line in(OUT/'service-times.jsonl').read_text().splitlines()]
+    with (OUT/'service-times-final.jsonl').open('x')as stream:
+        for record in waits:stream.write(json.dumps(record)+'\n')
+    slow=[]
+    for index,record in enumerate(waits,1):
+        if record['seconds']<=3.:continue
+        name=by_id.get(record.get('id'),'')
+        row=dict(sequence=index,function=record['function'],result_index=record.get('result_index'),calls=record['calls'],seconds=record['seconds'],
+                 request_id=record.get('id',''),question_cache=name,stages=';'.join(stages.get(name,[])),error=record.get('detail',''))
+        if not name and not row['error']:raise ValueError('slow successful request has no retained reply')
+        slow.append(row)
+    with (OUT/'excel-waits.tsv').open('x',newline='')as stream:
+        writer=csv.DictWriter(stream,fieldnames=['sequence','function','result_index','calls','seconds','request_id','question_cache','stages','error'],delimiter='\t')
+        writer.writeheader();writer.writerows(slow)
+    sources={str(p.relative_to(ROOT)):sha(p)for p in [Path(__file__),ROOT/'racer/fingerprint.py',ROOT/'racer/question_designer.py',ROOT/'racer/ets_proof.py']}
+    save('final-service-audit',dict(successful_replies=len(raw),selections=sum(functions.values()),transports=counts,functions=functions,
+         answer_types=types,excel_builds=builds,raw=raw,service_refusals=refusals,unqualified_rejected=rejected,
+         timed_live_requests=len(waits),slow_requests=len(slow),slow_seconds=sum(row['seconds']for row in slow),
+         longest_seconds=max(row['seconds']for row in slow),waits_sha256=sha(OUT/'excel-waits.tsv'),sources=sources,
+         limits='All qualified normalized replies are revalidated against unchanged typed input echoes and worker provenance. Client v2 frame/environment hashes are distinct from server receipts. Service errors and unqualified replies never enter numeric proof counts. Every timed live request over three seconds appears in excel-waits.tsv.'))
+    print('service audit',len(raw),sum(functions.values()),'slow waits',len(slow),flush=True)
+
+
+def reconcile_evidence():
+    """Join immutable original questions and reconcile inclusive measurements."""
+    baseline=RETAINED/'application-replay-pushed-complete';current=OUT/'final-round39-replay'
+    transitions={};losses=[];new_discrepancies=[];bindings={}
+    def lines(path):
+        bindings[str(path)]=sha(path)
+        with gzip.open(path,'rt')as stream:return [json.loads(line)for line in stream]
+    for path in sorted(current.glob('*.inputs.json.gz')):
+        name=path.name.removesuffix('.inputs.json.gz')
+        before_inputs={r['id']:r for r in read(baseline/path.name)['witnesses']}
+        before={r['id']:r for r in lines(baseline/(name+'.predictions.jsonl.gz'))}
+        after={r['id']:r for r in lines(current/(name+'.predictions.jsonl.gz'))}
+        tally=Counter()
+        for row in read(path)['witnesses']:
+            old=before_inputs[row['id']];a=before[row['id']];b=after[row['id']]
+            if row['args']!=old['args']or row['expected']!=old['expected']or row['args']!=a['args']or row['args']!=b['args']:
+                raise ValueError('changed original registered question')
+            was=a['calc_func_prediction']==row['expected'];now=b['calc_func_prediction']==row['expected']
+            tally[str((was,now))]+=1
+            if was and not now:losses.append(dict(function=name,**row,before=a,after=b))
+            if a['calc_func_prediction'].startswith('fault:')and not b['calc_func_prediction'].startswith('fault:')and not now:
+                new_discrepancies.append(dict(function=name,**row,before=a['calc_func_prediction'],after=b['calc_func_prediction']))
+        transitions[name]=tally
+    before=read(OUT/'before-corpus/summary.json');after=read(OUT/'final-corpus/summary.json')
+    old={w['name']:w for w in before['workbooks']};new={w['name']:w for w in after['workbooks']}
+    if old.keys()!=new.keys()or any(old[k]['sha256']!=new[k]['sha256']for k in old):raise ValueError('changed corpus packages')
+    changed=[dict(workbook=k,before=old[k]['counts'],after=new[k]['counts'])for k in old if old[k]['counts']!=new[k]['counts']]
+    old_bank=read(OUT/'before-bank.json');new_bank=read(OUT/'final-bank.json')
+    if old_bank!=new_bank:raise ValueError('bank observations changed; inspect differences before claiming equality')
+    frozen('final-reconciliation',dict(registered_round39=dict(transitions=transitions,previous_matches_lost=losses,
+           formerly_refused_discrepancies=new_discrepancies,inputs_and_traces=bindings),
+           corpus=dict(before=before['totals'],after=after['totals'],changed_workbooks=changed,unchanged_packages=len(old),
+                       before_run=before['run'],after_run=after['run']),
+           bank=dict(all_fields_equal=True,totals=new_bank['totals'],functions=len(new_bank['functions'])),
+           limits='Original IDs, operands and expected answers are joined before transition counts. Inclusive corpus counts and all bank fields reconcile; workbook totals alone do not prove per-cell transition counts.'))
+    print('R39 gained',sum(v.get(str((False,True)),0)for v in transitions.values()),'lost',len(losses),
+          'new numeric discrepancies',len(new_discrepancies),'corpus',after['totals']['counts']['pass'],flush=True)
+
+
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('step', choices=['reanalysis', 'normal-map', 'normal-refinement','confidence-reanalysis','slope-map','slope-analysis','slope-impulses','impulse-analysis','slope-stores','short-proof','final-add-proof','final-product-proof','census','resume-census','search-structures','reset-boundaries','seasonal-initialization','seasonal-exact-proof','resume-seasonal-exact','partial-cycles','detection','calendar'])
+    parser.add_argument('step', choices=['reanalysis', 'normal-map', 'normal-refinement','confidence-reanalysis','slope-map','slope-analysis','slope-impulses','impulse-analysis','slope-stores','short-proof','final-add-proof','final-product-proof','census','resume-census','search-structures','reset-boundaries','seasonal-initialization','seasonal-exact-proof','resume-seasonal-exact','partial-cycles','detection','detection-followup','calendar','calendar-followup','audit-evidence','reconcile-evidence'])
     args=parser.parse_args()
     {'reanalysis':reanalysis, 'normal-map':quantile_mapping, 'normal-refinement':quantile_refinement,
      'confidence-reanalysis':confidence_reanalysis,'slope-map':slope_mapping,'slope-analysis':slope_analysis,
-     'slope-impulses':slope_impulses,'impulse-analysis':impulse_analysis,'slope-stores':slope_stores,'short-proof':short_proof,'final-add-proof':final_add_proof,'final-product-proof':final_product_proof,'census':parameter_census,'resume-census':lambda:parameter_census(True),'search-structures':search_structures,'reset-boundaries':reset_boundaries,'seasonal-initialization':seasonal_initialization,'seasonal-exact-proof':seasonal_exact_proof,'resume-seasonal-exact':lambda:seasonal_exact_proof(True),'partial-cycles':lambda:seasonal_initialization(True),'detection':detection_proof,'calendar':calendar_proof}[args.step]()
+     'slope-impulses':slope_impulses,'impulse-analysis':impulse_analysis,'slope-stores':slope_stores,'short-proof':short_proof,'final-add-proof':final_add_proof,'final-product-proof':final_product_proof,'census':parameter_census,'resume-census':lambda:parameter_census(True),'search-structures':search_structures,'reset-boundaries':reset_boundaries,'seasonal-initialization':seasonal_initialization,'seasonal-exact-proof':seasonal_exact_proof,'resume-seasonal-exact':lambda:seasonal_exact_proof(True),'partial-cycles':lambda:seasonal_initialization(True),'detection':detection_proof,'detection-followup':detection_followup,'calendar':calendar_proof,'calendar-followup':calendar_followup,'audit-evidence':audit_evidence,'reconcile-evidence':reconcile_evidence}[args.step]()

@@ -19,6 +19,61 @@ from intervals import B64, E64, E53, Interval, inverse_op, inverse_add, rounding
 MODELS=('strict','stored_pc64','resident_pc64','stored_pc53','resident_pc53')
 
 
+def exponent_loop_proof():
+    """Fresh fixed remaining-exponent loops using the shared R40 timing route."""
+    from .ets_round40 import OUT, frozen, save, service
+    from .fingerprint import bits, sha
+    from .question_designer import choose_split
+    import math
+    import subprocess
+    loans=[]
+    for center,n,exponent in [(2.**-6,13,-180),(.125,29,0),(.5,61,180)]:
+        raw=int(bits(center),16)
+        for offset in [-1,0,1]:
+            rate=struct.unpack('>d',bytes.fromhex(f'{raw+offset:016x}'))[0]
+            loans.append(dict(rate=bits(rate),n=n,pv=bits(math.ldexp(257/16,exponent))))
+    for n in [17,41,53]:loans.append(dict(rate=bits(1.),n=n,pv=bits(float(2**n-1))))
+    ranges=[]
+    for index,z in enumerate(loans):
+        n=z['n']
+        for start,end in [(1,1),(2,2),(n//2,n//2),(n-1,n-1),(n,n),(1,n),(2,n-1),(n//2,n),(2,5)]:
+            ranges.append(dict(loan=index,start=start,end=end))
+    source=Path(__file__).read_text();executable=Path('target/debug/symbolic-racer').resolve()
+    bindings={str(p):sha(p)for p in [Path(__file__),Path('racer/src/cumulative.rs'),Path('racer/src/main.rs'),executable]}
+    frozen('step11-exponent-design',dict(loans=loans,ranges=ranges,source=source,bindings=bindings,
+        method='Three adjacent rates in each of three binades, exponent scaling, and exact power-base loans. Public PMT read separately; end timing only. No cumulative answer chooses an origin, arithmetic word or exponential lifetime.'))
+    c,s=service()
+    number=lambda raw:c.number(raw)
+    pmts=s.ask_rows('PMT',[[number(z['rate']),c.number(float(z['n'])),number(z['pv']),c.number(0.),c.number(0.)]for z in loans],chunk_size=200)
+    if any(a.get('type')!='number'for a in pmts):raise ValueError('non-numeric payment control retained in cache')
+    for z,a in zip(loans,pmts):z['payment']=a['bits']
+    save('step11-exponent-operands',dict(loans=loans,ranges=ranges,receipts=s.receipts))
+    path=OUT/'step11-exponent-operands.json';prediction_path=OUT/'step11-exponent-predictions.json'
+    if prediction_path.exists():raise ValueError('prediction output already exists')
+    subprocess.run([str(executable),'cumulative-exponent-loops',str(path),str(prediction_path)],check=True,timeout=180)
+    predictions=json.loads(prediction_path.read_text())['programs']
+    split=choose_split({str(p['id']):p['CUMPRINC']for p in predictions})
+    frozen('step11-exponent-proof',dict(operands_sha256=sha(path),predictions_sha256=sha(prediction_path),
+        first_candidate_split=split,source=source,bindings=bindings,
+        limits='Entire fixed profiles, not per-row best choices. PMT is a measured conditional leaf; the logarithm and exponential are unchanged cleared application providers, not measured cumulative leaves.'))
+    questions=[[number(loans[r['loan']]['rate']),c.number(float(loans[r['loan']]['n'])),number(loans[r['loan']]['pv']),
+                c.number(float(r['start'])),c.number(float(r['end'])),c.number(0.)]for r in ranges]
+    answers={name:s.ask_rows(name,questions,chunk_size=200)for name in ['CUMPRINC','CUMIPMT']}
+    save('step11-exponent-answers',dict(answers=answers,questions=questions,receipts=s.receipts))
+    programs=[]
+    for p in predictions:
+        result={k:v for k,v in p.items()if k not in answers}
+        for name,actual in answers.items():
+            failures=[dict(index=i,prediction=pred,answer=a,range=ranges[i])for i,(pred,a)in enumerate(zip(p[name],actual))if a.get('bits')!=pred]
+            result[name]=dict(selections=len(actual),failures=len(failures),first=failures[:2])
+        programs.append(result)
+    if bindings!={p:sha(p)for p in bindings}:raise ValueError('exponent experiment source changed')
+    save('step11-exponent-result',dict(programs=programs,
+        survivors=[p['id']for p in programs if all(p[name]['failures']==0 for name in answers)],
+        limits='Any mismatch or non-number refutes that complete profile. Refuting this bounded family does not identify a private exponential or a different remaining-period recurrence. No cumulative arithmetic change follows.'))
+    print('remaining-exponent profiles',len(programs),'survivors',[p['id']for p in programs if all(p[name]['failures']==0 for name in answers)],flush=True)
+
+
 def direct_graph(function, count, beginning, first, logarithm, association, discount):
     """Ordinary closed-form loan algebra; coefficients are only0,1 and input counts.
 

@@ -48,6 +48,87 @@ pub fn discount_parts(input:&str, output:&str) {
     println!("{} observed loan records",records.len());
 }
 
+/// Fixed remaining-exponent loops, independent of cumulative observations.
+/// Public PMT is an explicit conditional leaf. This does not install a kernel.
+#[cfg(cumulative_discount_audit)]
+pub fn exponent_loops<F: Fpu>(input: &str, output: &str) {
+    use crate::ported::excel_numeric::research_exp;
+    let document: Value = serde_json::from_slice(&fs::read(input).unwrap()).unwrap();
+    let loans = document["loans"].as_array().unwrap();
+    let ranges = document["ranges"].as_array().unwrap();
+    let num = |v: &Value| f64::from_bits(u64::from_str_radix(v.as_str().unwrap().trim_start_matches("0x"), 16).unwrap());
+    let add = |a, b, m| binop::<F>(Op::Add(0, 1), m, a, b);
+    let mul = |a, b, m| binop::<F>(Op::Mul(0, 1), m, a, b);
+    let div = |a, b, m| binop::<F>(Op::Div(0, 1), m, a, b);
+    let logs: Vec<_> = loans.iter().map(|loan| {
+        let (r, n, pv) = (num(&loan["rate"]), loan["n"].as_u64().unwrap() as usize, num(&loan["pv"]));
+        assert!(r > 0.0 && r <= 1.0 && n > 0 && n <= 128 && pv > 0.0 && pv.is_finite());
+        crate::ported::financial_time_value_family::research_end_discount_parts(r, n as f64, pv).unwrap().0
+    }).collect();
+    let mut programs = Vec::new();
+    for origin in 0..5 {
+        for exponent_word in MODELS {
+            for exp_store in [false, true] {
+                for term_word in MODELS {
+                    for sum_word in MODELS {
+                        for reverse in [false, true] {
+                            for outside in [false, true] {
+                                let mut principal = Vec::new();
+                                let mut interest = Vec::new();
+                                for range in ranges {
+                                    let index = range["loan"].as_u64().unwrap() as usize;
+                                    let loan = &loans[index];
+                                    let (r, n, payment) = (num(&loan["rate"]), loan["n"].as_u64().unwrap() as usize,
+                                        Val::f64(num(&loan["payment"])));
+                                    let (start, end) = (range["start"].as_u64().unwrap() as usize, range["end"].as_u64().unwrap() as usize);
+                                    assert!(r > 0.0 && r <= 1.0 && 1 <= start && start <= end && end <= n && n <= 128);
+                                    let log = Val::f64(logs[index]);
+                                    let negative_log = Val::f64(-log.to_f64::<F>());
+                                    let first = if origin == 1 { 1 } else { start };
+                                    let last = if origin == 2 { n } else { end };
+                                    let descending = origin == 2 || origin == 4;
+                                    let initial_period = if descending { last } else { first };
+                                    let mut exponent = mul(Val::f64(-((n - initial_period + 1) as f64)), log, exponent_word);
+                                    let factor = Val::f64(r);
+                                    let coefficient = div(payment, factor, term_word);
+                                    let mut terms = Vec::new();
+                                    let order: Vec<_> = if descending { (first..=last).rev().collect() } else { (first..=last).collect() };
+                                    for period in order {
+                                        let argument = if origin == 0 {
+                                            mul(Val::f64(-((n - period + 1) as f64)), log, exponent_word)
+                                        } else { exponent };
+                                        let raw = Val::Ext(research_exp::<F>(&argument.to_ext()));
+                                        let discount = if exp_store { Val::f64(raw.to_f64::<F>()) } else { raw };
+                                        if (start..=end).contains(&period) {
+                                            let term = mul(factor, discount, term_word);
+                                            terms.push((period, if outside { term } else { mul(coefficient, term, term_word) }));
+                                        }
+                                        exponent = add(exponent, if descending { negative_log } else { log }, exponent_word);
+                                    }
+                                    terms.sort_by_key(|(period, _)| *period);
+                                    if reverse { terms.reverse(); }
+                                    let sum = terms.into_iter().fold(Val::f64(0.0), |sum, (_, term)| add(sum, term, sum_word));
+                                    let total = if outside { mul(coefficient, sum, term_word) } else { sum };
+                                    let p = total.to_f64::<F>();
+                                    let count_payment = mul(Val::f64((end - start + 1) as f64), payment, EvalModel::StoredPc64);
+                                    let i = add(count_payment, Val::f64(-p), EvalModel::StoredPc64).to_f64::<F>();
+                                    principal.push(format!("{:016x}", p.to_bits()));
+                                    interest.push(format!("{:016x}", i.to_bits()));
+                                }
+                                programs.push(json!({"id":programs.len(),"origin":origin,"exponent_word":exponent_word,
+                                    "exp_store":exp_store,"term_word":term_word,"sum_word":sum_word,"reverse":reverse,
+                                    "outside":outside,"CUMPRINC":principal,"CUMIPMT":interest}));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    crate::json_write(output, &json!({"programs":programs,"not_excel_evidence":true,
+        "limits":"Five fixed independent/whole-loan/range-local exponent origins; coherent 53-bit, PC64-stored or PC64-resident operations; existing cleared natural exponential, stored or resident. End timing only. Public PMT is conditional. Every complete program is frozen before cumulative answers."}));
+}
+
 /// Observe the existing stored period components before their rate finish.
 #[cfg(cumulative_discount_audit)]
 pub fn period_components(input:&str, output:&str) {

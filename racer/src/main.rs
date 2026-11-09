@@ -742,6 +742,8 @@ fn main() {
         Some("period-components") => cumulative::period_components(&a[2], &a[3]),
         #[cfg(cumulative_discount_audit)]
         Some("cumulative-discount-parts") => cumulative::discount_parts(&a[2], &a[3]),
+        #[cfg(cumulative_discount_audit)]
+        Some("cumulative-exponent-loops") => cumulative::exponent_loops::<Hard>(&a[2], &a[3]),
         #[cfg(bond_solver_audit)]
         Some("yield-root-programs") => match a.get(4).map(String::as_str) {
             Some("soft") => bond_solver::run::<Soft>(&a[2], &a[3]),
