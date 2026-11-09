@@ -1,0 +1,48 @@
+ETS search and reset (R46, GPT-6.1 Sol (Codex), dna-firehorse)
+
+Implementer; sources are original Excel20527 question-service answers,
+IEEE754 and existing cleared arithmetic. No tier3/4 implementation source.
+
+The refreshed corpus has 1,111 ETS refusals, not about 1,600:
+FORECAST.ETS 292, CONFINT 292, SEASONALITY 455, STAT 72.
+Temporary first-refusal tracing through the workbook route partitions them:
+615 automatic detection/search; 204 inexact short initialization; 180 nonzero
+seasonal innovations; 112 unsupported seasonal history/cycle lengths.
+All prepared histories are at most32 observations. Twelve refused cells
+have a missing point (7 zero fill,5 interpolation); none first refuses in
+completion or duplicate reduction. Option/length cross-counts are retained.
+
+The detector returns zero at prepared length2..4, and can report2
+at length5. This establishes the observed boundary, not its private mechanism.
+1,653 fresh short controls,132 exponent-extreme controls and
+the original corpus support zero at length2..4, independently of fitting.
+This removes87 corpus SEASONALITY refusals. Longer detection remains open.
+An attempted two-cycle affine/seasonal initialization at length4 fails fresh
+answers; it is retained as a refutation and was not implemented.
+
+R41's adjacent29-point reset contradiction repeats at scales2^-100,1,2^100.
+Adding a linear trend isolates the reset interval without changing real
+innovations. Even lengths give the known window/count width; length29 gives
+sqrt(182/183), rather than15/14. No fitted real constant is required:
+the tail has ceil(n/2)-1 trends, while both raw moments use floor(n/2)-1;
+the threshold multiplier is floor(n/2)/(floor(n/2)-1). Up to length10 both
+use n-1. Variance is raw second moment minus squared mean, not centered SSE.
+The count discrepancy and cancellation also explain the symmetric21-point
+minimum-alpha forecast refusal. That refusal is removed.
+
+A stored-PC64 arithmetic program fits both adjacent sides, all54 retained
+boundary controls,74 earlier reset decisions and512 fresh parameter triples.
+Twenty targeted forecast answers and460 independent fresh forecasts from115
+minimum-alpha/reset histories agree. The latter design reached its fixed
+20,000-history loop limit before the requested128 qualifying histories.
+Final registered replay also checks the actual application route. Individual
+stores are nonunique:1,228 store/order programs survive54 retained controls.
+The selected stored-PC64 program is validated, not uniquely reconstructed.
+
+The fixed23-point product search table is unchanged. Two other raw pairs
+remain suggested by the R41 census; exact table loads and tie order are
+undetermined. No decimal neighbor has been selected by match counts.
+No broader seasonal search or initializer is installed. We moved on after
+the short seasonal model failed and the full search remained unidentified;
+the identified reset and short detector stand independently.
+Evidence: evidence/round46; raw workbook outputs are cited by its R2 receipt.

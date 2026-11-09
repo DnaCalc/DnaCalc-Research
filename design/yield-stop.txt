@@ -28,3 +28,36 @@ No tolerance or seed is identified and no solver change is justified.
 Next useful design: map the scale transitions with a fixed exact dyadic
 root, then separate seed/bracket changes before fitting a stopping constant.
 Evidence: evidence/round44, yield-scale.*; no ETS search was extended.
+
+R46 continuation (same role and source restrictions)
+
+Mapped5 zero-coupon designs over every cash exponent-500..500:5,005 calls.
+Four designs use exact dyadic roots: n2/4, frequency1/2, discount base2;
+the fifth uses base1.5 with binary64 price, so its root is only a control.
+Scale changes have small- and large-cash limiting answers and a transition
+around ordinary face amounts. At n2/frequency1, exact root1, Excel returns
+1 at exponent-500,3feffffffffc4e9a at0,3feffffffff7cc5c at500.
+This refines R44's scale map; it does not identify an iteration count.
+
+Fixed cash-dependent guesses use face100, requested price/redemption,
+average face/cash, capital gain per period, and fixed0/.1/.5/1 controls.
+100 Newton/secant programs and150 expanding-bracket programs were tested
+for necessary iterate membership on12 exponent-separated dyadic controls.
+The brackets use bisection, alternating bisection/secant, regula falsi or
+Illinois, with three simple expansion rules. Every program fails even a
+16-ULP necessary-membership check; every ordinary verdict stays bit-exact.
+This rejects those complete seed/iteration hypotheses, not all mixed tests
+or all brackets. Analytic price evaluation and its stores are conditional;
+the16-ULP padding is not a bound for another private price implementation.
+No tolerance or cash-dependent seed was fitted. Moved on
+because no complete tree survived to stopping-constant recovery.
+
+Fallback:516 Poisson answers in adjacent windows around all4 larger corpus
+differences equal CHISQ.DIST.RT(2*mean,2*(k+1)) exactly. The shared gamma tail
+remains responsible; no second Poisson CDF is justified.774 binomial window
+answers contradict the stored-complement public-beta relation221 times;
+every contradiction has an inexact1-p. All520 exact-complement controls
+agree (33 of254 inexact-complement controls agree too). Preserving both p
+and binary64(1-p) in the existing bratio interface
+still predicts only6/774 exactly; the beta body remains unresolved. No
+distribution kernel changed. Evidence: evidence/round46.
