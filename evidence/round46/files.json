@@ -2808,6 +2808,24 @@
     "already_compressed": false
   },
   {
+    "path": "retained/short-seasonal-corrected-analysis.json.gz",
+    "original_path": "short-seasonal-corrected-analysis.json",
+    "source_sha256": "74daaf6da836b4ed66b8ef096dfb68ead48d2731314d629f8aa218cd2ea810ff",
+    "stored_sha256": "4d6d369b7710485d4a7b588976707d1d613bdea23673d7d444a03a5845149c78",
+    "bytes": 75640,
+    "stored_bytes": 8606,
+    "already_compressed": false
+  },
+  {
+    "path": "retained/short-seasonal-correction-review.json.gz",
+    "original_path": "short-seasonal-correction-review.json",
+    "source_sha256": "b8f2eb92228a1f0f2dd1fc23968c8a3171e2a2a23f392142d6e3d367d38c232b",
+    "stored_sha256": "52c92b556303cbc45ea4e964fc426f6fb3f97169aad434b3dc4ea69a9d3a12a5",
+    "bytes": 528,
+    "stored_bytes": 358,
+    "already_compressed": false
+  },
+  {
     "path": "retained/short-seasonal-frozen.json.gz",
     "original_path": "short-seasonal-frozen.json",
     "source_sha256": "d4e19e98a10280cbeefb1cff8c552b3fa3916dd2d9d57a3655b0d27caa07bee7",
@@ -2817,12 +2835,30 @@
     "already_compressed": false
   },
   {
+    "path": "retained/short-seasonal-recheck-ubs.log.gz",
+    "original_path": "short-seasonal-recheck-ubs.log",
+    "source_sha256": "ac2c3115e33a42a149b583bf27af99899f5c0932ecbde6f5bc4b25a1700d26a7",
+    "stored_sha256": "4beb7dc8aae2aa7445d86f1692dd62da1a8e27e4543bc11be232f0d5bcc0ac75",
+    "bytes": 4324,
+    "stored_bytes": 988,
+    "already_compressed": false
+  },
+  {
     "path": "retained/short_proof.py.gz",
     "original_path": "short_proof.py",
     "source_sha256": "2b734fa0b31fce4a89c33d3d6443ebbc11e8273481a7b3b98bdd56e675b489c8",
     "stored_sha256": "2d6d87b72233702c2390c71e14f51eb1d85e6ddb485467c4a70f69c3de383798",
     "bytes": 2575,
     "stored_bytes": 1176,
+    "already_compressed": false
+  },
+  {
+    "path": "retained/short_seasonal_recheck.py.gz",
+    "original_path": "short_seasonal_recheck.py",
+    "source_sha256": "bbfb34205f46cc1a317bd9a2affff50c99abc0b2db8e2de9822214786357b789",
+    "stored_sha256": "425a4ce3697c21d2ca2b225d86f18199474a937535e1091a4ba3adf485f3fd06",
+    "bytes": 2021,
+    "stored_bytes": 1053,
     "already_compressed": false
   },
   {

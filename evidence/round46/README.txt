@@ -11,6 +11,13 @@ minimum-alpha forecast region. SEASONALITY returns0 for2..4 prepared points.
 No parameter point, fitted real constant or new arithmetic piece was added.
 Full seasonal search, short/inexact initialization and longer detection stay
 unidentified and retain counted refusals. See design/ets-search.txt.
+An offline erratum corrects the unimplemented length4 seasonal candidate:
+its original forecast distance added two extra trend steps. The corrected
+distance is index-phase, proven with exact rational arithmetic and every
+zero-horizon result equaling the last observation. It still contradicts
+368/384 forecasts (original diagnostic incorrectly counted380); STAT560/672
+and CI276/288 contradictions are unchanged. Original predictions and answers
+remain immutable; short-seasonal-corrected-analysis.json gives the correction.
 
 The 1,111 initial corpus refusals are partitioned by first-refusal tracing:
 615 automatic detection/search,204 short initialization,180 seasonal

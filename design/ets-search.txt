@@ -19,6 +19,10 @@ the original corpus support zero at length2..4, independently of fitting.
 This removes87 corpus SEASONALITY refusals. Longer detection remains open.
 An attempted two-cycle affine/seasonal initialization at length4 fails fresh
 answers; it is retained as a refutation and was not implemented.
+Erratum: the original diagnostic forecast added two extra trend steps.
+Offline exact-rational correction preserves all inputs/answers and still
+contradicts368/384 forecasts; STAT560/672 and CI276/288 were unaffected.
+Both prediction epochs are retained; no product behavior or test changed.
 
 R41's adjacent29-point reset contradiction repeats at scales2^-100,1,2^100.
 Adding a linear trend isolates the reset interval without changing real
