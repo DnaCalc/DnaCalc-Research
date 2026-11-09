@@ -1,0 +1,36 @@
+TRUNC, ROUNDDOWN, ROUNDUP: the fifteen-digit reading at large scales
+(ld1, Claude Opus 5.5, dna-koderbot, 2026-11-09)
+
+Sources: the function bank (CalcFunc-Evidence, Excel 16.0.20430/20527).
+Implementer; no tier 3/4 source read.
+
+Where: ExactDecimal::fifteen_x87 scales |x| by 10^n, n = 14 - e, to read 15
+digits. For |n| > 27 calc-func uses one 64-bit constant, the nearest to
+10^|n|, and one rounding. The bank's larger differences (200 each in TRUNC,
+ROUNDDOWN, ROUNDUP; worst 86 ulp) are all in that range, at tiny and huge x
+with digit counts near 300.
+
+Probe (research build, LD1_READ switch, full bank per function):
+  model                                          TRUNC   ROUND
+  current: nearest constant, one rounding        50,873  36,921
+  nibble chunks, low first, x scaled step by
+    step, each product rounded to 64 bits,
+    negative n multiplies by 10^-chunk (S4)      51,217  36,925
+  the same with high chunks first                50,941  36,925
+  3-bit, 2-bit, 1-bit, 8-bit chunks              <= 50,933
+  constant built first, then one product         50,913  36,897
+  negative n divides by 10^chunk                 51,013  36,925
+  products kept at 80/96/128 bits                51,017  36,937
+  table entries built by repeated x87 products   50,690 / 50,337
+S4 (the decomposition the publication step scaled_pc64 already uses) gains
+396 rows in each directed function and loses 52; worst 86 -> 10 ulp. It is
+not landed because of the 52 losses. Of 1,001 near-half full-digit rows, S4
+reads 951; the misses split evenly: 24 where S4's 64-bit product is exactly
+the half and Excel goes down, 26 where it is one unit below and Excel goes
+up. Fitting each table entry's last bit (+-2 units) moves 2 rows only, so the
+constants are the nearest ones; the open question is the rounding around
+the final half decision, not the decomposition.
+The research switch is evidence/ld1/decimal-reading-variants.patch.
+Next question: designed x whose exact 10^n multiple sits a known number of
+2^-64 units from a half, separately for one-chunk and two-chunk n, to see
+which rounding the decision reads.

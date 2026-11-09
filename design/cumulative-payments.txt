@@ -1,0 +1,43 @@
+CUMPRINC and CUMIPMT: design note (ld1, Claude Opus 5.5, dna-koderbot, 2026-11-09)
+
+Sources: Excel 16.0 build 20527 answers through the question service
+(env f3269992527c); calc-func's own x87 leaves. Implementer; no tier 3/4
+source read.
+
+1. Arguments (identified, landed in DnaCalc)
+Excel keeps nper as given: CUMPRINC(0.1013,352.25,..) differs from 352 and
+353. Start and end are compared as given (start >= 1, start <= end,
+end <= nper, else #NUM!), then the whole periods ceil(start)..floor(end) are
+summed; an interval holding none is 0. Probes: (1.5,1.5) is 0, (2.0000001,3)
+is period 3 alone, (1.9,10.2) is 2..10, (352,352.9) at nper 352 is #NUM!,
+(352,352.5) at nper 352.5 is period 352. CUMIPMT(0.0075,360.8,125000,13.9,
+24.9,0) has the bits of (..,360.8,..,14,24,..). Fresh set of 407 random
+fractional calls: CUMPRINC 114 exact, 286 within 16 ulp, 5 larger (all
+type 1); CUMIPMT 289/102/14; all error cells agree.
+
+2. Summation shape (identified where 1 + rate is a power of two)
+For type 0 the range is a backward recurrence in the x87 unit: f = u_e * r
+with u_e = EXP(-(m_e * L)), m_e = nper - end + 1, L the PMT logarithm;
+sum += f; f /= (1 + r) (the sum and 1 + r kept extended); the stored sum is
+multiplied by q = pv / em_n (x87 multiply). With 1 + r = 2 or 4 this holds
+on 600 of 600 ranges and 115 of 115 singletons (four loans, r = 1 and 3).
+Range sums are not sums of Excel's own singletons (199/480 left to right on
+the r = 1 loans). Fresh exponentials per period refute (54-69/150).
+
+3. What is open
+For other rates the same program is within 3 ulp on ranges (current code up
+to 16) but singletons fail: the last period of a 1000-period loan at r = 0.75
+(em_n = -1, so q = -pv) is not one rounding of pv times any constant
+(2,000 consecutive pv; best cover 82%), not a function of the public PMT,
+nor of RN(pv * A) for any A in the merging ranges; it is exactly
+homogeneous in pv (P(2pv) = 2P(pv), P(1024pv) = 1024P(pv)). So a second
+pv-dependent rounding exists that vanishes when 1 + r is a power of two.
+L offsets of +-8 ulp, PC53, CRT/portable exponentials, pow forms and
+forward-growth quotients all refute. Type 1 is pmt1 * v^m for k >= 2;
+the current discounted fallback is up to 62 ulp off; a loop with the due
+coefficient is within 2 ulp on the bank but loses 28 matched rows, so it
+is not landed. CUMIPMT's larger bank differences (15) are cancellation in
+count * PMT - CUMPRINC at rates near 1e-8: they follow CUMPRINC's last bit.
+
+Evidence: evidence/ld1: d2/d4/d6 (singletons, ranges),
+pvscan-*.txt (pv scans), frac1.json (fresh fractional proof), scripts/.

@@ -1,0 +1,125 @@
+--- decimal.orig.rs	2026-11-09 15:27:59.346196400 +0200
++++ decimal.rs	2026-11-09 16:12:39.542969100 +0200
+@@ -471,6 +471,8 @@
+             round_to_64_bits(&numerator, exponent, &denominator)
+         } else {
+             let one = Natural::from_u64(1);
++            let mode = std::env::var("LD1_READ").unwrap_or_default();
++            if mode.is_empty() {
+             let (scale, scale_power) = round_to_64_bits(&Natural::pow10(shift.unsigned_abs()), 0, &one);
+             let scale = Natural::from_u128(scale);
+             let start = Natural::from_u64(mantissa);
+@@ -479,6 +481,81 @@
+             } else {
+                 round_to_64_bits(&start, exponent - scale_power, &scale)
+             }
++            } else {
++                let bits: u32 = mode[1..2].parse().unwrap();
++                let high_first = mode.contains("H");
++                let divide = mode.contains("div");
++                let mask = (1u32 << bits) - 1;
++                let mut parts = Vec::new();
++                let mut magnitude = shift.unsigned_abs();
++                let mut sh = 0u32;
++                while magnitude != 0 {
++                    let part = (magnitude & mask) << sh;
++                    if part != 0 { parts.push(part); }
++                    magnitude >>= bits;
++                    sh += bits;
++                }
++                if high_first { parts.reverse(); }
++                let prec: u32 = mode.split('P').nth(1).map(|p| p.parse().unwrap()).unwrap_or(64);
++                let tbl: u32 = mode.split('T').nth(1).map(|p| p[..2].parse().unwrap()).unwrap_or(64);
++                let first_exact = mode.contains("X");
++                if prec != 64 || tbl != 64 || first_exact {
++                    // big-precision path: value = num/den * 2^p kept as Natural fraction rounded to `prec` bits each step
++                    let mut num = Natural::from_u64(mantissa);
++                    let mut p2 = exponent;
++                    for (pi, part) in parts.clone().into_iter().enumerate() {
++                        let e = i32::try_from(part).expect("exp");
++                        let fe = if shift < 0 { -e } else { e };
++                        // table constant rounded to tbl bits
++                        let u = Self::unit(fe);
++                        let mut un = u.coefficient.clone();
++                        let ud = if u.exponent < 0 { Natural::pow10(u.exponent.unsigned_abs()) } else { un.times_pow10(u.exponent.unsigned_abs()); Natural::from_u64(1) };
++                        let (fk, fp) = round_to_bits(&un, 0, &ud, tbl);
++                        let prod = num.times(&fk);
++                        if first_exact && pi == 0 && part < 16 && shift > 0 {
++                            num = num.times(&Natural::pow10(part)); let _ = (prod, fp);
++                        } else {
++                            let (k2, q2) = round_to_bits(&prod, p2 + fp, &one, prec);
++                            num = k2; p2 = q2;
++                        }
++                    }
++                    let (k, q) = round_to_bits(&num, p2, &one, 64);
++                    let k = k.to_u128().expect("64");
++                    (k, q)
++                } else {
++                let (mut xk, mut xp) = round_to_64_bits(&Natural::from_u64(mantissa), exponent, &one);
++                let tmode = mode.split('C').nth(1).map(|p| p[..1].to_string()).unwrap_or_default();
++                let table = |e: i32| -> (u128, i32) {
++                    // e = +-part. Build constants by repeated multiplication from exact 10^16 (or 10^-16 rounded).
++                    let neg = e < 0; let a = e.unsigned_abs();
++                    let low = a & 15; let hi = a - low;
++                    if tmode.is_empty() || hi == 0 { return Self::unit(e).pc64_parts(); }
++                    let unit16 = Self::unit(if neg { -16 } else { 16 }).pc64_parts();
++                    let mul = |p: (u128, i32), q: (u128, i32)| round_to_64_bits(&Natural::from_u128(p.0 * q.0), p.1 + q.1, &Natural::from_u64(1));
++                    if tmode == "1" {
++                        let mut c = unit16;
++                        for _ in 1..(hi / 16) { c = mul(c, unit16); }
++                        c
++                    } else {
++                        // binary powers by squaring: 10^16,10^32,10^64,10^128,10^256,...; product low bit first
++                        let mut sq = unit16; let mut k = hi / 16; let mut acc: Option<(u128,i32)> = None;
++                        while k != 0 { if k & 1 == 1 { acc = Some(match acc { None => sq, Some(v) => mul(v, sq) }); } k >>= 1; if k != 0 { sq = mul(sq, sq); } }
++                        acc.unwrap()
++                    }
++                };
++                for part in parts {
++                    let e = i32::try_from(part).expect("exp");
++                    if shift < 0 && divide {
++                        let (fk, fp) = Self::unit(e).pc64_parts();
++                        (xk, xp) = round_to_64_bits(&Natural::from_u128(xk), xp - fp, &Natural::from_u128(fk));
++                    } else {
++                        let (fk, fp) = table(if shift < 0 { -e } else { e });
++                        (xk, xp) = round_to_64_bits(&Natural::from_u128(xk * fk), xp + fp, &one);
++                    }
++                }
++                (xk, xp)
++                }
++            }
+         };
+         let whole = if power >= 0 {
+             let mut whole = Natural::from_u128(kept);
+@@ -611,6 +688,31 @@
+ 
+ /// numerator * 2^exponent / denominator rounded to 64 significant bits, to the nearest and a
+ /// tie to even, as `(kept, power)` with the value kept * 2^power and kept below 2^64.
++fn round_to_bits(numerator: &Natural, exponent: i32, denominator: &Natural, bits: u32) -> (Natural, i32) {
++    let scale = (bits as usize + 2 + denominator.bit_len()).saturating_sub(numerator.bit_len());
++    let mut scaled = numerator.clone();
++    scaled.times_pow2(u32::try_from(scale).expect("a bit count"));
++    let (quotient, remainder) = scaled.div_rem(denominator);
++    let drop = u32::try_from(quotient.bit_len() - bits as usize).expect("a bit count");
++    let (high, low) = quotient.div_rem(&Natural::pow2(drop));
++    let mut kept = high;
++    let up = match low.cmp(&Natural::pow2(drop - 1)) {
++        Ordering::Greater => true,
++        Ordering::Less => false,
++        Ordering::Equal => !remainder.is_zero() || kept.clone().div_small(2) == 1,
++    };
++    let mut power = exponent - i32::try_from(scale).expect("a bit count") + i32::try_from(drop).expect("a bit count");
++    if up {
++        kept.add(&Natural::from_u64(1));
++        if kept.bit_len() > bits as usize {
++            let (h2, _) = kept.div_rem(&Natural::pow2(1));
++            kept = h2;
++            power += 1;
++        }
++    }
++    (kept, power)
++}
++
+ fn round_to_64_bits(numerator: &Natural, exponent: i32, denominator: &Natural) -> (u128, i32) {
+     // Scale so the integer quotient has at least 66 bits.
+     let scale = (66 + denominator.bit_len()).saturating_sub(numerator.bit_len());

@@ -1,0 +1,42 @@
+ODDFYIELD: design note (ld1, Claude Opus 5.5, dna-koderbot, 2026-11-09)
+
+Sources: Excel 16.0 build 20527 answers through the question service;
+Microsoft's ODDFYIELD page (Newton's method on the ODDFPRICE formula, up to
+100 iterations). Implementer; no tier 3/4 source read.
+
+The bank holds no ODDFYIELD or ODDFPRICE rows; the corpus's 30 larger cells
+are one bond, ODDFYIELD(39763,44256,39736,39873,0.0575,84.5,100,2,0): Excel
+0x3fb3c65d22ec15b6, calc-func 0x3fb3c65d22eca7af (bisection to adjacent
+doubles, the true root to 1e-16). Excel's ODDFPRICE at Excel's yield is
+84.50000000036.
+
+Fresh map, 336 random odd-first bonds (frequency 1/2/4, bases 0-4):
+- Excel stops short of the root on 328: |price residual| from 1e-13 to 9e-8.
+- The residual divided by the price slope (Excel's own ODDFPRICE, central
+  difference) is below 1e-10 on every one (largest 9.85e-11), spread
+  log-uniformly down to 1e-15: the answer is an iterate whose next Newton
+  step would be under 1e-10. 321 of 336 lie below the root (price convex in
+  yield, Newton from the left).
+- So calc-func's full convergence misses almost every call, though the
+  corpus shows only one.
+Start: Excel does not return the start exactly when the price is priced at
+the rate, 0, 0.01, 0.05, 0.1, 0.5 or 1 (40 bonds each: 0-2 exact). Running
+Newton backwards from Excel's answers with central-difference slopes gives
+earliest iterates (no predecessor at a yield >= 0) that match no closed form
+tried (rate, YIELD on the same dates, the classic average-price
+approximations, one step from zero). From the corpus bond's reconstructed
+start 0.0401383104, forward Newton with slope step 1e-7 lands within 8 ulp
+of Excel's answer; from 0.0575 it converges to the root.
+Zero-coupon design (rate 0, same dates, price exactly 100(1+y/2)^-T,
+T = 24.6111, 100 prices from 60 to 96.6): up to price 61.11 Excel's answer
+is the root to 1e-16; from 61.48 it is short by 8.9e-11, shrinking smoothly
+to the root's noise by 83; a second band starts at 92.19 (8.5e-11). Each
+band is one Newton step that would be just under 1e-10, not taken: the stop is |step| < 1e-10 tested before the update. No constant
+start (0 to 0.2 in steps of 5e-4, analytic or difference slopes, stops
+1e-9 to 1e-12, test before or after) reproduces the 100 answers, so the
+start depends on the price. Evidence: oz1.json.
+Not landed: the start and the slope (analytic or difference, and its step)
+are not identified, so no iteration reproduces Excel's bits. Next question:
+bonds whose price is quadratic or linear in yield (one coupon period, zero
+coupon) so the slope is exact and the stop rule separates from the start.
+Evidence: evidence/ld1/oy1.json, oy2.json, back2-0.json, scripts/.

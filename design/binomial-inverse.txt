@@ -1,0 +1,30 @@
+BINOM.INV, CRITBINOM and NEGBINOM.DIST: design note (ld1, Claude Opus 5.5,
+dna-koderbot, 2026-11-09)
+
+Sources: Excel 16.0 build 20527 answers through the question service; the
+function bank (CalcFunc-Evidence). Implementer; no tier 3/4 source read.
+
+1. BINOM.INV search rule (identified; patch ready, not landed)
+Designed boundaries: p in {1/8 .. 7/8}, n = 1..8, every k < n, alpha at the
+exact lower tail (exactly representable) and three binary64 neighbours on
+either side: 252 boundaries, 1,764 calls. With Excel's own public
+BINOM.DIST(k, n, p, TRUE) as the tail, all 200 boundaries with k >= 1 meet
+alpha exactly when tail >= alpha, and all 52 at k = 0 only when the tail is
+strictly greater. No sum of public masses (double or x87, >= or >) explains
+more than 104 of 252. So BINOM.INV is the smallest k with
+(k = 0: BINOM.DIST(0) > alpha; k >= 1: BINOM.DIST(k, TRUE) >= alpha).
+Applied to calc-func (patch evidence/ld1/binom-inv.patch, a mass
+recurrence only locates the start of the search): bank BINOM.INV 2,290 ->
+2,302 of 2,308, CRITBINOM 1,402 -> 1,414 of 1,420; one row lost each:
+BINOM.INV(5, 0.5, 0.5), where Excel's public BINOM.DIST(2, 5, 0.5, TRUE) is
+0x3fdffffffffffffe and calc-func's binom_cumulative gives 0.5. The six
+remaining misses are the same: live BINOM.INV agrees with live BINOM.DIST on
+all six. So the rule waits on the binomial CDF (round 46 owns BINOM.DIST);
+it lands with no loss once BINOM.DIST(2,5,0.5,TRUE), BINOM.DIST(1,5,0.5,TRUE)
+and BINOM.DIST(2,6,0.5,TRUE) match.
+
+2. NEGBINOM.DIST
+All 60 bank misses are cumulative. Live NEGBINOM.DIST(f, s, p, TRUE) equals
+live BETA.DIST(p, s, f + 1, TRUE) on 141 of 141 bank cumulative rows, and
+calc-func already computes I_p(s, f + 1). The misses are the incomplete
+beta's (design/incomplete-beta.txt); nothing separate to change here.
