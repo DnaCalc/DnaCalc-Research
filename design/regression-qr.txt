@@ -51,7 +51,8 @@ constant only the current-order tie decides. An exact x87 emulation raced 48
 then 128 variants (ones column first or last, pivoted or fixed, centred or
 not, swap or rotate, first or last tie, fresh or downdated criterion, stop or
 remove); the best explains 55 of the 64 layout classes, so the rule is still
-unidentified. These 147 losses (108 R41 + 39 R38) are all of that kind.
+unidentified. All 147 losses (108 R41 + 39 R38) have a zero column beside a
+collinear pair: 123 with a constant, 24 without (exact-tie cases at n = 8-32).
 
 3. Questions (designed, frozen, not asked: the service was down all round)
 Also LINEST.sign-questions.json (576) and LINEST.zero-questions.json (960, n in

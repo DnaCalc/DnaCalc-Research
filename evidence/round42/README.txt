@@ -36,8 +36,8 @@ LINEST/LOGEST (design/regression-qr.txt):
 - Both against c3646c36: R41 LINEST 13,915 -> 14,864 / 15,150 (+1,057, -108),
   LOGEST 10,973 -> 11,861 / 12,140 (+996, -108); R38 designs (not used to find
   the rules) LINEST 1,002 -> 1,239 / 1,296 (+276, -39), LOGEST 937 -> 1,168
-  (+270, -39). All 147 losses are constant fits with an exactly collinear pair
-  and a zero column; that ordering rule is still open.
+  (+270, -39). All 147 losses have a zero column beside a collinear pair (123
+  with a constant); that ordering rule is still open.
 
 Frozen questions for the next round (retained/questions, hashes in
 freeze.sha256, predictions of both builds beside each): NORM.S.INV lower tail
