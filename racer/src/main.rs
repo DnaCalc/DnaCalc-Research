@@ -126,6 +126,24 @@ fn invoke_selected_control_in(
     }
 }
 
+/// Evaluate rows through the registered calc-func route. Each input line is
+/// FUNCTION followed by arguments; an argument is 16 hex digits (binary64), T or F.
+/// Each output line is the encoded result. Research use only.
+fn invoke_rows(input: &str, output: &str) {
+    let mut out = BufWriter::new(fs::File::create(output).unwrap());
+    for line in BufReader::new(fs::File::open(input).unwrap()).lines() {
+        let line = line.unwrap();
+        let mut parts = line.split_whitespace();
+        let Some(function) = parts.next() else { continue };
+        let args = parts.map(|a| match a {
+            "T" => value::CalcValue::logical(true),
+            "F" => value::CalcValue::logical(false),
+            h => value::CalcValue::number(f64::from_bits(u64::from_str_radix(h, 16).unwrap())),
+        }).collect();
+        writeln!(out, "{}", invoke_control(function, args).0).unwrap();
+    }
+}
+
 fn prepare(trace: &str, gaps: &str, out: &str) {
     fs::create_dir_all(out).unwrap();
     let gaps: std::collections::HashSet<String> = lines::<Value>(gaps)
@@ -970,6 +988,7 @@ fn main() {
         }
         Some("boundary-test") => boundary::self_test(&lines::<Row>(&a[2])),
         Some("prepare") => prepare(&a[2], &a[3], &a[4]),
+        Some("invoke-rows") => invoke_rows(&a[2], &a[3]),
         Some("self-test") => self_test(&lines::<Row>(&a[2])),
         Some("associations") => {
             let rows = lines::<Row>(&a[2]);

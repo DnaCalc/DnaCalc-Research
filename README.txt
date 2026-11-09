@@ -1,3 +1,15 @@
+Round 42 (Claude Opus) found three candidate programs and landed none: the
+question service answered no call all round (workers down from 02:16 UTC), so
+no fresh proof exists. NORM.S.INV below p - 0.5 = -0.425 is the AS241 tail at
+p with x87-stored Horner steps (R41 dense sweep 81,987 -> 393,140 / 393,216);
+its central branch is sqrt(2)*erfinv(2p - 1), exact near 0.5 on 16,383
+answers, with an unidentified two-piece erfinv. LINEST/LOGEST stop at the
+first collinear pivot and reflect an exactly zero diagonal entry as negative
+(R41 LINEST 13,915 -> 14,864 / 15,150, +1,057/-108; R38 holdout +276/-39).
+With the patch: bank +2 (TREND), corpus +3 (LOGINV, LOGNORM.INV), no losses.
+Design notes: design/normal-inverse.txt, design/regression-qr.txt. Frozen
+questions and the patch: evidence/round42.
+
 DNA Calc arithmetic program research
 
 Round37 pushes DURATION coupon-PV weighting and PC64 quotients/sums, plus

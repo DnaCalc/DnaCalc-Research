@@ -1,0 +1,86 @@
+NORM.S.INV: design note (round 42, Claude Opus, dna-firehorse)
+
+Sources: Excel answers retained in evidence/round39-41 (the R41 dense sweep:
+128 windows of 8,192 consecutive doubles, 995,328 numeric answers), IEEE 754,
+Wichura AS241 published tables. No tier 3/4 implementation was read.
+
+1. What the mapping shows (before any program)
+
+Regions, by the shape of the error against the true quantile (mpmath):
+- p - 0.5 < -0.425 (p < 0.075): smooth sawtooth error, +1 ulp bias, the same
+  answer for runs of adjacent p. It depends on p itself: pairs of p that share
+  the stored q = p - 0.5 give different answers in every tail window.
+- |q| <= 0.425: a function of the stored q only. No pair sharing a stored q
+  differs (23,550 pairs in windows near 0.25, 0.2, 0.125, 0.1, 0.076). Odd: the
+  windows just below and above 0.5 are exact negatives of each other.
+- 0.925 < p <= 15/16: a third shape. Error sd 0.9 ulp, bias +0.8; Excel minus
+  the AS241 tail is -1..+5 ulp (mean +2). One Newton step on Excel's NORM.S.DIST
+  from AS241 does not reproduce it either.
+- p > 15/16: the AS241 tail through 1 - p (R39), 1,283/1,283 retained answers.
+The split at 0.925 is exact (window 72 changes at index 4096, p = 0.925), and
+the split at 0.075 follows AS241's own test on the stored q.
+
+Central noise. Within one window the error is Gaussian-like and uncorrelated
+between neighbours, with sd growing steeply with |q|: 0.45 ulp near 0.5, 0.6 at
+|q| = 0.2, 1.6 at 0.25, 3.9 at 0.30, 10 at 0.337, then 1.0 at 0.360, rising
+again to 4.3 at 0.424 (both sides alike). Relative bias is +1.1e-16 out to
+|q| = 0.25, then falls to -3.8e-16 at 0.337; after the break it restarts at
++1.5e-16 and falls to -2.6e-16 at 0.424. Excel's own NORM.S.DIST has 0.35 ulp
+error there, so no root search on it explains the noise (tested: Newton/root
+position, and two Newton steps on Excel's ERF give sd <= 1.1).
+AS241's central rational expanded exactly into powers of q^2 and evaluated in
+binary64 reproduces the noise sd within about 15% up to |q| = 0.337 (0.46,
+0.49, 0.61, 1.8, 4.4, 5.0, 8.5 against Excel's 0.45, 0.48, 0.60, 1.55, 3.9,
+5.8, 9.8), while its published r = 0.180625 - q^2 form stays near 0.7: the
+noise is that of a monomial rational in q^2 with large alternating
+coefficients. Its bias does not match, so the coefficients are not that
+expansion rounded.
+
+Near 0.5 (windows 64 and 65, 16,383 answers) one program is exact:
+  t = 2q (exact);  y = RN53(RN64(t * K)),  K = RN(sqrt(pi)/2) = 0x3fec5bf891b4ef6b
+  x = RN53(RN64(y * RN(sqrt 2)))
+with zero mismatches; a single real constant (RN(q*C)) fails 26%, and the
+AS241 near-half constants fail at least 35%. So the central branch is
+NORM.S.INV(p) = sqrt(2) * erfinv(2p - 1), on the x87 at precision 64 with each
+result stored, and the erfinv approximation leads with t*RN(sqrt(pi)/2).
+The break between |q| = 0.337 and 0.360 is then |t| between 0.673 and 0.720:
+the classic erfinv split at |t| = 0.7 (q = 0.35) lies inside it.
+
+2. Candidate programs, ranked by what someone would have typed
+
+(a) Lower tail: AS241 PPND16 tail at p, Horner products, sums and quotient each
+    stored from precision 64, CRT log, binary64 sqrt. Candidate (not landed: no
+    fresh answers this round): the R41 dense sweep goes 81,987 -> 393,140 /
+    393,216 (+311,160, -7) and the R39/R40 retained answers 1,646 -> 2,715 /
+    2,716 (upper > 15/16 included, no loss). Corpus +3 (LOGINV x2, LOGNORM.INV),
+    bank unchanged (it holds no inverse-normal rows).
+    76 tail answers remain (25 in the window near 2.2e-14, r about 5.6; the
+    rest one or two per window); undetermined, not log precision alone
+    (correctly rounded and extended log/sqrt variants are worse).
+(b) Central: sqrt2 * erfinv(t), erfinv = t*P(t^2)/Q(t^2) (or t*(K + t^2*R)) in
+    monomial Horner, two pieces split near |t| = 0.7, x87 stores. Degree and
+    coefficients unknown; the bias curve per piece (error growing towards the
+    far end of each piece, no equioscillation) suggests expansions about the
+    piece start rather than minimax fits.
+(c) 0.925 < p <= 15/16: unknown; neither AS241 tail nor Newton-refined AS241.
+    Possibly erfinv's own outer piece (|t| > 0.85); its lower mirror is not
+    used (p < 0.075 is the AS241 tail).
+Refuted this round: root search on NORM.S.DIST; one Newton step from AS241;
+two Newton steps on Excel's ERF (noise sd <= 1.1); a single constant near 0.5;
+t / RN(2/sqrt(pi)) near 0.5 (2,632 of 16,383 fail); AS241 r-form; Pade
+approximants [m/n] of erfinv(t)/t in t^2 with m + n <= 25, binary64 or x87-stored
+(best 25% and 16% exact);
+for (0.925, 15/16], AS241 tail coefficients scaled by 1/sqrt(2) then times
+sqrt(2) (at most 12% exact).
+
+3. Next questions (designed, not asked: the service was down all round)
+- Locate the central split: windows of 256 doubles at |q| = 0.336..0.361 in
+  steps of 0.001 on both sides; the noise sd and bias step at the split.
+  Then bisect on the per-point difference between the two pieces once either
+  piece's program is known.
+- Piece degree: the bias curve at 40 |q| values per piece (window means
+  resolve 0.05 ulp); count sign changes and growth order.
+- Region B: windows across (0.925, 0.9375] and just above 15/16; compare with
+  any outer erfinv formula in z = sqrt(-log(1 - p)).
+- Fresh proof for (a): ~/codex-runs/r42/questions/NORM.S.INV.lower.json
+  (2,050 points, 1,607 separate the two builds; predictions frozen).

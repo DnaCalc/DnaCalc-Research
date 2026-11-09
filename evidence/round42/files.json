@@ -1,0 +1,533 @@
+{
+ "format": "round42 compact evidence",
+ "files": {
+  "questions/LINEST.pred-base.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pred-base.jsonl",
+   "sha256": "33a46e4b36af948f6bdd53cedc6ad7c9479018c0ba80e1f2811176db09c771cc",
+   "stored_sha256": "2e0f5d7816bc1590eacd5921dff6d58334863f3e98c7d73ce9e95fdfb41ef03b",
+   "bytes": 836283
+  },
+  "questions/LINEST.pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pred-sign.jsonl",
+   "sha256": "1a195438a0bd4d1d0df917a11efda5aa1e99673f2111896c053b806e6ab501b1",
+   "stored_sha256": "b867f37742c5afa0291d10ce7bdfc3757cf724db0856d15ddb1eaec0f8bfb138",
+   "bytes": 836283
+  },
+  "questions/LINEST.pred-stop.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.pred-stop.jsonl",
+   "sha256": "9e0749f302d25f386f1f10e0b0ec116ee5c261ffa380b558bbc7257ab48d5a0d",
+   "stored_sha256": "d92ddb8e7bfde8b629788a59f21afb59a5e08d0a179a032ecaac98df0e6a7fde",
+   "bytes": 836283
+  },
+  "questions/LINEST.questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.questions.json",
+   "sha256": "8bd8304f277ad0a4b63080bb171298a66d8f46079b8a4a1ad3a46019cf3d77dc",
+   "stored_sha256": "506e055f98e8fddcf46dc8ae13d9025b1145e736614c8807604a8e5e17b099f1",
+   "bytes": 764230
+  },
+  "questions/LINEST.sign-pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.sign-pred-sign.jsonl",
+   "sha256": "521d34185544f7b4b0ffbad366827e4ee7e4c6e65bc35a069f73f15ec9e0e4ed",
+   "stored_sha256": "298875374b881b4e168632a42529546c4da719674e4e951fdb2a8c9f7172f89a",
+   "bytes": 267056
+  },
+  "questions/LINEST.sign-pred-stop.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.sign-pred-stop.jsonl",
+   "sha256": "815b8d002ed292357e58d38d339b45d37b35cc59ed3ef65394b753021c53158e",
+   "stored_sha256": "7f3f7f73b519a6ee135b0b8bcd1a10856523b01bcc118245edaafe6ede217129",
+   "bytes": 267056
+  },
+  "questions/LINEST.sign-questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.sign-questions.json",
+   "sha256": "920ae52df9050280c44a1c186fc9a6bda297f773114faf86ebab53e953622210",
+   "stored_sha256": "8dc199eec9ef92562b0a556542a6691a71134742de6f4ec3fd47aa4257a06e35",
+   "bytes": 195013
+  },
+  "questions/LINEST.zero-pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.zero-pred-sign.jsonl",
+   "sha256": "185d56a0dc7c47a2acd45d2cd3f8c62825a873e2c76c3170fcef0b46a64cddba",
+   "stored_sha256": "26ab958f94b6808eaa8e6198dea6439bf3b4c2d3cb1cda46807f7163ded4a7c5",
+   "bytes": 624684
+  },
+  "questions/LINEST.zero-pred-stop.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.zero-pred-stop.jsonl",
+   "sha256": "125ad5b5a4a7e89065fdcd146dc1be827bc51560dbeb5c85318b4e95acfdbfa8",
+   "stored_sha256": "dec0a6513f1f7fda7c8f239833b1fe3feba2ac6a3b1ac4c7db85bd0637ca2fa9",
+   "bytes": 624684
+  },
+  "questions/LINEST.zero-questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LINEST.zero-questions.json",
+   "sha256": "cba6effd994ee247fa61fac0f47b26f2bd09f3595acd629bccfca1a0a329e6c7",
+   "stored_sha256": "4315a134a27d3e4b25dc343f2abadb37e8e1f40ffcacbcb271e1214e34c3ed70",
+   "bytes": 512209
+  },
+  "questions/LOGEST.pred-base.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pred-base.jsonl",
+   "sha256": "9e21801fb1f008e6d82fc8b4f46391e67846ddee33fea7b7aa204b1b40d156e7",
+   "stored_sha256": "77b7431d1cb63561a0ab0ea896414d488f24d5eb1ff31373c3096b1c0453f7bc",
+   "bytes": 836013
+  },
+  "questions/LOGEST.pred-sign.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pred-sign.jsonl",
+   "sha256": "4a43d5f207ab76b88f3cbffe0bc2ca9053743331c988fc719dbc9c27a8b71b4b",
+   "stored_sha256": "63858c1d2d6e4bb8e71adac46dc6ec007cc4fcda014fb98e5beb56039851bce8",
+   "bytes": 836283
+  },
+  "questions/LOGEST.pred-stop.jsonl": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.pred-stop.jsonl",
+   "sha256": "249593d6ad70a4d4af39ff97f6341ff748b07e6fdf9a2522c9ff7dad1f1b40da",
+   "stored_sha256": "d69207ce400da3c4142194ddd9ad0005411f355beb5c78bcf7eb37a3c38f9d52",
+   "bytes": 836283
+  },
+  "questions/LOGEST.questions.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/LOGEST.questions.json",
+   "sha256": "0c8f018d720f349f4857cdc42abaf16b2cfc3e782ddb73346a16e9dd11ed567f",
+   "stored_sha256": "f65d0bb99799b85829256df9bee7b79c2043b7139fc385a870db7e7b5c3cbf99",
+   "bytes": 764230
+  },
+  "questions/NORM.S.INV.lower.json": {
+   "source": "/home/ubuntu/codex-runs/r42/questions/NORM.S.INV.lower.json",
+   "sha256": "8017b78532692703761b95c69e5068248c5c94b42e50ac2f4be7673bcb23846c",
+   "stored_sha256": "d7f4fcde4ff3687d91e97b2bfb8352a05d1751ce7dc09b57c82121656fc14c63",
+   "bytes": 123243
+  },
+  "questions/freeze.sha256": {
+   "source": "/home/ubuntu/codex-runs/r42/freeze.sha256",
+   "sha256": "b4f482376f3d23dc5d8c1e9812b64b36936f1fae7904ceb2238f1495e3b8d027",
+   "stored_sha256": "842a56a3ec94fdb314382f918df109b8056e4b3a7a40a84994860df343ee8847",
+   "bytes": 1360
+  },
+  "scripts/nlib.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nlib.py",
+   "sha256": "b6c047ff0b0b709fc43b774f5047e32239be4656eda899c36164914b4d39cb37",
+   "stored_sha256": "c784c3c5238004c5335d0709a5555d347432443408bde4a3446b517e7936e6e2",
+   "bytes": 2990
+  },
+  "scripts/nerr.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nerr.py",
+   "sha256": "2f3d0ea698e2ac19d0acad0b586c5a427bbf2a4fb26ff85ea179dc80224b3a72",
+   "stored_sha256": "84d9ca00c106826ca7cda07290088b1b67965f160e16e1377b7959d4e96ce14a",
+   "bytes": 1135
+  },
+  "scripts/nres.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nres.py",
+   "sha256": "e65986a330de4cab2d31ab994d25ea606c2e6a7d8699a7e92c30378ed15241c4",
+   "stored_sha256": "ecfb88c7f748998b65bc0c49f3792d9946ce31c3c0c49aea6fedd31f109ea5e5",
+   "bytes": 981
+  },
+  "scripts/nseq.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nseq.py",
+   "sha256": "111461f1a9816082e7e5a2de2d6f93b1ca36f18159447ffdac02e3e4bfac8070",
+   "stored_sha256": "48d13be53553c255166a6c5c906311e79417e8551170d8440fda583c3e228052",
+   "bytes": 746
+  },
+  "scripts/nhist.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhist.py",
+   "sha256": "cf76422461477d0cb2dd6c3bb6afb693ea0cb96eac18bba4fb2e3b3db34f25cb",
+   "stored_sha256": "ed308ab75e6bff26355fa049d3abbf135b5c915ef8b7cb66e54a78aeea28b1c7",
+   "bytes": 964
+  },
+  "scripts/ntail.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ntail.py",
+   "sha256": "50ecc9aec929c0aaae71cc334c7216af79a11e758921598fc935d9b4db849b17",
+   "stored_sha256": "ab2f81784f7954a22b3d1ddab082e89c2b0c3832397edc158029f9e8c44c7e23",
+   "bytes": 1739
+  },
+  "scripts/ntail2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ntail2.py",
+   "sha256": "4b1cc115f451dd3f4a1b7649256ce9b05585e8e7a608ee9284996cffcd0b7d07",
+   "stored_sha256": "8ebea6775273f2355fa2963f622630252affcb2684d59ec8ce68c8df8ef5c6f2",
+   "bytes": 2284
+  },
+  "scripts/ntail3.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ntail3.py",
+   "sha256": "e36a49f9d96b035bbc2d649d0b47f99491a5f1d811612e9dba23f98dc983462b",
+   "stored_sha256": "80dffbda3d4184f75472227d8263a4c11cae8ca908367bee8da87a7aa1b4016a",
+   "bytes": 532
+  },
+  "scripts/ntail4.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ntail4.py",
+   "sha256": "19059de4ec2a58d94a6219357859c998739cb1ee1dd12aa044486e6a5d50d022",
+   "stored_sha256": "c9aa64314e92bcffb40d9cbc7eb4a1300d8262a90f12151b717c9cc9579d5f36",
+   "bytes": 1268
+  },
+  "scripts/nup.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nup.py",
+   "sha256": "58244e8fd9334cea8068d96642c2f71fda0992d8bdefe34c110848736683ae17",
+   "stored_sha256": "1bcf5425a0a34e9bf99ca81eccdecde9490f123ad944270a9bb39acf07563b6d",
+   "bytes": 1310
+  },
+  "scripts/nup2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nup2.py",
+   "sha256": "ab3627e369e928cedbb130c76d088544f937d1d07159095ac5fa9bf49f7ce165",
+   "stored_sha256": "44f0894f372b87c89e7fc6083c86dccc780557649baeba332feceec62d80516f",
+   "bytes": 1598
+  },
+  "scripts/nB.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nB.py",
+   "sha256": "ce7b1e8695b106fe1fd886c4fd0eba6aabacae3cf92c07003093c2712d70334a",
+   "stored_sha256": "ed7f581f805fb8b052fb2bdc0bb9d24a3e0f4f3eba61146577bafee5f71768f0",
+   "bytes": 886
+  },
+  "scripts/nB2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nB2.py",
+   "sha256": "663bdc2e11bd992a4632200174e642f6881d64e7bdeb350f379a47e26ee65246",
+   "stored_sha256": "1939000f8f52b1d9da10064e6a1f7fa81ccb6aa778d9c09769eb9c2c583a2da8",
+   "bytes": 1056
+  },
+  "scripts/nref.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nref.py",
+   "sha256": "7f755aae14a46a997ab3b3062f5b0e3adc5b6e325abfcb6a3a483d03abc3665a",
+   "stored_sha256": "94beb2d42e798ea9d77545e22ef8cc4f129484bb0e28d68a59bcaf2d7a2e1135",
+   "bytes": 1215
+  },
+  "scripts/ncdf.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ncdf.py",
+   "sha256": "41c221e0f3a364d75b8bb64bf3c18f0861aba5d98aa2a54109b872028dc275d1",
+   "stored_sha256": "40e7eca48c47bee2fe9f2ddcee8afc3d6124898eaf4cf6bb7a95998fe2bcd578",
+   "bytes": 641
+  },
+  "scripts/nnoise.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nnoise.py",
+   "sha256": "af21efcec1d5a52003740ff6342c4f0cdbd98e0e80daa0729574e0566551aa9b",
+   "stored_sha256": "9c3a3108479805e0b7fad232f016ef7f4087f41212ad189e2b64dfb101275f49",
+   "bytes": 1933
+  },
+  "scripts/ndiff.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ndiff.py",
+   "sha256": "79a6af06e0b0b4afc24b04a39316477521978dc8b210f33680c37b107c49610f",
+   "stored_sha256": "6549d5e70872002a3590079717a7a21aa377cee3ece2c8adf7515114c3fb2bed",
+   "bytes": 468
+  },
+  "scripts/nhalf.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf.py",
+   "sha256": "d1e08754840d304d9c41fd868a99adce1602ca4329e2a126ab67d8bbf4cdd0af",
+   "stored_sha256": "137c6630681c2178310c6a46cf80ce59d035368b69704beb73e86c40688f6a26",
+   "bytes": 803
+  },
+  "scripts/nhalf2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf2.py",
+   "sha256": "29e3dfeb490eca75e0a678ca59623888536ea1a847ba0d9a47f9330f45a2e5d0",
+   "stored_sha256": "ea1541430d9dd3da8f14f7035cbad9654866629b5fdf89f92ddc919b5f538e24",
+   "bytes": 2555
+  },
+  "scripts/nhalf3.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf3.py",
+   "sha256": "1c88215eb91a349a3c4ea8ebc440f4d1a2a7d0a8d27611ffc0b5353bdfc5efbc",
+   "stored_sha256": "00d791cca01cded47f333ed73f46d9f28e5083f7a8827301563ef924767f06f9",
+   "bytes": 1616
+  },
+  "scripts/nhalf4.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf4.py",
+   "sha256": "0c2c371fe79e4039fcaecbbfe9a560aa4fee3514b72c8b1593a0b2b786a5dda1",
+   "stored_sha256": "19fa95aa8d259c1076150c897eefa880e3b4c8691f397e8c099175e41c8e03cb",
+   "bytes": 1151
+  },
+  "scripts/nhalf5.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf5.py",
+   "sha256": "07d6678145c806db8c791c5f6872dfbdcc504ea81bc39fd03533b8af35db1216",
+   "stored_sha256": "5786ced4cace4149f8cb64d011f9c3b36a0f822190651ec9e6b33ac8a6c51d9e",
+   "bytes": 1165
+  },
+  "scripts/nhalf6.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf6.py",
+   "sha256": "2925f0369a3a6abcd502c25367f553f167b11f587ce288625f5cb6887cd93ffa",
+   "stored_sha256": "7fad616993ec1849c6623ee165f1e4c20befca47f9ea97f2e362d20514f409e7",
+   "bytes": 868
+  },
+  "scripts/nhalf7.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf7.py",
+   "sha256": "bdc23b65c01bf1959ff4c7f13267085dee2a0a2ebf0bd98c9792e6b98547276f",
+   "stored_sha256": "16df3f129a9a67b4e480f4967992b69735b4dbd0c35ef905a70c8249754505cd",
+   "bytes": 673
+  },
+  "scripts/nhalf8.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf8.py",
+   "sha256": "203d697fcd4b465a6cbd951b3a5b4dfb26b53424daaa451ace92291dcc61bbce",
+   "stored_sha256": "531d4a59c5bb285d7db4ee58309a12c12c0ad4b5fdb4c4534033eb019b41408c",
+   "bytes": 1130
+  },
+  "scripts/nhalf9.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nhalf9.py",
+   "sha256": "d51a6fb452db8fb940bb9322fe54e565621f075903028d4312cb45596ee316f9",
+   "stored_sha256": "79559aff7f0e514fe311913720cd28c944b5fe987799aecf34f7deeede222a93",
+   "bytes": 634
+  },
+  "scripts/nlin.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nlin.py",
+   "sha256": "778774d671f493f977f4ba4923a6472f157e0fc630831eb4001348deb1f98cee",
+   "stored_sha256": "3954bed3fac26a8b3cd14235c8bab10ed7ffca300e4096fb1cdd81097f573935",
+   "bytes": 837
+  },
+  "scripts/nlin2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nlin2.py",
+   "sha256": "52c5583a01e488496d308ef5d178350d658e864d2597d39362729ec863df84b1",
+   "stored_sha256": "75afbf393af9ae1a402a3621c9509cc2f6575dfb6c8d4f783013b24395dcbfad",
+   "bytes": 856
+  },
+  "scripts/nbias.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nbias.py",
+   "sha256": "b41cc6bdd18e41690d7443998656b37aef473a28c66311c9b6e7a0fbf84ab158",
+   "stored_sha256": "874c6c885eac41ca8a90b5f3123ce1594c9758ad7a95f8ab218a64072508e332",
+   "bytes": 901
+  },
+  "scripts/npade.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/npade.py",
+   "sha256": "6f745ddc6a4aa96c44a7af55dc683e8852085fc5078e0c17c97d4f06be3a6811",
+   "stored_sha256": "b17632138fa0a8eff1edb52c812b8ef49576bf01c711d397194333eedb546529",
+   "bytes": 1712
+  },
+  "scripts/nnewt.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nnewt.py",
+   "sha256": "9f325ed8bb49981584e4594f4fcba10ea2dae9a98a6bd23a0361943da4c82c8f",
+   "stored_sha256": "f9bcdbebaa47762cd01f015f85e6676d6f0007d77738913c904366afd6769889",
+   "bytes": 1240
+  },
+  "scripts/nq.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nq.py",
+   "sha256": "8e364406f94dbdde8a0ba0d1a03f19ac995d3bae63a8e89d9dc43f1946027be3",
+   "stored_sha256": "7f02613b2e05b0955ee3136b3da48a5f4dde56980c28ed0750093e85e4bed366",
+   "bytes": 1568
+  },
+  "scripts/x87e.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/x87e.py",
+   "sha256": "165472c7ac5bdcea6602092e36979220cfa0e0fbbbdc70abc9fa336f02841490",
+   "stored_sha256": "86e97c8278e1693606f115d6976e8b902316e15299c2d052ed7b1daecefcbbed",
+   "bytes": 776
+  },
+  "scripts/lrank.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lrank.py",
+   "sha256": "1a2228d7dc2b06048806e57c22f54f0440d77d06053fe1f488be8a204ef58dcd",
+   "stored_sha256": "9f1e0ca93fa8b87a1c100b5a879993307d35255a728eb945194c8ea50f783231",
+   "bytes": 4559
+  },
+  "scripts/lvar.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar.py",
+   "sha256": "e60ee84ac3992ce6357ced0b3c3f7fcc7bb4b62b2bc6e61fbea331976562c788",
+   "stored_sha256": "df6f8d75f46c14c81c01a2f3f321565b1282e3a7856f4bbee20d780262fd9f0a",
+   "bytes": 3984
+  },
+  "scripts/lvar2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar2.py",
+   "sha256": "7b724ce9cab2e76eb410a6ee1cd84a5c644b4ce6ac02a06d5eb6195fb9e1daa7",
+   "stored_sha256": "1a608f2ce4cab7bbed86e9481ea5799f250f6fb60ce8d5c24db35c529b72d4ed",
+   "bytes": 4334
+  },
+  "scripts/ltrace.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ltrace.py",
+   "sha256": "ae157f9e0b65766f0d5f3a551690bb7abc87744ded3aaa9ba45c39f1dda10956",
+   "stored_sha256": "0dc4b5e8f9a1e19c593f67f98a387e3da0968a871ef3a8f865ae7c9d43921424",
+   "bytes": 2748
+  },
+  "scripts/ltab.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ltab.py",
+   "sha256": "d658fa5ef89ee15818f84e17faa30502a7ca00f828701d4f05c8297bc5085d8a",
+   "stored_sha256": "0de8b789fc87c05d1aa0ec5636aed72ba42ff42cf2eafe6fed59b3541b5cb802",
+   "bytes": 1351
+  },
+  "scripts/ldet.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ldet.py",
+   "sha256": "1423c2558c81bf7d1945fe167b5827ea9735581f7facc7e5c878fa22d5592526",
+   "stored_sha256": "bf3884dbb78e1eaf95528124e185a7905f74801b3043bd88cd14c2314ce8c669",
+   "bytes": 1566
+  },
+  "scripts/lcmp.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lcmp.py",
+   "sha256": "e9e2ac3f77e9c95c15b35ee6d7c81bb103c809a36993a11286143223ff3a73bb",
+   "stored_sha256": "cc103ae2f9fa48c853d33574f94030a819e47be9bda2e7d7b43033f0de297b56",
+   "bytes": 1553
+  },
+  "scripts/lq.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lq.py",
+   "sha256": "5c2d2e626a3eb25916a59584c320c39b8ddc22ecefc02032e9ad55628674051e",
+   "stored_sha256": "16e3fc1fe3cee1fdbc0af58f2e35d2edded915ef1f13dfd70eac0f7624da4f78",
+   "bytes": 2548
+  },
+  "scripts/lq2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lq2.py",
+   "sha256": "0c9dcd249c097703060904c5fc6b0ac40d9d8125761b5dbe0a993870b111d421",
+   "stored_sha256": "62c1d3513767e22a3993951c77bbc72c14a20d47d75fa97d61e6ee5277b1148b",
+   "bytes": 1367
+  },
+  "scripts/lq3.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lq3.py",
+   "sha256": "9a15bde505c6333a458feff5002bb22b985cb5f8f0a6b4ed29254246b567f9ab",
+   "stored_sha256": "9827cf2186c7e9df526ed9d0f573767da57ebcc011b686be9a7387028e81c126",
+   "bytes": 1224
+  },
+  "scripts/lvar3.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar3.py",
+   "sha256": "c9b06efaeea46b50411b687d06205c434ba886c77299bb33dabf18ce1e6d2dc1",
+   "stored_sha256": "02505ba58bc7fa68c50166c68d266abac37b14754ebee95080c189cad20f7ff5",
+   "bytes": 4599
+  },
+  "scripts/lvar4.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar4.py",
+   "sha256": "8c58771b7002eb12d07e26e8a27d0f927a5e5b3b0e98fe1cabf5901d7637aee4",
+   "stored_sha256": "3d0122b7944b482e8c2a5e24c95b67567adb72b5b3b468e3776e9cd373a7e06c",
+   "bytes": 993
+  },
+  "scripts/npade2.py": {
+   "source": "/home/ubuntu/codex-runs/r42/work/npade2.py",
+   "sha256": "fafb8ae87e6c4aed4991d06c2fdace2ec77acd41a76131477a57d620aea2e145",
+   "stored_sha256": "9b48193dd951721fd2ef0683a2a1bfeaa1c901428763f98acb006ff9b0575c32",
+   "bytes": 1833
+  },
+  "scripts/ask.py": {
+   "source": "/home/ubuntu/codex-runs/r42/ask.py",
+   "sha256": "3d10d2086ffd911c6b9a5d9e0cb6c71ffd736bfee0b04c81d2fe6431c31c13bb",
+   "stored_sha256": "7b0862a6d2ef4252714b51f12277d57679454119ed42211f98c418c43f7f4e1d",
+   "bytes": 2599
+  },
+  "scripts/measure.sh": {
+   "source": "/home/ubuntu/codex-runs/r42/measure.sh",
+   "sha256": "80922773480fdbf6edca85c5a65b6fac4bf61ab4421cc3f039b70debe7527301",
+   "stored_sha256": "21d53f6a9ee02e20788792c31761e4b67b0ca513724be311b0e94c61773f53a9",
+   "bytes": 482
+  },
+  "scripts/rebuild.sh": {
+   "source": "/home/ubuntu/codex-runs/r42/rebuild.sh",
+   "sha256": "f26b277d6f13a2abb719599b496363a3ff3016dd27b1b1890309b08ded275e72",
+   "stored_sha256": "e2a4cd67ab1690c66f4bd1cfaf6cfd50479c06ecb844b549b38a2a91ede543d4",
+   "bytes": 1093
+  },
+  "scripts/r42-candidates.patch": {
+   "source": "/home/ubuntu/codex-runs/r42/r42-candidates.patch",
+   "sha256": "afb88c91e7d92ca016aa21a2f45e448c9ec9e58e2e6dc924825ea1eec8f62bf3",
+   "stored_sha256": "bb4925cc63599c5fd84cd97f38af016dd3586d81d70449c094ed15aa946d2282",
+   "bytes": 14269
+  },
+  "nbias.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/nbias.out",
+   "sha256": "06cad53af72254f1f386d594200a365d6cb8b7e0bbee6e1d1fe7ff02629353f2",
+   "stored_sha256": "587bddac19100d9b9a284cb666fd1ff2dd3b8e4c06febaa78a772408e03e9e04",
+   "bytes": 4003
+  },
+  "lvar.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar.out",
+   "sha256": "4a41dc0c22e63e84980f3d286b2c33a7aab1ea6d94175d3c44f8e65d21316f4f",
+   "stored_sha256": "0bc458fa5d809cd7726fd2be7228459795b34cb36c1a275b3a634da691da5a87",
+   "bytes": 5008
+  },
+  "lvar2.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar2.out",
+   "sha256": "3035677e6782c17bd91fcb4e7ef8274d0d1e84c3e6b0c9dc792f630d903f6a92",
+   "stored_sha256": "d3147824710ac2af549521f2809d6408c3d2e2470e54eeab1cd1c9401a13b4e1",
+   "bytes": 1888
+  },
+  "lvar3.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar3.out",
+   "sha256": "cde3527f7770416059487cf7628f2840fe1c8d0a011fafba224da29f0078d519",
+   "stored_sha256": "ed7ac694c0e9e2d7429cff60084ba00e556c92b67cf92be030ee884bd2a79343",
+   "bytes": 2113
+  },
+  "lvar4.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/lvar4.out",
+   "sha256": "df0ace18c25aba317142e6064cdf3302f2e45e08434cf43c1ea9380575197e80",
+   "stored_sha256": "85d89a5143a2b0a1c320c4d2560e8ac7544d55c2e1bf5d8e6f0e6cb7bef81be8",
+   "bytes": 121
+  },
+  "npade.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/npade.out",
+   "sha256": "8eb6cec308c2eed14d69df0e90c7fb06b8b1045d5f87944c1427d719d90b217c",
+   "stored_sha256": "ca0efa00d6004ef75de18465efaa51052e340fa14c2437225a5d774ce436bb5c",
+   "bytes": 717
+  },
+  "npade2.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/npade2.out",
+   "sha256": "17f261f4f0846fc6ea92cfa1bcd8da62d2e78388321bd01e08c93630d4888efc",
+   "stored_sha256": "9dbbf80785ea1d86a02824548b4928f074a7dfe5c6224570ab251d38af612f74",
+   "bytes": 254
+  },
+  "ltab-LINEST.out": {
+   "source": "/home/ubuntu/codex-runs/r42/work/ltab-LINEST.out",
+   "sha256": "4d86ae37ff5e4977a1634df7e25464ba3e51d1ce68e81b4fce4f050f52179d43",
+   "stored_sha256": "6a9d13c6720d14e9b99e7d0973e2248c3cc14ed34ad4f7c783d17a19fe99872a",
+   "bytes": 8030
+  },
+  "normal-dense-candidate.json": {
+   "source": "/home/ubuntu/codex-runs/r42/work/normal-dense-candidate.json",
+   "sha256": "62185082ceaaa29476408f2d9732b78cce826e54e77a45c7e452207cddad98de",
+   "stored_sha256": "80d7ccc4ccd3fb98c02d3ae4bd55335f642cfb69446065d548bd8282126fb9a1",
+   "bytes": 21490
+  },
+  "regression-cohorts.json": {
+   "source": "/home/ubuntu/codex-runs/r42/work/regression-cohorts.json",
+   "sha256": "fef1bcbde2fe89667d5f197ce5c496bdc75c737a45b8ba8cba0bf132cf286361",
+   "stored_sha256": "c72a2ecaf41925bf6840e8a3ce0e3143dcec21e8dd7e1ffc80e794a0dfe08154",
+   "bytes": 5846
+  },
+  "measurements/baseline-bank.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/baseline/bank.json",
+   "sha256": "8cf4b423f9527ccc683c2456b3fb732f9730c161de84d346e1e724f29dfb48ca",
+   "stored_sha256": "d69de19a67b6b7ea640b08ae1324dff865828603e78c5dfb0c9422516c2c5dbe",
+   "bytes": 51198
+  },
+  "measurements/baseline-corpus-summary.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/baseline/corpus/summary.json",
+   "sha256": "21219933399356a07558c75733b44e93f06f56da2801757805cab3cf393ab18f",
+   "stored_sha256": "c7752d511cde668084f03ee7c071c488eccf8557b14e9c9026a6bed372281923",
+   "bytes": 96016
+  },
+  "measurements/baseline-head.txt": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/baseline/head.txt",
+   "sha256": "be0f0907ba54e82979df18602b685d348ee706c16c25dea3608f77fda33fa4a6",
+   "stored_sha256": "475ec0163da3159f1c2b1d7f76d85f13a8f16964a583910a98668ff8ea874b5b",
+   "bytes": 41
+  },
+  "measurements/candidates-bank.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/candidates/bank.json",
+   "sha256": "8cf4b423f9527ccc683c2456b3fb732f9730c161de84d346e1e724f29dfb48ca",
+   "stored_sha256": "d69de19a67b6b7ea640b08ae1324dff865828603e78c5dfb0c9422516c2c5dbe",
+   "bytes": 51198
+  },
+  "measurements/candidates-corpus-summary.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/candidates/corpus/summary.json",
+   "sha256": "bf73c1e13d307ecaf2aa5ca3aec8f66ea5c7326b1d4ea9d2cc0f5fe4dbd35468",
+   "stored_sha256": "50fca3044663c6ef04ad538638e47b5c6394bf3018a4e5cb4b7e48a97a285e24",
+   "bytes": 95594
+  },
+  "measurements/candidates-head.txt": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/candidates/head.txt",
+   "sha256": "be0f0907ba54e82979df18602b685d348ee706c16c25dea3608f77fda33fa4a6",
+   "stored_sha256": "475ec0163da3159f1c2b1d7f76d85f13a8f16964a583910a98668ff8ea874b5b",
+   "bytes": 41
+  },
+  "measurements/candidates2-bank.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/candidates2/bank.json",
+   "sha256": "4ec3acb6ae5890eceb04512471cadbd0352b246c5c016642731e3fb3c9c50473",
+   "stored_sha256": "ee8c7f7935e6e6ec7282b6ed0c06ad15c50dd703f6eb2f07b561535f3a8fa8b1",
+   "bytes": 51198
+  },
+  "measurements/candidates2-corpus-summary.json": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/candidates2/corpus/summary.json",
+   "sha256": "4be5c7c45611c433edd48cc762210d03805e0c42b0fd1ecf83c5c1493c779c1f",
+   "stored_sha256": "8067c015b4d1133f5284f711174fa860bc183b7ed274a66264d3f30b9a08bed1",
+   "bytes": 95616
+  },
+  "measurements/candidates2-head.txt": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/candidates2/head.txt",
+   "sha256": "be0f0907ba54e82979df18602b685d348ee706c16c25dea3608f77fda33fa4a6",
+   "stored_sha256": "475ec0163da3159f1c2b1d7f76d85f13a8f16964a583910a98668ff8ea874b5b",
+   "bytes": 41
+  },
+  "excel-waits.tsv": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/excel-waits.tsv",
+   "sha256": "2c78e41892682dca9bea3b5c8e52d3ba28aba554736c5e63e90cff9867cb332d",
+   "stored_sha256": "194be0510a4012f39610fc854de0d4b55772ade5ec1bf007cff9e41def363574",
+   "bytes": 501
+  },
+  "measurements/check-candidates.log": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/check-candidates.log",
+   "sha256": "11bfa4b8821d5b0d9d6a6a1da1115963f2083281b895418fc84bb8749b2e7973",
+   "stored_sha256": "ddc471250c32d3eb1e2ff1524609a7cf53c04cbcf6ac10e190aa921fdcdd253d",
+   "bytes": 4362
+  },
+  "measurements/check-candidates2.log": {
+   "source": "/home/ubuntu/codex-runs/claude-r42/check-candidates2.log",
+   "sha256": "18cc50aef48ec280d6ad0589d0f282665ea9a266652164a265ec84da6a3c8799",
+   "stored_sha256": "6f740e1cea20efaa9a8030fa68a487cc56001482e372d93c24825ff634174f7a",
+   "bytes": 1103
+  }
+ }
+}

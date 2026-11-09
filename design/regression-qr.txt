@@ -1,0 +1,64 @@
+LINEST/LOGEST private QR: design note (round 42, Claude Opus, dna-firehorse)
+
+Sources: Excel answers retained in evidence/round38 (qr-fresh, 216 designs x 6
+selections per function) and round41 (regression-after-route, 15,150 LINEST
+and 12,140 LOGEST selections), IEEE 754, published Householder QR with column
+pivoting (Golub and Van Loan). No tier 3/4 implementation was read.
+
+1. What the mapping shows
+
+Of the 1,235 R41 LINEST selections still failing at c3646c36, 504 are degrees
+of freedom (row 4, column 2) and 542 residual sums of squares (row 5, column 2),
+almost all with a zero predictor column beside a collinear pair. Rank decisions
+never depend on y, yet the failures do vary with column order:
+- [0, x, 2x] without a constant: Excel fits 2x alone and leaves both x and the
+  zero column out (df = n - 1, residual = fit on 2x over n - 1 rows).
+- [0, 2x, x]: Excel keeps the zero column (it counts in df and consumes a row)
+  when x's remainder after the 2x step is exactly zero (n = 4, 16); when it is
+  a tiny positive number (n = 8, 32) the zero column is left out.
+The current program removes a collinear column and carries on, so a zero
+column reached later is always kept. That is the whole difference.
+
+2. Program, ranked
+
+(a) Rank-revealing stop (what a 1990s QR with column pivoting does): pivot on
+    the largest remaining sum of squares; when the pivot fails the remainder
+    test (running difference below 2^-41 times its initial sum of squares, or
+    exactly zero), stop: every column not yet stepped is left out with it.
+    Zero columns stepped before the stop still count, as before.
+    R41 cohort: LINEST 13,915 -> 14,721 / 15,150 (+914, -108), LOGEST
+    10,973 -> 11,781 / 12,140 (+916, -108). R38 designs, never used to find
+    the rule: LINEST and LOGEST each 1,002/937 -> 1,233/1,168 / 1,296
+    (+270, -39).
+(b) Remove and continue (current): refuted by the cases above.
+(c) The reflection sign of a diagonal entry that is exactly zero: the current
+    alpha = -copysign(norm, x0) reflects +0 as a positive entry; Excel reflects
+    it as a negative one (alpha = +norm), as `x0 > 0 ? -norm : norm` would. With
+    a constant, x = {-3, -1, 1, 3}*2^k has a zero entry after the ones column's
+    step, and Excel's answers for x equal the current program's for -x.
+    On top of (a): LINEST 14,721 -> 14,864 (+143, -0), LOGEST 11,781 -> 11,861
+    (+80, -0), R38 LINEST +6. Bank TREND 10 -> 12 / 12 (the only bank change).
+Together (a) and (c) against c3646c36: R41 LINEST 13,915 -> 14,864 / 15,150
+(+1,057, -108), LOGEST 10,973 -> 11,861 / 12,140 (+996, -108); R38 LINEST
+1,002 -> 1,239 / 1,296 (+276, -39), LOGEST 937 -> 1,168 (+270, -39). Bank
+3,887,837 -> 3,887,839 / 3,910,773; corpus unchanged by these two (its 90
+LINEST/LOGEST failures are 1-14 ulp QR arithmetic and LOGEST overflow cases).
+Remaining: with a constant and an exactly collinear pair, Excel keeps a zero
+column that sits after the pair in the original order and leaves out one that
+sits before it ([x, 2x, 0] and [2x, x, 0] count 2 predictors, [0, x, 2x] and
+[0, 2x, x] count 1, for n = 4..32, ascending or descending). Without a
+constant only the current-order tie decides. An exact x87 emulation raced 48
+then 128 variants (ones column first or last, pivoted or fixed, centred or
+not, swap or rotate, first or last tie, fresh or downdated criterion, stop or
+remove); the best explains 55 of the 64 layout classes, so the rule is still
+unidentified. These 147 losses (108 R41 + 39 R38) are all of that kind.
+
+3. Questions (designed, frozen, not asked: the service was down all round)
+Also LINEST.sign-questions.json (576) and LINEST.zero-questions.json (960, n in
+{4, 9, 16}, zero-mean columns with first entry (sqrt(n)+1)*2^e*m); 3 and 12
+selections separate (c) from (a), so most of (c)'s proof stays in R41/R38.
+~/codex-runs/r42/questions/{LINEST,LOGEST}.questions.json, 754 selections
+each: D1 a small independent column still unstepped when a collinear pair is
+detected (stop drops it, continue fits it); D2 zero-column layouts with exact
+and perturbed pairs, both constants; D3 full-rank controls. 372 selections per
+function separate the two builds; both predictions are frozen beside them.

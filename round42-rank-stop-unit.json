@@ -1,0 +1,37 @@
+{
+  "id": "dc-j9k.14-r42-rank-stop",
+  "unit": "round42-rank-stop",
+  "application_revision": "c3646c36372a21be8463eb89a2d10286d13f60c1",
+  "role": "implementer",
+  "route_audit": true,
+  "sources": {
+    "tier1": [
+      "Excel questions, IEEE754, Wichura AS241 mathematical tables, published regression mathematics (Householder QR, Golub & Van Loan)"
+    ],
+    "tier2": [
+      "Cleared MIT sources; CPython mathematical reference (PSF)"
+    ],
+    "banned": [
+      "Tier3/4 implementation sources",
+      "Two excluded checkout directories"
+    ]
+  },
+  "machine": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+  "model": "Claude Opus 5.5 (Claude Code)",
+  "bessel_high_groups_audit": false,
+  "bessel_high_j_audit": false,
+  "bessel_k_audit": false,
+  "bessel_rational_audit": true,
+  "bond_solver_audit": true,
+  "closed_security_audit": true,
+  "cumulative_discount_audit": true,
+  "discrete_audit": true,
+  "gamma_exponent_audit": false,
+  "regression_audit": true,
+  "regression_householder_audit": false,
+  "regression_inverse_audit": true,
+  "regression_outer_audit": false,
+  "application_working_blobs": {
+    "crates/calc-func/src/ported/regression_forecast_family.rs": "8026c6e0023bb1e7ba63bde17a180c47cc076c14"
+  }
+}
