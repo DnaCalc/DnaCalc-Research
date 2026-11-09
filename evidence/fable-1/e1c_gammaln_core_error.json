@@ -1,0 +1,4205 @@
+{
+"truth": "math.lgamma (double)",
+"rows": [
+{
+"x": "3fe67073554abf53",
+"gammaln": "3fd0998f6530845e",
+"true": "3fd0998f65308457",
+"ulps": 7,
+"rel": 1.4981463271483634e-15
+},
+{
+"x": "3fe67d4f9a3714d3",
+"gammaln": "3fd07a538e3b2763",
+"true": "3fd07a538e3b2763",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "3fe68cb72bc14666",
+"gammaln": "3fd055103bbb458c",
+"true": "3fd055103bbb458b",
+"ulps": 1,
+"rel": 2.175271246272936e-16
+},
+{
+"x": "3fe69e71f2c37f0a",
+"gammaln": "3fd02a609880aa94",
+"true": "3fd02a609880aa8c",
+"ulps": 8,
+"rel": 1.7581667980597275e-15
+},
+{
+"x": "3fe6ab95f6d79f7a",
+"gammaln": "3fd00ae0b989390b",
+"true": "3fd00ae0b9893911",
+"ulps": -6,
+"rel": -1.3287388705292014e-15
+},
+{
+"x": "3fe6b3920ecf8c0a",
+"gammaln": "3fcfef96ffa08e11",
+"true": "3fcfef96ffa08e0a",
+"ulps": 7,
+"rel": 7.787160362145085e-16
+},
+{
+"x": "3fe6c374ca3acf98",
+"gammaln": "3fcfa3ea5bc2fd6f",
+"true": "3fcfa3ea5bc2fd7a",
+"ulps": -11,
+"rel": -1.2351291523481892e-15
+},
+{
+"x": "3fe6d2191f57521e",
+"gammaln": "3fcf5e77a90bb3f7",
+"true": "3fcf5e77a90bb3ed",
+"ulps": 10,
+"rel": 1.1325551226910374e-15
+},
+{
+"x": "3fe71b1947418fcd",
+"gammaln": "3fce087e83116ce6",
+"true": "3fce087e83116cf1",
+"ulps": -11,
+"rel": -1.3012225119250985e-15
+},
+{
+"x": "3fe7765451ef7481",
+"gammaln": "3fcc66f9f1a00ecb",
+"true": "3fcc66f9f1a00ec0",
+"ulps": 11,
+"rel": 1.3759419983419332e-15
+},
+{
+"x": "3fe78dc7af78d2fc",
+"gammaln": "3fcbfd64d8f66717",
+"true": "3fcbfd64d8f66715",
+"ulps": 2,
+"rel": 2.5385755757436995e-16
+},
+{
+"x": "3fe7ab6c5b3be445",
+"gammaln": "3fcb78ef8f1fbf80",
+"true": "3fcb78ef8f1fbf92",
+"ulps": -18,
+"rel": -2.3277483471326136e-15
+},
+{
+"x": "3fe7d184f94889af",
+"gammaln": "3fcad0578ca5c261",
+"true": "3fcad0578ca5c255",
+"ulps": 12,
+"rel": 1.5899464853873001e-15
+},
+{
+"x": "3fe7e68a2f433836",
+"gammaln": "3fca74192edf66e2",
+"true": "3fca74192edf66ee",
+"ulps": -12,
+"rel": -1.611603349894329e-15
+},
+{
+"x": "3fe80573febf54d3",
+"gammaln": "3fc9ed7182f05632",
+"true": "3fc9ed7182f05625",
+"ulps": 13,
+"rel": 1.7813230792348287e-15
+},
+{
+"x": "3fe86ba5deb67cfb",
+"gammaln": "3fc838ac836f743f",
+"true": "3fc838ac836f744c",
+"ulps": -13,
+"rel": -1.906797769214352e-15
+},
+{
+"x": "3fe88dcb7e18a704",
+"gammaln": "3fc7a98fbd70072c",
+"true": "3fc7a98fbd700725",
+"ulps": 7,
+"rel": 1.0509943529043211e-15
+},
+{
+"x": "3fe8a34b85efcb32",
+"gammaln": "3fc7502b90d425b9",
+"true": "3fc7502b90d425bf",
+"ulps": -6,
+"rel": -9.143452762371205e-16
+},
+{
+"x": "3fe8bc6d90a92676",
+"gammaln": "3fc6e85f5a3e00e7",
+"true": "3fc6e85f5a3e00f2",
+"ulps": -11,
+"rel": -1.705969695721831e-15
+},
+{
+"x": "3fe8db3b94cc41b7",
+"gammaln": "3fc66a2b9c263364",
+"true": "3fc66a2b9c26335c",
+"ulps": 8,
+"rel": 1.2679926123857122e-15
+},
+{
+"x": "3fe8eaa28a6f0cf6",
+"gammaln": "3fc62b7d2005de30",
+"true": "3fc62b7d2005de32",
+"ulps": -2,
+"rel": -3.2049916356084933e-16
+},
+{
+"x": "3fe908a631037dcb",
+"gammaln": "3fc5b2235aac54db",
+"true": "3fc5b2235aac54d5",
+"ulps": 6,
+"rel": 9.825049557851767e-16
+},
+{
+"x": "3fe934659b50d7ca",
+"gammaln": "3fc503228aaf14ad",
+"true": "3fc503228aaf14b4",
+"ulps": -7,
+"rel": -1.1835477259556368e-15
+},
+{
+"x": "3fe941f8dbbbf34e",
+"gammaln": "3fc4cd4764303430",
+"true": "3fc4cd4764303438",
+"ulps": -8,
+"rel": -1.366305462753129e-15
+},
+{
+"x": "3fe94551a58a7d3c",
+"gammaln": "3fc4c008a017341b",
+"true": "3fc4c008a017340c",
+"ulps": 15,
+"rel": 2.5682104661935e-15
+},
+{
+"x": "3fe9897bbcba6786",
+"gammaln": "3fc3b50c62389da7",
+"true": "3fc3b50c62389da4",
+"ulps": 3,
+"rel": 5.408241711859591e-16
+},
+{
+"x": "3fe994849ede7eea",
+"gammaln": "3fc38a5292af1f50",
+"true": "3fc38a5292af1f42",
+"ulps": 14,
+"rel": 2.545402799542587e-15
+},
+{
+"x": "3fe99b6e953ac628",
+"gammaln": "3fc36f9f3a0ecd87",
+"true": "3fc36f9f3a0ecd80",
+"ulps": 7,
+"rel": 1.2795310693736566e-15
+},
+{
+"x": "3fe9d8a68eb70aac",
+"gammaln": "3fc28588e9272113",
+"true": "3fc28588e9272126",
+"ulps": -19,
+"rel": -3.644473790612641e-15
+},
+{
+"x": "3fea06f51db611e6",
+"gammaln": "3fc1d7398a0da5db",
+"true": "3fc1d7398a0da5d8",
+"ulps": 3,
+"rel": 5.974052618466209e-16
+},
+{
+"x": "3fea240e4206c825",
+"gammaln": "3fc16ae505f5457b",
+"true": "3fc16ae505f54574",
+"ulps": 7,
+"rel": 1.4278119246787173e-15
+},
+{
+"x": "3fea3bc4c35f2ae4",
+"gammaln": "3fc1134b690d458b",
+"true": "3fc1134b690d4580",
+"ulps": 11,
+"rel": 2.28866793472115e-15
+},
+{
+"x": "3fea57fc0388bf97",
+"gammaln": "3fc0abda140fee2c",
+"true": "3fc0abda140fee34",
+"ulps": -8,
+"rel": -1.7048289955122164e-15
+},
+{
+"x": "3fea60783e01ffa5",
+"gammaln": "3fc08ce95067648a",
+"true": "3fc08ce950676480",
+"ulps": 10,
+"rel": 2.146598357938963e-15
+},
+{
+"x": "3fea8e29fa3af0ec",
+"gammaln": "3fbfcf3bae94ef06",
+"true": "3fbfcf3bae94ef04",
+"ulps": 2,
+"rel": 2.2337434946461827e-16
+},
+{
+"x": "3fea9088d32274f6",
+"gammaln": "3fbfbe34507339f5",
+"true": "3fbfbe3450733a2c",
+"ulps": -55,
+"rel": -6.1556670774201714e-15
+},
+{
+"x": "3fea9774c8652110",
+"gammaln": "3fbf8c8cae31fb16",
+"true": "3fbf8c8cae31fb30",
+"ulps": -26,
+"rel": -2.927842161984239e-15
+},
+{
+"x": "3feacf44eef0c3f0",
+"gammaln": "3fbdffdaa04a6fba",
+"true": "3fbdffdaa04a6fd4",
+"ulps": -26,
+"rel": -3.0790770528199234e-15
+},
+{
+"x": "3feb3d3750c447ec",
+"gammaln": "3fbb0563746fd35d",
+"true": "3fbb0563746fd380",
+"ulps": -35,
+"rel": -4.60178210072488e-15
+},
+{
+"x": "3feb532ec91a1d2d",
+"gammaln": "3fba7007d3fe55e3",
+"true": "3fba7007d3fe55e0",
+"ulps": 3,
+"rel": 4.03142993174512e-16
+},
+{
+"x": "3feb7d2ea2591f65",
+"gammaln": "3fb95530bedbd4ee",
+"true": "3fb95530bedbd4d8",
+"ulps": 22,
+"rel": 3.085319345618383e-15
+},
+{
+"x": "3feb98ce122d8fdf",
+"gammaln": "3fb89d1b46e507b1",
+"true": "3fb89d1b46e507d8",
+"ulps": -39,
+"rel": -5.629216564547155e-15
+},
+{
+"x": "3feba2861e5af7fc",
+"gammaln": "3fb85cb38eaf9626",
+"true": "3fb85cb38eaf9604",
+"ulps": 34,
+"rel": 4.958201122197691e-15
+},
+{
+"x": "3febcb086bf5a208",
+"gammaln": "3fb7524927cb2c98",
+"true": "3fb7524927cb2cc4",
+"ulps": -44,
+"rel": -6.702822689489557e-15
+},
+{
+"x": "3febde9f3f2bc5c0",
+"gammaln": "3fb6d29f12efd45e",
+"true": "3fb6d29f12efd450",
+"ulps": 14,
+"rel": 2.1793172945480136e-15
+},
+{
+"x": "3fec1940fea22094",
+"gammaln": "3fb55905f6722d8c",
+"true": "3fb55905f6722da4",
+"ulps": -24,
+"rel": -3.994104265873996e-15
+},
+{
+"x": "3fec1ac3a16f75c7",
+"gammaln": "3fb54f62b5f510ba",
+"true": "3fb54f62b5f510c0",
+"ulps": -6,
+"rel": -1.0002901026268276e-15
+},
+{
+"x": "3fec1eded90b7bbd",
+"gammaln": "3fb535344b783262",
+"true": "3fb535344b78326c",
+"ulps": -10,
+"rel": -1.6751896879204108e-15
+},
+{
+"x": "3fec48478780fdea",
+"gammaln": "3fb42f04142592c8",
+"true": "3fb42f04142592cc",
+"ulps": -4,
+"rel": -7.040773349021071e-16
+},
+{
+"x": "3fecbb9abbbab82a",
+"gammaln": "3fb1662990382fdf",
+"true": "3fb1662990383000",
+"ulps": -33,
+"rel": -6.738264740675815e-15
+},
+{
+"x": "3fecc90a70a183c8",
+"gammaln": "3fb114c0001f1e86",
+"true": "3fb114c0001f1e7c",
+"ulps": 10,
+"rel": 2.0799147021602812e-15
+},
+{
+"x": "3feccb71fd0753cb",
+"gammaln": "3fb106377de80dbc",
+"true": "3fb106377de80dc0",
+"ulps": -4,
+"rel": -8.347402167707579e-16
+},
+{
+"x": "3fece51426ce748c",
+"gammaln": "3fb06bf4d812f37f",
+"true": "3fb06bf4d812f398",
+"ulps": -25,
+"rel": -5.408564043428984e-15
+},
+{
+"x": "3fecf559587f2078",
+"gammaln": "3fb00aae22a54442",
+"true": "3fb00aae22a54440",
+"ulps": 2,
+"rel": 4.4293426997132525e-16
+},
+{
+"x": "3fed384c8ad836ed",
+"gammaln": "3facff24df55b64e",
+"true": "3facff24df55b610",
+"ulps": 62,
+"rel": 7.596332667212093e-15
+},
+{
+"x": "3fed896f195265b2",
+"gammaln": "3fa9578e1e9b0d05",
+"true": "3fa9578e1e9b0d50",
+"ulps": -75,
+"rel": -1.0514300226888634e-14
+},
+{
+"x": "3fedc9efe5650800",
+"gammaln": "3fa680c176523361",
+"true": "3fa680c1765233b0",
+"ulps": -79,
+"rel": -1.2472336102414579e-14
+},
+{
+"x": "3fedd7d335140bcd",
+"gammaln": "3fa5e63899d21744",
+"true": "3fa5e63899d21758",
+"ulps": -20,
+"rel": -3.2445909143348407e-15
+},
+{
+"x": "3fedf8c83a0cf896",
+"gammaln": "3fa47a3e852092a6",
+"true": "3fa47a3e852092d8",
+"ulps": -50,
+"rel": -8.674669319112978e-15
+},
+{
+"x": "3fedfefb75bc65ff",
+"gammaln": "3fa436335309f10f",
+"true": "3fa436335309f108",
+"ulps": 7,
+"rel": 1.2304244742459034e-15
+},
+{
+"x": "3fee14532a6c1f10",
+"gammaln": "3fa34d0328a0e398",
+"true": "3fa34d0328a0e390",
+"ulps": 8,
+"rel": 1.4725641458548932e-15
+},
+{
+"x": "3fee435fae3b27eb",
+"gammaln": "3fa1509c8aa711d6",
+"true": "3fa1509c8aa711e0",
+"ulps": -10,
+"rel": -2.051825890193785e-15
+},
+{
+"x": "3fee45566c8fae0b",
+"gammaln": "3fa13b8f17047642",
+"true": "3fa13b8f17047620",
+"ulps": 34,
+"rel": 7.009499418692086e-15
+},
+{
+"x": "3fee495bf06bff42",
+"gammaln": "3fa1107d57dc255c",
+"true": "3fa1107d57dc2580",
+"ulps": -36,
+"rel": -7.49499531824156e-15
+},
+{
+"x": "3fee73efcdabc4c0",
+"gammaln": "3f9e97e4570ad01e",
+"true": "3f9e97e4570ad080",
+"ulps": -98,
+"rel": -1.1380453319174479e-14
+},
+{
+"x": "3fee747ae96c035c",
+"gammaln": "3f9e8c6c0bcb6819",
+"true": "3f9e8c6c0bcb6860",
+"ulps": -71,
+"rel": -8.257114944945211e-15
+},
+{
+"x": "3feea36cc030d3ed",
+"gammaln": "3f9ab5322f4f8e63",
+"true": "3f9ab5322f4f8f00",
+"ulps": -157,
+"rel": -2.088438995456898e-14
+},
+{
+"x": "3feea98fb4af890a",
+"gammaln": "3f9a35c9dc963f2a",
+"true": "3f9a35c9dc963f90",
+"ulps": -102,
+"rel": -1.3825839558839623e-14
+},
+{
+"x": "3feeb52132d5fc34",
+"gammaln": "3f99464e5b470ce8",
+"true": "3f99464e5b470cf0",
+"ulps": -8,
+"rel": -1.1245152120938341e-15
+},
+{
+"x": "3feec43d0ea6df48",
+"gammaln": "3f980ee7c9ecbd47",
+"true": "3f980ee7c9ecbce0",
+"ulps": 103,
+"rel": 1.5210162816305674e-14
+},
+{
+"x": "3feee4262cd7b184",
+"gammaln": "3f9582500c0ff4f4",
+"true": "3f9582500c0ff490",
+"ulps": 100,
+"rel": 1.6517309385759524e-14
+},
+{
+"x": "3feef83c20fe85fd",
+"gammaln": "3f93eb150aa1670d",
+"true": "3f93eb150aa16740",
+"ulps": -51,
+"rel": -9.096584057799002e-15
+},
+{
+"x": "3fef09a6b0620cde",
+"gammaln": "3f928c2d455190fb",
+"true": "3f928c2d45519180",
+"ulps": -133,
+"rel": -2.5475629791851373e-14
+},
+{
+"x": "3fef57f5a28dd354",
+"gammaln": "3f88f6ffa88a3872",
+"true": "3f88f6ffa88a37e0",
+"ulps": 146,
+"rel": 2.077706997129938e-14
+},
+{
+"x": "3fef63c5d18a0a78",
+"gammaln": "3f87299ee0483940",
+"true": "3f87299ee04838c0",
+"ulps": 128,
+"rel": 1.9632844913391803e-14
+},
+{
+"x": "3fefa59480b395d0",
+"gammaln": "3f7a822f70a0c5dc",
+"true": "3f7a822f70a0c5c0",
+"ulps": 28,
+"rel": 3.752601863586099e-15
+},
+{
+"x": "3fefd74881511ed5",
+"gammaln": "3f67ab51833947a7",
+"true": "3f67ab5183394280",
+"ulps": 1319,
+"rel": 1.9797994275114008e-13
+},
+{
+"x": "3fefdd54d4cb56f9",
+"gammaln": "3f6421d78e880baf",
+"true": "3f6421d78e880e00",
+"ulps": -593,
+"rel": -1.0464627285899275e-13
+},
+{
+"x": "3fefebac34e6e2d4",
+"gammaln": "3f578cb020e8d362",
+"true": "3f578cb020e8cc00",
+"ulps": 1890,
+"rel": 2.851275411392673e-13
+},
+{
+"x": "3feffbd25a406952",
+"gammaln": "3f334eedc1f3faae",
+"true": "3f334eedc1f41800",
+"ulps": -7506,
+"rel": -1.3810976426251524e-12
+},
+{
+"x": "3ff00342e3a7b6b2",
+"gammaln": "bf3e15d5985d0114",
+"true": "bf3e15d5985d1400",
+"ulps": -4844,
+"rel": 5.720185778702709e-13
+},
+{
+"x": "3ff0100066fb3e8c",
+"gammaln": "bf625ebdb08b184e",
+"true": "bf625ebdb08b1880",
+"ulps": -50,
+"rel": 9.669836235834591e-15
+},
+{
+"x": "3ff01d2540c6d22a",
+"gammaln": "bf70a73ca5eb43ad",
+"true": "bf70a73ca5eb42c0",
+"ulps": 237,
+"rel": -5.05602313538514e-14
+},
+{
+"x": "3ff029a15c39ca85",
+"gammaln": "bf77aef217853ed0",
+"true": "bf77aef217853d00",
+"ulps": 464,
+"rel": -6.960404471604423e-14
+},
+{
+"x": "3ff03dbda748513e",
+"gammaln": "bf81705f7d8819d7",
+"true": "bf81705f7d881820",
+"ulps": 439,
+"rel": -8.9434322189159e-14
+},
+{
+"x": "3ff03deb9858bc1e",
+"gammaln": "bf817d11656616f3",
+"true": "bf817d1165661660",
+"ulps": 147,
+"rel": -2.986233904645587e-14
+},
+{
+"x": "3ff03f5f3522c78e",
+"gammaln": "bf81e3b1f70d51ee",
+"true": "bf81e3b1f70d5080",
+"ulps": 366,
+"rel": -7.268498187301013e-14
+},
+{
+"x": "3ff04b00eb29da5c",
+"gammaln": "bf851638b4999acf",
+"true": "bf851638b4999ac0",
+"ulps": 15,
+"rel": -2.5272065090500444e-15
+},
+{
+"x": "3ff052c222d93358",
+"gammaln": "bf8734297d832667",
+"true": "bf8734297d832640",
+"ulps": 39,
+"rel": -5.971266935599015e-15
+},
+{
+"x": "3ff058d173dc3e26",
+"gammaln": "bf88d9900a6c0cea",
+"true": "bf88d9900a6c0bc0",
+"ulps": 298,
+"rel": -4.260422095248952e-14
+},
+{
+"x": "3ff06a8e7db0e07a",
+"gammaln": "bf8da0976aaa3d12",
+"true": "bf8da0976aaa3d60",
+"ulps": -78,
+"rel": 9.353250864790553e-15
+},
+{
+"x": "3ff07386eea94fc2",
+"gammaln": "bf900293253c0e0c",
+"true": "bf900293253c0dc0",
+"ulps": 76,
+"rel": -1.6864788598122555e-14
+},
+{
+"x": "3ff07a43d25f1bca",
+"gammaln": "bf90e7519e35261f",
+"true": "bf90e7519e3525f0",
+"ulps": 47,
+"rel": -9.878230090820866e-15
+},
+{
+"x": "3ff090ba9dd9552b",
+"gammaln": "bf93d9e41890467a",
+"true": "bf93d9e418904620",
+"ulps": 90,
+"rel": -1.6107099338143717e-14
+},
+{
+"x": "3ff099541f30d686",
+"gammaln": "bf94f77c4aa937c7",
+"true": "bf94f77c4aa93730",
+"ulps": 151,
+"rel": -2.55862264748467e-14
+},
+{
+"x": "3ff09d906c9934d4",
+"gammaln": "bf95837c73f8fa82",
+"true": "bf95837c73f8fb10",
+"ulps": -142,
+"rel": 2.3449581943725197e-14
+},
+{
+"x": "3ff0a22430839060",
+"gammaln": "bf961a49f95ff29d",
+"true": "bf961a49f95ff260",
+"ulps": 61,
+"rel": -9.80493876974951e-15
+},
+{
+"x": "3ff0b5f59c699ca4",
+"gammaln": "bf98a15ca613a522",
+"true": "bf98a15ca613a500",
+"ulps": 34,
+"rel": -4.904210147795745e-15
+},
+{
+"x": "3ff0c20412c57cc7",
+"gammaln": "bf9a265fd9e0128f",
+"true": "bf9a265fd9e01230",
+"ulps": 95,
+"rel": -1.2906657331970434e-14
+},
+{
+"x": "3ff0db96bd643e84",
+"gammaln": "bf9d53f5ee4d578c",
+"true": "bf9d53f5ee4d57b0",
+"ulps": -36,
+"rel": 4.360945763310466e-15
+},
+{
+"x": "3ff0e7b5e11cb547",
+"gammaln": "bf9ed026dbc6ecaa",
+"true": "bf9ed026dbc6ec90",
+"ulps": 26,
+"rel": -2.9977696769199248e-15
+},
+{
+"x": "3ff0ebd2338baff8",
+"gammaln": "bf9f5049be5d60eb",
+"true": "bf9f5049be5d60d0",
+"ulps": 27,
+"rel": -3.06330770065286e-15
+},
+{
+"x": "3ff10e17f1c2f1f2",
+"gammaln": "bfa1b68baf3f3846",
+"true": "bfa1b68baf3f3830",
+"ulps": 22,
+"rel": -4.4125442800971945e-15
+},
+{
+"x": "3ff1143c705f5bfb",
+"gammaln": "bfa2136ec1a8baa1",
+"true": "bfa2136ec1a8baa0",
+"ulps": 1,
+"rel": -1.9654412544423665e-16
+},
+{
+"x": "3ff114f590d2b734",
+"gammaln": "bfa21e56c9742745",
+"true": "bfa21e56c9742740",
+"ulps": 5,
+"rel": -9.804099048493158e-16
+},
+{
+"x": "3ff11cf242376380",
+"gammaln": "bfa29664488440e6",
+"true": "bfa29664488440f0",
+"ulps": -10,
+"rel": 1.9113489453782663e-15
+},
+{
+"x": "3ff140c3fa05a4da",
+"gammaln": "bfa4a7aad89683d8",
+"true": "bfa4a7aad8968400",
+"ulps": -40,
+"rel": 6.880120390215233e-15
+},
+{
+"x": "3ff170d18e3cf665",
+"gammaln": "bfa75686b1ddbd4a",
+"true": "bfa75686b1ddbd20",
+"ulps": 42,
+"rel": -6.3936078787988636e-15
+},
+{
+"x": "3ff19ca21338959e",
+"gammaln": "bfa9b1f561ce663a",
+"true": "bfa9b1f561ce6630",
+"ulps": 10,
+"rel": -1.3826397635410885e-15
+},
+{
+"x": "3ff1a74b9d42a30f",
+"gammaln": "bfaa418b19f3b651",
+"true": "bfaa418b19f3b610",
+"ulps": 65,
+"rel": -8.795175811154484e-15
+},
+{
+"x": "3ff1ace373a20fc2",
+"gammaln": "bfaa8c5b51e41a31",
+"true": "bfaa8c5b51e41a70",
+"ulps": -63,
+"rel": 8.430717895861101e-15
+},
+{
+"x": "3ff1b33b308c9959",
+"gammaln": "bfaae0c68ded965a",
+"true": "bfaae0c68ded9630",
+"ulps": 42,
+"rel": -5.551522048905761e-15
+},
+{
+"x": "3ff1c6d7e393869e",
+"gammaln": "bfabe2fb244ddc0e",
+"true": "bfabe2fb244ddc00",
+"ulps": 14,
+"rel": -1.7835774859634687e-15
+},
+{
+"x": "3ff1ce8c7b488274",
+"gammaln": "bfac4743bbb15116",
+"true": "bfac4743bbb15120",
+"ulps": -10,
+"rel": 1.2563357664048128e-15
+},
+{
+"x": "3ff208decbcc9b4d",
+"gammaln": "bfaf2934bb6ecef4",
+"true": "bfaf2934bb6ecee0",
+"ulps": 20,
+"rel": -2.2802337146196425e-15
+},
+{
+"x": "3ff22250da1fa893",
+"gammaln": "bfb02fcd1629ed6c",
+"true": "bfb02fcd1629ed50",
+"ulps": 28,
+"rel": -6.145529410221482e-15
+},
+{
+"x": "3ff235311faaefd1",
+"gammaln": "bfb0a0af3f1ffb38",
+"true": "bfb0a0af3f1ffb38",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "3ff237eb98ef0460",
+"gammaln": "bfb0b0d7f8bf1919",
+"true": "bfb0b0d7f8bf1920",
+"ulps": -7,
+"rel": 1.489982655537484e-15
+},
+{
+"x": "3ff250d46279ccad",
+"gammaln": "bfb14289f764cd1c",
+"true": "bfb14289f764cd00",
+"ulps": 28,
+"rel": -5.763410042614786e-15
+},
+{
+"x": "3ff255f29fb98e5e",
+"gammaln": "bfb16011501ceb50",
+"true": "bfb16011501ceb40",
+"ulps": 16,
+"rel": -3.271513934399335e-15
+},
+{
+"x": "3ff25b40ca6d574d",
+"gammaln": "bfb17e87c93b10be",
+"true": "bfb17e87c93b10c0",
+"ulps": -2,
+"rel": 4.061576533549958e-16
+},
+{
+"x": "3ff2772267e2b74a",
+"gammaln": "bfb21c3024a320eb",
+"true": "bfb21c3024a320f0",
+"ulps": -5,
+"rel": 9.808647645338685e-16
+},
+{
+"x": "3ff2a38e3b130fff",
+"gammaln": "bfb30efcc03deb9f",
+"true": "bfb30efcc03deba0",
+"ulps": -1,
+"rel": 1.8641054880612933e-16
+},
+{
+"x": "3ff2a81adfa01354",
+"gammaln": "bfb32746be0525ea",
+"true": "bfb32746be052600",
+"ulps": -22,
+"rel": 4.080717068322785e-15
+},
+{
+"x": "3ff2ac2beba51233",
+"gammaln": "bfb33ce5bdf345eb",
+"true": "bfb33ce5bdf345c0",
+"ulps": 43,
+"rel": -7.94093130563442e-15
+},
+{
+"x": "3ff2b38bce4b0b04",
+"gammaln": "bfb363e39983a197",
+"true": "bfb363e39983a188",
+"ulps": 15,
+"rel": -2.748333082875529e-15
+},
+{
+"x": "3ff2b39b068c17e2",
+"gammaln": "bfb36433c7d0976c",
+"true": "bfb36433c7d09780",
+"ulps": -20,
+"rel": 3.664212909670979e-15
+},
+{
+"x": "3ff2d84e732f4780",
+"gammaln": "bfb42218f8171dea",
+"true": "bfb42218f8171dc8",
+"ulps": 34,
+"rel": -5.9996574855145e-15
+},
+{
+"x": "3ff2eebb9cf32dc6",
+"gammaln": "bfb492c2be559908",
+"true": "bfb492c2be559900",
+"ulps": 8,
+"rel": -1.3814862693520937e-15
+},
+{
+"x": "3ff2fdbb2df69600",
+"gammaln": "bfb4dcb07b7c294c",
+"true": "bfb4dcb07b7c2950",
+"ulps": -4,
+"rel": 6.811815002446729e-16
+},
+{
+"x": "3ff3040a133dd934",
+"gammaln": "bfb4fb71f5f3198c",
+"true": "bfb4fb71f5f31990",
+"ulps": -4,
+"rel": 6.77281197016262e-16
+},
+{
+"x": "3ff310f24a374a06",
+"gammaln": "bfb539c092706c13",
+"true": "bfb539c092706bf0",
+"ulps": 35,
+"rel": -5.858256539566904e-15
+},
+{
+"x": "3ff312614bd35978",
+"gammaln": "bfb5409f11f7e603",
+"true": "bfb5409f11f7e608",
+"ulps": -5,
+"rel": 8.358371592763009e-16
+},
+{
+"x": "3ff316154a71e21e",
+"gammaln": "bfb5525130722854",
+"true": "bfb5525130722848",
+"ulps": 12,
+"rel": -1.9995057323337353e-15
+},
+{
+"x": "3ff3214c099d665b",
+"gammaln": "bfb5877ca058322e",
+"true": "bfb5877ca0583250",
+"ulps": -34,
+"rel": 5.61061304523779e-15
+},
+{
+"x": "3ff3358d6ef9f7ed",
+"gammaln": "bfb5e5f127a0cc5f",
+"true": "bfb5e5f127a0cc90",
+"ulps": -49,
+"rel": 7.949643485431454e-15
+},
+{
+"x": "3ff33b86516aa5d8",
+"gammaln": "bfb60167519df3f9",
+"true": "bfb60167519df3e8",
+"ulps": 17,
+"rel": -2.744594752625707e-15
+},
+{
+"x": "3ff3485952791324",
+"gammaln": "bfb63bc709f8e378",
+"true": "bfb63bc709f8e370",
+"ulps": 8,
+"rel": -1.2783278368500285e-15
+},
+{
+"x": "3ff34ff3d73287f3",
+"gammaln": "bfb65e016636ddb8",
+"true": "bfb65e016636dda8",
+"ulps": 16,
+"rel": -2.5413729195658504e-15
+},
+{
+"x": "3ff37c6a3c5930ef",
+"gammaln": "bfb7207dd6d11a07",
+"true": "bfb7207dd6d119f0",
+"ulps": 23,
+"rel": -3.5332164452874405e-15
+},
+{
+"x": "3ff3802199c50bba",
+"gammaln": "bfb7304fb3175885",
+"true": "bfb7304fb31758a0",
+"ulps": -27,
+"rel": 4.136635630680941e-15
+},
+{
+"x": "3ff3af3f1d76e66e",
+"gammaln": "bfb7f3192eef9ea2",
+"true": "bfb7f3192eef9ea0",
+"ulps": 2,
+"rel": -2.966824691189743e-16
+},
+{
+"x": "3ff3b76965cff476",
+"gammaln": "bfb813c5b676db94",
+"true": "bfb813c5b676db80",
+"ulps": 20,
+"rel": -2.9510976565294496e-15
+},
+{
+"x": "3ff3c97f75ccab24",
+"gammaln": "bfb85b03d34c7053",
+"true": "bfb85b03d34c7038",
+"ulps": 27,
+"rel": -3.938459999328548e-15
+},
+{
+"x": "3ff3da47efae1ce0",
+"gammaln": "bfb89bbc49436ae7",
+"true": "bfb89bbc49436ae0",
+"ulps": 7,
+"rel": -1.0105920986009015e-15
+},
+{
+"x": "3ff3dd4c8dccf6be",
+"gammaln": "bfb8a73b889a009b",
+"true": "bfb8a73b889a00b0",
+"ulps": -21,
+"rel": 3.0262533627881764e-15
+},
+{
+"x": "3ff3df7a78adaf62",
+"gammaln": "bfb8af820bbb28a3",
+"true": "bfb8af820bbb2890",
+"ulps": 19,
+"rel": -2.734453276571925e-15
+},
+{
+"x": "3ff404759c20db30",
+"gammaln": "bfb93886897ec53e",
+"true": "bfb93886897ec540",
+"ulps": -2,
+"rel": 2.8172883287483427e-16
+},
+{
+"x": "3ff40c6259dd8910",
+"gammaln": "bfb9550dd563731e",
+"true": "bfb9550dd5637338",
+"ulps": -26,
+"rel": 3.646363177559921e-15
+},
+{
+"x": "3ff412a7cb52f119",
+"gammaln": "bfb96b6c2a80c436",
+"true": "bfb96b6c2a80c440",
+"ulps": -10,
+"rel": 1.397626630946929e-15
+},
+{
+"x": "3ff4138048125f26",
+"gammaln": "bfb96e6cc0570c49",
+"true": "bfb96e6cc0570c50",
+"ulps": -7,
+"rel": 9.778874802075756e-16
+},
+{
+"x": "3ff42abe91414de4",
+"gammaln": "bfb9bfa505ab4f8d",
+"true": "bfb9bfa505ab4f80",
+"ulps": 13,
+"rel": -1.7936997227067123e-15
+},
+{
+"x": "3ff42c0e59999da2",
+"gammaln": "bfb9c42742740b76",
+"true": "bfb9c42742740b90",
+"ulps": -26,
+"rel": 3.584947311499948e-15
+},
+{
+"x": "3ff4304eb41fa551",
+"gammaln": "bfb9d2b6700794cb",
+"true": "bfb9d2b6700794c0",
+"ulps": 11,
+"rel": -1.5133681123076504e-15
+},
+{
+"x": "3ff434733fce669c",
+"gammaln": "bfb9e0d1d5acf617",
+"true": "bfb9e0d1d5acf618",
+"ulps": -1,
+"rel": 1.3728595607622476e-16
+},
+{
+"x": "3ff43d6175611239",
+"gammaln": "bfb9fef601c61069",
+"true": "bfb9fef601c61078",
+"ulps": -15,
+"rel": 2.0499625165700732e-15
+},
+{
+"x": "3ff44cfa9efd0327",
+"gammaln": "bfba32ba22873cd0",
+"true": "bfba32ba22873ce8",
+"ulps": -24,
+"rel": 3.2546236862956087e-15
+},
+{
+"x": "3ff454b46798c8e0",
+"gammaln": "bfba4bf411d7261d",
+"true": "bfba4bf411d72630",
+"ulps": -19,
+"rel": 2.5669220082262004e-15
+},
+{
+"x": "3ff459252eb65e2e",
+"gammaln": "bfba5a544b4bad1c",
+"true": "bfba5a544b4bad28",
+"ulps": -12,
+"rel": 1.6177592255193578e-15
+},
+{
+"x": "3ff4859971b505b0",
+"gammaln": "bfbae54ce225d201",
+"true": "bfbae54ce225d218",
+"ulps": -23,
+"rel": 3.0381213819496345e-15
+},
+{
+"x": "3ff48fccf249b933",
+"gammaln": "bfbb03edcab34f9a",
+"true": "bfbb03edcab34f98",
+"ulps": 2,
+"rel": -2.63014475225182e-16
+},
+{
+"x": "3ff4a598316fb74e",
+"gammaln": "bfbb43cbd6c83c6e",
+"true": "bfbb43cbd6c83c60",
+"ulps": 14,
+"rel": -1.8242546595823474e-15
+},
+{
+"x": "3ff4aa3597477448",
+"gammaln": "bfbb510c030f27ff",
+"true": "bfbb510c030f2810",
+"ulps": -17,
+"rel": 2.21096899581876e-15
+},
+{
+"x": "3ff4ac363b09cdc4",
+"gammaln": "bfbb56c4617e3dab",
+"true": "bfbb56c4617e3da0",
+"ulps": 11,
+"rel": -1.4294577256974796e-15
+},
+{
+"x": "3ff4b4bb9f5b4e16",
+"gammaln": "bfbb6ee853cba317",
+"true": "bfbb6ee853cba330",
+"ulps": -25,
+"rel": 3.2376003032464907e-15
+},
+{
+"x": "3ff4b6eca48de7ac",
+"gammaln": "bfbb75104f3eee9e",
+"true": "bfbb75104f3eee98",
+"ulps": 6,
+"rel": -7.763435411033192e-16
+},
+{
+"x": "3ff4bb446723323d",
+"gammaln": "bfbb8133367dd3af",
+"true": "bfbb8133367dd3c8",
+"ulps": -25,
+"rel": 3.229189254976253e-15
+},
+{
+"x": "3ff4bb696fabb752",
+"gammaln": "bfbb819a55e55a68",
+"true": "bfbb819a55e55a60",
+"ulps": 8,
+"rel": -1.0332814481641491e-15
+},
+{
+"x": "3ff4d24ca1503635",
+"gammaln": "bfbbc02a12f3afb9",
+"true": "bfbbc02a12f3afc0",
+"ulps": -7,
+"rel": 8.96159294358416e-16
+},
+{
+"x": "3ff4eb7a094b2a27",
+"gammaln": "bfbc024efbc8370c",
+"true": "bfbc024efbc83720",
+"ulps": -20,
+"rel": 2.5368356132656534e-15
+},
+{
+"x": "3ff50db950b1a40c",
+"gammaln": "bfbc57cf84d30d50",
+"true": "bfbc57cf84d30d40",
+"ulps": 16,
+"rel": -2.0055533405562465e-15
+},
+{
+"x": "3ff518dee2cc97e2",
+"gammaln": "bfbc728900f0301c",
+"true": "bfbc728900f03008",
+"ulps": 20,
+"rel": -2.4977420100868665e-15
+},
+{
+"x": "3ff52d579242fe62",
+"gammaln": "bfbca235e849688f",
+"true": "bfbca235e8496890",
+"ulps": -1,
+"rel": 1.2407483964953827e-16
+},
+{
+"x": "3ff557c7252f951c",
+"gammaln": "bfbcff4767270137",
+"true": "bfbcff4767270148",
+"ulps": -17,
+"rel": 2.08282756198355e-15
+},
+{
+"x": "3ff559cdc809c482",
+"gammaln": "bfbd03875f3210a9",
+"true": "bfbd03875f3210a8",
+"ulps": 1,
+"rel": -1.2244916535680817e-16
+},
+{
+"x": "3ff582b3d4380253",
+"gammaln": "bfbd5595641649dd",
+"true": "bfbd559564164a00",
+"ulps": -35,
+"rel": 4.238892118884851e-15
+},
+{
+"x": "3ff58fcc79b5297a",
+"gammaln": "bfbd6e5be44bba83",
+"true": "bfbd6e5be44bba88",
+"ulps": -5,
+"rel": 6.035647541714144e-16
+},
+{
+"x": "3ff5b1f9399fd7a5",
+"gammaln": "bfbdab9bfda71ffc",
+"true": "bfbdab9bfda72028",
+"ulps": -44,
+"rel": 5.268539374656964e-15
+},
+{
+"x": "3ff5c64dc72b14d6",
+"gammaln": "bfbdcdba01aa2153",
+"true": "bfbdcdba01aa2138",
+"ulps": 27,
+"rel": -3.218510737568926e-15
+},
+{
+"x": "3ff5c80694c5100e",
+"gammaln": "bfbdd0897b134334",
+"true": "bfbdd0897b134338",
+"ulps": -4,
+"rel": 4.766408326322796e-16
+},
+{
+"x": "3ff5d9ea366dd70e",
+"gammaln": "bfbded01bc47904d",
+"true": "bfbded01bc479048",
+"ulps": 5,
+"rel": -5.9358693184169e-16
+},
+{
+"x": "3ff5e34acf063d44",
+"gammaln": "bfbdfb6681cb2120",
+"true": "bfbdfb6681cb2118",
+"ulps": 8,
+"rel": -9.47958050127064e-16
+},
+{
+"x": "3ff60a904a407d64",
+"gammaln": "bfbe33bdcb1a2180",
+"true": "bfbe33bdcb1a2168",
+"ulps": 24,
+"rel": -2.8231509266526537e-15
+},
+{
+"x": "3ff60b1a33567f52",
+"gammaln": "bfbe34785fe79de4",
+"true": "bfbe34785fe79e00",
+"ulps": -28,
+"rel": 3.293365631792857e-15
+},
+{
+"x": "3ff60ca8f72d4736",
+"gammaln": "bfbe369228c5a1f2",
+"true": "bfbe369228c5a1e8",
+"ulps": 10,
+"rel": -1.1758825530976584e-15
+},
+{
+"x": "3ff611660016543c",
+"gammaln": "bfbe3ce677cea20a",
+"true": "bfbe3ce677cea1f0",
+"ulps": 26,
+"rel": -3.0547948474603053e-15
+},
+{
+"x": "3ff61cfedcacad4a",
+"gammaln": "bfbe4c011108cb3c",
+"true": "bfbe4c011108cb48",
+"ulps": -12,
+"rel": 1.4071596904078922e-15
+},
+{
+"x": "3ff629342cccae6a",
+"gammaln": "bfbe5b4fd1442b9f",
+"true": "bfbe5b4fd1442b88",
+"ulps": 23,
+"rel": -2.691743519548237e-15
+},
+{
+"x": "3ff638da04af77d2",
+"gammaln": "bfbe6e0bf81bc181",
+"true": "bfbe6e0bf81bc160",
+"ulps": 33,
+"rel": -3.852778565269246e-15
+},
+{
+"x": "3ff63c779543be40",
+"gammaln": "bfbe723c028e1263",
+"true": "bfbe723c028e1270",
+"ulps": -13,
+"rel": 1.5169457954500922e-15
+},
+{
+"x": "3ff64b99bc922c2c",
+"gammaln": "bfbe83307d68bf79",
+"true": "bfbe83307d68bf78",
+"ulps": 1,
+"rel": -1.1643485436293922e-16
+},
+{
+"x": "3ff65d07d6c65ec6",
+"gammaln": "bfbe9592e7ce5836",
+"true": "bfbe9592e7ce5808",
+"ulps": 46,
+"rel": -5.343426996834896e-15
+},
+{
+"x": "3ff670471cdc5f1e",
+"gammaln": "bfbea8754bc2fed1",
+"true": "bfbea8754bc2fed8",
+"ulps": -7,
+"rel": 8.111737057766522e-16
+},
+{
+"x": "3ff6741bdf135336",
+"gammaln": "bfbeac0a49dfe3b6",
+"true": "bfbeac0a49dfe3a0",
+"ulps": 22,
+"rel": -2.548240069524663e-15
+},
+{
+"x": "3ff681f8df5efe48",
+"gammaln": "bfbeb88349410189",
+"true": "bfbeb88349410198",
+"ulps": -15,
+"rel": 1.7346809408524122e-15
+},
+{
+"x": "3ff68d23d9aa9f08",
+"gammaln": "bfbec2010e230510",
+"true": "bfbec2010e230528",
+"ulps": -24,
+"rel": 2.7721439441049898e-15
+},
+{
+"x": "3ff6908a2eb80107",
+"gammaln": "bfbec4cb8d0951c0",
+"true": "bfbec4cb8d0951c8",
+"ulps": -8,
+"rel": 9.23720561802464e-16
+},
+{
+"x": "3ff6bf15446a065b",
+"gammaln": "bfbee6691ecd86d3",
+"true": "bfbee6691ecd86f8",
+"ulps": -37,
+"rel": 4.254052735754285e-15
+},
+{
+"x": "3ff7136c949108e5",
+"gammaln": "bfbf0dbba1a178ae",
+"true": "bfbf0dbba1a178a0",
+"ulps": 14,
+"rel": -1.6016796952635962e-15
+},
+{
+"x": "3ff7254f118e28c4",
+"gammaln": "bfbf1289210ea815",
+"true": "bfbf1289210ea808",
+"ulps": 13,
+"rel": -1.486376028398076e-15
+},
+{
+"x": "3ff767f3cd11c243",
+"gammaln": "bfbf19ad1f62e8bd",
+"true": "bfbf19ad1f62e8c8",
+"ulps": -11,
+"rel": 1.256574795631192e-15
+},
+{
+"x": "3ff76a7533d75dde",
+"gammaln": "bfbf199db6e5f705",
+"true": "bfbf199db6e5f6f8",
+"ulps": 13,
+"rel": -1.4850541668977944e-15
+},
+{
+"x": "3ff77310f57b6278",
+"gammaln": "bfbf193a9575b28e",
+"true": "bfbf193a9575b288",
+"ulps": 6,
+"rel": -6.854429533682282e-16
+},
+{
+"x": "3ff784d6c183671c",
+"gammaln": "bfbf178c0af6edd8",
+"true": "bfbf178c0af6edd8",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "3ff7a5d6b2255f31",
+"gammaln": "bfbf1148fb86315d",
+"true": "bfbf1148fb863170",
+"ulps": -19,
+"rel": 2.1727373208156656e-15
+},
+{
+"x": "3ff7b48d00be7236",
+"gammaln": "bfbf0d2f3b3458d3",
+"true": "bfbf0d2f3b3458c0",
+"ulps": 19,
+"rel": -2.17385812845403e-15
+},
+{
+"x": "3ff7b592a1341cbc",
+"gammaln": "bfbf0cdea97d2a0c",
+"true": "bfbf0cdea97d2a00",
+"ulps": 12,
+"rel": -1.373017388886076e-15
+},
+{
+"x": "3ff7b8021d31b450",
+"gammaln": "bfbf0c1aa847cd61",
+"true": "bfbf0c1aa847cd58",
+"ulps": 9,
+"rel": -1.0298622390711428e-15
+},
+{
+"x": "3ff7c2d69b7019de",
+"gammaln": "bfbf086ee60e0e1e",
+"true": "bfbf086ee60e0e08",
+"ulps": 22,
+"rel": -2.518604278074389e-15
+},
+{
+"x": "3ff7d31739c475d4",
+"gammaln": "bfbf021c37df5cb1",
+"true": "bfbf021c37df5cc8",
+"ulps": -23,
+"rel": 2.635183632016897e-15
+},
+{
+"x": "3ff7e42c9c90c4af",
+"gammaln": "bfbefa69fb5964c1",
+"true": "bfbefa69fb5964c8",
+"ulps": -7,
+"rel": 8.027907394502553e-16
+},
+{
+"x": "3ff7e51e9503c40a",
+"gammaln": "bfbef9f4f33f0abe",
+"true": "bfbef9f4f33f0aa0",
+"ulps": 30,
+"rel": -3.4407300840665505e-15
+},
+{
+"x": "3ff811048ae08b42",
+"gammaln": "bfbee11ef9019a3d",
+"true": "bfbee11ef9019a30",
+"ulps": 13,
+"rel": -1.4956673202650433e-15
+},
+{
+"x": "3ff81c32e0f4f99b",
+"gammaln": "bfbed9ac1d1628c9",
+"true": "bfbed9ac1d1628d0",
+"ulps": -7,
+"rel": 8.061188987589109e-16
+},
+{
+"x": "3ff848e7738e2e34",
+"gammaln": "bfbeb75df4e52c78",
+"true": "bfbeb75df4e52c88",
+"ulps": -16,
+"rel": 1.850595959079046e-15
+},
+{
+"x": "3ff86c9341ae920c",
+"gammaln": "bfbe96d668a6c109",
+"true": "bfbe96d668a6c128",
+"ulps": -31,
+"rel": 3.600424045483506e-15
+},
+{
+"x": "3ff87c5a7c754916",
+"gammaln": "bfbe86ffb15b8f85",
+"true": "bfbe86ffb15b8f90",
+"ulps": -11,
+"rel": 1.2801590858191079e-15
+},
+{
+"x": "3ff8885e5fb5fd14",
+"gammaln": "bfbe7a57fb570845",
+"true": "bfbe7a57fb570860",
+"ulps": -27,
+"rel": 3.1473052147519876e-15
+},
+{
+"x": "3ff894137c5fe0bf",
+"gammaln": "bfbe6d852735f7f1",
+"true": "bfbe6d852735f7f0",
+"ulps": 1,
+"rel": -1.1675875877406006e-16
+},
+{
+"x": "3ff89a47b4167330",
+"gammaln": "bfbe66872fcaac3d",
+"true": "bfbe66872fcaac18",
+"ulps": 37,
+"rel": -4.3239553587187355e-15
+},
+{
+"x": "3ff8a06aa930c8a2",
+"gammaln": "bfbe5f7a6c2f006e",
+"true": "bfbe5f7a6c2f0058",
+"ulps": 22,
+"rel": -2.573331554695367e-15
+},
+{
+"x": "3ff8af5b6b00c8f4",
+"gammaln": "bfbe4dc245dbbd43",
+"true": "bfbe4dc245dbbd40",
+"ulps": 3,
+"rel": -3.5171035192866876e-16
+},
+{
+"x": "3ff8b1c941eae1aa",
+"gammaln": "bfbe4acdc2279d7e",
+"true": "bfbe4acdc2279d78",
+"ulps": 6,
+"rel": -7.036887574348937e-16
+},
+{
+"x": "3ff8e076bfec76e6",
+"gammaln": "bfbe0dffdb937a34",
+"true": "bfbe0dffdb937a00",
+"ulps": 52,
+"rel": -6.146832324994659e-15
+},
+{
+"x": "3ff8fdb42031915e",
+"gammaln": "bfbde40a84be01c7",
+"true": "bfbde40a84be01b0",
+"ulps": 23,
+"rel": -2.733699139909424e-15
+},
+{
+"x": "3ff902db6daaf49d",
+"gammaln": "bfbddc56b237d483",
+"true": "bfbddc56b237d470",
+"ulps": 19,
+"rel": -2.26054863727231e-15
+},
+{
+"x": "3ff905605448ec82",
+"gammaln": "bfbdd88a468b212e",
+"true": "bfbdd88a468b2110",
+"ulps": 30,
+"rel": -3.571061804157674e-15
+},
+{
+"x": "3ff90defd5e0e738",
+"gammaln": "bfbdcb77da7c7f08",
+"true": "bfbdcb77da7c7f00",
+"ulps": 8,
+"rel": -9.539151714279118e-16
+},
+{
+"x": "3ff93984607586ca",
+"gammaln": "bfbd8502eddbefdf",
+"true": "bfbd8502eddbefd0",
+"ulps": 15,
+"rel": -1.805266623109363e-15
+},
+{
+"x": "3ff956e09796c6be",
+"gammaln": "bfbd51e142bbceba",
+"true": "bfbd51e142bbcea0",
+"ulps": 26,
+"rel": -3.1504450489320798e-15
+},
+{
+"x": "3ff96dbc5649daa8",
+"gammaln": "bfbd280ad24fb6ef",
+"true": "bfbd280ad24fb700",
+"ulps": -17,
+"rel": 2.071452621453537e-15
+},
+{
+"x": "3ff97db426569940",
+"gammaln": "bfbd09c45182d516",
+"true": "bfbd09c45182d510",
+"ulps": 6,
+"rel": -7.340784701723818e-16
+},
+{
+"x": "3ff98a613f35c4b2",
+"gammaln": "bfbcf11ed95bf47a",
+"true": "bfbcf11ed95bf460",
+"ulps": 26,
+"rel": -3.1915882907949562e-15
+},
+{
+"x": "3ff9c38d0fb0cd23",
+"gammaln": "bfbc7b4432b8ca13",
+"true": "bfbc7b4432b8ca20",
+"ulps": -13,
+"rel": 1.621588140675346e-15
+},
+{
+"x": "3ff9d53c4c51afd8",
+"gammaln": "bfbc549ab1604614",
+"true": "bfbc549ab1604630",
+"ulps": -28,
+"rel": 3.511269980403685e-15
+},
+{
+"x": "3ff9f48078f99a17",
+"gammaln": "bfbc0db744e19025",
+"true": "bfbc0db744e19000",
+"ulps": 37,
+"rel": -4.685691338751002e-15
+},
+{
+"x": "3ff9ff2722d0399c",
+"gammaln": "bfbbf4d4cbe73066",
+"true": "bfbbf4d4cbe73050",
+"ulps": 22,
+"rel": -2.795774104254184e-15
+},
+{
+"x": "3ffa065e41d1ef64",
+"gammaln": "bfbbe3c30346eeba",
+"true": "bfbbe3c30346eea0",
+"ulps": 26,
+"rel": -3.3119959757735792e-15
+},
+{
+"x": "3ffa4e89db36f706",
+"gammaln": "bfbb2faa44257653",
+"true": "bfbb2faa44257650",
+"ulps": 3,
+"rel": -3.9204244244526943e-16
+},
+{
+"x": "3ffa6a9d77fc9d42",
+"gammaln": "bfbae508dc82170e",
+"true": "bfbae508dc821700",
+"ulps": 14,
+"rel": -1.8493626448381806e-15
+},
+{
+"x": "3ffa6e2f0f4f5e40",
+"gammaln": "bfbadb5dd88ab7dc",
+"true": "bfbadb5dd88ab7c0",
+"ulps": 28,
+"rel": -3.7039263773451155e-15
+},
+{
+"x": "3ffa72382d61725a",
+"gammaln": "bfbad06263341b27",
+"true": "bfbad06263341b30",
+"ulps": -9,
+"rel": 1.1924525094964784e-15
+},
+{
+"x": "3ffa839e0451fd3c",
+"gammaln": "bfbaa070bcca2008",
+"true": "bfbaa070bcca1ff0",
+"ulps": 24,
+"rel": -3.2022392368242167e-15
+},
+{
+"x": "3ffa8f35acf3f238",
+"gammaln": "bfba7ff4ca52571f",
+"true": "bfba7ff4ca525720",
+"ulps": -1,
+"rel": 1.3406553246018502e-16
+},
+{
+"x": "3ffaa885c30742cb",
+"gammaln": "bfba3788889a0e35",
+"true": "bfba3788889a0e20",
+"ulps": 21,
+"rel": -2.8457563697703604e-15
+},
+{
+"x": "3ffaa8e10d078564",
+"gammaln": "bfba367f9ce5fae4",
+"true": "bfba367f9ce5faf0",
+"ulps": -12,
+"rel": 1.6263972700493187e-15
+},
+{
+"x": "3ffab510df0892b3",
+"gammaln": "bfba12e3b8119fab",
+"true": "bfba12e3b8119f80",
+"ulps": 43,
+"rel": -5.859014147814101e-15
+},
+{
+"x": "3ffab73f2f5e42bf",
+"gammaln": "bfba0c77a1a945c6",
+"true": "bfba0c77a1a945c0",
+"ulps": 6,
+"rel": -8.183242050300693e-16
+},
+{
+"x": "3ffabff897eb22a8",
+"gammaln": "bfb9f2a0391986d8",
+"true": "bfb9f2a0391986d0",
+"ulps": 8,
+"rel": -1.0953435817678561e-15
+},
+{
+"x": "3ffac3944f8a8ed6",
+"gammaln": "bfb9e7de1c1134b4",
+"true": "bfb9e7de1c1134c0",
+"ulps": -12,
+"rel": 1.6456806820630786e-15
+},
+{
+"x": "3ffad0e84e56a6ac",
+"gammaln": "bfb9bfc5b10b21e2",
+"true": "bfb9bfc5b10b21e0",
+"ulps": 2,
+"rel": -2.759484611008012e-16
+},
+{
+"x": "3ffae4c11ecb1fa7",
+"gammaln": "bfb98307050e3ea1",
+"true": "bfb98307050e3ea0",
+"ulps": 1,
+"rel": -1.3925752307568362e-16
+},
+{
+"x": "3ffae4f92000975e",
+"gammaln": "bfb98259d6cc7a78",
+"true": "bfb98259d6cc7a60",
+"ulps": 24,
+"rel": -3.342526774405089e-15
+},
+{
+"x": "3ffaeba5cee20856",
+"gammaln": "bfb96da3a6aae303",
+"true": "bfb96da3a6aae310",
+"ulps": -13,
+"rel": 1.8162959032551425e-15
+},
+{
+"x": "3ffaf7738e1fd0a8",
+"gammaln": "bfb948ab4542b693",
+"true": "bfb948ab4542b670",
+"ulps": 35,
+"rel": -4.917958022608172e-15
+},
+{
+"x": "3ffafd0fd270dfa2",
+"gammaln": "bfb936f18e15e183",
+"true": "bfb936f18e15e170",
+"ulps": 19,
+"rel": -2.6770798434986495e-15
+},
+{
+"x": "3ffb022a43490cb7",
+"gammaln": "bfb926bc1a7c6971",
+"true": "bfb926bc1a7c6970",
+"ulps": 1,
+"rel": -1.412536364626958e-16
+},
+{
+"x": "3ffb04783af01163",
+"gammaln": "bfb91f6371bb099f",
+"true": "bfb91f6371bb09a0",
+"ulps": -1,
+"rel": 1.4141498500020814e-16
+},
+{
+"x": "3ffb11e30344c8c2",
+"gammaln": "bfb8f449ef1bf972",
+"true": "bfb8f449ef1bf970",
+"ulps": 2,
+"rel": -2.8473812927622003e-16
+},
+{
+"x": "3ffb15082e6186e6",
+"gammaln": "bfb8ea1ab2e9cbc2",
+"true": "bfb8ea1ab2e9cbc0",
+"ulps": 2,
+"rel": -2.8519279712701887e-16
+},
+{
+"x": "3ffb308b3f34a95e",
+"gammaln": "bfb88fb47ad35895",
+"true": "bfb88fb47ad358a0",
+"ulps": -11,
+"rel": 1.5911118159684114e-15
+},
+{
+"x": "3ffb34e1fbc6f448",
+"gammaln": "bfb8813be31c69b1",
+"true": "bfb8813be31c69c0",
+"ulps": -15,
+"rel": 2.174702979310834e-15
+},
+{
+"x": "3ffb607ec198bd60",
+"gammaln": "bfb7ec8b55445d4e",
+"true": "bfb7ec8b55445d60",
+"ulps": -18,
+"rel": 2.6729996405738607e-15
+},
+{
+"x": "3ffb68b01c12d89d",
+"gammaln": "bfb7cff57059f7b4",
+"true": "bfb7cff57059f7b0",
+"ulps": 4,
+"rel": -5.967853390936157e-16
+},
+{
+"x": "3ffb6960424c16ea",
+"gammaln": "bfb7cd8c6f142387",
+"true": "bfb7cd8c6f1423b0",
+"ulps": -41,
+"rel": 6.119469196770999e-15
+},
+{
+"x": "3ffb6c00c5aec40b",
+"gammaln": "bfb7c45560742d1a",
+"true": "bfb7c45560742d20",
+"ulps": -6,
+"rel": 8.968884115130121e-16
+},
+{
+"x": "3ffb72a2aaf44fd9",
+"gammaln": "bfb7acf95d16d197",
+"true": "bfb7acf95d16d1a0",
+"ulps": -9,
+"rel": 1.350517625121317e-15
+},
+{
+"x": "3ffb75f7b74ac663",
+"gammaln": "bfb7a12fe59ee282",
+"true": "bfb7a12fe59ee290",
+"ulps": -14,
+"rel": 2.104898661527442e-15
+},
+{
+"x": "3ffb78095a548b6a",
+"gammaln": "bfb799da0c23b62c",
+"true": "bfb799da0c23b630",
+"ulps": -4,
+"rel": 6.021297706379685e-16
+},
+{
+"x": "3ffb7b3d744de0a7",
+"gammaln": "bfb78e77bad26351",
+"true": "bfb78e77bad26360",
+"ulps": -15,
+"rel": 2.262249168369849e-15
+},
+{
+"x": "3ffb8461de10c3e7",
+"gammaln": "bfb76dceaa746ebe",
+"true": "bfb76dceaa746eb0",
+"ulps": 14,
+"rel": -2.122930133046238e-15
+},
+{
+"x": "3ffb8e500839b45d",
+"gammaln": "bfb74a0ada58b81f",
+"true": "bfb74a0ada58b820",
+"ulps": -1,
+"rel": 1.5254750664924476e-16
+},
+{
+"x": "3ffba03bb49d156e",
+"gammaln": "bfb708bd6a2126ad",
+"true": "bfb708bd6a2126a0",
+"ulps": 13,
+"rel": -2.005079301823971e-15
+},
+{
+"x": "3ffbab29d81206ef",
+"gammaln": "bfb6e06e632978cb",
+"true": "bfb6e06e632978d0",
+"ulps": -5,
+"rel": 7.764922617728233e-16
+},
+{
+"x": "3ffbad0cabcab82d",
+"gammaln": "bfb6d9706d0b92a3",
+"true": "bfb6d9706d0b9290",
+"ulps": 19,
+"rel": -2.954197633225886e-15
+},
+{
+"x": "3ffbad48ea2ca18b",
+"gammaln": "bfb6d890e4d260e5",
+"true": "bfb6d890e4d260d0",
+"ulps": 21,
+"rel": -3.2656532840439423e-15
+},
+{
+"x": "3ffbbcc91cb40687",
+"gammaln": "bfb69eae86a44c9a",
+"true": "bfb69eae86a44c80",
+"ulps": 26,
+"rel": -4.0836059206473575e-15
+},
+{
+"x": "3ffbc44e7d2f2af9",
+"gammaln": "bfb68255a281768a",
+"true": "bfb68255a2817670",
+"ulps": 26,
+"rel": -4.103694813517897e-15
+},
+{
+"x": "3ffbce9d5a261930",
+"gammaln": "bfb65b3498d4302a",
+"true": "bfb65b3498d43050",
+"ulps": -38,
+"rel": 6.038713606760473e-15
+},
+{
+"x": "3ffc16f569a42b74",
+"gammaln": "bfb53f9ec58a8dab",
+"true": "bfb53f9ec58a8dc0",
+"ulps": -21,
+"rel": 3.5111621820807374e-15
+},
+{
+"x": "3ffc1babec010d1f",
+"gammaln": "bfb52c9a9202ebac",
+"true": "bfb52c9a9202eb90",
+"ulps": 28,
+"rel": -4.697973257974238e-15
+},
+{
+"x": "3ffc2ae1b3a8e532",
+"gammaln": "bfb4eec83e967fbc",
+"true": "bfb4eec83e967fd0",
+"ulps": -20,
+"rel": 3.394408158337603e-15
+},
+{
+"x": "3ffc465d3a9c3f1d",
+"gammaln": "bfb47d57ba7ba600",
+"true": "bfb47d57ba7ba610",
+"ulps": -16,
+"rel": 2.774254436831509e-15
+},
+{
+"x": "3ffc541cd4cf1ecf",
+"gammaln": "bfb443c1d6c2a89e",
+"true": "bfb443c1d6c2a8a0",
+"ulps": -2,
+"rel": 3.506311763057727e-16
+},
+{
+"x": "3ffc5e93d8c0d2e1",
+"gammaln": "bfb4178d5ecf0c89",
+"true": "bfb4178d5ecf0c90",
+"ulps": -7,
+"rel": 1.2377560546300555e-15
+},
+{
+"x": "3ffc6709e40be5a6",
+"gammaln": "bfb3f3939625e2f6",
+"true": "bfb3f3939625e2f0",
+"ulps": 6,
+"rel": -1.0684065525281509e-15
+},
+{
+"x": "3ffc68bd3dca7ca0",
+"gammaln": "bfb3ec5209dd07bb",
+"true": "bfb3ec5209dd07b0",
+"ulps": 11,
+"rel": -1.9615319845237163e-15
+},
+{
+"x": "3ffc7df1cfcd2103",
+"gammaln": "bfb391218ca9a73a",
+"true": "bfb391218ca9a750",
+"ulps": -22,
+"rel": 3.994481922897244e-15
+},
+{
+"x": "3ffc8a8be1fe9303",
+"gammaln": "bfb35a5139d896f7",
+"true": "bfb35a5139d89720",
+"ulps": -41,
+"rel": 7.52662387129596e-15
+},
+{
+"x": "3ffc95301e3cac5c",
+"gammaln": "bfb32bab814a7c09",
+"true": "bfb32bab814a7c00",
+"ulps": 9,
+"rel": -1.6678897345187176e-15
+},
+{
+"x": "3ffca6c0ed6d1130",
+"gammaln": "bfb2ddf366b4db6a",
+"true": "bfb2ddf366b4db50",
+"ulps": 26,
+"rel": -4.895880578120771e-15
+},
+{
+"x": "3ffcb87c749fdad2",
+"gammaln": "bfb28e961c9ed25a",
+"true": "bfb28e961c9ed290",
+"ulps": -54,
+"rel": 1.0338242487776661e-14
+},
+{
+"x": "3ffccddf9b7c571d",
+"gammaln": "bfb22da7fb42b62c",
+"true": "bfb22da7fb42b620",
+"ulps": 12,
+"rel": -2.345239099015378e-15
+},
+{
+"x": "3ffcd30bb4e2fade",
+"gammaln": "bfb2160453713d31",
+"true": "bfb2160453713d10",
+"ulps": 33,
+"rel": -6.482335986718888e-15
+},
+{
+"x": "3ffce41a4fc2c9a6",
+"gammaln": "bfb1c783bf9b52a3",
+"true": "bfb1c783bf9b52a0",
+"ulps": 3,
+"rel": -5.9946728060136075e-16
+},
+{
+"x": "3ffd0350b77b7447",
+"gammaln": "bfb135b4bf40a120",
+"true": "bfb135b4bf40a130",
+"ulps": -16,
+"rel": 3.3029700768528837e-15
+},
+{
+"x": "3ffd1a3e587fbc14",
+"gammaln": "bfb0c8d38dcbc93b",
+"true": "bfb0c8d38dcbc940",
+"ulps": -5,
+"rel": 1.0583330821804368e-15
+},
+{
+"x": "3ffd1d1bd8882b19",
+"gammaln": "bfb0bb1d77fd0a1d",
+"true": "bfb0bb1d77fd0a10",
+"ulps": 13,
+"rel": -2.760474751091427e-15
+},
+{
+"x": "3ffd437787214fa9",
+"gammaln": "bfb00150f31a828d",
+"true": "bfb00150f31a8290",
+"ulps": -3,
+"rel": 6.659198279633092e-16
+},
+{
+"x": "3ffd4c8b19afe9ac",
+"gammaln": "bfafa97cad88d131",
+"true": "bfafa97cad88d0e0",
+"ulps": 81,
+"rel": -9.08879017821425e-15
+},
+{
+"x": "3ffd61264968b220",
+"gammaln": "bfaedd6128e70126",
+"true": "bfaedd6128e700e0",
+"ulps": 70,
+"rel": -8.057406795787747e-15
+},
+{
+"x": "3ffd792f235ff946",
+"gammaln": "bfadec4d878edecc",
+"true": "bfadec4d878edea0",
+"ulps": 44,
+"rel": -5.2240450101218225e-15
+},
+{
+"x": "3ffd7cb6846d6b91",
+"gammaln": "bfadc8a2960fc10e",
+"true": "bfadc8a2960fc0c0",
+"ulps": 78,
+"rel": -9.304128759851882e-15
+},
+{
+"x": "3ffd8e572f0e34cf",
+"gammaln": "bfad156c213edc58",
+"true": "bfad156c213edc60",
+"ulps": -8,
+"rel": 9.772390659116158e-16
+},
+{
+"x": "3ffd92abf91a3793",
+"gammaln": "bface91fa7a09db7",
+"true": "bface91fa7a09d60",
+"ulps": 87,
+"rel": -1.0691084594670716e-14
+},
+{
+"x": "3ffd942d4a382745",
+"gammaln": "bfacd9b473749742",
+"true": "bfacd9b473749720",
+"ulps": 34,
+"rel": -4.186847475577109e-15
+},
+{
+"x": "3ffda00a9e2b2ab5",
+"gammaln": "bfac5fb8ffb843e2",
+"true": "bfac5fb8ffb843e0",
+"ulps": 2,
+"rel": -2.5042109820251163e-16
+},
+{
+"x": "3ffda691ce7c4518",
+"gammaln": "bfac1c45c02ffb29",
+"true": "bfac1c45c02ffb40",
+"ulps": -23,
+"rel": 2.90683520475528e-15
+},
+{
+"x": "3ffde8fba9dc7af9",
+"gammaln": "bfa960acad4ee8f2",
+"true": "bfa960acad4ee8c0",
+"ulps": 50,
+"rel": -6.999694220841038e-15
+},
+{
+"x": "3ffe06775451dff4",
+"gammaln": "bfa822541903d93b",
+"true": "bfa822541903d9a0",
+"ulps": -101,
+"rel": 1.4867931476848852e-14
+},
+{
+"x": "3ffe0d48b7c58855",
+"gammaln": "bfa7d808eda9ab07",
+"true": "bfa7d808eda9ab00",
+"ulps": 7,
+"rel": -1.0429925518573193e-15
+},
+{
+"x": "3ffe0e686aefcd63",
+"gammaln": "bfa7cbc3af486809",
+"true": "bfa7cbc3af4867a0",
+"ulps": 105,
+"rel": -1.5676401370733706e-14
+},
+{
+"x": "3ffe36ccee3125be",
+"gammaln": "bfa60e2d21c02445",
+"true": "bfa60e2d21c024a0",
+"ulps": -91,
+"rel": 1.46584189934723e-14
+},
+{
+"x": "3ffe4ae78592ba42",
+"gammaln": "bfa52d1aba3b808c",
+"true": "bfa52d1aba3b8060",
+"ulps": 44,
+"rel": -7.381847663207317e-15
+},
+{
+"x": "3ffe5508eed1046b",
+"gammaln": "bfa4badc8b1d4bf4",
+"true": "bfa4badc8b1d4bc0",
+"ulps": 52,
+"rel": -8.911806820760318e-15
+},
+{
+"x": "3ffe5aa171a5318f",
+"gammaln": "bfa47b853acc7f23",
+"true": "bfa47b853acc7f40",
+"ulps": -29,
+"rel": 5.0300836453912474e-15
+},
+{
+"x": "3ffe5f3ed8c81d13",
+"gammaln": "bfa44727dab527f2",
+"true": "bfa44727dab52840",
+"ulps": -78,
+"rel": 1.3665663505032286e-14
+},
+{
+"x": "3ffe631763bbc7e6",
+"gammaln": "bfa41b6dd64e2d4d",
+"true": "bfa41b6dd64e2d60",
+"ulps": -19,
+"rel": 3.357093252087276e-15
+},
+{
+"x": "3ffe6f639909eb0e",
+"gammaln": "bfa38f12dd973963",
+"true": "bfa38f12dd973920",
+"ulps": 67,
+"rel": -1.2170011616842076e-14
+},
+{
+"x": "3ffe7570511d2390",
+"gammaln": "bfa349bad3b95bb0",
+"true": "bfa349bad3b95be0",
+"ulps": -48,
+"rel": 8.841258536592854e-15
+},
+{
+"x": "3ffe97d763cea7c0",
+"gammaln": "bfa1bbaafeb6053b",
+"true": "bfa1bbaafeb60560",
+"ulps": -37,
+"rel": 7.412723649183485e-15
+},
+{
+"x": "3ffeb794d1b7e8a2",
+"gammaln": "bfa046d140d444aa",
+"true": "bfa046d140d444c0",
+"ulps": -22,
+"rel": 4.801958314943866e-15
+},
+{
+"x": "3ffec09c29e400c4",
+"gammaln": "bf9fb78f1f26240d",
+"true": "bf9fb78f1f262400",
+"ulps": 13,
+"rel": -1.4561666492608586e-15
+},
+{
+"x": "3ffed61998062d5d",
+"gammaln": "bf9db68c1921ff81",
+"true": "bf9db68c1921ff00",
+"ulps": 129,
+"rel": -1.5424188208081273e-14
+},
+{
+"x": "3ffed87fea7ef7f4",
+"gammaln": "bf9d7cf559b33dbe",
+"true": "bf9d7cf559b33d40",
+"ulps": 126,
+"rel": -1.5180416469629687e-14
+},
+{
+"x": "3ffee3d25ff58ec0",
+"gammaln": "bf9c6c6d35ecaaec",
+"true": "bf9c6c6d35ecab40",
+"ulps": -84,
+"rel": 1.0499323240087194e-14
+},
+{
+"x": "3ffef09004b89344",
+"gammaln": "bf9b3821907c380b",
+"true": "bf9b3821907c3840",
+"ulps": -53,
+"rel": 6.917668227916428e-15
+},
+{
+"x": "3ffef33b7d216b74",
+"gammaln": "bf9af74fe3c0c340",
+"true": "bf9af74fe3c0c340",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "3ffeff481ecade61",
+"gammaln": "bf99d1d709d836fb",
+"true": "bf99d1d709d836c0",
+"ulps": 59,
+"rel": -8.118227892594145e-15
+},
+{
+"x": "3fff31aae4cc37af",
+"gammaln": "bf94f62f700c9836",
+"true": "bf94f62f700c9800",
+"ulps": 54,
+"rel": -9.152258283708971e-15
+},
+{
+"x": "3fff4554cdcd6be0",
+"gammaln": "bf9309a7c50161ce",
+"true": "bf9309a7c5016280",
+"ulps": -178,
+"rel": 3.3217379009322065e-14
+},
+{
+"x": "3fff803c95288e4a",
+"gammaln": "bf8a5c8443c686d6",
+"true": "bf8a5c8443c68800",
+"ulps": -298,
+"rel": 4.016133245517928e-14
+},
+{
+"x": "3fff9621d4857980",
+"gammaln": "bf85efa0b3ca362f",
+"true": "bf85efa0b3ca3500",
+"ulps": 303,
+"rel": -4.907321268976063e-14
+},
+{
+"x": "3fff9874a73622cf",
+"gammaln": "bf8576d46b78a0e8",
+"true": "bf8576d46b789f80",
+"ulps": 360,
+"rel": -5.95865762267882e-14
+},
+{
+"x": "3fff9c3ea3647dd7",
+"gammaln": "bf84b19b1d0d048c",
+"true": "bf84b19b1d0d0400",
+"ulps": 140,
+"rel": -2.4035245422663423e-14
+},
+{
+"x": "3fffa15cda864554",
+"gammaln": "bf83a6bcd9fc473e",
+"true": "bf83a6bcd9fc4800",
+"ulps": -194,
+"rel": 3.5072783083494597e-14
+},
+{
+"x": "3fffa3087bb6feaf",
+"gammaln": "bf834f855e1e8038",
+"true": "bf834f855e1e7f00",
+"ulps": 312,
+"rel": -5.74008583810553e-14
+},
+{
+"x": "3fffaa9b28e9889d",
+"gammaln": "bf81c367acbc3c78",
+"true": "bf81c367acbc3c00",
+"ulps": 120,
+"rel": -2.400036167994848e-14
+},
+{
+"x": "3fffbc0f81ccb372",
+"gammaln": "bf7c5bec31d15ba4",
+"true": "bf7c5bec31d15c00",
+"ulps": -92,
+"rel": 1.1525400030832645e-14
+},
+{
+"x": "3fffbf7b08d39036",
+"gammaln": "bf7af2f0a56e343a",
+"true": "bf7af2f0a56e3400",
+"ulps": 58,
+"rel": -7.646202535065615e-15
+},
+{
+"x": "3fffecc9973530f2",
+"gammaln": "bf602ff5a5b49635",
+"true": "bf602ff5a5b49400",
+"ulps": 565,
+"rel": -1.2400326284487983e-13
+},
+{
+"x": "3fffef32edfa9dc9",
+"gammaln": "bf5c52ecd2e07b3e",
+"true": "bf5c52ecd2e07c00",
+"ulps": -194,
+"rel": 2.433371878588998e-14
+},
+{
+"x": "3ffff47c0fa4db37",
+"gammaln": "bf536eac52ca7b96",
+"true": "bf536eac52ca8800",
+"ulps": -3178,
+"rel": 5.810179044700916e-13
+},
+{
+"x": "3ffff5d63fb6ec09",
+"gammaln": "bf5127965da2224e",
+"true": "bf5127965da21c00",
+"ulps": 1614,
+"rel": -3.3425828208484637e-13
+},
+{
+"x": "3ffff6459983b29e",
+"gammaln": "bf506bf9d65dc319",
+"true": "bf506bf9d65dc000",
+"ulps": 793,
+"rel": -1.7155885547210363e-13
+},
+{
+"x": "400000c5e3c0deca",
+"gammaln": "3f24ec143381a039",
+"true": "3f24ec143381c000",
+"ulps": -8135,
+"rel": -1.3813723662326343e-12
+},
+{
+"x": "40000114dc90f4fb",
+"gammaln": "3f2d466478a60274",
+"true": "3f2d466478a5c000",
+"ulps": 17012,
+"rel": 2.0645200977785287e-12
+},
+{
+"x": "40000af7ac8128c4",
+"gammaln": "3f629f88d3ceb2ea",
+"true": "3f629f88d3ceb600",
+"ulps": -790,
+"rel": -1.5070699900012855e-13
+},
+{
+"x": "400013db2eeaf20f",
+"gammaln": "3f70e9e6a53b93f5",
+"true": "3f70e9e6a53b9300",
+"ulps": 245,
+"rel": 5.146219372154849e-14
+},
+{
+"x": "40001f4aeeb46508",
+"gammaln": "3f7ac47c3f7ee1ff",
+"true": "3f7ac47c3f7ee300",
+"ulps": -257,
+"rel": -3.41102719124893e-14
+},
+{
+"x": "40001f799f616780",
+"gammaln": "3f7aece22ffb62b8",
+"true": "3f7aece22ffb6100",
+"ulps": 440,
+"rel": 5.805664148945304e-14
+},
+{
+"x": "4000245bcafbaf94",
+"gammaln": "3f7f288e54672484",
+"true": "3f7f288e54672400",
+"ulps": 132,
+"rel": 1.5050768903833564e-14
+},
+{
+"x": "400025f461343fae",
+"gammaln": "3f8045c6a561d584",
+"true": "3f8045c6a561d600",
+"ulps": -124,
+"rel": -2.7072349563396426e-14
+},
+{
+"x": "400028a9835af720",
+"gammaln": "3f817359c713f428",
+"true": "3f817359c713f500",
+"ulps": -216,
+"rel": -4.397480051196861e-14
+},
+{
+"x": "400030791440ef73",
+"gammaln": "3f84dc9bf014477a",
+"true": "3f84dc9bf0144800",
+"ulps": -134,
+"rel": -2.2819923163029812e-14
+},
+{
+"x": "40003c9210a22421",
+"gammaln": "3f8a2eb2fadaf8a2",
+"true": "3f8a2eb2fadaf700",
+"ulps": 418,
+"rel": 5.671876021679595e-14
+},
+{
+"x": "400040b2450b946c",
+"gammaln": "3f8c01e193eb8e56",
+"true": "3f8c01e193eb8f00",
+"ulps": -170,
+"rel": -2.1564387997406794e-14
+},
+{
+"x": "4000467339cb39d6",
+"gammaln": "3f8e8fa5ce1666f3",
+"true": "3f8e8fa5ce166780",
+"ulps": -141,
+"rel": -1.6391171773375806e-14
+},
+{
+"x": "400049c061d06ab8",
+"gammaln": "3f9003f940637b4d",
+"true": "3f9003f940637b40",
+"ulps": 13,
+"rel": 2.8837822300427528e-15
+},
+{
+"x": "4000549689ac18b5",
+"gammaln": "3f927093bc9bb5da",
+"true": "3f927093bc9bb580",
+"ulps": 90,
+"rel": 1.7339939902067172e-14
+},
+{
+"x": "400065d1de723ff4",
+"gammaln": "3f9654ed5bb3d0b3",
+"true": "3f9654ed5bb3cfc0",
+"ulps": 243,
+"rel": 3.8658392096367307e-14
+},
+{
+"x": "40006b5f08246b76",
+"gammaln": "3f9798635b2db4d1",
+"true": "3f9798635b2db4c0",
+"ulps": 17,
+"rel": 2.5596716052866505e-15
+},
+{
+"x": "40006f69de817722",
+"gammaln": "3f9884ad51e60d3d",
+"true": "3f9884ad51e60d00",
+"ulps": 61,
+"rel": 8.838940817699101e-15
+},
+{
+"x": "400078142c837a43",
+"gammaln": "3f9a815658430c25",
+"true": "3f9a815658430c00",
+"ulps": 37,
+"rel": 4.9594150674884236e-15
+},
+{
+"x": "40007a8193e38e48",
+"gammaln": "3f9b1059898c593e",
+"true": "3f9b1059898c58c0",
+"ulps": 126,
+"rel": 1.6540206033845186e-14
+},
+{
+"x": "4000881cb7ed6fe6",
+"gammaln": "3f9e363514d558f1",
+"true": "3f9e363514d55940",
+"ulps": -79,
+"rel": -9.289908868040474e-15
+},
+{
+"x": "40008dd65361b040",
+"gammaln": "3f9f8b6eadeb624b",
+"true": "3f9f8b6eadeb6200",
+"ulps": 75,
+"rel": 8.446866960188682e-15
+},
+{
+"x": "40009379498a52f8",
+"gammaln": "3fa06e4f9a11c2cc",
+"true": "3fa06e4f9a11c2c0",
+"ulps": 12,
+"rel": 2.5946575431198355e-15
+},
+{
+"x": "400096eda91b936c",
+"gammaln": "3fa0d5f18727f06c",
+"true": "3fa0d5f18727f020",
+"ulps": 76,
+"rel": 1.6037703937152654e-14
+},
+{
+"x": "4000a086e27e821e",
+"gammaln": "3fa1f717774197f3",
+"true": "3fa1f717774197e0",
+"ulps": 19,
+"rel": 3.757350494010785e-15
+},
+{
+"x": "4000a2f0ba04dc9c",
+"gammaln": "3fa24012cc15077e",
+"true": "3fa24012cc150740",
+"ulps": 62,
+"rel": 1.2069303361014308e-14
+},
+{
+"x": "4000ac6a81f734a6",
+"gammaln": "3fa35fb239254823",
+"true": "3fa35fb239254860",
+"ulps": -61,
+"rel": -1.1186003082574183e-14
+},
+{
+"x": "4000b4538fd8bbd4",
+"gammaln": "3fa4511f270b167e",
+"true": "3fa4511f270b1680",
+"ulps": -2,
+"rel": -3.497302143913961e-16
+},
+{
+"x": "4000b58068730fb1",
+"gammaln": "3fa4751722be009d",
+"true": "3fa4751722be00a0",
+"ulps": -3,
+"rel": -5.209923660913523e-16
+},
+{
+"x": "4000bdbdcf3e8b62",
+"gammaln": "3fa57206f442c257",
+"true": "3fa57206f442c240",
+"ulps": 23,
+"rel": 3.810250389209373e-15
+},
+{
+"x": "4000c9bc20d0e93d",
+"gammaln": "3fa6e47f3c429568",
+"true": "3fa6e47f3c429580",
+"ulps": -24,
+"rel": -3.7245770782263535e-15
+},
+{
+"x": "4000cb6adfcba05a",
+"gammaln": "3fa718b0ae7d9b63",
+"true": "3fa718b0ae7d9b20",
+"ulps": 67,
+"rel": 1.030599326937442e-14
+},
+{
+"x": "4000d335c330f83b",
+"gammaln": "3fa80b1bf1959c8b",
+"true": "3fa80b1bf1959ca0",
+"ulps": -21,
+"rel": -3.103013814402556e-15
+},
+{
+"x": "4000dc30b9e776c4",
+"gammaln": "3fa923e7a57279f9",
+"true": "3fa923e7a5727a00",
+"ulps": -7,
+"rel": -9.892102264896186e-16
+},
+{
+"x": "4000dd16d9e73c00",
+"gammaln": "3fa94018a4bfa9e4",
+"true": "3fa94018a4bfaa20",
+"ulps": -60,
+"rel": -8.44196618967788e-15
+},
+{
+"x": "4000f41f617c72da",
+"gammaln": "3fac17a3eca19f9e",
+"true": "3fac17a3eca19f60",
+"ulps": 62,
+"rel": 7.840863687099026e-15
+},
+{
+"x": "4000f50cb4cc42e0",
+"gammaln": "3fac3521a701bf35",
+"true": "3fac3521a701bf20",
+"ulps": 21,
+"rel": 2.6449302103674066e-15
+},
+{
+"x": "4000f9c94dc0604e",
+"gammaln": "3faccc10cd4b34e5",
+"true": "3faccc10cd4b34e0",
+"ulps": 5,
+"rel": 6.168520107574355e-16
+},
+{
+"x": "4000fdd3b6c26c03",
+"gammaln": "3fad4d270bd2e17e",
+"true": "3fad4d270bd2e160",
+"ulps": 30,
+"rel": 3.637419845188521e-15
+},
+{
+"x": "4000ff6f57fc0b08",
+"gammaln": "3fad809b1aa81133",
+"true": "3fad809b1aa810e0",
+"ulps": 83,
+"rel": 9.994968821565217e-15
+},
+{
+"x": "400104e2a9b986f6",
+"gammaln": "3fae2f6101751f2b",
+"true": "3fae2f6101751fa0",
+"ulps": -117,
+"rel": -1.377063051937427e-14
+},
+{
+"x": "400106653e1e8202",
+"gammaln": "3fae5fe612d5bb10",
+"true": "3fae5fe612d5bac0",
+"ulps": 80,
+"rel": 9.357063243232197e-15
+},
+{
+"x": "40010c1785da2597",
+"gammaln": "3faf174f96888c3e",
+"true": "3faf174f96888c20",
+"ulps": 30,
+"rel": 3.4280406215874653e-15
+},
+{
+"x": "40011910d778ee7e",
+"gammaln": "3fb05da600ddcc28",
+"true": "3fb05da600ddcc20",
+"ulps": 8,
+"rel": 1.7366511056393697e-15
+},
+{
+"x": "40012bb74247cf95",
+"gammaln": "3fb18e3fcde19b06",
+"true": "3fb18e3fcde19b10",
+"ulps": -10,
+"rel": -2.023685501550867e-15
+},
+{
+"x": "400130f9a3486814",
+"gammaln": "3fb1e4ba2ab9ffbb",
+"true": "3fb1e4ba2ab9ffd0",
+"ulps": -21,
+"rel": -4.1695101766721415e-15
+},
+{
+"x": "40014ed25b90994c",
+"gammaln": "3fb3d44eccfca104",
+"true": "3fb3d44eccfca110",
+"ulps": -12,
+"rel": -2.149975300605533e-15
+},
+{
+"x": "40015bce9de22d9b",
+"gammaln": "3fb4ae775a45d82a",
+"true": "3fb4ae775a45d800",
+"ulps": 42,
+"rel": 7.214849595503909e-15
+},
+{
+"x": "40015c8453351f0a",
+"gammaln": "3fb4ba6f7315cb23",
+"true": "3fb4ba6f7315cb40",
+"ulps": -29,
+"rel": -4.970445244821551e-15
+},
+{
+"x": "400168420786a29c",
+"gammaln": "3fb58115fdd8f0d8",
+"true": "3fb58115fdd8f0c0",
+"ulps": 24,
+"rel": 3.965037643480884e-15
+},
+{
+"x": "400170de6078008a",
+"gammaln": "3fb61391b59cfd71",
+"true": "3fb61391b59cfd70",
+"ulps": 1,
+"rel": 1.6092781902098056e-16
+},
+{
+"x": "40018ad567970a2e",
+"gammaln": "3fb7d155a48a4808",
+"true": "3fb7d155a48a4820",
+"ulps": -24,
+"rel": -3.579904086356402e-15
+},
+{
+"x": "40019529817267e2",
+"gammaln": "3fb884575e8870b2",
+"true": "3fb884575e8870a0",
+"ulps": 18,
+"rel": 2.608351567478566e-15
+},
+{
+"x": "400198c0c14b56dc",
+"gammaln": "3fb8c2cc8a4e6094",
+"true": "3fb8c2cc8a4e6090",
+"ulps": 4,
+"rel": 5.739224126652155e-16
+},
+{
+"x": "4001bbd94c454496",
+"gammaln": "3fbb2b4ee916fe7e",
+"true": "3fbb2b4ee916fe80",
+"ulps": -2,
+"rel": -2.6152534721533947e-16
+},
+{
+"x": "4001d29de945c55d",
+"gammaln": "3fbcc11c27413bf0",
+"true": "3fbcc11c27413bf0",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "4001db476695ae6d",
+"gammaln": "3fbd5cb2be6ba217",
+"true": "3fbd5cb2be6ba220",
+"ulps": -9,
+"rel": -1.088969129592292e-15
+},
+{
+"x": "4001dd7e64e77666",
+"gammaln": "3fbd8496396a4b55",
+"true": "3fbd8496396a4b50",
+"ulps": 5,
+"rel": 6.017893555710056e-16
+},
+{
+"x": "4001e04ff1408764",
+"gammaln": "3fbdb7692d2124dc",
+"true": "3fbdb7692d2124e0",
+"ulps": -4,
+"rel": -4.782151090925313e-16
+},
+{
+"x": "4001eb38e57a03c4",
+"gammaln": "3fbe7ccbf31c819a",
+"true": "3fbe7ccbf31c8190",
+"ulps": 10,
+"rel": 1.1653022356079747e-15
+},
+{
+"x": "4001f24a1f0dce72",
+"gammaln": "3fbefd375253377f",
+"true": "3fbefd3752533760",
+"ulps": 31,
+"rel": 3.553960386281016e-15
+},
+{
+"x": "4001f8780c495b54",
+"gammaln": "3fbf6ddc0c3ce367",
+"true": "3fbf6ddc0c3ce380",
+"ulps": -25,
+"rel": -2.8259712178497117e-15
+},
+{
+"x": "40020db346e067ba",
+"gammaln": "3fc079b59ce77231",
+"true": "3fc079b59ce77220",
+"ulps": 17,
+"rel": 3.665830992758244e-15
+},
+{
+"x": "40020fe0c20cc985",
+"gammaln": "3fc08dcc61e81bf2",
+"true": "3fc08dcc61e81bf0",
+"ulps": 2,
+"rel": 4.2922981349912356e-16
+},
+{
+"x": "4002230e3f649b79",
+"gammaln": "3fc13f996d91cb85",
+"true": "3fc13f996d91cb90",
+"ulps": -11,
+"rel": -2.265704149316039e-15
+},
+{
+"x": "40022b853b357865",
+"gammaln": "3fc18e955f9204b2",
+"true": "3fc18e955f9204b0",
+"ulps": 2,
+"rel": 4.0470700072203962e-16
+},
+{
+"x": "40022dcf6b5a59ca",
+"gammaln": "3fc1a4009edb8ecb",
+"true": "3fc1a4009edb8ee0",
+"ulps": -21,
+"rel": -4.2292689294924354e-15
+},
+{
+"x": "40022fa931c6f4d6",
+"gammaln": "3fc1b5549159821a",
+"true": "3fc1b55491598228",
+"ulps": -14,
+"rel": -2.8087354906479916e-15
+},
+{
+"x": "40022fbcf1cbaf04",
+"gammaln": "3fc1b60d91b65e55",
+"true": "3fc1b60d91b65e68",
+"ulps": -19,
+"rel": -3.811247754709644e-15
+},
+{
+"x": "40022fe64371d202",
+"gammaln": "3fc1b790a14f1a66",
+"true": "3fc1b790a14f1a58",
+"ulps": 14,
+"rel": 2.807351660320398e-15
+},
+{
+"x": "4002357072b12321",
+"gammaln": "3fc1eb870b27f74f",
+"true": "3fc1eb870b27f738",
+"ulps": 23,
+"rel": 4.559837096788238e-15
+},
+{
+"x": "40023e0063a402bd",
+"gammaln": "3fc23c198ac3fb69",
+"true": "3fc23c198ac3fb70",
+"ulps": -7,
+"rel": -1.3638232302477681e-15
+},
+{
+"x": "4002501f3f080130",
+"gammaln": "3fc2e7a6c3d63aa7",
+"true": "3fc2e7a6c3d63ab8",
+"ulps": -17,
+"rel": -3.194736267147226e-15
+},
+{
+"x": "40025590381e90a4",
+"gammaln": "3fc31b706dab30f7",
+"true": "3fc31b706dab30e8",
+"ulps": 15,
+"rel": 2.7890402073789477e-15
+},
+{
+"x": "400264e2d57ea7ba",
+"gammaln": "3fc3adf341feacce",
+"true": "3fc3adf341feace0",
+"ulps": -18,
+"rel": -3.2495169460456376e-15
+},
+{
+"x": "4002728dc2a0421a",
+"gammaln": "3fc43179fecce8e2",
+"true": "3fc43179fecce8d0",
+"ulps": 18,
+"rel": 3.1668399096022836e-15
+},
+{
+"x": "4002771421d6954e",
+"gammaln": "3fc45d31c0cdfaf4",
+"true": "3fc45d31c0cdfb08",
+"ulps": -20,
+"rel": -3.4892031296871064e-15
+},
+{
+"x": "40027d7bfa95e87d",
+"gammaln": "3fc49b3b2865f141",
+"true": "3fc49b3b2865f128",
+"ulps": 25,
+"rel": 4.31021261006179e-15
+},
+{
+"x": "40027db567fb9e26",
+"gammaln": "3fc49d68204d71a3",
+"true": "3fc49d68204d71b0",
+"ulps": -13,
+"rel": -2.240386557083346e-15
+},
+{
+"x": "40028f88f9425416",
+"gammaln": "3fc54af9e6004dff",
+"true": "3fc54af9e6004e08",
+"ulps": -9,
+"rel": -1.5016488913175378e-15
+},
+{
+"x": "40029797f6fbc072",
+"gammaln": "3fc599e08d39dbea",
+"true": "3fc599e08d39dbd0",
+"ulps": 26,
+"rel": 4.2762002814078204e-15
+},
+{
+"x": "4002a4689b2443b6",
+"gammaln": "3fc617e866f0c100",
+"true": "3fc617e866f0c118",
+"ulps": -24,
+"rel": -3.8593049134363516e-15
+},
+{
+"x": "4002a9750dcc6b00",
+"gammaln": "3fc649bf51b34e87",
+"true": "3fc649bf51b34e98",
+"ulps": -17,
+"rel": -2.7097957564060956e-15
+},
+{
+"x": "4002aea77b1efb37",
+"gammaln": "3fc67d298e76ecf4",
+"true": "3fc67d298e76ecf8",
+"ulps": -4,
+"rel": -6.319048514716815e-16
+},
+{
+"x": "4002bfae859a03f6",
+"gammaln": "3fc72667eff8536b",
+"true": "3fc72667eff85388",
+"ulps": -29,
+"rel": -4.450479148302275e-15
+},
+{
+"x": "4002c47e63afe50a",
+"gammaln": "3fc75673c7e84d5a",
+"true": "3fc75673c7e84d38",
+"ulps": 34,
+"rel": 5.175841812351151e-15
+},
+{
+"x": "4002c65730030c01",
+"gammaln": "3fc768eb0ca4084a",
+"true": "3fc768eb0ca40840",
+"ulps": 10,
+"rel": 1.5176157545344648e-15
+},
+{
+"x": "4002c6e43d062106",
+"gammaln": "3fc76e6e0b5ed8fb",
+"true": "3fc76e6e0b5ed918",
+"ulps": -29,
+"rel": -4.3970417196838914e-15
+},
+{
+"x": "4002c850f0576fba",
+"gammaln": "3fc77cafcc0f1df5",
+"true": "3fc77cafcc0f1e00",
+"ulps": -11,
+"rel": -1.663888741636278e-15
+},
+{
+"x": "4002c8a7621c5be8",
+"gammaln": "3fc78011351d19a6",
+"true": "3fc78011351d19a8",
+"ulps": -2,
+"rel": -3.023552327501303e-16
+},
+{
+"x": "4002d16e91bf378e",
+"gammaln": "3fc7d81c7da1ecb3",
+"true": "3fc7d81c7da1ecb0",
+"ulps": 3,
+"rel": 4.469912121187362e-16
+},
+{
+"x": "4002d3d25cad0970",
+"gammaln": "3fc7f022de9ba514",
+"true": "3fc7f022de9ba510",
+"ulps": 4,
+"rel": 5.936517536299703e-16
+},
+{
+"x": "4002d6a86be5d468",
+"gammaln": "3fc80cadcbdb10bf",
+"true": "3fc80cadcbdb10c8",
+"ulps": -9,
+"rel": -1.3295239949582673e-15
+},
+{
+"x": "4002d7f12178d889",
+"gammaln": "3fc8199ca787688f",
+"true": "3fc8199ca7876898",
+"ulps": -9,
+"rel": -1.3267369823447742e-15
+},
+{
+"x": "4002da4badbce766",
+"gammaln": "3fc8315635872c46",
+"true": "3fc8315635872c50",
+"ulps": -10,
+"rel": -1.4685051658873072e-15
+},
+{
+"x": "4002dbf25f44d466",
+"gammaln": "3fc841fe5a395914",
+"true": "3fc841fe5a395910",
+"ulps": 4,
+"rel": 5.858265019884887e-16
+},
+{
+"x": "4002dd088f9f05de",
+"gammaln": "3fc84cf64bbab050",
+"true": "3fc84cf64bbab050",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "4002e1d27fb02fcb",
+"gammaln": "3fc87d5b4c0e0fbd",
+"true": "3fc87d5b4c0e0fb0",
+"ulps": 13,
+"rel": 1.885908207530223e-15
+},
+{
+"x": "4002e4e93da3f01a",
+"gammaln": "3fc89c9f1e87f046",
+"true": "3fc89c9f1e87f038",
+"ulps": 14,
+"rel": 2.0208999547651863e-15
+},
+{
+"x": "4002e5df9ea43f6c",
+"gammaln": "3fc8a65efe68b77e",
+"true": "3fc8a65efe68b780",
+"ulps": -2,
+"rel": -2.882539526629564e-16
+},
+{
+"x": "4002ec357679d924",
+"gammaln": "3fc8e6a4e74bba3f",
+"true": "3fc8e6a4e74bba48",
+"ulps": -9,
+"rel": -1.2840641952449362e-15
+},
+{
+"x": "4002f64d6d690de6",
+"gammaln": "3fc94d62a449ffbe",
+"true": "3fc94d62a449ffb8",
+"ulps": 6,
+"rel": 8.424646584377375e-16
+},
+{
+"x": "4002f9c0d2d5f9a2",
+"gammaln": "3fc9709b0a4e1ae8",
+"true": "3fc9709b0a4e1ae0",
+"ulps": 8,
+"rel": 1.117211456063515e-15
+},
+{
+"x": "4002fd53ec4f8cc8",
+"gammaln": "3fc99524245ad1f9",
+"true": "3fc99524245ad218",
+"ulps": -31,
+"rel": -4.305043208142332e-15
+},
+{
+"x": "40030c9761f1a43c",
+"gammaln": "3fca31bbb3dbf8e7",
+"true": "3fca31bbb3dbf900",
+"ulps": -25,
+"rel": -3.3907354828279776e-15
+},
+{
+"x": "40031b251007ed08",
+"gammaln": "3fcac7ec0d4bbf86",
+"true": "3fcac7ec0d4bbfa0",
+"ulps": -26,
+"rel": -3.449114791195372e-15
+},
+{
+"x": "4003207c4723d602",
+"gammaln": "3fcaff40922c0a6d",
+"true": "3fcaff40922c0a60",
+"ulps": 13,
+"rel": 1.7107509216675919e-15
+},
+{
+"x": "400329744283b4b2",
+"gammaln": "3fcb5c6da073d799",
+"true": "3fcb5c6da073d7a0",
+"ulps": -7,
+"rel": -9.089197153226487e-16
+},
+{
+"x": "40032fa2466fc7e9",
+"gammaln": "3fcb9cd19ae50b86",
+"true": "3fcb9cd19ae50b80",
+"ulps": 6,
+"rel": 7.719773824143743e-16
+},
+{
+"x": "400337fdc6b05c56",
+"gammaln": "3fcbf424ff1c7fb4",
+"true": "3fcbf424ff1c7fc0",
+"ulps": -12,
+"rel": -1.5251140323250945e-15
+},
+{
+"x": "400339dc2fa1179a",
+"gammaln": "3fcc07b5aef76658",
+"true": "3fcc07b5aef76640",
+"ulps": 24,
+"rel": 3.0419113581797972e-15
+},
+{
+"x": "40034142e0115fed",
+"gammaln": "3fcc55554cb9259a",
+"true": "3fcc55554cb92590",
+"ulps": 10,
+"rel": 1.2538989681708953e-15
+},
+{
+"x": "4003487b1f6dc414",
+"gammaln": "3fcca1440622041f",
+"true": "3fcca14406220410",
+"ulps": 15,
+"rel": 1.8613625225797675e-15
+},
+{
+"x": "40034dabce812ad4",
+"gammaln": "3fccd7fb4ff3e5f0",
+"true": "3fccd7fb4ff3e600",
+"ulps": -16,
+"rel": -1.9707409690050456e-15
+},
+{
+"x": "4003507b454babaa",
+"gammaln": "3fccf5a79386a3fa",
+"true": "3fccf5a79386a3f0",
+"ulps": 10,
+"rel": 1.226783214865105e-15
+},
+{
+"x": "400357018a57fa48",
+"gammaln": "3fcd3aa9cd8cd30f",
+"true": "3fcd3aa9cd8cd320",
+"ulps": -17,
+"rel": -2.0662976971358473e-15
+},
+{
+"x": "40035eeae092095a",
+"gammaln": "3fcd8e91d78fadce",
+"true": "3fcd8e91d78fadb0",
+"ulps": 30,
+"rel": 3.605972343000053e-15
+},
+{
+"x": "400365108dd7150b",
+"gammaln": "3fcdcfefc765bd33",
+"true": "3fcdcfefc765bd40",
+"ulps": -13,
+"rel": -1.5492045710641203e-15
+},
+{
+"x": "400367ef2cadb3ad",
+"gammaln": "3fcdee80a6874166",
+"true": "3fcdee80a6874170",
+"ulps": -10,
+"rel": -1.1869421209376325e-15
+},
+{
+"x": "40036c5a1d3706a2",
+"gammaln": "3fce1d9f517363e7",
+"true": "3fce1d9f517363e0",
+"ulps": 7,
+"rel": 8.257814241036686e-16
+},
+{
+"x": "40036dc610b3e0ba",
+"gammaln": "3fce2ccd75d7cd12",
+"true": "3fce2ccd75d7cd10",
+"ulps": 2,
+"rel": 2.354739017407025e-16
+},
+{
+"x": "40037df85b2a109f",
+"gammaln": "3fceda4ed40fc199",
+"true": "3fceda4ed40fc180",
+"ulps": 25,
+"rel": 2.8787643841082818e-15
+},
+{
+"x": "40038cc5cee7a777",
+"gammaln": "3fcf79c9abbf512a",
+"true": "3fcf79c9abbf5130",
+"ulps": -6,
+"rel": -6.77229080949151e-16
+},
+{
+"x": "4003946beefc75fa",
+"gammaln": "3fcfcc88bf5e9b4e",
+"true": "3fcfcc88bf5e9b60",
+"ulps": -18,
+"rel": -2.0110356752886785e-15
+},
+{
+"x": "40039e2d013dfd30",
+"gammaln": "3fd01b31c635443e",
+"true": "3fd01b31c6354438",
+"ulps": 6,
+"rel": 1.3234806901301615e-15
+},
+{
+"x": "40039ef4eb1803e7",
+"gammaln": "3fd01f70981dcec6",
+"true": "3fd01f70981dced0",
+"ulps": -10,
+"rel": -2.2035323134711577e-15
+},
+{
+"x": "4003a85661d754be",
+"gammaln": "3fd05287efbe492a",
+"true": "3fd05287efbe4938",
+"ulps": -14,
+"rel": -3.0472254050291145e-15
+},
+{
+"x": "4003c4070f7bbba6",
+"gammaln": "3fd0ea5856e0cb45",
+"true": "3fd0ea5856e0cb48",
+"ulps": -3,
+"rel": -6.300846832411646e-16
+},
+{
+"x": "4003c9be33dfb5fc",
+"gammaln": "3fd109ddbac1fdc2",
+"true": "3fd109ddbac1fdb8",
+"ulps": 10,
+"rel": 2.0851045732927092e-15
+},
+{
+"x": "4003d6bfe0346572",
+"gammaln": "3fd151d5aef4cf3a",
+"true": "3fd151d5aef4cf28",
+"ulps": 18,
+"rel": 3.692267695206705e-15
+},
+{
+"x": "4003dc4c30a998de",
+"gammaln": "3fd170a227feb7ca",
+"true": "3fd170a227feb7c8",
+"ulps": 2,
+"rel": 4.07421893646803e-16
+},
+{
+"x": "4003fa85b0d13809",
+"gammaln": "3fd21975847d0f8c",
+"true": "3fd21975847d0f88",
+"ulps": 4,
+"rel": 7.851539779644227e-16
+},
+{
+"x": "4003fc73eb6cc246",
+"gammaln": "3fd2244d67ff6552",
+"true": "3fd2244d67ff6560",
+"ulps": -14,
+"rel": -2.741622921066e-15
+},
+{
+"x": "400401e7e4293f81",
+"gammaln": "3fd242f7e7911a4f",
+"true": "3fd242f7e7911a50",
+"ulps": -1,
+"rel": -1.945456371881872e-16
+},
+{
+"x": "40040839cd75da30",
+"gammaln": "3fd26694c0ffe8e6",
+"true": "3fd26694c0ffe8f0",
+"ulps": -10,
+"rel": -1.9307484326648798e-15
+},
+{
+"x": "40040a72cb0b392f",
+"gammaln": "3fd2731fa28ac155",
+"true": "3fd2731fa28ac158",
+"ulps": -3,
+"rel": -5.776863684809807e-16
+},
+{
+"x": "40041585f61d80f4",
+"gammaln": "3fd2b1c2d1798cb9",
+"true": "3fd2b1c2d1798cc8",
+"ulps": -15,
+"rel": -2.85062720462171e-15
+},
+{
+"x": "40042137ab4e4168",
+"gammaln": "3fd2f4279f4ec99e",
+"true": "3fd2f4279f4ec9a0",
+"ulps": -2,
+"rel": -3.74882807339595e-16
+},
+{
+"x": "4004342e987ede82",
+"gammaln": "3fd36060e1eab3b8",
+"true": "3fd36060e1eab3a8",
+"ulps": 16,
+"rel": 2.9336300411779203e-15
+},
+{
+"x": "40043493a9512fb0",
+"gammaln": "3fd362a37b0fee60",
+"true": "3fd362a37b0fee58",
+"ulps": 8,
+"rel": 1.4661469846444288e-15
+},
+{
+"x": "4004447dc1eb7dec",
+"gammaln": "3fd3bdfe58680444",
+"true": "3fd3bdfe58680448",
+"ulps": -4,
+"rel": -7.198226077729215e-16
+},
+{
+"x": "400446c7e1533aba",
+"gammaln": "3fd3cb2cfaf00b16",
+"true": "3fd3cb2cfaf00b00",
+"ulps": 22,
+"rel": 3.948725011289821e-15
+},
+{
+"x": "400447d4741167c5",
+"gammaln": "3fd3d1382692dc4a",
+"true": "3fd3d1382692dc48",
+"ulps": 2,
+"rel": 3.5854736059022564e-16
+},
+{
+"x": "400449b7ad0ec5bf",
+"gammaln": "3fd3dc19305f3f9d",
+"true": "3fd3dc19305f3fa0",
+"ulps": -3,
+"rel": -5.366702006301527e-16
+},
+{
+"x": "40044b7df7002f22",
+"gammaln": "3fd3e65508d6bd6c",
+"true": "3fd3e65508d6bd78",
+"ulps": -12,
+"rel": -2.1423684332676548e-15
+},
+{
+"x": "40045a542e16e8f6",
+"gammaln": "3fd43c2055b20f97",
+"true": "3fd43c2055b20fa0",
+"ulps": -9,
+"rel": -1.5801646195249665e-15
+},
+{
+"x": "40045f2c283929a8",
+"gammaln": "3fd4583971d7a468",
+"true": "3fd4583971d7a458",
+"ulps": 16,
+"rel": 2.7940261650318117e-15
+},
+{
+"x": "400460dca981a0d2",
+"gammaln": "3fd462090e089630",
+"true": "3fd462090e089638",
+"ulps": -8,
+"rel": -1.3943864113069021e-15
+},
+{
+"x": "400463351f035a73",
+"gammaln": "3fd46faa43626bb9",
+"true": "3fd46faa43626bb8",
+"ulps": 1,
+"rel": 1.7384421326754555e-16
+},
+{
+"x": "40046e672cb42179",
+"gammaln": "3fd4b0dcea519120",
+"true": "3fd4b0dcea519118",
+"ulps": 8,
+"rel": 1.3736352407624022e-15
+},
+{
+"x": "40046ea196017593",
+"gammaln": "3fd4b231b37499bb",
+"true": "3fd4b231b37499b8",
+"ulps": 3,
+"rel": 5.149837908713222e-16
+},
+{
+"x": "400471e2f7b8dba2",
+"gammaln": "3fd4c5328ee807c8",
+"true": "3fd4c5328ee807c0",
+"ulps": 8,
+"rel": 1.3683820515704353e-15
+},
+{
+"x": "40047896794af208",
+"gammaln": "3fd4ec60bc3ea50d",
+"true": "3fd4ec60bc3ea500",
+"ulps": 13,
+"rel": 2.2073556804125857e-15
+},
+{
+"x": "40047c9cc0f167d9",
+"gammaln": "3fd503f2d7bbb604",
+"true": "3fd503f2d7bbb5f8",
+"ulps": 12,
+"rel": 2.028632097432129e-15
+},
+{
+"x": "40047fcc26a4a95d",
+"gammaln": "3fd5169fe73c46e3",
+"true": "3fd5169fe73c46f0",
+"ulps": -13,
+"rel": -2.1900820950945043e-15
+},
+{
+"x": "40048ab5a9233232",
+"gammaln": "3fd556c02b13b864",
+"true": "3fd556c02b13b868",
+"ulps": -4,
+"rel": -6.659609847335728e-16
+},
+{
+"x": "40048c6f38da4be2",
+"gammaln": "3fd560e8370a4eac",
+"true": "3fd560e8370a4ea8",
+"ulps": 4,
+"rel": 6.647251172672314e-16
+},
+{
+"x": "4004941bd03c0ef2",
+"gammaln": "3fd58e296edb7f6c",
+"true": "3fd58e296edb7f60",
+"ulps": 12,
+"rel": 1.9778210067590897e-15
+},
+{
+"x": "40049740f1e9d63f",
+"gammaln": "3fd5a0bd5e223022",
+"true": "3fd5a0bd5e223018",
+"ulps": 10,
+"rel": 1.6426538868705885e-15
+},
+{
+"x": "40049c4852538d14",
+"gammaln": "3fd5be7baaed5770",
+"true": "3fd5be7baaed5770",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "4004a1f19e9c54a4",
+"gammaln": "3fd5e005fa1012a1",
+"true": "3fd5e005fa101298",
+"ulps": 9,
+"rel": 1.4616818196802459e-15
+},
+{
+"x": "4004a405b55ac7f8",
+"gammaln": "3fd5ec5a1de120dd",
+"true": "3fd5ec5a1de120d8",
+"ulps": 5,
+"rel": 8.102616325449161e-16
+},
+{
+"x": "4004a8a6d69e49c7",
+"gammaln": "3fd607d72aa4e4b5",
+"true": "3fd607d72aa4e4b8",
+"ulps": -3,
+"rel": -4.837874595930484e-16
+},
+{
+"x": "4004ae730d115840",
+"gammaln": "3fd62a525c722855",
+"true": "3fd62a525c722848",
+"ulps": 13,
+"rel": 2.083673027366132e-15
+},
+{
+"x": "4004b5efcdc076dc",
+"gammaln": "3fd656f1769f82d3",
+"true": "3fd656f1769f82c0",
+"ulps": 19,
+"rel": 3.0216070837090117e-15
+},
+{
+"x": "4004c0a205c267a0",
+"gammaln": "3fd696dde6caac23",
+"true": "3fd696dde6caac10",
+"ulps": 19,
+"rel": 2.9882063555681786e-15
+},
+{
+"x": "4004ce1c7e09966c",
+"gammaln": "3fd6e7b760c8fc51",
+"true": "3fd6e7b760c8fc50",
+"ulps": 1,
+"rel": 1.5510550852910067e-16
+},
+{
+"x": "4004da3f1d6556cc",
+"gammaln": "3fd730cafe1cb79c",
+"true": "3fd730cafe1cb790",
+"ulps": 12,
+"rel": 1.8383555787913197e-15
+},
+{
+"x": "4004e555454e7f38",
+"gammaln": "3fd773c9fbba702b",
+"true": "3fd773c9fbba7030",
+"ulps": -5,
+"rel": -7.574339322876928e-16
+},
+{
+"x": "4004ee20644034d4",
+"gammaln": "3fd7a91630ca2211",
+"true": "3fd7a91630ca2218",
+"ulps": -7,
+"rel": -1.0510767381555662e-15
+},
+{
+"x": "4004f22037b356e8",
+"gammaln": "3fd7c15f8e7ba48d",
+"true": "3fd7c15f8e7ba490",
+"ulps": -3,
+"rel": -4.486624953175178e-16
+},
+{
+"x": "4004f471da1511fe",
+"gammaln": "3fd7cf77e7dda7b5",
+"true": "3fd7cf77e7dda7c0",
+"ulps": -11,
+"rel": -1.6412917093408252e-15
+},
+{
+"x": "4004f488b7a09ec2",
+"gammaln": "3fd7d002f0d8a6c0",
+"true": "3fd7d002f0d8a6b8",
+"ulps": 8,
+"rel": 1.1935603515635956e-15
+},
+{
+"x": "4005034c1712d579",
+"gammaln": "3fd829fa84bd0bb1",
+"true": "3fd829fa84bd0bb0",
+"ulps": 1,
+"rel": 1.470251939681449e-16
+},
+{
+"x": "40050599990615c2",
+"gammaln": "3fd8380c1463fca7",
+"true": "3fd8380c1463fc98",
+"ulps": 15,
+"rel": 2.2003736612039193e-15
+},
+{
+"x": "40050cb6bd8ef021",
+"gammaln": "3fd86391b4e91150",
+"true": "3fd86391b4e91150",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "40050d1719398586",
+"gammaln": "3fd865dfde85e431",
+"true": "3fd865dfde85e430",
+"ulps": 1,
+"rel": 1.4561527026331304e-16
+},
+{
+"x": "400535d215ea9e5a",
+"gammaln": "3fd960d6bfe3473b",
+"true": "3fd960d6bfe34730",
+"ulps": 11,
+"rel": 1.539893773980791e-15
+},
+{
+"x": "40053949f431e49a",
+"gammaln": "3fd976588f3a222a",
+"true": "3fd976588f3a2228",
+"ulps": 2,
+"rel": 2.7905689902820127e-16
+},
+{
+"x": "40053a502458d4a6",
+"gammaln": "3fd97cb37ac5d07c",
+"true": "3fd97cb37ac5d078",
+"ulps": 4,
+"rel": 5.575701868533586e-16
+},
+{
+"x": "40053d271909cbab",
+"gammaln": "3fd98e54dd31ad2c",
+"true": "3fd98e54dd31ad20",
+"ulps": 12,
+"rel": 1.6682029061076118e-15
+},
+{
+"x": "40053ddc41972d91",
+"gammaln": "3fd992ba2db48b71",
+"true": "3fd992ba2db48b70",
+"ulps": 1,
+"rel": 1.389235667938723e-16
+},
+{
+"x": "40054bcc532e35a9",
+"gammaln": "3fd9e97cb86ff80f",
+"true": "3fd9e97cb86ff808",
+"ulps": 7,
+"rel": 9.597460175529347e-16
+},
+{
+"x": "40054e0ff35cca58",
+"gammaln": "3fd9f79d20e5d7fc",
+"true": "3fd9f79d20e5d800",
+"ulps": -4,
+"rel": -5.472608556575184e-16
+},
+{
+"x": "40054ea71fc00990",
+"gammaln": "3fd9fb4cb6f2b4f6",
+"true": "3fd9fb4cb6f2b4e8",
+"ulps": 14,
+"rel": 1.9143515497918884e-15
+},
+{
+"x": "400561420f5fe554",
+"gammaln": "3fda6fbed1db9852",
+"true": "3fda6fbed1db9860",
+"ulps": -14,
+"rel": -1.8814132464624134e-15
+},
+{
+"x": "40056235dba8ddfb",
+"gammaln": "3fda75b8ea6be5d1",
+"true": "3fda75b8ea6be5d8",
+"ulps": -7,
+"rel": -9.398765708250614e-16
+},
+{
+"x": "400577417d4442e1",
+"gammaln": "3fdafa36bdc53f22",
+"true": "3fdafa36bdc53f18",
+"ulps": 10,
+"rel": 1.3169223017754947e-15
+},
+{
+"x": "40057d5604855ea2",
+"gammaln": "3fdb20a30ea2e508",
+"true": "3fdb20a30ea2e500",
+"ulps": 8,
+"rel": 1.0477088543093462e-15
+},
+{
+"x": "40058a6aff68bdb4",
+"gammaln": "3fdb7386f2fcc821",
+"true": "3fdb7386f2fcc820",
+"ulps": 1,
+"rel": 1.2941888134789004e-16
+},
+{
+"x": "4005927c5277b7e6",
+"gammaln": "3fdba6cb9a3fb667",
+"true": "3fdba6cb9a3fb670",
+"ulps": -9,
+"rel": -1.1563340855545316e-15
+},
+{
+"x": "4005935d6760c098",
+"gammaln": "3fdbac63b4dc998e",
+"true": "3fdbac63b4dc9988",
+"ulps": 6,
+"rel": 7.702806610525004e-16
+},
+{
+"x": "40059e356544a2ca",
+"gammaln": "3fdbf17eaa475e2d",
+"true": "3fdbf17eaa475e30",
+"ulps": -3,
+"rel": -3.8141973776996086e-16
+},
+{
+"x": "4005a1b31839f8cc",
+"gammaln": "3fdc07c940d68d82",
+"true": "3fdc07c940d68d88",
+"ulps": -6,
+"rel": -7.604697380764326e-16
+},
+{
+"x": "4005ad9db016d250",
+"gammaln": "3fdc540957115cdb",
+"true": "3fdc540957115ce0",
+"ulps": -5,
+"rel": -6.270615872377723e-16
+},
+{
+"x": "4005b13e5a42abc4",
+"gammaln": "3fdc6b4c3a1c142b",
+"true": "3fdc6b4c3a1c1428",
+"ulps": 3,
+"rel": 3.750340116233891e-16
+},
+{
+"x": "4005b97c9551caec",
+"gammaln": "3fdca03d71bdc4ca",
+"true": "3fdca03d71bdc4b8",
+"ulps": 18,
+"rel": 2.233947659243271e-15
+},
+{
+"x": "4005b9fee2bdd6ae",
+"gammaln": "3fdca383514fa9c6",
+"true": "3fdca383514fa9d0",
+"ulps": -10,
+"rel": -1.2405279876091082e-15
+},
+{
+"x": "4005c4dd760e1320",
+"gammaln": "3fdce9835575841a",
+"true": "3fdce98355758410",
+"ulps": 10,
+"rel": 1.2287956516150499e-15
+},
+{
+"x": "4005c7ce1103c79c",
+"gammaln": "3fdcfc7b2c6cd650",
+"true": "3fdcfc7b2c6cd648",
+"ulps": 8,
+"rel": 9.805236979132763e-16
+},
+{
+"x": "4005db3dea4f510c",
+"gammaln": "3fdd7a43bc00e5ce",
+"true": "3fdd7a43bc00e5c8",
+"ulps": 6,
+"rel": 7.231350222875419e-16
+},
+{
+"x": "4005e324a3140dd0",
+"gammaln": "3fddad952ec56626",
+"true": "3fddad952ec56628",
+"ulps": -2,
+"rel": -2.394168598903443e-16
+},
+{
+"x": "4005e7ebb93f76d4",
+"gammaln": "3fddccaa63950cc7",
+"true": "3fddccaa63950cb8",
+"ulps": 15,
+"rel": 1.788310207066364e-15
+},
+{
+"x": "4005eb2a336d49d6",
+"gammaln": "3fdde1cb108c7589",
+"true": "3fdde1cb108c7588",
+"ulps": 1,
+"rel": 1.1889140993314472e-16
+},
+{
+"x": "4005eeaa2d08f16e",
+"gammaln": "3fddf89b7f13fdee",
+"true": "3fddf89b7f13fde8",
+"ulps": 6,
+"rel": 7.11227346923086e-16
+},
+{
+"x": "4005f1adef2318f0",
+"gammaln": "3fde0c4687ec93d5",
+"true": "3fde0c4687ec93c8",
+"ulps": 13,
+"rel": 1.5370524762554498e-15
+},
+{
+"x": "4005fd7e52ac8164",
+"gammaln": "3fde598064a4ee50",
+"true": "3fde598064a4ee58",
+"ulps": -8,
+"rel": -9.364767586108646e-16
+},
+{
+"x": "4005fe19b9179dd0",
+"gammaln": "3fde5d79ddb62bca",
+"true": "3fde5d79ddb62bc8",
+"ulps": 2,
+"rel": 2.339994867610746e-16
+},
+{
+"x": "4006078144572f0e",
+"gammaln": "3fde9b21b6eef325",
+"true": "3fde9b21b6eef328",
+"ulps": -3,
+"rel": -3.482371720895636e-16
+},
+{
+"x": "40061d8b7704fc64",
+"gammaln": "3fdf2c37318e5c16",
+"true": "3fdf2c37318e5c10",
+"ulps": 6,
+"rel": 6.838121279198318e-16
+},
+{
+"x": "4006242c5ec811d4",
+"gammaln": "3fdf5802f357208d",
+"true": "3fdf5802f3572080",
+"ulps": 13,
+"rel": 1.4735062487581651e-15
+},
+{
+"x": "40062590fff9ff34",
+"gammaln": "3fdf6139b19f77ca",
+"true": "3fdf6139b19f77c0",
+"ulps": 10,
+"rel": 1.1321662971871982e-15
+},
+{
+"x": "4006329bc734170a",
+"gammaln": "3fdfb7a52809e09e",
+"true": "3fdfb7a52809e098",
+"ulps": 6,
+"rel": 6.720697906220982e-16
+},
+{
+"x": "40064398741a7d5e",
+"gammaln": "3fe0145167d7903f",
+"true": "3fe0145167d7903c",
+"ulps": 3,
+"rel": 6.628458033241245e-16
+},
+{
+"x": "400648c092402fc8",
+"gammaln": "3fe025842e2a62e1",
+"true": "3fe025842e2a62e0",
+"ulps": 1,
+"rel": 2.200292993394774e-16
+},
+{
+"x": "400659f4af0fb002",
+"gammaln": "3fe05f0de9fb428b",
+"true": "3fe05f0de9fb4284",
+"ulps": 7,
+"rel": 1.5190599735589904e-15
+},
+{
+"x": "4006648f44ac4d1a",
+"gammaln": "3fe082a49f745312",
+"true": "3fe082a49f745310",
+"ulps": 2,
+"rel": 4.3036267282332294e-16
+},
+{
+"x": "40066b3697791a30",
+"gammaln": "3fe09905a23a0c3b",
+"true": "3fe09905a23a0c34",
+"ulps": 7,
+"rel": 1.4983360647393512e-15
+},
+{
+"x": "40066baba30a8e4c",
+"gammaln": "3fe09a8fa7b198b0",
+"true": "3fe09a8fa7b198b0",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "40068944968e56f6",
+"gammaln": "3fe0fe91b17f5779",
+"true": "3fe0fe91b17f5778",
+"ulps": 1,
+"rel": 2.0905189132869811e-16
+},
+{
+"x": "4006a2be43d3b26c",
+"gammaln": "3fe1553b3bb6fdcb",
+"true": "3fe1553b3bb6fdcc",
+"ulps": -1,
+"rel": -2.0496896012399495e-16
+},
+{
+"x": "4006bf0e5ef93db2",
+"gammaln": "3fe1b62cfe252716",
+"true": "3fe1b62cfe252714",
+"ulps": 2,
+"rel": 4.01173113407358e-16
+},
+{
+"x": "4006c44c7831fc86",
+"gammaln": "3fe1c832e961bb67",
+"true": "3fe1c832e961bb70",
+"ulps": -9,
+"rel": -1.798131527905209e-15
+},
+{
+"x": "4006c46e54e03f9a",
+"gammaln": "3fe1c8a76609a720",
+"true": "3fe1c8a76609a724",
+"ulps": -4,
+"rel": -7.990896928305701e-16
+},
+{
+"x": "4006c6acf8310656",
+"gammaln": "3fe1d060bd5a9847",
+"true": "3fe1d060bd5a984c",
+"ulps": -5,
+"rel": -9.971703265037278e-16
+},
+{
+"x": "4006ceb2fa303476",
+"gammaln": "3fe1ec05451d1226",
+"true": "3fe1ec05451d1228",
+"ulps": -2,
+"rel": -3.9646496119919655e-16
+},
+{
+"x": "4006cf7415a6289e",
+"gammaln": "3fe1ee9f43722209",
+"true": "3fe1ee9f4372220c",
+"ulps": -3,
+"rel": -5.943604226784099e-16
+},
+{
+"x": "4006d18ded87a166",
+"gammaln": "3fe1f5ded203f395",
+"true": "3fe1f5ded203f39c",
+"ulps": -7,
+"rel": -1.384654713924788e-15
+},
+{
+"x": "4006d872f07b66b6",
+"gammaln": "3fe20dae990a3297",
+"true": "3fe20dae990a3294",
+"ulps": 3,
+"rel": 5.903660381471444e-16
+},
+{
+"x": "4006f50a042162c6",
+"gammaln": "3fe270d64cfdc36e",
+"true": "3fe270d64cfdc36c",
+"ulps": 2,
+"rel": 3.853107743982651e-16
+},
+{
+"x": "4007114b03855780",
+"gammaln": "3fe2d37a89ba3707",
+"true": "3fe2d37a89ba3700",
+"ulps": 7,
+"rel": 1.3209858070117592e-15
+},
+{
+"x": "400716a61a625bfe",
+"gammaln": "3fe2e64001f6505a",
+"true": "3fe2e64001f6505c",
+"ulps": -2,
+"rel": -3.7596019062460963e-16
+},
+{
+"x": "40071fc6c6d8588a",
+"gammaln": "3fe3064b5df25a80",
+"true": "3fe3064b5df25a78",
+"ulps": 8,
+"rel": 1.493946158737954e-15
+},
+{
+"x": "400725bf9f5dcc92",
+"gammaln": "3fe31b4bfcde61ce",
+"true": "3fe31b4bfcde61c8",
+"ulps": 6,
+"rel": 1.1156485495359417e-15
+},
+{
+"x": "40073a1b0505d02c",
+"gammaln": "3fe3631a82480eb1",
+"true": "3fe3631a82480eac",
+"ulps": 5,
+"rel": 9.162560205828776e-16
+},
+{
+"x": "40073f32d93e2038",
+"gammaln": "3fe3751ee84e568b",
+"true": "3fe3751ee84e568c",
+"ulps": -1,
+"rel": -1.8258836729092984e-16
+},
+{
+"x": "4007407135ec39f8",
+"gammaln": "3fe37985f2420770",
+"true": "3fe37985f2420770",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "400749eb1d58af12",
+"gammaln": "3fe39b1c55969af8",
+"true": "3fe39b1c55969af0",
+"ulps": 8,
+"rel": 1.4496507601963653e-15
+},
+{
+"x": "40074c56f5746016",
+"gammaln": "3fe3a3b442e59704",
+"true": "3fe3a3b442e59704",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "400754dc33243730",
+"gammaln": "3fe3c1fb5d55fadd",
+"true": "3fe3c1fb5d55fae4",
+"ulps": -7,
+"rel": -1.2586962640760208e-15
+},
+{
+"x": "40075c34ce3b1c8c",
+"gammaln": "3fe3dc220c89e020",
+"true": "3fe3dc220c89e020",
+"ulps": 0,
+"rel": 0.0
+},
+{
+"x": "40076a7fdc6bcdc6",
+"gammaln": "3fe40f2343660b47",
+"true": "3fe40f2343660b44",
+"ulps": 3,
+"rel": 5.313361081349468e-16
+},
+{
+"x": "40076ead67d37b9e",
+"gammaln": "3fe41e13be8aebea",
+"true": "3fe41e13be8aebec",
+"ulps": -2,
+"rel": -3.5319653647360034e-16
+},
+{
+"x": "400771afa7867e3a",
+"gammaln": "3fe428d832d445df",
+"true": "3fe428d832d445d8",
+"ulps": 7,
+"rel": 1.233608739972713e-15
+},
+{
+"x": "400778d3b7380e82",
+"gammaln": "3fe4426d8d206dbf",
+"true": "3fe4426d8d206dbc",
+"ulps": 3,
+"rel": 5.260815612761922e-16
+},
+{
+"x": "40078727d950c240",
+"gammaln": "3fe475e272be3cb8",
+"true": "3fe475e272be3cbc",
+"ulps": -4,
+"rel": -6.945511614656956e-16
+},
+{
+"x": "4007884d785aa618",
+"gammaln": "3fe47a02b01bd4ae",
+"true": "3fe47a02b01bd4ac",
+"ulps": 2,
+"rel": 3.470022434422772e-16
+},
+{
+"x": "4007bc8d7ae796ea",
+"gammaln": "3fe53710fd32b5b8",
+"true": "3fe53710fd32b5b0",
+"ulps": 8,
+"rel": 1.3396922680023445e-15
+},
+{
+"x": "4007bed308a3dce4",
+"gammaln": "3fe53f55a5ca7d95",
+"true": "3fe53f55a5ca7d94",
+"ulps": 1,
+"rel": 1.6720697937772165e-16
+},
+{
+"x": "4007d0346632e520",
+"gammaln": "3fe57eb9f268ffa1",
+"true": "3fe57eb9f268ffa0",
+"ulps": 1,
+"rel": 1.6528074323088104e-16
+},
+{
+"x": "4007e02dd905d4bc",
+"gammaln": "3fe5b9329b44424e",
+"true": "3fe5b9329b44424c",
+"ulps": 2,
+"rel": 3.270859098459654e-16
+},
+{
+"x": "4007eb989f416180",
+"gammaln": "3fe5e31bf2ce8fd8",
+"true": "3fe5e31bf2ce8fd0",
+"ulps": 8,
+"rel": 1.2985571739972105e-15
+},
+{
+"x": "4007edd274e44584",
+"gammaln": "3fe5eb4aca84953d",
+"true": "3fe5eb4aca849538",
+"ulps": 5,
+"rel": 8.104146754672886e-16
+},
+{
+"x": "4007f62c4c03ac64",
+"gammaln": "3fe60a06bb25f658",
+"true": "3fe60a06bb25f654",
+"ulps": 4,
+"rel": 6.448000448889336e-16
+},
+{
+"x": "4007fe3ee8f7a6aa",
+"gammaln": "3fe627c9a5a9cf0e",
+"true": "3fe627c9a5a9cf08",
+"ulps": 6,
+"rel": 9.6212490921737e-16
+}
+]
+}
