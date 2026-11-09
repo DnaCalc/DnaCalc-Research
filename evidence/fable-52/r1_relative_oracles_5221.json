@@ -1,0 +1,98 @@
+{
+"MDURATION = DURATION / (1 + yld/freq), each op stored": [
+300,
+300
+],
+"MDURATION = DURATION / ((freq + yld)/freq)": [
+300,
+300
+],
+"MDURATION = DURATION * freq / (freq + yld)": [
+300,
+300
+],
+"BETADIST(x,a,b) = BETA.DIST(x,a,b,TRUE)": [
+300,
+300
+],
+"BETADIST(x,a,b,A,B) = BETA.DIST(x,a,b,TRUE,A,B)": [
+300,
+300
+],
+"BETA.DIST(x,a,b,TRUE,A,B) = BETA.DIST((x-A)/(B-A),a,b,TRUE)": [
+300,
+300
+],
+"FDIST = F.DIST.RT": [
+300,
+300
+],
+"F.DIST(x,d1,d2,TRUE) = BETA.DIST(d1x/(d1x+d2), d1/2, d2/2)": [
+204,
+300
+],
+"F.DIST.RT(x,d1,d2) = BETA.DIST(d2/(d2+d1x), d2/2, d1/2)": [
+202,
+300
+],
+"F.DIST(x,d1,d2,TRUE) = 1 - F.DIST.RT (stored)": [
+211,
+300
+],
+"F.DIST.RT = 1 - F.DIST(..,TRUE) (stored)": [
+177,
+300
+],
+"GAMMADIST = GAMMA.DIST (cdf)": [
+300,
+300
+],
+"GAMMA.DIST(2x,a,2,TRUE) = GAMMA.DIST(x,a,1,TRUE)  (x/beta exact)": [
+300,
+300
+],
+"CHISQ.DIST(2x,2a,TRUE) = GAMMA.DIST(x,a,1,TRUE)": [
+300,
+300
+],
+"GAMMA.DIST(y,a,3,TRUE) = GAMMA.DIST(stored y/3,a,1,TRUE)": [
+300,
+300
+],
+"pdf: GAMMA.DIST(y,a,3,FALSE) = GAMMA.DIST(stored y/3,a,1,FALSE) / 3 (stored)": [
+177,
+300
+],
+"GAMMA.INV(p,a,3) = 3 * GAMMA.INV(p,a,1) (stored)": [
+300,
+300
+],
+"GAMMA.INV(p,a,2) = 2 * GAMMA.INV(p,a,1) (exact scale)": [
+300,
+300
+],
+"CHISQ.INV(p,2a) = GAMMA.INV(p,a,2)": [
+300,
+300
+],
+"GAMMA.DIST(GAMMA.INV(p,a,1),a,1,TRUE) = p": [
+132,
+300
+],
+"HYPGEOMDIST = HYPGEOM.DIST(..,FALSE)": [
+300,
+300
+],
+"pmf(k;n,K,N) = pmf(k;K,n,N)  (swap sample and successes)": [
+7,
+300
+],
+"pmf(k;n,K,N) = pmf(n-k;n,N-K,N)  (swap successes and failures)": [
+195,
+300
+],
+"cdf(k) = cdf(k-1) + pmf(k) (stored)": [
+116,
+300
+]
+}
