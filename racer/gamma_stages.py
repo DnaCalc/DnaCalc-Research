@@ -29,6 +29,48 @@ STAGE_BINDINGS = {str(p.resolve()):sha(p) for p in (
       ('geomean.py', 'exact.py', 'check.py', 'x87.py')))}
 
 
+def corrected_exponent_normalizer(start, stored_sum, exponential, answer, suffix,
+                                  product_model='stored_pc64'):
+    """Exact preimage of a corrected, stored exponent's additive normalizer.
+
+    s=store(start+C), d=store((start-s)+C), f=store(1+d),
+    z=round_model(EXP(s)*f), followed by a fixed arithmetic suffix. The
+    default stores each operation; explicit resident-PC64 alternatives are
+    also accepted. EXP(s) is a supplied observed or declared native leaf,
+    not an assumed mathematical exp approximation.
+    start-s is exact for the same-sign, adjacent-binade operands used here.
+    Returns one rational span for this particular stored sum; callers retain
+    the union over every sum in their declared enumeration.
+    """
+    from fractions import Fraction as Q
+    start, stored_sum = Q(start), Q(stored_sum)
+    if not start or not stored_sum or start*stored_sum <= 0 or not \
+            Q(1,2) <= start/stored_sum <= 2:
+        raise ValueError('Sterbenz subtraction premise required')
+    delta=start-stored_sum
+    if EXTENDED64.round(delta)!=delta:
+        raise ValueError('exponent remainder is not exact at PC64')
+    span=Span(Q(answer),Q(answer))
+    if product_model not in ('stored_pc64','resident_pc64'):
+        raise ValueError('unsupported corrected-product arithmetic')
+    for step in reversed(suffix):
+        op,constant=step[:2]
+        model=step[2]if len(step)==3 else 'stored_pc64'
+        if model not in ('stored_pc64','resident_pc64'):
+            raise ValueError('unsupported suffix arithmetic')
+        if op not in ('mul','div') or Q(constant)<=0:
+            raise ValueError('positive multiply/divide suffix required')
+        span=inverse(span,Q(constant),op,True,model)
+        if span is None:return None
+    span=inverse(span,Q(exponential),'mul',True,product_model)
+    if span is None:return None
+    span=inverse(span,Q(1),'add',True,'stored_pc64')
+    if span is None:return None
+    span=inverse(span,delta,'add',True,'stored_pc64')
+    branch=inverse(Span(stored_sum,stored_sum),start,'add',True,'stored_pc64')
+    return None if span is None or branch is None else span.meet(branch)
+
+
 def seed_phase_tracks(checkout, output, cache, retained, offline=False, radius=.001, count=1024):
     """Continue the observed GAMMA(1.3) lines, without a candidate table.
 

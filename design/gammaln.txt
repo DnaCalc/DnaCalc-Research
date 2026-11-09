@@ -55,3 +55,32 @@ supported stored program, not a unique recovery of every instruction.
 Open: rationals on [.7,1.5), [1.5,2), [2,3], propagated below .7 and through
 the recurrence to 8; the GAMMA seed and reflection leaves. Full-function
 bit exactness is not claimed. Evidence: evidence/round44.
+
+Round 45 (GPT-6.1 Sol (Codex), same machine and source role)
+
+New mapping: 25,187 arguments, including 24 consecutive 1,024-double
+windows, roots, the .7/1.5/2/3/8 joins and small-argument exponent edges.
+Both worksheet names agree on all 25,187 numeric answers. Independently
+measured GAMMALN(1+x) minus LN(x) matches all 5,769 sampled x below .7.
+The three declared shift-to-8 programs (one stored product then LN,
+reverse subtraction of public logs, or sum of logs) all contradict the
+lower windows, especially near the roots. The tested reflection composition
+uses host SIN(pi*x) and host ln(pi), then measured LN and GAMMALN leaves;
+it contradicts these windows but does not exclude other reflection leaves.
+The first-order small-x series also contradicts ordinary lower-band
+windows; agreement at sufficiently tiny x is not evidence of its use.
+
+The existing Cody tables remain contradicted after exact algebraic basis
+changes: x or 1/x, normalized or original coefficients, four fixed store
+patterns. B2's factored formula becomes a degree-eight rational in x by
+algebra alone. All 32 band/program combinations fail. The existing cleared
+g=7 nine-coefficient Lanczos form also fails in all 12 sampled band/store/
+precision combinations. This excludes those concrete candidates, not every
+Lanczos form; no Numerical Recipes source was read or copied.
+
+No coefficient changed and no degree was enlarged. The table frequencies
+still require an independent hidden-stage reconstruction, so this item
+stopped yielding before a replacement table could be justified. A research
+DFT bug exposed by exact-root windows is fixed: a window touching or
+crossing zero reports that condition instead of dividing by ulp(0).
+Evidence: evidence/round45, gamma*, original audited cache and probe.py.

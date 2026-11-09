@@ -179,6 +179,29 @@ def subtraction_lattice_replay(questions, replies, output):
     write(output,result)
     return result
 
+
+def cancellation_grid(t, answer, exponent, factors):
+    """Necessary grid test for an earlier cancellation and stored suffix.
+
+    The cancelling difference is a multiple of 2**exponent. Each suffix
+    factor is (operation, positive binary64 constant). Pull the complete
+    suffix back exactly, including both PC64 and binary64 rounding at every
+    store. No approximation coefficients, grid offset or divisor are fitted.
+    """
+    from fractions import Fraction as Q
+    from exact import Span, inverse, two
+    if not 0 < t < 1 or not math.isfinite(answer) or answer <= 0:
+        raise ValueError('positive finite central inverse observations required')
+    span=Span(Q(answer),Q(answer))
+    for op, constant in reversed(factors):
+        if op not in ('mul','div') or not math.isfinite(constant) or constant <= 0:
+            raise ValueError('positive finite multiply/divide suffix required')
+        span=inverse(span,Q(constant),op,True,'stored_pc64')
+        if span is None:return False
+    step=two(exponent)
+    first=math.ceil(span.low/step)
+    return span.contains(first*step) or span.contains((first+1)*step)
+
 if __name__=='__main__':
     import sys
     if len(sys.argv)>1 and sys.argv[1]=='subtraction-lattice':subtraction_lattice_replay(*sys.argv[2:])

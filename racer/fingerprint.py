@@ -191,6 +191,9 @@ def spectrum(answers):
         return dict(status='non-numeric window', lines=[], resolved_stored_stages=None)
     exact = [Q(value(a['bits'])) for a in answers]
     unit = Q(math.ulp(value(answers[len(answers)//2]['bits'])))
+    if any(not v or (v > 0) != (exact[0] > 0) for v in exact):
+        return dict(status='window touches or crosses zero', lines=[],
+                    resolved_stored_stages=None)
     # Subtract in rational arithmetic before converting to double, so low bits
     # survive a large output offset. Least-squares affine detrending is fixed.
     y = [float((v-exact[0])/unit) for v in exact]

@@ -143,3 +143,46 @@ installed, no degree/piece is added, and no beta kernel change is justified.
 Next: invert the normalizer as an extended value and distinguish corrected
 product and subtraction chains before returning to the nontrivial series.
 Evidence: evidence/round44, beta-prefactor*, beta-normalizers*, beta-product*.
+
+8. Round 45 (GPT-6.1 Sol (Codex)): invert interfaces, then test prefix collisions
+
+624 new pure tiny-x controls: the same 13 bounded shape pairs, exponents
+65..80, with dyadic, perturbed-dyadic and random mantissas. The original
+TOMS708 series factor rounds to one here. Permit an arbitrary shared
+extended64 normalizer at each pair, without installing any inferred value.
+Local monotone-bisection diagnostics refute the 32 plain exponent/scaling
+programs with either public or resident LN, in the declared normalizer
+box. Moving the normalizer inside the multiplication by a also fails.
+These bisections have explicit local-monotonicity and search-box premises.
+
+Stronger conditional constraints invert the corrected stored exponent
+s=store(p+C), exp(s)*store(1+store((p-s)+C)), using independently measured
+EXP(s) leaves at nine enumerated neighboring sums. Exact rational intervals
+include PC64 and binary64 stores. The 32 initial interfaces and 192 expanded
+interfaces (resident EXP/product/division alternatives included) leave a
+common C possible only at (2,3),(4,7),(8,9),(8,8). Every other pair refutes
+each tested interface, even with a common extended C. The nine-sum
+enumeration is a declared scope, not a proof about every possible EXP.
+Weighted FYL2X and base2-then-ln2 product paths also fail to give one common
+program. The current cleared runtime LN equals public LN on all 624 x's;
+that leaf cannot explain these particular failures.
+
+A separate frozen map asks 7,680 BETA.DIST calls in adjacent 256-double
+windows around five exponent edges, for six shape pairs. Public LN has
+210 collision classes and no class with differing beta answers. This
+supports, but does not identify, a stored-LN interface. In contrast, each
+of three stored product prefixes made from resident LN, weighted FYL2X,
+or base2-then-ln2 has 105 inconsistent collision classes out of 216.
+The differences occur at non-power-of-two a; the a=2 and a=8 controls have
+none. Thus those stored products alone cannot supply the later calculation
+under the unit-series premise, regardless of its normalizer, EXP or scaling.
+Keeping a product remainder is still possible. Resident prefixes have no
+collisions here and remain untested by this equality constraint.
+
+This separates a real interface constraint but does not recover a complete
+normalizer/product/scaling program. No constants or extra pieces were
+fitted, no beta kernel changed, and this item stopped after the fixed
+families contradicted the non-power-of-two controls. Next: preserve the
+stored public LN plateau map while recovering the product's extra word or
+its later combination, rather than tuning log-beta coefficients.
+Evidence: evidence/round45, beta*, audited original requests and replies.

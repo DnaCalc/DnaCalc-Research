@@ -11,6 +11,36 @@ from racer import fingerprint as f
 
 
 class FingerprintControls(unittest.TestCase):
+    def test_corrected_exponent_inverse_keeps_the_constructed_normalizer(self):
+        from racer.gamma_stages import corrected_exponent_normalizer
+        from exact import operation, EXTENDED64 as E
+        # The EXP leaf is arbitrary: inversion tests only the measured-leaf
+        # interface, independent of any exp implementation or coefficient.
+        for start in (Q(-448),Q(-450)+Q(1,2**40)):
+            normalizer=Q(13)+Q(1,2**55)
+            ss=operation(start,normalizer,'add','stored_pc64')
+            dropped=operation(start-ss,normalizer,'add','stored_pc64')
+            factor=operation(Q(1),dropped,'add','stored_pc64')
+            exp=Q(1,2**600)
+            z=operation(exp,factor,'mul','stored_pc64')
+            answer=operation(z,Q(9),'div','stored_pc64')
+            span=corrected_exponent_normalizer(start,ss,exp,answer,[('div',Q(9))])
+            self.assertIsNotNone(span)
+            self.assertTrue(span.contains(normalizer))
+            self.assertFalse(span.contains(normalizer+Q(1,2**30)))
+            for product_model in ('stored_pc64','resident_pc64'):
+                for scale_model in ('stored_pc64','resident_pc64'):
+                    z=operation(exp,factor,'mul',product_model)
+                    scaled=operation(z,Q(9),'div',scale_model)
+                    answer=operation(scaled,Q(5,4),'mul','stored_pc64')
+                    suffix=[('div',Q(9),scale_model),('mul',Q(5,4))]
+                    span=corrected_exponent_normalizer(start,ss,exp,answer,suffix,
+                        product_model=product_model)
+                    self.assertIsNotNone(span)
+                    self.assertTrue(span.contains(normalizer))
+        with self.assertRaises(ValueError):
+            corrected_exponent_normalizer(Q(-1),Q(1),Q(1),Q(1),[])
+
     def test_stirling_proof_offline_never_asks_for_a_missing_reply(self):
         from unittest.mock import patch
         from types import SimpleNamespace
@@ -39,6 +69,20 @@ class FingerprintControls(unittest.TestCase):
             y=B.round(E.round(Q(t)*u))
             answer=float(B.round(E.round(y*Q(math.sqrt(2.)))))
             self.assertTrue(final_subtraction_lattice(t,answer,-50))
+
+    def test_earlier_cancellation_grid_keeps_members_and_rejects_half_steps(self):
+        from racer.normal_quantile import cancellation_grid
+        from exact import operation
+        for t in (.52,.58,.64,.7,.706):
+            factors=[('mul',t*t),('div',1-t*t),('mul',t),('mul',math.sqrt(2.))]
+            u=Q(3,4)
+            for op,constant in factors:
+                u=operation(u,Q(constant),op,'stored_pc64')
+            self.assertTrue(cancellation_grid(t,float(u),-50,factors))
+        self.assertTrue(cancellation_grid(.5,1.,-50,[]))
+        self.assertFalse(cancellation_grid(.5,math.nextafter(1.,2.),-50,[]))
+        with self.assertRaises(ValueError):
+            cancellation_grid(.5,1.,-50,[('div',0.)])
 
     def test_phase_reader_preserves_fractional_cycles_at_large_phases(self):
         from decimal import Decimal as D, localcontext
@@ -259,6 +303,16 @@ class FingerprintControls(unittest.TestCase):
         self.assertEqual(spectrum['lines'][0]['bin'],7)
         self.assertIsNone(spectrum['resolved_stored_stages'])
         self.assertEqual(f.spectrum([dict(type='error',code='#NUM!')]*64)['status'],'non-numeric window')
+
+    def test_spectrum_reports_a_root_window_without_normalizing_by_zero_ulp(self):
+        # GAMMALN at its exact roots has a zero midpoint. Dividing surrounding
+        # finite answers by ulp(0) used to overflow before the DFT ran.
+        for values in ((-2**-50, 0., 2**-50), (0., 0., 0.),
+                       (-2**-50, 2**-50)):
+            result=f.spectrum([dict(type='number',bits=f.bits(x))for x in values])
+            self.assertEqual(result['status'],'window touches or crosses zero')
+            self.assertEqual(result['lines'],[])
+            self.assertIsNone(result['resolved_stored_stages'])
 
     def test_mathematical_publication_discriminates_a_double_rounding_tie(self):
         # Just above a binary64 midpoint, but inside an extended64 rounding

@@ -164,3 +164,24 @@ several Horner stages that amplify its grid, remains possible. A rational
 in 1-t^2 also remains possible. No degrees, pieces or constants were added.
 Evidence: evidence/round44, normal-subtraction.*. This necessary lattice
 test does not identify an inverse-erf approximation; the branch stays open.
+
+7. Round 45 (GPT-6.1 Sol (Codex)): earlier fixed suffixes
+
+New answers: nine 256-double windows at t=.52,.58,.64,.70,.706,.72,.78,
+.84,.86, 2,304 numeric results. Extend the exact R44 inverse-rounding test
+to a cancelling difference U on a grid 2^e, e=-51..-46, followed by stored
+powers of s=stored(t*t), divisions by 1-s, multiplication by t (before or
+after those powers), and the final sqrt(2). Powers run from zero to three:
+192 fixed suffix/grid programs. No approximation coefficient enters.
+
+Every program has a counterexample in each of the .52 and .58 windows;
+thus none explains piece A across those windows. Some necessary conditions
+survive at larger t, but are already contradicted by the smaller windows.
+All tested programs also fail at each of the four outer window centers.
+This excludes these simple earlier-cancellation suffixes, not arbitrary
+rational denominators, extra affine terms, or finer cancelling grids.
+
+No shape survives to constant recovery; the plateau tool has no supported
+constant to separate. Moving on leaves the varying divisor unidentified,
+with exact counterexamples instead of a fitted higher-degree rational.
+Evidence: evidence/round45, normal.questions/results and audited replies.
